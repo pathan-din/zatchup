@@ -55,6 +55,11 @@ export class EiSubadminAccessComponent implements OnInit {
     this.module.module_details = [];
     this.route.queryParams.subscribe(params => {
       var id = params['id'];
+      if(!id)
+      {
+        this.router.navigate(['ei/subadmin-management'])
+        return
+      }
       this.userId = id;
       this.sudAdminListAccessDetails(id)
     });
@@ -73,26 +78,38 @@ export class EiSubadminAccessComponent implements OnInit {
       this.baseService.getData('ei/edit-ei-subadmin-by-ei/' + id).subscribe(res => {
 
         let response: any = {};
+        
+        
+      
 
         response = res;
         this.moduleList = response.data.module_detail;
-
+        
         this.moduleList.forEach(element => {
-
+          let objModel: any = {};
           if (element.sub_module_set.length > 0) {
 
             element.sub_module_set.forEach(subElement => {
-
+              let objModel: any = {};
               subElement.count = element.sub_module_set.length
               subElement.parentmodule = element.module_name
               this.modifiedModulesList.push(subElement);
               this.model.module_details.push(subElement)
-
+              if(subElement.is_access){
+                objModel.module_code = subElement.module_code;
+                this.module.module_details.push(objModel);
+              }
+              
             });
 
           } else {
             this.modifiedModulesList.push(element);
             this.model.module_details.push(element)
+            if(element.is_access){
+              objModel.module_code = element.module_code;
+              this.module.module_details.push(objModel);
+            }
+            
           }
 
         });
@@ -256,7 +273,7 @@ export class EiSubadminAccessComponent implements OnInit {
     this.module.module_details[this.modelCodeIndex].class_id = this.classListArrayModuleAccess.join();
   }
   changeAddClass(isAccess){
-    console.log(isAccess);
+    //console.log(isAccess);
     
     if(isAccess){
       this.displayCourseListModuleAccess() ;
@@ -269,6 +286,8 @@ export class EiSubadminAccessComponent implements OnInit {
   /**Open Class Model Access */
   openClassModel(module_code) {
 
+    console.log(this.module);
+    
     const index = this.module.module_details.findIndex(codes => codes.module_code === module_code);
     if (index == -1) {
       this.alert.error('Please select respective module.', 'Error');

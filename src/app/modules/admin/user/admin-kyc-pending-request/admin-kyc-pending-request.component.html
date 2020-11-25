@@ -83,7 +83,7 @@
         <!--End html for filter for Kyc Complete-->
 
         <!--Start html for filter for No of KYC per page with export button-->
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="kycPendingRequest.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per
@@ -105,7 +105,7 @@
         <!--End html for filter for No of KYC per page with export button-->
 
         <!--Start html for table content KYC information-->
-        <div class="tableDiv">
+        <div class="tableDiv" *ngIf="kycPendingRequest.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="kycPendingRequest.dataSource | paginate: kycPendingRequest.config">
 
