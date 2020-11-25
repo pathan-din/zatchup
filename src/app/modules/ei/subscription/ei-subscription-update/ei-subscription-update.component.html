@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-3" *ngIf="subscription">
+                <!-- <div class="row mt-3" *ngIf="subscription">
                     <div class="col-md-8">
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -43,14 +43,14 @@
                             (click)="applyCoupon()">Apply Coupon
                         </button>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row mt-3">
                     <div class="col-12 color-red commonFontSize mediumFont">** Select package will be activated on the
                         expiration of current </div>
                 </div>
 
-                <div class="row mt-3" *ngIf="applyCouponData">
+                <!-- <div class="row mt-3" *ngIf="applyCouponData">
                     <div class="col-md-4"></div>
                     <div class="col-md-8">
                         <div class="row">
@@ -66,11 +66,13 @@
                             <div class="col-7"><span class="mr-1">: {{applyCouponData.price}}</span></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row mt-3">
                     <div class="col-12 text-center"><button type="button"
-                            class="bg-paret-green text-white py-2 px-4 border-0 mb-4" (click)="makePayment()">Proceed To
+                            class="bg-paret-green text-white py-2 px-4 border-0 mb-4" [disabled]="!subscription"
+                            (click)="makePayment()" aria-hidden="true" data-toggle="modal"
+                            data-target="#paymentModel">Proceed To
                             Pay</button></div>
                 </div>
 
@@ -85,8 +87,103 @@
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
+
+
+
+        <!-- Payment Model -->
+        <div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                        <button #closePaymentModel type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <div class="bg-white px-5 py-4">
+                            <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid">
+                            </div>
+                            <h2 class="text-center my-3 semiBoldFont">Payment Methods</h2>
+
+                            <form>
+                                <div class="form-group row" (click)="requestForTheRazorPayment(couponCode, true)">
+                                    <div
+                                        class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                                        <p class="m-0"> RazorPay</p>
+                                        <span class="double-right-spn">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <div
+                                        class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+
+                                        <p class="m-0"> Paytm</p>
+                                        <span class="double-right-spn">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row" (click)="goToEiChequeDetailsPage()">
+                                    <div
+                                        class="col-sm-12 form-control-inputDiv  p-2 py-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                                        <p class="m-0"> Cheque / DD</p>
+                                        <span class="double-right-spn">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row ">
+                                    <div class="col-7 form-control-inputDiv  p-1 rounded-0 shadow-none">
+                                        <input [(ngModel)]="couponCode" name="coupon_code"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing img-bg-div"
+                                            type="text" placeholder="Enter Coupon Code">
+
+                                    </div>
+                                    <div class="col-5   p-0 rounded-0 shadow-none">
+                                        <button type="button "
+                                            class="bg-purple border-0 text-white w-100 h-100 text-center p-2 commonFontSize mediumFont letterspacing"
+                                            (click)="applyCoupon()">Apply
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class=" col-md-6 letterspacing text-black text-right" [innerHtml]="paymentHtml">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid ei-bg-img h-100 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+        <div class="col-xl-4 col-lg-6 col-md-6  ">
+
+
+
+            
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+    </div>
+</div> -->
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>
