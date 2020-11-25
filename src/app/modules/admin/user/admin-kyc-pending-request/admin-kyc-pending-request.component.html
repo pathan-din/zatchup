@@ -1,0 +1,185 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="KYC-Complete-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">KYC Pending Requests</h2>
+
+        <!--Start html for filter for Kyc Complete-->
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
+                    <div class="rounded-0 p-0  border-top shadow-none">
+                        <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" class="form-control formfocusStyle"
+                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
+                    <div class="rounded-0 p-0  border-top shadow-none">
+                        <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" class="form-control formfocusStyle"
+                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="userType">
+                            <option value=""> Select User</option>
+                            <option value="ADMIN">Admin</option>
+                            <option value="STUDENT">Student</option>
+                            <option value="ALUMNI">Alumni</option>
+                            <option value="ZATCHUPSUBADMIN">Sub-admin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" name="kyc_type" [(ngModel)]="kycType">
+                            <option value=""> Select KYC</option>
+                            <option value="Aadhar">Aadhar</option>
+                            <option value="Passport">Passport</option>
+                            <option value="Driving License">Driving License</option>
+                            <option value="PAN Card">Pan Card</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" name="request_type" [(ngModel)]="requestType">
+                            <option value=""> Select Request</option>
+                            <option value="0">First Time</option>
+                            <option value="1">Re-submitted</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" name="request_reason"
+                            [(ngModel)]="requestReason">
+                            <option value=""> Select Reason</option>
+                            <option value="1">New Sign-up</option>
+                            <option value="2">Retriggered</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                    (click)="getKycPendingRequest('')">Apply</button>
+
+
+            </div>
+        </div>
+        <!--End html for filter for Kyc Complete-->
+
+        <!--Start html for filter for No of KYC per page with export button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per
+                    Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="getKycPendingRequest('1')" [(ngModel)]="kycPendingRequest.pageSize">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="exportToExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of KYC per page with export button-->
+
+        <!--Start html for table content KYC information-->
+        <div class="tableDiv">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="kycPendingRequest.dataSource | paginate: kycPendingRequest.config">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i+ kycPendingRequest.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EIZatchUpIDOfUser">
+                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID Of User </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.zatchupId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="NameOfUser">
+                        <mat-header-cell *matHeaderCellDef> Name Of User </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.name_of_user}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UserType">
+                        <mat-header-cell *matHeaderCellDef> User Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.user_type}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ProofName">
+                        <mat-header-cell *matHeaderCellDef> Proof Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.proof_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="RequestReason">
+                        <mat-header-cell *matHeaderCellDef> Request Reason </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.request_reason}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="RequestType">
+                        <mat-header-cell *matHeaderCellDef>Request Type</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.request_type == 0 ? 'First Time' : 'Re-submitted'}} </mat-cell>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index" class="text-center justify-content-center">
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View"
+                                (click)="kycHistoryViewRoute(element)"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="kycPendingRequest.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: kycPendingRequest.displayedColumns; "></mat-row>
+
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="kycPendingRequest.dataSource" (pageChange)="getKycPendingRequest($event)"
+        class="eiPaginationTag">
+    </pagination-controls>
+    <div class="row" *ngIf="!kycPendingRequest.dataSource">
+        <div class="col-12 pt-2 pb-2">
+            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+        </div>
+    </div>
+        <!-- <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div> -->
+    </div>
+</div>

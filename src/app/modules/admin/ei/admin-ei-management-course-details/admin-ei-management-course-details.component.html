@@ -1,0 +1,151 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont mb-3"> Courses Details</h2>
+
+        <!--Start html for table content Course Details-->
+        <div class="tableDiv">
+            <div class="mat-elevation-z0 table-responsive">
+                <mat-table [dataSource]="courseDetails.courseDetail">
+
+                    <ng-container matColumnDef="courseName">
+                        <mat-header-cell *matHeaderCellDef> Course Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.course_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="startYera">
+                        <mat-header-cell *matHeaderCellDef> Start Year </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.start_year}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="endYear">
+                        <mat-header-cell *matHeaderCellDef> End Year </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.end_year}}
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="durationOfCourse">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Duration of Course
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            {{element.duration}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="noOfStandards">
+                        <mat-header-cell *matHeaderCellDef> Number Of Standards </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.num_of_standard}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="noOfClass">
+                        <mat-header-cell *matHeaderCellDef>Number Of Class </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.num_of_class}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="noOfStudents">
+                        <mat-header-cell *matHeaderCellDef>Number Of Students </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-blue">
+                            {{element.num_of_student}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="noOfAlumni">
+                        <mat-header-cell *matHeaderCellDef> Number Of Alumni </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.num_of_alumni}} </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="courseDetails.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: courseDetails.displayedColumns; "></mat-row>
+                </mat-table>
+
+            </div>
+        </div>
+        <div class="row" *ngIf="courseDetails.courseDetail && courseDetails.courseDetail.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+        <div class="tableDiv mt-4 AssignRoll table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="bg-Gainsboro align-middle">
+                        <th scope="col">S.No</th>
+                        <th scope="col">Course Name </th>
+                        <th scope="col">Standards</th>
+                        <th scope="col">Duration of Standards</th>
+                        <th scope="col">Number of Class</th>
+                        <th scope="col">Start Year</th>
+                        <th scope="col">End Year</th>
+                        <th scope="col">Number of Students</th>
+                        <th scope="col">Number of Alumni</th>
+                    </tr>
+
+                </thead>
+                <tbody *ngIf="courseDetails.standardList">
+                    <tr *ngFor=" let standard of courseDetails.standardList;let i=index;">
+                        <td>{{i+1}}</td>
+                        <td *ngIf="i==0" [attr.rowspan]="courseDetails.courseDetail[0].num_of_standard">
+                            {{courseDetails.courseDetail[0].course_name}}
+                        </td>
+                        <td>{{standard.standard_name}}</td>
+                        <td>{{standard.duration}}</td>
+                        <td>{{standard.num_of_class}}</td>
+                        <td>{{standard.start_year}}</td>
+                        <td class="w-15">{{standard.end_year}}</td>
+                        <td class="color-blue">{{standard.num_of_student}}</td>
+                        <td>{{standard.num_of_alumni}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tableDiv mt-4 AssignRoll table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="bg-Gainsboro align-middle">
+                        <th scope="col">Standards</th>
+                        <th scope="col">Duration of Students</th>
+                        <th scope="col">Sub-Section</th>
+                        <th scope="col">Class Alias</th>
+                        <th scope="col">Start Year</th>
+                        <th scope="col">End Year</th>
+                        <th scope="col">Number of Students</th>
+                        <th scope="col">Number of Alumni</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let classes of courseDetails.classList;let i=index">
+
+                        <td *ngIf="classes.class_count!=0" [attr.rowspan]="classes.class_count">
+                            {{classes.standard_name}}</td>
+                        <td *ngIf="classes.class_count!=0" [attr.rowspan]="classes.class_count">{{classes.duration}}
+                        </td>
+
+
+                        <td>{{classes.class_name}}</td>
+                        <td>{{classes.alias_class}}</td>
+                        <td>{{classes.start_year}}</td>
+                        <td>{{classes.end_year}}</td>
+                        <td class="color-blue">{{classes.num_of_student}}</td>
+                        <td>{{classes.num_of_alumni}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

@@ -1,0 +1,184 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="student-management-div bg-white px-3 pt-2 pb-3">
+        <!-- <h2 class="commonFontSize semiBoldFont mb-1">Student Management</h2> -->
+
+        <div class="row topDiv">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont mb-1">Student Management</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0"
+                    data-toggle="modal" data-target="#AddStudentModel">Add Students</button>
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 ml-2 border-0" (click)="goToEiStudentSummaryPage()">Student Summary</button>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB" (click)="goToEiStudentVerifiedListPage()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
+                    <p class="p-2 mediumFont commonFontSize">Added Student(Verified)</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{courseWiseStudentCount.total_verified_student?courseWiseStudentCount.total_verified_student:0}}
+                    </h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg bg-light-secondary">Total Added Students:<span
+                            class="ml-2">{{courseWiseStudentCount.total_student_count?courseWiseStudentCount.total_student_count:0}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB" (click)="goToEiStudentPendingVerificationPage()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
+                    <p class="p-2 mediumFont commonFontSize">Students Pending For Verification</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{courseWiseStudentCount.total_pending_approval?courseWiseStudentCount.total_pending_approval:0}}
+                    </h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg bg-light-secondary">Students Pending For
+                        Verification:<span class="ml-2">{{courseWiseStudentCount.total_pending_approval?courseWiseStudentCount.total_pending_approval:0}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4" (click)="goToEiStudentRequestPendingForChangingDetailsPage()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
+                    <p class="p-2 mediumFont commonFontSize">Request Pending For Changing Details</p>
+                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg bg-light-secondary">Request Pending For
+                        Changing:<span class="ml-2">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="addStudent-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row ">
+            <!-- <div class="col-xl-6 col-lg-5 col-md-6 MobileCol6MB">
+                <h2 class="commonFontSize semiBoldFont">Students</h2>
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0"
+                    data-toggle="modal" data-target="#AddStudentModel">Add Students</button>
+            </div> -->
+            <div class="col-xl-6 col-lg-7 col-md-6">
+                <h2 class="commonFontSize semiBoldFont">View Status ({{(courseWiseStudentCount.total_ekyc_approved+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.sent_for_signup+courseWiseStudentCount.sent_for_approval)?(courseWiseStudentCount.total_ekyc_approved+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.sent_for_signup+courseWiseStudentCount.sent_for_approval):0}})</h2>
+                <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-3">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
+                            (click)="goToEiStudentApprovalsPage()">
+                            <p class="cursorStyle">Approved</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.total_ekyc_approved}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p class="cursorStyle">Rejected</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user?(courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user):0}}</p>
+                        </div>
+                        <div class="col-12 ml-1 small-text-2">
+                            <div class="row  m-0">
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> ZatchUp System</p>
+                                </div>
+                                <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                                    <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_zatchup?courseWiseStudentCount.rejected_by_zatchup:0}}</p>
+                                </div>
+                            </div>
+                            <div class="row  m-0">
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Rejected by Users</p>
+                                </div>
+                                <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                                    <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_user?courseWiseStudentCount.rejected_by_user:0}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p class="cursorStyle">Sent For Sign Up</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.sent_for_signup?courseWiseStudentCount.sent_for_signup:0}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p class="cursorStyle">Sent For Approval</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.sent_for_approval?courseWiseStudentCount.sent_for_approval:0}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="Student-summary-div bg-white px-3 py-2 mt-3">
+        <h2 class="commonFontSize semiBoldFont">Student Summary</h2>
+
+        <div class="row">
+
+            <div class="col-xl-6 col-lg-6 col-md-7 col-12">
+                <div class="form-control-inputDiv  d-flex flex-column rounded-0 p-0 shadow-none ">
+                    <div class="row commonFontSize semiBoldFont bg-light-gray mx-0 p-2">
+                        <div class="col-4">Course Name </div>
+                        <div class="col-4">Number of Students</div>
+                        <div class="col-4">Sign</div>
+                    </div>
+                    <div class="row commonFontSize m-0 p-2" *ngFor="let courseData of courseWiseStudentCountCourse">
+                        <div class="col-4">{{courseData.course_name}} </div>
+                        <div class="col-4">{{courseData.num_of_student}}</div>
+                        <div class="col-4">
+                            <button class="rounded bg-paret-green border-0  text-white"><i
+                                    class="fa fa-angle-double-down" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="post-div bg-white px-3 py-2 mt-3">
+        <h2 class="commonFontSize semiBoldFont">Post</h2>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">Pending Post</p>
+                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Total Pending Posts Approval by
+                        Alumni:<span class="ml-2">25/50</span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>
+</div>
+
+<!-- AddStudentModel  -->
+<div class="modal fade" id="AddStudentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Add Students</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true ">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body px-0 py-0">
+                <p class="regularFont letterspacing text-center pt-2 pb-3">
+                    <button type="button "
+                        class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing MobileCol6MB"
+                        (click)="goToEiStudentBulkAddPage()">Add Individual Students</button>
+                    <button type="button" class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont MobileCol6MB"
+                        (click)="goToEiStudentChangeBulkClassPage()">Add Bulk Students</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

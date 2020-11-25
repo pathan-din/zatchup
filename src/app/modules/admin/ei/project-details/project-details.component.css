@@ -1,0 +1,21 @@
+.img-height {
+    height: 25vh;
+}
+
+.projectDetails-table {
+    max-height: 90vh;
+}
+
+.comment-dp {
+    width: 60px;
+    height: 60px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}
+
+@media only screen and (max-width: 414px) {
+    .comment-dp {
+        width: 50px;
+        height: 50px;
+    }
+}

@@ -1,0 +1,8 @@
+table tr th,
+table tr td {
+    vertical-align: middle;
+}
+
+.w-15 {
+    width: 15%;
+}

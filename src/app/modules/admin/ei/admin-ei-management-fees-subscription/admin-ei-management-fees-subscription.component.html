@@ -1,0 +1,179 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Subscription Fees Received</h2>
+        <!--Start html for fees information Filter-->
+        <div class="filterDiv">
+
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Received From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Received To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select State</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select City</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Subsection</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+
+
+            </div>
+        </div>
+        <!--End html for fees information Filter-->
+        <!--Start html for "select no of fees info per page" and Export Button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Fees Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchUpID">
+                        <mat-header-cell *matHeaderCellDef>ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.zatchUpID}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="schoolName">
+                        <mat-header-cell *matHeaderCellDef>Name of School </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.schoolName}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="state">
+                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.state}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.city}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.address}}
+                        </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="board">
+                        <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.board}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="plan">
+                        <mat-header-cell *matHeaderCellDef>Plan Taken </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.plan}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="grossSubscriptionFees">
+                        <mat-header-cell *matHeaderCellDef>Subscription Fees Gross</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.grossSubscriptionFees}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="netSubscriptionFees">
+                        <mat-header-cell *matHeaderCellDef> Subscription Fees Net </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.netSubscriptionFees}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="appliedCouponCode">
+                        <mat-header-cell *matHeaderCellDef> Coupon Code Applied </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.appliedCouponCode}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef class="text-center">Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+
+                            <button type="button" class="rounded text-white bg-blue border-0">{{element.action}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+
+
+
+                </mat-table>
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!--End html for fees information table-->
+    </div>
+</div>

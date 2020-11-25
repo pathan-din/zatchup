@@ -1,0 +1,79 @@
+<app-user-header></app-user-header>
+
+<div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5">
+        <div class="col-md-8">
+            <img class="img-fluid left-Image mt-4 mb-5" src="assets/images/userWebsite/highest_level_education_image.png">
+        </div>
+        <div class="col-md-4 pl-0">
+            <h2 class="mb-3 textSpace">{{title}} </h2>
+
+            <form class="pt-2">
+                <div class="form-group row" *ngFor="let qualifi of qualificationJson; let i=index;">
+                    <div class="col-sm-12 form-control-inputDiv">
+                        <div class="form-control-radioDiv-padding">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label qualificationCustomLabel" for="inlineRadio{{qualifi.id}}">
+                                    <input class="custom-control-input" [(ngModel)]="model.qualification_type" type="radio"  name="model.qualification_type"
+                                        id="inlineRadio{{qualifi.id}}" value="{{qualifi.id}}">
+                                    <span class="checkmark qualificationCheckmark"></span>
+                                    <span class="radioValuetext">{{qualifi.name}} </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="required errorMsg"  [innerHtml]="errorDisplay.qualification_type"></div>
+                <!-- <div class="form-group row">
+                    <div class="col-sm-12 form-control-inputDiv">
+                        <div class="form-control-radioDiv-padding">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label qualificationCustomLabel" for="inlineRadio2">
+                                    <input class="custom-control-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="option2">
+                                    <span class="checkmark qualificationCheckmark"></span>
+                                    <span class="radioValuetext">Post-Graduation </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-12 form-control-inputDiv">
+                        <div class="form-control-radioDiv-padding">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label qualificationCustomLabel" for="inlineRadio3">
+                                    <input class="custom-control-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio3" value="option3">
+                                    <span class="checkmark qualificationCheckmark"></span>
+                                    <span class="radioValuetext">Graduation  </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-12 form-control-inputDiv">
+                        <div class="form-control-radioDiv-padding">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label qualificationCustomLabel" for="inlineRadio4">
+                                    <input class="custom-control-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio4" value="option4">
+                                    <span class="checkmark qualificationCheckmark"></span>
+                                    <span class="radioValuetext">School (Up to 12th Standard)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <button type="submit" class="btn common-btn regularFont textSpace mt-5" (click)="goToUserWorkDetail();">Submit </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<app-user-footer></app-user-footer>

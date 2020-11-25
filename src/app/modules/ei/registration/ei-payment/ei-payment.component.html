@@ -1,0 +1,84 @@
+<div class="container-fluid ei-bg-img h-100 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+        <div class="col-xl-4 col-lg-6 col-md-6  ">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center my-3 semiBoldFont">Payment Methods</h2>
+                <p class="letterspacing text-danger text-center">
+                    Your account is not verified yet, please complete the remaining process:-
+                </p>
+               
+                <form>
+                    <div class="form-group row" (click)="razorPayPament()">
+                        <div
+                            class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                            <p class="m-0"> RazorPay</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <div
+                            class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+
+                            <p class="m-0"> Paytm</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group row  ">
+                        <div
+                            class="col-sm-12 form-control-inputDiv  p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+
+                            <p class="m-0"> Check/DD Payment</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group row  ">
+                        <div
+                            class="col-sm-12 form-control-inputDiv  p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+
+                            <p class="m-0">Payment Wallet</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>-->
+                    <div class="form-group row" (click)="goToEiChequeDetailsPage()">
+                        <div
+                            class="col-sm-12 form-control-inputDiv  p-2 py-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                            <p class="m-0"> Cheque / DD</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div> 
+                    <div class="form-group row ">
+                        <div class="col-7 form-control-inputDiv  p-1 rounded-0 shadow-none">
+                            <input [(ngModel)]="model.coupon_code" name="model.coupon_code"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing img-bg-div"
+                                type="text" placeholder="Enter Coupon Code">
+
+                        </div>
+                        <div class="col-5   p-0 rounded-0 shadow-none">
+                            <button type="button "
+                                class="bg-purple border-0 text-white w-100 h-100 text-center p-2 commonFontSize mediumFont letterspacing"
+                                (click)="goToEiCourierDetailsPage()">Apply
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                <div class=" col-md-6 letterspacing text-black text-right" [innerHtml]="paymentHtml"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+    </div>
+</div>

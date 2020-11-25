@@ -1,0 +1,60 @@
+.myschoolTab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+    border-radius: 20px;
+    height: 20vh;
+    max-height: 20vh;
+    min-height: 20vh;
+}
+
+.bodybg-color {
+    background-color: #ffffff;
+}
+
+.img-size {
+    min-height: 95%;
+    max-height: 95%;
+    margin: auto;
+}
+
+.landingDivSchoolTab {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.background-purple {
+    background-color: #463267;
+}
+
+@media only screen and (max-width: 414px) {
+    .myschoolTab {
+        height: 25vh;
+        max-height: 25vh;
+        min-height: 25vh;
+    }
+    .landingDiv {
+        padding-top: 4%;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+    .img-size {
+        min-height: 90%;
+        max-height: 90%;
+        margin: auto;
+        min-width: 60%;
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .myschoolTab {
+        height: 13vh;
+        max-height: 13vh;
+        min-height: 13vh;
+    }
+}

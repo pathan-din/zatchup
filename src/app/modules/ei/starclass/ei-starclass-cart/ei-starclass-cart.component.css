@@ -1,0 +1,12 @@
+::ng-deep .mat-list-itemw-auto {
+    height: auto!important;
+}
+
+::ng-deep .mat-list-item-content {
+    padding: 1rem 0!important;
+    align-items: flex-start!important;
+}
+
+input#couponCode:focus {
+    outline: none;
+}

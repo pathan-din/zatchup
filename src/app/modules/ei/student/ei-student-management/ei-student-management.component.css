@@ -1,0 +1,25 @@
+.col-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.countFontSize {
+    font-size: 2rem;
+}
+
+.modalAddStudentsBtn{
+    font-size: 1rem;
+}
+.modalAddStudentsBtn:active{
+    color: #ffffff;
+    background-color: #463267;
+}
+
+@media only screen and (max-width: 414px) {}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Btn-lg {
+        height: 60px;
+    }
+}

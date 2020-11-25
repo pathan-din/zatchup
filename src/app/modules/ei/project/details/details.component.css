@@ -1,0 +1,9 @@
+.bg-none{
+    background: none;
+}
+.project_detailTable{
+    border: 1px solid #ddd;
+    height: 900px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

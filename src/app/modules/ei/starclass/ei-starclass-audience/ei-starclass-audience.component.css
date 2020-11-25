@@ -1,0 +1,47 @@
+::ng-deep .mat-list-itemh-auto {
+    height: auto!important;
+}
+
+::ng-deep .mat-list-item-content {
+    padding-top: 0.3rem!important;
+    padding-bottom: 0.3rem!important;
+}
+
+.mat-card-avatar {
+    height: 50px;
+    width: 50px;
+}
+
+.addTeacherList {
+    height: 242px;
+    overflow-y: auto;
+}
+
+
+/* width */
+
+.addTeacherList::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+
+/* Track */
+
+.addTeacherList::-webkit-scrollbar-track {
+    background: #bbbbbb;
+}
+
+
+/* Handle */
+
+.addTeacherList::-webkit-scrollbar-thumb {
+    background: #463267;
+}
+
+
+/* Handle on hover */
+
+.addTeacherList::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

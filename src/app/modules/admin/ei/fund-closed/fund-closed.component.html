@@ -1,0 +1,225 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Funding Closed Projects</h2>
+            </div>
+
+        </div>
+        <!--Start html for Incomplete Onboarding information Filter-->
+        <div class="filterDiv bg-Gainsboro mt-2 pb-4 px-3">
+            <h2 class="commonFontSize semiBoldFont mb-0 pt-2">filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Project Added From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " id="addedFrom" type="date" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Project Added To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" id="addedTo" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Funding Stoped Date From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" id="stopedFrom" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Funding Stoped Date To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" id="stopedTo" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Funding Amount From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" id="amountFrom" placeholder="Enter Funding Amount">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Funding Amount To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" id="amountTo" placeholder="Enter Funding Amount">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Completed By Auditor Date From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" id="auditorDateFrom" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Project Completed Date To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" id="completedDateTo" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Funding Closed Reason</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Reason</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Marked Completed Status By Auditor</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Status</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+
+
+            </div>
+        </div>
+        <!--End html for Incomplete Onboarding information Filter-->
+        <!--Start html for "select no of EI info per page" and Export Button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Project Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for "select no of EI info per page" and Export Button-->
+        <!--Start html for Incomplete EI Onboard information table-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfProjectAdded">
+                        <mat-header-cell *matHeaderCellDef>Date Of Project Added </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.dateOfProjectAdded}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="projectID">
+                        <mat-header-cell *matHeaderCellDef>Project ID</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.projectID}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="category">
+                        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.category}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="title">
+                        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.title}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchupID">
+                        <mat-header-cell *matHeaderCellDef>EI zatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.zatchupID}}
+                        </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="Einame">
+                        <mat-header-cell *matHeaderCellDef>EI Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.Einame}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="fundRequired">
+                        <mat-header-cell *matHeaderCellDef>Funding Required</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.fundRequired}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="totalCollected">
+                        <mat-header-cell *matHeaderCellDef>Total Collected</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.totalCollected}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="totalContributor">
+                        <mat-header-cell *matHeaderCellDef>Total Contributors </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.totalContributor}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="auditorStatus">
+                        <mat-header-cell *matHeaderCellDef>Auditor Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                                {{element.auditorStatus}} </button> </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fundingStatus">
+                        <mat-header-cell *matHeaderCellDef>Funding Status</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                                {{element.fundingStatus}} </button></mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center">Action</mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+                            <i class="fa fa-eye mr-2 color-lightBlue cursorStyle" title="view" aria-hidden="true"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+
+
+
+                </mat-table>
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!--End html for Incomplete EI Onboard information table-->
+
+
+    </div>
+</div>

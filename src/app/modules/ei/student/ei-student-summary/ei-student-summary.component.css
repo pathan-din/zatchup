@@ -1,0 +1,37 @@
+/* {
+    box-shadow: 0 2px 20px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+} */
+
+.row.commonFontSize.semiBoldFont.bg-light-secondary.mx-0 {
+    background: #463267;
+    color: #fff;
+}
+.row.commonFontSize.semiBoldFont.bg-light-gray.mx-0 {
+    font-size: .8rem;
+    background: #fff;
+}
+.row.commonFontSize.semiBoldFont.bg-gary.mx-0 {
+    font-size: .775rem;
+    background: #fff;
+}
+.row.courseName.commonFontSize.m-0.ng-star-inserted{
+    /* border: 1px solid #463267 !important */
+    border: 0px solid #ccc !important;
+    margin-top: 0.5rem !important;
+    background: rgb(196, 170, 239) !important;
+    margin-bottom: 1rem !important;
+    box-shadow: 1px 3px 15px #ccc;
+}
+.standardRowSubDetailList {
+    /* background: #dbd0ecf7; */
+    background: #ccc;
+}
+.classRowSubDetailList{
+    /* background: #e3daf5; */
+    background: #efefef;
+}
+.form-control-inputDiv{
+    border: none;
+}

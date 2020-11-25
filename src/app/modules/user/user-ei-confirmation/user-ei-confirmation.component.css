@@ -1,0 +1,44 @@
+.form-control-input {
+    padding: 0;
+}
+
+.confirmForm {
+    position: relative;
+}
+
+.confirm {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.fixedBtn {
+    position: absolute;
+    bottom: 0%;
+    left: 18%;
+    width: auto!important;
+    padding: 2% 6%!important;
+}
+
+.paddingL {
+    padding: 0;
+}
+
+.topHeadingLeftSpace {
+    margin-left: -0.1rem!important;
+}
+
+@media only screen and (max-width: 414px) {
+    .fixedBtn {
+        left: 1%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .fixedBtn {
+        left: -4%;
+    }
+    .mobilePLR {
+        padding-right: 1.5rem!important;
+        padding-left: 1.5rem!important;
+    }
+}

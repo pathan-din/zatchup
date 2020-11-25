@@ -1,0 +1,17 @@
+
+
+.form-control-inputDiv {
+    width: auto;
+}
+
+.mat-column-emailID {
+    flex: 0 0 12%;
+}
+
+.mat-column-phoneNumber {
+    flex: 0 0 10%;
+}
+
+.mat-column-position {
+    flex: 0 0 5%;
+}

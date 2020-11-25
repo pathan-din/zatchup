@@ -1,0 +1,111 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Past Advertisements</h2>
+            </div>
+        </div>
+        <div class="filterDiv">
+            <div class="d-flex flex-wrap align-items-end"> 
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Advertise Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <select class="custom-select  form-control-input" id="pastEI" required>
+                            <option value=""> Select Status</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Advertise Process</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <select class="custom-select  form-control-input" id="pastEI" required>
+                            <option value=""> Select Process</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-3 border-0 ">Apply</button>            
+            </div>
+        </div>
+        
+        <div class="tableDiv mt-4">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="advertisementTitle">
+                        <mat-header-cell *matHeaderCellDef> Advertisement Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.advertisementTitle}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="advertisementType">
+                        <mat-header-cell *matHeaderCellDef> Advertisement Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.advertisementType}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="caption">
+                        <mat-header-cell *matHeaderCellDef> Caption </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.caption}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="numberOfClicks">
+                        <mat-header-cell *matHeaderCellDef> Number of Clicks </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.numberOfClicks}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ageGroup">
+                        <mat-header-cell *matHeaderCellDef> Age Group </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.ageGroup}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="locations">
+                        <mat-header-cell *matHeaderCellDef> Locations </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.locations}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="selectedProfession">
+                        <mat-header-cell *matHeaderCellDef> Selected Profession </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.selectedProfession}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                        <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.amount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center">
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+
+    </div>
+</div>

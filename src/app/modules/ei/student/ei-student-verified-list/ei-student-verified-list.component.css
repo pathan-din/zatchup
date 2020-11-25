@@ -1,0 +1,41 @@
+.form-control-inputDiv {
+    width: fit-content;
+}
+
+/******************* mat table *************/
+
+.fa[data-count] {
+    position: relative;
+}
+
+::ng-deep .tableDiv .mat-checkbox-background {
+    background: white;
+}
+.editClass input[type=radio] {
+    margin: 6px;
+}
+
+::ng-deep .tableDiv .mat-checkbox-inner-container-no-side-margin {
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+::ng-deep .tableDiv .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+::ng-deep .tableDiv .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #463267;
+}
+
+.fa[data-count]:after {
+    position: absolute;
+    right: -0.95em;
+    top: -0.99em;
+    content: attr(data-count);
+    padding: .5em;
+    border-radius: 10em;
+    line-height: .9em;
+    color: white;
+    background: #37a713;
+    text-align: center;
+    min-width: 2em;
+    font: bold .5em sans-serif;
+}

@@ -1,0 +1,17 @@
+.custom-select {
+    width: 100%;
+    background-position: 96%;
+    background-size: 7%;
+}
+
+.form-control-inputDiv {
+    width: fit-content;
+}
+
+
+/******************* mat table *************/
+
+.mat-column-VerificationStatusByEI,
+.mat-column-EKYCVerificationStatus {
+    flex: 0 0 13%;
+}

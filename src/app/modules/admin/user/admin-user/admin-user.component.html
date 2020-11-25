@@ -1,0 +1,255 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="User-management-div bg-white px-4 pt-3 pb-4">
+        <div class="row topDiv mb-1">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">User Management</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="text" placeholder="Search...">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Apply</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 semiBoldFont commonFontSize">Signed Up Users On ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.signup_user_zatchup_count}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Signed Up Users On ZatchUp Platform:<span class="ml-2"
+                            *ngIf="dashboardData">{{dashboardData.signup_user_zatchup_count}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <p class="p-2 semiBoldFont commonFontSize">KYC Verified Users On ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.total_kyc_verified_count}}</h2>
+                    <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
+                        <p class="mb-0 ">Total KYC Verified Users On ZatchUp Platform:
+                            <span class="ml-2" *ngIf="userDashboard">{{userDashboard.total_kyc_verified_count}}</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 semiBoldFont commonFontSize">Users Verified By EI</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.user_verified_by_ei}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Number Of Users Verified By At Least One El:<span class="ml-2"
+                            *ngIf="dashboardData">{{dashboardData.user_verified_by_ei}}</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 semiBoldFont commonFontSize">Active Users</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.active_users_count}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Active Users (Last Login
+                        < 7 Days):<span class="ml-2" *ngIf="userDashboard">{{userDashboard.active_users_count}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <p class="p-2 semiBoldFont commonFontSize">Dormant Users</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.dormant_users_count}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Dormant Users (Last Login >7 Days):
+                        <span class="ml-2" *ngIf="userDashboard">{{userDashboard.dormant_users_count}}</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="User-unverified-dashboard-div bg-white px-4 pt-3 pb-4 mt-3">
+        <div class="row">
+            <div class="col-12 d-flex align-items-end flex-wrap">
+                <div class="widthFull">
+                    <label for="" class=" commonFontSize mediumFont letterspacing"> From Date</label>
+                    <div class="rounded shadow-none mx-1">
+                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing"
+                            type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+
+                <div class="widthFull">
+                    <label for="" class=" commonFontSize mediumFont letterspacing">To Date </label>
+                    <div class="rounded  shadow-none mx-1">
+                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                            type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+
+                <div class="medium-filter-box widthFull MobileCol6MB">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Select City</label>
+                    <div class="form-control-inputDiv rounded  shadow-none  border-top ">
+                        <select class="custom-select  form-control-input" id="city" required>
+                            <option value=""> Select City</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="3">D</option>
+                            <option value="3">E</option>
+                            <option value="3">Unspecified</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <button type="button"
+                        class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                        Submit
+                    </button>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 semiBoldFont commonFontSize">Users Added On The Platform</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.total_users_added}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        Total Number Of Users Added On The Platform:<span class="ml-2"
+                            *ngIf="userDashboard">{{userDashboard.total_users_added}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 semiBoldFont commonFontSize">Unverified Users, Verified By At Least One EI </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.total_unverified_users}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        Total Number Of Unverified Users, Verified By At Least One EI:<span class="ml-2"
+                            *ngIf="userDashboard">{{userDashboard.total_unverified_users}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 semiBoldFont commonFontSize">Unresolved User's Profile Reports </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.total_unresolved_userprofile_reports}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        Total Number Of Unresolved User's Profile Reports:<span class="ml-2"
+                            *ngIf="userDashboard">{{userDashboard.total_unresolved_userprofile_reports}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="User-unresolved-dashboard-div bg-white px-4 pt-3 pb-4 mt-3">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 semiBoldFont commonFontSize">Number Of Unresolved User's Profile </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.total_unverified_users}}</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary Btn-lg-last">Total Number Of
+                        Unresolved User's Profile:
+                        <span class="ml-2" *ngIf="userDashboard">{{userDashboard.total_unverified_users}}</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12 d-flex align-items-end flex-wrap">
+                <div class="widthFull">
+                    <label for="" class=" commonFontSize mediumFont letterspacing "> From Date</label>
+                    <div class="rounded shadow-none mx-1">
+                        <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
+                            type="date" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull MobileCol6MB">
+                    <label for="" class=" commonFontSize mediumFont letterspacing widthFull">To Date</label>
+                    <div class="rounded shadow-none mx-1">
+                        <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
+                            type="text" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <button type="button"
+                        class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
+                        Submit
+                    </button>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 semiBoldFont commonFontSize">New Reports Reporting User's Profile</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">{{userDashboard.new_user_profile_reports}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Number Of New Reports Reporting User's Profile :<span class="ml-2"
+                            *ngIf="userDashboard">{{userDashboard.new_user_profile_reports}}/{{userDashboard.new_user_reported}}</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 semiBoldFont commonFontSize">New Users Reported </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">{{userDashboard.new_user_reported}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Number Of New Users Reported:<span class="ml-2" *ngIf="userDashboard">{{userDashboard.new_user_reported}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
+
+<!-- AddStudentModel  -->
+<!-- <div class="modal fade" id="AddStudentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Add Students</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true ">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body px-0 py-0">
+                <p class="regularFont letterspacing text-center pt-2 pb-3">
+                    <button type="button " class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">Add Individual Students</button>
+                    <button type="button" class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Add Bulk Students</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div> -->

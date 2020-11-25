@@ -1,0 +1,23 @@
+.w-6 {
+    width: 6%;
+}
+
+.border-radius-25 {
+    border-radius: 25px;
+}
+
+.img-height {
+    height: 25vh;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}
+
+@media only screen and (max-width: 414px) {
+    .w-6-mobile {
+        width: 12%;
+    }
+    .colLeftPost {
+        padding: 0;
+        margin-top: 2%;
+    }
+}

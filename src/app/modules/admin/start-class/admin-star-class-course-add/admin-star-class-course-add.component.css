@@ -1,0 +1,22 @@
+.p-t-2{
+    padding: .5rem 1rem!important;
+}
+.customRow{
+    width: 97%;
+    margin: auto;
+}
+.w-90 {
+    width: 110px;
+}
+.newCourseTitle{
+    border-bottom: 1px solid #d4d4d4;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 767px) {
+    .MobileCol6MB {
+        margin-bottom: 1rem;
+    }
+    .p-t-2{padding: .5rem .5rem!important;}
+}

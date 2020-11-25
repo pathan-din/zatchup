@@ -1,0 +1,63 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container containerScrolling my-3 pt-3 pb-3">
+    <div class=" bg-white px-3 py-3">
+        <div class="headeingDiv row ml-0 mr-0 mb-3">
+            <div class="col-12">
+                <h2 class="commonFontSize semiBoldFont mb-0">New Post Create</h2>
+            </div>
+            <!-- <div class="col-2 text-right">
+                <button type="button" class="py-2 px-3 text-white border-0 addPost bg-dark mediumFont">Add Post</button>
+            </div> -->
+        </div>
+
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3 w-50 ml-3">
+            <div class="row">
+                <div class="mr-3 col-12 medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Add Caption</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control commonFontSize regularFont letterspacing " id="add caption" type="text" placeholder="Enter Caption Name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="mr-3 col-12 medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Upload Images/Vedio</label>
+                    <div class="customUpload p-3">
+                        <!-- <img src="assets/images/userWebsite/upload_icons.png" class="img-fluid">
+                        <input class="commonFontSize regularFont letterspacing" type="file" placeholder="Upload Images/Vedio"><br/>
+                         -->
+                        <div class="image-upload text-center">
+                            <label for="file-input">
+                                <img src="assets/images/userWebsite/upload_icons.png" class="mb-2"/><br/>
+                                <span class="text-center">Upload Images/Vedio</span>
+                            </label>
+                            
+                            <input id="file-input" type="file" placeholder="Upload Images/Vedio"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12 col-sm-12 col-12">Audience</div>
+                <div class="col-md-4 col-sm-4 col-6 mt-2">
+                    <mat-checkbox class="example-margin">Public</mat-checkbox>
+                </div>
+                <div class="col-md-4 col-sm-4 col-6 mt-2">
+                    <mat-checkbox class="example-margin">Students</mat-checkbox>                    
+                </div>
+                <div class="col-md-4 col-sm-4 col-6 mt-2">
+                    <mat-checkbox class="example-margin">Alumni</mat-checkbox>                    
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12 col-sm-12 col-12 d-flex justify-content-center">
+                    <button type="button" class="bg-danger border-0 color-white mr-1 px-3 py-2">Cancel</button>
+                    <button type="button" class="bg-paret-green border-0 color-white ml-1 px-3 py-2">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

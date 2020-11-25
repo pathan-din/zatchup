@@ -1,0 +1,41 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Add Commission</h2>
+            </div>
+        </div>
+
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchUpID">
+                        <mat-header-cell *matHeaderCellDef> Unique ZatchUp ID of the EI </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.zatchUpID}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> <input type="text">  </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="newcommission">
+                        <mat-header-cell *matHeaderCellDef>New Commission </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.newcommission}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> <input type="text"></mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+            </div>
+        </div>
+        <!--End html for fees information table-->
+
+        <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Upload</button>
+    </div>
+</div>

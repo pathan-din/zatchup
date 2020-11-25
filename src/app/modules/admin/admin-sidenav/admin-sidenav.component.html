@@ -1,0 +1,112 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+        <mat-toolbar>ZatchUp</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE001', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">dashboard</i>
+                <span class="commonFontSize"> Dashboard</span>
+            </a>
+            <a mat-list-item routerLink="/admin/school-management" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE002', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">school</i>
+                <span class="commonFontSize"> School Management </span>
+            </a>
+            <a class="md-button md-ink-ripple" mat-list-item routerLink="/admin/user" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE003', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">groups</i>
+                <span class="commonFontSize"> User Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE004', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">groups</i>
+                <span class="commonFontSize"> ZatchUp Starclass Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE005', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">person</i>
+                <span class="commonFontSize"> Donation Project Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE006', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">person</i>
+                <span class="commonFontSize"> Lecture Requests Management </span>
+            </a>
+            <a mat-list-item routerLink="/admin/zatchup-certificate-result" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE007', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">person</i>
+                <span class="commonFontSize"> E-Certificates And E-Report Cards </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE008', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">people</i>
+                <span class="commonFontSize"> Post Management </span>
+            </a>
+            <a mat-list-item routerLink="/admin/kyc-approval-management" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE009', 'admin/dashboard')">
+                <i class="fa fa-thumbs-up mr-2" aria-hidden="true"></i>
+                <span class="commonFontSize"> KYC Approval Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0010', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">report</i>
+                <span class="commonFontSize"> Report Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0011', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">analytics</i>
+                <span class="commonFontSize"> Analytics Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0012 ', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <span class="commonFontSize"> Auditors Management </span>
+            </a>
+            <a mat-list-item routerLink="/admin/payment-management" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE0013', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">payment</i>
+                <span class="commonFontSize"> Payment Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0014', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">notification_important</i>
+                <span class="commonFontSize"> Notification Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0015', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">contacts</i>
+                <span class="commonFontSize"> Contact & Static Content Management </span>
+            </a>
+            <a mat-list-item routerLink="/admin/subadmin-dashboard" routerLinkActive="link-active"
+                *ngIf="isValid('MODULE0016', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <span class="commonFontSize"> Sub Admin Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0017', 'admin/dashboard')">
+                <i class="fa fa-newspaper-o mr-2" aria-hidden="true"></i>
+                <span class="commonFontSize"> Advertisement Management </span>
+            </a>
+            <a mat-list-item *ngIf="isValid('MODULE0018', 'admin/dashboard')">
+                <i class="material-icons mr-2 md-18">contact_support</i>
+                <span class="commonFontSize"> Support Management </span>
+            </a>
+            <a mat-list-item routerLink="/admin/my-assigned-ei" routerLinkActive="link-active">
+                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <span class="commonFontSize"> My Assigned EI </span>
+            </a>
+            <a mat-list-item (click)="logout()">
+                <i class="material-icons mr-2 md-18">exit_to_app</i>
+                <span class="commonFontSize">Logout </span>
+            </a>
+        </mat-nav-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="bg-purple pl-0 position-fixed w-100">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="small">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+
+            <span class="h-100 logo_span d-flex align-items-center justify-content-center"><img
+                    src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></span>
+            <span class="spacer"></span>
+            <a class="text-white"><i class="fa fa-bell fa-lg text-white" aria-hidden="true" data-count="2"></i></a>
+            <a class="text-white ml-4 commonFontSize semiBoldFont">
+                <img src="assets/images/userWebsite/EI-profile-icon.png"
+                    class="rounded-circle bg-light-green header-dp">
+                <span class="ml-3 text-white">{{userData ? userData.user_first_name: ''}}</span></a>
+        </mat-toolbar>
+    </mat-sidenav-content>
+</mat-sidenav-container>

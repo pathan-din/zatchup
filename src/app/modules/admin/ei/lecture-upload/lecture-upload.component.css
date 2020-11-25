@@ -1,0 +1,9 @@
+input.form-control-input.form-control.commonFontSize.regularFont.letterspacing {
+    padding: 4px;
+}
+
+@media (max-width: 767px){
+    .w-50 {
+        width: 100%!important;
+    }
+}

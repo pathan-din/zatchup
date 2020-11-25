@@ -1,0 +1,84 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="DocumentMOUHistory-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Resolved Reports Profile</h2>
+            </div>
+
+        </div>
+
+        <!--Start html for table content Document and MOU History information-->
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="DateOfReport">
+                        <mat-header-cell *matHeaderCellDef> Date Of Reporting </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.DateOfReport}}
+
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportedBy">
+                        <mat-header-cell *matHeaderCellDef> Report By </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            Name: {{element.ReportedBy[0]}} <br/> 
+                            ZatchUp ID: {{element.ReportedBy[1]}}<br/>
+                            Relation Of The User: {{element.ReportedBy[2]}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportReason">
+                        <mat-header-cell *matHeaderCellDef>Report Reason </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <img [src]="element.ReportReason" />
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportComments">
+                        <mat-header-cell *matHeaderCellDef> Reported Comments </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+
+                            {{element.ReportComments}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ActionCheckbox">
+                        <mat-header-cell *matHeaderCellDef> Action One </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.ActionCheckbox}}
+
+                            <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Correct Report</mat-checkbox><br/>
+                            <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Wrong Report</mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ResolutionComments">
+                        <mat-header-cell *matHeaderCellDef>Resolution Comments</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ResolutionComments}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ResolutionAttachment">
+                        <mat-header-cell *matHeaderCellDef> Resolution Attachments </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ResolutionAttachment}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <!--End html for table content Document and MOU History information-->
+
+    </div>
+
+</div>

@@ -1,0 +1,212 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="projectDetails-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commanFontSize SemiBoldFont mb-1">Project Details</h2>
+        <div class="row">
+            <!--Start Html For project Details-->
+            <div class="col-md-6">
+
+                <div class="images">
+                    <div class="row align-items-center m-0 py-2">
+                        <div class=" col-xl-2 col-lg-2 col-md-2 col-sm-2  col-2 p-0">
+                            <img src="assets/images/userWebsite/study_student.png" class="img-fluid mat-card-avatar border">
+                        </div>
+                        <div class=" col-xl-9 col-lg-9 col-md-9 col-sm-9  col-8">
+                            <h4 class="commonFontSize semiBoldFont">Name Of The School</h4>
+                        </div>
+
+
+                    </div>
+                    <div class="  card  border-0 bg-white mt-3 ">
+                        <div class="row">
+                            <div class="col-12 MobileCol6MB">
+                                <div class="form-control-inputDiv border-radius-25 p-3 border-0">
+                                    <div class="card-header p-0 bg-white border-0 ">
+
+                                    </div>
+
+                                    <div class="row py-2">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12  col-12">
+                                            <h4 class="commonFontSize semiBoldFont mb-0">Title of the Project</h4>
+                                        </div>
+
+                                    </div>
+                                    <img class=" img-fluid border-radius  img-height" src="assets/images/userWebsite/loreal.jpg" alt="Card image">
+                                    <div class="card-body px-0 py-2">
+                                        <p class="commonFontSize regularFont">Lorem Ipsum is simply dummy text of the printing and type setting industry. </p>
+                                        <p class="commonFontSize mediumFont"><span>Funding Required : </span><span>₹ 3,00,000</span></p>
+                                        <p class="commonFontSize mediumFont"><span>Funding Collected : </span><span>₹ 1,00,000</span></p>
+                                        <p class="commonFontSize mediumFont"><span>Funding Required To Start : </span><span>₹ 1,50,000</span></p>
+                                        <p class="commonFontSize mediumFont"><span>Project Progress : </span>
+                                            <span class="color-blue">View</span></p>
+                                        <p class="commonFontSize mediumFont"><span>Reviewed By : </span>
+                                            <span>Ashish Gupta (CA)</span></p>
+                                        <p class="commonFontSize mediumFont"><span>Project Reports By Other User : </span>
+                                            <span class="color-blue">Resolved Reports</span></p>
+
+                                        <div class="row border-top mx-0 pt-3">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-2 col-4 pl-0">
+                                                <i class="fa fa-eye mr-2 cursorStyle"></i>
+                                                <span class="commonFontSize regularFont">70</span>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-2 col-4 pl-0">
+                                                <i class="fa fa-thumbs-up mr-2 cursorStyle"></i>
+                                                <span class=" commonFontSize regularFont">665</span>
+
+                                            </div>
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-2 col-4 pl-0">
+                                                <i class='fa fa-commenting mr-2 cursorStyle'></i>
+                                                <span class=" commonFontSize regularFont">70</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row comment d-flex flex-nowrap mx-0 mt-3">
+
+                        <img class="img-fluid comment-dp rounded-circle mr-3" src="assets/images/userWebsite/share-my-profile-icon.png" />
+
+                        <div class="comment-text">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h2 class="commonFontSize semiBoldFont mb-1">John Smith</h2>
+                                <span class="color-blue textUnderlineStyle commonFontSize semiBoldFont">Reply</span>
+                            </div>
+                            <p class="commonFontSize regularFont mb-1">Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+                        </div>
+
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-12"><span class="color-blue commonFontSize semiBoldFont textUnderlineStyle">Read More</span></div>
+                        <div class="col-12 mt-2">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none d-flex align-items-center">
+                                <input type="text" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing flex-grow-1" placeholder="Type Somthing..." />
+                                <i class="fa fa-paper-plane"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="button" class="bg-yellow text-white px-4 py-2  mr-3 mt-3 border-0 rounded " data-toggle="modal" data-target="#stopFundingModel">Stop Funding</button>
+                            <button type="button" class="bg-yellow text-white px-4 py-2  border-0 mt-3 rounded" data-toggle="modal" data-target="#resumeFundingModel">Resume Project</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--End Html For project Details-->
+            <!--Start Html For project Funding-->
+            <div class="col-md-6">
+                <div class="tableDiv mt-3">
+                    <div class="mat-elevation-z1 table-responsive projectDetails-table">
+                        <mat-table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="position">
+                                <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.name}}
+
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="userRelationShip">
+                                <mat-header-cell *matHeaderCellDef> User Relationship </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.userRelationShip}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="amount">
+                                <mat-header-cell *matHeaderCellDef>Amount </mat-header-cell>
+                                <mat-cell *matCellDef="let element "> {{element.amount}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="dayOfFundng">
+                                <mat-header-cell *matHeaderCellDef>Day Of Funding </mat-header-cell>
+                                <mat-cell *matCellDef="let element "> {{element.dayOfFundng}} </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                        </mat-table>
+
+                    </div>
+                </div>
+            </div>
+            <!--End Html For project Funding-->
+        </div>
+    </div>
+
+</div>
+
+<!--Start of stopFundingModel  -->
+<div class="modal fade" id="stopFundingModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 ">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Stop Funding</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+            <span aria-hidden="true ">
+                &times;
+            </span>
+        </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class=" form-group row ">
+
+                    <div class="col-sm-12 ">
+                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remark</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " rows="4" placeholder="Enter Remarks "></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="button " class="bg-purple  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+            Submit
+        </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of stopFundingModel  -->
+
+<!--Start of resumeFundingModel  -->
+<div class="modal fade" id="resumeFundingModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 ">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Resume Project</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+            <span aria-hidden="true ">
+                &times;
+            </span>
+        </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class=" form-group row ">
+
+                    <div class="col-sm-12 ">
+                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remark</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " rows="4" placeholder="Enter Remarks "></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="button " class="bg-purple  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+            Submit
+        </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of resumeFundingModel  -->

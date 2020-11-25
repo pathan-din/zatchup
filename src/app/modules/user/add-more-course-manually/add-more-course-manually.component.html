@@ -1,0 +1,63 @@
+<app-user-header></app-user-header>
+
+<div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5">
+        <div class="col-md-8">
+            <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
+        </div>
+        <div class="col-md-4 pl-0">
+            <h2 class="mb-4 textSpace pl-3">Course Details</h2>
+            <div class="customUserForm">
+                <form>
+                    <div *ngFor="let course of courseList;">
+                        <div class="form-group row border-bottom border-top-custom bg-light-gray p-2">
+                            <div class="col-sm-6 form-control-input color-fadded-black commonFontSize mediumFont">
+                                Course Name: </div>
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
+                                <span class="text-dark">{{course.course_name}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group row border-bottom color-fadded-black p-2">
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
+                                Starting Year: </div>
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
+                                <span class="text-dark">{{course.start_date | date:'yyyy'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group row border-bottom color-fadded-black p-2">
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
+                                Ending Year: </div>
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
+                                <span class="text-dark">{{course.end_date | date:'yyyy'}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group row color-fadded-black p-2">
+                            <div class="col-sm-12 form-control-input">
+                                <span class="text-dark">{{course.description}} </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="form-group row align-items-center pl-3 mt-3">
+                <div class="col-xl-1 col-lg-1  col-md-2 col-2 form-control-fileDiv p-0">
+                    <button (click)="addMoreCourse()" class="background-purple border-0">
+                        <img src="assets/images/userWebsite/add.png" class="img-fluid">
+                    </button>
+                </div>
+                <div (click)="addMoreCourse()" class="col-xl-10 col-md-8 col-10 text-left cursorStyle commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
+                    Add More Course
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn common-btn regularFont textSpace ml-3"
+                (click)="goToUserAddMoreEiPage()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<app-user-footer></app-user-footer>

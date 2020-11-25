@@ -1,0 +1,21 @@
+.certificate-div {
+    width: 90%;
+}
+
+.form-control:focus {
+    border: 1px solid #ced4da;
+}
+
+@media only screen and (max-width: 414px) {
+    .pl-0.pl-0mobile,
+    .pl-1.pl-1Mobile15px {
+        padding-left: 15px!important
+    }
+    .pr-1.pr-1Mobile15px {
+        padding-right: 15px!important;
+    }
+    .px-1.px-1Mobile15px {
+        padding-right: 15px!important;
+        padding-left: 15px!important;
+    }
+}

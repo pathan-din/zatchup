@@ -1,0 +1,9 @@
+.paymant-method:hover {
+    background: #463267;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.paymant-method:focus {
+    background: #463267;
+}

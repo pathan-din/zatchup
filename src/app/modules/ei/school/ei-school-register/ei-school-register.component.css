@@ -1,0 +1,12 @@
+.paddingLHeading{
+    padding-left: 15px;
+}
+.hrTopMargin{
+    margin-top: 0.2rem!important;
+}
+
+@media only screen and (max-width: 414px) {
+    .paddingLHeading{
+        padding-left: 0;
+    }
+}

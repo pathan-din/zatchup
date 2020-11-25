@@ -1,0 +1,23 @@
+
+ .mat-header-cell:first-of-type,.mat-cell:first-of-type{
+    flex: 0 0 5%;
+ }
+ .mat-column-Image{
+     flex: 0 0 11%;
+ }
+ .mat-column-Views{
+    flex: 0 0 7%;
+ }
+ 
+.img-col {
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .mat-column-Views{
+        flex: 0 0 auto;
+     }
+     
+}

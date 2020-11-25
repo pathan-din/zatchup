@@ -1,0 +1,17 @@
+.notificationStatusCol{
+    position: relative;
+}
+.notifyStatusImg{
+    position: absolute;
+    right: 0;
+    width: 17%;
+}
+.notifyStatusText{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    line-height: normal;
+}
+.paddingStyle{
+    padding: 2%;
+}

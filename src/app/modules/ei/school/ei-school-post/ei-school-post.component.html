@@ -1,0 +1,91 @@
+<app-ei-sidenav></app-ei-sidenav>
+
+<div class="container main-container containerScrolling my-3 pt-3">
+    <div class=" bg-white px-3 py-2">
+
+        <div class="headeingDiv row ml-0 mr-0 mb-3">
+            <div class="col-10">
+                <h2 class="commonFontSize semiBoldFont mb-0">School Post</h2>
+            </div>
+            <div class="col-2 text-right">
+                <button type="button" class="py-2 px-3 text-white border-0 addPost bg-dark mediumFont">Add Post</button>
+            </div>
+        </div>
+
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.Name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="Profile_Picture">
+                        <mat-header-cell *matHeaderCellDef> Profile Picture </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <!-- <img [src]="element.Profile_Picture" class="border border-primary rounded-circle dpImag" />  -->
+                            <img mat-card-avatar [src]="element.Profile_Picture" alt="User Avatar">
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="Title_of_The_Post">
+                        <mat-header-cell *matHeaderCellDef> Title of The Post </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.Title_of_The_Post}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Image">
+                        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <img [src]="element.Image" class="img-col" />
+                        </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Caption">
+                        <mat-header-cell *matHeaderCellDef>Caption</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.Caption}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Views">
+                        <mat-header-cell *matHeaderCellDef> Views </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <i class="fa fa-eye mr-2 " aria-hidden="true "></i> {{element.Views}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Ability_to_Like">
+                        <mat-header-cell *matHeaderCellDef> Ability to Like </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.Ability_to_Like}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Number_of_Likes">
+                        <mat-header-cell *matHeaderCellDef> Number of Likes </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <i class="fa fa-thumbs-up mr-2"></i>{{element.Number_of_Likes}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Number_of_Comments">
+                        <mat-header-cell *matHeaderCellDef> Number of Comments </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-lightBlue">
+                            <i class="fa fa-comment mr-2" aria-hidden="true"></i>{{element.Number_of_Comments}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <i class="fa fa-edit text-green color-green"></i>{{element.Action}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

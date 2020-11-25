@@ -1,0 +1,226 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-xl-6 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0 "> Current POC Details </h2>
+            </div>
+            <div class="col-xl-6 col-12 d-flex justify-content-end flex-wrap">                
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 mb-2" data-toggle="modal" data-target="#changepoc">Change POC</button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row ml-0">
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
+                        <p class="pt-2 d-flex justify-content-between">Emplyee ID <span>:</span></p>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
+                        <p class="pt-2"> <span> Employee 5252 </span></p>
+                    </div>
+                </div>
+
+                <div class="row ml-0">
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                        <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
+                        <p class="pt-2"> <span>Ankit Patel </span></p>
+                    </div>
+                </div>
+
+                <div class="row ml-0">
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                        <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
+                        <p class="pt-2"> <span> +91 9876543210 </span></p>
+                    </div>
+                </div>
+
+                <div class="row ml-0">
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                       
+                        <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
+                    </div>
+                    <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
+                        <p class="pt-2"> <span> ankit@gmail.com </span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- changepoc  -->
+    <div class="modal fade" id="changepoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Change POC</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class="row">
+    
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Enter Employee ID </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Employee ID">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-12">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Employee Name </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Employee Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Mobile Number </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="tel" placeholder="Enter Mobile Number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Email ID </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="email" placeholder="Enter Email ID">
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Submit </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-xl-12 col-lg-12">
+                <h2 class="commonFontSize semiBoldFont m-0 "> Past POC Details </h2>
+            </div>
+        </div>
+
+        <div class="filterDiv">
+            <div class="d-flex flex-wrap align-items-end"> 
+
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
+            </div>
+        </div>
+
+        <!--Start html for "table Course Lecture" and Export Button-->
+        <!-- <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Requests Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div> -->
+
+        <div class="tableDiv my-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fromDate">
+                        <mat-header-cell *matHeaderCellDef> From Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fromDate}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="toDate">
+                        <mat-header-cell *matHeaderCellDef> To Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.toDate}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="employeeId">
+                        <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.employeeId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="mobileNumber">
+                        <mat-header-cell *matHeaderCellDef> Mobile Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.mobileNumber}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="emailAddress">
+                        <mat-header-cell *matHeaderCellDef> Email Address </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.emailAddress}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="addedByEmployeeId">
+                        <mat-header-cell *matHeaderCellDef> Added By Employee ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.addedByEmployeeId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="addedByemployeeName">
+                        <mat-header-cell *matHeaderCellDef> Added By Employee Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.addedByemployeeName}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,8 @@
+.mat-radio-button {
+    display: block;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+}
+input[type=radio] {
+    margin: 6px;
+}

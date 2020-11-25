@@ -1,0 +1,284 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-xl-2 col-lg-12 pr-0">
+                <h2 class="commonFontSize semiBoldFont m-0 ">Student Profile</h2>
+            </div>
+            <div class="col-xl-10 col-lg-12 SearchDiv d-flex flex-row flex-wrap">
+                <button type="button" class="bg-yellow text-white px-4 py-2 ml-2 mb-1 border-0 ">User Reported
+                    History</button>
+                <button type="button" class="bg-paret-green text-white px-4 py-2 ml-2 mb-1 border-0 ">User KYC Pending
+                    And History</button>
+                <button type="button" class="bg-red text-white px-4 py-2 ml-2 mb-1 border-0 ">Reports By User
+                    History</button>
+                <button type="button" class="bg-blue text-white px-4 py-2 ml-2 mb-1 border-0 ">Profile History</button>
+            </div>
+        </div>
+        <div class=" mt-3 form-control-inputDiv border-0 mx-0">
+            <!-- start Div for banner-->
+            <div class="Onboard-viewbanner-div p-2 d-flex align-items-end" data-toggle="modal"
+                data-target="#BlockUserModel">
+                <div class="dpImgDiv rounded-circle bg-light-green border border-white ">
+                    <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid dpImg ">
+
+
+                </div>
+            </div>
+            <!--Start div for onboarding Information-->
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of The User</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>EI ZatchUp ID</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 commonFontSize regularFont">
+                            <p><span class="mediumFont">Bio</span><span class="mx-2">:</span>Interceptors are a way to
+                                do some work for every single HTTP request or response</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 commonFontSize mediumFont">
+                            <p>Personal Details</p>
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Date of Birth Of The User</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Email Id</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Phone Number</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Profession</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Current City</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Education Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                                    class="textUnderlineStyle " (click)="goToUserEducationDetail()"> View</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>All Certificates And E-Results Issued To EI</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                                    class="textUnderlineStyle "> View</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>User Post</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                                    class="textUnderlineStyle "> View</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>User Performance Report</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                                    class="textUnderlineStyle "> View</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Start of retriggerKycModel  -->
+    <div class="modal fade" id="retriggerKycModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Retrigger KYC</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class=" form-group row ">
+
+                        <div class="col-sm-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="4" placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button "
+                        class="bg-paret-green  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                        Retrigger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of retriggerKycModel  -->
+
+    <!--Start of retriggerEmailIDPhoneNumberModel  -->
+    <div class="modal fade" id="retriggerEmailIDPhoneNumberModel" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Retrigger Email ID and Phone
+                        Number</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class=" form-group row ">
+
+                        <div class="col-sm-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="4" placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button "
+                        class="bg-paret-green  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                        Retrigger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of retriggerEmailIDPhoneNumberModel  -->
+
+    <!-- Start of BlockReportsByUserModel  -->
+    <div class="modal fade" id="BlockReportsByUserModel" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Block Reports By User</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0 py-0">
+                    <p class="commonFontSize regularFont letterspacing">Are you sure you want to block Reports by user?
+                    </p>
+                    <p class="commonFontSize regularFont letterspacing text-right">
+                        <button type="button "
+                            class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
+                        <button type="button"
+                            class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of BlockReportsByUserModel  -->
+
+    <!--Start of BlockUserModel  -->
+    <div class="modal fade" id="BlockUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Block User</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class=" form-group row ">
+
+                        <div class="col-sm-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="4" placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button "
+                        class="bg-paret-green  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                        Block
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of BlockUserModel  -->
+</div>

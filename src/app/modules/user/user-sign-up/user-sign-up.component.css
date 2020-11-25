@@ -1,0 +1,75 @@
+.form-month-col {
+    background-size: 20%;
+}
+
+.form-date-col {
+    background-size: 30%;
+}
+.calendarText{
+    padding:2%;
+}
+
+.selectPadding{
+    padding: 1%;
+}
+.checkboxStyle{
+    display: inline;
+}
+
+.otpMessageImage {
+    width: 40%;
+}
+
+.otpStyle{
+    border-radius: 10px!important;
+}
+
+
+/**************Role Model css start*********************/
+
+.custom-radio input:checked~.checkmarkRed {
+    background-color: #de3d3d;
+    border: 1px solid #de3d3d;
+}
+
+.custom-radio input:checked~.checkmarkGreen {
+    background-color: #72be72;
+    border: none;
+}
+
+.checkmarkRed,
+.checkmarkGreen {
+    height: 16px;
+    width: 16px;
+    background: #efefef;
+}
+
+.checkmarkRed,
+.checkmarkGreen {
+    top: 12px;
+}
+
+.checkmarkRed:after {
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.checkmarkGreen:after {
+    top: 3.8px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.radioValueText2 {
+    vertical-align: bottom;
+}
+.eyeIcon{
+    position: absolute;
+    right: 7px;
+    top: 16px;
+}

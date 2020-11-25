@@ -1,0 +1,30 @@
+.previewVideo,
+.previewImg {
+    height: 25vh;
+}
+
+.picImg img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mp0 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+@media (max-width: 575px) {
+    .picImg {
+        width: 50%;
+        height: 150px;
+    }
+}
+
+@media (max-width: 360px) {
+    .picImg {
+        width: 50%;
+        height: 120px;
+    }
+}

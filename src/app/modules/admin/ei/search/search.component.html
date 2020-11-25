@@ -1,0 +1,164 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Search</h2>
+            </div>
+            <!-- <div class="col-md-7 d-flex justify-content-end">                  
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">History</button>
+            </div> -->
+        </div>
+
+        <div class="filterDiv">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" [(ngModel)]="stateId" (change)="getCities()">
+                            <option value="">State</option>
+                            <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" [(ngModel)]="cityId">
+                            <option value=""> Select City</option>
+                            <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input type="text" name="board_university" [(ngModel)]="university"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            placeholder="Board/University" />
+
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Onboarded Status </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="onboardedStatus" name="onboarded_status"
+                            [(ngModel)]="onboardedStatus">
+                            <option value=""> Select Status</option>
+                            <option value="0">Not Onboarded</option>
+                            <option value="1">Onboarded</option>
+                            <option value="2">Incomplete Onboarded</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
+                    (click)="searchEIList('1')">Apply</button>
+            </div>
+        </div>
+
+        <!--End html for filter for alumni list-->
+        <!--Start html for filter for No of alumni per page with export button-->
+
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI Database Per Page
+                </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+
+        <div class="tableDiv mt-4" *ngIf="dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource | paginate: config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i+ startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfEi">
+                        <mat-header-cell *matHeaderCellDef> Name of EI </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.name_of_school}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profilePick">
+                        <mat-header-cell *matHeaderCellDef> Profile Pick of EI </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_img" src="{{element.profile_img}}" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_img" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="state">
+                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.state}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.city}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="boardUniversity">
+                        <mat-header-cell *matHeaderCellDef> Board/University </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.university}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center">
+                            <button type="button"
+                                [ngClass]="[element.is_onboarded == 0 ? 'bg-paret-green' : '',  element.is_onboarded == 1 ? 'bg-yellow' : '', element.is_onboarded == 2 ? 'bg-danger' : '']"
+                                class="text-white px-4 border-0 rounded mt-3 mb-3">
+                                {{element.is_onboarded == 0? 'Not Onboarded' : ''}}
+                                {{element.is_onboarded == 1? 'Onboarded': ''}}
+                                {{element.is_onboarded == 2? 'Incomplete Onboarded': ''}}
+                            </button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="dataSource" (pageChange)="searchEIList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

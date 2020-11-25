@@ -1,0 +1,101 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>
+
+        <!--Start html for "select no of Rows per page" and Export Button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Course Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="courseTitle">
+                        <mat-header-cell *matHeaderCellDef>Course Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.courseTitle}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="levelOfEducation">
+                        <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.levelOfEducation}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="field">
+                        <mat-header-cell *matHeaderCellDef> Field </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.field}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="standard">
+                        <mat-header-cell *matHeaderCellDef>Standard </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.standard}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="subject">
+                        <mat-header-cell *matHeaderCellDef> Subject </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.subject}}
+                        </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+
+
+                    <ng-container matColumnDef="noOfLecture">
+                        <mat-header-cell *matHeaderCellDef>Number of Lecture In The Course </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.noOfLecture}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef class="text-center">Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+                            <i class="fa fa-eye mr-2 color-lightBlue cursorStyle" aria-hidden="true "></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+
+
+
+                </mat-table>
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!--End html for fees information table-->
+    </div>
+</div>

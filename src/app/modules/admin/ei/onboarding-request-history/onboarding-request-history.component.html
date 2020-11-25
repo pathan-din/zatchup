@@ -1,0 +1,96 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Request History</h2>
+        <!--Start html for fees information Filter-->
+        <div class="filterDiv">
+
+            <div class="d-flex flex-wrap align-items-end">
+                
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Status</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+
+            </div>
+        </div>
+
+        <div class="tableDiv mt-4">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfRequest">
+                        <mat-header-cell *matHeaderCellDef> Date of Request </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.dateOfRequest}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fieldofChange">
+                        <mat-header-cell *matHeaderCellDef> Field Of Change  </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldofChange}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="existingField">
+                        <mat-header-cell *matHeaderCellDef> Existing Field </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.existingField}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="newField">
+                        <mat-header-cell *matHeaderCellDef> New Field </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.newField}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="proofUploaded">
+                        <mat-header-cell *matHeaderCellDef> Proof Uploaded </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.proofUploaded}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef class="text-center"> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+                            <button type="button" class="rounded text-white bg-paret-green border-0">{{element.status}}</button>
+                        </mat-cell>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="emailConfirmation">
+                        <mat-header-cell *matHeaderCellDef> Email Confirmation </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.emailConfirmation}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rejectRemarks">
+                        <mat-header-cell *matHeaderCellDef> Reject Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.rejectRemarks}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+
+            </div>
+        </div>
+        <!--End html for fees information table-->
+    </div>
+</div>

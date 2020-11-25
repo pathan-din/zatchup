@@ -1,0 +1,9 @@
+.mat-column-discount{
+    width: 90px;
+}
+.mat-column-createdBy, .mat-column-minimumOrderValue{
+    width: 105px;
+}
+/* .mat-column-MaximumDiscountAmount, .mat-column-couponCodeApplied,  .mat-column-totalDiscountGiven{
+    width: 200px;
+} */

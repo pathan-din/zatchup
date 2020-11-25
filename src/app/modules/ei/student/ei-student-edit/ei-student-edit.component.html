@@ -1,0 +1,91 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="StudentEdit-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont mb-1">Student</h2>
+        <div class="row m-0">
+            <div class="col-xl-7 bg-offwhite">
+			<form id="editStudent">
+                <div class="row border-bottom">
+                    <div class="col-12">
+                        <h2 class="commonFontSize mediumFont my-2">Edit Student</h2>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input [(ngModel)]="model.roll_no" name="roll_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
+                        </div>
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label for="" class=" mediumFont commonFontSize letterspacing">Admission Number</label>
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input [(ngModel)]="model.admission_no" name="admission_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Admission Number">
+                        </div>
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label for="" class=" mediumFont commonFontSize letterspacing">Picture of Student</label>
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input (change)="handleCancelChequeFileInput($event.target.files)" id="image" name="image" [required]="!model.profile_pic"  class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file">
+                        </div>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.image"></div>
+                    <img *ngIf="model.profile_pic" src="{{model.profile_pic}}" width="100" height="100" alt="profile pic">
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <p class="mediumFont commonFontSize letterspacing">Current Class</p>
+                    </div>
+                    <div class="col-md-6 pl-4">
+                        <mat-checkbox (change)="displayClassList(model.standard_id,$event)"  class="purple-checkbox mediumFont commonFontSize letterspacing">Edit Current class</mat-checkbox>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="col-6" *ngFor="let class of classList;">
+                                    <input type="radio" [(ngModel)]="model.class_id" name="class" [checked]="model.class_id==class.id" name="class" value="{{class.id}}"  />{{class.class_name}}
+                                </div>
+                                
+                                <!-- <mat-radio-group [(ngModel)]="model.class_id" name="selectedClass" aria-label="Select an option">
+                                    <mat-radio-button [checked]="class.check" value="{{class.class_id}}" *ngFor="let class of classList;">{{class.class_name}}</mat-radio-button>
+                                </mat-radio-group> -->
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    <div class="col-md-6 pl-4">
+                        <!-- <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Promote To New Class</mat-checkbox> -->
+                        <mat-checkbox [(ngModel)]="model.mark_as_alumni" name="mark_as_alumni" class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
+                    </div>
+                </div>
+
+                <!-- <div class="row mt-3">
+                    <div class="col-md-12">
+                        <mat-checkbox class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
+
+                    </div>
+                </div>
+                 -->
+                <div class="row mt-3">
+                    <div class="col-12 text-center"><button (click)="editStudent()" type="button" class="bg-paret-green text-white py-2 px-4 border-0 mb-4">Submit</button></div>
+                </div>
+                <!--col-7 end-->
+                <div class="col-xl-7">
+                </div>
+				</form>
+            </div>
+
+        </div>
+		<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>
+    </div>

@@ -1,0 +1,72 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont mb-1"> Subscription Plan History </h2>        
+
+        <div class="tableDiv mt-2">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfSubscription">
+                        <mat-header-cell *matHeaderCellDef> Date of Subscription </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.dateOfSubscription}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="planDetails">
+                        <mat-header-cell *matHeaderCellDef> Plan Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.planDetails}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="grossAmount">
+                        <mat-header-cell *matHeaderCellDef> Gross Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.grossAmount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponCode">
+                        <mat-header-cell *matHeaderCellDef> Coupon Code </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.couponCode}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="netAmount">
+                        <mat-header-cell *matHeaderCellDef> Net Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.netAmount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfSubscriptionExpiry">
+                        <mat-header-cell *matHeaderCellDef> Date of Subcription Expiry </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.dateOfSubscriptionExpiry}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="transactionId">
+                        <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.transactionId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" class="rounded bg-blue border-0 color-white p-1 px-2">View Invoice</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+
+    </div>
+</div>

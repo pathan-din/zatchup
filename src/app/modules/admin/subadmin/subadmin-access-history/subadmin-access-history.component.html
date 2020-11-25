@@ -1,0 +1,38 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+
+    <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Access History</h2>
+
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of access history Per
+                    Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getAccessHistory()" [(ngModel)]="pageSize">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mobile-col-reverse border-0 mt-1 mx-0">
+            <div class="col-md-12 col-left" *ngFor="let history of accessHistory">
+                <div class="row flex-nowrap">
+                    <div class="commonFontSize semiBoldFont d-flex flex-row align-items-start pr-0">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <!-- <p>20 March,2020 & 12:00 P.M</p> -->
+                        <p> {{history.created_on | date: 'dd MMM, yyyy'}} & {{ history.created_on | date: 'shortTime'}} </p>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont pl-0">
+                        <p><span class="mx-2">:</span>{{history.name}} : {{history.employee_id}} : Added</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

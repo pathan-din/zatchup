@@ -1,0 +1,55 @@
+.Onboard-viewbanner-div {
+    height: 175px;
+    background: url("../../../../../assets/images/userWebsite/loreal.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.dpImgDiv {
+    max-height: 15vh;
+    min-height: 15vh;
+    min-width: 7.5vw;
+    max-width: 7.5vw;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-width: 2px!important;
+    padding: 0.4rem;
+}
+
+.dpImgDiv img {
+    max-height: 14vh;
+    min-height: 14vh;
+    min-width: 6vw;
+    max-width: 6vw;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .dpImgDiv {
+        max-height: 11vh;
+        min-height: 11vh;
+        min-width: 15vw;
+        max-width: 15vw;
+    }
+    .dpImgDiv img {
+        max-height: 10vh;
+        min-height: 10vh;
+        min-width: 10vw;
+        max-width: 10vw;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .dpImgDiv {
+        max-height: 14vh;
+        min-height: 14vh;
+        min-width: 24vw;
+        max-width: 24vw;
+    }
+    .dpImgDiv img {
+        max-height: 13vh;
+        min-height: 13vh;
+        min-width: 19vw;
+        max-width: 19vw;
+    }
+}

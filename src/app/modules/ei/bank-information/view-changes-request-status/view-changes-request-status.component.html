@@ -1,0 +1,65 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">View Changes Request Status</h2>
+        
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fieldChange">
+                        <mat-header-cell *matHeaderCellDef> Field Change </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldChange}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="oldDetails">
+                        <mat-header-cell *matHeaderCellDef> Old Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.oldDetails}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="newDetails">
+                        <mat-header-cell *matHeaderCellDef> New Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.newDetails}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="viewAttachments">
+                        <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.viewAttachments}}
+                            <img src="./assets/images/userWebsite/loreal.jpg" alt="Attachments" style="height: 60px;"/>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">                            
+                            <button type="button" class="bg-paret-green color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="remarks">
+                        <mat-header-cell *matHeaderCellDef> Remarks </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.remarks}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

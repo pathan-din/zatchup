@@ -1,0 +1,64 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Resolve Messages</h2>
+            </div>
+        </div>
+        
+        <div class="tableDiv mt-2">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ticketId">
+                        <mat-header-cell *matHeaderCellDef> Ticket ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ticketId}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfMessage">
+                        <mat-header-cell *matHeaderCellDef> Date of Messages </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.dateOfMessage}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="message">
+                        <mat-header-cell *matHeaderCellDef> Messages </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.message}}
+                            Lorem ipsum or lipsum as it is sometimes known is dummy text used in laying out 
+                            print graphic or web designs The passage is attributed to an unknown typesetter.
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="resolutionDate">
+                        <mat-header-cell *matHeaderCellDef> Resolution Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.resolutionDate}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="resolveComment">
+                        <mat-header-cell *matHeaderCellDef> Resolve Comments </mat-header-cell>
+                        <mat-cell class="color-blue" *matCellDef="let element">
+                            {{element.resolveComment}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="attachment">
+                        <mat-header-cell *matHeaderCellDef> Attachments </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.attachment}}
+                        </mat-cell>
+                    </ng-container> 
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

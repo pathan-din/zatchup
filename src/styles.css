@@ -1,0 +1,596 @@
+@import "userWeb.css";
+@import "EIWeb.css";
+@import "adminWeb.css";
+
+/****** FONTS **********/
+
+@font-face {
+    font-family: "SFUIDisplay-Regular";
+    src: url("/assets/fonts/SFUIDisplay-Regular.ttf") format("truetype"), url("/assets/fonts/SFUIDisplay-Regular.svg#SFUIDisplay-Regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SFUIDisplay-Light";
+    src: url("/assets/fonts/SFUIDisplay-Light.woff") format("woff"), url("/assets/fonts/SFUIDisplay-Light.ttf") format("truetype"), url("/assets/fonts/SFUIDisplay-Light.svgs#SFUIDisplay-Light") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SFUIDisplay-Medium";
+    src: url("/assets/fonts/SFUIDisplay-Medium.woff") format("woff"), url("/assets/fonts/SFUIDisplay-Medium.ttf") format("truetype"), url("/assets/fonts/SFUIDisplay-Medium.svg#SFUIDisplay-Medium") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SFUIDisplay-Semibold";
+    src: url("/assets/fonts/SFUIDisplay-Semibold.woff") format("woff"), url("/assets/fonts/SFUIDisplay-Semibold.ttf") format("truetype"), url("/assets/fonts/SFUIDisplay-Semibold.svg#SFUIDisplay-Semibold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/***************************************/
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+
+/* The emerging W3C standard
+   that is currently Firefox-only */
+
+.mat-drawer-inner-container {
+    scrollbar-width: thin;
+    scrollbar-color: #463267 #b4b4b4;
+}
+
+
+/* Works on Chrome/Edge/Safari */
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+    width: 8px;
+    /* width of the entire scrollbar */
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar-track {
+    background: #b4b4b4;
+    /* color of the tracking area */
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar-thumb {
+    background-color: #463267;
+    /* color of the scroll thumb */
+}
+
+
+/****************color******************/
+
+.color-purple {
+    color: #463267;
+}
+
+.color-black {
+    color: #333333;
+}
+
+.color-fadded-black {
+    color: #7d7a7a;
+}
+
+.color-blue {
+    color: #5790c2;
+}
+
+.color-royal-blue {
+    color: #007eff;
+}
+
+.color-gray {
+    color: #b4b4b4;
+    /* color: #495057; */
+}
+
+.color-red {
+    color: #dc3545;
+}
+
+.color-white {
+    color: #ffffff;
+}
+
+.color-green {
+    color: #3fa83f;
+}
+
+.color-lightBlue {
+    color: #139bbf;
+}
+
+.color-yellow {
+    color: #df9919;
+}
+
+.bg-paret-green {
+    background-color: #37a713;
+}
+
+.bg-red {
+    background-color: #dc3545;
+}
+
+.bg-purple {
+    background-color: #463267;
+}
+
+.bg-offwhite {
+    background-color: #f9f9f9;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-light-black {
+    background: #4c4d4d;
+}
+
+.bg-light-secondary {
+    background: #dddddd;
+}
+
+.bg-Gainsboro {
+    background: #dcdcdc;
+}
+
+.bg-light-green {
+    background: #d6e6d6;
+}
+
+.bg-light-gray {
+    background: #e7e7e7;
+}
+
+.bg-extra-light-gray {
+    background: #f2f2f2;
+}
+
+.bg-gary {
+    background: #d8d5dc;
+}
+
+.bg-blue {
+    background: #139bbf;
+}
+
+.bg-yellow {
+    background: #df9919;
+}
+
+
+/***********font family ********************/
+
+.regularFont {
+    font-family: "SFUIDisplay-Regular";
+}
+
+.lightFont {
+    font-family: "SFUIDisplay-Light";
+}
+
+.mediumFont {
+    font-family: "SFUIDisplay-Medium";
+}
+
+.semiBoldFont {
+    font-family: "SFUIDisplay-Semibold" !important;
+}
+
+
+/********* Font Size ************/
+
+.commonFontSize {
+    font-size: 0.875rem;
+}
+
+.commonMaterialFontSize {
+    font-size: 0.815rem;
+    letter-spacing: 0.2px;
+}
+
+.letterspacing {
+    letter-spacing: 0.2px;
+}
+
+
+/************** textUnderStyle******/
+
+.textUnderlineStyle {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+
+/*************errorMsg************/
+
+.errorMsg {
+    color: red;
+    font-size: .825rem;
+    margin-left: 0.9rem !important;
+    /* margin-top:.5rem; */
+    /* position: absolute; */
+}
+
+
+/*********************/
+
+.buttonFullWidth {
+    width: -webkit-fill-available;
+}
+
+
+/************cursorStyle***************/
+
+.cursorStyle {
+    cursor: pointer;
+}
+
+
+/***********EI WEB ****************/
+
+
+/******** sidenav ************/
+
+.mat-list-item-content {
+    padding-right: 2% !important;
+    border-bottom: 1px solid #c7cbd1;
+    line-height: 1;
+}
+
+
+/************ mat table*****************/
+
+.mat-header-cell:first-of-type,
+.mat-cell:first-of-type {
+    padding-left: 5px;
+}
+
+.mat-header-cell:last-of-type,
+.mat-cell:last-of-type {
+    padding-right: 5px;
+}
+
+.mat-header-cell {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333333 !important;
+    font-family: "SFUIDisplay-Medium";
+    padding: 0 1%;
+}
+
+.mat-cell {
+    padding: 0 1%;
+    font-size: 0.8rem;
+    font-family: "SFUIDisplay-Medium";
+}
+
+.mat-card-avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.mat-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    display: table;
+    border-collapse: collapse;
+    margin: 0px;
+}
+
+.mat-row,
+.mat-header-row {
+    display: table-row;
+}
+
+.mat-cell,
+.mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 5px 10px;
+    line-break: unset;
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    /* border-right: 1px solid #d4d4d4; */
+}
+
+.mat-header-row {
+    background: #dcdcdc;
+}
+
+.mat-row:nth-child(even) {
+    background-color: #f5f2f2;
+}
+
+.mat-row:nth-child(odd) {
+    background-color: #fff;
+}
+
+
+/* common width for particular column*/
+
+.mat-header-cell:first-of-type,
+.mat-cell:first-of-type {
+    flex: 0 0 5%;
+}
+
+.mat-column-position {
+    flex: 0 0 5%;
+}
+
+.mat-column-state,
+.mat-column-city,
+.mat-column-action,
+.mat-column-ZatchUpID {
+    flex: 0 0 8%;
+}
+
+.mat-column-address,
+.mat-column-board {
+    min-width: 150px;
+    white-space: normal;
+}
+
+.mat-column-schoolName,
+.mat-column-appliedCouponCode {
+    min-width: 110px;
+}
+
+.mat-img-proPic {
+    border: 2px solid #139bbf;
+    margin: 15% 0;
+}
+
+
+/********** mat pagination **********/
+
+.mat-paginator-page-size {
+    display: none!important;
+}
+
+.dataNotFound{
+    border: 1px solid #ccc;
+    font-size: 21px;
+}
+
+/************ mat table*****************/
+
+
+/* .mat-header-cell:first-of-type,
+.mat-cell:first-of-type {
+    padding-left: 1%;
+}
+
+.mat-header-cell:last-of-type,
+.mat-cell:last-of-type {
+    padding-right: 1%;
+}
+
+.mat-header-cell {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333333!important;
+    font-family: "SFUIDisplay-Medium";
+    padding: 0 1%;
+}
+
+.mat-cell {
+    padding: 0 1%;
+    font-size: 0.8rem;
+    font-family: "SFUIDisplay-Medium";
+}
+
+.mat-card-avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.tableDiv {
+    width: 100%;
+}
+
+.mat-header-row {
+    background: #dcdcdc;
+    word-break: break-word;
+    min-width: 912px;
+    width: 100%;
+}
+
+.mat-row {
+    background: #f5f2f2;
+    word-break: break-word;
+    min-width: 912px;
+    width: 100%;
+}
+
+.mat-row:nth-child(even) {
+    background-color: #f5f2f2;
+}
+
+.mat-row:nth-child(odd) {
+    background-color: #fff;
+}
+
+.mat-column-position {
+    flex: 0 0 5%;
+} */
+
+
+/************** mat-chechbox ****************/
+
+.purple-checkbox .mat-checkbox-frame {
+    border: 1px solid #9790a4;
+}
+
+.purple-checkbox .mat-checkbox-inner-container {
+    width: 20px;
+    height: 20px;
+}
+
+.purple-checkbox.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.purple-checkbox.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #463267;
+}
+
+
+/************* slider *******************/
+
+.customSlider.mat-slider-horizontal {
+    min-width: 100%!important;
+    width: 100% !important;
+}
+
+.customSlider.mat-accent .mat-slider-thumb,
+.customSlider .mat-slider-thumb-container .mat-slider-focus-ring,
+.customSlider .mat-slider-wrapper .mat-slider-track-fill {
+    background-color: #463267!important;
+}
+
+
+/* .mat-nav-list .mat-list-item:focus, .mat-nav-list .mat-list-item:hover{
+    background: #463267!important;
+} */
+
+
+/* Records not found block css */
+
+.dataNotFound {
+    border: 1px solid #ccc;
+    font-size: 21px;
+}
+
+/* Hyperlink cursor pointer class */
+.a-cursor-pointer:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+mat-row, mat-footer-row {
+    min-height: 40px !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(56, 167, 19, 0.50);
+}
+
+/* .mat-button, .mat-icon-button, .mat-stroked-button {
+    color: #fff !important;
+} */
+
+.form-control{
+    height: calc(1.8em + .75rem + 2px);
+}
+/* .custom-select {
+    height: calc(1.5em + .75rem + 7px);
+} */
+
+.mat-slide-toggle-thumb-container {
+    z-index: inherit !important;
+}
+
+.invalid-feedback {
+    margin-top: -.1rem;
+    position: absolute;
+}
+
+.backimg{height: 40px;
+    border-radius: 50%;
+    padding: 1px;
+    width: 40px;}
+
+.formfocusStyle:focus {
+    border-color: #37a713;
+    box-shadow: 0px 1px 4px 0px #37a713;
+}
+
+.pickCircle{
+    height: 42px;
+}
+.deleteIcon{height: 15px;}
+
+.project_comment_container{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 380px;
+}
+
+.project_detailLft {
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+}
+.img-responsive{
+    width: 100%;
+    max-width: 100%;
+}
+
+.border-yellow{border: 1px solid #df9919 !important}
+.bg-yellow:hover {color: #fff;}
+.project_download {bottom: 35px;left: 25px;background: rgba(51, 51, 51, 0.85);width: 30px;height: 25px;color: #fff;text-align: center;line-height: 25px;}
+
+.small-text{font-size: .9rem;}
+.small-text-2{font-size: .8rem;}
+.dot-small{font-size: .5rem;}
+
+.rounded-5{border-radius: 50px;}
+.messageCount{width: 35px;height: 35px;text-align: center;}
+
+.pickSize{height: 40px;}
+
+
+.bg-light-blue{background-color :#329BBF !important}
+
+.mat-list-base{padding-top: 0px !important;}
+.navbar-brand{margin-right: 0px;}
+.img-fluid {outline: none;}
+button.fileBtn {
+    background: none;
+}

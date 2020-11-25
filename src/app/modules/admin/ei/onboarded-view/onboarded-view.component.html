@@ -1,0 +1,706 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="ECertificates-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0"> EI Onboarded View </h2>
+        <!--Start html for "e-certificate List" and Export Button-->
+        <div class="row mt-4">
+            <div class="col-md-4 MobileCol6MB">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">History</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple" data-toggle="modal" data-target="#Maildetail">Onboarding Conversation Comments</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple" data-toggle="modal" data-target="#ActionModal">View Change Details Requests Pending Count: 200</button>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Contact Us Messages From EI Pending Count: 200</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View ZatchUp Starclass Buy History</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Subscription History</button>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Zatchup POC History Of EI</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Document And MOU History</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Reported By Users History</button>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB mt-4">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Service Fee Invoices Screen</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Maildetail  -->
+<div class="modal fade" id="Maildetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Email</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Email Id </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="email" placeholder="Admin@gmail.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Messages </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Your Messages"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Send </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ActionModal  -->
+<div class="modal fade" id="ActionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Action</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group d-flex justify-content-between align-items-center">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Donation </label> 
+                            <mat-slide-toggle class="toggleslider"></mat-slide-toggle>                         
+                        </div>
+                        <div class="form-group d-flex justify-content-between align-items-center">                           
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Lecture Requests </label>    
+                            <mat-slide-toggle class="toggleslider"></mat-slide-toggle>                   
+                        </div>
+                        <div class="form-group d-flex justify-content-between align-items-center">                           
+                            <label for="" class="mediumFont commonFontSize letterspacing"> EI</label>
+                            <mat-slide-toggle class="toggleslider"></mat-slide-toggle>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container main-container p-3">
+    <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-xl-12 col-lg-12 pr-0">
+                <h2 class="commonFontSize semiBoldFont m-0 "> EI Onboarded Details </h2>
+            </div>
+            <!-- <div class="col-xl-10 col-lg-12 SearchDiv d-flex flex-row flex-wrap">
+                <button type="button" class="bg-yellow text-white px-4 py-2 ml-2 mb-1 border-0 ">User Reported
+                    History</button>
+                <button type="button" class="bg-paret-green text-white px-4 py-2 ml-2 mb-1 border-0 ">User KYC Pending
+                    And History</button>
+                <button type="button" class="bg-red text-white px-4 py-2 ml-2 mb-1 border-0 ">Reports By User
+                    History</button>
+                <button type="button" class="bg-blue text-white px-4 py-2 ml-2 mb-1 border-0 ">Profile History</button>
+            </div> -->
+        </div>
+        <div class=" mt-3 form-control-inputDiv border-0 mx-0">
+            <!-- start Div for banner-->
+            <div class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition">
+                <div class="dpImgDiv rounded-circle bg-light-green border border-white" data-toggle="modal" data-target="#BlockUserModel">
+                    <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid dpImg ">
+                </div>
+
+                <div class="userInfo">
+                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid">
+                </div>
+
+                <div class="followersdetail follow-btn">
+                    <span class="mediumFont semiBoldFont">25k</span><br/>
+                    <span>Followers</span>
+                </div>
+            </div>
+            <!--Start div for onboarding Information-->
+            <div class="row mt-3">
+                <div class="col-md-12" *ngIf="eiData">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of The School</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.name_of_school}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>EI ZatchUp ID</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.zatchupId}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>City</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.city}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>State</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.state}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Address</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.address1}} {{eiData.address2}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Board/University</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.university}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Ei Bio</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.university}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>GST Number</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.existing_data.gst_no}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 commonFontSize mediumFont">
+                            <p>Details of EI Representative</p>
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Name of EI Representative</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">: {{eiData.first_name}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Designation of EI Representative</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">: {{eiData.designation}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Official Email ID</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">: {{eiData.email}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Contact Number</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">: {{eiData.phone}}</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Foundation Date</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:{{eiData.date_joined | date:'dd MMM yyyy'}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of The Principal | Dean</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.phone}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of the Students Registered with the EI</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle "> {{eiData.phone}} </span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of the Alumini Registered with the EI</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle"> {{eiData.phone}} </span></p>
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Verified Alumini</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> {{eiData.phone}} </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Unverified Alumini</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> {{eiData.phone}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of the POC Zatchup POC</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> ankit & Employee 5252 </span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Funding Active Projects</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> 250 </span></p>
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Paused Projects</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 175 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Continued Projects</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 75 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Funding closed Projects</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> 300 </span></p>
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Funding Met</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 50 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Funding Stopped By Ei</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 150 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Funding Stopped By Zatchup Admin</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 100 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Total Number of Lecture Requests</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <!-- <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> 300 </span></p> -->
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Active Requests</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 275 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Completed Requests</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 123 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>View Course Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> View </span></p>
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Total Number of Courses</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 15 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Total Number of Standard</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 15 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Total Number of Classes</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> 15 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>ZatchUp Starclass</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <!-- <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> 300 </span></p> -->
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Details of Current Courses Bought By Zatchup</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p class="color-blue textUnderlineStyle"><span class="mr-3">:</span> 50 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Details of all Courses Uploaded By EI</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p class="color-blue textUnderlineStyle"><span class="mr-3">:</span> 125 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>E-Certificates/E-Results Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <!-- <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> 300 </span></p> -->
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Number of E-Certificates Issued </p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p class="color-blue textUnderlineStyle"><span class="mr-3">:</span> 223 </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Number of E-Results Issued</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p class="color-blue textUnderlineStyle"><span class="mr-3">:</span> 500 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Subscription</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <!-- <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle " (click)="goToUserEducationDetail()"> 300 </span></p> -->
+                        </div>
+                        <div class="col-12 commonFontSize regularFont ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Name of Subscription Plan </p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Validity of Subscription Plan </p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                    <p>Amount of Subscription Plan </p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                    <p><span class="mr-3">:</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Post</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                             class="textUnderlineStyle"> View </span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                            <p><span class="commonFontSize semiBoldFont">Overview of the School</span>: lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Start of retriggerKycModel  -->
+    <div class="modal fade" id="retriggerKycModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Retrigger KYC</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class=" form-group row ">
+
+                        <div class="col-sm-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="4" placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button "
+                        class="bg-paret-green  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                        Retrigger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of retriggerKycModel  -->
+
+    <!--Start of retriggerEmailIDPhoneNumberModel  -->
+    <div class="modal fade" id="retriggerEmailIDPhoneNumberModel" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Retrigger Email ID and Phone
+                        Number</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class=" form-group row ">
+
+                        <div class="col-sm-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="4" placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button "
+                        class="bg-paret-green  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                        Retrigger
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of retriggerEmailIDPhoneNumberModel  -->
+
+    <!-- Start of BlockReportsByUserModel  -->
+    <div class="modal fade" id="BlockReportsByUserModel" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Block Reports By User</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0 py-0">
+                    <p class="commonFontSize regularFont letterspacing">Are you sure you want to block Reports by user?
+                    </p>
+                    <p class="commonFontSize regularFont letterspacing text-right">
+                        <button type="button "
+                            class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
+                        <button type="button"
+                            class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of BlockReportsByUserModel  -->
+
+    <!--Start of BlockUserModel  -->
+    <div class="modal fade" id="BlockUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Block User</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true ">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class=" form-group row ">
+
+                        <div class="col-sm-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="4" placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button "
+                        class="bg-paret-green  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                        Block
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of BlockUserModel  -->
+</div>

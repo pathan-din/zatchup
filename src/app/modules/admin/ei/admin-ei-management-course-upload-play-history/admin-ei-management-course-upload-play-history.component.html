@@ -1,0 +1,47 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="coursePreview-div bg-white border border-gray mt-3 px-3">
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+                <h2 class="commonFontSize semiBoldFont m-0">Play History</h2>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-paret-green text-white border-0 px-3 py-1"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+                <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lectureTitle">
+                        <mat-header-cell *matHeaderCellDef>Lecture Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.lectureTitle}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="playedBy">
+                        <mat-header-cell *matHeaderCellDef> Played By </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.playedBy}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="playTiming">
+                        <mat-header-cell *matHeaderCellDef> Play Timing </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.playTiming}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

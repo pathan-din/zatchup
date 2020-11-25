@@ -1,0 +1,3 @@
+.customWidth{display: flex; justify-content: space-between; flex-wrap: wrap;}
+.customWidth .col-sm-6{flex: 0 0 53% !important;
+    max-width: 48%;}

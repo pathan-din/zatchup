@@ -1,0 +1,176 @@
+<app-user-header></app-user-header>
+
+<div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5 mobPaddingLR">
+        <div class="col-12 pl-5 pr-5 mobPaddingLR">
+            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+            <img src="assets/images/userWebsite/bell-icon.png" class="img-fluid subHeaderImg  float-right" (click)="goToUserNotificationsPage()">
+            <img src="assets/images/userWebsite/news-icon.png" class="img-fluid subHeaderImg  float-right mr-3 ">
+        </div>
+    </div>
+</div>
+<!-- <div class="container mt-4">
+        <div class="landingDiv">
+            <div class="row mt-1 mb-3 ">
+                <div class="col-6  ">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">E-certificates & E-reports</p>
+                    </div>
+
+                </div>
+                <div class="col-6  text-center">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">Share My Profile</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-1 mb-3">
+                <div class="col-6  ">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">ZatchUp Star Class</p>
+                    </div>
+
+                </div>
+                <div class="col-6  text-center">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">Reminders</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-1 mb-3">
+                <div class="col-12 ">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">Chat with Teachers</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+<!-- <div class="container mt-4">
+        <div class="landingDiv">
+            <div class="row mt-1 mb-3 ">
+                <div class="col-6  ">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">Project Funding</p>
+                    </div>
+
+                </div>
+                <div class="col-6  text-center">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">Lecture/Career Counselling</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mt-1 mb-3">
+                <div class="col-6  ">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">E-certificates & E-reports</p>
+                    </div>
+
+                </div>
+                <div class="col-6  text-center">
+                    <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                        <img src="assets/images/userWebsite/calender_icon.png " class="img-fluid d-block">
+                        <p class="commonFontSize mediumFont mt-2">Share My Profile</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>  -->
+
+<div class="container mt-4 landingPageWidth">
+    <div class="landingDiv landingDivSchoolTab">
+        <div class="row mt-1 mb-3 ">
+            <div class="col-6  " (click)="goToUserCertificatePage()">
+                <div class="myschoolTab form-control-inputDiv  mb-3  text-center border-0">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/e-certificate-icon.png " class="img-fluid d-block img-size ">
+                    </div>
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">E-certificates & E-reports</p>
+                </div>
+
+            </div>
+            <div class="col-6  mb-3  text-center" (click)="goToUserProfilePage()">
+                <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/share-my-profile-icon.png " class="img-fluid d-block img-size ">
+                    </div>
+
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">Share My Profile</p>
+                </div>
+            </div>
+            <div class="col-6  mb-3  text-center" (click)="goToUserZatchupStarClassPage()">
+                <div class="myschoolTab form-control-inputDiv  text-center border-0">
+
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/zu-icon.png " class="img-fluid d-block img-size "> </div>
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">ZatchUp Star Class</p>
+                </div>
+            </div>
+            <div class="col-6  mb-3  text-center" (click)="goToUserRemindersPage()">
+                <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/reminders-icon.png " class="img-fluid d-block img-size ">
+                    </div>
+
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">Reminders</p>
+                </div>
+            </div>
+            <div class="col-6  mb-3  text-center">
+                <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/chat-teacher.png " class="img-fluid d-block img-size ">
+                    </div>
+
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">Chat with Teachers</p>
+                </div>
+            </div>
+            <div class="col-6  mb-3  text-center" (click)="goToMyEducationalProfilePage();">
+                <div class="myschoolTab form-control-inputDiv  text-center border-0">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/EI-profile-icon.png " class="img-fluid d-block img-size ">
+                    </div>
+
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">EI Profile</p>
+                </div>
+            </div>
+            <div class="col-6   mb-3 text-center" (click)="goToUserProjectFundingPage()">
+                <div class="myschoolTab form-control-inputDiv text-center border-0 ">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/project-funding-icon.png " class="img-fluid d-block img-size ">
+                    </div>
+
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">Project Funding</p>
+                </div>
+            </div>
+            <div class="col-6 mb-3 text-center">
+                <div class="myschoolTab form-control-inputDiv text-center border-0 ">
+                    <div class="h-75">
+                        <img src="assets/images/userWebsite/lecturer-icon.png " class="img-fluid d-block img-size ">
+                    </div>
+
+                    <p class="commonFontSize mediumFont mt-2 h-25 mb-0">Lecture/Career Counselling</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<app-user-footer></app-user-footer>

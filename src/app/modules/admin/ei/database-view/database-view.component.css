@@ -1,0 +1,30 @@
+.toggleslider {
+    border: 1px solid #463267;
+    border-radius: 50px;
+    width: 36px;
+    height: 18px;
+}
+
+::ng-deep .toggleslider .mat-slide-toggle-thumb {
+    height: 12px;
+    width: 12px;
+    margin-top: 3px;
+    margin-left: 2px;
+    background-color: #463267;
+}
+
+::ng-deep .mat-slide-toggle-bar,
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background: transparent;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #37a713;
+}
+
+.mat-slide-toggle-thumb-container {
+    position: absolute;
+    top: 0px !important;
+    left: 2px !important;
+}
+    

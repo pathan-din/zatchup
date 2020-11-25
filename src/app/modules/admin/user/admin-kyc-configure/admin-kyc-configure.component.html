@@ -1,0 +1,106 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+
+    <div class="adminKYCRetrigged-div bg-white border border-gray mt-3 px-3 py-3">
+
+        <div class="row topDiv mb-1">
+            <div class="col">
+                <h2 class="commonFontSize semiBoldFont m-0">Number of Time User Can Send KYC To Retrigged</h2>
+            </div>
+            <div class="col SearchDiv d-flex flex-row">
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " aria-hidden="true "
+                    data-toggle="modal" data-target="#NumberOfDays">Change Current Count</button>
+            </div>
+        </div>
+
+        <div class="row mx-0 ml-1">
+
+            <div class="col-md-12 py-2">
+                <div class="row">
+                    <div
+                        class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p class="m-0">Current Count </p>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                        <p><span class="mr-3">:</span>{{retriggerCount}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="adminKYChistory-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">History</h2>
+
+        <div class="row mx-0 ml-1">
+
+            <div class="col-md-12 py-2" *ngFor="let history of retriggerHistory">
+                <div class="row">
+                    <div
+                        class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p class="m-0">{{history.updated_on | date: 'd MMM, y'}} &
+                            {{history.updated_on | date: 'shortTime'}}</p>
+                    </div>
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                        <p><span class="mr-3">:</span>Count changed from {{history.previous_count}} to
+                            {{history.current_count}}
+                            by {{history.user_name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Start of      -->
+    <div class="modal fade" id="NumberOfDays" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Number Of Current Counts</h2>
+                    <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <form (ngSubmit)="changeCountForm.form.valid && changeCount()" #changeCountForm="ngForm" novalidate>
+                        <div class=" form-group row ">
+                            <div class="col-sm-12 mb-3">
+                                <label for="description" class=" commonFontSize semiBoldFont letterspacing">Number Of
+                                    Current Counts</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                    <input
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Enter Number Of Days" maxlength="3" minlength="1"
+                                        name="count" [(ngModel)]="addCount" #count="ngModel" pattern="^[0-9]*$"
+                                        [ngClass]="{ 'is-invalid': changeCountForm.submitted && count.invalid }"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of NumberOfDaysModel  -->
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

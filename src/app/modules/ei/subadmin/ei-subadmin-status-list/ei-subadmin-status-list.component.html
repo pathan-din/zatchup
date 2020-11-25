@@ -1,0 +1,74 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Sub Admin List</h2>
+        
+        <!--Start html for filter for No of alumni per page with export button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Sub Admin Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of alumni per page with export button-->
+        
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.Name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="emailID">
+                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.emailID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phoneNumber">
+                        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.phoneNumber}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Designation">
+                        <mat-header-cell *matHeaderCellDef> Designation </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.Designation}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
+                            <!-- <i class="fa fa-trash mr-2 color-red fa-lg" aria-hidden="true "></i> -->
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

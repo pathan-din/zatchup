@@ -1,0 +1,99 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+    <div class="CertificateResult bg-white px-3 pt-2 pb-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-8">
+                <h2 class="commonFontSize semiBoldFont m-0">E-Certificates And E-Report Cards Management</h2>
+            </div>
+            <div class="col-md-4 SearchDiv d-flex flex-row">
+                <div class="form-control-inputDiv rounded p-0 shadow-none">
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="text" placeholder="Search...">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Apply</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">Number Of Certificates Issued</p>
+                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Number Of Certificates Issued:<span class="ml-2">50</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <p class="p-2 mediumFont commonFontSize">Number Of E-Results Issued</p>
+                    <h2 class="countFontSize text-center semiBoldFont">35</h2>
+                    <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
+                        <p class="mb-0 ">Total Number Of E-Results Issued:
+                            <span class="ml-2">35</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="certificate-div bg-white px-3 pt-2 pb-3 mt-3">
+        <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0 mr-4"
+            data-toggle="modal" data-target="#AddStudentModel">Formats</button>
+        <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0" data-toggle="modal"
+            data-target="#AddStudentModel1">Configure time to delete issued e-certificate / e-result</button>
+    </div>
+
+    <div class="new-certificate-div bg-white px-2 py-2 mt-3">
+        <h2 class="commonFontSize semiBoldFont">New E-Certificate & E-Results Issue</h2>
+        <div class="row">
+            <div class="col-12 d-flex align-items-end">
+                <div>
+                    <label for="" class=" commonFontSize mediumFont letterspacing">Issue Date From</label>
+                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div>
+                    <label for="" class=" commonFontSize mediumFont letterspacing">Issue Date To</label>
+                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <button type="button"
+                        class="bg-purple border-0 col-flex text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize">New E-certificates</p>
+                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        New E-certificates Issued:<span class="ml-2">25</span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize">New E-Results</p>
+                    <h2 class="countFontSize text-center semiBoldFont">35</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        New E-Results Issued:<span class="ml-2">25</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+.form-control-textarea {
+    background: #d4d4d4;
+    resize: none;
+}
+
+.text-decoration-none {
+    border-bottom: 1px solid #463267;
+}
+
+.background-purple {
+    background-color: #463267;
+}
+
+.landingDiv {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.fundRequired {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fund-btn {
+    padding: 4%;
+    width: 90%;
+    height: 95%;
+}
+
+.img-container {
+    min-height: 35vh;
+    max-height: 35vh;
+    height: 35vh;
+}
+
+@media only screen and (max-width: 414px) {
+    .fund-btn {
+        width: 100%;
+        height: 95%;
+    }
+    .landingDiv {
+        padding-top: 4%;
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+}

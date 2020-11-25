@@ -1,0 +1,65 @@
+.form-control-textarea {
+    background: #d4d4d4;
+    resize: none;
+}
+
+.suggestionDiv .card {
+    border-radius: 25px;
+}
+
+.suggestionDiv img.rounded-circle {
+    width: 15%
+}
+
+.text-decoration-none {
+    border-bottom: 1px solid #463267;
+}
+
+.eyes-img {
+    width: 35%;
+}
+
+.img-container {
+    min-height: 35vh;
+    max-height: 35vh;
+    height: 35vh;
+}
+
+.img-suggestion {
+    min-height: 25vh;
+    max-height: 25vh;
+    height: 25vh;
+}
+
+@media only screen and (max-width: 414px) {
+    .suggestionDiv {
+        display: flex;
+        flex-direction: column;
+        padding: 0!important;
+        overflow-x: scroll;
+    }
+    .suggestionContent {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: scroll;
+        flex-wrap: nowrap;
+    }
+    .suggestionCard {
+        width: 252px;
+        margin: 0 4%;
+        flex: none;
+    }
+    .viewAll {
+        width: 60%;
+        margin: 0 2%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .img-suggestion {
+        min-height: 17vh;
+        max-height: 17vh;
+        height: 17vh;
+    }
+}

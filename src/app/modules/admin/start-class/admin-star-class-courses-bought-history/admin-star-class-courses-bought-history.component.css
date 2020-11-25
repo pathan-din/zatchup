@@ -1,0 +1,6 @@
+.mat-column-downloadInvoice{
+    width: 120px;
+}
+.mat-column-viewInvoice, .mat-column-boughtType, .mat-column-EiZatchUpId{
+    width: 95px;
+}

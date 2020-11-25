@@ -1,0 +1,52 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="Notification-div bg-white px-2 py-2">
+        <div class="row topDiv">
+            <div class="col-md-4">
+                <h2 class="commonFontSize semiBoldFont m-0">Notification</h2>
+            </div>
+            <div class="col-md-8 SearchDiv d-flex flex-row">
+                <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                </div>
+                <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                </div>
+                <button type="button" class="bg-dark text-white px-3 h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-dark text-white px-3 h-100 ml-2 border-0 ">Send Notification</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tableDiv ">
+        <div class="mat-elevation-z1 table-responsive">
+            <mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="SNo">
+                    <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="NotificationMessage">
+                    <mat-header-cell *matHeaderCellDef> Notification Message </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        {{element.NotificationMessage}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Time">
+                    <mat-header-cell *matHeaderCellDef class="justify-content-center"> Time </mat-header-cell>
+                    <mat-cell *matCellDef="let element" class="justify-content-center">
+                        {{element.Time}}
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            </mat-table>
+
+        </div>
+    </div>
+
+</div>

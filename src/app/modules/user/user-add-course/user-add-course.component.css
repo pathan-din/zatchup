@@ -1,0 +1,23 @@
+.background-purple {
+    border-radius: 25%;
+}
+
+.left-Image {
+    width: 80%;
+}
+
+.btn-absolute-col {
+    position: relative;
+}
+
+@media only screen and (max-width: 414px) {
+    .col-md-12.text-right {
+        text-align: unset!important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .col-md-12.text-right {
+        text-align: unset!important;
+    }
+}

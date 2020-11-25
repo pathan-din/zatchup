@@ -1,0 +1,186 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Approve Students List</h2>
+        <!-- <h2 class="commonFontSize semiBoldFont m-0">Approval Pending List</h2> -->
+
+        <div class="filterDiv">
+            
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="fromDate" name="fromDate"
+                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="toDate" name="toDate"
+                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #toDate="ngModel"
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" id="pastEI" required
+                        [(ngModel)]="studentApproval.courseId" (change)="getStandardList(studentApproval.courseId)">
+                        <option value=""> Select Course</option>
+                        <option *ngFor="let course of studentApproval.courseList " value="{{course.id}}">{{course.course_name}}</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" id="pastEi" required
+                        [(ngModel)]="studentApproval.standardId" (change)="getClassList(studentApproval.courseId)">
+                        <option value=""> Select Standard</option>
+                       <option *ngFor="let standard of studentApproval.standardList" value="{{standard.id}}">{{standard.standard_name}}</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" id="pastEi" required
+                        [(ngModel)]="studentApproval.classId">
+                        <option value=""> Select Subsection</option>
+                        <option *ngFor="let class of studentApproval.classList" value="class.id">{{class.class_name}}</option>
+                    </select>
+                    </div>
+                </div>
+
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                (click)="getStudentApproval()">Apply</button>
+
+
+            </div>
+        </div>
+        <div class="row my-3" *ngIf="studentApproval.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Student Count Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="getStudentApproval('1')" [(ngModel)]="studentApproval.pageSize">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+
+        <div class="tableDiv " *ngIf="studentApproval.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="studentApproval.dataSource | paginate: studentApproval.config ">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i=index"> {{i + studentApproval.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="addingDate">
+                        <mat-header-cell *matHeaderCellDef>Date of Adding </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_joined}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchUpID">
+                        <mat-header-cell *matHeaderCellDef>User's Unique zatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.first_name}} {{element.last_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phoneNumber">
+                        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.phone}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="emailID">
+                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.email
+                            }}
+                        </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="userID">
+                        <mat-header-cell *matHeaderCellDef>EI Admission Number / ID Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.admission_no}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef>Current Class </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.class_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rollNumber">
+                        <mat-header-cell *matHeaderCellDef>Roll Number</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.roll_no}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="gender">
+                        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.gender}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="age">
+                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <i class="fa fa-edit text-green color-green mr-3"></i>
+                            <i class="fa fa-edit text-green color-green mr-3"></i>
+                            <i class="fa fa-edit text-green color-green"></i>
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="unverifyStudent">
+                        <mat-header-cell *matHeaderCellDef> Un-Verify Stuent </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i class="fa fa-edit text-green fa-lg color-green mr-3"></i>
+                            <i class="fa fa-retweet text-primary fa-lg" aria-hidden="true"></i>
+                            <!-- {{element.unverifyStudent}} -->
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="studentApproval.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: studentApproval.displayedColumns; "></mat-row>
+                 </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="studentApproval.dataSource" (pageChange)="getStudentApproval($event)"
+        class="eiPaginationTag">
+    </pagination-controls>
+    <div class="row" *ngIf="!studentApproval.dataSource">
+        <div class="col-12 pt-2 pb-2">
+            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+        </div>
+    </div>
+    </div>
+</div>

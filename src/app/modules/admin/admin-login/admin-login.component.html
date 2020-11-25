@@ -1,0 +1,59 @@
+<div class="container-fluid ei-bg-img h-100 d-flex flex-column justify-content-center">
+    <div class="row h-100">
+        <div class="col-xl-8 col-lg-7 col-md-6 login-col-left"></div>
+        <div class="col-xl-4 col-lg-5 col-md-6 col-12 pl-5 pr-0 login-col-right">
+            <!--start login div for zatchUp admin-->
+            <div class="w-100 px-4 h-100  bg-white d-flex flex-column justify-content-center align-items-center">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center my-3 semiBoldFont">Let's ZatchUp</h2>
+                <form class="w-100" id="form1">
+                    <div class="form-group row  ml-0 mr-0">
+                        <label for="emailid" class=" commonFontSize mediumFont letterspacing">Email ID</label>
+                        <div
+                            class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                            <span class="ei-signup-bg-box">
+                                <i class="fa fa-user text-white" aria-hidden="true"></i>
+                            </span>
+                            <input id="Email_ID" required (keyup)="isValid($event)" [(ngModel)]="model.username"
+                                name="Email_ID"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="email" placeholder="Enter Email ID">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.Email_ID"></div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <label for="password " class=" mediumFont commonFontSize letterspacing">Password</label>
+                        <div
+                            class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                            <span class="ei-signup-bg-box">
+                                <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
+                            </span>
+                            <input id="password" name="password" required (keyup)="isValid($event)"
+                                [(ngModel)]="model.password"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="password" placeholder="Enter Password">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
+                    </div>
+                    <div class="remember-forget-div d-flex justify-content-between">
+                        <mat-checkbox [checked]="remember" (change)="changeRemember($event)" class="purple-checkbox">Remember Me</mat-checkbox>
+                        <p class="text-right textUnderlineStyle commonFontSize mediumFont "
+                            (click)="goToAdminForgotPasswordPage()">Forgot Password?</p>
+                    </div>
+                    <button type="button "
+                        class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing"
+                        (click)="doLogin()">Log In
+                        <span class="">
+                            <i class="fa fa-sign-in text-white" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </form>
+            </div>
+            <!--End login div for zatchUp admin-->
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 

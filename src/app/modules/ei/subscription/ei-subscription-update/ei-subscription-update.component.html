@@ -1,0 +1,93 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="SubscriptionUpdate-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont mb-1">Subscription </h2>
+        <div class="row m-0" *ngIf="subscriptionList && subscriptionList.length > 0">
+            <div class="col-xl-7 bg-offwhite">
+                <div class="row border-bottom">
+                    <div class="col-12">
+                        <h2 class="commonFontSize mediumFont my-2">Change Plan</h2>
+                    </div>
+                </div>
+
+                <div class="form-group row pt-4">
+                    <div class="col-xl-6 col-lg-7-col-md-10 col-10 d-flex flex-column "
+                        *ngFor="let subscription of subscriptionList">
+                        <div class="d-flex flex-xs-column flex-row justify-content-between ">
+                            <mat-radio-button (change)="getAmount(subscription)" class="purple-checkbox mediumFont">
+                                {{subscription.name}}</mat-radio-button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3" *ngIf="subscription">
+                    <div class="col-md-12">
+                        <label for="" class=" mediumFont commonFontSize letterspacing">Amount</label>
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input [disabled]="true" name="subAmount" [(ngModel)]="subscription.current_amount"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Subscription Amount">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3" *ngIf="subscription">
+                    <div class="col-md-8">
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Coupon" name="coupon_code" [(ngModel)]="couponCode">
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <button type="button" class="bg-paret-green text-white py-2 px-4 border-0 mb-4"
+                            (click)="applyCoupon()">Apply Coupon
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12 color-red commonFontSize mediumFont">** Select package will be activated on the
+                        expiration of current </div>
+                </div>
+
+                <div class="row mt-3" *ngIf="applyCouponData">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-5">Subscription Total</div>
+                            <div class="col-7"><span class="mr-1">: {{applyCouponData.current_amount}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Discount Applied</div>
+                            <div class="col-7"><span class="mr-1">: {{applyCouponData.discount_amount}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Total Amount</div>
+                            <div class="col-7"><span class="mr-1">: {{applyCouponData.price}}</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center"><button type="button"
+                            class="bg-paret-green text-white py-2 px-4 border-0 mb-4" (click)="makePayment()">Proceed To
+                            Pay</button></div>
+                </div>
+
+                <!--col-7 end-->
+                <div class="col-xl-7">
+                </div>
+            </div>
+
+        </div>
+        <div class="row" *ngIf="subscriptionList && subscriptionList.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

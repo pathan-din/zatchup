@@ -1,0 +1,60 @@
+.userFooterBgColor {
+    background-color: #463267;
+}
+.footerLogoImg{
+    width: 33%;
+}
+.userFooterUl a.nav-link {
+    color: #ffffff;
+}
+
+.userFooterUl a.nav-link:hover {
+    color: #ccc;
+}
+.whitePhoneImg{
+    width: 5%;
+}
+.SocialIcon a img {
+    margin-right: 5%;
+}
+
+.userStoreCol {
+    display: flex;
+    justify-content: center;
+}
+.userTextSpacing{
+    /* font-size: .875rem; */
+    font-size: .815rem;
+    letter-spacing: 0.5px;
+}
+.foot_title{
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 414px) {
+    .footerLogoImg{
+        width: 55%;
+        padding-top: 10%;
+    }
+    .userFooterRow1{
+        padding-top: 0.5rem!important;
+    }
+    .foot_title {
+        margin-top: 10%;
+    }
+    .whitePhoneImg{
+        width: 7%;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .footerLogoImg{
+        width: 60%;
+    }
+    .userStoreCol img {
+        width: 60%;
+        height: min-content;
+    }
+    .whitePhoneImg{
+        width: 11%;
+    }
+}

@@ -1,0 +1,27 @@
+.col-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.custom-select {
+    background-size: 7%;
+}
+
+.Btn-lg-last {
+    height: 56px;
+}
+
+.countFontSize {
+    font-size: 2rem;
+}
+
+.medium-filter-box {
+    flex: 0 0 18%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Btn-lg-last {
+        height: 90px;
+    }
+}

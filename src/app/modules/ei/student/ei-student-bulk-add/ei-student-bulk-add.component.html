@@ -1,0 +1,124 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont mb-1">Add Student</h2>
+        <!-- <div class="row"> -->
+            <!-- <div class="col-12 "> -->
+                <!-- <div class="d-flex flex-column dashed-border text-center p-3"> -->
+                    <!-- <i class="fa fa-upload color-light-black" aria-hidden="true"></i> -->
+                    <!-- <p class="commonFontSize mediumFont">Upload SpreadSheet</p> -->
+                <!-- </div> -->
+
+            <!-- </div> -->
+        <!-- </div> -->
+        <form id ="addstudent">
+            <div class="form-group mt-3 ">
+                <label for="" class="mediumFont commonFontSize letterspacing"> Student's Unique ZatchUp ID</label>
+                <div class="form-control-inputDiv rounded p-0  shadow-none">
+                    <input id="zatchup_id" name="zatchup_id" (keyup)="isValid($event)" [(ngModel)]="model.zatchup_id" [required]="!model.first_name && !model.last_name && !model.username" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Student's Unique ZatchUp ID">
+
+                </div>
+				 <div class="required errorMsg" [innerHtml]="errorDisplay.zatchup_id"></div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <div class="col-sm-12 ">
+                    <h2 class="or-cirle "><span class="commonFontSize regularFont letterspacing">OR</span></h2>
+                </div>
+            </div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">First Name</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="first_name" (keyup)="isValid($event)" [(ngModel)]="model.first_name" name="first_name" [required]="!model.zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter First Name">
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Last Name</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="last_name" (keyup)="isValid($event)" [(ngModel)]="model.last_name" name="last_name" [required]="!model.zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Last Name">
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Email / Phone Number</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="email" (keyup)="isValid($event)" [(ngModel)]="model.username" name="username" [required]="!model.zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email / Phone Number">
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.username"></div>
+                </div>
+
+            </div>
+
+            <div class="pt-2 pb-2 hr-color"><hr/></div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select (change)="displayStandardList(model.course_id)" id="course_id"  [(ngModel)]="model.course_id" name="course" required class="custom-select  form-control-input" required>
+                        <option value=""> Select Course</option>
+                        <option value="{{course.id}}" *ngFor="let course of courseList">{{course.course_name}}</option>
+                        
+                    </select>
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select (change)="displayClassList(model.standard_id)" id="standard_id"  [(ngModel)]="model.standard_id" name="standard" required class="custom-select  form-control-input" required>
+                        <option value=""> Select Standard</option>
+                        <option value="{{standard.id}}" *ngFor="let standard of standardList">{{standard.standard_name}}</option>
+                        
+                    </select>
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Class</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select id="class_id" (change)="isValid($event)" [(ngModel)]="model.class_id" name="class" required class="custom-select  form-control-input" required>
+                        <option value=""> Select Class</option>
+                        <option value="{{class.id}}" *ngFor="let class of classList">{{class.class_name}}</option>
+                         
+                    </select>
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
+                </div>
+
+            </div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-md-6 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number(Mandatory)</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="roll_no" (keyup)="isValid($event)" [(ngModel)]="model.roll_no" name="roll_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="number" placeholder="Enter Roll Number">
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
+                </div>
+
+                <div class="col-md-6 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Admissin Number / EI ID(Mandatory)</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="admission_no" (keyup)="isValid($event)" [(ngModel)]="model.admission_no" name="admission_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="number" placeholder="Enter Admissin Number">
+                    </div>
+					<div class="required errorMsg" [innerHtml]="errorDisplay.admission_no"></div>
+                </div>
+
+            </div>
+            <div class="form-group row  mt-3">
+                <div class="col-12 text-center">
+                    <button (click)="redirectToStudentManagement()" type="button" class="bg-red text-white border-0 mr-3 py-2 px-4 commonFontSize regularFont letterspacing">Cancel</button>
+                    <button (click)="addStudent()" type="button" class="bg-paret-green text-white border-0  py-2 px-4 commonFontSize regularFont letterspacing">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="ECertificatesHistory-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv my-3">
+            <div class="col-md-5 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Preview Student View Report Card</h2>
+            </div>
+            <!--Start html for Export Button-->
+            <div class="col-md-7 SearchDiv d-flex flex-row flex-wrap">
+                <button type="button" class="bg-yellow text-white px-3 py-2 mr-1 mb-1 border-0 ">Consolidated Results</button>
+                <button type="button" class="bg-blue text-white px-3 py-2  ml-1 mr-1 mb-1 border-0 ">Preview</button>
+                <button type="button" class="bg-paret-green text-white py-2 px-3 mb-1  ml-1 border-0 ">Export All</button>
+            </div>
+            <!--end html for Export Button-->
+        </div>
+
+        <!--Start html for "certificate History Table"-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="studentName">
+                        <mat-header-cell *matHeaderCellDef>Student's Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.studentName}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="eiID">
+                        <mat-header-cell *matHeaderCellDef>EI ID / Admission ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.eiID}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="rollNo">
+                        <mat-header-cell *matHeaderCellDef> Roll No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.rollNo}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.class}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="category">
+                        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.category}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="previewReportCard">
+                        <mat-header-cell *matHeaderCellDef> Preview Report Card </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="color-blue">
+                            {{element.previewReportCard}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+
+
+
+                </mat-table>
+            </div>
+        </div>
+        <!--end html for "certificate History Table"-->
+
+        <!--Button for publish and select data-->
+        <div class="mt-4">
+            <button type="button" class="bg-blue text-white px-3 py-2 mb-1 ml-1 mr-1 rounded border-0 " data-toggle="modal" data-target="#publishModel">Publish Now</button>
+            <button type="button" class="bg-paret-green text-white py-2 px-3 mb-1 rounded ml-1 border-0 " data-toggle="modal" data-target="#selectDataTimeModel">Select Data And Time</button>
+
+        </div>
+
+        <!-- publishModel  -->
+        <div class="modal fade" id="publishModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Publish</h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                          <span aria-hidden="true ">
+                              &times;
+                              <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0 py-0">
+                        <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                        <p class="commonFontSize regularFont letterspacing">Are you sure you want to Publish this Result?</p>
+                        <p class="commonFontSize regularFont letterspacing text-right">
+                            <span class="mx-3 color-blue">No</span>
+                            <span class="mx-2 color-blue">Yes</span>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Publish Model-->
+
+        <!-- selectDataTimeModel  -->
+        <div class="modal fade" id="selectDataTimeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Select Data And Time</h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                  <span aria-hidden="true ">
+                      &times;
+                      <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                    </span>
+                </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                        <div class=" form-group row ">
+                            <div class="col-sm-12 ">
+                                <label for="date " class=" commonFontSize semiBoldFontletterspacing mb-0">Date</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <input type="date" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " placeholder="MM/DD/YYYY " />
+                                </div>
+                            </div>
+                            <div class="col-sm-12 mt-3">
+                                <label for="time " class=" commonFontSize semiBoldFontletterspacing mb-0">time</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <input type="time" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " placeholder="MM/DD/YYYY " />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button " class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                    Publish
+                </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End selectDataTimeModel  -->
+
+    </div>
+</div>

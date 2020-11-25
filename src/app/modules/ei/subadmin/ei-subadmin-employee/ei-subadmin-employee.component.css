@@ -1,0 +1,14 @@
+h2.or-cirle {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid #c7cbd1;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+h2.or-cirle span {
+    background: #fff;
+    padding: 4px;
+    border: 1px solid #c7cbd1;
+    border-radius: 50%;
+}

@@ -1,0 +1,114 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont mb-0">Sub Admin Details</h2>
+        <div class="row mobile-col-reverse border-0 mt-1 mx-0">
+
+            <div class="col-md-6 col-left">
+
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Name</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7 commonFontSize mediumFont">
+                        <p><span class="mr-3">:</span>
+                            <span class=" color-purple">{{subAdminListDetails.first_name}} {{subAdminListDetails.last_name}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>ZatchUp ID</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7 commonFontSize mediumFont">
+                        <p><span class="mr-3">:</span>
+                            <span class=" color-purple">{{subAdminListDetails.zatchup_id}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Email ID</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7 commonFontSize mediumFont">
+                        <p><span class="mr-3">:</span>
+                            <span class=" color-purple">{{subAdminListDetails.email}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Phone Number</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7">
+                        <p><span class="mr-3">:</span>
+                            <span class=" color-purple">{{subAdminListDetails.phone}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Designation</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7">
+                        <p><span class="mr-3">:</span> 
+                            <span class=" color-purple">{{subAdminListDetails.designation}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Employee ID</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7">
+                        <p><span class="mr-3">:</span>
+                            <span class=" color-purple">{{subAdminListDetails.employee_num}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Remove All Access</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7">
+                        <p><span class="mr-3">:</span><span class="textUnderlineStyle color-purple">Remove</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Remove Sub Admin</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7">
+                        <p><span class="mr-3">:</span><span class="textUnderlineStyle color-purple">Delete</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Edit Access</p>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-7">
+                        <p><span class="mr-3">:</span><span class="textUnderlineStyle color-purple">Edit</span></p>
+                    </div>
+                </div>
+ 
+            </div>
+            <div class="col-md-6 col-right text-right">
+                <div class="text-right">
+                    <button tupe="button" class="bg-dark text-white right px-3 py-2 commonFontSize border-0 mb-1" (click)="goToSubadminAccessHistoryPage()">Sub Admin Access History</button>
+                </div>
+                <div class="RightimgDiv mt-2">
+                    <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
+                    <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>

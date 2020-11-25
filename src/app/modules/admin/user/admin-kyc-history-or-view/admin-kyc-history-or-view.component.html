@@ -1,0 +1,235 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+
+    <div class="AlumniProf-div bg-white border border-gray px-3 py-3"
+        *ngIf="kycHistoryModal.activeParams.kycType == 'pending'">
+        <h2 class="commonFontSize semiBoldFont m-0">Kyc Pending</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row mt-2 py-2 form-control-inputDiv border-0 mx-0">
+                    <div class="col-md-12 col-left">
+
+                        <div class="row">
+                            <div class="col-6 commonFontSize mediumFont">
+                                <p>EI ZatchUp ID of user</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
+                                        {{kycHistoryModal.kycDetails.zatchupId}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 commonFontSize mediumFont">
+                                <p>Name Of User</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
+                                        {{kycHistoryModal.kycDetails.name_of_user}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 commonFontSize mediumFont">
+                                <p>User Type</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
+                                        {{kycHistoryModal.kycDetails.user_type}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 commonFontSize mediumFont">
+                                <p>Proof Name</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
+                                        {{kycHistoryModal.kycDetails.proof_name}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 commonFontSize mediumFont">
+                                <p>Request Reason</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
+                                        {{kycHistoryModal.kycDetails.request_reason}}</span> </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 commonFontSize mediumFont">
+                                <p>Request Type</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
+                                        {{kycHistoryModal.kycDetails.request_type == 0 ? 'First Time' : 'Re-submitted'}}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="bg-purple text-white py-2 px-4 border-0 mr-3"
+                                    data-toggle="modal" data-target="#approveModel">View</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- approve or reject Model  -->
+                    <div class="modal fade" id="approveModel" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content unverified container-fluid">
+                                <div class="modal-header align-items-center justify-content-center pb-0">
+                                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">KYC Pending
+                                        Flash</h2>
+                                    <button type="button" #approveCloseButton
+                                        class="close rounded-circle border bg-white model-close-btn p-0"
+                                        data-dismiss="modal" aria-label="Close ">
+                                        <span aria-hidden="true "> &times; </span>
+                                    </button>
+                                </div>
+                                <div class="modal-body px-0">
+                                    <form id="approveOrRejectForm">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row  ml-0 mr-0">
+                                                    <label for="" class="mediumFont commonFontSize letterspacing"> Image
+                                                        of Attachment </label>
+                                                </div>
+                                                <div *ngIf="kycHistoryModal.kycDetails && kycHistoryModal.kycDetails.kyc_document"
+                                                    class="picImg">
+                                                    <img src="{{kycHistoryModal.kycDetails.kyc_document}}"
+                                                        class="img-fluid dpImg ">
+                                                </div>
+                                                <div
+                                                    *ngIf="kycHistoryModal.kycDetails && !kycHistoryModal.kycDetails.kyc_document">
+                                                    <img src="assets/images/no-image-icon.jpg" class="img-fluid dpImg ">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 mt-3 mb-1">
+                                                <mat-radio-group aria-label="Select an option">
+                                                    <mat-radio-button [checked]="true" class="mr-3" color="primary"
+                                                        value="approve" (change)="radioChange($event)">Approve
+                                                    </mat-radio-button>
+                                                    <mat-radio-button value="reject" color="primary"
+                                                        (change)="radioChange($event)">Reject</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group row  ml-0 mr-0" style="display: grid;">
+                                                    <label for="" class="mediumFont commonFontSize letterspacing">
+                                                        Numbers entered by User </label>
+                                                    <span
+                                                        *ngIf="kycHistoryModal.kycDetails">{{kycHistoryModal.kycDetails.kyc_id_no}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12" *ngIf="kycHistoryModal.approveOrReject == 'reject'">
+                                                <div class="form-group row  ml-0 mr-0">
+                                                    <label for="" class="mediumFont commonFontSize letterspacing">
+                                                        Rejection Reason </label>
+                                                    <div
+                                                        class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                        <select class="custom-select  form-control-input" id="reason"
+                                                            name="rejection_reason"
+                                                            [(ngModel)]="kycHistoryModal.rejectionReason" required>
+                                                            <option value=""> Select Reason</option>
+                                                            <option value="Unclear Photo">Unclear Photo</option>
+                                                            <option value="Invalid Photo">Invalid Photo</option>
+                                                            <option value="Wrong Name">Wrong Name</option>
+                                                            <option value="Wrong DOB">Wrong DOB</option>
+                                                            <option value="Wrong ID Number">Wrong ID Number</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="required errorMsg"
+                                                        [innerHtml]="kycHistoryModal.errorDisplay.rejection_reason">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12" *ngIf="kycHistoryModal.approveOrReject == 'reject'">
+                                                <div class="form-group row  ml-0 mr-0">
+                                                    <label for="" class="mediumFont commonFontSize letterspacing">
+                                                        Rejection Remarks </label>
+                                                    <div
+                                                        class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                        <textarea
+                                                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                            type="text" cols="4" rows="5" id="remark"
+                                                            placeholder="Rejection Remarks" name="rejection_remark"
+                                                            [(ngModel)]="kycHistoryModal.rejectionRemark"
+                                                            required></textarea>
+                                                    </div>
+                                                    <div class="required errorMsg"
+                                                        [innerHtml]="kycHistoryModal.errorDisplay.rejection_remark">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-3 text-center">
+                                                <button type="button" (click)="ApproveRejectKyc()"
+                                                    class="{{kycHistoryModal.approveOrReject == 'approve' ? 'bg-paret-green' : 'bg-danger'}} border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                                    {{kycHistoryModal.approveOrReject | titlecase}} </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- approve or reject end -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont m-0">KYC History</h2>
+        <div class="row mb-3">
+            <form #sortKycForm="ngForm" (ngSubmit)="sortKycForm.form.valid && sortKycHistory()">
+                <div class="col-md-12 d-flex align-items-end">
+                    <div class="mr-2">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
+                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                            <select class="custom-select  form-control-input" id="classAlias" name="orderBy"
+                                [(ngModel)]="kycHistoryModal.sortBy" #orderBy="ngModel"
+                                [ngClass]="{'is-invalid': sortKycForm.submitted && orderBy.invalid}" required>
+                                <option value=""> Select Sort</option>
+                                <option value="ascending">Ascending</option>
+                                <option value="descending">Descending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-purple text-white py-2 px-4 border-0">Apply</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row mobile-col-reverse border-0 mt-1 mx-0" *ngIf="kycHistoryModal.kycHistory">
+            <div class="col-md-12 col-left">
+                <div class="row flex-nowrap" *ngFor="let history of kycHistoryModal.kycHistory">
+                    <div class="commonFontSize semiBoldFont d-flex flex-row align-items-start pr-0">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>{{history.created_on | date:'dd MMM, yy'}} & {{history.created_on | date:'shortTime'}}</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize mediumFont pl-0">
+                        <p><span class="mx-2">:</span>{{history.reason_remarks}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!kycHistoryModal.kycHistory">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">KYC History Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

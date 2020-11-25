@@ -1,0 +1,8 @@
+@media only screen and (max-width: 414px) {
+    .login-col-left {
+        display: none;
+    }
+    .login-col-right {
+        padding-left: 0!important;
+    }
+}

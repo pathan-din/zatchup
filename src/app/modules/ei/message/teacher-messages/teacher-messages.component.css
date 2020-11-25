@@ -1,0 +1,13 @@
+.teacherChatList {
+    height: 370px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+@media (max-width: 767px){
+  .teacherChatList {
+      height: 300px;
+      overflow-x: auto;
+      overflow-y: scroll;
+  }
+}

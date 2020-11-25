@@ -1,0 +1,97 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Sub Admin Management</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-paret-green text-white px-3 py-1  ml-2 border-0 " aria-hidden="true "
+                    (click)="goToSubadminAddPage()">Add Sub-Admin</button>
+                <button type="button" class="bg-blue text-white px-3 py-1  ml-2 border-0 " aria-hidden="true "
+                    (click)="goToSubadminAccessHistoryPage()">Access History</button>
+            </div>
+        </div>
+        <!--Start html for filter for No of alumni per page with export button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Sub Admin Per
+                    Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0" (change)="getSubadminList('1')" [(ngModel)]="pageSize">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2"
+                        aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of alumni per page with export button-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource | paginate: config">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name Of Sub-Admin </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.firstname}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EmployeeID">
+                        <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.employee_num}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EmailID">
+                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.email}} </mat-cell>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Phone_no">
+                        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            {{element.phone}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center cursorStyle">
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
+                                (click)="goToSubadminAuthorirtyPage(element)"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="dataSource" (pageChange)="getSubadminList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
+        <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+    </div>
+
+</div>

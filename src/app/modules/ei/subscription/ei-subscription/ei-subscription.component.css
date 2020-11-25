@@ -1,0 +1,14 @@
+.SubscriptionColDetail{
+    padding: 2%;
+    border: 1px solid #c7cbd1;
+    outline: none;
+}
+.subscriptionBorderBottomStyle{
+    border-bottom: 1px solid #c7cbd1;
+}
+.img-container {
+    min-height: 32vh;
+    max-height: 32vh;
+    height: 32vh;
+    width: 100%;
+}

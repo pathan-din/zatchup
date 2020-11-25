@@ -1,0 +1,176 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="SubAdminManagement-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Sub Admin Management</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <div class="form-control-inputDiv rounded p-0 shadow-none">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Search...">
+                </div>
+                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize ">Pending Requests</p>
+                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary pblock">Requests To Add Sub-Admin:<span class="ml-2">50</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize ">Pending Access </p>
+                    <h2 class="countFontSize text-center semiBoldFont">35</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary pblock">Access Requests:<span class="ml-2">35</span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize ">Requests For Changing</p>
+                    <h2 class="countFontSize text-center semiBoldFont">125</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary pblock">Requests For Changing Details :
+                        <span class="ml-2">125</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4 MobileCol6MB">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple" (click)="goToEiSubadminModuleWisePage()">Module wise
+                    summary</button>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple" (click)="goToEiSubadminAccessHistoryPage()">Access
+                    History</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="addStudent-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row mt-2 ">
+            <div class="col-xl-6 col-lg-5 col-md-6 MobileCol6MB">
+                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 addSubAdminPurpleBtn bg-purple" (click)="goToEiSubadminAccessPage()">Add Sub
+                    Admin</button>
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-6">
+                <h2 class="commonFontSize semiBoldFont">View Status (500) <span class="commonFontSize mediumFont textRightSpan">Approve Sub Admin</span></h2>
+                <div class="form-control-inputDiv rounded-0 bg-offwhite shadow-none clearfix">
+                    <div class="row" (click)="goToEiSubadminViewStatusPage()">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Sent For Approval</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>150</p>
+                        </div>
+                    </div>
+                    <div class="row" (click)="goToEiSubadminViewStatusPage()">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Sent For Sign Up</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>80</p>
+                        </div>
+                    </div>
+                    <div class="row" (click)="goToEiSubadminViewStatusPage()">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Rejected By User</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>40</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Sub Admin</h2>
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Alumni Per
+                    Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="sudAdminList('1', '')" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
+                        aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource |  paginate: config">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ZatchUpID">
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.ZatchUpID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EmployeeID">
+                        <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.EmployeeID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.Name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EmailID">
+                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.EmailID}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="PhoneNumber">
+                        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.PhoneNumber}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Designation">
+                        <mat-header-cell *matHeaderCellDef> Designation </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.Designation}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i (click)="redirectToDetailPage(element.user_id)" class="fa fa-eye mr-2 cursorStyle color-lightBlue fa-lg" aria-hidden="true "></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+    </div>
+
+</div>

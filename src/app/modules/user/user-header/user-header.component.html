@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-sm fixed-top userHeaderBgColor">
+    <div class="container-fluid">
+        <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/userWebsite/logo.png"></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto userNavUl">
+                <li class="nav-item"><a routerLink="/user/home" class="nav-link" routerLinkActive="active-link">Home</a></li>
+                <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
+                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li>
+                <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
+                <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li>
+                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"  routerLinkActive="active-link">Logout</a></li>
+                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="container-fluid">
+        <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/userWebsite/logo.png"></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto userNavUl align-items-center" routerLinkActive="active">
+                <li class="nav-item"><a routerLink="/Home" class="nav-link nav-link-custom">Home</a></li>
+                <li class="nav-item"><a routerLink="/RegisterSchool" class="nav-link nav-link-custom">My School</a></li>
+                <li class="nav-item"><a routerLink="/Login" class="nav-link nav-link-custom">Messages</a></li>
+                <li class="nav-item">
+                    <a routerLink="/AboutUs" class="nav-link pl-5 nav-link-custom nav-link-custom-search">
+                        <img src="assets/images/userWebsite/search-icon.png" class="img-fluid w-75">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/ContactUs" class="nav-link d-flex flex-row ">
+                        <img src="assets/images/userWebsite/successfully_done.png" class="img-fluid headerDP mr-1">
+                        <p class="m-auto ">Hi Nitesh</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/Career" class="nav-link ">
+                        <img src="assets/images/userWebsite/search-icon.png" class="img-fluid w-75"></a>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+</nav>

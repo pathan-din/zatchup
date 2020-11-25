@@ -1,0 +1,11 @@
+.subAdminPurpleBtn{
+    width: inherit;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.addSubAdminPurpleBtn{
+    border-radius: 8px;
+    color: #ffffff;
+    width: 50%;
+}

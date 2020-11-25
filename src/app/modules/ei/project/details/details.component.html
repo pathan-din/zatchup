@@ -1,0 +1,192 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="d-flex justify-content-between mb-3 pb-2">
+            <h2 class="commonFontSize semiBoldFont m-0">Project Details</h2>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="conver_div d-flex justify-content-start flex-wrap align-items-center">
+                    <img src="./assets/images/userWebsite/profile-image.png" alt="Profile Pick" class="pickCircle round-img"/>
+                    <span class="conver_name semiBoldFont ml-2"><h3 class="mb-0">Name of the School</h3></span>
+                </div>
+
+                <div class="project_detailLft p-3 mt-2">
+                    <h4>Title of the Project</h4>
+                    <img src="./assets/images/userWebsite/loreal.jpg" alt="" class="img-responsive"/>
+                    <p class="mt-2">lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen.</p>
+    
+                    <p class="semiBoldFont">Funding Required: <span><i class="fa fa-inr" aria-hidden="true"></i></span> 3,00,000</p>
+                    <p class="semiBoldFont">Funding Required: <span><i class="fa fa-inr" aria-hidden="true"></i></span> 1,00,000</p>
+                    <p class="semiBoldFont">Funding Required: <span><i class="fa fa-inr" aria-hidden="true"></i></span> 1,50,000</p>
+                    <p class="semiBoldFont">Project Progress: <span class="color-blue cursorStyle"> View </span> </p>
+                    <p class="semiBoldFont">Reviewed By: <span>Ashish Gupta (CA)</span> </p>
+    
+                    <div class="border-top pt-2 pb-2">
+                        <span class="mr-3"><i class="fa fa-eye mr-1 cursorStyle" aria-hidden="true"></i> 70 </span>
+                        <span class="mr-3"><i class="fa fa-thumbs-up mr-1 cursorStyle" aria-hidden="true"></i> 30 </span>
+                        <span><i class="fa fa-commenting mr-1 cursorStyle" aria-hidden="true"></i> 50 </span>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-3 pb-1 pt-2">
+                        <img src="./assets/images/userWebsite/profile-image.png" alt="Profile Pick" class="pickCircle round-img"/>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-9 pb-1 pt-2">
+                        <div class="conver_div d-flex justify-content-between flex-wrap">
+                            <span class="conver_name semiBoldFont">John Smith</span>
+                            <span class="textUnderlineStyle color-blue">Reply</span>
+                        </div>
+                        <p>lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</p>                        
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-3 pb-1 pt-2">
+                        <img src="./assets/images/userWebsite/profile-image.png" alt="Profile Pick" class="pickCircle round-img"/>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-9 pb-1 pt-2">
+                        <div class="conver_div d-flex justify-content-between flex-wrap">
+                            <span class="conver_name semiBoldFont">John Smith</span>
+                            <span class="textUnderlineStyle color-blue">Reply</span>
+                        </div>
+                        <p>lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</p>                        
+                    </div>
+                </div>
+
+                <div class="mt-1">
+                    <span class="textUnderlineStyle color-blue">Read More</span>
+                </div>
+
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control formfocusStyle" placeholder="Type Something..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append cursorStyle">
+                                <span class="input-group-text bg-none" id=""><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="project_detailTable">
+                    <table mat-table [dataSource]="dataSource">
+
+                        <!--- Note that these columns can be defined in any order.
+                                The actual rendered columns are set as a property on the row definition" -->
+                        
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                        </ng-container>
+                        
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef> Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                        
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="userrelationShip">
+                            <th mat-header-cell *matHeaderCellDef> User Relationship </th>
+                            <td mat-cell *matCellDef="let element"> {{element.userrelationShip}} </td>
+                        </ng-container>
+                        
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef> Amount </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                        </ng-container>
+
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="daysOfFunding">
+                            <th mat-header-cell *matHeaderCellDef> Days of Funding </th>
+                            <td mat-cell *matCellDef="let element"> {{element.daysOfFunding}} </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#pauseModal"><i class="fa fa-pause mr-1" aria-hidden="true"></i> Pause Funding</button>
+                <button type="button" class="btn btn-warning bg-yellow border-yellow color-white m-1" data-toggle="modal" data-target="#stopModal"><i class="fa fa-stop mr-1" aria-hidden="true"></i> Stop Funding</button>
+                <button type="button" class="btn btn-success m-1"><i class="fa fa-pencil mr-1" aria-hidden="true"></i> Edit Project</button>
+                <button type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#completeModal"><i class="fa fa-check mr-1" aria-hidden="true"></i> Mark as Complete</button>
+
+            </div>
+        </div>
+
+        <!-- pauseModal  -->
+        <div class="modal fade" id="pauseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header pb-0 pl-0 border-0">
+                        <h2 class=" modal-title commonFontSize mediumFont mb-1">Pause</h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0 pt-0 pb-0">
+                        <p>Are you sure you want to pause this project funding?</p>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <span class="color-blue mr-3 cursorStyle" data-dismiss="modal">No</span>
+                        <span class="color-blue cursorStyle" data-dismiss="modal">Yes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- stopModal  -->
+        <div class="modal fade" id="stopModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header pb-0 pl-0 border-0">
+                        <h2 class=" modal-title commonFontSize mediumFont mb-1">Stop</h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0 pt-0 pb-0">
+                        <p>Are you sure you want to stop this project funding?</p>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <span class="color-blue mr-3 cursorStyle" data-dismiss="modal">No</span>
+                        <span class="color-blue cursorStyle" data-dismiss="modal">Yes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- completeModal  -->
+    <div class="modal fade" id="completeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header pb-0 pl-0 border-0">
+                    <h2 class=" modal-title commonFontSize mediumFont mb-1">Complete</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0 pt-0 pb-0">
+                    <p>Are you sure you want to Complete the project funding?</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <span class="color-blue mr-3 cursorStyle" data-dismiss="modal">No</span>
+                    <span class="color-blue cursorStyle" data-dismiss="modal">Yes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>

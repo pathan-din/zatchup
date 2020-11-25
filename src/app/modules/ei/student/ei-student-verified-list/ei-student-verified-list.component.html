@@ -1,0 +1,229 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Verified Student</h2>
+            </div>
+
+        </div>
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+                <!-- <div class="widthFull mr-4 mt-3"> -->
+                    <!-- <label for="" class="mediumFont commonFontSize letterspacing">Batch To</label> -->
+                    <!-- <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull"> -->
+                        <!-- <select class="custom-select  form-control-input" required> -->
+                            <!-- <option value=""> Select Batch</option> -->
+                            <!-- <option value="1">2000</option> -->
+                            <!-- <option value="2">2001</option> -->
+                            <!-- <option value="3">2002</option> -->
+                        <!-- </select> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+                <!-- <div class="widthFull mr-4 mt-3"> -->
+                    <!-- <label for="" class="mediumFont commonFontSize letterspacing">Batch From</label> -->
+                    <!-- <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull"> -->
+                        <!-- <select class="custom-select  form-control-input" required> -->
+                            <!-- <option value=""> Select Batch</option> -->
+                            <!-- <option value="1">2000</option> -->
+                            <!-- <option value="2">2001</option> -->
+                            <!-- <option value="3">2002</option> -->
+                        <!-- </select> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+                <div class="widthFull mr-4 mt-3 courseDiv ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                                                <select (change)="displayStandardList(model.course)" id="course_id"  [(ngModel)]="model.course" name="course" required class="custom-select  form-control-input" required>
+                        <option value=""> Select Course</option>
+                        <option value="{{course.id}}" *ngFor="let course of courseList">{{course.course_name}}</option>
+                        
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select (change)="displayClassList(model.standard)" id="standard_id"  [(ngModel)]="model.standard" name="standard" required class="custom-select  form-control-input" required>
+                        <option value=""> Select Standard</option>
+                        <option value="{{standard.id}}" *ngFor="let standard of standardList">{{standard.standard_name}}</option>
+                        
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id"  [(ngModel)]="model.teaching_class" name="class" required class="custom-select  form-control-input" required>
+                        <option value=""> Select Class</option>
+                        <option value="{{class.id}}" *ngFor="let class of classList">{{class.class_name}}</option>
+                         
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Gender</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select [(ngModel)]="model.gender" class="custom-select  form-control-input" required>
+                            <option value=""> Select Gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Age</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select [(ngModel)]="model.age" class="custom-select  form-control-input" required>
+                            <option value=""> Select Age</option>
+                            <option value="{{val}}" *ngFor="let val of arrAge">{{val}}</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <button (click)="applyFilter()" type="button" class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+
+
+            </div>
+        </div>
+        <div class="row my-3" *ngIf="studentList.length>0">
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7  d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0 mobile-w-35">Student Count Per
+                    Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="getGetVerifiedStudent('','')" [(ngModel)]="model.page_size" name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="">select One</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5 justify-content-end d-flex flex-row">
+                <button type="button" class="bg-Gainsboro py-1 px-3 border-0 mr-2 commonFontSize mediumFont">Promote
+                    Students</button>
+                <button type='button' (click)="getExportData()"  class="bg-paret-green text-white border-0 px-3 py-1 mr-2"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-blue text-white border-0 px-3 py-1" data-toggle="modal" data-target="#changeClassModel">Bulk Action</button>
+            </div>
+        </div>
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="studentList.length>0">
+                <mat-table #table [dataSource]="dataSource | paginate: config">
+
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="checked">
+                        <mat-header-cell *matHeaderCellDef>
+                            
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-checkbox [disabled]="!model.teaching_class" (change)="getStudentBycheckboxClickForStudentBulkAction(element.student_id,$event)" ></mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ZatchUpID">
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.ZatchUpID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-lightBlue">
+                            {{element.Name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="userID">
+                        <mat-header-cell *matHeaderCellDef> EI Admission Number/ID Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.userID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Gender">
+                        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.Gender}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Age">
+                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.Age}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class Alias </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.class}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
+                            <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentEditPage(element.student_id)"></i>
+                            <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentProfilePage()"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+			<div class="row" *ngIf="studentList.length==0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                </div>
+            </div>
+			<pagination-controls *ngIf="studentList.length>0"  (pageChange)="getGetVerifiedStudent($event,'')" class="eiPaginationTag"></pagination-controls>
+			  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+                <p style="color: white">Please Wait. </p>
+            </ngx-spinner>
+        </div>
+
+        <!-- changeClassModel  -->
+        <div class="modal fade" id="changeClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Change class for Students
+                        </h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
+                                <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0 py-0">
+                        <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                        <p class="commonFontSize regularFont letterspacing">Are you sure you want to selected students change for details?</p>
+                        <div class="col-6 editClass" *ngFor="let class of classList;">
+                            <input  type="radio" [(ngModel)]="model.class_id" name="class" name="class" value="{{class.id}}"  />{{class.class_name}}
+                        </div>
+                        <p class="commonFontSize regularFont letterspacing text-center">
+                            <button type="button" (click)="editBulkClass()" class="bg-Gainsboro px-3 py-1 border-0 mr-3 commonFontSize mediumFont letterspacing">Edit
+                                Class</button>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

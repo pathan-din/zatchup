@@ -1,0 +1,122 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Invoice List</h2>
+        <!-- <h2 class="commonFontSize semiBoldFont m-0">Approval Pending List</h2> -->
+
+        <div class="filterDiv">
+
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Amount To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Amount</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Amount From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Amount</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+
+
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-10 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Count Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                        </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="tableDiv ">
+            <div class="mat-elevation-z0 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="details">
+                        <mat-header-cell *matHeaderCellDef>Details of Purchase </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.details}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                        <mat-header-cell *matHeaderCellDef>Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="datePurchase">
+                        <mat-header-cell *matHeaderCellDef> Date of Purchase </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.datePurchase}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="downloadInvoice">
+                        <mat-header-cell *matHeaderCellDef>Download Invoice </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <button type="button" class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
+                                 <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> {{element.downloadInvoice}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+
+
+
+                </mat-table>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

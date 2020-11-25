@@ -1,0 +1,34 @@
+
+.form-control-inputDiv {
+   width: fit-content;
+}
+/******************* mat table *************/
+.mat-header-cell:first-of-type,.mat-cell:first-of-type{
+    flex: 0 0 5%;
+ }
+
+ .mat-column-Age{
+    flex: 0 0 5%;
+ }
+
+ .mat-column-VerificationStatusByEI ,.mat-column-EKYCVerificationStatus{
+    flex: 0 0 13%;
+ }
+
+ .fa[data-count]{
+   position:relative;
+}
+.fa[data-count]:after{
+   position: absolute;
+   right: -0.95em;
+   top: -0.99em;
+   content: attr(data-count);
+   padding: .5em;
+   border-radius: 10em;
+   line-height: .9em;
+   color: white;
+   background: #37a713;
+   text-align: center;
+   min-width: 2em;
+   font: bold .5em sans-serif;
+}

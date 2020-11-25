@@ -1,0 +1,17 @@
+.twoLineText {
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.col-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .twoLineText-lg {
+        height: 75px;
+    }
+}

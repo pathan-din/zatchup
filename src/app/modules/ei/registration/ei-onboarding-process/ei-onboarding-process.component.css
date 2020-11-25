@@ -1,0 +1,71 @@
+.process2 .custom-select {
+    background-size: 17%;
+}
+
+.ID-img-div {
+    height: 170px;
+}
+
+.bg-gray {
+    background: #dddddd;
+}
+
+
+/* .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit */
+
+::ng-deep .mat-step-header .mat-step-icon {
+    background-color: #dddddd;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+    background-color: #999797;
+}
+::ng-deep .mat-step-icon .mat-icon{
+    color: #fff;
+}
+
+/* ::ng-deep .mat-step-label-selected {} */
+
+::ng-deep .mat-step-header .mat-step-icon-state-done {
+    background-color: #463267;
+    color: #fff;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container .mat-stepper-horizontal-line {
+    border-top-width: 2px;
+    margin: 0 -41px;
+}
+
+.purple-checkbox .mat-checkbox-frame{
+    border: none;
+}
+
+.process2 .col-sm-12 .custom-select{
+    background-size: 5%;  
+}
+::ng-deep .purple-checkbox .mat-checkbox-input{
+    display: none;
+}
+.fafaAddDeleteIcon{
+    font-size: 3rem;
+    margin-right: 2%;
+}
+.centerImgDiv{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+@media only screen and (max-width: 414px) {
+    .flex-xs-column {
+        flex-direction: column!important;
+    }
+    .margin-top-col-6 {
+        margin-top: 5.5%
+    }
+    .process2 .custom-select {
+        background-size: 15%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}

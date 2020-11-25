@@ -1,0 +1,78 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-5 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">EI Messages</h2>
+            </div>
+            <div class="col-md-7 col-12 d-flex justify-content-end"> 
+                <div class="form-control-inputDiv rounded p-0 shadow-none">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Search Teacher">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-yellow text-white px-3  h-100 ml-2 border-0" data-toggle="modal" data-target="#ActionModal"><i class="fa fa-cog" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+        <div class="row border-bottom pb-2 mt-2">
+            <div class="col-md-1 col-2">
+                <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
+            </div>
+            <div class="col-md-10 col-8">
+                <h3 class="m-0 semiBoldFont color-black">Prashant Sharma - <span class="small-text">Sent By Alumni</span></h3>
+                <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+            </div>
+            <div class="col-md-1 col-2">
+                <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-md-1 col-2">
+                <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
+            </div>
+            <div class="col-md-10 col-8">
+                <h3 class="m-0 semiBoldFont color-black">Prashant Sharma - <span class="small-text">Sent By Alumni</span></h3>
+                <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+            </div>
+            <div class="col-md-1 col-2">
+                <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ActionModal  -->
+    <div class="modal fade" id="ActionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Privacy Setting</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class="row">
+    
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group justifyInput d-flex justify-content-between align-items-center">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Online Status </label> 
+                                <mat-slide-toggle class="toggleslider"></mat-slide-toggle>                         
+                            </div>
+                            <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Read Receipts </label>    
+                                <mat-slide-toggle class="toggleslider"></mat-slide-toggle>                   
+                            </div>
+                            <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Last Seen </label>
+                                <mat-slide-toggle class="toggleslider"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

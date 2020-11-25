@@ -1,0 +1,822 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+
+<div class="container main-container p-3">
+    <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">EI With Incomplete Onboarding View</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
+                <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
+                    data-target="#CommentModel">Onboarding Conversation
+                    Comments</button>
+                <button *ngIf="eiData" type="button" class="bg-blue text-white px-4 h-100 ml-2 border-0"
+                    routerLink="/admin/education-institute-history/{{eiData.id}}">History</button>
+            </div>
+        </div>
+        <div class=" mt-3 form-control-inputDiv border-0 mx-0">
+            <div class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition">
+                <div class="dpImgDiv rounded-circle bg-light-green border border-white" data-toggle="modal"
+                    data-target="#BlockUserModel">
+                    <img *ngIf="eiData" [src]="eiData.cover_pic" alt="Cover Pic" class="img-fluid dpImg">
+                    <img *ngIf="!eiData" src="assets/images/userWebsite/share-my-profile-icon.png"
+                        class="img-fluid dpImg">
+                </div>
+
+                <div class="userInfo" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
+                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle"
+                        [matMenuTriggerFor]="menu">
+                </div>
+            </div>
+            <!--Start div for onboarding Information-->
+            <div class="row mt-3">
+                <div class="col-md-12" *ngIf="eiData">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of The School</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.name_of_school}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>EI ZatchUp ID</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.zatchupId}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>City</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.city}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>State</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.state}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Address</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.address1}} {{eiData.address2}}</span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Board/University</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.university}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>GST Number</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.gst_no}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 commonFontSize mediumFont">
+                            <p>Details of EI Representative</p>
+                        </div>
+                        <div class="col-12 small-text-2 ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Name of EI Representative</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: {{eiData.first_name}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Designation of EI Representative</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: {{eiData.designation_name}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Official Email ID</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: {{eiData.email}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Contact Number</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: {{eiData.phone}}</span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Name of The Principal | Dean</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: {{eiData.name_of_principle}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Number of the Students Registered with the EI(If Not Entered Manually)</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p><span class="mr-3 text-dark">: {{eiData.no_of_students}}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Number of the Alumini Registered with the EI (If Not Entered Manually)</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p><span class="mr-3 text-dark">: {{eiData.no_of_alumni}}</span></p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Details Of EI</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p class=""></p>
+                        </div>
+                        <div class="col-12 small-text-2 ml-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Course</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
+                                            routerLink="/admin/ei-management-course/{{eiData.id}}"> View
+                                        </span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Bank Details</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
+                                            routerLink="/admin/ei-bank-details/{{eiData.id}}"> View
+                                        </span> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="eiData.verification_details.length > 0">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Verification Documents</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 d-flex commonFontSize mediumFont">
+                            <span class="mr-3 text-dark">:</span>
+                            <div class="card rounded-0 border-0 VerificationDocCard m-1"
+                                *ngFor="let document of eiData.verification_details">
+                                <img src="{{document.document}}" class="img-thumbnail card-img-top rounded-0"
+                                    alt="Verification Document">
+                                <div class="card-body bg-Gainsboro p-2">
+                                    <h4 class="card-title mb-0 pl-1 commonFontSize semiBoldFont">{{document.name}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="eiData.similar_ei.length > 0">
+                        <div class="col-12">
+                            <h2 class="commonFontSize">Similar EI</h2>
+                            <div class="tableDiv ">
+                                <div class="mat-elevation-z1 table-responsive">
+                                    <table class="table-bordered w-100 onboarding-table-similarEI">
+                                        <thead>
+                                            <tr class="bg-Gainsboro">
+                                                <th>Same Name</th>
+                                                <th>Pin Code</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let ei of eiData.similar_ei">
+                                            <tr class="">
+                                                <td>Same Name</td>
+                                                <td>Pin Code</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h2 class="commonFontSize">Existing Data In EI Database</h2>
+                            <div class="tableDiv ">
+                                <div class="mat-elevation-z1 table-responsive">
+                                    <table class="table-bordered w-100 onboarding-table-existingEI">
+                                        <thead>
+                                            <tr class="bg-Gainsboro">
+                                                <th>Data Info</th>
+                                                <th>Existing Data</th>
+                                                <th>New Data</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="">
+                                                <td>Name Of The School</td>
+                                                <td>{{eiData.existing_data.name_of_school}}</td>
+                                                <td>{{eiData.name_of_school}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>State</td>
+                                                <td>{{eiData.existing_data.state}}</td>
+                                                <td>{{eiData.state}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>City</td>
+                                                <td>{{eiData.existing_data.city}}</td>
+                                                <td>{{eiData.city}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Enter Complete Address</td>
+                                                <td>{{eiData.existing_data.address1}} {{eiData.existing_data.address2}}
+                                                </td>
+                                                <td>{{eiData.address1}} {{eiData.address2}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Address Line One</td>
+                                                <td>{{eiData.existing_data.address1}}</td>
+                                                <td>{{eiData.address1}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Address Line Two</td>
+                                                <td>{{eiData.existing_data.address2}}</td>
+                                                <td>{{eiData.address2}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Landmark</td>
+                                                <td>{{eiData.existing_data.landmark}}</td>
+                                                <td>{{eiData.landmark}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Pincode</td>
+                                                <td>{{eiData.existing_data.pincode}}</td>
+                                                <td>{{eiData.pincode}}</td>
+                                            </tr>
+                                            <tr class="">
+                                                <td>Board / University</td>
+                                                <td>{{eiData.existing_data.university}}</td>
+                                                <td>{{eiData.university}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                            <p class="commonFontSize regularFont "><span class="commonFontSize semiBoldFont">Overview of
+                                    the School : </span> lipsum as it is sometimes known, is dummy text used in laying
+                                out print, graphic or web designs. The passage is attributed to an unknown typesetter
+                                in the 15th century who is thought to have scrambled parts of Cicero's De Finibus
+                                Bonorum et Malorum for use in a type specimen.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <mat-menu #menu="matMenu" class="p-2">
+                <p data-toggle="modal" data-target="#approveModel" class="cursorStyle">Approve</p>
+                <p data-toggle="modal" data-target="#eiEditModel" class="cursorStyle">EI For Edit</p>
+                <p data-toggle="modal" data-target="#rejectModel" class="cursorStyle">Reject</p>
+            </mat-menu>
+
+            <!--Start of approveModel  -->
+            <div class="modal fade" id="approveModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                            <h2 class=" text-left modal-title commonFontSize mediumFont mb-1">Approve
+                            </h2>
+                            <button #approveClose type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <div class=" form-group row ">
+                                <div class="col-sm-12 ">
+                                    <button type="button "
+                                        class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"
+                                        data-toggle="modal" data-target="#existingZatchupIDModel"
+                                        (click)="closeApproveModal()">With
+                                        Existing EI ZatchUp ID</button>
+                                    <button type="button "
+                                        class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                                        data-toggle="modal" data-target="#approveWithNewZatchupIDModel"
+                                        (click)="closeApproveModal()">With
+                                        New EI ZatchUp ID</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of approveModel  -->
+
+
+            <!--Start of approveWithNewZatchupIDModel  -->
+            <div class="modal fade" id="approveWithNewZatchupIDModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                            <h2 class=" text-left modal-title commonFontSize mediumFont mb-1">New EI Zatchup ID
+                                ID
+                            </h2>
+                            <button #closeApproveWithNewZatchupIDModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <div class=" form-group col-sm-12 row">
+                                <div class="col-sm-6">
+                                    <button type="button "
+                                        class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"
+                                        data-toggle="modal" data-target="#newZatchupIDModel"
+                                        (click)="closeNewEIWithZatchupID()">With
+                                        Enter EI ZatchUp ID</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel"
+                                        class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                                        (click)="closeNewEIWithZatchupID()">
+                                        With Generate New EI ZatchUp ID</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of approveWithNewZatchupIDModel  -->
+
+            <!-- Start of existingZatchupIDModel-->
+            <div class="modal fade" id="existingZatchupIDModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing EI ZatchUp ID
+                            </h2>
+                            <button #closeExistingZatchupIDModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <form id="existingZatchupEI">
+                            <div class="modal-body px-0 py-0">
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
+                                            EI ZatchUp ID
+                                        </label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="zatchupId" name="zatchup_id" [disabled]="true"
+                                                [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                placeholder="Enter EI ZatchUp ID" required />
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_id">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing">
+                                            POC Details</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="employeeId" name="employee_id"
+                                                (keyup)="isValid($event)"
+                                                [(ngModel)]="pendingApprovalProfile.employeeId"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                placeholder="Enter POC Details" required />
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.employee_id">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Upload
+                                            MOU</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                                id="mou_doc" name="mou_document"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
+                                        </div>
+                                        <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
+                                            MOU Document is required.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <button type="button " (click)="approveExistingEI()"
+                                            class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                                            Approve
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End of existingZatchupIDModel -->
+
+            <!-- eiEditModel  -->
+            <div class="modal fade" id="eiEditModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">EI For Edit</h2>
+                            <button #closeEiEditModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true "> &times; </span>
+                            </button>
+                        </div>
+                        <form id="existingZatchupEI">
+                            <div class="modal-body px-0">
+                                <div class="row">
+
+                                    <div class="col-md-12 mt-2">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing">Reason Of Send
+                                                Back
+                                            </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <input name="edit_reason" id="edit_reason"
+                                                    [(ngModel)]="pendingApprovalProfile.editReason"
+                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    type="text" placeholder="Enter Reason" required>
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="pendingApprovalProfile.errorDisplay.edit_reason">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing"> Description
+                                            </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <textarea name="edit_description" id="edit_description"
+                                                    [(ngModel)]="pendingApprovalProfile.editDescription"
+                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    type="text" cols="4" rows="5" placeholder="Description"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="pendingApprovalProfile.errorDisplay.edit_description">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="button "
+                                    class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                                    (click)="editEI()">
+                                    Send </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End eiEditModel  -->
+
+            <!-- rejectModel  -->
+            <div class="modal fade" id="rejectModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">EI For Edit</h2>
+                            <button #closeRejectEIModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true "> &times; </span>
+                            </button>
+                        </div>
+                        <form id="rejectEI">
+                            <div class="modal-body px-0">
+                                <div class="row">
+                                    <div class="col-md-12 mt-2">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing">Reason Of
+                                                Reject
+                                            </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <input id="rejection_reason" name="rejection_reason" required
+                                                    [(ngModel)]="pendingApprovalProfile.rejectionReason"
+                                                    (keyup)="isValid($event)"
+                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    type="text" placeholder="Enter Reason">
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="pendingApprovalProfile.errorDisplay.rejection_reason">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing"> Remark
+                                            </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <textarea id="rejection_remarks" name="rejection_remarks" required
+                                                    [(ngModel)]="pendingApprovalProfile.rejectionRemark"
+                                                    (keyup)="isValid($event)"
+                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    type="text" cols="4" rows="5" placeholder="Enter Remark"></textarea>
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="pendingApprovalProfile.errorDisplay.rejection_remarks">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <button type="button " (click)="rejectEI()"
+                                    class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                    Reject </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End rejectModel  -->
+
+            <!-- Start of newZatchupIDModel-->
+            <div class="modal fade" id="newZatchupIDModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter EI ZatchUp ID
+                            </h2>
+                            <button #closeNewZatchupIDModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <form id="newZatchupID">
+                            <div class="modal-body px-0 py-0">
+                                <div class=" form-group row mt-3">
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Enter
+                                            EI
+                                            ZatchUp ID</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" name="zatchup_Id" id="zatchup_Id"
+                                                [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                placeholder="Enter EI ZatchUp ID" required />
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_Id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Upload
+                                            MOU</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
+                                        </div>
+                                        <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
+                                            MOU Document is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
+                                            POC Details
+                                        </label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="employee_Id" name="employee_Id"
+                                                [(ngModel)]="pendingApprovalProfile.employeeId"
+                                                (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                placeholder="Enter POC Details" required />
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.employee_Id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+                                    <div class="col-sm-12 ">
+                                        <button type="button "
+                                            class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing"
+                                            (click)="approveWithEIZatchupId()">
+                                            Approve
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End of newZatchupIDModel -->
+
+            <!-- Start of generateZatchupIDModel-->
+            <div class="modal fade" id="generateZatchupIDModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New EI ZatchUp
+                                ID</h2>
+                            <button #closeGenerateZatchupIDModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0 py-0">
+                            <form id="generateZatchupID">
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks" class="commonFontSize semiBoldFont letterspacing">Upload
+                                            MOU</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
+                                        </div>
+                                        <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
+                                            MOU Document is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
+                                            POC Details</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="employee_id" name="employee_Id"
+                                                [(ngModel)]="pendingApprovalProfile.employeeId"
+                                                (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                placeholder="Enter POC Details" required />
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.employee_Id">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+
+                                    <div class="col-sm-12 ">
+                                        <button type="button " (click)="generateEIZatchupId()"
+                                            class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                                            Approve
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of generateZatchupIDModel -->
+
+
+            <!--Start of CommentModel  -->
+            <div class="modal fade" id="CommentModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 ">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Comment</h2>
+                            <button #closeCommentModel type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <form id="comment">
+                                <div class=" form-group row ">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Comments</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                                id="comment" name="comment" [(ngModel)]="pendingApprovalProfile.comment"
+                                                (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Enter Remarks" required></textarea>
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.comment">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button " (click)="addComment()"
+                                    class="bg-purple  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                    Send
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of CommentModel  -->
+        </div>
+
+
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>

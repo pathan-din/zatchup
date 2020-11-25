@@ -1,0 +1,182 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont mb-1">Change Class For Students in Bulk</h2>
+        <div class="row">
+            <div class="col-6 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i (click)="fileInput1.click()" class="fa fa-upload color-light-black" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont">Upload SpreadSheet With Zatchup-Id</p>
+                    <input #fileInput1  type="file" style="display:none;" />
+                </div>
+
+            </div>
+            <div class="col-6 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i (click)="fileInput.click()" class="fa fa-upload color-light-black" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont">Upload SpreadSheet Without Zatchup-Id</p>
+                    <input #fileInput (change)="uploadXlsSheet($event.target.files)" type="file" style="display:none;" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i  class="fa fa-download color-light-black" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont"><a href="http://staging.zatchup.com/zatchupapi/zatchup/media/sample/add_student_withzatchupid.xls">Download SpreadSheet With Zatchup-Id</a></p>
+                    
+                </div>
+
+            </div>
+            <div class="col-6 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i (click)="fileInput.click()" class="fa fa-download color-light-black" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont"><a href="http://staging.zatchup.com/zatchupapi/zatchup/media/sample/add_student_withoutzatchupid.xls">Download SpreadSheet Without Zatchup-Id</a></p>
+                    <input #fileInput (change)="uploadXlsSheet($event.target.files)" type="file" style="display:none;" />
+                </div>
+
+            </div>
+        </div>
+       
+        <!-- <form>
+            <div class="form-group mt-3 ">
+                <label for="" class="mediumFont commonFontSize letterspacing"> Student's Unique ZatchUp ID</label>
+                <div class="form-control-inputDiv rounded p-0  shadow-none">
+                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Student's Unique ZatchUp ID">
+
+                </div>
+            </div>
+
+            <div class="form-group row mt-3">
+                <div class="col-sm-12 ">
+                    <h2 class="or-cirle "><span class="commonFontSize regularFont letterspacing">OR</span></h2>
+                </div>
+            </div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">First Name</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter First Name">
+                    </div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Last Name</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Last Name">
+                    </div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Email / Phone Number</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email / Phone Number">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Course</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Standard</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Class</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Class</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-md-6 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number(Mandatory)</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
+                    </div>
+                </div>
+
+                <div class="col-md-6 MobileCol6MB">
+                    <label for="" class=" mediumFont commonFontSize letterspacing">Admissin Number / EI ID(Mandatory)</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Admissin Number">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row  mt-3">
+                <div class="col-12 text-center">
+                    <button type="button" class="bg-red text-white border-0 mr-3 py-2 px-4 commonFontSize regularFont letterspacing">Cancel</button>
+                    <button type="button" class="bg-paret-green text-white border-0  py-2 px-4 commonFontSize regularFont letterspacing">Create</button>
+                </div>
+            </div>
+        </form> -->
+    </div>
+    <div><button class="bg-purple text-white px-5 py-2 h-100 mt-2 mb-2 border-0" style="float: right;">Export</button></div>
+    <table style="width: 100%;" class="bg-white">
+        <tr style=" border: 1px solid #000;">
+            <th>
+                <strong>Course name</strong> 
+            </th>
+            <th>
+                <strong>Standard name</strong> 
+            </th>
+            <th>
+                <strong>Class name</strong> 
+            </th>
+            <th>
+                <strong>Class Id</strong> 
+            </th>
+        </tr>
+        
+        <tbody style="width:100%" >
+           
+            <tr *ngFor="let classd of classDataList;let j=index;">
+                
+                    <td>{{classd.coursedata.course_name}}</td>
+                    <td>{{classd.standarddata.standard_name}}</td>
+                    <td>{{classd.class_name}}</td>
+                    <td>{{classd.id}}</td>
+            </tr>
+            
+            
+        </tbody>
+    
+        
+
+
+        
+    </table>
+
+  
+</div>

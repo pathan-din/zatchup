@@ -1,0 +1,32 @@
+
+<div class="container-fluid ei-bg-img h-100 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+        <div class="col-xl-4 col-lg-6 col-md-6  ">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center my-3 semiBoldFont">OTP Verification</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="" class="commonFontSize mediumFont letterspacing">Enter OTP Recived on your mobile number</label>
+                        <div class="d-flex flex-row justify-content-between">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp1" name="otp1" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp2" name="otp2" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp3" name="otp3" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
+                            <input  [(ngModel)]="otp4" name="otp4" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1">
+
+                        </div>
+                    </div>
+                    <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing">Resend OTP</p>
+                    <button type="button" class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing" (click)="goToOtpVerification() ">
+                        Submit
+                   </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-3  col-md-3"></div>
+    </div>
+	<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 
+</div>

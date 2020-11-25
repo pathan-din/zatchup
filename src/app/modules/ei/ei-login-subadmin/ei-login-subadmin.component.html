@@ -1,0 +1,45 @@
+
+<div class="container-fluid ei-bg-img h-100 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-3"></div>
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center mt-3 mb-0 semiBoldFont">Let's ZatchUp</h2>
+                <h2 class="text-center mb-3 mt-0 semiBoldFont">Sign-up (Sub- admin and Teachers)</h2>
+                <form>
+                    <div class="form-group row  ml-0 mr-0">
+                        <label for="emailid" class=" commonFontSize mediumFont letterspacing">EmailID</label>
+                        <div class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                            <span class="ei-signup-bg-box">
+                                    <i class="fa fa-user text-white" aria-hidden="true"></i>
+                                    </span>
+                            <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Enter EmailID / Mobile Number">
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <label for="password " class=" mediumFont commonFontSize letterspacing">Password</label>
+                        <div class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                            <span class="ei-signup-bg-box">
+                                    <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
+                                    </span>
+                            <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
+                        </div>
+                    </div>
+
+                    <p class="text-right textUnderlineStyle commonFontSize mediumFont " (click)="goToEiForgetPasswordPage() ">Forgot Password?</p>
+                    <button type="button " class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">Log In
+                        <span class="">
+                            <i class="fa fa-sign-in text-white" aria-hidden="true"></i>
+                            </span>
+                    </button>
+                    <p class="text-center commonFontSize mediumFont my-4 ">Don't have an account?<span class="textUnderlineStyle " (click)="goToEiSubadminRegisterPage() ">Sign Up</span></p>
+                    <p class="text-center commonFontSize mediumFont m-0 ">Facing issue in registration?</p>
+                    <p class="text-center commonFontSize mediumFont mb-0 textUnderlineStyle " (click)="goToEiContactUsPage() ">Contact us</p>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+    </div>
+</div>

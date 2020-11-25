@@ -1,0 +1,63 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-5 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">My Assigned EI History</h2>
+            </div>
+
+        </div>
+        <div class="row mb-3">
+            <form #orderByForm="ngForm" (ngSubmit)="orderByForm.form.valid && getEIHistory()">
+                <div class="col-md-12 d-flex align-items-end">
+                    <div class="mr-2">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
+                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                            <select class="custom-select  form-control-input" id="classAlias" name="orderBy"
+                                [(ngModel)]="order" #orderBy="ngModel"
+                                [ngClass]="{'is-invalid': orderByForm.submitted && orderBy.invalid}" required>
+                                <option value=""> Descending</option>
+                                <option value="true">Ascending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-purple text-white py-2 px-4 border-0">Apply</button>
+                </div>
+            </form>
+        </div>
+        <ng-container *ngIf="eiHistory && eiHistory.length > 0">
+            <div class="row mt-2" *ngFor="let history of eiHistory">
+                <div
+                    class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p class="m-0">{{history.updated_on| date:'dd MMM, yyyy h:m a'}}</p>
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                    <p><span class="mr-1">:</span> {{history.zatchupId}} : {{history.action_type}}: By
+                        {{history.emp_id}}
+                        ({{history.name}}) </p>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="row" *ngIf="eiHistory && eiHistory.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
+
+<ng-template #history *ngFor="let history of eiHistory">
+    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+        <p class="m-0"> 9 Nov, 2020 & 3:18 PM </p>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+        <p><span class="mr-1">:</span> EI Zatchup ID: Assigned: By Employee ID (Employee Name) </p>
+    </div>
+</ng-template>

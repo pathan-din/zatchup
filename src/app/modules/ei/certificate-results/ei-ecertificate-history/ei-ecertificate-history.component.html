@@ -1,0 +1,74 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="ECertificatesHistory-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv my-3">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Certificate History</h2>
+            </div>
+            <!--Start html for Export Button-->
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-paret-green text-white px-4 h-100 ml-2 border-0 ">Export All</button>
+            </div>
+            <!--end html for Export Button-->
+        </div>
+
+        <!--Start html for "certificate History Table"-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="studentName">
+                        <mat-header-cell *matHeaderCellDef>Student's Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.studentName}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="eiID">
+                        <mat-header-cell *matHeaderCellDef>EI ID / Admission ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.eiID}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="rollNo">
+                        <mat-header-cell *matHeaderCellDef> Roll No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.rollNo}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.class}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="category">
+                        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.category}}
+                        </mat-cell>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="previewReportCard">
+                        <mat-header-cell *matHeaderCellDef> Preview Report Card </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="color-blue">
+                            {{element.previewReportCard}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+
+
+
+                </mat-table>
+            </div>
+        </div>
+        <!--end html for "certificate History Table"-->
+    </div>
+</div>

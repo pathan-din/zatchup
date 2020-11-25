@@ -1,0 +1,17 @@
+a.pageLink {    
+    padding: 5px 12px;    
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+.pagination li{
+    border: 1px solid #ddd;
+    margin-right: 4px;
+    margin-top: 10px;
+}
+.pagination li.page-item.active {
+    background: #463267;
+    color: #fff;
+    margin-right: 4px;
+    border: 1px solid #463267;
+}

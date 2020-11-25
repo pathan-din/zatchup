@@ -1,0 +1,68 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-5 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Personal Messages</h2>
+            </div>
+            <div class="col-md-7 col-12 d-flex justify-content-end"> 
+                <!-- <div class="form-control-inputDiv rounded p-0 shadow-none">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Search Teacher">
+                </div> -->
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " data-toggle="modal" data-target="#PersonalModal">New Messages</button>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Create Group</button>
+                <button type="button" class="bg-yellow text-white px-3  h-100 ml-2 border-0"><i class="fa fa-cog" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+        <div class="row border-bottom pb-2 mt-3">
+            <div class="col-md-1 col-2">
+                <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
+            </div>
+            <div class="col-md-10 col-8">
+                <h3 class="m-0 semiBoldFont color-black">Prashant Sharma - <span class="small-text">Sent By Alumni</span></h3>
+                <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </p>
+            </div>
+            <div class="col-md-1 col-2">
+                <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-md-1 col-2">
+                <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
+            </div>
+            <div class="col-md-10 col-8">
+                <h3 class="m-0 semiBoldFont color-black">Prashant Sharma - <span class="small-text">Sent By Alumni</span></h3>
+                <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </p>
+            </div>
+            <div class="col-md-1 col-2">
+                <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PersonalModal  -->
+    <div class="modal fade" id="PersonalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header p-0 border-0 pt-2">
+                    <h2 class="modal-title commonFontSize mediumFont mb-0">Messages</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0 pt-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Select a member who chat as</p>         
+                            <button type="button" class="bg-light-gray m-1 p-1 border-0">Chat with Students</button>
+                            <button type="button" class="bg-light-gray m-1 p-1 border-0">Chat with Teachers</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

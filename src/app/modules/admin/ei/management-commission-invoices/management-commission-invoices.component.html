@@ -1,0 +1,89 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-5 ">
+                <h2 class="commonFontSize semiBoldFont m-0"> Commission Invoices Screen </h2>
+            </div>
+            <div class="col-md-7 SearchDiv d-flex flex-row">  
+                <button type="button" class="bg-yellow text-white px-4  h-100 ml-2 border-0 ">Change Service Fees</button>             
+                <button type="button" class="bg-paret-green text-white px-4  h-100 ml-2 border-0 ">Upload New Invoice</button>
+                <button type="button" class="bg-blue text-white px-4  h-100 ml-2 border-0 ">Service Fees History</button>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Fees Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfInvoice">
+                        <mat-header-cell *matHeaderCellDef> Date of Invoice </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.dateOfInvoice}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="uploadDate">
+                        <mat-header-cell *matHeaderCellDef> Upload Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.uploadDate}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="transactionId">
+                        <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.transactionId}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                        <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.amount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="viewInvoice">
+                        <mat-header-cell *matHeaderCellDef> View Invoice </mat-header-cell>
+                        <mat-cell class="color-blue" *matCellDef="let element">
+                            {{element.viewInvoice}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="downloadInvoice">
+                        <mat-header-cell *matHeaderCellDef> Download Invoice</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <button type="button" class="bg-blue text-white border-0 rounded">{{element.downloadInvoice}}</button>
+                        </mat-cell>
+                    </ng-container> 
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <!--End html for fees information table-->
+    </div>
+</div>

@@ -1,0 +1,76 @@
+.dotIcon {
+    font-size: 0.5rem;
+    color: #6e6c6c;
+}
+
+.RightimgDiv {
+    min-height: 24vh;
+    max-height: 24vh;
+    min-width: 10vw;
+    max-width: 10vw;
+    float: right;
+    position: relative;
+}
+
+.col-right {
+    margin-top: -3%;
+}
+
+.Rightimg {
+    min-height: 23vh;
+    max-height: 23vh;
+    min-width: 10vw;
+    max-width: 10vw;
+    border: 2px solid #007eff;
+}
+
+.verifiedTick {
+    position: absolute;
+    right: -12px;
+    top: -10px;
+}
+
+@media only screen and (max-width: 414px) {
+    .mobile-col-reverse {
+        flex-direction: column-reverse
+    }
+    .mobile-col-reverse .col-right {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 0;
+    }
+    .RightimgDiv {
+        float: none;
+    }
+    .Rightimg {
+        min-height: 20vh;
+        max-height: 20vh;
+        min-width: 30vw;
+        max-width: 30vw;
+    }
+    .RightimgDiv {
+        min-height: 20vh;
+        max-height: 20vh;
+        min-width: 30vw;
+        max-width: 30vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .RightimgDiv {
+        min-height: 15vh;
+        max-height: 15vh;
+        min-width: 15vh;
+        max-width: 15vh;
+        float: right;
+        position: relative;
+    }
+    .Rightimg {
+        min-height: 15vh;
+        max-height: 15vh;
+        min-width: 15vh;
+        max-width: 15vh;
+        border: 2px solid #007eff;
+    }
+}

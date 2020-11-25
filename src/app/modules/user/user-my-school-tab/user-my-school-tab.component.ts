@@ -1,0 +1,52 @@
+import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject  } from '@angular/core';
+import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+
+@Component({
+  selector: 'app-user-my-school-tab',
+  templateUrl: './user-my-school-tab.component.html',
+  styleUrls: ['./user-my-school-tab.component.css'],
+  encapsulation: ViewEncapsulation.None,
+})
+export class UserMySchoolTabComponent implements  OnInit, OnDestroy {
+  constructor(private router: Router, @Inject(DOCUMENT) private _document ) { }
+  ngOnInit(): void {
+    this._document.body.classList.add('bodybg-color');
+  }
+
+  ngOnDestroy() {
+    // remove the class form body tag
+    this._document.body.classList.add('bodybg-color');
+  }
+
+  goToUserCertificatePage(){
+    this.router.navigate(['user/certificate']);
+ }
+
+ goToUserZatchupStarClassPage(){
+  this.router.navigate(['user/zatchup-star-class']);
+}
+
+ goToUserProjectFundingPage(){
+  this.router.navigate(['user/project-funding']);
+}
+
+goToUserLectureRequestPage(){
+  this.router.navigate(['user/lecture-request']);
+}
+
+goToUserNotificationsPage(){
+  this.router.navigate(['user/notifications']);
+}
+
+goToUserRemindersPage(){
+  this.router.navigate(['user/remainders']);
+}
+goToUserProfilePage(){
+  this.router.navigate(['user/profile']);
+}
+
+goToMyEducationalProfilePage(){
+  this.router.navigate(['user/my-educational-profile']);
+}
+}

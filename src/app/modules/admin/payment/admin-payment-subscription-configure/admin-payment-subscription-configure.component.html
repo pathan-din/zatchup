@@ -1,0 +1,151 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Configure Subscription Plans</h2>
+            </div>
+            <div class="col SearchDiv d-flex flex-row">
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " aria-hidden="true "
+                    data-toggle="modal" data-target="#addSubscriptionModel">Add New Subscription</button>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-2">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="plan">
+                        <mat-header-cell *matHeaderCellDef> Plan </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="duration">
+                        <mat-header-cell *matHeaderCellDef> Duration(Days) </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.no_of_days}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="currentAmount">
+                        <mat-header-cell *matHeaderCellDef> Current Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.current_amount}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.is_active == true ? 'Active' : 'Inactive'}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-green">
+                            <a class="a-cursor-pointer" aria-hidden="true " data-toggle="modal"
+                                data-target="#addSubscriptionModel" (click)="updateSubscription(element)">Change</a>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+
+                <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+                    <p style="color: white">Please Wait. </p>
+                </ngx-spinner>
+
+            </div>
+        </div>
+
+
+        <!-- SubscriptionModel  -->
+        <div class="modal fade" id="addSubscriptionModel" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">
+                            {{subscriptionModal.modalHeader}} Subscription Plan</h2>
+                        <button #closebutton type="button"
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <form (ngSubmit)="addSubscriptionForm.form.valid && addSubscription()"
+                            #addSubscriptionForm="ngForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Subscription Plan
+                                        </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <input
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter subscription plan name"
+                                                name="subscriptionPlan" [(ngModel)]="subscriptionModal.name"
+                                                #subscriptionPlan="ngModel"
+                                                [ngClass]="{ 'is-invalid': addSubscriptionForm.submitted && subscriptionPlan.invalid }"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Number Of Days
+                                        </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <input
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter number of days" name="numberOfDays"
+                                                [(ngModel)]="subscriptionModal.numberOfDays" #numberOfDays="ngModel"
+                                                [ngClass]="{ 'is-invalid': addSubscriptionForm.submitted && numberOfDays.invalid }"
+                                                (keypress)="keyPressNumbers($event)" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Current Amount
+                                        </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <input
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter Current Amount" name="currentAmount"
+                                                [(ngModel)]="subscriptionModal.currentAmount" #currentAmount="ngModel"
+                                                [ngClass]="{ 'is-invalid': addSubscriptionForm.submitted && currentAmount.invalid }"
+                                                (keypress)="keyPressNumbers($event)" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Status
+                                        </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <select class="custom-select  form-control-input" name="status"
+                                                [(ngModel)]="subscriptionModal.status" #status="ngModel"
+                                                [ngClass]="{ 'is-invalid': addSubscriptionForm.submitted && status.invalid }"
+                                                required>
+                                                <option value="true">Active</option>
+                                                <option value="false">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                {{subscriptionModal.modalHeader == 'Add' ? 'Add' : 'Update'}} </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

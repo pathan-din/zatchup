@@ -1,0 +1,7 @@
+.divContentInline label{
+    align-items: flex-start!important;
+    justify-content: left!important;
+}
+.InlineSelect:focus{
+    border: 1px solid #ced4da;
+}

@@ -1,0 +1,100 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+
+    <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Audience Students List</h2>
+        <div class="row mb-2">
+            <div class="col-md-6 d-flex align-items-end">
+                <div class=" mr-2">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Class Alias</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" id="classAlias">
+                    <option value=""> Select Class</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                    </div>
+                </div>
+                <button type="button" class="bg-purple text-white py-2 px-4 border-0">Apply</button>
+
+            </div>
+            <div class="col-md-6 button-div d-flex align-items-start ">
+                <div class="form-control-inputDiv rounded-0 p-0 mr-2  border-top shadow-none">
+                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" id="search" placeholder="Search...">
+                </div>
+                <button type="button" class="bg-dark text-white py-2 px-3 border-0">Apply</button>
+            </div>
+        </div>
+
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="select" class="ml-2">
+                        <mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox class="ml-2" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            </mat-checkbox>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-checkbox class="ml-2" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)">
+                            </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profilePic">
+                        <mat-header-cell *matHeaderCellDef> Profile Pic</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <img mat-card-avatar [src]="element.profilePic" class="mat-img-proPic" /></mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfStudent">
+                        <mat-header-cell *matHeaderCellDef> Name of Student </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.nameOfStudent}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="relationship">
+                        <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.relationship}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="classDetails">
+                        <mat-header-cell *matHeaderCellDef>Class Details
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.classDetails}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class(Alias) </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.class}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rollNo">
+                        <mat-header-cell *matHeaderCellDef> Roll Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.rollNo}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <button type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0">Submit</button>
+
+    </div>
+
+</div>

@@ -1,0 +1,24 @@
+.customUserForm{
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 15px;
+}
+button.background-purple.border-0 {
+    background: none;
+}
+.border-top-custom {
+    border-top: 2px solid #463267;
+}
+
+@media (max-width: 667px){
+    .pr-5, .px-5 {
+        padding-right: 0rem!important;
+    }
+    .pl-5, .px-5 {
+        padding-left: 0rem!important;
+    }
+    .customUserForm{
+        padding-left: 30px;
+    }
+}

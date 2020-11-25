@@ -1,0 +1,91 @@
+.containerScrolling {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.email_position-absolute {
+    position: absolute;
+    top: 6%;
+    right: 2%;
+}
+
+.landingDiv {
+    padding-top: 0;
+}
+
+.w-like-comment {
+    width: 18%;
+}
+
+.check_absolute-image {
+    position: absolute;
+    width: 6%;
+}
+
+.w-12 {
+    width: 12%;
+}
+
+.border-radius-25 {
+    border-radius: 25px;
+}
+
+.color-purple {
+    color: #463267;
+}
+
+.dpImgDiv {
+    width: 35%;
+}
+
+.dpImg {
+    margin-top: -50%
+}
+
+.img-container {
+    min-height: 25vh;
+    max-height: 25vh;
+    height: 25vh;
+}
+
+.editIcon {
+    width: 7%;
+}
+
+.form-control-inputDiv {
+    border-radius: 25px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .addBuddyBtn {
+        width: 100%!important;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .profileDivLeft {
+        flex-direction: column;
+        padding-left: 0!important;
+    }
+    .profileDivLeft p {
+        text-align: center!important;
+    }
+    .profileDivRight {
+        padding-left: 0!important;
+        margin-top: 5%;
+    }
+    .profileDivRight p {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    .padding-0 {
+        padding: 0;
+    }
+    .addBuddyBtn {
+        width: 100%!important;
+    }
+    .colLeftPost {
+        padding: 0;
+        margin-top: 2%;
+    }
+}

@@ -1,0 +1,235 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-5 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Added</h2>
+            </div>
+            <div class="col-md-7 d-flex justify-content-end">               
+                
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">History</button>
+            </div>
+        </div>
+
+        
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Added From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " id="signupFrom" type="date" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Added To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" id="signupTo" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <select class="custom-select  form-control-input" id="pastEI" required>
+                            <option value=""> Select State</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">City</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <select class="custom-select  form-control-input" id="pastEI" required>
+                            <option value=""> Select City</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="currentEI" required>
+                            <option value=""> Select Board/University</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="3">D</option>
+                            <option value="3">E</option>
+                            <option value="3">Unspecified</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Onboarding Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="ageGroup" required>
+                            <option value=""> Select Status</option>
+                            <option value="1">Profession1</option>
+                            <option value="2">Profession2</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
+            </div>
+        </div>
+
+        <!--End html for filter for alumni list-->
+        <!--Start html for filter for No of alumni per page with export button-->
+
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+        
+        <div class="tableDiv mt-4">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfAdding">
+                        <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.dateOfAdding}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="eiZatchupId">
+                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.eiZatchupId}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfTheschool">
+                        <mat-header-cell *matHeaderCellDef> Name of the School </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.nameOfTheschool}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="state">
+                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.state}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="city">
+                        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.city}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="address">
+                        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.address}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="boardUniversity">
+                        <mat-header-cell *matHeaderCellDef> Board/University </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.boardUniversity}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="approximateNumber">
+                        <mat-header-cell *matHeaderCellDef> Approximate Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.approximateNumber}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="addedToDatabase">
+                        <mat-header-cell *matHeaderCellDef> Added to Database </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.addedToDatabase}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.status}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfOnboarding">
+                        <mat-header-cell *matHeaderCellDef> Date of Onboarding </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.dateOfOnboarding}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+
+        <div class="row pt-4 pb-4">
+            <div class="col-12">
+                <nav aria-label="...">
+                    <ul class="pagination d-flex justify-content-end flex-wrap">
+                        <li class="page-item disabled">
+                            <a class="pageLink" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="pageLink" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="pageLink" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="pageLink" href="#">3</a></li>
+
+                        <li class="page-item">
+                            <a class="pageLink" href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                        </li>
+
+                        <li class="page-item">
+                            <a class="pageLink" href="#">14</a></li>
+                        <li class="page-item">
+                            <a class="pageLink" href="#">15</a></li>
+                        <li class="page-item">
+                            <a class="pageLink" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

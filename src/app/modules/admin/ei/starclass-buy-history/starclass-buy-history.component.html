@@ -1,0 +1,151 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">ZatchUp Starclass Buy History</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <!-- <div class="form-control-inputDiv rounded p-0 shadow-none">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Search...">
+                </div> -->
+                <!-- <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Create Course</button> -->
+            </div>
+        </div>
+        <!--Start html for filter for alumni list-->
+        <div class="filterDiv mt-1">
+
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="widthFull mr-4 mt-3 ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Bought Date From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Bought Date To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="date" placeholder="MM/DD/YYYY">
+
+                    </div>
+                </div>
+
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" required>
+                        <option value=""> Select Status</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    </div>
+                </div>
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+
+            </div>
+        </div>
+        <!--End html for filter for alumni list-->
+        <!--Start html for filter for No of alumni per page with export button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of History Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
+                        aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of alumni per page with export button-->
+
+        <!--Start html for table content Alimni information-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="courseId">
+                        <mat-header-cell *matHeaderCellDef> Course ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.courseId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="courseTitle">
+                        <mat-header-cell *matHeaderCellDef> Course Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.courseTitle}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="planDetail">
+                        <mat-header-cell *matHeaderCellDef> Plan Detail </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.planDetail}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="grossAmount">
+                        <mat-header-cell *matHeaderCellDef> Gross Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.grossAmount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponCode">
+                        <mat-header-cell *matHeaderCellDef> Coupon Code </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.couponCode}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="netAmount">
+                        <mat-header-cell *matHeaderCellDef> Net Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.netAmount}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponApplied">
+                        <mat-header-cell *matHeaderCellDef> Date of Buying Course  </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.couponApplied}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfCourseExpiry">
+                        <mat-header-cell *matHeaderCellDef> Date of Course Expiry </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.dateOfCourseExpiry}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="transActionId">
+                        <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.transActionId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="viewInvoice">
+                        <mat-header-cell *matHeaderCellDef> View Invoice  </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-blue"><button type="button" class="bg-blue text-white rounded border-0"> {{element.viewInvoice}} </button> </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+            </div>
+        </div>
+        <!--End html for table content Alimni information-->
+    </div>

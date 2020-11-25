@@ -1,0 +1,41 @@
+.containerScrolling {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.dpImgDiv {
+    width: 10%;
+}
+
+.editIcon {
+    width: 3%;
+}
+
+.form-control-inputDiv {
+    border-radius: 25px;
+}
+
+.chckImg{
+    width: 2.5%;
+}
+
+@media only screen and (max-width: 414px) {
+    .dpImgDiv {
+        width: 26%;
+    }
+    .Heading{
+        font-size: 1.2rem;
+    }
+    .editIcon{
+        width: 10%;
+    }
+    .chckImg{
+        width: 5.5%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .dpImgDiv {
+        width: 17%;
+    }
+}

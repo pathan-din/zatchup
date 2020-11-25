@@ -1,0 +1,221 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="DocumentMOUHistory-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Unresolved Reports Profile</h2>
+            </div>
+
+        </div>
+
+        <!--Start html for table content Document and MOU History information-->
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="DateOfReport">
+                        <mat-header-cell *matHeaderCellDef> Date Of Reporting </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.DateOfReport}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportedBy">
+                        <mat-header-cell *matHeaderCellDef> Report By </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            Name: {{element.ReportedBy[0]}}<br/> 
+                            ZatchUp ID:{{element.ReportedBy[1]}}<br/>
+                            Relation Of The User:{{element.ReportedBy[2]}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportReason">
+                        <mat-header-cell *matHeaderCellDef>Report Reason </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <img [src]="element.ReportReason" />
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportComments">
+                        <mat-header-cell *matHeaderCellDef> Reported Comments </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">{{element.ReportComments}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ActionOne">
+                        <mat-header-cell *matHeaderCellDef> Action One </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">{{element.ActionOne}}
+                            <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Correct Report</mat-checkbox><br/>
+                            <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Wrong Report</mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ActionTwo">
+                        <mat-header-cell *matHeaderCellDef>Action Two</mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <i class="fa fa-check mr-2 color-green cursorStyle" title="Resolved" aria-hidden="true" data-toggle="modal" data-target="#resolvedModel"></i>
+                            <i class="fa fa-envelope mr-2 color-lightBlue cursorStyle" title="mail" aria-hidden="true" data-toggle="modal" data-target="#replyModel"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="MarkResolved">
+                        <mat-header-cell *matHeaderCellDef> Mark Resolved </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center">
+                            <i class='fa fa-comments mr-2 color-lightBlue cursorStyle' title="comment" data-toggle="modal" data-target="#CommentModel"></i>
+                            <i class="fa fa-paperclip mr-2 color-lightBlue cursorStyle" title="attachment" aria-hidden="true" data-toggle="modal" data-target="#AttachmentModel"></i>
+                            <i class="fa fa-check mr-2 color-yellow cursorStyle" title="Resolved" aria-hidden="true"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <!--End html for table content Document and MOU History information-->
+
+    </div>
+
+</div>
+
+<!-- replyModel  -->
+<div class="modal fade" id="replyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reply To Person Reporting</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Name</label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Reply Messages </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Your Messages"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Submit </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End replyModel  -->
+
+<!-- CommentModel  -->
+<div class="modal fade" id="CommentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Comments</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Comments </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Comments"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Submit </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End CommentModel  -->
+
+<!-- AttachmentModel  -->
+<div class="modal fade" id="AttachmentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Attachments</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Attachments</label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Submit </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End AttachmentModel  -->
+
+<!-- resolvedModel  -->
+<div class="modal fade" id="resolvedModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Mark Resolved</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Attachments</label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Comments </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Comments"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Submit </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End resolvedModel  -->

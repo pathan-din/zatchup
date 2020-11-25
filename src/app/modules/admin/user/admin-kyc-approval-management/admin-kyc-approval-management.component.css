@@ -1,0 +1,29 @@
+.col-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.Btn-lg-last {
+    height: 56px;
+}
+
+.Btn-lg-last3Content{
+    height: 80px;
+}
+
+.countFontSize {
+    font-size: 2rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Btn-lg-last {
+        height: 65px;
+    }
+}
+
+@media (max-width: 667px){
+    .Btn-lg-last{
+        height: auto;
+    }
+}

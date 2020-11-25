@@ -1,0 +1,303 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">EI Management</h2>
+            </div>
+            <div class="col-md-7 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0"
+                    data-toggle="modal" data-target="#AddStudentModel" (click)="addEducationInstitute()">Add Education
+                    Institute</button>
+
+                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="text" placeholder="Search..." [(ngModel)]="search" minlength="3" maxlength="10">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
+                    (click)="searchRoute()">Apply</button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
+                    (click)="goToAdminEIDatabase()">
+                    <p class="p-2 mediumFont commonFontSize">EI On Database</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_no_of_ei}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total EI On Database:<span class="ml-2">{{responseJson?.total_no_of_ei}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                    (click)="goToEIOnboardedOnZatchupList()">
+                    <p class="p-2 mediumFont commonFontSize">EI Onboard On ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{responseJson?.total_ei_on_zatchup}}
+                    </h2>
+                    <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
+                        <p class="mb-0 ">Active SubscriptionPlan:
+                            <span class="ml-2">{{responseJson?.ei_onboarded_zatch.active_subscription_plans}}</span></p>
+                        <p class="mb-0 ">Expired SubscriptionPlan:
+                            <span class="ml-2">{{responseJson?.ei_onboarded_zatch.expired_subscription_plans}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
+                    (click)="goToAdminEiManagementIncompleteOnBoardingPage()">
+                    <p class="p-2 mediumFont commonFontSize">EI With Incomplete Onboarding</p>
+                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total No of EI With Incomplete Onboarding:<span class="ml-2">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
+                    (click)="goToAdminEiAddedByUserNotOnZatchUpPage()">
+                    <p class="p-2 mediumFont commonFontSize">EI Added by Users Not On ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_ei_not_on_zatchup}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total No of EI Added by Users Not On ZatchUp:<span
+                            class="ml-2">{{responseJson?.total_ei_not_on_zatchup}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                    (click)="goToAdminEiManagementPendingForApprovalPage()">
+                    <p class="p-2 mediumFont commonFontSize">EI Pending For Approval</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_ei_pending_for_approval}}
+                    </h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total No Of EI Pending For Approval:
+                        <span class="ml-2">{{responseJson?.total_ei_pending_for_approval}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <p class="p-2 mediumFont commonFontSize">EI Change Detail Requests are Pending</p>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{responseJson?.ei_change_details_request_pending}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total No of EI Change Detail Requests are Pending:
+                        <span class="ml-2">{{responseJson?.ei_change_details_request_pending}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="educational-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row ">
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <h2 class="commonFontSize semiBoldFont">View Status
+                    ({{responseJson?.view_status.added+responseJson?.view_status.similar_ei+responseJson?.view_status.rejected_ei}})
+                </h2>
+                <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-2">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Added</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{responseJson?.view_status.added}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Similar Education Institute</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{responseJson?.view_status.similar_ei}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Rejected Education Institute</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{responseJson?.view_status.rejected_ei}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="Fee-dashboard-div bg-white px-2 py-2 mt-3">
+        <h2 class="commonFontSize semiBoldFont">Fee Received</h2>
+        <form id="feeFilterForm">
+            <div class="row">
+                <div class="col-12 d-flex flex-wrap align-items-end">
+
+                    <div class="MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Date From</label>
+                        <input type="text" id="fee_Received_From_Date" name="fee_Received_From_Date"
+                            placeholder="MM/DD/YYYY" class="form-control formfocusStyle" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="feeReceivedFromDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }" required>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_From_Date"></div>
+                    </div>
+
+                    <div class="MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Date To</label>
+                        <input type="text" id="fromDate" name="fee_Received_To_Date" placeholder="MM/DD/YYYY"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="feeReceivedToDate" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            required>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_To_Date"></div>
+                    </div>
+
+                    <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                        <button type="button"
+                            (click)="filteredFeeAndReported(feeReceivedFromDate, feeReceivedToDate, 'Fee', 0)"
+                            class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                            Apply
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <div class="row mt-4">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize">On Boarding Fees Received</p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="feeData">
+                        {{feeData?.onboarding_fees_received}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        On Boarding Fees Received:<span class="ml-2"
+                            *ngIf="feeData">{{feeData?.onboarding_fees_received}}</span></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize">Subscription Fees Received</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{feeData?.subscription_fees_received}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
+                        Subscription Fees Received:<span class="ml-2">{{feeData?.subscription_fees_received}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comission-div bg-white px-3 py-2 mt-3">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="commonFontSize semiBoldFont">Commission</h2>
+            </div>
+            <div class="col-6 text-right"> <button type="button" class="bg-dark text-white px-2 py-1 ml-2 border-0 ">Add
+                    Commission</button></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">Commission Collected</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_commission_collected}}</h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary Btn-lg-last">Total Commission
+                        Collected:
+                        <span class="ml-2">{{responseJson?.total_commission_collected}}</span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="school-ManagementReported-div bg-white px-2 py-2 mt-3">
+        <h2 class="commonFontSize semiBoldFont">Reported</h2>
+        <form id="reportedEIFilterForm">
+            <div class="row">
+                <div class="col-12 d-flex flex-wrap align-items-end">
+                    <div class="MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Date From</label>
+                        <input type="text" id="reporeted_filter_start_date" name="reporeted_filter_start_date"
+                            placeholder="MM/DD/YYYY" class="form-control formfocusStyle" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="reportedEiFromDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }" required>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.reporeted_filter_start_date"></div>
+                    </div>
+
+                    <div class="MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Date To</label>
+
+                        <input type="text" id="reporeted_filter_end_date" name="reporeted_filter_end_date"
+                            placeholder="MM/DD/YYYY" class="form-control formfocusStyle" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="reportedEiToDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }" required>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.reporeted_filter_end_date"></div>
+                    </div>
+
+                    <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                        <button type="button"
+                            (click)="filteredFeeAndReported(reportedEiFromDate, reportedEiToDate ,'Reported', 1)"
+                            class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-4">
+            <div class="col-md-5 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize">Times All El Are Reported</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{reportedEI?.no_of_all_ei_reported}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Number Of Times All El Are Reported:<span
+                            class="ml-2">{{reportedEI?.no_of_all_ei_reported}}/{{reportedEI?.no_of_ei_reported}}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                    <p class="p-2 mediumFont commonFontSize">Number Of El Reported</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{reportedEI?.no_of_ei_reported}}</h2>
+                    <p
+                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
+                        Total Number Of El Reported:<span class="ml-2">{{reportedEI?.no_of_ei_reported}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AddStudentModel  -->
+<!-- <div class="modal fade" id="AddStudentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Add Students</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true ">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body px-0 py-0">
+                <p class="regularFont letterspacing text-center pt-2 pb-3">
+                    <button type="button " class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">Add Individual Students</button>
+                    <button type="button" class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Add Bulk Students</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div> -->
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

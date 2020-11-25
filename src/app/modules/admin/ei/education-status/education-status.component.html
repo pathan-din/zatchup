@@ -1,0 +1,111 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont mb-1">Add Education Institute</h2>
+        <form id="addEI">
+            <div class="form-group mt-3 ">
+                <label for="" class="mediumFont commonFontSize letterspacing"> Name of the School </label>
+                <div class="form-control-inputDiv rounded p-0  shadow-none">
+                    <input id="name_of_school"
+                        class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text"
+                        name="name_of_school" placeholder="Name of the School"
+                        [(ngModel)]="educationInstitute.name_of_school" required>
+                </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.name_of_school"></div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Select State </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select name="state" class="custom-select  form-control-input"
+                            [(ngModel)]="educationInstitute.stateId" (change)="getCities()">
+                            <option value="">State</option>
+                            <option *ngFor="let state of educationInstitute.allStates" [value]="state.id">{{state.state}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="" class="mediumFont commonFontSize letterspacing">City </label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select name="city" class="custom-select  form-control-input"
+                            [(ngModel)]="educationInstitute.cityId">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let city of educationInstitute.allCities" [value]="city.id">{{city.city}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3 ">
+                <label for="" class="mediumFont commonFontSize letterspacing"> Full Address </label>
+                <div class="form-control-inputDiv rounded p-0  shadow-none">
+                    <input id="address_line_1" name="address_line_1"
+                        class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text"
+                        placeholder="Address Line 1" [(ngModel)]="educationInstitute.address1" required>
+                </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.address_line_1"></div>
+
+                <div class="form-control-inputDiv rounded p-0 shadow-none mt-3">
+                    <input id="address_line_2" name="address_line_2"
+                        class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text"
+                        placeholder="Address Line 2" [(ngModel)]="educationInstitute.address2" required>
+                </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.address_line_2"></div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="landmark" name="landmark"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            type="text" placeholder="Enter Landmark" [(ngModel)]="educationInstitute.landmark" required>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.landmark"></div>
+                </div>
+                <div class="col-6">
+                    <div class="form-control-inputDiv rounded p-0 shadow-none">
+                        <input id="pincode" name="pincode"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            type="text" placeholder="Enter Pincode" [(ngModel)]="educationInstitute.pincode"
+                            (keypress)="keyPressNumbers($event)" maxlength="6" required>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.pincode"></div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3 ">
+                <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
+                <div class="form-control-inputDiv rounded p-0  shadow-none">
+                    <input id="board_or_university"
+                        class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text"
+                        name="board_or_university" placeholder="Board/University"
+                        [(ngModel)]="educationInstitute.university" required>
+                </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.board_or_university"></div>
+            </div>
+
+            <div class="form-group mt-3 ">
+                <label for="" class="mediumFont commonFontSize letterspacing"> Approximate Number of Students </label>
+                <div class="form-control-inputDiv rounded p-0  shadow-none">
+                    <input id="approximate_number_of_students"
+                        class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text"
+                        name="approximate_number_of_students" placeholder="Approximate Number of Students"
+                        [(ngModel)]="educationInstitute.no_of_students" (keypress)="keyPressNumbers($event)"
+                        maxlength="10" required>
+                </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.approximate_number_of_students"></div>
+            </div>
+
+            <div class="form-group row  mt-3">
+                <div class="col-12 text-center">
+                    <button type="button"
+                        class="bg-red text-white border-0 mr-3 py-2 px-4 commonFontSize regularFont letterspacing" (click)="cancelEducationInstitute()">Cancel</button>
+                    <button type="submit" (click)="addEducationInstitute()"
+                        class="bg-paret-green text-white border-0  py-2 px-4 commonFontSize regularFont letterspacing">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+.kycVerificationleftImage{
+    width: 70%;
+}
+.SuccessfullImage{
+    width: 55%;
+}
+
+@media only screen and (max-width: 414px) {
+    .kycVerificationleftImage{
+        display: none;
+    }
+    .kycSuccessfulPR{
+        padding-right: 0!important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .kycSuccessfulPR{
+        padding-right: 0!important;
+    }
+    .kycVerificationleftImage{
+        width: 90%;
+        padding-bottom: 0!important;
+    }
+    .SuccessfullImage{
+        width: 75%;
+    }
+    .kycSuccessfulPT{
+        padding-top: 0!important;
+    }
+}

@@ -1,0 +1,21 @@
+.custom-control-inline{
+    display: block;
+}
+
+.qualificationCustomLabel{
+    padding-left: 23px;
+    padding-bottom: 1px;
+}
+.qualificationCheckmark{
+    left: -3%;
+}
+.custom-label .radioValuetext{
+    letter-spacing: 1px;
+}
+.custom-radio .qualificationCustomLabel input:checked~span{
+    font-family: "SFUIDisplay-Medium";
+    font-weight: 400;
+}
+.form-control-inputDiv:active{
+    border: 1px solid #463267;
+}

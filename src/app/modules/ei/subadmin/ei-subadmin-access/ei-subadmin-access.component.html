@@ -1,0 +1,108 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subadmin-Access-div bg-white border border-gray px-3 py-3">
+        <div class="Access-Roll">
+            <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin Mobile Access</h2>
+
+            <div class="tableDiv mt-2 AssignRoll table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="bg-Gainsboro">
+                            <!-- <th scope="col">S.No</th> -->
+                            <th scope="col" class="w-25">Modules </th>
+                            <th scope="col" class="w-25">Sub Module</th>
+                            <th scope="col" class="w-25">Description</th>
+                            <th scope="col">Access</th>
+                            <th scope="col">Add Classes</th>
+                            <th scope="col">Remarks</th>
+                        </tr>
+
+                    </thead>
+                    <tbody >
+                        
+                        <tr *ngFor="let module of modifiedModulesList; let i = index;">
+                            
+                            <td>{{module.parentmodule?module.parentmodule:module.module_name}}</td>
+                            <td>{{module.count==0?'NA':module.module_name}}</td>
+                            <td>{{module.description}}</td>
+                            <td><mat-checkbox class="purple-checkbox" [(ngModel)]="module.is_access"
+                                (change)="isAllSelected($event ,module.module_code)" name="is_access_{{module.module_code}}">
+                            </mat-checkbox></td>
+                            <td *ngIf="module.is_classid_available" (click)="openClassModel(module.module_code)" class="color-blue cursorStyle">Add Class</td>
+                            <td *ngIf="!module.is_classid_available">NA</td>
+                            <td>NA</td>
+                            
+                        </tr>
+                    </tbody>
+                    
+
+
+                </table>
+            </div>
+        </div>
+
+       
+        <button (click)="submitPermissionWithClass()" type="button" class="bg-paret-green border-0 py-2 px-5 text-white mt-2">Submit</button>
+
+   <!-- addClassModel  -->
+        <div class="modal fade" id="addClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 ">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Class access</h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                  <span aria-hidden="true ">
+                      &times;
+                      <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                    </span>
+                </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                        <div class="form-group row mb-1 ">
+                            <div class="col-md-6 ">
+                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <mat-checkbox [(ngModel)]="isModuleAccessClass" (change)="changeAddClass()" class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class</mat-checkbox>
+
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="isModuleAccessClass" class="form-group row mb-1 ">
+                            <div class="col-md-12" *ngFor="let course of courseListModuleAccess">
+                                <mat-checkbox [checked]="checkStatus(course.id,'course')" (change)="displayStandardListModuleAccess(course.id)"  class="addStudent-check mediumFont commonFontSize letterspacing">{{course.course_name}}</mat-checkbox>
+                                <div *ngIf="isModuleAccessClass" class="form-group row mb-1 ">
+                                    <div class="col-md-12 ml-4" *ngFor="let standard of standardListModuleAccess[course.id]">
+                                        <mat-checkbox [checked]="checkStatus(standard.id,'standard')" (change)="displayClassListModuleAccess(standard.id)"  class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                        <div class="col-md-12 d-flex flex-column ml-4 ">
+                                            <mat-checkbox [checked]="checkStatus(classes.id,'class')" (change)="getclassListArrayModuleAccess(classes.id)" *ngFor="let classes of classListModuleAccess[standard.id]" class="addStudent-check mediumFont commonFontSize letterspacing ">{{classes.class_name}}</mat-checkbox>
+                                            
+                                            <input [(ngModel)]="modelCodeIndex" type="hidden">
+                                        </div>
+                                    </div>
+                                   
+        
+                                </div>
+                            </div>
+                        </div>
+                        <button  type="button " data-dismiss="modal" aria-label="Close " class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing mt-1">
+                    Submit
+                </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      
+
+
+
+    </div>
+
+
+
+
+</div>

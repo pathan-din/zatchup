@@ -1,0 +1,54 @@
+<div class="container-fluid ei-bg-img h-100 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-xl-4 col-lg-3 col-md-3 "></div>
+        <div class="col-xl-4 col-lg-6 col-md-6  ">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center my-3 semiBoldFont">Mobile Verification</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Enter OTP Recived on your mobile number</label>
+                        <div class="d-flex flex-row justify-content-between">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp1" name="otp1" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp2" name="otp2" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp3" name="otp3" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
+                            <input [(ngModel)]="otp4" name="otp4" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1">
+
+                        </div>
+                    </div>
+                    <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing">Resend OTP</p>
+                    <div class="required errorMsg" [innerHtml]="errorOtpModelDisplay"></div>
+                    <button type="button" class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing" (click)="goToOtpVerification()">
+                        Submit
+                   </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-3  col-md-3"></div>
+    </div>
+</div>
+
+<!-- Congratulation Model -->
+<div class="modal fade" id="CongratulationModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid justify-content-center">
+            <!-- <div class="round-camera-div">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div> -->
+            <div class="modal-body pl-5 pr-5 text-center">
+                <form class="pl-5 pr-5">
+                    <h2 class="text-center my-3 semiBoldFont">Congratulation</h2>
+                    <img class="img-fluid otpMessageImage mt-2 mb-4"
+                        src="assets/images/userWebsite/otp_message_image.png">
+                    <p class="color-black mediumFont commonFontSize mb-0">Congratulations your school is successfully add on
+                        ZatchUp</p>
+                    <h3 class="text-center my-1 semiBoldFont">Your School Id : <span
+                            class="color-black regularFont">{{this.schoolNumber}}</span></h3>
+                            
+                            <button type="button" class="btn common-model-Btn mt-2" (click)="goToEiPaymentPage()">Submit Fees</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

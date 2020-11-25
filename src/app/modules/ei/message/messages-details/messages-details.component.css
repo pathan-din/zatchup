@@ -1,0 +1,46 @@
+.message-user {
+    width: 100px;
+    height: 100px;
+    margin: 0px auto;
+    border: 3px solid #139bbf;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.message-user img{
+    width: 100%;
+}
+
+.teacherChatList {
+    height: 220px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.date-text {
+    font-size: .8rem;
+    clear: both;
+}
+.chatTxt {
+    background: #f0f5f9;
+    padding: 7px 15px;
+    color: #569d9e;
+    border-radius: 25px;
+    border-bottom-left-radius: 0px;
+    display: inline-block;
+}
+.chatTxt-2{
+    background: #f3f3f3;
+    color: #666666;
+    border-radius: 25px;
+    border-bottom-right-radius: 0px;
+    text-align: right;
+    float: right;
+}
+
+@media (max-width: 767px){
+  .teacherChatList {
+      height: 300px;
+      overflow-x: auto;
+      overflow-y: scroll;
+  }
+}

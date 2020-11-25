@@ -1,0 +1,85 @@
+/* .dotIcon {
+    font-size: 0.6rem;
+} */
+
+.menuIcon {
+    width: 10%;
+}
+
+::ng-deep .mat-menu-panel {
+    min-width: 130px;
+}
+
+.tableDiv {
+    margin-left: 4%;
+}
+
+.table th,
+.table td {
+    border: none;
+}
+
+.table tbody tr:hover {
+    background: #aaa4a4;
+}
+
+.shift-right-4 {
+    margin-left: 3%;
+}
+
+.RightimgDiv {
+    min-height: 24vh;
+    max-height: 24vh;
+    min-width: 10vw;
+    max-width: 10vw;
+    float: right;
+    position: relative;
+}
+
+.modal-content.unverified {
+    width: 80%;
+}
+
+.modal-header {
+    border-bottom: 1.5px solid #c7cbd1;
+}
+
+.Rightimg {
+    min-height: 23vh;
+    max-height: 23vh;
+    min-width: 10vw;
+    max-width: 10vw;
+    border: 2px solid #007eff;
+}
+
+.verifiedTick {
+    position: absolute;
+    right: -12px;
+    top: -10px;
+}
+
+@media only screen and (max-width: 414px) {
+    .mobile-col-reverse {
+        flex-direction: column-reverse
+    }
+    .mobile-col-reverse .col-right {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .RightimgDiv {
+        float: none;
+    }
+    .Rightimg {
+        min-height: 20vh;
+        max-height: 20vh;
+        min-width: 30vw;
+        max-width: 30vw;
+    }
+    .RightimgDiv {
+        min-height: 20vh;
+        max-height: 20vh;
+        min-width: 30vw;
+        max-width: 30vw;
+    }
+}

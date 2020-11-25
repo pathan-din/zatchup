@@ -1,0 +1,125 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="DocumentMOUHistory-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Donation Project Reports</h2>
+            </div>
+        </div>
+
+        <!--Start html for table content Document and MOU History information-->
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="DateOfReport">
+                        <mat-header-cell *matHeaderCellDef> Date Of Reporting </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.DateOfReport}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="projectID">
+                        <mat-header-cell *matHeaderCellDef>Project ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{element.projectID}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportedBy">
+                        <mat-header-cell *matHeaderCellDef> Report By </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            Name: {{element.ReportedBy[0]}}<br/> 
+                            ZatchUp ID: {{element.ReportedBy[1]}}<br/> 
+                            Relation Of The User: {{element.ReportedBy[2]}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportReason">
+                        <mat-header-cell *matHeaderCellDef>Report Reason </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <img [src]="element.ReportReason"/>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ReportComments">
+                        <mat-header-cell *matHeaderCellDef> Reported Comments </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">{{element.ReportComments}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ViewProject">
+                        <mat-header-cell *matHeaderCellDef>View Project </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <span class="color-blue textUnderlineStyle"> {{element.ViewProject}} </span>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ActionCheckbox">
+                        <mat-header-cell *matHeaderCellDef> Action One </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.ActionCheckbox}}
+                            <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Correct Report</mat-checkbox><br/>
+                            <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Wrong Report</mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ResolutionComments">
+                        <mat-header-cell *matHeaderCellDef>Resolution Comments</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ResolutionComments}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ResolutionAttachment">
+                        <mat-header-cell *matHeaderCellDef> Resolution Attachments </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ResolutionAttachment}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+            </div>
+        </div>
+        <!--End html for table content Document and MOU History information-->
+
+        <!--Start of uploadNewMOUModel  -->
+        <div class="modal fade" id="uploadNewMOUModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 ">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Upload New MOU</h2>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <div class=" form-group row ">
+
+                            <div class="col-sm-12 mb-3">
+                                <label for="description" class=" commonFontSize semiBoldFont letterspacing">Upload Attachment</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 ">
+                                <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " rows="4" placeholder="Enter Remarks "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of uploadNewMOUModel  -->
+    </div>
+
+</div>

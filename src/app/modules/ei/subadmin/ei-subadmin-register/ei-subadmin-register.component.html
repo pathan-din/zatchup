@@ -1,0 +1,217 @@
+<div class="container-fluid ei-bg-img d-flex flex-column justify-content-center">
+    <div class="row mt-5 pb-5">
+        <div class="col-xl-3 col-lg-3 col-md-3 "></div>
+        <div class="col-xl-6 col-lg-6 col-md-6  ">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center my-3 semiBoldFont">ZatchUp-Sub-admin /Teacher Sign-Up</h2>
+                <form id="subadmin" >
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 ">
+                            <label for="fname " class=" mediumFont commonFontSize letterspacing">First Name*</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input id="first_name" (keyup)="isValid($event)" [(ngModel)]="model.first_name" name="first_name" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter First Name">
+
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <label for="lname " class=" mediumFont commonFontSize letterspacing">Last Name*</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input id="last_name" (keyup)="isValid($event)"  [(ngModel)]="model.last_name" name="last_name" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Last Name">
+
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 ">
+                            <label for="email " class=" mediumFont commonFontSize letterspacing">Email ID / Mobile No*</label>
+
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input id="email_id_or_mobile_no" (keyup)="isValid($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email ID / Mobile No">
+                            </div>
+                        </div>
+						<div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_no"></div>
+                    </div>
+					<div class="form-group row ml-0 mr-0">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
+                        <label for="gender " class=" mediumFont commonFontSize letterspacing">Gender</label>
+                        <div class="form-control-radioDiv-padding">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label" for="inlineRadio1">
+                                    <input (click)="isValid($event)" (change)="isValid($event)"  required class="custom-control-input ng-dirty ng-valid ng-touched" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio1" value="F" [(ngModel)]="model.profile.gender" name ="gender">
+                                    <span class="checkmark"></span>
+                                    <span class="radioValuetext">Female</span></label>
+
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label" for="inlineRadio2">
+                                    <input (click)="isValid($event)" (change)="isValid($event)" required class="custom-control-input" type="radio" name="inlineRadioOptions"
+                                        id="inlineRadio2" value="M" [(ngModel)]="model.profile.gender" name ="gender">
+                                    <span class="checkmark"></span>
+                                    <span class="radioValuetext">Male</span></label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label" for="inlineRadio3">
+                                    <input (click)="isValid($event)" (change)="isValid($event)" required class="custom-control-input" type="radio" [(ngModel)]="model.profile.gender" name ="gender" id="inlineRadio3" value="C">
+                                    <span class="checkmark"></span>
+                                    <span class="radioValuetext">Custom</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.gender"></div>
+                </div>
+                    <!-- <div class="form-group row  ml-0 mr-0"> -->
+                        <!-- <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 "> -->
+                            <!-- <label for="gender " class=" mediumFont commonFontSize letterspacing">Gender</label> -->
+                            <!-- <div class="d-flex flex-row align-items-center justify-content-between"> -->
+
+                                <!-- <div class="custom-control custom-radio custom-control-inline"> -->
+                                    <!-- <label class="custom-label" for="inlineRadio1"> -->
+                                    <!-- <input class="custom-control-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> -->
+                                    <!-- <span class="checkmark"></span> -->
+                                    <!-- <span class="radioValuetext commonFontSize">Female</span></label> -->
+
+                                <!-- </div> -->
+                                <!-- <div class="custom-control custom-radio custom-control-inline"> -->
+                                    <!-- <label class="custom-label" for="inlineRadio2"> -->
+                                        <!-- <input class="custom-control-input" type="radio" name="inlineRadioOptions" -->
+                                            <!-- id="inlineRadio2" value="option2"> -->
+                                        <!-- <span class="checkmark"></span> -->
+                                        <!-- <span class="radioValuetext commonFontSize">Male</span></label> -->
+                                <!-- </div> -->
+                                <!-- <div class="custom-control custom-radio custom-control-inline"> -->
+                                    <!-- <label class="custom-label" for="inlineRadio3"> -->
+                                        <!-- <input class="custom-control-input" type="radio" name="inlineRadioOptions" -->
+                                            <!-- id="inlineRadio3" value="option3"> -->
+                                        <!-- <span class="checkmark"></span> -->
+                                        <!-- <span class="radioValuetext commonFontSize">Custom</span></label> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                            <!-- <!-- <mat-radio-group class="ei-subadmin-reg-radio-grp w-100 d-flex justify-content-between"> -->
+                                <!-- <mat-radio-button class="example-margin" value="Male">After</mat-radio-button> -->
+                                <!-- <mat-radio-button class="example-margin" value="Female">Before</mat-radio-button> -->
+                                <!-- <mat-radio-button class="example-margin" value="Custom">Before</mat-radio-button> -->
+                            <!-- </mat-radio-group> --> 
+
+                        <!-- </div> -->
+                    <!-- </div> -->
+                    <div class="form-group row  ml-0 mr-0" *ngIf="model.profile.gender=='C'">
+                        <div class="col-sm-12 ">
+                            <label for="pronouce " class=" mediumFont commonFontSize letterspacing">Select your pronoun</label>
+
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (keyup)="isValid($event)" [(ngModel)]="model.profile.pronoun" name ="pronoun" id="pronoun" [required]="model.profile.gender=='C'" class="custom-select form-control-input">
+                                    <option value="">Select your pronoun</option>
+                                    <option value="He">He</option>
+                                    <option value="She">She</option>
+                                    
+                                </select>
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.pronoun"></div>	
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0" *ngIf="model.profile.gender=='C'">
+                        <div class="col-sm-12 ">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input  [(ngModel)]="model.profile.custom_gender" name ="custom_gender" id="custom_gender"  class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Gender(Optional)">
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.custom_gender"></div>	
+                        </div>
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 ">
+                            <label for="dob " class=" mediumFont commonFontSize letterspacing">Date of Birth*</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY">
+
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.birth_date"></div>	
+                        </div>
+                        <div class="col-sm-6 ">
+                            <label for="password "  class=" mediumFont commonFontSize letterspacing">Password*</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" required [(ngModel)]="model.password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" id="password" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
+
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>	
+                        </div>
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 ">
+                            <label for="cPassword " class=" mediumFont commonFontSize letterspacing">Confirm Password*</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input required (keyup)="isValid($event)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" [(ngModel)]="modelForConfirm.confirm_password" name ="confirm_password" id="confirm_password" match="password,confirm_password" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="password" placeholder="Re-enter Password">
+
+                            </div>
+							<div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>	
+                        </div>
+
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12">
+                            <input (click)="isValid($event)" (change)="isValid($event)" required [(ngModel)]="model.is_term_cond" name ="terms_and_condition" id="terms_and_condition" type="checkbox" id="term-condition">
+                            <label for="term-condition " class="commonFontSize mediumFont ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a> </label>
+                        </div>
+						<div class="required errorMsg" [innerHtml]="errorDisplay.terms_and_condition"></div>	
+                    </div>
+                    <button type=" button " class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing " (click)="submitSubAdminRegister()">
+                        Sign Up
+                                    </button>
+                    <p (click)="redirectToSubadminLogin()" class="text-center commonFontSize mediumFont my-4 ">Already an account?<span class="textUnderlineStyle ">Sign In</span></p>
+					<p (click)="redirectToSignUpEi()" class="text-center commonFontSize mediumFont my-4 ">Don't have an account For EI?<span class="textUnderlineStyle ">Sign Up</span></p>
+                    <p class="text-center commonFontSize mediumFont m-0 ">Facing issue in registration?</p>
+                    <p class="text-center commonFontSize mediumFont mb-0 textUnderlineStyle " (click)="goToEiContactUsPage() ">Contact us</p>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 "></div>
+    </div>
+	<!-- OTPModel -->
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                <!-- <form class="pl-5 pr-5"> -->
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id. </p>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-between">
+                        <input (keyup)="changeInput($event)" id="otp1" [(ngModel)]="otp1" name="otp1"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" id="otp2" [(ngModel)]="otp2" name="otp2"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" id="otp3" [(ngModel)]="otp3" name="otp3"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input id="otp4" [(ngModel)]="otp4" name="otp4"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                            type="text" maxlength="1">
+                    </div>
+                </div>
+                <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
+                <button type="button" class="btn common-model-Btn mt-4" (click)="goToDashboard();">Submit </button>
+
+                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" href="">Resend Code </a>
+                </p>
+                <!-- </form> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 
+</div>

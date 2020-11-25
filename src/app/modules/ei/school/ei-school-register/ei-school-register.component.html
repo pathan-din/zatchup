@@ -1,0 +1,277 @@
+<div class="container-fluid ei-bg-img d-flex flex-column justify-content-center">
+    <div class="row mt-5 pb-5">
+        <div class="col-xl-3 col-lg-3 col-md-3 "></div>
+        <div class="col-xl-6 col-lg-6 col-md-6  ">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
+                <h2 class="text-center my-3 semiBoldFont">ZatchUp - School Sign Up</h2>
+                <form id="form1">
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 MobileCol6MB">
+                            <label for="State" class="mediumFont commonFontSize letterspacing">Select State </label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select  (change)="getCityByState(state1)" id="state_list" [(ngModel)]="state1" name="state_list"
+                                    class="custom-select custom-select-2Col form-control-input" required>
+                                    <option value="">State</option>
+                                    <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
+                                        {{stateObj.state}}</option>
+                                </select>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.state_list"></div>
+                        </div>
+                        <div class="col-sm-6 ">
+                            <label for="City" class="mediumFont commonFontSize letterspacing">Select City </label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (change)="getSchoolListBycityId(city1)" id="city_list" [(ngModel)]="city1" name="city_list"
+                                    class="custom-select-2Col custom-select form-control-input" required>
+                                    <option value="">City</option>
+                                    <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
+
+                                </select>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.city_list"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="pronouce" class="mediumFont commonFontSize letterspacing">Select School
+                                Name</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (change)="changeSchool(name_of_school_first)" id="school_name" [(ngModel)]="name_of_school_first"
+                                    name="school_name" class="custom-select form-control-input" required>
+                                    <option value="">Select School</option>
+                                    <option *ngFor="let school of schoolList" value="{{school.name_of_school}}">
+                                        {{school.name_of_school}}</option>
+                                    <option value="Others">Others</option>
+
+                                </select>
+                            </div>
+                            <div class="required errorMsg" *ngIf="name_of_school_first!='Others'"
+                                [innerHtml]="errorDisplay.school_name"></div>
+                        </div>
+                    </div>
+                    <div *ngIf="name_of_school_first=='Others'" class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+
+                                <input required (keyup)="isValid($event)" id="name_of_school" [(ngModel)]="name_of_school_others" name="name_of_school_"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter School Name">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.name_of_school"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="addressline1" class="mediumFont commonFontSize letterspacing">Full
+                                Address</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="address_Line1" required [(ngModel)]="model.school_data.address1" name="address_Line1"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Address Line 1">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.address_Line1"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" name="address_Line2" [(ngModel)]="model.school_data.address2" class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Address Line 2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 MobileCol6MB">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="city" required [(ngModel)]="model.school_data.city" name="city"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter City">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.city"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" maxlength="6" id="pincode" required [(ngModel)]="model.school_data.pincode" name="pincode"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="number" placeholder="Enter Pin">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.pincode"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 MobileCol6MB">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="state" required [(ngModel)]="model.school_data.state" name="state"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter State">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.state"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input required (keyup)="isValid($event)" id="country" [(ngModel)]="country" readonly name="country"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter Country">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="BoardName" class="mediumFont commonFontSize letterspacing">Board /
+                                University</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="university" required [(ngModel)]="model.school_data.university" name="university"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Board/University">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.university"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="address" class="mediumFont commonFontSize letterspacing">EI's ZatchUp ID</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="zatchup_id"  [(ngModel)]="model.school_data.school_code" name="zatchup_id"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter EI's ZatchUp ID">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.zatchup_id"></div>
+                        </div>
+                    </div>
+
+                    <h3 class="color-black commonFontSize semiBoldFont m-0 paddingLHeading">School Admin </h3>
+
+                    <div class="col-md-12 mobilePaddingLR">
+                        <hr class="hrTopMargin">
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 MobileCol6MB">
+                            <label for="fname" class="mediumFont commonFontSize letterspacing">First Name</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="first_name" required [(ngModel)]="model.first_name" name="first_name"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter First Name">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lname" class=" mediumFont commonFontSize letterspacing">Last Name</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="last_name" required [(ngModel)]="model.last_name" name="last_name"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter Last Name">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="Designation" class="mediumFont commonFontSize letterspacing">Designation</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (change)="isValid($event)" id="designation" required [(ngModel)]="model.designation" name="designation"
+                                    class="custom-select form-control-input">
+                                    <option value="">Select</option>
+                                    <option value="{{designation.name}}" *ngFor="let designation of designationList">
+                                        {{designation.name}}</option>
+
+                                </select>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.designation"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 MobileCol6MB">
+                            <label for="mobile" class="mediumFont commonFontSize letterspacing">Mobile Number</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="phone" required [(ngModel)]="model.phone" name="phone" maxlength="10"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="tel" placeholder="Enter Mobile Number">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="emailID" class="mediumFont commonFontSize letterspacing">Email ID</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="email" required [(ngModel)]="model.email" name="email"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="email" placeholder="Enter Email ID">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-6 MobileCol6MB">
+                            <label for="cPassword" class="mediumFont commonFontSize letterspacing">Create
+                                Password</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="password" required  [(ngModel)]="model.password" name="password"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="password"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
+                                    placeholder="Enter Password">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="confirmPassword" class="mediumFont commonFontSize letterspacing">Confirm
+                                Password</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="confirm_password" match="password,confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" id="confirm_password" required
+                                     [(ngModel)]="cpassword" name="confirm_password"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="password" placeholder="Re-Enter Password">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12">
+                            <input (click)="isValid($event)" (change)="isValid($event)" id="terms_condition" required [(ngModel)]="model.is_term_cond" name="terms_condition" type="checkbox"
+                                id="term-condition">
+                            <label for="term-condition" class="commonFontSize mediumFont ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.terms_condition"></div>
+                        </div>
+
+                    </div>
+
+                    <button type="button "
+                        class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing"
+                        (click)="goToEiMobileVerificationPage()">
+                        Sign Up
+                    </button>
+                    <p class="text-center commonFontSize mediumFont my-4 ">Already have an account?<span
+                            class="textUnderlineStyle " (click)="redirectToLogin()">Sign In</span></p>
+                    <p class="text-center commonFontSize mediumFont m-0 ">Facing issue in registration?</p>
+                    <p class="text-center commonFontSize mediumFont mb-0 textUnderlineStyle "
+                        (click)="goToEiContactUsPage() ">Contact us</p>
+                </form>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 "></div>
+    </div>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>
+   
+</div>

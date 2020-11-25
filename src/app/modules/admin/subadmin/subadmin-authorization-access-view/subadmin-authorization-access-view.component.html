@@ -1,0 +1,153 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="subadminView-div bg-white border border-gray px-3 py-3 mt-3" *ngIf="subadminData">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin View</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-2" (click)="subadminAccessHistory()">Sub-Admin Specific Access
+                    History</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Name</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">: {{subadminData.firstname}}</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Date Of Birth</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">: {{subadminData.dob}}</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Designation</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">: {{subadminData.designation}}</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Email ID</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">: {{subadminData.email}}</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Employee ID</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">: {{subadminData.employee_num}}</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Phone Number</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">: {{subadminData.phone}}</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Reset Password</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p (click)="passwordReset()"><span class="mr-3">:</span><span class="textUnderlineStyle  cursorStyle"> Reset</span></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                <p>Disable Employee</p>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                <p><span class="mr-3">:</span>
+                    <mat-slide-toggle (change)="disableEnableEmployee($event)"  [(ngModel)]="subadminData.status"></mat-slide-toggle>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="subadmin-Access-div bg-white border border-gray px-3 py-3 mt-3">
+        <div class="Access-Roll">
+            <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin Access</h2>
+
+            <div class="tableDiv mt-2 AssignRoll table-responsive">
+                <table class="table table-bordered subAdminAuthorization-table">
+                    <thead>
+                        <tr class="bg-Gainsboro">
+                            <th scope="col">S.No</th>
+                            <th scope="col" class="detailClass">Modules </th>
+                            <th scope="col" class="detailClass">
+                                <mat-checkbox class="purple-checkbox" [(ngModel)]="masterSelected"
+                                    (change)="checkUncheckAll()"> Sub Module </mat-checkbox>
+                            </th>
+                            <th scope="col" class="descriptionClass">Description</th>
+                            <th scope="col" class="detailClass">Selected Class / Course</th>
+                            <th scope="col" class="detailClass">Remarks</th>
+                        </tr>
+
+                    </thead>
+                    <tbody *ngFor="let module of moduleList; let i = index">
+                        <tr>
+                            <td rowspan="3">{{i + 1}}</td>
+                            <td rowspan="3">
+                                {{module.module_name}}
+                            </td>
+                            <td *ngIf="subModuleList">
+                                <div *ngFor="let sub_module of module.sub_module">
+                                    <mat-checkbox class="purple-checkbox" [(ngModel)]="sub_module.is_access"
+                                        (change)="isAllSelected($event ,sub_module.id)"> {{sub_module.module_name}}
+                                    </mat-checkbox>
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let sub_module of module.sub_module">
+                                    <span>{{sub_module.description}}</span>
+                                </div>
+                            </td>
+                            <td>NA</td>
+                            <td>{{module.remarks == undefined ? 'NA' : module.remarks}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="text-right">
+            <button type="button" class="bg-paret-green border-0 py-2 px-5 text-white mt-2"
+                (click)="addAccessPermissions()">Submit</button>
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
