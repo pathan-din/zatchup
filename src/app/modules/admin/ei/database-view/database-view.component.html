@@ -131,7 +131,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                             <p class="color-blue">
                                 <span class="mr-3 text-dark">:</span>
-                                <span class="textUnderlineStyle"> Add Comments </span>
+                                <span class="textUnderlineStyle" data-toggle="modal" data-target="#addComments"> Add Comments </span>
                             </p>
                         </div>
                     </div>
@@ -178,5 +178,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- addComments  -->
+        <div class="modal fade" id="addComments" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Comment</h2>
+                            <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <div class="row">
+    
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Comments </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Remarks"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Send </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End eiEditModel  -->
+
     </div>
 </div>

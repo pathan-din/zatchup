@@ -1,0 +1,31 @@
+.subAdminPurpleBtn {
+    width: inherit;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+
+
+.imagePosition {
+    position: relative;
+}
+
+.userInfo {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.onboarding-table-similarEI tr th,
+.onboarding-table-similarEI tr td {
+    padding: 0.7rem 0.5rem;
+}
+
+.onboarding-table-similarEI tr th:nth-of-type(1) {
+    width: 35%;
+}
+
+.onboarding-table-existingEI tr th,
+.onboarding-table-existingEI tr td {
+    padding: 0.7rem 0.5rem;
+}
