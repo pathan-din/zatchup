@@ -64,6 +64,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   getAllState(){
     //getallstate
     try{
+      this.model.school_data = {};
       this.SpinnerService.show(); 
      
       this.eiService.getallstate(this.model).subscribe(res => {
@@ -86,6 +87,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   /*******************************End ********************************/
   /****************Get City By State Function*************************/
   getCityByState(state){
+    this.model.school_data = {};
     //getallstate
     this.isValid(event);
     let obj = this.stateList.find(o => o.state === state);
@@ -120,6 +122,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   }
 
   getSchoolListBycityId(city){
+    this.model.school_data = {};
      //getallstate
      this.isValid(document.forms);
      let obj = this.cityList.find(o => o.city === city);
@@ -171,7 +174,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   /*************************End ********************************/
   /*************************Change School and bind some data pre filled by school**********/
   changeSchool(schoolData){
-
+    this.model.school_data = {};
     if(schoolData!='Others')
     {
       var ev =event;
@@ -185,7 +188,7 @@ export class EiSchoolRegisterComponent implements OnInit {
       this.model.school_data.pincode=obj.pincode;
       this.model.school_data.university=obj.university;
       this.model.school_data.no_of_students=obj.no_of_students;
-      
+      this.model.school_data.school_code=obj.school_code;
       
       setTimeout(() => {
         this.isValid(document.forms[0].elements);
