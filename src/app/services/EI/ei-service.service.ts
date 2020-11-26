@@ -120,15 +120,6 @@ requestForRazorPament(data) {return this.http.post(this.env.apiEiUrl+'payment-pr
 
 
 /*
- Api Name : addKyc
- Parameter :FormData
- Method : Post
- request : Object Type
- Response : object type
- */
-addKyc(data) {return this.http.post(this.env.apiEiSubadminUrl+'kyc-upload/', data);}
-
-/*
  Api Name : payment-response
  Parameter :userId,order_id,Payment_id,Signature
  Method : Post
