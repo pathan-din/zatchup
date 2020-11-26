@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { MatStepper } from '@angular/material/stepper';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 
 @Component({
@@ -28,11 +29,11 @@ export class EiOnboardingProcessComponent implements OnInit {
   state: string;
   model: any = {};
   modelDocumentDetails: any = [];
-  durationModel: any = {};
+  durationModel:any={};
   model2Step: any = {};
-  documentForm2Elements: any;
-  year: any = [];
-  month: any = [];
+  documentForm2Elements:any;
+  year:any=[];
+  month:any=[];  
   numberOfStudentList = [];
   numberOfAluminiList = [];
   error: any = [];
@@ -41,45 +42,49 @@ export class EiOnboardingProcessComponent implements OnInit {
   uploadedCoverContent: any = '';
   uploadedCancelCheque: any = '';
   uploadedProfileContent: any = '';
-  bankModel: any = {};
-  bankNameList = [
-    { name: "Bank of Baroda" },
-    { name: "Bank of India" },
-    { name: " Bank of Maharashtra" },
-    { name: "  Canara Bank" },
-    { name: " Central Bank of India" },
-    { name: " Indian Bank" },
-    { name: "Indian Overseas Bank" },
-    { name: "Punjab and Sind Bank" },
-    { name: "Punjab National Bank" },
-    { name: "State Bank of India" },
-    { name: "UCO Bank" },
-    { name: "Union Bank of India" },
-    { name: "Axis Bank" },
-    { name: " Bandhan Bank" },
-    { name: "Catholic Syrian Bank" },
-    { name: "City Union Bank" },
-    { name: "DCB Bank" },
-    { name: "Dhanlaxmi Bank" },
-    { name: "Federal Bank" },
-    { name: "HDFC Bank" },
-    { name: "ICICI Bank" },
-    { name: "IDBI Bank" },
-    { name: "IDFC First Bank" },
-    { name: "IndusInd Bank" },
-    { name: "Jammu & Kashmir Bank" },
-    { name: "Karnataka Bank" },
-    { name: "Karur Vysya Bank" },
-    { name: "Kotak Mahindra Bank" },
-    { name: " Lakshmi Vilas Bank" },
-    { name: "Nainital Bank" },
-    { name: "RBL Bank" },
-    { name: "South Indian Bank" },
-    { name: "Tamilnad Mercantile Bank" },
-    { name: "Yes Bank" }];
-  constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
-    , private router: Router, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
-    public formBuilder: FormBuilder) { }
+  bankModel: any={};
+  bankNameList=[
+  {name:"Bank of Baroda"},
+  {name:"Bank of India"},
+  {name:" Bank of Maharashtra"},
+  {name:"  Canara Bank"},
+  {name:" Central Bank of India"},
+  {name:" Indian Bank"},
+  {name:"Indian Overseas Bank"},
+  {name:"Punjab and Sind Bank"},
+  {name:"Punjab National Bank"},
+  {name:"State Bank of India"},
+  {name:"UCO Bank"},
+  {name:"Union Bank of India"},
+  {name:"Axis Bank"},
+  {name:" Bandhan Bank"},
+  {name:"Catholic Syrian Bank"},
+  {name:"City Union Bank"},
+  {name:"DCB Bank"},
+  {name:"Dhanlaxmi Bank"},
+  {name:"Federal Bank"},
+  {name:"HDFC Bank"},
+  {name:"ICICI Bank"},
+  {name:"IDBI Bank"},
+  {name:"IDFC First Bank"},
+  {name:"IndusInd Bank"},
+  {name:"Jammu & Kashmir Bank"},
+  {name:"Karnataka Bank"},
+  {name:"Karur Vysya Bank"},
+  {name:"Kotak Mahindra Bank"},
+  {name:" Lakshmi Vilas Bank"},
+  {name:"Nainital Bank"},
+  {name:"RBL Bank"},
+  {name:"South Indian Bank"},
+  {name:"Tamilnad Mercantile Bank"},
+  {name:"Yes Bank"}];
+  constructor(private activatedRoute: ActivatedRoute, 
+    private genericFormValidationService: GenericFormValidationService,
+    private router: Router, 
+    private SpinnerService: NgxSpinnerService, 
+    public eiService: EiServiceService,
+    public formBuilder: FormBuilder,
+    private alert: NotificationService) { }
 
 
 
@@ -89,36 +94,38 @@ export class EiOnboardingProcessComponent implements OnInit {
     this.getNumberOfStudentList();
     this.model.no_of_students = '';
     this.model.no_of_alumni = '';
-    this.durationModel.duration_in_year = "0";
-    this.durationModel.duration_in_month = "0";
-    this.bankModel.bank_name = '';
-
+    this.durationModel.duration_in_year= "0";
+    this.durationModel.duration_in_month= "0";
+    this.bankModel.bank_name='';
+    
     /****************Document Bind Model***********************/
-    let document: any = {};
-    document.name = '';
-    document.document = '';
+    let document:any={};
+    document.name='';
+    document.document='';
     this.modelDocumentDetails.push(document);
     /****************End Document Bind Model***********************/
-    /*************************Year and month Loop*****************/
-    var i = 1;
-    for (i = 1; i <= 12; i++) {
-      this.month.push(i);
-    }
+	/*************************Year and month Loop*****************/
+	var i=1;
+	for(i=1;i<=12;i++)
+	{
+		this.month.push(i);
+	}
+	 
+	for(i=this.eiService.globalYear;i<=this.eiService.globalCurrentYear;i++)
+	{
+		this.year.push(i);
+	}
+	/*************************************************************/
 
-    for (i = this.eiService.globalYear; i <= this.eiService.globalCurrentYear; i++) {
-      this.year.push(i);
-    }
-    /*************************************************************/
-
-    /* setTimeout(() => {
-       this.documentForm2Elements=document.forms[1].elements;  
-     }, 300);*/
-
+   /* setTimeout(() => {
+      this.documentForm2Elements=document.forms[1].elements;  
+    }, 300);*/
+    
     this.model2Step.coursedata = [{
       course_name: "",
-      course_type: "",
+      course_type:"",
       description: "",
-
+      
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -134,25 +141,25 @@ export class EiOnboardingProcessComponent implements OnInit {
         }]
       }],
     }];
-    var that = this;
-    // this.activatedRoute.queryParams.subscribe(params=>{
-    // if(params)
-    // {
-    // if(params.reg_steps==1)
-    // {
-    // console.log();
-    // }
-    // }
-    // });
-
-
+	var that = this;	
+	 // this.activatedRoute.queryParams.subscribe(params=>{
+		   // if(params)
+		   // {
+			   // if(params.reg_steps==1)
+			   // {
+				   // console.log();
+			   // }
+		   // }
+	  // });
+  
+ 
   }
   /**
    * 
    * @param event 
    */
-  changeDuration(standarddata) {
-    standarddata.duration = this.durationModel.duration_in_year + '.' + this.durationModel.duration_in_month;
+  changeDuration(standarddata){
+    standarddata.duration= this.durationModel.duration_in_year+'.'+this.durationModel.duration_in_month;
   }
 
 
@@ -161,9 +168,9 @@ export class EiOnboardingProcessComponent implements OnInit {
    */
 
   isValid(event) {
-    if (Object.keys(this.errorDisplay).length !== 0) {
-      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(event, true, []);
-    }
+    if(Object.keys(this.errorDisplay).length !== 0){
+    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(event, true,[]);
+	}
   }
 
   /* Function Name : getStepFirstData
@@ -180,7 +187,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         this.model = response;
-        this.SpinnerService.hide();
+		this.SpinnerService.hide();
       }, (error) => {
         //this.SpinnerService.hide();
         this.genericFormValidationService.hideSpeanerWithConsole(this.SpinnerService, error)
@@ -205,16 +212,19 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.eiService.getNumberOfStudentList().subscribe(res => {
         let response: any = {}
         response = res;
-        this.SpinnerService.hide();
+        if(response.status == true){
+		this.SpinnerService.hide();
         this.numberOfStudentList = response.results;
+        }
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
+        this.alert.error(error, 'Error')
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      // console.log("vaeryfy Otp Exception", err);
+      this.alert.error(err, 'Error')
     }
 
   }
@@ -226,16 +236,23 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.eiService.getNumberOfStudentList().subscribe(res => {
         let response: any = {}
         response = res;
-        this.SpinnerService.hide();
+        if(response.status == true){
+		this.SpinnerService.hide();
         this.numberOfAluminiList = response.results;
+        } else{
+          this.SpinnerService.hide();
+          this.alert.error(response.error, 'Error')
+        }
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
+        this.alert.error(error, 'Error')
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      console.log("variyfy Otp Exception", err);
+      this.alert.error(err, 'Error')
     }
 
   }
@@ -252,12 +269,12 @@ export class EiOnboardingProcessComponent implements OnInit {
   addCourseList() {
     this.model2Step.coursedata.push({
       course_name: "",
-      course_type: "",
+      course_type:"",
       description: "",
       standarddata: [{
         standard_name: "",
         duration: "",
-
+       
         classdata: [{
           class_name: '',
           teaching_start_year: "",
@@ -270,13 +287,13 @@ export class EiOnboardingProcessComponent implements OnInit {
         }]
       }],
     })
-
+    
 
   }
   goForward(stepper: MatStepper) {
     this.error = [];
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false,[]);
     if (this.errorDisplay.valid) {
       return false;
     }
@@ -307,10 +324,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
-          this.myStepper.selected.completed = true;
+		  this.SpinnerService.hide();	
           this.myStepper.next();
-          this.myStepper.selected.completed = false;
+
 
         } else {
           this.SpinnerService.hide();
@@ -320,11 +336,13 @@ export class EiOnboardingProcessComponent implements OnInit {
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
+        this.alert.error(error, 'Error')
 
       });
     } catch (err) {
       this.SpinnerService.hide();
       console.log("vaeryfy Otp Exception", err);
+      this.alert.error(err, 'Error')
     }
 
 
@@ -341,17 +359,17 @@ export class EiOnboardingProcessComponent implements OnInit {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
     this.uploadedCoverContent = fileData;
-
-
+    
+    
   }
   handleCancelChequeFileInput(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
     this.uploadedCancelCheque = fileData;
-    console.log(this.uploadedCancelCheque);
-
+    console.log( this.uploadedCancelCheque);
+    
   }
-
+  
 
   /**
    * Function Name: addAnotherStandard
@@ -361,8 +379,8 @@ export class EiOnboardingProcessComponent implements OnInit {
 
     courseList.standarddata.push({
       standard_name: "",
-      duration: "",
-
+      duration:"",
+       
       classdata: [{
         class_name: '',
         teaching_start_year: "",
@@ -381,7 +399,7 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Function Name: addAnotherClass
    */
 
-  addAnotherClass(standardList) {
+  addAnotherClass(standardList){
     standardList.classdata.push({
       class_name: '',
       teaching_start_year: "",
@@ -399,48 +417,50 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Parameter : index of array , dataArray(array)
    *
    */
-  removeData(index, dataArray) {
+  removeData(index,dataArray){
     //console.log(index,dataArray);
     dataArray.splice(index, 1);
   }
 
-  /**
- * Function Name: addCourseDataStep2
- */
+    /**
+   * Function Name: addCourseDataStep2
+   */
 
-  addCourseDataStep2() {
-
-    this.error = [];
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, this.model2Step.coursedata);
+  addCourseDataStep2(){
+   
+    this.error=[];
+    this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements,false,this.model2Step.coursedata);
     console.log(this.errorDisplay)
-    if (this.errorDisplay.valid) {
+    if(this.errorDisplay.valid)
+    {
       return false;
     } try {
       this.SpinnerService.show();
-
+      
       this.eiService.updateOnboardStepSecondData(this.model2Step).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
-          this.myStepper.selected.completed = true;
+		  this.SpinnerService.hide();
           this.myStepper.next();
-          this.myStepper.selected.completed = false;
 
 
         } else {
           this.SpinnerService.hide();
           console.log("Error:Data not update");
+          this.alert.error(response.error, 'Error')
         }
 
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
+        this.alert.error(error, 'Error')
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      console.log("verify Otp Exception", err);
+      this.alert.error(err, 'Error')
     }
   }
   /**
@@ -448,20 +468,22 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Using this function for validation text
    * parameter :  key(number of index ),strKey(name of the unique name and id attribute value)
    */
-  display_error(key, strKey) {
-
-
+  display_error(key,strKey)
+  {
+    
+    
     for (var property in this.errorDisplay) {
       if (this.errorDisplay.hasOwnProperty(property)) {
-
-
-        if (property == strKey + key) {
-
+        
+        
+         if(property==strKey+key)
+         {
+         
           return this.errorDisplay[property];
-        }
+         }
       }
     }
-
+    
   }
 
 
@@ -470,13 +492,14 @@ export class EiOnboardingProcessComponent implements OnInit {
    * 
    */
 
-  submitBankDetailOnboardingProcessStepThree() {
+  submitBankDetailOnboardingProcessStepThree(){
 
-    this.error = [];
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[2].elements, false, []);
-    // this.bankModel.cancel_cheque= this.uploadedCoverContent;
-
-    if (this.errorDisplay.valid) {
+    this.error=[];
+    this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[2].elements,false,[]);
+   // this.bankModel.cancel_cheque= this.uploadedCoverContent;
+   
+    if(this.errorDisplay.valid)
+    {
       return false;
     } try {
       this.SpinnerService.show();
@@ -484,81 +507,92 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('bank_name', this.bankModel.bank_name);
       formData.append('bank_account_no', this.bankModel.bank_account_no);
       formData.append('bank_ifsc_code', this.bankModel.bank_ifsc_code);
-      formData.append('cancel_cheque', this.uploadedCancelCheque);
-
-
+      formData.append('cancel_cheque',  this.uploadedCancelCheque);
+       
+      
       this.eiService.updateOnboardStepThreeData(formData).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
-          this.myStepper.selected.completed = true;
+			 this.SpinnerService.hide();
           this.myStepper.next();
-          this.myStepper.selected.completed = false;
+
 
         } else {
           this.SpinnerService.hide();
           console.log("Error:Data not update");
+          this.alert.error(response.error, 'Error')
         }
 
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
+        this.alert.error(error, 'Error')
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      console.log("verify Otp Exception", err);
+      this.alert.error(err, 'Error')
     }
   }
   /**
    * Function Name : addMoreDocument
    * Use : Use function for multiple Documents
    */
-  addMoreDocument() {
-    let document: any = {};
-    document.name = '';
-    document.document = '';
+  addMoreDocument(){
+    let document:any={};
+    document.name='';
+    document.document='';
     this.modelDocumentDetails.push(document);
   }
 
   /** 
    * Function Name : fileUploadDocument
   */
-  fileUploadDocument(files, document) {
-    let fileList: FileList = files;
-    let fileData: File = fileList[0];
-    const formData = new FormData();
-    formData.append('file_name', fileData);
-    try {
+ fileUploadDocument(files,document)
+ {
+  let fileList: FileList = files;
+  let fileData: File = fileList[0];
+  const formData = new FormData();
+  formData.append('file_name', fileData);
+  try {
       this.SpinnerService.show();
+      
+       
+      
       this.eiService.uploadFile(formData).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
-          document.document = response.filename;
-          return response.filename;
+		  this.SpinnerService.hide();
+		  document.document=response.filename;
+		  return response.filename;
+         console.log("Sccess:Update");
+
+
         } else {
           this.SpinnerService.hide();
-
+		      this.alert.error(response.error, 'Error')
           console.log("Error:Data not update");
-          return '';
+		  return '';
         }
 
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
-        return '';
+        this.alert.error(error, 'Error')
+		return '';
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      this.alert.error(err, 'Error')
+      console.log("verify Otp Exception", err);
     }
-
-
-  }
+     
+  
+ }
 
 
   /**
@@ -566,46 +600,50 @@ export class EiOnboardingProcessComponent implements OnInit {
    * 
    */
 
-  submitDocumentFourStep() {
-    this.error = [];
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[3].elements, false, this.modelDocumentDetails);
-    // this.bankModel.cancel_cheque= this.uploadedCoverContent;
-
-    if (this.errorDisplay.valid) {
+  submitDocumentFourStep(){
+    this.error=[];
+    this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[3].elements,false,this.modelDocumentDetails);
+   // this.bankModel.cancel_cheque= this.uploadedCoverContent;
+   
+    if(this.errorDisplay.valid)
+    {
       return false;
-    } try {
+    }  try {
       this.SpinnerService.show();
-      let documentdata: any = {};
-      documentdata.documentdata = this.modelDocumentDetails;
-
-
+      let documentdata:any={};
+	  documentdata.documentdata=this.modelDocumentDetails;
+       
+      
       this.eiService.updateOnboardStepFourData(documentdata).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
-          this.router.navigate(['ei/dashboard']);
-
+		  this.SpinnerService.hide();
+		  this.router.navigate(['ei/dashboard']);
+           
 
 
         } else {
           this.SpinnerService.hide();
+          this.alert.error(response.error, 'Error')
           console.log("Error:Data not update");
         }
 
       }, (error) => {
         this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
         console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      this.alert.error(err, 'Error')
+      console.log("verify Otp Exception", err);
     }
-
+    
   }
-
-
+  
+  
 }
 
 
