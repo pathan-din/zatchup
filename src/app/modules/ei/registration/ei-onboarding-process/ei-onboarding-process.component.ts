@@ -237,8 +237,13 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if(response.status == true){
+<<<<<<< 9db7ed249a1e6589f03ecbeb2f870059465c2635
 		      this.SpinnerService.hide();
           this.numberOfAluminiList = response.results;
+=======
+		this.SpinnerService.hide();
+        this.numberOfAluminiList = response.results;
+>>>>>>> Add components add input
         } else{
           this.SpinnerService.hide();
           this.alert.error(response.error, 'Error')
@@ -324,9 +329,14 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
+<<<<<<< 9db7ed249a1e6589f03ecbeb2f870059465c2635
             this.SpinnerService.hide();	
             this.myStepper.selected.completed = true;
             this.myStepper.next();
+=======
+		  this.SpinnerService.hide();	
+          this.myStepper.next();
+>>>>>>> Add components add input
 
 
         } else {
@@ -442,8 +452,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
-          this.myStepper.selected.completed = true;
+		  this.SpinnerService.hide();
           this.myStepper.next();
 
 
@@ -516,8 +525,12 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
+<<<<<<< 9db7ed249a1e6589f03ecbeb2f870059465c2635
            this.SpinnerService.hide();
            this.myStepper.selected.completed = true;
+=======
+			 this.SpinnerService.hide();
+>>>>>>> Add components add input
           this.myStepper.next();
 
 
