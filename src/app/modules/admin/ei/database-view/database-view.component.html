@@ -12,13 +12,13 @@
         </div>
         <div class="form-control-inputDiv border-0 mx-0">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="eiData">
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Name of The School</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:{{eiData.name_of_school}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -26,7 +26,7 @@
                             <p>EI ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:{{eiData.zatchupId}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -34,7 +34,7 @@
                             <p>State</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:{{eiData.state}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -42,7 +42,7 @@
                             <p>City</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:{{eiData.city}}</span></p>
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@
                                     <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Address Line One</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">:{{eiData.address1}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -64,7 +64,7 @@
                                     <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Address Line Two</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">:{{eiData.address2}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -72,7 +72,7 @@
                                     <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Landmark</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">:{{eiData.landmark}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -80,7 +80,7 @@
                                     <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Pin Code</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">:{{eiData.pincode}}</span> </p>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <p>Board/University</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:{{eiData.university}}</span></p>
                         </div>
                     </div>
 
@@ -109,7 +109,7 @@
                             <p>Number Of Student On ZatchUp <br/> (Basis EI ZatchUp ID)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                            <p class="color-blue"><span class="mr-3 text-dark">:{{eiData.no_of_students}}</span><span
                              class="textUnderlineStyle "> </span></p>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             <p>Number Of Alumini On ZatchUp <br/> (Basis EI ZatchUp ID)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
+                            <p class="color-blue"><span class="mr-3 text-dark">:{{eiData.no_of_alumni}}</span><span
                              class="textUnderlineStyle "> </span></p>
                         </div>
                     </div>
