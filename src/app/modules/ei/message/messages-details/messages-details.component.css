@@ -36,6 +36,10 @@
     text-align: right;
     float: right;
 }
+.position-ppin{
+    top: 9px;
+    right: 8px;
+}
 
 @media (max-width: 767px){
   .teacherChatList {
