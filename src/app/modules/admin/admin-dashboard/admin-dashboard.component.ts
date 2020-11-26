@@ -1,8 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
+// import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { AdminService } from 'src/app/services/Admin/admin.service';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -15,40 +17,47 @@ export class AdminDashboardComponent implements OnInit {
   model: any = {};
   countJson: any;
   filteredResponse: any;
-  constructor(private genericFormValidationService: GenericFormValidationService, private router: Router,
-    private SpinnerService: NgxSpinnerService,
-    public adminService: AdminService) { }
+  filterFromDate: any;
+  filterToDate: any;
+  fromMaxDate: any;
+  toMaxDate: any;
+
+
+
+  constructor(
+    // private router: Router,
+    private loader: NgxSpinnerService,
+    public adminService: AdminService,
+    private baseService: BaseService,
+    private alert: NotificationService,
+    private datePipe: DatePipe
+  ) {
+    this.fromMaxDate = new Date();
+    this.toMaxDate = new Date();
+  }
 
   ngOnInit(): void {
     this.getDashboardCount();
+    // this.filterRecords();
   }
 
   getDashboardCount() {
-    this.error = [];
     try {
-      /**Api For the dashboard count */
+      this.loader.show();
 
-      this.SpinnerService.show();
-
-      this.adminService.displayCourseList().subscribe(res => {
-        console.log(res);
-        let response: any = {};
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status === true) {
-          this.countJson = response.data;
-        } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
-          alert(errorCollection);
-
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+      this.baseService.getData('admin/get_dashboard_summary/').subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status === true) {
+            this.countJson = res.data;
+            this.filteredResponse = res.data.dashboard;
+          } else {
+            this.alert.error(res.error.message[0], 'Error');
+          }
+        }, (error) => {
+          this.alert.error(error, 'Error');
+          this.loader.hide();
+        });
     }
     catch (e) {
       console.log("Something Went Wrong!")
@@ -56,43 +65,33 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   filterRecords() {
-    this.error = [];
-    this.errorDisplay = {};
-    // this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    // if (this.errorDisplay.valid) {
-    //   return false;
-    // }
     this.model = {
-      "from_date": "2020-10-01",
-      "to_date": "2020-10-10"
+      "from_date": this.filterFromDate ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
+      "to_date": this.filterToDate ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : this.datePipe.transform(new Date(), 'yyyy-MM-dd')
     }
     try {
       /**Api For the record filter */
-
-      this.SpinnerService.show();
-
-      this.adminService.getFilterdRecords(this.model).subscribe(res => {
-        console.log(res);
-        let response: any = {};
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status === true) {
-          this.filteredResponse = response.data;
-        } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
-          alert(errorCollection);
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+      this.loader.show();
+      this.baseService.action('admin/filter_dashboard_records/', this.model).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status === true) {
+            this.filteredResponse = res.data.dashboard;
+          } else {
+            this.loader.hide();
+          }
+        }, (error) => {
+          this.loader.hide();
+        });
     }
     catch (e) {
       console.log("Something Went Wrong!")
     }
+  }
+
+  changeFilterToDate(date) {
+    if (date)
+      this.fromMaxDate = new Date(date)
   }
 
 }
