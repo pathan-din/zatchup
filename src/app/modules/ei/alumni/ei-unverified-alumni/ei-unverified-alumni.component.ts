@@ -230,7 +230,7 @@ export class EiUnverifiedAlumniComponent implements OnInit {
       },(error) => {
             this.SpinnerService.hide(); 
             // console.log(error);
-            this.alert.error(data.error.message[0], 'Error')
+           this.alert.error(error, 'Error')
           });
       }catch(err){
         this.SpinnerService.hide(); 
