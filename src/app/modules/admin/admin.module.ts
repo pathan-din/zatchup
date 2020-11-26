@@ -114,6 +114,7 @@ import { SubscriptionPlanHistoryComponent } from './ei/subscription-plan-history
 import { MyAssignedEiHistoryComponent } from './my-assigned/my-assigned-ei-history/my-assigned-ei-history.component';
 import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-ei.component';
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
+import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
 
 @NgModule({
   declarations: [
@@ -223,6 +224,7 @@ import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-no
     MyAssignedEiHistoryComponent,
     MyAssignedEiComponent,
     AdminPageNotFoundComponent,
+    NumberOnlyDirective
   ],
   imports: [
     CommonModule,

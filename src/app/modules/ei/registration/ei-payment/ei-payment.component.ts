@@ -4,6 +4,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 declare var Razorpay: any
 @Component({
@@ -23,7 +24,8 @@ export class EiPaymentComponent implements OnInit {
     private genericFormValidationService: GenericFormValidationService,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private alert: NotificationService
   ) { }
 
 
@@ -117,8 +119,10 @@ export class EiPaymentComponent implements OnInit {
         }
 
       } else { // Condition False Validation failure
-        var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-        alert(getServerErrorCollection);
+        // var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+        // alert(getServerErrorCollection);
+        this.SpinnerService.hide();
+        this.alert.error(response.error, 'Error')
       }
 
       /*End else*/
@@ -127,7 +131,7 @@ export class EiPaymentComponent implements OnInit {
       this.SpinnerService.hide();
       //use this condition for the globally Set boolean checkErrorFlagForAllConsole
       if (this.eiService.checkErrorFlagForAllConsole) {
-        console.log(error);
+        this.alert.error(error, 'Error')
       }
     });
   }
@@ -152,8 +156,10 @@ export class EiPaymentComponent implements OnInit {
 
 
       } else { // Condition False Validation failure
-        var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-        alert(getServerErrorCollection);
+        // var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+        // alert(getServerErrorCollection);
+        this.SpinnerService.hide();
+        this.alert.error(response.error, 'Error')
       }
 
       /*End else*/
@@ -162,7 +168,7 @@ export class EiPaymentComponent implements OnInit {
       this.SpinnerService.hide();
       //use this condition for the globally Set boolean checkErrorFlagForAllConsole
       if (this.eiService.checkErrorFlagForAllConsole) {
-        console.log(error);
+        this.alert.error(error, 'Error')
       }
     });
   }
@@ -189,8 +195,10 @@ export class EiPaymentComponent implements OnInit {
 
 
       } else { // Condition False Validation failure
-        var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-        alert(getServerErrorCollection);
+        // var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+        // alert(getServerErrorCollection);
+        this.SpinnerService.hide();
+        this.alert.error(response.error, 'Error')
       }
 
       /*End else*/
@@ -199,7 +207,8 @@ export class EiPaymentComponent implements OnInit {
       this.SpinnerService.hide();
       //use this condition for the globally Set boolean checkErrorFlagForAllConsole
       if (this.eiService.checkErrorFlagForAllConsole) {
-        console.log(error);
+        this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
       }
     });
   }

@@ -5,6 +5,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-ei-student-change-bulk-class',
@@ -21,7 +22,8 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
     public eiService:EiServiceService,
     public baseService:BaseService,
     public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService) { }
+    private genericFormValidationService:GenericFormValidationService,
+    private alert: NotificationService) { }
 
   ngOnInit(): void {
     this. getUploadClassesIds();
@@ -36,6 +38,7 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
       this.baseService.getData('ei/class-id-of-course-by-ei/').subscribe(res => {
         let response: any = {}
         response = res;
+        if(response.status == true){
         this.SpinnerService.hide();	
        this.courseList = response.results;
        if(this.courseList.length>0)
@@ -53,18 +56,22 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
             
           });
         });
-        //
+      }
+       }else{
+         this.SpinnerService.hide();
+         this.alert.error(response.error, 'Error')
        }
-       console.log( this.classDataList);
+       //console.log( this.classDataList);
        
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
-  
+        this.alert.error(error, 'Error')
       });
      } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      this.alert.error(err, 'Error')
+      console.log("verify Otp Exception", err);
      }
    }
   

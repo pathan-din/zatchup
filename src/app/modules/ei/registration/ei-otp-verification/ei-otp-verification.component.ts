@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-ei-otp-verification',
@@ -18,7 +19,13 @@ model:any={};
   otp4:any;
   error:any=[];
   errorDisplay:any={};
- constructor(private activatedRoute: ActivatedRoute,private router: Router,private SpinnerService: NgxSpinnerService,public eiService:EiServiceService,public formBuilder: FormBuilder) { }
+ constructor(
+   private activatedRoute: ActivatedRoute,
+   private router: Router,
+   private SpinnerService: NgxSpinnerService,
+   public eiService:EiServiceService,
+   public formBuilder: FormBuilder,
+   private alert:NotificationService) { }
 
 
   ngOnInit(): void {
@@ -106,16 +113,19 @@ model:any={};
       
       }else{
         this.SpinnerService.hide();
-       this.errorOtpModelDisplay=response.error;
+       //this.errorOtpModelDisplay=response.error;
+       this.alert.error(response.error, 'Error')
       }
      },(error) => {
       this.SpinnerService.hide();
        console.log(error);
+       this.alert.error(error, 'Error')
        
      });
    }catch(err){
     this.SpinnerService.hide();
-     console.log("vaeryfy Otp Exception",err);
+     console.log("verify Otp Exception",err);
+     this.alert.error(err, 'Error')
    }
  
   }
