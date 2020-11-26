@@ -6,15 +6,23 @@
                 <h2 class="commonFontSize semiBoldFont m-0"> Education Institute History </h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
-                <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Type... ">
-                </div>
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 w-50">Add Comment</button>
+                <form id="comment">
+                    <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
+                        <input id="ei-comment" name="comment" [(ngModel)]="comment" (keyup)="isValid($event)"
+                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                            type="text" placeholder="Type... " required>
+                    </div>
+
+                    <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 w-50"
+                        (click)="addComment()">Add Comment</button>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.comment">
+                    </div>
+                </form>
             </div>
         </div>
         <div class="filterDiv">
-            <div class="d-flex flex-wrap align-items-end"> 
-                
+            <div class="d-flex flex-wrap align-items-end">
+
                 <div class="mr-3 mt-2 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
@@ -26,7 +34,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
             </div>
         </div>
@@ -34,12 +42,14 @@
         <div class="row mobile-col-reverse border-0 mt-1 mx-0 mt-3">
             <div class="col-md-12 col-left">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-12 commonFontSize semiBoldFont d-flex flex-row align-items-start">
+                    <div
+                        class="col-xl-3 col-lg-3 col-md-3 col-12 commonFontSize semiBoldFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-1 mr-3"></i>
                         <p>20 March,2020 & 12:00 P.M</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-12 commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 5000 to 6000 by Employee Name(Employee ID)</p>
+                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 5000 to 6000 by Employee
+                            Name(Employee ID)</p>
                     </div>
                 </div>
             </div>
