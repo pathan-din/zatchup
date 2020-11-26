@@ -63,7 +63,8 @@
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 placeholder="Enter phone number" type="tel" id="phone_number" name="phone_number"
-                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid($event)" numberOnly required>
+                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid($event)" numberOnly
+                                required>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
                     </div>
@@ -86,7 +87,6 @@
 
                             <input match="password,confirm_password" name="confirm_password" (keyup)="isValid($event)"
                                 placeholder="Confirm password"
-                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="password" id="confirm_password" [(ngModel)]="model.confirm_password" required>
                         </div>
