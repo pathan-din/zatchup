@@ -19,8 +19,9 @@
                     <div class="col-md-6">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Date Of Birth</label>
                         <input type="text" id="date_of_birth" name="date_of_birth" placeholder="MM/DD/YYYY"
-                            class="form-control" bsDatepicker [maxDate]="maxDate" [(ngModel)]="model.date_of_birth"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }" required>
+                            class="form-control" readonly="readonly" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="model.date_of_birth" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            required>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_birth"></div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 placeholder="Enter phone number" type="tel" id="phone_number" name="phone_number"
-                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid($event)" required>
+                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid($event)" numberOnly required>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
                     </div>
