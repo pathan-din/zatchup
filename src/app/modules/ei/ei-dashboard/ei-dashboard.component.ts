@@ -4,6 +4,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-ei-dashboard',
@@ -20,7 +21,8 @@ export class EiDashboardComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService) { }
+    private genericFormValidationService:GenericFormValidationService,
+    private alert: NotificationService) { }
 
   ngOnInit(): void {
 	  this.getDasboardDetails();
@@ -68,6 +70,7 @@ export class EiDashboardComponent implements OnInit {
 		      this.dashboardCount=response;
         }else{
           this.SpinnerService.hide(); 
+          this.alert.error(response.error.message[0], 'Error')
 		    
         }
         
@@ -76,10 +79,12 @@ export class EiDashboardComponent implements OnInit {
         },(error) => {
           this.SpinnerService.hide(); 
           console.log(error);
+          this.alert.error(error, 'Error')
         });
     }catch(err){
       this.SpinnerService.hide(); 
       console.log(err);
+      this.alert.error(err, 'Error')
     }	
   }
  

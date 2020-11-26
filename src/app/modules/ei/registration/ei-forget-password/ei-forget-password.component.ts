@@ -47,7 +47,7 @@ export class EiForgetPasswordComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status === true) {
-          alert(response.message);
+          this.alert.success(response.message, 'Success');
           this.router.navigate(['ei/login']);
         } else {
           this.SpinnerService.hide();

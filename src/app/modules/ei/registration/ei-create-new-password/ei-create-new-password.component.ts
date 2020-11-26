@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { AdminService } from 'src/app/services/Admin/admin.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-ei-create-new-password',
@@ -17,7 +18,8 @@ export class EiCreateNewPasswordComponent implements OnInit {
   constructor(private genericFormValidationService: GenericFormValidationService, private router: Router,
     private SpinnerService: NgxSpinnerService,
     public adminService: AdminService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    private alert: NotificationService) { }
 
   ngOnInit() {
     // this.model.key = "ffsd";
@@ -45,10 +47,11 @@ export class EiCreateNewPasswordComponent implements OnInit {
           this.model.key = response.data.key;
           this.model.uid = response.data.uid;
         } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
-          alert(errorCollection);
+           this.SpinnerService.hide();
+           this.alert.error(response.message, 'Error')
+          // var errorCollection = '';
+          // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
+          // alert(errorCollection);
           this.router.navigate(['ei/login']);
         }
       }, (error) => {
@@ -81,13 +84,14 @@ export class EiCreateNewPasswordComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status === true) {
-          alert(response.success);
+          this.alert.success(response.success, 'Success');
           this.router.navigate(['ei/login']);
         } else {
           this.SpinnerService.hide();
-          var errorCollection = '';
-          errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
-          alert(errorCollection);
+          this.alert.error(response.message, 'Error')
+          // var errorCollection = '';
+          // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
+          // alert(errorCollection);
         }
       }, (error) => {
         this.SpinnerService.hide();
