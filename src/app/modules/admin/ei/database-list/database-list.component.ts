@@ -40,8 +40,8 @@ export class DatabaseListComponent implements OnInit {
     this.router.navigate(['admin/ei-database-history'])
   }
 
-  eiDbView() {
-    this.router.navigate(['admin/ei-database-view'])
+  eiDbView(id) {
+    this.router.navigate(['admin/ei-database-view', id])
   }
 
   getEIDbList(page? : any) {

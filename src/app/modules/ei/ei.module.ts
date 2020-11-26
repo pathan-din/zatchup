@@ -122,6 +122,10 @@ import { AddAdvertisementsComponent } from './advertisement/add-advertisements/a
 import { PastAdvertisementsComponent } from './advertisement/past-advertisements/past-advertisements.component';
 import { AdvertiseWithZatchupComponent } from './advertisement/advertise-with-zatchup/advertise-with-zatchup.component';
 import { AdvertisementsDetailsComponent } from './advertisement/advertisements-details/advertisements-details.component';
+import { AuthorisationsComponent } from './authorisation/authorisations/authorisations.component';
+import { AuthorisationsRequestComponent } from './authorisation/authorisations-request/authorisations-request.component';
+import { ViewEiProfileAndTimelineComponent } from './authorisation/view-ei-profile-and-timeline/view-ei-profile-and-timeline.component';
+import { AuthorisationsHistoryComponent } from './authorisation/authorisations-history/authorisations-history.component';
 
 
 @NgModule({
@@ -241,7 +245,11 @@ import { AdvertisementsDetailsComponent } from './advertisement/advertisements-d
     AddAdvertisementsComponent,
     PastAdvertisementsComponent,
     AdvertiseWithZatchupComponent,
-    AdvertisementsDetailsComponent
+    AdvertisementsDetailsComponent,
+    AuthorisationsComponent,
+    AuthorisationsRequestComponent,
+    ViewEiProfileAndTimelineComponent,
+    AuthorisationsHistoryComponent
   ],
   imports: [
     CommonModule,

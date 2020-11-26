@@ -90,17 +90,19 @@
 
         <div class="row">
             <div class="col-12 d-flex align-items-end">
-                <div>
+                <div class="MobileCol6MB mr-2">
                     <label for="" class=" commonFontSize mediumFont letterspacing">From Date</label>
-                    <div class="form-control-inputDiv rounded p-0 shadow-none mx-1">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
-                    </div>
+                    <input type="text" id="filter_From_Date" name="fee_Received_From_Date" placeholder="MM/DD/YYYY"
+                        class="form-control formfocusStyle" bsDatepicker [maxDate]="fromMaxDate"
+                        [(ngModel)]="filterFromDate" [bsConfig]="{isAnimated: true, adaptivePosition: true }">
                 </div>
-                <div>
+
+                <div class="MobileCol6MB mr-2">
                     <label for="" class=" commonFontSize mediumFont letterspacing">To Date</label>
-                    <div class="form-control-inputDiv rounded p-0 shadow-none mx-1">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
-                    </div>
+                    <input type="text" id="fromDate" name="filter_To_Date" placeholder="MM/DD/YYYY"
+                        class="form-control formfocusStyle" bsDatepicker [maxDate]="toMaxDate"
+                        [(ngModel)]="filterToDate" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                        (bsValueChange)="changeFilterToDate($event)">
                 </div>
                 <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
                     <button type="button" (click)="filterRecords()"
@@ -115,25 +117,31 @@
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize">New Added EI In EI Dashboard</p>
-                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{filteredResponse ? filteredResponse.new_added_ei : 0}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of New Added EI In EI Dashboard:<span class="ml-2">50</span></p>
+                        Number Of New Added EI In EI Dashboard:<span
+                            class="ml-2">{{filteredResponse ? filteredResponse.new_added_ei : 0}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize">New Added Users </p>
-                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{filteredResponse ? filteredResponse.new_added_user : 0}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of New Added Users:<span class="ml-2">50</span></p>
+                        Number Of New Added Users:<span
+                            class="ml-2">{{filteredResponse ? filteredResponse.new_added_user : 0}}</span></p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize">Active Users</p>
-                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{filteredResponse?filteredResponse.active_users:0}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of Active Users:<span class="ml-2">50</span></p>
+                        Number Of Active Users:<span
+                            class="ml-2">{{filteredResponse ? filteredResponse.active_users : 0}}</span></p>
                 </div>
             </div>
         </div>
@@ -142,17 +150,21 @@
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize">Dormant Users</p>
-                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{filteredResponse ? filteredResponse.dormant_users : 0}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of Dormant Users (Last Login > 7 days) :<span class="ml-2">50</span></p>
+                        Number Of Dormant Users (Last Login > 7 days) :<span
+                            class="ml-2">{{filteredResponse ? filteredResponse.dormant_users : 0}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize"> Donation Collected </p>
-                    <h2 class="countFontSize text-center semiBoldFont">25</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{filteredResponse ? filteredResponse.donation_collected : 0}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Donation Collected In The Period Selected:<span class="ml-2">50</span></p>
+                        Donation Collected In The Period Selected:<span
+                            class="ml-2">{{filteredResponse ? filteredResponse.donation_collected : 0}}</span></p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -170,7 +182,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
-                                class="mr-3">:</span>{{filteredResponse?.total_no_of_new_ei_onboarded.new_active_ei_count ? filteredResponse?.total_no_of_new_ei_onboarded.new_active_ei_count : 0}}
+                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_active_ei_count : 0}}
                         </div>
                     </div>
                     <div class="row pb-1 mx-0">
@@ -180,7 +192,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
-                                class="mr-3">:</span>{{filteredResponse?.total_no_of_new_ei_onboarded.new_dorman_ei_count ? filteredResponse?.total_no_of_new_ei_onboarded.new_dorman_ei_count : 0}}
+                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_dorman_ei_count : 0}}
                         </div>
                     </div>
                 </div>
@@ -195,7 +207,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
-                                class="mr-3">:</span>{{filteredResponse?.total_revenue.onboarding_fees ? filteredResponse?.total_revenue.onboarding_fees : 0}}
+                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.onboarding_fees : 0}}
                         </div>
                     </div>
                     <div class="row pb-1 mx-0">
@@ -205,7 +217,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
-                                class="mr-3">:</span>{{filteredResponse?.total_revenue.subscription_fees ? filteredResponse?.total_revenue.subscription_fees : 0}}
+                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.subscription_fees : 0}}
                         </div>
                     </div>
                     <div class="row pb-1 mx-0">
@@ -215,7 +227,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
-                                class="mr-3">:</span>{{filteredResponse?.total_revenue.zatchUp_star_class ? filteredResponse?.total_revenue.zatchUp_star_class : 0}}
+                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.zatchUp_star_class : 0}}
                         </div>
                     </div>
                     <div class="row pb-1 mx-0">
@@ -225,7 +237,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
-                                class="mr-3">:</span>{{filteredResponse?.total_revenue.advertisement ? filteredResponse?.total_revenue.advertisement : 0}}
+                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.advertisement : 0}}
                         </div>
                     </div>
 
@@ -235,6 +247,6 @@
     </div>
 
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
-</ngx-spinner> 
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

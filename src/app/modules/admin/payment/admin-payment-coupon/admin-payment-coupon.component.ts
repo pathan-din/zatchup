@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./admin-payment-coupon.component.css']
 })
 export class AdminPaymentCouponComponent implements OnInit {
-  @ViewChild('closebutton') closebutton;
+  @ViewChild('closebutton') closebutton: any;
   coupons: any;
   couponTypes: any;
   couponModal = new Coupon();

@@ -1,0 +1,57 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="bg-white px-3 pt-2 pb-3 mt-3 border">
+        <h2 class="commonFontSize semiBoldFont mb-2 mt-2">Authorisations History</h2>
+             
+        <div class="tableDiv">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="moduleName">
+                        <mat-header-cell *matHeaderCellDef> Module Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.moduleName}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="subModule">
+                        <mat-header-cell *matHeaderCellDef> Sub Module Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.subModule}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="classesCourse">
+                        <mat-header-cell *matHeaderCellDef> List Of Classes/Course </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.classesCourse}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" class="rounded bg-paret-green border-0 color-white">{{element.status}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" class="rounded bg-red border-0 color-white">{{element.Action}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+
+    </div>
+</div>
