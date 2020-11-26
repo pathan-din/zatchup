@@ -126,6 +126,10 @@ import { AuthorisationsComponent } from './authorisation/authorisations/authoris
 import { AuthorisationsRequestComponent } from './authorisation/authorisations-request/authorisations-request.component';
 import { ViewEiProfileAndTimelineComponent } from './authorisation/view-ei-profile-and-timeline/view-ei-profile-and-timeline.component';
 import { AuthorisationsHistoryComponent } from './authorisation/authorisations-history/authorisations-history.component';
+import { ReminderComponent } from './reminder/reminder/reminder.component';
+import { ReminderAddComponent } from './reminder/reminder-add/reminder-add.component';
+import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
+import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.component';
 
 
 @NgModule({
@@ -249,7 +253,11 @@ import { AuthorisationsHistoryComponent } from './authorisation/authorisations-h
     AuthorisationsComponent,
     AuthorisationsRequestComponent,
     ViewEiProfileAndTimelineComponent,
-    AuthorisationsHistoryComponent
+    AuthorisationsHistoryComponent,
+    ReminderComponent,
+    ReminderAddComponent,
+    ReminderListComponent,
+    ReminderPastComponent
   ],
   imports: [
     CommonModule,

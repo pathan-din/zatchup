@@ -113,6 +113,10 @@ import { AuthorisationsComponent } from './authorisation/authorisations/authoris
 import { AuthorisationsHistoryComponent } from './authorisation/authorisations-history/authorisations-history.component';
 import { AuthorisationsRequestComponent } from './authorisation/authorisations-request/authorisations-request.component';
 import { ViewEiProfileAndTimelineComponent } from './authorisation/view-ei-profile-and-timeline/view-ei-profile-and-timeline.component';
+import { ReminderComponent } from './reminder/reminder/reminder.component';
+import { ReminderAddComponent } from './reminder/reminder-add/reminder-add.component';
+import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
+import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.component';
 
 
 const routes: Routes = [
@@ -453,6 +457,18 @@ const routes: Routes = [
   },
   {
     path: 'view-ei-profile-and-timeline', component: ViewEiProfileAndTimelineComponent
+  },
+  {
+    path: 'reminder', component: ReminderComponent
+  },
+  {
+    path: 'reminder-add', component: ReminderAddComponent
+  },
+  {
+    path: 'reminder-list', component: ReminderListComponent
+  },
+  {
+    path: 'reminder-past', component: ReminderPastComponent
   },
 
 
