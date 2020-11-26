@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 // import { AdminLoginComponent } from './modules/admin/admin-login/admin-login.component';
 
 
