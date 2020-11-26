@@ -109,6 +109,10 @@ import { AddAdvertisementsComponent } from './advertisement/add-advertisements/a
 import { AdvertiseWithZatchupComponent } from './advertisement/advertise-with-zatchup/advertise-with-zatchup.component';
 import { AdvertisementsDetailsComponent } from './advertisement/advertisements-details/advertisements-details.component';
 import { PastAdvertisementsComponent } from './advertisement/past-advertisements/past-advertisements.component';
+import { AuthorisationsComponent } from './authorisation/authorisations/authorisations.component';
+import { AuthorisationsHistoryComponent } from './authorisation/authorisations-history/authorisations-history.component';
+import { AuthorisationsRequestComponent } from './authorisation/authorisations-request/authorisations-request.component';
+import { ViewEiProfileAndTimelineComponent } from './authorisation/view-ei-profile-and-timeline/view-ei-profile-and-timeline.component';
 
 
 const routes: Routes = [
@@ -438,7 +442,18 @@ const routes: Routes = [
   {
     path: 'past-advertisements', component: PastAdvertisementsComponent
   },
-
+  {
+    path: 'authorisations', component: AuthorisationsComponent
+  },
+  {
+    path: 'authorisations-history', component: AuthorisationsHistoryComponent
+  },
+  {
+    path: 'authorisations-request', component: AuthorisationsRequestComponent
+  },
+  {
+    path: 'view-ei-profile-and-timeline', component: ViewEiProfileAndTimelineComponent
+  },
 
 
 

@@ -135,3 +135,17 @@ export class PendingApprovalProfile{
     editDescription: any;
     comment: any
 }
+
+export class DatabaseView{
+    zatchupId: any;
+    existingZatchIDMOUDoc: any
+    rejectionReason: any;
+    rejectionRemark: any;
+    employeeId: any;
+    requiredMOU: boolean = true;
+    errorDisplay: any = {};
+    editReason: any;
+    editDescription: any;
+    comment: any;
+    eiID: any;
+}

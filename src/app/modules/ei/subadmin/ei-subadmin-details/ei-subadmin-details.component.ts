@@ -28,26 +28,36 @@ export class EiSubadminDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       var id = params['id'];
+      if(!id)
+      {
+        this.router.navigate(['ei/subadmin-management'])
+        return;
+      }
       this.profileId = id;
       this.sudAdminList(id) ;  
     });
     
   }
+ 
   /**Delete Subadmin from list */
-  DeleteFunctionForSubAdmin(id){
+  deleteFunctionForSubAdminAccess(id){
     try {
       this.SpinnerService.show();
      
     this.model.module_details=[];
+    this.model.subadmin_id = id;
     //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
-    this.base.actionForPutMethod('ei/edit-subadmin-by-ei/'+id,this.model).subscribe(res => {
+    this.base.action('ei/remove-all-subadminaccess/',this.model).subscribe(res => {
       
       let response: any = {};
       response = res;
       if(response.status==true){
         this.SpinnerService.hide();
-        this.subAdminListDetails = response.data;
+        //this.subAdminListDetails = response.data;
+        this.alert.success(response.message,'Sucess')
+        this.router.navigate(['ei/subadmin-management'])
       }else{
+        this.alert.error("Please try again.",'Sucess')
         this.SpinnerService.hide();
       }
       
