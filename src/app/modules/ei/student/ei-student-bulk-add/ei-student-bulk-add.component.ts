@@ -4,6 +4,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -18,7 +19,13 @@ export class EiStudentBulkAddComponent implements OnInit {
   courseList: any = [];
   standardList: any = [];
   classList: any = [];
-  constructor(private genericFormValidationService: GenericFormValidationService, private router: Router, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService, public formBuilder: FormBuilder) { }
+  constructor(
+    private genericFormValidationService: GenericFormValidationService, 
+    private router: Router, 
+    private SpinnerService: NgxSpinnerService, 
+    public eiService: EiServiceService, 
+    public formBuilder: FormBuilder,
+    private alert: NotificationService) { }
 
   ngOnInit(): void {
     this.model.course_id = '';
@@ -34,15 +41,21 @@ export class EiStudentBulkAddComponent implements OnInit {
 
         let response: any = {};
         response = res;
+        if(response.status == true){
         this.courseList = response.results;
-
+      }else{
+        this.SpinnerService.hide();
+        this.alert.error(response.error, 'Error')
+      }
       }, (error) => {
         this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
+      this.alert.error(err, 'Error')
       //console.log(err);
     }
   }
@@ -57,15 +70,21 @@ export class EiStudentBulkAddComponent implements OnInit {
         console.log(res);
         let response: any = {};
         response = res;
+        if(response.status == true){
         this.standardList = response.standarddata;
-
+      }else{
+        this.SpinnerService.hide();
+        this.alert.error(response.error, 'Error')
+      }
       }, (error) => {
         this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
+      this.alert.error(err, 'Error')
       //console.log(err);
     }
   }
@@ -77,15 +96,21 @@ export class EiStudentBulkAddComponent implements OnInit {
         console.log(res);
         let response: any = {};
         response = res;
+        if(response.status == true){
         this.classList = response.classdata;
-
+      } else{
+        this.SpinnerService.hide();
+        this.alert.error(response.error, 'Error')
+      }
       }, (error) => {
         this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
+      this.alert.error(err, 'Error')
       //console.log(err);
     }
   }
@@ -129,14 +154,15 @@ export class EiStudentBulkAddComponent implements OnInit {
           this.model.class_id = '';
         } else { // Condition False Validation failure
           this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
+          // var errorCollection = '';
+          // for (var key in response.error) {
+          //   if (response.error.hasOwnProperty(key)) {
+          //     errorCollection = errorCollection + response.error[key][0] + '\n'
 
-            }
-          }
-          alert(errorCollection);
+          //   }
+          // }
+          // alert(errorCollection);
+          this.alert.error(response.error, 'Error')
 
         }
 
@@ -144,11 +170,13 @@ export class EiStudentBulkAddComponent implements OnInit {
         //this.router.navigate(['user/signup']);
       }, (error) => {
         this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
+      this.alert.error(err, 'Error')
       //console.log(err);
     }
 

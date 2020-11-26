@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -20,7 +21,12 @@ export class EiMobileVerificationComponent implements OnInit {
   error:any=[];
   errorDisplay:any={};
   schoolNumber:any;
-  constructor(private activatedRoute: ActivatedRoute,private router: Router,private SpinnerService: NgxSpinnerService,public eiService:EiServiceService,public formBuilder: FormBuilder) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private SpinnerService: NgxSpinnerService,
+    public eiService:EiServiceService,
+    public formBuilder: FormBuilder,
+    private alert: NotificationService) { }
 
 
   ngOnInit(): void {
@@ -96,7 +102,7 @@ export class EiMobileVerificationComponent implements OnInit {
       
       }else{
         this.SpinnerService.hide();
-       this.errorOtpModelDisplay=response.error;
+       this.alert.error(response.error.message[0], 'Error')
       }
      },(error) => {
       this.SpinnerService.hide();
@@ -105,7 +111,7 @@ export class EiMobileVerificationComponent implements OnInit {
      });
    }catch(err){
     this.SpinnerService.hide();
-     console.log("vaeryfy Otp Exception",err);
+     console.log("variyfy Otp Exception",err);
    }
  
   }

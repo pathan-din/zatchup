@@ -89,6 +89,7 @@ export class EiLoginComponent implements OnInit {
          },(error) => {
             this.SpinnerService.hide(); 
             console.log(error);
+            this.alert.error(error, 'Error')
             
           });
       }
