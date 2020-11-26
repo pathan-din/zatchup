@@ -7,7 +7,7 @@
                 <h2 class="text-center my-3 semiBoldFont">Let's ZatchUp</h2>
 
                 <mat-horizontal-stepper #stepper linear labelPosition="bottom">
-                    <mat-step label="stage 1" state="circle">
+                    <mat-step completed="false" label="stage 1" state="circle">
                         <form id="Form1" enctype="multipart/form-data">
                             <div class="process1 mt-4">
                                 <div class="form-group row ">
@@ -260,7 +260,7 @@
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step label="stage 2 " state="circle ">
+                    <mat-step completed="false" label="stage 2 " state="circle ">
                         <form id="Form2">
                             <div class="process2 mt-4 ">
                                 <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">
@@ -357,7 +357,7 @@
                                                                 class="custom-select form-control-input form-control-sm "
                                                                 required>
                                                                 <option value="">Year</option>
-                                                                <option value="y" *ngFor="let y of year">{{y}}</option>
+                                                                <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                                  
                                                             </select>
                                                         </div>
@@ -375,7 +375,7 @@
                                                                 class="custom-select  form-control-input form-control-sm "
                                                                 required>
                                                                 <option value="">Month</option>
-                                                                <option value="m" *ngFor="let m of month">{{m}}</option>
+                                                                <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="required errorMsg"
@@ -426,7 +426,7 @@
                                                                     class="custom-select  form-control-input form-control-sm "
                                                                     required>
                                                                     <option value="">Year</option>
-                                                                    <option value="y" *ngFor="let y of year">{{y}}</option>
+                                                                    <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
@@ -442,7 +442,7 @@
                                                                     class="custom-select form-control-input form-control-sm "
                                                                     required>
                                                                     <option value="">Month</option>
-                                                                    <option value="m" *ngFor="let m of month">{{m}}</option>
+                                                                    <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
@@ -468,7 +468,7 @@
                                                                     name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select  form-control-input form-control-sm ">
                                                                     <option value="">Year</option>
-                                                                    <option value="y" *ngFor="let y of year">{{y}}</option>
+                                                                    <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
@@ -485,7 +485,7 @@
                                                                     name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select form-control-input form-control-sm ">
                                                                     <option value="">Month</option>
-                                                                    <option value="m" *ngFor="let m of month">{{m}}</option>
+                                                                    <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
                                                                     
                                                                 </select>
                                                             </div>
@@ -554,7 +554,7 @@
                                             <div class="row justify-content-center "
                                                 *ngIf="standardL.classdata.length>1 && c!=standardL.classdata.length-1">
                                                 <div class="col-xl-8 col-lg-8 col-md-10 ">
-                                                    <button type="button " (click)="removeData(c,standardL.classdata)"
+                                                    <button type="button " (click)="removeData(c+1,standardL.classdata)"
                                                         class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                                         - Remove another Class in this standard
                                                     </button>
@@ -582,7 +582,7 @@
                                         <div class="row justify-content-center "
                                             *ngIf="courseList.standarddata.length>1 && s!=courseList.standarddata.length-1">
                                             <div class="col-xl-8 col-lg-8 col-md-10 ">
-                                                <button type="button " (click)="removeData(s,courseList.standarddata)"
+                                                <button type="button " (click)="removeData(s+1,courseList.standarddata)"
                                                     class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                                     - Remove another Standard in this course
                                                 </button>
@@ -604,7 +604,7 @@
                                     <div class="row justify-content-center "
                                         *ngIf="model2Step.coursedata.length>1 && cNo!=model2Step.coursedata.length-1">
                                         <div class="col-xl-5 col-lg-5 col-md-6 ">
-                                            <button type="button " (click)="removeData(cNo,model2Step.coursedata)"
+                                            <button type="button " (click)="removeData(cNo+1,model2Step.coursedata)"
                                                 class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                                 - Remove another Course
                                             </button>
@@ -645,7 +645,7 @@
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step label="stage 3 " state="circle ">
+                    <mat-step completed="false" label="stage 3 " state="circle ">
                         <form id="Form3" enctype="multipart/form-data">
                             <div class="process3 mt-4 ">
                                 <div class="form-group row ">
@@ -723,7 +723,7 @@
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step label="stage 4 " state="circle ">
+                    <mat-step completed="false" label="stage 4 " state="circle ">
                         <form id="Form4" enctype="multipart/form-data">
                         <div class="process4 mt-4 " >
                             <div *ngFor="let document of modelDocumentDetails;let i=index;">
@@ -765,7 +765,7 @@
                                     <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
                                 </div>
                                 <div *ngIf="modelDocumentDetails.length!=(i+1)" class="col-sm-1 centerImgDiv">
-                                     <i (click)="removeData(i,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> 
+                                     <i (click)="removeData(i+1,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> 
                                 </div>
                             </div>
                         </div>
@@ -773,9 +773,9 @@
                                 <div class="col-12 ">
                                     <div class="row form-control-inputDiv ml-0 mr-0 ">
 									<div></div>
-                                        <div *ngFor="let doc of modelDocumentDetails" class="col-4 p-1 ID-img-div ">
-                                            <img class="img-fluid w-100 h-100"
-                                                src="assets/images/userWebsite/share-my-profile-icon.png">
+                                        <div *ngFor="let doc of modelDocumentDetails"  class="col-4 p-1 ID-img-div ">
+                                            <img *ngIf="doc.name!=''" class="img-fluid w-100 h-100"
+                                                src="http://staging.zatchup.com/zatchupapi/zatchup/media/temp/{{doc.name}}">
                                         </div>
                                         <!-- <div class="col-4 p-1 ID-img-div "> -->
                                             <!-- <img class="img-fluid w-100 h-100 " -->

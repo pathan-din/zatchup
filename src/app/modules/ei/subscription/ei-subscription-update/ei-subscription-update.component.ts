@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { ShareDataService } from '../../services/share-data.service';
+import { environment } from 'src/environments/environment';
+declare var Razorpay: any
 
 @Component({
   selector: 'app-ei-subscription-update',
@@ -11,19 +11,21 @@ import { ShareDataService } from '../../services/share-data.service';
   styleUrls: ['./ei-subscription-update.component.css']
 })
 export class EiSubscriptionUpdateComponent implements OnInit {
+  @ViewChild('closePaymentModel') closePaymentModel: any;
   subscriptionList: any;
   subscription: any;
   couponCode: any;
   applyCouponData: any;
+  paymentHtml: any;
+  public env: any = environment;
+
   // subscriptionAmount: any;
 
 
   constructor(
-    private router: Router,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private communicationService: ShareDataService
   ) {
 
   }
@@ -33,8 +35,10 @@ export class EiSubscriptionUpdateComponent implements OnInit {
   }
 
   makePayment() {
-    // this.router.navigate(['ei/subscriptionDetails']);
-    this.communicationService.changeMessage('Hi comp 1');
+    this.paymentHtml = '';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + this.subscription.current_amount + '</del></div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + 0 + '</div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + this.subscription.current_amount + '</div></div>';
   }
 
   getSubList() {
@@ -55,6 +59,60 @@ export class EiSubscriptionUpdateComponent implements OnInit {
     this.subscription = subscription
   }
 
+  requestForTheRazorPayment(code, buttonClick) {
+    //Display Loader Before Request of the service  
+    this.loader.show();
+    // debugger
+    let data = {
+      "coupon_code": code,
+      "coupon_type": "2",
+      "subscription_id": this.subscription.id
+    }
+    this.baseService.action('ei/payment-process/', data).subscribe(
+      (res: any) => {
+        this.loader.hide();
+        if (res.status === true)// Condition True Success 
+        {
+          this.paymentHtml = '';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + res.original_price + '</del></div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + res.discount_amount + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + res.price + '</div></div>';
+
+          if (buttonClick) {
+            var that = this;
+            var options = {
+              "key": this.env.razorApiKey,
+              "amount": parseInt(res.price) * 100,
+              "description": "",
+              "order_id": res.order_id,
+              "prefill": {
+                "name": res.name,
+                "email": res.email
+              },
+              "handler": function (res) {
+                if (res.razorpay_payment_id) {
+                  that.closePaymentModel.nativeElement.click()
+                  window.location.href = '#/ei/subscription';
+                }
+              },
+              "notes": {
+                "address": ""
+              }
+            };
+            // debugger
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+          }
+
+        } else {
+          this.alert.error(res.error.message[0], "Error")
+        }
+        this.loader.hide();
+      }, (error) => {
+        this.loader.hide();
+      });
+  }
+
   applyCoupon() {
     this.loader.show();
     let data = {
@@ -65,7 +123,14 @@ export class EiSubscriptionUpdateComponent implements OnInit {
       (res: any) => {
         console.log('apply coupon res ::', res)
         if (res.status)
-          this.applyCouponData = res.data
+        // this.applyCouponData = res.data
+        {
+          this.paymentHtml = '';
+          this.paymentHtml += '<div class="row"><div class="col-md-4 pr-0"></div><div class="col-md-8 pr-0 text-left color-green">' + 'Coupon Applied' + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + res.data.current_amount + '</del></div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + res.data.discount_amount + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + res.data.price + '</div></div>';
+        }
         else
           this.alert.error(res.error.message, 'Error')
         this.loader.hide();
@@ -75,5 +140,4 @@ export class EiSubscriptionUpdateComponent implements OnInit {
       this.alert.error(err.error, 'Error')
     }
   }
-
 }
