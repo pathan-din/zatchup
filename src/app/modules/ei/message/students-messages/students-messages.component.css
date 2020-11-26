@@ -10,3 +10,9 @@
     list-style-type: none;
     margin-top: 4px;
   }
+  .position-ppin{
+    top: 6px;
+    right: 8px;
+    font-size: 24px;
+    color: #888;
+}
