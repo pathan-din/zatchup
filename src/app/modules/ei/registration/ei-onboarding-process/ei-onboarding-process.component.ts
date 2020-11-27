@@ -237,8 +237,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if(response.status == true){
-		this.SpinnerService.hide();
-        this.numberOfAluminiList = response.results;
+		      this.SpinnerService.hide();
+          this.numberOfAluminiList = response.results;
         } else{
           this.SpinnerService.hide();
           this.alert.error(response.error, 'Error')
@@ -324,8 +324,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-		  this.SpinnerService.hide();	
-          this.myStepper.next();
+            this.SpinnerService.hide();	
+            this.myStepper.selected.completed = true;
+            this.myStepper.next();
 
 
         } else {
@@ -514,7 +515,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-			 this.SpinnerService.hide();
+           this.SpinnerService.hide();
+           this.myStepper.selected.completed = true;
           this.myStepper.next();
 
 
