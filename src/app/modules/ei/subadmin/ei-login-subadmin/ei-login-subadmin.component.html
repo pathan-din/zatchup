@@ -14,8 +14,9 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-user text-white" aria-hidden="true"></i>
                                     </span>
-                            <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Enter EmailID / Mobile Number">
+                            <input required [(ngModel)]="model.username" name="email_Or_phone_number" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Enter EmailID / Mobile Number">
                         </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.email_Or_phone_number"></div>
                     </div>
 
                     <div class="form-group row  ml-0 mr-0">
@@ -24,12 +25,13 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
                                     </span>
-                            <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
+                            <input required [(ngModel)]="model.password" name="password" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
                         </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                     </div>
 
                     <p class="text-right textUnderlineStyle commonFontSize mediumFont " (click)="goToEiForgetPasswordPage() ">Forgot Password?</p>
-                    <button type="button " class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">Log In
+                    <button (click)="doLogin()" type="button " class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">Log In
                         <span class="">
                             <i class="fa fa-sign-in text-white" aria-hidden="true"></i>
                             </span>
@@ -43,3 +45,41 @@
         <div class="col-xl-4 col-lg-3 col-md-3 "></div>
     </div>
 </div>
+<!-- OTPModel -->
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id. </p>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-between">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input [(ngModel)]="model.otp4" name="otp4"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                            type="text" maxlength="1">
+                    </div>
+                </div>
+                <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
+
+                <button type="button" class="btn common-model-Btn mt-3" (click)="goToDashboard();">Submit </button>
+
+                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 

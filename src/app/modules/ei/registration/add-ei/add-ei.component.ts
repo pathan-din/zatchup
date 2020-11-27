@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
-import { EiServiceService } from '../../../services/EI/ei-service.service';
-import { BaseService } from '../../../services/base/base.service';
+import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
+import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { BaseService } from '../../../../services/base/base.service';
+
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from '../../../../services/notification/notification.service';
+
 declare var $: any;
+
 @Component({
-  selector: 'app-user-add-ei',
-  templateUrl: './user-add-ei.component.html',
-  styleUrls: ['./user-add-ei.component.css']
+  selector: 'app-add-ei',
+  templateUrl: './add-ei.component.html',
+  styleUrls: ['./add-ei.component.css']
 })
-export class UserAddEiComponent implements OnInit {
-  
+export class AddEiComponent implements OnInit {
+  model:any={};
   modelZatchup:any={};
   stateList:any=[];
   cityList:any=[];
   schoolList:any=[];
   error:any=[];
-  model:any={};
   errorDisplay:any={};
   name_of_school_others:any='';
   name_of_school_first:any='';
@@ -27,18 +30,19 @@ export class UserAddEiComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public baseService:BaseService,
-    
+    private alert : NotificationService,
     public formBuilder: FormBuilder,
     private genericFormValidationService:GenericFormValidationService) { }
 
   ngOnInit(): void {
-    this.getAllState(); 
+    
     this.model.state='';
     this.model.city='';
+    this.getAllState(); 
   }
 
   goToUserEiProfilePage() {
-    this.router.navigate(['user/ei-profile']);
+    this.router.navigate(['ei/ei-profile']);
  }
  /****************Get All State Function*************************/
  getAllState(){
@@ -51,10 +55,13 @@ export class UserAddEiComponent implements OnInit {
       let response:any={};
       response=res;
       this.stateList=response.results;
+      
+      
       this.SpinnerService.hide(); 
      
       },(error) => {
         this.SpinnerService.hide(); 
+        
         console.log(error);
         
       });
@@ -70,6 +77,7 @@ getCityByState(state){
   //this.isValid(event);
   let obj:any={};
   obj = this.stateList.find(o => o.state.toLowerCase() === state.toLowerCase());
+  console.log(obj);
   
   
   try{
@@ -80,7 +88,7 @@ getCityByState(state){
       let response:any={};
       response=res;
       this.cityList=response.results;
-      
+    
       
       this.SpinnerService.hide(); 
      
@@ -119,20 +127,15 @@ goToUserQualificationPage() {
     }
     /***********************Mobile Number OR Email Verification Via OTP**********************************/
 
-    this.baseService.action('user/add-ei/',this.model).subscribe(res => {
+    this.baseService.action('subadmin/add-ei/',this.model).subscribe(res => {
       let response: any = {}
       response = res;
       this.SpinnerService.hide();
       if (response.status == true) {
         if(response.check_school_info_on_zatchup==1)
         {
-          this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id}});
-        }else if(response.check_school_info_on_zatchup==2){
-          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
-        }else if(response.check_school_info_on_zatchup==3){
-          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
+          this.router.navigate(['ei/subadminprofile']);
         }
-         
       } else {
         this.SpinnerService.hide();
         var errorCollection = '';
@@ -142,10 +145,11 @@ goToUserQualificationPage() {
 
           }
         }
-        alert(errorCollection);
+        this.alert.error(errorCollection,'Error');
       }
     }, (error) => {
       this.SpinnerService.hide();
+      this.alert.error(error,'Error');
       console.log(error);
 
     });
@@ -159,7 +163,7 @@ getSchoolListBycityId(city){
   //getallstate
   //this.isValid(document.forms);
   let obj = this.cityList.find(o => o.city.toLowerCase() === city.toLowerCase());
-  console.log(this.cityList);
+  console.log(obj);
   
   try{
     this.SpinnerService.show(); 
@@ -225,7 +229,8 @@ getDataByZatchupId() {
 
     this.SpinnerService.show();
     if(!this.modelZatchup.zatchup_id){
-      alert("Enter Zatchup Id.");
+      this.alert.error("Enter Zatchup Id.",'Error');
+      
       return false;
     }
     this.baseService.action('user/get-school-detail-zatchupid/',this.modelZatchup).subscribe(res => {
@@ -235,20 +240,15 @@ getDataByZatchupId() {
       if (response.status == true) {
         let model:any={}
         model=response.data;
-        
         this.getCityByState(model.state)
-        
-        
-        this.model.city=  model.city;
         this.getSchoolListBycity(model.city_id)
-        this.name_of_school_first=model.name_of_school;
+        this.model.city=  model.city;
+        this.name_of_school_first=model.name_of_school;  
+        
         this.model.state = model.state;
         this.model.address1 = model.address1;
         this.model.university = model.university;
-        if(model.school_code)
-        {this.modelZatchup.zatchup_id = model.school_code;}else{
-          delete this.modelZatchup.zatchup_id;
-        }
+        if(model.school_code){this.modelZatchup.zatchup_id = model.school_code;}
        
       } else {
         this.SpinnerService.hide();
@@ -259,7 +259,7 @@ getDataByZatchupId() {
 
           }
         }
-        alert(errorCollection);
+        this.alert.error(errorCollection,'Error');
       }
     }, (error) => {
       this.SpinnerService.hide();
