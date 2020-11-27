@@ -104,12 +104,12 @@ export class EiAlumniListComponent implements OnInit {
       this.baseService.getData('ei/course-list/').subscribe(res => {
         let response:any={};
         response=res;
-        if(response.status == true){
+        // if(response.status == true){
 		    this.courseList=response.results;
-      }else{
-        this.SpinnerService.hide();
-        this.alert.error(response.error.message[0], 'Error')
-      }
+      // }else{
+      //   this.SpinnerService.hide();
+      //   this.alert.error(response.error.message[0], 'Error')
+      // }
         },(error) => {
           this.SpinnerService.hide(); 
           //console.log(error);
@@ -117,7 +117,7 @@ export class EiAlumniListComponent implements OnInit {
         });
     }catch(err){
       this.SpinnerService.hide(); 
-      this.alert.error(err, 'Error')
+      //this.alert.error(err, 'Error')
       //console.log(err);
     } 
  }
@@ -139,13 +139,13 @@ export class EiAlumniListComponent implements OnInit {
         this.SpinnerService.hide(); 
         let response:any={};
         response=res;
-        if(response.status == true){
+        // if(response.status == true){
 		this.standardList=response.standarddata;
-        }
-        else{
-          this.SpinnerService.hide();
-          this.alert.error(response.error.message[0], 'Error')
-        }
+        // }
+        // else{
+        //   this.SpinnerService.hide();
+        //   this.alert.error(response.error.message[0], 'Error')
+        // }
         },(error) => {
           this.SpinnerService.hide(); 
           //console.log(error);
@@ -153,7 +153,7 @@ export class EiAlumniListComponent implements OnInit {
         });
     }catch(err){
       this.SpinnerService.hide(); 
-      this.alert.error(err, 'Error')
+      //this.alert.error(err, 'Error')
       //console.log(err);
     } 
  }
@@ -242,7 +242,7 @@ getAluminiList(page,strFilter){
 		},(error) => {
           this.SpinnerService.hide(); 
           // console.log(error);
-          this.alert.error(data.error.message[0], 'Error')
+          this.alert.error(error, 'Error')
         });
     }catch(err){
       this.SpinnerService.hide(); 
