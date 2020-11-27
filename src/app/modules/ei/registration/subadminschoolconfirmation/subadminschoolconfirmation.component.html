@@ -1,0 +1,67 @@
+<div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5">
+        <div class="col-md-8">
+            <img class="img-fluid kycVerificationleftImage mt-5 mb-5 pb-5 pt-5"
+                src="assets/images/userWebsite/kyc_verification_leftimage.png">
+        </div>
+        <div class="col-md-4 pl-0 pr-5 mobilePR">
+            <div class="form-group row mt-5 mb-5 pb-5 pt-5 mobilePTB">
+                <div class="col-sm-12 form-control-inputDiv">
+                    <div class="text-center pr-5 mt-3 pl-5 mb-3 mobilePLR">
+                        <h2 class="mb-4 semiBoldFont">Welcome to ZatchUp </h2>
+                        <p class="regularFont">{{studentsConfirmation.name_of_school}} has registered you as their student as <span class="mediumFont">{{studentsConfirmation.first_name}} {{studentsConfirmation.last_name}}</span> studying in {{studentsConfirmation.class_name}}.</p>
+                        <p class="regularFont">If this is you, please press confirm, If this is not you, please click not me and sign up as <span class="mediumFont">New user</span></p>
+                        <button type="submit" class="btn common-btn btn-green regularFont mt-4 mr-2"
+                        (click)="goToUserCongratulationPage()">Continue</button>
+                        <button (click)="redirectToCurrentlyStudent()" type="submit" class="btn common-btn btn-red-outline regularFont mt-4">Not Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- currentStatusModel -->
+<div class="modal fade" id="currentStatusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                <form class="pl-5 pr-5">
+                    <p class="color-black semiBoldFont commonFontSize">Are you currently a student? </p>
+                    <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/study_student.png">
+
+                    <div class="form-group row mt-2 model-row-nowrap">
+                        <div class="col-sm-6 form-control-inputDiv  border-danger mr-1 p-0 text-left">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <label class="custom-label commonFontSize " for="studentRadio1">
+                                    <input class="custom-control-input" [(ngModel)]="isStudent" (change)="areYouCurrentlyStudentFunction(isStudent)"  type="radio" name="student" id="studentRadio1"
+                                        value="no">
+                                    <span class="checkmark checkmarkRed"></span>
+                                    <span class="commonFontSize text-danger radioValuetext font-weight-normal">No</span>
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-control-inputDiv ml-1 p-0 text-left">
+                            <div class="custom-control custom-radio custom-control-inline ">
+                                <label class="custom-label" for="studentRadio2">
+                                    <input class="custom-control-input" [(ngModel)]="isStudent" type="radio" (change)="areYouCurrentlyStudentFunction(isStudent)"  name="student" id="studentRadio2"
+                                        value="yes">
+                                    <span class="checkmark checkmarkGreen"></span>
+                                    <span
+                                        class="commonFontSize text-success radioValueText2 font-weight-normal">Yes</span></label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn common-model-Btn mt-4" (click)="areYouCurrentlyStudentFunction(isStudent);">Next
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 
+

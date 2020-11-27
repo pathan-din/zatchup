@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from '../../../environments/environment';
 import * as fileSaver from 'file-saver';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class BaseService {
   dynamicJson: any
   public serverImagePath: any = this.environment.serverImagePath;
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private datePipe: DatePipe
   ) { }
 
   getData(url, args?) {
@@ -25,7 +27,9 @@ export class BaseService {
     }
     return this.http.get(this.environment.baseUrl + url, { params })
   }
-
+  getDateFormat(date){
+    return this.datePipe.transform(date, 'yyyy-MM-dd'); 
+  }
   setParams(params) {
     let httpParams = new HttpParams();
     Object.keys(params).forEach(function (key) {

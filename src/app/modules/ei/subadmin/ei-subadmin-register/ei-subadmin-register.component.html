@@ -64,41 +64,7 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.gender"></div>
                 </div>
-                    <!-- <div class="form-group row  ml-0 mr-0"> -->
-                        <!-- <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 "> -->
-                            <!-- <label for="gender " class=" mediumFont commonFontSize letterspacing">Gender</label> -->
-                            <!-- <div class="d-flex flex-row align-items-center justify-content-between"> -->
-
-                                <!-- <div class="custom-control custom-radio custom-control-inline"> -->
-                                    <!-- <label class="custom-label" for="inlineRadio1"> -->
-                                    <!-- <input class="custom-control-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> -->
-                                    <!-- <span class="checkmark"></span> -->
-                                    <!-- <span class="radioValuetext commonFontSize">Female</span></label> -->
-
-                                <!-- </div> -->
-                                <!-- <div class="custom-control custom-radio custom-control-inline"> -->
-                                    <!-- <label class="custom-label" for="inlineRadio2"> -->
-                                        <!-- <input class="custom-control-input" type="radio" name="inlineRadioOptions" -->
-                                            <!-- id="inlineRadio2" value="option2"> -->
-                                        <!-- <span class="checkmark"></span> -->
-                                        <!-- <span class="radioValuetext commonFontSize">Male</span></label> -->
-                                <!-- </div> -->
-                                <!-- <div class="custom-control custom-radio custom-control-inline"> -->
-                                    <!-- <label class="custom-label" for="inlineRadio3"> -->
-                                        <!-- <input class="custom-control-input" type="radio" name="inlineRadioOptions" -->
-                                            <!-- id="inlineRadio3" value="option3"> -->
-                                        <!-- <span class="checkmark"></span> -->
-                                        <!-- <span class="radioValuetext commonFontSize">Custom</span></label> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                            <!-- <!-- <mat-radio-group class="ei-subadmin-reg-radio-grp w-100 d-flex justify-content-between"> -->
-                                <!-- <mat-radio-button class="example-margin" value="Male">After</mat-radio-button> -->
-                                <!-- <mat-radio-button class="example-margin" value="Female">Before</mat-radio-button> -->
-                                <!-- <mat-radio-button class="example-margin" value="Custom">Before</mat-radio-button> -->
-                            <!-- </mat-radio-group> --> 
-
-                        <!-- </div> -->
-                    <!-- </div> -->
+                    
                     <div class="form-group row  ml-0 mr-0" *ngIf="model.profile.gender=='C'">
                         <div class="col-sm-12 ">
                             <label for="pronouce " class=" mediumFont commonFontSize letterspacing">Select your pronoun</label>
@@ -127,15 +93,16 @@
                         <div class="col-sm-6 ">
                             <label for="dob " class=" mediumFont commonFontSize letterspacing">Date of Birth*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY">
-
+                                <input  autocomplete="off" bsDatepicker [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" (change)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" placeholder="MM/DD/YYYY">
+                                 
+                                
                             </div>
 							<div class="required errorMsg" [innerHtml]="errorDisplay.birth_date"></div>	
                         </div>
                         <div class="col-sm-6 ">
                             <label for="password "  class=" mediumFont commonFontSize letterspacing">Password*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" required [(ngModel)]="model.password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" id="password" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
+                                <input (keyup)="isValid($event)" match="password,confirm_password" required [(ngModel)]="model.password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" id="password" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
 
                             </div>
 							<div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>	
@@ -145,7 +112,7 @@
                         <div class="col-sm-6 ">
                             <label for="cPassword " class=" mediumFont commonFontSize letterspacing">Confirm Password*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input required (keyup)="isValid($event)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" [(ngModel)]="modelForConfirm.confirm_password" name ="confirm_password" id="confirm_password" match="password,confirm_password" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="password" placeholder="Re-enter Password">
+                                <input required (keyup)="isValid($event)"  [(ngModel)]="modelForConfirm.confirm_password" name ="confirm_password" id="confirm_password" match="password,confirm_password" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="password" placeholder="Re-enter Password">
 
                             </div>
 							<div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>	

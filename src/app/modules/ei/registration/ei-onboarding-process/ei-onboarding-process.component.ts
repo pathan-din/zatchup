@@ -569,17 +569,17 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-		  this.SpinnerService.hide();
-		  document.document=response.filename;
-		  return response.filename;
-         console.log("Sccess:Update");
-
-
-        } else {
           this.SpinnerService.hide();
-		      this.alert.error(response.error, 'Error')
-          console.log("Error:Data not update");
-		  return '';
+          document.document=response.filename;
+          return response.filename;
+            console.log("Sccess:Update");
+
+
+            } else {
+              this.SpinnerService.hide();
+              this.alert.error(response.error, 'Error')
+              console.log("Error:Data not update");
+          return '';
         }
 
       }, (error) => {
