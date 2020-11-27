@@ -488,7 +488,6 @@ const routes: Routes = [
   },{
     path: 'subadmin-school-confirm', component: SubadminschoolconfirmationComponent
   },
-<<<<<<< HEAD
   {
     path: 'my-poc-details', component: MyPocDetailsComponent
   },
@@ -500,8 +499,6 @@ const routes: Routes = [
 
 
 
-=======
->>>>>>> 9c911676baa09b4fdd7758919237d9cb0533af28
 
 
   
