@@ -67,19 +67,11 @@ export class UserKycVerificationComponent implements OnInit {
   }
   checkIdValidation(){
     this.pattran='';
-<<<<<<< HEAD
     if(this.model.kyc_type=='AADHAR'){
       this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
     }else if(this.model.kyc_type=='dl'){
       this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
     }else if(this.model.kyc_type=='passport'){
-=======
-    if(this.model.kyc_type=='Aadhar'){
-      this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
-    }else if(this.model.kyc_type=='Dl'){
-      this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
-    }else if(this.model.kyc_type=='Passport'){
->>>>>>> 9c911676baa09b4fdd7758919237d9cb0533af28
       this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
     }
     
