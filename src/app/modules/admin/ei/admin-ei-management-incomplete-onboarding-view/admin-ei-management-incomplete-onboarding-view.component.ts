@@ -44,7 +44,6 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     }
     if (localStorage.getItem('user_type'))
     this.user_type = localStorage.getItem('user_type')
-    debugger
   }
 
   getProfileData() {
@@ -280,35 +279,35 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     )
   }
 
-  addComment() {
-    this.pendingApprovalProfile.errorDisplay = {};
-    this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[5].elements, false, []);
-    if (this.pendingApprovalProfile.errorDisplay.valid) {
-      return false;
-    }
+  // addComment() {
+  //   this.pendingApprovalProfile.errorDisplay = {};
+  //   this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[5].elements, false, []);
+  //   if (this.pendingApprovalProfile.errorDisplay.valid) {
+  //     return false;
+  //   }
 
-    this.loader.show()
-    let data = {
-      'user_id': this.eiData.id,
-      'comments': this.pendingApprovalProfile.comment,
-    }
-    this.baseService.action('admin/onboarding-comments/', data).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          this.closeCommentModel.nativeElement.click();
-          this.alert.success(res.message, 'Success')
+  //   this.loader.show()
+  //   let data = {
+  //     'user_id': this.eiData.id,
+  //     'comments': this.pendingApprovalProfile.comment,
+  //   }
+  //   this.baseService.action('admin/onboarding-comments/', data).subscribe(
+  //     (res: any) => {
+  //       if (res.status == true) {
+  //         this.closeCommentModel.nativeElement.click();
+  //         this.alert.success(res.message, 'Success')
 
-        }
-        else {
-          this.alert.error(res.error.message[0], 'Error')
-        }
-        this.loader.hide()
-      }, err => {
-        this.alert.error(err, 'Error')
-        this.loader.hide()
-      }
-    )
-  }
+  //       }
+  //       else {
+  //         this.alert.error(res.error.message[0], 'Error')
+  //       }
+  //       this.loader.hide()
+  //     }, err => {
+  //       this.alert.error(err, 'Error')
+  //       this.loader.hide()
+  //     }
+  //   )
+  // }
   isValid(event) {
     if (Object.keys(this.pendingApprovalProfile.errorDisplay).length !== 0) {
       this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);

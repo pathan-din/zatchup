@@ -17,6 +17,13 @@
       overflow-y: scroll;
   }
 
+  .position-ppin{
+    top: 9px;
+    left: 10px;
+    font-size: 18px;
+    color: #666;
+}
+
   @media (max-width: 767px){
     .teacherChatList {
         height: 300px;
