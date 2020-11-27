@@ -117,6 +117,9 @@ import { ReminderComponent } from './reminder/reminder/reminder.component';
 import { ReminderAddComponent } from './reminder/reminder-add/reminder-add.component';
 import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
 import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.component';
+import { MyPocDetailsComponent } from './my-poc-details/my-poc-details.component';
+import { SearchComponent } from '../admin/ei/search/search.component';
+import { EiSearchComponent } from './ei-search/ei-search.component';
 
 
 const routes: Routes = [
@@ -470,8 +473,12 @@ const routes: Routes = [
   {
     path: 'reminder-past', component: ReminderPastComponent
   },
-
-
+  {
+    path: 'my-poc-details', component: MyPocDetailsComponent
+  },
+  {
+    path: 'ei-search', component: EiSearchComponent
+  },
 
 
 
