@@ -15,7 +15,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class EiStudentChangeBulkClassComponent implements OnInit {
   error:any=[];
   errorDisplay:any={};
-  courseList:any;
+  courseList:any=[];
   classDataList:any=[];
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -74,8 +74,19 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
       console.log("verify Otp Exception", err);
      }
    }
-  
-  ///
+   /*Export Class */
+   getExportData(){
+    try {
+      let params:any=[];
+      params['export_csv'] = true
+      this.baseService.generateExcel('ei/export-class-id-of-course-by-ei/', 'class_list', params)
+    
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+ 
   uploadXlsSheet(file){
     let fileList: FileList = file;
     let fileData: File = fileList[0];

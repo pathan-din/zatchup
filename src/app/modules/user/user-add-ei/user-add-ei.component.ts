@@ -69,7 +69,7 @@ getCityByState(state){
   //this.isValid(event);
   let obj:any={};
   obj = this.stateList.find(o => o.state.toLowerCase() === state.toLowerCase());
-  console.log(obj.id);
+  
   
   try{
     this.SpinnerService.show(); 
@@ -79,7 +79,7 @@ getCityByState(state){
       let response:any={};
       response=res;
       this.cityList=response.results;
-      console.log(this.cityList);
+      
       
       this.SpinnerService.hide(); 
      
@@ -127,7 +127,7 @@ goToUserQualificationPage() {
         {
           this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id}});
         }else if(response.check_school_info_on_zatchup==2){
-          this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:response.data.school_id}});
+          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
         }else if(response.check_school_info_on_zatchup==3){
           this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
         }
@@ -243,7 +243,10 @@ getDataByZatchupId() {
         this.model.state = model.state;
         this.model.address1 = model.address1;
         this.model.university = model.university;
-        
+        if(model.school_code)
+        {this.modelZatchup.zatchup_id = model.school_code;}else{
+          delete this.modelZatchup.zatchup_id;
+        }
        
       } else {
         this.SpinnerService.hide();
