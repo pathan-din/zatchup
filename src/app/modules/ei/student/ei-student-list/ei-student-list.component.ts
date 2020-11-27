@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseService } from '../../../../services/base/base.service';
+import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -42,11 +43,16 @@ export class EiStudentListComponent implements OnInit {
   courseList: any = [];
   standardList: any = [];
   classList: any = [];
+  error: any = [];
+  errorDisplay: any = {};
+  modelReason: any = {};
+  modelUserId:any='';
   constructor(
     private genericFormValidationService: GenericFormValidationService, 
     private router: Router, 
     private SpinnerService: NgxSpinnerService, 
-    public eiService: BaseService, 
+    public eiService: EiServiceService, 
+    public base: BaseService, 
     public formBuilder: FormBuilder,
     private alert: NotificationService
     ) { }
@@ -66,13 +72,35 @@ export class EiStudentListComponent implements OnInit {
     this.getStudentList('', '')
     this.displayCourseList();
   }
+  isValid(event) {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  openRejectModel(studentId) {
+    this.modelReason.student_id = studentId;
+  }
+
+  openModel(studentID)
+  {
+    this.modelUserId = studentID;
+    $("#verifiedModel").modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+   
+  }
+  closeModel(){
+    $("#verifiedModel").modal('hide');
+  }
   displayCourseList() {
     try {
       this.SpinnerService.show();
       this.model.course = '';
       this.model.standard = '';
       this.model.teaching_class = '';
-      this.eiService.getData('ei/course-list/').subscribe(res => {
+      this.base.getData('ei/course-list/').subscribe(res => {
         this.SpinnerService.hide();
         let response: any = {};
         response = res;
@@ -97,7 +125,7 @@ export class EiStudentListComponent implements OnInit {
 
       this.model.standard = '';
       this.model.teaching_class = '';
-      this.eiService.getData('ei/standard-list/', { 'course_id': courseId }).subscribe(res => {
+      this.base.getData('ei/standard-list/', { 'course_id': courseId }).subscribe(res => {
         this.SpinnerService.hide();
         let response: any = {};
         response = res;
@@ -118,7 +146,7 @@ export class EiStudentListComponent implements OnInit {
       this.SpinnerService.show();
       this.classList = [];
       this.model.teaching_class = '';
-      this.eiService.getData('ei/class-list/', { 'standard_id': stId }).subscribe(res => {
+      this.base.getData('ei/class-list/', { 'standard_id': stId }).subscribe(res => {
         this.SpinnerService.hide();
 
         let response: any = {};
@@ -141,7 +169,7 @@ export class EiStudentListComponent implements OnInit {
 
       this.SpinnerService.show();
 
-      this.eiService.getData('ei/student-list/', this.model).subscribe(res => {
+      this.base.getData('ei/student-list/', this.model).subscribe(res => {
 
         let response: any = {};
         response = res;
@@ -149,6 +177,7 @@ export class EiStudentListComponent implements OnInit {
 
         this.studentList = response.results;
         this.pageSize = response.page_size;
+        this.model.page_size=this.pageSize
         this.totalNumberOfPage = response.count;
         let arrStudentList: any = [];
         
@@ -190,6 +219,67 @@ export class EiStudentListComponent implements OnInit {
     } catch (err) {
       this.SpinnerService.hide();
       console.log(err);
+    }
+  }
+
+  getExportData(){
+    try {
+      let params:any=[];
+      params['export_csv'] = true
+      this.base.generateExcel('ei/export-student-by-ei/', 'student-list', params)
+    
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  rejectStudent() {
+    this.error = [];
+    this.errorDisplay = {};
+    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+    try {
+      this.SpinnerService.show();
+      /***************Merge dob after all selected dropdown *****************/
+      //this.model.profile.dob=this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
+      /**********************************************************************/
+
+      this.eiService.postRejectReason(this.modelReason).subscribe(res => {
+
+        let response: any = {};
+        response = res;
+
+        if (response.status === true)// Condition True Success 
+        {
+
+          this.alert.success(response.message, 'Success')
+          this.getStudentList('', '')
+        } else { // Condition False Validation failure
+          this.SpinnerService.hide();
+          var errorCollection = '';
+          for (var key in response.error) {
+            if (response.error.hasOwnProperty(key)) {
+              errorCollection = errorCollection + response.error[key][0] + '\n'
+
+            }
+          }
+          alert(errorCollection);
+
+        }
+
+        /*End else*/
+        //this.router.navigate(['user/signup']);
+      }, (error) => {
+        this.SpinnerService.hide();
+        //console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      //console.log(err);
     }
   }
 }

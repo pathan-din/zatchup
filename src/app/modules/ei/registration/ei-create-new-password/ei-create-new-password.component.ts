@@ -48,7 +48,7 @@ export class EiCreateNewPasswordComponent implements OnInit {
           this.model.uid = response.data.uid;
         } else {
            this.SpinnerService.hide();
-           this.alert.error(response.message, 'Error')
+           this.alert.error(response.error.message[0], 'Error')
           // var errorCollection = '';
           // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
           // alert(errorCollection);
@@ -88,7 +88,7 @@ export class EiCreateNewPasswordComponent implements OnInit {
           this.router.navigate(['ei/login']);
         } else {
           this.SpinnerService.hide();
-          this.alert.error(response.message, 'Error')
+          this.alert.error(response.error.message[0], 'Error')
           // var errorCollection = '';
           // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
           // alert(errorCollection);

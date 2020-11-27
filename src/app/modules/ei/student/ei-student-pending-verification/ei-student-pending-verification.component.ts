@@ -186,7 +186,7 @@ export class EiStudentPendingVerificationComponent implements OnInit {
         if (response.status === true)// Condition True Success 
         {
 
-          alert(response.message)
+          this.alert.success(response.message, 'Success')
           this.getPendingStudentList('', '')
         } else { // Condition False Validation failure
           this.SpinnerService.hide();
@@ -276,8 +276,9 @@ export class EiStudentPendingVerificationComponent implements OnInit {
           this.SpinnerService.hide();
           this.alert.success(response.message,'Success');
         } else {
-          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error);
-          this.alert.error(this.errorDisplay.message,'Error');
+          this.SpinnerService.hide();
+          //this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error);
+          this.alert.error(response.error,'Error');
            
         }
 
