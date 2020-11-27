@@ -215,6 +215,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         if(response.status == true){
 		this.SpinnerService.hide();
         this.numberOfStudentList = response.results;
+        }else{
+          this.alert.error(response.error.message[0], 'Error')
         }
       }, (error) => {
         this.SpinnerService.hide();
@@ -241,7 +243,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           this.numberOfAluminiList = response.results;
         } else{
           this.SpinnerService.hide();
-          this.alert.error(response.error, 'Error')
+          this.alert.error(response.error.message[0], 'Error')
         }
       }, (error) => {
         this.SpinnerService.hide();

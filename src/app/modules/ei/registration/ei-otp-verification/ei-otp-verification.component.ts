@@ -114,7 +114,7 @@ model:any={};
       }else{
         this.SpinnerService.hide();
        //this.errorOtpModelDisplay=response.error;
-       this.alert.error(response.error, 'Error')
+       this.alert.error(response.error.message[0], 'Error')
       }
      },(error) => {
       this.SpinnerService.hide();
