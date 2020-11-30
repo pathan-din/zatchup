@@ -130,6 +130,9 @@ import { ReminderComponent } from './reminder/reminder/reminder.component';
 import { ReminderAddComponent } from './reminder/reminder-add/reminder-add.component';
 import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
 import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.component';
+import { MyPocDetailsComponent } from './my-poc-details/my-poc-details.component';
+import { EiSearchComponent } from './ei-search/ei-search.component';
+
 import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
@@ -262,6 +265,8 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
     ReminderAddComponent,
     ReminderListComponent,
     ReminderPastComponent,
+    MyPocDetailsComponent,
+    EiSearchComponent,
     AddEiComponent,
     SubadminprofileComponent,
     SubadmincongratulationComponent,
