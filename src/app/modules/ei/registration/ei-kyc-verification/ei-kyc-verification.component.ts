@@ -70,7 +70,7 @@ export class EiKycVerificationComponent implements OnInit {
           //localStorage.setItem("user_id",response.user_id);
           if(response.is_already_registered==true)
           {
-            //this.router.navigate(['user/school-confirmation']);
+            this.router.navigate(['ei/subadmin-school-confirmation']);
           }else{
               this.router.navigate(['ei/add-ei']);
           }
