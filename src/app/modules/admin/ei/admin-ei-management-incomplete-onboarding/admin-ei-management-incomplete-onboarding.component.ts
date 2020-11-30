@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { OnBoardList } from '../modals/ei-pending-approval.modal';
 import { DatePipe } from '@angular/common';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
 
 
 
@@ -29,7 +30,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private confirmDialogService: ConfirmDialogService
   ) {
     this.onboardList = new OnBoardList();
     this.maxDate = new Date();
@@ -63,15 +65,14 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university":this.onboardList.university,
-      "stage_pending":this.onboardList.stagePending,
+      "university": this.onboardList.university,
+      "stage_pending": this.onboardList.stagePending,
       "page_size": this.onboardList.pageSize ? this.onboardList.pageSize : 5,
       "page": page ? page : 1
     }
 
     this.baseService.getData('admin/ei/get_incomplete_ei_list/', this.onboardList.listParams).subscribe(
       (res: any) => {
-        console.log('list params....', res)
         if (res.status == true) {
           if (!page)
             page = this.onboardList.config.currentPage
@@ -79,10 +80,10 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
           this.onboardList.config.itemsPerPage = res.page_size
           this.onboardList.config.currentPage = page
           this.onboardList.config.totalItems = res.count;
-          if(res.count > 0)
-          this.onboardList.dataSource = res.results
+          if (res.count > 0)
+            this.onboardList.dataSource = res.results
           else
-          this.onboardList.dataSource = undefined
+            this.onboardList.dataSource = undefined
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -104,7 +105,6 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
   getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
-        console.log('get state res ::', res)
         if (res.count > 0)
           this.onboardList.allStates = res.results
       }
@@ -116,8 +116,28 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.onboardList.allCities = res.results
-        console.log('get state res ::', res)
       }
     )
+  }
+
+  deleteEI(id: any): any {
+    this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+      this.loader.show()
+      this.baseService.action('admin/ei/delete_incomplete_ei/', { "ei_id": id }).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.getONBoardList('');
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
   }
 }

@@ -21,6 +21,7 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxSpinnerService } from "ngx-spinner"; 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ConfirmDialogModule } from './common/confirm-dialog/confirm-dialog.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxPaginationModule,
+    ConfirmDialogModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   exports: [NgxSpinnerModule],
