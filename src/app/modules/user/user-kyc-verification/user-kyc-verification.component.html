@@ -15,7 +15,7 @@
             <form id="form1" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
-                        <select (change)="isValid($event) || checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
+                        <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
                             <option value="">Select your ID</option>
                             <option value="Aadhar">Adhar Card</option>
                             <option value="Dl">Driving License</option>
