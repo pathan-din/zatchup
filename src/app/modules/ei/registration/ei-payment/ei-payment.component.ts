@@ -122,7 +122,7 @@ export class EiPaymentComponent implements OnInit {
         // var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
         // alert(getServerErrorCollection);
         this.SpinnerService.hide();
-        this.alert.error(response.error, 'Error')
+        this.alert.error(response.error.message[0], 'Error')
       }
 
       /*End else*/
@@ -159,7 +159,7 @@ export class EiPaymentComponent implements OnInit {
         // var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
         // alert(getServerErrorCollection);
         this.SpinnerService.hide();
-        this.alert.error(response.error, 'Error')
+        this.alert.error(response.error.message[0], 'Error')
       }
 
       /*End else*/
@@ -198,7 +198,7 @@ export class EiPaymentComponent implements OnInit {
         // var getServerErrorCollection = this.eiService.getErrorResponse(this.SpinnerService, response.error)
         // alert(getServerErrorCollection);
         this.SpinnerService.hide();
-        this.alert.error(response.error, 'Error')
+        this.alert.error(response.error.message[0], 'Error')
       }
 
       /*End else*/

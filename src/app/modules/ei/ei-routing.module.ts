@@ -117,7 +117,14 @@ import { ReminderComponent } from './reminder/reminder/reminder.component';
 import { ReminderAddComponent } from './reminder/reminder-add/reminder-add.component';
 import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
 import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.component';
+import { MyPocDetailsComponent } from './my-poc-details/my-poc-details.component';
+import { SearchComponent } from '../admin/ei/search/search.component';
+import { EiSearchComponent } from './ei-search/ei-search.component';
 
+import { AddEiComponent } from './registration/add-ei/add-ei.component';
+import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
+import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
+import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
 
 const routes: Routes = [
   {
@@ -469,6 +476,20 @@ const routes: Routes = [
   },
   {
     path: 'reminder-past', component: ReminderPastComponent
+  },{
+    path: 'add-ei', component: AddEiComponent
+  },{
+    path: 'subadminprofile', component: SubadminprofileComponent
+  },{
+    path: 'thankyou', component: SubadmincongratulationComponent
+  },{
+    path: 'subadmin-school-confirm', component: SubadminschoolconfirmationComponent
+  },
+  {
+    path: 'my-poc-details', component: MyPocDetailsComponent
+  },
+  {
+    path: 'ei-search', component: EiSearchComponent
   },
 
 
@@ -477,9 +498,9 @@ const routes: Routes = [
 
 
 
-
-
   
+  
+  //
   {
    path: '**', component: EiPageNotFoundComponent
   }

@@ -20,6 +20,7 @@ export class UserKycVerificationComponent implements OnInit {
   filename: any = "";
   date: any = [];
   isStudent: boolean = true;
+  pattran:any="";
   month: any = [{ monInNumber: '01', monInWord: 'Jan' },
   { monInNumber: '02', monInWord: 'Feb' },
   { monInNumber: '03', monInWord: 'Mar' },
@@ -64,7 +65,25 @@ export class UserKycVerificationComponent implements OnInit {
       this.date.push(d);
     }
   }
+  checkIdValidation(){
+    this.pattran='';
+    if(this.model.kyc_type=='AADHAR'){
+      this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
+    }else if(this.model.kyc_type=='dl'){
+      this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
+    }else if(this.model.kyc_type=='passport'){
+    if(this.model.kyc_type=='Aadhar'){
+      this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
+    }else if(this.model.kyc_type=='Dl'){
+      this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
+    }else if(this.model.kyc_type=='Passport'){
+      this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
+    }else if(this.model.kyc_type=='passport'){
+    
+    }
+  } }
   isValid(event) {
+
     if (this.yearModel && this.monthModel && this.dateModel) {
       this.model.kyc_dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
     } else {

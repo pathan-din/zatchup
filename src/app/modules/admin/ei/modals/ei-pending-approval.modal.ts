@@ -149,3 +149,17 @@ export class DatabaseView{
     comment: any;
     eiID: any;
 }
+
+export class OnboardingView{
+    zatchupId: any;
+    existingZatchIDMOUDoc: any
+    rejectionReason: any;
+    rejectionRemark: any;
+    employeeId: any;
+    requiredMOU: boolean = true;
+    errorDisplay: any = {};
+    editReason: any;
+    editDescription: any;
+    comment: any;
+    eiID: any;
+}

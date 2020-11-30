@@ -72,15 +72,16 @@ export class EiLoginComponent implements OnInit {
           }else{
            
             this.SpinnerService.hide();
-            this.alert.error(response.message, 'Error') 
-            // var errorCollection='';
-            // errorCollection= this.eiService.getErrorResponse(this.SpinnerService,response.error);
-      //       if(errorCollection)
-			// {
-			// alert(errorCollection);	
-			// }else{
-			// 	alert(response.message);
-			// }
+           // this.alert.error(response.error.message[0], 'Error') 
+            var errorCollection='';
+            errorCollection= this.eiService.getErrorResponse(this.SpinnerService,response.error);
+            if(errorCollection)
+              {
+                this.alert.error(errorCollection, 'Error') 
+              //alert(errorCollection);	
+              }else{
+                this.alert.error(response.message, 'Success');
+              }
 			
             // if(response.status == false){
             //   this.alert.error(response.error.message[0], 'Error')

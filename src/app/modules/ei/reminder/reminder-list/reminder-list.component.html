@@ -1,1 +1,61 @@
-<p>reminder-list works!</p>
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Reminder Students</h2>
+            </div>
+        </div>
+        
+        <div class="tableDiv mt-2">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+                    <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef class="text-center"> 
+                            <mat-checkbox></mat-checkbox>
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center">
+                            {{element.select}}
+                            <mat-checkbox></mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfStudents">
+                        <mat-header-cell *matHeaderCellDef> Name of Students </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.nameOfStudents}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class (Alias) </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.class}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rollNumber">
+                        <mat-header-cell *matHeaderCellDef> Roll Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="cursorStyle">
+                            {{element.rollNumber}}
+                        </mat-cell>
+                    </ng-container>                    
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <button type="button" class="border-0 bg-paret-green color-white px-5 py-2 mt-3 rounded-0">Send</button>
+        </div>
+        
+    </div>
+
+</div>

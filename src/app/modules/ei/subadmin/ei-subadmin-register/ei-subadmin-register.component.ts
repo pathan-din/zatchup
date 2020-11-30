@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -26,7 +27,9 @@ export class EiSubadminRegisterComponent implements OnInit {
   error:any=[];
   errorDisplay:any={};
   errorOtpModelDisplay:any;
-  constructor(private genericFormValidationService:GenericFormValidationService,private router: Router,private SpinnerService: NgxSpinnerService,public eiService:EiServiceService,public formBuilder: FormBuilder) { }
+  constructor(
+    private base : BaseService,
+    private genericFormValidationService:GenericFormValidationService,private router: Router,private SpinnerService: NgxSpinnerService,public eiService:EiServiceService,public formBuilder: FormBuilder) { }
   ngOnInit(): void {
 	  this.model.profile={};
 	   this.model.profile.pronoun='';
@@ -51,6 +54,7 @@ export class EiSubadminRegisterComponent implements OnInit {
       // {
         // this.model.phone='';
       // }
+      this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
       this.eiService.subAdminRegisteration(this.model).subscribe(res => {
         console.log(res);
         let response:any={};

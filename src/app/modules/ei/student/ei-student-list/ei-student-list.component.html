@@ -71,7 +71,8 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">
                     Student Count Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select [(ngModel)]="model.page_size" name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                    <select (change)="getStudentList('', '')" [(ngModel)]="model.page_size" name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="">select One</option>                           
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
@@ -79,7 +80,7 @@
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o fa-lg mr-2" aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="getExportData()"><i class="fa fa-file-excel-o fa-lg mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
 
@@ -139,7 +140,8 @@
                         <mat-cell *matCellDef="let element ">
                             <i class="fa fa-check text-green color-green fa-lg mr-3 cursorStyle"></i>
                             <i class="fa fa-eye fa-lg mr-3 color-lightBlue cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-ban fa-lg color-red cursorStyle" aria-hidden="true"></i>
+                            <i class="fa fa-ban fa-lg color-red cursorStyle" aria-hidden="true"
+                            data-toggle="modal" (click)="openRejectModel(element.studentID)" data-target="#rejectModel"></i>
                         </mat-cell>
                     </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
@@ -158,4 +160,98 @@
           </ngx-spinner>
         </div>
     </div>
+       <!-- rejectModel  -->
+       <div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+       aria-hidden="true">
+       <div class="modal-dialog " role="document">
+           <div class="modal-content unverified container-fluid">
+               <div class="modal-header align-items-center justify-content-center pb-0 ">
+                   <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
+                   <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                       data-dismiss="modal" aria-label="Close ">
+                       <span aria-hidden="true "> &times; </span>
+                   </button>
+               </div>
+               
+
+               <div class="modal-body px-0">
+                   <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                   <form id="rejectReason">
+                   <div class=" form-group row ">
+                    <div class="col-md-12 ">
+               <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
+               <div class="form-control-inputDiv rounded p-0 shadow-none">
+                   <input id="remark" (keyup)="isValid($event)" [(ngModel)]="modelReason.remark" name="remark" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
+               </div>
+               <div class="required errorMsg" [innerHtml]="errorDisplay.remark"></div>
+           </div>
+                       <!-- <div class="col-md-12 "> -->
+                           <!-- <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Reason</label> -->
+                           <!-- <div class="form-control-inputDiv rounded p-1 shadow-none "> -->
+                               <!-- <input [(ngModel)]="modelReason.remark" name="Remark" required /> -->
+                               <!-- <select class="custom-select  form-control-input"> -->
+                                   <!-- <option value=""> Select Reason</option> -->
+                                   <!-- <option value="1">2000</option> -->
+                                   <!-- <option value="2">2001</option> -->
+                                   <!-- <option value="3">2002</option> -->
+                               <!-- </select> -->
+                           <!-- </div> -->
+                       <!-- </div> -->
+                   </div>
+                   <div class=" form-group row ">
+                       <div class="col-md-12 ">
+                           <label for="Remarks "
+                               class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
+
+                           <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea [(ngModel)]="modelReason.rejected_reason" name="description" required
+                                   class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                   rows="3 " placeholder="Enter Description "></textarea>
+                           </div>
+                       </div>
+                       <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
+                   </div>
+                   <button (click)="rejectStudent()" type="button "
+                       class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                       Submit
+                   </button>
+                    </form>
+               </div>
+           </div>
+       </div>
+
+   </div>
+
+   <!-- verifiedModel  -->
+   <div class="modal fade" id="verifiedModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+       aria-hidden="true">
+       <div class="modal-dialog " role="document">
+           <div class="modal-content unverified container-fluid">
+               <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                   <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Verified</h2>
+                   <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                       data-dismiss="modal" aria-label="Close ">
+                       <span aria-hidden="true ">
+                           &times;
+                           <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                       </span>
+                   </button>
+               </div>
+               <div class="modal-body px-0 py-0">
+                   <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                   <p class="commonFontSize regularFont letterspacing">Are you sure you want to Verified this
+                       member?
+                   </p>
+                   <p class="commonFontSize regularFont letterspacing text-right">
+                       <!-- <span class="mx-3 color-blue">No</span>
+                       <span class="mx-2 color-blue">Yes</span> -->
+                       <button type="button " (click)="closeModel()"
+                           class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
+                       <button type="button" (click)="approveStudent(1, modelUserId)"
+                           class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
+
+                   </p>
+               </div>
+           </div>
+       </div>
+   </div>
 </div>

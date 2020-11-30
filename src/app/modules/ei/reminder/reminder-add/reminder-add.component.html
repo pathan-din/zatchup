@@ -1,1 +1,50 @@
-<p>reminder-add works!</p>
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Add Reminder</h2>
+            </div>
+        </div>
+
+        <div class="bg-extra-light-gray px-3 pt-3 pb-4 mt-3">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <h4 class="commonFontSize semiBoldFont mt-2">Select Class</h4>
+                    <div class="row">
+                        <div class="col-md-4"><mat-checkbox class="example-margin">All Students</mat-checkbox> </div>
+                        <div class="col-md-4"><mat-checkbox class="example-margin">Add Class</mat-checkbox> </div>
+                    </div>
+                    <mat-checkbox class="example-margin">B.Com</mat-checkbox> <br/>
+                    <mat-checkbox class="example-margin"
+                            [checked]="allComplete"
+                            [indeterminate]="someComplete()"
+                            (change)="setAll($event.checked)">
+                        {{task.name}}
+                    </mat-checkbox>
+                
+                    <ul class="m-0">
+                        <li *ngFor="let subtask of task.subtasks">
+                            <mat-checkbox [(ngModel)]="subtask.completed"
+                                    [color]="subtask.color"
+                                    (ngModelChange)="updateAllComplete()">
+                                {{subtask.name}}
+                            </mat-checkbox>
+                        </li>
+                    </ul>
+                                       
+                    <h4 class="commonFontSize semiBoldFont mt-1 mb-1">Reminder Text</h4>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none mt-0 position-relative">
+                        <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Typing...">
+                        <span class="position-absolute position-ppin"><i class="fa fa-paperclip" aria-hidden="true"></i></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button type="button" class="border-0 bg-paret-green color-white px-4 py-2 mt-3 rounded-0">Next</button>
+        </div>
+    </div>
+
+</div>

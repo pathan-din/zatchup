@@ -15,7 +15,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class EiStudentChangeBulkClassComponent implements OnInit {
   error:any=[];
   errorDisplay:any={};
-  courseList:any;
+  courseList:any=[];
   classDataList:any=[];
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -59,7 +59,7 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
       }
        }else{
          this.SpinnerService.hide();
-         this.alert.error(response.error, 'Error')
+         this.alert.error(response.error.message[0], 'Error')
        }
        //console.log( this.classDataList);
        
@@ -74,8 +74,19 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
       console.log("verify Otp Exception", err);
      }
    }
-  
-  ///
+   /*Export Class */
+   getExportData(){
+    try {
+      let params:any=[];
+      params['export_csv'] = true
+      this.baseService.generateExcel('ei/export-class-id-of-course-by-ei/', 'class_list', params)
+    
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+ 
   uploadXlsSheet(file){
     let fileList: FileList = file;
     let fileData: File = fileList[0];
@@ -88,20 +99,24 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();	
-          alert(response.message[0]);
+          this.alert.success(response.success.message[0], 'Success')
+          // alert(response.message[0]);
         } else {
-          //this.SpinnerService.hide();
-          this.errorDisplay=this.eiService.getErrorResponse(this.SpinnerService,response.error);
-          alert(this.errorDisplay.message);
+          this.SpinnerService.hide();
+          this.alert.error(response.error.message[0], 'Error')
+          // this.errorDisplay=this.eiService.getErrorResponse(this.SpinnerService,response.error);
+          // alert(this.errorDisplay.message);
         }
   
       }, (error) => {
         this.SpinnerService.hide();
+        this.alert.error(error, 'Error')
         console.log(error);
   
       });
     } catch (err) {
       this.SpinnerService.hide();
+      this.alert.error(err, 'Error')
       console.log("vaeryfy Otp Exception", err);
     }
     

@@ -41,21 +41,21 @@ export class EiStudentBulkAddComponent implements OnInit {
 
         let response: any = {};
         response = res;
-        if(response.status == true){
+     //   if(response.status == true){
         this.courseList = response.results;
-      }else{
-        this.SpinnerService.hide();
-        this.alert.error(response.error, 'Error')
-      }
+      // }else{
+      //   this.SpinnerService.hide();
+      //   this.alert.error(response.error, 'Error')
+      // }
       }, (error) => {
         this.SpinnerService.hide();
-        this.alert.error(error, 'Error')
+        //this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      this.alert.error(err, 'Error')
+      //this.alert.error(err, 'Error')
       //console.log(err);
     }
   }
@@ -70,22 +70,22 @@ export class EiStudentBulkAddComponent implements OnInit {
         console.log(res);
         let response: any = {};
         response = res;
-        if(response.status == true){
+        //if(response.status == true){
         this.standardList = response.standarddata;
-      }else{
-        this.SpinnerService.hide();
-        this.alert.error(response.error, 'Error')
-      }
+      // }else{
+      //   this.SpinnerService.hide();
+      //   this.alert.error(response.error, 'Error')
+      // }
       }, (error) => {
         this.SpinnerService.hide();
-        this.alert.error(error, 'Error')
+        //this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      this.alert.error(err, 'Error')
-      //console.log(err);
+      //this.alert.error(err, 'Error')
+      console.log(err);
     }
   }
   displayClassList(stId) {
@@ -96,21 +96,21 @@ export class EiStudentBulkAddComponent implements OnInit {
         console.log(res);
         let response: any = {};
         response = res;
-        if(response.status == true){
+      //  if(response.status == true){
         this.classList = response.classdata;
-      } else{
-        this.SpinnerService.hide();
-        this.alert.error(response.error, 'Error')
-      }
+      // } else{
+      //   this.SpinnerService.hide();
+      //   this.alert.error(response.error, 'Error')
+      // }
       }, (error) => {
         this.SpinnerService.hide();
-        this.alert.error(error, 'Error')
+        //this.alert.error(error, 'Error')
         //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      this.alert.error(err, 'Error')
+      //this.alert.error(err, 'Error')
       //console.log(err);
     }
   }
@@ -162,7 +162,7 @@ export class EiStudentBulkAddComponent implements OnInit {
           //   }
           // }
           // alert(errorCollection);
-          this.alert.error(response.error, 'Error')
+          this.alert.error(response.error.message[0], 'Error')
 
         }
 

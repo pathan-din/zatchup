@@ -136,7 +136,7 @@ goToUserQualificationPage() {
         {
           this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id}});
         }else if(response.check_school_info_on_zatchup==2){
-          this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:response.data.school_id}});
+          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
         }else if(response.check_school_info_on_zatchup==3){
           this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
         }

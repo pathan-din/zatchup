@@ -312,7 +312,7 @@ const routes: Routes = [
     path: 'ei-database-list', component: DatabaseListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'incomplete-onboarding-view', component: IncompleteOnboardingViewComponent, canActivate: [AuthGuard]
+    path: 'incomplete-onboarding-view/:id', component: IncompleteOnboardingViewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-database-view/:id', component: DatabaseViewComponent, canActivate: [AuthGuard]

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -21,7 +22,8 @@ export class EiStudentManagementComponent implements OnInit {
     private router: Router, 
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    private alert: NotificationService) { }
 
   ngOnInit(): void {
 	  //this.courseWiseStudentCount.coursedata=[];
@@ -40,13 +42,16 @@ export class EiStudentManagementComponent implements OnInit {
               this.courseWiseStudentCount=response.countdata;
               this.courseWiseStudentCountCourse=response.coursedata;
             }else{
-              this.SpinnerService.hide(); 
+              this.SpinnerService.hide();
+              this.alert.error(response.error.message[0], 'Error')
             }
 	    	},(error) => {
+          this.alert.error(error, 'Error')
           this.SpinnerService.hide(); 
           console.log(error);
         });
     }catch(err){
+      this.alert.error(err, 'Error')
       this.SpinnerService.hide(); 
       console.log(err);
     }

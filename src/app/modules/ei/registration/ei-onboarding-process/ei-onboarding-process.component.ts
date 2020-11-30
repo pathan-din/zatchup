@@ -215,6 +215,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         if(response.status == true){
 		this.SpinnerService.hide();
         this.numberOfStudentList = response.results;
+        }else{
+          this.alert.error(response.error.message[0], 'Error')
         }
       }, (error) => {
         this.SpinnerService.hide();
@@ -237,11 +239,11 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if(response.status == true){
-		this.SpinnerService.hide();
-        this.numberOfAluminiList = response.results;
+		      this.SpinnerService.hide();
+          this.numberOfAluminiList = response.results;
         } else{
           this.SpinnerService.hide();
-          this.alert.error(response.error, 'Error')
+          this.alert.error(response.error.message[0], 'Error')
         }
       }, (error) => {
         this.SpinnerService.hide();
@@ -324,8 +326,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-		  this.SpinnerService.hide();	
-          this.myStepper.next();
+            this.SpinnerService.hide();	
+            this.myStepper.selected.completed = true;
+            this.myStepper.next();
 
 
         } else {
@@ -514,7 +517,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-			 this.SpinnerService.hide();
+           this.SpinnerService.hide();
+           this.myStepper.selected.completed = true;
           this.myStepper.next();
 
 
@@ -565,17 +569,17 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-		  this.SpinnerService.hide();
-		  document.document=response.filename;
-		  return response.filename;
-         console.log("Sccess:Update");
-
-
-        } else {
           this.SpinnerService.hide();
-		      this.alert.error(response.error, 'Error')
-          console.log("Error:Data not update");
-		  return '';
+          document.document=response.filename;
+          return response.filename;
+            console.log("Sccess:Update");
+
+
+            } else {
+              this.SpinnerService.hide();
+              this.alert.error(response.error, 'Error')
+              console.log("Error:Data not update");
+          return '';
         }
 
       }, (error) => {

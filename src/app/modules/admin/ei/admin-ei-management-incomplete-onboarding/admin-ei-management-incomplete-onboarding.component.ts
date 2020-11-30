@@ -40,8 +40,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     this.getAllState();
   }
 
-  goToAdminEiMangIncopleteOnboardViewPage() {
-    this.router.navigate(['admin/ei-management-incomplete-onboardingView']);
+  goToAdminEiMangIncopleteOnboardViewPage(id) {
+    this.router.navigate(['admin/incomplete-onboarding-view', id]);
   }
 
   getONBoardList(page?: any) {
