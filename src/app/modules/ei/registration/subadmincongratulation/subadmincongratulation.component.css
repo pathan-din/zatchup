@@ -1,0 +1,16 @@
+.thankYouImg{
+    height: 500px;
+}
+
+.thankyouContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 767px){
+    .thankYouImg{height: auto;}
+    .thankyouContainer{height: auto; padding-top: 30px;}
+}
