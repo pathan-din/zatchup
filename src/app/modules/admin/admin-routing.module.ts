@@ -99,6 +99,7 @@ import { AuthGuard } from 'src/app/auth/auth.guard';
 import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-ei.component';
 import { MyAssignedEiHistoryComponent } from './my-assigned/my-assigned-ei-history/my-assigned-ei-history.component'
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
+import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/users-signed-up-zatchup.component';
 
 const routes: Routes = [
   {
@@ -393,8 +394,16 @@ const routes: Routes = [
     path: 'my-assigned-ei-history', component: MyAssignedEiHistoryComponent, canActivate: [AuthGuard]
   },
   {
+    path: 'users-signed-up-zatchup', component: UsersSignedUpZatchupComponent, canActivate: [AuthGuard]
+  },
+
+
+
+  {
     path: '**', component:AdminPageNotFoundComponent
   }
+
+
 //    {
 //     path: 'Admin404', 
 //     component: PageNotFoundComponent
