@@ -595,3 +595,6 @@ button.fileBtn {
     background: none;
 }
 .subAdminPurpleBtn{height: 100px;}
+
+ul{list-style: none; padding-left: 15px;}
+.closeMenu{top: 10px; right: 10px; z-index: 2;}

@@ -69,7 +69,7 @@ export class AdminLoginComponent implements OnInit {
         }
       }, (error) => {
         this.SpinnerService.hide();
-        this.alert.error(error, 'Error')
+        this.alert.error(error.message, 'Error')
       });
     }
     catch (e) {
