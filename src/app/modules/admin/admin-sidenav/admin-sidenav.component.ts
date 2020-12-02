@@ -47,7 +47,6 @@ export class AdminSidenavComponent implements OnInit {
   }
 
   ngOnInit() {
-      console.log('user info is as ::', localStorage.getItem('userInfo'))
     if (sessionStorage.getItem('permissions'))
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
     if (localStorage.getItem('user_type'))
