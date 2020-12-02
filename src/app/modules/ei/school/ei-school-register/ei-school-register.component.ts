@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { NotificationService } from '../../../../services/notification/notification.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
 declare var $: any;
@@ -34,7 +35,9 @@ export class EiSchoolRegisterComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService
+    private genericFormValidationService:GenericFormValidationService,
+    private alert:NotificationService
+
     ) { }
 
 
@@ -244,7 +247,7 @@ export class EiSchoolRegisterComponent implements OnInit {
             this.SpinnerService.hide(); 
             var errorCollection='';
             errorCollection= this.eiService.getErrorResponse(this.SpinnerService,response.error);
-            alert(errorCollection);
+            this.alert.error(errorCollection,'Error');
             
           }
            

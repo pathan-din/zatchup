@@ -7,7 +7,9 @@
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
-                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Search...">
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="text" placeholder="Search...">
                 </div>
                 <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
             </div>
@@ -19,65 +21,70 @@
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="fromDate" name="fromDate"
-                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="toDate" name="toDate"
-                         placeholder="MM/DD/YYYY"  bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required
-                        [(ngModel)]="onboardList.stateId" (change)="getCities()">
-                           <option value="">State</option>
-                           <option *ngFor="let state of onboardList.allStates" [value]="state.id">{{state.state}}</option>
+                        <select class="custom-select  form-control-input" required [(ngModel)]="onboardList.stateId"
+                            (change)="getCities()">
+                            <option value="">State</option>
+                            <option *ngFor="let state of onboardList.allStates" [value]="state.id">{{state.state}}
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required
-                        [(ngModel)]="onboardList.cityId">
-                        <option value=""> Select City</option>
-                        <option *ngFor="let city of onboardList.allCities" [value]="city.id">{{city.city}}</option>
-                    </select>
+                        <select class="custom-select  form-control-input" required [(ngModel)]="onboardList.cityId">
+                            <option value=""> Select City</option>
+                            <option *ngFor="let city of onboardList.allCities" [value]="city.id">{{city.city}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                      <input type="text" name="board_university" [(ngModel)]="this.onboardList.university"
-                      class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Board/University"/>
+                        <input type="text" name="board_university" [(ngModel)]="this.onboardList.university"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            placeholder="Board/University" />
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Stage Pending</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="status" required
-                        [(ngModel)]="this.onboardList.stagePending">
-                        <option value=""> Select Stage</option>
-                        <option value="1">OnBoarding Stage 1</option>
-                        <option value="2">OnBoarding Stage 2</option>
-                        <option value="3">OnBoarding Stage 3</option>
-                        <option value="4">OnBoarding Stage 4</option>
-                    </select>
+                            [(ngModel)]="this.onboardList.stagePending">
+                            <option value=""> Select Stage</option>
+                            <option value="1">OnBoarding Stage 1</option>
+                            <option value="2">OnBoarding Stage 2</option>
+                            <option value="3">OnBoarding Stage 3</option>
+                            <option value="4">OnBoarding Stage 4</option>
+                        </select>
                     </div>
                 </div>
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                (click)="getONBoardList()">Apply</button>
+                    (click)="getONBoardList()">Apply</button>
 
 
             </div>
@@ -87,18 +94,20 @@
         <div class="row my-3" *ngIf="onboardList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Fees Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Fees Per
+                    Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getONBoardList('1')" [(ngModel)]="onboardList.pageSize">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                        </select>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for "select no of EI info per page" and Export Button-->
@@ -176,9 +185,12 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center">Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " (click)="goToAdminEiMangIncopleteOnboardViewPage(element.id)"></i>
-                            <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true " data-toggle="modal" data-target="#emailModel"></i>
-                            <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true " (click)="deleteEI(element.ei_id)"></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
+                                (click)="goToAdminEiMangIncopleteOnboardViewPage(element.id)"></i>
+                            <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
+                                data-toggle="modal" (click)="getEI_ID(element.ei_id)" data-target="#emailModel"></i>
+                            <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true "
+                                (click)="deleteEI(element.ei_id)"></i>
                         </mat-cell>
                     </ng-container>
 
@@ -188,41 +200,52 @@
             </div>
         </div>
         <pagination-controls *ngIf="onboardList.dataSource" (pageChange)="getONBoardList($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
-    <div class="row" *ngIf="!onboardList.dataSource">
-        <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!onboardList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
         </div>
-    </div>
         <!--End html for Incomplete EI Onboard information table-->
 
         <!-- emailModel  -->
-        <div class="modal fade" id="emailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="emailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0 ">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Email</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
-                          <span aria-hidden="true ">
-                              &times;
-                              <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                        <button #closeSendMailButton type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
                             </span>
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
-                        <div class=" form-group row ">
-                            <div class="col-sm-12 ">
-                                <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Email Id</label>
+                        <form id="sendMail">
+                            <div class=" form-group row ">
+                                <div class="col-sm-12 ">
+                                    <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing "> Message
+                                    </label>
 
-                                <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " rows="4" placeholder="Enter Your Message "></textarea>
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            rows="4" placeholder="Enter Your Message " name="message"
+                                            [(ngModel)]="onboardList.message" required></textarea>
+
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="onboardList.errorDisplay.message">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                            Send
-                        </button>
+                            <button type="button " (click)="sendMail()"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                Send
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

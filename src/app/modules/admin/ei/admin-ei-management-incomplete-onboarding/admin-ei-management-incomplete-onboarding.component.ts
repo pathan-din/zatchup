@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -6,6 +6,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { OnBoardList } from '../modals/ei-pending-approval.modal';
 import { DatePipe } from '@angular/common';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 
 
 
@@ -16,12 +17,11 @@ import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
   providers: [DatePipe]
 })
 export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
+  @ViewChild('closeSendMailButton') closeSendMailButton: any;
   filterFromDate: any;
   filterToDate: any;
   maxDate: any;
-  params: any = {};
   onboardList: OnBoardList;
-  displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'signUpDate', 'onboardStage', 'action'];
 
   dataSource: any;
   educationInstitute: any;
@@ -31,7 +31,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     private loader: NgxSpinnerService,
     private baseService: BaseService,
     private datePipe: DatePipe,
-    private confirmDialogService: ConfirmDialogService
+    private confirmDialogService: ConfirmDialogService,
+    private validationService: GenericFormValidationService
   ) {
     this.onboardList = new OnBoardList();
     this.maxDate = new Date();
@@ -139,5 +140,35 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       }
     }, () => {
     });
+  }
+  getEI_ID(id: any) {
+    this.onboardList.eiId = id
+  }
+
+  sendMail() {
+    this.onboardList.errorDisplay = {};
+    this.onboardList.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.onboardList.errorDisplay.valid) {
+      return false;
+    }
+    this.loader.show()
+    let data = {
+      "ei_id": parseInt(this.onboardList.eiId),
+      "msg": this.onboardList.message
+    }
+    this.baseService.action('admin/send_email_to_ei/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.alert.success(res.message, "Success");
+        } else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+        this.closeSendMailButton.nativeElement.click();
+        this.loader.hide();
+      }
+    ), err => {
+      this.alert.error(err.error, 'Error')
+      this.loader.hide();
+    }
   }
 }

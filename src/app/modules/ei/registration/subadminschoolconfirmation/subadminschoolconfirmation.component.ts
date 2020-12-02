@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from '../../../../services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -33,21 +34,14 @@ export class SubadminschoolconfirmationComponent implements OnInit {
     public baseService: BaseService,
     public eiService:EiServiceService,
     private genericFormValidationService:GenericFormValidationService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    private alert:NotificationService) { }
 
   ngOnInit(): void {
    this.getUserconfirmationBySchoolDetails();
   }
 
-  goToUserCongratulationPage() {
-    this.router.navigate(['user/ei-profile'],{queryParams:{'school_id':this.schoolId}});
- }
- redirectToCurrentlyStudent(){
-  $("#currentStatusModel").modal({
-    backdrop: 'static',
-    keyboard: false
-  });
- }
+ 
  
  getUserconfirmationBySchoolDetails()
   {
@@ -59,8 +53,21 @@ export class SubadminschoolconfirmationComponent implements OnInit {
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
-        this.studentsConfirmation = response.data;
-        this.schoolId= response.data.school_id;
+        if(response.status==false)
+        {
+          this.SpinnerService.hide();
+          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService,response.error);
+          this.alert.error(this.errorDisplay,"Error");
+          return;
+        }else{
+          this.SpinnerService.hide();
+          if(response.data.length>0){
+            this.studentsConfirmation = response.data[0];
+          this.schoolId= response.data[0].school_id;
+          }
+          
+        }
+        
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);
@@ -70,51 +77,70 @@ export class SubadminschoolconfirmationComponent implements OnInit {
       console.log(err);
     }
   }
-  areYouCurrentlyStudentFunction(isStudent) {
+  
+notMe(){
+  try{
+    this.SpinnerService.show(); 
     
-    this.addRole(isStudent);
-  }
-  addRole(isStudent)
-  {
-       try {
-
-      this.SpinnerService.show();
-
-      let data:any={};
-      data.is_currently_student= isStudent?1:0;
-      this.baseService.action('user/add-role/',data).subscribe(res => {
-        let response: any = {}
-        response = res;
+    this.model.school_id = this.schoolId;
+    this.model.is_confirm_by_subadmin = 0;
+     /***************Add Heighest Qualification Api*****************************/
+    this.baseService.action('subadmin/confirm-school-by-subadmin/',this.model).subscribe(res => {
+       
+       let response: any = {};
+       response = res;
+       this.SpinnerService.hide();
+       if(response.status==false)
+       {
+         this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService,response.error);
+         this.alert.error(this.errorDisplay,"Error");
+         return;
+       }else{
         this.SpinnerService.hide();
-        if (response.status == true) {
-          $("#currentStatusModel").modal('hide');
-         if(isStudent == 'yes')
-         {
-          this.router.navigate(['user/qualification'], {queryParams: {'title': 'What are you currently studying?'},   skipLocationChange: true});
-         }else{
-          this.router.navigate(['user/qualification'], {queryParams: {'title': 'Your highest level of education?'}, skipLocationChange: true});
-         }
-        } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
-
-            }
-          }
-          alert(errorCollection);
-        }
-      }, (error) => {
+       }
+       this.router.navigate(['ei/add-ei']);
+     
+       }, (error) => {
+         this.SpinnerService.hide();
+         console.log(error);
+       });
+   } catch (err) {
+     this.SpinnerService.hide();
+     console.log(err);
+   }
+  
+}
+continue(){
+  try{
+    this.SpinnerService.show(); 
+    
+    this.model.school_id = this.schoolId;
+    this.model.is_confirm_by_subadmin = 1;
+     /***************Add Heighest Qualification Api*****************************/
+    this.baseService.action('subadmin/confirm-school-by-subadmin/',this.model).subscribe(res => {
+       
+       let response: any = {};
+       response = res;
+     
+       if(response.status==false)
+       {
         this.SpinnerService.hide();
-        console.log(error);
-
-      });
-    } catch (err) {
-      this.SpinnerService.hide();
-
-    }
-  }
-
-
+         this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService,response.error);
+         this.alert.error(this.errorDisplay,"Error");
+         return;
+       }else{
+        this.SpinnerService.hide();
+       }
+       this.router.navigate(['ei/subadminprofile']);
+     
+       }, (error) => {
+         this.SpinnerService.hide();
+         console.log(error);
+       });
+   } catch (err) {
+     this.SpinnerService.hide();
+     console.log(err);
+   }
+  
+}
 }
