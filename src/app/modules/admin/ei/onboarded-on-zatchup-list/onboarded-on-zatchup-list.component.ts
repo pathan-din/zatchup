@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { OnboardedZatchup } from '../modals/ei-pending-approval.modal';
+import { Location } from '@angular/common'
 
 
 export interface PeriodicElement {
@@ -41,19 +42,23 @@ export class OnboardedOnZatchupListComponent implements OnInit {
 
   dataSource: any;
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
     ) {
       this.onboardedZatchup = new OnboardedZatchup();
       this.maxDate= new Date();
+      console.log(this.router.url)
      }
 
   ngOnInit(): void {
     this.getOnboardedZatchup();
     this.getAllState();
+    
   }
 
   onboardedView(data){
@@ -135,6 +140,14 @@ export class OnboardedOnZatchupListComponent implements OnInit {
             }
           )
         }
+
+        goBack(): void{
+          // let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
+          // this.router.navigate([returnUrl]);
+          this.location.back();
+          console.log(location)
+        }
+        
       }
     
   

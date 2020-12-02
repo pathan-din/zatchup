@@ -2,7 +2,10 @@
 <div class="container main-container p-3">
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv mb-1">
-            <div class="col-md-5 ">
+            <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">EI Onboarded On ZatchUp</h2>
             </div>
             <div class="col-md-7 SearchDiv d-flex flex-row">               
@@ -128,7 +131,7 @@
                     <!-- Position Column -->
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i= index"> {{i + onboardedZatchup.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i= index;"> {{i + onboardedZatchup.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">

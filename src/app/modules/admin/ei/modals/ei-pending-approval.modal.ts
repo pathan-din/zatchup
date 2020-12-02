@@ -70,7 +70,7 @@ export class notOnZatchup {
 }
 
 export class OnboardedZatchup {
-    startIndex: Number;
+    startIndex: any;
     listParams: any = {};
     pageSize: any = 5;
     dataSource: any;

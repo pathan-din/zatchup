@@ -44,7 +44,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
   }
 
   goToAdminEiMangIncopleteOnboardViewPage(id) {
-    this.router.navigate(['admin/incomplete-onboarding-view', id]);
+    this.router.navigate(['admin/ei-profile-details', id]);
   }
 
   getONBoardList(page?: any) {
