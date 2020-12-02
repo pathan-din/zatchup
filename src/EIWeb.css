@@ -187,6 +187,7 @@ app-ei-sidenav+.container.main-container {
     color: #b4b4b4;
     font-family: "SFUIDisplay-Regular";
     cursor: pointer;
+    margin-bottom: 1%;
 }
 
 .eiPaginationTag .ngx-pagination .current {
@@ -198,9 +199,7 @@ app-ei-sidenav+.container.main-container {
 }
 
 @media only screen and (max-width: 414px) {
-    .MobileCol6MB {
-        margin-bottom: 1rem;
-    }
+    
     .mobilePaddingLR {
         padding: 0;
     }
@@ -225,6 +224,12 @@ app-ei-sidenav+.container.main-container {
     }
     .numberDropdown {
         width: auto !important;
+    }
+}
+
+@media (max-width: 767px){
+    .MobileCol6MB {
+        margin-bottom: 1rem;
     }
 }
 

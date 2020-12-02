@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from 'src/app/services/base/base.service';
@@ -27,6 +27,7 @@ export class AdminSchoolManagementComponent implements OnInit {
 
   constructor(
     private validationService: GenericFormValidationService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     private baseService: BaseService,
@@ -71,7 +72,7 @@ export class AdminSchoolManagementComponent implements OnInit {
 
 
   goToAdminEIDatabase() {
-    this.router.navigate(['admin/ei-database-list'])
+    this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/school-management' } })
   }
 
   goToEIOnboardedOnZatchupList() {
@@ -133,7 +134,7 @@ export class AdminSchoolManagementComponent implements OnInit {
       this.alert.error('Search text must be greater than 3 keyword', 'Error')
   }
 
-  addEducationInstitute(){
+  addEducationInstitute() {
     this.router.navigate(['admin/add-education-institute'])
   }
 }

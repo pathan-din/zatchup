@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EIDbList } from '../modals/education-institute.modal';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -21,6 +21,7 @@ export class DatabaseListComponent implements OnInit {
   eidbList: EIDbList;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private baseService: BaseService,
     private alert: NotificationService,
@@ -123,5 +124,10 @@ export class DatabaseListComponent implements OnInit {
         console.log('get state res ::', res)
       }
     )
+  }
+
+  goBack(){
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
+    this.router.navigate([returnUrl])
   }
 }
