@@ -20,6 +20,9 @@ export class EiKycVerificationComponent implements OnInit {
   uploadedContent: any;
   filename: any = "";
   pattran:any="";
+  arrAadhar:any=[1];
+  maxLength:any=45;
+  placeholder="Enter Id";
   constructor(private genericFormValidationService: GenericFormValidationService, 
     private router: Router,
     private SpinnerService: NgxSpinnerService, 
@@ -98,24 +101,38 @@ export class EiKycVerificationComponent implements OnInit {
   /**End Kyc SUbmit */
   isValid() {
    
+    if(this.model.kyc_id_no)
+    {
+      if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12){
+        this.model.kyc_id_no=this.model.kyc_id_no+' ';
+      }
+      this.arrAadhar.push(1);
+    }else{
+      this.arrAadhar=[1];
+    }
+   
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
-    console.log(this.errorDisplay);
-    
-
     }
+
 
   }
   checkIdValidation(){
     this.pattran='';
     if(this.model.kyc_type=='Aadhar'){
+      this.maxLength = 14;
+      this.placeholder='xxxx xxxx xxxx'
+      //this.model.kyc_id_no
       this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
     }else if(this.model.kyc_type=='Dl'){
+      this.maxLength = 13;
+      this.placeholder='Eg : MH1420110062821'
       this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
     }else if(this.model.kyc_type=='Passport'){
+      this.maxLength = 8;
       this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
+      this.placeholder='Eg : M00000000'
     }
-    
   }
     /**************Upload File Function****************/
     handleFileInput(file) {
