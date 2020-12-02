@@ -6,23 +6,23 @@
                 <h2 class="commonFontSize semiBoldFont m-0">User Management</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
-                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                         type="text" placeholder="Search...">
                 </div>
                 <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Apply</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="signupUsers()">
                     <p class="p-2 semiBoldFont commonFontSize">Signed Up Users On ZatchUp</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.signup_user_zatchup_count}}</h2>
                     <p
                         class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
                         Total Signed Up Users On ZatchUp Platform:<span class="ml-2"
-                            *ngIf="dashboardData">{{dashboardData.signup_user_zatchup_count}}</span></p>
+                            *ngIf="dashboardData">{{dashboardData.total_users_added}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
@@ -82,7 +82,7 @@
     <div class="User-unverified-dashboard-div bg-white px-4 pt-3 pb-4 mt-3">
         <div class="row">
             <div class="col-12 d-flex align-items-end flex-wrap">
-                <div class="widthFull">
+                <div class="widthFull MobileCol6MB">
                     <label for="" class=" commonFontSize mediumFont letterspacing"> From Date</label>
                     <div class="rounded shadow-none mx-1">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing"
@@ -90,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="widthFull">
+                <div class="widthFull MobileCol6MB">
                     <label for="" class=" commonFontSize mediumFont letterspacing">To Date </label>
                     <div class="rounded  shadow-none mx-1">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
@@ -176,7 +176,7 @@
 
         <div class="row mt-3">
             <div class="col-12 d-flex align-items-end flex-wrap">
-                <div class="widthFull">
+                <div class="widthFull MobileCol6MB">
                     <label for="" class=" commonFontSize mediumFont letterspacing "> From Date</label>
                     <div class="rounded shadow-none mx-1">
                         <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
@@ -197,7 +197,6 @@
                         class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
                         Submit
                     </button>
-
                 </div>
 
 

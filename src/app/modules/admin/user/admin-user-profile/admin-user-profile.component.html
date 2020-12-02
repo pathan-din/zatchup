@@ -21,19 +21,17 @@
                 data-target="#BlockUserModel">
                 <div class="dpImgDiv rounded-circle bg-light-green border border-white ">
                     <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid dpImg ">
-
-
                 </div>
             </div>
-            <!--Start div for onboarding Information-->
-            <div class="row mt-3">
+            <!--Start div for    Information-->
+            <div class="row mt-3" *ngIf="userData">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Name of The User</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{userData.name_of_user}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +39,7 @@
                             <p>EI ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{userData.zatchupId}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -61,7 +59,7 @@
                                     <p>Date of Birth Of The User</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">: {{userData.dob}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -69,7 +67,7 @@
                                     <p>Email Id</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">: {{userData.email}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -77,7 +75,7 @@
                                     <p>Phone Number</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">: {{userData.phone}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -85,7 +83,7 @@
                                     <p>Profession</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">: {{userData.role}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -93,7 +91,7 @@
                                     <p>Current City</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                    <p><span class="mr-3">: {{userData.city}}</span> </p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +104,7 @@
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <p class="color-blue"><span class="mr-3 text-dark">:</span><span
-                                    class="textUnderlineStyle " (click)="goToUserEducationDetail()"> View</span></p>
+                                    class="textUnderlineStyle "> View</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -136,6 +134,11 @@
                                     class="textUnderlineStyle "> View</span></p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="!userData">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                 </div>
             </div>
 
@@ -282,3 +285,7 @@
     </div>
     <!-- End of BlockUserModel  -->
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

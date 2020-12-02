@@ -34,7 +34,8 @@ export class AdminSchoolManagementComponent implements OnInit {
     private datePipe: DatePipe,
     private alert: NotificationService
   ) {
-    this.maxDate = new Date()
+    this.maxDate = new Date();
+    console.log(this.router.url)
   }
 
   ngOnInit() {
