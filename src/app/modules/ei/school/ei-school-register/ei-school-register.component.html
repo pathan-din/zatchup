@@ -35,9 +35,13 @@
 
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
+
+                           
+
+
                             <label for="pronouce" class="mediumFont commonFontSize letterspacing">Select School
                                 Name</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <!-- <div class="form-control-inputDiv rounded py-1 shadow-none">
                                 <select (change)="changeSchool(name_of_school_first)" id="school_name" [(ngModel)]="name_of_school_first"
                                     name="school_name" class="custom-select form-control-input" required>
                                     <option value="">Select School</option>
@@ -46,6 +50,13 @@
                                     <option value="Others">Others</option>
 
                                 </select>
+                            </div> -->
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <input autocomplete="off" [(ngModel)]="name_of_school_first"
+                            name="school_name" type="text"  placeholder="Select School" class="form-control-input form-control  commonFontSize regularFont letterspacing" (keyup)="suggest()">
+                            </div>
+                            <div class="suggestions" *ngIf="suggestions.length">
+                              <p (click)="getValue(s)" class="cursorStyle" *ngFor="let s of suggestions">{{s.name_of_school}}</p>
                             </div>
                             <div class="required errorMsg" *ngIf="name_of_school_first!='Others'"
                                 [innerHtml]="errorDisplay.school_name"></div>
@@ -88,13 +99,21 @@
                     </div>
 
                     <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-6 MobileCol6MB">
+                        <!-- <div class="col-sm-6 MobileCol6MB">
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="city" required [(ngModel)]="model.school_data.city" name="city"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter City">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.city"></div>
+                        </div> -->
+                        <div class="col-sm-6">
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input required (keyup)="isValid($event)" id="country" [(ngModel)]="country" readonly name="country"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter Country">
+                            </div>
+
                         </div>
                         <div class="col-sm-6">
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
@@ -107,7 +126,7 @@
 
                     </div>
 
-                    <div class="form-group row  ml-0 mr-0">
+                    <!-- <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-6 MobileCol6MB">
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="state" required [(ngModel)]="model.school_data.state" name="state"
@@ -116,16 +135,9 @@
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.state"></div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input required (keyup)="isValid($event)" id="country" [(ngModel)]="country" readonly name="country"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Enter Country">
-                            </div>
+                      
 
-                        </div>
-
-                    </div>
+                    </div> -->
 
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
@@ -140,11 +152,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group row  ml-0 mr-0">
+                    <div *ngIf="model.school_data.school_code" class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="address" class="mediumFont commonFontSize letterspacing">EI's ZatchUp ID</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="zatchup_id"  [(ngModel)]="model.school_data.school_code" name="zatchup_id"
+                                <input disabled (keyup)="isValid($event)" id="zatchup_id"  [(ngModel)]="model.school_data.school_code" name="zatchup_id"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter EI's ZatchUp ID">
                             </div>

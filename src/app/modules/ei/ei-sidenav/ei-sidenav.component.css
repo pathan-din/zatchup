@@ -22,7 +22,7 @@
 
 /*******************/
 .mat-drawer-content{
-    z-index: 2;
+    z-index: 3;
     margin-left: 0!important;
 }
 .mat-toolbar.mat-primary{

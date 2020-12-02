@@ -37,7 +37,12 @@ export class UserSchoolConfirmationComponent implements OnInit {
     public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-   this.getUserconfirmationBySchoolDetails();
+    this.route.queryParams.subscribe(params => {
+      this.schoolId = params['school_id'];
+      this.model.school_id=this.schoolId;
+      this.getUserconfirmationBySchoolDetails();
+    });
+  
   }
 
   goToUserCongratulationPage() {
