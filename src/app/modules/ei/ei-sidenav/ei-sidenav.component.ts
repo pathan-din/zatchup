@@ -115,4 +115,18 @@ export class EiSidenavComponent {
   goToEiNotificationPage() {
     this.router.navigate(['ei/notification']);
   }
+  isValidModule(module_code){
+    let moduleList:any={};
+    if(localStorage.getItem("permission")!==undefined && localStorage.getItem("permission")!==null && localStorage.getItem("permission")!==''){
+        moduleList = JSON.parse(localStorage.getItem("permission"));
+        var data = moduleList.find(el => {
+          return el.module_code ==   module_code
+        })
+     return data.is_access;
+    }else{
+      return true;
+    }
+    
+    
+  }
 }

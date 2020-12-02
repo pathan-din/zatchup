@@ -7,7 +7,7 @@
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">Dashboard</span>
             </a>
-            <a mat-list-item routerLink="/ei/school-profile" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE006')" mat-list-item routerLink="/ei/school-profile" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon> -->
                 <span class="commonFontSize">EI Profile And Timeline</span>
