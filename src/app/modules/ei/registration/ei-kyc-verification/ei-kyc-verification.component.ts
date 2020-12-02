@@ -70,7 +70,7 @@ export class EiKycVerificationComponent implements OnInit {
           //localStorage.setItem("user_id",response.user_id);
           if(response.is_already_registered==true)
           {
-            this.router.navigate(['ei/subadmin-school-confirmation']);
+            this.router.navigate(['ei/subadmin-school-confirm']);
           }else{
               this.router.navigate(['ei/add-ei']);
           }
@@ -100,6 +100,9 @@ export class EiKycVerificationComponent implements OnInit {
    
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    console.log(this.errorDisplay);
+    
+
     }
 
   }

@@ -150,7 +150,7 @@ export class EiLoginSubadminComponent implements OnInit {
         response = res;
         if (response.status == true) {
           localStorage.setItem("token", response.token);
-          localStorage.setItem("permission", response.permission);
+          localStorage.setItem("permission", JSON.stringify(response.permission));
           
            $("#OTPModel").modal('hide');
            this.router.navigate(['ei/dashboard']);

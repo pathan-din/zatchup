@@ -23,7 +23,7 @@
                     <div class="col-sm-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Name (Alphabetical Only)</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.first_name" name="name" id="first_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Your Name">
+                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.name" name="name" id="first_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Your Name">
                         </div> 
                         <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>                   
                     </div>
@@ -51,7 +51,7 @@
                             
                         </div> -->
                         <div class="" >
-                            <mat-checkbox (change)="chooseDesignation($event,designation.name,designation.id)" [(ngModel)]="designations[designation.name]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
+                            <mat-checkbox (change)="chooseDesignation($event,designation.id,designation.id)" [(ngModel)]="designations[designation.id]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
                         </div> 
                         
                     </div>

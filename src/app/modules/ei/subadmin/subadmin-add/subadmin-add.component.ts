@@ -298,10 +298,11 @@ export class SubadminAddComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();
-          this.alert.success('Success', response.message);
+          this.alert.success(response.message,'Success');
         } else {
           this.SpinnerService.hide();
-          this.alert.error('Error', response.message);
+          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+          this.alert.error(this.errorDisplay,'Error');
         }
         //this.moduleList=response.results;
 
@@ -319,7 +320,7 @@ export class SubadminAddComponent implements OnInit {
   }
   chooseDesignation(event, isCheckDesignation, id) {
     this.designationList.forEach(element => {
-      this.designations[element.name] = false;
+      this.designations[element.id] = false;
     });
     if (event.checked) {
       this.designations[isCheckDesignation] = true;
