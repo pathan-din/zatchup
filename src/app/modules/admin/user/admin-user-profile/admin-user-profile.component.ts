@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-admin-user-profile',
@@ -7,15 +10,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-user-profile.component.css']
 })
 export class AdminUserProfileComponent implements OnInit {
+  userId: any;
+  userData: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private alert: NotificationService,
+    private loader: NgxSpinnerService,
+    private baseService: BaseService
+  ) { }
 
   ngOnInit(): void {
+    this.userId = this.route.snapshot.params.id;
+    this.getUserProfile();
   }
 
 
 
-  goToUserEducationDetail(){
+  goToUserEducationDetail() {
     this.router.navigate(['admin/user-education-profile']);
+  }
+
+  getUserProfile() {
+    this.loader.show();
+
+    this.baseService.getData('admin/user/get_user_profile/' + this.userId).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.userData = res.data
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    ), (err: any) => {
+      this.alert.error(err, 'Error')
+      this.loader.hide();
+    }
   }
 }

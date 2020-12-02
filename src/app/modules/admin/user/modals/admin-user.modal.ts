@@ -14,3 +14,31 @@ export class UserDashboard {
     new_user_profile_reports: any
     new_user_reported: any
 }
+
+export class SignupUsers {
+    startIndex: Number;
+    listParams: any = {}
+    pageSize: any;
+    stateId: any = '';
+    cityId: any = '';
+    allStates: any;
+    allCities: any;
+    state: any = '';
+    city: any = '';
+    filterFromDate: any;
+    filterToDate: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'currentEI', 'lastEI', 'status', 'LastLoginDate', 'Action'];
+
+    dataSource: any;
+    university: any;
+    stagePending: any = '';
+    message: any
+    errorDisplay: any = {};
+    eiId: any
+}
