@@ -5,6 +5,9 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { NotificationService } from '../../../../services/notification/notification.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 declare var $: any;
 @Component({
   selector: 'app-ei-school-register',
@@ -18,6 +21,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   stateList:any=[];
   cityList:any=[];
   schoolList:any=[];
+  
   designationList:any=[];
   country:any
   name_of_school_others:any='';
@@ -30,7 +34,27 @@ export class EiSchoolRegisterComponent implements OnInit {
   otp2:any;
   otp3:any;
   otp4:any;
+  filteredOptions: Observable<string[]>;
   //errorOtpModelDisplay:any;
+
+  
+  
+
+  suggestions: string[] = [];
+
+  suggest() {
+    if(this.name_of_school_first){
+      this.suggestions = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(this.name_of_school_first.toLowerCase()))
+    }else{
+      this.suggestions =[];
+    }
+    
+  }
+  getValue(s){
+    this.name_of_school_first = s.name_of_school;
+    this.changeSchool(s.name_of_school)
+    this.suggestions=[];
+  }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -53,10 +77,12 @@ export class EiSchoolRegisterComponent implements OnInit {
     this.model.school_data.name_of_school='';
     this.model.designation='';
     this.model.is_term_cond=false;
+    
    // localStorage.removeItem("token");
    /*****************************************/ 
   }
 
+  
   goToEiContactUsPage(){
     this.router.navigate(['ei/contact-us']);
   }
@@ -127,6 +153,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   getSchoolListBycityId(city){
     this.model.school_data = {};
      //getallstate
+     this.name_of_school_first='';
      this.isValid(document.forms);
      let obj = this.cityList.find(o => o.city === city);
      console.log(obj);

@@ -20,7 +20,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const MaterialDesignComponents = [
   MatButtonModule, MatRadioModule, CdkStepperModule, 
@@ -29,7 +29,7 @@ const MaterialDesignComponents = [
   MatMenuModule, MatIconModule,MatListModule,
   LayoutModule,MatTableModule,CdkTableModule,
   MatCardModule,MatProgressSpinnerModule,MatSliderModule,MatPaginatorModule,MatExpansionModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,MatAutocompleteModule
 ];
 
 @NgModule({
