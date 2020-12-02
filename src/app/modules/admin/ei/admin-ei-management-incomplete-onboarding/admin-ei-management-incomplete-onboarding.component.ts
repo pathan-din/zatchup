@@ -153,8 +153,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     }
     this.loader.show()
     let data = {
-      "ei_id": this.onboardList.eiId,
-      "message": this.onboardList.message
+      "ei_id": parseInt(this.onboardList.eiId),
+      "msg": this.onboardList.message
     }
     this.baseService.action('admin/send_email_to_ei/', data).subscribe(
       (res: any) => {
@@ -163,6 +163,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
         } else {
           this.alert.error(res.error.message[0], 'Error')
         }
+        this.closeSendMailButton.nativeElement.click();
         this.loader.hide();
       }
     ), err => {
