@@ -2,6 +2,7 @@
     <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
+            <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
             <a mat-list-item routerLink="/ei/dashboard"  routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
