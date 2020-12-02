@@ -45,4 +45,8 @@ export class AdminUserComponent implements OnInit {
     }
   }
 
+  signupUsers(){
+    this.router.navigate(['admin/signed-up-users'], {queryParams: { returnUrl: 'admin/user'}})
+  }
+
 }

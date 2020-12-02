@@ -178,7 +178,7 @@ const routes: Routes = [
     path: 'user-profile-history', component: AdminUserProfileHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user-profile', component: AdminUserProfileComponent, canActivate: [AuthGuard]
+    path: 'user-profile/:id', component: AdminUserProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user-post-details', component: AdminUserPostDetailsComponent, canActivate: [AuthGuard]
@@ -394,7 +394,7 @@ const routes: Routes = [
     path: 'my-assigned-ei-history', component: MyAssignedEiHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'users-signed-up-zatchup', component: UsersSignedUpZatchupComponent, canActivate: [AuthGuard]
+    path: 'signed-up-users', component: UsersSignedUpZatchupComponent, canActivate: [AuthGuard]
   },
 
 

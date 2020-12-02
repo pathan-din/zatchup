@@ -245,10 +245,7 @@ getDataByZatchupId() {
         this.model.state = model.state;
         this.model.address1 = model.address1;
         this.model.university = model.university;
-        if(model.school_code)
-        {this.modelZatchup.zatchup_id = model.school_code;}else{
-          delete this.modelZatchup.zatchup_id;
-        }
+        if(model.school_code){this.modelZatchup.zatchup_id = model.school_code;} 
        
       } else {
         this.SpinnerService.hide();
