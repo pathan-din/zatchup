@@ -177,7 +177,12 @@
                     <ng-container matColumnDef="profilePic">
                         <mat-header-cell *matHeaderCellDef>Profile Picture </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <img mat-card-avatar [src]="element.profilePic" class="mat-img-proPic cursorStyle" />
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_img" src="{{element.profile_img}}" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_img" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                            </div>
                         </mat-cell>
                     </ng-container>
 
