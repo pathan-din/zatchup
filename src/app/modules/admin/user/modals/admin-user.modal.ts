@@ -13,6 +13,36 @@ export class UserDashboard {
     total_unresolved_userprofile_reports: any
     new_user_profile_reports: any
     new_user_reported: any
+   
+}
+export class UserManagement{
+    stateId: any= '';
+    cityId: any = '';
+    allStates: any;
+    allCities: any;
+    state: any= '';
+    city: any = '';
+    modal: any =  {};
+}
+
+export class SearchUserList{
+    stateId: any= '';
+    cityId: any = '';
+    allStates: any;
+    allCities: any;
+    state: any= '';
+    city: any = '';
+   
+    dataSource: any; 
+  page_size: any;
+  params: any = {};
+  config = {
+    itemsPerPage: 0,
+    currentPage: 1,
+    totalItems: 0
+}
+  startIndex: number;
+  search: any;
 }
 
 export class SignupUsers {

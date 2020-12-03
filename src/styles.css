@@ -527,7 +527,7 @@ mat-row, mat-footer-row {
 } */
 
 .form-control{
-    height: calc(1.8em + .75rem + 2px);
+    height: calc(2.1em + .75rem + 2px);
 }
 /* .custom-select {
     height: calc(1.5em + .75rem + 7px);

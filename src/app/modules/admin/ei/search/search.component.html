@@ -69,7 +69,8 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI Database Per Page
                 </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="searchEIList()" [(ngModel)]="page_size">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
