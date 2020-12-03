@@ -19,10 +19,7 @@ export class GenericFormValidationService {
   checkValidationFormAllControls(controls, check, arrayData = []) {
 
    
-    if (this.env.debugMode) {
-      console.log(controls);
-      
-    }
+    
     if (arrayData.length > 0) {
 
       this.errorMessageObject = {};
@@ -90,8 +87,6 @@ export class GenericFormValidationService {
           if (pattern.test(controls[i].value)) {
             if(controls[i].getAttribute('match'))
             {
-              console.log(controls[i].getAttribute('match'));
-              
               if(controls[i-1].id==controls[i].getAttribute('match').split(',')[0] && controls[i].id==controls[i].getAttribute('match').split(',')[1])
               {
                if(controls[i-1].value!=controls[i].value)
@@ -99,12 +94,11 @@ export class GenericFormValidationService {
                 this.errorMessageObject[controls[i].name] = controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').slice(1)+' and '+controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').slice(1)+ ' does not match.';     
                }
               }
-              console.log(controls[i].getAttribute('match').split(',')[1]);
              
             }
           } else {
             
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " must be alphanumeric and minimum of 8 digits and atleast one letter capital.";
+            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " must be alphanumeric and minimum of 8 digits. It is mandatory to use numbers and special characters in the password.";
 
           }
 
@@ -116,8 +110,6 @@ export class GenericFormValidationService {
           if (pattern.test(controls[i].value)) {
 
           } else {
-            console.log(pattern.test(controls[i].value));
-
             this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid format.";
           }
 
@@ -129,6 +121,20 @@ export class GenericFormValidationService {
           if (controls[i].value.length != controls[i].maxLength) {
             this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid " + controls[i].maxLength + " digit number.";
           }
+          var msg=" is not valid format.";
+            if(controls[i].getAttribute('message'))
+            {
+              msg=controls[i].getAttribute('message');
+            }
+            var pattern = new RegExp(controls[i].pattern);
+           
+            
+            if (pattern.test(controls[i].value)) {
+  
+            } else {
+              this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) +' '+ msg;
+            }
+   
 
         }
         else if (controls[i].type == 'checkbox' && !controls[i].validity.valid) {

@@ -57,7 +57,7 @@ import { ContactUsComponent } from './user-info/contact-us/contact-us.component'
 import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-more-course-manually.component';
 import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
-
+//import { NumberOnlyDirective } from '../../directives/number-only.directive';
 
 
 @NgModule({
@@ -82,7 +82,8 @@ import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-f
     PaginationModule,
     TabsModule,
     FormsModule,NgxSpinnerModule,ReactiveFormsModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+   // NumberOnlyDirective
   ]
 })
 export class UserwebModule { }

@@ -71,7 +71,7 @@ export class UserSignUpComponent implements OnInit {
    localStorage.removeItem('token');
    this.model.profile={};
    this.model.profile.pronoun="";
-   this.model.is_term_cond=true;
+   //this.model.is_term_cond=false;
  }
  /*function for show hide password using inputbox*/
  showHidePasswordFunction(type)
