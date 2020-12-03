@@ -5,6 +5,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { PendingApprovalProfile } from '../modals/ei-pending-approval.modal';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-admin-ei-management-incomplete-onboarding-view',
@@ -31,6 +32,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     private baseService: BaseService,
     private activeRoute: ActivatedRoute,
     private router: Router,
+    private location: Location,
     private validationService: GenericFormValidationService
 
   ) {
@@ -312,6 +314,10 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     if (Object.keys(this.pendingApprovalProfile.errorDisplay).length !== 0) {
       this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
+  }
+  goBack(): void{
+    this.location.back();
+    console.log(location)
   }
 
 }

@@ -30,7 +30,7 @@
                             <label for="idNo" class="mediumFont commonFontSize letterspacing">
                                 ID Number</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
+                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()" pattern="{{pattran}}" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.id_no"></div>
                         </div>

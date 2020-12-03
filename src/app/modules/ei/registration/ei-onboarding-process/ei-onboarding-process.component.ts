@@ -444,7 +444,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         if (response.status == true) {
-		  this.SpinnerService.hide();
+          this.SpinnerService.hide();
+          this.myStepper.selected.completed = true;
           this.myStepper.next();
 
 

@@ -4,6 +4,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatabaseView } from '../modals/ei-pending-approval.modal';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-database-view',
@@ -22,6 +23,7 @@ export class DatabaseViewComponent implements OnInit {
     private baseService: BaseService,
     private activeRoute: ActivatedRoute,
     private alert: NotificationService,
+    private location: Location,
     private loader: NgxSpinnerService,
   ) {
     this.databaseView = new DatabaseView();
@@ -63,4 +65,8 @@ export class DatabaseViewComponent implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.location.back();
+    console.log(location)
+  }
 }
