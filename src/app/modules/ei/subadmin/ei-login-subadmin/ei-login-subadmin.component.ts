@@ -86,7 +86,8 @@ export class EiLoginSubadminComponent implements OnInit {
   resendOtp() {
     try {
       let data: any = {};
-      this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+      this.modelForOtpModal.username = this.model.username ? this.model.username : this.model.phone;
+      //this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.SpinnerService.show();

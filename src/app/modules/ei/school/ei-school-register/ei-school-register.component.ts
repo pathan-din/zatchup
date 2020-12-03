@@ -21,7 +21,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   stateList:any=[];
   cityList:any=[];
   schoolList:any=[];
-  
+  isValue:boolean=false;
   designationList:any=[];
   country:any
   name_of_school_others:any='';
@@ -36,24 +36,44 @@ export class EiSchoolRegisterComponent implements OnInit {
   otp4:any;
   filteredOptions: Observable<string[]>;
   //errorOtpModelDisplay:any;
-
+  data: any;
+  keyword:any = 'name_of_school';
   
   
 
   suggestions: string[] = [];
 
-  suggest() {
-    if(this.name_of_school_first){
-      this.suggestions = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(this.name_of_school_first.toLowerCase()))
+  suggest(event) {
+    this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event));
+    if( this.data.length<1)
+    {
+      let schoolData:any={"name_of_school":"Others"};
+      this.data.push(schoolData)
+    }
+  }
+  suggestData(event) {
+   // this.data=[];
+   
+   
+    if(event.name_of_school=='Others'){
+      this.name_of_school_first='Others';
+      console.log(this.name_of_school_first);
+      
     }else{
-      this.suggestions =[];
+      this.name_of_school_first=event.name_of_school;
+      this.changeSchool(event.name_of_school);
     }
     
+   
   }
-  getValue(s){
-    this.name_of_school_first = s.name_of_school;
-    this.changeSchool(s.name_of_school)
-    this.suggestions=[];
+  clearSuggestData(){
+    if( this.data.length<1)
+    {
+      let schoolData:any={"name_of_school":"Others"};
+      this.data.push(schoolData)
+    }
+    this.name_of_school_first='';
+    this.model.school_data={};
   }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -160,7 +180,7 @@ export class EiSchoolRegisterComponent implements OnInit {
      
      try{
        this.SpinnerService.show(); 
-      
+       //ei/get-notonboarded-ei-by-city
        this.eiService.getSchoolListByCity(obj.id).subscribe(res => {
          
          let response:any={};
