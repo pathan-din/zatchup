@@ -525,12 +525,7 @@ mat-row, mat-footer-row {
     color: #fff !important;
 } */
 
-.form-control{
-    height: calc(2.1em + .75rem + 2px);
-}
-/* .custom-select {
-    height: calc(1.5em + .75rem + 7px);
-} */
+
 
 .mat-slide-toggle-thumb-container {
     z-index: inherit !important;
@@ -597,3 +592,6 @@ button.fileBtn {
 
 ul{list-style: none; padding-left: 15px;}
 .closeMenu{top: 10px; right: 10px; z-index: 2;}
+
+.imgCircle{width: 50px; height: 50px; border: 2px solid #139bbf; border-radius: 50%; overflow: hidden; text-align: center}
+.cerImg{height: 49px;}

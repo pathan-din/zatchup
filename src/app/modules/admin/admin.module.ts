@@ -115,7 +115,6 @@ import { MyAssignedEiHistoryComponent } from './my-assigned/my-assigned-ei-histo
 import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-ei.component';
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
 import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/users-signed-up-zatchup.component';
-<<<<<<< HEAD
 import { AdvertisementsComponent } from './advertisements/advertisements/advertisements.component';
 import { AdvertisementsActiveComponent } from './advertisements/advertisements-active/advertisements-active.component';
 import { AdvertisementsActiveAudienceComponent } from './advertisements/advertisements-active-audience/advertisements-active-audience.component';
@@ -129,9 +128,7 @@ import { AdvertisementsPendingForApprovalViewComponent } from './advertisements/
 import { AdvertisementsRateHistoryComponent } from './advertisements/advertisements-rate-history/advertisements-rate-history.component';
 import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
 import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
-=======
 import { DirectiveModule } from 'src/app/directives/directive.module';
->>>>>>> 1c20401f5f47895cea73c1d2acc067e623675b99
 
 @NgModule({
   declarations: [
@@ -241,8 +238,6 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     MyAssignedEiHistoryComponent,
     MyAssignedEiComponent,
     AdminPageNotFoundComponent,
-<<<<<<< HEAD
-    NumberOnlyDirective,
     UsersSignedUpZatchupComponent,
     AdvertisementsComponent,
     AdvertisementsActiveComponent,
@@ -256,10 +251,8 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     AdvertisementsPendingForApprovalViewComponent,
     AdvertisementsRateHistoryComponent,
     AdvertisementsRejectComponent,
-    AdvertisementsRejectViewComponent
-=======
+    AdvertisementsRejectViewComponent,
     UsersSignedUpZatchupComponent
->>>>>>> 1c20401f5f47895cea73c1d2acc067e623675b99
   ],
   imports: [
     CommonModule,
