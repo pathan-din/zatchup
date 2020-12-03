@@ -7,7 +7,6 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-//import * as $ from 'jquery';
 declare var $: any;
 
 @Component({
@@ -55,7 +54,7 @@ export class UserSignUpComponent implements OnInit {
   constructor(
     private genericFormValidationService: GenericFormValidationService,
     private router: Router,
-    private SpinnerService: NgxSpinnerService,
+    private loader: NgxSpinnerService,
     public userService: UsersServiceService,
     public formBuilder: FormBuilder,
     private baseService: BaseService,
@@ -114,7 +113,7 @@ export class UserSignUpComponent implements OnInit {
       return false;
     }
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
       /**********************************************************************/
@@ -123,42 +122,29 @@ export class UserSignUpComponent implements OnInit {
       }
       this.baseService.action('user/register/', this.model).subscribe(
         (res: any) => {
-          console.log(res);
-          // let response: any = {};
-          // response = res;
-          this.SpinnerService.hide();
-          if (res.status === true)// Condition True Success 
-          {
+          this.loader.hide();
+          if (res.status === true) {
 
             $("#OTPModel").modal({
               backdrop: 'static',
               keyboard: false
             });
-          } else { // Condition False Validation failure
-            this.SpinnerService.hide();
-            // var errorCollection = '';
-            // for (var key in response.error) {
-            //   if (response.error.hasOwnProperty(key)) {
-            //     errorCollection = errorCollection + response.error[key][0] + '\n'
+          } else {
+            var errorCollection = '';
+            for (var key in res.error) {
+              if (res.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + res.error[key][0] + '\n'
 
-            //   }
-            // }
-            // alert(errorCollection);
-            if (res.error.email && res.error.phone)
-              this.alert.error('Email and Phone already exists.', 'Error');
-            else if (res.error.email)
-              this.alert.error(res.error.email[0], 'Error');
-            else if (res.error.phone)
-              this.alert.error(res.error.phone[0], 'Error');
-            else
-              this.alert.error(res.error.message[0], 'Error');
+              }
+            }
+            this.alert.error(errorCollection, 'Error');
+            this.loader.hide();
           }
         }, (error) => {
-          this.SpinnerService.hide();
+          this.loader.hide();
         });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
 
 
@@ -174,6 +160,9 @@ export class UserSignUpComponent implements OnInit {
     $("#currentStatusModel").modal("hide");
     this.router.navigate(['user/qualification']);
   }
+
+  /***********************Mobile Number OR Email Verification Via OTP**********************************/
+
   goToDashboard() {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
@@ -200,53 +189,49 @@ export class UserSignUpComponent implements OnInit {
       this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
       this.modelForOtpModal.verify_otp_no = this.otp1 + this.otp2 + this.otp3 + this.otp4;
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.SpinnerService.show();
-      this.userService.verifyOtpViaRegister(this.modelForOtpModal).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          //localStorage.setItem("user_id",response.user_id);
-          localStorage.setItem("token", response.token);
-          $("#OTPModel").modal('hide');
-          this.router.navigate(['user/kyc-verification']);
-        } else {
-          this.errorOtpModelDisplay = response.error;
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
+      this.loader.show();
+      this.baseService.action('user/user-verify/', this.modelForOtpModal).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            localStorage.setItem("token", res.token);
+            $("#OTPModel").modal('hide');
+            this.router.navigate(['user/kyc-verification']);
+          } else {
+            this.alert.error(res.error, "Error")
+          }
+        }, (error) => {
+          this.loader.hide();
+          console.log(error);
 
-      });
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("verify Otp Exception", err);
+      this.loader.hide();
+      this.alert.error(err, "Error")
     }
-
   }
+
+  /***********************Resend OTP**********************************/
+
   resendOtp() {
     try {
-      let data: any = {};
       this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+      this.loader.show();
+      this.baseService.action('user/resend-otp/',this.modelForOtpModal).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            this.alert.success(res.message, 'Success')
+          } else {
+            this.alert.error(res.error, 'Error')
+          }
+        }, (error) => {
+          this.loader.hide();
+          console.log(error);
 
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.SpinnerService.show();
-      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          alert("OTP Resend On Your Register Mobile Number Or Email-Id.")
-        } else {
-          this.errorOtpModelDisplay = response.error;
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+        });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
       console.log("verify Otp Exception", err);
     }
   }
