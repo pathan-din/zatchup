@@ -114,8 +114,8 @@ import { SubscriptionPlanHistoryComponent } from './ei/subscription-plan-history
 import { MyAssignedEiHistoryComponent } from './my-assigned/my-assigned-ei-history/my-assigned-ei-history.component';
 import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-ei.component';
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
-import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
 import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/users-signed-up-zatchup.component';
+import { DirectiveModule } from 'src/app/directives/directive.module';
 
 @NgModule({
   declarations: [
@@ -225,7 +225,6 @@ import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/us
     MyAssignedEiHistoryComponent,
     MyAssignedEiComponent,
     AdminPageNotFoundComponent,
-    NumberOnlyDirective,
     UsersSignedUpZatchupComponent
   ],
   imports: [
@@ -244,7 +243,8 @@ import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/us
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    DirectiveModule
   ],
   providers: [DatePipe]
 })

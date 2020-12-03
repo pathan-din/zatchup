@@ -6,6 +6,7 @@ import { FormBuilder } from "@angular/forms";
 
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 //import * as $ from 'jquery';
 declare var $: any;
 
@@ -19,7 +20,7 @@ export class UserSignUpComponent implements OnInit {
   modelForOtpModal: any = {};
   showHidePassword: string = 'password';
   showHidecPassword: string = 'password';
-  globalYear:any = 1970
+  globalYear: any = 1970
   /**********Variable declare for OTP Verification Model************/
   otp1: any;
   otp2: any;
@@ -57,7 +58,8 @@ export class UserSignUpComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public userService: UsersServiceService,
     public formBuilder: FormBuilder,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private alert: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -119,33 +121,41 @@ export class UserSignUpComponent implements OnInit {
       if (this.model.phone == null) {
         this.model.phone = '';
       }
-      this.baseService.action('user/register/',this.model).subscribe(res => {
-        console.log(res);
-        let response: any = {};
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status === true)// Condition True Success 
-        {
-
-          $("#OTPModel").modal({
-            backdrop: 'static',
-            keyboard: false
-          });
-        } else { // Condition False Validation failure
+      this.baseService.action('user/register/', this.model).subscribe(
+        (res: any) => {
+          console.log(res);
+          // let response: any = {};
+          // response = res;
           this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
+          if (res.status === true)// Condition True Success 
+          {
 
-            }
+            $("#OTPModel").modal({
+              backdrop: 'static',
+              keyboard: false
+            });
+          } else { // Condition False Validation failure
+            this.SpinnerService.hide();
+            // var errorCollection = '';
+            // for (var key in response.error) {
+            //   if (response.error.hasOwnProperty(key)) {
+            //     errorCollection = errorCollection + response.error[key][0] + '\n'
+
+            //   }
+            // }
+            // alert(errorCollection);
+            if (res.error.email && res.error.phone)
+              this.alert.error('Email and Phone already exists.', 'Error');
+            else if (res.error.email)
+              this.alert.error(res.error.email[0], 'Error');
+            else if (res.error.phone)
+              this.alert.error(res.error.phone[0], 'Error');
+            else
+              this.alert.error(res.error.message[0], 'Error');
           }
-          alert(errorCollection);
-
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-      });
+        }, (error) => {
+          this.SpinnerService.hide();
+        });
     } catch (err) {
       this.SpinnerService.hide();
       //console.log(err);
