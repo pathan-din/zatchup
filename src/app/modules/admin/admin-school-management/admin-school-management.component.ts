@@ -129,10 +129,10 @@ export class AdminSchoolManagementComponent implements OnInit {
   }
 
   searchRoute() {
-    if (this.search.length > 3)
+    // if (this.search.length > 3)
       this.router.navigate(['admin/ei-search', this.search])
-    else
-      this.alert.error('Search text must be greater than 3 keyword', 'Error')
+    // else
+    //   this.alert.error('Search text must be greater than 3 keyword', 'Error')
   }
 
   addEducationInstitute() {
