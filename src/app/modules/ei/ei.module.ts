@@ -137,7 +137,7 @@ import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -280,7 +280,8 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxPaginationModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    AutocompleteLibModule
   ],
   exports: [
     EiLoginComponent

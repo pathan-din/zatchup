@@ -29,6 +29,7 @@ export class SearchComponent implements OnInit {
     'boardUniversity', 'status'];
 
   dataSource: any;
+  page_size: any;
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
@@ -49,7 +50,7 @@ export class SearchComponent implements OnInit {
     let params = {
       "search": this.search,
       "page": page,
-      "page_size": this.config.itemsPerPage,
+      "page_size": this.page_size,
       "university": this.university,
       "city": this.cityId ? this.getValue(this.allCities, this.cityId, 'city') : '',
       "state": this.stateId ? this.getValue(this.allStates, this.stateId, 'state') : '',
@@ -63,6 +64,7 @@ export class SearchComponent implements OnInit {
           if (!page)
             page = this.config.currentPage
           this.startIndex = res.page_size * (page - 1) + 1;
+          this.page_size = res.page_size;
           this.config.itemsPerPage = res.page_size
           this.config.currentPage = page
           this.config.totalItems = res.count;

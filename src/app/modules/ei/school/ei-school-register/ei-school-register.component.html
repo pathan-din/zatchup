@@ -34,31 +34,26 @@
                     </div>
 
                     <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-12 mobilePaddingLR">
+                        <div class="col-sm-12 mobilePaddingLR ">
 
                            
 
 
                             <label for="pronouce" class="mediumFont commonFontSize letterspacing">Select School
                                 Name</label>
-                            <!-- <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <select (change)="changeSchool(name_of_school_first)" id="school_name" [(ngModel)]="name_of_school_first"
-                                    name="school_name" class="custom-select form-control-input" required>
-                                    <option value="">Select School</option>
-                                    <option *ngFor="let school of schoolList" value="{{school.name_of_school}}">
-                                        {{school.name_of_school}}</option>
-                                    <option value="Others">Others</option>
-
-                                </select>
-                            </div> -->
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
-                            <input autocomplete="off" [(ngModel)]="name_of_school_first"
-                            name="school_name" required type="text"  placeholder="Select School" class="form-control-input form-control  commonFontSize regularFont letterspacing" (keyup)="suggest()">
+                          
+                            <div class="  py-1 shadow-none">
+                                <ng-autocomplete   name="school_name1" [(ngModel)]="name_of_school_first1" id="school_name" [data]="data" [searchKeyword]="keyword" (selected)='suggestData($event)'
+                                (inputChanged)='suggest($event)' (inputCleared)="clearSuggestData()" (inputFocused)='suggest($event)' [itemTemplate]="itemTemplate">
+                            </ng-autocomplete>
+                            <input required name="school_name" [(ngModel)]="name_of_school_first" id="school_name" type="hidden">
+                            <ng-template #itemTemplate let-item>
+                                <a [innerHTML]="item.name_of_school"></a>
+                            </ng-template>
+                           
                             </div>
-                            <div class="suggestions" *ngIf="suggestions.length">
-                              <p (click)="getValue(s)" class="cursorStyle" *ngFor="let s of suggestions">{{s.name_of_school}}</p>
-                            </div>
-                            <div class="required errorMsg" *ngIf="name_of_school_first!='Others'"
+                            
+                            <div class="required errorMsg" 
                                 [innerHtml]="errorDisplay.school_name"></div>
                         </div>
                     </div>

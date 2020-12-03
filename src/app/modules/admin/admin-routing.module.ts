@@ -236,7 +236,7 @@ const routes: Routes = [
     path: 'admin-user-status-filter', component: AdminUserStatusFilterComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin-user-search', component: AdminUserSearchComponent, canActivate: [AuthGuard]
+    path: 'user-search/:search', component: AdminUserSearchComponent, canActivate: [AuthGuard]
   },
   {
     path: 'admin-user-certificates', component: AdminUserCertificatesComponent, canActivate: [AuthGuard]

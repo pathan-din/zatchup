@@ -32,7 +32,9 @@
                             </div>
                         </div>
                         <div class="form-group row color-fadded-black p-2">
-                            <div class="col-sm-12 form-control-input">
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
+                                Description: </div>
+                            <div class="col-sm-6 form-control-input commonFontSize mediumFont">
                                 <span class="text-dark">{{course.description}} </span>
                             </div>
                         </div>
@@ -46,13 +48,14 @@
                         <img src="assets/images/userWebsite/add.png" class="img-fluid">
                     </button>
                 </div>
-                <div (click)="addMoreCourse()" class="col-xl-10 col-md-8 col-10 text-left cursorStyle commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
+                <div (click)="addMoreCourse()"
+                    class="col-xl-10 col-md-8 col-10 text-left cursorStyle commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
                     Add More Course
                 </div>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn common-btn regularFont textSpace ml-3"
-                (click)="goToUserAddMoreEiPage()">Submit</button>
+                    (click)="goToUserAddMoreEiPage()">Submit</button>
             </div>
         </div>
     </div>
