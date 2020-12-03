@@ -33,11 +33,7 @@
                 <p class="text-center color-gray regularFont">OR</p>
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
-<<<<<<< HEAD
-                        <input (keyup)="isValid($event)" message="only number" pattern="^[0-9]*\d"  [required]="!model.email" class="form-control-input form-control form-control-sm form-bgImg form-phoneBgImg" type="tel" minlength="10" maxlength="10" id="phone" [(ngModel)]="model.phone" name ="phone" placeholder="Enter Your Phone Number">
-=======
                         <input (keyup)="isValid($event)"  [required]="!model.email" class="form-control-input form-control form-control-sm form-bgImg form-phoneBgImg" type="tel" minlength="10" maxlength="10" id="phone" [(ngModel)]="model.phone" name ="phone" placeholder="Enter Your Phone Number" numberOnly>
->>>>>>> 0644321fe3ba20ce46b48baee3fe3b7c88bd31b2
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
                 </div>
