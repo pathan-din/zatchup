@@ -47,31 +47,31 @@
                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
                                 Ending Year : <span class="text-dark mediumFont">{{courseData.end_year?courseData.end_year:''}}</span>
                             </div>
-                            <div class="form-group row form-control-inputDiv rounded-0">
+                            <div class="form-group row form-control-inputDiv rounded-0" *ngFor="let standardData of confirmData.ei_detail.course_detail.standard_detail;">
                                 <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                    Standard : <span class="text-dark mediumFont">6th</span>
+                                    Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
                                 </div>
                                 <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                    Starting Year : <span class="text-dark mediumFont">2017</span>
+                                    Duration : <span class="text-dark mediumFont">{{standardData.duration}}</span>
                                 </div>
-                                <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                <!-- <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
                                     Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                                </div>
-                                <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                        class="text-dark mediumFont"> 6th</span></div>
-                                        <div class="form-group row form-control-inputDiv rounded-0">
+                                </div> -->
+                                
+                                
+                                        <div class="form-group row form-control-inputDiv rounded-0" *ngFor="let classData of standardData.class_detail;">
                                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                                Standard : <span class="text-dark mediumFont">6th</span>
+                                                Standard : <span class="text-dark mediumFont">{{standardData.class_name}}</span>
                                             </div>
                 
                                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                                Starting Year : <span class="text-dark mediumFont">2017</span>
+                                                Teaching Start Year : <span class="text-dark mediumFont">{{standardData.teaching_start_year}}</span>
                                             </div>
-                                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                            <!-- <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
                                                 Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
                                             </div>
                                             <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                                    class="text-dark mediumFont"> 6th</span></div>
+                                                    class="text-dark mediumFont"> 6th</span></div> -->
                 
                                         </div>
                             </div>
