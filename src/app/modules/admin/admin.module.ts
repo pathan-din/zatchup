@@ -116,6 +116,19 @@ import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
 import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
 import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/users-signed-up-zatchup.component';
+import { AdvertisementsComponent } from './advertisements/advertisements/advertisements.component';
+import { AdvertisementsActiveComponent } from './advertisements/advertisements-active/advertisements-active.component';
+import { AdvertisementsActiveAudienceComponent } from './advertisements/advertisements-active-audience/advertisements-active-audience.component';
+import { AdvertisementsActiveViewComponent } from './advertisements/advertisements-active-view/advertisements-active-view.component';
+import { AdvertisementsAddComponent } from './advertisements/advertisements-add/advertisements-add.component';
+import { AdvertisementsConfigureRateComponent } from './advertisements/advertisements-configure-rate/advertisements-configure-rate.component';
+import { AdvertisementsExpiredComponent } from './advertisements/advertisements-expired/advertisements-expired.component';
+import { AdvertisementsHistoryComponent } from './advertisements/advertisements-history/advertisements-history.component';
+import { AdvertisementsPendingForApprovalComponent } from './advertisements/advertisements-pending-for-approval/advertisements-pending-for-approval.component';
+import { AdvertisementsPendingForApprovalViewComponent } from './advertisements/advertisements-pending-for-approval-view/advertisements-pending-for-approval-view.component';
+import { AdvertisementsRateHistoryComponent } from './advertisements/advertisements-rate-history/advertisements-rate-history.component';
+import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
+import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
 
 @NgModule({
   declarations: [
@@ -226,7 +239,20 @@ import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/us
     MyAssignedEiComponent,
     AdminPageNotFoundComponent,
     NumberOnlyDirective,
-    UsersSignedUpZatchupComponent
+    UsersSignedUpZatchupComponent,
+    AdvertisementsComponent,
+    AdvertisementsActiveComponent,
+    AdvertisementsActiveAudienceComponent,
+    AdvertisementsActiveViewComponent,
+    AdvertisementsAddComponent,
+    AdvertisementsConfigureRateComponent,
+    AdvertisementsExpiredComponent,
+    AdvertisementsHistoryComponent,
+    AdvertisementsPendingForApprovalComponent,
+    AdvertisementsPendingForApprovalViewComponent,
+    AdvertisementsRateHistoryComponent,
+    AdvertisementsRejectComponent,
+    AdvertisementsRejectViewComponent
   ],
   imports: [
     CommonModule,

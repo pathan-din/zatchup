@@ -100,6 +100,19 @@ import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-
 import { MyAssignedEiHistoryComponent } from './my-assigned/my-assigned-ei-history/my-assigned-ei-history.component'
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
 import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/users-signed-up-zatchup.component';
+import { AdvertisementsComponent } from './advertisements/advertisements/advertisements.component';
+import { AdvertisementsActiveComponent } from './advertisements/advertisements-active/advertisements-active.component';
+import { AdvertisementsActiveAudienceComponent } from './advertisements/advertisements-active-audience/advertisements-active-audience.component';
+import { AdvertisementsActiveViewComponent } from './advertisements/advertisements-active-view/advertisements-active-view.component';
+import { AdvertisementsAddComponent } from './advertisements/advertisements-add/advertisements-add.component';
+import { AdvertisementsConfigureRateComponent } from './advertisements/advertisements-configure-rate/advertisements-configure-rate.component';
+import { AdvertisementsExpiredComponent } from './advertisements/advertisements-expired/advertisements-expired.component';
+import { AdvertisementsHistoryComponent } from './advertisements/advertisements-history/advertisements-history.component';
+import { AdvertisementsPendingForApprovalComponent } from './advertisements/advertisements-pending-for-approval/advertisements-pending-for-approval.component';
+import { AdvertisementsPendingForApprovalViewComponent } from './advertisements/advertisements-pending-for-approval-view/advertisements-pending-for-approval-view.component';
+import { AdvertisementsRateHistoryComponent } from './advertisements/advertisements-rate-history/advertisements-rate-history.component';
+import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
+import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
 
 const routes: Routes = [
   {
@@ -396,6 +409,49 @@ const routes: Routes = [
   {
     path: 'signed-up-users', component: UsersSignedUpZatchupComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'advertisements', component: AdvertisementsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-active', component: AdvertisementsActiveComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-active-audience', component: AdvertisementsActiveAudienceComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-active-view', component: AdvertisementsActiveViewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-add', component: AdvertisementsAddComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-configure-rate', component: AdvertisementsConfigureRateComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-expired', component: AdvertisementsExpiredComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-history', component: AdvertisementsHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-pending-for-approval', component: AdvertisementsPendingForApprovalComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-pending-for-approval-view', component: AdvertisementsPendingForApprovalViewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-rate-history', component: AdvertisementsRateHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-reject', component: AdvertisementsRejectComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'advertisements-reject-view', component: AdvertisementsRejectViewComponent, canActivate: [AuthGuard]
+  },
+
+
+
+
 
 
 

@@ -1,0 +1,90 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12">
+                <h2 class="commonFontSize semiBoldFont m-0">Audience</h2>
+            </div>
+            <!-- <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-paret-green text-white px-4 h-100 ml-2 border-0 mp0">Configure Subscription Fees</button>                
+                <button type="button" class="bg-blue text-white px-4 h-100 ml-2 border-0 mp0">Subscription Plan History</button>
+            </div> -->
+        </div>
+        
+        <!--Start html for filter for No of alumni per page with export button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Audience Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of alumni per page with export button-->
+
+        <!--Start html for table content Alimni information-->
+        <div class="tableDiv ">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfViewing">
+                        <mat-header-cell *matHeaderCellDef> Date Of Viewing </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.dateOfViewing}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="IDofUser">
+                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID Of User </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.IDofUser}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfUser">
+                        <mat-header-cell *matHeaderCellDef> Name Of User </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.nameOfUser}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="age">
+                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="locationOfViewing">
+                        <mat-header-cell *matHeaderCellDef> Location Of Viewing </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.locationOfViewing}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profession">
+                        <mat-header-cell *matHeaderCellDef> Profession </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.profession}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <!--End html for table content Alimni information-->
+    </div>
+</div>
