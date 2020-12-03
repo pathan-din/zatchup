@@ -221,7 +221,7 @@ export class UserSignUpComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
-            this.alert.success('OTP Resend On Your Register Mobile Number Or Email-Id.', 'Success')
+            this.alert.success(res.message, 'Success')
           } else {
             this.alert.error(res.error, 'Error')
           }
