@@ -66,6 +66,10 @@ export class AdminUserComponent implements OnInit {
     this.router.navigate(['admin/kyc-verified-users'], {queryParams: { returnUrl: 'admin/user'}})
   }
 
+  activeUsers(){
+    this.router.navigate(['admin/active-users'], {queryParams: { returnUrl: 'admin/user'}})
+  }
+
 
   getUserManagement(){
     this.loader.show();

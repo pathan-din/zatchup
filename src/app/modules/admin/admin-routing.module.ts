@@ -19,7 +19,6 @@ import { AdminZatchCertificateResultComponent } from './admin-zatch-certificate-
 import { AdminZatchCertificateConfigueComponent } from './admin-zatch-certificate-configue/admin-zatch-certificate-configue.component';
 
 import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { AdminUserLastLoginComponent } from './user/admin-user-last-login/admin-user-last-login.component';
 import { AdminCreateNewPasswordComponent } from './admin-create-new-password/admin-create-new-password.component';
 import { AdminUserKycPendingComponent } from './user/admin-user-kyc-pending/admin-user-kyc-pending.component';
 import { AdminUserComponent } from './user/admin-user/admin-user.component';
@@ -114,6 +113,7 @@ import { AdvertisementsRateHistoryComponent } from './advertisements/advertiseme
 import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
 import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
 import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
+import { ActiveUsersComponent } from './user/active-users/active-users.component';
 
 const routes: Routes = [
   {
@@ -172,9 +172,6 @@ const routes: Routes = [
   },
   {
     path: 'zatch-certificate-config', component: AdminZatchCertificateConfigueComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'user-last-login', component: AdminUserLastLoginComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user-kyc-pending', component: AdminUserKycPendingComponent, canActivate: [AuthGuard]
@@ -451,6 +448,9 @@ const routes: Routes = [
   },
   {
     path: 'kyc-verified-users', component: KycVerifiedUsersComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'active-users', component: ActiveUsersComponent, canActivate: [AuthGuard]
   },
 
 

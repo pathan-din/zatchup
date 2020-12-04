@@ -26,7 +26,6 @@ import { AdminPaymentOnboardingFeeHistoryComponent } from './payment/admin-payme
 import { AdminEiRejectDetailsComponent } from './ei/admin-ei-reject-details/admin-ei-reject-details.component';
 import { AdminZatchCertificateResultComponent } from './admin-zatch-certificate-result/admin-zatch-certificate-result.component';
 import { AdminZatchCertificateConfigueComponent } from './admin-zatch-certificate-configue/admin-zatch-certificate-configue.component';
-import { AdminUserLastLoginComponent } from './user/admin-user-last-login/admin-user-last-login.component';
 import { AdminCreateNewPasswordComponent } from './admin-create-new-password/admin-create-new-password.component';
 import { AdminUserKycPendingComponent } from './user/admin-user-kyc-pending/admin-user-kyc-pending.component';
 import { AdminUserComponent } from './user/admin-user/admin-user.component';
@@ -131,6 +130,7 @@ import { AdvertisementsRejectViewComponent } from './advertisements/advertisemen
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
+import { ActiveUsersComponent } from './user/active-users/active-users.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +152,6 @@ import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified
     AdminEiRejectDetailsComponent,
     AdminZatchCertificateResultComponent,
     AdminZatchCertificateConfigueComponent,
-    AdminUserLastLoginComponent,
     AdminCreateNewPasswordComponent,
     AdminUserKycPendingComponent,
     AdminUserComponent,
@@ -256,7 +255,8 @@ import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified
     AdvertisementsRejectViewComponent,
     UsersSignedUpZatchupComponent,
     KycVerifiedUsersComponent,
-    KycVerifiedByEiComponent
+    KycVerifiedByEiComponent,
+    ActiveUsersComponent
   ],
   imports: [
     CommonModule,

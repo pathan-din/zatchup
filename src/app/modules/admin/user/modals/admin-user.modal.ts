@@ -76,3 +76,7 @@ export class SignupUsers {
 export class KycVerifiedUsers extends SignupUsers{
       
 }
+
+export class ActiveUsers extends SignupUsers{
+      
+}
