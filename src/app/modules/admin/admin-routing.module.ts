@@ -115,6 +115,7 @@ import { AdvertisementsRejectViewComponent } from './advertisements/advertisemen
 import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
+import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 
 const routes: Routes = [
   {
@@ -455,6 +456,9 @@ const routes: Routes = [
   },
   {
     path: 'dormant-users', component: DormantUsersComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'kyc-verified-by-ei', component: KycVerifiedByEiComponent, canActivate: [AuthGuard]
   },
 
 

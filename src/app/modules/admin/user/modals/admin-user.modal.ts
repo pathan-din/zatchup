@@ -84,6 +84,10 @@ export class KycVerifiedUsers extends SignupUsers {
 
 }
 
+export class KycVerifiedByEi extends SignupUsers {
+
+}
+
 export class ActiveUsers extends SignupUsers {
 
 }
