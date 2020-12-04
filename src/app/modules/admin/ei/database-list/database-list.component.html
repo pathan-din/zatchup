@@ -19,9 +19,8 @@
             <div class="d-flex flex-wrap align-items-end">
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                    <div class="rounded-0 p-0 border-top shadow-none">
+                        <input class="form-control formfocusStyle"
                             type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true }">
@@ -30,9 +29,8 @@
 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                    <div class="rounded-0 p-0 border-top shadow-none">
+                        <input class="form-control formfocusStyle"
                             type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
@@ -42,8 +40,8 @@
 
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
                             [(ngModel)]="eidbList.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of eidbList.allStates" [value]="state.id"> {{state.state}}
@@ -54,8 +52,8 @@
 
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
                             [(ngModel)]="eidbList.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of eidbList.allCities" [value]="city.id">{{city.city}}</option>
@@ -65,17 +63,17 @@
 
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                    <div class="form-control-inputDiv rounded shadow-none">
                         <input type="text" name="board_university" [(ngModel)]="eidbList.university"
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            class="custom-select form-control-input"
                             placeholder="Board/University" />
                     </div>
                 </div>
 
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Onboarding Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
                             [(ngModel)]="eidbList.onboardingStatus">
                             <option value=""> Select Status</option>
                             <option value="1">OnBoarding Stage 1</option>

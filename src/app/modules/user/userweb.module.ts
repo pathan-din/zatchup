@@ -58,6 +58,7 @@ import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-m
 import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
 import { DirectiveModule } from 'src/app/directives/directive.module';
+import { MySchoolComponent } from './my-school/my-school.component';
 
 
 
@@ -108,7 +109,8 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     ContactUsComponent,
     AddMoreCourseManuallyComponent,
     AddPastEiComponent,
-    UserPageNotFoundComponent
+    UserPageNotFoundComponent,
+    MySchoolComponent
   ],
 
   imports: [
