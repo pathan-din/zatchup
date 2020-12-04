@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -18,7 +19,8 @@ export class OnboardedViewComponent implements OnInit {
     private activeRouter: ActivatedRoute,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private location: Location
     ) { } 
 
   ngOnInit(): void {
@@ -46,4 +48,7 @@ export class OnboardedViewComponent implements OnInit {
 
   goToUserEducationDetail(){}
 
+  goBack(): void{
+    this.location.back();
+  }
 }

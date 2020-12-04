@@ -21,9 +21,8 @@
             <div class="d-flex flex-wrap align-items-end">
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Added From</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY"> -->
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " id="fromDate" name="fromDate" type="text" 
+                    <div class="rounded-0 p-0 border-top shadow-none">
+                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " id="fromDate" name="fromDate" type="text" 
                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
@@ -31,9 +30,8 @@
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Added To</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY"> -->
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" id="toDate" name="toDate"
+                    <div class="rounded-0 p-0 border-top shadow-none">
+                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " type="text" id="toDate" name="toDate"
                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
@@ -41,8 +39,8 @@
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
                         [(ngModel)]="onboardedZatchup.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of onboardedZatchup.allStates" [value]="state.id">{{state.state}}</option>
@@ -51,8 +49,8 @@
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
                         [(ngModel)]="onboardedZatchup.cityId">
                             <option value=""> Select City</option>
                            <option *ngFor="let city of onboardedZatchup.allCities" [value]="city.id">{{city.city}}</option>
@@ -61,22 +59,22 @@
                 </div>
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                    <div class="form-control-inputDiv rounded shadow-none">
                         <input type="text" name="board_university" [(ngModel)]="this.onboardedZatchup.university" 
-                        class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Board/University"/>
+                        class="custom-select form-control-input commonFontSize regularFont letterspacing"  placeholder="Board/University"/>
 
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Subscription Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                    <div class="">
                         <input type="range">
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Subscription Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="pastEI" required>
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required>
                             <option value=""> Select Status</option>
                             <option value="1">Profession1</option>
                             <option value="2">Profession2</option>
@@ -87,8 +85,8 @@
                 </div>
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="ageGroup" required>
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" id="ageGroup" required>
                             <option value=""> Select Status</option>
                             <option value="1">Profession1</option>
                             <option value="2">Profession2</option>

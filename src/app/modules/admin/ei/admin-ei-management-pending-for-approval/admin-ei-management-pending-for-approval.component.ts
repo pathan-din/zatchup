@@ -5,6 +5,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { EIPendingApproval } from '../modals/ei-pending-approval.modal'
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-ei-management-pending-for-approval',
@@ -19,7 +20,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location,
   ) {
     this.eIPendingApproval = new EIPendingApproval();
     this.eIPendingApproval.maxDate = new Date();
@@ -114,5 +116,9 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
     })
 
     return find[value];
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 }

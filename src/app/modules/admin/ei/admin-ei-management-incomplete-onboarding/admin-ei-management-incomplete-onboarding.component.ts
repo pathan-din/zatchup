@@ -7,6 +7,7 @@ import { OnBoardList } from '../modals/ei-pending-approval.modal';
 import { DatePipe } from '@angular/common';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
+import { Location } from '@angular/common'
 
 
 
@@ -32,7 +33,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     private baseService: BaseService,
     private datePipe: DatePipe,
     private confirmDialogService: ConfirmDialogService,
-    private validationService: GenericFormValidationService
+    private validationService: GenericFormValidationService,
+    private location: Location,
   ) {
     this.onboardList = new OnBoardList();
     this.maxDate = new Date();
@@ -170,5 +172,9 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       this.alert.error(err.error, 'Error')
       this.loader.hide();
     }
+  }
+  goBack(): void{
+    this.location.back();
+    console.log(location)
   }
 }

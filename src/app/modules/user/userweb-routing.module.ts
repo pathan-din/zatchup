@@ -42,6 +42,7 @@ import { ContactUsComponent } from './user-info/contact-us/contact-us.component'
 import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-more-course-manually.component'
 import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
+import { MySchoolComponent } from './my-school/my-school.component';
 const routes: Routes = [
   {
     path: '', component: UserSignUpComponent
@@ -171,6 +172,21 @@ const routes: Routes = [
   {
     path: 'user/add-past-ei', component: AddPastEiComponent
   },
+
+  {
+    path: 'user/my-school', component: MySchoolComponent
+  },
+
+
+
+
+
+
+
+
+
+
+
   {
     path: '**', component: UserPageNotFoundComponent
 },
