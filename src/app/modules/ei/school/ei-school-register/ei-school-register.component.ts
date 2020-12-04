@@ -26,6 +26,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   country:any
   name_of_school_others:any='';
   name_of_school_first:any='';
+  name_of_school_first1: any='';
   cpassword:any;
   city1:any;
   state1:any;
