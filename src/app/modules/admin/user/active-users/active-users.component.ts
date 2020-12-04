@@ -4,15 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { KycVerifiedUsers } from '../modals/admin-user.modal';
+import { ActiveUsers } from '../modals/admin-user.modal';
 
 @Component({
-  selector: 'app-kyc-verified-users',
-  templateUrl: './kyc-verified-users.component.html',
-  styleUrls: ['./kyc-verified-users.component.css']
+  selector: 'app-active-users',
+  templateUrl: './active-users.component.html',
+  styleUrls: ['./active-users.component.css']
 })
-export class KycVerifiedUsersComponent implements OnInit {
-  kycVerified: KycVerifiedUsers;
+export class ActiveUsersComponent implements OnInit {
+  activeUsers: ActiveUsers
 
   constructor(
     private router: Router,
@@ -22,14 +22,14 @@ export class KycVerifiedUsersComponent implements OnInit {
     private baseService: BaseService,
     private datePipe: DatePipe
   ) {
-    this.kycVerified = new KycVerifiedUsers()
+    this.activeUsers = new ActiveUsers();
    }
 
   ngOnInit(): void {
-    this.getKycVerifiedUsersList('')
+    this.getActiveUsersList('')
   }
 
-  getKycVerifiedUsersList(page?: any) {
+  getActiveUsersList(page?: any) {
     this.loader.show();
     // let stateFind: any;
     // let cityFind: any;
@@ -43,31 +43,31 @@ export class KycVerifiedUsersComponent implements OnInit {
     //     return val.id == this.onboardList.cityId
     //   })
     // }
-    this.kycVerified.listParams = {
-      'date_from': this.kycVerified.filterFromDate !== undefined ? this.datePipe.transform(this.kycVerified.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.kycVerified.filterToDate !== undefined ? this.datePipe.transform(this.kycVerified.filterToDate, 'yyyy-MM-dd') : '',
+    this.activeUsers.listParams = {
+      'date_from': this.activeUsers.filterFromDate !== undefined ? this.datePipe.transform(this.activeUsers.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.activeUsers.filterToDate !== undefined ? this.datePipe.transform(this.activeUsers.filterToDate, 'yyyy-MM-dd') : '',
       // "city": cityFind ? cityFind.city : '',
       // "state": stateFind ? stateFind.state : '',
       // "university": this.onboardList.university,
       // "stage_pending": this.onboardList.stagePending,
-      "page_size": this.kycVerified.page_size,
+      "page_size": this.activeUsers.page_size,
       "page": page
     }
 
-    this.baseService.getData('admin/user/kyc_verified_list/', this.kycVerified.listParams).subscribe(
+    this.baseService.getData('admin/user/active_users_list/', this.activeUsers.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.kycVerified.config.currentPage
-          this.kycVerified.startIndex = res.page_size * (page - 1) + 1;
-          this.kycVerified.config.itemsPerPage = res.page_size;
-          this.kycVerified.page_size = res.page_size
-          this.kycVerified.config.currentPage = page
-          this.kycVerified.config.totalItems = res.count;
+            page = this.activeUsers.config.currentPage
+          this.activeUsers.startIndex = res.page_size * (page - 1) + 1;
+          this.activeUsers.config.itemsPerPage = res.page_size;
+          this.activeUsers.page_size = res.page_size
+          this.activeUsers.config.currentPage = page
+          this.activeUsers.config.totalItems = res.count;
           if (res.count > 0)
-            this.kycVerified.dataSource = res.results
+            this.activeUsers.dataSource = res.results
           else
-            this.kycVerified.dataSource = undefined
+            this.activeUsers.dataSource = undefined
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -79,10 +79,10 @@ export class KycVerifiedUsersComponent implements OnInit {
     }
   }
   generateExcel() {
-    delete this.kycVerified.listParams.page_size;
-    delete this.kycVerified.listParams.page;
+    delete this.activeUsers.listParams.page_size;
+    delete this.activeUsers.listParams.page;
     // this.onboardList.listParams['export_csv'] = true
-    this.baseService.generateExcel('admin/user/export_kyc_verified_list/', 'kyc-verified-users', this.kycVerified.listParams);
+    this.baseService.generateExcel('admin/user/export_active_users_list/', 'active-users', this.activeUsers.listParams);
   }
 
   goBack(){
