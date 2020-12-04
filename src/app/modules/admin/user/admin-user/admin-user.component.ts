@@ -68,6 +68,10 @@ export class AdminUserComponent implements OnInit {
     this.router.navigate(['admin/kyc-verified-users'], {queryParams: { returnUrl: 'admin/user'}})
   }
 
+  kycVerifiedByEi(){
+    this.router.navigate(['admin/kyc-verified-by-ei'], {queryParams: { returnUrl: 'admin/user'}})
+  }
+
   activeUsers(){
     this.router.navigate(['admin/active-users'], {queryParams: { returnUrl: 'admin/user'}})
   }
