@@ -50,14 +50,14 @@ export class DatabaseListComponent implements OnInit {
     let stateFind: any;
     let cityFind: any;
     if(this.eidbList.allStates && this.eidbList.stateId){
-      cityFind = this.eidbList.allCities.find(val=>{
-        return val.id == this.eidbList.cityId
+      stateFind = this.eidbList.allStates.find(val=>{
+        return val.id == this.eidbList.stateId
       })
     }
     
     if(this.eidbList.allCities){
-      stateFind = this.eidbList.allStates.find(val=>{
-        return val.id == this.eidbList.stateId
+      cityFind = this.eidbList.allCities.find(val=>{
+        return val.id == this.eidbList.cityId
       }) 
     }
     
