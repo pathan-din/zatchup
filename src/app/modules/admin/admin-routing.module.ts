@@ -113,6 +113,7 @@ import { AdvertisementsPendingForApprovalViewComponent } from './advertisements/
 import { AdvertisementsRateHistoryComponent } from './advertisements/advertisements-rate-history/advertisements-rate-history.component';
 import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
 import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
+import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
 
 const routes: Routes = [
   {
@@ -448,7 +449,9 @@ const routes: Routes = [
   {
     path: 'advertisements-reject-view', component: AdvertisementsRejectViewComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'kyc-verified-users', component: KycVerifiedUsersComponent, canActivate: [AuthGuard]
+  },
 
 
 
