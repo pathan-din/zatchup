@@ -50,7 +50,7 @@ export class ActiveUsersComponent implements OnInit {
       // "state": stateFind ? stateFind.state : '',
       // "university": this.onboardList.university,
       // "stage_pending": this.onboardList.stagePending,
-      "page_size": this.activeUsers.pageSize,
+      "page_size": this.activeUsers.page_size,
       "page": page
     }
 
@@ -61,7 +61,7 @@ export class ActiveUsersComponent implements OnInit {
             page = this.activeUsers.config.currentPage
           this.activeUsers.startIndex = res.page_size * (page - 1) + 1;
           this.activeUsers.config.itemsPerPage = res.page_size;
-          this.activeUsers.pageSize = res.page_size
+          this.activeUsers.page_size = res.page_size
           this.activeUsers.config.currentPage = page
           this.activeUsers.config.totalItems = res.count;
           if (res.count > 0)
