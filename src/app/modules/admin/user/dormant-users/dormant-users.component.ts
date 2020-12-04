@@ -12,7 +12,9 @@ import { DormantUsers } from '../modals/admin-user.modal';
   styleUrls: ['./dormant-users.component.css']
 })
 export class DormantUsersComponent implements OnInit {
-  dormantUsers: DormantUsers
+  dormantUsers: DormantUsers;
+  kycApproved: any= '';
+  status: any= '';
 
   constructor(
     private router: Router,
@@ -26,32 +28,38 @@ export class DormantUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDormantUsersList('')
+    this.getDormantUsersList('');
+    this.getAllState();
   }
 
   getDormantUsersList(page?: any) {
     this.loader.show();
-    // let stateFind: any;
-    // let cityFind: any;
-    // if (this.onboardList.allStates && this.onboardList.stateId) {
-    //   stateFind = this.onboardList.allStates.find(val => {
-    //     return val.id == this.onboardList.stateId
-    //   })
-    // }
-    // if (this.onboardList.allCities) {
-    //   cityFind = this.onboardList.allCities.find(val => {
-    //     return val.id == this.onboardList.cityId
-    //   })
-    // }
+    let stateFind: any;
+    let cityFind: any;
+    if (this.dormantUsers.allStates && this.dormantUsers.stateId) {
+      stateFind = this.dormantUsers.allStates.find(val => {
+        return val.id == this.dormantUsers.stateId
+      })
+    }
+    if (this.dormantUsers.allCities) {
+      cityFind = this.dormantUsers.allCities.find(val => {
+        return val.id == this.dormantUsers.cityId
+      })
+    }
     this.dormantUsers.listParams = {
       'date_from': this.dormantUsers.filterFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.dormantUsers.filterToDate !== undefined ? this.datePipe.transform(this.dormantUsers.filterToDate, 'yyyy-MM-dd') : '',
-      // "city": cityFind ? cityFind.city : '',
-      // "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardList.university,
-      // "stage_pending": this.onboardList.stagePending,
+      'login_from': this.dormantUsers.loginFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'login_to': this.dormantUsers.loginToDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
       "page_size": this.dormantUsers.page_size,
-      "page": page
+      "page": page,
+      "current_ei": this.dormantUsers.currentEi,
+      "previous_ei": this.dormantUsers.previousEi,
+      "age_group": this.dormantUsers.ageGroup,
+      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
+      "status": this.status !== undefined ? this.status : '',
     }
 
     this.baseService.getData('admin/user/dormant_users_list/', this.dormantUsers.listParams).subscribe(
@@ -88,6 +96,24 @@ export class DormantUsersComponent implements OnInit {
   goBack(){
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     this.router.navigate([returnUrl])
+  }
+  getAllState(){
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        console.log('get state res ::', res)
+        if (res.count >0)
+        this.dormantUsers.allStates = res.results
+      }
+    )
+  }
+  getCities(){
+    this.baseService.getData('user/getcitybystateid/' + this.dormantUsers.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+        this.dormantUsers.allCities = res.results
+        console.log('get state res ::', res)
+      }
+    )
   }
 
 }
