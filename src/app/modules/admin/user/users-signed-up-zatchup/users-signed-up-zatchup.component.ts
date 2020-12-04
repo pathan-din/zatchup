@@ -18,6 +18,9 @@ export class UsersSignedUpZatchupComponent implements OnInit {
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
   signupUsers: SignupUsers
+  maxDate: any;
+  kycApproved: any= '';
+  status: any = '';
 
   constructor(
     private router: Router,
@@ -25,53 +28,60 @@ export class UsersSignedUpZatchupComponent implements OnInit {
     private loader: NgxSpinnerService,
     private alert: NotificationService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ) {
     this.signupUsers = new SignupUsers();
+    this.maxDate = new Date();
   }
   ngOnInit(): void {
-    this.getSignupUsersList('')
+    this.getSignupUsersList('');
+    this.getAllState();
   }
 
   getSignupUsersList(page?: any) {
     this.loader.show();
-    // let stateFind: any;
-    // let cityFind: any;
-    // if (this.onboardList.allStates && this.onboardList.stateId) {
-    //   stateFind = this.onboardList.allStates.find(val => {
-    //     return val.id == this.onboardList.stateId
-    //   })
-    // }
-    // if (this.onboardList.allCities) {
-    //   cityFind = this.onboardList.allCities.find(val => {
-    //     return val.id == this.onboardList.cityId
-    //   })
-    // }
+    let stateFind: any;
+    let cityFind: any;
+    if (this.signupUsers.allStates && this.signupUsers.stateId) {
+      stateFind = this.signupUsers.allStates.find(val => {
+        return val.id == this.signupUsers.stateId
+      })
+    }
+    if (this.signupUsers.allCities) {
+      cityFind = this.signupUsers.allCities.find(val => {
+        return val.id == this.signupUsers.cityId
+      })
+    }
     this.signupUsers.listParams = {
       'date_from': this.signupUsers.filterFromDate !== undefined ? this.datePipe.transform(this.signupUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.signupUsers.filterToDate !== undefined ? this.datePipe.transform(this.signupUsers.filterToDate, 'yyyy-MM-dd') : '',
-      // "city": cityFind ? cityFind.city : '',
-      // "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardList.university,
-      // "stage_pending": this.onboardList.stagePending,
-      "page_size": this.signupUsers.pageSize,
-      "page": page
+      'login_from': this.signupUsers.loginFromDate !== undefined ? this.datePipe.transform(this.signupUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'login_to': this.signupUsers.loginToDate !== undefined ? this.datePipe.transform(this.signupUsers.loginToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "page_size": this.signupUsers.page_size,
+      "page": page,
+      "current_ei": this.signupUsers.currentEi,
+      "previous_ei": this.signupUsers.previousEi,
+      "age_group": this.signupUsers.ageGroup,
+      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
+      "status": this.status !== undefined ? this.status : '',
     }
 
     this.baseService.getData('admin/user/signed_up_users_list/', this.signupUsers.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.signupUsers.config.currentPage
+          page = this.signupUsers.config.currentPage
           this.signupUsers.startIndex = res.page_size * (page - 1) + 1;
-          this.signupUsers.config.itemsPerPage = res.page_size;
-          this.signupUsers.pageSize = res.page_size
+          this.signupUsers.page_size = res.page_size
+          this.signupUsers.config.itemsPerPage = this.signupUsers.page_size
           this.signupUsers.config.currentPage = page
           this.signupUsers.config.totalItems = res.count;
-          if (res.count > 0)
-            this.signupUsers.dataSource = res.results
+          if(res.count > 0)
+          this.signupUsers.dataSource = res.results
           else
-            this.signupUsers.dataSource = undefined
+          this.signupUsers.dataSource = undefined   
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -96,5 +106,23 @@ export class UsersSignedUpZatchupComponent implements OnInit {
 
   userProfile(id: any){
     this.router.navigate(['admin/user-profile', id], {queryParams: { returnUrl: 'admin/signed-up-users'}})
+  }
+  getAllState(){
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        console.log('get state res ::', res)
+        if (res.count >0)
+        this.signupUsers.allStates = res.results
+      }
+    )
+  }
+  getCities(){
+    this.baseService.getData('user/getcitybystateid/' + this.signupUsers.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+        this.signupUsers.allCities = res.results
+        console.log('get state res ::', res)
+      }
+    )
   }
 }

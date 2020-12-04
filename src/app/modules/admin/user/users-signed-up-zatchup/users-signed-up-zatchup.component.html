@@ -18,57 +18,50 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="signupFrom" type="date" placeholder="MM/DD/YYYY">
-
+                            id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate"  [(ngModel)]="signupUsers.filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="date" id="signupTo" placeholder="MM/DD/YYYY">
-
+                            type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="signupUsers.filterToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="lastLoginFrom" type="date" placeholder="MM/DD/YYYY">
-
+                            id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="signupUsers.loginFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="date" id="lastLoginTo" placeholder="MM/DD/YYYY">
-
+                            type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="signupUsers.loginToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Current EI</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="currentEI" required>
-                            <option value=""> Select Current EI</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="3">D</option>
-                            <option value="3">E</option>
-                            <option value="3">Unspecified</option>
-                        </select>
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                        type="input" id="currentEi" placeholder="Enter Current EI" name="current_ei" [(ngModel)]="currentEi">
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Past EI</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="pastEI" required>
-                            <option value=""> Select PAst EI</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-
-                        </select>
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                        type="input" id="previousEi" placeholder="Enter Previous EI" name="previous_ei" [(ngModel)]="previous_ei">
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
@@ -83,12 +76,24 @@
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="state" required
+                        [(ngModel)]="signupUsers.stateId" (change)="getCities()">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let state of signupUsers.allStates" [value]="state.id"> {{state.state}}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="city" required>
+                        <select class="custom-select  form-control-input" id="city" required
+                        [(ngModel)]="signupUsers.cityId">
                             <option value=""> Select City</option>
-                            <option value="1">Verified</option>
-                            <option value="2">Inverified</option>
+                            <option *ngFor="let city of signupUsers.allCities" [value]="city.id">{{city.city}}</option>
 
                         </select>
                     </div>
@@ -97,10 +102,11 @@
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="Status" required>
+                        <select class="custom-select  form-control-input" id="Status" required name="kyc_approved"
+                        [(ngModel)]="kycApproved">
                             <option value=""> Select Status</option>
-                            <option value="1">Verified</option>
-                            <option value="2">Inverified</option>
+                            <option value="1">Approved</option>
+                            <option value="0">Rejected</option>
 
                         </select>
                     </div>
@@ -121,16 +127,17 @@
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="verifyByEI" required>
+                        <select class="custom-select  form-control-input" id="verifyByEI" required name="status"
+                        [(ngModel)]="status">
                             <option value=""> Select Status</option>
-                            <option value="1">Verified</option>
-                            <option value="2">Inverified</option>
+                            <option value="True">Verified</option>
+                            <option value="False">Unverified</option>
 
                         </select>
                     </div>
                 </div>
 
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 " (click)="getSignupUsersList('')">Apply</button>
 
 
             </div>
@@ -143,7 +150,8 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of User Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="getSignupUsersList('')" [(ngModel)]="signupUsers.page_size">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>

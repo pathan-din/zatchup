@@ -48,13 +48,12 @@ export class SearchUserList{
 export class SignupUsers {
     startIndex: Number;
     listParams: any = {}
-    pageSize: any;
-    stateId: any = '';
-    cityId: any = '';
-    allStates: any;
-    allCities: any;
-    state: any = '';
-    city: any = '';
+    stateId: any= '';
+        cityId: any = '';
+        allStates: any;
+        allCities: any;
+        state: any= '';
+        city: any = '';
     filterFromDate: any;
     filterToDate: any;
     config = {
@@ -71,4 +70,12 @@ export class SignupUsers {
     message: any
     errorDisplay: any = {};
     eiId: any
+  currentEi: any;
+  previousEi: any;
+  ageGroup: any;
+  status: any;
+  kycApproved: any;
+  page_size: any;
+  loginFromDate: any;
+  loginToDate: any;
 }
