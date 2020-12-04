@@ -48,7 +48,11 @@ export class EiStudentProfileComponent implements OnInit {
       this.SpinnerService.hide();
       if(response.status == true)
       {
-        this.studentDetails = response.results;
+        this.studentDetails = response.data;
+        console.log(this.studentDetails);
+        
+      }else{
+        this.SpinnerService.hide();
       }
       
       

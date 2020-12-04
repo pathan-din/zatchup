@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./ei-sidenav.component.css']
 })
 export class EiSidenavComponent {
-
+permission:any;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -41,7 +41,10 @@ export class EiSidenavComponent {
 
   }
   ngOnInit(): void {
-	  this.getDasboardDetails();
+    this.getDasboardDetails();
+    if(sessionStorage.getItem("permission")){
+      this.permission = JSON.parse(sessionStorage.getItem("permission"));
+    }
   }
   getDasboardDetails(){
 	  try{
@@ -72,7 +75,8 @@ export class EiSidenavComponent {
     }	
   }
   logout(){
-	  localStorage.clear();
+    localStorage.clear();
+    sessionStorage.clear();
 	  this.router.navigate(['ei/login']);
   }
   goToEiDashboardPage() {
@@ -117,12 +121,20 @@ export class EiSidenavComponent {
   }
   isValidModule(module_code){
     let moduleList:any={};
-    if(localStorage.getItem("permission")!==undefined && localStorage.getItem("permission")!==null && localStorage.getItem("permission")!==''){
-        moduleList = JSON.parse(localStorage.getItem("permission"));
+    if(this.permission!==undefined && this.permission!==null && this.permission!==''){
+        moduleList = this.permission;
         var data = moduleList.find(el => {
           return el.module_code ==   module_code
         })
-     return data.is_access;
+         
+        
+        if(data)
+        {
+          return data.is_access;
+        }else{
+          return false;
+        }
+        
     }else{
       return true;
     }
