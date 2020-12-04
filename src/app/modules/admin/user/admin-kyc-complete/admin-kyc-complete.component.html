@@ -1,7 +1,13 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="KYC-Complete-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">KYC Complete</h2>
+        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+
+            <h2 class="commonFontSize semiBoldFont m-0">KYC Complete</h2>
+        </div>
 
         <!--Start html for filter for Kyc Complete-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">

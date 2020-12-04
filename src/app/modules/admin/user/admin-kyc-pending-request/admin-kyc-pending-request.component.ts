@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -51,6 +51,7 @@ export class AdminKycPendingRequestComponent implements OnInit {
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
+    private location: Location
   ) {
     this.kycPendingRequest = new KycPendingRequest();
     this.maxDate = new Date();
@@ -101,5 +102,9 @@ export class AdminKycPendingRequestComponent implements OnInit {
     delete this.kycPendingRequest.params.page;
     this.kycPendingRequest.params['export_csv'] = true
     this.baseService.generateExcel('admin/kyc/export_kyc_pending/', 'kyc-pending', this.kycPendingRequest.params);
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 }

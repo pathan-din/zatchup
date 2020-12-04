@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { notOnZatchup } from '../modals/ei-pending-approval.modal';
 import { DatePipe } from '@angular/common';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-admin-eimanagement-added-by-user-not-to-zatchup',
@@ -29,7 +30,8 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
     ) { 
       this.notOnZatchup = new notOnZatchup();
       this.maxDate = new Date();
@@ -115,4 +117,7 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
     )
   }
 
+  goBack(): void{
+    this.location.back();
+  }
 }
