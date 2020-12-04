@@ -15,13 +15,9 @@ export class AdminUserComponent implements OnInit {
   dashboardData: any;
   userDashboard: UserDashboard;
   errorDisplay: any = {};
-  filterFromDate: any;
-  filterToDate: any;
   maxDate: Date;
   userManagement: UserManagement;
   search: string = ''
-  fromDate: any;
-  toDate: any;
   constructor(
     
     private router: Router,
@@ -97,10 +93,10 @@ export class AdminUserComponent implements OnInit {
       }) 
     }
   this.userManagement.modal ={
-    'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
-    'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'): '',
-    'from_date': this.fromDate !== undefined ? this.datePipe.transform(this.fromDate, 'yyyy-MM-dd'): '',
-    'to_date': this.toDate !== undefined ? this.datePipe.transform(this.toDate, 'yyyy-MM-dd'): '',
+    'date_from': this.userManagement.filterFromDate !== undefined ? this.datePipe.transform(this.userManagement.filterFromDate, 'yyyy-MM-dd'): '',
+    'date_to': this.userManagement.filterToDate !== undefined ? this.datePipe.transform(this.userManagement.filterToDate, 'yyyy-MM-dd'): '',
+    'from_date': this.userManagement.fromDate !== undefined ? this.datePipe.transform(this.userManagement.fromDate, 'yyyy-MM-dd'): '',
+    'to_date': this.userManagement.toDate !== undefined ? this.datePipe.transform(this.userManagement.toDate, 'yyyy-MM-dd'): '',
     "city": cityFind ? cityFind.city : '',
     "state": stateFind ? stateFind.state : '',
   }

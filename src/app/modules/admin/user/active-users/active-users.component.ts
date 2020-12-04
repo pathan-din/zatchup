@@ -15,6 +15,7 @@ export class ActiveUsersComponent implements OnInit {
   activeUsers: ActiveUsers
   kycApproved: any= '';
   status: any= '';
+  maxDate: any;
 
   constructor(
     private router: Router,
@@ -25,6 +26,7 @@ export class ActiveUsersComponent implements OnInit {
     private datePipe: DatePipe
   ) {
     this.activeUsers = new ActiveUsers();
+    this.maxDate = new Date()
    }
 
   ngOnInit(): void {

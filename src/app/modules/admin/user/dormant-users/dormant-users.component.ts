@@ -15,6 +15,7 @@ export class DormantUsersComponent implements OnInit {
   dormantUsers: DormantUsers;
   kycApproved: any= '';
   status: any= '';
+  maxDate: any;
 
   constructor(
     private router: Router,
@@ -24,7 +25,8 @@ export class DormantUsersComponent implements OnInit {
     private baseService: BaseService,
     private datePipe: DatePipe
   ) { 
-    this.dormantUsers = new DormantUsers()
+    this.dormantUsers = new DormantUsers();
+    this.maxDate = new Date();
   }
 
   ngOnInit(): void {

@@ -15,6 +15,7 @@ export class KycVerifiedUsersComponent implements OnInit {
   kycVerified: KycVerifiedUsers;
   status: any ='';
   kycApproved: any ='';
+  maxDate: any;
 
   constructor(
     private router: Router,
@@ -24,7 +25,8 @@ export class KycVerifiedUsersComponent implements OnInit {
     private baseService: BaseService,
     private datePipe: DatePipe
   ) {
-    this.kycVerified = new KycVerifiedUsers()
+    this.kycVerified = new KycVerifiedUsers();
+    this.maxDate = new Date()
    }
 
   ngOnInit(): void {
