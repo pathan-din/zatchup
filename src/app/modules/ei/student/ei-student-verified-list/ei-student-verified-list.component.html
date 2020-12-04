@@ -175,7 +175,7 @@
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
                             <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
                             <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentEditPage(element.student_id)"></i>
-                            <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentProfilePage()"></i>
+                            <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
                         </mat-cell>
                     </ng-container>
 

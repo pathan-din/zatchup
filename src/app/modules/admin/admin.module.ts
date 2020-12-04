@@ -26,7 +26,6 @@ import { AdminPaymentOnboardingFeeHistoryComponent } from './payment/admin-payme
 import { AdminEiRejectDetailsComponent } from './ei/admin-ei-reject-details/admin-ei-reject-details.component';
 import { AdminZatchCertificateResultComponent } from './admin-zatch-certificate-result/admin-zatch-certificate-result.component';
 import { AdminZatchCertificateConfigueComponent } from './admin-zatch-certificate-configue/admin-zatch-certificate-configue.component';
-import { AdminUserLastLoginComponent } from './user/admin-user-last-login/admin-user-last-login.component';
 import { AdminCreateNewPasswordComponent } from './admin-create-new-password/admin-create-new-password.component';
 import { AdminUserKycPendingComponent } from './user/admin-user-kyc-pending/admin-user-kyc-pending.component';
 import { AdminUserComponent } from './user/admin-user/admin-user.component';
@@ -129,6 +128,9 @@ import { AdvertisementsRateHistoryComponent } from './advertisements/advertiseme
 import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
 import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
 import { DirectiveModule } from 'src/app/directives/directive.module';
+import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
+import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
+import { ActiveUsersComponent } from './user/active-users/active-users.component';
 
 @NgModule({
   declarations: [
@@ -150,7 +152,6 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     AdminEiRejectDetailsComponent,
     AdminZatchCertificateResultComponent,
     AdminZatchCertificateConfigueComponent,
-    AdminUserLastLoginComponent,
     AdminCreateNewPasswordComponent,
     AdminUserKycPendingComponent,
     AdminUserComponent,
@@ -252,7 +253,10 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     AdvertisementsRateHistoryComponent,
     AdvertisementsRejectComponent,
     AdvertisementsRejectViewComponent,
-    UsersSignedUpZatchupComponent
+    UsersSignedUpZatchupComponent,
+    KycVerifiedUsersComponent,
+    KycVerifiedByEiComponent,
+    ActiveUsersComponent
   ],
   imports: [
     CommonModule,

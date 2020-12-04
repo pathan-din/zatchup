@@ -27,7 +27,7 @@
                 </div>
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                    <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="userType">
                             <option value=""> Select User</option>
                             <option value="ADMIN">Admin</option>
@@ -39,8 +39,8 @@
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="kyc_type" [(ngModel)]="kycType">
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycType">
                             <option value=""> Select KYC</option>
                             <option value="Aadhar">Aadhar</option>
                             <option value="Passport">Passport</option>
@@ -52,7 +52,7 @@
 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                    <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select  form-control-input" name="request_type" [(ngModel)]="requestType">
                             <option value=""> Select Request</option>
                             <option value="0">First Time</option>
@@ -63,7 +63,7 @@
 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                    <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select  form-control-input" name="request_reason"
                             [(ngModel)]="requestReason">
                             <option value=""> Select Reason</option>
@@ -74,7 +74,7 @@
                 </div>
 
 
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                <button type="button" class="bg-purple text-white px-5 py-2 border-0 mt-3"
                     (click)="getKycPendingRequest('')">Apply</button>
 
 

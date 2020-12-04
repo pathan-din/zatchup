@@ -47,7 +47,9 @@
                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
                                 Ending Year : <span class="text-dark mediumFont">{{courseData.end_year?courseData.end_year:''}}</span>
                             </div>
-                            <div class="form-group row form-control-inputDiv rounded-0" *ngFor="let standardData of confirmData.ei_detail.course_detail.standard_detail;">
+                            <h3 class="col-md-12">Standard</h3>
+                            <hr />
+                            <div class="row ml-1" *ngFor="let standardData of courseData.standard_detail;">
                                 <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
                                     Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
                                 </div>
@@ -58,10 +60,11 @@
                                     Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
                                 </div> -->
                                 
-                                
-                                        <div class="form-group row form-control-inputDiv rounded-0" *ngFor="let classData of standardData.class_detail;">
+                                <h3 class="col-md-12">Section</h3>
+                                <hr />
+                                        <div class="row ml-1" *ngFor="let classData of standardData.class_detail;">
                                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                                Standard : <span class="text-dark mediumFont">{{standardData.class_name}}</span>
+                                                Class Name : <span class="text-dark mediumFont">{{standardData.class_name}}</span>
                                             </div>
                 
                                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
@@ -93,5 +96,8 @@
 
 </div>
 
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 
 
 <app-user-footer></app-user-footer>

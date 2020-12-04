@@ -61,7 +61,12 @@ export class UserKycVerificationComponent implements OnInit {
     this.dateModel = '';
     this.monthModel = '';
     this.yearModel = '';
-
+    if(!localStorage.getItem("year") && !localStorage.getItem("month") && !localStorage.getItem("day")){}else{
+      this.yearModel = localStorage.getItem("year");
+      this.monthModel = localStorage.getItem("month");
+      this.dateModel = localStorage.getItem("day");
+    }
+    
     var dt = new Date();
     /**Get Current year for date of birth year dropdown**/
     var year = dt.getFullYear();
