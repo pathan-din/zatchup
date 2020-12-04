@@ -33,6 +33,7 @@ const ELEMENT_DATA: UnVerifiedAlumniListElement[] = [
 export class EiStudentVerifiedListComponent implements OnInit {
   model: any = {};
   studentList: any = [];
+  studentDetails:any=[];
   arrAge: any = [];
   studentArr:any=[];
   displayedColumns: string[] = ['checked','SNo', 'ZatchUpID', 'Name', 'userID', 'Gender', 'Age',
@@ -151,7 +152,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
           let response: any = {};
           response = res;
           this.SpinnerService.hide();
-          alert(response.message);
+          this.alert.error(response.message,'Error');
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);
@@ -258,8 +259,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
   }
 
-  goToEiStudentProfilePage() {
-    this.router.navigate(['ei/student-profile']);
+  goToEiStudentProfilePage(id) {
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
   }
 
 

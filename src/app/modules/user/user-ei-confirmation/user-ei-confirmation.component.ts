@@ -43,13 +43,15 @@ export class UserEiConfirmationComponent implements OnInit {
   try{
     this.SpinnerService.show(); 
    
-    this.baseService.getData('').subscribe(res => {
+    this.baseService.getData('user/get-ei-course-confirmation-list/').subscribe(res => {
       
       let response:any={};
       response=res;
       if(response.status==true){
         this.SpinnerService.hide(); 
         this.confirmationDetails=response.data;
+        
+        
       }else{
         this.SpinnerService.hide(); 
       }
