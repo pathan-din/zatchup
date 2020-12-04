@@ -9,7 +9,7 @@
             <div class="d-flex flex-wrap align-items-end">
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                    <div class="rounded-0 shadow-none">
                         <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" class="form-control"
                             bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true }">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                    <div class="rounded-0 shadow-none">
                         <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" class="form-control"
                             bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true }">
@@ -25,8 +25,8 @@
                 </div>
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="userType">
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" name="user_type" [(ngModel)]="userType">
                             <option value=""> Select User</option>
                             <option value="ADMIN">Admin</option>
                             <option value="STUDENT">Student</option>
@@ -37,8 +37,8 @@
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="kyc_type" [(ngModel)]="kycType">
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycType">
                             <option value=""> Select KYC</option>
                             <option value="Aadhar">Aadhar</option>
                             <option value="Passport">Passport</option>
@@ -50,8 +50,8 @@
 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="request_type" [(ngModel)]="requestType">
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" name="request_type" [(ngModel)]="requestType">
                             <option value=""> Select Request</option>
                             <option value="0">First Time</option>
                             <option value="1">Re-submitted</option>
@@ -61,8 +61,8 @@
 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="request_reason"
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" name="request_reason"
                             [(ngModel)]="requestReason">
                             <option value=""> Select Reason</option>
                             <option value="1">New Sign-up</option>
@@ -73,8 +73,8 @@
 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="status" [(ngModel)]="status">
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select form-control-input" name="status" [(ngModel)]="status">
                             <option value=""> Select Status</option>
                             <option value="1">Accepted</option>
                             <option value="0">Rejected</option>
