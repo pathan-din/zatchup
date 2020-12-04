@@ -131,6 +131,7 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
 import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
+import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
 
 @NgModule({
   declarations: [
@@ -256,7 +257,8 @@ import { ActiveUsersComponent } from './user/active-users/active-users.component
     UsersSignedUpZatchupComponent,
     KycVerifiedUsersComponent,
     KycVerifiedByEiComponent,
-    ActiveUsersComponent
+    ActiveUsersComponent,
+    DormantUsersComponent
   ],
   imports: [
     CommonModule,

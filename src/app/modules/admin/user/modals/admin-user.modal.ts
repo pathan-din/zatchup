@@ -87,3 +87,8 @@ export class KycVerifiedUsers extends SignupUsers {
 export class ActiveUsers extends SignupUsers {
 
 }
+
+
+export class DormantUsers extends SignupUsers{
+      
+}
