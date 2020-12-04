@@ -114,6 +114,10 @@ export class UserSignUpComponent implements OnInit {
     }
     try {
       this.loader.show();
+      localStorage.setItem("year",this.yearModel);
+      localStorage.setItem("month",this.monthModel);
+      localStorage.setItem("day",this.dateModel);
+      
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
       /**********************************************************************/

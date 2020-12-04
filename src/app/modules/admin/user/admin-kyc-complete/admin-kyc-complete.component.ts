@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -49,6 +49,7 @@ export class AdminKycCompleteComponent implements OnInit {
     private datePipe: DatePipe,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
+    private location: Location
   ) {
     this.maxDate = new Date();
     this.completeKycList= new CompleteKycList();
@@ -105,5 +106,9 @@ export class AdminKycCompleteComponent implements OnInit {
     delete this.completeKycList.params.page;  
     this.completeKycList.params['export_csv'] = true
     this.baseService.generateExcel('admin/kyc/export_kyc_complete/', 'kyc-complete', this.params)
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 }

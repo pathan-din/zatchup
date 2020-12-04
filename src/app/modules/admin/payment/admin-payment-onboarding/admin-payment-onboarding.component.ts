@@ -4,7 +4,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { OnboardingFee } from '../modal/onboarding-fee.modal';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 
 export interface PeriodicElement {
@@ -49,7 +49,8 @@ export class AdminPaymentOnboardingComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
     ) { 
       this.onboardingFee = new OnboardingFee();
       this.maxDate= new Date();
@@ -144,6 +145,10 @@ export class AdminPaymentOnboardingComponent implements OnInit {
         console.log('get city res ::', res)
       }
     )
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 
 }

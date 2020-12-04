@@ -50,7 +50,7 @@ export class EiLoginSubadminComponent implements OnInit {
       
       
       this.baseService.action('subadmin/login/', this.model).subscribe(res => {
-        console.log(res);
+       
         let response: any = {};
         response = res;
         if(response.status==true)
@@ -151,7 +151,7 @@ export class EiLoginSubadminComponent implements OnInit {
         response = res;
         if (response.status == true) {
           localStorage.setItem("token", response.token);
-          localStorage.setItem("permission", JSON.stringify(response.permission));
+          sessionStorage.setItem("permission", JSON.stringify(response.permission));
           
            $("#OTPModel").modal('hide');
            this.router.navigate(['ei/dashboard']);

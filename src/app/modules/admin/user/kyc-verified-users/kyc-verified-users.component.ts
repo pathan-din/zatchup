@@ -13,6 +13,8 @@ import { KycVerifiedUsers } from '../modals/admin-user.modal';
 })
 export class KycVerifiedUsersComponent implements OnInit {
   kycVerified: KycVerifiedUsers;
+  status: any ='';
+  kycApproved: any ='';
 
   constructor(
     private router: Router,
@@ -31,43 +33,48 @@ export class KycVerifiedUsersComponent implements OnInit {
 
   getKycVerifiedUsersList(page?: any) {
     this.loader.show();
-    // let stateFind: any;
-    // let cityFind: any;
-    // if (this.onboardList.allStates && this.onboardList.stateId) {
-    //   stateFind = this.onboardList.allStates.find(val => {
-    //     return val.id == this.onboardList.stateId
-    //   })
-    // }
-    // if (this.onboardList.allCities) {
-    //   cityFind = this.onboardList.allCities.find(val => {
-    //     return val.id == this.onboardList.cityId
-    //   })
-    // }
+    let stateFind: any;
+    let cityFind: any;
+    if (this.kycVerified.allStates && this.kycVerified.stateId) {
+      stateFind = this.kycVerified.allStates.find(val => {
+        return val.id == this.kycVerified.stateId
+      })
+    }
+    if (this.kycVerified.allCities) {
+      cityFind = this.kycVerified.allCities.find(val => {
+        return val.id == this.kycVerified.cityId
+      })
+    }
     this.kycVerified.listParams = {
       'date_from': this.kycVerified.filterFromDate !== undefined ? this.datePipe.transform(this.kycVerified.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.kycVerified.filterToDate !== undefined ? this.datePipe.transform(this.kycVerified.filterToDate, 'yyyy-MM-dd') : '',
-      // "city": cityFind ? cityFind.city : '',
-      // "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardList.university,
-      // "stage_pending": this.onboardList.stagePending,
-      "page_size": this.kycVerified.pageSize,
-      "page": page
+      'login_from': this.kycVerified.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerified.loginFromDate, 'yyyy-MM-dd') : '',
+      'login_to': this.kycVerified.loginToDate !== undefined ? this.datePipe.transform(this.kycVerified.loginToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "page_size": this.kycVerified.page_size,
+      "page": page,
+      "current_ei": this.kycVerified.currentEi,
+      "previous_ei": this.kycVerified.previousEi,
+      "age_group": this.kycVerified.ageGroup,
+      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
+      "status": this.status !== undefined ? this.status : '',
     }
 
     this.baseService.getData('admin/user/kyc_verified_list/', this.kycVerified.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.kycVerified.config.currentPage
+          page = this.kycVerified.config.currentPage
           this.kycVerified.startIndex = res.page_size * (page - 1) + 1;
-          this.kycVerified.config.itemsPerPage = res.page_size;
-          this.kycVerified.pageSize = res.page_size
+          this.kycVerified.page_size = res.page_size
+          this.kycVerified.config.itemsPerPage = this.kycVerified.page_size
           this.kycVerified.config.currentPage = page
           this.kycVerified.config.totalItems = res.count;
-          if (res.count > 0)
-            this.kycVerified.dataSource = res.results
+          if(res.count > 0)
+          this.kycVerified.dataSource = res.results
           else
-            this.kycVerified.dataSource = undefined
+          this.kycVerified.dataSource = undefined
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -88,6 +95,25 @@ export class KycVerifiedUsersComponent implements OnInit {
   goBack(){
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     this.router.navigate([returnUrl])
+  }
+
+  getAllState(){
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        console.log('get state res ::', res)
+        if (res.count >0)
+        this.kycVerified.allStates = res.results
+      }
+    )
+  }
+  getCities(){
+    this.baseService.getData('user/getcitybystateid/' + this.kycVerified.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+        this.kycVerified.allCities = res.results
+        console.log('get state res ::', res)
+      }
+    )
   }
 
 }

@@ -48,7 +48,6 @@ export class SearchUserList {
 export class SignupUsers {
     startIndex: Number;
     listParams: any = {}
-    pageSize: any;
     stateId: any = '';
     cityId: any = '';
     allStates: any;
@@ -71,8 +70,29 @@ export class SignupUsers {
     message: any
     errorDisplay: any = {};
     eiId: any
+    currentEi: any;
+    previousEi: any;
+    ageGroup: any;
+    status: any;
+    kycApproved: any;
+    page_size: any;
+    loginFromDate: any;
+    loginToDate: any;
 }
 
-export class KycVerifiedUsers extends SignupUsers{
+export class KycVerifiedUsers extends SignupUsers {
+
+}
+
+export class KycVerifiedByEi extends SignupUsers {
+
+}
+
+export class ActiveUsers extends SignupUsers {
+
+}
+
+
+export class DormantUsers extends SignupUsers{
       
 }
