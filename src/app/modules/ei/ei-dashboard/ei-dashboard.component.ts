@@ -17,6 +17,7 @@ export class EiDashboardComponent implements OnInit {
   userProfile:any={};
   fromDateValue: Date;
   toDateValue: Date;
+  dashboardPremission:boolean =false;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -28,6 +29,7 @@ export class EiDashboardComponent implements OnInit {
 	  this.getDasboardDetails();
     this.fromDateValue = new Date();
     this.toDateValue = new Date();
+
     
   }
   onDateChange(newDate: Date) {
@@ -64,6 +66,7 @@ export class EiDashboardComponent implements OnInit {
         
         let response:any={};
         response=res;
+       
         if(response.status==true)
         {
           this.SpinnerService.hide(); 
@@ -74,16 +77,21 @@ export class EiDashboardComponent implements OnInit {
 		    
         }
         
-        
        
         },(error) => {
           this.SpinnerService.hide(); 
-          console.log(error);
+          
+          if(error.error.detail)
+          {
+            this.alert.error(error.error.detail, 'Error');
+            this.dashboardPremission=true;
+            return;
+          }
           this.alert.error(error, 'Error')
         });
     }catch(err){
       this.SpinnerService.hide(); 
-      console.log(err);
+      
       this.alert.error(err, 'Error')
     }	
   }
