@@ -50,7 +50,7 @@ export class KycVerifiedUsersComponent implements OnInit {
       // "state": stateFind ? stateFind.state : '',
       // "university": this.onboardList.university,
       // "stage_pending": this.onboardList.stagePending,
-      "page_size": this.kycVerified.pageSize,
+      "page_size": this.kycVerified.page_size,
       "page": page
     }
 
@@ -61,7 +61,7 @@ export class KycVerifiedUsersComponent implements OnInit {
             page = this.kycVerified.config.currentPage
           this.kycVerified.startIndex = res.page_size * (page - 1) + 1;
           this.kycVerified.config.itemsPerPage = res.page_size;
-          this.kycVerified.pageSize = res.page_size
+          this.kycVerified.page_size = res.page_size
           this.kycVerified.config.currentPage = page
           this.kycVerified.config.totalItems = res.count;
           if (res.count > 0)
