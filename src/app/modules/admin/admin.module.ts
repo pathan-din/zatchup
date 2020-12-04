@@ -129,6 +129,8 @@ import { AdvertisementsRateHistoryComponent } from './advertisements/advertiseme
 import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
 import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
 import { DirectiveModule } from 'src/app/directives/directive.module';
+import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
+import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 
 @NgModule({
   declarations: [
@@ -252,7 +254,9 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     AdvertisementsRateHistoryComponent,
     AdvertisementsRejectComponent,
     AdvertisementsRejectViewComponent,
-    UsersSignedUpZatchupComponent
+    UsersSignedUpZatchupComponent,
+    KycVerifiedUsersComponent,
+    KycVerifiedByEiComponent
   ],
   imports: [
     CommonModule,
