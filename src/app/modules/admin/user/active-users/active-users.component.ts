@@ -13,6 +13,8 @@ import { ActiveUsers } from '../modals/admin-user.modal';
 })
 export class ActiveUsersComponent implements OnInit {
   activeUsers: ActiveUsers
+  kycApproved: any= '';
+  status: any= '';
 
   constructor(
     private router: Router,
@@ -26,32 +28,38 @@ export class ActiveUsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getActiveUsersList('')
+    this.getActiveUsersList('');
+    this.getAllState();
   }
 
   getActiveUsersList(page?: any) {
     this.loader.show();
-    // let stateFind: any;
-    // let cityFind: any;
-    // if (this.onboardList.allStates && this.onboardList.stateId) {
-    //   stateFind = this.onboardList.allStates.find(val => {
-    //     return val.id == this.onboardList.stateId
-    //   })
-    // }
-    // if (this.onboardList.allCities) {
-    //   cityFind = this.onboardList.allCities.find(val => {
-    //     return val.id == this.onboardList.cityId
-    //   })
-    // }
+    let stateFind: any;
+    let cityFind: any;
+    if (this.activeUsers.allStates && this.activeUsers.stateId) {
+      stateFind = this.activeUsers.allStates.find(val => {
+        return val.id == this.activeUsers.stateId
+      })
+    }
+    if (this.activeUsers.allCities) {
+      cityFind = this.activeUsers.allCities.find(val => {
+        return val.id == this.activeUsers.cityId
+      })
+    }
     this.activeUsers.listParams = {
       'date_from': this.activeUsers.filterFromDate !== undefined ? this.datePipe.transform(this.activeUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.activeUsers.filterToDate !== undefined ? this.datePipe.transform(this.activeUsers.filterToDate, 'yyyy-MM-dd') : '',
-      // "city": cityFind ? cityFind.city : '',
-      // "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardList.university,
-      // "stage_pending": this.onboardList.stagePending,
+      'login_from': this.activeUsers.loginFromDate !== undefined ? this.datePipe.transform(this.activeUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'login_to': this.activeUsers.loginToDate !== undefined ? this.datePipe.transform(this.activeUsers.loginToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
       "page_size": this.activeUsers.page_size,
-      "page": page
+      "page": page,
+      "current_ei": this.activeUsers.currentEi,
+      "previous_ei": this.activeUsers.previousEi,
+      "age_group": this.activeUsers.ageGroup,
+      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
+      "status": this.status !== undefined ? this.status : '',
     }
 
     this.baseService.getData('admin/user/active_users_list/', this.activeUsers.listParams).subscribe(
@@ -88,6 +96,24 @@ export class ActiveUsersComponent implements OnInit {
   goBack(){
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     this.router.navigate([returnUrl])
+  }
+  getAllState(){
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        console.log('get state res ::', res)
+        if (res.count >0)
+        this.activeUsers.allStates = res.results
+      }
+    )
+  }
+  getCities(){
+    this.baseService.getData('user/getcitybystateid/' + this.activeUsers.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+        this.activeUsers.allCities = res.results
+        console.log('get state res ::', res)
+      }
+    )
   }
 
 }

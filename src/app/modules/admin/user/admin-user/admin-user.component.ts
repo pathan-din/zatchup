@@ -20,6 +20,8 @@ export class AdminUserComponent implements OnInit {
   maxDate: Date;
   userManagement: UserManagement;
   search: string = ''
+  fromDate: any;
+  toDate: any;
   constructor(
     
     private router: Router,
@@ -93,6 +95,8 @@ export class AdminUserComponent implements OnInit {
   this.userManagement.modal ={
     'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
     'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'): '',
+    'from_date': this.fromDate !== undefined ? this.datePipe.transform(this.fromDate, 'yyyy-MM-dd'): '',
+    'to_date': this.toDate !== undefined ? this.datePipe.transform(this.toDate, 'yyyy-MM-dd'): '',
     "city": cityFind ? cityFind.city : '',
     "state": stateFind ? stateFind.state : '',
   }
@@ -120,6 +124,8 @@ export class AdminUserComponent implements OnInit {
   searchRoute() {
     if(this.search.length >= 1)
       this.router.navigate(['admin/user-search', this.search])
+      else
+      this.alert.error('Search text must be greater than 1 keyword', 'Error')
   }
 
 }

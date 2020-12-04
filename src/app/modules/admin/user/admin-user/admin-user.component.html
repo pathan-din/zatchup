@@ -88,7 +88,7 @@
                     <div class="rounded shadow-none mx-1">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing"
                             type="text" placeholder="MM/DD/YYYY" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [maxDate]="maxDate" [(ngModel)]="userManagement.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true }">
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     <div class="rounded  shadow-none mx-1">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                         type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                        [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                        [maxDate]="maxDate" [(ngModel)]="userManagement.filterToDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
@@ -193,7 +193,7 @@
                     <div class="rounded shadow-none mx-1">
                         <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
                         type="text" placeholder="MM/DD/YYYY" id="fromDate2" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                        [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                        [maxDate]="maxDate" [(ngModel)]="userManagement.fromDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
@@ -203,7 +203,7 @@
                     <div class="rounded shadow-none mx-1">
                         <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
                         type="text" id="toDate2" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                        [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                        [maxDate]="maxDate" [(ngModel)]="userManagement.toDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true}">
 
                     </div>
