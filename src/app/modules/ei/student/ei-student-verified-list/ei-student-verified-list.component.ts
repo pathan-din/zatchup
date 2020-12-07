@@ -364,4 +364,34 @@ this.model.page= page
     $("#verifiedModel").modal('hide');
   }
 
+  approveStudent(action, studentId) {
+    let data: any = {};
+    data.student_id = studentId;
+    data.approve_student = action;
+    try {
+
+      this.SpinnerService.show();
+
+      this.eiService.approveStudent(data).subscribe(res => {
+        let response: any = {};
+        if (response.status == true) {
+          this.SpinnerService.hide();
+          this.alert.success(response.message,'Success');
+        } else {
+          this.SpinnerService.hide();
+          //this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error);
+          this.alert.error(response.error,'Error');
+           
+        }
+
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log(err);
+    }
+  }
+
 }
