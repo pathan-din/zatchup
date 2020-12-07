@@ -144,12 +144,10 @@
                                     </select>
                                 </div>
                                 <div class="required errorMsg"  [innerHtml]="errorDisplay.start_year"></div>
-                                <div class="col mr-1 ml-1 calendarText justify-content-between align-items-center align-self-center">
-                                    <input [(ngModel)]="model.end_date" name="end_date" class="form-control-input form-control form-control-sm" type="hidden"
-                                    >
+                                <div class="col mr-1 ml-1 justify-content-between align-items-center align-self-center">
+                                    <input [(ngModel)]="model.end_date" name="end_date" class="form-control-input form-control form-control-sm" type="hidden">
                                     <span class=" regularFont color-gray">to present</span>
-                                    <input [(ngModel)]="model.is_currently_work" name="is_currently_work" class="form-control-input form-control form-control-sm" type="checkbox"
-                                    >
+                                    <input [(ngModel)]="model.is_currently_work" name="is_currently_work" class="form-control-input form-control-sm" type="checkbox">
                                 </div>
                                 
                             </div>

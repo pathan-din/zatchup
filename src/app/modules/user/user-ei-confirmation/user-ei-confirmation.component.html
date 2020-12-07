@@ -62,32 +62,28 @@
                                 
                                 <h3 class="col-md-12">Section</h3>
                                 <hr />
-                                        <div class="row ml-1" *ngFor="let classData of standardData.class_detail;">
-                                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                                Class Name : <span class="text-dark mediumFont">{{standardData.class_name}}</span>
-                                            </div>
-                
-                                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                                Teaching Start Year : <span class="text-dark mediumFont">{{standardData.teaching_start_year}}</span>
-                                            </div>
-                                            <!-- <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                                            </div>
-                                            <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                                    class="text-dark mediumFont"> 6th</span></div> -->
-                
-                                        </div>
+                                <div class="row ml-1" *ngFor="let classData of standardData.class_detail;">
+                                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                        Class Name : <span class="text-dark mediumFont">{{standardData.class_name}}</span>
+                                    </div>
+        
+                                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                        Teaching Start Year : <span class="text-dark mediumFont">{{standardData.teaching_start_year}}</span>
+                                    </div>
+                                    <!-- <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                        Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
+                                    </div>
+                                    <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
+                                            class="text-dark mediumFont"> 6th</span></div> -->
+        
+                                </div>
                             </div>
                         </div>
-
-                      
-
-                       
                     </div>
                   
                     
                 </div>
-                <button type="submit " class="btn common-btn regularFont textSpace fixedBtn"
+                <button type="submit " class="color-white mt-4 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
                     (click)="goToUserProfileCreatedPage()">Confirm & Send for EI Verification</button>
             </form>
 

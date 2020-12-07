@@ -20,7 +20,7 @@
                     <div class="col-sm-12 form-control-inputDiv">
                         <input required (keyup)="isValid($event)" [(ngModel)]="model.password" name ="password" class="form-control-input form-control form-control-sm " type="password"
                             placeholder="Enter Password *" style="position: relative;">
-                            <i class="fa fa-eye color-gray fa-lg eyeIcon" aria-hidden="true "></i>
+                            <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.password"></div>
                 </div>
