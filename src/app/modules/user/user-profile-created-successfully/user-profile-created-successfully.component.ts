@@ -16,4 +16,8 @@ export class UserProfileCreatedSuccessfullyComponent implements OnInit {
   goToUserLandingPage() {
     this.router.navigate(['user/landing-page']);
  }
+ logout(){
+  localStorage.clear();
+  this.router.navigate(['user/login']);
+}
 }

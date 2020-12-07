@@ -45,7 +45,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   suggestions: string[] = [];
 
   suggest(event) {
-    this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event));
+    this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event.toLowerCase()));
     if( this.data.length<1)
     {
       let schoolData:any={"name_of_school":"Others"};
@@ -177,23 +177,25 @@ export class EiSchoolRegisterComponent implements OnInit {
      this.name_of_school_first='';
      this.isValid(document.forms);
      let obj = this.cityList.find(o => o.city === city);
-     console.log(obj);
-     
+    
      try{
-       this.SpinnerService.show(); 
-       //ei/get-notonboarded-ei-by-city
-       this.eiService.getSchoolListByCity(obj.id).subscribe(res => {
+       if(obj.id){
+        this.SpinnerService.show(); 
+        //ei/get-notonboarded-ei-by-city
+        this.eiService.getSchoolListByCity(obj.id).subscribe(res => {
+          
+          let response:any={};
+          response=res;
+          this.schoolList=response.results;
+          this.SpinnerService.hide(); 
          
-         let response:any={};
-         response=res;
-         this.schoolList=response.results;
-         this.SpinnerService.hide(); 
-        
-         },(error) => {
-           this.SpinnerService.hide(); 
-           console.log(error);
-           
-         });
+          },(error) => {
+            this.SpinnerService.hide(); 
+            console.log(error);
+            
+          });
+       }
+     
      }catch(err){
        this.SpinnerService.hide(); 
        console.log(err);
@@ -262,6 +264,8 @@ export class EiSchoolRegisterComponent implements OnInit {
     if(this.name_of_school_first=='Others')
     {
       this.model.school_data.name_of_school=this.name_of_school_others;
+      this.model.school_data.state = this.state1;
+      this.model.school_data.city = this.city1;
     }else{
       this.model.school_data.name_of_school=this.name_of_school_first;
       this.name_of_school_others='';

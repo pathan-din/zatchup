@@ -126,7 +126,7 @@ export class EiSubadminManagementComponent implements OnInit {
     this.router.navigate(['ei/subadmin-details'],{queryParams:{id:id}});
   }
   goToEiSubadminAccessHistoryPage(){
-    this.router.navigate(['ei/subadmin-accessHistory']);
+    this.router.navigate(['ei/subadmin-access-history']);
   }
 
   goToEiSubadminAccessPage(){

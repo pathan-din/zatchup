@@ -151,8 +151,8 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers pt-1">
-                            <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
-                                aria-hidden="true "></i>
+                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
+                                aria-hidden="true "></i> -->
 							<span *ngIf="element.kyc_approved==1">
                             <i *ngIf="element.approved==0" (click)="openModel(element.studentID)" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
                                 data-toggle="modal"></i>

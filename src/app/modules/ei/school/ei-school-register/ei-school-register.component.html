@@ -43,7 +43,7 @@
                                 Name</label>
                           
                             <div class="  py-1 shadow-none">
-                                <ng-autocomplete   name="school_name1" [(ngModel)]="name_of_school_first1" id="school_name" [data]="data" [searchKeyword]="keyword" (selected)='suggestData($event)'
+                                <ng-autocomplete  placeHolder="Enter School" name="school_name1" [(ngModel)]="name_of_school_first1" id="school_name" [data]="data" [searchKeyword]="keyword" (selected)='suggestData($event)'
                                 (inputChanged)='suggest($event)' (inputCleared)="clearSuggestData()" (inputFocused)='suggest($event)' [itemTemplate]="itemTemplate">
                             </ng-autocomplete>
                             <input required name="school_name" [(ngModel)]="name_of_school_first" id="school_name" type="hidden">
