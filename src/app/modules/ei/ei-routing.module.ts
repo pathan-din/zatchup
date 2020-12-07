@@ -125,6 +125,7 @@ import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
+import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 
 const routes: Routes = [
   {
@@ -491,7 +492,9 @@ const routes: Routes = [
   {
     path: 'ei-search', component: EiSearchComponent
   },
-
+  {
+    path: 'comming-soon', component: CommingSoonComponent
+  },
 
 
 

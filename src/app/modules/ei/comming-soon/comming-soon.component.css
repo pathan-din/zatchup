@@ -1,0 +1,12 @@
+.commingSoon{
+    font-size: 64px;
+    padding: 180px 0px;
+    font-style: italic;
+    line-height: 1.2em;
+}
+
+@media (max-width: 667px){
+    .commingSoon{
+        font-size: 43px;
+    }
+}
