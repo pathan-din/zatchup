@@ -601,3 +601,9 @@ ul{list-style: none; padding-left: 15px;}
 
 .pie-grid{width: 36px; height: 12px; display: inline-block;}
 .pie-circle{width: 250px; height: 250px; border-radius: 50%; position: relative;}
+
+.img_profile {
+    width: auto !important;
+    height: 150px !important;
+    max-width: initial;
+}

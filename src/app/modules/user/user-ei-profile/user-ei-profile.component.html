@@ -22,7 +22,7 @@
                 <div class="form-group row justify-content-center">
                     <div class="col-6   text-center ">
                         <div class="round-camera-div mx-auto">
-                            <img (click)="fileInput.click()"  class="img-fluid p-2" src="{{imageUrl?imageUrl:'assets/images/userWebsite/camera_icons.png'}}">
+                            <img (click)="fileInput.click()"  class="img-fluid p-2 img_profile" src="{{imageUrl?imageUrl:'assets/images/userWebsite/profile-image.png'}}">
                             <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/>
                         </div>
                         
@@ -61,7 +61,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Enter El ID Number or Admission Number</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">El ID Number or Admission Number</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <input required name="admission_number" [(ngModel)]="model.admission_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter El ID Number or Admission Number  ">
                     </div>
@@ -85,21 +85,21 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Enter your Father's Name</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <input required name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Enter your Mother's Name</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <input required name="mother_name" [(ngModel)]="model.mother_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Mother's Name">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Type Comments</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Comments</label>
                     <div class="col-sm-12 form-control-inputDiv ">
                         <textarea  name="comments" [(ngModel)]="model.comment" class="form-control form-control-textarea form-control-input" rows="2" placeholder="Write Comments (Optional)"></textarea>
                     </div>
