@@ -183,33 +183,43 @@
                 </button>
                 <h2>Edit Course</h2>
             </div>
-            <div class="modal-body pl-2 pr-2 text-center">                
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-12 w-100">
-                            <input [(ngModel)]="editModel.course_name" name="course_name"
-                                class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
-                                type="text">
+            <div class="modal-body pl-2 pr-2">
+                <form id="editCourse">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 w-100">
+                                <label for="course_name">Course Name</label>
+                                <input [(ngModel)]="editModel.course_name" name="course_name"
+                                    class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                    type="text" (keyup)="isValid(0)" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_name">
+                            </div>
+                            <div class="col-12 mt-2 w-100">
+                                <label for="course_type">Course Type</label>
+                                <select required [(ngModel)]="editModel.course_type" name="course_type"
+                                    (change)="isValid(0)"
+                                    class="custom-select border form-control-input form-control-sm ">
+                                    <option value="">Select type</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Distance">Distance</option>
+                                </select>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_type">
+                            </div>
+                            <div class="col-12 mt-2">
+                                <label for="description">Course Description</label>
+                                <textarea [(ngModel)]="editModel.description" required name="course_description"
+                                    (keyup)="isValid(0)" class="w-100 rounded p-1 border pl-3 form-control" rows="5"
+                                    style="resize: none;">
+                                </textarea>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_description">
+                            </div>
                         </div>
-                        <div class="col-12 mt-2 w-100">
-                            <select required [(ngModel)]="editModel.course_type" name="course_type"
-                                class="custom-select border form-control-input form-control-sm ">
-                                <option value="">Select type</option>
-                                <option value="Regular">Regular</option>
-                                <option value="Distance">Distance</option>
-
-                            </select>
-                        </div>
-                        <div class="col-12 mt-2"> <textarea [(ngModel)]="editModel.description"
-                                class="w-100 rounded p-1 border pl-3 form-control" rows="5" style="resize: none;"></textarea></div>
-
                     </div>
-                </div>
-
-                <button type="button" class="btn common-model-Btn mt-4" (click)="editCourse();">Edit </button>
-
-                <!-- </form> -->
-
+                    <button type="button" class="btn common-model-Btn mt-4" (click)="editCourse();">Edit </button>
+                </form>
             </div>
         </div>
     </div>
@@ -217,9 +227,7 @@
 <!--Edit Standard-->
 <div class="modal fade" id="editStandardModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
-
     <div class="modal-dialog modal-dialog-centered" role="document">
-
         <div class="modal-content container-fluid">
             <div class="modal-header align-items-center justify-content-center pb-0">
                 <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
@@ -228,28 +236,34 @@
                 </button>
                 <h2>Edit Standard</h2>
             </div>
-            <div class="modal-body pl-2 pr-2 text-center">
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-12 w-100 mb-2">
-                            <input [(ngModel)]="editStModel.standard_name" name="standard_name"
-                                class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
-                                type="text">
+            <div class="modal-body pl-2 pr-2">
+                <form id="editStandard">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12 w-100 mb-2">
+                                <label for="standard_name">Standard Name</label>
+                                <input [(ngModel)]="editStModel.standard_name" name="standard_name" required
+                                    (keyup)="isValid(1)"
+                                    class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                    type="text">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard_name">
+                            </div>
+                            <div class="col-12 mt-20 w-100">
+                                <label for="standard_name">Standard duration</label>
+                                <input [(ngModel)]="editStModel.duration" name="standard_duration" required
+                                    (keyup)="isValid(1)" numberOnly
+                                    class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                    type="text">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard_duration">
+                            </div>
                         </div>
-                        <div class="col-12 mt-20 w-100">
-                            <input [(ngModel)]="editStModel.duration" name="duration"
-                                class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
-                                type="text">
-                        </div>
-
                     </div>
-                </div>
 
-                <button type="button" class="btn common-model-Btn mt-4" (click)="editStandard(editStModel.id);">Edit
-                </button>
-
-                <!-- </form> -->
-
+                    <button type="button" class="btn common-model-Btn mt-4" (click)="editStandard(editStModel.id);">Edit
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -271,109 +285,104 @@
             </div>
             <div class="modal-body pl-2 pr-2 text-center">
                 <div class="form-group">
-                        <div class="form-group row ">
-                            <div class="col-xl-6 col-lg-6 ">
-                                <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section</label>
-                                <div class="form-control-inputDiv rounded p-0 shadow-none ">
-                                    <input required id="class_name" required
-                                        [(ngModel)]="editClassModel.class_name" name="class_name"
-                                        class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
-                                        type="text " placeholder="Enter Sub Section ">
-                                </div>
-                                
-
+                    <div class="form-group row ">
+                        <div class="col-xl-6 col-lg-6 ">
+                            <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section</label>
+                            <div class="form-control-inputDiv rounded p-0 shadow-none ">
+                                <input required id="class_name" required [(ngModel)]="editClassModel.class_name"
+                                    name="class_name"
+                                    class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
+                                    type="text " placeholder="Enter Sub Section ">
                             </div>
-                            <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
-                                <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                    Start
-                                    teaching this class</label>
-                                <div class="row ">
-                                    <div class=" col-6 ">
-                                        <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                            <select id="teaching_start_year" required
-                                                [(ngModel)]="editClassModel.teaching_start_year"
-                                                name="teaching_start_year"
-                                                class="custom-select  form-control-input form-control-sm " required>
-                                                <option value="">Year</option>
-                                                <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class=" col-6 ">
-                                        <div class="py-1 form-control-inputDiv rounded shadow-none ">
-                                            <select id="teaching_start_month" required
-                                                [(ngModel)]="editClassModel.teaching_start_month"
-                                                name="teaching_start_month"
-                                                class="custom-select form-control-input form-control-sm " required>
-                                                <option value="">Month</option>
-                                                <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
-                                            </select>
-                                        </div>
+
+
+                        </div>
+                        <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
+                            <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                Start
+                                teaching this class</label>
+                            <div class="row ">
+                                <div class=" col-6 ">
+                                    <div class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                        <select id="teaching_start_year" required
+                                            [(ngModel)]="editClassModel.teaching_start_year" name="teaching_start_year"
+                                            class="custom-select  form-control-input form-control-sm " required>
+                                            <option value="">Year</option>
+                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                        </select>
                                     </div>
                                 </div>
-
+                                <div class=" col-6 ">
+                                    <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                        <select id="teaching_start_month" required
+                                            [(ngModel)]="editClassModel.teaching_start_month"
+                                            name="teaching_start_month"
+                                            class="custom-select form-control-input form-control-sm " required>
+                                            <option value="">Month</option>
+                                            <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 margin-top-col-6 mt-3">
-                                <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                    End
-                                    teaching this class</label>
-                                <div class="row ">
-                                    <div class=" col-6 ">
-                                        <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                            <select 
-                                                id="teaching_end_year"
-                                                
-                                                [(ngModel)]="editClassModel.teaching_end_year"
-                                                name="teaching_end_year"
-                                                class="custom-select  form-control-input form-control-sm ">
-                                                <option value="">Year</option>
-                                                <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class=" col-6 ">
-                                        <div class="py-1 form-control-inputDiv rounded shadow-none ">
-                                            <select id="teaching_end_month" [(ngModel)]="editClassModel.teaching_end_month"
-                                                name="teaching_end_month"
-                                                class="custom-select form-control-input form-control-sm ">
-                                                <option value="">Month</option>
-                                                <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
 
-                                            </select>
-                                        </div>
-
+                        </div>
+                        <div class="col-xl-6 col-lg-6 margin-top-col-6 mt-3">
+                            <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                End
+                                teaching this class</label>
+                            <div class="row ">
+                                <div class=" col-6 ">
+                                    <div class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                        <select id="teaching_end_year" [(ngModel)]="editClassModel.teaching_end_year"
+                                            name="teaching_end_year"
+                                            class="custom-select  form-control-input form-control-sm ">
+                                            <option value="">Year</option>
+                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <div class=" col-6 ">
+                                    <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                        <select id="teaching_end_month" [(ngModel)]="editClassModel.teaching_end_month"
+                                            name="teaching_end_month"
+                                            class="custom-select form-control-input form-control-sm ">
+                                            <option value="">Month</option>
+                                            <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
 
+                                        </select>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
 
-                        <div class="form-group row ">
-                            <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
-                                <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                    Start
-                                    teaching
-                                    this class</label>
-                                <div class="d-flex flex-xs-column flex-row justify-content-between ">
-                                    <mat-checkbox id="is_teaching_current"
-                                        [(ngModel)]="editClassModel.is_teaching_current" name="is_teaching_current"
-                                        class="purple-checkbox">Current
-                                        Teaching
-                                    </mat-checkbox>
+                    </div>
 
-                                    <mat-checkbox id="teaching_stopped" [(ngModel)]="editClassModel.teaching_stopped"
-                                        name="teaching_stopped" class="purple-checkbox">Stopped Date
-                                    </mat-checkbox>
+                    <div class="form-group row ">
+                        <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
+                            <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                Start
+                                teaching
+                                this class</label>
+                            <div class="d-flex flex-xs-column flex-row justify-content-between ">
+                                <mat-checkbox id="is_teaching_current" [(ngModel)]="editClassModel.is_teaching_current"
+                                    name="is_teaching_current" class="purple-checkbox">Current
+                                    Teaching
+                                </mat-checkbox>
 
-                                </div>
-
+                                <mat-checkbox id="teaching_stopped" [(ngModel)]="editClassModel.teaching_stopped"
+                                    name="teaching_stopped" class="purple-checkbox">Stopped Date
+                                </mat-checkbox>
 
                             </div>
+
+
                         </div>
+                    </div>
 
 
-                    
+
                 </div>
 
                 <button type="button" class="btn common-model-Btn mt-4" (click)="editClassById(editClassModel.id);">Edit

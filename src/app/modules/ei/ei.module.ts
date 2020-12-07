@@ -138,6 +138,7 @@ import { SubadminprofileComponent } from './registration/subadminprofile/subadmi
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { DirectiveModule } from 'src/app/directives/directive.module';
 
 @NgModule({
   declarations: [
@@ -281,7 +282,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     NgxSpinnerModule,
     NgxPaginationModule,
     BsDatepickerModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    DirectiveModule
   ],
   exports: [
     EiLoginComponent
