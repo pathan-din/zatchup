@@ -23,6 +23,10 @@ export class UserManagement {
     state: any = '';
     city: any = '';
     modal: any = {};
+    filterFromDate: any
+    fromDate: any;
+    toDate: any;
+    filterToDate: any;
 }
 
 export class SearchUserList {
@@ -93,6 +97,6 @@ export class ActiveUsers extends SignupUsers {
 }
 
 
-export class DormantUsers extends SignupUsers{
-      
+export class DormantUsers extends SignupUsers {
+
 }
