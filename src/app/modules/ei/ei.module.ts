@@ -139,6 +139,7 @@ import { SubadmincongratulationComponent } from './registration/subadmincongratu
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DirectiveModule } from 'src/app/directives/directive.module';
+import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 
 @NgModule({
   declarations: [
@@ -271,7 +272,8 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
     AddEiComponent,
     SubadminprofileComponent,
     SubadmincongratulationComponent,
-    SubadminschoolconfirmationComponent
+    SubadminschoolconfirmationComponent,
+    CommingSoonComponent
   ],
   imports: [
     CommonModule,
