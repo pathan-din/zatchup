@@ -65,13 +65,15 @@ export class EiSchoolProfileComponent implements OnInit {
   }
   uploadCoverPic(file) {
 
-
+    console.log(file);
+    
     try {
       this.SpinnerService.show();
       let fileList: FileList = file;
-      console.log(file);
+     
 
       let fileData: File = fileList[0];
+      //if(fileData.type=='image/jpeg' )
       const formData = new FormData();
       formData.append('cover_pic', fileData);
       this.eiService.updateCoverPic(formData).subscribe(res => {

@@ -493,7 +493,7 @@ const routes: Routes = [
     path: 'ei-search', component: EiSearchComponent
   },
   {
-    path: 'comming-soon', component: CommingSoonComponent
+    path: 'coming-soon', component: CommingSoonComponent
   },
 
 
