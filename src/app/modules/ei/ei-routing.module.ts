@@ -126,6 +126,7 @@ import { SubadminprofileComponent } from './registration/subadminprofile/subadmi
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
+import { AuthGuard } from 'src/app/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -144,7 +145,7 @@ const routes: Routes = [
     path: 'mobile-verification', component: EiMobileVerificationComponent
   },
   {
-    path: 'contact-us', component: EiContactUsComponent
+    path: 'contact-us', component: EiContactUsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'create-new-password', component: EiCreateNewPasswordComponent
@@ -153,7 +154,7 @@ const routes: Routes = [
     path: 'login-subadmin', component: EiLoginSubadminComponent
   },
   {
-    path: 'courier-details', component: EiCourierDetailsComponent
+    path: 'courier-details', component: EiCourierDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'subadmin-registration', component: EiSubadminRegisterComponent
@@ -162,338 +163,336 @@ const routes: Routes = [
     path: 'payment', component: EiPaymentComponent
   },
   {
-    path: 'onboarding-process', component: EiOnboardingProcessComponent
+    path: 'onboarding-process', component: EiOnboardingProcessComponent, canActivate: [AuthGuard]
   },
   {
     path: 'school-registration', component: EiSchoolRegisterComponent
   },
   {
-    path: 'cheque-details', component: EiChequeDetailsComponent
+    path: 'cheque-details', component: EiChequeDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'kyc-verification', component: EiKycVerificationComponent
   },
   {
-    path: 'sub-admin-employee', component: EiSubadminEmployeeComponent
+    path: 'sub-admin-employee', component: EiSubadminEmployeeComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-employee-contact', component: EiSubadminEmployeeContactComponent
+    path: 'subadmin-employee-contact', component: EiSubadminEmployeeContactComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard', component: EiDashboardComponent
+    path: 'dashboard', component: EiDashboardComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-additional', component: EiSubadminAdditionalComponent
+    path: 'subadmin-additional', component: EiSubadminAdditionalComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'school-profile', component: EiSchoolProfileComponent
+    path: 'school-profile', component: EiSchoolProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'school-post', component: EiSchoolPostComponent
+    path: 'school-post', component: EiSchoolPostComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'school-post-add', component: EiSchoolPostAddComponent
+    path: 'school-post-add', component: EiSchoolPostAddComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'alumni-management', component: EiAlumniManagementComponent
+    path: 'alumni-management', component: EiAlumniManagementComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'alumni-profile', component: EiAlumniProfileComponent
+    path: 'alumni-profile', component: EiAlumniProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'alumni-history', component: EiAlumniHistoryComponent
+    path: 'alumni-history', component: EiAlumniHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'alumni-list', component: EiAlumniListComponent
+    path: 'alumni-list', component: EiAlumniListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'verified-alumni', component: EiVerifiedAlumniComponent
+    path: 'verified-alumni', component: EiVerifiedAlumniComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'unverified-alumni', component: EiUnverifiedAlumniComponent
+    path: 'unverified-alumni', component: EiUnverifiedAlumniComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-management', component: EiStudentManagementComponent
+    path: 'student-management', component: EiStudentManagementComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'manage-courses-add', component: EiManageCoursesAddComponent
+    path: 'manage-courses-add', component: EiManageCoursesAddComponent, canActivate: [AuthGuard]
   },
-
-
   {
-    path: 'student-summary', component: EiStudentSummaryComponent
+    path: 'student-summary', component: EiStudentSummaryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-list', component: EiStudentListComponent
+    path: 'student-list', component: EiStudentListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-approvals', component: EiStudentApprovalsComponent
+    path: 'student-approvals', component: EiStudentApprovalsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-bulk-add', component: EiStudentBulkAddComponent
+    path: 'student-bulk-add', component: EiStudentBulkAddComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-change-bulk-class', component: EiStudentChangeBulkClassComponent
+    path: 'student-change-bulk-class', component: EiStudentChangeBulkClassComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-edit', component: EiStudentEditComponent
+    path: 'student-edit', component: EiStudentEditComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-profile', component: EiStudentProfileComponent
+    path: 'student-profile', component: EiStudentProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-history', component: EiStudentHistoryComponent
+    path: 'student-history', component: EiStudentHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-pending-verification', component: EiStudentPendingVerificationComponent
+    path: 'student-pending-verification', component: EiStudentPendingVerificationComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'student-verified-list', component: EiStudentVerifiedListComponent
+    path: 'student-verified-list', component: EiStudentVerifiedListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-management', component: EiSubadminManagementComponent
+    path: 'subadmin-management', component: EiSubadminManagementComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-access', component: EiSubadminAccessComponent
+    path: 'subadmin-access', component: EiSubadminAccessComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-access-history', component: EiSubadminAccessHistoryComponent
+    path: 'subadmin-access-history', component: EiSubadminAccessHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-module-access-history', component: EiSubadminModuleAccessHistoryComponent
+    path: 'subadmin-module-access-history', component: EiSubadminModuleAccessHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-details', component: EiSubadminDetailsComponent
+    path: 'subadmin-details', component: EiSubadminDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-module-wise', component: EiSubadminModuleWiseComponent
+    path: 'subadmin-module-wise', component: EiSubadminModuleWiseComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-status-list', component: EiSubadminStatusListComponent
+    path: 'subadmin-status-list', component: EiSubadminStatusListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-view-status', component: EiSubadminViewStatusComponent
+    path: 'subadmin-view-status', component: EiSubadminViewStatusComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'manage-courses', component: EiManageCoursesComponent
+    path: 'manage-courses', component: EiManageCoursesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'manage-courses-details/:id', component: EiManageCoursesDetailsComponent
+    path: 'manage-courses-details/:id', component: EiManageCoursesDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subscription', component: EiSubscriptionComponent
+    path: 'subscription', component: EiSubscriptionComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'invoice', component: EiInvoiceComponent
+    path: 'invoice', component: EiInvoiceComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'notification', component: EiNotificationComponent
+    path: 'notification', component: EiNotificationComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ecertificat-eresult', component: EiEcertificateEresultComponent
+    path: 'ecertificat-eresult', component: EiEcertificateEresultComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ecertificate', component: EiEcertificateComponent
+    path: 'ecertificate', component: EiEcertificateComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'eresult-report-create', component: EiEresultReportCreateComponent
+    path: 'eresult-report-create', component: EiEresultReportCreateComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'eresult-preview', component: EiEresultPreviewComponent
+    path: 'eresult-preview', component: EiEresultPreviewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class', component: EiStarclassComponent
+    path: 'star-class', component: EiStarclassComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-courses-uploaded-by-ei', component: EiStarclassCoursesUploadedByEiComponent
+    path: 'star-class-courses-uploaded-by-ei', component: EiStarclassCoursesUploadedByEiComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-audience', component: EiStarclassAudienceComponent
+    path: 'star-class-audience', component: EiStarclassAudienceComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-edit-right-teacher', component: EiStarclassEditRightTeacherComponent
+    path: 'star-class-edit-right-teacher', component: EiStarclassEditRightTeacherComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-lecture-edit', component: EiStarclassLectureEditComponent
+    path: 'star-class-lecture-edit', component: EiStarclassLectureEditComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-lecture-history', component: EiStarclassLectureHistoryComponent
+    path: 'star-class-lecture-history', component: EiStarclassLectureHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-lecture-upload', component: EiStarclassLectureUploadComponent
+    path: 'star-class-lecture-upload', component: EiStarclassLectureUploadComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-lecture-details', component: EiStarclassLectureDetailsComponent
+    path: 'star-class-lecture-details', component: EiStarclassLectureDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-course-history', component: EiStarclassCourseHistoryComponent
+    path: 'star-class-course-history', component: EiStarclassCourseHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-courses-preview', component: EiStarclassCoursesPreviewComponent
+    path: 'star-class-courses-preview', component: EiStarclassCoursesPreviewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-audience-student-list', component: EiStarclassAudienceStudentListComponent
+    path: 'star-class-audience-student-list', component: EiStarclassAudienceStudentListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-cart', component: EiStarclassCartComponent
+    path: 'star-class-cart', component: EiStarclassCartComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-payment', component: EiStarclassPaymentComponent
+    path: 'star-class-payment', component: EiStarclassPaymentComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-course-add', component: EiStarclassCourseAddComponent
+    path: 'star-class-course-add', component: EiStarclassCourseAddComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'add', component: AddComponent
+    path: 'add', component: AddComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'comment', component: CommentComponent
+    path: 'comment', component: CommentComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'details', component: DetailsComponent
+    path: 'details', component: DetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'edit', component: EditComponent
+    path: 'edit', component: EditComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'list-complete', component: ListCompleteComponent
+    path: 'list-complete', component: ListCompleteComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'list-ongoing', component: ListOngoingComponent
+    path: 'list-ongoing', component: ListOngoingComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'progress', component: ProgressComponent
+    path: 'progress', component: ProgressComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'bank-details', component: BankDetailsComponent
+    path: 'bank-details', component: BankDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'information-and-bank', component: InformationAndBankComponent
+    path: 'information-and-bank', component: InformationAndBankComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'personal-information', component: PersonalInformationComponent
+    path: 'personal-information', component: PersonalInformationComponent, canActivate: [AuthGuard]
   },
   {
     path: 'view-changes-request-status', component: ViewChangesRequestStatusComponent
   },
   {
-    path: 'students-list', component: StudentsListComponent
+    path: 'students-list', component: StudentsListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'teacher-list', component: TeacherListComponent
+    path: 'teacher-list', component: TeacherListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-messages', component: EiMessagesComponent
+    path: 'ei-messages', component: EiMessagesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'group-chat', component: GroupChatComponent
+    path: 'group-chat', component: GroupChatComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'create-group-chat', component: CreateGroupChatComponent
+    path: 'create-group-chat', component: CreateGroupChatComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'students-messages', component: StudentsMessagesComponent
+    path: 'students-messages', component: StudentsMessagesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'teacher-messages', component: TeacherMessagesComponent
+    path: 'teacher-messages', component: TeacherMessagesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'messages', component: MessagesComponent
+    path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'messages-details', component: MessagesDetailsComponent
+    path: 'messages-details', component: MessagesDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'personal-messages', component: PersonalMessagesComponent
+    path: 'personal-messages', component: PersonalMessagesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-add', component: SubadminAddComponent
+    path: 'subadmin-add', component: SubadminAddComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-pending-access', component: SubadminPendingAccessComponent
+    path: 'subadmin-pending-access', component: SubadminPendingAccessComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-pending-request', component: SubadminPendingRequestComponent
+    path: 'subadmin-pending-request', component: SubadminPendingRequestComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subadmin-request-changing', component: SubadminRequestChangingComponent
+    path: 'subadmin-request-changing', component: SubadminRequestChangingComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'about-us', component: AboutUsComponent
+    path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'change-password', component: ChangePasswordComponent
   },
   {
-    path: 'contact', component: ContactComponent
+    path: 'contact', component: ContactComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'personal', component: PersonalComponent
+    path: 'personal', component: PersonalComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'privacy', component: PrivacyComponent
+    path: 'privacy', component: PrivacyComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'setting', component: SettingComponent
+    path: 'setting', component: SettingComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'terms-conditions', component: TermsConditionsComponent
+    path: 'terms-conditions', component: TermsConditionsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'add-subscription', component: EiSubscriptionUpdateComponent
+    path: 'add-subscription', component: EiSubscriptionUpdateComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'add-advertisements', component: AddAdvertisementsComponent
+    path: 'add-advertisements', component: AddAdvertisementsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'advertise-with-zatchup', component: AdvertiseWithZatchupComponent
+    path: 'advertise-with-zatchup', component: AdvertiseWithZatchupComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'advertisements-details', component: AdvertisementsDetailsComponent
+    path: 'advertisements-details', component: AdvertisementsDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'past-advertisements', component: PastAdvertisementsComponent
+    path: 'past-advertisements', component: PastAdvertisementsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'authorisations', component: AuthorisationsComponent
+    path: 'authorisations', component: AuthorisationsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'authorisations-history', component: AuthorisationsHistoryComponent
+    path: 'authorisations-history', component: AuthorisationsHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'authorisations-request', component: AuthorisationsRequestComponent
+    path: 'authorisations-request', component: AuthorisationsRequestComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'view-ei-profile-and-timeline', component: ViewEiProfileAndTimelineComponent
+    path: 'view-ei-profile-and-timeline', component: ViewEiProfileAndTimelineComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'reminder', component: ReminderComponent
+    path: 'reminder', component: ReminderComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'reminder-add', component: ReminderAddComponent
+    path: 'reminder-add', component: ReminderAddComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'reminder-list', component: ReminderListComponent
+    path: 'reminder-list', component: ReminderListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'reminder-past', component: ReminderPastComponent
+    path: 'reminder-past', component: ReminderPastComponent, canActivate: [AuthGuard]
   },{
-    path: 'add-ei', component: AddEiComponent
+    path: 'add-ei', component: AddEiComponent, canActivate: [AuthGuard]
   },{
-    path: 'subadminprofile', component: SubadminprofileComponent
+    path: 'subadminprofile', component: SubadminprofileComponent, canActivate: [AuthGuard]
   },{
     path: 'thankyou', component: SubadmincongratulationComponent
   },{
-    path: 'subadmin-school-confirm', component: SubadminschoolconfirmationComponent
+    path: 'subadmin-school-confirm', component: SubadminschoolconfirmationComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'my-poc-details', component: MyPocDetailsComponent
+    path: 'my-poc-details', component: MyPocDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-search', component: EiSearchComponent
+    path: 'ei-search', component: EiSearchComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'coming-soon', component: CommingSoonComponent
+    path: 'coming-soon', component: CommingSoonComponent, canActivate: [AuthGuard]
   },
 
 
