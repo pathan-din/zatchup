@@ -688,7 +688,8 @@ export class EiOnboardingProcessComponent implements OnInit {
 
         } else {
           this.SpinnerService.hide();
-          this.alert.error(response.error, 'Error')
+          var collection=this.eiService.getErrorResponse(this.SpinnerService,response.error);
+          this.alert.error(collection, 'Error')
           console.log("Error:Data not update");
         }
 

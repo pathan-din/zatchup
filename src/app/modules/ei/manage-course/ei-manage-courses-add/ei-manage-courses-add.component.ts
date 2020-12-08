@@ -22,6 +22,18 @@ export class EiManageCoursesAddComponent implements OnInit {
   documentForm2Elements:any;
   year:any=[];
   month:any=[];  
+  months: any = [{'name':'JAN'},
+  {'name':'FEB'},
+  {'name':'MAR'},
+  {'name':'APRIL'},
+  {'name':'MAY'},
+  {'name':'JUN'},
+  {'name':'JULY'},
+  {'name':'AUG'},
+  {'name':'SEP'},
+  {'name':'OCT'},
+  {'name':'NOV'},
+  {'name':'DEC'}];
   numberOfStudentList = [];
   numberOfAluminiList = [];
   
@@ -59,7 +71,7 @@ export class EiManageCoursesAddComponent implements OnInit {
     }];
  	/*************************Year and month Loop*****************/
 	var i=1;
-	for(i=1;i<=12;i++)
+	for(i=1;i<=60;i++)
 	{
 		this.month.push(i);
 	}

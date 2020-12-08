@@ -93,8 +93,8 @@
                                         class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard
                                         Duration</label>
                                     <div class="row ">
-                                        <div class="col-6 ">
-                                            <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                        <!-- <div class="col-6 ">
+                                             <div class="py-1 form-control-inputDiv rounded shadow-none ">
                                                 <select required id="duration_in_year_{{cNo}}_{{s}}"
                                                     (change)="changeDuration(standardL)"
                                                     [(ngModel)]="durationModel.duration_in_year"
@@ -105,19 +105,19 @@
                                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                      
                                                 </select>
-                                            </div>
-                                            <div class="required errorMsg"
+                                            </div> -->
+                                            <!-- <div class="required errorMsg"
                                                 [innerHtml]="display_error(cNo+'_'+s,'duration_in_year_')">
-                                            </div>
+                                            </div>  
 
-                                        </div>
-                                        <div class=" col-6 ">
-                                            <div class=" py-1 form-control-inputDiv rounded shadow-none ">
-                                                <select (change)="changeDuration(standardL)" required
+                                        </div> -->
+                                        <div class=" col-sm-12 ">
+                                            <div class=" form-control-inputDiv py-1 rounded shadow-none">
+                                                <select   required
                                                     id="duration_in_month_{{cNo}}_{{s}}"
-                                                    [(ngModel)]="durationModel.duration_in_month"
+                                                    [(ngModel)]="standardL.duration"
                                                     name="duration_in_month_{{cNo}}_{{s}}"
-                                                    class="custom-select  form-control-input form-control-sm "
+                                                    class="custom-select form-control-input form-control-sm"
                                                     required>
                                                     <option value="">Month</option>
                                                     <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
@@ -126,10 +126,10 @@
                                             <div class="required errorMsg"
                                                 [innerHtml]="display_error(cNo+'_'+s,'duration_in_month_')">
                                             </div>
-                                            <input type="hidden" id="duration_{{cNo}}_{{s}}"
+                                            <!-- <input type="hidden" id="duration_{{cNo}}_{{s}}"
                                                 name="duration_{{cNo}}_{{s}}"
                                                 [(ngModel)]="standardL.duration"
-                                                value="{{durationModel.duration_in_year}}.{{durationModel.duration_in_month}}" />
+                                                value="{{durationModel.duration_in_month}}" /> -->
                                         </div>
                                     </div>
 
@@ -156,7 +156,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
+                                    <!-- <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
                                         <label for=" "
                                             class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                             Start
@@ -240,11 +240,11 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
-                                <div class="form-group row ">
+                                <!-- <div class="form-group row ">
                                     <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
                                         <label for="pronouce "
                                             class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
@@ -277,7 +277,7 @@
                                         </div>		
 
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row ">
                                     <div class="col-sm-12 ">
                                         <label for=" "
@@ -301,7 +301,7 @@
                                     <div class="col-xl-8 col-lg-8 col-md-10 ">
                                         <button type="button " (click)="removeData(c,standardL.classdata)"
                                             class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                            - Remove another Class in this standard
+                                            - Remove Previous Class in this standard
                                         </button>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@
                                 <div class="col-xl-7 col-lg-7 col-md-9 ">
                                     <button type="button " (click)="addAnotherClass(standardL)"
                                         class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                        + Add another Class in this standard
+                                        + Add Next Class in this standard
                                     </button>
                                 </div>
                             </div>
@@ -329,7 +329,7 @@
                                 <div class="col-xl-8 col-lg-8 col-md-10 ">
                                     <button type="button " (click)="removeData(s,courseList.standarddata)"
                                         class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                        - Remove another Standard in this course
+                                        - Remove Previous Standard in this course
                                     </button>
                                 </div>
                             </div>
@@ -340,7 +340,7 @@
                             <div class="col-xl-7 col-lg-7 col-md-9 ">
                                 <button type="button " (click)="addAnotherStandard(courseList)"
                                     class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                    + Add another Standard in this course
+                                    + Add Next Standard in this course
                                 </button>
                             </div>
                         </div>
