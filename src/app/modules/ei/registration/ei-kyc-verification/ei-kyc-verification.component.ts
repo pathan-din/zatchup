@@ -80,13 +80,19 @@ export class EiKycVerificationComponent implements OnInit {
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
-
+          if(response.error){
+            for (var key in response.error) {
+              if (response.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + response.error[key][0] + '\n'
+  
+              }
             }
+             
+            this.alert.error(errorCollection,'Error');
+          }else{
+            this.alert.error(response.message,'Error');
           }
-          this.alert.error(errorCollection,'Error');
+         
         }
       }, (error) => {
         this.SpinnerService.hide();

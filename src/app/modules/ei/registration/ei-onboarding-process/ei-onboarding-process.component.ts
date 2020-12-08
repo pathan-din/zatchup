@@ -29,6 +29,8 @@ export class EiOnboardingProcessComponent implements OnInit {
   @ViewChild(MatStepper, { static: false }) myStepper: MatStepper;
   completed: boolean = false;
   state: string;
+  stateList:any=[];
+  cityList:any=[];
   model: any = {};
   modelDocumentDetails: any = [];
   durationModel: any = {};
@@ -36,6 +38,11 @@ export class EiOnboardingProcessComponent implements OnInit {
   documentForm2Elements: any;
   year: any = [];
   month: any = [];
+  months: any = [{'name':'JAN'},
+                 {'name':'FEB'},
+                 {'name':'MAR'},
+                 {'name':'APRIL'},
+                 {'name':'MAY'},{'name':'JUN'},{'name':'JULY'},{'name':'AUG'},{'name':'SEP'},{'name':'OCT'},{'name':'NOV'},{'name':'DEC'}];
   numberOfStudentList = [];
   numberOfAluminiList = [];
   error: any = [];
@@ -92,13 +99,15 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.getAllState()
     this.getStepFirstData();
     this.getNumberOfAluminiList();
     this.getNumberOfStudentList();
     this.model.no_of_students = '';
     this.model.no_of_alumni = '';
 
-    this.durationModel.duration_in_month = "";
+   // this.durationModel.duration_in_month = "";
     this.bankModel.bank_name = '';
 
     /****************Document Bind Model***********************/
@@ -163,7 +172,57 @@ export class EiOnboardingProcessComponent implements OnInit {
     standarddata.duration = this.durationModel.duration_in_month;
   }
 
-
+  getCityByState(state){
+    this.model.school_data = {};
+    //getallstate
+    this.isValid(event);
+    let obj = this.stateList.find(o => o.state === state);
+   
+    
+    try{
+      this.SpinnerService.show(); 
+     
+      this.eiService.getCityByStateId(obj.id).subscribe(res => {
+        
+        let response:any={};
+        response=res;
+        this.cityList=response.results;
+        this.SpinnerService.hide(); 
+       
+        },(error) => {
+          this.SpinnerService.hide(); 
+          console.log(error);
+          
+        });
+    }catch(err){
+      this.SpinnerService.hide(); 
+      console.log(err);
+    }
+  }
+    /****************Get All State Function*************************/
+    getAllState(){
+      //getallstate
+      try{
+        this.model.school_data = {};
+        this.SpinnerService.show(); 
+       
+        this.eiService.getallstate(this.model).subscribe(res => {
+          
+          let response:any={};
+          response=res;
+          this.stateList=response.results;
+          this.SpinnerService.hide(); 
+         
+          },(error) => {
+            this.SpinnerService.hide(); 
+            
+            
+          });
+      }catch(err){
+        this.SpinnerService.hide(); 
+        
+      }
+    }
   /* Function Name : isValid
    * Check Form Validation on change and keyUp Event of the input Filed;
    */
@@ -188,6 +247,10 @@ export class EiOnboardingProcessComponent implements OnInit {
         let response: any = {}
         response = res;
         this.model = response;
+        this.model.opening_date= this.baseService.getDateReverseFormat(this.model.opening_date)
+        console.log(this.model);
+        
+        this.getCityByState(this.model.state)
         this.SpinnerService.hide();
       }, (error) => {
         //this.SpinnerService.hide();
