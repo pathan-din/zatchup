@@ -31,8 +31,8 @@
                                             ZatchUp
                                             ID</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="school_id" [(ngModel)]="model.school_code" name="school_id"
+                                        <div *ngIF="model.school_code" class="form-control-inputDiv rounded p-1 shadow-none">
+                                            <input readonly id="school_id" [(ngModel)]="model.school_code" name="school_id"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Enter Unique ID">
                                         </div>
@@ -64,11 +64,44 @@
 
                                 </div>
                                 <div class="form-group row ">
+                                    <div class="col-md-6 margin-top-col-6">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                            <input id="country" [(ngModel)]="model.country" name="country"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Country">
+                                        </div>
+                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.country">
+                                        </div> -->
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="city" required [(ngModel)]="model.city" name="city"
+                                            <select  (change)="getCityByState(model.state)" id="state" required [(ngModel)]="model.state" name="state"
+                                            class="custom-select custom-select-2Col form-control-input" required>
+                                            <option value="">State</option>
+                                            <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
+                                                {{stateObj.state}}</option>
+                                        </select>
+                                            <!-- <input id="state" required [(ngModel)]="model.state" name="state"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="City">
+                                                type="text" placeholder="State"> -->
+                                        </div>
+                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group row ">
+                                    <div class="col-md-6">
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                            <select id="city" required [(ngModel)]="model.city" name="city"
+                                            class="custom-select-2Col custom-select form-control-input" required>
+                                            <option value="">City</option>
+                                            <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
+        
+                                        </select>
+                                            <!-- <input id="city" required [(ngModel)]="model.city" name="city"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="City"> -->
                                         </div>
                                         <div class="required" style="color: red;" [innerHtml]="errorDisplay.city"></div>
                                     </div>
@@ -83,26 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row ">
-                                    <div class="col-md-6">
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="state" required [(ngModel)]="model.state" name="state"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="State">
-                                        </div>
-                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 margin-top-col-6">
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="country" [(ngModel)]="model.country" name="country"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Country">
-                                        </div>
-                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.country">
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row ">
                                     <div class="col-sm-12 ">
                                         <label for="" class=" commonFontSize mediumFont letterspacing">Board /
@@ -368,9 +382,9 @@
                                                     </div> -->
                                                     <div class=" col-sm-12 ">
                                                         <div class=" form-control-inputDiv py-1 rounded shadow-none">
-                                                            <select (change)="changeDuration(standardL)" required
+                                                            <select   required
                                                                 id="duration_in_month_{{cNo}}_{{s}}"
-                                                                [(ngModel)]="durationModel.duration_in_month"
+                                                                [(ngModel)]="standardL.duration"
                                                                 name="duration_in_month_{{cNo}}_{{s}}"
                                                                 class="custom-select form-control-input form-control-sm"
                                                                 required>
@@ -381,10 +395,10 @@
                                                         <div class="required errorMsg"
                                                             [innerHtml]="display_error(cNo+'_'+s,'duration_in_month_')">
                                                         </div>
-                                                        <input type="hidden" id="duration_{{cNo}}_{{s}}"
+                                                        <!-- <input type="hidden" id="duration_{{cNo}}_{{s}}"
                                                             name="duration_{{cNo}}_{{s}}"
                                                             [(ngModel)]="standardL.duration"
-                                                            value="{{durationModel.duration_in_month}}" />
+                                                            value="{{durationModel.duration_in_month}}" /> -->
                                                     </div>
                                                 </div>
 
@@ -477,7 +491,7 @@
                                                                     class="custom-select form-control-input form-control-sm "
                                                                     required>
                                                                     <option value="">Month</option>
-                                                                    <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
+                                                                    <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
@@ -520,7 +534,7 @@
                                                                     name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select form-control-input form-control-sm ">
                                                                     <option value="0">Month</option>
-                                                                    <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
+                                                                    <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
                                                                     
                                                                 </select>
                                                             </div>
@@ -561,7 +575,7 @@
                                                 <div class="col-xl-8 col-lg-8 col-md-10 ">
                                                     <button type="button " (click)="removeData(c+1,standardL.classdata)"
                                                         class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                        - Remove another Class in this standard
+                                                        - Remove Previous Class in this standard
                                                     </button>
                                                 </div>
                                             </div>
@@ -571,7 +585,7 @@
                                             <div class="col-xl-7 col-lg-7 col-md-9 ">
                                                 <button type="button " (click)="addAnotherClass(standardL)"
                                                     class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                    + Add another Class in this standard
+                                                    + Add Next Class in this standard
                                                 </button>
                                             </div>
                                         </div>
@@ -589,7 +603,7 @@
                                             <div class="col-xl-8 col-lg-8 col-md-10 ">
                                                 <button type="button " (click)="removeData(s+1,courseList.standarddata)"
                                                     class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                    - Remove another Standard in this course
+                                                    - Remove Previous Standard in this course
                                                 </button>
                                             </div>
                                         </div>
@@ -600,7 +614,7 @@
                                         <div class="col-xl-7 col-lg-7 col-md-9 ">
                                             <button type="button " (click)="addAnotherStandard(courseList)"
                                                 class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                + Add another Standard in this course
+                                                + Add Next Standard in this course
                                             </button>
                                         </div>
                                     </div>
@@ -692,7 +706,7 @@
                                             <input  id="bank_ifsc_code" name="bank_ifsc_code"
                                                 [(ngModel)]="bankModel.bank_ifsc_code"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="text " placeholder="Enter IFSC Code " required>
+                                                type="text" pattern="^[A-Za-z]{4}\d{7}$" placeholder="Enter IFSC Code " required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.bank_ifsc_code"></div>
                                     </div>
@@ -705,7 +719,7 @@
                                             <input (change)="handleCancelChequeFileInput($event.target.files)"
                                                 id="cheque" name="cheque"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="file" required>
+                                                type="file" validFileExtention="png,jpeg,jpg" required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                                     </div>
@@ -753,7 +767,7 @@
                                         Document</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                        <input (change)="fileUploadDocument($event.target.files,document)" id="document_{{i}}" name="document_{{i}}" required 
+                                        <input (change)="fileUploadDocument($event.target.files,document)" validFileExtention="png,jpeg,jpg" id="document_{{i}}" name="document_{{i}}" required 
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                             type="file">
 										<input [(ngModel)]="document.document"  id="document_hid_{{i}}" name="document_hid_{{i}}"  

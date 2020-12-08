@@ -71,6 +71,7 @@ export class GenericFormValidationService {
          
          
         } else if (controls[i].type == 'file' && controls[i].validity.valid) {
+          console.log(controls[i].getAttribute('validFileExtention'));
           
           if(controls[i].getAttribute('validFileExtention')){
              

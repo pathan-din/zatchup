@@ -30,6 +30,9 @@ export class BaseService {
   getDateFormat(date){
     return this.datePipe.transform(date, 'yyyy-MM-dd'); 
   }
+  getDateReverseFormat(date){
+    return new Date(date); 
+  }
   setParams(params) {
     let httpParams = new HttpParams();
     Object.keys(params).forEach(function (key) {
