@@ -290,7 +290,7 @@
                    <div class="col-md-12 ">
               <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
               <div class="form-control-inputDiv rounded p-0 shadow-none">
-                  <input id="remark" (keyup)="isValid($event)" [(ngModel)]="modelReason.remark" name="remark" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
+                  <input id="remark" [(ngModel)]="modelReason.remark" name="remark" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
               </div>
               <div class="required errorMsg" [innerHtml]="errorDisplay.remark"></div>
           </div>
