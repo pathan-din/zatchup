@@ -74,11 +74,11 @@
 }
 
 :host>>>.tooltip-inner {
-    /* background-color: #ffffff;
-    color: #463267; */
+    background-color: #463267;
+    color: #ffffff;
     font-style: italic;
 }
 
-/* :host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
+:host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
     border-top-color: #ffffff;
-} */
+}
