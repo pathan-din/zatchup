@@ -140,6 +140,7 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip'
 
 @NgModule({
   declarations: [
@@ -285,7 +286,8 @@ import { CommingSoonComponent } from './comming-soon/comming-soon.component';
     NgxPaginationModule,
     BsDatepickerModule,
     AutocompleteLibModule,
-    DirectiveModule
+    DirectiveModule,
+    TooltipModule.forRoot()
   ],
   exports: [
     EiLoginComponent
