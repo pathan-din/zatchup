@@ -87,6 +87,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     { name: "South Indian Bank" },
     { name: "Tamilnad Mercantile Bank" },
     { name: "Yes Bank" }];
+  index: any;
   constructor(private activatedRoute: ActivatedRoute,
     private genericFormValidationService: GenericFormValidationService,
     private router: Router,
@@ -99,7 +100,8 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+   
+    
     this.getAllState()
     this.getStepFirstData();
     this.getNumberOfAluminiList();
@@ -248,7 +250,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         response = res;
         this.model = response;
         this.model.opening_date= this.baseService.getDateReverseFormat(this.model.opening_date)
-        console.log(this.model);
+        this.index =this.model.reg_steps?this.model.reg_steps:0;
         
         this.getCityByState(this.model.state)
         this.SpinnerService.hide();
@@ -356,7 +358,7 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   }
-  goForward(stepper: MatStepper) {
+  goForward() {
     this.error = [];
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);

@@ -45,12 +45,17 @@ export class EiSchoolRegisterComponent implements OnInit {
   suggestions: string[] = [];
 
   suggest(event) {
-    this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event.toLowerCase()));
-    if( this.data.length<1)
-    {
-      let schoolData:any={"name_of_school":"Others"};
-      this.data.push(schoolData)
+    if(typeof(event)=='string'){
+      console.log(event);
+      
+      this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event.toLowerCase()));
+      if( this.data.length<1)
+      {
+        let schoolData:any={"name_of_school":"Others"};
+        this.data.push(schoolData)
+      }
     }
+   
   }
   suggestData(event) {
    // this.data=[];
