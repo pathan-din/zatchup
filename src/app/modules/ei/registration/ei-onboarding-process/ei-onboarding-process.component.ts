@@ -618,6 +618,13 @@ export class EiOnboardingProcessComponent implements OnInit {
   fileUploadDocument(files, document) {
     let fileList: FileList = files;
     let fileData: File = fileList[0];
+    console.log(fileData);
+    if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png' && fileData.type!=='application/pdf')
+    {
+      this.SpinnerService.hide();
+      this.alert.error("File format not supported",'Error');
+      return
+    }
     const formData = new FormData();
     formData.append('file_name', fileData);
     try {
@@ -637,8 +644,8 @@ export class EiOnboardingProcessComponent implements OnInit {
 
         } else {
           this.SpinnerService.hide();
-          this.alert.error(response.error, 'Error')
-          console.log("Error:Data not update");
+          var collection=this.eiService.getErrorResponse(this.SpinnerService,response.error);
+          this.alert.error(collection, 'Error')
           return '';
         }
 
@@ -690,7 +697,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           this.SpinnerService.hide();
           var collection=this.eiService.getErrorResponse(this.SpinnerService,response.error);
           this.alert.error(collection, 'Error')
-          console.log("Error:Data not update");
+          console.log(collection);
         }
 
       }, (error) => {

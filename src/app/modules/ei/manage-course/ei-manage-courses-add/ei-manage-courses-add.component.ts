@@ -62,8 +62,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           teaching_start_year: "",
           teaching_start_month: "",
           teaching_stopped: false,
-          teaching_end_year: "",
-          teaching_end_month: "",
+          teaching_end_year: 0,
+          teaching_end_month: 0,
           is_teaching_current: false,
           alias_class: ""
         }]
@@ -114,8 +114,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           teaching_start_year: "",
           teaching_start_month: "",
           teaching_stopped: false,
-          teaching_end_year: "",
-          teaching_end_month: "",
+          teaching_end_year: 0,
+          teaching_end_month: 0,
           is_teaching_current: false,
           alias_class: ""
         }]
@@ -139,8 +139,8 @@ export class EiManageCoursesAddComponent implements OnInit {
         teaching_start_year: "",
         teaching_start_month: "",
         teaching_stopped: false,
-        teaching_end_year: "",
-        teaching_end_month: "",
+        teaching_end_year: 0,
+        teaching_end_month: 0,
         is_teaching_current: false,
         alias_class: ""
       }]
@@ -158,8 +158,8 @@ export class EiManageCoursesAddComponent implements OnInit {
       teaching_start_year: "",
       teaching_start_month: "",
       teaching_stopped: false,
-      teaching_end_year: "",
-      teaching_end_month: "",
+      teaching_end_year: 0,
+      teaching_end_month: 0,
       is_teaching_current: false,
       alias_class: ""
     })

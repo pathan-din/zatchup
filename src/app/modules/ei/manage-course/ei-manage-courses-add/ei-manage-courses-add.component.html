@@ -154,7 +154,29 @@
                                         <div class="required errorMsg"
                                             [innerHtml]="display_error(cNo+'_'+s+'_'+c,'class_name_')">
                                         </div>
+                                        <label for="pronouce "
+                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                        Start
+                                        teaching
+                                        this class</label>
+                                    <div
+                                        class="d-flex flex-xs-column flex-row justify-content-between ">
+                                        <mat-checkbox 
+                                            id="is_teaching_current_{{cNo}}_{{s}}_{{c}}" 
+                                            [(ngModel)]="classD.is_teaching_current"
+                                            name="is_teaching_current_{{cNo}}_{{s}}_{{c}}"
+                                            class="purple-checkbox">Current
+                                            Teaching
+                                        </mat-checkbox>
 
+                                        <!-- <mat-checkbox [disabled]="classD.is_teaching_current"
+                                            id="teaching_stopped_{{cNo}}_{{s}}_{{c}}" [required]="!classD.is_teaching_current"
+                                            [(ngModel)]="classD.teaching_stopped"
+                                            name="teaching_stopped_{{cNo}}_{{s}}_{{c}}"
+                                            class="purple-checkbox">Stopped Date
+                                        </mat-checkbox> -->
+
+                                    </div>
                                     </div>
                                     <!-- <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
                                         <label for=" "
@@ -279,6 +301,94 @@
                                     </div>
                                 </div> -->
                                 <div class="form-group row ">
+                                    <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
+                                        <label for=" "
+                                            class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                            Start
+                                            teaching this class</label>
+                                        <div class="row ">
+                                            <div class=" col-sm-6 ">
+                                                <div
+                                                    class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                                    <select id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                        required [(ngModel)]="classD.teaching_start_year"
+                                                        name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select  form-control-input form-control-sm "
+                                                        required>
+                                                        <option value="">Year</option>
+                                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
+                                                </div>
+                                            </div>
+                                            <div class=" col-sm-6 ">
+                                                <div
+                                                    class="py-1 form-control-inputDiv rounded shadow-none ">
+                                                    <select id="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
+                                                        required [(ngModel)]="classD.teaching_start_month"
+                                                        name="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select form-control-input form-control-sm "
+                                                        required>
+                                                        <option value="">Month</option>
+                                                        <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_month_')">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div  class="col-xl-6 col-lg-6 margin-top-col-6 mt-3">
+                                        <label for=" "
+                                            class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                            End
+                                            teaching this class</label>
+                                        <div class="row ">
+                                            <div class=" col-6 " *ngIf="!classD.is_teaching_current">
+                                                <div
+                                                    class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                                    <select [disabled]="classD.is_teaching_current"
+                                                        id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                                        [required]="classD.teaching_stopped"
+                                                        [(ngModel)]="classD.teaching_end_year"
+                                                        name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select  form-control-input form-control-sm ">
+                                                        <option value="0">Year</option>
+                                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
+                                                </div>
+                                            </div> 
+                                            <div class=" col-6 " *ngIf="!classD.is_teaching_current">
+                                                <div
+                                                    class="py-1 form-control-inputDiv rounded shadow-none ">
+                                                    <select [disabled]="classD.is_teaching_current"
+                                                        id="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
+                                                        [required]="classD.teaching_stopped"
+                                                        [(ngModel)]="classD.teaching_end_month"
+                                                        name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select form-control-input form-control-sm ">
+                                                        <option value="0">Month</option>
+                                                        <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
+                                                        
+                                                    </select>
+                                                </div>
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_month_')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="classD.is_teaching_current" class=" col-6 ">
+                                            <label >Present</label>
+                                        </div>
+                                        
+                                    </div>
                                     <div class="col-sm-12 ">
                                         <label for=" "
                                             class=" commonFontSize mediumFont letterspacing ">Class
@@ -508,5 +618,7 @@
             <button  (click)="addCourseDataStep2()" class="bg-paret-green py-2 px-4 commonFontSize regularFont text-white border-0" type="button">Add</button>
         </div> 
     </div>
-
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>
 </div>
