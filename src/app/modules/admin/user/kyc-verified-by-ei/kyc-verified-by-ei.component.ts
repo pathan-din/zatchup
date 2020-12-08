@@ -13,6 +13,9 @@ import { KycVerifiedByEi } from '../modals/admin-user.modal';
 })
 export class KycVerifiedByEiComponent implements OnInit {
   kycVerifiedByEi: KycVerifiedByEi
+  maxDate: any;
+  kycApproved: any= '';
+  status: any= '';
 
   constructor(
     private router: Router,
@@ -23,35 +26,43 @@ export class KycVerifiedByEiComponent implements OnInit {
     private datePipe: DatePipe
   ) { 
     this.kycVerifiedByEi = new KycVerifiedByEi();
+    this.maxDate = new Date();
+
   }
 
   ngOnInit(): void {
-    this.getKycVerifiedByEiList('')
+    this.getKycVerifiedByEiList('');
+    this.getAllState()
   }
 
   getKycVerifiedByEiList(page?: any) {
     this.loader.show();
-    // let stateFind: any;
-    // let cityFind: any;
-    // if (this.onboardList.allStates && this.onboardList.stateId) {
-    //   stateFind = this.onboardList.allStates.find(val => {
-    //     return val.id == this.onboardList.stateId
-    //   })
-    // }
-    // if (this.onboardList.allCities) {
-    //   cityFind = this.onboardList.allCities.find(val => {
-    //     return val.id == this.onboardList.cityId
-    //   })
-    // }
+    let stateFind: any;
+    let cityFind: any;
+    if (this.kycVerifiedByEi.allStates && this.kycVerifiedByEi.stateId) {
+      stateFind = this.kycVerifiedByEi.allStates.find(val => {
+        return val.id == this.kycVerifiedByEi.stateId
+      })
+    }
+    if (this.kycVerifiedByEi.allCities) {
+      cityFind = this.kycVerifiedByEi.allCities.find(val => {
+        return val.id == this.kycVerifiedByEi.cityId
+      })
+    }
     this.kycVerifiedByEi.listParams = {
       'date_from': this.kycVerifiedByEi.filterFromDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.kycVerifiedByEi.filterToDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.filterToDate, 'yyyy-MM-dd') : '',
-      // "city": cityFind ? cityFind.city : '',
-      // "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardList.university,
-      // "stage_pending": this.onboardList.stagePending,
+      'login_from': this.kycVerifiedByEi.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.loginFromDate, 'yyyy-MM-dd') : '',
+      'login_to': this.kycVerifiedByEi.loginToDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.loginToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
       "page_size": this.kycVerifiedByEi.page_size,
-      "page": page
+      "page": page,
+      "current_ei": this.kycVerifiedByEi.currentEi,
+      "previous_ei": this.kycVerifiedByEi.previousEi,
+      "age_group": this.kycVerifiedByEi.ageGroup,
+      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
+      "status": this.status !== undefined ? this.status : '',
     }
 
     this.baseService.getData('admin/user/users_verified_ei_list/', this.kycVerifiedByEi.listParams).subscribe(
@@ -90,4 +101,22 @@ export class KycVerifiedByEiComponent implements OnInit {
     this.router.navigate([returnUrl])
   }
 
+  getAllState(){
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        console.log('get state res ::', res)
+        if (res.count >0)
+        this.kycVerifiedByEi.allStates = res.results
+      }
+    )
+  }
+  getCities(){
+    this.baseService.getData('user/getcitybystateid/' + this.kycVerifiedByEi.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+        this.kycVerifiedByEi.allCities = res.results
+        console.log('get state res ::', res)
+      }
+    )
+  }
 }
