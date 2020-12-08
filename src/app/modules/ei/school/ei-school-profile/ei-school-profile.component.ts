@@ -4,6 +4,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from '../../../../services/notification/notification.service';
 @Component({
   selector: 'app-ei-school-profile',
   templateUrl: './ei-school-profile.component.html',
@@ -21,6 +22,7 @@ export class EiSchoolProfileComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
+    public alert: NotificationService,
     private genericFormValidationService: GenericFormValidationService) { }
 
   ngOnInit(): void {
@@ -73,7 +75,12 @@ export class EiSchoolProfileComponent implements OnInit {
      
 
       let fileData: File = fileList[0];
-      //if(fileData.type=='image/jpeg' )
+      if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
+      {
+        this.SpinnerService.hide();
+        this.alert.error("File format not supported",'Error');
+        return
+      }
       const formData = new FormData();
       formData.append('cover_pic', fileData);
       this.eiService.updateCoverPic(formData).subscribe(res => {
@@ -102,6 +109,12 @@ export class EiSchoolProfileComponent implements OnInit {
   uploadProfilePic(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
+    if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
+      {
+        this.SpinnerService.hide();
+        this.alert.error("File format not supported",'Error');
+        return
+      }
     try {
       this.SpinnerService.show();
       const formData = new FormData();
