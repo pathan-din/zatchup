@@ -64,9 +64,26 @@ export class GenericFormValidationService {
 
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
         }
-		 else if (controls[i].type == 'file' && !controls[i].validity.valid) {
-
+		    else if (controls[i].type == 'file' && !controls[i].validity.valid) {
+         
+          
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
+         
+         
+        } else if (controls[i].type == 'file' && controls[i].validity.valid) {
+          console.log(controls[i].getAttribute('validFileExtention'));
+          
+          if(controls[i].getAttribute('validFileExtention')){
+             
+            if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){
+              
+            }else{
+              this.errorMessageObject[controls[i].name] = 'Format Supprted ( '+controls[i].getAttribute('validFileExtention')+' )';
+            }
+          //return filename.split('.').pop();
+          //this.errorMessageObject[controls[i].name] = 
+          
+          }
         }
         //Check Email required and email format filled based on type=email input box
         else if (controls[i].type == 'email' && controls[i].value) {
@@ -141,6 +158,8 @@ export class GenericFormValidationService {
 
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
         }
+        
+        
       }
     }
 
