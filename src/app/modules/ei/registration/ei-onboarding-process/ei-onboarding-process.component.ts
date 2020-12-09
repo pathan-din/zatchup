@@ -105,21 +105,21 @@ export class EiOnboardingProcessComponent implements OnInit {
   getBankNameList(){
     //ei/get-allbankname/
     try {
-     this.SpinnerService.show();
+     this.loader.show();
      this.baseService.getData('ei/get-allbankname/').subscribe(res=>{
       let responce :any={};
       responce = res;
       if(responce.status==false){
-        this.SpinnerService.hide();
+        this.loader.hide();
         this.bankNameList =[];
         return;
       }
-      this.SpinnerService.hide();
+      this.loader.hide();
       this.bankNameList = responce.results
       
       
      },(error)=>{
-      this.SpinnerService.hide();
+      this.loader.hide();
       this.alert.error("Something went wrong",'Error');
      })
     } catch (e) {
