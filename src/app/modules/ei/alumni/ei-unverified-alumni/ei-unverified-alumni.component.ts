@@ -5,6 +5,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 
 export interface UnVerifiedAlumniListElement {
@@ -74,7 +75,8 @@ export class EiUnverifiedAlumniComponent implements OnInit {
     private alert: NotificationService,
     private SpinnerService: NgxSpinnerService,
     public baseService:BaseService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.config = {
@@ -252,6 +254,9 @@ export class EiUnverifiedAlumniComponent implements OnInit {
       } catch (error) {
         console.log(error)
       }
+    }
+    goBack(): void{
+      this.location.back()
     }
   
 }

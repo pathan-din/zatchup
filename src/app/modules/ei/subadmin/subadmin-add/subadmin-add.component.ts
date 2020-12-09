@@ -7,6 +7,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { findIndex } from 'rxjs/operators';
+import { Location } from '@angular/common';
 declare var $: any;
 @Component({
   selector: 'app-subadmin-add',
@@ -39,7 +40,8 @@ export class SubadminAddComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     private genericFormValidationService: GenericFormValidationService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private location: Location
   ) { }
 
 
@@ -406,5 +408,9 @@ export class SubadminAddComponent implements OnInit {
     }
     console.log(this.model);
 
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 }

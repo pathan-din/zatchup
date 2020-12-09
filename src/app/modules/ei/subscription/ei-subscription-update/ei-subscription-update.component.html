@@ -1,7 +1,17 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="SubscriptionUpdate-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">Subscription </h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">Subscription </h2>
+            </div>
+
+        </div>
+
+      
         <div class="row m-0" *ngIf="subscriptionList && subscriptionList.length > 0">
             <div class="col-xl-7 bg-offwhite">
                 <div class="row border-bottom">
