@@ -26,6 +26,8 @@ export class EiLoginComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    localStorage.clear();
+    sessionStorage.clear();
   }
 
   goToEiForgetPasswordPage(){

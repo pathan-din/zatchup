@@ -43,7 +43,7 @@ export class AdminPaymentSubscriptionConfigureComponent implements OnInit {
     this.loader.show()
     this.baseService.getData('admin/subscription/list_subscription/').subscribe(
       (res: any) => {
-        if (res.status == true && res.count != 0) {
+        if (res.status == true) {
           this.dataSource = res.results
         }
         else{

@@ -125,8 +125,8 @@ import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
-import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { AuthGuard } from 'src/app/auth/auth.guard';
+import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 
 const routes: Routes = [
   {
@@ -492,9 +492,8 @@ const routes: Routes = [
     path: 'ei-search', component: EiSearchComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'coming-soon', component: CommingSoonComponent, canActivate: [AuthGuard]
+    path: 'sign-up-pending-list', component: SignUpPendingListComponent, canActivate: [AuthGuard]
   },
-
 
 
 

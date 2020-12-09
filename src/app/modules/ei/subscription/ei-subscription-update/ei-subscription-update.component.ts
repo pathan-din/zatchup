@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -27,7 +26,7 @@ export class EiSubscriptionUpdateComponent implements OnInit {
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private location: Location
+    
   ) {
 
   }
@@ -141,9 +140,5 @@ export class EiSubscriptionUpdateComponent implements OnInit {
       this.loader.hide();
       this.alert.error(err.error, 'Error')
     }
-  }
-
-  goBack(): void{
-    this.location.back()
   }
 }

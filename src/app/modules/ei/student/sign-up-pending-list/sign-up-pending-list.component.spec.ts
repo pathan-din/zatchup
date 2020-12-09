@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CommingSoonComponent } from './comming-soon.component';
+import { SignUpPendingListComponent } from './sign-up-pending-list.component';
 
-describe('CommingSoonComponent', () => {
-  let component: CommingSoonComponent;
-  let fixture: ComponentFixture<CommingSoonComponent>;
+describe('SignUpPendingListComponent', () => {
+  let component: SignUpPendingListComponent;
+  let fixture: ComponentFixture<SignUpPendingListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommingSoonComponent ]
+      declarations: [ SignUpPendingListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CommingSoonComponent);
+    fixture = TestBed.createComponent(SignUpPendingListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
