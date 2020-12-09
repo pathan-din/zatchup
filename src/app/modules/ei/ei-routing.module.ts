@@ -368,7 +368,7 @@ const routes: Routes = [
     path: 'bank-details', component: BankDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'information-and-bank', component: InformationAndBankComponent, canActivate: [AuthGuard]
+    path: 'information-and-bank-details', component: InformationAndBankComponent, canActivate: [AuthGuard]
   },
   {
     path: 'personal-information', component: PersonalInformationComponent, canActivate: [AuthGuard]

@@ -5,7 +5,16 @@
     <div class="ManageCourse-Add-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
 
         <div class="">
-            <h2 class="commonFontSize semiBoldFont letterspacing mb-2">Add Course</h2>
+            <div class="row topDiv">
+                <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    <h2 class="commonFontSize semiBoldFont letterspacing mb-2">Add Course</h2>
+                </div>
+    
+            </div>
+           
             <form id="Form2">
                 <div class="process2 mt-4 ">
                     <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">

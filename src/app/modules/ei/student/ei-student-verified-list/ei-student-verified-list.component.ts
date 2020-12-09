@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 declare var $: any;
 
 export interface UnVerifiedAlumniListElement {
@@ -62,7 +63,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     public eiService: EiServiceService, 
     public base: BaseService, 
     public formBuilder: FormBuilder,
-    private alert: NotificationService, private route: ActivatedRoute
+    private alert: NotificationService, private route: ActivatedRoute,
+    private location: Location
     ) { }
 
 
@@ -78,8 +80,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.model.kyc_approved=""
     this.route.queryParams.subscribe(params => {
      
-      this.model.approved=params['approved'];
-      this.model.kyc_approved=params['kyc_approved'];
+      this.model.approved=params['approved']?params['approved']:'';
+      
+      this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
       this.title=params['title'];
 
     });
@@ -392,6 +395,9 @@ this.model.page= page
       this.SpinnerService.hide();
       console.log(err);
     }
+  }
+  goBack(): void{
+    this.location.back()
   }
 
 }

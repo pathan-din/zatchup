@@ -4,7 +4,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { StudentApproval } from 'src/app/modules/admin/ei/modals/ei-pending-approval.modal';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 export interface PeriodicElement {
   position: number;
@@ -44,7 +44,8 @@ export class EiStudentApprovalsComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
     ) { 
       this.studentApproval = new StudentApproval();
       this.maxDate = new Date();
@@ -130,6 +131,9 @@ export class EiStudentApprovalsComponent implements OnInit {
         this.studentApproval.classList = res.classdata
       }
     )
+  }
+  goBack(): void{
+    this.location.back()
   }
 }
  

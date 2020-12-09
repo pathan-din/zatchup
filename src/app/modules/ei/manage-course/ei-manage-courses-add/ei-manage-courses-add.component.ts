@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-ei-manage-courses-add',
   templateUrl: './ei-manage-courses-add.component.html',
@@ -45,7 +46,8 @@ export class EiManageCoursesAddComponent implements OnInit {
   
   constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
     , private router: Router,private base:BaseService, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
-	public formBuilder: FormBuilder) { }
+  public formBuilder: FormBuilder,
+  private location: Location) { }
 
 
   ngOnInit(): void {
@@ -238,6 +240,10 @@ export class EiManageCoursesAddComponent implements OnInit {
       }
     }
     
+  }
+
+  goBack(): void{
+    this.location.back()
   }
   
 }
