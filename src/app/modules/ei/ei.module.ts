@@ -139,7 +139,6 @@ import { SubadmincongratulationComponent } from './registration/subadmincongratu
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DirectiveModule } from 'src/app/directives/directive.module';
-import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component'
@@ -276,9 +275,9 @@ import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-previ
     SubadminprofileComponent,
     SubadmincongratulationComponent,
     SubadminschoolconfirmationComponent,
-    CommingSoonComponent,
     SignUpPendingListComponent,
-    EiProfilePreviewComponent
+    EiProfilePreviewComponent,
+    SignUpPendingListComponent
   ],
   imports: [
     CommonModule,

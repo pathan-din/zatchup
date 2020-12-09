@@ -49,10 +49,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                         console.log(`error status : ${error.status} ${error.statusText}`);
                         switch (error.status) {
                             case 401:      //login
+                                localStorage.clear();
                                 this.navigateToLogin();
                                 handled = true;
                                 break;
                             case 403:     //forbidden
+                                localStorage.clear();
                                 this.navigateToLogin();
                                 handled = true;
                                 break;
