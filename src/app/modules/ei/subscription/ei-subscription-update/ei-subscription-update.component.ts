@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -142,6 +141,4 @@ export class EiSubscriptionUpdateComponent implements OnInit {
       this.alert.error(err.error, 'Error')
     }
   }
-
-  
 }
