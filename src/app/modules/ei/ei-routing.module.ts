@@ -127,6 +127,7 @@ import { SubadmincongratulationComponent } from './registration/subadmincongratu
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { AuthGuard } from 'src/app/auth/auth.guard';
+import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 
 const routes: Routes = [
   {
@@ -494,7 +495,9 @@ const routes: Routes = [
   {
     path: 'coming-soon', component: CommingSoonComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'sign-up-pending-list', component: SignUpPendingListComponent, canActivate: [AuthGuard]
+  },
 
 
 

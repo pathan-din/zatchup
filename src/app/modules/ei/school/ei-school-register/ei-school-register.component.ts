@@ -192,6 +192,7 @@ export class EiSchoolRegisterComponent implements OnInit {
           let response:any={};
           response=res;
           this.schoolList=response.results;
+          
           this.SpinnerService.hide(); 
          
           },(error) => {
@@ -241,7 +242,7 @@ export class EiSchoolRegisterComponent implements OnInit {
       this.model.school_data.state=obj.state;
       this.model.school_data.city=obj.city;
       this.model.school_data.address1=obj.address1;
-      this.model.school_data.address2= obj.address2 ? obj.address2 : '';
+      this.model.school_data.address2= obj.address2!='null' && obj.address2!=undefined && obj.address2!=''? obj.address2 : '';
       this.model.school_data.landmark="";
       this.model.school_data.pincode=obj.pincode;
       this.model.school_data.university=obj.university;
