@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ei-student-profile',
@@ -18,7 +19,8 @@ export class EiStudentProfileComponent implements OnInit {
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService,
      public eiService: EiServiceService,
-     public base: BaseService, public formBuilder: FormBuilder) { }
+     public base: BaseService, public formBuilder: FormBuilder,
+     private location: Location) { }
 
 
   ngOnInit(): void {
@@ -66,5 +68,9 @@ export class EiStudentProfileComponent implements OnInit {
     console.log(err);
     // this.alert.error(err, 'Error')
   }
+  }
+  
+  goBack(): void{
+    this.location.back()
   }
 }

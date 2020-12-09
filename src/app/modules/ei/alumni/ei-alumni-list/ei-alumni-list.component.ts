@@ -5,6 +5,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 
 export interface TotalAlumniListElement {
@@ -72,7 +73,8 @@ export class EiAlumniListComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public baseService:BaseService,
     public formBuilder: FormBuilder,
-    private alert : NotificationService
+    private alert : NotificationService,
+    private location: Location
     ) { }
 
  
@@ -268,6 +270,10 @@ getAluminiList(page,strFilter){
     } catch (error) {
       console.log(error)
     }
+  }
+  
+  goBack(): void{
+    this.location.back();
   }
 
   

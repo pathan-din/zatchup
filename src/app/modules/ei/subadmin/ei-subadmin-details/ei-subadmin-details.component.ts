@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ei-subadmin-details',
@@ -23,7 +24,8 @@ export class EiSubadminDetailsComponent implements OnInit {
     public base: BaseService, 
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -109,5 +111,8 @@ export class EiSubadminDetailsComponent implements OnInit {
   }
   redirectToEditAccess(id){
     this.router.navigate(['ei/subadmin-access'],{queryParams:{id:id}});
+  }
+  goBack(): void{
+    this.location.back()
   }
 }

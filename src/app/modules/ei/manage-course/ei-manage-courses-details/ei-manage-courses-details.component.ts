@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../../services/base/base.service';
+import { Location } from '@angular/common';
 declare var $: any;
 
 export interface subAdminManagementElement {
@@ -62,7 +63,8 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     private baseService: BaseService,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
-    private validationService: GenericFormValidationService
+    private validationService: GenericFormValidationService,
+    private location: Location
   ) { }
 
 
@@ -324,6 +326,10 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[form].elements, true, []);
     }
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 
 }
