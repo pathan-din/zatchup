@@ -128,6 +128,7 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { AuthGuard } from 'src/app/auth/auth.guard';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
+import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
 
 const routes: Routes = [
   {
@@ -498,7 +499,9 @@ const routes: Routes = [
   {
     path: 'sign-up-pending-list', component: SignUpPendingListComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'ei-profile-preview', component: EiProfilePreviewComponent, canActivate: [AuthGuard]
+  },
 
 
 

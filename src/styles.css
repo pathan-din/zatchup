@@ -626,6 +626,9 @@ select:hover, select:focus {
     background: #e8f0fe !important;
 }
 
+.hover-white:hover {
+    color: #fff;
+}
 
 /* ::-webkit-input-placeholder {
 background: #fff !important;

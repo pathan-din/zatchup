@@ -141,7 +141,8 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component'
+import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
+import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component'
 
 @NgModule({
   declarations: [
@@ -276,7 +277,8 @@ import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-
     SubadmincongratulationComponent,
     SubadminschoolconfirmationComponent,
     CommingSoonComponent,
-    SignUpPendingListComponent
+    SignUpPendingListComponent,
+    EiProfilePreviewComponent
   ],
   imports: [
     CommonModule,
