@@ -140,7 +140,8 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { CommingSoonComponent } from './comming-soon/comming-soon.component';
-import { TooltipModule } from 'ngx-bootstrap/tooltip'
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component'
 
 @NgModule({
   declarations: [
@@ -274,7 +275,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip'
     SubadminprofileComponent,
     SubadmincongratulationComponent,
     SubadminschoolconfirmationComponent,
-    CommingSoonComponent
+    CommingSoonComponent,
+    SignUpPendingListComponent
   ],
   imports: [
     CommonModule,

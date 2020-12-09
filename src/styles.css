@@ -607,3 +607,32 @@ ul{list-style: none; padding-left: 15px;}
     height: 150px !important;
     max-width: initial;
 }
+.form-control:focus {
+    /* background: rgba(70, 50, 103, 0.25); */
+    background: #e8f0fe;
+}
+.form-control-inputDiv:focus {
+    background: #e8f0fe;
+}
+.custom-select:focus {
+    background: #e8f0fe;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #e8f0fe;
+}
+
+select:hover, select:focus {
+    background: #e8f0fe !important;
+}
+
+
+/* ::-webkit-input-placeholder {
+background: #fff !important;
+}
+:-ms-input-placeholder { 
+background: #fff !important;
+}
+::placeholder {
+background: #fff !important;
+} */
