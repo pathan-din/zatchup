@@ -52,41 +52,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   uploadedCancelCheque: any = '';
   uploadedProfileContent: any = '';
   bankModel: any = {};
-  bankNameList = [
-    { name: "Bank of Baroda" },
-    { name: "Bank of India" },
-    { name: " Bank of Maharashtra" },
-    { name: "  Canara Bank" },
-    { name: " Central Bank of India" },
-    { name: " Indian Bank" },
-    { name: "Indian Overseas Bank" },
-    { name: "Punjab and Sind Bank" },
-    { name: "Punjab National Bank" },
-    { name: "State Bank of India" },
-    { name: "UCO Bank" },
-    { name: "Union Bank of India" },
-    { name: "Axis Bank" },
-    { name: " Bandhan Bank" },
-    { name: "Catholic Syrian Bank" },
-    { name: "City Union Bank" },
-    { name: "DCB Bank" },
-    { name: "Dhanlaxmi Bank" },
-    { name: "Federal Bank" },
-    { name: "HDFC Bank" },
-    { name: "ICICI Bank" },
-    { name: "IDBI Bank" },
-    { name: "IDFC First Bank" },
-    { name: "IndusInd Bank" },
-    { name: "Jammu & Kashmir Bank" },
-    { name: "Karnataka Bank" },
-    { name: "Karur Vysya Bank" },
-    { name: "Kotak Mahindra Bank" },
-    { name: " Lakshmi Vilas Bank" },
-    { name: "Nainital Bank" },
-    { name: "RBL Bank" },
-    { name: "South Indian Bank" },
-    { name: "Tamilnad Mercantile Bank" },
-    { name: "Yes Bank" }];
+  bankNameList = [];
   index: any;
   constructor(private activatedRoute: ActivatedRoute,
     private genericFormValidationService: GenericFormValidationService,
@@ -166,6 +132,34 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   }
+  /**getBankNameList */
+
+  getBankNameList(){
+    //ei/get-allbankname/
+    try {
+     this.SpinnerService.show();
+     this.baseService.getData('ei/get-allbankname/').subscribe(res=>{
+      let responce :any={};
+      responce = res;
+      if(responce.status==false){
+        this.SpinnerService.hide();
+        this.bankNameList =[];
+        return;
+      }
+      this.SpinnerService.hide();
+      this.bankNameList = responce.results
+      
+      
+     },(error)=>{
+      this.SpinnerService.hide();
+      this.alert.error("Something went wrong",'Error');
+     })
+    } catch (e) {
+    
+    }
+  }
+
+
   /**
    * 
    * @param event 

@@ -42,7 +42,7 @@
                             <label for="pronouce" class="mediumFont commonFontSize letterspacing">Select School
                                 Name</label>
                           
-                            <div class="  py-1 shadow-none">
+                            <div class="py-1 shadow-none">
                                 <ng-autocomplete  placeHolder="Enter School" name="school_name1" [(ngModel)]="name_of_school_first1" id="school_name" [data]="data" [searchKeyword]="keyword" (selected)='suggestData($event)'
                                 (inputChanged)='suggest($event)' (inputCleared)="clearSuggestData()" (inputFocused)='suggest($event)' [itemTemplate]="itemTemplate">
                             </ng-autocomplete>
@@ -112,9 +112,9 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input (keyup)="isValid($event)" maxlength="6" id="pincode" required [(ngModel)]="model.school_data.pincode" name="pincode"
+                                <input (keyup)="isValid($event)" numberOnly maxlength="6" id="pincode" required [(ngModel)]="model.school_data.pincode" name="pincode"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="number" placeholder="Enter Pin">
+                                    type="text" placeholder="Enter Pin">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.pincode"></div>
                         </div>
@@ -209,7 +209,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="phone" required [(ngModel)]="model.phone" name="phone" maxlength="10"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="tel" placeholder="Enter Mobile Number">
+                                    type="tel" numberOnly placeholder="Enter Mobile Number">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
                         </div>
