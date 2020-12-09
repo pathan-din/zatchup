@@ -75,7 +75,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
       totalItems: 0
     };
     this.model.gender = '';
-    this.model.age = '';
+    // this.model.age = '';
     this.model.approved=""
     this.model.kyc_approved=""
     this.route.queryParams.subscribe(params => {
@@ -261,12 +261,12 @@ this.model.page= page
       var course = 'course=' + this.model.course
       var standard = 'standard=' + this.model.standard
       var teaching_class = 'teaching_class=' + this.model.teaching_class
-      var age = 'age=' + this.model.age
+      // var age = 'age=' + this.model.age
       var gender = 'gender=' + this.model.gender
       arrFilter.push(course)
       arrFilter.push(standard)
       arrFilter.push(teaching_class)
-      arrFilter.push(age)
+      // arrFilter.push(age)
       arrFilter.push(gender)
       var strFilter = arrFilter.join("&");
 
