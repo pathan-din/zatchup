@@ -64,6 +64,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     this.getStepFirstData();
     this.getNumberOfAluminiList();
     this.getNumberOfStudentList();
+    this.getBankNameList();
     this.model.no_of_students = '';
     this.model.no_of_alumni = '';
     this.bankModel.bank_name = '';
