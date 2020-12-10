@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { DatePipe } from '@angular/common';
+import { NotificationService } from '../../../services/notification/notification.service';
 
 @Component({
   selector: 'app-add-new-course',
@@ -23,7 +24,8 @@ export class AddNewCourseComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public userService: UsersServiceService,
     public formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: NotificationService
     ) { }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class AddNewCourseComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          alert(response.message);
+          this.alert.success(response.data.message, 'Success')
           this.router.navigate(['user/add-more-course'], {queryParams: {'school_id':this.schoolId }});
           
         } else {
@@ -61,7 +63,7 @@ export class AddNewCourseComponent implements OnInit {
 
             }
           }
-          alert(errorCollection);
+         this.alert.error(errorCollection, 'Error')
         }
       }, (error) => {
         this.SpinnerService.hide();

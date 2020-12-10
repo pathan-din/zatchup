@@ -5,6 +5,7 @@ import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { BaseService } from '../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from '../../../services/notification/notification.service';
 declare var $: any;
 @Component({
   selector: 'app-user-add-ei',
@@ -27,7 +28,7 @@ export class UserAddEiComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public baseService:BaseService,
-    
+    private alert: NotificationService,
     public formBuilder: FormBuilder,
     private genericFormValidationService:GenericFormValidationService) { }
 
@@ -142,11 +143,10 @@ goToUserQualificationPage() {
 
           }
         }
-        alert(errorCollection);
+        this.alert.error(errorCollection,'Error');
       }
     }, (error) => {
       this.SpinnerService.hide();
-      console.log(error);
 
     });
   } catch (err) {
@@ -225,7 +225,8 @@ getDataByZatchupId() {
 
     this.SpinnerService.show();
     if(!this.modelZatchup.zatchup_id){
-      alert("Enter Zatchup Id.");
+      // alert("Enter Zatchup Id.");
+      this.alert.warning("Enter Zatchup Id.", 'Warning')
       return false;
     }
     this.baseService.action('user/get-school-detail-zatchupid/',this.modelZatchup).subscribe(res => {
@@ -256,7 +257,7 @@ getDataByZatchupId() {
 
           }
         }
-        alert(errorCollection);
+        this.alert.error(errorCollection,'Error');
       }
     }, (error) => {
       this.SpinnerService.hide();
