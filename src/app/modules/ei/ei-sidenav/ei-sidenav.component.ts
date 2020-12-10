@@ -75,6 +75,7 @@ permission:any;
     }	
   }
   logout(){
+    this.SpinnerService.hide(); 
     localStorage.clear();
     sessionStorage.clear();
 	  this.router.navigate(['ei/login']);

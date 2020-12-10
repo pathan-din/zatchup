@@ -12,6 +12,7 @@ import { EiServiceService } from 'src/app/services/EI/ei-service.service';
 })
 export class EiProfilePreviewComponent implements OnInit {
   displayError:any="";
+  userProfile:any=[];
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
@@ -20,26 +21,31 @@ export class EiProfilePreviewComponent implements OnInit {
     private eiService:EiServiceService) { }
 
   ngOnInit(): void {
+    this.getEiProfileData();
   }
  getEiProfileData(){
    try {
      this.loader.show();
-   this.baseService.getData('').subscribe(res=>{
+   this.baseService.getData('ei/onboarding-preview/').subscribe(res=>{
       let response:any={};
       response=res;
       if(response.status==true){
-        this.loader.show();
+        this.userProfile=response.data[0];
+        this.loader.hide();
       }else{
-        this.loader.show();
+        this.loader.hide();
         this.displayError = this.eiService.getErrorResponse(this.loader,response.error);
         this.alert.error(this.displayError,"Error");
       }
    },(error)=>{
-    this.loader.show();
+    this.loader.hide();
     this.alert.error("Something went wrong.","Error");
    })
    } catch (e) {
    
    }
+ }
+ redirectToLoginPage(){
+  this.router.navigate(['ei/dashboard']);
  }
 }

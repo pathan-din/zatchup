@@ -25,51 +25,51 @@
                       </div>
                   
                       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body" *ngFor="let userData of userProfile.ei_detail">
                           <div class="row">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">School Name</h3>
-                              <p>ABC Public School</p>
+                              <p>{{userData.name_of_school}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">EI's Unique ZatchUp ID</h3>
-                              <p>T-APADI000011</p>
+                              <p>{{userData.school_code}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Full Address</h3>
-                              <p>bcb, bcvbc, Uttar Pradesh, Noida, 201301 </p>
+                              <p>{{userData.address1}} {{userData.address2}} </p>
                             </div>
 
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Board / University</h3>
-                              <p>NIT JAMSHEDPUR</p>
+                              <p>{{userData.university}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Name of Principal / Dean</h3>
-                              <p>Pathan Din</p>
+                              <p>{{userData.name_of_principle}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Foundation Date / Openning Date</h3>
-                              <p>01/02/2020</p>
+                              <p>{{userData.opening_date}}</p>
                             </div>
 
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Number of Current Student</h3>
-                              <p>less then 500</p>
+                              <p>{{userData.no_of_students}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Number of Alumni</h3>
-                              <p>less then 500</p>
+                              <p>{{userData.no_of_alumni}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">GST Number(Optional)</h3>
-                              <p>kdhfljgj582</p>
+                              <p>{{userData.gst_no}}</p>
                             </div>
 
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Overview</h3>
-                              <p>bcb</p>
-                              <p>bcvbc</p>
+                              <p>{{userData.overview}}</p>
+                               
                             </div>
                           </div>
                         </div>
@@ -86,42 +86,67 @@
                       </div>
                       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                          <div class="row">
+                          <div class="row" *ngFor="let courseData of userProfile.course_detail">
                             <div class="col-md-12 mb-3">
-                              <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">Course Name(Duration)</h3>
+                              <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">{{courseData.course_name}} ({{courseData.course_type}})</h3>
                               <div class="row">
-                                  <div class="col-md-12">
+                                  <!-- <div class="col-md-12">
                                     <h4 class="commonFontSize semiBoldFont mb-0">Course Type</h4>
-                                    <p>Distance</p>
-                                  </div>
+                                    <p>{{courseData.course_type}}</p>
+                                  </div> -->
                                   <div class="col-md-12">
                                     <h4 class="commonFontSize semiBoldFont mb-0">Description</h4>
-                                    <p>Description content</p>
+                                    <p>{{courseData.description}}</p>
                                   </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" *ngFor="let standarddata of courseData.standarddata">
                                     <div class="col-md-12 mb-3">
                                       <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">Standard</h3>
                                       <div class="row">
                                           <div class="col-md-12">
                                             <h4 class="commonFontSize semiBoldFont mb-0">Name of Standard</h4>
-                                            <p>2nd year</p>
+                                            <p>{{standarddata.standard_name}}</p>
                                           </div>
                                           <div class="col-md-12">
                                             <h4 class="commonFontSize semiBoldFont mb-0">Standard Duration</h4>
-                                            <p>3 Years</p>
+                                            <p>{{standarddata.duration}}</p>
                                           </div>
                                       </div>
         
-                                      <div class="row">
+                                      <div class="row" *ngFor="let classdata of standarddata.classdata">
                                           <div class="col-md-12 mb-3">
                                             <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">Sub Section</h3>
                                             <div class="row">
-                                                <div class="col-md-12">
-                                                  <h4 class="commonFontSize semiBoldFont mb-0">Sub Section</h4>
-                                                  <p>enter sub section </p>
+                                                <div class="col-md-4">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Class </h4>
+                                                  <p>{{classdata.class_name}} </p>
                                                 </div>
+                                                <div class="col-md-4">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Teaching start year</h4>
+                                                  <p>{{classdata.teaching_start_year}} </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Teaching start month</h4>
+                                                  <p>{{classdata.teaching_start_month}} </p>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="classdata.is_teaching_current">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Current Teaching</h4>
+                                                  <p>Present </p>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Teaching end year</h4>
+                                                  <p>{{classdata.teaching_end_year}} </p>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Teaching end month</h4>
+                                                  <p>{{classdata.teaching_end_month}} </p>
+                                                </div>
+                                                <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Alias class</h4>
+                                                  <p>{{classdata.alias_class}} </p>
+                                                </div>
+                                                
                                             </div>
                                           </div>
                                       </div>
@@ -190,23 +215,23 @@
                       </div>
                       <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                          <div class="row">
+                          <div class="row" *ngFor="let bankData of userProfile.bank_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Bank Name</h3>
-                              <p>kotak mahindra bank</p>
+                              <p>{{bankData.bank_name}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Account Number</h3>
-                              <p>9312752768</p>
+                              <p>{{bankData.bank_account_no}}</p>
                             </div>
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">IFSC Code</h3>
-                              <p>KKBK0000145</p>
+                              <p>{{bankData.bank_ifsc_code}}</p>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4" *ngIf="bankData.cancel_cheque">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
-                              <p><img src="./assets/images/userWebsite/loreal.jpg" alt="cheque" class="img-responsive"/></p>
+                              <p><img src="{{bankData.cancel_cheque}}" alt="cheque" class="img-responsive"/></p>
                             </div>
                           </div>
                         </div>
@@ -223,23 +248,25 @@
                       </div>
                       <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body">
-                          <div class="row">
+                          <div class="row"  *ngFor="let documentData of userProfile.document_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Document Name</h3>
-                              <p>Passport</p>
+                              <p>{{documentData.document_name}}</p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" *ngIf="documentData.document">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload Document</h3>
-                              <p><img src="./assets/images/userWebsite/loreal.jpg" alt="cheque" class="img-responsive"/></p>
+                              <p><img src="{{documentData.document}}" alt="cheque" class="img-responsive"/></p>
                             </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Description</h3>
-                              <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-                            </div>
+                           
 
                           </div>
                         </div>
                       </div>
+                     
+                    </div>
+
+                    <div class="row justify-content-center">
+                      <button (click)="redirectToLoginPage()" class="btn mt-2 border-0 bg-paret-green hover-white color-white w-25 rounded">Continue...</button>
                     </div>
                 </div>
             </div>
