@@ -16,7 +16,7 @@
 
                         </div>
                     </div>
-                    <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing">Resend OTP</p>
+                    <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
                     <div class="required errorMsg" [innerHtml]="errorOtpModelDisplay"></div>
                     <button type="button" class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing" (click)="goToOtpVerification()">
                         Submit

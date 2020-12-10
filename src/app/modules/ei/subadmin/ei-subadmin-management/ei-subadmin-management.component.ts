@@ -144,4 +144,8 @@ export class EiSubadminManagementComponent implements OnInit {
   goToEiSubadminViewStatusPage() {
     this.router.navigate(['ei/subadmin-view-status']);
   }
+
+  subadminPendingRequest(){
+    this.router.navigate(['ei/subadmin-pending-request']);
+  }
 }
