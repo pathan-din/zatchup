@@ -13,11 +13,14 @@
         padding-top: 0;
     }
     
+    .profileDivLeft {
+        position: relative;
+    }
+    
     .tick-img {
         position: absolute;
-        bottom: 0px;
-        left: 115px;
-        z-index: 1;
+        bottom: 50px;
+        left: 130px;
     }
     
     .w-like-comment {
@@ -122,17 +125,17 @@
             width: 100%!important;
         }
         .colLeftPost {
-            /* padding: 0; */
             margin-top: 2%;
         }
         .mtStyle{
             margin-top: 2rem;
         }
-        .tick-img{
+        .tick-img {
             position: absolute;
-            bottom: 0px;
-            right: 30px;
+            bottom: 40px;
+            left: inherit;
         }
+
         .img-container {
             min-height: 90px;
             max-height: 90px;
