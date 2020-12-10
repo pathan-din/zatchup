@@ -32,7 +32,7 @@ export class AdminKycConfigureComponent implements OnInit {
       (res: any) => {
         if (res.status == true && res.count != 0)
           this.retriggerHistory = res.results;
-        else if (res.status == true && res.count > 0)
+        else if (res.status == true)
           this.retriggerHistory = undefined
         else {
           this.alert.error(res.error.message[0], 'Error');
