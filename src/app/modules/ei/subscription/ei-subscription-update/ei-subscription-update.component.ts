@@ -26,7 +26,7 @@ export class EiSubscriptionUpdateComponent implements OnInit {
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    
+
   ) {
 
   }
@@ -63,7 +63,6 @@ export class EiSubscriptionUpdateComponent implements OnInit {
   requestForTheRazorPayment(code, buttonClick) {
     //Display Loader Before Request of the service  
     this.loader.show();
-    // debugger
     let data = {
       "coupon_code": code,
       "coupon_type": "2",
@@ -83,6 +82,7 @@ export class EiSubscriptionUpdateComponent implements OnInit {
             var that = this;
             var options = {
               "key": this.env.razorApiKey,
+              "currency": "INR",
               "amount": parseInt(res.price) * 100,
               "description": "",
               "order_id": res.order_id,
@@ -100,7 +100,6 @@ export class EiSubscriptionUpdateComponent implements OnInit {
                 "address": ""
               }
             };
-            // debugger
             var rzp1 = new Razorpay(options);
             rzp1.open();
           }
