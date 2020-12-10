@@ -5,6 +5,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 declare var $: any;
 
 @Component({
@@ -25,7 +26,9 @@ export class EiStudentBulkAddComponent implements OnInit {
     private SpinnerService: NgxSpinnerService, 
     public eiService: EiServiceService, 
     public formBuilder: FormBuilder,
-    private alert: NotificationService) { }
+    private alert: NotificationService,
+    private location: Location
+    ) { }
 
   ngOnInit(): void {
     this.model.course_id = '';
@@ -147,7 +150,7 @@ export class EiStudentBulkAddComponent implements OnInit {
         if (response.status === true)// Condition True Success 
         {
           this.SpinnerService.hide();
-          alert(response.message)
+          this.alert.warning(response.message, 'Warning')
           this.model = {};
           this.model.course_id = '';
           this.model.standard_id = '';
@@ -185,5 +188,9 @@ export class EiStudentBulkAddComponent implements OnInit {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 }

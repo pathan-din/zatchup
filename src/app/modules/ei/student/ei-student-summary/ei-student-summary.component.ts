@@ -3,6 +3,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 declare var $: any;
 @Component({
   selector: 'app-ei-student-summary',
@@ -20,7 +21,9 @@ export class EiStudentSummaryComponent implements OnInit {
 
   constructor(private router: Router, private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    private location: Location
+    ) { }
 
   ngOnInit(): void {
     this.getCourseWiseStudentCount();
@@ -111,6 +114,10 @@ console.log(this.standardWiseStudentCountCourse);
 	$("#class_"+standardId).toggle();
 	this.getClassStandardWiseStudentCount(standardId)
 	
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 
 }
