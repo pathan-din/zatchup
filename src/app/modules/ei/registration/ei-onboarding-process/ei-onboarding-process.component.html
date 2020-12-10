@@ -683,7 +683,7 @@
                                     <div class="col-md-6 ">
                                         <label for=" " class=" commonFontSize mediumFont letterspacing "> Bank
                                             Name</label>
-                                        <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                        <div class="py-1 border rounded shadow-none">
                                             <select id="bank_name" name="bank_name" [(ngModel)]="bankModel.bank_name"
                                                 class="custom-select custom-select-2Col form-control-input form-control-sm "
                                                 required>
@@ -699,7 +699,7 @@
                                         <label for=" " class=" commonFontSize mediumFont letterspacing ">Account
                                             Number</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <div class="border rounded shadow-none">
                                             <input id="bank_account_no" name="bank_account_no"
                                                 [(ngModel)]="bankModel.bank_account_no"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
@@ -714,7 +714,7 @@
                                         <label for="description " class=" commonFontSize mediumFont letterspacing ">IFSC
                                             Code</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <div class="border rounded shadow-none">
                                             <input  id="bank_ifsc_code" name="bank_ifsc_code"
                                                 [(ngModel)]="bankModel.bank_ifsc_code"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
@@ -727,14 +727,13 @@
                                             class=" commonFontSize mediumFont letterspacing ">Upload
                                             copy cancelled cheque</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <div class="border rounded shadow-none">
                                             <input (change)="handleCancelChequeFileInput($event.target.files)"
                                                 id="cheque" name="cheque"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 type="file" validFileExtention="png,jpeg,jpg" required>
-                                                <p>* only support pdf and image</p>
-                                                
                                         </div>
+                                        <p class="pt-1">* only support pdf and image</p>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                                     </div>
                                 </div>
@@ -764,7 +763,7 @@
                                 <div class="col-sm-12 ">
                                     <label for=" " class=" commonFontSize mediumFont letterspacing ">Document Name</label>
 
-                                    <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <div class="border rounded shadow-none">
                                         <input id="document_name_{{i}}" required
                                         [(ngModel)]="document.name" name="document_name_{{i}}"
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
@@ -780,16 +779,16 @@
                                     <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload
                                         Document</label>
 
-                                    <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <div class="border rounded shadow-none">
                                         <input (change)="fileUploadDocument($event.target.files,document)" validFileExtention="png,jpeg,jpg" id="document_{{i}}" name="document_{{i}}" required 
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                             type="file">
 										<input [(ngModel)]="document.document"  id="document_hid_{{i}}" name="document_hid_{{i}}"  
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                             type="hidden">
-                                            <p>* only support pdf and image</p>
-                                          
                                     </div>
+                                    <p class="pt-1">* only support pdf and image</p>
+                                    
                                     <div class="required errorMsg"
                                         [innerHtml]="display_error(i,'document_')">
                                     </div>
@@ -805,7 +804,7 @@
                         </div>
                             <div class="form-group row " *ngIf="modelDocumentDetails.length>0">
                                 <div class="col-12 ">
-                                    <div class="row form-control-inputDiv ml-0 mr-0 ">
+                                    <div class="border rounded shadow-none">
 									<div></div>
                                         <div *ngFor="let doc of modelDocumentDetails"  class="col-4 p-1 ID-img-div ">
                                             <img *ngIf="doc.document!=''" class="img-fluid w-100 h-100"

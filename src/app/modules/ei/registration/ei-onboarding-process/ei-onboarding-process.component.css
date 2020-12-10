@@ -1,6 +1,4 @@
-.process2 .custom-select {
-    background-size: 17%;
-}
+
 
 .ID-img-div {
     height: 170px;
@@ -41,20 +39,17 @@
     border: none;
 }
 
-.process2 .col-sm-12 .custom-select{
-    background-size: 5%;  
-}
+
 ::ng-deep .purple-checkbox .mat-checkbox-input{
     display: none;
 }
 .fafaAddDeleteIcon{
-    font-size: 3rem;
-    margin-right: 2%;
+    font-size: 2rem;
 }
 .centerImgDiv{
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center
 }
 @media only screen and (max-width: 414px) {
     .flex-xs-column {
