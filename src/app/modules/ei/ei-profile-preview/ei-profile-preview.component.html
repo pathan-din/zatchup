@@ -1,5 +1,5 @@
-<app-ei-sidenav></app-ei-sidenav>
-<div class="container main-container p-3">
+
+<div class="container main-container p-3" >
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3 h-100">
         <h2 class="commonFontSize semiBoldFont m-0">Ei Profile Preview</h2>
 
@@ -251,11 +251,11 @@
                           <div class="row"  *ngFor="let documentData of userProfile.document_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Document Name</h3>
-                              <p>{{documentData.document_name}}</p>
+                              <p>{{documentData.name}}</p>
                             </div>
                             <div class="col-md-4" *ngIf="documentData.document">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload Document</h3>
-                              <p><img src="{{documentData.document}}" alt="cheque" class="img-responsive"/></p>
+                              <p><img src="http://staging.zatchup.com/zatchupapi/zatchup/media/document/{{documentData.document}}" alt="cheque" class="img-responsive"/></p>
                             </div>
                            
 
