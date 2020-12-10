@@ -37,7 +37,14 @@ export class EiOnboardingProcessComponent implements OnInit {
   { 'name': 'FEB' },
   { 'name': 'MAR' },
   { 'name': 'APRIL' },
-  { 'name': 'MAY' }, { 'name': 'JUN' }, { 'name': 'JULY' }, { 'name': 'AUG' }, { 'name': 'SEP' }, { 'name': 'OCT' }, { 'name': 'NOV' }, { 'name': 'DEC' }];
+  { 'name': 'MAY' },
+  { 'name': 'JUN' }, 
+  { 'name': 'JULY' }, 
+  { 'name': 'AUG' }, 
+  { 'name': 'SEP' }, 
+  { 'name': 'OCT' }, 
+  { 'name': 'NOV' }, 
+  { 'name': 'DEC' }];
   numberOfStudentList = [];
   numberOfAluminiList = [];
   error: any = [];
@@ -330,6 +337,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('no_of_alumni', this.model.no_of_alumni);
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
       formData.append('gst_no', this.model.gst_no);
+      formData.append('description', this.model.description);
       this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
@@ -573,7 +581,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
-            this.router.navigate(['ei/dashboard']);
+            this.router.navigate(['ei/ei-profile-preview']);
           } else {
             this.loader.hide();
             var collection = this.eiService.getErrorResponse(this.loader, res.error);

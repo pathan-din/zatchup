@@ -36,7 +36,9 @@ export class SubadminAddComponent implements OnInit {
   isClass: any;
   isModuleAccessClass: any
 
-  constructor(private baseService: BaseService,
+  constructor(
+    private router: Router,
+    private baseService: BaseService,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     private genericFormValidationService: GenericFormValidationService,
@@ -301,6 +303,7 @@ export class SubadminAddComponent implements OnInit {
         if (response.status == true) {
           this.SpinnerService.hide();
           this.alert.success(response.message,'Success');
+          this.router.navigate(['ei/subadmin-management']);
         } else {
           this.SpinnerService.hide();
           this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)

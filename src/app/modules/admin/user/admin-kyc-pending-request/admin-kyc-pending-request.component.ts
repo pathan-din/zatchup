@@ -37,12 +37,8 @@ export class AdminKycPendingRequestComponent implements OnInit {
   requestReason: any = '';
   kycPendingRequest: KycPendingRequest;
   pageSize: any
-
-
-
   displayedColumns: string[] = ['SNo', 'EIZatchUpIDOfUser', 'NameOfUser', 'UserType', 'ProofName',
     'RequestReason', 'RequestType', 'Action'];
-
   dataSource: any;
 
   constructor(
