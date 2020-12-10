@@ -12,26 +12,25 @@
                 <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
             </button>
             <!-- <span class=" btn_position-absolute border-0 bg-light-black text-white p-2" (click)="fileInput.click()"><i class="fa fa-camera" aria-hidden="true"></i></span> -->
-            <img class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
+            
         </div>
         <div class="">
             <div class="row pt-2">
                 <div class="col-md-5 text-right d-flex profileDivLeft py-0 pr-0 pl-5">
 
-                    <div class="dpImgDiv rounded-circle border border-primary"
+                    <div class="dpImgDiv rounded-circle border border-primary mb-3"
                         style="background-image: url({{userProfile.profile_pic}})">
                         <div class="upload-dp position-absolute">
                             <button type="button" (click)="fileInput1.click()"
-                                class=" border-0 bg-transparent  text-white p-2">
+                                class=" border-0 bg-transparent text-white cursorStyle">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                                 <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
                                     style="display:none;" />
                             </button>
                         </div>
-
-
                     </div>
-                    <div class="pl-2 text-left">
+                    <img class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
+                    <div class="pl-4 pr-4 text-left">
                         <p class="m-0 commonFontSize mediumFont" title="name of school">{{userProfile.name_of_school}}
                         </p>
                         <p class="m-0 commonFontSize mediumFont" title="school code">{{userProfile.school_code}}</p>
