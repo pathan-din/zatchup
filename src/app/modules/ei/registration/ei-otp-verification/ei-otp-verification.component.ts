@@ -4,6 +4,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { UsersServiceService } from 'src/app/services/user/users-service.service';
 
 @Component({
   selector: 'app-ei-otp-verification',
@@ -11,7 +12,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./ei-otp-verification.component.css']
 })
 export class EiOtpVerificationComponent implements OnInit {
-model:any={};
+  model:any={};
   errorOtpModelDisplay:any;
   otp1:any;
   otp2:any;
@@ -19,13 +20,16 @@ model:any={};
   otp4:any;
   error:any=[];
   errorDisplay:any={};
+  modelForOtpModal: any={};
+   
  constructor(
    private activatedRoute: ActivatedRoute,
    private router: Router,
    private SpinnerService: NgxSpinnerService,
    public eiService:EiServiceService,
    public formBuilder: FormBuilder,
-   private alert:NotificationService) { }
+   private alert:NotificationService,
+   private userService:UsersServiceService) { }
 
 
   ngOnInit(): void {
@@ -47,6 +51,36 @@ model:any={};
       $nextInput.focus();
     }
      
+  }
+  resendOtp() {
+    try {
+      console.log(this.model.username);
+      
+      let data: any = {};
+      this.modelForOtpModal.username = this.model.username ;
+
+      /***********************Mobile Number OR Email Verification Via OTP**********************************/
+      this.SpinnerService.show();
+      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
+        let response: any = {}
+        response = res;
+        this.SpinnerService.hide();
+        if (response.status == true) {
+          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.","Success")
+        } else {
+          this.errorOtpModelDisplay = response.error;
+          this.alert.success(this.errorOtpModelDisplay,"Error")
+          //alert(response.error)
+        }
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("verify Otp Exception", err);
+    }
   }
    goToOtpVerification(){
 

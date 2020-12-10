@@ -337,6 +337,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('no_of_alumni', this.model.no_of_alumni);
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
       formData.append('gst_no', this.model.gst_no);
+      formData.append('description', this.model.description);
       this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
