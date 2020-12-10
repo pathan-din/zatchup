@@ -41,6 +41,7 @@ export class EiSubadminManagementComponent implements OnInit {
       currentPage: 1,
       totalItems: 0
     };
+    this.getSubadminDashboardSummry()
     this.sudAdminList('', '');
   }
   sudAdminList(page, id) {
@@ -107,7 +108,7 @@ export class EiSubadminManagementComponent implements OnInit {
       this.SpinnerService.show();
 
 
-      this.base.getData('ei/subadmin-lists-by-ei/').subscribe(
+      this.base.getData('admin/ei_subadmin_dashboard_summary/').subscribe(
         (res: any) => {
           if (res.status == true) {
             this.dasboardSummery = res.data;

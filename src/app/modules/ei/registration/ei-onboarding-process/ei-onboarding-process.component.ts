@@ -37,7 +37,14 @@ export class EiOnboardingProcessComponent implements OnInit {
   { 'name': 'FEB' },
   { 'name': 'MAR' },
   { 'name': 'APRIL' },
-  { 'name': 'MAY' }, { 'name': 'JUN' }, { 'name': 'JULY' }, { 'name': 'AUG' }, { 'name': 'SEP' }, { 'name': 'OCT' }, { 'name': 'NOV' }, { 'name': 'DEC' }];
+  { 'name': 'MAY' },
+  { 'name': 'JUN' }, 
+  { 'name': 'JULY' }, 
+  { 'name': 'AUG' }, 
+  { 'name': 'SEP' }, 
+  { 'name': 'OCT' }, 
+  { 'name': 'NOV' }, 
+  { 'name': 'DEC' }];
   numberOfStudentList = [];
   numberOfAluminiList = [];
   error: any = [];
@@ -573,7 +580,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
-            this.router.navigate(['ei/dashboard']);
+            this.router.navigate(['ei/ei-profile-preview']);
           } else {
             this.loader.hide();
             var collection = this.eiService.getErrorResponse(this.loader, res.error);

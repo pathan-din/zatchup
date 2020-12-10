@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { DatePipe } from '@angular/common';
+import { NotificationService } from '../../../services/notification/notification.service';
 
 @Component({
   selector: 'app-add-more-course-manually',
@@ -23,6 +24,7 @@ export class AddMoreCourseManuallyComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public userService: UsersServiceService,
     public formBuilder: FormBuilder,
+    private alert: NotificationService,
     private route: ActivatedRoute) { }
 
     ngOnInit(): void {
