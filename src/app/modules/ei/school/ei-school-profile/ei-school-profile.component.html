@@ -20,9 +20,9 @@
 
                     <div class="dpImgDiv rounded-circle border border-primary mb-3"
                         style="background-image: url({{userProfile.profile_pic}})">
-                        <div class="upload-dp position-absolute cursorStyle">
+                        <div class="upload-dp position-absolute">
                             <button type="button" (click)="fileInput1.click()"
-                                class=" border-0 bg-transparent  text-white p-2">
+                                class=" border-0 bg-transparent text-white cursorStyle">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                                 <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
                                     style="display:none;" />
