@@ -120,7 +120,7 @@ import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.co
 import { MyPocDetailsComponent } from './my-poc-details/my-poc-details.component';
 import { SearchComponent } from '../admin/ei/search/search.component';
 import { EiSearchComponent } from './ei-search/ei-search.component';
-
+import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component'
 import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
@@ -284,7 +284,7 @@ const routes: Routes = [
     path: 'subscription', component: EiSubscriptionComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'invoice', component: EiInvoiceComponent, canActivate: [AuthGuard]
+    path: 'invoices', component: EiInvoiceComponent, canActivate: [AuthGuard]
   },
   {
     path: 'notification', component: EiNotificationComponent, canActivate: [AuthGuard]
@@ -497,6 +497,9 @@ const routes: Routes = [
   },
   {
     path: 'ei-profile-preview', component: EiProfilePreviewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'invoice-list/:invoice', component: EiInvoiceListComponent, canActivate: [AuthGuard]
   },
 
 
