@@ -287,9 +287,6 @@ const routes: Routes = [
     path: 'invoices', component: EiInvoiceComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-invoice-list', component: EiInvoiceListComponent, canActivate: [AuthGuard]
-  },
-  {
     path: 'notification', component: EiNotificationComponent, canActivate: [AuthGuard]
   },
   {
