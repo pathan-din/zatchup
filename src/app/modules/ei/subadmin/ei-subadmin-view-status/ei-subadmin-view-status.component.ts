@@ -1,6 +1,5 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -68,10 +67,5 @@ export class EiSubadminViewStatusComponent implements OnInit {
       this.alert.error(err, 'Error')
       this.loader.hide();
     }
-  }
-
-  generateExcel() {
-    this.listParams['export_csv'] = true
-    this.baseService.generateExcel('', 'onboarded-zatchup-list', this.listParams);
   }
 }
