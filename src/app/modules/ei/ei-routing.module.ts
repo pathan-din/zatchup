@@ -128,6 +128,7 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
 import { AuthGuard } from 'src/app/auth/auth.guard';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
+import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component';
 
 const routes: Routes = [
   {
@@ -285,6 +286,9 @@ const routes: Routes = [
   },
   {
     path: 'invoice', component: EiInvoiceComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'ei-invoice-list', component: EiInvoiceListComponent, canActivate: [AuthGuard]
   },
   {
     path: 'notification', component: EiNotificationComponent, canActivate: [AuthGuard]
