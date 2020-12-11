@@ -1,16 +1,16 @@
 
 <div class="container main-container p-3" >
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3 h-100">
-        <h2 class="commonFontSize semiBoldFont m-0">Profile Preview</h2>
+        <h2 class="commonFontSize semiBoldFont m-0 text-center">Profile Preview</h2>
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <div class="border p-3 mt-3">
               <h3 class="text-center commonFontSize semiBoldFont color-green" style="font-size: 28px">Congratulations!</h3>
               <p class="text-center" style="font-size: 20px">Your data has been submitted successfully.</p>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="row mt-3">
             <div class="col-md-12">
@@ -234,12 +234,14 @@
                                 <div data-toggle="modal" data-target=".bankDetail" class="cursorStyle" data-dismiss="modal" aria-label="Close">
                                     <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->
+                                    <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                                 </div>
                                 
                                 <div class="modal fade bankDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content" >                                      
                                       <!-- {{bankData.cancel_cheque}} -->
+                                      <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                                     </div>
                                   </div>
                                 </div>
@@ -269,12 +271,14 @@
                               <div data-toggle="modal" data-target=".documentDetail" class="cursorStyle" data-dismiss="modal" aria-label="Close">
                                   <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                   {{documentData.document}} -->
+                                  <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                               </div>
                               
                               <div class="modal fade documentDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                   <div class="modal-content" >                                      
                                       <!-- {{documentData.document}} -->
+                                      <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                                   </div>
                                 </div>
                               </div>
@@ -288,7 +292,7 @@
                     </div>
 
                     <div class="row justify-content-center">
-                      <button (click)="redirectToLoginPage()" class="btn mt-2 border-0 bg-paret-green hover-white color-white w-25 rounded">Continue...</button>
+                      <button (click)="redirectToLoginPage()" class="btn mt-2 border-0 bg-paret-green hover-white color-white d-flex rounded">Submit</button>
                     </div>
                 </div>
             </div>
