@@ -80,50 +80,6 @@ permission:any;
     sessionStorage.clear();
 	  this.router.navigate(['ei/login']);
   }
-  goToEiDashboardPage() {
-    this.router.navigate(['ei/dashboard']);
-  }
-
-  goToEiSchoolProfilePage() {
-    this.router.navigate(['ei/school-profile']);
-  }
-
-
-  goToEiAlumniManagementPage() {
-    this.router.navigate(['ei/alumni-management']);
-  }
-
-  goToEiStudentManagementPage() {
-    this.router.navigate(['ei/student-management']);
-  }
-
-  goToEiSubadminManagementPage(){
-    this.router.navigate(['ei/subadmin-management']);
-  }
-
-  goToEiEcertificateEresultPage() {
-    this.router.navigate(['ei/ecertificat-eresult']);
-  }
-
-  goToEiManageCoursesPage() {
-    this.router.navigate(['ei/manage-courses']);
-  }
-
-  goToEiSubscriptionPage() {
-    this.router.navigate(['ei/subscription']);
-  }
-
-  goToEiInvoicePage() {
-    this.router.navigate(['ei/invoice']);
-  }
-
-  goToEiNotificationPage() {
-    this.router.navigate(['ei/notification']);
-  }
-
-  gotoInvoices(){
-    this.router.navigate(['ei/invoices']);
-  }
 
   isValidModule(module_code){
     let moduleList:any={};
