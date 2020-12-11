@@ -84,8 +84,7 @@ app-ei-sidenav+.container.main-container {
 }
 
 .numberDropdown {
-    /* background-size: 17%; */
-    height: calc(0.8em + 0.75rem + 2px);
+    height: calc(0.8em + 0.75rem + 2px) !important;
     appearance: auto;
 }
 
