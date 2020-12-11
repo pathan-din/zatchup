@@ -231,15 +231,20 @@
 
                             <div class="col-md-4" *ngIf="bankData.cancel_cheque">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
-                                <div data-toggle="modal" data-target=".bankDetail" class="cursorStyle" data-dismiss="modal" aria-label="Close">
+                                <div data-toggle="modal" data-target="#uploadCheck" class="cursorStyle">
                                     <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->
                                     <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                                 </div>
                                 
-                                <div class="modal fade bankDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
-                                    <div class="modal-content" >                                      
+                                    <div class="modal-content" >  
+                                      <div class="modal-header border-0">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>                                    
                                       <!-- {{bankData.cancel_cheque}} -->
                                       <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                                     </div>
@@ -268,15 +273,20 @@
                             </div>
                             <div class="col-md-4" *ngIf="documentData.document">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload Document</h3>
-                              <div data-toggle="modal" data-target=".documentDetail" class="cursorStyle" data-dismiss="modal" aria-label="Close">
+                              <div data-toggle="modal" data-target="#uploadDocument" class="cursorStyle">
                                   <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                   {{documentData.document}} -->
                                   <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                               </div>
                               
-                              <div class="modal fade documentDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                              <div class="modal fade documentDetail" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
-                                  <div class="modal-content" >                                      
+                                  <div class="modal-content" > 
+                                      <div class="modal-header border-0">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>                                     
                                       <!-- {{documentData.document}} -->
                                       <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                                   </div>
