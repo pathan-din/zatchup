@@ -12,8 +12,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class EiInvoiceListComponent implements OnInit {
 
-  displayedColumns: string[] = ['position','details','amount', 'datePurchase','downloadInvoice'];   
-
+  displayedColumns: string[] = ['position','details','amount', 'datePurchase','downloadInvoice'];
   config = {
     itemsPerPage: 0,
     currentPage: 1,
