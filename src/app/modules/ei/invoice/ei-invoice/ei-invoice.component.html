@@ -3,22 +3,31 @@
     <div class="Invoice-div bg-white border border-gray mt-3 px-3 pt-3 pb-5">
         <h2 class="commonFontSize semiBoldFont mb-0">Invoice</h2>
         <div class="row mt-2">
-            <div class="col-md-3 MobileCol6MB">
-                <button type="button" class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple" (click)="goToEiInvoiceListPage()">
+            <!-- <div class="col-md-3 MobileCol6MB">
+                <button type="button"
+                    class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple"
+                    (click)="goToEiInvoiceListPage()">
                     ZatchUp StartClass</button>
-            </div>
+            </div> -->
             <div class="col-md-3 MobileCol6MB">
-                <button type="button" class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">
+                <button type="button" (click)="goToEiInvoiceListPage('subscription')"
+                    class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">
                     Subscripton</button>
             </div>
+            <!-- <div class="col-md-3 MobileCol6MB">
+                <button type="button"
+                    class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">Service
+                    Fee</button>
+            </div> -->
+            <!-- <div class="col-md-3 MobileCol6MB">
+                <button type="button"
+                    class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">Advertisement</button>
+            </div> -->
             <div class="col-md-3 MobileCol6MB">
-                <button type="button" class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">Service Fee</button>
-            </div>
-            <div class="col-md-3 MobileCol6MB">
-                <button type="button" class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">Advertisement</button>
+                <button type="button" (click)="goToEiInvoiceListPage('onboarding')"
+                    class=" px-3 h-100 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">
+                    Onboarding</button>
             </div>
         </div>
-
     </div>
-
 </div>

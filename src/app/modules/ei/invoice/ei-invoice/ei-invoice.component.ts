@@ -11,7 +11,7 @@ export class EiInvoiceComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  goToEiInvoiceListPage(){
-    this.router.navigate(['ei/invoiceList']);
+  goToEiInvoiceListPage(invoice: any){
+    this.router.navigate(['ei/invoice-list', invoice]);
   }
 }

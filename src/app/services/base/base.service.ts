@@ -62,7 +62,8 @@ export class BaseService {
   }
 
   action(url: any, data: any, args?: any) {
-    let obj = this.setActionData(data);
+    // debugger
+    // let obj = this.setActionData(data);
     let params: any
     if (args) {
       params = this.setParams(args)

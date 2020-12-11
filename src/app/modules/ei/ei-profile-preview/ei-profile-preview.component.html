@@ -231,7 +231,18 @@
 
                             <div class="col-md-4" *ngIf="bankData.cancel_cheque">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
-                              <p><img src="{{bankData.cancel_cheque}}" alt="cheque" class="img-responsive"/></p>
+                                <div data-toggle="modal" data-target=".bankDetail" class="cursorStyle" data-dismiss="modal" aria-label="Close">
+                                    <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
+                                    {{bankData.cancel_cheque}}
+                                </div>
+                                
+                                <div class="modal fade bankDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content" >                                      
+                                      {{bankData.cancel_cheque}}
+                                    </div>
+                                  </div>
+                                </div>
                             </div>
                           </div>
                         </div>
@@ -255,9 +266,20 @@
                             </div>
                             <div class="col-md-4" *ngIf="documentData.document">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload Document</h3>
-                              <p><img src="http://staging.zatchup.com/zatchupapi/zatchup/media/document/{{documentData.document}}" alt="cheque" class="img-responsive"/></p>
+                              <div data-toggle="modal" data-target=".documentDetail" class="cursorStyle" data-dismiss="modal" aria-label="Close">
+                                  <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
+                                  {{documentData.document}}
+                              </div>
+                              
+                              <div class="modal fade documentDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                  <div class="modal-content" >                                      
+                                      {{documentData.document}}
+                                  </div>
+                                </div>
+                              </div>
+
                             </div>
-                           
 
                           </div>
                         </div>

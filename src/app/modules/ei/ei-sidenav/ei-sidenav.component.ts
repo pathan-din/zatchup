@@ -120,6 +120,11 @@ permission:any;
   goToEiNotificationPage() {
     this.router.navigate(['ei/notification']);
   }
+
+  gotoInvoices(){
+    this.router.navigate(['ei/invoices']);
+  }
+
   isValidModule(module_code){
     let moduleList:any={};
     if(this.permission!==undefined && this.permission!==null && this.permission!==''){

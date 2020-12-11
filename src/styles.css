@@ -597,7 +597,7 @@ ul{list-style: none; padding-left: 15px;}
 .cerImg{height: 49px;}
 
 .form-control{height: calc(1.8em + .75rem + 2px);}
-
+.custom-select {height: calc(1.8em + .75rem + 2px);}
 
 .pie-grid{width: 36px; height: 12px; display: inline-block;}
 .pie-circle{width: 250px; height: 250px; border-radius: 50%; position: relative;}
@@ -639,3 +639,33 @@ background: #fff !important;
 ::placeholder {
 background: #fff !important;
 } */
+.input-container {
+    padding: 1% 1%;
+}
+.autocomplete-container {
+    box-shadow: none !important;
+    border: 1px solid #c7cbd1;
+    border-radius: .25rem!important;
+    outline: none;
+    height: auto !important;
+    background: none;
+}
+
+.autocomplete-container:focus{
+    background: #e8f0fe !important;
+}
+
+.autocomplete-container .suggestions-container ul li {
+    border-bottom: 1px solid #c7cbd1;
+}
+.autocomplete-container .suggestions-container {
+    top: 48px;
+}
+.input-container input:focus {
+    background: #e8f0fe !important;
+}
+
+.autocomplete-container .input-container input {
+    border-radius: .25rem;
+    height: calc(1.7em + .75rem + 2px) !important;
+}

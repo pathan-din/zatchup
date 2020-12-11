@@ -1,23 +1,31 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Invoice List</h2>
-        <!-- <h2 class="commonFontSize semiBoldFont m-0">Approval Pending List</h2> -->
-
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Invoice List</h2>
+            </div>
+        </div>
         <div class="filterDiv">
-
             <div class="d-flex flex-wrap align-items-end">
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" placeholder="MM/DD/YYYY">
 
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" placeholder="MM/DD/YYYY">
 
                     </div>
                 </div>
@@ -25,98 +33,93 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Amount To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
-                        <option value=""> Select Amount</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                            <option value=""> Select Amount</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Amount From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
-                        <option value=""> Select Amount</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                            <option value=""> Select Amount</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
                 </div>
-
-
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
-
-
             </div>
         </div>
-        <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-10 d-flex flex-row align-items-center ">
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
+            <div class="col-xl-4 col-lg-3 col-md-3 col-4 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Count Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                            <option value="5">5</option>
-                            <option value="10" selected>10</option>
-                            <option value="15">15</option>
-                        </select>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
                 </div>
             </div>
         </div>
 
-        <div class="tableDiv ">
+        <div class="tableDiv" *ngIf="dataSource && dataSource.length > 0">
             <div class="mat-elevation-z0 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="dataSource | paginate: config">
 
-                    <!-- Position Column -->
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="details">
                         <mat-header-cell *matHeaderCellDef>Details of Purchase </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.details}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.transaction_id}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="amount">
                         <mat-header-cell *matHeaderCellDef>Amount </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.paid_amount / 100}} </mat-cell>
                     </ng-container>
 
-                    <!-- Name Column -->
                     <ng-container matColumnDef="datePurchase">
                         <mat-header-cell *matHeaderCellDef> Date of Purchase </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.datePurchase}}
+                            {{element.purchasing_date}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="downloadInvoice">
                         <mat-header-cell *matHeaderCellDef>Download Invoice </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button type="button" class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
-                                 <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> {{element.downloadInvoice}}</button>
+                            <button type="button"
+                                class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
+                                <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> Download</button>
                         </mat-cell>
                     </ng-container>
-
-
-
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
-
-
-
-
                 </mat-table>
+            </div>
+        </div>
 
-
-
-
-
-
-
+        <pagination-controls *ngIf="dataSource && dataSource.length > 0"
+            (pageChange)="getSubadminPendingRequest($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="dataSource && dataSource.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
     </div>
 </div>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
