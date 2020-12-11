@@ -120,7 +120,6 @@ import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.co
 import { MyPocDetailsComponent } from './my-poc-details/my-poc-details.component';
 import { SearchComponent } from '../admin/ei/search/search.component';
 import { EiSearchComponent } from './ei-search/ei-search.component';
-import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component'
 import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
@@ -128,6 +127,7 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
 import { AuthGuard } from 'src/app/auth/auth.guard';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
+import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component';
 
 const routes: Routes = [
   {
