@@ -1,23 +1,27 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
-            <a mat-list-item routerLink="/ei/dashboard"  routerLinkActive="link-active">
+            <a mat-list-item routerLink="/ei/dashboard" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">Dashboard</span>
             </a>
-            <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile"
+                routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon> -->
                 <span class="commonFontSize">EI Profile And Timeline</span>
             </a>
-            <a *ngIf="isValidModule('MODULE006')" mat-list-item routerLink="/ei/alumni-management" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE006')" mat-list-item routerLink="/ei/alumni-management"
+                routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Alumni Management</span>
             </a>
-            <a *ngIf="isValidModule('MODULE004')"  mat-list-item routerLink="/ei/student-management" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE004')" mat-list-item routerLink="/ei/student-management"
+                routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Student Management</span>
             </a>
@@ -25,31 +29,32 @@
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Project Funding</span>
             </a>
-            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item >
+            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Guest Lecture & Conunselling</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item tooltip="Coming Soon..."  >
+            <a *ngIf="isValidModule('')" mat-list-item tooltip="Coming Soon...">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">E-Certificates & Report Cards</span>
             </a>
-            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item >
+            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
                 <i class="material-icons mr-2 md-18">people</i>
                 <span class="commonFontSize">Zatchup Star Class</span>
             </a>
-            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item >
+            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
                 <i class="material-icons mr-2 md-18">schedule</i>
                 <span class="commonFontSize">Reminder</span>
             </a>
-            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item >
+            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Messages</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item   routerLink="/ei/subadmin-management" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/subadmin-management"
+                routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">Sub Admin Management</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item  routerLink="/ei/manage-courses"  routerLinkActive="link-active">
+            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/manage-courses" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">Manage Courses Offered By EI</span>
             </a>
@@ -57,15 +62,17 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">My Authorisations</span>
             </a> -->
-            <a *ngIf="isValidModule('')" mat-list-item (click)="goToEiSubscriptionPage()" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('')" mat-list-item (click)="goToEiSubscriptionPage()"
+                routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Subscription Management</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item  tooltip="Coming Soon...">
+            <a *ngIf="isValidModule('')" mat-list-item (click)="gotoInvoices()" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Invoice</span>
             </a>
-            <a *ngIf="isValidModule('')" routerLink="/ei/information-and-bank-details" routerLinkActive="link-active" mat-list-item>
+            <a *ngIf="isValidModule('')" routerLink="/ei/information-and-bank-details" routerLinkActive="link-active"
+                mat-list-item>
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">EI Information & Bank Details</span>
             </a>
@@ -89,11 +96,12 @@
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
 
-            <span class="h-100 logo_span d-flex align-items-center justify-content-center"><a class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png" routerLink="/ei/dashboard"></a></span>
+            <span class="h-100 logo_span d-flex align-items-center justify-content-center"><a class="navbar-brand"><img
+                        class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png"
+                        routerLink="/ei/dashboard"></a></span>
             <span class="spacer"></span>
-            <a  class="text-black"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true"
-                    data-count="2"></i></a>
-            <a  class="ml-4"><i class="fa fa-cog fa-lg color-gray" aria-hidden="true"></i></a>
+            <a class="text-black"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true" data-count="2"></i></a>
+            <a class="ml-4"><i class="fa fa-cog fa-lg color-gray" aria-hidden="true"></i></a>
             <a class=" ml-4 commonFontSize semiBoldFont">
                 <img src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp">
                 <span class="ml-3 color-black">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>

@@ -192,7 +192,7 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Check Form Validation on change and keyUp Event of the input Filed;
    */
 
-  isValid(event) {
+  isValid(event) { 
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.validationService.checkValidationFormAllControls(event, true, []);
     }

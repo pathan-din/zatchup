@@ -16,7 +16,7 @@
                                             Name</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="name_of_school" required [(ngModel)]="model.name_of_school"
+                                            <input (keyup)="isValid($event)" id="name_of_school" required [(ngModel)]="model.name_of_school"
                                                 name="school_name"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Enter School Name">
@@ -44,7 +44,7 @@
                                             Address</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="address1" required [(ngModel)]="model.address1"
+                                            <input (keyup)="isValid($event)" id="address1" required [(ngModel)]="model.address1"
                                                 name="address_line1"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Address Line 1">
@@ -591,7 +591,7 @@
                                                             [(ngModel)]="classD.alias_class"
                                                             name="alias_class_{{cNo}}_{{s}}_{{c}}"
                                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                            type="text " placeholder="Enter Course Name ">
+                                                            type="text " placeholder="Enter Class Alias ">
                                                     </div>
                                                     <div class="required errorMsg"
                                                         [innerHtml]="display_error(cNo+'_'+s+'_'+c,'alias_class_')">

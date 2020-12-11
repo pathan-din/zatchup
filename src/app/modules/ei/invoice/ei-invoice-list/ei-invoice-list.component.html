@@ -2,8 +2,6 @@
 <div class="container main-container p-3">
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont m-0">Invoice List</h2>
-        <!-- <h2 class="commonFontSize semiBoldFont m-0">Approval Pending List</h2> -->
-
         <div class="filterDiv">
 
             <div class="d-flex flex-wrap align-items-end">
@@ -43,14 +41,10 @@
                     </select>
                     </div>
                 </div>
-
-
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
-
-
             </div>
         </div>
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="col-xl-10 col-lg-9 col-md-9 col-10 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Count Per Page</label>
@@ -64,11 +58,10 @@
             </div>
         </div>
 
-        <div class="tableDiv ">
+        <div class="tableDiv" *ngIf="dataSource && dataSource.length > 0">
             <div class="mat-elevation-z0 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="dataSource | paginate: config">
 
-                    <!-- Position Column -->
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
@@ -84,7 +77,6 @@
                         <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
                     </ng-container>
 
-                    <!-- Name Column -->
                     <ng-container matColumnDef="datePurchase">
                         <mat-header-cell *matHeaderCellDef> Date of Purchase </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -99,24 +91,24 @@
                                  <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> {{element.downloadInvoice}}</button>
                         </mat-cell>
                     </ng-container>
-
-
-
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
-
-
-
-
                 </mat-table>
+            </div>
+        </div>
 
-
-
-
-
-
-
+        <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getSubadminPendingRequest($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="dataSource && dataSource.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
     </div>
 </div>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
