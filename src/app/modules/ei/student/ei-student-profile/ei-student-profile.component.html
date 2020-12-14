@@ -182,8 +182,8 @@
 
 
         </div>
-        <h2 class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
-        <div class="row mt-3  border-0 mx-0">
+        <h2  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
+        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
             <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.ei_detail.course_detail">
                 <div class="row">
@@ -235,7 +235,7 @@
 
 
         </div>
-        <div class="tableDiv mt-2 table-responsive">
+        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="tableDiv mt-2 table-responsive">
             <table class="table table-striped border ">
                 <thead>
                     <tr class="bg-Gainsboro">
