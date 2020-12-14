@@ -7,6 +7,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { findIndex } from 'rxjs/operators';
+import { Location } from '@angular/common';
 declare var $: any;
 
 @Component({
@@ -48,7 +49,8 @@ export class EiSubadminAccessComponent implements OnInit {
     private alert: NotificationService,
     private route: ActivatedRoute,
     public eiService: EiServiceService,
-    private genericFormValidationService: GenericFormValidationService) { }
+    private genericFormValidationService: GenericFormValidationService, 
+    private location: Location) { }
 
   ngOnInit(): void {
     this.model.module_details = [];
@@ -366,5 +368,8 @@ export class EiSubadminAccessComponent implements OnInit {
     }
 
 
+  }
+  goBack(): void{
+    this.location.back()
   }
 }

@@ -102,7 +102,7 @@
 
                     <ng-container matColumnDef="addingDate">
                         <mat-header-cell *matHeaderCellDef>Date of Adding </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.date_joined}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_joined | date}} </mat-cell>
                     </ng-container>
 
                      <!-- Name Column -->
