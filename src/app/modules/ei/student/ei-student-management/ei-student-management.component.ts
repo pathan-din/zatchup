@@ -85,4 +85,7 @@ export class EiStudentManagementComponent implements OnInit {
   goToEiStudentSummaryPage(){
     this.router.navigate(['ei/student-summary']);
   }
+  goToEiSentForSignUpComponent(){
+    this.router.navigate(['ei/sent-for-sign-up']);
+  }
 }

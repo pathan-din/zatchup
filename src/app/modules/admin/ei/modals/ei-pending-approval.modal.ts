@@ -91,7 +91,32 @@ export class OnboardedZatchup {
 
 }
 
+export class SignUpEi {
+    startIndex: Number;
+    listParams: any = {};
+    pageSize: any = 5;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
 
+    dataSource: any;
+    courseList: any = [];
+    standardList: any = [];
+    classList: any = [];
+    classId: any = [];
+    courseId: any = [];
+    standardId: any = [];
+    course: any = '';
+    standard: any = '';
+    class: any = '';
+  filterFromDate: any;
+  filterToDate: any;
+  page: any;
+  maxDate: Date;
+}
 export class StudentApproval {
 
 
