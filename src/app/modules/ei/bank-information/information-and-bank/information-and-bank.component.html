@@ -6,8 +6,8 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Information Details</h2>
             </div>
             <div class="col-md-7 col-12 d-flex justify-content-end"> 
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Edit</button>
-                <button type="button" class="bg-paret-green text-white px-4 h-100 ml-2 border-0 ">Request Status</button>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " (click)="openPersonalInfoModelPopup()">Edit</button>
+                <button type="button" class="bg-paret-green text-white px-4 h-100 ml-2 border-0" (click)="goToRequestStatusPage()">Request Status</button>
             </div>
         </div>
 
@@ -225,6 +225,8 @@
 </div>
 
 
+
+
 <!-- OTPModel -->
 <div class="modal fade" id="bankDetailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
@@ -308,3 +310,81 @@
     </div>
 </div>
 
+
+<!-- personal information model -->
+<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                <form id="Form4" enctype="multipart/form-data">
+                    <div class="process3 mt-4 ">
+                        <div class="form-group row ">
+                            <div class="col-md-6">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Name of Principal
+                                    /
+                                    Dean</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                    <input id="name_of_principle" [(ngModel)]="editModel.name_of_principle"
+                                        name="principal_name"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Enter Name of Principal / Dean">
+                                </div>
+                                <div class="required" style="color: red;"
+                                    [innerHtml]="errorDisplay.principal_name"></div>
+                            </div>
+                            <div class="col-md-6 margin-top-col-6">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date /
+                                    Openning Date</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                    <input id="opening_date" required [(ngModel)]="editModel.opening_date"
+                                        name="opening_date" autocomplete="off"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" bsDatepicker placeholder="Enter Foundation Date">
+                                </div>
+                                <div class="required" style="color: red;"
+                                    [innerHtml]="errorDisplay.opening_date"></div>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group row ">
+                            <div class="col-sm-12 ">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">GST
+                                    Number(Optional)</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                    <input id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Enter GST Number">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12 ">
+                                <label for="description"
+                                    class=" commonFontSize mediumFont letterspacing">About School</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                    <textarea id="description" [(ngModel)]="editModel.overview"
+                                        name="model.description"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        rows="3" placeholder="Typing...."></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+              
+
+                <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>
