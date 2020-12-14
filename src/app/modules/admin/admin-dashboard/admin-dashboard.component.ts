@@ -55,7 +55,7 @@ export class AdminDashboardComponent implements OnInit {
             this.alert.error(res.error.message[0], 'Error');
           }
         }, (error) => {
-          this.alert.error(error, 'Error');
+          this.alert.error(error.message, 'Error');
           this.loader.hide();
         });
     }

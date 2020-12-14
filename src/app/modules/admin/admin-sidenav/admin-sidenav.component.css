@@ -72,3 +72,13 @@
     background: #463267 !important;
     color: white !important;
 }
+
+:host>>>.tooltip-inner {
+    /* background-color: #463267;
+    color: #ffffff; */
+    font-style: italic;
+}
+
+/* :host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
+    border-top-color: #ffffff;
+} */

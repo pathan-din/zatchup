@@ -132,6 +132,7 @@ import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verifie
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
+import  { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -277,7 +278,8 @@ import { DormantUsersComponent } from './user/dormant-users/dormant-users.compon
       preventDuplicates: true,
     }),
     NgxPaginationModule,
-    DirectiveModule
+    DirectiveModule,
+    TooltipModule.forRoot()
   ],
   providers: [DatePipe]
 })
