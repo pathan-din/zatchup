@@ -166,7 +166,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     }else{
         try {
         this.SpinnerService.show();
-        this.base.action('ei/bulk-editclass-by-ei/', {'student_id':this.studentListSendForBulk.join(','),'class_id':this.model.class_id}).subscribe(res => {
+        this.base.actionForPutMethod('ei/bulk-editclass-by-ei/', {'student_ids':this.studentListSendForBulk.join(','),'class_id':this.model.class_id}).subscribe(res => {
           let response: any = {};
           response = res;
           this.SpinnerService.hide();
