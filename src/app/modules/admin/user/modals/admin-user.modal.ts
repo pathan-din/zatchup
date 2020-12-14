@@ -77,11 +77,12 @@ export class SignupUsers {
     currentEi: any;
     previousEi: any;
     ageGroup: any;
-    status: any;
-    kycApproved: any;
+    status: any ='';
+    kycApproved: any ='';
     page_size: any;
     loginFromDate: any;
     loginToDate: any;
+  maxDate: Date;
 }
 
 export class KycVerifiedUsers extends SignupUsers {

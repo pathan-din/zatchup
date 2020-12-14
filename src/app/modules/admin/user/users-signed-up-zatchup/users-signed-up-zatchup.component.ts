@@ -13,15 +13,7 @@ import { SignupUsers } from '../modals/admin-user.modal';
   styleUrls: ['./users-signed-up-zatchup.component.css']
 })
 export class UsersSignedUpZatchupComponent implements OnInit {
-  // startIndex: any = 0;
-  // dataSource: any;
-  //columnsToDisplay: string[] = this.displayedColumns.slice();
-  // dataSource: PeriodicElement[] = ELEMENT_DATA;
   signupUsers: SignupUsers
-  maxDate: any;
-  kycApproved: any= '';
-  status: any = '';
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -31,7 +23,7 @@ export class UsersSignedUpZatchupComponent implements OnInit {
     private datePipe: DatePipe,
   ) {
     this.signupUsers = new SignupUsers();
-    this.maxDate = new Date();
+    this.signupUsers.maxDate = new Date();
   }
   ngOnInit(): void {
     this.getSignupUsersList('');
@@ -64,8 +56,8 @@ export class UsersSignedUpZatchupComponent implements OnInit {
       "current_ei": this.signupUsers.currentEi,
       "previous_ei": this.signupUsers.previousEi,
       "age_group": this.signupUsers.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "kyc_approved": this.signupUsers.kycApproved !== undefined ? this.signupUsers.kycApproved: '',
+      "status": this.signupUsers.status !== undefined ? this.signupUsers.status : '',
     }
 
     this.baseService.getData('admin/user/signed_up_users_list/', this.signupUsers.listParams).subscribe(

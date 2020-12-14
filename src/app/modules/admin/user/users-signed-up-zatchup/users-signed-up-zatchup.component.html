@@ -19,7 +19,7 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate"  [(ngModel)]="signupUsers.filterFromDate" #fromDate="ngModel"
+                            [maxDate]="signupUsers.maxDate"  [(ngModel)]="signupUsers.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="signupUsers.filterToDate" #fromDate="ngModel"
+                            [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="signupUsers.loginFromDate" #fromDate="ngModel"
+                            [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.loginFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="signupUsers.loginToDate" #fromDate="ngModel"
+                            [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.loginToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="Status" required name="kyc_approved"
-                        [(ngModel)]="kycApproved">
+                        [(ngModel)]="signupUsers.kycApproved">
                             <option value=""> Select Status</option>
                             <option value="1">Approved</option>
                             <option value="0">Rejected</option>
@@ -128,7 +128,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="verifyByEI" required name="status"
-                        [(ngModel)]="status">
+                        [(ngModel)]="signupUsers.status">
                             <option value=""> Select Status</option>
                             <option value="True">Verified</option>
                             <option value="False">Unverified</option>
