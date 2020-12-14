@@ -56,8 +56,10 @@ export class MyPocDetailsComponent implements OnInit {
     this.loader.show();
     this.baseService.action('admin/add_contact_details/', this.modal).subscribe(
       (res: any) => {
-        if (res.status == true)
+        if (res.status == true){
           this.alert.success(res.message, "Success")
+          this.getContactSummery();
+        }
         else
           this.alert.error(res.error.message, 'Error')
         this.loader.hide()
