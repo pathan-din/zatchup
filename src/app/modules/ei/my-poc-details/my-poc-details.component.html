@@ -12,25 +12,25 @@
                         <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> Ankit Patel </span></p>
+                        <p class="pt-2"> <span> {{poc_details?.first_name}} {{poc_details?.last_name}} </span></p>
                     </div>
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> +91 9876543210 </span></p>
+                        <p class="pt-2"> <span> {{poc_details?.phone}} </span></p>
                     </div>
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> ankit@gmail.com </span></p>
+                        <p class="pt-2"> <span> {{poc_details?.email}}</span></p>
                     </div>
                 </div>
 
@@ -49,25 +49,25 @@
                         <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> Ankit Patel </span></p>
+                        <p class="pt-2"> <span> {{zatchup_details?.name}} </span></p>
                     </div>
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> +91 9876543210 </span></p>
+                        <p class="pt-2"> <span> {{zatchup_details?.number}} </span></p>
                     </div>
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> ankit@gmail.com </span></p>
+                        <p class="pt-2"> <span> {{zatchup_details?.email_id}} </span></p>
                     </div>
                 </div>
 
@@ -86,25 +86,25 @@
                         <p class="pt-2 d-flex justify-content-between">Registered Office Address <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont">
-                        <p class="pt-2"> <span>  </span></p>
+                        <p class="pt-2"> <span> {{zatchup_details?.registered_office_address}} </span></p>
                     </div>
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">GST Details <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont">
-                        <p class="pt-2"> <span>  </span></p>
+                        <p class="pt-2"> <span> {{zatchup_details?.gst_details}} </span></p>
                     </div>
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">PAN Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont">
-                        <p class="pt-2"> <span>   </span></p>
+                        <p class="pt-2"> <span> {{zatchup_details?.pan_number}} </span></p>
                     </div>
                 </div>
 
@@ -114,39 +114,67 @@
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="row">
-            <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Partner Support</h2>
-            </div>
+
             <div class="col-md-5 col-12">
-                <div class="row bg-light pt-3 ml-0">            
-                    <div class="col-md-12">
-                        <label for="" class="mediumFont commonFontSize letterspacing">Issue</label>
-                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="Issue" required>
-                                <option value="Select Issue"> Select Issue</option>
-                                <option value="1">Select One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Partner Support</h2>
+                <form id="contact_poc" #pocDetailsForm="ngForm">
+                    <div class="row bg-light pt-3 ml-0">
+                        <div class="col-12 medium-filter-box">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Issue</label>
+                            <div
+                                class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                                <input class="form-control-input form-control commonFontSize regularFont letterspacing"
+                                    id="issye" type="text" placeholder="Enter issue" name="issue_type"
+                                    [(ngModel)]="modal.issue" (change)="isValid()" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.issue_type">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 mt-2">
-                        <div class="form-group">
-                            <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
-                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <textarea name="message" (keyup)="isValid()" [(ngModel)]="modal.message" required
+                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.message">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row ml-0 mr-0 d-flex justify-content-center">
+                                <button type="button"
+                                    class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing"
+                                    (click)="sendMessage(); pocDetailsForm.reset()"> Sent </button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="form-group row ml-0 mr-0 d-flex justify-content-center">                                            
-                            <button type="button " class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Sent </button>                    
+                </form>
+            </div>
+
+            <div class="col-md-7 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Contact Summary</h2>
+                <div class="contact_history" *ngIf="contactSummery && contactSummery.length > 0">
+                    <div class="row pt-2 pb-2" *ngFor="let summery of contactSummery">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
+                            <p>{{summery.created_on | date: 'dd MMM yyyy, h:mm:ss a'}}</p>
                         </div>
-                    </div>          
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
+                            <p>{{summery.issue}}</p>
+                        </div>
+                        <div class="col-12 border-top pt-2">
+                            <p>{{summery.message}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

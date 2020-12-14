@@ -669,3 +669,11 @@ background: #fff !important;
     border-radius: .25rem;
     height: calc(1.7em + .75rem + 2px) !important;
 }
+
+.bulkLink a{
+    color: #000000;
+}
+.studentbulkTable th, tr, td{
+    padding: 8px;
+    border: 1px solid #dee2e6 !important;
+}

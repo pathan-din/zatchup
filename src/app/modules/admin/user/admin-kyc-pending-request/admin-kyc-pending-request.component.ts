@@ -6,20 +6,6 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { KycPendingRequest } from '../modals/kyc.modal';
 
-
-export interface TotalAlumniListElement {
-
-  'SNo': number;
-  EIZatchUpIDOfUser: string;
-  NameOfUser: string;
-  UserType: string;
-  ProofName: string;
-  RequestReason: string;
-  RequestType: string;
-  Action: string;
-
-}
-
 @Component({
   selector: 'app-admin-kyc-pending-request',
   templateUrl: './admin-kyc-pending-request.component.html',
@@ -27,19 +13,7 @@ export interface TotalAlumniListElement {
   providers: [DatePipe]
 })
 export class AdminKycPendingRequestComponent implements OnInit {
-  filterFromDate: any;
-  filterToDate: any;
-  maxDate: any;
-  params: any = {};
-  kycType: any = '';
-  userType: any = '';
-  requestType: any = '';
-  requestReason: any = '';
   kycPendingRequest: KycPendingRequest;
-  pageSize: any
-  displayedColumns: string[] = ['SNo', 'EIZatchUpIDOfUser', 'NameOfUser', 'UserType', 'ProofName',
-    'RequestReason', 'RequestType', 'Action'];
-  dataSource: any;
 
   constructor(
     private router: Router,
@@ -50,7 +24,7 @@ export class AdminKycPendingRequestComponent implements OnInit {
     private location: Location
   ) {
     this.kycPendingRequest = new KycPendingRequest();
-    this.maxDate = new Date();
+    this.kycPendingRequest.maxDate = new Date();
   }
 
   ngOnInit(): void {
@@ -63,12 +37,12 @@ export class AdminKycPendingRequestComponent implements OnInit {
 
   getKycPendingRequest(page) {
     this.kycPendingRequest.params = {
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
-      'kyc_type': this.kycType !== undefined ? this.kycType : '',
-      'user_type': this.userType !== undefined ? this.userType : '',
-      'request_type': this.requestType !== undefined ? this.requestType : '',
-      'request_reason': this.requestReason !== undefined ? this.requestReason : '',
+      'date_from': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
+      'kyc_type': this.kycPendingRequest.kycType !== undefined ? this.kycPendingRequest.kycType : '',
+      'user_type': this.kycPendingRequest.userType !== undefined ? this.kycPendingRequest.userType : '',
+      'request_type': this.kycPendingRequest.requestType !== undefined ? this.kycPendingRequest.requestType : '',
+      'request_reason': this.kycPendingRequest.requestReason !== undefined ? this.kycPendingRequest.requestReason : '',
       'page_size': this.kycPendingRequest.pageSize,
       'page': page ? page : 1
     }

@@ -1,6 +1,8 @@
+import { Location } from '@angular/common' 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -14,11 +16,14 @@ export class AdminKycConfigureComponent implements OnInit {
   retriggerCount: any;
   addCount: any;
   isModelShow: boolean = true;
+  errorDisplay: any = {}
 
   constructor(
+    private location: Location,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private validationService: GenericFormValidationService
   ) { }
 
   ngOnInit() {
@@ -62,6 +67,10 @@ export class AdminKycConfigureComponent implements OnInit {
   }
 
   changeCount() {
+    this.errorDisplay = {};
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false)
+    if (this.errorDisplay.valid)
+      return
     this.loader.show();
     let data = {
       "count": this.addCount
@@ -86,5 +95,15 @@ export class AdminKycConfigureComponent implements OnInit {
 
   closeModel() {
     this.closebutton.nativeElement.click()
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 }

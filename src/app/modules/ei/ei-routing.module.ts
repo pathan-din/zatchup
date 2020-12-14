@@ -487,7 +487,7 @@ const routes: Routes = [
     path: 'subadmin-school-confirm', component: SubadminschoolconfirmationComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'my-poc-details', component: MyPocDetailsComponent, canActivate: [AuthGuard]
+    path: 'poc-details', component: MyPocDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-search', component: EiSearchComponent, canActivate: [AuthGuard]

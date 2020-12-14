@@ -19,8 +19,8 @@
                         <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
                         <div class="rounded-0 p-0  border-top shadow-none">
                             <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY"
-                                class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
-                                [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                                class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
+                                [(ngModel)]="kycPendingRequest.filterFromDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true }">
                         </div>
                     </div>
@@ -28,15 +28,15 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
                         <div class="rounded-0 p-0  border-top shadow-none">
                             <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY"
-                                class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
-                                [(ngModel)]="filterToDate" #fromDate="ngModel"
+                                class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
+                                [(ngModel)]="kycPendingRequest.filterToDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true }">
                         </div>
                     </div>
                     <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
                         <div class="form-control-inputDiv rounded shadow-none">
-                            <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="userType">
+                            <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="kycPendingRequest.userType">
                                 <option value=""> Select User</option>
                                 <option value="ADMIN">Admin</option>
                                 <option value="STUDENT">Student</option>
@@ -48,7 +48,7 @@
                     <div class="widthFull mr-4 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
                         <div class="form-control-inputDiv rounded shadow-none">
-                            <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycType">
+                            <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycPendingRequest.kycType">
                                 <option value=""> Select KYC</option>
                                 <option value="Aadhar">Aadhar</option>
                                 <option value="Passport">Passport</option>
@@ -62,7 +62,7 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
                         <div class="form-control-inputDiv rounded shadow-none">
                             <select class="custom-select  form-control-input" name="request_type"
-                                [(ngModel)]="requestType">
+                                [(ngModel)]="kycPendingRequest.requestType">
                                 <option value=""> Select Request</option>
                                 <option value="0">First Time</option>
                                 <option value="1">Re-submitted</option>
@@ -74,7 +74,7 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
                         <div class="form-control-inputDiv rounded shadow-none">
                             <select class="custom-select  form-control-input" name="request_reason"
-                                [(ngModel)]="requestReason">
+                                [(ngModel)]="kycPendingRequest.requestReason">
                                 <option value=""> Select Reason</option>
                                 <option value="1">New Sign-up</option>
                                 <option value="2">Retriggered</option>
@@ -176,7 +176,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource > 0" (pageChange)="getKycPendingRequest($event)"
+        <pagination-controls *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0" (pageChange)="getKycPendingRequest($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource == 0">

@@ -62,12 +62,11 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">My Authorisations</span>
             </a> -->
-            <a *ngIf="isValidModule('')" mat-list-item (click)="goToEiSubscriptionPage()"
-                routerLinkActive="link-active">
+            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Subscription Management</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item (click)="gotoInvoices()" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/invoices" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Invoice</span>
             </a>
@@ -80,7 +79,7 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">Advertise with ZatchUp</span>
             </a>
-            <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
+            <a *ngIf="isValidModule('')" routerLink="/ei/poc-details" routerLinkActive="link-active" mat-list-item>
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">Contact Us</span>
             </a>
