@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-user-search',
@@ -36,7 +37,8 @@ export class AdminUserSearchComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private baseService: BaseService,
     private alert: NotificationService,
-    private loader: NgxSpinnerService
+    private loader: NgxSpinnerService,
+    private location: Location
     ) { }
 
   ngOnInit(): void {
@@ -118,5 +120,9 @@ export class AdminUserSearchComponent implements OnInit {
         console.log('get state res ::', res)
       }
     )
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 }

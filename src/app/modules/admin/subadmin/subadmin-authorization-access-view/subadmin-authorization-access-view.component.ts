@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -25,7 +26,8 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -205,5 +207,9 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
 
   subadminAccessHistory(){
     this.router.navigate(['admin/subadmin-access-history',this.subadminData.id])
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 }
