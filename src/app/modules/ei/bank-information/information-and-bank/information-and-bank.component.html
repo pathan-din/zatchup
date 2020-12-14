@@ -232,14 +232,14 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-            <div class="modal-body pl-5 pr-5 text-center">
+            <div class="modal-body">
                 <form id="Form3" enctype="multipart/form-data">
                     <div class="process3 mt-4 ">
                         <div class="form-group row ">
                             <div class="col-md-6 ">
                                 <label for=" " class=" commonFontSize mediumFont letterspacing "> Bank
                                     Name</label>
-                                <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                <div class="form-control-inputDiv rounded shadow-none ">
                                     <select id="bank_name" name="bank_name" [(ngModel)]="bankModel.bank_name"
                                         class="custom-select custom-select-2Col form-control-input form-control-sm "
                                         required>
@@ -255,7 +255,7 @@
                                 <label for=" " class=" commonFontSize mediumFont letterspacing ">Account
                                     Number</label>
                 
-                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                <div class="form-control-inputDiv rounded shadow-none ">
                                     <input id="bank_account_no" name="bank_account_no"
                                         [(ngModel)]="bankModel.bank_account_no"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
@@ -270,7 +270,7 @@
                                 <label for="description " class=" commonFontSize mediumFont letterspacing ">IFSC
                                     Code</label>
                 
-                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                <div class="form-control-inputDiv rounded shadow-none ">
                                     <input  id="bank_ifsc_code" name="bank_ifsc_code"
                                         [(ngModel)]="bankModel.bank_ifsc_code"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
@@ -283,14 +283,13 @@
                                     class=" commonFontSize mediumFont letterspacing ">Upload
                                     copy cancelled cheque</label>
                 
-                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                <div class="form-control-inputDiv rounded shadow-none ">
                                     <input (change)="handleCancelChequeFileInput($event.target.files)"
                                         id="cheque" name="cheque"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        type="file" validFileExtention="png,jpeg,jpg" required>
-                                        <p>* only support pdf and image</p>
-                                        
+                                        type="file" validFileExtention="png,jpeg,jpg" required>                                                                                
                                 </div>
+                                <p class="pt-1">* only support pdf and image</p>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                             </div>
                         </div>
@@ -300,7 +299,9 @@
                 </form>
               
 
-                <button type="button" class="btn common-model-Btn mt-3" (click)="submitBankDetail();">Submit </button>
+                <div class="text-center">
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitBankDetail();">Submit </button>
+                </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p> -->
