@@ -14,6 +14,7 @@ export class MyPocDetailsComponent implements OnInit {
   zatchup_details: any;
   errorDisplay: any = {};
   modal: any = {};
+  contactSummery: any
 
   constructor(
     private loader: NgxSpinnerService,
@@ -25,6 +26,7 @@ export class MyPocDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.modal['issue'] = '';
     this.getPocDetails();
+    this.getContactSummery()
   }
 
   getPocDetails() {
@@ -64,6 +66,23 @@ export class MyPocDetailsComponent implements OnInit {
         this.alert.error(error.message, "Error");
         this.loader.hide();
       }
+  }
+
+  getContactSummery() {
+    this.loader.show()
+    this.baseService.getData('admin/contact_query_list_user/').subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.contactSummery = res.results;
+        } else {
+          this.alert.error(res.error.message, "Error")
+        }
+        this.loader.hide()
+      }
+    ), err => {
+      this.alert.error(err.message, "Error")
+      this.loader.hide()
+    }
   }
 
   isValid() {
