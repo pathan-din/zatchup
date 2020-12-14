@@ -158,7 +158,7 @@
                 <div class="contact_history" *ngIf="contactSummery && contactSummery.length > 0">
                     <div class="row pt-2 pb-2" *ngFor="let summery of contactSummery">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-6">
-                            <p class="commonFontSize semiBoldFont mb-1">{{summery.issue}} <span class="small-text-2 pb-2 regularFont"> ({{summery.created_on | date: 'dd MMM yyyy, h:mm:ss a'}}) </span> </p> 
+                            <p class="commonFontSize semiBoldFont mb-1">{{summery.issue}} <span class="small-text-2 pb-2 regularFont"> ({{summery.created_on | date: 'dd MMM yyyy, h:mm:ss a'}}) </span></p> 
                         </div>
                         <div class="col-12 border-top pt-2">
                             <p>{{summery.message}}</p>
