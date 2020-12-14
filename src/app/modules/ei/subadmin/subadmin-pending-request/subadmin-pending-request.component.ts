@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -10,9 +12,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./subadmin-pending-request.component.css']
 })
 export class SubadminPendingRequestComponent implements OnInit {
-
+  @ViewChild('closeRejectModal') closeRejectModal: any;
   displayedColumns: string[] = ['SNo', 'Name', 'zatchUpID', 'profilePicture', 'dateOfBirth', 'emailId',
-  'phoneNumber', 'employeelID', 'Action'];
+    'phoneNumber', 'employeelID', 'Action'];
 
   config = {
     itemsPerPage: 0,
@@ -23,20 +25,25 @@ export class SubadminPendingRequestComponent implements OnInit {
   listParams: any = {};
   startIndex: any
   dataSource: any;
+  modelReason: any = {};
+  errorDisplay: any = {};
+  userId: any;
 
   constructor(
     private location: Location,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private confirmDialogService: ConfirmDialogService,
+    private ValidationService: GenericFormValidationService
   ) { }
 
   ngOnInit(): void {
     this.getSubadminPendingRequest('')
   }
 
-  generateExcel(){
-    this.baseService.generateExcel('admin/export_ei_subadmin_pending_requests/','subadmin-pending-request')
+  generateExcel() {
+    this.baseService.generateExcel('admin/export_ei_subadmin_pending_requests/', 'subadmin-pending-request')
   }
 
   goBack(): void {
@@ -71,6 +78,70 @@ export class SubadminPendingRequestComponent implements OnInit {
     ), (err: any) => {
       this.alert.error(err, 'Error')
       this.loader.hide();
+    }
+  }
+
+  approveUser(id: any): any {
+    this.confirmDialogService.confirmThis('Are you sure you want to approve this user?', () => {
+      let data = {
+        "subadmin_id": id,
+        "approve_subadmin": 1
+      }
+      this.loader.show()
+      this.baseService.action('ei/subadmin-approve-by-ei/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.getSubadminPendingRequest('');
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
+  }
+
+  rejectUserModal(id: any) {
+    this.modelReason.subadmin_id = id
+  }
+
+  rejectUser(id: any): any {
+    this.errorDisplay = {};
+    this.errorDisplay = this.ValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+    try {
+      this.loader.show()
+      this.baseService.action('ei/reject-subadmin-by-ei/', this.modelReason).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.closeRejectModal.nativeElement.click();
+            this.alert.success(res.message, "Success")
+            this.getSubadminPendingRequest('');
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    } catch (err) {
+      this.loader.hide();
+    }
+
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.ValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
 }
