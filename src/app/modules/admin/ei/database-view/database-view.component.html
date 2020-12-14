@@ -14,8 +14,9 @@
             </div>
         </div>
         <div class="border-0 mx-0 mt-2">
+        <div class="form-control-inputDiv border-0 mx-0 mt-2" *ngIf="eiData">
             <div class="row">
-                <div class="col-md-12" *ngIf="eiData">
+                <div class="col-md-12">
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Name of The School</p>
@@ -177,8 +178,12 @@
                             </p>
                         </div>
                     </div>
-                    
                 </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!eiData">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">EI data not available</p>
             </div>
         </div>
 
