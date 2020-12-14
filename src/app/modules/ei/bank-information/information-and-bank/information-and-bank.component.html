@@ -11,12 +11,12 @@
             </div>
         </div>
 
-        <div class="bannerDiv position-relative pt-3">
+        <!-- <div class="bannerDiv position-relative pt-3">
             <img src="assets/images/userWebsite/User_profile_banner.png" class="img-fluid">            
             <button type="button" class=" btn_position-absolute border-0 bg-light-black text-white p-2">
             <span>Upload Cover Photo</span><input type="file" style="display:none;" /></button>
             <img class="img-fluid tick-img infoBankImg" src="assets/images/userWebsite/share-my-profile-icon.png">
-        </div>
+        </div> -->
 
         <div class="row mt-4">
             <div class="col-md-12">
@@ -103,7 +103,7 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Bank Details</h2>
             </div>
             <div class="col-md-7 col-12 d-flex justify-content-end"> 
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Edit</button>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " (click)="bankDetailsPopup()">Edit</button>
             </div>
         </div>
         <div class="row mt-2">
@@ -147,25 +147,31 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-body pl-5 pr-5 text-center">
-                
+                <form id="updateForm">
                 <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
                     <h2 class="commonFontSize semiBoldFont m-0">Personal Information</h2>
                     <div class="row bg-light-gray w-100 ml-1 mt-2">   
                         <div class="col-md-12 mt-2">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> {{title}} </label>
-                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input name="model.key" [(ngModel)]="model.value" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
+                                <div  *ngIf="model.key!='full_address'"  class="{{model.key}} form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input required  name="model.key" [(ngModel)]="model.value" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
                                 </div>
+                                <div  *ngIf="model.key=='full_address'" class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <textarea required name="full_address" [(ngModel)]="model.value" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay[model.key]"></div>
                             </div>
                         </div>
             
                         <div class="col-md-12">
                             <div class="form-group row  ml-0 mr-0">
                             <label for="" class="mediumFont commonFontSize letterspacing"> Attach Proof </label>
-                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                <input  (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" required>
+                            <div  class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input required name="document"   (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" required>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
+                             
                         </div>
             
                         <div class="col-md-12">
@@ -177,8 +183,128 @@
                     </div>        
                 </div>
             </div>
+        </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- OTPModel -->
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id. </p>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-between">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input [(ngModel)]="model.otp4" name="otp4"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                            type="text" maxlength="1">
+                    </div>
+                </div>
+                <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
+
+                <button type="button" class="btn common-model-Btn mt-3" (click)="goToDashboard();">Submit </button>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
 
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- OTPModel -->
+<div class="modal fade" id="bankDetailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                <form id="Form3" enctype="multipart/form-data">
+                    <div class="process3 mt-4 ">
+                        <div class="form-group row ">
+                            <div class="col-md-6 ">
+                                <label for=" " class=" commonFontSize mediumFont letterspacing "> Bank
+                                    Name</label>
+                                <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                    <select id="bank_name" name="bank_name" [(ngModel)]="bankModel.bank_name"
+                                        class="custom-select custom-select-2Col form-control-input form-control-sm "
+                                        required>
+                                        <option value="">Select Bank</option>
+                                        <option value="{{bankNameObj.name}}"
+                                            *ngFor="let bankNameObj of bankNameList">{{bankNameObj.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.bank_name"></div>
+                            </div>
+                            <div class="col-md-6 margin-top-col-6 ">
+                                <label for=" " class=" commonFontSize mediumFont letterspacing ">Account
+                                    Number</label>
+                
+                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <input id="bank_account_no" name="bank_account_no"
+                                        [(ngModel)]="bankModel.bank_account_no"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                        type="text " placeholder="Enter Account Number " required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.bank_account_no"></div>
+                            </div>
+                        </div>
+                
+                        <div class="form-group row ">
+                            <div class="col-md-6 ">
+                                <label for="description " class=" commonFontSize mediumFont letterspacing ">IFSC
+                                    Code</label>
+                
+                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <input  id="bank_ifsc_code" name="bank_ifsc_code"
+                                        [(ngModel)]="bankModel.bank_ifsc_code"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                        type="text" pattern="^[A-Za-z]{4}\d{7}$" placeholder="Enter IFSC Code " required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.bank_ifsc_code"></div>
+                            </div>
+                            <div class="col-md-6 margin-top-col-6 ">
+                                <label for="description "
+                                    class=" commonFontSize mediumFont letterspacing ">Upload
+                                    copy cancelled cheque</label>
+                
+                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <input (change)="handleCancelChequeFileInput($event.target.files)"
+                                        id="cheque" name="cheque"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                        type="file" validFileExtention="png,jpeg,jpg" required>
+                                        <p>* only support pdf and image</p>
+                                        
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
+                            </div>
+                        </div>
+                       
+                
+                    </div>
+                </form>
+              
+
+                <button type="button" class="btn common-model-Btn mt-3" (click)="submitBankDetail();">Submit </button>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
