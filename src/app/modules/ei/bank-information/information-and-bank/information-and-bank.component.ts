@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
@@ -15,6 +17,7 @@ declare var $: any;
 export class InformationAndBankComponent implements OnInit {
   bankDetails: any
   model:any={};
+  editModel:any={};
   fullAddressModel:any=[];
   title:any;
   error: any = [];
@@ -29,6 +32,7 @@ export class InformationAndBankComponent implements OnInit {
     private loader: NgxSpinnerService,
     public eiService: EiServiceService,
     private alert: NotificationService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +63,7 @@ export class InformationAndBankComponent implements OnInit {
       this.alert.error("Something went wrong",'Error');
      })
     } catch (e) {
-    
+      this.alert.error(e,'Error');
     }
   }
   getBankDetails() {
@@ -72,6 +76,13 @@ export class InformationAndBankComponent implements OnInit {
           this.bankModel.bank_name=this.bankDetails.bank_name;
           this.bankModel.bank_account_no=this.bankDetails.bank_account_no;
           this.bankModel.bank_ifsc_code=this.bankDetails.bank_ifsc_code;
+          this.editModel.name_of_principle = res.data.name_of_principle;
+          this.editModel.gst_no = res.data.gst_no;
+          
+          
+          this.editModel.opening_date = this.baseService.getDateReverseFormat(res.data.opening_date);
+          this.editModel.overview = res.data.overview;
+          
         }
       }
     )
@@ -88,6 +99,43 @@ export class InformationAndBankComponent implements OnInit {
      $("#editModel").modal({
       keyboard: false
     });
+  }
+
+  openPersonalInfoModelPopup(){
+   $("#personalInfoModel").modal({
+     keyboard: false
+   });
+ }
+  /**Edit Personal Details */
+  submitPersonalDetails(){
+   
+    
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[2].elements, true, []);
+    console.log(this.errorDisplay);
+    if(this.errorDisplay.valid){
+      return false;
+    }else{
+      try {
+        this.loader.show();
+       // this.editModel.opening_date= this.baseService.getDateReverseFormat(this.editModel.opening_date);
+       this.baseService.action('ei/ei-request-for-remain-detail-change/',this.editModel).subscribe(res=>{
+         let response:any={};
+         response=res;
+         if(response.status == true)
+         {
+           this.loader.hide();
+           $("#personalInfoModel").modal('hide');
+           location.reload();
+         }else{
+           this.alert.error(response.error.message[0],'Error');
+         }
+       },(error=>{
+         this.loader.hide();
+       }))
+      } catch (e) {
+      
+      }
+    }
   }
   /**Edit Data for personal information */
   editDetails(){
@@ -263,5 +311,8 @@ submitBankDetail() {
     this.loader.hide();
     this.alert.error(err, 'Error')
   }
+}
+goToRequestStatusPage(){
+  this.router.navigate(['ei/view-changes-request-status']);
 }
 }

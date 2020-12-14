@@ -59,9 +59,6 @@ export class EiStudentApprovalsComponent implements OnInit {
 
   getStudentApproval(page?:any) {
     this.loader.show();
-   
-  
-    
     this.studentApproval.listParams = {
       "date_from": this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
       "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'):'',

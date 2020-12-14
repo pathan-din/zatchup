@@ -128,6 +128,7 @@ import { AuthGuard } from 'src/app/auth/auth.guard';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
 import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component';
+import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
 
 const routes: Routes = [
   {
@@ -228,6 +229,9 @@ const routes: Routes = [
   },
   {
     path: 'student-approvals', component: EiStudentApprovalsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'sent-for-sign-up', component: EiSentForSignUpComponent, canActivate: [AuthGuard]
   },
   {
     path: 'student-bulk-add', component: EiStudentBulkAddComponent, canActivate: [AuthGuard]

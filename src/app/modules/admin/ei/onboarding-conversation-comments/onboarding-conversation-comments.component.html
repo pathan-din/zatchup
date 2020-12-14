@@ -10,37 +10,26 @@
                 <h2 class="commonFontSize semiBoldFont m-0 "> Onboarding Conversation Comments </h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-1 pt-2">
+        <div class="row" *ngIf="conversionComments && conversionComments.length > 0">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-1 pt-2"
+                *ngFor="let comment of conversionComments">
                 <div class="conver_div">
-                    <span class="conver_name semiBoldFont">Ankit Singh</span>
-                    <span class="commonFontSize semiBoldFont">( EMPLOYEE 2052 )</span>
+                    <span class="conver_name semiBoldFont">{{comment.first_name}} {{comment.last_name}} </span>
+                    <span class="commonFontSize semiBoldFont">( {{comment.employee_id}} )</span>
                 </div>
-                <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">20 March, 2020 | 12:00 P.M</div>
-                <p>lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen.</p>
+                <!-- <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">20 March, 2020 | 12:00 P.M</div> -->
+                <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">{{comment.created_on | date:'dd MMMM, yyyy | h:mm a'}}</div>
+                <p> {{comment.comments}} </p>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-1 pt-3">
-                <div class="conver_div">
-                    <span class="conver_name semiBoldFont">Ankit Singh</span>
-                    <span class="commonFontSize semiBoldFont">( EMPLOYEE 2052 )</span>
-                </div>
-                <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">20 March, 2020 | 12:00 P.M</div>
-                <p>lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen.</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-12 pb-1 pt-3">
-                <div class="conver_div">
-                    <span class="conver_name semiBoldFont">Ankit Singh</span>
-                    <span class="commonFontSize semiBoldFont pt-1 pb-1">( EMPLOYEE 2052 )</span>
-                </div>
-                <div class="conver_date commonFontSize semiBoldFont">20 March, 2020 | 12:00 P.M</div>
-                <p>lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen.</p>
+        <div class="row" *ngIf="(conversionComments && conversionComments.length == 0) || (!conversionComments)">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Onboarding Conversation Comments not available</p>
             </div>
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
