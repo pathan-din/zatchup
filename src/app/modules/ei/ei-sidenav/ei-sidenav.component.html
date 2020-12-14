@@ -11,7 +11,7 @@
             </a>
             <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile"
                 routerLinkActive="link-active">
-                <i class="material-icons mr-2 md-18">person</i>
+                <i class="fa fa-users mr-2" aria-hidden="true"></i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon> -->
                 <span class="commonFontSize">EI Profile And Timeline</span>
             </a>
@@ -22,8 +22,8 @@
             </a>
             <a *ngIf="isValidModule('MODULE004')" mat-list-item routerLink="/ei/student-management"
                 routerLinkActive="link-active">
-                <i class="material-icons mr-2 md-18">person</i>
-                <span class="commonFontSize">Student Management</span>
+                <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
+                <span class="commonFontSize"> Student Management</span>
             </a>
             <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
                 <i class="material-icons mr-2 md-18">person</i>
@@ -34,7 +34,7 @@
                 <span class="commonFontSize">Guest Lecture & Conunselling</span>
             </a>
             <a *ngIf="isValidModule('')" mat-list-item tooltip="Coming Soon...">
-                <i class="material-icons mr-2 md-18">person</i>
+                <i class="fa fa-certificate mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">E-Certificates & Report Cards</span>
             </a>
             <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
@@ -42,16 +42,16 @@
                 <span class="commonFontSize">Zatchup Star Class</span>
             </a>
             <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
-                <i class="material-icons mr-2 md-18">schedule</i>
+                <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Reminder</span>
             </a>
             <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
-                <i class="material-icons mr-2 md-18">person</i>
+                <i class="fa fa-comments mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Messages</span>
             </a>
             <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/subadmin-management"
                 routerLinkActive="link-active">
-                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <i class="fa fa-lock mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Sub Admin Management</span>
             </a>
             <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/manage-courses" routerLinkActive="link-active">
@@ -63,24 +63,24 @@
                 <span class="commonFontSize">My Authorisations</span>
             </a> -->
             <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
-                <i class="material-icons mr-2 md-18">person</i>
+                <i class="material-icons mr-2 md-18">subscriptions</i>
                 <span class="commonFontSize">Subscription Management</span>
             </a>
             <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/invoices" routerLinkActive="link-active">
-                <i class="material-icons mr-2 md-18">person</i>
+                <i class="material-icons mr-2 md-18">receipt</i>
                 <span class="commonFontSize">Invoice</span>
             </a>
             <a *ngIf="isValidModule('')" routerLink="/ei/information-and-bank-details" routerLinkActive="link-active"
                 mat-list-item>
-                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">EI Information & Bank Details</span>
             </a>
             <a *ngIf="isValidModule('')" tooltip="Coming Soon..." mat-list-item>
-                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <i class="fa fa-newspaper-o mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Advertise with ZatchUp</span>
             </a>
             <a *ngIf="isValidModule('')" routerLink="/ei/poc-details" routerLinkActive="link-active" mat-list-item>
-                <i class="material-icons mr-2 md-18">desktop_mac</i>
+                <i class="fa fa-envelope mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Contact Us</span>
             </a>
             <a mat-list-item (click)="logout()" routerLinkActive="link-active">
