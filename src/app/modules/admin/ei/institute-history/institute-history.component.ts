@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -16,6 +17,7 @@ export class InstituteHistoryComponent implements OnInit {
   comment: any;
 
   constructor(
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private baseService: BaseService,
     private alert: NotificationService,
@@ -62,4 +64,7 @@ export class InstituteHistoryComponent implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }
