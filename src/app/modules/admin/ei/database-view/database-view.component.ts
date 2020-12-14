@@ -40,7 +40,7 @@ export class DatabaseViewComponent implements OnInit {
   }
 
   conversationComments() {
-    this.router.navigate(['admin/ei-onboarding-conversation-comments'])
+    this.router.navigate(['admin/ei-onboarding-conversation-comments', this.eiData.id])
   }
 
   eiRequestHistory() {
