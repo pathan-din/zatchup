@@ -677,3 +677,10 @@ background: #fff !important;
     padding: 8px;
     border: 1px solid #dee2e6 !important;
 }
+
+a {
+    color: #463267;
+}
+a:hover {
+    color: #000;
+}

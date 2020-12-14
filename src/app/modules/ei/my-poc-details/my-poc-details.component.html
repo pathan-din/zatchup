@@ -114,23 +114,20 @@
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="row">
-            
+
             <div class="col-md-5 col-12">
                 <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Partner Support</h2>
                 <form id="contact_poc" #pocDetailsForm="ngForm">
                     <div class="row bg-light pt-3 ml-0">
-                        <div class="col-md-12">
+                        <div class="col-12 medium-filter-box">
                             <label for="" class="mediumFont commonFontSize letterspacing">Issue</label>
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select form-control-input" id="Issue" name="issue"
+                            <div
+                                class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                                <input class="form-control-input form-control commonFontSize regularFont letterspacing"
+                                    id="issye" type="text" placeholder="Enter issue" name="issue_type"
                                     [(ngModel)]="modal.issue" (change)="isValid()" required>
-                                    <option value=""> Select Issue</option>
-                                    <option value="1">Select One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.issue">
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.issue_type">
                             </div>
                         </div>
                         <div class="col-md-12 mt-2">
@@ -158,55 +155,15 @@
 
             <div class="col-md-7 col-12">
                 <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Contact Summary</h2>
-                <div class="contact_history">
-                    <div class="row pt-2 pb-2">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>20 March, 2020, 12:AM</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>Issue detail</p>
+                <div class="contact_history" *ngIf="contactSummery && contactSummery.length > 0">
+                    <div class="row pt-2 pb-2" *ngFor="let summery of contactSummery">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-6">
+                            <p class="commonFontSize semiBoldFont mb-1">{{summery.issue}} <span class="small-text-2 pb-2 regularFont"> ({{summery.created_on | date: 'dd MMM yyyy, h:mm:ss a'}}) </span></p> 
                         </div>
                         <div class="col-12 border-top pt-2">
-                            <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                            <p>{{summery.message}}</p>
                         </div>
                     </div>
-
-                    <div class="row pt-2 pb-2">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>20 March, 2020, 12:AM</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>Issue detail</p>
-                        </div>
-                        <div class="col-12 border-top pt-2">
-                            <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-                        </div>
-                    </div>
-
-                    <div class="row pt-2 pb-2">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>20 March, 2020, 12:AM</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>Issue detail</p>
-                        </div>
-                        <div class="col-12 border-top pt-2">
-                            <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-                        </div>
-                    </div>
-
-                    <div class="row pt-2 pb-2">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>20 March, 2020, 12:AM</p>
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6 commonFontSize semiBoldFont">
-                            <p>Issue detail</p>
-                        </div>
-                        <div class="col-12 border-top pt-2">
-                            <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
