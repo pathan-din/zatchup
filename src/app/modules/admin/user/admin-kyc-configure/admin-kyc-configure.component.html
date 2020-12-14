@@ -1,10 +1,8 @@
 <app-admin-sidenav></app-admin-sidenav>
 
 <div class="container main-container p-3">
-
     <div class="adminKYCRetrigged-div bg-white border border-gray mt-3 px-3 py-3">
-
-        <div class="row topDiv mb-1">
+        <!-- <div class="row topDiv mb-1">
             <div class="col-md-6">
                 <h2 class="commonFontSize semiBoldFont m-0">Number of Time User Can Send KYC To Retrigged</h2>
             </div>
@@ -12,10 +10,21 @@
                 <button type="button" class="bg-dark text-white px-4 py-2 border-0 " aria-hidden="true "
                     data-toggle="modal" data-target="#NumberOfDays">Change Current Count</button>
             </div>
+        </div> -->
+        <div class="row topDiv mb-1">
+            <div class="col-md-8 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Number of Time User Can Send KYC To Retrigged</h2>
+            </div>
+            <div class="col-md-4 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-dark text-white px-4 py-2 border-0 " aria-hidden="true "
+                    data-toggle="modal" data-target="#NumberOfDays">Change Current Count</button>
+            </div>
         </div>
 
         <div class="row mx-0 ml-1">
-
             <div class="col-md-12 py-2">
                 <div class="row">
                     <div
@@ -27,19 +36,13 @@
                         <p><span class="mr-3">:</span>{{retriggerCount}}</p>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 
     <div class="adminKYChistory-div bg-white border border-gray mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont m-0">History</h2>
-
         <div class="row mx-0 ml-1">
-
             <div class="col-md-12 py-2" *ngFor="let history of retriggerHistory">
                 <div class="row">
                     <div
@@ -73,23 +76,22 @@
                     </button>
                 </div>
                 <div class="modal-body px-0">
-                    <form (ngSubmit)="changeCountForm.form.valid && changeCount()" #changeCountForm="ngForm" novalidate>
+                    <form id="changeCount" autocapitalize="off" autocomplete="off" #changeCountForm="ngForm">
                         <div class=" form-group row ">
                             <div class="col-sm-12 mb-3">
                                 <label for="description" class=" commonFontSize semiBoldFont letterspacing">Number Of
                                     Current Counts</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        type="text" placeholder="Enter Number Of Days" maxlength="3" minlength="1"
-                                        name="count" [(ngModel)]="addCount" #count="ngModel" pattern="^[0-9]*$"
-                                        [ngClass]="{ 'is-invalid': changeCountForm.submitted && count.invalid }"
-                                        required>
+                                    <input type="text" maxlength="3" minlength="1" name="change_count" required
+                                        numberOnly (keyup)="isValid()" placeholder="Enter Number Of Days"
+                                        [(ngModel)]="addCount"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing">
                                 </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.change_count"></div>
                             </div>
                         </div>
-                        <button type="submit"
+                        <button type="submit" (click)="changeCount(); changeCountForm.resetForm()"
                             class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                             Submit
                         </button>
