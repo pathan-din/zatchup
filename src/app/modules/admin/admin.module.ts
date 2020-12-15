@@ -62,7 +62,6 @@ import { ManagementCommissionAddComponent } from './ei/management-commission-add
 import { ManagementCommissionHistoryComponent } from './ei/management-commission-history/management-commission-history.component';
 import { ManagementCommissionInvoicesComponent } from './ei/management-commission-invoices/management-commission-invoices.component';
 import { ManagementCommissionListComponent } from './ei/management-commission-list/management-commission-list.component';
-import { TicketForOnboardingComponent } from './ei/ticket-for-onboarding/ticket-for-onboarding.component';
 import { SubadminAddComponent } from './subadmin/subadmin-add/subadmin-add.component';
 import { SubadminAuthorizationAccessViewComponent } from './subadmin/subadmin-authorization-access-view/subadmin-authorization-access-view.component';
 import { AdminPaymentCouponComponent } from './payment/admin-payment-coupon/admin-payment-coupon.component';
@@ -194,7 +193,6 @@ import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets
     ManagementCommissionHistoryComponent,
     ManagementCommissionInvoicesComponent,
     ManagementCommissionListComponent,
-    TicketForOnboardingComponent,
     SubadminAddComponent,
     SubadminAuthorizationAccessViewComponent,
     LectureCandidaturesComponent,
