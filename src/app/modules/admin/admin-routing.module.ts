@@ -57,7 +57,6 @@ import { ManagementCommissionAddComponent } from './ei/management-commission-add
 import { ManagementCommissionHistoryComponent } from './ei/management-commission-history/management-commission-history.component';
 import { ManagementCommissionInvoicesComponent } from './ei/management-commission-invoices/management-commission-invoices.component';
 import { ManagementCommissionListComponent } from './ei/management-commission-list/management-commission-list.component';
-import { TicketForOnboardingComponent } from './ei/ticket-for-onboarding/ticket-for-onboarding.component';
 import { AdminEiManagementCoursePreviewComponent } from './ei/admin-ei-management-course-preview/admin-ei-management-course-preview.component';
 import { AdminEiManagementCourseUploadPlayHistoryComponent } from './ei/admin-ei-management-course-upload-play-history/admin-ei-management-course-upload-play-history.component';
 import { LectureCandidaturesComponent } from './ei/lecture-candidatures/lecture-candidatures.component';
@@ -116,6 +115,9 @@ import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verifie
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
+import { SupportManagementComponent } from './support/support-management/support-management.component';
+import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
+import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 
 const routes: Routes = [
   {
@@ -285,9 +287,6 @@ const routes: Routes = [
   },
   {
     path: 'management-commission-list', component: ManagementCommissionListComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'ticket-for-onboarding', component: TicketForOnboardingComponent, canActivate: [AuthGuard]
   },
   {
     path: 'admin-ei-management-course-preview', component: AdminEiManagementCoursePreviewComponent, canActivate: [AuthGuard]
@@ -460,7 +459,15 @@ const routes: Routes = [
   {
     path: 'kyc-verified-by-ei', component: KycVerifiedByEiComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'support-management', component: SupportManagementComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'tickets-onboarding-list', component: TicketsOnboardingComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'payment-invoice', component: PaymentInvoiceComponent, canActivate: [AuthGuard]
+  },
 
 
 
@@ -469,17 +476,6 @@ const routes: Routes = [
   {
     path: '**', component:AdminPageNotFoundComponent
   }
-
-
-//    {
-//     path: 'Admin404', 
-//     component: PageNotFoundComponent
-// },
-// {
-//     path: '**', 
-//     redirectTo: 'admin/Admin404'
-// }
-
 ];
 
 @NgModule({

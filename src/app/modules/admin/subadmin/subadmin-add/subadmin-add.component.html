@@ -1,7 +1,15 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="Payment-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">Add Sub Admin</h2>
+
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">Add Sub Admin</h2>
+            </div>
+        </div>
         <div class="bg-offwhite">
             <form id="subAdminForm" autocomplete="off">
                 <div class="row mx-0 mt-4">
@@ -9,7 +17,7 @@
                         <label for="" class=" mediumFont commonFontSize letterspacing">Name</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
 
-                            <input required (keyup)="isValid($event)"
+                            <input required (keyup)="isValid()"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" id="name" placeholder="Enter user name" [(ngModel)]="model.name"
                                 name="name">
@@ -32,14 +40,14 @@
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" placeholder="Enter designation" id="designation" name="designation"
-                                [(ngModel)]="model.designation" (keyup)="isValid($event)" required>
+                                [(ngModel)]="model.designation" (keyup)="isValid()" required>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.designation"></div>
                     </div>
                     <div class="col-md-6">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Email ID</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
-                            <input id="email_address" required (keyup)="isValid($event)"
+                            <input id="email_address" required (keyup)="isValid()"
                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                 type="email" placeholder="Enter email address" [(ngModel)]="model.email_address"
                                 name="email_address">
@@ -54,7 +62,7 @@
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 placeholder="Enter employee id" type="text" id="employee_id" name="employee_id"
-                                [(ngModel)]="model.employee_id" (keyup)="isValid($event)" required>
+                                [(ngModel)]="model.employee_id" (keyup)="isValid()" required>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>
                     </div>
@@ -63,7 +71,7 @@
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 placeholder="Enter phone number" type="tel" id="phone_number" name="phone_number"
-                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid($event)" numberOnly
+                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid()" numberOnly
                                 required>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
@@ -74,7 +82,7 @@
                     <div class="col-md-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Create Temp Password</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
-                            <input name="password" (keyup)="isValid($event)" placeholder="Enter password"
+                            <input name="password" (keyup)="isValid()" placeholder="Enter password"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
                                 id="password" [(ngModel)]="model.password" required>
@@ -85,7 +93,7 @@
                         <label for="" class=" mediumFont commonFontSize letterspacing">Confirm Temp Password</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
 
-                            <input match="password,confirm_password" name="confirm_password" (keyup)="isValid($event)"
+                            <input match="password,confirm_password" name="confirm_password" (keyup)="isValid()"
                                 placeholder="Confirm password"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="password" id="confirm_password" [(ngModel)]="model.confirm_password" required>

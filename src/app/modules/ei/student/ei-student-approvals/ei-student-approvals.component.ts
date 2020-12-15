@@ -63,7 +63,10 @@ export class EiStudentApprovalsComponent implements OnInit {
       "date_from": this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
       "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'):'',
       "page_size": this.studentApproval.pageSize ? this.studentApproval.pageSize : 5,
-      "page": page ? page : 1
+      "page": page ? page : 1,
+      "course": this.studentApproval.course_id,
+      "standard": this.studentApproval.standard_id,
+      "teaching_class": this.studentApproval.class_id,
   }
 
   this.baseService.getData('ei/verifiedstudents/', this.studentApproval.listParams).subscribe(
@@ -101,31 +104,25 @@ export class EiStudentApprovalsComponent implements OnInit {
   getCourseList(){
     this.baseService.getData('ei/course-list/').subscribe(
       (res: any) =>{
-        console.log('get course res ::', res)
+        //console.log('get course res ::', res)
         if(res.count > 0)
         this.studentApproval.courseList = res.results
       }
     )
   }
-  getStandardList(courseId){
-    let obj:any={}
-    obj.course_id=courseId
-    this.baseService.getData('ei/standard-list/',  obj).subscribe(
-      (res: any) =>{
-        console.log('get standard res ::', res)
-        if(res.status== true)
-        this.studentApproval.standardList = res.standarddata
+  getStandardList(){
+    this.baseService.getData('ei/standard-list/', {'course_id': this.studentApproval.course_id}).subscribe(
+      (res:any)=>{
+        if(res.status == true)
+        this.studentApproval.standardList= res.standarddata
       }
     )
   }
-  getClassList(standardId){
-    let obj:any={}
-    obj.standard_id=standardId
-    this.baseService.getData('ei/class-list/', obj).subscribe(
-      (res: any) =>{
-        console.log('get class res ::', res)
+  getClassList(){
+    this.baseService.getData('ei/class-list/', {'standard_id': this.studentApproval.standard_id}).subscribe(
+      (res:any)=>{
         if(res.status== true)
-        this.studentApproval.classList = res.classdata
+        this.studentApproval.classList= res.classdata
       }
     )
   }

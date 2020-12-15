@@ -62,7 +62,6 @@ import { ManagementCommissionAddComponent } from './ei/management-commission-add
 import { ManagementCommissionHistoryComponent } from './ei/management-commission-history/management-commission-history.component';
 import { ManagementCommissionInvoicesComponent } from './ei/management-commission-invoices/management-commission-invoices.component';
 import { ManagementCommissionListComponent } from './ei/management-commission-list/management-commission-list.component';
-import { TicketForOnboardingComponent } from './ei/ticket-for-onboarding/ticket-for-onboarding.component';
 import { SubadminAddComponent } from './subadmin/subadmin-add/subadmin-add.component';
 import { SubadminAuthorizationAccessViewComponent } from './subadmin/subadmin-authorization-access-view/subadmin-authorization-access-view.component';
 import { AdminPaymentCouponComponent } from './payment/admin-payment-coupon/admin-payment-coupon.component';
@@ -133,6 +132,9 @@ import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
 import  { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SupportManagementComponent } from './support/support-management/support-management.component';
+import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
+import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 
 @NgModule({
   declarations: [
@@ -192,7 +194,6 @@ import  { TooltipModule } from 'ngx-bootstrap/tooltip';
     ManagementCommissionHistoryComponent,
     ManagementCommissionInvoicesComponent,
     ManagementCommissionListComponent,
-    TicketForOnboardingComponent,
     SubadminAddComponent,
     SubadminAuthorizationAccessViewComponent,
     LectureCandidaturesComponent,
@@ -259,7 +260,10 @@ import  { TooltipModule } from 'ngx-bootstrap/tooltip';
     KycVerifiedUsersComponent,
     KycVerifiedByEiComponent,
     ActiveUsersComponent,
-    DormantUsersComponent
+    DormantUsersComponent,
+    SupportManagementComponent,
+    TicketsOnboardingComponent,
+    PaymentInvoiceComponent
   ],
   imports: [
     CommonModule,

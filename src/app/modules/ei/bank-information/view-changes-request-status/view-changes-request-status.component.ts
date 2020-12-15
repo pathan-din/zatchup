@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 declare var $: any;
 export interface PeriodicElement {
@@ -42,7 +43,8 @@ export class ViewChangesRequestStatusComponent implements OnInit {
     private loader: NgxSpinnerService,
     public eiService: EiServiceService,
     private alert: NotificationService,
-    private router: Router,) { }
+    private router: Router,
+    private location : Location) { }
 
   ngOnInit(): void {
     this.config = {
@@ -104,6 +106,10 @@ export class ViewChangesRequestStatusComponent implements OnInit {
       this.loader.hide();
       this.alert.error(e,'Error');
      }
+  }
+
+  goBack(): void{
+    this.location.back()
   }
 
 } 

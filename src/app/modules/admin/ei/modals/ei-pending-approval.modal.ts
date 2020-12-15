@@ -103,12 +103,12 @@ export class SignUpEi {
     displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
 
     dataSource: any;
-    courseList: any = [];
-    standardList: any = [];
-    classList: any = [];
-    classId: any = [];
-    courseId: any = [];
-    standardId: any = [];
+    // courseList: any = [];
+    // standardList: any = [];
+    // classList: any = [];
+    // classId: any = [];
+    // courseId: any = [];
+    // standardId: any = [];
     course: any = '';
     standard: any = '';
     class: any = '';
@@ -116,9 +116,12 @@ export class SignUpEi {
   filterToDate: any;
   page: any;
   maxDate: Date;
-  allCourses: any;
-  allStandard: any;
-  allClasses: any;
+  allCourses: any= [];
+  allStandard: any = [];
+  allClasses: any = [];
+  course_id: any = '';
+  standard_id: any = '';
+  class_id: any = '';
 }
 export class StudentApproval {
 
@@ -139,12 +142,15 @@ export class StudentApproval {
     standardList: any = [];
     classList: any = [];
     classId: any = [];
-    courseId: any = [];
-    standardId: any = [];
+  //  courseId: any = [];
+    //standardId: any = [];
     //classId: any='';
     course: any = '';
     standard: any = '';
     class: any = '';
+  class_id: any='';
+  standard_id: any='';
+  course_id: any='';
 
     //   courseList: any = [];
     //   standardList: any = [];

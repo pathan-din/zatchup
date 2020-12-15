@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -26,6 +27,7 @@ export class AdminSidenavComponent implements OnInit {
   small = false;
 
   constructor(
+    private location: Location,
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private baseService: BaseService,
@@ -89,7 +91,7 @@ export class AdminSidenavComponent implements OnInit {
     this.router.navigate(['admin/subadmin-dashboard']);
   }
 
-  isValid(parent_module_code, route) {
+  isValid(parent_module_code) {
     if (this.moduleList && this.user_type == 'ZATCHUPSUBADMIN') {
       let val = this.moduleList.find(el => {
         return el.parent_module_code == parent_module_code
@@ -110,5 +112,9 @@ export class AdminSidenavComponent implements OnInit {
           this.userData = res
       }
     )
+  }
+
+  goBack(){
+    this.location.back()
   }
 }
