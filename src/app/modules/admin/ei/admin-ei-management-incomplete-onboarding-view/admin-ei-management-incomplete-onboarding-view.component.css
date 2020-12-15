@@ -34,10 +34,6 @@
     right: 10px;
 }
 
-.card.VerificationDocCard {
-    width: 185px;
-}
-
 .onboarding-table-similarEI tr th,
 .onboarding-table-similarEI tr td {
     padding: 0.7rem 0.5rem;

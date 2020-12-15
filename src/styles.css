@@ -714,3 +714,14 @@ a:hover {
     position: absolute;
     width: 85% !important;
 }
+
+@media (max-width: 767px){
+    .backimg{
+        width: 30px;
+        height: 30px;
+        float: left;
+    }
+    h2 {
+        font-size: 1.1rem !important;
+    }
+}
