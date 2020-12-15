@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -26,7 +27,8 @@ export class EiSubadminViewStatusComponent implements OnInit {
     private location: Location,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private route: ActivatedRoute,
   ) { }
 
 
@@ -42,9 +44,13 @@ export class EiSubadminViewStatusComponent implements OnInit {
     this.loader.show();
     this.listParams = {
       "page_size": this.pageSize,
-      "page": page
+      "page": page,
+      
     }
-    this.baseService.getData('admin/view_status_addedby_ei_subadmin/', this.listParams).subscribe(
+    this.route.queryParams.subscribe(params=>{
+      this.listParams.status =params['status'];
+    })
+    this.baseService.getData('ei/sent-for-approval-subadmin-list-by-ei/', this.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
