@@ -335,7 +335,8 @@ body {
     padding: 5px 10px;
     line-break: unset;
     width: auto;
-    white-space: nowrap;
+    word-wrap: break-word;
+    /* white-space: nowrap; */
     overflow: hidden;
     vertical-align: middle;
     /* border-right: 1px solid #d4d4d4; */
