@@ -6,14 +6,14 @@
             <div class="col-md-4 MobileCol6MB" (click)="ticketsOnboardingList()">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize"> Tickets From Onboarded EI </p>
-                    <h2 class="countFontSize text-center semiBoldFont"> 0
+                    <h2 class="countFontSize text-center semiBoldFont"> {{dashboardData?.onboarded_ei_count}}
                     </h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">
                         Unresolved Tickets From Onboarded EI:
-                        <span class="ml-2">0</span></p>
+                        <span class="ml-2">{{dashboardData?.unresolve_onboarded_ei_ticket_count}} </span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <!-- <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize"> Tickets For Onboarded EI </p>
                     <h2 class="countFontSize text-center semiBoldFont">0
@@ -24,14 +24,12 @@
                         <span class="ml-2">0</span>
                     </p>
                 </div>
-            </div>
-            <div class="col-md-4">
-            </div>
+            </div> -->
         </div>
     </div>
 
 
-    <div class="Dashboard-div bg-white px-2 py-2 mt-3">
+    <!-- <div class="Dashboard-div bg-white px-2 py-2 mt-3">
         <div class="row">
             <div class="col-12 d-flex align-items-end">
                 <div class="mr-2">
@@ -77,7 +75,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
