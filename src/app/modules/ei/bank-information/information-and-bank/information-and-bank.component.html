@@ -232,11 +232,17 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+            <div class="modal-header border-0 align-items-center justify-content-center pb-0">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
             <div class="modal-body">
                 <form id="Form3" enctype="multipart/form-data">
-                    <div class="process3 mt-4 ">
+                    <div class="process3">
                         <div class="form-group row ">
-                            <div class="col-md-6 ">
+                            <div class="col-md-6 MobileCol6MB">
                                 <label for=" " class=" commonFontSize mediumFont letterspacing "> Bank
                                     Name</label>
                                 <div class="form-control-inputDiv rounded shadow-none ">
@@ -266,7 +272,7 @@
                         </div>
                 
                         <div class="form-group row ">
-                            <div class="col-md-6 ">
+                            <div class="col-md-6 MobileCol6MB">
                                 <label for="description " class=" commonFontSize mediumFont letterspacing ">IFSC
                                     Code</label>
                 
@@ -317,11 +323,17 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-            <div class="modal-body pl-5 pr-5 text-center">
+            <div class="modal-header border-0 align-items-center justify-content-center pb-0">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body p-1">
                 <form id="Form4" enctype="multipart/form-data">
-                    <div class="process3 mt-4 ">
+                    <div class="process3">
                         <div class="form-group row ">
-                            <div class="col-md-6">
+                            <div class="col-md-6 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Name of Principal
                                     /
                                     Dean</label>
@@ -379,8 +391,9 @@
                     </div>
                 </form>
               
-
-                <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+                <div class="text-center">
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+                </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p> -->

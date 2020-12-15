@@ -40,14 +40,14 @@
                     <div class="col-sm-12 ">
                         <h4 class="mb-2 textSpace color-gray">Date Of Birth</h4>
                         <div class="row">
-                            <div class="col-2 pl-0 mr-1 form-control-inputDiv">
+                            <div class="col-3 mr-1 form-control-inputDiv">
                                 <select required (change)="isValid($event)" [(ngModel)]="dateModel" name ="dateModel" class="custom-select form-date-col  border-0 pr-2">
                                     <option value="" [selected]='true'>Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
                                    
                                 </select>
                             </div>
-                            <div class="col-3 pl-1 mr-1 ml-1 form-control-inputDiv">
+                            <div class="col-3 mr-1 ml-1 form-control-inputDiv">
                                 <select required (change)="isValid($event)" [(ngModel)]="monthModel" name ="monthModel" class="custom-select border-0 form-month-col">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>

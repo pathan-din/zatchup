@@ -20,7 +20,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="fromDate" name="fromDate"
-                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="signUpEi.maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="signUpEi.maxDate" [(ngModel)]="signUpEi.filterFromDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
@@ -29,7 +29,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="toDate" name="toDate"
-                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="signUpEi.maxDate" [(ngModel)]="filterToDate" #toDate="ngModel"
+                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="signUpEi.maxDate" [(ngModel)]="signUpEi.filterToDate" #toDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
@@ -38,9 +38,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEI" required
-                        [(ngModel)]="signUpEi.courseId" (change)="getStandardList(signUpEi.courseId)">
+                        [(ngModel)]="signUpEi.courseId" (change)="getAllStandard()">
                         <option value=""> Select Course</option>
-                        <option *ngFor="let course of signUpEi.courseList " value="{{course.id}}">{{course.course_name}}</option>
+                        <option *ngFor="let course of signUpEi.allCourses " value="course.id">{{course.course_name}}</option>
                     </select>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="signUpEi.standardId" (change)="getClassList(signUpEi.courseId)">
+                        [(ngModel)]="signUpEi.standardId" (change)="getAllClasses()">
                         <option value=""> Select Standard</option>
-                       <option *ngFor="let standard of signUpEi.standardList" value="{{standard.id}}">{{standard.standard_name}}</option>
+                       <option *ngFor="let standard of signUpEi.allStandard" value="standard.id">{{standard.standard_name}}</option>
                     </select>
                     </div>
                 </div>
@@ -60,14 +60,14 @@
                         <select class="custom-select  form-control-input" id="pastEi" required
                         [(ngModel)]="signUpEi.classId">
                         <option value=""> Select Subsection</option>
-                        <option *ngFor="let class of signUpEi.classList" value="class.id">{{class.class_name}}</option>
+                        <option *ngFor="let class of signUpEi.allClasses" value="class.id">{{class.class_name}}</option>
                     </select>
                     </div>
                 </div>
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                (click)="getSignUpEi()">Apply</button>
+                (click)="getSignUpEi('')">Apply</button>
 
 
             </div>
