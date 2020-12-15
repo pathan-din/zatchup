@@ -89,7 +89,7 @@ export class AdminSidenavComponent implements OnInit {
     this.router.navigate(['admin/subadmin-dashboard']);
   }
 
-  isValid(parent_module_code, route) {
+  isValid(parent_module_code) {
     if (this.moduleList && this.user_type == 'ZATCHUPSUBADMIN') {
       let val = this.moduleList.find(el => {
         return el.parent_module_code == parent_module_code

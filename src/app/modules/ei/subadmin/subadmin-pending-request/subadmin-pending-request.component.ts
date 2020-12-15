@@ -110,7 +110,7 @@ export class SubadminPendingRequestComponent implements OnInit {
     this.modelReason.subadmin_id = id
   }
 
-  rejectUser(id: any): any {
+  rejectUser(): any {
     this.errorDisplay = {};
     this.errorDisplay = this.ValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {

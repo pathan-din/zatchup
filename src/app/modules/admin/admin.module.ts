@@ -133,6 +133,8 @@ import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
 import  { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SupportManagementComponent } from './support/support-management/support-management.component';
+import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 
 @NgModule({
   declarations: [
@@ -259,7 +261,9 @@ import  { TooltipModule } from 'ngx-bootstrap/tooltip';
     KycVerifiedUsersComponent,
     KycVerifiedByEiComponent,
     ActiveUsersComponent,
-    DormantUsersComponent
+    DormantUsersComponent,
+    SupportManagementComponent,
+    TicketsOnboardingComponent
   ],
   imports: [
     CommonModule,

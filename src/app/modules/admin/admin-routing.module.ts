@@ -116,6 +116,8 @@ import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verifie
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
+import { SupportManagementComponent } from './support/support-management/support-management.component';
+import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 
 const routes: Routes = [
   {
@@ -460,6 +462,12 @@ const routes: Routes = [
   {
     path: 'kyc-verified-by-ei', component: KycVerifiedByEiComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'support-management', component: SupportManagementComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'tickets-onboarding-list', component: TicketsOnboardingComponent, canActivate: [AuthGuard]
+  },
 
 
 
@@ -469,17 +477,6 @@ const routes: Routes = [
   {
     path: '**', component:AdminPageNotFoundComponent
   }
-
-
-//    {
-//     path: 'Admin404', 
-//     component: PageNotFoundComponent
-// },
-// {
-//     path: '**', 
-//     redirectTo: 'admin/Admin404'
-// }
-
 ];
 
 @NgModule({
