@@ -117,6 +117,7 @@ import { DormantUsersComponent } from './user/dormant-users/dormant-users.compon
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 import { SupportManagementComponent } from './support/support-management/support-management.component';
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
+import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 
 const routes: Routes = [
   {
@@ -464,7 +465,9 @@ const routes: Routes = [
   {
     path: 'tickets-onboarding-list', component: TicketsOnboardingComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'payment-invoice', component: PaymentInvoiceComponent, canActivate: [AuthGuard]
+  },
 
 
 

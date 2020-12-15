@@ -5,17 +5,17 @@
             <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
                 <h2 class="commonFontSize semiBoldFont m-0">EI Management</h2>
             </div>
-            <div class="col-md-7 SearchDiv d-flex flex-row mt-2">
-                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0"
+            <div class="col-md-7 SearchDiv d-flex flex-row justify-content-end flex-wrap mt-2">
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0 mb-2"
                     data-toggle="modal" data-target="#AddStudentModel" (click)="addEducationInstitute()">Add Education
                     Institute</button>
 
-                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2 mb-2">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                         type="text" placeholder="Search..." [(ngModel)]="search" minlength="1" maxlength="20">
                 </div>
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
+                <button type="button" class="bg-dark text-white px-4 ml-2 border-0 mb-2 p-2"
                     (click)="searchRoute()">Apply</button>
             </div>
         </div>

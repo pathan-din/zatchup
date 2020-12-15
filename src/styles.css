@@ -335,7 +335,8 @@ body {
     padding: 5px 10px;
     line-break: unset;
     width: auto;
-    white-space: nowrap;
+    word-wrap: break-word;
+    /* white-space: nowrap; */
     overflow: hidden;
     vertical-align: middle;
     /* border-right: 1px solid #d4d4d4; */
@@ -712,4 +713,15 @@ a:hover {
     bottom: 0;
     position: absolute;
     width: 85% !important;
+}
+
+@media (max-width: 767px){
+    .backimg{
+        width: 30px;
+        height: 30px;
+        float: left;
+    }
+    h2 {
+        font-size: 1.1rem !important;
+    }
 }

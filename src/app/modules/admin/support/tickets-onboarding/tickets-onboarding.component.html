@@ -9,7 +9,7 @@
                 <h2 class="commonFontSize semiBoldFont m-0 "> Ticket From Onboarding </h2>
             </div>
             <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0">History</button>
+                <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0">History</button>
             </div>
         </div>
         <div class="modal fade" id="resolveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -48,7 +48,7 @@
                 <div class="d-flex flex-wrap align-items-end">
                     <div class="widthFull mr-4 mt-3 ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised From</label>
-                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                                 [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterFromDate"
@@ -57,7 +57,7 @@
                     </div>
                     <div class="widthFull mr-4 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised To</label>
-                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                                 [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterToDate"
@@ -66,7 +66,7 @@
                     </div>
                     <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
-                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <select class="custom-select form-control-input" id="pastEI" required
                                 [(ngModel)]="ticketsList.stateId" (change)="getCities()" name="state">
                                 <option value=""> Select State</option>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="widthFull mr-4 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
-                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <select class="custom-select form-control-input" id="pastEI" required
                                 [(ngModel)]="ticketsList.cityId" name="city">
                                 <option value=""> Select City</option>
@@ -88,7 +88,7 @@
                     </div>
                     <div class="widthFull mr-4 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex align-items-center">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" id="board_university" placeholder="Board/University" name="board_university"
                                 [(ngModel)]="ticketsList.university">
@@ -103,7 +103,7 @@
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Tickets
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Tickets
                     Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getTicketsList('1')" [(ngModel)]="ticketsList.pageSize"
