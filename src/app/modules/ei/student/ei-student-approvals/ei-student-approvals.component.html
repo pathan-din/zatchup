@@ -38,7 +38,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEI" required
-                        [(ngModel)]="studentApproval.courseId" (change)="getStandardList(studentApproval.courseId)">
+                        [(ngModel)]="studentApproval.course_id" (change)="getStandardList()">
                         <option value=""> Select Course</option>
                         <option *ngFor="let course of studentApproval.courseList " value="{{course.id}}">{{course.course_name}}</option>
                     </select>
@@ -48,7 +48,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="studentApproval.standardId" (change)="getClassList(studentApproval.courseId)">
+                        [(ngModel)]="studentApproval.standard_id" (change)="getClassList()">
                         <option value=""> Select Standard</option>
                        <option *ngFor="let standard of studentApproval.standardList" value="{{standard.id}}">{{standard.standard_name}}</option>
                     </select>
@@ -58,9 +58,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="studentApproval.classId">
+                        [(ngModel)]="studentApproval.class_id">
                         <option value=""> Select Subsection</option>
-                        <option *ngFor="let class of studentApproval.classList" value="class.id">{{class.class_name}}</option>
+                        <option *ngFor="let class of studentApproval.classList" value="{{class.id}}">{{class.class_name}}</option>
                     </select>
                     </div>
                 </div>
