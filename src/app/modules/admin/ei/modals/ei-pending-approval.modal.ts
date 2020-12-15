@@ -116,6 +116,9 @@ export class SignUpEi {
   filterToDate: any;
   page: any;
   maxDate: Date;
+  allCourses: any;
+  allStandard: any;
+  allClasses: any;
 }
 export class StudentApproval {
 
