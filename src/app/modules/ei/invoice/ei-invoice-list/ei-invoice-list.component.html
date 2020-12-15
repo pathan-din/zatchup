@@ -97,7 +97,7 @@
                     <ng-container matColumnDef="downloadInvoice">
                         <mat-header-cell *matHeaderCellDef>Download Invoice </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button type="button"
+                            <button type="button" (click)="generatePDF(element.transaction_id)"
                                 class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
                                 <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> Download</button>
                         </mat-cell>

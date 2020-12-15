@@ -38,9 +38,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEI" required
-                        [(ngModel)]="signUpEi.courseId" (change)="getAllStandard()">
+                        [(ngModel)]="signUpEi.course_id" (change)="getAllStandard()">
                         <option value=""> Select Course</option>
-                        <option *ngFor="let course of signUpEi.allCourses " value="course.id">{{course.course_name}}</option>
+                        <option *ngFor="let course of signUpEi.allCourses " [value]="course.id">{{course.course_name}}</option>
                     </select>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="signUpEi.standardId" (change)="getAllClasses()">
+                        [(ngModel)]="signUpEi.standard_id" (change)="getAllClasses()">
                         <option value=""> Select Standard</option>
-                       <option *ngFor="let standard of signUpEi.allStandard" value="standard.id">{{standard.standard_name}}</option>
+                       <option *ngFor="let standard of signUpEi.allStandard" [value]="standard.id">{{standard.standard_name}}</option>
                     </select>
                     </div>
                 </div>
@@ -58,9 +58,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="signUpEi.classId">
+                        [(ngModel)]="signUpEi.class_id">
                         <option value=""> Select Subsection</option>
-                        <option *ngFor="let class of signUpEi.allClasses" value="class.id">{{class.class_name}}</option>
+                        <option *ngFor="let class of signUpEi.allClasses" [value]="class.id">{{class.class_name}}</option>
                     </select>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
         <div class="row my-3" *ngIf="signUpEi.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Student Count Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0"> Count Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                     (change)="getSignUpEi('1')" [(ngModel)]="signUpEi.pageSize">

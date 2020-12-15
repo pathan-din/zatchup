@@ -73,4 +73,11 @@ export class EiInvoiceListComponent implements OnInit {
     }
   }
 
+  generatePDF(transactionId: any){
+    let data = {
+      "payment_id": transactionId
+    }
+    this.baseService.generatePdf('admin/download_payment_invoice/', this.invoiceType+'_invoice_'+transactionId, data)
+  }
+
 }
