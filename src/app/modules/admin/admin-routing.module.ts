@@ -57,7 +57,6 @@ import { ManagementCommissionAddComponent } from './ei/management-commission-add
 import { ManagementCommissionHistoryComponent } from './ei/management-commission-history/management-commission-history.component';
 import { ManagementCommissionInvoicesComponent } from './ei/management-commission-invoices/management-commission-invoices.component';
 import { ManagementCommissionListComponent } from './ei/management-commission-list/management-commission-list.component';
-import { TicketForOnboardingComponent } from './ei/ticket-for-onboarding/ticket-for-onboarding.component';
 import { AdminEiManagementCoursePreviewComponent } from './ei/admin-ei-management-course-preview/admin-ei-management-course-preview.component';
 import { AdminEiManagementCourseUploadPlayHistoryComponent } from './ei/admin-ei-management-course-upload-play-history/admin-ei-management-course-upload-play-history.component';
 import { LectureCandidaturesComponent } from './ei/lecture-candidatures/lecture-candidatures.component';
@@ -287,9 +286,6 @@ const routes: Routes = [
   },
   {
     path: 'management-commission-list', component: ManagementCommissionListComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'ticket-for-onboarding', component: TicketForOnboardingComponent, canActivate: [AuthGuard]
   },
   {
     path: 'admin-ei-management-course-preview', component: AdminEiManagementCoursePreviewComponent, canActivate: [AuthGuard]
