@@ -28,39 +28,20 @@ export class EiSentForSignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSignUpEi('');
+    this.getAllCourse()
     // this.getCourseList();
   }
 
   getSignUpEi(page?:any){
     this.loader.show();
-    let courseFind: any;
-    let standardFind: any;
-    let classFind: any;
-    if(this.signUpEi.allCourses && this.signUpEi.courseId){
-      courseFind = this.signUpEi.allCourses.find(val =>{
-        return val.id == this.signUpEi.courseId
-      })
-    }
-    if(this.signUpEi.allStandard && this.signUpEi.standardId){
-      standardFind = this.signUpEi.allStandard.find(val => {
-        return val.id == this.signUpEi.standardId
-      })
-    }
-    if(this.signUpEi.allClasses && this.signUpEi.classId){
-      classFind = this.signUpEi.allClasses.find(val => {
-        return val.id == this.signUpEi.classId
-      })
-    }
-
-
     this.signUpEi.listParams = {
       "date_from": this.signUpEi.filterFromDate !== undefined ? this.datePipe.transform(this.signUpEi.filterFromDate, 'yyyy-mm-dd'): '',
       "date_to": this.signUpEi.filterToDate !== undefined ? this.datePipe.transform(this.signUpEi.filterToDate, 'yyyy-mm-dd'): '',
       "page_size": this.signUpEi.pageSize ? this.signUpEi.pageSize : 5,
       "page": this.signUpEi.page ? this.signUpEi.page : 1,
-      "course": courseFind ? courseFind.course: '',
-      "standard": standardFind ? standardFind.standard: '',
-      "class": classFind ? classFind.class: ''
+      "course_id": this.signUpEi.course_id,
+      "standard_id": this.signUpEi.standard_id,
+      "class_id": this.signUpEi.class_id
     }
     this.baseService.getData('ei/request-for-signup-students/', this.signUpEi.listParams).subscribe(
       (res: any) => {
@@ -85,39 +66,9 @@ export class EiSentForSignUpComponent implements OnInit {
       this.alert.error(err, 'Error')
       this.loader.hide()
     }
-  }
-  // getCourseList(){
-  //   this.baseService.getData('ei/course-list/').subscribe(
-  //     (res: any) =>{
-  //       console.log('get course res ::', res)
-  //       if(res.count > 0)
-  //       this.signUpEi.courseList = res.results
-  //     }
-  //   )
-  // }
-  // getStandardList(courseId){
-  //   let obj:any={}
-  //   obj.course_id=courseId
-  //   this.baseService.getData('ei/standard-list/',  obj).subscribe(
-  //     (res: any) =>{
-  //       console.log('get standard res ::', res)
-  //       if(res.status== true)
-  //       this.signUpEi.standardList = res.standarddata
-  //     }
-  //   )
-  // }
-  // getClassList(standardId){
-  //   let obj:any={}
-  //   obj.standard_id=standardId
-  //   this.baseService.getData('ei/class-list/', obj).subscribe(
-  //     (res: any) =>{
-  //       console.log('get class res ::', res)
-  //       if(res.status== true)
-  //       this.signUpEi.classList = res.classdata
-  //     }
-  //   )
-  // }
+    console.log(this.signUpEi.listParams)
 
+  }
   getAllCourse(){
     this.baseService.getData('ei/course-list/').subscribe(
       (res: any) => {
@@ -126,20 +77,22 @@ export class EiSentForSignUpComponent implements OnInit {
         this.signUpEi.allCourses = res.results
       }
     )
+    console.log(this.signUpEi.listParams)
   }
+  
   getAllStandard(){
-    this.baseService.getData('ei/standard-list/' + this.signUpEi.courseId).subscribe(
+    this.baseService.getData('ei/standard-list/', {"course_id":this.signUpEi.course_id}).subscribe(
       (res : any) => {
-        if(res.count > 0)
-        this.signUpEi.allStandard = res.results
+        if(res.status= true)
+        this.signUpEi.allStandard = res.standarddata
       }
     )
   }
   getAllClasses(){
-    this.baseService.getData('ei/class-list/' + this.signUpEi.standardId).subscribe(
+    this.baseService.getData('ei/class-list/', {"standard_id":this.signUpEi.standard_id}).subscribe(
       (res : any) =>{
-        if(res.count >0)
-        this.signUpEi.allClasses = res.results
+        if(res.status= true)
+        this.signUpEi.allClasses = res.classdata
       }
     )
   }
