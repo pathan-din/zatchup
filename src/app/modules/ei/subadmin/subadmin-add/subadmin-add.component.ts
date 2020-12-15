@@ -138,8 +138,15 @@ export class SubadminAddComponent implements OnInit {
     }
   }
 
+  clearClassAccess(){
+    this.isModuleAccessClass=false;
+    this.classListArrayAccess=[];
+    this.model.teacher_class_id = this.classListArrayAccess.join();
+  }
+
   displayCourseListModuleAccess() {
     try {
+      this.isModuleAccessStudent=false;
       this.SpinnerService.show();
       this.courseListModuleAccess=[];
       this.standardListModuleAccess=[];

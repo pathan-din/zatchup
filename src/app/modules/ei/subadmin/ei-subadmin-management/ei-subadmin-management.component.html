@@ -73,6 +73,22 @@
                 <div class="form-control-inputDiv rounded-0 bg-offwhite shadow-none clearfix p-2">
                     <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage()">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Approved By User</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{dasboardSummery?.status.ei_subadmin_approved}}</p>
+                        </div>
+                    </div>
+                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage()">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Rejected By User</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{dasboardSummery?.status.ei_subadmin_rejected_by_user}}</p>
+                        </div>
+                    </div>
+                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage()">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Sent For Approval</p>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
@@ -85,14 +101,6 @@
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
                             <p><span class="mr-2">:</span>{{dasboardSummery?.status.ei_subadmin_sent_for_signup}}</p>
-                        </div>
-                    </div>
-                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage()">
-                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
-                            <p>Rejected By User</p>
-                        </div>
-                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
-                            <p><span class="mr-2">:</span>{{dasboardSummery?.status.ei_subadmin_rejected_by_user}}</p>
                         </div>
                     </div>
                 </div>

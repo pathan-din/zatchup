@@ -210,7 +210,7 @@
                         <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
                         <div class="form-group row mb-1 ">
                             <div class="col-md-6 ">
-                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
+                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" (change)="clearClassAccess()" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
 
                             </div>
                             <div class="col-md-6 ">
