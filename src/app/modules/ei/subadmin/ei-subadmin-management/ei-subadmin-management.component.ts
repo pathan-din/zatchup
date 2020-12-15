@@ -142,7 +142,7 @@ export class EiSubadminManagementComponent implements OnInit {
   }
 
   goToEiSubadminViewStatusPage(status) {
-    console.log(status);
+    
     
     this.router.navigate(['ei/subadmin-view-status'], { queryParams: { 'status': status } });
   }
