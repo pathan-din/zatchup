@@ -134,6 +134,7 @@ import { DormantUsersComponent } from './user/dormant-users/dormant-users.compon
 import  { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SupportManagementComponent } from './support/support-management/support-management.component';
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
+import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 
 @NgModule({
   declarations: [
@@ -261,7 +262,8 @@ import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets
     ActiveUsersComponent,
     DormantUsersComponent,
     SupportManagementComponent,
-    TicketsOnboardingComponent
+    TicketsOnboardingComponent,
+    PaymentInvoiceComponent
   ],
   imports: [
     CommonModule,
