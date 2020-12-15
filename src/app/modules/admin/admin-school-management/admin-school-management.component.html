@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="changeDetailRequestsPending()">
                     <p class="p-2 mediumFont commonFontSize">EI Change Detail Requests are Pending</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{responseJson?.ei_change_details_request_pending}}</h2>

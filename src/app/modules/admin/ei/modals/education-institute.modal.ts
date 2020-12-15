@@ -16,21 +16,21 @@ export class EIDbList {
     displayedColumns: string[] = ['position', 'dateOfAdding', 'eiZatchupID', 'schoolName', 'state', 'city', 'address', 'board',
         'approximateNumber', 'status', 'dateofOnboarding', 'action'];
 
-        stateId: any= '';
-        cityId: any = '';
-        allStates: any;
-        allCities: any;
-        state: any= '';
-        city: any = '';
-        dataSource: any;
-        startIndex: any;
-        config = {
-            itemsPerPage: 0,
-            currentPage: 1,
-            totalItems: 0
-            }
-             modal: any =  {};
-             page_size: any
-  university: any;
-  onboardingStatus: any= '';
-            }
+    stateId: any = '';
+    cityId: any = '';
+    allStates: any;
+    allCities: any;
+    state: any = '';
+    city: any = '';
+    dataSource: any;
+    startIndex: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    modal: any = {};
+    page_size: any
+    university: any;
+    onboardingStatus: any = '';
+}
