@@ -64,9 +64,9 @@ export class EiStudentApprovalsComponent implements OnInit {
       "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'):'',
       "page_size": this.studentApproval.pageSize ? this.studentApproval.pageSize : 5,
       "page": page ? page : 1,
-      "course_id": this.studentApproval.course_id,
-      "standard_id": this.studentApproval.standard_id,
-      "class_id": this.studentApproval.class_id,
+      "course": this.studentApproval.course_id,
+      "standard": this.studentApproval.standard_id,
+      "teaching_class": this.studentApproval.class_id,
   }
 
   this.baseService.getData('ei/verifiedstudents/', this.studentApproval.listParams).subscribe(

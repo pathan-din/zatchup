@@ -34,14 +34,15 @@ export class EiSentForSignUpComponent implements OnInit {
 
   getSignUpEi(page?:any){
     this.loader.show();
+
     this.signUpEi.listParams = {
       "date_from": this.signUpEi.filterFromDate !== undefined ? this.datePipe.transform(this.signUpEi.filterFromDate, 'yyyy-mm-dd'): '',
       "date_to": this.signUpEi.filterToDate !== undefined ? this.datePipe.transform(this.signUpEi.filterToDate, 'yyyy-mm-dd'): '',
       "page_size": this.signUpEi.pageSize ? this.signUpEi.pageSize : 5,
       "page": this.signUpEi.page ? this.signUpEi.page : 1,
-      "course_id": this.signUpEi.course_id,
-      "standard_id": this.signUpEi.standard_id,
-      "class_id": this.signUpEi.class_id
+      "course": this.signUpEi.course_id,
+      "standard": this.signUpEi.standard_id,
+      "teaching_class": this.signUpEi.class_id
     }
     this.baseService.getData('ei/request-for-signup-students/', this.signUpEi.listParams).subscribe(
       (res: any) => {
