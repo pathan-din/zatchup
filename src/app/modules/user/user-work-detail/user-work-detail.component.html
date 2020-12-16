@@ -92,14 +92,14 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 pl-0">
-                            <div class="form-control-inputDiv form-control-input-padding mobile-input-6 mobForm-name">
+                            <div class="form-control-inputDiv mobile-input-6 mobForm-name">
                                 <input [(ngModel)]="model.work_state" name="state" required class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="Enter State">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.state"></div>
                         </div>
                         <div class="col-sm-6 pr-0">
-                            <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
+                            <div class="form-control-inputDiv mobile-input-6">
                                 <input [(ngModel)]="model.work_city" name="city" required class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="Enter City">
                             </div>
@@ -118,7 +118,7 @@
                             <h4 class="mb-2 textSpace color-gray">Time Period</h4>
                             <div class="row">
                                 
-                                <div class="col-2 pl-0 mr-1 form-control-inputDiv">
+                                <div class="col-2 mr-1 form-control-inputDiv">
                                     <input [(ngModel)]="model.start_date" name="start_date" value="{{dateModel}}-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
                                     >
                                     <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select form-date-col  border-0 pr-2">
@@ -128,7 +128,7 @@
                                     </select>
                                 </div>
                                 
-                                <div class="col-3 pl-1 mr-1 ml-1 form-control-inputDiv">
+                                <div class="col-3 mr-1 form-control-inputDiv">
                                     <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0 form-month-col">
                                         <option value="" selected>Month</option>
                                         <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
@@ -136,7 +136,7 @@
                                     </select>
                                 </div>
                                 
-                                <div class="col-3 ml-1 mr-1 form-control-inputDiv">
+                                <div class="col-3 ml-1 form-control-inputDiv">
                                     <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select  border-0 form-month-col">
                                         <option value="" selected>Year</option>
                                         <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
@@ -144,10 +144,10 @@
                                     </select>
                                 </div>
                                 <div class="required errorMsg"  [innerHtml]="errorDisplay.start_year"></div>
-                                <div class="col mr-1 ml-1 justify-content-between align-items-center align-self-center">
-                                    <input [(ngModel)]="model.end_date" name="end_date" class="form-control-input form-control form-control-sm" type="hidden">
-                                    <span class=" regularFont color-gray">to present</span>
-                                    <input [(ngModel)]="model.is_currently_work" name="is_currently_work" class="form-control-input form-control-sm" type="checkbox">
+                                <div class="col d-flex justify-content-between align-items-center align-self-center">
+                                    <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">
+                                    <span class="regularFont color-gray mr-1">to present</span>
+                                    <input [(ngModel)]="model.is_currently_work" name="is_currently_work" class="h-auto form-control-input form-control-sm" type="checkbox">
                                 </div>
                                 
                             </div>
