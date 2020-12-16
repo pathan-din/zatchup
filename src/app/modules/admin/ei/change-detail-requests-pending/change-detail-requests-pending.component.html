@@ -181,7 +181,7 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"></i>
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View" routerLink="/admin/change-details-request-view/{{element.id}}"></i>
                             <i class="fa fa-envelope color-green cursorStyle" aria-hidden="true" title="View"></i>
                         </mat-cell>
                     </ng-container>
