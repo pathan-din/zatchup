@@ -117,6 +117,7 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("year",this.yearModel);
       localStorage.setItem("month",this.monthModel);
       localStorage.setItem("day",this.dateModel);
+      localStorage.setItem("kyc_name",this.model.first_name+' '+this.model.last_name);
       
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;

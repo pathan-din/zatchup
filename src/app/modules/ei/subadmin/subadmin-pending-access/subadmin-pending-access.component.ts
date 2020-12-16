@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 
 export interface subAdminManagementElement {
   'SNo': number;
@@ -27,7 +28,7 @@ const ELEMENT_DATA: subAdminManagementElement[] = [];
   styleUrls: ['./subadmin-pending-access.component.css']
 })
 export class SubadminPendingAccessComponent implements OnInit {
-
+  @ViewChild('closeRejectModal') closeRejectModal: any;
   displayedColumns: string[] = ['SNo', 'zatchup_id', 'Name', 'employee_num', 'designation', 'module','sub_module', 'class_list',
     'remarks', 'viewSubAdmin', 'Action'];
 
@@ -41,12 +42,16 @@ export class SubadminPendingAccessComponent implements OnInit {
   model: any = {};
   collection = { count: 60, data: [] };
   startIndex=1;
+  modelReason: any = {};
+  errorDisplay: any = {};
+  userId: any;
   constructor(
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     public base: BaseService,
     private alert: NotificationService,
-    private confirmDialogService: ConfirmDialogService) { }
+    private confirmDialogService: ConfirmDialogService,
+    private ValidationService: GenericFormValidationService) { }
 
   ngOnInit(): void {
     this.config = {
@@ -128,6 +133,37 @@ export class SubadminPendingAccessComponent implements OnInit {
   }
   redirectToDetailPage(id) {
     this.router.navigate(['ei/subadmin-details'], { queryParams: { id: id } });
+  }
+  rejectUserModal(id: any) {
+    this.modelReason.module_access_id = id
+  }
+  rejectUser(): any {
+    this.errorDisplay = {};
+    this.errorDisplay = this.ValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+    try {
+      this.SpinnerService.show()
+      this.base.action('ei/reject-pending-access-subadmin-by-ei/', this.modelReason).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.closeRejectModal.nativeElement.click();
+            this.alert.success(res.message, "Success")
+            this.getPendingAccessRequest('');
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.SpinnerService.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.SpinnerService.hide();
+      }
+    } catch (err) {
+      this.SpinnerService.hide();
+    }
+
   }
   generateExcel() { }
 

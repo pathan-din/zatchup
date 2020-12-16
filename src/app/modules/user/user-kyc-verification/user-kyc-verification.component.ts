@@ -48,6 +48,7 @@ export class UserKycVerificationComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay: any;
+  uploadedContentForBackPhoto: any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
      private router: Router, 
@@ -65,6 +66,7 @@ export class UserKycVerificationComponent implements OnInit {
       this.yearModel = localStorage.getItem("year");
       this.monthModel = localStorage.getItem("month");
       this.dateModel = localStorage.getItem("day");
+      this.model.kyc_name= localStorage.getItem("kyc_name");
     }
     
     var dt = new Date();
@@ -137,6 +139,8 @@ export class UserKycVerificationComponent implements OnInit {
       const formData = new FormData();
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
+      formData.append('kyc_document_back', this.uploadedContentForBackPhoto);
+      
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
@@ -199,6 +203,13 @@ export class UserKycVerificationComponent implements OnInit {
     this.filename = fileData.name;
     this.uploadedContent = fileData;
   }
+    /**************Upload File Function****************/
+    handleFileInputForBackPhoto(file) {
+      let fileList: FileList = file;
+      let fileData: File = fileList[0];
+      this.filename = fileData.name;
+      this.uploadedContentForBackPhoto = fileData;
+    }
   /*************************************************/
   areYouCurrentlyStudentFunction(isStudent) {
     

@@ -8,7 +8,8 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Student Count Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                    <select (change)="getPendingAccessRequest('')" [(ngModel)]="model.page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option value="">select One</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -96,7 +97,7 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i (click)="approveUser(element.id)" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i  data-toggle="modal" data-target="#rejectModel" (click)="rejectUserModal(element.id)"  class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
@@ -108,6 +109,53 @@
                 <div class="col-12 pt-2 pb-2">
                     <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 ">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
+                <button #closeRejectModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+
+            <div class="modal-body px-0">
+                <form id="rejectReason" autocomplete="off" autocapitalize="off">
+                    <!-- <div class=" form-group row ">
+                        <div class="col-md-12 ">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
+                            <div class="form-control-inputDiv rounded p-0 shadow-none">
+                                <input id="remark" (keyup)="isValid()" [(ngModel)]="modelReason.rejected_remark" name="rejection_reason"
+                                    required
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter Reason">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.rejection_reason"></div>
+                        </div>
+                    </div> -->
+                    <div class=" form-group row ">
+                        <div class="col-md-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                <textarea [(ngModel)]="modelReason.rejected_remark" name="remarks" required
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="3 " placeholder="Enter Remarks" (keyup)="isValid()"></textarea>
+                            </div>
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.remarks"></div>
+                    </div>
+                    <button (click)="rejectUser()" type="button "
+                        class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                        Submit
+                    </button>
+                </form>
             </div>
         </div>
     </div>
