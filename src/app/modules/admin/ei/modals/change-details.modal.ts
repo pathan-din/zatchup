@@ -10,6 +10,7 @@ export class ChangeDetailRequestsPending {
     state: any = '';
     city: any = '';
     dataSource: any;
+    maxDate: any;
     startIndex: any;
     config = {
         itemsPerPage: 0,
