@@ -1,6 +1,5 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,7 +15,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
 
   constructor(
     private datePipe: DatePipe,
-    private router: Router,
     private location: Location,
     private baseService: BaseService,
     private alert: NotificationService,
@@ -88,7 +86,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   generateExcel() {
     delete this.changeDetailRequestsPending.modal.page_size;
     delete this.changeDetailRequestsPending.modal.page;
-    // this.changeDetailRequestsPending.modal['export_csv'] = true
     this.baseService.generateExcel('admin/ei/export-all-ei-list/', 'change-detail-pending-request', this.changeDetailRequestsPending.modal);
   }
 

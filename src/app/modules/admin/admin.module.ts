@@ -135,6 +135,7 @@ import  { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SupportManagementComponent } from './support/support-management/support-management.component';
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
+import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
 
 @NgModule({
   declarations: [
@@ -263,7 +264,8 @@ import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.compo
     DormantUsersComponent,
     SupportManagementComponent,
     TicketsOnboardingComponent,
-    PaymentInvoiceComponent
+    PaymentInvoiceComponent,
+    ChangeDetailsRequestViewComponent
   ],
   imports: [
     CommonModule,
