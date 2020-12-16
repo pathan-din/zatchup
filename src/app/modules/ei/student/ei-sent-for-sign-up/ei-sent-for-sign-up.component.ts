@@ -36,8 +36,8 @@ export class EiSentForSignUpComponent implements OnInit {
     this.loader.show();
 
     this.signUpEi.listParams = {
-      "date_from": this.signUpEi.filterFromDate !== undefined ? this.datePipe.transform(this.signUpEi.filterFromDate, 'yyyy-mm-dd'): '',
-      "date_to": this.signUpEi.filterToDate !== undefined ? this.datePipe.transform(this.signUpEi.filterToDate, 'yyyy-mm-dd'): '',
+      "date_from": this.signUpEi.filterFromDate !== undefined ? this.datePipe.transform(this.signUpEi.filterFromDate, 'yyyy-MM-dd'): '',
+      "date_to": this.signUpEi.filterToDate !== undefined ? this.datePipe.transform(this.signUpEi.filterToDate, 'yyyy-MM-dd'): '',
       "page_size": this.signUpEi.pageSize ? this.signUpEi.pageSize : 5,
       "page": this.signUpEi.page ? this.signUpEi.page : 1,
       "course": this.signUpEi.course_id,
