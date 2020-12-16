@@ -64,7 +64,7 @@
                 <i class="material-icons mr-2 md-18">notification_important</i>
                 <span class="commonFontSize"> Notification Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE0015')">
+            <a mat-list-item *ngIf="isValid('MODULE0015')" tooltip="Coming Soon...">
                 <i class="material-icons mr-2 md-18">contacts</i>
                 <span class="commonFontSize"> Contact & Static Content Management </span>
             </a>
@@ -73,7 +73,7 @@
                 <i class="fa fa-lock mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> Sub Admin Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE0017')">
+            <a mat-list-item *ngIf="isValid('MODULE0017')" tooltip="Coming Soon...">
                 <i class="fa fa-newspaper-o mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> Advertisement Management </span>
             </a>
@@ -102,6 +102,9 @@
             <span class="h-100 logo_span d-flex align-items-center justify-content-center"><img
                     src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></span>
             <span class="spacer"></span>
+                <!-- <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span> -->
             <a class="text-white"><i class="fa fa-bell fa-lg text-white" aria-hidden="true" data-count="2"></i></a>
             <a class="text-white ml-4 commonFontSize semiBoldFont">
                 <img src="assets/images/userWebsite/EI-profile-icon.png"

@@ -188,7 +188,7 @@ export class EiLoginSubadminComponent implements OnInit {
   }
 
   goToEiSubadminRegisterPage(){
-    this.router.navigate(['ei/subadmin-register']);
+    this.router.navigate(['ei/subadmin-registration']);
   }
 
  

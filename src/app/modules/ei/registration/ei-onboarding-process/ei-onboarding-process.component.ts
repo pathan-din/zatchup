@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router} from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -22,6 +22,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 
 export class EiOnboardingProcessComponent implements OnInit {
   @ViewChild(MatStepper, { static: false }) myStepper: MatStepper;
+  @ViewChild('inputFile') myInputVariable: ElementRef;
   completed: boolean = false;
   state: string;
   stateList: any = [];
@@ -56,6 +57,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   bankModel: any = {};
   bankNameList = [];
   index: any;
+  extentionCheck:any='';
   constructor(
     private validationService: GenericFormValidationService,
     private router: Router,
@@ -337,7 +339,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('no_of_alumni', this.model.no_of_alumni);
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
       formData.append('gst_no', this.model.gst_no);
-      formData.append('description', this.model.description);
+      formData.append('overview', this.model.description);
       this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
@@ -524,6 +526,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     let document: any = {};
     document.name = '';
     document.document = '';
+    document.extention = '';
     this.modelDocumentDetails.push(document);
   }
 
@@ -536,7 +539,16 @@ export class EiOnboardingProcessComponent implements OnInit {
     if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png' && fileData.type !== 'application/pdf') {
       this.loader.hide();
       this.alert.error("File format not supported", 'Error');
+      this.myInputVariable.nativeElement.value = '';
       return
+    }else{
+      if(fileData.type == 'application/pdf'){
+        document.extention = 'pdf';
+      }else{
+        document.extention = '';
+      }
+      
+      
     }
     const formData = new FormData();
     formData.append('file_name', fileData);

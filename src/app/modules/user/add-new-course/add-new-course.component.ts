@@ -18,6 +18,7 @@ export class AddNewCourseComponent implements OnInit {
   errorDisplay: any = {};
   pipe = new DatePipe('en-US');
   schoolId:any;
+  imageUrl:any='';
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -33,6 +34,9 @@ export class AddNewCourseComponent implements OnInit {
       this.schoolId = params['school_id'];
       
     });
+  }
+  fileUploadDocument(file){
+
   }
   addCourseData(){
     this.errorDisplay = {};

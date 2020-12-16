@@ -41,7 +41,10 @@ permission:any;
 
   }
   ngOnInit(): void {
-    this.getDasboardDetails();
+    
+    if(localStorage.getItem("token")){
+      this.getDasboardDetails();
+    }
     if(sessionStorage.getItem("permission")){
       this.permission = JSON.parse(sessionStorage.getItem("permission"));
     }
