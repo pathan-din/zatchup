@@ -78,8 +78,8 @@
                                 class="bg-blue text-white border-0 rounded mb-2">Sent for approval</button> <br />
                             <button *ngIf="element.status == 'SENTFORSIGNUP'" type="button"
                                 class="bg-paret-green text-white border-0 rounded mb-2">Sent for sign-up</button> <br />
-                            <!-- <button *ngIf="element.status == 1" type="button"
-                                class="bg-red text-white border-0 rounded mb-2">Rejected by user</button> -->
+                            <button *ngIf="element.rejected == 1" type="button"
+                                class="bg-red text-white border-0 rounded mb-2">Rejected by user</button>
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="Action">
@@ -92,6 +92,11 @@
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
+            </div>
+            <div class="row" *ngIf="!dataSource">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                </div>
             </div>
         </div>
 

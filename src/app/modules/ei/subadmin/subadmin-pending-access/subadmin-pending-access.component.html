@@ -27,54 +27,54 @@
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i=index;"> {{i+startIndex}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="zatchUpID">
+                    <ng-container matColumnDef="zatchup_id">
                         <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.zatchUpID}}
+                            {{element.zatchup_id}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Name}}
+                            {{element.first_name}}  {{element.last_name}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="employeelID">
+                    <ng-container matColumnDef="employee_num">
                         <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.employeelID}}
+                            {{element.employee_num}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="Designation">
+                    <ng-container matColumnDef="designation">
                         <mat-header-cell *matHeaderCellDef> Designation </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Designation}} </mat-cell>
+                            {{element.designation}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="Module">
+                    <ng-container matColumnDef="module">
                         <mat-header-cell *matHeaderCellDef> Module </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Module}}
+                            {{element.module}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="subModule">
+                    <ng-container matColumnDef="sub_module">
                         <mat-header-cell *matHeaderCellDef> Sub-Module </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.subModule}}
+                            {{element.sub_module}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="class">
+                    <ng-container matColumnDef="class_list">
                         <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.class}}
+                            {{element.class_list}}
                         </mat-cell>
                     </ng-container>
 
@@ -88,14 +88,14 @@
                     <ng-container matColumnDef="viewSubAdmin">
                         <mat-header-cell *matHeaderCellDef> View Sub-Admin </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.viewSubAdmin}}
+                            <i (click)="redirectToDetailPage(element.user_id)" class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i (click)="approveUser(element.id)" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
                             <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
@@ -103,6 +103,11 @@
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
+            </div>
+            <div class="row" *ngIf="!dataSource">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                </div>
             </div>
         </div>
     </div>
