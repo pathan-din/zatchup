@@ -118,6 +118,7 @@ import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified
 import { SupportManagementComponent } from './support/support-management/support-management.component';
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
+import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
 
 const routes: Routes = [
   {
@@ -467,6 +468,9 @@ const routes: Routes = [
   },
   {
     path: 'payment-invoice', component: PaymentInvoiceComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent,  canActivate: [AuthGuard]
   },
 
 

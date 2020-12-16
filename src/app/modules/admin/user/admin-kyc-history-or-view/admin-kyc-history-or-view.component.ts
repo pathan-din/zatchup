@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./admin-kyc-history-or-view.component.css']
 })
 export class AdminKycHistoryOrViewComponent implements OnInit {
-  @ViewChild('rejectedCloseButton') rejectedCloseButton: any;
+  // @ViewChild('rejectedCloseButton') rejectedCloseButton: any;
   @ViewChild('approveCloseButton') approveCloseButton: any;
   kycHistoryModal = new KYCHistory()
 
