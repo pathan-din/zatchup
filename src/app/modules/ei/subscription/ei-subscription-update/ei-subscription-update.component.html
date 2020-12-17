@@ -2,24 +2,20 @@
 <div class="container main-container p-3">
     <div class="SubscriptionUpdate-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
-            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Subscription</h2>
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">                
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    Subscription</h2>
             </div>
-
         </div>
-
       
-        <div class="row m-0" *ngIf="subscriptionList && subscriptionList.length > 0">
-            <div class="col-xl-7 bg-offwhite">
-                <div class="row border-bottom">
-                    <div class="col-12">
-                        <h2 class="commonFontSize mediumFont my-2">Change Plan</h2>
-                    </div>
-                </div>
-
+        <div class="row" *ngIf="subscriptionList && subscriptionList.length > 0">
+            <div class="col-12 border-bottom">
+                <h3 class="commonFontSize mediumFont my-2">Change Plan</h3>
+            </div>
+            <div class="col-xl-7 col-12 bg-offwhite">                
                 <div class="form-group row pt-4">
                     <div class="col-xl-6 col-lg-7-col-md-10 col-10 d-flex flex-column "
                         *ngFor="let subscription of subscriptionList">
@@ -79,7 +75,8 @@
                 </div> -->
 
                 <div class="row mt-3">
-                    <div class="col-12 text-center"><button type="button"
+                    <div class="col-12 text-center">
+                        <button type="button"
                             class="bg-paret-green text-white py-2 px-4 border-0 mb-4" [disabled]="!subscription"
                             (click)="makePayment()" aria-hidden="true" data-toggle="modal"
                             data-target="#paymentModel">Proceed To

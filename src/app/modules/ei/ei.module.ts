@@ -142,8 +142,14 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
+<<<<<<< HEAD
 import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
 import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component'
+=======
+import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component'
+import { SharedModule } from 'src/app/common/shared.module';
+import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
+>>>>>>> cac6ba0acffa9cfcf942b674923ee162c66e15d7
 
 @NgModule({
   declarations: [
@@ -281,7 +287,11 @@ import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-a
     EiProfilePreviewComponent,
     SignUpPendingListComponent,
     EiSentForSignUpComponent,
+<<<<<<< HEAD
     SentForApprovalComponent
+=======
+    RequestChangeDetailsComponent
+>>>>>>> cac6ba0acffa9cfcf942b674923ee162c66e15d7
   ],
   imports: [
     CommonModule,
@@ -294,7 +304,8 @@ import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-a
     BsDatepickerModule,
     AutocompleteLibModule,
     DirectiveModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedModule
   ],
   exports: [
     EiLoginComponent

@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { ConfirmDialogService } from './confirm-dialog/confirm-dialog.service';
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
 @NgModule({
   declarations: [
-    ConfirmDialogComponent
+    ImageUploaderComponent
   ],
   imports: [
     CommonModule,
-    BrowserModule
+    ImageCropperModule
   ],
   exports: [
-    ConfirmDialogComponent
-  ],
-  providers: [
-    ConfirmDialogService
+    ImageUploaderComponent
   ]
 })
 export class SharedModule { }

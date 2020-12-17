@@ -13,7 +13,7 @@
                 <mat-table [dataSource]="dataSource  | paginate: config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element;let i=index"> {{startIndex+i}} </mat-cell>
+                        <mat-cell *matCellDef="let element;let i =index;"> {{startIndex+i}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="fieldChange">
@@ -23,22 +23,16 @@
 
                     <ng-container matColumnDef="oldDetails">
                         <mat-header-cell *matHeaderCellDef> Old Details </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.oldDetails}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.oldDetails.replace("&"," ")}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="newDetails">
                         <mat-header-cell *matHeaderCellDef> New Details </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.newDetails}}
+                        <mat-cell *matCellDef="let element"> {{element.newDetails.replace("&"," ")}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="viewAttachments">
-                        <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            
-                            <img src="{{element.viewAttachments}}" alt="Attachments" style="height: 60px;"/>
-                        </mat-cell>
-                    </ng-container>
+          
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
@@ -47,12 +41,7 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="remarks">
-                        <mat-header-cell *matHeaderCellDef> Remarks </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            {{element.remarks}}
-                        </mat-cell>
-                    </ng-container>
+                 
 
                     <!-- <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>

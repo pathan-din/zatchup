@@ -19,19 +19,18 @@ export interface PeriodicElement {
   remarks: string;
   action: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [];
-
 @Component({
-  selector: 'app-view-changes-request-status',
-  templateUrl: './view-changes-request-status.component.html',
-  styleUrls: ['./view-changes-request-status.component.css']
+  selector: 'app-request-change-details',
+  templateUrl: './request-change-details.component.html',
+  styleUrls: ['./request-change-details.component.css']
 })
-export class ViewChangesRequestStatusComponent implements OnInit {
+export class RequestChangeDetailsComponent implements OnInit {
+startIndex:any;
   requestStatusList:any;//,'action'
   displayedColumns: string[] = ['position', 'fieldChange', 'oldDetails', 'newDetails',
-  'viewAttachments','status', 'remarks'];   
-startIndex:any;
+  'status'];   
+
   dataSource = ELEMENT_DATA;
   pageSize:any=1;
   totalNumberOfPage:any=10;
@@ -63,7 +62,7 @@ startIndex:any;
         data.page= page 
       }else{data=this.model;}
       this.loader.show();
-      this.baseService.getData('ei/ei-request-change-list/',data).subscribe(res=>{
+      this.baseService.getData('ei/request-change-student-list-of-ei',data).subscribe(res=>{
        let responce :any={};
        responce = res;
        this.pageSize=responce.page_size;
@@ -81,7 +80,7 @@ startIndex:any;
       
        if(!page){page=1;}
        var i= (this.pageSize*(page-1))+1;
-       this.startIndex=i
+       this.startIndex = i;
        let arrDataList:any=[];
        responce.results.forEach(objData=>{
          let objList:any={};
@@ -90,9 +89,9 @@ startIndex:any;
          objList.fieldChange=objData.field_name.replace(/_/g, ' ').charAt(0).toUpperCase()+objData.field_name.replace(/_/g, ' ').slice(1);
          objList.oldDetails=objData.old_value;
          objList.newDetails=objData.new_value;
-         objList.viewAttachments=objData.document;
+          
          objList.status=objData.approved?'Accepted':'Pending';
-         objList.remarks='';
+         
        //  objList.action='';
          arrDataList.push(objList);
         })
@@ -113,4 +112,4 @@ startIndex:any;
     this.location.back()
   }
 
-} 
+}

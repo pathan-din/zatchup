@@ -18,6 +18,12 @@ export class EiSchoolProfileComponent implements OnInit {
   userProfile: any = {};
   cover_pic: any = '';
   profile_pic: any = '';
+  uploadInfo: any = {
+    "image_type": "cover_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute border-0 bg-light-black text-white p-2"
+  }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
@@ -65,56 +71,15 @@ export class EiSchoolProfileComponent implements OnInit {
       console.log(err);
     }
   }
-  uploadCoverPic(file) {
-
-    console.log(file);
-    
-    try {
-      this.SpinnerService.show();
-      let fileList: FileList = file;
-     
-
-      let fileData: File = fileList[0];
-      if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
-      {
-        this.SpinnerService.hide();
-        this.alert.error("File format not supported",'Error');
-        return
-      }
-      const formData = new FormData();
-      formData.append('cover_pic', fileData);
-      this.eiService.updateCoverPic(formData).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
-          this.SpinnerService.hide();
-          this.cover_pic = response.data[0].cover_pic_url;
-        } else {
-          this.SpinnerService.hide();
-          console.log("Error:Data not update");
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
-    } catch (err) {
-      this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
-    }
-
-
-  }
+  
   uploadProfilePic(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
-    if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
-      {
-        this.SpinnerService.hide();
-        this.alert.error("File format not supported",'Error');
-        return
-      }
+    if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png') {
+      this.SpinnerService.hide();
+      this.alert.error("File format not supported", 'Error');
+      return
+    }
     try {
       this.SpinnerService.show();
       const formData = new FormData();
@@ -139,5 +104,9 @@ export class EiSchoolProfileComponent implements OnInit {
       this.SpinnerService.hide();
       console.log("vaeryfy Otp Exception", err);
     }
+  }
+
+  getCoverPicUrl(file: any) {
+    this.userProfile.cover_pic = file.data[0].cover_pic_url
   }
 }

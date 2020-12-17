@@ -10,14 +10,11 @@
                 <div class="col-9">
                     <h2 class="mb-4">Add Course </h2>
                 </div>
-                <div class="col-3 text-right">
-                   
-                     <button type="button" class="rounded-circle border-0 p-0 mt-2"><img src="assets/images/userWebsite/edit.png" class="img-fluid form-control-inputDiv rounded-circle"></button>
-                </div>
+                 
             </div>
 
             <form>
-                <div class="form-group row justify-content-center">
+                <div class="form-group row justify-content-center" *ngIf="checkincourse">
                     <div class="col-12 text-center ">
                         <div class="round-camera-div mx-auto">
                             <img (click)="fileInput.click()"  class="img-fluid p-2 img_profile" src="{{imageUrl?imageUrl:'assets/images/userWebsite/profile-image.png'}}">

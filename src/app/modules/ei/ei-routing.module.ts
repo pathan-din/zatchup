@@ -130,6 +130,7 @@ import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-previ
 import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component';
 import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
 import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component';
+import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
 
 const routes: Routes = [
   {
@@ -508,8 +509,10 @@ const routes: Routes = [
   },
   {
     path: 'invoice-list/:invoice', component: EiInvoiceListComponent, canActivate: [AuthGuard]
+  }, {
+    path: 'request-for-change-list', component: RequestChangeDetailsComponent, canActivate: [AuthGuard]
   },
-
+  
 
 
 
