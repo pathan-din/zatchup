@@ -132,6 +132,7 @@ export class EiContactUsComponent implements OnInit {
     {
       this.contactUs.university = schoolFind.university;
       this.contactUs.schoolName = schoolFind.name_of_school
+      this.contactUs.fullAddress = schoolFind.address1+ ' ' + schoolFind.address2 
     }
   }
 
