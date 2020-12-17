@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 export interface subAdminManagementElement {
   'SNo': number;
