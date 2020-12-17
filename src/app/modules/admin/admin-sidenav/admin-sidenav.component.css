@@ -24,7 +24,7 @@
 /*******************/
 
 .mat-drawer-content {
-    z-index: 2;
+    z-index: 3;
     margin-left: 0!important;
 }
 
@@ -72,3 +72,13 @@
     background: #463267 !important;
     color: white !important;
 }
+
+:host>>>.tooltip-inner {
+    /* background-color: #463267;
+    color: #ffffff; */
+    font-style: italic;
+}
+
+/* :host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
+    border-top-color: #ffffff;
+} */

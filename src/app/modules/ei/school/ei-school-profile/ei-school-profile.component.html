@@ -4,37 +4,40 @@
     <div class=" bg-white px-3 py-2">
         <h2 class="commonFontSize semiBoldFont mb-0">School Profile</h2>
         <div class="bannerDiv position-relative">
-            <img src="{{cover_pic?cover_pic:userProfile.cover_pic}}" class="img-fluid h-100 w-100">
+            <img src="{{cover_pic?cover_pic:userProfile.cover_pic}}" class="img-fluid w-100">
             <!-- <button class=" btn_position-absolute border-0 bg-light-black text-white p-2">Upload Cover Photo</button> -->
-            <button type="button" (click)="fileInput.click()" class=" btn_position-absolute border-0 bg-light-black text-white p-2">
-                <span>Upload Cover Photo</span>
+            <button type="button" (click)="fileInput.click()"
+                class=" btn_position-absolute border-0 bg-light-black text-white p-2">
+                <i class="fa fa-camera" aria-hidden="true"></i>
                 <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
-              </button>
-            <img class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
+            </button>
+            <!-- <span class=" btn_position-absolute border-0 bg-light-black text-white p-2" (click)="fileInput.click()"><i class="fa fa-camera" aria-hidden="true"></i></span> -->
+            
         </div>
         <div class="">
             <div class="row pt-2">
                 <div class="col-md-5 text-right d-flex profileDivLeft py-0 pr-0 pl-5">
 
-                    <div class="dpImgDiv rounded-circle border border-primary" style="background-image: url({{userProfile.profile_pic}})">
-                        <!-- <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid dpImg "> -->
+                    <div class="dpImgDiv rounded-circle border border-primary mb-3"
+                        style="background-image: url({{userProfile.profile_pic}})">
                         <div class="upload-dp position-absolute">
-                            <button type="button" (click)="fileInput1.click()" class=" border-0 bg-transparent  text-white p-2">
-                                <span>Upload</span>
-                                <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file" style="display:none;" />
-                              </button>
+                            <button type="button" (click)="fileInput1.click()"
+                                class=" border-0 bg-transparent text-white p-2 cursorStyle">
+                                <span><i class="fa fa-camera" aria-hidden="true"></i></span>
+                                <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
+                                    style="display:none;" />
+                            </button>
                         </div>
-
-
                     </div>
-                    <!-- <div><span class="text-primary rounded-circle material-icons">check_circle </span></div> -->
-
-                    <div class="pl-2 text-left">
-                        <p class="m-0 commonFontSize mediumFont">{{userProfile.name_of_school}}</p>
+                    <img class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
+                    <div class="pl-4 pr-4 text-left">
+                        <p class="m-0 commonFontSize mediumFont" title="name of school">{{userProfile.name_of_school}}
+                        </p>
+                        <p class="m-0 commonFontSize mediumFont" title="school code">{{userProfile.school_code}}</p>
                     </div>
                 </div>
                 <div class="col-md-7 text-right  profileDivRight ">
-                    <div class="row justify-content-center">
+                    <!-- <div class="row justify-content-center">
                         <div class="col-xl-6 col-lg-4 col-md-1 padding-0">
                         </div>
                         <div class="col-xl-2 col-lg-3 col-md-4 col-4 padding-0">
@@ -46,33 +49,40 @@
                         </div>
                         <div class="col-xl-1 col-lg-2 col-md-1 padding-0">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
             <div class="row mt-3">
                 <div class="col-md-5">
-                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Name of The School : </span>{{userProfile.name_of_school}}</p>
-                    <p class="commonFontSize regularFont"><span class="semiBoldFont">EI ZatchUp ID : </span>{{userProfile.school_code}}</p>
-                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Foundation Date : </span>01 JAN 2020</p>
-                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Name of Principal/Dean : {{userProfile.name_of_principle}}</span></p>
-                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Address : </span>{{userProfile.address1}} {{userProfile.address2}}</p>
-                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Overview of School : </span> {{userProfile.overview}}
+                    <!-- <p class="commonFontSize regularFont"><span class="semiBoldFont">Name of The School :
+                        </span>{{userProfile.name_of_school}}</p> -->
+                    <!-- <p class="commonFontSize regularFont"><span class="semiBoldFont">EI ZatchUp ID : </span>{{userProfile.school_code}}</p> -->
+                    <!-- <p class="commonFontSize regularFont"><span class="semiBoldFont">Foundation Date : </span>01 JAN
+                        2020</p> -->
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Name of Principal/Dean :
+                            {{userProfile.name_of_principle}}</span></p>
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Address :
+                        </span>{{userProfile.address1}} {{userProfile.address2}}</p>
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Overview of School : </span>
+                        {{userProfile.overview}}
                     </p>
-                    <div class="form-control-inputDiv border-0 bg-light-green py-4">
+
+
+                </div>
+
+                <div class=" col-md-7 mtStyle pb-5">
+
+                    <div class="form-control-inputDiv border-0 bg-light-green py-4 w-75">
                         <p class="text-center m-0">Students in the school</p>
                         <p class="text-center m-0 semiBoldFont"> {{userProfile.total_student}}</p>
                     </div>
-                    <div class=" form-control-inputDiv border-0 bg-gary mt-3 py-4">
+                    <div class=" form-control-inputDiv border-0 bg-gary mt-3 py-4 w-75">
                         <p class="text-center m-0 "> Alumni on ZatchUp
                         </p>
                         <p class="m-0 text-center color-purple semiBoldFont "> {{userProfile.total_alumni}}</p>
                     </div>
-
-                </div>
-
-                <div class=" col-md-7 mtStyle">
-                    <div class="row ">
+                    <!-- <div class="row ">
                         <div class="col-12 colLeftPost ">
                             <div class="form-control-inputDiv ">
                                 <div class="col-12 commonFontSize semiBoldFont color-purple cursor-pointer" (click)="goToEISchoolPostPage()">Posts</div>
@@ -92,8 +102,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="matrix " *ngIf="postOption==='matrix' ">
+                    </div> -->
+                    <!-- <div class="matrix " *ngIf="postOption==='matrix' ">
                         <div class="row mt-3 ">
                             <div class="col-6 pr-0 img-container img-container-col6"><img src="assets/images/userWebsite/loreal.jpg " class="img-fluid border-radius-25 mr-2 img-height-100 img-width-100 "></div>
                             <div class="col-6 pl-0 img-container img-container-col6"><img src="assets/images/userWebsite/loreal.jpg " class="img-fluid border-radius-25 ml-2 img-height-100 img-width-100 "></div>
@@ -102,13 +112,14 @@
                             <div class="col-6 pr-0 img-container img-container-col6"><img src="assets/images/userWebsite/loreal.jpg " class="img-fluid border-radius-25 mr-2 img-height-100 img-width-100 "></div>
                             <div class="col-6 pl-0 img-container img-container-col6"><img src="assets/images/userWebsite/loreal.jpg " class="img-fluid border-radius-25 ml-2 img-height-100 img-width-100 "></div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="images " *ngIf="postOption==='image' ">
                         <div class="card form-control-inputDiv border-0 bg-white mt-3 ">
                             <div class="card-header bg-white ">
                                 <div class="row align-items-center ">
                                     <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 ">
-                                        <img src="assets/images/userWebsite/study_student.png " class="img-fluid border-0 rounded-circle ">
+                                        <img src="assets/images/userWebsite/study_student.png "
+                                            class="img-fluid border-0 rounded-circle ">
                                     </div>
                                     <div class=" col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8 ">
                                         <h4 class="commonFontSize semiBoldFont ">Name of the School</h4>
@@ -124,10 +135,12 @@
                                 </div>
 
                             </div>
-                            <img class=" img-fluid border-radius img-container " src="assets/images/userWebsite/loreal.jpg " alt="Card image ">
+                            <img class=" img-fluid border-radius img-container "
+                                src="assets/images/userWebsite/loreal.jpg " alt="Card image ">
                             <div class="card-body ">
 
-                                <p class="commonFontSize regularFont ">Lorem Ipsum is simply dummy text of the printing and type setting industry. </p>
+                                <p class="commonFontSize regularFont ">Lorem Ipsum is simply dummy text of the printing
+                                    and type setting industry. </p>
 
                                 <div class="row ">
                                     <div class="col-12 ">
@@ -156,7 +169,8 @@
                             <div class="card-header bg-white ">
                                 <div class="row align-items-center ">
                                     <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 ">
-                                        <img src="assets/images/userWebsite/study_student.png " class="img-fluid border-0 rounded-circle ">
+                                        <img src="assets/images/userWebsite/study_student.png "
+                                            class="img-fluid border-0 rounded-circle ">
                                     </div>
                                     <div class=" col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8 ">
                                         <h4 class="commonFontSize semiBoldFont ">Name of the School</h4>
@@ -172,10 +186,12 @@
                                 </div>
 
                             </div>
-                            <img class=" img-fluid border-radius img-container " src="assets/images/userWebsite/loreal.jpg " alt="Card image ">
+                            <img class=" img-fluid border-radius img-container "
+                                src="assets/images/userWebsite/loreal.jpg " alt="Card image ">
                             <div class="card-body ">
 
-                                <p class="commonFontSize regularFont ">Lorem Ipsum is simply dummy text of the printing and type setting industry. </p>
+                                <p class="commonFontSize regularFont ">Lorem Ipsum is simply dummy text of the printing
+                                    and type setting industry. </p>
 
                                 <div class="row ">
                                     <div class="col-12 ">
@@ -204,7 +220,8 @@
                             <div class="card-header bg-white ">
                                 <div class="row align-items-center ">
                                     <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 ">
-                                        <img src="assets/images/userWebsite/study_student.png " class="img-fluid border-0 rounded-circle ">
+                                        <img src="assets/images/userWebsite/study_student.png "
+                                            class="img-fluid border-0 rounded-circle ">
                                     </div>
                                     <div class=" col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8 ">
                                         <h4 class="commonFontSize semiBoldFont ">Name of the School</h4>
@@ -220,10 +237,12 @@
                                 </div>
 
                             </div>
-                            <img class=" img-fluid border-radius img-container " src="assets/images/userWebsite/loreal.jpg " alt="Card image ">
+                            <img class=" img-fluid border-radius img-container "
+                                src="assets/images/userWebsite/loreal.jpg " alt="Card image ">
                             <div class="card-body ">
 
-                                <p class="commonFontSize regularFont ">Lorem Ipsum is simply dummy text of the printing and type setting industry. </p>
+                                <p class="commonFontSize regularFont ">Lorem Ipsum is simply dummy text of the printing
+                                    and type setting industry. </p>
 
                                 <div class="row ">
                                     <div class="col-12 ">
@@ -254,7 +273,7 @@
             </div>
         </div>
     </div>
-	  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
         <p style="color: white">Please Wait. </p>
     </ngx-spinner>
 </div>

@@ -26,7 +26,6 @@ import { AdminPaymentOnboardingFeeHistoryComponent } from './payment/admin-payme
 import { AdminEiRejectDetailsComponent } from './ei/admin-ei-reject-details/admin-ei-reject-details.component';
 import { AdminZatchCertificateResultComponent } from './admin-zatch-certificate-result/admin-zatch-certificate-result.component';
 import { AdminZatchCertificateConfigueComponent } from './admin-zatch-certificate-configue/admin-zatch-certificate-configue.component';
-import { AdminUserLastLoginComponent } from './user/admin-user-last-login/admin-user-last-login.component';
 import { AdminCreateNewPasswordComponent } from './admin-create-new-password/admin-create-new-password.component';
 import { AdminUserKycPendingComponent } from './user/admin-user-kyc-pending/admin-user-kyc-pending.component';
 import { AdminUserComponent } from './user/admin-user/admin-user.component';
@@ -63,7 +62,6 @@ import { ManagementCommissionAddComponent } from './ei/management-commission-add
 import { ManagementCommissionHistoryComponent } from './ei/management-commission-history/management-commission-history.component';
 import { ManagementCommissionInvoicesComponent } from './ei/management-commission-invoices/management-commission-invoices.component';
 import { ManagementCommissionListComponent } from './ei/management-commission-list/management-commission-list.component';
-import { TicketForOnboardingComponent } from './ei/ticket-for-onboarding/ticket-for-onboarding.component';
 import { SubadminAddComponent } from './subadmin/subadmin-add/subadmin-add.component';
 import { SubadminAuthorizationAccessViewComponent } from './subadmin/subadmin-authorization-access-view/subadmin-authorization-access-view.component';
 import { AdminPaymentCouponComponent } from './payment/admin-payment-coupon/admin-payment-coupon.component';
@@ -114,7 +112,30 @@ import { SubscriptionPlanHistoryComponent } from './ei/subscription-plan-history
 import { MyAssignedEiHistoryComponent } from './my-assigned/my-assigned-ei-history/my-assigned-ei-history.component';
 import { MyAssignedEiComponent } from './my-assigned/my-assigned-ei/my-assigned-ei.component';
 import { AdminPageNotFoundComponent } from './admin-page-not-found/admin-page-not-found.component';
-import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
+import { UsersSignedUpZatchupComponent } from './user/users-signed-up-zatchup/users-signed-up-zatchup.component';
+import { AdvertisementsComponent } from './advertisements/advertisements/advertisements.component';
+import { AdvertisementsActiveComponent } from './advertisements/advertisements-active/advertisements-active.component';
+import { AdvertisementsActiveAudienceComponent } from './advertisements/advertisements-active-audience/advertisements-active-audience.component';
+import { AdvertisementsActiveViewComponent } from './advertisements/advertisements-active-view/advertisements-active-view.component';
+import { AdvertisementsAddComponent } from './advertisements/advertisements-add/advertisements-add.component';
+import { AdvertisementsConfigureRateComponent } from './advertisements/advertisements-configure-rate/advertisements-configure-rate.component';
+import { AdvertisementsExpiredComponent } from './advertisements/advertisements-expired/advertisements-expired.component';
+import { AdvertisementsHistoryComponent } from './advertisements/advertisements-history/advertisements-history.component';
+import { AdvertisementsPendingForApprovalComponent } from './advertisements/advertisements-pending-for-approval/advertisements-pending-for-approval.component';
+import { AdvertisementsPendingForApprovalViewComponent } from './advertisements/advertisements-pending-for-approval-view/advertisements-pending-for-approval-view.component';
+import { AdvertisementsRateHistoryComponent } from './advertisements/advertisements-rate-history/advertisements-rate-history.component';
+import { AdvertisementsRejectComponent } from './advertisements/advertisements-reject/advertisements-reject.component';
+import { AdvertisementsRejectViewComponent } from './advertisements/advertisements-reject-view/advertisements-reject-view.component';
+import { DirectiveModule } from 'src/app/directives/directive.module';
+import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verified-users.component';
+import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
+import { ActiveUsersComponent } from './user/active-users/active-users.component';
+import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
+import  { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SupportManagementComponent } from './support/support-management/support-management.component';
+import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
+import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
+import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +157,6 @@ import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
     AdminEiRejectDetailsComponent,
     AdminZatchCertificateResultComponent,
     AdminZatchCertificateConfigueComponent,
-    AdminUserLastLoginComponent,
     AdminCreateNewPasswordComponent,
     AdminUserKycPendingComponent,
     AdminUserComponent,
@@ -175,7 +195,6 @@ import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
     ManagementCommissionHistoryComponent,
     ManagementCommissionInvoicesComponent,
     ManagementCommissionListComponent,
-    TicketForOnboardingComponent,
     SubadminAddComponent,
     SubadminAuthorizationAccessViewComponent,
     LectureCandidaturesComponent,
@@ -224,7 +243,29 @@ import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
     MyAssignedEiHistoryComponent,
     MyAssignedEiComponent,
     AdminPageNotFoundComponent,
-    NumberOnlyDirective
+    UsersSignedUpZatchupComponent,
+    AdvertisementsComponent,
+    AdvertisementsActiveComponent,
+    AdvertisementsActiveAudienceComponent,
+    AdvertisementsActiveViewComponent,
+    AdvertisementsAddComponent,
+    AdvertisementsConfigureRateComponent,
+    AdvertisementsExpiredComponent,
+    AdvertisementsHistoryComponent,
+    AdvertisementsPendingForApprovalComponent,
+    AdvertisementsPendingForApprovalViewComponent,
+    AdvertisementsRateHistoryComponent,
+    AdvertisementsRejectComponent,
+    AdvertisementsRejectViewComponent,
+    UsersSignedUpZatchupComponent,
+    KycVerifiedUsersComponent,
+    KycVerifiedByEiComponent,
+    ActiveUsersComponent,
+    DormantUsersComponent,
+    SupportManagementComponent,
+    TicketsOnboardingComponent,
+    PaymentInvoiceComponent,
+    ChangeDetailsRequestViewComponent
   ],
   imports: [
     CommonModule,
@@ -242,7 +283,9 @@ import { NumberOnlyDirective } from 'src/app/directives/number-only.directive';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    DirectiveModule,
+    TooltipModule.forRoot()
   ],
   providers: [DatePipe]
 })

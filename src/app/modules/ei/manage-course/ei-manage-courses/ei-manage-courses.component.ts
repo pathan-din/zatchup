@@ -117,6 +117,6 @@ export class EiManageCoursesComponent implements OnInit {
   }
 
   goToEiManageCoursesDetailsPage(id){
-    this.router.navigate(['ei/manage-courses-details' ],{queryParams:{"id":id}});
+    this.router.navigate(['ei/manage-courses-details', id]);
   }
 }

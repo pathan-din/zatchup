@@ -50,7 +50,7 @@ export class EiLoginSubadminComponent implements OnInit {
       
       
       this.baseService.action('subadmin/login/', this.model).subscribe(res => {
-        console.log(res);
+       
         let response: any = {};
         response = res;
         if(response.status==true)
@@ -86,7 +86,8 @@ export class EiLoginSubadminComponent implements OnInit {
   resendOtp() {
     try {
       let data: any = {};
-      this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+      this.modelForOtpModal.username = this.model.username ? this.model.username : this.model.phone;
+      //this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.SpinnerService.show();
@@ -150,7 +151,7 @@ export class EiLoginSubadminComponent implements OnInit {
         response = res;
         if (response.status == true) {
           localStorage.setItem("token", response.token);
-          localStorage.setItem("permission", response.permission);
+          sessionStorage.setItem("permission", JSON.stringify(response.permission));
           
            $("#OTPModel").modal('hide');
            this.router.navigate(['ei/dashboard']);
@@ -187,7 +188,7 @@ export class EiLoginSubadminComponent implements OnInit {
   }
 
   goToEiSubadminRegisterPage(){
-    this.router.navigate(['ei/subadmin-register']);
+    this.router.navigate(['ei/subadmin-registration']);
   }
 
  

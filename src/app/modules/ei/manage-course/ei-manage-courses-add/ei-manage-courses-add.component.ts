@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-ei-manage-courses-add',
   templateUrl: './ei-manage-courses-add.component.html',
@@ -22,6 +23,18 @@ export class EiManageCoursesAddComponent implements OnInit {
   documentForm2Elements:any;
   year:any=[];
   month:any=[];  
+  months: any = [{'name':'JAN'},
+  {'name':'FEB'},
+  {'name':'MAR'},
+  {'name':'APRIL'},
+  {'name':'MAY'},
+  {'name':'JUN'},
+  {'name':'JULY'},
+  {'name':'AUG'},
+  {'name':'SEP'},
+  {'name':'OCT'},
+  {'name':'NOV'},
+  {'name':'DEC'}];
   numberOfStudentList = [];
   numberOfAluminiList = [];
   
@@ -33,7 +46,8 @@ export class EiManageCoursesAddComponent implements OnInit {
   
   constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
     , private router: Router,private base:BaseService, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
-	public formBuilder: FormBuilder) { }
+  public formBuilder: FormBuilder,
+  private location: Location) { }
 
 
   ngOnInit(): void {
@@ -50,8 +64,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           teaching_start_year: "",
           teaching_start_month: "",
           teaching_stopped: false,
-          teaching_end_year: "",
-          teaching_end_month: "",
+          teaching_end_year: 0,
+          teaching_end_month: 0,
           is_teaching_current: false,
           alias_class: ""
         }]
@@ -59,7 +73,7 @@ export class EiManageCoursesAddComponent implements OnInit {
     }];
  	/*************************Year and month Loop*****************/
 	var i=1;
-	for(i=1;i<=12;i++)
+	for(i=1;i<=60;i++)
 	{
 		this.month.push(i);
 	}
@@ -102,8 +116,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           teaching_start_year: "",
           teaching_start_month: "",
           teaching_stopped: false,
-          teaching_end_year: "",
-          teaching_end_month: "",
+          teaching_end_year: 0,
+          teaching_end_month: 0,
           is_teaching_current: false,
           alias_class: ""
         }]
@@ -127,8 +141,8 @@ export class EiManageCoursesAddComponent implements OnInit {
         teaching_start_year: "",
         teaching_start_month: "",
         teaching_stopped: false,
-        teaching_end_year: "",
-        teaching_end_month: "",
+        teaching_end_year: 0,
+        teaching_end_month: 0,
         is_teaching_current: false,
         alias_class: ""
       }]
@@ -146,8 +160,8 @@ export class EiManageCoursesAddComponent implements OnInit {
       teaching_start_year: "",
       teaching_start_month: "",
       teaching_stopped: false,
-      teaching_end_year: "",
-      teaching_end_month: "",
+      teaching_end_year: 0,
+      teaching_end_month: 0,
       is_teaching_current: false,
       alias_class: ""
     })
@@ -226,6 +240,10 @@ export class EiManageCoursesAddComponent implements OnInit {
       }
     }
     
+  }
+
+  goBack(): void{
+    this.location.back()
   }
   
 }

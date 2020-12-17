@@ -4,6 +4,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { UsersServiceService } from 'src/app/services/user/users-service.service';
 declare var $: any;
 
 @Component({
@@ -21,12 +22,14 @@ export class EiMobileVerificationComponent implements OnInit {
   error:any=[];
   errorDisplay:any={};
   schoolNumber:any;
+  modelForOtpModal:any={};
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
-    private alert: NotificationService) { }
+    private alert: NotificationService,
+    private userService:UsersServiceService) { }
 
 
   ngOnInit(): void {
@@ -45,6 +48,33 @@ export class EiMobileVerificationComponent implements OnInit {
       $nextInput.focus();
     }
      
+  }
+  resendOtp() {
+    try {
+      let data: any = {};
+      this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+
+      /***********************Mobile Number OR Email Verification Via OTP**********************************/
+      this.SpinnerService.show();
+      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
+        let response: any = {}
+        response = res;
+        this.SpinnerService.hide();
+        if (response.status == true) {
+          alert("OTP Resend On Your Register Mobile Number Or Email-Id.")
+        } else {
+          this.errorOtpModelDisplay = response.error;
+          //alert(response.error)
+        }
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("verify Otp Exception", err);
+    }
   }
   goToEiPaymentPage(){
     $("#CongratulationModel").modal("hide");

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router} from '@angular/router';
 import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./ei-sidenav.component.css']
 })
 export class EiSidenavComponent {
-
+permission:any;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -41,7 +41,13 @@ export class EiSidenavComponent {
 
   }
   ngOnInit(): void {
-	  this.getDasboardDetails();
+    
+    if(localStorage.getItem("token")){
+      this.getDasboardDetails();
+    }
+    if(sessionStorage.getItem("permission")){
+      this.permission = JSON.parse(sessionStorage.getItem("permission"));
+    }
   }
   getDasboardDetails(){
 	  try{
@@ -72,47 +78,32 @@ export class EiSidenavComponent {
     }	
   }
   logout(){
-	  localStorage.clear();
+    this.SpinnerService.hide(); 
+    localStorage.clear();
+    sessionStorage.clear();
 	  this.router.navigate(['ei/login']);
   }
-  goToEiDashboardPage() {
-    this.router.navigate(['ei/dashboard']);
-  }
 
-  goToEiSchoolProfilePage() {
-    this.router.navigate(['ei/school-profile']);
-  }
-
-
-  goToEiAlumniManagementPage() {
-    this.router.navigate(['ei/alumni-management']);
-  }
-
-  goToEiStudentManagementPage() {
-    this.router.navigate(['ei/student-management']);
-  }
-
-  goToEiSubadminManagementPage(){
-    this.router.navigate(['ei/subadmin-management']);
-  }
-
-  goToEiEcertificateEresultPage() {
-    this.router.navigate(['ei/ecertificat-eresult']);
-  }
-
-  goToEiManageCoursesPage() {
-    this.router.navigate(['ei/manage-courses']);
-  }
-
-  goToEiSubscriptionPage() {
-    this.router.navigate(['ei/subscription']);
-  }
-
-  goToEiInvoicePage() {
-    this.router.navigate(['ei/invoice']);
-  }
-
-  goToEiNotificationPage() {
-    this.router.navigate(['ei/notification']);
+  isValidModule(module_code){
+    let moduleList:any={};
+    if(this.permission!==undefined && this.permission!==null && this.permission!==''){
+        moduleList = this.permission;
+        var data = moduleList.find(el => {
+          return el.module_code ==   module_code
+        })
+         
+        
+        if(data)
+        {
+          return data.is_access;
+        }else{
+          return false;
+        }
+        
+    }else{
+      return true;
+    }
+    
+    
   }
 }

@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { NotificationService } from '../../../../services/notification/notification.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 declare var $: any;
 @Component({
   selector: 'app-ei-school-register',
@@ -17,10 +21,12 @@ export class EiSchoolRegisterComponent implements OnInit {
   stateList:any=[];
   cityList:any=[];
   schoolList:any=[];
+  isValue:boolean=false;
   designationList:any=[];
   country:any
   name_of_school_others:any='';
   name_of_school_first:any='';
+  name_of_school_first1: any='';
   cpassword:any;
   city1:any;
   state1:any;
@@ -29,12 +35,59 @@ export class EiSchoolRegisterComponent implements OnInit {
   otp2:any;
   otp3:any;
   otp4:any;
+  filteredOptions: Observable<string[]>;
   //errorOtpModelDisplay:any;
+  data: any;
+  keyword:any = 'name_of_school';
+  
+  
+
+  suggestions: string[] = [];
+
+  suggest(event) {
+    if(typeof(event)=='string'){
+      console.log(event);
+      
+      this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event.toLowerCase()));
+      if( this.data.length<1)
+      {
+        let schoolData:any={"name_of_school":"Others"};
+        this.data.push(schoolData)
+      }
+    }
+   
+  }
+  suggestData(event) {
+   // this.data=[];
+   
+   
+    if(event.name_of_school=='Others'){
+      this.name_of_school_first='Others';
+      console.log(this.name_of_school_first);
+      
+    }else{
+      this.name_of_school_first=event.name_of_school;
+      this.changeSchool(event.name_of_school);
+    }
+    
+   
+  }
+  clearSuggestData(){
+    if( this.data.length<1)
+    {
+      let schoolData:any={"name_of_school":"Others"};
+      this.data.push(schoolData)
+    }
+    this.name_of_school_first='';
+    this.model.school_data={};
+  }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService
+    private genericFormValidationService:GenericFormValidationService,
+    private alert:NotificationService
+
     ) { }
 
 
@@ -50,10 +103,12 @@ export class EiSchoolRegisterComponent implements OnInit {
     this.model.school_data.name_of_school='';
     this.model.designation='';
     this.model.is_term_cond=false;
+    
    // localStorage.removeItem("token");
    /*****************************************/ 
   }
 
+  
   goToEiContactUsPage(){
     this.router.navigate(['ei/contact-us']);
   }
@@ -124,25 +179,29 @@ export class EiSchoolRegisterComponent implements OnInit {
   getSchoolListBycityId(city){
     this.model.school_data = {};
      //getallstate
+     this.name_of_school_first='';
      this.isValid(document.forms);
      let obj = this.cityList.find(o => o.city === city);
-     console.log(obj);
-     
+    
      try{
-       this.SpinnerService.show(); 
-      
-       this.eiService.getSchoolListByCity(obj.id).subscribe(res => {
+       if(obj.id){
+        this.SpinnerService.show(); 
+        //ei/get-notonboarded-ei-by-city
+        this.eiService.getSchoolListByCity(obj.id).subscribe(res => {
+          
+          let response:any={};
+          response=res;
+          this.schoolList=response.results;
+          
+          this.SpinnerService.hide(); 
          
-         let response:any={};
-         response=res;
-         this.schoolList=response.results;
-         this.SpinnerService.hide(); 
-        
-         },(error) => {
-           this.SpinnerService.hide(); 
-           console.log(error);
-           
-         });
+          },(error) => {
+            this.SpinnerService.hide(); 
+            console.log(error);
+            
+          });
+       }
+     
      }catch(err){
        this.SpinnerService.hide(); 
        console.log(err);
@@ -183,7 +242,7 @@ export class EiSchoolRegisterComponent implements OnInit {
       this.model.school_data.state=obj.state;
       this.model.school_data.city=obj.city;
       this.model.school_data.address1=obj.address1;
-      this.model.school_data.address2= obj.address2 ? obj.address2 : '';
+      this.model.school_data.address2= obj.address2!='null' && obj.address2!=undefined && obj.address2!=''? obj.address2 : '';
       this.model.school_data.landmark="";
       this.model.school_data.pincode=obj.pincode;
       this.model.school_data.university=obj.university;
@@ -211,6 +270,8 @@ export class EiSchoolRegisterComponent implements OnInit {
     if(this.name_of_school_first=='Others')
     {
       this.model.school_data.name_of_school=this.name_of_school_others;
+      this.model.school_data.state = this.state1;
+      this.model.school_data.city = this.city1;
     }else{
       this.model.school_data.name_of_school=this.name_of_school_first;
       this.name_of_school_others='';
@@ -244,7 +305,7 @@ export class EiSchoolRegisterComponent implements OnInit {
             this.SpinnerService.hide(); 
             var errorCollection='';
             errorCollection= this.eiService.getErrorResponse(this.SpinnerService,response.error);
-            alert(errorCollection);
+            this.alert.error(errorCollection,'Error');
             
           }
            

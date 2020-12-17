@@ -5,6 +5,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin-kyc-history-or-view',
@@ -12,7 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./admin-kyc-history-or-view.component.css']
 })
 export class AdminKycHistoryOrViewComponent implements OnInit {
-  @ViewChild('rejectedCloseButton') rejectedCloseButton: any;
+  // @ViewChild('rejectedCloseButton') rejectedCloseButton: any;
   @ViewChild('approveCloseButton') approveCloseButton: any;
   kycHistoryModal = new KYCHistory()
 
@@ -22,7 +23,8 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private notificationService: NotificationService,
-    private validationService: GenericFormValidationService
+    private validationService: GenericFormValidationService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -82,7 +84,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
       "id": this.kycHistoryModal.kycDetails.id,
       "request_type": this.kycHistoryModal.approveOrReject,
       "kyc_id": this.kycHistoryModal.kycDetails.kyc_id_no,
-      "rejected_reason": this.kycHistoryModal.rejectionReason,
+      "rejected_reason": this.kycHistoryModal.rejectionReason ? this.kycHistoryModal.rejectionReason : undefined,
       "rejected_remarks": this.kycHistoryModal.rejectionRemark
     }
     this.loader.show()
@@ -111,5 +113,9 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
 
   radioChange(event) {
     this.kycHistoryModal.approveOrReject = event.value
+  }
+  
+  goBack(): void{
+    this.location.back();
   }
 }

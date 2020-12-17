@@ -9,14 +9,14 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private router: Router,
 
-  ){
+  ) {
 
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.isLoggedIn())
-      this.router.navigate(['admin/login']);
+      this.navigateToLogin();
 
     return this.isLoggedIn();
   }
@@ -35,5 +35,15 @@ export class AuthGuard implements CanActivate, CanLoad {
     // else
     //   return false
     return !!localStorage.getItem("token");
+  }
+
+  navigateToLogin() {
+    if (this.getParentComponentRoute(this.router.url) !== '')
+      this.router.navigate([this.getParentComponentRoute(this.router.url) + '/login'])
+  }
+
+  getParentComponentRoute(url: string): string {
+    const route = url.split('/')
+    return route[1]
   }
 }

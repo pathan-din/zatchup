@@ -213,6 +213,9 @@ export class EiStudentPendingVerificationComponent implements OnInit {
       //console.log(err);
     }
   }
+
+
+  
   applyFilter() {
 
     var arrFilter = [];

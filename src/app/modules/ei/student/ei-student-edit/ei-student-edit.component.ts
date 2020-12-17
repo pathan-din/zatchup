@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
+import { NotificationService } from '../../../../services/notification/notification.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 declare var $: any;
@@ -18,7 +19,9 @@ export class EiStudentEditComponent implements OnInit {
   errorDisplay: any = {};
   uploaded: any = '';
   classList: any = [];
-  constructor(private genericFormValidationService: GenericFormValidationService, private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService, public formBuilder: FormBuilder) { }
+  constructor(private genericFormValidationService: GenericFormValidationService,
+    private alert:NotificationService,
+    private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService, public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     console.log(this.router)
@@ -91,7 +94,7 @@ export class EiStudentEditComponent implements OnInit {
         } else {
           //this.SpinnerService.hide(); 
           this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-          alert(this.errorDisplay.message)
+          this.alert.error(this.errorDisplay.message,'Error')
         }
 
       }, (error) => {

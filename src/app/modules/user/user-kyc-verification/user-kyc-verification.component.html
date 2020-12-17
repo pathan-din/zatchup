@@ -8,7 +8,7 @@
         <div class="col-md-4 pl-0 ">
             <div class="skipbtndiv">
                 <h2 class="mb-3 textSpace">KYC Verification</h2>
-                <button type="button" class=" common-btn regularFont textSpace">Skip</button>
+                
             </div>
 
 
@@ -17,7 +17,7 @@
                     <div class="col-sm-12 form-control-inputDiv">
                         <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
                             <option value="">Select your ID</option>
-                            <option value="Aadhar">Adhar Card</option>
+                            <option value="Aadhar">Aadhar Card</option>
                             <option value="Dl">Driving License</option>
                             <option value="Passport">Passport Number</option>
                         </select>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
-                        <input required (keyup)="isValid($event)" pattern="{{pattran}}" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter ID">
+                        <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}" id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_id_no"></div>
                 </div>
@@ -40,14 +40,14 @@
                     <div class="col-sm-12 ">
                         <h4 class="mb-2 textSpace color-gray">Date Of Birth</h4>
                         <div class="row">
-                            <div class="col-2 pl-0 mr-1 form-control-inputDiv">
+                            <div class="col-3 mr-1 form-control-inputDiv">
                                 <select required (change)="isValid($event)" [(ngModel)]="dateModel" name ="dateModel" class="custom-select form-date-col  border-0 pr-2">
                                     <option value="" [selected]='true'>Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
                                    
                                 </select>
                             </div>
-                            <div class="col-3 pl-1 mr-1 ml-1 form-control-inputDiv">
+                            <div class="col-3 mr-1 ml-1 form-control-inputDiv">
                                 <select required (change)="isValid($event)" [(ngModel)]="monthModel" name ="monthModel" class="custom-select border-0 form-month-col">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
@@ -72,7 +72,7 @@
                         <div (click)="fileInput.click()" class="row form-control-file">
                             <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-xs-2 form-control-fileDiv p-0">
                                 <button class="fileBtn"><img src="assets/images/userWebsite/upload_icons.png" class="img-fluid"></button>
-                                <input #fileInput required (change)="handleFileInput($event.target.files)"  [(ngModel)]="model.kyc_document" name ="kyc_document" type="file" name="kyc_document" />
+                                <input  #fileInput required (change)="handleFileInput($event.target.files)"  [(ngModel)]="model.kyc_document" name ="kyc_document" type="file" name="kyc_document" />
                             </div>
                             <div class="col-xl-10 col-md-8 col-sm-10 col-xs-10 text-left pl-1">
                                 <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload photo</p>
@@ -85,7 +85,24 @@
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_document"></div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 ">
+                        <div (click)="fileInput1.click()" class="row form-control-file">
+                            <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-xs-2 form-control-fileDiv p-0">
+                                <button class="fileBtn"><img src="assets/images/userWebsite/upload_icons.png" class="img-fluid"></button>
+                                <input  #fileInput1 [required]="model.kyc_type=='Aadhar'" (change)="handleFileInput($event.target.files)"  [(ngModel)]="model.kyc_document_back" name ="kyc_document_back" type="file" />
+                            </div>
+                            <div class="col-xl-10 col-md-8 col-sm-10 col-xs-10 text-left pl-1">
+                                <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back photo</p>
+                                <p class="text-secondary regularFont commonMaterialFontSize">As per selection above</p>
+								<p *ngIf="filename" class="text-secondary regularFont commonMaterialFontSize">{{filename}}</p>
+								 
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_document_back"></div>
+                </div>
                 <button type="submit" class="btn common-btn regularFont textSpace mt-5" (click)="goToUserQualificationPage()">Submit</button>
 
             </form>

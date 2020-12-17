@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -17,6 +18,7 @@ export class SubadminAddComponent implements OnInit {
   maxDate: any;
 
   constructor(
+    private location: Location,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -63,9 +65,13 @@ export class SubadminAddComponent implements OnInit {
     }
   }
 
-  isValid(event) {
+  isValid() {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
+  }
+
+  goBack(){
+    this.location.back()
   }
 }

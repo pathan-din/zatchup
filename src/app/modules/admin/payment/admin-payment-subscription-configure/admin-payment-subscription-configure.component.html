@@ -2,16 +2,15 @@
 <div class="container main-container p-3">
     <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Configure Subscription Plans</h2>
+            <div class="col-md-6">
+                <h2 class="commonFontSize semiBoldFont mb-1 m-0">Configure Subscription Plans</h2>
             </div>
-            <div class="col SearchDiv d-flex flex-row">
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " aria-hidden="true "
-                    data-toggle="modal" data-target="#addSubscriptionModel">Add New Subscription</button>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-dark text-white px-4 py-2 border-0" aria-hidden="true" data-toggle="modal" data-target="#addSubscriptionModel">Add New Subscription</button>
             </div>
         </div>
 
-        <div class="tableDiv mt-2">
+        <div class="tableDiv mt-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource">
 
@@ -47,12 +46,12 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
 
                 </mat-table>
+            </div>
+        </div>
 
-
-                <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-                    <p style="color: white">Please Wait. </p>
-                </ngx-spinner>
-
+        <div class="row" *ngIf="dataSource && dataSource.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
 
@@ -149,3 +148,7 @@
 
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

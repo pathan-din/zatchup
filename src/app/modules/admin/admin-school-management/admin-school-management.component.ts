@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from 'src/app/services/base/base.service';
@@ -27,13 +27,15 @@ export class AdminSchoolManagementComponent implements OnInit {
 
   constructor(
     private validationService: GenericFormValidationService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     private baseService: BaseService,
     private datePipe: DatePipe,
     private alert: NotificationService
   ) {
-    this.maxDate = new Date()
+    this.maxDate = new Date();
+    console.log(this.router.url)
   }
 
   ngOnInit() {
@@ -71,7 +73,7 @@ export class AdminSchoolManagementComponent implements OnInit {
 
 
   goToAdminEIDatabase() {
-    this.router.navigate(['admin/ei-database-list'])
+    this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/school-management' } })
   }
 
   goToEIOnboardedOnZatchupList() {
@@ -88,6 +90,10 @@ export class AdminSchoolManagementComponent implements OnInit {
 
   goToAdminEiManagementPendingForApprovalPage() {
     this.router.navigate(['admin/ei-management-pending-for-approval']);
+  }
+
+  changeDetailRequestsPending(){
+    this.router.navigate(['admin/change-detail-requests-pending']);
   }
 
 
@@ -127,13 +133,14 @@ export class AdminSchoolManagementComponent implements OnInit {
   }
 
   searchRoute() {
-    if (this.search.length > 3)
+    if (this.search.length > 1)
       this.router.navigate(['admin/ei-search', this.search])
     else
-      this.alert.error('Search text must be greater than 3 keyword', 'Error')
+      this.alert.error('Search text must be greater than 1 keyword', 'Error')
   }
 
-  addEducationInstitute(){
+  addEducationInstitute() {
+    if(this.search.length >= 1)
     this.router.navigate(['admin/add-education-institute'])
   }
 }

@@ -45,7 +45,7 @@ import { UserCreatePostComponent } from './user-create-post/user-create-post.com
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserSchoolProfileComponent } from './user-school-profile/user-school-profile.component';
 import { UserMyProfileComponent } from './user-my-profile/user-my-profile.component';
-import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { UserForgotPasswordComponent } from './user-forgot-password/user-forgot-password.component';
 import { UserResetPasswordComponent } from './user-reset-password/user-reset-password.component';
@@ -57,32 +57,70 @@ import { ContactUsComponent } from './user-info/contact-us/contact-us.component'
 import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-more-course-manually.component';
 import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
+import { DirectiveModule } from 'src/app/directives/directive.module';
+import { MySchoolComponent } from './my-school/my-school.component';
 
 
 
 @NgModule({
 
-  declarations: [UserhomeComponent, UserHeaderComponent, UserFooterComponent, 
-    UserLoginComponent, UserSignUpComponent, UserKycVerificationComponent, 
-    UserQualificationComponent, UserWorkDetailComponent, UserKycSuccessfulDoneComponent,
-    UserSchoolConfirmationComponent, UserCongratulationComponent, UserAddEiComponent, 
-    UserEiProfileComponent, UserEiProfileNotOnboardComponent, UserEiConfirmationComponent, 
-    UserAddCourseComponent, UserAddMoreEiComponent, UserAddMoreStandardComponent, 
-    UserProfileCreatedSuccessfullyComponent, UserLandingPageComponent,
-    UserPaymentComponent, UserMySchoolTabComponent, UserCertificateComponent, UserZatchupStarClassComponent, 
-    UserProjectFundingComponent, UserFundingDetailsComponent, UserLectureRequestComponent, 
-    UserProfileComponent, UserNotificationsComponent, UserRemaindersComponent, 
-    UserMyBuddiesComponent, UserMyEducationalProfileComponent, UserCreatePostComponent, 
-    UserSearchComponent, UserSchoolProfileComponent, UserMyProfileComponent, UserForgotPasswordComponent, 
-    UserResetPasswordComponent, AddNewCourseComponent, AboutUsComponent, CareerComponent, ContactUsComponent, AddMoreCourseManuallyComponent, AddPastEiComponent, UserPageNotFoundComponent ],
+  declarations: [
+    UserhomeComponent,
+    UserHeaderComponent,
+    UserFooterComponent,
+    UserLoginComponent,
+    UserSignUpComponent,
+    UserKycVerificationComponent,
+    UserQualificationComponent,
+    UserWorkDetailComponent,
+    UserKycSuccessfulDoneComponent,
+    UserSchoolConfirmationComponent,
+    UserCongratulationComponent,
+    UserAddEiComponent,
+    UserEiProfileComponent,
+    UserEiProfileNotOnboardComponent,
+    UserEiConfirmationComponent,
+    UserAddCourseComponent,
+    UserAddMoreEiComponent,
+    UserAddMoreStandardComponent,
+    UserProfileCreatedSuccessfullyComponent,
+    UserLandingPageComponent,
+    UserPaymentComponent,
+    UserMySchoolTabComponent,
+    UserCertificateComponent,
+    UserZatchupStarClassComponent,
+    UserProjectFundingComponent,
+    UserFundingDetailsComponent,
+    UserLectureRequestComponent,
+    UserProfileComponent,
+    UserNotificationsComponent,
+    UserRemaindersComponent,
+    UserMyBuddiesComponent,
+    UserMyEducationalProfileComponent,
+    UserCreatePostComponent,
+    UserSearchComponent,
+    UserSchoolProfileComponent,
+    UserMyProfileComponent,
+    UserForgotPasswordComponent,
+    UserResetPasswordComponent,
+    AddNewCourseComponent,
+    AboutUsComponent,
+    CareerComponent,
+    ContactUsComponent,
+    AddMoreCourseManuallyComponent,
+    AddPastEiComponent,
+    UserPageNotFoundComponent,
+    MySchoolComponent
+  ],
 
   imports: [
     CommonModule,
-    UserwebRoutingModule,            
+    UserwebRoutingModule,
     PaginationModule,
     TabsModule,
-    FormsModule,NgxSpinnerModule,ReactiveFormsModule,
-    BsDatepickerModule
+    FormsModule, NgxSpinnerModule, ReactiveFormsModule,
+    BsDatepickerModule,
+    DirectiveModule
   ]
 })
 export class UserwebModule { }

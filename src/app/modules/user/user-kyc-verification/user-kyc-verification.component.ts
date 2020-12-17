@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from '../../../services/notification/notification.service';
 
 declare var $: any;
 
@@ -21,6 +22,9 @@ export class UserKycVerificationComponent implements OnInit {
   date: any = [];
   isStudent: boolean = true;
   pattran:any="";
+ 
+  maxLength:any=45;
+  placeholder="Enter Id";
   month: any = [{ monInNumber: '01', monInWord: 'Jan' },
   { monInNumber: '02', monInWord: 'Feb' },
   { monInNumber: '03', monInWord: 'Mar' },
@@ -39,21 +43,32 @@ export class UserKycVerificationComponent implements OnInit {
   dateModel: any;
   monthModel: any;
   yearModel: any;
-
+  arrAadhar:any=[1];
   /*********************************************************/
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay: any;
+  uploadedContentForBackPhoto: any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
-     private router: Router, private SpinnerService: NgxSpinnerService, public userService: UsersServiceService, public formBuilder: FormBuilder) { }
+     private router: Router, 
+     private SpinnerService: NgxSpinnerService,
+     public userService: UsersServiceService, 
+     public formBuilder: FormBuilder,
+     public alert:NotificationService) { }
 
   ngOnInit(): void {
     this.model.kyc_type = "";
     this.dateModel = '';
     this.monthModel = '';
     this.yearModel = '';
-
+    if(!localStorage.getItem("year") && !localStorage.getItem("month") && !localStorage.getItem("day")){}else{
+      this.yearModel = localStorage.getItem("year");
+      this.monthModel = localStorage.getItem("month");
+      this.dateModel = localStorage.getItem("day");
+      this.model.kyc_name= localStorage.getItem("kyc_name");
+    }
+    
     var dt = new Date();
     /**Get Current year for date of birth year dropdown**/
     var year = dt.getFullYear();
@@ -67,23 +82,33 @@ export class UserKycVerificationComponent implements OnInit {
   }
   checkIdValidation(){
     this.pattran='';
-    if(this.model.kyc_type=='AADHAR'){
-      this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
-    }else if(this.model.kyc_type=='dl'){
-      this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
-    }else if(this.model.kyc_type=='passport'){
     if(this.model.kyc_type=='Aadhar'){
+      this.maxLength = 14;
+      this.placeholder='xxxx xxxx xxxx'
+      //this.model.kyc_id_no
       this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
     }else if(this.model.kyc_type=='Dl'){
+      this.maxLength = 13;
+      this.placeholder='Eg : MH1420110062821'
       this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
     }else if(this.model.kyc_type=='Passport'){
+      this.maxLength = 8;
       this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
-    }else if(this.model.kyc_type=='passport'){
-    
+      this.placeholder='Eg : M00000000'
     }
-  } }
+  } 
   isValid(event) {
-
+    
+    
+    if(this.model.kyc_id_no)
+    {
+      if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12){
+        this.model.kyc_id_no=this.model.kyc_id_no+' ';
+      }
+      this.arrAadhar.push(1);
+    } else{
+      this.arrAadhar=[1];
+    }
     if (this.yearModel && this.monthModel && this.dateModel) {
       this.model.kyc_dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
     } else {
@@ -103,7 +128,7 @@ export class UserKycVerificationComponent implements OnInit {
     this.error = [];
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    console.log(this.errorDisplay)
+ 
     if (this.errorDisplay.valid) {
       return false;
     }
@@ -114,6 +139,8 @@ export class UserKycVerificationComponent implements OnInit {
       const formData = new FormData();
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
+      formData.append('kyc_document_back', this.uploadedContentForBackPhoto);
+      
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
@@ -156,7 +183,7 @@ export class UserKycVerificationComponent implements OnInit {
 
             }
           }
-          alert(errorCollection);
+          this.alert.error(errorCollection,'Error');
         }
       }, (error) => {
         this.SpinnerService.hide();
@@ -176,6 +203,13 @@ export class UserKycVerificationComponent implements OnInit {
     this.filename = fileData.name;
     this.uploadedContent = fileData;
   }
+    /**************Upload File Function****************/
+    handleFileInputForBackPhoto(file) {
+      let fileList: FileList = file;
+      let fileData: File = fileList[0];
+      this.filename = fileData.name;
+      this.uploadedContentForBackPhoto = fileData;
+    }
   /*************************************************/
   areYouCurrentlyStudentFunction(isStudent) {
     

@@ -7,7 +7,7 @@ export class EIPendingApproval {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position','zatchUpID','schoolName', 'state','city','additionType','signUpDate','action'];
+    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'additionType', 'signUpDate', 'action'];
     dataSource: any;
     userId: any;
     filterFromDate: any;
@@ -36,11 +36,14 @@ export class OnBoardList {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position','zatchUpID','schoolName', 'state','city','signUpDate', 'onboardStage', 'action'];
+    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'signUpDate', 'onboardStage', 'action'];
 
     dataSource: any;
-  university: any;
-  stagePending: any='';
+    university: any;
+    stagePending: any = '';
+    message: any
+    errorDisplay: any = {};
+    eiId: any
 }
 
 export class notOnZatchup {
@@ -58,40 +61,37 @@ export class notOnZatchup {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position','schoolName', 'state','city', 'board','address', 'zatchUpID','addedBy',
-    'messages','action'];
+    displayedColumns: string[] = ['position', 'schoolName', 'state', 'city', 'board', 'address', 'zatchUpID', 'addedBy',
+        'messages', 'action'];
     maxDate: any;
 
     dataSource: any;
-  university: any;
+    university: any;
 }
 
-export class OnboardedZatchup{
-    startIndex: Number;
+export class OnboardedZatchup {
+    startIndex: any;
     listParams: any = {};
     pageSize: any = 5;
     dataSource: any;
-    state: any ='';
-    city: any= '';
-    stateId: any ='';
-    cityId: any ='';
+    state: any = '';
+    city: any = '';
+    stateId: any = '';
+    cityId: any = '';
     allStates: any;
     allCities: any;
     university: any;
     config = {
-        itemsPerPage:0,
-        currentPage:1,
-        totalItems:0
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
     }
-    displayedColumns: string[] = ['position','zatchUpID','schoolName', 'state','city',  'board','onboardingDate','studentZatchup',
-    'totalAlumnizatchup','commission','subscriptionStatus', 'status','eiPocName', 'action'];   
-  
+    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'board', 'onboardingDate', 'studentZatchup',
+        'totalAlumnizatchup', 'commission', 'subscriptionStatus', 'status', 'eiPocName', 'action'];
+
 }
 
-
-export class StudentApproval {
-  
-  
+export class SignUpEi {
     startIndex: Number;
     listParams: any = {};
     pageSize: any = 5;
@@ -100,30 +100,67 @@ export class StudentApproval {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position','addingDate','zatchUpID', 'name','phoneNumber','emailID',  'userID','class','rollNumber',
-    'gender','age','unverifyStudent'];   
+    displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
 
     dataSource: any;
-  courseList: any=[];
-  standardList: any=[];
-  classList:any=[];
-  classId: any=[];
-  courseId: any=[];
-  standardId: any=[];
-  //classId: any='';
-  course: any='';
-  standard: any='';
-  class: any='';
-  
-//   courseList: any = [];
-//   standardList: any = [];
-//   classList: any = [];
-//   displayCourseList: any;
-//   displayStandardList: any;
-//   displayClassList: any;
+    // courseList: any = [];
+    // standardList: any = [];
+    // classList: any = [];
+    // classId: any = [];
+    // courseId: any = [];
+    // standardId: any = [];
+    course: any = '';
+    standard: any = '';
+    class: any = '';
+  filterFromDate: any;
+  filterToDate: any;
+  page: any;
+  maxDate: Date;
+  allCourses: any= [];
+  allStandard: any = [];
+  allClasses: any = [];
+  course_id: any = '';
+  standard_id: any = '';
+  class_id: any = '';
+}
+export class StudentApproval {
+
+
+    startIndex: Number;
+    listParams: any = {};
+    pageSize: any = 5;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    displayedColumns: string[] = ['position', 'addingDate', 'zatchUpID', 'name', 'phoneNumber', 'emailID', 'userID', 'class', 'rollNumber',
+        'gender', 'age', 'unverifyStudent'];
+
+    dataSource: any;
+    courseList: any = [];
+    standardList: any = [];
+    classList: any = [];
+    classId: any = [];
+  //  courseId: any = [];
+    //standardId: any = [];
+    //classId: any='';
+    course: any = '';
+    standard: any = '';
+    class: any = '';
+  class_id: any='';
+  standard_id: any='';
+  course_id: any='';
+
+    //   courseList: any = [];
+    //   standardList: any = [];
+    //   classList: any = [];
+    //   displayCourseList: any;
+    //   displayStandardList: any;
+    //   displayClassList: any;
 }
 
-export class PendingApprovalProfile{
+export class PendingApprovalProfile {
     zatchupId: any;
     existingZatchIDMOUDoc: any
     rejectionReason: any;
@@ -136,7 +173,7 @@ export class PendingApprovalProfile{
     comment: any
 }
 
-export class DatabaseView{
+export class DatabaseView {
     zatchupId: any;
     existingZatchIDMOUDoc: any
     rejectionReason: any;
@@ -150,7 +187,7 @@ export class DatabaseView{
     eiID: any;
 }
 
-export class OnboardingView{
+export class OnboardingView {
     zatchupId: any;
     existingZatchIDMOUDoc: any
     rejectionReason: any;

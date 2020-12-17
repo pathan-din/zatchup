@@ -1,7 +1,15 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Students List</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Students List</h2>
+            </div>
+
+        </div>
 
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
 
@@ -246,7 +254,7 @@
                        <span class="mx-2 color-blue">Yes</span> -->
                        <button type="button " (click)="closeModel()"
                            class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
-                       <button type="button" (click)="approveStudent(1, modelUserId)"
+                       <button type="button"
                            class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
 
                    </p>

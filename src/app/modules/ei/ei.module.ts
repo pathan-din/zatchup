@@ -137,7 +137,12 @@ import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
 import { SubadmincongratulationComponent } from './registration/subadmincongratulation/subadmincongratulation.component';
 import { SubadminschoolconfirmationComponent } from './registration/subadminschoolconfirmation/subadminschoolconfirmation.component';
-
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { DirectiveModule } from 'src/app/directives/directive.module';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
+import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
+import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component'
 
 @NgModule({
   declarations: [
@@ -270,7 +275,11 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
     AddEiComponent,
     SubadminprofileComponent,
     SubadmincongratulationComponent,
-    SubadminschoolconfirmationComponent
+    SubadminschoolconfirmationComponent,
+    SignUpPendingListComponent,
+    EiProfilePreviewComponent,
+    SignUpPendingListComponent,
+    EiSentForSignUpComponent
   ],
   imports: [
     CommonModule,
@@ -280,7 +289,10 @@ import { SubadminschoolconfirmationComponent } from './registration/subadminscho
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxPaginationModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    AutocompleteLibModule,
+    DirectiveModule,
+    TooltipModule.forRoot()
   ],
   exports: [
     EiLoginComponent

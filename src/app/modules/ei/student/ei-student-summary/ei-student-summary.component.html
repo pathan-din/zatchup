@@ -2,9 +2,17 @@
 
 <div class="container main-container p-3">
     <div class="Student-summary-div bg-white px-3 py-2 mt-3">
-        <h2 class="commonFontSize semiBoldFont">Student Summary</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-0">Student Summary</h2>
+            </div>
 
-        <div class="row">
+        </div>
+
+        <div class="row mt-3">
 
             <div class="col-xl-10 col-lg-10 col-md-10 col-12">
                 <div class="form-control-inputDiv  d-flex flex-column rounded-0 p-0 shadow-none ">
@@ -40,7 +48,7 @@
                                 <div class="col-4 py-2">{{stData.standard_name}}</div>
                                 <div class="col-4 py-2">{{stData.num_of_student}}</div>
                                 <div class="col-4 py-2">
-                                    <button class="rounded bg-paret-green border-0  text-white" (click)="toOpenClass(stData.standard_id)"><i
+                                    <button class="rounded bg-dark border-0  text-white" (click)="toOpenClass(stData.standard_id)"><i
                                     class="fa fa-angle-double-down" aria-hidden="true"></i></button>
                                 </div>
                                 <div  id="class_{{stData.standard_id}}" class="col-12 className px-0 border-bottom border-gray" style="display:none">

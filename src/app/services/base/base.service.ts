@@ -27,8 +27,11 @@ export class BaseService {
     }
     return this.http.get(this.environment.baseUrl + url, { params })
   }
-  getDateFormat(date){
-    return this.datePipe.transform(date, 'yyyy-MM-dd'); 
+  getDateFormat(date) {
+    return this.datePipe.transform(date, 'yyyy-MM-dd');
+  }
+  getDateReverseFormat(date) {
+    return new Date(date);
   }
   setParams(params) {
     let httpParams = new HttpParams();
@@ -58,8 +61,18 @@ export class BaseService {
       () => console.info('File downloaded successfully');
   }
 
+  generatePdf(url: any, fileName: any, args?: any) {
+    this.downloadFile(url, args).subscribe(response => {
+      let blob: any = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      fileSaver.saveAs(blob, fileName + '.pdf');
+    }), error => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
+  }
+
   action(url: any, data: any, args?: any) {
-    let obj = this.setActionData(data);
+    // debugger
+    // let obj = this.setActionData(data);
     let params: any
     if (args) {
       params = this.setParams(args)

@@ -34,8 +34,8 @@
     right: 10px;
 }
 
-.card.VerificationDocCard {
-    width: 185px;
+.card {
+    width: 29%;
 }
 
 .onboarding-table-similarEI tr th,
@@ -79,5 +79,11 @@
         min-height: 13vh;
         min-width: 19vw;
         max-width: 19vw;
+    }
+}
+
+@media (max-width: 667px){
+    .card {
+        width: 100%;
     }
 }

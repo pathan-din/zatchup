@@ -30,7 +30,7 @@
                             <label for="idNo" class="mediumFont commonFontSize letterspacing">
                                 ID Number</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input required pattern="{{pattran}}" (keyup)="isValid()" [(ngModel)]="model.kyc_id_no" name ="id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter ID">
+                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()" pattern="{{pattran}}" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.id_no"></div>
                         </div>
@@ -60,7 +60,7 @@
                             <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Photo Aadhar/Driving/Passport</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInput($event.target.files)"   name ="document">
+                                <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInput($event.target.files)"   name ="document">
                             </div>
                         </div>
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.document"></div>

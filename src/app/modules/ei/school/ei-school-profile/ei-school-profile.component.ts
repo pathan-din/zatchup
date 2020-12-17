@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
-import { NgxSpinnerService } from "ngx-spinner"; 
+import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from '../../../../services/notification/notification.service';
 @Component({
   selector: 'app-ei-school-profile',
   templateUrl: './ei-school-profile.component.html',
@@ -11,120 +12,132 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class EiSchoolProfileComponent implements OnInit {
 
-  postOption:string="matrix";
-  postOptionActiveImage:string='dead';
-  postOptionActiveMatrix:string='active';
-  userProfile:any={};
-  cover_pic:any='';
-  profile_pic:any='';
+  postOption: string = "matrix";
+  postOptionActiveImage: string = 'dead';
+  postOptionActiveMatrix: string = 'active';
+  userProfile: any = {};
+  cover_pic: any = '';
+  profile_pic: any = '';
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
-    public eiService:EiServiceService,
+    public eiService: EiServiceService,
     public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService) { }
+    public alert: NotificationService,
+    private genericFormValidationService: GenericFormValidationService) { }
 
   ngOnInit(): void {
-	  this.getProfile();
+    this.getProfile();
   }
-  postTabFunction(event){
-    this.postOption= event;
-    if(event==='matrix'){
-      this.postOptionActiveMatrix='active';
-      this.postOptionActiveImage='dead';
+  postTabFunction(event) {
+    this.postOption = event;
+    if (event === 'matrix') {
+      this.postOptionActiveMatrix = 'active';
+      this.postOptionActiveImage = 'dead';
     }
-    if(event==='image'){
-      this.postOptionActiveMatrix='dead';
-      this.postOptionActiveImage='active';
+    if (event === 'image') {
+      this.postOptionActiveMatrix = 'dead';
+      this.postOptionActiveImage = 'active';
     }
-    }
-    goToEISchoolPostPage(){
-      this.router.navigate(['ei/school-post']);
-    
-    }
-   
-	 getProfile(){
-	      try{
-      this.SpinnerService.show(); 
-     
+  }
+  goToEISchoolPostPage() {
+    this.router.navigate(['ei/school-post']);
+
+  }
+
+  getProfile() {
+    try {
+      this.SpinnerService.show();
+
       this.eiService.getEiProfileDetails().subscribe(res => {
-        
-        let response:any={};
-        response=res;
-        this.SpinnerService.hide(); 
-		    this.userProfile=response;
-        
-       
-        },(error) => {
-          this.SpinnerService.hide(); 
-          console.log(error);
-        });
-    }catch(err){
-      this.SpinnerService.hide(); 
+
+        let response: any = {};
+        response = res;
+        this.SpinnerService.hide();
+        this.userProfile = response;
+
+
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
       console.log(err);
     }
   }
-uploadCoverPic(file){
-   
-    
-   try{
-    this.SpinnerService.show();
-    let fileList: FileList = file;
+  uploadCoverPic(file) {
+
     console.log(file);
     
-    let fileData: File = fileList[0];
-    const formData = new FormData();
-    formData.append('cover_pic', fileData);
-    this.eiService.updateCoverPic(formData).subscribe(res => {
-      let response: any = {}
-      response = res;
-      if (response.status == true) {
-        this.SpinnerService.hide();	
-        this.cover_pic=response.data[0].cover_pic_url;
-      } else {
-        this.SpinnerService.hide();
-        console.log("Error:Data not update");
-      }
-
-    }, (error) => {
-      this.SpinnerService.hide();
-      console.log(error);
-
-    });
-  } catch (err) {
-    this.SpinnerService.hide();
-    console.log("vaeryfy Otp Exception", err);
-  }
-    
-   
-}
-uploadProfilePic(file){
-  let fileList: FileList = file;
-    let fileData: File = fileList[0];
-    try{
+    try {
       this.SpinnerService.show();
+      let fileList: FileList = file;
+     
+
+      let fileData: File = fileList[0];
+      if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
+      {
+        this.SpinnerService.hide();
+        this.alert.error("File format not supported",'Error');
+        return
+      }
       const formData = new FormData();
-      formData.append('profile_pic',fileData);
+      formData.append('cover_pic', fileData);
       this.eiService.updateCoverPic(formData).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();	
-          this.userProfile.profile_pic=response.data[0].profile_pic_url;
+          this.SpinnerService.hide();
+          this.cover_pic = response.data[0].cover_pic_url;
         } else {
           this.SpinnerService.hide();
           console.log("Error:Data not update");
         }
-  
+
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
-  
+
       });
     } catch (err) {
       this.SpinnerService.hide();
       console.log("vaeryfy Otp Exception", err);
     }
-    
-    
-}
+
+
+  }
+  uploadProfilePic(file) {
+    let fileList: FileList = file;
+    let fileData: File = fileList[0];
+    if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
+      {
+        this.SpinnerService.hide();
+        this.alert.error("File format not supported",'Error');
+        return
+      }
+    try {
+      this.SpinnerService.show();
+      const formData = new FormData();
+      formData.append('profile_pic', fileData);
+      this.eiService.updateCoverPic(formData).subscribe(res => {
+        let response: any = {}
+        response = res;
+        if (response.status == true) {
+          this.SpinnerService.hide();
+          this.userProfile.profile_pic = response.data[0].profile_pic_url;
+        } else {
+          this.SpinnerService.hide();
+          console.log("Error:Data not update");
+        }
+
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("vaeryfy Otp Exception", err);
+    }
+  }
 }

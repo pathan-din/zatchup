@@ -2,80 +2,86 @@
 <div class="container main-container p-3">
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont m-0">View Status added Sub Admin</h2>
-        <div class="row my-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">View Status added Sub Admin</h2>
+            </div>
+
+        </div>
+
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-end ">
                 <div class="dropdown-lg-Div">
                     <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Status</label>
                     <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
-                        <select class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">Select Status</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </select>
+                        <select class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="pageSize">
+                            <option value="">Select</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
                     </div>
                 </div>
 
-                <button type='button' class="bg-purple text-white border-0 px-5 py-2 ml-3">Apply</button>
+                <button type='button' class="bg-purple text-white border-0 px-5 py-2 ml-3" (click)="getEIStatus('1')">Apply</button>
             </div>
         </div>
-        <div class="tableDiv ">
+        <div class="tableDiv" *ngIf="dataSource && dataSource.length > 0">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="dataSource | paginate: config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + startIndex}} </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="date">
                         <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.date}}
+                            {{element.created_on | date:'dd MMM yyyy'}}
                         </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="ZatchUpID">
                         <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.ZatchUpID}}
+                            {{element.zatchupId}}
                         </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Name}}
+                            {{element.firstname}} {{element.last_name}}
                         </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="EmailID_phone">
                         <mat-header-cell *matHeaderCellDef> Email ID / Phone Number </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.EmailID_phone}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.email ? element.email : element.phone}}
+                        </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="Designation">
                         <mat-header-cell *matHeaderCellDef> Designation </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Designation}} </mat-cell>
+                            {{element.designation}} </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="EmployeeID">
                         <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.EmployeeID}}
+                            {{element.employee_no}}
                         </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <button type="button" class="bg-blue text-white border-0 rounded mb-2">{{element.status[0]}}</button> <br/>
-                            <button type="button" class="bg-paret-green text-white border-0 rounded mb-2">{{element.status[1]}}</button> <br/>
-                           <button type="button" class="bg-red text-white border-0 rounded mb-2">{{element.status[2]}}</button> 
+                            <button *ngIf="element.status == 'SENTFORAPPROVAL'" type="button"
+                                class="bg-blue text-white border-0 rounded mb-2">Sent for approval</button> <br />
+                            <button *ngIf="element.status == 'SENTFORSIGNUP'" type="button"
+                                class="bg-paret-green text-white border-0 rounded mb-2">Sent for sign-up</button> <br />
+                            <button *ngIf="element.rejected == 1" type="button"
+                                class="bg-red text-white border-0 rounded mb-2">Rejected by user</button>
                         </mat-cell>
                     </ng-container>
-
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
@@ -83,14 +89,29 @@
                             <!-- <i class="fa fa-trash mr-2 color-red fa-lg" aria-hidden="true "></i> -->
                         </mat-cell>
                     </ng-container>
-
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
-
                 </mat-table>
+            </div>
+            <div class="row" *ngIf="!dataSource">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                </div>
+            </div>
+        </div>
 
+        <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getEIStatus($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="dataSource && dataSource.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
     </div>
 
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

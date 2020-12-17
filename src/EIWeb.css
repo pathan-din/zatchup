@@ -63,9 +63,7 @@ app-ei-sidenav+.container.main-container {
     background-size: 3.2%;
 } */
 
-.custom-select-2Col {
-    background-size: 7%;
-}
+
 
 .dob-bg-img {
     background: url("./assets/images/userWebsite/calendar_icon.png");
@@ -86,8 +84,7 @@ app-ei-sidenav+.container.main-container {
 }
 
 .numberDropdown {
-    /* background-size: 17%; */
-    height: calc(0.8em + 0.75rem + 2px);
+    height: calc(0.8em + 0.75rem + 2px) !important;
     appearance: auto;
 }
 
@@ -187,6 +184,7 @@ app-ei-sidenav+.container.main-container {
     color: #b4b4b4;
     font-family: "SFUIDisplay-Regular";
     cursor: pointer;
+    margin-bottom: 2%;
 }
 
 .eiPaginationTag .ngx-pagination .current {
@@ -198,9 +196,7 @@ app-ei-sidenav+.container.main-container {
 }
 
 @media only screen and (max-width: 414px) {
-    .MobileCol6MB {
-        margin-bottom: 1rem;
-    }
+    
     .mobilePaddingLR {
         padding: 0;
     }
@@ -225,7 +221,12 @@ app-ei-sidenav+.container.main-container {
     }
     .numberDropdown {
         width: auto !important;
-        background-size: 32% !important;
+    }
+}
+
+@media (max-width: 767px){
+    .MobileCol6MB {
+        margin-bottom: 1rem;
     }
 }
 

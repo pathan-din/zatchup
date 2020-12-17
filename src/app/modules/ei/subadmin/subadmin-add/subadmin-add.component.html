@@ -1,8 +1,17 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">    
     <div class="subadmin-Access-div bg-white border border-gray px-3 py-3 mb-3">
-        <h2 class="commonFontSize semiBoldFont mb-3">Sub Admin</h2>
-        <div class="bg-extra-light-gray">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-0">Sub Admin</h2>
+            </div>
+
+        </div>
+       
+        <div class="bg-extra-light-gray mt-3">
             <h3 class="commonFontSize semiBoldFont mb-0 border-bottom px-3 py-1">Add Subadmin</h3>
             <form id ="addstudent" class="p-3">
                 <div class="form-group mt-1 ">
@@ -23,7 +32,7 @@
                     <div class="col-sm-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Name (Alphabetical Only)</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.first_name" name="name" id="first_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Your Name">
+                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.name" name="name" id="first_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Your Name">
                         </div> 
                         <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>                   
                     </div>
@@ -51,7 +60,7 @@
                             
                         </div> -->
                         <div class="" >
-                            <mat-checkbox (change)="chooseDesignation($event,designation.name,designation.id)" [(ngModel)]="designations[designation.name]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
+                            <mat-checkbox (change)="chooseDesignation($event,designation.id,designation.id)" [(ngModel)]="designations[designation.id]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
                         </div> 
                         
                     </div>
@@ -201,7 +210,7 @@
                         <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
                         <div class="form-group row mb-1 ">
                             <div class="col-md-6 ">
-                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
+                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" (change)="clearClassAccess()" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
 
                             </div>
                             <div class="col-md-6 ">

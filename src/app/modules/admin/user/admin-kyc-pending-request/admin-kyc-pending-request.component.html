@@ -3,94 +3,101 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="KYC-Complete-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">KYC Pending Requests</h2>
+        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
 
+            <h2 class="commonFontSize semiBoldFont m-0">KYC Pending Requests</h2>
+        </div>
         <!--Start html for filter for Kyc Complete-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <form autocomplete="off" autocapitalize="off">
+                <div class="d-flex flex-wrap align-items-end">
 
-            <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
-                    <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
-                    <div class="rounded-0 p-0  border-top shadow-none">
-                        <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" class="form-control formfocusStyle"
-                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                    <div class="widthFull mr-4 mt-3 ">
+                        <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
+                        <div class="rounded-0 p-0  border-top shadow-none">
+                            <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY"
+                                class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
+                                [(ngModel)]="kycPendingRequest.filterFromDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        </div>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
-                    <div class="rounded-0 p-0  border-top shadow-none">
-                        <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" class="form-control formfocusStyle"
-                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
+                        <div class="rounded-0 p-0  border-top shadow-none">
+                            <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY"
+                                class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
+                                [(ngModel)]="kycPendingRequest.filterToDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        </div>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="userType">
-                            <option value=""> Select User</option>
-                            <option value="ADMIN">Admin</option>
-                            <option value="STUDENT">Student</option>
-                            <option value="ALUMNI">Alumni</option>
-                            <option value="ZATCHUPSUBADMIN">Sub-admin</option>
-                        </select>
+                    <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
+                        <div class="form-control-inputDiv rounded shadow-none">
+                            <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="kycPendingRequest.userType">
+                                <option value=""> Select User</option>
+                                <option value="ADMIN">Admin</option>
+                                <option value="STUDENT">Student</option>
+                                <option value="ALUMNI">Alumni</option>
+                                <option value="ZATCHUPSUBADMIN">Sub-admin</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="kyc_type" [(ngModel)]="kycType">
-                            <option value=""> Select KYC</option>
-                            <option value="Aadhar">Aadhar</option>
-                            <option value="Passport">Passport</option>
-                            <option value="Driving License">Driving License</option>
-                            <option value="PAN Card">Pan Card</option>
-                        </select>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
+                        <div class="form-control-inputDiv rounded shadow-none">
+                            <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycPendingRequest.kycType">
+                                <option value=""> Select KYC</option>
+                                <option value="Aadhar">Aadhar</option>
+                                <option value="Passport">Passport</option>
+                                <option value="Driving License">Driving License</option>
+                                <option value="PAN Card">Pan Card</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="request_type" [(ngModel)]="requestType">
-                            <option value=""> Select Request</option>
-                            <option value="0">First Time</option>
-                            <option value="1">Re-submitted</option>
-                        </select>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                        <div class="form-control-inputDiv rounded shadow-none">
+                            <select class="custom-select  form-control-input" name="request_type"
+                                [(ngModel)]="kycPendingRequest.requestType">
+                                <option value=""> Select Request</option>
+                                <option value="0">First Time</option>
+                                <option value="1">Re-submitted</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" name="request_reason"
-                            [(ngModel)]="requestReason">
-                            <option value=""> Select Reason</option>
-                            <option value="1">New Sign-up</option>
-                            <option value="2">Retriggered</option>
-                        </select>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                        <div class="form-control-inputDiv rounded shadow-none">
+                            <select class="custom-select  form-control-input" name="request_reason"
+                                [(ngModel)]="kycPendingRequest.requestReason">
+                                <option value=""> Select Reason</option>
+                                <option value="1">New Sign-up</option>
+                                <option value="2">Retriggered</option>
+                            </select>
+                        </div>
                     </div>
+                    <button type="button" class="bg-purple text-white px-5 py-2 border-0 mt-3"
+                        (click)="getKycPendingRequest('')">Apply</button>
+
                 </div>
-
-
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                    (click)="getKycPendingRequest('')">Apply</button>
-
-
-            </div>
+            </form>
         </div>
         <!--End html for filter for Kyc Complete-->
 
         <!--Start html for filter for No of KYC per page with export button-->
-        <div class="row my-3" *ngIf="kycPendingRequest.dataSource">
+        <div class="row my-3" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                    (change)="getKycPendingRequest('1')" [(ngModel)]="kycPendingRequest.pageSize">
+                        (change)="getKycPendingRequest('1')" [(ngModel)]="kycPendingRequest.pageSize">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -105,13 +112,14 @@
         <!--End html for filter for No of KYC per page with export button-->
 
         <!--Start html for table content KYC information-->
-        <div class="tableDiv" *ngIf="kycPendingRequest.dataSource">
+        <div class="tableDiv" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="kycPendingRequest.dataSource | paginate: kycPendingRequest.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> {{i+ kycPendingRequest.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i+ kycPendingRequest.startIndex}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="EIZatchUpIDOfUser">
@@ -168,18 +176,13 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="kycPendingRequest.dataSource" (pageChange)="getKycPendingRequest($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
-    <div class="row" *ngIf="!kycPendingRequest.dataSource">
-        <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
-        </div>
-    </div>
-        <!-- <div class="row" *ngIf="!dataSource">
+        <pagination-controls *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0" (pageChange)="getKycPendingRequest($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource == 0">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

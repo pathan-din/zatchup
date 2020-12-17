@@ -7,6 +7,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 declare var $: any;
 
 export interface PeriodicElement {
@@ -54,7 +55,8 @@ export class EiStudentListComponent implements OnInit {
     public eiService: EiServiceService, 
     public base: BaseService, 
     public formBuilder: FormBuilder,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private location: Location
     ) { }
 
   ngOnInit(): void {
@@ -281,5 +283,8 @@ export class EiStudentListComponent implements OnInit {
       this.SpinnerService.hide();
       //console.log(err);
     }
+  }
+  goBack(): void{
+    this.location.back()
   }
 }

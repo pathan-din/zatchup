@@ -6,8 +6,8 @@
                 <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
                 <h2 class="text-center my-3 semiBoldFont">Let's ZatchUp</h2>
 
-                <mat-horizontal-stepper #stepper linear labelPosition="bottom">
-                    <mat-step completed="false" label="stage 1" state="circle">
+                <mat-horizontal-stepper [selectedIndex]="index" #stepper linear labelPosition="bottom">
+                    <mat-step completed="false"  label="stage 1" state="circle">
                         <form id="Form1" enctype="multipart/form-data">
                             <div class="process1 mt-4">
                                 <div class="form-group row ">
@@ -16,7 +16,7 @@
                                             Name</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="name_of_school" required [(ngModel)]="model.name_of_school"
+                                            <input (keyup)="isValid($event)" id="name_of_school" required [(ngModel)]="model.name_of_school"
                                                 name="school_name"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Enter School Name">
@@ -25,14 +25,14 @@
                                     <div class="required" style="color: red;" [innerHtml]="errorDisplay.school_name">
                                     </div>
                                 </div>
-                                <div class="form-group row ">
+                                <div class="form-group row " *ngIf="model.school_code">
                                     <div class="col-sm-12 ">
                                         <label for="" class=" commonFontSize mediumFont letterspacing">EI's Unique
                                             ZatchUp
                                             ID</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="school_id" [(ngModel)]="model.school_code" name="school_id"
+                                        <div  class="form-control-inputDiv rounded p-1 shadow-none">
+                                            <input readonly id="school_id" [(ngModel)]="model.school_code" name="school_id"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Enter Unique ID">
                                         </div>
@@ -44,7 +44,7 @@
                                             Address</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="address1" required [(ngModel)]="model.address1"
+                                            <input (keyup)="isValid($event)" id="address1" required [(ngModel)]="model.address1"
                                                 name="address_line1"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Address Line 1">
@@ -64,11 +64,44 @@
 
                                 </div>
                                 <div class="form-group row ">
+                                    <div class="col-md-6 margin-top-col-6">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                            <input id="country" [(ngModel)]="model.country" name="country"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Country">
+                                        </div>
+                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.country">
+                                        </div> -->
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                            <select  (change)="getCityByState(model.state)" id="state" required [(ngModel)]="model.state" name="state"
+                                            class="custom-select custom-select-2Col form-control-input" required>
+                                            <option value="">State</option>
+                                            <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
+                                                {{stateObj.state}}</option>
+                                        </select>
+                                            <!-- <input id="state" required [(ngModel)]="model.state" name="state"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="State"> -->
+                                        </div>
+                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group row ">
                                     <div class="col-md-6">
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="city" required [(ngModel)]="model.city" name="city"
+                                            <select id="city" required [(ngModel)]="model.city" name="city"
+                                            class="custom-select-2Col custom-select form-control-input" required>
+                                            <option value="">City</option>
+                                            <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
+        
+                                        </select>
+                                            <!-- <input id="city" required [(ngModel)]="model.city" name="city"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="City">
+                                                type="text" placeholder="City"> -->
                                         </div>
                                         <div class="required" style="color: red;" [innerHtml]="errorDisplay.city"></div>
                                     </div>
@@ -83,26 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row ">
-                                    <div class="col-md-6">
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="state" required [(ngModel)]="model.state" name="state"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="State">
-                                        </div>
-                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 margin-top-col-6">
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="country" [(ngModel)]="model.country" name="country"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Country">
-                                        </div>
-                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.country">
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row ">
                                     <div class="col-sm-12 ">
                                         <label for="" class=" commonFontSize mediumFont letterspacing">Board /
@@ -139,9 +153,9 @@
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
                                             <input id="opening_date" required [(ngModel)]="model.opening_date"
-                                                name="opening_date"
+                                                name="opening_date" autocomplete="off"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="date" placeholder="Enter Foundation Date">
+                                                type="text" bsDatepicker placeholder="Enter Foundation Date">
                                         </div>
                                         <div class="required" style="color: red;"
                                             [innerHtml]="errorDisplay.opening_date"></div>
@@ -174,7 +188,7 @@
                                             Alumni</label>
 
                                         <div class="py-1 form-control-inputDiv rounded shadow-none">
-                                            <select id="no_of_alumni" required [(ngModel)]="model.no_of_alumni"
+                                            <select (change)="isValid($event)" id="no_of_alumni" required [(ngModel)]="model.no_of_alumni"
                                                 name="no_of_alumni"
                                                 class="custom-select custom-select-2Col form-control-input form-control-sm"
                                                 required>
@@ -204,7 +218,7 @@
                                 <div class="form-group row">
                                     <div class="col-sm-12 ">
                                         <label for="description"
-                                            class=" commonFontSize mediumFont letterspacing">Overview</label>
+                                            class=" commonFontSize mediumFont letterspacing">About School</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
                                             <textarea id="description" [(ngModel)]="model.description"
@@ -216,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <label for="description"
                                             class=" commonFontSize mediumFont letterspacing">Profile
                                             Picture</label>
@@ -228,8 +242,8 @@
                                                 type="file">
                                         </div>
 										
-                                    </div>
-                                    <div class="col-md-6 margin-top-col-6">
+                                    </div> -->
+                                    <!-- <div class="col-md-6 margin-top-col-6">
                                         <label for="description" class=" commonFontSize mediumFont letterspacing">Cover
                                             Picture</label>
 
@@ -240,19 +254,19 @@
                                                 type="file">
                                         </div>
 										
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-xl-4 col-lg-5 col-md-5 text-left">
-                                        <button type="button "
+                                        <!-- <button type="button "
                                             class="bg-purple border-0 text-white w-100 text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                             Save as Draft
-                                        </button>
+                                        </button> -->
                                     </div>
                                     <div class="col-xl-5 col-lg-3 col-md-3"></div>
                                     <div class="col-xl-3 col-lg-4 col-md-4 text-right">
                                         <button id="form1NextButton" name="form1NextButton" mat-button
-                                            (click)="goForward(stepper)"
+                                            (click)="goForward()"
                                             class="bg-purple border-0 text-white w-100 text-center mt-2 commonFontSize mediumFont letterspacing ">Next</button>
                                     </div>
                                 </div>
@@ -271,7 +285,7 @@
                                                 Name</label>
 
                                             <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                                <input 
+                                                <input (keyup)="isValid($event)"
                                                     id="course_name_{{cNo}}" [(ngModel)]="courseList.course_name"
                                                     name="course_name_{{cNo}}" required
                                                     class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
@@ -327,7 +341,7 @@
                                     <div class="anotherStandard"
                                         *ngFor="let standardL of courseList.standarddata; let s=index;">
                                         <h2 class="text-left border-bottom commonFontSize semiBoldFont "
-                                            *ngIf="courseList.standarddata.length>1">Standard {{s+1}}</h2>
+                                                *ngIf="courseList.standarddata.length>1">Standard {{s+1}}</h2>
                                         <div class="form-group row ">
                                             <div class="col-xl-6 col-lg-6 ">
                                                 <label for=" " class=" commonFontSize mediumFont letterspacing ">Name of
@@ -348,8 +362,8 @@
                                                     class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard
                                                     Duration</label>
                                                 <div class="row ">
-                                                    <div class="col-6 ">
-                                                        <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                                    <!-- <div class="col-6 ">
+                                                         <div class="py-1 form-control-inputDiv rounded shadow-none ">
                                                             <select required id="duration_in_year_{{cNo}}_{{s}}"
                                                                 (change)="changeDuration(standardL)"
                                                                 [(ngModel)]="durationModel.duration_in_year"
@@ -360,19 +374,19 @@
                                                                 <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                                  
                                                             </select>
-                                                        </div>
-                                                        <div class="required errorMsg"
+                                                        </div> -->
+                                                        <!-- <div class="required errorMsg"
                                                             [innerHtml]="display_error(cNo+'_'+s,'duration_in_year_')">
-                                                        </div>
+                                                        </div>  
 
-                                                    </div>
-                                                    <div class=" col-6 ">
-                                                        <div class=" py-1 form-control-inputDiv rounded shadow-none ">
-                                                            <select (change)="changeDuration(standardL)" required
+                                                    </div> -->
+                                                    <div class=" col-sm-12 ">
+                                                        <div class=" form-control-inputDiv py-1 rounded shadow-none">
+                                                            <select   required
                                                                 id="duration_in_month_{{cNo}}_{{s}}"
-                                                                [(ngModel)]="durationModel.duration_in_month"
+                                                                [(ngModel)]="standardL.duration"
                                                                 name="duration_in_month_{{cNo}}_{{s}}"
-                                                                class="custom-select  form-control-input form-control-sm "
+                                                                class="custom-select form-control-input form-control-sm"
                                                                 required>
                                                                 <option value="">Month</option>
                                                                 <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
@@ -381,10 +395,10 @@
                                                         <div class="required errorMsg"
                                                             [innerHtml]="display_error(cNo+'_'+s,'duration_in_month_')">
                                                         </div>
-                                                        <input type="hidden" id="duration_{{cNo}}_{{s}}"
+                                                        <!-- <input type="hidden" id="duration_{{cNo}}_{{s}}"
                                                             name="duration_{{cNo}}_{{s}}"
                                                             [(ngModel)]="standardL.duration"
-                                                            value="{{durationModel.duration_in_year}}.{{durationModel.duration_in_month}}" />
+                                                            value="{{durationModel.duration_in_month}}" /> -->
                                                     </div>
                                                 </div>
 
@@ -394,7 +408,8 @@
                                         <div class="Another-class "
                                             *ngFor="let classD of standardL.classdata; let c=index;">
                                             <h2 class="text-left border-bottom commonFontSize semiBoldFont "
-                                                *ngIf="standardL.classdata.length>1">Class {{c+1}}</h2>
+                                                    *ngIf="standardL.classdata.length>1">Class {{c+1}}</h2>
+
                                             <div class="form-group row ">
                                                 <div class="col-xl-6 col-lg-6 ">
                                                     <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub
@@ -411,13 +426,47 @@
                                                     </div>
 
                                                 </div>
+                                                <div class="form-group row ">
+                                                    <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
+                                                        <label for="pronouce "
+                                                            class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                                                            Start
+                                                            teaching
+                                                            this class</label>
+                                                        <div
+                                                            class="d-flex flex-xs-column flex-row justify-content-between ">
+                                                            <mat-checkbox 
+                                                                id="is_teaching_current_{{cNo}}_{{s}}_{{c}}" 
+                                                                [(ngModel)]="classD.is_teaching_current"
+                                                                name="is_teaching_current_{{cNo}}_{{s}}_{{c}}"
+                                                                class="purple-checkbox">Current
+                                                                Teaching
+                                                            </mat-checkbox>
+    
+                                                            <!-- <mat-checkbox [disabled]="classD.is_teaching_current"
+                                                                id="teaching_stopped_{{cNo}}_{{s}}_{{c}}" [required]="!classD.is_teaching_current"
+                                                                [(ngModel)]="classD.teaching_stopped"
+                                                                name="teaching_stopped_{{cNo}}_{{s}}_{{c}}"
+                                                                class="purple-checkbox">Stopped Date
+                                                            </mat-checkbox> -->
+
+                                                        </div>
+                                                        <!-- <div class="required errorMsg"
+                                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'is_teaching_current_')">
+                                                        </div>
+                                                        <div class="required errorMsg"
+                                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_stopped_')">
+                                                        </div>		 -->
+    
+                                                    </div>
+                                                </div>
                                                 <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
                                                     <label for=" "
                                                         class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                                         Start
                                                         teaching this class</label>
                                                     <div class="row ">
-                                                        <div class=" col-6 ">
+                                                        <div class=" col-sm-6 ">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
                                                                 <select id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
@@ -433,7 +482,7 @@
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
                                                             </div>
                                                         </div>
-                                                        <div class=" col-6 ">
+                                                        <div class=" col-sm-6 ">
                                                             <div
                                                                 class="py-1 form-control-inputDiv rounded shadow-none ">
                                                                 <select id="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
@@ -442,7 +491,7 @@
                                                                     class="custom-select form-control-input form-control-sm "
                                                                     required>
                                                                     <option value="">Month</option>
-                                                                    <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
+                                                                    <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
@@ -452,13 +501,13 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-xl-6 col-lg-6 margin-top-col-6 mt-3">
+                                                <div  class="col-xl-6 col-lg-6 margin-top-col-6 mt-3">
                                                     <label for=" "
                                                         class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                                         End
                                                         teaching this class</label>
                                                     <div class="row ">
-                                                        <div class=" col-6 ">
+                                                        <div class=" col-6 " *ngIf="!classD.is_teaching_current">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
                                                                 <select [disabled]="classD.is_teaching_current"
@@ -467,15 +516,15 @@
                                                                     [(ngModel)]="classD.teaching_end_year"
                                                                     name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select  form-control-input form-control-sm ">
-                                                                    <option value="">Year</option>
+                                                                    <option value="0">Year</option>
                                                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
                                                             </div>
-                                                        </div>
-                                                        <div class=" col-6 ">
+                                                        </div> 
+                                                        <div class=" col-6 " *ngIf="!classD.is_teaching_current">
                                                             <div
                                                                 class="py-1 form-control-inputDiv rounded shadow-none ">
                                                                 <select [disabled]="classD.is_teaching_current"
@@ -484,8 +533,8 @@
                                                                     [(ngModel)]="classD.teaching_end_month"
                                                                     name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select form-control-input form-control-sm ">
-                                                                    <option value="">Month</option>
-                                                                    <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
+                                                                    <option value="0">Month</option>
+                                                                    <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
                                                                     
                                                                 </select>
                                                             </div>
@@ -494,45 +543,15 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div *ngIf="classD.is_teaching_current" class=" col-6 ">
+                                                        <label >Present</label>
+                                                    </div>
+                                                    
                                                 </div>
-
+                                                
                                             </div>
 
-                                            <div class="form-group row ">
-                                                <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
-                                                    <label for="pronouce "
-                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                                        Start
-                                                        teaching
-                                                        this class</label>
-                                                    <div
-                                                        class="d-flex flex-xs-column flex-row justify-content-between ">
-                                                        <mat-checkbox [disabled]="classD.teaching_stopped"
-                                                            id="is_teaching_current_{{cNo}}_{{s}}_{{c}}" [required]="!classD.teaching_stopped"
-                                                            [(ngModel)]="classD.is_teaching_current"
-                                                            name="is_teaching_current_{{cNo}}_{{s}}_{{c}}"
-                                                            class="purple-checkbox">Current
-                                                            Teaching
-                                                        </mat-checkbox>
-
-                                                        <mat-checkbox [disabled]="classD.is_teaching_current"
-                                                            id="teaching_stopped_{{cNo}}_{{s}}_{{c}}" [required]="!classD.is_teaching_current"
-                                                            [(ngModel)]="classD.teaching_stopped"
-                                                            name="teaching_stopped_{{cNo}}_{{s}}_{{c}}"
-                                                            class="purple-checkbox">Stopped Date
-                                                        </mat-checkbox>
-
-                                                    </div>
-													<div class="required errorMsg"
-                                                                [innerHtml]="display_error(cNo+'_'+s+'_'+c,'is_teaching_current_')">
-                                                    </div>
-													<div class="required errorMsg"
-                                                                [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_stopped_')">
-                                                    </div>		
-
-                                                </div>
-                                            </div>
+                                           
                                             <div class="form-group row ">
                                                 <div class="col-sm-12 ">
                                                     <label for=" "
@@ -544,7 +563,7 @@
                                                             [(ngModel)]="classD.alias_class"
                                                             name="alias_class_{{cNo}}_{{s}}_{{c}}"
                                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                            type="text " placeholder="Enter Course Name ">
+                                                            type="text " placeholder="Enter Class Alias ">
                                                     </div>
                                                     <div class="required errorMsg"
                                                         [innerHtml]="display_error(cNo+'_'+s+'_'+c,'alias_class_')">
@@ -556,7 +575,7 @@
                                                 <div class="col-xl-8 col-lg-8 col-md-10 ">
                                                     <button type="button " (click)="removeData(c+1,standardL.classdata)"
                                                         class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                        - Remove another Class in this standard
+                                                        - Remove
                                                     </button>
                                                 </div>
                                             </div>
@@ -566,7 +585,7 @@
                                             <div class="col-xl-7 col-lg-7 col-md-9 ">
                                                 <button type="button " (click)="addAnotherClass(standardL)"
                                                     class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                    + Add another Class in this standard
+                                                    + Add Another Class in this standard
                                                 </button>
                                             </div>
                                         </div>
@@ -584,7 +603,7 @@
                                             <div class="col-xl-8 col-lg-8 col-md-10 ">
                                                 <button type="button " (click)="removeData(s+1,courseList.standarddata)"
                                                     class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                    - Remove another Standard in this course
+                                                    - Remove
                                                 </button>
                                             </div>
                                         </div>
@@ -595,7 +614,7 @@
                                         <div class="col-xl-7 col-lg-7 col-md-9 ">
                                             <button type="button " (click)="addAnotherStandard(courseList)"
                                                 class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                + Add another Standard in this course
+                                                + Add Next Standard in this course
                                             </button>
                                         </div>
                                     </div>
@@ -606,7 +625,7 @@
                                         <div class="col-xl-5 col-lg-5 col-md-6 ">
                                             <button type="button " (click)="removeData(cNo+1,model2Step.coursedata)"
                                                 class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                - Remove another Course
+                                                - Remove
                                             </button>
                                         </div>
 
@@ -628,10 +647,10 @@
                                 <!---------btns  save as draft and next  start-->
                                 <div class="row mt-2 ">
                                     <div class="col-xl-4 col-lg-5 col-md-5 text-left ">
-                                        <button type="button "
+                                        <!-- <button type="button "
                                             class="bg-purple border-0 text-white w-100 text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                             Save as Draft
-                                        </button>
+                                        </button> -->
                                     </div>
                                     <div class="col-xl-5 col-lg-3 col-md-3 "></div>
                                     <div class="col-xl-3 col-lg-4 col-md-4 text-right ">
@@ -684,10 +703,10 @@
                                             Code</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input id="bank_ifsc_code" name="bank_ifsc_code"
+                                            <input  id="bank_ifsc_code" name="bank_ifsc_code"
                                                 [(ngModel)]="bankModel.bank_ifsc_code"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="text " placeholder="Enter IFSC Code " required>
+                                                type="text" pattern="^[A-Za-z]{4}\d{7}$" placeholder="Enter IFSC Code " required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.bank_ifsc_code"></div>
                                     </div>
@@ -700,17 +719,19 @@
                                             <input (change)="handleCancelChequeFileInput($event.target.files)"
                                                 id="cheque" name="cheque"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="file" required>
+                                                type="file" validFileExtention="png,jpeg,jpg" required>
+                                                <p>* only support pdf and image</p>
+                                                
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                                     </div>
                                 </div>
                                 <div class="row mt-2 ">
                                     <div class="col-xl-4 col-lg-5 col-md-5 text-left ">
-                                        <button type="button "
+                                        <!-- <button type="button "
                                             class="bg-purple border-0 text-white w-100 text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                             Save as Draft
-                                        </button>
+                                        </button> -->
                                     </div>
                                     <div class="col-xl-5 col-lg-3 col-md-3 "></div>
                                     <div class="col-xl-3 col-lg-4 col-md-4 text-right ">
@@ -748,12 +769,13 @@
                                         Document</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                        <input (change)="fileUploadDocument($event.target.files,document)" id="document_{{i}}" name="document_{{i}}" required 
+                                        <input #inputFile (change)="fileUploadDocument($event.target.files,document)" validFileExtention="png,jpeg,jpg" id="document_{{i}}" name="document_{{i}}" required 
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                             type="file">
 										<input [(ngModel)]="document.document"  id="document_hid_{{i}}" name="document_hid_{{i}}"  
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                             type="hidden">
+                                            <p>* only support pdf and image</p>
                                           
                                     </div>
                                     <div class="required errorMsg"
@@ -769,13 +791,15 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="form-group row ">
+                            <div class="form-group row " *ngIf="modelDocumentDetails.length>0">
                                 <div class="col-12 ">
                                     <div class="row form-control-inputDiv ml-0 mr-0 ">
 									<div></div>
                                         <div *ngFor="let doc of modelDocumentDetails"  class="col-4 p-1 ID-img-div ">
-                                            <img *ngIf="doc.name!=''" class="img-fluid w-100 h-100"
-                                                src="http://staging.zatchup.com/zatchupapi/zatchup/media/temp/{{doc.name}}">
+                                            <img *ngIf="doc.document!='' &&  doc.extention==''" class="img-fluid w-100 h-100"
+                                                src="http://staging.zatchup.com/zatchupapi/zatchup/media/temp/{{doc.document}}">
+                                               <a *ngIf="doc.document!='' && doc.extention=='pdf'" href="http://staging.zatchup.com/zatchupapi/zatchup/media/temp/{{doc.document}}"> <img  class="img-fluid w-100 h-100"
+                                                src="assets/images/userWebsite/pdf.png"></a>    
                                         </div>
                                         <!-- <div class="col-4 p-1 ID-img-div "> -->
                                             <!-- <img class="img-fluid w-100 h-100 " -->
@@ -792,10 +816,10 @@
 
                             <div class="row mt-2 ">
                                 <div class="col-xl-4 col-lg-5 col-md-5 text-left ">
-                                    <button type="button "
+                                    <!-- <button type="button "
                                         class="bg-purple border-0 text-white w-100 text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                         Save as Draft
-                                    </button>
+                                    </button> -->
                                 </div>
                                 <div class="col-xl-5 col-lg-3 col-md-3 "></div>
                                 <div class="col-xl-3 col-lg-4 col-md-4 text-right ">

@@ -15,25 +15,23 @@
                 <button type="button" class="bg-blue text-white px-4 py-2 ml-2 mb-1 border-0 ">Profile History</button>
             </div>
         </div>
-        <div class=" mt-3 form-control-inputDiv border-0 mx-0">
+        <div class=" mt-3 border-0 mx-0">
             <!-- start Div for banner-->
             <div class="Onboard-viewbanner-div p-2 d-flex align-items-end" data-toggle="modal"
                 data-target="#BlockUserModel">
                 <div class="dpImgDiv rounded-circle bg-light-green border border-white ">
                     <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid dpImg ">
-
-
                 </div>
             </div>
-            <!--Start div for onboarding Information-->
-            <div class="row mt-3">
+            <!--Start div for    Information-->
+            <div class="row mt-3" *ngIf="userData">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Name of The User</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: </span>{{userData.name_of_user}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -41,59 +39,60 @@
                             <p>EI ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: </span>{{userData.zatchupId}}</p>
                         </div>
                     </div>
                     <div class="row">
-
-                        <div class="col-md-12 commonFontSize regularFont">
-                            <p><span class="mediumFont">Bio</span><span class="mx-2">:</span>Interceptors are a way to
-                                do some work for every single HTTP request or response</p>
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Bio</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>Interceptors are a way to do some work for every single HTTP request or response</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 commonFontSize mediumFont">
                             <p>Personal Details</p>
                         </div>
-                        <div class="col-12 commonFontSize regularFont ml-2">
+                        <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                                    <p>Date of Birth Of The User</p>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Date of Birth Of The User</p>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: </span> {{userData.dob}}</p>
                                 </div>
                             </div>
                             <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                                    <p>Email Id</p>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Email Id</p>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
-                                </div>
-                            </div>
-                            <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                                    <p>Phone Number</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: </span> {{userData.email}}</p>
                                 </div>
                             </div>
                             <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                                    <p>Profession</p>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Phone Number</p>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: </span> {{userData.phone}}</p>
                                 </div>
                             </div>
                             <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                                    <p>Current City</p>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Profession</p>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span> </p>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: </span> {{userData.role}}</p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Current City</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: </span> {{userData.city}}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +105,7 @@
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <p class="color-blue"><span class="mr-3 text-dark">:</span><span
-                                    class="textUnderlineStyle " (click)="goToUserEducationDetail()"> View</span></p>
+                                    class="textUnderlineStyle "> View</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -136,6 +135,11 @@
                                     class="textUnderlineStyle "> View</span></p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="!userData">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                 </div>
             </div>
 
@@ -282,3 +286,7 @@
     </div>
     <!-- End of BlockUserModel  -->
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

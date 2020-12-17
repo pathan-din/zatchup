@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -15,7 +16,8 @@ export class SubadminAccessHistoryComponent implements OnInit {
   constructor(
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class SubadminAccessHistoryComponent implements OnInit {
         }
       }
     )
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 
 }

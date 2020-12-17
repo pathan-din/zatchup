@@ -1,7 +1,16 @@
 <app-ei-sidenav></app-ei-sidenav>
-<div class="container main-container p-3">
+<div class="container main-container p-3" *ngFor="let studentData of studentDetails">
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Students Profile</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Students Profile</h2>
+            </div>
+
+        </div>
+       
 
         <div class="row mt-3 form-control-inputDiv mobile-col-reverse border-0 mx-0">
             <div class="col-md-6 col-left">
@@ -11,7 +20,7 @@
                         <p>Name of user</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Lauren Molive</p>
+                        <p><span class="mr-3">:</span>{{studentData.name}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -19,7 +28,7 @@
                         <p>Unique ZatchUp User ID</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                        <p><span class="mr-3">:</span>{{studentData.zatchup_id}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -27,7 +36,7 @@
                         <p>Date Of Birth</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>25 Aug 1996</p>
+                        <p><span class="mr-3">:</span>{{studentData.dob}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -35,7 +44,7 @@
                         <p>Gender</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Male</p>
+                        <p><span class="mr-3">:</span>{{studentData.gender?studentData.gender:''}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +52,7 @@
                         <p>Email ID</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span> </p>
+                        <p><span class="mr-3">:</span> {{studentData.email}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -51,7 +60,7 @@
                         <p>Phone Number</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                        <p><span class="mr-3">:</span>{{studentData.phone}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +68,7 @@
                         <p>Father Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Jimmy Changa</p>
+                        <p><span class="mr-3">:</span>{{studentData.father_name}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -67,7 +76,7 @@
                         <p>Mother Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span>Pete Sariya</p>
+                        <p><span class="mr-3">: </span>{{studentData.mother_name}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -96,7 +105,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-right text-right">
-                <p class="color-blue text-right" (click)="goToEiStudentHistoryPage()">View History</p>
+                <p class="color-blue text-right cursorStyle" (click)="goToEiStudentHistoryPage()">View History</p>
                 <div class="RightimgDiv mt-2">
                     <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
                     <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png">
@@ -107,9 +116,9 @@
 
     </div>
 
-    <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
+    <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngFor="let eduDetail of studentData.educationdetail">
         <h2 class="commonFontSize semiBoldFont m-0">Education Details</h2>
-        <h2 class="commonFontSize border-bottom mediumFont pb-2">1. ABC School</h2>
+        <h2 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.ei_detail.name_of_school}} </h2>
         <div class="row mt-3  border-0 mx-0">
 
             <div class="col-md-12 col-left">
@@ -119,7 +128,7 @@
                         <p class="m-0">Name of the El</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>ABC School, Mumbai, Maharashtra </p>
+                        <p><span class="mr-3">:</span>{{eduDetail.ei_detail.name_of_school}}  </p>
                     </div>
                 </div>
 
@@ -130,7 +139,7 @@
                         <p class="m-0"> El ZatchUp ID</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                        <p><span class="mr-3">:</span>{{eduDetail.ei_detail.school_code}} </p>
                     </div>
                 </div>
 
@@ -173,17 +182,17 @@
 
 
         </div>
-        <h2 class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
-        <div class="row mt-3  border-0 mx-0">
+        <h2  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
+        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
-            <div class="col-md-12 col-left">
+            <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.ei_detail.course_detail">
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p class="m-0">Name of Course </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Bachelor of Commerce </p>
+                        <p><span class="mr-3">:</span>{{courseData.course_name}} </p>
                     </div>
                 </div>
 
@@ -194,7 +203,7 @@
                         <p class="m-0"> Year of starting course </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>2000</p>
+                        <p><span class="mr-3">:</span>{{courseData.start_year}}</p>
                     </div>
                 </div>
 
@@ -205,7 +214,7 @@
                         <p class="m-0">Year of ending tho course/Currently studying </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>2004</p>
+                        <p><span class="mr-3">:</span>{{courseData.end_year}}</p>
                     </div>
                 </div>
 
@@ -216,7 +225,7 @@
                         <p class="m-0">Duration of total course </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>4 Year </p>
+                        <p><span class="mr-3">:</span>{{courseData.duration}}</p>
                     </div>
                 </div>
 
@@ -226,7 +235,7 @@
 
 
         </div>
-        <div class="tableDiv mt-2">
+        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="tableDiv mt-2 table-responsive">
             <table class="table table-striped border ">
                 <thead>
                     <tr class="bg-Gainsboro">
@@ -240,16 +249,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>B.Com 1</td>
-                        <td>A</td>
-                        <td>B.Com 1 A</td>
-                        <td>2000</td>
-                        <td>2001</td>
-                        <td>1</td>
-                        <td>42</td>
+                    <tr *ngFor="let standardData of eduDetail.ei_detail.course_detail[0].standard_detail" >
+                        <td>{{standardData.standard_name}}</td>
+                        <td>{{standardData.class_detail[0].class_name}}</td>
+                        <td>{{standardData.class_detail[0].alias_class}}</td>
+                        <td>{{standardData.class_detail[0].teaching_start_year}}</td>
+                        <td>{{standardData.class_detail[0].teaching_end_year}}</td>
+                        <td>{{standardData.duration}}</td>
+                        <td>{{standardData.class_detail[0].roll_no}}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>B.Com 2</td>
                         <td>Unspecified</td>
                         <td>B.Com 1 A</td>
@@ -266,7 +275,7 @@
                         <td>2004</td>
                         <td>1</td>
                         <td>42</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
 
             </table>
@@ -274,7 +283,7 @@
 
     </div>
 
-    <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
+    <!-- <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont mb-0">Education Details</h2>
         <h2 class="commonFontSize border-bottom mediumFont pb-2">1. ABC School</h2>
         <div class="row mt-3  border-0 mx-0">
@@ -387,7 +396,7 @@
         </div>
 
 
-    </div>
+    </div> -->
 
     <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row">

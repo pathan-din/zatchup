@@ -4,6 +4,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatabaseView } from '../modals/ei-pending-approval.modal';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-database-view',
@@ -22,26 +23,27 @@ export class DatabaseViewComponent implements OnInit {
     private baseService: BaseService,
     private activeRoute: ActivatedRoute,
     private alert: NotificationService,
+    private location: Location,
     private loader: NgxSpinnerService,
   ) {
     this.databaseView = new DatabaseView();
-   }
+  }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     if (this.activeRoute.snapshot.params.id) {
       this.id = this.activeRoute.snapshot.params.id
       this.getDatabaseView(this.id);
     }
     // if (localStorage.getItem('user_type'))
     // this.user_type = localStorage.getItem('user_type')
-    
+
   }
 
-  conversationComments(){
-    this.router.navigate(['admin/ei-onboarding-conversation-comments'])
+  conversationComments() {
+    this.router.navigate(['admin/ei-onboarding-conversation-comments', this.eiData.id])
   }
 
-  eiRequestHistory(){
+  eiRequestHistory() {
     this.router.navigate(['admin/ei-onboarding-request-history'])
   }
 
@@ -49,18 +51,21 @@ export class DatabaseViewComponent implements OnInit {
     this.loader.show()
     let url = 'admin/ei-pending-profile/' + this.id
     this.baseService.getData(url).subscribe(
-      (res:any) =>{
+      (res: any) => {
         if (res.status == true)
-        this.eiData = res.data
+          this.eiData = res.data
         else
-        this.alert.error(res.error.message[0], 'Error')
+          this.alert.error(res.error.message[0], 'Error')
         this.loader.hide()
       }
     ),
-    err => {
-      this.alert.error(err, 'Error');
-      this.loader.hide();
-    }
+      err => {
+        this.alert.error(err, 'Error');
+        this.loader.hide();
+      }
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }

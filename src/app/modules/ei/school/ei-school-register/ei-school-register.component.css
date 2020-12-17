@@ -4,7 +4,26 @@
 .hrTopMargin{
     margin-top: 0.2rem!important;
 }
+p.cursorStyle.ng-star-inserted {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+   
+}
+p.cursorStyle.ng-star-inserted:hover {
+    background-color: #ddd;
+}
+.suggestions{
+    z-index: 999999;
+    background: #ccc;
+    border-radius: 5px;
+    
+}
 
+.eyeIcon {
+    position: absolute;
+    right: 25px;
+    bottom: 16px;
+}
 @media only screen and (max-width: 414px) {
     .paddingLHeading{
         padding-left: 0;

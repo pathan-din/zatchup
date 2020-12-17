@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from '../../../services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -34,10 +35,16 @@ export class UserSchoolConfirmationComponent implements OnInit {
     public baseService: BaseService,
     public eiService:EiServiceService,
     private genericFormValidationService:GenericFormValidationService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    private alert :NotificationService) { }
 
   ngOnInit(): void {
-   this.getUserconfirmationBySchoolDetails();
+    this.route.queryParams.subscribe(params => {
+      this.schoolId = params['school_id'];
+      this.model.school_id=this.schoolId;
+      this.getUserconfirmationBySchoolDetails();
+    });
+  
   }
 
   goToUserCongratulationPage() {
@@ -60,7 +67,16 @@ export class UserSchoolConfirmationComponent implements OnInit {
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
+        if(response.status== false)
+        {
+          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService,response.error);
+          this.alert.error(this.errorDisplay,'Error');
+          this.router.navigate(['user/kyc-verification']);
+          return;
+
+        }
         this.studentsConfirmation = response.data;
+
         this.schoolId= response.data.school_id;
         }, (error) => {
           this.SpinnerService.hide();

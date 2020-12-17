@@ -4,7 +4,7 @@
         <div class="col-xl-6 col-lg-6 col-md-6  ">
             <div class="bg-white px-5 py-4">
                 <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
-                <h2 class="text-center my-3 semiBoldFont">ZatchUp-Sub-admin /Teacher Sign-Up</h2>
+                <h2 class="text-center my-3 semiBoldFont">ZatchUp Sub-admin / Teacher Sign-Up</h2>
                 <form id="subadmin" >
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-6 ">
@@ -166,7 +166,7 @@
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
                 <button type="button" class="btn common-model-Btn mt-4" (click)="goToDashboard();">Submit </button>
 
-                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" href="">Resend Code </a>
+                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p>
                 <!-- </form> -->
 

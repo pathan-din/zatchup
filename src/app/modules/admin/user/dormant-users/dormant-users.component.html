@@ -1,0 +1,274 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Dormant Users (Last Login >7 Days)</h2>
+            </div>
+
+        </div>
+        <!--Start html for filter for alumni list-->
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Sign up From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                            id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate"  [(ngModel)]="dormantUsers.filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Sign up To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                            type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="dormantUsers.filterToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Last Login From</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                            id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="dormantUsers.loginFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Last Login To</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                            type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="dormantUsers.loginToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Current EI</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                        type="input" id="currentEi" placeholder="Enter Current EI" name="current_ei" [(ngModel)]="dormantUsers.currentEi">
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Past EI</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                        type="input" id="previousEi" placeholder="Enter Previous EI" name="previous_ei" [(ngModel)]="dormantUsers.previousEi">
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Age Group</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="ageGroup" required>
+                            <option value=""> Select Group</option>
+                            <option value="1">Profession1</option>
+                            <option value="2">Profession2</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="state" required
+                        [(ngModel)]="dormantUsers.stateId" (change)="getCities()">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let state of dormantUsers.allStates" [value]="state.id"> {{state.state}}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">City</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="city" required
+                        [(ngModel)]="dormantUsers.cityId">
+                            <option value=""> Select City</option>
+                            <option *ngFor="let city of dormantUsers.allCities" [value]="city.id">{{city.city}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="Status" required name="kyc_approved"
+                        [(ngModel)]="kycApproved">
+                            <option value=""> Select Status</option>
+                            <option value="1">Approved</option>
+                            <option value="0">Rejected</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Verified by at least one EI</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="verifyByEI" required>
+                            <option value=""> Select</option>
+                            <option value="1">Verified</option>
+                            <option value="2">Inverified</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="verifyByEI" required name="status"
+                        [(ngModel)]="status">
+                            <option value=""> Select Status</option>
+                            <option value="True">Verified</option>
+                            <option value="False">Unverified</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
+                (click)="getDormantUsersList('')">Apply</button>
+
+
+            </div>
+        </div>
+        <!--End html for filter for alumni list-->
+        <!--Start html for filter for No of alumni per page with export button-->
+        <div class="row my-3">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of User Per
+                    Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="getDormantUsersList('')" [(ngModel)]="dormantUsers.page_size">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of alumni per page with export button-->
+
+        <!--Start html for table content Alimni information-->
+        <div class="tableDiv" *ngIf="dormantUsers.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dormantUsers.dataSource| paginate: dormantUsers.config">
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{ i + dormantUsers.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ZatchUpID">
+                        <mat-header-cell *matHeaderCellDef>EI ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.zatchupId}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profilePic">
+                        <mat-header-cell *matHeaderCellDef>Profile Picture </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_img" src="{{element.profile_img}}" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_img" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name of The User </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.first_name}} {{element.last_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="noOfEducationPro">
+                        <mat-header-cell *matHeaderCellDef> Total No of EI In Education Profile </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.total_no_ei}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="noOfVerifiedUserPro">
+                        <mat-header-cell *matHeaderCellDef> Total No of EI Who Have Verified The Profile of User
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.total_verified_profile_no}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="currentEI">
+                        <mat-header-cell *matHeaderCellDef> Current EI </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.current_ei}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lastEI">
+                        <mat-header-cell *matHeaderCellDef>Last EI</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.previous_ei}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+
+                            <button class="bg-paret-green text-white rounded border-0  px-2 buttonFullWidth">
+                                {{element.is_disabled ? 'In-Active' : 'Active'}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="LastLoginDate">
+                        <mat-header-cell *matHeaderCellDef> Last Login Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.last_login}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="text-center justify-content-center">
+                            <i class="fa fa-eye mr-2 color-lightBlue cursorStyle " title="view" aria-hidden="true "
+                                (click)="userProfile(element.id)"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="dormantUsers.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: dormantUsers.displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <pagination-controls *ngIf="dormantUsers.dataSource" (pageChange)="getDormantUsersList($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!dormantUsers.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+        <!--End html for table content Alimni information-->
+    </div>
+</div>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

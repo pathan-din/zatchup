@@ -4,7 +4,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { StudentApproval } from 'src/app/modules/admin/ei/modals/ei-pending-approval.modal';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 
 export interface PeriodicElement {
   position: number;
@@ -44,7 +44,8 @@ export class EiStudentApprovalsComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
     ) { 
       this.studentApproval = new StudentApproval();
       this.maxDate = new Date();
@@ -58,14 +59,14 @@ export class EiStudentApprovalsComponent implements OnInit {
 
   getStudentApproval(page?:any) {
     this.loader.show();
-   
-  
-    
     this.studentApproval.listParams = {
       "date_from": this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
       "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'):'',
       "page_size": this.studentApproval.pageSize ? this.studentApproval.pageSize : 5,
-      "page": page ? page : 1
+      "page": page ? page : 1,
+      "course": this.studentApproval.course_id,
+      "standard": this.studentApproval.standard_id,
+      "teaching_class": this.studentApproval.class_id,
   }
 
   this.baseService.getData('ei/verifiedstudents/', this.studentApproval.listParams).subscribe(
@@ -103,33 +104,30 @@ export class EiStudentApprovalsComponent implements OnInit {
   getCourseList(){
     this.baseService.getData('ei/course-list/').subscribe(
       (res: any) =>{
-        console.log('get course res ::', res)
+        //console.log('get course res ::', res)
         if(res.count > 0)
         this.studentApproval.courseList = res.results
       }
     )
   }
-  getStandardList(courseId){
-    let obj:any={}
-    obj.course_id=courseId
-    this.baseService.getData('ei/standard-list/',  obj).subscribe(
-      (res: any) =>{
-        console.log('get standard res ::', res)
-        if(res.status== true)
-        this.studentApproval.standardList = res.standarddata
+  getStandardList(){
+    this.baseService.getData('ei/standard-list/', {'course_id': this.studentApproval.course_id}).subscribe(
+      (res:any)=>{
+        if(res.status == true)
+        this.studentApproval.standardList= res.standarddata
       }
     )
   }
-  getClassList(standardId){
-    let obj:any={}
-    obj.standard_id=standardId
-    this.baseService.getData('ei/class-list/', obj).subscribe(
-      (res: any) =>{
-        console.log('get class res ::', res)
+  getClassList(){
+    this.baseService.getData('ei/class-list/', {'standard_id': this.studentApproval.standard_id}).subscribe(
+      (res:any)=>{
         if(res.status== true)
-        this.studentApproval.classList = res.classdata
+        this.studentApproval.classList= res.classdata
       }
     )
+  }
+  goBack(): void{
+    this.location.back()
   }
 }
  

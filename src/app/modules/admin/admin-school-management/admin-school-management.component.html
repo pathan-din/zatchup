@@ -3,27 +3,24 @@
     <div class="EI-management-div bg-white px-3 pt-2 pb-3">
         <div class="row topDiv mb-1">
             <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
-                    <img src="assets/images/userWebsite/back-icon.png" class="backimg">
-                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">EI Management</h2>
             </div>
-            <div class="col-md-7 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0"
+            <div class="col-md-7 SearchDiv d-flex flex-row justify-content-end flex-wrap mt-2">
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0 mb-2"
                     data-toggle="modal" data-target="#AddStudentModel" (click)="addEducationInstitute()">Add Education
                     Institute</button>
 
-                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2 mb-2">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="text" placeholder="Search..." [(ngModel)]="search" minlength="3" maxlength="10">
+                        type="text" placeholder="Search..." [(ngModel)]="search" minlength="1" maxlength="20">
                 </div>
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
+                <button type="button" class="bg-dark text-white px-4 ml-2 border-0 mb-2 p-2"
                     (click)="searchRoute()">Apply</button>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-md-4 MobileCol6MB">
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEIDatabase()">
                     <p class="p-2 mediumFont commonFontSize">EI On Database</p>
@@ -33,7 +30,7 @@
                         Total EI On Database:<span class="ml-2">{{responseJson?.total_no_of_ei}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
                     (click)="goToEIOnboardedOnZatchupList()">
                     <p class="p-2 mediumFont commonFontSize">EI Onboard On ZatchUp</p>
@@ -49,20 +46,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEiManagementIncompleteOnBoardingPage()">
                     <p class="p-2 mediumFont commonFontSize">EI With Incomplete Onboarding</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.ei_with_incomplete_onboard}}</h2>
                     <p
                         class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total No of EI With Incomplete Onboarding:<span class="ml-2">0</span></p>
+                        Total No of EI With Incomplete Onboarding:<span
+                            class="ml-2">{{responseJson?.ei_with_incomplete_onboard}}</span></p>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEiAddedByUserNotOnZatchUpPage()">
                     <p class="p-2 mediumFont commonFontSize">EI Added by Users Not On ZatchUp</p>
@@ -73,7 +71,7 @@
                             class="ml-2">{{responseJson?.total_ei_not_on_zatchup}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
                     (click)="goToAdminEiManagementPendingForApprovalPage()">
                     <p class="p-2 mediumFont commonFontSize">EI Pending For Approval</p>
@@ -85,8 +83,8 @@
                         <span class="ml-2">{{responseJson?.total_ei_pending_for_approval}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+            <div class="col-md-4 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="changeDetailRequestsPending()">
                     <p class="p-2 mediumFont commonFontSize">EI Change Detail Requests are Pending</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{responseJson?.ei_change_details_request_pending}}</h2>
@@ -106,7 +104,7 @@
                     ({{responseJson?.view_status.added+responseJson?.view_status.similar_ei+responseJson?.view_status.rejected_ei}})
                 </h2>
                 <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-2">
-                    <div class="row">
+                    <div class="row pt-2">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Added</p>
                         </div>
@@ -160,7 +158,7 @@
                         <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_To_Date"></div>
                     </div>
 
-                    <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <div class="border-0 p-0 shadow-none mx-1">
                         <button type="button"
                             (click)="filteredFeeAndReported(feeReceivedFromDate, feeReceivedToDate, 'Fee', 0)"
                             class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
@@ -197,14 +195,13 @@
 
     <div class="comission-div bg-white px-3 py-2 mt-3">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <h2 class="commonFontSize semiBoldFont">Commission</h2>
             </div>
-            <div class="col-6 text-right"> <button type="button" class="bg-dark text-white px-2 py-1 ml-2 border-0 ">Add
-                    Commission</button></div>
+            <div class="col-md-6 text-right"> <button type="button" class="bg-dark text-white px-3 py-2 border-0 ">Add Commission</button></div>
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-5">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 mediumFont commonFontSize">Commission Collected</p>
@@ -241,7 +238,7 @@
                         <div class="required errorMsg" [innerHtml]="errorDisplay.reporeted_filter_end_date"></div>
                     </div>
 
-                    <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <div class="border-0 p-0 shadow-none mx-1">
                         <button type="button"
                             (click)="filteredFeeAndReported(reportedEiFromDate, reportedEiToDate ,'Reported', 1)"
                             class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">

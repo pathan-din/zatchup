@@ -33,7 +33,7 @@
                 <p class="text-center color-gray regularFont">OR</p>
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
-                        <input (keyup)="isValid($event)"  [required]="!model.email" class="form-control-input form-control form-control-sm form-bgImg form-phoneBgImg" type="tel" minlength="10" maxlength="10" id="phone" [(ngModel)]="model.phone" name ="phone" placeholder="Enter Your Phone Number">
+                        <input (keyup)="isValid($event)"  [required]="!model.email" class="form-control-input form-control form-control-sm form-bgImg form-phoneBgImg" type="tel" minlength="10" maxlength="10" id="phone" [(ngModel)]="model.phone" name ="phone" placeholder="Enter Your Phone Number" numberOnly>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
                 </div>
@@ -129,27 +129,27 @@
                 </div> -->
                 <div class="form-group row"> 
                     <div class="col-sm-12 form-control-inputDiv"> 
-                        <input match="password,cpassword" (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" class="form-control-input form-control form-control-sm " type="{{showHidePassword}}" placeholder="Enter Password *" style="position: relative;"> <i (click)="showHidePasswordFunction('p')" class="fa fa-eye color-gray fa-lg eyeIcon" aria-hidden="true "></i>
+                        <input match="password,cpassword" (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" class="form-control-input form-control form-control-sm " type="{{showHidePassword}}" placeholder="Enter Password *" style="position: relative;"> <i (click)="showHidePasswordFunction('p')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
                     </div>
                  <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
             
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
-                        <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password" required [(ngModel)]="modelForConfirm.cpassword" name ="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" class="form-control-input form-control form-control-sm " type="{{showHidecPassword}}" placeholder="Confirm Password" style="position: relative;"><i (click)="showHidePasswordFunction('C')" class="fa fa-eye color-gray fa-lg eyeIcon" aria-hidden="true "></i>
+                        <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password" required [(ngModel)]="modelForConfirm.cpassword" name ="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" class="form-control-input form-control form-control-sm " type="{{showHidecPassword}}" placeholder="Confirm Password" style="position: relative;"><i (click)="showHidePasswordFunction('C')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.confirm_password"></div>
                 </div>
-                <!-- <div class="form-group row  textSpace ml-0 mr-0">
+                <div class="form-group row  textSpace ml-0 mr-0">
                     <div class="col-sm-12 pl-0">
-                        <input type="checkbox" id="term-condition" class="checkboxStyle" [(ngModel)]="model.term_condition" name ="model.term_condition">
+                        <input required type="checkbox" (change)="isValid($event)" id="term-condition" class="checkboxStyle" [(ngModel)]="model.is_term_cond" name ="term_condition">
                         <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black  ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
                     </div>
 
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.term_condition"></div>
-                </div> -->
+                </div>
 
-                <p class="color-black mediumFont textSpace">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></p>
+                <!-- <p class="color-black mediumFont textSpace">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></p> -->
                 <button class="btn common-btn regularFont textSpace" (click)="goForRegister();">Submit</button>
                 <!-- <button type="submit" class="btn common-btn regularFont textSpace" data-toggle="modal"
                     data-target="#currentStatusModel">Submit</button> data-toggle="modal" data-target="#OTPModel" -->

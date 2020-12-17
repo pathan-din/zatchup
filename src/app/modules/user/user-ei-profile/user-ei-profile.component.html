@@ -22,14 +22,15 @@
                 <div class="form-group row justify-content-center">
                     <div class="col-6   text-center ">
                         <div class="round-camera-div mx-auto">
-                            <img (click)="fileInput.click()"  class="img-fluid p-2" src="{{imageUrl?imageUrl:'assets/images/userWebsite/camera_icons.png'}}">
+                            <img (click)="fileInput.click()"  class="img-fluid p-2 img_profile" src="{{imageUrl?imageUrl:'assets/images/userWebsite/profile-image.png'}}">
                             <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/>
                         </div>
                         
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
+                    <div class="col-sm-12 form-control-inputDiv">                        
                         <select (change)="displayStandardList(course_id) " name="course" [(ngModel)]="course_id" class="custom-select form-control-input" required>
                             <option value="">Select Course </option>
                             <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">{{courseObj.course_name}}</option>
@@ -39,6 +40,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                 </div>
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Select Standard</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <select  (change)="displayClassList(standard)"  name="standard" [(ngModel)]="standard" class="custom-select form-control-input" required>
                             <option value="">Select Standard </option>
@@ -49,6 +51,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
                 </div>
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input" required>
                             <option value="">Select Class</option>
@@ -58,6 +61,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
                 </div>
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">El ID Number or Admission Number</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <input required name="admission_number" [(ngModel)]="model.admission_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter El ID Number or Admission Number  ">
                     </div>
@@ -65,13 +69,15 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 pl-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6 mobForm-name">
-                            <input required name="roll_no" [(ngModel)]="model.roll_no" class="form-control-input form-control form-control-sm" type="number" placeholder="Roll Number ">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Roll Number</label>
+                        <div class="form-control-inputDiv mobile-input-6 mobForm-name">
+                            <input required name="roll_no" [(ngModel)]="model.roll_no" class="form-control-input form-control form-control-sm" type="number" placeholder="Roll Number">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
                     </div>
                     <div class="col-sm-6 pr-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Date of Joining</label>
+                        <div class="form-control-inputDiv mobile-input-6">
                             <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="date_of_joining" [(ngModel)]="model.date_joining"  class="form-control-input form-control form-control-sm" type="text" >
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_joining"></div>
@@ -79,18 +85,21 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
                     <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name ">
+                        <input required name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
                 </div>
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
                     <div class="col-sm-12 form-control-inputDiv">
                         <input required name="mother_name" [(ngModel)]="model.mother_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Mother's Name">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
                 </div>
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Comments</label>
                     <div class="col-sm-12 form-control-inputDiv ">
                         <textarea  name="comments" [(ngModel)]="model.comment" class="form-control form-control-textarea form-control-input" rows="2" placeholder="Write Comments (Optional)"></textarea>
                     </div>

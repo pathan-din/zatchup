@@ -10,149 +10,80 @@
 
             <form class="confirmForm">
                 <div class="confirm">
-                    <div class=" EI1 form-control-inputDiv border-0 rounded-0 p-4 mb-3">
+                    <div *ngFor="let confirmData of confirmationDetails;" class=" EI1 form-control-inputDiv border-0 rounded-0 p-4 mb-3">
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-9 col-sm-8">
                                         <p class="m-0 form-control-input commonFontSize"> ZatchUp ID : <span
-                                                class="text-dark mediumFont">102324</span></p>
+                                                class="text-dark mediumFont">{{confirmData.ei_detail.school_code}}</span></p>
                                     </div>
                                     <div class="col-3 text-right">
                                          <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                                     </div>
                                 </div>
                                 <p class="m-0 form-control-input commonFontSize">State : <span
-                                        class="text-dark mediumFont">Delhi</span></p>
+                                        class="text-dark mediumFont">{{confirmData.ei_detail.state}}</span></p>
                                 <p class="m-0 form-control-input commonFontSize"> City : <span
-                                        class="text-dark mediumFont">Delhi</span></p>
+                                        class="text-dark mediumFont">{{confirmData.ei_detail.city}}</span></p>
                                 <p class="m-0 form-control-input commonFontSize"> School Name : <span
-                                        class="text-dark mediumFont">ABC Public School</span></p>
+                                        class="text-dark mediumFont">{{confirmData.ei_detail.name_of_school}}</span></p>
                                 <p class="m-0 form-control-input commonFontSize"> School Address : <span
-                                        class="text-dark mediumFont">Lorem Ipsum Lorem</span></p>
+                                        class="text-dark mediumFont">{{confirmData.ei_detail.address1}}</span></p>
                                 <p class="m-0 form-control-input commonFontSize"> University/Board : <span
-                                        class="text-dark mediumFont">CBSC</span></p>
+                                        class="text-dark mediumFont">{{confirmData.ei_detail.university}}</span></p>
                             </div>
                         </div>
                         <h2 class="mb-2 textSpace">Course Details</h2>
-                        <div class="form-group row">
+                        <div class="form-group row" *ngFor="let courseData of confirmData.ei_detail.course_detail;" >
                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Course Name : <span class="text-dark mediumFont">B.Com</span>
+                                Course Name : <span class="text-dark mediumFont">{{courseData.course_name}}</span>
                             </div>
                             <div class="col-12 form-control-input commonFontSize">Course Duration :<span
-                                    class="text-dark mediumFont"> 2 Years</span></div>
+                                    class="text-dark mediumFont"> {{courseData.description}}</span></div>
                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Starting Year : <span class="text-dark mediumFont">2017</span>
+                                Starting Year : <span class="text-dark mediumFont">{{courseData.start_year?courseData.start_year:''}}</span>
                             </div>
                             <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
+                                Ending Year : <span class="text-dark mediumFont">{{courseData.end_year?courseData.end_year:''}}</span>
                             </div>
-                        </div>
-
-                        <div class="form-group row form-control-inputDiv rounded-0">
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Standard : <span class="text-dark mediumFont">6th</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Starting Year : <span class="text-dark mediumFont">2017</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                            </div>
-                            <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                    class="text-dark mediumFont"> 6th</span></div>
-
-                        </div>
-
-                        <div class="form-group row form-control-inputDiv rounded-0">
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Standard : <span class="text-dark mediumFont">6th</span>
-                            </div>
-
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Starting Year : <span class="text-dark mediumFont">2017</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                            </div>
-                            <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                    class="text-dark mediumFont"> 6th</span></div>
-
-                        </div>
-                    </div>
-                    <div class=" EI1 form-control-inputDiv border-0 rounded-0 p-4 mb-3">
-                        <div class="form-group row">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-9 col-sm-8">
-                                        <p class="m-0 form-control-input commonFontSize"> ZatchUp ID : <span
-                                                class="text-dark mediumFont">102324</span></p>
-                                    </div>
-                                    <div class="col-3 text-right">
-                                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
-                                    </div>
+                            <h3 class="col-md-12">Standard</h3>
+                            <hr />
+                            <div class="row ml-1" *ngFor="let standardData of courseData.standard_detail;">
+                                <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                    Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
                                 </div>
-                                <p class="m-0 form-control-input commonFontSize">State : <span
-                                        class="text-dark mediumFont">Delhi</span></p>
-                                <p class="m-0 form-control-input commonFontSize"> City : <span
-                                        class="text-dark mediumFont">Delhi</span></p>
-                                <p class="m-0 form-control-input commonFontSize"> School Name : <span
-                                        class="text-dark mediumFont">ABC Public School</span></p>
-                                <p class="m-0 form-control-input commonFontSize"> School Address : <span
-                                        class="text-dark mediumFont">Lorem Ipsum Lorem</span></p>
-                                <p class="m-0 form-control-input commonFontSize"> University/Board : <span
-                                        class="text-dark mediumFont">CBSC</span></p>
+                                <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                    Duration : <span class="text-dark mediumFont">{{standardData.duration}}</span>
+                                </div>
+                                <!-- <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                    Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
+                                </div> -->
+                                
+                                <h3 class="col-md-12">Section</h3>
+                                <hr />
+                                <div class="row ml-1" *ngFor="let classData of standardData.class_detail;">
+                                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                        Class Name : <span class="text-dark mediumFont">{{standardData.class_name}}</span>
+                                    </div>
+        
+                                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                        Teaching Start Year : <span class="text-dark mediumFont">{{standardData.teaching_start_year}}</span>
+                                    </div>
+                                    <!-- <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
+                                        Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
+                                    </div>
+                                    <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
+                                            class="text-dark mediumFont"> 6th</span></div> -->
+        
+                                </div>
                             </div>
-                        </div>
-                        <h2 class="mb-2 textSpace">Course Details</h2>
-                        <div class="form-group row">
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Course Name : <span class="text-dark mediumFont">B.Com</span>
-                            </div>
-                            <div class="col-12 form-control-input commonFontSize">Course Duration :<span
-                                    class="text-dark mediumFont"> 2 Years</span></div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Starting Year : <span class="text-dark mediumFont">2017</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group row form-control-inputDiv rounded-0">
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Standard : <span class="text-dark mediumFont">6th</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Starting Year : <span class="text-dark mediumFont">2017</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                            </div>
-                            <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                    class="text-dark mediumFont"> 6th</span></div>
-
-                        </div>
-
-                        <div class="form-group row form-control-inputDiv rounded-0">
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Standard : <span class="text-dark mediumFont">6th</span>
-                            </div>
-
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Starting Year : <span class="text-dark mediumFont">2017</span>
-                            </div>
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize">
-                                Ending Year : <span class="text-dark mediumFont">B.Com2018</span>
-                            </div>
-                            <div class="col-12 form-control-input commonFontSize">Course ended standard :<span
-                                    class="text-dark mediumFont"> 6th</span></div>
-
                         </div>
                     </div>
+                  
                     
                 </div>
-                <button type="submit " class="btn common-btn regularFont textSpace fixedBtn"
+                <button type="submit " class="color-white mt-4 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
                     (click)="goToUserProfileCreatedPage()">Confirm & Send for EI Verification</button>
             </form>
 
@@ -161,5 +92,8 @@
 
 </div>
 
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 
 
 <app-user-footer></app-user-footer>

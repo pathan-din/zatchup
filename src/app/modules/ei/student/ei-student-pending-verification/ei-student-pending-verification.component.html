@@ -151,8 +151,8 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers pt-1">
-                            <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
-                                aria-hidden="true "></i>
+                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
+                                aria-hidden="true "></i> -->
 							<span *ngIf="element.kyc_approved==1">
                             <i *ngIf="element.approved==0" (click)="openModel(element.studentID)" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
                                 data-toggle="modal"></i>
@@ -267,10 +267,8 @@
                         <p class="commonFontSize regularFont letterspacing text-right">
                             <!-- <span class="mx-3 color-blue">No</span>
                             <span class="mx-2 color-blue">Yes</span> -->
-                            <button type="button " (click)="closeModel()"
-                                class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
-                            <button type="button" (click)="approveStudent(1, modelUserId)"
-                                class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
+                            <button type="button " (click)="closeModel()" class="bg-red px-3 color-white py-2 border-0 rounded mr-3 modalAddStudentsBtn mediumFont">No</button>
+                            <button type="button" (click)="approveStudent(1, modelUserId)" class="bg-purple py-2 px-3 color-white border-0 rounded modalAddStudentsBtn mediumFont">Yes</button>
 
                         </p>
                     </div>

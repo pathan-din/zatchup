@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
-import { AdminService } from 'src/app/services/Admin/admin.service';
+import { AdminService  } from 'src/app/services/Admin/admin.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Subscription } from 'rxjs';
 

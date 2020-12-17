@@ -9,48 +9,70 @@
         </div> -->
         <!--Start html for filter for alumni list-->
         <div class="filterDiv ">
-            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">User Search</h2>
-            <div class="d-flex flex-wrap align-items-end">
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Current City</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY"> -->
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " id="city" type="input" placeholder="Enter Current City">
-
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont letterspacing mb-0">User Search</h2>
+            </div>
+            <div class="d-flex flex-wrap align-items-end mt-3"> 
+                <div class="medium-filter-box widthFull MobileCol6MB mr-2">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Current State</label>
+                    <div class="form-control-inputDiv rounded  shadow-none  border-top">
+                        <select class="custom-select  form-control-input" id="pastEI" required [(ngModel)]="stateId"
+                            (change)="getCities()">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let state of allStates" [value]="state.id"> {{state.state}}
+                            </option>
+                        </select>
                     </div>
                 </div>
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+
+                <div class="medium-filter-box widthFull MobileCol6MB mr-2">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Current City</label>
+                    <div class="form-control-inputDiv rounded  shadow-none  border-top ">
+                        <select class="custom-select  form-control-input" id="pastEI" required [(ngModel)]="cityId">
+                            <option value=""> Select City</option>
+                            <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box MobileCol6MB">
                     <label for="" class="mediumFont commonFontSize letterspacing">Current EI</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY"> -->
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="input" id="currentEi" placeholder="Enter Current EI">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                            type="input" id="currentEi" placeholder="Enter Current EI" name="current_ei" [(ngModel)]="currentEi">
 
                     </div>
                 </div>
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 widthFull medium-filter-box MobileCol6MB">
                     <label for="" class="mediumFont commonFontSize letterspacing">Past EI</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY"> -->
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " id="lastLoginFrom" type="input" placeholder="Enter Past EI">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                            id="lastLoginFrom" type="input" placeholder="Enter Past EI" name="past_ei" [(ngModel)]="previousEi">
 
                     </div>
                 </div>
 
 
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 border-0"
+                    (click)="searchUserList('1')">Apply</button>
 
 
             </div>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-4">
+        <div class="row my-4" *ngIf="dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of User Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="searchUserList()" [(ngModel)]="page_size">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -59,59 +81,64 @@
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
                 <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
-                        aria-hidden="true"></i>Export</button>
+                        aria-hidden="true" (click)="generateExcel()"></i>Export</button>
             </div>
         </div>
         <!--End html for filter for No of alumni per page with export button-->
 
         <!--Start html for table content Alimni information-->
-        <div class="tableDiv ">
+        <div class="tableDiv " *ngIf="dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="dataSource | paginate: config">
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i=index"> {{i + startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Name}}
+                            {{element.first_name}} {{element.last_name}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePic">
                         <mat-header-cell *matHeaderCellDef>Profile </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <img mat-card-avatar [src]="element.profilePic" class="mat-img-proPic cursorStyle" />
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic }}" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_pic" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                            </div>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ZatchUpID">
                         <mat-header-cell *matHeaderCellDef>User ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.ZatchUpID}}
+                            {{element.zatchupId}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="userType">
                         <mat-header-cell *matHeaderCellDef> User Type </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.userType}}
+                            {{element.user_type}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="currentEI">
                         <mat-header-cell *matHeaderCellDef> Current EI </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.currentEI}}
+                            {{element.current_ei}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="pastEI">
                         <mat-header-cell *matHeaderCellDef>Past EI</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.pastEI}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.previous_ei}} </mat-cell>
                     </ng-container>
 
 
@@ -120,6 +147,13 @@
 
                 </mat-table>
 
+            </div>
+        </div>
+        <pagination-controls *ngIf="dataSource" (pageChange)="searchUserList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
         <!--End html for table content Alimni information-->

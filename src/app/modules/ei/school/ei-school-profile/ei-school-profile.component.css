@@ -13,10 +13,14 @@
         padding-top: 0;
     }
     
+    .profileDivLeft {
+        position: relative;
+    }
+    
     .tick-img {
         position: absolute;
-        bottom: 10px;
-        left: 140px;
+        bottom: 50px;
+        left: 130px;
     }
     
     .w-like-comment {
@@ -34,7 +38,7 @@
     .dpImgDiv {
         background: url('/assets/images/userWebsite/share-my-profile-icon.png') #efefef;
         background-repeat: no-repeat;
-        background-size: 55%;
+        background-size: 100%;
         background-position-y: 15%;
         background-position-x: center;
         width: 100px;
@@ -68,7 +72,14 @@
     }
     
     .bannerDiv {
-        height: 140px;
+        height: 180px;
+        overflow: hidden;
+    }
+    .bannerDiv img{
+        max-width: 100% !important;
+        width: auto !important;
+        margin: 0px auto;
+        display: block;
     }
     
     .img-container {
@@ -114,18 +125,17 @@
             width: 100%!important;
         }
         .colLeftPost {
-            /* padding: 0; */
             margin-top: 2%;
         }
         .mtStyle{
             margin-top: 2rem;
         }
-        .tick-img{
+        .tick-img {
             position: absolute;
-            bottom: 10px;
+            bottom: 40px;
             left: inherit;
-            right: 10px;
         }
+
         .img-container {
             min-height: 90px;
             max-height: 90px;

@@ -4,10 +4,16 @@
 
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3"
         *ngIf="kycHistoryModal.activeParams.kycType == 'pending'">
-        <h2 class="commonFontSize semiBoldFont m-0">Kyc Pending</h2>
+        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+
+            <h2 class="commonFontSize semiBoldFont m-0">Kyc Pending</h2>
+        </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="row mt-2 py-2 form-control-inputDiv border-0 mx-0">
+                <div class="row mt-2 py-2 border-0 mx-0">
                     <div class="col-md-12 col-left">
 
                         <div class="row">

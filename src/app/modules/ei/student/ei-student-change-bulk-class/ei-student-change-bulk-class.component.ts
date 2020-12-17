@@ -6,6 +6,7 @@ import { BaseService } from '../../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ei-student-change-bulk-class',
@@ -23,7 +24,9 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
     public baseService:BaseService,
     public formBuilder: FormBuilder,
     private genericFormValidationService:GenericFormValidationService,
-    private alert: NotificationService) { }
+    private alert: NotificationService,
+    private location: Location
+    ) { }
 
   ngOnInit(): void {
     this. getUploadClassesIds();
@@ -121,5 +124,8 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
     }
     
     
+}
+goBack(): void{
+  this.location.back()
 }
 }
