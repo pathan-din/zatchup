@@ -15,7 +15,7 @@
                         style="background-image: url({{userProfile.profile_pic}})">
                         <div class="upload-dp position-absolute">
                             <button type="button" (click)="fileInput1.click()"
-                                class=" border-0 bg-transparent text-white p-2 cursorStyle">
+                                class=" border-0 bg-transparent text-white p-2 cursorStyle d-block mt-3">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                                 <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
                                     style="display:none;" />

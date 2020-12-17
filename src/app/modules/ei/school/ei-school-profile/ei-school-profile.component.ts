@@ -21,8 +21,7 @@ export class EiSchoolProfileComponent implements OnInit {
   uploadInfo: any = {
     "image_type": "cover_pic",
     "url": "ei/cover-profile-update/",
-    "icon": "fa fa-camera",
-    "class": "btn_position-absolute border-0 bg-light-black text-white p-2"
+    "icon": "fa fa-camera"
   }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,

@@ -1,7 +1,7 @@
 <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
 <button type="button" (click)="fileInput.click()"
-    [ngClass]="class ? class : 'btn_position-absolute border-0 bg-light-black text-white p-2'">
+    [ngClass]="class ? class : 'btn_position-absolute btn_upload border-0 bg-light-black text-white p-2'">
     <i [ngClass]="icon ? icon : 'fa fa-camera'" aria-hidden="true"></i>
     <input (change)="fileChangeEvent($event)" #fileInput type="file" style="display:none;" />
     <button #openModalButton [hidden]="true" data-toggle="modal" data-target="#imageCropModel">Open Modal</button>
@@ -29,10 +29,12 @@
                 </image-cropper>
 
                 <img [src]="croppedImage" />
-                <button type="button " (click)="closeModal()"
-                    class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                    Upload
-                </button>
+                <div class="justify-content-center d-flex">
+                    <button type="button " (click)="closeModal()"
+                        class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing d-block mt-3">
+                        Upload
+                    </button>
+                </div>
             </div>
         </div>
     </div>
