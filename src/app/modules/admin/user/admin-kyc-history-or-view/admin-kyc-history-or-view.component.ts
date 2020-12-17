@@ -84,7 +84,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
       "id": this.kycHistoryModal.kycDetails.id,
       "request_type": this.kycHistoryModal.approveOrReject,
       "kyc_id": this.kycHistoryModal.kycDetails.kyc_id_no,
-      "rejected_reason": this.kycHistoryModal.rejectionReason,
+      "rejected_reason": this.kycHistoryModal.rejectionReason ? this.kycHistoryModal.rejectionReason : undefined,
       "rejected_remarks": this.kycHistoryModal.rejectionRemark
     }
     this.loader.show()

@@ -167,4 +167,10 @@ export class SubadminPendingAccessComponent implements OnInit {
   }
   generateExcel() { }
 
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.ValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
 }

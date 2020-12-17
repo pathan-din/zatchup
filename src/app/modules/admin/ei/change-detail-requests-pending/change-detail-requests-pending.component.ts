@@ -20,7 +20,8 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
   ) { 
-    this.changeDetailRequestsPending = new ChangeDetailRequestsPending()
+    this.changeDetailRequestsPending = new ChangeDetailRequestsPending();
+    this.changeDetailRequestsPending.maxDate = new Date()
   }
 
   ngOnInit(): void {
