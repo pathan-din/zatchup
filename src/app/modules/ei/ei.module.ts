@@ -281,7 +281,6 @@ import { RequestChangeDetailsComponent } from './student/request-change-details/
     SubadminschoolconfirmationComponent,
     SignUpPendingListComponent,
     EiProfilePreviewComponent,
-    SignUpPendingListComponent,
     EiSentForSignUpComponent,
     SentForApprovalComponent,
     RequestChangeDetailsComponent
