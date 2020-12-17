@@ -49,12 +49,15 @@ export class EiSubadminViewStatusComponent implements OnInit {
     }
     let url:any ='';
     this.route.queryParams.subscribe(params=>{
-      if(params['status']!='rejected'){
+      if(params['status']=='approved'){
         this.listParams.status =params['status'];
         url ='ei/sent-for-approval-subadmin-list-by-ei/';
-      }else{
+      }else if(params['status']=='rejected'){
         this.listParams.status='';
         url ='ei/rejected-by-zatchup-subadmin-list-by-ei/';
+      }else{
+        this.listParams.status =params['status'];
+        url ='ei/sent-for-approval-subadmin-list-by-ei/';
       }
       
     })

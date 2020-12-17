@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../../services/user/users-service.service';
 import { BaseService } from '../../../services/base/base.service';
@@ -7,6 +7,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { DatePipe } from '@angular/common';
 import { NotificationService } from '../../../services/notification/notification.service';
+import { EiServiceService } from 'src/app/services/EI/ei-service.service';
 
 @Component({
   selector: 'app-add-new-course',
@@ -14,6 +15,7 @@ import { NotificationService } from '../../../services/notification/notification
   styleUrls: ['./add-new-course.component.css']
 })
 export class AddNewCourseComponent implements OnInit {
+  @ViewChild('inputFile') myInputVariable: ElementRef;
   model: any = {}
   errorDisplay: any = {};
   pipe = new DatePipe('en-US');
@@ -26,7 +28,8 @@ export class AddNewCourseComponent implements OnInit {
     public userService: UsersServiceService,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private eiService:EiServiceService
     ) { }
 
   ngOnInit(): void {
@@ -35,9 +38,48 @@ export class AddNewCourseComponent implements OnInit {
       
     });
   }
-  fileUploadDocument(file){
-
+  /** 
+   * Function Name : fileUploadDocument
+  */
+ fileUploadDocument(files, document) {
+  let fileList: FileList = files;
+  let fileData: File = fileList[0];
+  if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png' && fileData.type !== 'application/pdf') {
+    this.SpinnerService.hide();
+    this.alert.error("File format not supported", 'Error');
+    this.myInputVariable.nativeElement.value = '';
+    return
+  }else{
+     
+    
   }
+  const formData = new FormData();
+  formData.append('file_name', fileData);
+  try {
+    this.SpinnerService.show();
+    this.eiService.uploadFile(formData).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.SpinnerService.hide();
+          this.imageUrl = res.filename;
+          return res.filename;
+        } else {
+          this.imageUrl =''
+          this.SpinnerService.hide();
+          var collection = this.eiService.getErrorResponse(this.SpinnerService, res.error);
+          this.alert.error(collection, 'Error')
+          return '';
+        }
+      }, (error) => {
+        this.SpinnerService.hide();
+        this.alert.error(error.message, 'Error')
+        return '';
+      });
+  } catch (err) {
+    this.SpinnerService.hide();
+    this.alert.error(err, 'Error')
+  }
+}
   addCourseData(){
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
