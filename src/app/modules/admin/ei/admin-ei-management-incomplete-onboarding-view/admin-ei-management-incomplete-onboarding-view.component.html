@@ -4,17 +4,18 @@
 <div class="container main-container p-3">
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-6  d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont m-0">EI With Incomplete Onboarding View</h2>
+            <div class="col-md-6  d-flex justify-content-start flex-wrap align-items-center">                
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    EI With Incomplete Onboarding View</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
                     data-target="#CommentModel">Onboarding Conversation
                     Comments</button> -->
-                <button *ngIf="eiData" type="button" class="bg-blue text-white px-4 py-2 border-0"
+                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0"
                     routerLink="/admin/education-institute-history/{{eiData.id}}">History</button>
             </div>
         </div>
@@ -22,9 +23,9 @@
             <div class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition">
                 <div class="dpImgDiv rounded-circle bg-light-green border border-white" data-toggle="modal"
                     data-target="#BlockUserModel">
-                    <img *ngIf="eiData" [src]="eiData.cover_pic" alt="Cover Pic" class="img-fluid dpImg">
+                    <img *ngIf="eiData" [src]="eiData.cover_pic" alt="Cover Pic" class="img-fluid dpImg cursorStyle">
                     <img *ngIf="!eiData" src="assets/images/userWebsite/share-my-profile-icon.png"
-                        class="img-fluid dpImg">
+                        class="img-fluid dpImg cursorStyle">
                 </div>
 
                 <div class="userInfo" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
