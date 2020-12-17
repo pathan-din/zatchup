@@ -21,6 +21,7 @@ export class AddNewCourseComponent implements OnInit {
   pipe = new DatePipe('en-US');
   schoolId:any;
   imageUrl:any='';
+  checkincourse:boolean=false;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -33,6 +34,10 @@ export class AddNewCourseComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("checkincourse")=="true")
+    {
+      this.checkincourse=true;
+    }
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
       
