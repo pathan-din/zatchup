@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEIDatabase()">
                     <p class="p-2 mediumFont commonFontSize">EI On Database</p>
@@ -30,7 +30,7 @@
                         Total EI On Database:<span class="ml-2">{{responseJson?.total_no_of_ei}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
                     (click)="goToEIOnboardedOnZatchupList()">
                     <p class="p-2 mediumFont commonFontSize">EI Onboard On ZatchUp</p>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEiManagementIncompleteOnBoardingPage()">
                     <p class="p-2 mediumFont commonFontSize">EI With Incomplete Onboarding</p>
@@ -60,7 +60,7 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEiAddedByUserNotOnZatchUpPage()">
                     <p class="p-2 mediumFont commonFontSize">EI Added by Users Not On ZatchUp</p>
@@ -71,7 +71,7 @@
                             class="ml-2">{{responseJson?.total_ei_not_on_zatchup}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
                     (click)="goToAdminEiManagementPendingForApprovalPage()">
                     <p class="p-2 mediumFont commonFontSize">EI Pending For Approval</p>
@@ -83,7 +83,7 @@
                         <span class="ml-2">{{responseJson?.total_ei_pending_for_approval}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="changeDetailRequestsPending()">
                     <p class="p-2 mediumFont commonFontSize">EI Change Detail Requests are Pending</p>
                     <h2 class="countFontSize text-center semiBoldFont">
