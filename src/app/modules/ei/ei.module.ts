@@ -143,6 +143,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
 import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component'
+import { SharedModule } from 'src/app/common/shared.module';
 
 @NgModule({
   declarations: [
@@ -292,7 +293,8 @@ import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-
     BsDatepickerModule,
     AutocompleteLibModule,
     DirectiveModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedModule
   ],
   exports: [
     EiLoginComponent

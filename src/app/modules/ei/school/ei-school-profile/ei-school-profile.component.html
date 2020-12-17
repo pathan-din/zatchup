@@ -5,14 +5,7 @@
         <h2 class="commonFontSize semiBoldFont mb-0">School Profile</h2>
         <div class="bannerDiv position-relative">
             <img src="{{cover_pic?cover_pic:userProfile.cover_pic}}" class="img-fluid w-100">
-            <!-- <button class=" btn_position-absolute border-0 bg-light-black text-white p-2">Upload Cover Photo</button> -->
-            <button type="button" (click)="fileInput.click()"
-                class=" btn_position-absolute border-0 bg-light-black text-white p-2">
-                <i class="fa fa-camera" aria-hidden="true"></i>
-                <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
-            </button>
-            <!-- <span class=" btn_position-absolute border-0 bg-light-black text-white p-2" (click)="fileInput.click()"><i class="fa fa-camera" aria-hidden="true"></i></span> -->
-            
+            <app-image-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadInfo"></app-image-uploader>
         </div>
         <div class="">
             <div class="row pt-2">
@@ -82,6 +75,9 @@
                         </p>
                         <p class="m-0 text-center color-purple semiBoldFont "> {{userProfile.total_alumni}}</p>
                     </div>
+                    <!-- <div>
+                        <app-image-uploader (imageData)="getImageData($event)"></app-image-uploader>
+                    </div> -->
                     <!-- <div class="row ">
                         <div class="col-12 colLeftPost ">
                             <div class="form-control-inputDiv ">
