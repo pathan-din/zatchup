@@ -41,7 +41,7 @@
         </div>
         <div class="row mt-3 ">
             <div class="col-md-5 ">
-                <div class="educationDiv row form-control-inputDiv ">
+                <div class="educationDiv row form-control-inputDiv py-2 ">
                     <div class="col-md-12 educationHeader d-flex justify-content-between align-items-center ">
                         <h3 class="color-purple commonFontSize semiBoldFont m-0 ">Education</h3>
                         <img src="assets/images/userWebsite/edit.png " class="img-fluid editIcon ">
@@ -67,7 +67,7 @@
                         <p class="m-0 pl-4 color-purple commonFontSize mediumFont ">Current School</p>
                     </div>
                 </div>
-                <div class="informationDiv row form-control-inputDiv mt-2 ">
+                <div class="informationDiv row form-control-inputDiv py-2 mt-2 ">
                     <div class="col-md-12 informationHeader d-flex justify-content-between align-items-center ">
                         <h3 class="color-purple commonFontSize semiBoldFont m-0 ">Personal Information</h3>
                         <button type="button " class="commonFontSize mediumFont common-btn bg-white color-purple m-0 ">Change Name</button>
@@ -89,7 +89,7 @@
             <div class="col-md-7 ">
                 <div class="row ">
                     <div class="col-12 colLeftPost ">
-                        <div class="form-control-inputDiv ">
+                        <div class="form-control-inputDiv py-2 ">
                             <div class="col-12 commonFontSize semiBoldFont color-purple " (click)="goToUserCreatePostPage()">Posts</div>
                             <div class="col-12 ">
                                 <hr>
@@ -98,11 +98,11 @@
 
                                 <div class="col-6 text-center ">
                                     <img *ngIf="postOptionActiveMatrix==='active' " src="assets/images/userWebsite/matix-format.png " class="w-12 img-fluid " (click)="postTabFunction( 'matrix') ">
-                                    <img *ngIf="postOptionActiveMatrix==='dead' " src="assets/images/userWebsite/matix-format.png " class="w-12 img-fluid " (click)="postTabFunction( 'matrix') ">
+                                    <img *ngIf="postOptionActiveMatrix==='dead' " src="assets/images/userWebsite/matix-format.png " class="w-12 img-fluid cursorStyle" (click)="postTabFunction( 'matrix') ">
                                 </div>
                                 <div class="col-6 text-center ">
                                     <img *ngIf="postOptionActiveImage==='active' " src="assets/images/userWebsite/image-icon.png " class="w-12 img-fluid " (click)="postTabFunction( 'image') ">
-                                    <img *ngIf="postOptionActiveImage==='dead' " src="assets/images/userWebsite/image-icon.png " class="w-12 img-fluid " (click)="postTabFunction( 'image') ">
+                                    <img *ngIf="postOptionActiveImage==='dead' " src="assets/images/userWebsite/image-icon.png " class="w-12 img-fluid cursorStyle" (click)="postTabFunction( 'image') ">
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="images " *ngIf="postOption==='image' ">
-                    <div class="card form-control-inputDiv border-0 bg-white mt-3 ">
+                    <div class="card form-control-inputDiv py-2 border-0 bg-white mt-3 ">
                         <div class="card-header bg-white ">
                             <div class="row align-items-center ">
                                 <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 ">
@@ -137,7 +137,7 @@
 
                         <div class="row py-2 ">
                             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8 ">
-                                <h4 class="commonFontSize semiBoldFont ">Title of the Project</h4>
+                                <h4 class="commonFontSize semiBoldFont pl-3">Title of the Project</h4>
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 text-right ">
                                 <img src="assets/images/userWebsite/view.png " class="img-fluid border-0 eyes-img ">
@@ -166,7 +166,7 @@
 
                         </div>
                     </div>
-                    <div class="card form-control-inputDiv border-0 bg-white mt-3 ">
+                    <div class="card form-control-inputDiv py-2 border-0 bg-white mt-3 ">
                         <div class="card-header bg-white ">
                             <div class="row align-items-center ">
                                 <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 ">
@@ -184,7 +184,7 @@
 
                         <div class="row py-2 ">
                             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8 ">
-                                <h4 class="commonFontSize semiBoldFont ">Title of the Project</h4>
+                                <h4 class="commonFontSize semiBoldFont pl-3">Title of the Project</h4>
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 text-right ">
                                 <img src="assets/images/userWebsite/view.png " class="img-fluid border-0 eyes-img ">

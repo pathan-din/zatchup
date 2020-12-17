@@ -147,7 +147,7 @@ const routes: Routes = [
     path: 'mobile-verification', component: EiMobileVerificationComponent
   },
   {
-    path: 'contact-us', component: EiContactUsComponent, canActivate: [AuthGuard]
+    path: 'contact-us', component: EiContactUsComponent
   },
   {
     path: 'create-new-password', component: EiCreateNewPasswordComponent

@@ -64,7 +64,6 @@ export class SignUpPendingListComponent implements OnInit {
 
   this.baseService.getData('ei/verifiedstudents/', this.studentApproval.listParams).subscribe(
     (res: any) => {
-      console.log('list params....', res)
       if (res.status == true) {
         if (!page)
           page = this.studentApproval.config.currentPage
@@ -97,7 +96,6 @@ export class SignUpPendingListComponent implements OnInit {
   getCourseList(){
     this.baseService.getData('ei/course-list/').subscribe(
       (res: any) =>{
-        console.log('get course res ::', res)
         if(res.count > 0)
         this.studentApproval.courseList = res.results
       }
@@ -108,7 +106,6 @@ export class SignUpPendingListComponent implements OnInit {
     obj.course_id=courseId
     this.baseService.getData('ei/standard-list/',  obj).subscribe(
       (res: any) =>{
-        console.log('get standard res ::', res)
         if(res.status== true)
         this.studentApproval.standardList = res.standarddata
       }
@@ -119,7 +116,6 @@ export class SignUpPendingListComponent implements OnInit {
     obj.standard_id=standardId
     this.baseService.getData('ei/class-list/', obj).subscribe(
       (res: any) =>{
-        console.log('get class res ::', res)
         if(res.status== true)
         this.studentApproval.classList = res.classdata
       }

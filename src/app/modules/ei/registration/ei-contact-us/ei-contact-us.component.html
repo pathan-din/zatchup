@@ -7,31 +7,30 @@
                 <h2 class="text-center my-3 semiBoldFont">Contact Us</h2>
                 <form id="Form1">
                     <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-6 MobileCol6MB">
-                            <label for="City" class="mediumFont commonFontSize letterspacing">Select City </label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <select id="city_list" name="city_list" class="custom-select custom-select-2Col form-control-input"
-                                    required>
-                                    <option value="">City </option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.city_list"></div>
-                        </div>
                         <div class="col-sm-6 ">
                             <label for="City" class="mediumFont commonFontSize letterspacing">Select State </label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <select id="state_list" name="state_list" class="custom-select-2Col custom-select form-control-input"
-                                    required>
+                                <select id="state" name="state" [(ngModel)]="contactUs.stateId" (change)="getCities();"
+                                    class="custom-select-2Col custom-select form-control-input" required>
                                     <option value="">State </option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option *ngFor="let state of contactUs.allStates" [value]="state.id">{{state.state}}
+                                    </option>
                                 </select>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.state_list"></div>
+                            <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.state"></div>
+                        </div>
+
+                        <div class="col-sm-6 MobileCol6MB">
+                            <label for="City" class="mediumFont commonFontSize letterspacing">Select City </label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select id="city" name="city" [(ngModel)]="contactUs.cityId" (change)="getSchools();"
+                                    class="custom-select custom-select-2Col form-control-input" required>
+                                    <option value="">City </option>
+                                    <option *ngFor="let city of contactUs.allCities" [value]="city.id">{{city.city}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.city"></div>
                         </div>
                     </div>
 
@@ -40,25 +39,25 @@
                             <label for="School" class="mediumFont commonFontSize letterspacing">Select School
                                 Name </label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <select id="School_list" name="School_list" class="custom-select custom-select-2Col form-control-input"
-                                    required>
+                                <select id="School_name" name="School_name" [(ngModel)]="contactUs.schoolId"
+                                    (change)="getUniversityOrBoardName()"
+                                    class="custom-select custom-select-2Col form-control-input" required>
                                     <option value="">Select School </option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option *ngFor="let school of contactUs.allSchools" [value]="school.id">
+                                        {{school.name_of_school}}</option>
                                 </select>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.School_list"></div>
+                            <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.School_name"></div>
                         </div>
                         <div class="col-sm-6 ">
                             <label for="board" class="mediumFont commonFontSize letterspacing">Board /
                                 University </label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input id="board" required (keyup)="isValid($event)" [(ngModel)]="model.board" name="board"
+                                <input id="board" (keyup)="isValid()" [(ngModel)]="contactUs.university"
+                                    name="Board_or_University" readonly="readonly"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Enter your Board / University" >
+                                    type="text" placeholder="Enter your Board / University">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.board"></div>
                         </div>
                     </div>
 
@@ -67,81 +66,43 @@
                             <label for="Address" class="mediumFont commonFontSize letterspacing">Full
                                 Address</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input id="Address" required (keyup)="isValid($event)" [(ngModel)]="model.Address" name="Address"
+                                <input id="address" (keyup)="isValid()" [(ngModel)]="contactUs.fullAddress"
+                                    name="address" readonly="readonly"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Address">
+                                    type="text" placeholder="Please Enter address">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.Address"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="Address" class="mediumFont commonFontSize letterspacing">
+                                Issue</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input id="issue" required (keyup)="isValid()" [(ngModel)]="contactUs.issue"
+                                    name="issue"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Please Enter issue">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.issue"></div>
                         </div>
                     </div>
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="Address" class="mediumFont commonFontSize letterspacing">Messages</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <textarea id="Messages" required (keyup)="isValid($event)" [(ngModel)]="model.Messages" name="Messages"
+                                <textarea id="Messages" required (keyup)="isValid()" [(ngModel)]="contactUs.message"
+                                    name="Messages"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Messages"></textarea>
+                                    type="text" placeholder="Please Enter messages"></textarea>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.Messages"></div>
+                            <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.Messages"></div>
                         </div>
                     </div>
-                    <!-- <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="city" class=" commonFontSize mediumFont letterspacing">Select City</label>
-                            <select class="custom-select form-control ei-form-control down-arrow-6 letterspacing"
-                                required>
-                                <option value="">City </option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="state" class=" commonFontSize mediumFont letterspacing">Select State</label>
-                            <select class="custom-select form-control ei-form-control down-arrow-6 letterspacing"
-                                required>
-                                <option value="">State </option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="city" class=" commonFontSize mediumFont text-nowrap letterspacing">Select School
-                                Name</label>
-                            <select class="custom-select form-control ei-form-control down-arrow-6 letterspacing"
-                                required>
-                                <option value="">Select School </option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="state" class=" commonFontSize mediumFont letterspacing">Board /
-                                University</label>
-                            <input type="text"
-                                class="ei-formControl-input form-control form-control-sm ei-form-control commonFontSize regularFont letterspacing"
-                                placeholder="Enter your Board / University" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="address" class=" commonFontSize mediumFont letterspacing">Full Address</label>
-                        <input type="text" class="form-control ei-form-control commonFontSize regularFont letterspacing"
-                            placeholder="Address" />
-                    </div>
-                    <div class="form-group">
-                        <label for="messages" class=" commonFontSize mediumFont letterspacing">Messages</label>
-                        <textarea class="form-control ei-form-control commonFontSize regularFont letterspacing" row="30"
-                            placeholder="Messages"></textarea>
-                    </div>-->
                     <button type="submit"
                         class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing"
                         (click)="submit()">Submit</button>
-                    <p class="text-center commonFontSize mediumFont letterspacing mt-4">Contact us at <span
-                            class="textUnderlineStyle letterspacing">help@zatchup.com</span></p>
+                    <!-- <p class="text-center commonFontSize mediumFont letterspacing mt-4">Contact us at <span
+                            class="textUnderlineStyle letterspacing">help@zatchup.com</span></p> -->
                 </form>
             </div>
         </div>

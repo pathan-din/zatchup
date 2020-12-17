@@ -12,6 +12,7 @@ export class TicketsList {
     allStates: any;
     allCities: any;
     university: any;
+    maxDate: any
     config = {
         itemsPerPage: 0,
         currentPage: 1,

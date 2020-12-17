@@ -1,0 +1,16 @@
+.round-camera-div {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #463267;
+    overflow: hidden;
+    position: relative;
+}
+.round-camera-div img {
+    position: absolute;
+    height: inherit;
+    max-width: initial;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

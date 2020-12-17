@@ -5,23 +5,27 @@
         <!-- <h2 class="commonFontSize semiBoldFont m-0">Approval Pending List</h2> -->
 
         <div class="filterDiv">
-            
+
             <div class="d-flex flex-wrap align-items-end">
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="fromDate" name="fromDate"
-                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="toDate" name="toDate"
-                        placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #toDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        <input
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #toDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
                     </div>
                 </div>
@@ -29,36 +33,41 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEI" required
-                        [(ngModel)]="studentApproval.courseId" (change)="getStandardList(studentApproval.courseId)">
-                        <option value=""> Select Course</option>
-                        <option *ngFor="let course of studentApproval.courseList " value="{{course.id}}">{{course.course_name}}</option>
-                    </select>
+                            [(ngModel)]="studentApproval.course_id"
+                            (change)="getStandardList(studentApproval.course_id)">
+                            <option value=""> Select Course</option>
+                            <option *ngFor="let course of studentApproval.courseList " value="{{course.id}}">
+                                {{course.course_name}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="studentApproval.standardId" (change)="getClassList(studentApproval.courseId)">
-                        <option value=""> Select Standard</option>
-                       <option *ngFor="let standard of studentApproval.standardList" value="{{standard.id}}">{{standard.standard_name}}</option>
-                    </select>
+                            [(ngModel)]="studentApproval.standard_id"
+                            (change)="getClassList(studentApproval.course_id)">
+                            <option value=""> Select Standard</option>
+                            <option *ngFor="let standard of studentApproval.standardList" value="{{standard.id}}">
+                                {{standard.standard_name}}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
-                        [(ngModel)]="studentApproval.classId">
-                        <option value=""> Select Subsection</option>
-                        <option *ngFor="let class of studentApproval.classList" value="class.id">{{class.class_name}}</option>
-                    </select>
+                            [(ngModel)]="studentApproval.class_id">
+                            <option value=""> Select Subsection</option>
+                            <option *ngFor="let class of studentApproval.classList" value="class.id">
+                                {{class.class_name}}</option>
+                        </select>
                     </div>
                 </div>
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                (click)="getStudentApproval()">Apply</button>
+                    (click)="getStudentApproval()">Apply</button>
 
 
             </div>
@@ -66,18 +75,20 @@
         <div class="row my-3" *ngIf="studentApproval.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Students Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Students
+                    Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                    (change)="getStudentApproval('1')" [(ngModel)]="studentApproval.pageSize">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                        </select>
+                        (change)="getStudentApproval('1')" [(ngModel)]="studentApproval.pageSize">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
 
@@ -171,16 +182,16 @@
 
                     <mat-header-row *matHeaderRowDef="studentApproval.displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: studentApproval.displayedColumns; "></mat-row>
-                 </mat-table>
+                </mat-table>
             </div>
         </div>
         <pagination-controls *ngIf="studentApproval.dataSource" (pageChange)="getStudentApproval($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
-    <div class="row" *ngIf="!studentApproval.dataSource">
-        <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!studentApproval.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
         </div>
-    </div>
     </div>
 </div>

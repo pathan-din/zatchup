@@ -21,6 +21,7 @@ export class TicketsOnboardingComponent implements OnInit {
     private location: Location
   ) { 
     this.ticketsList = new TicketsList();
+    this.ticketsList.maxDate = new Date();
   }
 
   ngOnInit(): void {
