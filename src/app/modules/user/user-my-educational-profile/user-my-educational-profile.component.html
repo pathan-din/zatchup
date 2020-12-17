@@ -32,7 +32,7 @@
                         <div class="row form-control-inputDiv py-2">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information </h3>
-                                <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon">
+                                <img  data-target="#personalInfoModel" data-toggle="modal" src="assets/images/userWebsite/edit.png" (click)="openModel(objEpData)" class="cursorStyle img-fluid editIcon"> 
                             </div>
                             <div class="col-md-12">
                                 <hr>
@@ -92,8 +92,8 @@
                                 <hr>
                             </div>
                             <div class="col-md-12">
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">EI ZatchUp ID : <span
-                                        class="regularFont">{{objEd.ei_detail.name_of_school}} {{objEd.ei_detail.address1}} <img
+                                <p class="m-0 mb-1 commonFontSize semiBoldFont">School Name: <span
+                                        class="regularFont">{{objEd.ei_detail.name_of_school}} <img
                                             src="assets/images/userWebsite/checkicon.png"
                                             class="img-fluid ml-1 chckImg"> </span></p>
                                 <div class="row">
@@ -101,14 +101,20 @@
                                         ZatchUp ID : <span class="regularFont">{{objEd.ei_detail.school_code}}</span>
                                     </div>
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                        EI Admission Number : <span class="regularFont"> </span>
-                                    </div>
-                                    <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
-                                        Joining Year : <span class="regularFont">2017</span>
+                                        EI Admission Number : <span class="regularFont"> {{objEd.admission_number}}</span>
                                     </div>
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                        Leaving Year : <span class="regularFont">2019 </span>
+                                        State : <span class="regularFont">{{objEd.ei_detail.state}}  </span>
                                     </div>
+                                    <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        City : <span class="regularFont">{{objEd.ei_detail.city}}  </span>
+                                    </div>
+                                    <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                        Address : <span class="regularFont">{{objEd.ei_detail.address1}} </span>
+                                    </div>
+                                    <!-- <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        Leaving Year : <span class="regularFont">2019 </span>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -180,5 +186,56 @@
         </div>
     </div>
 </div>
+<!-- personal information model -->
+<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-header border-0 align-items-center justify-content-center pb-0">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body p-1">
+                <form id="Form4" enctype="multipart/form-data">
+                    <div class="process3">
+                        <div class="form-group row ">
+                            <div class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
 
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row ">
+                            <div class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+                      
+                       
+                    </div>
+                </form>
+              
+                <div class="text-center">
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+                </div>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>
 <app-user-footer></app-user-footer>

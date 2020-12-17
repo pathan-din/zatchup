@@ -11,6 +11,7 @@ export class EiServiceService {
   public globalCurrentYear: any = 2020;
   public checkErrorFlagForAllConsole: boolean = this.env.debugMode;
   public razorApiKey: any = this.env.razorPaymentApiKey;
+   
   constructor(private http: HttpClient) {
     var date = new Date();
 
