@@ -63,9 +63,18 @@ export class EiStudentManagementComponent implements OnInit {
   goToEiStudentPendingVerificationPage(){
     this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':0,'kyc_approved':0,'title':'Unverified'}});
   }
+  
+  goToRejectedBySystemPage(){
+    this.router.navigate(['ei/student-verified-list'],{queryParams:{'is_rejected':1,'rejectedby':1,'title':'Rejected By System'}});
+  }
+
+  goToRejectedByUserPage(){
+    
+    this.router.navigate(['ei/student-verified-list'],{queryParams:{'is_rejected':1,'rejectedby':2,'title':'Rejected By'}});
+  }
 
   goToEiStudentRequestPendingForChangingDetailsPage(){
-    //this.router.navigate(['ei/student-list']);
+    this.router.navigate(['ei/request-for-change-list']);
   }
 
   goToEiStudentApprovalsPage(){

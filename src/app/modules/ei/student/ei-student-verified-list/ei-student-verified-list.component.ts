@@ -83,6 +83,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.model.approved=params['approved']?params['approved']:'';
       
       this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
+
+      this.model.is_rejected=params['is_rejected']?params['is_rejected']:'';
+
+      this.model.rejectedby=params['rejectedby']?params['rejectedby']:'';
       this.title=params['title'];
 
     });
@@ -201,8 +205,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
     try {
         this.SpinnerService.show();
-      //base
-console.log(page);
+   
 
 this.model.page= page
       //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {

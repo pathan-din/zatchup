@@ -142,7 +142,8 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
-import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component'
+import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
+import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
 
 @NgModule({
   declarations: [
@@ -279,7 +280,8 @@ import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-
     SignUpPendingListComponent,
     EiProfilePreviewComponent,
     SignUpPendingListComponent,
-    EiSentForSignUpComponent
+    EiSentForSignUpComponent,
+    RequestChangeDetailsComponent
   ],
   imports: [
     CommonModule,

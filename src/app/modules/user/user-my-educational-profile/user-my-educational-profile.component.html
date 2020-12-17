@@ -1,12 +1,12 @@
 <app-user-header></app-user-header>
 
-<div class="container-fluid contentSpaceTop">
+<!-- <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5 mobPaddingLR">
         <div class="col-12 pl-5 pr-5 mobPaddingLR">
             <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="container mt-4 containerScrolling landingPageWidth">
     <div class="landingDiv">
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="pl-2 text-left">
-                            <p class="m-0 commonFontSize semiBoldFont">{{objEpData.name}} </p>
+                            <p class="m-0 commonFontSize semiBoldFont" ><a data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="openModel(objEpData,'name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
@@ -29,23 +29,23 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <div class="row form-control-inputDiv py-2">
+                        <div class="row form-control-inputDiv">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information </h3>
-                                <img  data-target="#personalInfoModel" data-toggle="modal" src="assets/images/userWebsite/edit.png" (click)="openModel(objEpData)" class="cursorStyle img-fluid editIcon"> 
+                                <img   src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon"> 
                             </div>
                             <div class="col-md-12">
                                 <hr>
                             </div>
                             <div class="col-md-12" >
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
-                                        class="regularFont">{{objEpData.dob}} </span></p>
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{objEpData.gender}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
-                                        class="regularFont">{{objEpData.email}}</span></p>
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span
-                                        class="regularFont">{{objEpData.phone}}</span></p>
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name : <span
                                         class="regularFont">{{objEpData.father_name}}</span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name : <span
@@ -59,7 +59,7 @@
 
                 <div class="row mt-3" *ngIf="objEpData.work_details">
                     <div class="col-md-12">
-                        <div class="row form-control-inputDiv py-2">
+                        <div class="row form-control-inputDiv">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h3>
                                 <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon">
@@ -80,8 +80,6 @@
                 </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-12">
-                        <div class="row form-control-inputDiv py-2">
                     <div class="col-md-12" *ngFor="let objEd of objEpData.educationdetail">
                         <div class="row form-control-inputDiv">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
@@ -200,29 +198,54 @@
             <div class="modal-body p-1">
                 <form id="Form4" enctype="multipart/form-data">
                     <div class="process3">
-                        <div class="form-group row ">
-                            <div class="col-md-12 MobileCol6MB">
+                        <div class="form-group row " *ngIf="editModel.key=='name'">
+                            <div  class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="first_name" [(ngModel)]="model.first_name" required id="first_name">
                                 </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
                                
                             </div>
                             
                         </div>
-                        <div class="form-group row ">
-                            <div class="col-md-12 MobileCol6MB">
+                        <div class="form-group row " *ngIf="editModel.key=='name'">
+                            <div  class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="last_name" [(ngModel)]="model.last_name" required id="last_name">
                                 </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
                                
                             </div>
                             
                         </div>
-                      
+                        <div class="form-group row " *ngIf="editModel.key=='dob'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" required id="dob" bsDatepicker>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row " *ngIf="editModel.key=='email'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
+                               
+                            </div>
+                            
+                        </div>
                        
                     </div>
                 </form>
