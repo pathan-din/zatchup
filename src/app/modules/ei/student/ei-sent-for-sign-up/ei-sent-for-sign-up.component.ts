@@ -42,7 +42,8 @@ export class EiSentForSignUpComponent implements OnInit {
       "page": this.signUpEi.page ? this.signUpEi.page : 1,
       "course": this.signUpEi.course_id,
       "standard": this.signUpEi.standard_id,
-      "teaching_class": this.signUpEi.class_id
+      "teaching_class": this.signUpEi.class_id,
+      "status": 'SENTFORSIGNUP'
     }
     this.baseService.getData('ei/request-for-signup-students/', this.signUpEi.listParams).subscribe(
       (res: any) => {

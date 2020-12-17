@@ -129,6 +129,7 @@ import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
 import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component';
 import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
+import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component';
 
 const routes: Routes = [
   {
@@ -232,6 +233,9 @@ const routes: Routes = [
   },
   {
     path: 'sent-for-sign-up', component: EiSentForSignUpComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'sent-for-approval', component: SentForApprovalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'student-bulk-add', component: EiStudentBulkAddComponent, canActivate: [AuthGuard]

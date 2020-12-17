@@ -88,4 +88,7 @@ export class EiStudentManagementComponent implements OnInit {
   goToEiSentForSignUpComponent(){
     this.router.navigate(['ei/sent-for-sign-up']);
   }
+  goToSentForApprovalComponent(){
+    this.router.navigate(['ei/sent-for-approval']);
+  }
 }

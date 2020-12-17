@@ -182,12 +182,12 @@
 
                     <ng-container matColumnDef="studentZatchup">
                         <mat-header-cell *matHeaderCellDef> Students of ZatchUp </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.studentZatchup}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.zatchup_students}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="totalAlumnizatchup">
                         <mat-header-cell *matHeaderCellDef> Total Alumni ZatchUp </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.totalAlumnizatchup}} </mat-cell>
+                            {{element.alumni_students}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="commission">
@@ -198,20 +198,20 @@
                     <ng-container matColumnDef="subscriptionStatus">
                         <mat-header-cell *matHeaderCellDef> Subscription Status </mat-header-cell>
                         <mat-cell *matCellDef="let element "> <button type="button"
-                                class="rounded text-white bg-danger border-0">{{element.subscriptionStatus}}</button>
+                                class="rounded text-white bg-danger border-0">{{element.sub_status}}</button>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element "> <button type="button"
-                                class="rounded text-white bg-paret-green border-0">{{element.status}}</button>
+                                class="rounded text-white bg-paret-green border-0">{{element.is_disabled}}</button>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="eiPocName">
                         <mat-header-cell *matHeaderCellDef> EI POC Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.eiPocName}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.poc_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
