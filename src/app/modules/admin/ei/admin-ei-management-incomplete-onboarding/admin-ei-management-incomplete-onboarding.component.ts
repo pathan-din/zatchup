@@ -5,9 +5,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { OnBoardList } from '../modals/ei-pending-approval.modal';
 import { DatePipe } from '@angular/common';
-import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { Location } from '@angular/common'
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 
 

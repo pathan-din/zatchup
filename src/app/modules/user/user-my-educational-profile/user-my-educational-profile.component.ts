@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class UserMyEducationalProfileComponent implements OnInit {
   epData: any;
-  
+  model:any={};
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -23,7 +23,15 @@ export class UserMyEducationalProfileComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.model = {};
     this.getEducationalProfile()
+  }
+  openModel(objEpData){
+    this.model = {};
+    this.model = objEpData;
+    console.log(objEpData);
+    
+    
   }
 
   getEducationalProfile(){

@@ -90,12 +90,12 @@
                         <div (click)="fileInput1.click()" class="row form-control-file">
                             <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-xs-2 form-control-fileDiv p-0">
                                 <button class="fileBtn"><img src="assets/images/userWebsite/upload_icons.png" class="img-fluid"></button>
-                                <input  #fileInput1 [required]="model.kyc_type=='Aadhar'" (change)="handleFileInput($event.target.files)"  [(ngModel)]="model.kyc_document_back" name ="kyc_document_back" type="file" />
+                                <input  #fileInput1 [required]="model.kyc_type=='Aadhar'" (change)="handleFileInputForBackPhoto($event.target.files)"  [(ngModel)]="model.kyc_document_back" name ="kyc_document_back" type="file" />
                             </div>
                             <div class="col-xl-10 col-md-8 col-sm-10 col-xs-10 text-left pl-1">
                                 <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back photo</p>
                                 <p class="text-secondary regularFont commonMaterialFontSize">As per selection above</p>
-								<p *ngIf="filename" class="text-secondary regularFont commonMaterialFontSize">{{filename}}</p>
+								<p *ngIf="filename1" class="text-secondary regularFont commonMaterialFontSize">{{filename1}}</p>
 								 
                             </div>
                         </div>

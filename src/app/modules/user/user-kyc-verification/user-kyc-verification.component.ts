@@ -19,6 +19,7 @@ export class UserKycVerificationComponent implements OnInit {
   model: any = {}
   uploadedContent: any;
   filename: any = "";
+  filename1: any = "";
   date: any = [];
   isStudent: boolean = true;
   pattran:any="";
@@ -207,7 +208,7 @@ export class UserKycVerificationComponent implements OnInit {
     handleFileInputForBackPhoto(file) {
       let fileList: FileList = file;
       let fileData: File = fileList[0];
-      this.filename = fileData.name;
+      this.filename1 = fileData.name;
       this.uploadedContentForBackPhoto = fileData;
     }
   /*************************************************/
