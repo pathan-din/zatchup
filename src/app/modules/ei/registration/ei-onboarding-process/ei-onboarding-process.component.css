@@ -31,7 +31,6 @@
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container .mat-stepper-horizontal-line {
-    border-top-width: 2px;
     margin: 0 -41px;
 }
 
@@ -57,9 +56,6 @@
     }
     .margin-top-col-6 {
         margin-top: 5.5%
-    }
-    .process2 .custom-select {
-        background-size: 15%;
     }
 }
 
