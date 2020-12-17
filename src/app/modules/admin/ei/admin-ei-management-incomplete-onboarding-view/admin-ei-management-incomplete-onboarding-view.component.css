@@ -34,6 +34,10 @@
     right: 10px;
 }
 
+.card {
+    width: 29%;
+}
+
 .onboarding-table-similarEI tr th,
 .onboarding-table-similarEI tr td {
     padding: 0.7rem 0.5rem;
@@ -75,5 +79,11 @@
         min-height: 13vh;
         min-width: 19vw;
         max-width: 19vw;
+    }
+}
+
+@media (max-width: 667px){
+    .card {
+        width: 100%;
     }
 }
