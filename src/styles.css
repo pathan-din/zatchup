@@ -330,13 +330,12 @@ body {
 
 .mat-cell,
 .mat-header-cell {
-    word-wrap: initial;
     display: table-cell;
     padding: 5px 10px;
     line-break: unset;
     width: auto;
     word-wrap: break-word;
-    /* white-space: nowrap; */
+    white-space: nowrap;
     overflow: hidden;
     vertical-align: middle;
     /* border-right: 1px solid #d4d4d4; */
@@ -712,6 +711,14 @@ a:hover {
     bottom: 0;
     position: absolute;
     width: 85% !important;
+}
+
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #463267;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: #463267 !important;
 }
 
 @media (max-width: 767px){

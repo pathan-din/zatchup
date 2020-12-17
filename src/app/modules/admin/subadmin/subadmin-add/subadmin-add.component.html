@@ -7,7 +7,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont mb-1">Add Sub Admin</h2>
+                <h2 class="commonFontSize semiBoldFont mb-0">Add Sub Admin</h2>
             </div>
         </div>
         <div class="bg-offwhite">
@@ -15,7 +15,7 @@
                 <div class="row mx-0 mt-4">
                     <div class="col-md-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Name</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
 
                             <input required (keyup)="isValid()"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -37,7 +37,7 @@
                 <div class="row mx-0 mt-4">
                     <div class="col-md-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Designation</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" placeholder="Enter designation" id="designation" name="designation"
                                 [(ngModel)]="model.designation" (keyup)="isValid()" required>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Email ID</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
                             <input id="email_address" required (keyup)="isValid()"
                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                 type="email" placeholder="Enter email address" [(ngModel)]="model.email_address"
@@ -59,7 +59,7 @@
                 <div class="row mx-0 mt-4">
                     <div class="col-md-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Employee ID</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 placeholder="Enter employee id" type="text" id="employee_id" name="employee_id"
                                 [(ngModel)]="model.employee_id" (keyup)="isValid()" required>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Phone Number</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 placeholder="Enter phone number" type="tel" id="phone_number" name="phone_number"
                                 [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid()" numberOnly
@@ -81,7 +81,7 @@
                 <div class="row mx-0 mt-4">
                     <div class="col-md-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Create Temp Password</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
                             <input name="password" (keyup)="isValid()" placeholder="Enter password"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Confirm Temp Password</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex pl-2 align-items-center">
+                        <div class="form-control-inputDiv rounded shadow-none">
 
                             <input match="password,confirm_password" name="confirm_password" (keyup)="isValid()"
                                 placeholder="Confirm password"
