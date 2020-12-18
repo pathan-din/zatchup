@@ -34,10 +34,9 @@
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="user_type" [(ngModel)]="userType">
                             <option value=""> Select User</option>
-                            <option value="ADMIN">Admin</option>
-                            <option value="STUDENT">Student</option>
+                            <option value="STUDENTS">Student</option>
                             <option value="ALUMNI">Alumni</option>
-                            <option value="ZATCHUPSUBADMIN">Sub-admin</option>
+                            <option value="EISUBADMIN">Sub-admin</option>
                         </select>
                     </div>
                 </div>
@@ -98,14 +97,14 @@
         <!--End html for filter for Kyc Complete-->
 
         <!--Start html for filter for No of KYC per page with export button-->
-        <div class="row my-3"  *ngIf="completeKycList.dataSource" >
+        <div class="row my-3" *ngIf="completeKycList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                    (change)="getCompleteKycList('1')" [(ngModel)]="completeKycList.pageSize">
+                        (change)="getCompleteKycList('1')" [(ngModel)]="completeKycList.pageSize">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -120,13 +119,14 @@
         <!--End html for filter for No of KYC per page with export button-->
 
         <!--Start html for table content KYC information-->
-        <div class="tableDiv" *ngIf="completeKycList.dataSource" >
+        <div class="tableDiv" *ngIf="completeKycList.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="completeKycList.dataSource | paginate: completeKycList.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> {{i + completeKycList.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + completeKycList.startIndex}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="EIZatchUpIDOfUser">
@@ -172,7 +172,8 @@
                     <ng-container matColumnDef="Status">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="text-center justify-content-center">
-                            <button class="{{element.status == 1 ? 'bg-paret-green' : 'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                            <button
+                                class="{{element.status == 1 ? 'bg-paret-green' : 'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth">
                                 {{element.status == 1 ? 'Approved' : 'Rejected'}} </button>
                         </mat-cell>
                     </ng-container>
@@ -198,13 +199,13 @@
             </div>
         </div>
         <pagination-controls *ngIf="completeKycList.dataSource" (pageChange)="getCompleteKycList($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
-    <div class="row" *ngIf="!completeKycList.dataSource">
-        <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!completeKycList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
         </div>
-    </div>
         <!-- <div class="row" *ngIf="!dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
