@@ -1,7 +1,7 @@
 <!-- <input type="file" (change)="fileChangeEvent($event)" /> -->
 
 <button type="button" (click)="fileInput.click()"
-    [ngClass]="class ? class : 'btn_position-absolute btn_upload border-0 bg-light-black text-white p-2'">
+    [ngClass]="class ? class_div : 'btn_position-absolute btn_upload border-0 bg-light-black text-white p-2'">
     <i [ngClass]="icon ? icon : 'fa fa-camera'" aria-hidden="true"></i>
     <input (change)="fileChangeEvent($event)" #fileInput type="file" style="display:none;" />
     <button #openModalButton [hidden]="true" data-toggle="modal" data-target="#imageCropModel">Open Modal</button>
