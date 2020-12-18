@@ -48,4 +48,8 @@ export class EiProfilePreviewComponent implements OnInit {
  redirectToLoginPage(){
   this.router.navigate(['ei/dashboard']);
  }
+ getDuration(classdata){
+   console.log(classdata);
+   
+ }
 }

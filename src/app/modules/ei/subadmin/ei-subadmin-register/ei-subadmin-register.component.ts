@@ -52,6 +52,9 @@ export class EiSubadminRegisterComponent implements OnInit {
     try {
       this.loader.show();
       this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
+      localStorage.setItem("dob",this.model.profile.dob );
+      localStorage.setItem("name",this.model.first_name+' '+this.model.last_name );
+      
       this.base.action('subadmin/register/', this.model).subscribe(
         (res: any) => {
           if (res.status === true)// Condition True Success 

@@ -231,7 +231,13 @@ this.model.page= page
           objStudentList.checked = '';
           objStudentList.SNo = i;
           objStudentList.ZatchUpID = objData.zatchup_id;
+
           objStudentList.student_id = objData.user_id;
+          objStudentList.kyc_approved = objData.kyc_approved;
+          objStudentList.approved = objData.approved;
+          objStudentList.is_rejected = objData.is_rejected;
+          objStudentList.reason_reject = objData.reason_reject;
+
           objStudentList.Name = objData.first_name + ' ' + objData.last_name;
           objStudentList.Gender = objData.gender;
           objStudentList.Age = objData.dob;
@@ -380,6 +386,8 @@ this.model.page= page
 
       this.eiService.approveStudent(data).subscribe(res => {
         let response: any = {};
+        console.log(response.status);
+        
         if (response.status == true) {
           this.SpinnerService.hide();
           this.alert.success(response.message,'Success');

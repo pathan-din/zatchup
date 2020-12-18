@@ -172,8 +172,8 @@
                     <ng-container matColumnDef="unverifyStudent">
                         <mat-header-cell *matHeaderCellDef> Un-Verify Stuent </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-edit text-green fa-lg color-green mr-3 cursorStyle"></i>
-                            <i class="fa fa-retweet text-primary fa-lg cursorStyle" aria-hidden="true"></i>
+                            <i (click)="goToEiStudentEditPage(element.user_id)" class="fa fa-edit text-green fa-lg color-green mr-3 cursorStyle"></i>
+                            <!-- <i class="fa fa-retweet text-primary fa-lg cursorStyle" aria-hidden="true"></i> -->
                             <!-- {{element.unverifyStudent}} -->
                         </mat-cell>
                     </ng-container>

@@ -213,13 +213,13 @@
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
                             aria-hidden="true "></i> -->
-                        <span *ngIf="element.kyc_approved==1">
-                        <i *ngIf="element.approved==0" (click)="openModel(element.studentID)" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
+                        <span  *ngIf="element.kyc_approved==1">
+                        <i *ngIf="element.approved==0" (click)="openModel(element.student_id)" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
                             data-toggle="modal"></i>
-                        <i *ngIf="element.approved==1" (click)="openModel(element.studentID)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i>
+                        <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
                         </span>
                         <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "
-                            data-toggle="modal" (click)="openRejectModel(element.studentID)" data-target="#rejectModel"></i>
+                            data-toggle="modal" (click)="openRejectModel(element.student_id)" data-target="#rejectModel"></i>
                         </mat-cell>
                     </ng-container>
 

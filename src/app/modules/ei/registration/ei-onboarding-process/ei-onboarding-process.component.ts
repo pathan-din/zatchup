@@ -69,9 +69,10 @@ export class EiOnboardingProcessComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getRegistrationStep()
     this.getAllState()
     this.getStepFirstData();
-    this.getNumberOfAluminiList();
+    //this.getNumberOfAluminiList();
     this.getNumberOfStudentList();
     this.getBankNameList();
     this.model.no_of_students = '';
@@ -100,7 +101,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         classdata: [{
           class_name: '',
           teaching_start_year: "",
-          teaching_start_month: "",
+          teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
@@ -257,29 +258,29 @@ export class EiOnboardingProcessComponent implements OnInit {
     }
 
   }
-  getNumberOfAluminiList() {
-    try {
-      this.loader.show();
-      this.eiService.getNumberOfStudentList().subscribe(
-        (res: any) => {
-          if (res.status == true) {
-            this.loader.hide();
-            this.numberOfAluminiList = res.results;
-          } else {
-            this.loader.hide();
-            this.alert.error(res.error.message[0], 'Error')
-          }
-        }, (error) => {
-          this.loader.hide();
-          this.alert.error(error.message, 'Error')
+  // getNumberOfAluminiList() {
+  //   try {
+  //     this.loader.show();
+  //     this.eiService.getNumberOfStudentList().subscribe(
+  //       (res: any) => {
+  //         if (res.status == true) {
+  //           this.loader.hide();
+  //           this.numberOfAluminiList = res.results;
+  //         } else {
+  //           this.loader.hide();
+  //           this.alert.error(res.error.message[0], 'Error')
+  //         }
+  //       }, (error) => {
+  //         this.loader.hide();
+  //         this.alert.error(error.message, 'Error')
 
-        });
-    } catch (err) {
-      this.loader.hide();
-      this.alert.error(err, 'Error')
-    }
+  //       });
+  //   } catch (err) {
+  //     this.loader.hide();
+  //     this.alert.error(err, 'Error')
+  //   }
 
-  }
+  // }
   goToEiDashboardPage() {
     this.router.navigate(['ei/dashboard']);
 
@@ -302,7 +303,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         classdata: [{
           class_name: '',
           teaching_start_year: "",
-          teaching_start_month: "",
+          teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
@@ -339,7 +340,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('no_of_alumni', this.model.no_of_alumni);
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
       formData.append('gst_no', this.model.gst_no);
-      formData.append('overview', this.model.description);
+      formData.append('overview', this.model.overview);
       this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
@@ -375,6 +376,21 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   }
+
+   /**Find the step of the register process for all Users */
+   getRegistrationStep(){
+    try {
+      this.baseService.getData('user/reg-step-count/').subscribe(res=>{
+        let response:any={};
+        response=res;
+        this.index = response.reg_steps;
+      },(error=>{
+          this.alert.warning("Data not Fetched","Warning");
+      }))
+    } catch (e) {
+      this.alert.error("Something went wrong, Please contact administrator.","Error");
+    }
+  }
   handleCancelChequeFileInput(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
@@ -393,7 +409,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       classdata: [{
         class_name: '',
         teaching_start_year: "",
-        teaching_start_month: "",
+        teaching_start_month: 0,
         teaching_stopped: false,
         teaching_end_year: 0,
         teaching_end_month: 0,
@@ -411,7 +427,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     standardList.classdata.push({
       class_name: '',
       teaching_start_year: "",
-      teaching_start_month: "",
+      teaching_start_month: 0,
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,

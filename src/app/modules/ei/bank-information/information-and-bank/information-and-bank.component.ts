@@ -239,7 +239,7 @@ goToDashboard() {
     this.baseService.action('ei/ei-request-verify-otp-detail-change/',data).subscribe(res => {
       let response: any = {}
       response = res;
-      if (response.status == "True") {
+      if (response.status == true) {
         
         $("#OTPModel").modal('hide');
         this.alert.success('Request has been sent for approved','Success');

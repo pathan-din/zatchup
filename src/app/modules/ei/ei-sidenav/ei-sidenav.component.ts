@@ -6,7 +6,8 @@ import { Router} from '@angular/router';
 import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
-
+import { BaseService } from '../../../services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 @Component({
   selector: 'app-ei-sidenav',
   templateUrl: './ei-sidenav.component.html',
@@ -24,7 +25,9 @@ permission:any;
     userProfile:any={};
   constructor(private breakpointObserver: BreakpointObserver,private router: Router, private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
-    public formBuilder: FormBuilder) {
+    public formBuilder: FormBuilder,
+    private baseService : BaseService,
+    private alert:NotificationService) {
 
     this.breakpointObserver
     .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
@@ -105,5 +108,18 @@ permission:any;
     }
     
     
+  }
+
+   /**Find the step of the register process for all Users */
+   getRegistrationStep(){
+    try {
+      this.baseService.getData('user/reg-step-count/').subscribe(res=>{
+
+      },(error=>{
+          this.alert.warning("Data not Fetched","Warning");
+      }))
+    } catch (e) {
+      this.alert.error("Something went wrong, Please contact administrator.","Error");
+    }
   }
 }

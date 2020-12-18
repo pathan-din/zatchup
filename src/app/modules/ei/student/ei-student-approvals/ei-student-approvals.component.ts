@@ -56,6 +56,9 @@ export class EiStudentApprovalsComponent implements OnInit {
     this.getCourseList();
 
   }
+  goToEiStudentEditPage(id) {
+    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
+  }
 
   getStudentApproval(page?:any) {
     this.loader.show();
