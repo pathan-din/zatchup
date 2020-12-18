@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -28,6 +29,7 @@ export class AdminEiManagementCourseComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -71,6 +73,10 @@ export class AdminEiManagementCourseComponent implements OnInit {
       this.alert.error(err, 'Error');
       this.loader.hide();
     }
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }
