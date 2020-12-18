@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { Location } from '@angular/common';
 
 export interface subAdminManagementElement {
   'SNo': number;
@@ -51,7 +52,8 @@ export class SubadminPendingAccessComponent implements OnInit {
     public base: BaseService,
     private alert: NotificationService,
     private confirmDialogService: ConfirmDialogService,
-    private ValidationService: GenericFormValidationService) { }
+    private ValidationService: GenericFormValidationService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.config = {
@@ -173,4 +175,7 @@ export class SubadminPendingAccessComponent implements OnInit {
     }
   }
 
+  goBack(): void{
+    this.location.back()
+  }
 }
