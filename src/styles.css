@@ -602,9 +602,7 @@ ul{list-style: none; padding-left: 15px;}
 .pie-circle{width: 250px; height: 250px; border-radius: 50%; position: relative;}
 
 .img_profile {
-    width: auto !important;
-    height: 150px !important;
-    max-width: initial;
+    max-width: 100%;
 }
 .form-control:focus {
     /* background: rgba(70, 50, 103, 0.25); */
