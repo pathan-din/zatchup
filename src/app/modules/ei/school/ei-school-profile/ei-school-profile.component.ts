@@ -22,7 +22,7 @@ export class EiSchoolProfileComponent implements OnInit {
     "image_type": "profile_pic",
     "url": "ei/cover-profile-update/",
     "icon": "fa fa-camera",
-    "class": "border-0 bg-transparent text-white p-2 cursorStyle d-block mt-3"
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
