@@ -52,6 +52,8 @@
 
 .header-dp {
     width: 40px;
+    height: 40px;
+    border: 1px solid #d6d6d6;
 }
 
 .fa[data-count] {
