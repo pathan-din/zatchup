@@ -93,8 +93,14 @@ export class EiStudentEditComponent implements OnInit {
 
         } else {
           //this.SpinnerService.hide(); 
-          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-          this.alert.error(this.errorDisplay.message,'Error')
+          // if(response.error)
+          // {
+          // this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+          // this.alert.error(this.errorDisplay.message,'Error')
+          // }else{
+          //   this.alert.error(response.message[0],'Error')
+          // }
+          
         }
 
       }, (error) => {

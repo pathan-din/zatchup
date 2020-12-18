@@ -146,8 +146,8 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <i class="fa fa-check text-green color-green fa-lg mr-3 cursorStyle"></i>
-                            <i class="fa fa-eye fa-lg mr-3 color-lightBlue cursorStyle" aria-hidden="true"></i>
+                            <i *ngIf="element.kyc_approved==1 && element.approved==1" class="fa fa-check text-green color-green fa-lg mr-3 cursorStyle"></i>
+                            <i (click)="goToEiStudentProfilePage(element.studentID)" class="fa fa-eye fa-lg mr-3 color-lightBlue cursorStyle" aria-hidden="true"></i>
                             <i class="fa fa-ban fa-lg color-red cursorStyle" aria-hidden="true"
                             data-toggle="modal" (click)="openRejectModel(element.studentID)" data-target="#rejectModel"></i>
                         </mat-cell>

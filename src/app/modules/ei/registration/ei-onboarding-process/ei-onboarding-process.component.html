@@ -194,7 +194,7 @@
                                                 required>
                                                 <option value="">Select Alumni</option>
                                                 <option value="{{noofAlustudent.display_text}}"
-                                                    *ngFor="let noofAlustudent of numberOfAluminiList">
+                                                    *ngFor="let noofAlustudent of numberOfStudentList">
                                                     {{noofAlustudent.display_text}}</option>
                                             </select>
 
@@ -221,8 +221,8 @@
                                             class=" commonFontSize mediumFont letterspacing">About School</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <textarea id="description" [(ngModel)]="model.description"
-                                                name="model.description"
+                                            <textarea id="description" [(ngModel)]="model.overview"
+                                                name="model.overview"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 rows="3" placeholder="Typing...."></textarea>
                                         </div>
@@ -502,7 +502,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
+                                                <div class="col-xl-12 col-lg-12 margin-top-col-6 ">
                                                     <label for=" "
                                                         class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                                         Start
@@ -524,7 +524,7 @@
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
                                                             </div>
                                                         </div>
-                                                        <div class=" col-sm-6 ">
+                                                        <!-- <div class=" col-sm-6 ">
                                                             <div
                                                                 class="py-1 form-control-inputDiv rounded shadow-none ">
                                                                 <select id="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
@@ -539,7 +539,7 @@
                                                             <div class="required errorMsg"
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_month_')">
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
 
                                                 </div>
@@ -566,7 +566,7 @@
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
                                                             </div>
                                                         </div> 
-                                                        <div class=" col-6 " *ngIf="!classD.is_teaching_current">
+                                                        <!-- <div class=" col-6 " *ngIf="!classD.is_teaching_current">
                                                             <div
                                                                 class="py-1 form-control-inputDiv rounded shadow-none ">
                                                                 <select [disabled]="classD.is_teaching_current"
@@ -583,7 +583,7 @@
                                                             <div class="required errorMsg"
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_month_')">
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <div *ngIf="classD.is_teaching_current" class=" col-6 ">
                                                         <label >Present</label>

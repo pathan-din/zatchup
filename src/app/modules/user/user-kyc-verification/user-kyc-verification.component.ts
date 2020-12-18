@@ -157,6 +157,10 @@ export class UserKycVerificationComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
+          localStorage.removeItem("year");
+          localStorage.removeItem("month");
+          localStorage.removeItem("day");
+          localStorage.removeItem("kyc_name");
           //localStorage.setItem("user_id",response.user_id);
           if(response.is_already_registered==true)
           {

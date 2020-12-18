@@ -88,7 +88,7 @@
                         <div class="card-body">
                           <div class="row" *ngFor="let courseData of userProfile.course_detail">
                             <div class="col-md-12 mb-3">
-                              <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">{{courseData.course_name}} ({{courseData.course_type}})</h3>
+                              <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">{{courseData.course_name}} ({{courseData.start_year}}-{{courseData.end_year}} {{courseData.course_type}})</h3>
                               <div class="row">
                                   <!-- <div class="col-md-12">
                                     <h4 class="commonFontSize semiBoldFont mb-0">Course Type</h4>
@@ -126,10 +126,10 @@
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching start year</h4>
                                                   <p>{{classdata.teaching_start_year}} </p>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <!-- <div class="col-md-4">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching start month</h4>
                                                   <p>{{classdata.teaching_start_month}} </p>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-4" *ngIf="classdata.is_teaching_current">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Current Teaching</h4>
                                                   <p>Present </p>
@@ -138,10 +138,10 @@
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching end year</h4>
                                                   <p>{{classdata.teaching_end_year}} </p>
                                                 </div>
-                                                <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
+                                                <!-- <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching end month</h4>
                                                   <p>{{classdata.teaching_end_month}} </p>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Alias class</h4>
                                                   <p>{{classdata.alias_class}} </p>

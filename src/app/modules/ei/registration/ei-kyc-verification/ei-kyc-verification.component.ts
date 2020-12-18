@@ -36,6 +36,13 @@ export class EiKycVerificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.model.kyc_type='';
+    if(!localStorage.getItem("dob") && !localStorage.getItem("name")){
+
+    }else{
+     this.model.kyc_dob  = this.base.getDateReverseFormat(localStorage.getItem("dob"));
+     this.model.kyc_name = localStorage.getItem("name");
+    }
+    
   }
   /**Submit KYC of SUBADMIN */
   goToUserQualificationPage(){

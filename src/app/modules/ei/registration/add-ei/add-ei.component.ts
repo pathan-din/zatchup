@@ -132,10 +132,7 @@ goToUserQualificationPage() {
       response = res;
       this.SpinnerService.hide();
       if (response.status == true) {
-        if(response.check_school_info_on_zatchup==1)
-        {
-          this.router.navigate(['ei/subadminprofile']);
-        }
+        this.router.navigate(['ei/subadminprofile']);
       } else {
         this.SpinnerService.hide();
         var errorCollection = '';
