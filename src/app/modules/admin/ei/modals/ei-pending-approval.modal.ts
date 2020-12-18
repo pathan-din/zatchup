@@ -103,12 +103,6 @@ export class SignUpEi {
     displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
 
     dataSource: any;
-    // courseList: any = [];
-    // standardList: any = [];
-    // classList: any = [];
-    // classId: any = [];
-    // courseId: any = [];
-    // standardId: any = [];
     course: any = '';
     standard: any = '';
     class: any = '';
@@ -122,6 +116,32 @@ export class SignUpEi {
   course_id: any = '';
   standard_id: any = '';
   class_id: any = '';
+}
+export class SentForApproval{
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
+  startIndex: number;
+  dataSource: any;
+  listParams: any = {};
+  filterFromDate: any;
+  filterToDate: any;
+  pageSize: any = 5;
+  page: any;
+  allCourses: any= [];
+  allStandard: any = [];
+  allClasses: any = [];
+  course_id: any = '';
+  standard_id: any = '';
+  class_id: any = '';
+  maxDate: Date;
+  course: any = '';
+  standard: any = '';
+  class: any = '';
+
 }
 export class StudentApproval {
 

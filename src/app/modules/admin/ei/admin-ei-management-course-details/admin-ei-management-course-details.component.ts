@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,6 +15,7 @@ export class AdminEiManagementCourseDetailsComponent implements OnInit {
   courseDetails: CourseDetails
 
   constructor(
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
@@ -72,6 +74,10 @@ export class AdminEiManagementCourseDetailsComponent implements OnInit {
     st_name=element.standard_name;
     this.courseDetails.classList.push(element);
    });
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

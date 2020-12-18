@@ -237,7 +237,7 @@
 
                     <ng-container matColumnDef="LastLoginDate">
                         <mat-header-cell *matHeaderCellDef> Last Login Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.last_login}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.last_login | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Action">

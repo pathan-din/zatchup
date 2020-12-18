@@ -136,6 +136,8 @@ import { SupportManagementComponent } from './support/support-management/support
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
+import { SharedModule } from 'src/app/common/shared.module';
+import { ConfirmDialogModule } from 'src/app/common/confirm-dialog/confirm-dialog.module';
 
 @NgModule({
   declarations: [
@@ -285,7 +287,8 @@ import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-v
     }),
     NgxPaginationModule,
     DirectiveModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedModule
   ],
   providers: [DatePipe]
 })

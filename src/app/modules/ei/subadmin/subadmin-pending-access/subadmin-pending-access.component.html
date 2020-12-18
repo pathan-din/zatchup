@@ -1,7 +1,12 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Pending Access Requests</h2>
+        <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Pending Access Requests</h2>
+        </div>
         
         <!--Start html for filter for No of alumni per page with export button-->
         <div class="row my-3">

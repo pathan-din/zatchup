@@ -4,32 +4,33 @@
     <div class=" bg-white px-3 py-2">
         <h2 class="commonFontSize semiBoldFont mb-0">School Profile</h2>
         <div class="bannerDiv position-relative">
-            <img src="{{cover_pic?cover_pic:userProfile.cover_pic}}" class="img-fluid w-100">
-            <!-- <button class=" btn_position-absolute border-0 bg-light-black text-white p-2">Upload Cover Photo</button> -->
+            <img *ngIf="userProfile"
+                src="{{userProfile.cover_pic ? userProfile.cover_pic : '/assets/images/cover-pic-default.png'}}"
+                class="img-fluid w-100">
+            <!-- <app-image-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadInfo"></app-image-uploader> -->
             <button type="button" (click)="fileInput.click()"
                 class=" btn_position-absolute border-0 bg-light-black text-white p-2">
                 <i class="fa fa-camera" aria-hidden="true"></i>
                 <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
             </button>
-            <!-- <span class=" btn_position-absolute border-0 bg-light-black text-white p-2" (click)="fileInput.click()"><i class="fa fa-camera" aria-hidden="true"></i></span> -->
-            
         </div>
         <div class="">
             <div class="row pt-2">
                 <div class="col-md-5 text-right d-flex profileDivLeft py-0 pr-0 pl-5">
-
                     <div class="dpImgDiv rounded-circle border border-primary mb-3"
-                        style="background-image: url({{userProfile.profile_pic}})">
+                        [ngStyle]="userProfile.profile_pic ? {'background-image': 'url(' + userProfile.profile_pic + ')'} : { 'background-image' : 'url(' + '/assets/images/profile-default.png' + ')'}">
                         <div class="upload-dp position-absolute">
-                            <button type="button" (click)="fileInput1.click()"
-                                class=" border-0 bg-transparent text-white p-2 cursorStyle">
+                            <!-- <button type="button" (click)="fileInput1.click()"
+                                class=" border-0 bg-transparent text-white p-2 cursorStyle d-block mt-3">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                                 <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
                                     style="display:none;" />
-                            </button>
+                            </button> -->
+                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                            </app-image-uploader>
                         </div>
                     </div>
-                    <img class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
+                    <img *ngIf="userProfile.approved == 1" class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
                     <div class="pl-4 pr-4 text-left">
                         <p class="m-0 commonFontSize mediumFont" title="name of school">{{userProfile.name_of_school}}
                         </p>
@@ -82,6 +83,9 @@
                         </p>
                         <p class="m-0 text-center color-purple semiBoldFont "> {{userProfile.total_alumni}}</p>
                     </div>
+                    <!-- <div>
+                        <app-image-uploader (imageData)="getImageData($event)"></app-image-uploader>
+                    </div> -->
                     <!-- <div class="row ">
                         <div class="col-12 colLeftPost ">
                             <div class="form-control-inputDiv ">

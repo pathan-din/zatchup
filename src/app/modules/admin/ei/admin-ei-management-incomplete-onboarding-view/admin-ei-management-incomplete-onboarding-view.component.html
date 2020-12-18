@@ -4,7 +4,7 @@
 <div class="container main-container p-3">
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-6  d-flex justify-content-start flex-wrap align-items-center">                
+            <div class="col-md-6  d-flex justify-content-start flex-wrap align-items-center">
                 <h2 class="commonFontSize semiBoldFont m-0">
                     <span class="mr-3 cursorStyle">
                         <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
@@ -20,17 +20,18 @@
             </div>
         </div>
         <div class=" mt-3 border-0 mx-0">
-            <div class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition">
-                <div class="dpImgDiv rounded-circle bg-light-green border border-white" data-toggle="modal"
-                    data-target="#BlockUserModel">
-                    <img *ngIf="eiData" [src]="eiData.cover_pic" alt="Cover Pic" class="img-fluid dpImg cursorStyle">
-                    <img *ngIf="!eiData" src="assets/images/userWebsite/share-my-profile-icon.png"
+            <div *ngIf="eiData" class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition"
+                [ngStyle]="eiData.cover_pic ? {'background-image': 'url(' + eiData.cover_pic + ')'} : { 'background-image' : 'url(' + '/assets/images/cover-pic-default.png' + ')'}">
+                <div class="dpImgDiv rounded-circle bg-light-green border border-white">
+                    <img *ngIf="!eiData.profile_pic" src="assets/images/profile-default.png"
+                        class="img-fluid dpImg cursorStyle">
+                    <img *ngIf="eiData.profile_pic" src="{{eiData.profile_pic}}"
                         class="img-fluid dpImg cursorStyle">
                 </div>
 
                 <div class="userInfo" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
-                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle"
-                        [matMenuTriggerFor]="menu">
+                    <img *ngIf="eiData.profile_pic" src="assets/images/userWebsite/blue-menu.png"
+                        class="img-fluid w-50 cursorStyle" [matMenuTriggerFor]="menu">
                 </div>
             </div>
             <!--Start div for onboarding Information-->
@@ -101,7 +102,8 @@
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Name of EI Representative</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Name
+                                        of EI Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{eiData.first_name}}</p>
@@ -109,7 +111,8 @@
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Designation of EI Representative</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                        Designation of EI Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span>{{eiData.designation_name}} </p>
@@ -117,7 +120,8 @@
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Official Email ID</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                        Official Email ID</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{eiData.email}}</p>
@@ -125,7 +129,8 @@
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Contact Number</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                        Contact Number</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span>{{eiData.phone}} </p>
@@ -172,7 +177,8 @@
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Course</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                        Course</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
@@ -182,7 +188,8 @@
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Bank Details</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Bank
+                                        Details</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
@@ -197,7 +204,8 @@
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Verification Documents</p>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 d-flex justify-content-flex-start flex-wrap commonFontSize mediumFont">
+                        <div
+                            class="col-xl-9 col-lg-8 col-md-8 col-7 d-flex justify-content-flex-start flex-wrap commonFontSize mediumFont">
                             <span class="mr-3 text-dark">:</span>
                             <div class="card rounded-0 border-0 VerificationDocCard m-1"
                                 *ngFor="let document of eiData.verification_details">
@@ -307,10 +315,7 @@
                     <div class="row mt-3">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                             <p class="commonFontSize regularFont "><span class="commonFontSize semiBoldFont">Overview of
-                                    the School : </span> lipsum as it is sometimes known, is dummy text used in laying
-                                out print, graphic or web designs. The passage is attributed to an unknown typesetter
-                                in the 15th century who is thought to have scrambled parts of Cicero's De Finibus
-                                Bonorum et Malorum for use in a type specimen.</p>
+                                    the School : </span> {{eiData.overview}}</p>
                         </div>
                     </div>
 
