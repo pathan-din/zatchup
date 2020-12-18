@@ -125,9 +125,9 @@
             </div>
         </div>
         <div class="row my-3" *ngIf="studentList.length>0">
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7  d-flex flex-row align-items-center ">
+            <div class="col-md-5 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0 mobile-w-35">Student Count Per
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Student Count Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getGetVerifiedStudent('','')" [(ngModel)]="model.page_size" name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
@@ -138,12 +138,12 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5 justify-content-end d-flex flex-row">
-                <button type="button" class="bg-Gainsboro py-1 px-3 border-0 mr-2 commonFontSize mediumFont">Promote
+            <div class="col-md-7 justify-content-end d-flex flex-row flex-wrap">
+                <button type="button" class="bg-Gainsboro py-1 px-3 border-0 mr-2 commonFontSize mediumFont mt-2">Promote
                     Students</button>
-                <button type='button' (click)="getExportData()"  class="bg-paret-green text-white border-0 px-3 py-1 mr-2"><i
+                <button type='button' (click)="getExportData()"  class="bg-paret-green text-white border-0 px-3 py-1 mr-2 mt-2"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
-                <button type='button' class="bg-blue text-white border-0 px-3 py-1" data-toggle="modal" data-target="#changeClassModel">Bulk Action</button>
+                <button type='button' class="bg-blue text-white border-0 px-3 py-1 mt-2" data-toggle="modal" data-target="#changeClassModel">Bulk Action</button>
             </div>
         </div>
         <div class="tableDiv ">
