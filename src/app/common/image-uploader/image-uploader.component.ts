@@ -21,7 +21,7 @@ export class ImageUploaderComponent implements OnInit {
     this.image = upload.image ? upload.image : undefined;
     this.url = upload.url ? upload.url : undefined;
     this.image_type = upload.image_type ? upload.image_type : 'image';
-    this.class = upload.url ? upload.class : undefined
+    this.class_div = upload.url ? upload.class : undefined
   }
 
 
@@ -34,7 +34,7 @@ export class ImageUploaderComponent implements OnInit {
   url: any;
   icon: any;
   image: any;
-  class: any;
+  class_div: any;
 
   constructor(
     private loader: NgxSpinnerService,
