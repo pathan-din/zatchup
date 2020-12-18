@@ -19,9 +19,10 @@ export class EiSchoolProfileComponent implements OnInit {
   cover_pic: any = '';
   profile_pic: any = '';
   uploadInfo: any = {
-    "image_type": "cover_pic",
+    "image_type": "profile_pic",
     "url": "ei/cover-profile-update/",
-    "icon": "fa fa-camera"
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -70,7 +71,7 @@ export class EiSchoolProfileComponent implements OnInit {
       console.log(err);
     }
   }
-  
+
   uploadProfilePic(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
@@ -105,7 +106,48 @@ export class EiSchoolProfileComponent implements OnInit {
     }
   }
 
-  getCoverPicUrl(file: any) {
-    this.userProfile.cover_pic = file.data[0].cover_pic_url
+  uploadCoverPic(file) {
+
+    console.log(file);
+
+    try {
+      this.SpinnerService.show();
+      let fileList: FileList = file;
+
+
+      let fileData: File = fileList[0];
+      if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png') {
+        this.SpinnerService.hide();
+        this.alert.error("File format not supported", 'Error');
+        return
+      }
+      const formData = new FormData();
+      formData.append('cover_pic', fileData);
+      this.eiService.updateCoverPic(formData).subscribe(res => {
+        let response: any = {}
+        response = res;
+        if (response.status == true) {
+          this.SpinnerService.hide();
+          this.userProfile.cover_pic = response.data[0].cover_pic_url;
+        } else {
+          this.SpinnerService.hide();
+          console.log("Error:Data not update");
+        }
+
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("vaeryfy Otp Exception", err);
+    }
+
+
+  }
+
+  getProfilePicUrl(file: any) {
+    this.userProfile.profile_pic = file.data[0].profile_pic_url
   }
 }

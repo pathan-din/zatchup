@@ -36,7 +36,7 @@
     }
 
     .dpImgDiv {
-        background: url('/assets/images/userWebsite/share-my-profile-icon.png') #efefef;
+        /* background: url('/assets/images/userWebsite/share-my-profile-icon.png') #efefef; */
         background-repeat: no-repeat;
         background-size: 100%;
         background-position-y: 15%;

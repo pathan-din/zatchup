@@ -157,9 +157,9 @@ export class UserLoginComponent implements OnInit {
         if (response.status == "True") {
           localStorage.setItem("token", response.token);
           $("#OTPModel").modal('hide');
-          if(response.steps>=3 && response.approved==1)
+          if(response.approved==1)
           {
-            this.router.navigate(['user/my-profile']);
+            this.router.navigate(['user/my-educational-profile']);
           }else if(response.steps>=3 && response.approved==0)
           {
             this.router.navigate(['user/congratulation']);
@@ -167,7 +167,7 @@ export class UserLoginComponent implements OnInit {
             this.router.navigate(['user/kyc-verification']);
           }
           
-          //
+          
           
         } else {
           this.errorOtpModelDisplay = response.error;

@@ -2,18 +2,20 @@
 <div class="container main-container p-3">
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont mb-0">Sub Admin Details</h2>
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center mb-3">                
+                <h2 class="commonFontSize semiBoldFont mb-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    Sub Admin Details</h2>
             </div>
-
+            <div class="col-md-6 text-right mb-3">
+                <button tupe="button" class="bg-dark text-white right px-3 py-2 commonFontSize border-0" (click)="goToSubadminAccessHistoryPage()">Sub Admin Access History</button>
+            </div>
         </div>
         
-        <div class="row mobile-col-reverse border-0 mt-3 mx-0">
-
-            <div class="col-md-6 col-left">
+        <div class="row mobile-col-reverse border-0 mx-0">
+            <div class="col-md-6 col-left mt-3">
 
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-5 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
@@ -104,11 +106,8 @@
                 </div>
  
             </div>
-            <div class="col-md-6 col-right text-right">
-                <div class="text-right">
-                    <button tupe="button" class="bg-dark text-white right px-3 py-2 commonFontSize border-0 mb-1" (click)="goToSubadminAccessHistoryPage()">Sub Admin Access History</button>
-                </div>
-                <div class="RightimgDiv mt-2">
+            <div class="col-md-6 col-right text-right mt-3">                
+                <div class="RightimgDiv mt-3">
                     <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
                     <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png">
                 </div>
