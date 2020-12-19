@@ -214,7 +214,12 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           this.validationService.hideSpeanerWithConsole(this.loader, 'suceess')
           this.model = res;
-          this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
+          if(this.model.opening_date){
+            this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
+          }else{
+            this.model.opening_date='';
+          }
+          
           this.index = this.model.reg_steps ? this.model.reg_steps : 0;
           this.getCityByState(this.model.state)
           this.loader.hide();

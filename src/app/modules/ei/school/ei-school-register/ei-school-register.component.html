@@ -232,10 +232,10 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="password" required  [(ngModel)]="model.password" name="password"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="password"
+                                    type="{{showHidePassword}}"
                                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
                                     placeholder="Enter Password">
-                                    <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                                    <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true " (click)="showHidePasswordFunction('p')"></i>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                         </div>
@@ -246,8 +246,8 @@
                                 <input (keyup)="isValid($event)" id="confirm_password" match="password,confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" id="confirm_password" required
                                      [(ngModel)]="cpassword" name="confirm_password"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="password" placeholder="Re-Enter Password">
-                                    <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                                    type="{{showHidecPassword}}" placeholder="Re-Enter Password">
+                                    <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true " (click)="showHidePasswordFunction('c')"></i>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>
                         </div>
