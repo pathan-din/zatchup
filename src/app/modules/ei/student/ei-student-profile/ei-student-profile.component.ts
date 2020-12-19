@@ -15,6 +15,7 @@ import { Location } from '@angular/common';
 })
 export class EiStudentProfileComponent implements OnInit {
   studentDetails:any=[];
+  stid:any='';
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService,
@@ -25,7 +26,7 @@ export class EiStudentProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-       
+       this.stid=params['stId'];
        
       this.getStudentDetails(params['stId'])
 
@@ -34,7 +35,7 @@ export class EiStudentProfileComponent implements OnInit {
   }
 
   goToEiStudentHistoryPage(){
-    this.router.navigate(['ei/student-history']);
+    this.router.navigate(['ei/student-history'],{queryParams:{"stid":this.stid}});
   }
   getStudentDetails(studentId){
     try {

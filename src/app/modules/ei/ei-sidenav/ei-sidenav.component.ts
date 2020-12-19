@@ -51,6 +51,7 @@ permission:any;
     if(sessionStorage.getItem("permission")){
       this.permission = JSON.parse(sessionStorage.getItem("permission"));
     }
+    this.getRegistrationStep();
   }
   getDasboardDetails(){
 	  try{
