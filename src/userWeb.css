@@ -123,6 +123,7 @@ body {
   outline: none;
   background: #ffffff;
   overflow: hidden;
+  position: relative;
 }
 
 .form-control-input-padding {
