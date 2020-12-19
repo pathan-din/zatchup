@@ -43,6 +43,8 @@ export class EiSchoolRegisterComponent implements OnInit {
   
 
   suggestions: string[] = [];
+  showHidePassword: string='password';
+  showHidecPassword: string='password';;
 
   suggest(event) {
     if(typeof(event)=='string'){
@@ -323,5 +325,20 @@ export class EiSchoolRegisterComponent implements OnInit {
    
     // this.router.navigate(['ei/mobile-verification']);
   }
-  
+  showHidePasswordFunction(type) {
+    if (type == 'p') {
+      if (this.showHidePassword == 'password') {
+        this.showHidePassword = 'text';
+      } else {
+        this.showHidePassword = 'password';
+      }
+    } else {
+      if (this.showHidecPassword == 'password') {
+        this.showHidecPassword = 'text';
+      } else {
+        this.showHidecPassword = 'password';
+      }
+    }
+
+  }
 }
