@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
-import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { BaseService } from '../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -23,14 +23,20 @@ export class UserEiProfileComponent implements OnInit {
   schoolId: any;
   course_id: any = '';
   standard: any = '';
-  imagePath:any="";
+  imagePath: any = "";
+  uploadInfo: any = {
+    "image_type": "file_name",
+    "url": "ei/uploaddocsfile/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
 
   constructor(private router: Router,
-    private SpinnerService: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public baseService: BaseService
-    , private route: ActivatedRoute,
+    private loader: NgxSpinnerService,
+    public baseService: BaseService,
+    private route: ActivatedRoute,
     public formBuilder: FormBuilder,
+    private alert: NotificationService,
     private genericFormValidationService: GenericFormValidationService) { }
 
 
@@ -38,15 +44,14 @@ export class UserEiProfileComponent implements OnInit {
     this.model.class_id = '';
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
-      this.model.school_id=this.schoolId;
+      this.model.school_id = this.schoolId;
       this.getCourseBySchoolId(this.schoolId)
 
     });
-    if(this.schoolId)
-    {
+    if (this.schoolId) {
       this.getSchollConfirmationData();
     }
-    this.imagePath=this.baseService.serverImagePath;
+    this.imagePath = this.baseService.serverImagePath;
   }
 
   /**
@@ -54,108 +59,99 @@ export class UserEiProfileComponent implements OnInit {
    * 
    */
 
-   getSchollConfirmationData(){
+  getSchollConfirmationData() {
     try {
       delete this.model.class_id;
-      this.SpinnerService.show();
-      this.baseService.action('user/confirm-school-by-students/',this.model).subscribe(res => {
+      this.loader.show();
+      this.baseService.action('user/confirm-school-by-students/', this.model).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
+          this.loader.hide();
           this.model = response.data;
           this.course_id = response.data.course_id;
           this.displayStandardList(this.course_id)
           this.standard = response.data.standard_id;
           this.displayClassList(response.data.standard_id);
-          this.model.class_id  = response.data.class_id
-          this.model.school_id=this.schoolId;
+          this.model.class_id = response.data.class_id
+          this.model.school_id = this.schoolId;
         } else {
-          this.SpinnerService.hide();
-          
+          this.loader.hide();
+
         }
 
       }, (error) => {
-        this.SpinnerService.hide();
+        this.loader.hide();
         console.log(error);
         return '';
 
       });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
+      this.loader.hide();
     }
 
-   }
+  }
   /** 
 * Function Name : fileUploadDocument
 */
-  fileUploadDocument(files) {
-    let fileList: FileList = files;
-    let fileData: File = fileList[0];
-    const formData = new FormData();
-    formData.append('file_name', fileData);
-    try {
-      this.SpinnerService.show();
-
-   
-
-      this.eiService.uploadFile(formData).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
-          this.SpinnerService.hide();
-          this.imageUrl=this.imagePath+response.filename
-          this.model.profile_pic=response.filename;
-          return
-        } else {
-          this.SpinnerService.hide();
-          this.imageUrl='';
-          console.log("Error:Data not update");
-          return '';
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-        return '';
-
-      });
-    } catch (err) {
-      this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
-    }
+  // fileUploadDocument(files) {
+  //   let fileList: FileList = files;
+  //   let fileData: File = fileList[0];
+  //   const formData = new FormData();
+  //   formData.append('file_name', fileData);
+  //   try {
+  //     this.loader.show();
 
 
-  }
+
+  //     this.eiService.uploadFile(formData).subscribe(res => {
+  //       let response: any = {}
+  //       response = res;
+  //       if (response.status == true) {
+  //         this.loader.hide();
+  //         this.imageUrl=this.imagePath+response.filename
+  //         this.model.profile_pic=response.filename;
+  //         return
+  //       } else {
+  //         this.loader.hide();
+  //         this.imageUrl='';
+  //         return '';
+  //       }
+
+  //     }, (error) => {
+  //       this.loader.hide();
+  //       return '';
+
+  //     });
+  //   } catch (err) {
+  //     this.loader.hide();
+  //   }
+
+
+  // }
 
   getCourseBySchoolId(id) {
     try {
-
-
-      this.SpinnerService.show();
-
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-
-      this.baseService.getData('user/course-list-by-schoolid/', { 'school_id': id }).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        this.courseList = response.results;
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+      this.loader.show();
+      this.baseService.getData('user/course-list-by-schoolid/', { 'school_id': id }).subscribe(
+        (res: any) => {
+          if (res.status == true)
+            this.courseList = res.results;
+          else
+            this.alert.error(res.error.message[0], "Error")
+            this.loader.hide();
+        }, (error) => {
+          this.loader.hide();
+          this.alert.error(error.message, "Error")
+        });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
 
     }
   }
   displayStandardList(courseId) {
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.standardList = []
       //this.model.course_id='';
 
@@ -169,18 +165,18 @@ export class UserEiProfileComponent implements OnInit {
         this.standardList = response.results;
 
       }, (error) => {
-        this.SpinnerService.hide();
+        this.loader.hide();
         //console.log(error);
 
       });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
       //console.log(err);
     }
   }
   displayClassList(stId) {
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.classList = [];
       let data: any = {};
       data.standard_id = stId;
@@ -191,12 +187,12 @@ export class UserEiProfileComponent implements OnInit {
         this.classList = response.results;
 
       }, (error) => {
-        this.SpinnerService.hide();
+        this.loader.hide();
         //console.log(error);
 
       });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
       //console.log(err);
     }
   }
@@ -217,42 +213,43 @@ export class UserEiProfileComponent implements OnInit {
     }
     try {
 
-      this.SpinnerService.show();
+      this.loader.show();
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.model.is_current_course=1
+      this.model.is_current_course = 1
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
-      this.baseService.actionForFormData('user/add-registered-ei-course/', this.model).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
-
-        } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
-
+      this.baseService.actionForFormData('user/add-registered-ei-course/', this.model).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
+          } else {
+            this.loader.hide();
+            var errorCollection = '';
+            for (var key in res.error) {
+              if (res.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + res.error[key][0] + '\n'
+              }
             }
+            this.alert.error(errorCollection, "Error")
           }
-          alert(errorCollection);
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
+        }, (error) => {
+          this.loader.hide();
+          console.log(error);
 
-      });
+        });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
 
     }
 
   }
   goToUserAddCoursePage() {
     this.router.navigate(['user/add-course']);
+  }
+
+  getProfilePicUrl(data: any) {
+    this.imageUrl = this.imagePath + data.filename
   }
 
 }

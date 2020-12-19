@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UserwebRoutingModule } from './userweb-routing.module';
-
-/****************************/
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
-
-/*****************************/
 import { UserhomeComponent } from './userhome/userhome.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { UserFooterComponent } from './user-footer/user-footer.component';
@@ -59,8 +53,7 @@ import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { MySchoolComponent } from './my-school/my-school.component';
-
-
+import { SharedModule } from 'src/app/common/shared.module';
 
 @NgModule({
 
@@ -120,7 +113,8 @@ import { MySchoolComponent } from './my-school/my-school.component';
     TabsModule,
     FormsModule, NgxSpinnerModule, ReactiveFormsModule,
     BsDatepickerModule,
-    DirectiveModule
+    DirectiveModule,
+    SharedModule
   ]
 })
 export class UserwebModule { }

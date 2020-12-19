@@ -472,6 +472,7 @@ const routes: Routes = [
   {
     path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent,  canActivate: [AuthGuard]
   },
+  
 
 
 
