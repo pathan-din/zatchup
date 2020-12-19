@@ -9,7 +9,7 @@
                     <span class="mr-3 cursorStyle">
                         <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                     </span>
-                    EI With Incomplete Onboarding View</h2>
+                    School With Incomplete Onboarding View</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>EI ZatchUp ID</p>
+                            <p>School ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{eiData.zatchupId}}</p>
@@ -97,13 +97,13 @@
 
                     <div class="row">
                         <div class="col-12 commonFontSize mediumFont">
-                            <p>Details of EI Representative</p>
+                            <p>Details of School Representative</p>
                         </div>
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Name
-                                        of EI Representative</p>
+                                        of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{eiData.first_name}}</p>
@@ -112,7 +112,7 @@
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
-                                        Designation of EI Representative</p>
+                                        Designation of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span>{{eiData.designation_name}} </p>
@@ -150,7 +150,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number of the Students Registered with the EI(If Not Entered Manually)</p>
+                            <p>Number of the Students Registered with the School(If Not Entered Manually)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <p><span class="mr-3 text-dark">: </span>{{eiData.no_of_students}}</p>
@@ -159,7 +159,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number of the Alumini Registered with the EI (If Not Entered Manually)</p>
+                            <p>Number of the Alumini Registered with the School (If Not Entered Manually)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <p><span class="mr-3 text-dark">: </span>{{eiData.no_of_alumni}}</p>
@@ -219,7 +219,7 @@
                     </div>
                     <div class="row" *ngIf="eiData.similar_ei.length > 0">
                         <div class="col-12">
-                            <h2 class="commonFontSize">Similar EI</h2>
+                            <h2 class="commonFontSize">Similar School</h2>
                             <div class="tableDiv ">
                                 <div class="mat-elevation-z1 table-responsive">
                                     <table class="table-bordered w-100 onboarding-table-similarEI">
@@ -245,7 +245,7 @@
 
                     <div class="row mt-3">
                         <div class="col-12">
-                            <h2 class="commonFontSize">Existing Data In EI Database</h2>
+                            <h2 class="commonFontSize">Existing Data In School Database</h2>
                             <div class="tableDiv ">
                                 <div class="mat-elevation-z1 table-responsive">
                                     <table class="table-bordered w-100 onboarding-table-existingEI">
@@ -352,12 +352,12 @@
                                         class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"
                                         data-toggle="modal" data-target="#existingZatchupIDModel"
                                         (click)="closeApproveModal()">With
-                                        Existing EI ZatchUp ID</button>
+                                        Existing School ZatchUp ID</button>
                                     <button type="button "
                                         class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing "
                                         data-toggle="modal" data-target="#approveWithNewZatchupIDModel"
                                         (click)="closeApproveModal()">With
-                                        New EI ZatchUp ID</button>
+                                        New School ZatchUp ID</button>
                                 </div>
                             </div>
 
@@ -374,8 +374,7 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 border-0">
-                            <h2 class=" text-left modal-title commonFontSize mediumFont mb-1">New EI Zatchup ID
-                                ID
+                            <h2 class=" text-left modal-title commonFontSize mediumFont mb-1">New School Zatchup ID
                             </h2>
                             <button #closeApproveWithNewZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
@@ -392,13 +391,13 @@
                                         class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"
                                         data-toggle="modal" data-target="#newZatchupIDModel"
                                         (click)="closeNewEIWithZatchupID()">With
-                                        Enter EI ZatchUp ID</button>
+                                        Enter School ZatchUp ID</button>
                                 </div>
                                 <div class="col-sm-6">
                                     <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel"
                                         class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing "
                                         (click)="closeNewEIWithZatchupID()">
-                                        With Generate New EI ZatchUp ID</button>
+                                        With Generate New School ZatchUp ID</button>
                                 </div>
                             </div>
 
@@ -414,7 +413,7 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing EI ZatchUp ID
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing School ZatchUp ID
                             </h2>
                             <button #closeExistingZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
@@ -430,14 +429,14 @@
 
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
-                                            EI ZatchUp ID
+                                            School ZatchUp ID
                                         </label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" id="zatchupId" name="zatchup_id" [disabled]="true"
                                                 [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                placeholder="Enter EI ZatchUp ID" required />
+                                                placeholder="Enter School ZatchUp ID" required />
                                         </div>
                                         <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_id">
@@ -634,7 +633,7 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter EI ZatchUp ID
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter School ZatchUp ID
                             </h2>
                             <button #closeNewZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
@@ -648,15 +647,14 @@
                             <div class="modal-body px-0 py-0">
                                 <div class=" form-group row mt-3">
                                     <div class="col-sm-12 ">
-                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Enter
-                                            EI
-                                            ZatchUp ID</label>
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
+                                            Enter School ZatchUp ID</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" name="zatchup_Id" id="zatchup_Id"
                                                 [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                placeholder="Enter EI ZatchUp ID" required />
+                                                placeholder="Enter School ZatchUp ID" required />
                                         </div>
                                         <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_Id">
@@ -717,7 +715,7 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New EI ZatchUp
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New School ZatchUp
                                 ID</h2>
                             <button #closeGenerateZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"

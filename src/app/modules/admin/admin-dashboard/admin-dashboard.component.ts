@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { AdminService } from 'src/app/services/Admin/admin.service';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -25,7 +25,7 @@ export class AdminDashboardComponent implements OnInit {
 
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private loader: NgxSpinnerService,
     public adminService: AdminService,
     private baseService: BaseService,
@@ -92,6 +92,10 @@ export class AdminDashboardComponent implements OnInit {
   changeFilterToDate(date) {
     if (date)
       this.fromMaxDate = new Date(date)
+  }
+
+  goToAdminEIDatabase() {
+    this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/dashboard' } })
   }
 
 }

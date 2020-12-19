@@ -140,7 +140,6 @@ export class AdminSchoolManagementComponent implements OnInit {
   }
 
   addEducationInstitute() {
-    if(this.search.length >= 1)
     this.router.navigate(['admin/add-education-institute'])
   }
 }
