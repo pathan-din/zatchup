@@ -122,14 +122,14 @@
                     <ng-container matColumnDef="board">
                         <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.is_onboarded}}
+                            {{element.university}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="address">
                         <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.address}}
+                            {{element.address1}} {{element.address2}}
                         </mat-cell>
                     </ng-container>
                     <!-- Weight Column -->

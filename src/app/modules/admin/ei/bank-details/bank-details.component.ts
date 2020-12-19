@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,6 +15,7 @@ export class BankDetailsComponent implements OnInit {
   bankDetails: any
 
   constructor(
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
@@ -45,6 +47,10 @@ export class BankDetailsComponent implements OnInit {
       this.alert.error(err, 'Error');
       this.loader.hide();
     }
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

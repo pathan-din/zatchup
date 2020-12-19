@@ -61,17 +61,16 @@ export class DatabaseListComponent implements OnInit {
       }) 
     }
     
-
     this.eidbList.modal ={
       'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'): '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university":this.eidbList.university,
-      "reg_steps":this.eidbList.onboardingStatus !== 5 ? this.eidbList.onboardingStatus : undefined ,
+      "is_onboarded":this.eidbList.onboardingStatus,
       'page': page,
       'page_size':  this.eidbList.page_size,
-      'is_rejected': this.eidbList.onboardingStatus == 5 ? 1 : undefined
+      // 'is_ei_in_zatchup': this.eidbList.onboardingStatus == 2 ? 'false' : undefined
     }
   
     this.baseService.getData('admin/ei/get-all-ei-list/', this.eidbList.modal).subscribe(

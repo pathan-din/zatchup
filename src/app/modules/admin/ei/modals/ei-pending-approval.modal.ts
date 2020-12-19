@@ -7,7 +7,7 @@ export class EIPendingApproval {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'additionType', 'signUpDate', 'action'];
+    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'signUpDate', 'action'];
     dataSource: any;
     userId: any;
     filterFromDate: any;
@@ -88,6 +88,8 @@ export class OnboardedZatchup {
     allStates: any;
     allCities: any;
     university: any;
+    isDisabled: any = '';
+    subStatus: any = '';
     search: any;
     stateName: any;
     cityName: any

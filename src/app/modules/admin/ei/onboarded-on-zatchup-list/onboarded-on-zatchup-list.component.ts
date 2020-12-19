@@ -87,6 +87,8 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardedZatchup.university,
+      "is_disabled": this.onboardedZatchup.isDisabled,
+      "sub_status": this.onboardedZatchup.subStatus,
       "page_size": this.onboardedZatchup.pageSize ? this.onboardedZatchup.pageSize : 5,
       "page": page ? page : 1
     }
