@@ -10,6 +10,9 @@ export class EducationInstitute {
     allCities: any
     stateId: any = '';
     cityId: any = '';
+    isExists: boolean;
+    numberOfStudentList: any;
+    students: any = '';
 }
 
 export class EIDbList {
