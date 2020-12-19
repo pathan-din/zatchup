@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1" (click)="goToAdminEIDatabase()">
                     <p class="p-2 mediumFont commonFontSize">EI In Database</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{countJson?.total_no_of_ei ? countJson?.total_no_of_ei : 0}}</h2>
