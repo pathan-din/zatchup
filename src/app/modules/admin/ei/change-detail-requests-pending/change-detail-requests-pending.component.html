@@ -2,7 +2,7 @@
 <div class="container main-container p-3">
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
         <div class="row topDiv">
-            <div class="col-md-6 col-12">                
+            <div class="col-md-6 col-12">
                 <h2 class="commonFontSize semiBoldFont m-0">
                     <span class="mr-3 cursorStyle">
                         <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
@@ -12,10 +12,13 @@
             </div>
             <div class="col-md-6 col-12 d-flex justify-content-end">
                 <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
-                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="search" placeholder="Search...">
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="search" placeholder="Search..." [(ngModel)]="changeDetailRequestsPending.search"
+                        name="search">
                 </div>
-                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">History</button>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
+                    (click)="searchList('1')">Apply</button>
             </div>
         </div>
         <!-- <div class="row topDiv">
@@ -76,7 +79,8 @@
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Change Field</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" [(ngModel)]="changeDetailRequestsPending.changeField" id="pastEI" required>
+                        <select class="custom-select  form-control-input"
+                            [(ngModel)]="changeDetailRequestsPending.changeField" id="pastEI" required>
                             <option value=""> Select Status</option>
                             <option value="name_of_school">Name of School</option>
                             <option value="email">Email</option>
@@ -94,7 +98,7 @@
                     </div>
                 </div>
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
-                    (click)="getChangeRequestList()">Apply</button>
+                    (click)="filterData('1')">Apply</button>
             </div>
         </div>
 
@@ -105,7 +109,7 @@
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Data Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select (change)="getChangeRequestList('1')" [(ngModel)]="changeDetailRequestsPending.page_size"
+                    <select (change)="filterData('1')" [(ngModel)]="changeDetailRequestsPending.page_size"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -193,7 +197,8 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View" routerLink="/admin/change-details-request-view/{{element.id}}"></i>
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"
+                                routerLink="/admin/change-details-request-view/{{element.id}}"></i>
                             <i class="fa fa-envelope color-green cursorStyle" aria-hidden="true" title="View"></i>
                         </mat-cell>
                     </ng-container>
@@ -203,7 +208,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="changeDetailRequestsPending.dataSource" (pageChange)="getChangeRequestList($event)"
+        <pagination-controls *ngIf="changeDetailRequestsPending.dataSource" (pageChange)="filterData($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="!changeDetailRequestsPending.dataSource">

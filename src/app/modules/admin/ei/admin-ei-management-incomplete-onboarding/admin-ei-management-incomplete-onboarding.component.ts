@@ -177,4 +177,59 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     this.location.back();
     console.log(location)
   }
+
+  searchList(page?: any) {
+    let stateFind: any;
+    let cityFind: any;
+    if (this.onboardList.allStates && this.onboardList.stateId) {
+      stateFind = this.onboardList.allStates.find(val => {
+        return val.id == this.onboardList.stateId
+      })
+    }
+    if (this.onboardList.allCities) {
+      cityFind = this.onboardList.allCities.find(val => {
+        return val.id == this.onboardList.cityId
+      })
+    }
+
+    this.onboardList.listParams = {
+      "search": this.onboardList.search,
+      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "university": this.onboardList.university,
+      "page_size": this.onboardList.pageSize,
+      "page": page
+    }
+    this.loader.show(); 
+    this.baseService.getData('admin/ei_search/', this.onboardList.listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.onboardList.config.currentPage
+          this.onboardList.startIndex = res.page_size * (page - 1) + 1;
+          this.onboardList.pageSize = res.page_size;
+          this.onboardList.config.itemsPerPage = res.page_size
+          this.onboardList.config.currentPage = page
+          this.onboardList.config.totalItems = res.count;
+
+          if (res.count > 0)
+            this.onboardList.dataSource = res.results
+          else
+            this.onboardList.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
+  filterData(page) {
+    if (this.onboardList.search)
+      this.searchList(page)
+    else
+      this.getONBoardList(page)
+  }
 }

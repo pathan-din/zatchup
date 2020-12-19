@@ -19,6 +19,7 @@ export class EIPendingApproval {
     cityId: any = '';
     additionType: any = '';
     university: any;
+    search: any;
 }
 
 export class OnBoardList {
@@ -44,6 +45,9 @@ export class OnBoardList {
     message: any
     errorDisplay: any = {};
     eiId: any
+    stateName: any;
+    cityName: any;
+    search: any;
 }
 
 export class notOnZatchup {
@@ -67,6 +71,9 @@ export class notOnZatchup {
 
     dataSource: any;
     university: any;
+    cityName: any;
+    stateName: any;
+    search: any
 }
 
 export class OnboardedZatchup {
@@ -81,6 +88,9 @@ export class OnboardedZatchup {
     allStates: any;
     allCities: any;
     university: any;
+    search: any;
+    stateName: any;
+    cityName: any
     config = {
         itemsPerPage: 0,
         currentPage: 1,

@@ -68,9 +68,10 @@ export class DatabaseListComponent implements OnInit {
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university":this.eidbList.university,
-      "onbording_status":this.eidbList.onboardingStatus,
+      "reg_steps":this.eidbList.onboardingStatus !== 5 ? this.eidbList.onboardingStatus : undefined ,
       'page': page,
       'page_size':  this.eidbList.page_size,
+      'is_rejected': this.eidbList.onboardingStatus == 5 ? 1 : undefined
     }
   
     this.baseService.getData('admin/ei/get-all-ei-list/', this.eidbList.modal).subscribe(

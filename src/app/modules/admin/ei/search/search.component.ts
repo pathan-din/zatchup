@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit {
       "university": this.university,
       "city": this.cityId ? this.getValue(this.allCities, this.cityId, 'city') : '',
       "state": this.stateId ? this.getValue(this.allStates, this.stateId, 'state') : '',
-      "is_disabled": this.onboardedStatus
+      "is_onboarded": this.onboardedStatus
     }
 
     this.loader.show();
