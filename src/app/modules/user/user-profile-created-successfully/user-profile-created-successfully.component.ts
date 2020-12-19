@@ -14,7 +14,17 @@ export class UserProfileCreatedSuccessfullyComponent implements OnInit {
   }
 
   goToUserLandingPage() {
-    this.router.navigate(['user/my-educational-profile']);
+    if(localStorage.getItem("role")){
+      var role = parseInt(localStorage.getItem("role"));
+      if(role==1){
+        this.router.navigate(['user/my-school']);
+      }else{
+        this.router.navigate(['user/my-school']);
+      }
+    }
+
+    
+    
  }
  logout(){
   localStorage.clear();

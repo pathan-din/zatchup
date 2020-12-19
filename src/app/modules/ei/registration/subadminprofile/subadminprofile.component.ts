@@ -44,7 +44,7 @@ export class SubadminprofileComponent implements OnInit {
      
 
     });
-    
+    this.getEiNumber();
     this.imagePath=this.baseService.serverImagePath;
   }
  
@@ -89,7 +89,23 @@ export class SubadminprofileComponent implements OnInit {
 
 
   }
-
+getEiNumber(){
+  try {
+   this.baseService.getData("subadmin/get-employe-num-of-subadmin/").subscribe(res=>{
+    let response:any=res;
+    if(response.status==true){
+      this.model.employee_num=response.employee_num;
+    }else{
+      this.alert.error("Id Number Not Fetched","Error")
+    }
+   },(error=>{
+     console.log("Error",error);
+     
+   }))
+  } catch (e) {
+  
+  }
+}
  
   uploadProfilePic(files) {
     let fileList: FileList = files;

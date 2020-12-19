@@ -141,7 +141,6 @@ export class UserKycVerificationComponent implements OnInit {
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
       formData.append('kyc_document_back', this.uploadedContentForBackPhoto);
-      
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
@@ -228,11 +227,13 @@ export class UserKycVerificationComponent implements OnInit {
 
       let data:any={};
       data.is_currently_student= isStudent?1:0;
+
       this.baseService.action('user/add-role/',data).subscribe(res => {
         let response: any = {}
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
+          localStorage.setItem("role",data.is_currently_student);
           $("#currentStatusModel").modal('hide');
          if(isStudent == 'yes')
          {
@@ -249,7 +250,7 @@ export class UserKycVerificationComponent implements OnInit {
 
             }
           }
-          alert(errorCollection);
+          this.alert.error(errorCollection,'Error');
         }
       }, (error) => {
         this.SpinnerService.hide();
