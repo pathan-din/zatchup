@@ -5,7 +5,7 @@
         <h2 class="commonFontSize semiBoldFont mb-0">School Profile</h2>
         <div class="bannerDiv position-relative">
             <img *ngIf="userProfile"
-                src="{{userProfile.cover_pic ? userProfile.cover_pic : '/assets/images/cover-pic-default.png'}}"
+                src="{{userProfile.cover_pic ? userProfile.cover_pic : 'assets/images/cover-pic-default.png'}}"
                 class="img-fluid w-100">
             <!-- <app-image-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadInfo"></app-image-uploader> -->
             <button type="button" (click)="fileInput.click()"

@@ -53,15 +53,11 @@ export class EiSchoolProfileComponent implements OnInit {
   getProfile() {
     try {
       this.SpinnerService.show();
-
       this.eiService.getEiProfileDetails().subscribe(res => {
-
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
         this.userProfile = response;
-
-
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);

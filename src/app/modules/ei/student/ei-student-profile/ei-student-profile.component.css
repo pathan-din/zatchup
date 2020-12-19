@@ -19,9 +19,7 @@
     border: none;
 }
 
-.table tbody tr:hover {
-    background: #aaa4a4;
-}
+
 
 .shift-right-4 {
     margin-left: 3%;
@@ -84,5 +82,11 @@
         max-height: 20vh;
         min-width: 30vw;
         max-width: 30vw;
+    }
+}
+
+@media (max-width: 667px) {
+    .table-responsive {
+        display: block !important;
     }
 }
