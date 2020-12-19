@@ -65,6 +65,16 @@
                         </div>
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.document"></div>
                     </div>
+                    <div class="form-group row ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back side Photo Aadhar/Driving/Passport</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInputBack($event.target.files)"   name ="document_back">
+                            </div>
+                        </div>
+                        <div class="required errorMsg"  [innerHtml]="errorDisplay.document"></div>
+                    </div>
                     <!-- <div class="form-group row row ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <div (click)="fileInput.click()" class="row form-control-file">

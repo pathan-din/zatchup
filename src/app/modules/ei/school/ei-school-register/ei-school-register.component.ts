@@ -187,7 +187,7 @@ export class EiSchoolRegisterComponent implements OnInit {
        if(obj.id){
         this.SpinnerService.show(); 
         //ei/get-notonboarded-ei-by-city
-        this.eiService.getSchoolListByCity(obj.id).subscribe(res => {
+        this.eiService.getSchoolsListByCity(obj.id).subscribe(res => {
           
           let response:any={};
           response=res;
