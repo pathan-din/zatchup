@@ -112,4 +112,59 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   goBack() {
     this.location.back()
   }
+  
+  searchList(page?: any) {
+    let stateFind: any;
+    let cityFind: any;
+    if (this.changeDetailRequestsPending.allStates && this.changeDetailRequestsPending.stateId) {
+      stateFind = this.changeDetailRequestsPending.allStates.find(val => {
+        return val.id == this.changeDetailRequestsPending.stateId
+      })
+    }
+    if (this.changeDetailRequestsPending.allCities) {
+      cityFind = this.changeDetailRequestsPending.allCities.find(val => {
+        return val.id == this.changeDetailRequestsPending.cityId
+      })
+    }
+
+    this.changeDetailRequestsPending.modal = {
+      "search": this.changeDetailRequestsPending.search,
+      'date_from': this.changeDetailRequestsPending.filterFromDate !== undefined ? this.datePipe.transform(this.changeDetailRequestsPending.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.changeDetailRequestsPending.filterToDate !== undefined ? this.datePipe.transform(this.changeDetailRequestsPending.filterToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "university": this.changeDetailRequestsPending.university,
+      "page_size": this.changeDetailRequestsPending.page_size,
+      "page": page
+    }
+    this.loader.show(); 
+    this.baseService.getData('admin/ei_search/', this.changeDetailRequestsPending.modal).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.changeDetailRequestsPending.config.currentPage
+          this.changeDetailRequestsPending.startIndex = res.page_size * (page - 1) + 1;
+          this.changeDetailRequestsPending.page_size = res.page_size;
+          this.changeDetailRequestsPending.config.itemsPerPage = res.page_size
+          this.changeDetailRequestsPending.config.currentPage = page
+          this.changeDetailRequestsPending.config.totalItems = res.count;
+
+          if (res.count > 0)
+            this.changeDetailRequestsPending.dataSource = res.results
+          else
+            this.changeDetailRequestsPending.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
+  filterData(page) {
+    if (this.changeDetailRequestsPending.search)
+      this.searchList(page)
+    else
+      this.getChangeRequestList(page)
+  }
 }

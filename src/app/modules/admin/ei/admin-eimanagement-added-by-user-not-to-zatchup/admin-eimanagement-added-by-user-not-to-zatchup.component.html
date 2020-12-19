@@ -74,7 +74,7 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of EI In Database Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getnotOnZatchup('1')" [(ngModel)]="notOnZatchup.pageSize">
+                        (change)="filterData('1')" [(ngModel)]="notOnZatchup.pageSize">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
