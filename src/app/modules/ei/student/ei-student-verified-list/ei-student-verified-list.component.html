@@ -293,34 +293,22 @@
                    <div class="col-md-12 ">
               <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
               <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-                  <input id="remark" [(ngModel)]="modelReason.remark" name="remark" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
+                  <input id="remark" [(ngModel)]="modelReason.remark" name="reason_type" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
               </div>
-              <div class="required errorMsg" [innerHtml]="errorDisplay.remark"></div>
+              <div class="required errorMsg" [innerHtml]="errorDisplay.reason_type"></div>
           </div>
-                      <!-- <div class="col-md-12 "> -->
-                          <!-- <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Reason</label> -->
-                          <!-- <div class="form-control-inputDiv rounded p-1 shadow-none "> -->
-                              <!-- <input [(ngModel)]="modelReason.remark" name="Remark" required /> -->
-                              <!-- <select class="custom-select  form-control-input"> -->
-                                  <!-- <option value=""> Select Reason</option> -->
-                                  <!-- <option value="1">2000</option> -->
-                                  <!-- <option value="2">2001</option> -->
-                                  <!-- <option value="3">2002</option> -->
-                              <!-- </select> -->
-                          <!-- </div> -->
-                      <!-- </div> -->
                   </div>
                   <div class=" form-group row ">
                       <div class="col-md-12 ">
                           <label for="Remarks "
                               class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
 
-                          <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea [(ngModel)]="modelReason.rejected_reason" name="description" required
+                          <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea [(ngModel)]="modelReason.rejected_reason" name="remarks" required
                                   class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                  rows="3 " placeholder="Enter Description "></textarea>
+                                  rows="3 " placeholder="Enter Remarks "></textarea>
                           </div>
                       </div>
-                      <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
+                      <div class="required errorMsg" [innerHtml]="errorDisplay.remarks"></div>
                   </div>
                   <button (click)="rejectStudent()" type="button "
                       class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
@@ -351,7 +339,7 @@
               <div class="modal-body px-0 py-0">
                   <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
                   <p class="commonFontSize regularFont letterspacing">Are you sure you want to Verified this
-                      member?
+                      Student?
                   </p>
                   <p class="commonFontSize regularFont letterspacing text-right">
                       <!-- <span class="mx-3 color-blue">No</span>

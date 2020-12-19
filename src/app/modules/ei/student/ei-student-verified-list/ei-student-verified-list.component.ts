@@ -386,8 +386,7 @@ this.model.page= page
 
       this.eiService.approveStudent(data).subscribe(res => {
         let response: any = {};
-        console.log(response.status);
-        
+        response=res;
         if (response.status == true) {
           this.SpinnerService.hide();
           this.alert.success(response.message,'Success');
