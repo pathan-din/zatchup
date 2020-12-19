@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -12,6 +12,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
   styleUrls: ['./user-my-educational-profile.component.css']
 })
 export class UserMyEducationalProfileComponent implements OnInit {
+  @ViewChild('closeModal') closeModal : any;
   epData: any;
   model:any={};
   editModel:any={};
@@ -19,15 +20,11 @@ export class UserMyEducationalProfileComponent implements OnInit {
   errorDisplay:any={};
   errorOtpModelDisplay:any=[];
   constructor(
-    private router: Router,
     private alert: NotificationService,
     private baseService: BaseService,
-    private activeRoute: ActivatedRoute,
-    private location: Location,
     private loader: NgxSpinnerService,
-    private validationService: GenericFormValidationService,
-   
-    ) { }
+    private validationService: GenericFormValidationService
+   ) { }
 
   ngOnInit(): void {
     this.model = {};
@@ -37,7 +34,9 @@ export class UserMyEducationalProfileComponent implements OnInit {
    
    
       this.editModel={};
-      this.model=label;
+      //this.model=label;
+      this.model.dob = this.baseService.getDateReverseFormat(label.dob)
+      this.model.email = label.email;
       this.model.first_name=label.first_name;
       this.model.last_name=label.last_name;
       this.editModel.key = key;
@@ -74,6 +73,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
          {
            this.loader.hide();
            this.alert.success(response.message,'success');
+           this.closeModal.nativeElement.click()
            //location.reload();
          }else{
            this.alert.error(response.error.message[0],'Error');

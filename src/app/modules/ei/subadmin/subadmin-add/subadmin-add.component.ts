@@ -341,7 +341,7 @@ export class SubadminAddComponent implements OnInit {
       this.designations[isCheckDesignation] = false;
     }
 
-    if (isCheckDesignation == 'TEACHER') {
+    if (isCheckDesignation == '3') {
       this.isTeacher = true;
     } else {
       this.isTeacher = false;

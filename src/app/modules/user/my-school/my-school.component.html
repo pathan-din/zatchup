@@ -10,7 +10,7 @@
     <div class="container w-75 bg-light-gray pt-5 pb-5 justify-content-center">
         <div class="row justify-content-center">
             <div class="col-md-7">
-                <div class="row">
+                <div class="row" *ngIf="!roleCheck">
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding" class="myProfileImg"/>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                        <div (click)="gotToProfilePage()" class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding" class="myProfileImg"/>
                             <p class="pt-2">Share My Profile</p>
                         </div>
@@ -44,6 +44,43 @@
                     </div>
 
                 </div>
+
+
+
+
+
+
+                <div class="row" *ngIf="roleCheck">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">Project Funding</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/lecturer-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">Lecture/Career Counselling</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/e-certificate-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">E-Certificates & E-report</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div (click)="gotToProfilePage()" class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">Share My Profile</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
             </div>
         </div>
     </div>

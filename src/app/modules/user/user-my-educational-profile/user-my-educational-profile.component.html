@@ -190,13 +190,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-header border-0 align-items-center justify-content-center pb-0">
-                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                <button #closeModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
             <div class="modal-body p-1">
-                <form id="Form4" enctype="multipart/form-data">
+                <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
                     <div class="process3">
                         <div class="form-group row " *ngIf="editModel.key=='name'">
                             <div  class="col-md-12 MobileCol6MB">
@@ -236,12 +236,12 @@
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='email'">
                             <div  class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
                                    <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
                                 </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
                                
                             </div>
                             
@@ -251,7 +251,7 @@
                 </form>
               
                 <div class="text-center">
-                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails(); changeRequestForm.resetForm()">Submit </button>
                 </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
