@@ -61,7 +61,7 @@
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                (click)="getnotOnZatchup()">Apply</button>
+                (click)="filterData('1')">Apply</button>
 
 
             </div>
@@ -164,7 +164,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="notOnZatchup.dataSource" (pageChange)="getnotOnZatchup($event)"
+        <pagination-controls *ngIf="notOnZatchup.dataSource" (pageChange)="filterData($event)"
         class="eiPaginationTag">
     </pagination-controls>
     <div class="row" *ngIf="!notOnZatchup.dataSource">

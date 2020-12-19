@@ -13,9 +13,9 @@
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="text" placeholder="Search...">
+                        type="text" [(ngModel)]="eIPendingApproval.search" name="search" placeholder="Search...">
                 </div>
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 " (click)="searchList()">Apply</button>
             </div>
         </div>
 
@@ -80,7 +80,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getEIApprovalList('')">Apply</button>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="filterData('1')">Apply</button>
             </div>
         </div>
         <!--End html for EI pending for approval information Filter-->
@@ -172,7 +172,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="eIPendingApproval.dataSource" (pageChange)="getEIApprovalList($event)"
+        <pagination-controls *ngIf="eIPendingApproval.dataSource" (pageChange)="filterData($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="!eIPendingApproval.dataSource">
