@@ -24,6 +24,12 @@ export class UserEiProfileComponent implements OnInit {
   course_id: any = '';
   standard: any = '';
   imagePath:any="";
+  uploadInfo: any = {
+    "image_type": "file_name",
+    "url": "ei/uploaddocsfile/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
 
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -253,6 +259,10 @@ export class UserEiProfileComponent implements OnInit {
   }
   goToUserAddCoursePage() {
     this.router.navigate(['user/add-course']);
+  }
+
+  getProfilePicUrl(data: any){
+    this.imageUrl = this.imagePath+data.filename
   }
 
 }
