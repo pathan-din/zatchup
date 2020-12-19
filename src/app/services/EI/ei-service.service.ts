@@ -78,6 +78,7 @@ export class EiServiceService {
 
   getSchoolListByCity(data) { return this.http.get(this.env.apiEiUrl + 'getschoollistwithcity/' + data + '/'); }
 
+  getSchoolsListByCity(data) { return this.http.get(this.env.apiEiUrl + 'get-notonboarded-ei-by-city/' + data + '/'); }
   /*
   Api Name : verify-mobile
   Parameter : mobile number and otp

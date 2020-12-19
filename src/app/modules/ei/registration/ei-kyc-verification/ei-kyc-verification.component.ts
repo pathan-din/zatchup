@@ -18,6 +18,7 @@ export class EiKycVerificationComponent implements OnInit {
   model:any={};
   errorDisplay:any={};
   uploadedContent: any;
+  uploadedContent_back: any;
   filename: any = "";
   pattran:any="";
   arrAadhar:any=[1];
@@ -59,10 +60,11 @@ export class EiKycVerificationComponent implements OnInit {
       const formData = new FormData();
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
+      formData.append('kyc_document_back', this.uploadedContent_back);
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
-       
+      
       
       // if(localStorage.getItem('user_id'))
       // {
@@ -153,6 +155,15 @@ export class EiKycVerificationComponent implements OnInit {
       let fileData: File = fileList[0];
       this.filename = fileData.name;
       this.uploadedContent = fileData;
+      console.log(this.uploadedContent);
+      
+    }
+    /**************Upload File Function****************/
+    handleFileInputBack(file) {
+      let fileList: FileList = file;
+      let fileData: File = fileList[0];
+      this.filename = fileData.name;
+      this.uploadedContent_back = fileData;
       console.log(this.uploadedContent);
       
     }

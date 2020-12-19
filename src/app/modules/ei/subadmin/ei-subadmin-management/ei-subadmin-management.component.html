@@ -116,7 +116,7 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Alumni Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select (change)="sudAdminList('1', '')"
+                    <select (change)="sudAdminList('', '')" [(ngModel)]="model.page_size"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -189,6 +189,14 @@
 
                 </mat-table>
 
+            </div>
+            <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="sudAdminList($event,'')"
+                class="eiPaginationTag">
+            </pagination-controls>
+            <div class="row" *ngIf="dataSource && dataSource.length == 0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                </div>
             </div>
         </div>
     </div>
