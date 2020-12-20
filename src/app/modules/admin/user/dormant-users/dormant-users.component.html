@@ -64,7 +64,7 @@
                         type="input" id="previousEi" placeholder="Enter Previous EI" name="previous_ei" [(ngModel)]="dormantUsers.previousEi">
                     </div>
                 </div>
-                <div class="widthFull mr-3 mt-3">
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Age Group</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="ageGroup" required>
@@ -74,7 +74,7 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
@@ -99,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3">
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="Status" required name="kyc_approved"
@@ -122,7 +122,7 @@
 
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
@@ -238,7 +238,7 @@
 
                     <ng-container matColumnDef="LastLoginDate">
                         <mat-header-cell *matHeaderCellDef> Last Login Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.last_login}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.last_login | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Action">

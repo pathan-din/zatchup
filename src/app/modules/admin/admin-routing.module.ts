@@ -329,7 +329,7 @@ const routes: Routes = [
     path: 'incomplete-onboarding-view/:id', component: IncompleteOnboardingViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-database-view/:id', component: DatabaseViewComponent, canActivate: [AuthGuard]
+    path: 'ei-database-view', component: DatabaseViewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'current-poc', component: CurrentPocComponent, canActivate: [AuthGuard]
