@@ -13,9 +13,9 @@
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="text" placeholder="Search...">
+                        type="text" placeholder="Search..." [(ngModel)]="onboardList.search" name="search">
                 </div>
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 " (click)="searchList()">Apply</button>
             </div>
         </div>
         <!--Start html for Incomplete Onboarding information Filter-->
@@ -72,7 +72,7 @@
                             placeholder="Board/University" />
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div">
+                <!-- <div class="widthFull mr-4 mt-3 dropdown-lg-Div">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Stage Pending</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="status" required
@@ -84,11 +84,13 @@
                             <option value="4">OnBoarding Stage 4</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                    (click)="getONBoardList()">Apply</button>
+                    (click)="filterData('1')">Apply</button>
+
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
 
 
             </div>
@@ -102,7 +104,7 @@
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getONBoardList('1')" [(ngModel)]="onboardList.pageSize">
+                        (change)="filterData('1')" [(ngModel)]="onboardList.pageSize">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -203,7 +205,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="onboardList.dataSource" (pageChange)="getONBoardList($event)"
+        <pagination-controls *ngIf="onboardList.dataSource" (pageChange)="filterData($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="!onboardList.dataSource">

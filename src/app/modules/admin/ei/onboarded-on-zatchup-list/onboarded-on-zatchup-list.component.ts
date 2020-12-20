@@ -79,12 +79,16 @@ export class OnboardedOnZatchupListComponent implements OnInit {
         return val.id == this.onboardedZatchup.cityId
       })
     }
+
     this.onboardedZatchup.listParams = {
+      "search": this.onboardedZatchup.search,
       'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardedZatchup.university,
+      "is_disabled": this.onboardedZatchup.isDisabled,
+      "sub_status": this.onboardedZatchup.subStatus,
       "page_size": this.onboardedZatchup.pageSize ? this.onboardedZatchup.pageSize : 5,
       "page": page ? page : 1
     }
@@ -113,6 +117,53 @@ export class OnboardedOnZatchupListComponent implements OnInit {
     }
   }
 
+  searchList(page?: any) {
+    let stateFind: any;
+    let cityFind: any;
+    if (this.onboardedZatchup.allStates && this.onboardedZatchup.stateId) {
+      stateFind = this.onboardedZatchup.allStates.find(val => {
+        return val.id == this.onboardedZatchup.stateId
+      })
+    }
+    if (this.onboardedZatchup.allCities) {
+      cityFind = this.onboardedZatchup.allCities.find(val => {
+        return val.id == this.onboardedZatchup.cityId
+      })
+    }
+    this.onboardedZatchup.listParams = {
+      "search": this.onboardedZatchup.search,
+      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "university": this.onboardedZatchup.university,
+      "page_size": this.onboardedZatchup.pageSize,
+      "page": page
+    }
+    this.loader.show();
+    this.baseService.getData('admin/ei_search/', this.onboardedZatchup.listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.onboardedZatchup.config.currentPage
+          this.onboardedZatchup.startIndex = res.page_size * (page - 1) + 1;
+          this.onboardedZatchup.pageSize = res.page_size;
+          this.onboardedZatchup.config.itemsPerPage = res.page_size
+          this.onboardedZatchup.config.currentPage = page
+          this.onboardedZatchup.config.totalItems = res.count;
+
+          if (res.count > 0)
+            this.onboardedZatchup.dataSource = res.results
+          else
+            this.onboardedZatchup.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
   generateExcel() {
     delete this.onboardedZatchup.listParams.page_size;
     delete this.onboardedZatchup.listParams.page;
@@ -124,7 +175,6 @@ export class OnboardedOnZatchupListComponent implements OnInit {
   getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
-        console.log('get state res ::', res)
         if (res.count > 0)
           this.onboardedZatchup.allStates = res.results
       }
@@ -136,16 +186,20 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.onboardedZatchup.allCities = res.results
-        console.log('get state res ::', res)
       }
     )
   }
 
   goBack(): void {
-    // let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
-    // this.router.navigate([returnUrl]);
     this.location.back();
     console.log(location)
+  }
+
+  filterData(page) {
+    if (this.onboardedZatchup.search)
+      this.searchList(page)
+    else
+      this.getOnboardedZatchup(page)
   }
 
 }

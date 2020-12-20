@@ -42,7 +42,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
     this.eIPendingApproval.listParams = {
       "date_from": this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
-      "date_to": this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
+      "date_to": this.eIPendingApproval.filterToDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterToDate, 'yyyy-MM-dd') : '',
       "city": this.eIPendingApproval.cityId ? this.getValue(this.eIPendingApproval.allCities, this.eIPendingApproval.cityId, 'city'): '',
       "state": this.eIPendingApproval.stateId ? this.getValue(this.eIPendingApproval.allStates, this.eIPendingApproval.stateId, 'state'): '',
       "university": this.eIPendingApproval.university,
@@ -120,5 +120,60 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
   goBack(): void{
     this.location.back();
+  }
+
+  searchList(page?: any) {
+    let stateFind: any;
+    let cityFind: any;
+    if (this.eIPendingApproval.allStates && this.eIPendingApproval.stateId) {
+      stateFind = this.eIPendingApproval.allStates.find(val => {
+        return val.id == this.eIPendingApproval.stateId
+      })
+    }
+    if (this.eIPendingApproval.allCities) {
+      cityFind = this.eIPendingApproval.allCities.find(val => {
+        return val.id == this.eIPendingApproval.cityId
+      })
+    }
+
+    this.eIPendingApproval.listParams = {
+      "search": this.eIPendingApproval.search,
+      'date_from': this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.eIPendingApproval.filterToDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "university": this.eIPendingApproval.university,
+      "page_size": this.eIPendingApproval.pageSize,
+      "page": page
+    }
+    this.loader.show(); 
+    this.baseService.getData('admin/ei_search/', this.eIPendingApproval.listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.eIPendingApproval.config.currentPage
+          this.eIPendingApproval.startIndex = res.page_size * (page - 1) + 1;
+          this.eIPendingApproval.pageSize = res.page_size;
+          this.eIPendingApproval.config.itemsPerPage = res.page_size
+          this.eIPendingApproval.config.currentPage = page
+          this.eIPendingApproval.config.totalItems = res.count;
+
+          if (res.count > 0)
+            this.eIPendingApproval.dataSource = res.results
+          else
+            this.eIPendingApproval.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
+  filterData(page) {
+    if (this.eIPendingApproval.search)
+      this.searchList(page)
+    else
+      this.getEIApprovalList(page)
   }
 }

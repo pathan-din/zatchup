@@ -61,7 +61,9 @@
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                (click)="getnotOnZatchup()">Apply</button>
+                (click)="filterData('1')">Apply</button>
+
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
 
 
             </div>
@@ -74,7 +76,7 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of EI In Database Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getnotOnZatchup('1')" [(ngModel)]="notOnZatchup.pageSize">
+                        (change)="filterData('1')" [(ngModel)]="notOnZatchup.pageSize">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
@@ -120,14 +122,14 @@
                     <ng-container matColumnDef="board">
                         <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.is_onboarded}}
+                            {{element.university}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="address">
                         <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.address}}
+                            {{element.address1}} {{element.address2}}
                         </mat-cell>
                     </ng-container>
                     <!-- Weight Column -->
@@ -164,7 +166,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="notOnZatchup.dataSource" (pageChange)="getnotOnZatchup($event)"
+        <pagination-controls *ngIf="notOnZatchup.dataSource" (pageChange)="filterData($event)"
         class="eiPaginationTag">
     </pagination-controls>
     <div class="row" *ngIf="!notOnZatchup.dataSource">

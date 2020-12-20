@@ -118,4 +118,8 @@ export class ActiveUsersComponent implements OnInit {
     )
   }
 
+  userProfile(id: any){
+    this.router.navigate(['admin/user-profile', id])
+  }
+
 }

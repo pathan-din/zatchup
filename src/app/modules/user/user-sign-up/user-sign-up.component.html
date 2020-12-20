@@ -2,37 +2,37 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
-            <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
+        <div class="col-md-7">
+            <img class="img-fluid left-Image mt-3" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4 pl-0">
-            <h2 class="mb-3 textSpace">Sign Up </h2>
+        <div class="col-md-5 pl-0">
+            <h2 class="mb-1 textSpace">Sign Up </h2>
 
              <form  id="form1" class="pt-2"> 
                 
                 <div class="form-group row">
                     <div class="col-sm-6 pl-0 mobForm-name">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
-                            <input (keyup)="isValid($event)" required id="first_name" pattern="^[a-zA-Z]+$"  class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg" type="text" [(ngModel)]="model.first_name" name ="first_name" placeholder="First Name *">
+                        <div class="mobile-input-6">
+                            <input (keyup)="isValid($event)" required id="first_name" pattern="^[a-zA-Z]+$"  class="form-control-input border form-control form-control-sm form-bgImg form-NameBgImg" type="text" [(ngModel)]="model.first_name" name ="first_name" placeholder="First Name *">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
                     </div>
                     <div class="col-sm-6 pr-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
-                            <input required (keyup)="isValid($event)" id="last_name" class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg" pattern="^[a-zA-Z]+$" type="text" [(ngModel)]="model.last_name" name ="last_name" placeholder="Last Name *">
+                        <div class="mobile-input-6">
+                            <input required (keyup)="isValid($event)" id="last_name" class="form-control-input form-control border form-control-sm form-bgImg form-NameBgImg" pattern="^[a-zA-Z]+$" type="text" [(ngModel)]="model.last_name" name ="last_name" placeholder="Last Name *">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 form-control-inputDiv p-0">
                         <input (keyup)="isValid($event)" [required]="!model.phone" class="form-control-input form-control form-control-sm form-bgImg form-emailBgImg" pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/" type="email" id="email" [(ngModel)]="model.email" name ="email" placeholder="Enter Your Email Id* ">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
                 </div>
                 <p class="text-center color-gray regularFont">OR</p>
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 form-control-inputDiv p-0">
                         <input (keyup)="isValid($event)"  [required]="!model.email" class="form-control-input form-control form-control-sm form-bgImg form-phoneBgImg" type="tel" minlength="10" maxlength="10" id="phone" [(ngModel)]="model.phone" name ="phone" placeholder="Enter Your Phone Number" numberOnly>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
@@ -45,10 +45,10 @@
                 </div> -->
                 <div class="form-group row">
                     <div class="col-sm-12">
-                        <h4 class="mb-2 textSpace color-gray">Gender</h4>
+                        <h4 class="mb-0 textSpace">Gender</h4>
                         <div class="form-control-radioDiv-padding">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-label" for="inlineRadio1">
+                                <label class="custom-label mb-0" style="color: #333" for="inlineRadio1">
                                     <input (change)="isValid($event)" required class="custom-control-input ng-dirty ng-valid ng-touched" type="radio" name="inlineRadioOptions"
                                         id="inlineRadio1" value="F" [(ngModel)]="model.profile.gender" name ="gender">
                                     <span class="checkmark"></span>
@@ -56,14 +56,14 @@
 
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-label" for="inlineRadio2">
+                                <label class="custom-label mb-0" style="color: #333" for="inlineRadio2">
                                     <input required (change)="isValid($event)" class="custom-control-input" type="radio" name="inlineRadioOptions"
                                         id="inlineRadio2" value="M" [(ngModel)]="model.profile.gender" name ="gender">
                                     <span class="checkmark"></span>
                                     <span class="radioValuetext">Male</span></label>
                             </div>
                             <div (change)="isValid($event)" class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-label" for="inlineRadio3">
+                                <label class="custom-label mb-0" style="color: #333" for="inlineRadio3">
                                     <input required class="custom-control-input" type="radio" [(ngModel)]="model.profile.gender" name ="gender" id="inlineRadio3" value="C">
                                     <span class="checkmark"></span>
                                     <span class="radioValuetext">Custom</span></label>
@@ -92,24 +92,24 @@
 
                 <div class="form-group row">
                     <div class="col-sm-12 ">
-                        <h4 class="mb-2 textSpace color-gray">Date Of Birth</h4>
+                        <h4 class="mb-2 textSpace">Date Of Birth</h4>
                         <div class="row">
-                            <div class="col-2 pl-0 mr-1 form-control-inputDiv">
-                                <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select form-date-col  border-0 pr-2">
+                            <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
+                                <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select border-0">
                                     <option value="" [selected]='true'>Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
                                    
                                 </select>
                             </div>
-                            <div class="col-3 pl-1 mr-1 ml-1 form-control-inputDiv">
-                                <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0 form-month-col">
+                            <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
+                                <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                     
                                 </select>
                             </div>
-                            <div class="col-3 ml-1 mr-1 form-control-inputDiv">
-                                <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select  border-0 form-month-col">
+                            <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
+                                <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select  border-0">
                                     <option value="" selected>Year</option>
                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                    
@@ -127,23 +127,30 @@
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.password"></div>
                 </div> -->
-                <div class="form-group row"> 
-                    <div class="col-sm-12 form-control-inputDiv"> 
-                        <input match="password,cpassword" (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" class="form-control-input form-control form-control-sm " type="{{showHidePassword}}" placeholder="Enter Password *" style="position: relative;"> <i (click)="showHidePasswordFunction('p')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+
+                <div class="row">
+                    <div class="col-6 pl-1">
+                        <div class="form-group"> 
+                            <div class="form-control-inputDiv p-0"> 
+                                <input match="password,cpassword" (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" class="form-control-input form-control form-control-sm " type="{{showHidePassword}}" placeholder="Enter Password *" style="position: relative;"> <i (click)="showHidePasswordFunction('p')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                            </div>
+                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>                        
+                        </div>
                     </div>
-                 <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
-            
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password" required [(ngModel)]="modelForConfirm.cpassword" name ="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" class="form-control-input form-control form-control-sm " type="{{showHidecPassword}}" placeholder="Confirm Password" style="position: relative;"><i (click)="showHidePasswordFunction('C')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                    <div class="col-6">
+                        <div class="form-group mb-1">
+                            <div class="form-control-inputDiv p-0">
+                                <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password" required [(ngModel)]="modelForConfirm.cpassword" name ="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" class="form-control-input form-control form-control-sm " type="{{showHidecPassword}}" placeholder="Confirm Password" style="position: relative;"><i (click)="showHidePasswordFunction('C')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                            </div>
+                            <div class="required errorMsg"  [innerHtml]="errorDisplay.confirm_password"></div>
+                        </div>
                     </div>
-                    <div class="required errorMsg"  [innerHtml]="errorDisplay.confirm_password"></div>
                 </div>
+                
                 <div class="form-group row  textSpace ml-0 mr-0">
-                    <div class="col-sm-12 pl-0">
+                    <div class="col-sm-12 pl-0 d-flex align-items-center">
                         <input required type="checkbox" (change)="isValid($event)" id="term-condition" class="checkboxStyle" [(ngModel)]="model.is_term_cond" name ="term_condition">
-                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black  ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
+                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
                     </div>
 
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.term_condition"></div>
@@ -202,4 +209,4 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
     <p style="color: white">Please Wait. </p>  
 </ngx-spinner> 
-<app-user-footer></app-user-footer>
+<!-- <app-user-footer></app-user-footer> -->

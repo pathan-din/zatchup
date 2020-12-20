@@ -119,4 +119,8 @@ export class KycVerifiedByEiComponent implements OnInit {
       }
     )
   }
+
+  userProfile(id: any){
+    this.router.navigate(['admin/user-profile', id])
+  }
 }

@@ -13,10 +13,10 @@ import { Location } from '@angular/common'
 })
 export class DatabaseViewComponent implements OnInit {
   databaseView: DatabaseView;
-  // eiId: string;
   eiData: any;
   user_type: any;
-  id: any;
+  dataUrl: any;
+  params: any;
 
   constructor(
     private router: Router,
@@ -30,13 +30,10 @@ export class DatabaseViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.activeRoute.snapshot.params.id) {
-      this.id = this.activeRoute.snapshot.params.id
-      this.getDatabaseView(this.id);
-    }
-    // if (localStorage.getItem('user_type'))
-    // this.user_type = localStorage.getItem('user_type')
-
+    this.activeRoute.queryParams.subscribe(params => {
+      this.params = params;
+      this.getDatabaseView();
+    });
   }
 
   conversationComments() {
@@ -47,10 +44,13 @@ export class DatabaseViewComponent implements OnInit {
     this.router.navigate(['admin/ei-onboarding-request-history'])
   }
 
-  getDatabaseView(id) {
+  getDatabaseView() {
     this.loader.show()
-    let url = 'admin/ei-pending-profile/' + this.id
-    this.baseService.getData(url).subscribe(
+    if (this.params.id)
+      this.dataUrl = 'admin/ei-profile-added-by-admin/' + this.params.id
+    else
+      this.dataUrl = 'admin/ei-pending-profile/' + this.params.user_id
+    this.baseService.getData(this.dataUrl).subscribe(
       (res: any) => {
         if (res.status == true)
           this.eiData = res.data

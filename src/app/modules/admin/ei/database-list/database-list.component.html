@@ -76,16 +76,20 @@
                         <select class="custom-select form-control-input" id="pastEI" required
                             [(ngModel)]="eidbList.onboardingStatus">
                             <option value=""> Select Status</option>
-                            <option value="1">OnBoarding Stage 1</option>
-                            <option value="2">OnBoarding Stage 2</option>
-                            <option value="3">OnBoarding Stage 3</option>
-                            <option value="4">OnBoarding Stage 4</option>
+                            <option value="1">Incomplete Onboarding</option>
+                            <!-- <option value="1">Stage 2</option>
+                            <option value="2">Stage 3</option>
+                            <option value="3">Stage 4</option> -->
+                            <option value="2">Onboarded</option>
+                            <option value="0">Not Onboarded</option>
                         </select>
                     </div>
                 </div>
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
                     (click)="getEIDbList('')">Apply</button>
+
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
 
             </div>
         </div>
@@ -170,13 +174,13 @@
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="text-center">
+                        <mat-cell *matCellDef="let element">
                             <button type="button" class="bg-light-blue text-white h-100 border-0 rounded"
-                                *ngIf="element.is_onboarded == 0">Incomplete Onboarding</button>
+                                *ngIf="element.onboarded_status == 1">Incomplete Onboarding</button>
                             <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
-                                *ngIf="element.is_onboarded == 1">Onboarded</button>
+                                *ngIf="element.onboarded_status == 2">Onboarded</button>
                             <button type="button" class="bg-red text-white h-100 border-0 rounded"
-                                *ngIf="element.is_onboarded == 2">Not Onboarded</button> </mat-cell>
+                                *ngIf="element.onboarded_status == 0">Not Onboarded</button> </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateofOnboarding">
@@ -188,7 +192,7 @@
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="text-center">
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"
-                                (click)="eiDbView(element.user_id)"></i>
+                                (click)="eiDbView(element)"></i>
                         </mat-cell>
                     </ng-container>
 

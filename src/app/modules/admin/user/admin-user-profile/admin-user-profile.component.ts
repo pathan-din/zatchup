@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -16,6 +17,7 @@ export class AdminUserProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private location: Location,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService
@@ -48,5 +50,9 @@ export class AdminUserProfileComponent implements OnInit {
       this.alert.error(err, 'Error')
       this.loader.hide();
     }
+  }
+
+  goBack(){
+    this.location.back()
   }
 }

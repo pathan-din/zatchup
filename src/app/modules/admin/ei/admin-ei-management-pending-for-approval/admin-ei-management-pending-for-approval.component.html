@@ -13,9 +13,9 @@
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="text" placeholder="Search...">
+                        type="text" [(ngModel)]="eIPendingApproval.search" name="search" placeholder="Search...">
                 </div>
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 " (click)="searchList()">Apply</button>
             </div>
         </div>
 
@@ -70,7 +70,7 @@
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Addition Type</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" name="additionType" [(ngModel)]="eIPendingApproval.additionType">
@@ -79,8 +79,10 @@
                             <option value="1">From Database</option>
                         </select>
                     </div>
-                </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getEIApprovalList('')">Apply</button>
+                </div> -->
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getEIApprovalList('')">Apply</button> -->
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="filterData('1')">Apply</button>
             </div>
         </div>
         <!--End html for EI pending for approval information Filter-->
@@ -94,7 +96,7 @@
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getEIApprovalList('1')" [(ngModel)]="eIPendingApproval.pageSize">
+                        (change)="filterData('1')" [(ngModel)]="eIPendingApproval.pageSize">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -143,12 +145,12 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="additionType">
+                    <!-- <ng-container matColumnDef="additionType">
                         <mat-header-cell *matHeaderCellDef> Addition Type </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.additionType}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="signUpDate">
                         <mat-header-cell *matHeaderCellDef>Sign Up Date </mat-header-cell>
@@ -163,7 +165,7 @@
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
                                 (click)="goToAdminEiManagementIncompleteOnboardingViewPage(element)"></i>
 
-                            <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
+                            <!-- <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
                         </mat-cell>
                     </ng-container>
 
@@ -172,7 +174,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="eIPendingApproval.dataSource" (pageChange)="getEIApprovalList($event)"
+        <pagination-controls *ngIf="eIPendingApproval.dataSource" (pageChange)="filterData($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="!eIPendingApproval.dataSource">
