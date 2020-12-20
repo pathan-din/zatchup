@@ -83,9 +83,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="status" [(ngModel)]="onboardedZatchup.isDisabled" id="pastEI" required>
-                            <option value=""> Select Status</option>
-                            <option value="true">Active</option>
-                            <option value="false">Inactive</option>
+                            <option value=""> Select</option>
+                            <option value="true">Enable</option>
+                            <option value="false">Disable</option>
                         </select>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Subscription Status</label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" id="ageGroup" name="sub_status" [(ngModel)]="onboardedZatchup.subStatus" required>
-                            <option value=""> Select Status</option>
+                            <option value=""> Select</option>
                             <option value="true">Active</option>
                             <option value="false">Expired</option>
                         </select>
