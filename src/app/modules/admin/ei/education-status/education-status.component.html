@@ -98,9 +98,8 @@
                 <label for="" class="mediumFont commonFontSize letterspacing"> Approximate Number of Students </label>
                 <!-- <div class="col-md-12"> -->
                 <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                    <select (change)="getCityByState(model.state)" id="state" required
-                        [(ngModel)]="educationInstitute.students" name="state" class="custom-select  form-control-input"
-                        required>
+                    <select id="state" required [(ngModel)]="educationInstitute.students" name="state"
+                        class="custom-select  form-control-input" required>
                         <option value="">Select Students</option>
                         <option value="{{student.display_text}}"
                             *ngFor="let student of educationInstitute.numberOfStudentList">
