@@ -77,9 +77,6 @@
                             [(ngModel)]="eidbList.onboardingStatus">
                             <option value=""> Select Status</option>
                             <option value="1">Incomplete Onboarding</option>
-                            <!-- <option value="1">Stage 2</option>
-                            <option value="2">Stage 3</option>
-                            <option value="3">Stage 4</option> -->
                             <option value="2">Onboarded</option>
                             <option value="0">Not Onboarded</option>
                         </select>
@@ -103,9 +100,9 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getEIDbList('1')" [(ngModel)]="eidbList.page_size">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of eidbList.pageCounts" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>

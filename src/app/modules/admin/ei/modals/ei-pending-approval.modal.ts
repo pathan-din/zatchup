@@ -92,7 +92,8 @@ export class OnboardedZatchup {
     subStatus: any = '';
     search: any;
     stateName: any;
-    cityName: any
+    cityName: any;
+    pageCounts: any;
     config = {
         itemsPerPage: 0,
         currentPage: 1,
