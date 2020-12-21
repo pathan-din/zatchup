@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
+import { BaseService } from '../../../services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 export interface NotificationElement {
   'SNo': number;
@@ -7,15 +10,7 @@ export interface NotificationElement {
   Time : string;
 }
 
-const ELEMENT_DATA: NotificationElement[] = [
-  {
-    'SNo': 1, 
-    NotificationMessage: 'vero eos accusomus iusto odio dignissimos ducimusgui lalondigis proesentium voluptatum deleniti otgue cam,. guos dolores guos molestiosexceptud sint occoecuti cupid.. non provident.' , 
-    Time: '10 min ago '
-
-}
-  
-];
+const ELEMENT_DATA: NotificationElement[] = [];
 
 @Component({
   selector: 'app-ei-notification',
@@ -26,10 +21,33 @@ export class EiNotificationComponent implements OnInit {
   displayedColumns: string[] = ['SNo', 'NotificationMessage', 'Time'];
 
   dataSource = ELEMENT_DATA;
-
-  constructor(private router: Router) { }
+  notificationList:any=[];
+  constructor(
+    private router: Router,
+    private loader: NgxSpinnerService,
+    private alert: NotificationService,
+    private baseService: BaseService) { }
 
   ngOnInit() {
+    this.getNorificationList()
   }
-
+getNorificationList(){
+  try {
+    this.loader.show();
+    this.baseService.getData("ei/notification-fetch-list/").subscribe(res=>{
+      let response:any={};
+      response=res;
+      if(response.status==true)
+      {
+        this.loader.hide();
+        this.dataSource = response.results
+      }else{
+        this.loader.hide();
+        this.dataSource=[];
+      }
+    })
+  } catch (e) {
+    this.loader.hide();
+  }
+}
 }

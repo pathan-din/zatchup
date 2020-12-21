@@ -99,7 +99,7 @@
                         class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png"
                         routerLink="/ei/dashboard"></a></span>
             <span class="spacer"></span>
-            <!-- <a class="text-black"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true" data-count="2"></i></a> -->
+            <a (click)="getNotificationList()" class="text-black"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i><sup class="color-white " style="background: #22c123;padding: 5px; border-radius: 10px;">{{notificationCount}}</sup></a>
             <!-- <a class="ml-4"><i class="fa fa-cog fa-lg color-gray" aria-hidden="true"></i></a> -->
             <a class=" ml-4 commonFontSize semiBoldFont">
                 <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/EiWebsite/kyc_logo.png'}}" class="rounded-circle bg-light-green header-dp">

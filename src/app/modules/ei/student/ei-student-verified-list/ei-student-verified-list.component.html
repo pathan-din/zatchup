@@ -214,7 +214,7 @@
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
                             aria-hidden="true "></i> -->
                         <span  *ngIf="element.kyc_approved==1">
-                        <i *ngIf="element.approved==0" (click)="openModel(element.student_id)" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
+                        <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
                             data-toggle="modal"></i>
                         <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
                         </span>

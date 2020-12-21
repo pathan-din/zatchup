@@ -59,13 +59,13 @@ export class EiOnboardingProcessComponent implements OnInit {
   bankNameList = [];
   countIndex: any;
   extentionCheck:any='';
-  @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
-    console.log("Processing beforeunload...", this.countIndex);
-    this.getRegistrationStep();
+//   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
+//     console.log("Processing beforeunload...", this.countIndex);
+//     this.getRegistrationStep();
    
-    console.log( this.myStepper.selectedIndex);
+//     console.log( this.myStepper.selectedIndex);
     
-}
+// }
   constructor(
     private validationService: GenericFormValidationService,
     private router: Router,
