@@ -1,6 +1,6 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
-    <div class="User-management-div bg-white px-4 pt-3 pb-4">
+    <div class="User-management-div bg-white px-3 pt-3 pb-4">
         <div class="row topDiv mb-1">
             <div class="col-md-6 ">
                 <h2 class="commonFontSize semiBoldFont m-0">User Management</h2>
@@ -80,12 +80,12 @@
         </div>
     </div>
 
-    <div class="User-unverified-dashboard-div bg-white px-4 pt-3 pb-4 mt-3">
+    <div class="User-unverified-dashboard-div bg-white px-3 pt-3 pb-4 mt-3">
         <div class="row">
             <div class="col-12 d-flex align-items-end flex-wrap">
-                <div class="widthFull MobileCol6MB">
+                <div class="widthFull MobileCol6MB mr-2">
                     <label for="" class=" commonFontSize mediumFont letterspacing"> From Date</label>
-                    <div class="rounded shadow-none mx-1">
+                    <div class="rounded shadow-none ">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing"
                             type="text" placeholder="MM/DD/YYYY" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="userManagement.filterFromDate" #fromDate="ngModel"
@@ -93,9 +93,9 @@
                     </div>
                 </div>
 
-                <div class="widthFull MobileCol6MB">
+                <div class="widthFull MobileCol6MB mr-2">
                     <label for="" class=" commonFontSize mediumFont letterspacing">To Date </label>
-                    <div class="rounded  shadow-none mx-1">
+                    <div class="rounded  shadow-none ">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                         type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                         [maxDate]="maxDate" [(ngModel)]="userManagement.filterToDate" #fromDate="ngModel"
@@ -105,7 +105,7 @@
                 <div class="medium-filter-box widthFull MobileCol6MB mr-2">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select State</label>
                     <div class="form-control-inputDiv rounded  shadow-none  border-top">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" required
                             [(ngModel)]="userManagement.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of userManagement.allStates" [value]="state.id"> {{state.state}}
@@ -114,17 +114,17 @@
                     </div>
                 </div>
 
-                <div class="medium-filter-box widthFull MobileCol6MB">
+                <div class="medium-filter-box widthFull MobileCol6MB mr-2">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Select City</label>
                     <div class="form-control-inputDiv rounded  shadow-none  border-top ">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" required
                         [(ngModel)]="userManagement.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of userManagement.allCities" [value]="city.id">{{city.city}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="border-0 p-0 shadow-none mx-1 MobileCol6MB">
+                <div class="border-0 p-0 shadow-none  MobileCol6MB">
                     <button type="button"
                         class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
                         Submit
@@ -137,7 +137,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">Users Added On The Platform</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.total_users_added}}</h2>
@@ -148,7 +148,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">Unverified Users, Verified By At Least One EI </p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.total_unverified_users}}</h2>
@@ -159,7 +159,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">Unresolved User's Profile Reports </p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.total_unresolved_userprofile_reports}}</h2>
@@ -172,10 +172,10 @@
         </div>
     </div>
 
-    <div class="User-unresolved-dashboard-div bg-white px-4 pt-3 pb-4 mt-3">
+    <div class="User-unresolved-dashboard-div bg-white px-3 pt-3 pb-4 mt-3">
         <div class="row">
             <div class="col-md-5">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 semiBoldFont commonFontSize">Number Of Unresolved User's Profile </p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.total_unresolved_userprofile}}</h2>
@@ -188,9 +188,9 @@
 
         <div class="row mt-3">
             <div class="col-12 d-flex align-items-end flex-wrap">
-                <div class="widthFull MobileCol6MB">
+                <div class="widthFull MobileCol6MB mr-2">
                     <label for="" class=" commonFontSize mediumFont letterspacing "> From Date</label>
-                    <div class="rounded shadow-none mx-1">
+                    <div class="rounded shadow-none ">
                         <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
                         type="text" placeholder="MM/DD/YYYY" id="fromDate2" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
                         [maxDate]="maxDate" [(ngModel)]="userManagement.fromDate" #fromDate="ngModel"
@@ -198,9 +198,9 @@
 
                     </div>
                 </div>
-                <div class="widthFull MobileCol6MB">
+                <div class="widthFull MobileCol6MB mr-2">
                     <label for="" class=" commonFontSize mediumFont letterspacing widthFull">To Date</label>
-                    <div class="rounded shadow-none mx-1">
+                    <div class="rounded shadow-none ">
                         <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
                         type="text" id="toDate2" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                         [maxDate]="maxDate" [(ngModel)]="userManagement.toDate" #fromDate="ngModel"
@@ -208,7 +208,7 @@
 
                     </div>
                 </div>
-                <div class="border-0 p-0 shadow-none mx-1">
+                <div class="border-0 p-0 shadow-none ">
                     <button type="button"
                         class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
                         Submit
@@ -220,7 +220,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">New Reports Reporting User's Profile</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">{{userDashboard.new_user_profile_reports}}</h2>
                     <p
@@ -231,7 +231,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">New Users Reported </p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">{{userDashboard.new_user_reported}}</h2>
                     <p
