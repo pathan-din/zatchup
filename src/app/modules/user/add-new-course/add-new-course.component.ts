@@ -102,7 +102,7 @@ export class AddNewCourseComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          this.alert.success(response.data.message, 'Success')
+          this.alert.success(response.message, 'Success')
           this.router.navigate(['user/add-more-course'], {queryParams: {'school_id':this.schoolId }});
           
         } else {

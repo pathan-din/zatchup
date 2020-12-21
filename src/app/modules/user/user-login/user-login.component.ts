@@ -5,6 +5,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { EiServiceService } from 'src/app/services/EI/ei-service.service';
 
 
 //import * as $ from 'jquery';
@@ -27,7 +28,8 @@ export class UserLoginComponent implements OnInit {
     private SpinnerService: NgxSpinnerService, 
     public userService: UsersServiceService, 
     public formBuilder: FormBuilder,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private eiService: EiServiceService
     ) { }
 
   ngOnInit(): void {
@@ -67,7 +69,8 @@ export class UserLoginComponent implements OnInit {
           });
         } else {
           this.SpinnerService.hide();
-          this.alert.error(response.error, 'Error')
+          var error= this.eiService.getErrorResponse(this.SpinnerService,response.error)
+          this.alert.error(error, 'Error')
           // alert(response.error);
           // this.errorDisplay = response.error;
         }
