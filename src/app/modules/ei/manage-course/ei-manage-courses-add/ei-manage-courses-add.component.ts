@@ -6,6 +6,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { Location } from '@angular/common';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 @Component({
   selector: 'app-ei-manage-courses-add',
   templateUrl: './ei-manage-courses-add.component.html',
@@ -47,7 +48,8 @@ export class EiManageCoursesAddComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
     , private router: Router,private base:BaseService, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
   public formBuilder: FormBuilder,
-  private location: Location) { }
+  private location: Location,
+  private alert: NotificationService) { }
 
 
   ngOnInit(): void {
@@ -196,20 +198,25 @@ export class EiManageCoursesAddComponent implements OnInit {
         response = res;
         if (response.status == true) {
             this.SpinnerService.hide();
-            alert(response.message);
+            var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+            this.alert.success(error, 'Success')
+           
         } else {
           this.SpinnerService.hide();
-          console.log("Error:Data not update");
+          var error = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+          this.alert.error(error, 'Error')
+         
         }
 
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
+        this.alert.error(error, 'Error')
 
       });
     } catch (err) {
       this.SpinnerService.hide();
       console.log("vaeryfy Otp Exception", err);
+      this.alert.error(err, 'Error')
     }
   }
     /**

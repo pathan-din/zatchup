@@ -82,10 +82,11 @@
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" name="status" [(ngModel)]="onboardedZatchup.isDisabled" id="pastEI" required>
+                        <select class="custom-select form-control-input" name="status"
+                            [(ngModel)]="onboardedZatchup.isDisabled" id="pastEI" required>
                             <option value=""> Select</option>
-                            <option value="true">Enable</option>
-                            <option value="false">Disable</option>
+                            <option value="false">Enable</option>
+                            <option value="true">Disable</option>
                         </select>
                     </div>
                 </div>
@@ -102,7 +103,7 @@
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
                     (click)="getOnboardedZatchup()">Apply</button>
-                    
+
                 <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button>
 
                     (click)="filterData('1')">Apply</button> -->
@@ -118,9 +119,9 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="filterData('1')" [(ngModel)]="onboardedZatchup.pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of onboardedZatchup.pageCounts" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>

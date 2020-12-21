@@ -84,14 +84,21 @@ export class DatabaseListComponent implements OnInit {
           if (!page)
             page = this.eidbList.config.currentPage
           this.eidbList.startIndex = res.page_size * (page - 1) + 1;
+          // if (!this.eidbList.page_size)
+          //   this.eidbList.page_size = 10
+          // else
           this.eidbList.page_size = res.page_size
           this.eidbList.config.itemsPerPage = this.eidbList.page_size
           this.eidbList.config.currentPage = page
           this.eidbList.config.totalItems = res.count;
-          if (res.count > 0)
-            this.eidbList.dataSource = res.results
-          else
+          if (res.count > 0) {
+            this.eidbList.dataSource = res.results;
+            this.eidbList.pageCounts = this.baseService.getCountsOfPage(res.count)
+          }
+          else {
+            this.eidbList.pageCounts = undefined;
             this.eidbList.dataSource = undefined
+          }
         }
         else
           this.alert.error(res.error.message[0], 'Error')

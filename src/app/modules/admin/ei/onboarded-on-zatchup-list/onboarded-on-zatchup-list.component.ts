@@ -102,8 +102,10 @@ export class OnboardedOnZatchupListComponent implements OnInit {
           this.onboardedZatchup.config.itemsPerPage = res.page_size
           this.onboardedZatchup.config.currentPage = page
           this.onboardedZatchup.config.totalItems = res.count;
-          if (res.count > 0)
-            this.onboardedZatchup.dataSource = res.results
+          if (res.count > 0){
+            this.onboardedZatchup.dataSource = res.results;
+            this.onboardedZatchup.pageCounts = this.baseService.getCountsOfPage(res.count)
+          }
           else
             this.onboardedZatchup.dataSource = undefined
         }

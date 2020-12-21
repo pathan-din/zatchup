@@ -1,12 +1,12 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
 
-    <div class="zatchUpSummary-div bg-white px-2 pt-2 pb-5">
+    <div class="zatchUpSummary-div bg-white px-3 pt-2 pb-5">
         <h2 class="commonFontSize semiBoldFont mb-1">ZatchUp Summary</h2>
 
         <div class="row">
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1" (click)="goToAdminEIDatabase()">
+            <div class="col-md-4 MobileCol6MB cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="goToAdminEIDatabase()">
                     <p class="p-2 mediumFont commonFontSize">EI In Database</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{countJson?.total_no_of_ei ? countJson?.total_no_of_ei : 0}}</h2>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Donation Collected On ZatchUp </p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{countJson?.total_donation_collected ? countJson?.total_donation_collected : 0}}</h2>
@@ -32,7 +32,7 @@
 
         <div class="row">
             <div class="col-md-6 mt-3">
-                <div class="bg-offwhite border border-gray p-2 ml-1 h-100">
+                <div class="bg-offwhite border border-gray p-2  h-100">
                     <h4 class="commonFontSize semiBoldFont mb-1">Total Number of EI Onboarded on ZatchUp</h4>
                     <div class="row pb-1 mx-0">
                         <div
@@ -47,7 +47,7 @@
                     <div class="row pb-1 mx-0">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of Dorman EI on ZatchUp (With Expired Subscription Plans)
+                            Total Number of Dormant EI on ZatchUp (With Expired Subscription Plans)
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
@@ -85,7 +85,7 @@
     </div>
 
 
-    <div class="Dashboard-div bg-white px-2 py-2 mt-3">
+    <div class="Dashboard-div bg-white px-3 py-2 mt-3">
         <h2 class="commonFontSize semiBoldFont mb-1">Dashboard</h2>
 
         <div class="row">
@@ -115,17 +115,17 @@
 
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">New Added EI In EI Dashboard</p>
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <p class="p-2 mediumFont commonFontSize">New Added EI In EI Database</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse ? filteredResponse.new_added_ei : 0}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of New Added EI In EI Dashboard:<span
+                        Number Of New Added EI In EI Database:<span
                             class="ml-2">{{filteredResponse ? filteredResponse.new_added_ei : 0}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">New Added Users </p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse ? filteredResponse.new_added_user : 0}}</h2>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Active Users</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse?filteredResponse.active_users:0}}</h2>
@@ -148,7 +148,7 @@
 
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Dormant Users</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse ? filteredResponse.dormant_users : 0}}</h2>
@@ -158,7 +158,7 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize"> Donation Collected </p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse ? filteredResponse.donation_collected : 0}}</h2>
@@ -173,7 +173,7 @@
 
         <div class="row">
             <div class="col-md-6 mt-3">
-                <div class="bg-offwhite border border-gray p-2 ml-1 h-100">
+                <div class="bg-offwhite border border-gray p-2  h-100">
                     <h4 class="commonFontSize semiBoldFont mb-1">New EI Onboarded on ZatchUp</h4>
                     <div class="row pb-1 mx-0">
                         <div
@@ -188,7 +188,7 @@
                     <div class="row pb-1 mx-0">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of New Dorman EI (Stopped using platform due to expired)
+                            Total Number of New Dormant EI (Stopped using platform due to expired)
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
