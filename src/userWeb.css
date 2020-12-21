@@ -5,7 +5,7 @@ body {
 }
 
 .contentSpaceTop {
-  margin-top: 8.5%;
+  padding-top: 8.5%;
 }
 
 .textSpace {
@@ -282,7 +282,7 @@ body {
 /*************left images ***************/
 
 .left-Image {
-  width: 80%;
+  width: 90%;
 }
 
 /***********form bgImg*************/

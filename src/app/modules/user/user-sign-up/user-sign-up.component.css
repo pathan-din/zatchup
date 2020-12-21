@@ -21,6 +21,9 @@
     border-radius: 10px!important;
 }
 
+.ptop {
+    padding-top: 70px;
+}
 
 /**************Role Model css start*********************/
 
@@ -82,4 +85,20 @@
 }
 .custom-select {
     height: calc(1.4em + .75rem + 2px);
+}
+
+.custom-control-inline {
+    margin-right: 1.7rem;
+}
+
+.custom-control{padding-left: 0px !important;}
+
+
+@media (max-width: 667px){
+    .pl-5{
+        padding-left: 15px !important;
+    }
+    .pr-5{
+        padding-right: 15px !important;
+    }
 }
