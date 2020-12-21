@@ -36,4 +36,5 @@ export class EIDbList {
     page_size: any
     university: any;
     onboardingStatus: any = '';
+    pageCounts: any
 }
