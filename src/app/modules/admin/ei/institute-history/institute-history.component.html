@@ -2,9 +2,6 @@
 <div class="container main-container p-3">
     <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
-            <!-- <div class="col-md-4">
-                <h2 class="commonFontSize semiBoldFont m-0 mt-2"> Education Institute History </h2>
-            </div> -->
             <div class="col-xl-4 col-lg-4 col-lg-4 pr-0 d-flex justify-content-start flex-wrap align-items-center">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
@@ -16,7 +13,7 @@
                     <div class="row justify-content-end mr-2">
                         <div class="co-md-8 mt-2">
                             <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-                                <input id="ei-comment" name="comment" [(ngModel)]="comment" (keyup)="isValid($event)"
+                                <input id="ei-comment" name="comment" [(ngModel)]="comment" (keyup)="isValid()"
                                     class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Type... " required>
                             </div>
@@ -29,17 +26,15 @@
                 </form>
             </div>
         </div>
-        <div class="filterDiv">
+        <div class="filterDiv" *ngIf="pagination.dataSource">
             <div class="d-flex flex-wrap align-items-end">
-
                 <div class="mr-3 mt-2 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required>
+                        <select class="custom-select  form-control-input" id="status" [(ngModel)]="isDeleted">
                             <option value=""> Select Status</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="false">Added</option>
+                            <option value="true">Removed</option>
                         </select>
                     </div>
                 </div>
@@ -48,19 +43,24 @@
             </div>
         </div>
 
-        <div class="row mobile-col-reverse border-0 mt-1 mx-0 mt-3">
+        <div class="row mobile-col-reverse border-0 mt-1 mx-0 mt-3" *ngIf="pagination.dataSource">
             <div class="col-md-12 col-left">
-                <div class="row">
+                <div class="row" *ngFor="let history of pagination.dataSource">
                     <div
                         class="col-xl-3 col-lg-3 col-md-3 col-12 commonFontSize semiBoldFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-1 mr-3"></i>
-                        <p>20 March,2020 & 12:00 P.M</p>
+                        <p>{{history.updated_on | date:'dd MMM, yyyy h:m a'}}</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-12 commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 5000 to 6000 by Employee
+                        <p><span class="mr-3">:</span>{{history.display_message}} from {{history.old_value}} to {{history.new_value}} by {{history.byusername}}
                             Name(Employee ID)</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!pagination.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
             </div>
         </div>
 

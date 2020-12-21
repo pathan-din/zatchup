@@ -41,7 +41,7 @@ export class DatabaseViewComponent implements OnInit {
   }
 
   eiRequestHistory() {
-    this.router.navigate(['admin/ei-onboarding-request-history'])
+    this.router.navigate(['admin/education-institute-history', this.eiData.id])
   }
 
   getDatabaseView() {
@@ -67,5 +67,9 @@ export class DatabaseViewComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  getEIHistory() {
+
   }
 }
