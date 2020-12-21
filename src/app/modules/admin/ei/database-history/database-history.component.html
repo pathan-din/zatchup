@@ -2,103 +2,94 @@
 <div class="container main-container p-3">
 
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-        <div class="row topDiv">
-            <div class="col-12">
+        <div class="row topDiv mb-1">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">Database History</h2>
             </div>
         </div>
 
         <div class="filterDiv">
-            <div class="d-flex flex-wrap align-items-end"> 
+            <div class="d-flex flex-wrap align-items-end">
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required>
+                        <select class="custom-select  form-control-input" id="status" [(ngModel)]="databaseHistory.isDeleted">
                             <option value=""> Select Status</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="false">Added</option>
+                            <option value="true">Removed</option>
                         </select>
                     </div>
                 </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0"
+                    (click)="getEIHistory()">Apply</button>
             </div>
         </div>
-        
-        <div class="tableDiv mt-4">
+
+        <div class="tableDiv mt-4" *ngIf="databaseHistory.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="databaseHistory.dataSource | paginate: databaseHistory.config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + databaseHistory.startIndex}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateAndTime">
                         <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.dateAndTime}} </mat-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="eiZatchupId">
                         <mat-header-cell *matHeaderCellDef> EI ZatchUp ID </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.eiZatchupId}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.school_code}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.status}}
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" class="bg-light-blue text-white h-100 border-0 rounded"
+                                *ngIf="element.onboarded_status == 1">Incomplete Onboarding</button>
+                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
+                                *ngIf="element.onboarded_status == 2">Onboarded</button>
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded"
+                                *ngIf="element.onboarded_status == 0">Not Onboarded</button>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="addedRemoved">
                         <mat-header-cell *matHeaderCellDef> Added By/Removed By </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.addedRemoved}}
+                            {{element.added_by}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="employeeName">
                         <mat-header-cell *matHeaderCellDef> Employee Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.employeeName}}
+                            {{element.employee_name}}
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="databaseHistory.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: databaseHistory.displayedColumns; "></mat-row>
                 </mat-table>
             </div>
-
-            <div class="row pt-4 pb-4">
-                <div class="col-12">
-                    <nav aria-label="...">
-                        <ul class="pagination d-flex justify-content-end flex-wrap">
-                            <li class="page-item disabled">
-                                <a class="pageLink" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="pageLink" href="#">1</a></li>
-                            <li class="page-item">
-                                <a class="pageLink" href="#">2 <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item">
-                                <a class="pageLink" href="#">3</a></li>
-    
-                            <li class="page-item">
-                                <a class="pageLink" href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                            </li>
-    
-                            <li class="page-item">
-                                <a class="pageLink" href="#">14</a></li>
-                            <li class="page-item">
-                                <a class="pageLink" href="#">15</a></li>
-                            <li class="page-item">
-                                <a class="pageLink" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+        </div>
+        <pagination-controls *ngIf="databaseHistory.dataSource" (pageChange)="getEIHistory($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!databaseHistory.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
             </div>
-            
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

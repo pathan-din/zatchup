@@ -1,3 +1,15 @@
+export class Pagination{
+    dataSource: any;
+    page_size: any;
+    startIndex: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    };
+    pageCounts: any;
+}
+
 export class EducationInstitute {
     name_of_school: any;
     address1: any;
@@ -15,7 +27,7 @@ export class EducationInstitute {
     students: any = '';
 }
 
-export class EIDbList {
+export class EIDbList extends Pagination {
     displayedColumns: string[] = ['position', 'dateOfAdding', 'eiZatchupID', 'schoolName', 'state', 'city', 'address', 'board',
         'approximateNumber', 'status', 'dateofOnboarding', 'action'];
 
@@ -25,16 +37,14 @@ export class EIDbList {
     allCities: any;
     state: any = '';
     city: any = '';
-    dataSource: any;
-    startIndex: any;
-    config = {
-        itemsPerPage: 0,
-        currentPage: 1,
-        totalItems: 0
-    }
     modal: any = {};
-    page_size: any
     university: any;
     onboardingStatus: any = '';
-    pageCounts: any
+}
+
+export class DatabaseHistory extends Pagination {
+    displayedColumns: string[] = ['position', 'dateAndTime', 'eiZatchupId', 'status',
+    'addedRemoved', 'employeeName'];
+
+    isDeleted: any = '';
 }

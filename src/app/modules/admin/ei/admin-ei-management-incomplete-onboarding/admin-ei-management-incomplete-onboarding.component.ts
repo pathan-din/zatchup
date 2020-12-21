@@ -83,8 +83,10 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
           this.onboardList.config.itemsPerPage = res.page_size
           this.onboardList.config.currentPage = page
           this.onboardList.config.totalItems = res.count;
-          if (res.count > 0)
-            this.onboardList.dataSource = res.results
+          if (res.count > 0){
+            this.onboardList.pageCounts = this.baseService.getCountsOfPage(res.count);
+            this.onboardList.dataSource = res.results;
+          }
           else
             this.onboardList.dataSource = undefined
         }

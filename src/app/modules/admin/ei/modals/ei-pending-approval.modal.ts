@@ -32,6 +32,7 @@ export class OnBoardList {
     allCities: any;
     state: any = '';
     city: any = '';
+    pageCounts: any;
     config = {
         itemsPerPage: 0,
         currentPage: 1,
