@@ -5,7 +5,7 @@ body {
 }
 
 .contentSpaceTop {
-  margin-top: 8.5%;
+  padding-top: 8.5%;
 }
 
 .textSpace {
@@ -177,7 +177,7 @@ body {
 
 .checkmark {
   position: absolute;
-  top: 5px;
+  top: 3px;
   left: -20%;
   height: 20px;
   width: 20px;
@@ -208,7 +208,6 @@ body {
 
 .custom-radio input:checked ~ span {
   color: #463267;
-  font-weight: bold;
 }
 
 /* Style the indicator (dot/circle) */
@@ -282,7 +281,7 @@ body {
 /*************left images ***************/
 
 .left-Image {
-  width: 80%;
+  width: 90%;
 }
 
 /***********form bgImg*************/
