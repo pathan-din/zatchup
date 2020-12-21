@@ -15,6 +15,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class EiSidenavComponent {
 permission:any;
+notificationCount:any;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -110,7 +111,9 @@ permission:any;
     
     
   }
-
+  getNotificationList(){
+    this.router.navigate(["ei/notification"]);
+  }
    /**Find the step of the register process for all Users */
    getRegistrationStep(){
     try {
@@ -119,6 +122,7 @@ permission:any;
         response = res;
         console.log(response);
         localStorage.setItem("getreject",JSON.stringify(response))
+        this.notificationCount = response.unread_notification_count;
         if(response.status){
           if(response.is_approved && response.role=='EIREPRESENTATIVE')
           {
@@ -134,6 +138,29 @@ permission:any;
              
              
           }
+          if(response.is_approved && response.reg_step==6 &&  response.role=='STUDENTS')
+          {
+            this.router.navigate(["user/landing-page"]);
+          }else if(!response.is_approved && response.reg_step==6 && response.role=='STUDENTS'){
+            if( !localStorage.getItem("rejectStatus")){
+              
+              this.router.navigate(["user/profile-created"]);
+            }else{
+              this.router.navigate(["user/my-educational-profile"]);
+            }
+          }
+          // if(response.is_approved && response.reg_step==6 &&  response.role=='STUDENTS')
+          // {
+          //   this.router.navigate(["user/landing-page"]);
+          // }else if(!response.is_approved && response.reg_step==6 && response.role=='STUDENTS'){
+          //   if( !localStorage.getItem("rejectStatus")){
+              
+          //     this.router.navigate(["user/profile-created"]);
+          //   }else{
+          //     this.router.navigate(["user/my-educational-profile"]);
+          //   }
+          // }
+          
         }
       },(error=>{
           this.alert.warning("Data not Fetched","Warning");

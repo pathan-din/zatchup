@@ -60,7 +60,8 @@
                             
                         </div> -->
                         <div class="" >
-                            <mat-checkbox (change)="chooseDesignation($event,designation.id,designation.id)" [(ngModel)]="designations[designation.id]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
+                            <mat-checkbox (change)="chooseDesignation($event,designation.id,designation.name)" [(ngModel)]="designations[designation.id]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
+                             
                         </div> 
                         
                     </div>
@@ -140,7 +141,7 @@
                 </div> 
             </div>
             <div *ngIf="isClass" class="col-sm-1 centerImgDiv" >
-                <i (click)="addMore()"  class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i>
+                <i (click)="addMore()" style="font-size: 30px;" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i>
                 <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
             </div>
             </form>

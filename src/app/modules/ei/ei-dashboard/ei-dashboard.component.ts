@@ -43,11 +43,11 @@ export class EiDashboardComponent implements OnInit {
   }
 
   goToEiVerifiedAlumniPage(){
-    this.router.navigate(['ei/verified-alumni']);
+    this.router.navigate(['ei/alumni-list']);
   }
 
   goToEiUnverifiedAlumniPage(){
-    this.router.navigate(['ei/unverified-alumni']);
+    this.router.navigate(['ei/alumni-list']);
   }
 
   redirectTotalStudentPage(){

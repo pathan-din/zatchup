@@ -123,7 +123,7 @@
                         <div class="col-sm-6 form-control-inputDiv  border-danger mr-1 p-0 text-left">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <label class="custom-label commonFontSize " for="studentRadio1">
-                                    <input class="custom-control-input" [(ngModel)]="isStudent" (change)="areYouCurrentlyStudentFunction(isStudent)"  type="radio" name="student" id="studentRadio1"
+                                    <input class="custom-control-input" [(ngModel)]="isStudent" (change)="areYouCurrentlyStudentFunction(0)"  type="radio" name="student" id="studentRadio1"
                                         value="no">
                                     <span class="checkmark checkmarkRed"></span>
                                     <span class="commonFontSize text-danger radioValuetext font-weight-normal">No</span>
@@ -134,7 +134,7 @@
                         <div class="col-sm-6 form-control-inputDiv ml-1 p-0 text-left">
                             <div class="custom-control custom-radio custom-control-inline ">
                                 <label class="custom-label" for="studentRadio2">
-                                    <input class="custom-control-input" [(ngModel)]="isStudent" type="radio" (change)="areYouCurrentlyStudentFunction(isStudent)"  name="student" id="studentRadio2"
+                                    <input class="custom-control-input" [(ngModel)]="isStudent" type="radio" (change)="areYouCurrentlyStudentFunction(1)"  name="student" id="studentRadio2"
                                         value="yes">
                                     <span class="checkmark checkmarkGreen"></span>
                                     <span

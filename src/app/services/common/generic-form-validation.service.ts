@@ -18,6 +18,7 @@ export class GenericFormValidationService {
    */
   checkValidationFormAllControls(controls, check, arrayData = []) {
 
+   console.log(controls);
    
     
     if (arrayData.length > 0) {
