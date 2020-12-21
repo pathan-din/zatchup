@@ -1,0 +1,32 @@
+
+
+<div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5">
+        <div class="col-md-8">
+            
+        </div>
+        <div class="col-md-4 pl-0 pr-5 mobilePR">
+            <div class="form-group row mt-5 mb-5 pb-5 pt-5 mobilePTB">
+                <div class="col-sm-12 form-control-inputDiv">
+                    <div class="text-center pr-5 mt-3 pl-5 mb-4 mobilePLR" *ngIf="!checkReject">
+                        <img class="img-fluid SuccessfullImage mt-2 mb-4"
+                            src="assets/images/userWebsite/profile-image.png">
+                            <p class="semiBoldFont">School Created Successfully </p>
+                        <p class="mediumFont color-purple letterspacing">Your EI has been sent for approval.
+                        </p>
+                    </div>
+                    <div class="text-center pr-5 mt-3 pl-5 mb-4 mobilePLR" *ngIf="checkReject">
+                        <img class="img-fluid SuccessfullImage mt-2 mb-4"
+                            src="assets/images/userWebsite/profile-image.png">
+                            <p class="semiBoldFont">Your School Has Been Rejected</p>
+                        <p class="mediumFont color-purple letterspacing">Reason Type: {{content.rejected_reason}}<br>Rejected remark : {{content.rejected_remark}}
+                        </p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn common-btn regularFont mt-4 mr-2" (click)="goToUserLandingPage()">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+

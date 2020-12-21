@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef , HostListener} from '@angular/core';
 import { Router} from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -23,6 +23,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 export class EiOnboardingProcessComponent implements OnInit {
   @ViewChild(MatStepper, { static: false }) myStepper: MatStepper;
   @ViewChild('inputFile') myInputVariable: ElementRef;
+
   completed: boolean = false;
   state: string;
   stateList: any = [];
@@ -56,8 +57,15 @@ export class EiOnboardingProcessComponent implements OnInit {
   uploadedProfileContent: any = '';
   bankModel: any = {};
   bankNameList = [];
-  index: any;
+  countIndex: any;
   extentionCheck:any='';
+  @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
+    console.log("Processing beforeunload...", this.countIndex);
+    this.getRegistrationStep();
+   
+    console.log( this.myStepper.selectedIndex);
+    
+}
   constructor(
     private validationService: GenericFormValidationService,
     private router: Router,
@@ -67,14 +75,16 @@ export class EiOnboardingProcessComponent implements OnInit {
     private alert: NotificationService,
     private baseService: BaseService
   ) { }
-
+  
   ngOnInit(): void {
-    this.getRegistrationStep()
+    
     this.getAllState()
     this.getStepFirstData();
+    this.getCourseDetailsByEiOnboard();
     //this.getNumberOfAluminiList();
     this.getNumberOfStudentList();
     this.getBankNameList();
+    this.getRegistrationStep()
     this.model.no_of_students = '';
     this.model.no_of_alumni = '';
     this.bankModel.bank_name = '';
@@ -110,9 +120,29 @@ export class EiOnboardingProcessComponent implements OnInit {
         }]
       }],
     }];
+     
+  }
+  ngAfterViewInit(){
+    this.getRegistrationStep()
   }
   /**getBankNameList */
 
+  getCourseDetailsByEiOnboard(){
+    try {
+    this.loader.show();
+    this.baseService.getData("ei/course-data-by-ei/").subscribe(res=>{
+      let responce:any = {};
+      responce = res;
+      this.loader.hide();
+      if(responce.results.length>0){
+        this.model2Step.coursedata = responce.results;
+      }
+      
+    })
+    } catch (e) {
+    
+    }
+  }
   getBankNameList(){
     //ei/get-allbankname/
     try {
@@ -220,7 +250,7 @@ export class EiOnboardingProcessComponent implements OnInit {
             this.model.opening_date='';
           }
           
-          this.index = this.model.reg_steps ? this.model.reg_steps : 0;
+          //this.countIndex = this.model.reg_steps ? this.model.reg_steps : 0;
           this.getCityByState(this.model.state)
           this.loader.hide();
         }, (error) => {
@@ -350,6 +380,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            this.getCourseDetailsByEiOnboard();
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
@@ -388,12 +419,20 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.baseService.getData('user/reg-step-count/').subscribe(res=>{
         let response:any={};
         response=res;
-        this.index = response.reg_steps;
+        this.countIndex = response.reg_step-3;
+        setTimeout(() => {
+           
+          this.myStepper.selectedIndex = this.countIndex;
+          this.myStepper.next();
+        },1000);
+        // this.myStepper.selectedIndex = this.countIndex;
+        // console.log(this.myStepper);
+        
       },(error=>{
-          this.alert.warning("Data not Fetched","Warning");
+          //this.alert.warning("Data not Fetched","Warning");
       }))
     } catch (e) {
-      this.alert.error("Something went wrong, Please contact administrator.","Error");
+      //this.alert.error("Something went wrong, Please contact administrator.","Error");
     }
   }
   handleCancelChequeFileInput(file) {

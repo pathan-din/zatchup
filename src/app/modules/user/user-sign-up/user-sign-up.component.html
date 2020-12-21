@@ -2,24 +2,24 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-7">
+        <div class="col-md-7 ptop">
             <img class="img-fluid left-Image mt-3" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-5 pl-0">
+        <div class="col-md-5">
             <h2 class="mb-1 textSpace">Sign Up </h2>
 
              <form  id="form1" class="pt-2"> 
                 
                 <div class="form-group row">
                     <div class="col-sm-6 pl-0 mobForm-name">
-                        <div class="mobile-input-6">
-                            <input (keyup)="isValid($event)" required id="first_name" pattern="^[a-zA-Z]+$"  class="form-control-input border form-control form-control-sm form-bgImg form-NameBgImg" type="text" [(ngModel)]="model.first_name" name ="first_name" placeholder="First Name *">
+                        <div class="form-control-inputDiv p-0">
+                            <input (keyup)="isValid($event)" required id="first_name" pattern="^[a-zA-Z]+$"  class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg" type="text" [(ngModel)]="model.first_name" name ="first_name" placeholder="First Name *">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
                     </div>
                     <div class="col-sm-6 pr-0">
-                        <div class="mobile-input-6">
-                            <input required (keyup)="isValid($event)" id="last_name" class="form-control-input form-control border form-control-sm form-bgImg form-NameBgImg" pattern="^[a-zA-Z]+$" type="text" [(ngModel)]="model.last_name" name ="last_name" placeholder="Last Name *">
+                        <div class="form-control-inputDiv p-0">
+                            <input required (keyup)="isValid($event)" id="last_name" class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg" pattern="^[a-zA-Z]+$" type="text" [(ngModel)]="model.last_name" name ="last_name" placeholder="Last Name *">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
                     </div>
@@ -129,7 +129,7 @@
                 </div> -->
 
                 <div class="row">
-                    <div class="col-6 pl-1">
+                    <div class="col-6 pl-1 pr-1">
                         <div class="form-group"> 
                             <div class="form-control-inputDiv p-0"> 
                                 <input match="password,cpassword" (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" class="form-control-input form-control form-control-sm " type="{{showHidePassword}}" placeholder="Enter Password *" style="position: relative;"> <i (click)="showHidePasswordFunction('p')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
@@ -137,7 +137,7 @@
                          <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>                        
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 pl-1 pr-1">
                         <div class="form-group mb-1">
                             <div class="form-control-inputDiv p-0">
                                 <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password" required [(ngModel)]="modelForConfirm.cpassword" name ="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" class="form-control-input form-control form-control-sm " type="{{showHidecPassword}}" placeholder="Confirm Password" style="position: relative;"><i (click)="showHidePasswordFunction('C')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>

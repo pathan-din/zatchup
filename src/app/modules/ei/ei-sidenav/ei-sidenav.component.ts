@@ -115,7 +115,26 @@ permission:any;
    getRegistrationStep(){
     try {
       this.baseService.getData('user/reg-step-count/').subscribe(res=>{
-
+        let response:any={};
+        response = res;
+        console.log(response);
+        localStorage.setItem("getreject",JSON.stringify(response))
+        if(response.status){
+          if(response.is_approved && response.role=='EIREPRESENTATIVE')
+          {
+            
+          }else if(!response.is_approved && response.role=='EIREPRESENTATIVE'){
+            
+            if( !localStorage.getItem("rejectStatus")){
+              
+              this.router.navigate(["ei/school-reminder"]);
+            }else{
+              this.router.navigate(["ei/information-and-bank-details"]);
+            }
+             
+             
+          }
+        }
       },(error=>{
           this.alert.warning("Data not Fetched","Warning");
       }))

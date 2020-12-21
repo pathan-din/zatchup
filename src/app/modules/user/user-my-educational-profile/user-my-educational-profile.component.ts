@@ -42,12 +42,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
       this.editModel.key = key;
       this.editModel.old_value =value;
       this.editModel.value = value;
-      console.log( this.editModel);
       
-       
-     // this.title = label;
-    
-    
   }
   setModelValue(key){
     this.editModel.value=key;

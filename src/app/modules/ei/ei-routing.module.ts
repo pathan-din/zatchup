@@ -131,6 +131,7 @@ import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-lis
 import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
 import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component';
 import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
+import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
 
 const routes: Routes = [
   {
@@ -511,6 +512,8 @@ const routes: Routes = [
     path: 'invoice-list/:invoice', component: EiInvoiceListComponent, canActivate: [AuthGuard]
   }, {
     path: 'request-for-change-list', component: RequestChangeDetailsComponent, canActivate: [AuthGuard]
+  }, {
+    path: 'school-reminder', component: SchooReminderComponent, canActivate: [AuthGuard]
   },
   
 

@@ -32,7 +32,16 @@ export class UserHeaderComponent implements OnInit {
   getRegistrationStep(){
     try {
       this.baseService.getData('user/reg-step-count/').subscribe(res=>{
-
+          let response:any={};
+          response = res;
+          localStorage.setItem("userRejectData",JSON.stringify(response))
+          if(response.reg_step==6 && !response.is_approved && response.is_kyc_rejected){
+            this.alert.error("Your Profile has been rejected reason by " + response.rejected_reason+" Remark : "+response.rejected_remark,"Rejected");
+            this.alert.error("Your Profile has been rejected reason by " + response.ekyc_rejected_reason+" Remark : "+response.ekyc_rejected_remark,"Rejected");
+            this.router.navigate(["user/kyc-verification"]);
+          }else if(response.reg_step==6 && !response.is_approved && !response.is_kyc_rejected){
+            this.router.navigate(["user/my-educational-profile"]);
+          }
       },(error=>{
           this.alert.warning("Data not Fetched","Warning");
       }))
