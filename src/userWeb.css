@@ -122,7 +122,7 @@ body {
   border-radius: 10px;
   outline: none;
   background: #ffffff;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 

@@ -73,9 +73,9 @@
         <div class="row my-3" *ngIf="notOnZatchup.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of EI In Database Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI In Database Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input py-0"
                         (change)="filterData('1')" [(ngModel)]="notOnZatchup.pageSize">
                             <option value="5">5</option>
                             <option value="10">10</option>
