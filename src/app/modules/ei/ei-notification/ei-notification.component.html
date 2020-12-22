@@ -1,15 +1,14 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
-    <div class="bg-white border text-center p-4">
-            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Notifications</h2>
-            </div>
+    <div class="bg-white border text-center pt-3">
+        <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Notifications</h2>
+        </div>
 
-        <div class="container main-container p-3">
-
+        <div class="container p-3">
             <div class="tableDiv ">
                 <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
                     <mat-table [dataSource]="dataSource">
@@ -37,11 +36,10 @@
                         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
                     </mat-table>
-
                 </div>
             </div>
-
         </div>
+
         <div class="row" *ngIf="dataSource.length==0">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
