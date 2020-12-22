@@ -95,7 +95,7 @@ export class UserLoginComponent implements OnInit {
   resendOtp() {
     try {
       let data: any = {};
-      this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+      this.modelForOtpModal.username =  this.model.username;//this.model.email ? this.model.email : this.model.phone;
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.SpinnerService.show();
@@ -104,7 +104,7 @@ export class UserLoginComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          alert("OTP Resend On Your Register Mobile Number Or Email-Id.")
+          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.", "Success")
         } else {
           this.errorOtpModelDisplay = response.error;
           //alert(response.error)
@@ -160,15 +160,16 @@ export class UserLoginComponent implements OnInit {
         if (response.status == "True") {
           localStorage.setItem("token", response.token);
           $("#OTPModel").modal('hide');
-          if(response.approved==1)
-          {
-            this.router.navigate(['user/my-educational-profile']);
-          }else if(response.steps>=3 && response.approved==0)
-          {
-            this.router.navigate(['user/congratulation']);
-          }else{
-            this.router.navigate(['user/kyc-verification']);
-          }
+          this.router.navigate(['user/my-educational-profile']);
+          // if(response.approved==1)
+          // {
+          //   this.router.navigate(['user/my-educational-profile']);
+          // }else if(response.steps>=3 && response.approved==0 )
+          // {
+          //   this.router.navigate(['user/congratulation']);
+          // }else{
+          //   this.router.navigate(['user/kyc-verification']);
+          // }
           
           
           
