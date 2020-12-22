@@ -1,60 +1,47 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
-    <!-- <div class="Notification-div bg-white px-2 py-2">
-        <div class="row topDiv">
-            <div class="col-md-4">
-                <h2 class="commonFontSize semiBoldFont m-0">Notification</h2>
-            </div>
-            <div class="col-md-8 SearchDiv d-flex flex-row flex-wrap">
-                <div class="form-control-inputDiv rounded p-1 shadow-none mx-1 mt-2">
-                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+    <div class="bg-white border text-center p-4">
+        <div class="container main-container p-3">
+
+            <div class="tableDiv ">
+                <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
+                    <mat-table [dataSource]="dataSource">
+
+                        <ng-container matColumnDef="SNo">
+                            <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                            <mat-cell *matCellDef="let element;let i=index"> {{i+1}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="NotificationMessage">
+                            <mat-header-cell *matHeaderCellDef> Notification Message </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                {{element.message}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Time">
+                            <mat-header-cell *matHeaderCellDef class="justify-content-center"> Time </mat-header-cell>
+                            <mat-cell *matCellDef="let element" class="justify-content-center">
+                                {{element.recived_time}}
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                    </mat-table>
+
                 </div>
-                <div class="form-control-inputDiv rounded p-1 shadow-none mx-1 mt-2">
-                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
-                </div>
-                <button type="button" class="bg-dark text-white px-3 py-2 ml-2 border-0 mt-2">Apply</button>
-                <button type="button" class="bg-dark text-white px-3 py-2 ml-2 border-0 mt-2">Send Notification</button>
             </div>
-        </div>
-    </div> -->
-
-    <div class="tableDiv ">
-        <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
-            <mat-table [dataSource]="dataSource">
-
-                <ng-container matColumnDef="SNo">
-                    <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                    <mat-cell *matCellDef="let element;let i=index"> {{i+1}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="NotificationMessage">
-                    <mat-header-cell *matHeaderCellDef> Notification Message </mat-header-cell>
-                    <mat-cell *matCellDef="let element">
-                        {{element.message}}
-                    </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="Time">
-                    <mat-header-cell *matHeaderCellDef class="justify-content-center"> Time </mat-header-cell>
-                    <mat-cell *matCellDef="let element" class="justify-content-center">
-                        {{element.recived_time}}
-                    </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-            </mat-table>
 
         </div>
+        <div class="row" *ngIf="dataSource.length==0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+            </div>
+        </div>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
     </div>
-
 </div>
-<div class="row" *ngIf="dataSource.length==0">
-    <div class="col-12 pt-2 pb-2">
-        <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
-    </div>
-</div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-  <p style="color: white">Please Wait. </p>
-</ngx-spinner>
