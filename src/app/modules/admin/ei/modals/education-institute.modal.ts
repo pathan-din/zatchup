@@ -1,4 +1,4 @@
-export class Pagination{
+export class Pagination {
     dataSource: any;
     page_size: any;
     startIndex: any;
@@ -44,9 +44,27 @@ export class EIDbList extends Pagination {
     onboardingStatus: any = '';
 }
 
+export class RejectedEIList extends Pagination {
+    displayedColumns: string[] = ['position', 'addingDate', 'schoolName', 'state', 'city', 'address', 'board', 'noOfStudent', 'status',
+        'zatchUpID', 'action'];
+
+    filterFromDate: any;
+    filterToDate: any;
+    stateId: any = '';
+    cityId: any = '';
+    allStates: any;
+    allCities: any;
+    state: any = '';
+    city: any = '';
+    modal: any = {};
+    university: any;
+    maxDate: any
+    onboardingStatus: any = '';
+}
+
 export class DatabaseHistory extends Pagination {
     displayedColumns: string[] = ['position', 'dateAndTime', 'eiZatchupId', 'status',
-    'addedRemoved', 'employeeName'];
+        'addedRemoved', 'employeeName'];
 
     isDeleted: any = '';
 }
