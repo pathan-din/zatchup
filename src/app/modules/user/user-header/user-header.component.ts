@@ -36,9 +36,21 @@ export class UserHeaderComponent implements OnInit {
           response = res;
           localStorage.setItem("userRejectData",JSON.stringify(response))
           if(response.reg_step==6 && !response.is_approved && response.is_kyc_rejected){
-            this.alert.error("Your Profile has been rejected reason by " + response.rejected_reason+" Remark : "+response.rejected_remark,"Rejected");
-            this.alert.error("Your Profile has been rejected reason by " + response.ekyc_rejected_reason+" Remark : "+response.ekyc_rejected_remark,"Rejected");
-            this.router.navigate(["user/kyc-verification"]);
+            if( response.rejected_reason){
+              this.alert.error("Your Profile has been rejected reason by " + response.rejected_reason+" Remark : "+response.rejected_remark,"Rejected"); 
+            }
+            if( response.ekyc_rejected_reason){
+              this.alert.error("Your Profile has been rejected reason by " + response.ekyc_rejected_reason+" Remark : "+response.ekyc_rejected_remark,"Rejected");
+            }
+            if(response.role=='STUDENTS' && response.reg_step<6){
+              this.router.navigate(['user/add-ei']);
+              
+            }else if(response.role=='ALUMNI' && response.reg_step<6){
+              this.router.navigate(['user/add-past-ei']);
+            }else{
+              this.router.navigate(["user/kyc-verification"]);
+            }
+            
           }else if(response.reg_step==6 && !response.is_approved && !response.is_kyc_rejected){
             this.router.navigate(["user/my-educational-profile"]);
           }
