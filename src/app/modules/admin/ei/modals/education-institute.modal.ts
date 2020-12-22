@@ -25,6 +25,8 @@ export class EducationInstitute {
     isExists: boolean;
     numberOfStudentList: any;
     students: any = '';
+    id: any;
+    city: any
 }
 
 export class EIDbList extends Pagination {

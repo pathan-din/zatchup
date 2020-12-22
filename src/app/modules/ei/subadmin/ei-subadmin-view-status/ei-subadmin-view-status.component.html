@@ -75,11 +75,11 @@
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center ">
                             <button *ngIf="element.status == 'SENTFORAPPROVAL'" type="button"
-                                class="bg-blue text-white border-0 rounded mb-2">Sent for approval</button> <br />
+                                class="bg-blue text-white border-0 rounded mb-2 cursorDefault">Sent for approval</button> <br />
                             <button *ngIf="element.status == 'SENTFORSIGNUP'" type="button"
-                                class="bg-paret-green text-white border-0 rounded mb-2">Sent for sign-up</button> <br />
+                                class="bg-paret-green text-white border-0 rounded mb-2 cursorDefault">Sent for sign-up</button> <br />
                             <button *ngIf="element.rejected == 1" type="button"
-                                class="bg-red text-white border-0 rounded mb-2">Rejected by user</button>
+                                class="bg-red text-white border-0 rounded mb-2 cursorDefault">Rejected by user</button>
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="Action">

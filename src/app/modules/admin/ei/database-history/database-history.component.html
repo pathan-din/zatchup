@@ -51,11 +51,11 @@
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button type="button" class="bg-light-blue text-white h-100 border-0 rounded"
+                            <button type="button" class="bg-light-blue text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.onboarded_status == 1">Incomplete Onboarding</button>
-                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
+                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.onboarded_status == 2">Onboarded</button>
-                            <button type="button" class="bg-red text-white h-100 border-0 rounded"
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.onboarded_status == 0">Not Onboarded</button>
                         </mat-cell>
                     </ng-container>

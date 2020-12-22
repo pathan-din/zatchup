@@ -1,6 +1,6 @@
 import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
@@ -22,6 +22,7 @@ export class EducationStatusComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private validationService: GenericFormValidationService
   ) {
@@ -29,8 +30,47 @@ export class EducationStatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.educationInstitute.id = this.route.snapshot.params.id;
+    console.log('id is as ::', this.educationInstitute.id)
     this.getAllState();
     this.getNumberOfStudentList();
+    if (this.educationInstitute.id)
+      this.getById()
+
+  }
+
+  getById() {
+    this.baseService.getData('admin/ei/get_ei_detail_not_onZatchUp/' + this.educationInstitute.id).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.educationInstitute.name_of_school = res.data.name_of_school;
+          this.educationInstitute.city = res.data.city;
+          this.educationInstitute.address1 = res.data.address1
+          this.educationInstitute.address2 = res.data.address2
+          this.educationInstitute.pincode = res.data.pincode
+          this.educationInstitute.landmark = res.data.landmark
+          this.educationInstitute.students = res.data.no_of_students
+          this.educationInstitute.university = res.data.university
+          if (this.educationInstitute.allStates) {
+            let state = this.educationInstitute.allStates.find(val => {
+              return val.state.toLowerCase() == res.data.state.toLowerCase()
+            })
+            if (state) {
+              this.educationInstitute.stateId = state.id;
+              this.getCities();
+            }
+            console.log('state find data is as ::', state)
+          }
+        }
+        else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide()
+      }
+    ), err => {
+      this.alert.error(err, 'Error')
+      this.loader.hide()
+    }
   }
 
   addEducationInstitute() {
@@ -66,11 +106,11 @@ export class EducationStatusComponent implements OnInit {
           this.alert.success(res.message, 'Success')
           this.router.navigate(['admin/school-management'])
         }
-        else if(res.status == true && res.is_exists == true){
+        else if (res.status == true && res.is_exists == true) {
           this.alert.error(res.error.message[0], 'Error')
           this.educationInstitute.isExists = res.is_exists
         }
-        else if(res.status == false && res.is_exists == true){
+        else if (res.status == false && res.is_exists == true) {
           this.alert.error(res.error.message[0], 'Error')
           this.educationInstitute.isExists = false
         }
@@ -119,11 +159,11 @@ export class EducationStatusComponent implements OnInit {
           this.alert.success(res.message, 'Success')
           this.router.navigate(['admin/school-management'])
         }
-        else if(res.status == true && res.is_exists == true){
+        else if (res.status == true && res.is_exists == true) {
           this.alert.error(res.error.message[0], 'Error')
           this.educationInstitute.isExists = res.is_exists
         }
-        else if(res.status == false && res.is_exists == true){
+        else if (res.status == false && res.is_exists == true) {
           this.alert.error(res.error.message[0], 'Error')
           this.educationInstitute.isExists = false
         }
@@ -162,6 +202,13 @@ export class EducationStatusComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.educationInstitute.allCities = res.results
+        if (this.educationInstitute.id && this.educationInstitute.allCities) {
+          let city = this.educationInstitute.allCities.find(val => {
+            return val.city == this.educationInstitute.city
+          })
+          if (city)
+            this.educationInstitute.cityId = city.id;
+        }
       }
     )
   }
@@ -170,7 +217,7 @@ export class EducationStatusComponent implements OnInit {
     this.router.navigate(['admin/school-management'])
   }
 
-  goBack(){
+  goBack() {
     this.location.back()
   }
 
@@ -179,22 +226,73 @@ export class EducationStatusComponent implements OnInit {
       this.loader.show();
       this.baseService.getData('ei/getnumberofstudent/').subscribe(
         (res: any) => {
-        if (res.status == true) {
+          if (res.status == true) {
+            this.loader.hide();
+            this.educationInstitute.numberOfStudentList = res.results;
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+        }, (error) => {
           this.loader.hide();
-          this.educationInstitute.numberOfStudentList = res.results;
-        } else {
-          this.alert.error(res.error.message[0], 'Error')
-        }
-      }, (error) => {
-        this.loader.hide();
-        this.alert.error(error.message, 'Error')
+          this.alert.error(error.message, 'Error')
 
-      });
+        });
     } catch (err) {
       this.loader.hide();
       this.alert.error(err, 'Error')
     }
 
+  }
+
+  add() {
+    if (this.educationInstitute.id)
+      this.updateEI()
+    else
+      this.addEducationInstitute()
+  }
+
+  updateEI() {
+    this.errorDisplay = {};
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+
+    let state = this.educationInstitute.allStates.find(val => {
+      return val.id == this.educationInstitute.stateId
+    })
+
+    let city = this.educationInstitute.allCities.find(val => {
+      return val.id == this.educationInstitute.cityId
+    })
+
+    let data = {
+      "name_of_school": this.educationInstitute.name_of_school,
+      "state": state ? state.state : '',
+      "city": city ? city.city : '',
+      "address1": this.educationInstitute.address1,
+      "address2": this.educationInstitute.address2,
+      "landmark": this.educationInstitute.landmark,
+      "pincode": this.educationInstitute.pincode,
+      "university": this.educationInstitute.university,
+      "no_of_students": this.educationInstitute.students
+    }
+    this.baseService.actionForPutMethod('admin/ei/get_ei_detail_not_onZatchUp/'+ this.educationInstitute.id, data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          // console
+          this.alert.success(res.message, 'Success');
+          this.router.navigate(['admin/school-management'])
+        }
+        else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide()
+      }
+    ), err => {
+      this.alert.error(err, 'Error')
+      this.loader.hide()
+    }
   }
 
 }

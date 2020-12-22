@@ -121,12 +121,12 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="EIZatchUpIDOfUser">
+                    <!-- <ng-container matColumnDef="EIZatchUpIDOfUser">
                         <mat-header-cell *matHeaderCellDef> EI ZatchUp ID Of User </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.zatchupId}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="NameOfUser">
                         <mat-header-cell *matHeaderCellDef> Name Of User </mat-header-cell>
@@ -164,7 +164,7 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i = index" class="text-center justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View"
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View Details"
                                 (click)="kycHistoryViewRoute(element)"></i>
                         </mat-cell>
                     </ng-container>
@@ -180,7 +180,7 @@
         </pagination-controls>
         <div class="row" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource == 0">
             <div class="col-12 pt-2 pb-2">
-                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
             </div>
         </div>
     </div>

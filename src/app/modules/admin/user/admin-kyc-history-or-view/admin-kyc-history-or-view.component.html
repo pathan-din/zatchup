@@ -193,14 +193,19 @@
     </div>
 
 
-    <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">   
+    <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle" *ngIf="kycHistoryModal.activeParams.kycType == 'completed'">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+
             <h2 class="commonFontSize semiBoldFont m-0">KYC History</h2>
-        
+        </div>        
         <div class="row mb-3">
             <form #sortKycForm="ngForm" (ngSubmit)="sortKycForm.form.valid && sortKycHistory()">
                 <div class="col-md-12 d-flex align-items-end">
                     <div class="mr-2">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
+                        <!-- <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label> -->
                         <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                             <select class="custom-select  form-control-input" id="classAlias" name="orderBy"
                                 [(ngModel)]="kycHistoryModal.sortBy" #orderBy="ngModel"

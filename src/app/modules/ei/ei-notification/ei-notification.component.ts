@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 export interface NotificationElement {
   'SNo': number;
@@ -26,7 +27,9 @@ export class EiNotificationComponent implements OnInit {
     private router: Router,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private baseService: BaseService) { }
+    private baseService: BaseService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.getNorificationList()
@@ -49,5 +52,11 @@ getNorificationList(){
   } catch (e) {
     this.loader.hide();
   }
+
+  
+}
+
+goBack(): void{
+  this.location.back()
 }
 }
