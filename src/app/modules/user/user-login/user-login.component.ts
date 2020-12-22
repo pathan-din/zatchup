@@ -85,7 +85,7 @@ export class UserLoginComponent implements OnInit {
       });
     } catch (err) {
       this.SpinnerService.hide();
-      alert("Something went wrong please contact administrator!");
+      this.alert.error("Something went wrong please contact administrator!","Error");
       console.log("exception", err)
     }
 
