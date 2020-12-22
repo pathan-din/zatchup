@@ -80,7 +80,7 @@ export class AdminEiRejectDetailsComponent implements OnInit {
     delete this.rejectEI.modal.page_size;
     delete this.rejectEI.modal.page;
     this.rejectEI.modal['export_csv'] = true
-    this.baseService.generateExcel('admin/export-ei-pending-list/', 'EI-pending-for-approval', this.rejectEI.modal);
+    this.baseService.generateExcel('admin/export-ei-rejected-list/', 'EI-pending-for-approval', this.rejectEI.modal);
   }
 
   // action(user) {
