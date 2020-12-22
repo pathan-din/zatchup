@@ -29,6 +29,10 @@ export class OnboardedViewComponent implements OnInit {
       this.getProfileData()
   }
 
+  eiHistory() {
+    this.router.navigate(['admin/education-institute-history', this.eiData.id])
+  }
+
   getProfileData() {
     this.loader.show()
     let url = 'admin/ei-pending-profile/' + this.eiId

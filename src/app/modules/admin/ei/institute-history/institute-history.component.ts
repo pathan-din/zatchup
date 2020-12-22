@@ -16,7 +16,7 @@ export class InstituteHistoryComponent implements OnInit {
   errorDisplay: any = {}
   eiId: any;
   comment: any;
-  isDeleted: any;
+  isDeleted: any = '';
   pagination: Pagination
 
   constructor(
