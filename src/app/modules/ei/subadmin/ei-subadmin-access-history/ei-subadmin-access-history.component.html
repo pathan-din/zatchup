@@ -19,6 +19,11 @@
                 
             </ul>
         </div>
+        <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+            </div>
+        </div>
     </div>
-
+   
 </div>

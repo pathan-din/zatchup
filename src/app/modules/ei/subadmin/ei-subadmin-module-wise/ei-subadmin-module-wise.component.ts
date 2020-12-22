@@ -149,7 +149,7 @@ export class EiSubadminModuleWiseComponent implements OnInit {
   }
 
   goToEiSubadminModuleAccessHistoryPage(){
-    this.router.navigate(['ei/subadmin-module-access-history']);
+    this.router.navigate(['ei/subadmin-access-history']);
   }
 
   goBack(): void{
