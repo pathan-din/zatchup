@@ -200,14 +200,14 @@
                     <ng-container matColumnDef="subscriptionStatus">
                         <mat-header-cell *matHeaderCellDef> Subscription Status </mat-header-cell>
                         <mat-cell *matCellDef="let element "> <button type="button"
-                                class="{{element.sub_status == true ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0">{{element.sub_status == true ? 'Active' : 'Expired'}}</button>
+                                class="{{element.sub_status == true ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.sub_status == true ? 'Active' : 'Expired'}}</button>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element "> <button type="button"
-                                class="{{element.is_disabled == false ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0">{{element.is_disabled == true ? 'Inactive' : 'Active'}}</button>
+                                class="{{element.is_disabled == false ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.is_disabled == true ? 'Inactive' : 'Active'}}</button>
                         </mat-cell>
                     </ng-container>
 

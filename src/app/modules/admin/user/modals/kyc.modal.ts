@@ -23,7 +23,7 @@ export class KycPendingRequest {
   filterFromDate: any;
   filterToDate: any;
   maxDate: any;
-  displayedColumns: string[] = ['SNo', 'EIZatchUpIDOfUser', 'NameOfUser', 'UserType', 'ProofName',
+  displayedColumns: string[] = ['SNo', 'NameOfUser', 'UserType', 'ProofName',
     'RequestReason', 'RequestType', 'Action'];
   config = {
     itemsPerPage: 0,
