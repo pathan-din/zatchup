@@ -66,7 +66,7 @@ export class AddNewCourseComponent implements OnInit {
       (res: any) => {
         if (res.status == true) {
           this.SpinnerService.hide();
-          this.imageUrl = res.filename;
+          this.imageUrl = this.eiService.imagePath+res.filename;
           return res.filename;
         } else {
           this.imageUrl =''

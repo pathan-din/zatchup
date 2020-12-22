@@ -165,10 +165,15 @@ export class UserKycVerificationComponent implements OnInit {
           {
             this.router.navigate(['user/school-confirmation']);
           }else{
-            $("#currentStatusModel").modal({
-              backdrop: 'static',
-              keyboard: false
-            });
+            if(localStorage.getItem("isrejected")){
+              location.reload();
+            }else{
+              $("#currentStatusModel").modal({
+                backdrop: 'static',
+                keyboard: false
+              });
+            }
+            
           }
           
 
@@ -235,7 +240,7 @@ export class UserKycVerificationComponent implements OnInit {
         if (response.status == true) {
           localStorage.setItem("role",data.is_currently_student);
           $("#currentStatusModel").modal('hide');
-         if(isStudent == 'yes')
+         if(isStudent == 1)
          {
           this.router.navigate(['user/qualification'], {queryParams: {'title': 'What are you currently studying?'},   skipLocationChange: true});
          }else{

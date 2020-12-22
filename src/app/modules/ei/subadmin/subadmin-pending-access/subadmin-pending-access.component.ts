@@ -68,7 +68,7 @@ export class SubadminPendingAccessComponent implements OnInit {
     try {
       this.SpinnerService.show();
       //base
-      
+      this.model.page=page;
 
       //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
       this.base.getData('ei/pending-access-subadmin-list-by-ei/', this.model).subscribe(res => {
