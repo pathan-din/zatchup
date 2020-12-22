@@ -139,8 +139,8 @@
                 </div>
             </div>
             <div class="col-md-7 justify-content-end d-flex flex-row flex-wrap">
-                <button type="button" class="bg-Gainsboro py-1 px-3 border-0 mr-2 commonFontSize mediumFont mt-2">Promote
-                    Students</button>
+                <!-- <button type="button" class="bg-Gainsboro py-1 px-3 border-0 mr-2 commonFontSize mediumFont mt-2">Promote
+                    Students</button> -->
                 <button type='button' (click)="getExportData()"  class="bg-paret-green text-white border-0 px-3 py-1 mr-2 mt-2"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
                 <button type='button' class="bg-blue text-white border-0 px-3 py-1 mt-2" data-toggle="modal" data-target="#changeClassModel">Bulk Action</button>
@@ -209,8 +209,13 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
+<<<<<<< HEAD
+                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" *ngIf="model.kyc_approved==1 && model.approved==1" aria-hidden="true " title="Edit" (click)="goToEiStudentEditPage(element.student_id)"></i>
+                            <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
+=======
                             <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" title="Edit" *ngIf="model.kyc_approved==1 && model.approved==1" aria-hidden="true " (click)="goToEiStudentEditPage(element.student_id)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
+>>>>>>> bd293734029e69ea2c01334fcc392e8e74362daa
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
                             aria-hidden="true "></i> -->
                         <span  *ngIf="element.kyc_approved==1">

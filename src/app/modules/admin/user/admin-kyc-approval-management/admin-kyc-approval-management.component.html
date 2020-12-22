@@ -110,7 +110,7 @@
 
     </div>
 
-    <div class="KYC-signUp-div bg-white px-2 py-2 mt-3">
+    <div class="KYC-signUp-div bg-white px-3 py-2 mt-3">
         <form (ngSubmit)="dateFilterForm.form.valid && getFilteredKYCApproveData()" #dateFilterForm="ngForm" novalidate>
             <div class="row">
                 <div class="col-12 d-flex flex-wrap align-items-end">
@@ -136,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div class="border-0 p-0 shadow-none mx-1">
+                    <div class="border-0 p-0 shadow-none ">
                         <button type="submit"
                             class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
                             Submit
@@ -148,7 +148,7 @@
 
         <div class="row pt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Number Of KYC Requests Raised</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{kycRequestsRaised}}</h2>
                     <p
@@ -159,7 +159,7 @@
             </div>
 
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">KYC Requests Completed</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycRequestsCompleted">
                         {{kycRequestsCompleted}}</h2>
@@ -176,7 +176,7 @@
         </div>
     </div>
 
-    <div class="KYC-retrigged-div bg-white px-2 py-2 mt-3">
+    <div class="KYC-retrigged-div bg-white px-3 py-2 mt-3">
         <h2 class="commonFontSize semiBoldFont">KYC Retriggered Summary</h2>
         <form (ngSubmit)="retriggerFilterForm.form.valid && getFilteredKycRetriggerData()" #retriggerFilterForm="ngForm"
             novalidate>
@@ -207,7 +207,7 @@
                         </div>
                     </div>
 
-                    <div class="border-0 p-0 shadow-none mx-1">
+                    <div class="border-0 p-0 shadow-none ">
                         <button type="submit"
                             class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
                             Submit
@@ -218,7 +218,7 @@
         </form>
         <div class="row pt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">KYC Retriggered </p>
                     <h2 class="countFontSize text-center semiBoldFont">{{kycRetriggered}}</h2>
                     <p

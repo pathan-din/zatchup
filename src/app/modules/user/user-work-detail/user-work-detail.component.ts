@@ -5,6 +5,7 @@ import { BaseService } from '../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-user-work-detail',
@@ -37,7 +38,11 @@ yearModel:any='';
  
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
-    private router: Router, private SpinnerService: NgxSpinnerService, public userService: UsersServiceService, public formBuilder: FormBuilder) { }
+    private router: Router, 
+    private SpinnerService: NgxSpinnerService,
+    public userService: UsersServiceService,
+    public formBuilder: FormBuilder,
+    private alert:NotificationService) { }
 
 
   ngOnInit(): void {
@@ -87,7 +92,7 @@ yearModel:any='';
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-           
+          this.router.navigate(['user/my-educational-profile']);
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
@@ -97,7 +102,7 @@ yearModel:any='';
 
             }
           }
-          alert(errorCollection);
+          this.alert.error(errorCollection,'Error');
         }
       }, (error) => {
         this.SpinnerService.hide();

@@ -50,6 +50,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                         switch (error.status) {
                             case 401:      //login
                                 localStorage.clear();
+                                throwError(error)
                                 this.navigateToLogin();
                                 handled = true;
                                 break;
