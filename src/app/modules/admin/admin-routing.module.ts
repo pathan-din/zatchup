@@ -350,6 +350,9 @@ const routes: Routes = [
     path: 'add-education-institute', component: EducationStatusComponent, canActivate: [AuthGuard]
   },
   {
+    path: 'add-education-institute/:id', component: EducationStatusComponent, canActivate: [AuthGuard]
+  },
+  {
     path: 'status-added', component: StatusAddedComponent, canActivate: [AuthGuard]
   },
   {
@@ -470,16 +473,16 @@ const routes: Routes = [
     path: 'payment-invoice', component: PaymentInvoiceComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent,  canActivate: [AuthGuard]
+    path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent, canActivate: [AuthGuard]
   },
-  
+
 
 
 
 
 
   {
-    path: '**', component:AdminPageNotFoundComponent
+    path: '**', component: AdminPageNotFoundComponent
   }
 ];
 
