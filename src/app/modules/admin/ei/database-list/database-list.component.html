@@ -182,13 +182,13 @@
 
                     <ng-container matColumnDef="dateofOnboarding">
                         <mat-header-cell *matHeaderCellDef> Date of Onboarding </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.opening_date}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.opening_date | date}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="text-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details" aria-hidden="true"
                                 (click)="eiDbView(element)"></i>
                         </mat-cell>
                     </ng-container>
