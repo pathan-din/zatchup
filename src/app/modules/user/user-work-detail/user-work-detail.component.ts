@@ -61,7 +61,7 @@ yearModel:any='';
     }
     this.model.work_type='';
     this.model.work_department='';
-    this.model.end_year=day+'-'+mon+'-'+year;
+    this.model.end_year=year;
     
     this. getWorkProfile();
    
@@ -86,7 +86,12 @@ yearModel:any='';
       this.SpinnerService.show();
  
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
+      if(this.model.is_currently_work){
+        this.model.end_year = 0;
+      }else{
+        this.model.end_year = 0;
 
+      }
       this.baseService.action('user/workdetail/',this.model).subscribe(res => {
         let response: any = {}
         response = res;
@@ -125,6 +130,7 @@ yearModel:any='';
         response = res;
         this.SpinnerService.hide();
         this.workProfileList=response.results;
+        this.router.navigate(['user/my-school']);
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
