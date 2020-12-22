@@ -236,6 +236,10 @@ body {
     cursor: pointer;
 }
 
+.cursorDefault{
+    cursor: default !important;
+}
+
 
 /*************errorMsg************/
 
