@@ -61,6 +61,8 @@ export class notOnZatchup {
     allCities: any;
     state: any = '';
     city: any = '';
+    filterFromDate: any;
+    filterToDate: any;
     config = {
         itemsPerPage: 0,
         currentPage: 1,
@@ -120,41 +122,41 @@ export class SignUpEi {
     course: any = '';
     standard: any = '';
     class: any = '';
-  filterFromDate: any;
-  filterToDate: any;
-  page: any;
-  maxDate: Date;
-  allCourses: any= [];
-  allStandard: any = [];
-  allClasses: any = [];
-  course_id: any = '';
-  standard_id: any = '';
-  class_id: any = '';
+    filterFromDate: any;
+    filterToDate: any;
+    page: any;
+    maxDate: Date;
+    allCourses: any = [];
+    allStandard: any = [];
+    allClasses: any = [];
+    course_id: any = '';
+    standard_id: any = '';
+    class_id: any = '';
 }
-export class SentForApproval{
+export class SentForApproval {
     config = {
         itemsPerPage: 0,
         currentPage: 1,
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
-  startIndex: number;
-  dataSource: any;
-  listParams: any = {};
-  filterFromDate: any;
-  filterToDate: any;
-  pageSize: any = 5;
-  page: any;
-  allCourses: any= [];
-  allStandard: any = [];
-  allClasses: any = [];
-  course_id: any = '';
-  standard_id: any = '';
-  class_id: any = '';
-  maxDate: Date;
-  course: any = '';
-  standard: any = '';
-  class: any = '';
+    startIndex: number;
+    dataSource: any;
+    listParams: any = {};
+    filterFromDate: any;
+    filterToDate: any;
+    pageSize: any = 5;
+    page: any;
+    allCourses: any = [];
+    allStandard: any = [];
+    allClasses: any = [];
+    course_id: any = '';
+    standard_id: any = '';
+    class_id: any = '';
+    maxDate: Date;
+    course: any = '';
+    standard: any = '';
+    class: any = '';
 
 }
 export class StudentApproval {
@@ -176,15 +178,15 @@ export class StudentApproval {
     standardList: any = [];
     classList: any = [];
     classId: any = [];
-  //  courseId: any = [];
+    //  courseId: any = [];
     //standardId: any = [];
     //classId: any='';
     course: any = '';
     standard: any = '';
     class: any = '';
-  class_id: any='';
-  standard_id: any='';
-  course_id: any='';
+    class_id: any = '';
+    standard_id: any = '';
+    course_id: any = '';
 
     //   courseList: any = [];
     //   standardList: any = [];
