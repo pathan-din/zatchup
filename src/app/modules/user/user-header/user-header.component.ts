@@ -64,8 +64,6 @@ export class UserHeaderComponent implements OnInit {
           }
           else if(response.reg_step==6 && !response.is_approved && !response.is_kyc_rejected){
             this.router.navigate(["user/my-educational-profile"]);
-          } else if(response.reg_step<=6 && !response.is_approved && !response.is_kyc_rejected){
-            this.router.navigate(["user/my-educational-profile"]);
           }
       },(error=>{
           this.alert.warning("Data not Fetched","Warning");
