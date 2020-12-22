@@ -96,6 +96,10 @@ export class AdminSchoolManagementComponent implements OnInit {
     this.router.navigate(['admin/change-detail-requests-pending']);
   }
 
+  rejectedEI(){
+    this.router.navigate(['admin/rejected-ei-list']);
+  }
+
 
   filteredFeeAndReported(fromDate: any, toDate: any, type: any, form: any) {
     this.errorDisplay = {};

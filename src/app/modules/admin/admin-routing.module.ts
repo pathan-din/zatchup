@@ -170,7 +170,7 @@ const routes: Routes = [
     path: 'payment-onboarding-fee-history', component: AdminPaymentOnboardingFeeHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-reject-details', component: AdminEiRejectDetailsComponent, canActivate: [AuthGuard]
+    path: 'rejected-ei-list', component: AdminEiRejectDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'zatch-certificate-result', component: AdminZatchCertificateResultComponent, canActivate: [AuthGuard]
