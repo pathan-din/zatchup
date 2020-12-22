@@ -160,7 +160,7 @@ export class UserKycVerificationComponent implements OnInit {
           localStorage.removeItem("month");
           localStorage.removeItem("day");
           localStorage.removeItem("kyc_name");
-          //localStorage.setItem("user_id",response.user_id);
+          //localStorage.setItem("");
           if(response.is_already_registered==true)
           {
             this.router.navigate(['user/school-confirmation']);

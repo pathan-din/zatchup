@@ -9,7 +9,7 @@
                 <h2 class="commonFontSize semiBoldFont m-0 mt-2"> Education Institute History </h2>
             </div>
             <div class="col-md-8 SearchDiv d-flex flex-row">
-                <form id="comment" class="w-100">
+                <form #addCommentForm="ngForm" id="comment" class="w-100">
                     <div class="row justify-content-end mr-2">
                         <div class="co-md-8 mt-2">
                             <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
@@ -20,7 +20,7 @@
                             <div class="required errorMsg position-absolute" [innerHtml]="errorDisplay.comment"></div>
                         </div>
                         <div class="co-md-4 mt-2">
-                            <button type="button" class="bg-dark text-white ml-2 px-4 py-2 border-0 w-100"(click)="addComment()">Add Comment</button>                            
+                            <button type="button" class="bg-dark text-white ml-2 px-4 py-2 border-0 w-100"(click)="addComment(); addCommentForm.resetForm()">Add Comment</button>                            
                         </div>
                     </div>
                 </form>
@@ -52,8 +52,7 @@
                         <p>{{history.updated_on | date:'dd MMM, yyyy h:m a'}}</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-12 commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>{{history.display_message}} from {{history.old_value}} to {{history.new_value}} by {{history.byusername}}
-                            Name(Employee ID)</p>
+                        <p><span class="mr-3">:</span>{{history.display_message}} from {{history.old_value}} to {{history.new_value}} by {{history.byusername}}</p>
                     </div>
                 </div>
             </div>
