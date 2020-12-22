@@ -110,7 +110,7 @@
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
         <h2 class="commonFontSize semiBoldFont m-0">Sub Admin</h2>
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Alumni Per
@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && dataSource.length > 0">
                 <mat-table [dataSource]="dataSource |  paginate: config">
 
                     <ng-container matColumnDef="SNo">
@@ -195,7 +195,7 @@
             </pagination-controls>
             <div class="row" *ngIf="dataSource && dataSource.length == 0">
                 <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
                 </div>
             </div>
         </div>

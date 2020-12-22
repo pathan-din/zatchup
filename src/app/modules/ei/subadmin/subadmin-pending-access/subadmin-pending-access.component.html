@@ -9,7 +9,7 @@
         </div>
         
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Student Count Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
@@ -28,7 +28,7 @@
         <!--End html for filter for No of alumni per page with export button-->
         
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && dataSource.length > 0">
                 <mat-table [dataSource]="dataSource | paginate: config">
 
                     <ng-container matColumnDef="SNo">
@@ -111,9 +111,9 @@
                 </mat-table>
             </div>
               
-            <div class="row" *ngIf="!dataSource">
+            <div class="row" *ngIf="dataSource.length == 0">
                 <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
                 </div>
             </div>
             <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getPendingAccessRequest($event)"
