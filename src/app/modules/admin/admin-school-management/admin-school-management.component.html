@@ -104,7 +104,7 @@
                     ({{responseJson?.view_status.added+responseJson?.view_status.similar_ei+responseJson?.view_status.rejected_ei}})
                 </h2>
                 <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-2">
-                    <div class="row pt-2">
+                    <div class="row cursorStyle pt-2" (click)="goToAdminEIDatabase()">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Added</p>
                         </div>
@@ -112,7 +112,7 @@
                             <p><span class="mr-2">:</span>{{responseJson?.view_status.added}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row cursorStyle">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Similar Education Institute</p>
                         </div>
@@ -120,7 +120,7 @@
                             <p><span class="mr-2">:</span>{{responseJson?.view_status.similar_ei}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row cursorStyle">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Rejected Education Institute</p>
                         </div>
