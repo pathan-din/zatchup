@@ -101,8 +101,8 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i (click)="approveUser(element.id)" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i  data-toggle="modal" data-target="#rejectModel" (click)="rejectUserModal(element.id)"  class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i (click)="approveUser(element.id)" class="fa fa-check mr-2 color-green fa-lg cursorStyle" title="Approve" aria-hidden="true "></i>
+                            <i  data-toggle="modal" data-target="#rejectModel" (click)="rejectUserModal(element.id)" title="Reject" class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 

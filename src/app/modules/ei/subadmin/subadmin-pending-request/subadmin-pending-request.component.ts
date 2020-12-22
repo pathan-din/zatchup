@@ -24,7 +24,7 @@ export class SubadminPendingRequestComponent implements OnInit {
   pageSize: any = '';
   listParams: any = {};
   startIndex: any
-  dataSource: any;
+  dataSource: any = [];
   modelReason: any = {};
   errorDisplay: any = {};
   userId: any;
@@ -69,7 +69,7 @@ export class SubadminPendingRequestComponent implements OnInit {
           if (res.count > 0)
             this.dataSource = res.results
           else
-            this.dataSource = undefined
+            this.dataSource = []
         }
         else
           this.alert.error(res.error.message[0], 'Error')

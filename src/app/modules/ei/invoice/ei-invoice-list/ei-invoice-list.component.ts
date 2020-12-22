@@ -21,7 +21,7 @@ export class EiInvoiceListComponent implements OnInit {
   pageSize: any = '';
   listParams: any = {};
   startIndex: any
-  dataSource: any;
+  dataSource: any = [];
   invoiceType: any = ''
 
   constructor(
@@ -61,7 +61,7 @@ export class EiInvoiceListComponent implements OnInit {
           if (res.count > 0)
             this.dataSource = res.results
           else
-            this.dataSource = undefined
+            this.dataSource = []
         }
         else
           this.alert.error(res.error.message[0], 'Error')
