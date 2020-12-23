@@ -41,7 +41,7 @@ export class AdminKycCompleteComponent implements OnInit {
   status: any = '1';
   params: any = {};
   completeKycList: CompleteKycList;
-  pageSize: any 
+  pageSize: any
 
   constructor(
     private router: Router,
@@ -52,7 +52,7 @@ export class AdminKycCompleteComponent implements OnInit {
     private location: Location
   ) {
     this.maxDate = new Date();
-    this.completeKycList= new CompleteKycList();
+    this.completeKycList = new CompleteKycList();
   }
 
   ngOnInit(): void {
@@ -60,10 +60,10 @@ export class AdminKycCompleteComponent implements OnInit {
   }
 
   kycHistoryViewRoute(user) {
-    this.router.navigate(['admin/kyc-history-or-view','completed', user.id])
+    this.router.navigate(['admin/kyc-history-or-view', 'completed', user.id])
   }
 
-  getCompleteKycList(page) {
+  getCompleteKycList(page?: any) {
     this.completeKycList.params = {
       'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
@@ -72,43 +72,41 @@ export class AdminKycCompleteComponent implements OnInit {
       'status': this.status !== undefined ? this.status : '',
       'request_type': this.requestType !== undefined ? this.requestType : '',
       'request_reason': this.requestReason !== undefined ? this.requestReason : '',
-      'page_size': this.completeKycList.pageSize ,
-      'page': page ? page : 1
+      'page_size': this.completeKycList.pageSize,
+      'page': page
     }
     this.baseService.getData('admin/kyc/get_kyc_complete_summary/', this.completeKycList.params).subscribe(
       (res: any) => {
-  
-    console.log('list params....', res)
-    if (res.status == true) {
-      if (!page)
-        page = this.completeKycList.config.currentPage
-      this.completeKycList.startIndex = res.page_size * (page - 1) + 1;
-      this.completeKycList.config.itemsPerPage = res.page_size
-      this.completeKycList.config.currentPage = page
-      this.completeKycList.config.totalItems = res.count;
-      if(res.count > 0)
-      this.completeKycList.dataSource = res.results
-       else 
-      this.completeKycList.dataSource= undefined
-  }
-  else
-  this.alert.error(res.error.message[0], 'Error')
-  this.loader.hide();
-  }
-  ),  (err: any) => {
-    this.alert.error(err, 'Error')
-    this.loader.hide();
-  }
+        if (res.status == true) {
+          if (!page)
+            page = this.completeKycList.config.currentPage
+          this.completeKycList.startIndex = res.page_size * (page - 1) + 1;
+          this.completeKycList.config.itemsPerPage = res.page_size
+          this.completeKycList.config.currentPage = page
+          this.completeKycList.config.totalItems = res.count;
+          if (res.count > 0)
+            this.completeKycList.dataSource = res.results
+          else
+            this.completeKycList.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    ), (err: any) => {
+      this.alert.error(err, 'Error')
+      this.loader.hide();
+    }
   }
 
   download() {
     delete this.completeKycList.params.page_size;
-    delete this.completeKycList.params.page;  
+    delete this.completeKycList.params.page;
     this.completeKycList.params['export_csv'] = true
     this.baseService.generateExcel('admin/kyc/export_kyc_complete/', 'kyc-complete', this.params)
   }
 
-  goBack(): void{
+  goBack(): void {
     this.location.back();
   }
 }
