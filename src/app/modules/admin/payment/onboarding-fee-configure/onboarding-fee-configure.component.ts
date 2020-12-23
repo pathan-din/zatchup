@@ -89,11 +89,7 @@ export class OnboardingFeeConfigureComponent implements OnInit {
 
   updateSubscription(subscription){
     this.onboardingModal.modalHeader = 'Update';
-    this.onboardingModal.subscriptionId = subscription.id;
-    this.onboardingModal.name = subscription.name
-    this.onboardingModal.currentAmount = subscription.current_amount;
-    this.onboardingModal.numberOfDays = subscription.no_of_days;
-    this.onboardingModal.status = subscription.is_active
+    this.onboardingModal.currentAmount = subscription.amount;
   }
 
   goBack() {
