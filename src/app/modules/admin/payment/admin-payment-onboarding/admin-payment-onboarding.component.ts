@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
-import { OnboardingFee } from '../modal/onboarding-fee.modal';
+import { OnboardingFee } from '../modal/revenue.modal';
 import { DatePipe, Location } from '@angular/common';
 
 
@@ -115,7 +115,7 @@ export class AdminPaymentOnboardingComponent implements OnInit {
     delete this.onboardingFee.listParams.page_size;
     delete this.onboardingFee.listParams.page;
     this.onboardingFee.listParams['export_csv'] = true
-    this.baseService.generateExcel('admin/payment/export_payment_details_list/', 'on-boarding-fee', this.onboardingFee.listParams);
+    this.baseService.generateExcel('admin/payment/export_payment_details_list/', 'onboarding-fee-revenue', this.onboardingFee.listParams);
   }
 
 
@@ -149,6 +149,13 @@ export class AdminPaymentOnboardingComponent implements OnInit {
 
   goBack(): void{
     this.location.back();
+  }
+
+  generatePDF(transactionId: any){
+    let data = {
+      "payment_id": transactionId
+    }
+    this.baseService.generatePdf('admin/download_payment_invoice/', 'onboarding_invoice_'+transactionId, data)
   }
 
 }

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -19,6 +20,7 @@ export class AdminPaymentCouponComponent implements OnInit {
   constructor(
     private router: Router,
     private datePipe: DatePipe,
+    private location: Location,
     private baseService: BaseService,
     private spinnerService: NgxSpinnerService
   ) {
@@ -42,6 +44,10 @@ export class AdminPaymentCouponComponent implements OnInit {
           this.coupons = undefined
       }
     )
+  }
+
+  goBack(){
+    this.location.back();
   }
 
   addCoupon() {

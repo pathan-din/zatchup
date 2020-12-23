@@ -38,7 +38,7 @@ export class AdminKycCompleteComponent implements OnInit {
   kycType: any = '';
   requestType: any = '';
   requestReason: any = '';
-  status: any = '';
+  status: any = '1';
   params: any = {};
   completeKycList: CompleteKycList;
   pageSize: any 
