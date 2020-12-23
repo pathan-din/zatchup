@@ -119,6 +119,7 @@ import { SupportManagementComponent } from './support/support-management/support
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
+import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
 
 const routes: Routes = [
   {
@@ -474,6 +475,9 @@ const routes: Routes = [
   },
   {
     path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'configure-onboarding-fee', component: OnboardingFeeConfigureComponent, canActivate: [AuthGuard]
   },
 
 

@@ -120,7 +120,7 @@ export class AdminPaymentOnboardingComponent implements OnInit {
 
 
   configureOnboardingFee(){
-    this.router.navigate(['admin/payment-onboarding-fee-history']);
+    this.router.navigate(['admin/configure-onboarding-fee']);
 
   }
 

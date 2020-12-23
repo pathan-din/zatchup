@@ -138,6 +138,7 @@ import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.compo
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
 import { SharedModule } from 'src/app/common/shared.module';
 import { ConfirmDialogModule } from 'src/app/common/confirm-dialog/confirm-dialog.module';
+import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
 
 @NgModule({
   declarations: [
@@ -267,7 +268,8 @@ import { ConfirmDialogModule } from 'src/app/common/confirm-dialog/confirm-dialo
     SupportManagementComponent,
     TicketsOnboardingComponent,
     PaymentInvoiceComponent,
-    ChangeDetailsRequestViewComponent
+    ChangeDetailsRequestViewComponent,
+    OnboardingFeeConfigureComponent
   ],
   imports: [
     CommonModule,
