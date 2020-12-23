@@ -19,7 +19,8 @@ export class UserProfileCreatedSuccessfullyComponent implements OnInit {
       if(role==1){
         this.router.navigate(['user/my-school']);
       }else{
-        this.router.navigate(['user/my-school']);
+       // this.router.navigate(['user/my-school']);
+       this.router.navigate(['user/work-detail']);
       }
     }
 
