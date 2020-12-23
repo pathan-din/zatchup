@@ -66,9 +66,9 @@
                     </ng-container>
                     <ng-container matColumnDef="history">
                         <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> Plan Amount for {{element.name}}
-                            subscription changed from {{element.previous_amount}} to {{element.current_amount}} by
-                            {{element.user}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            Onboarding Fee changed from {{element.old_value}} to {{element.new_value}} by
+                            {{element.byusername}} </mat-cell>
                     </ng-container>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
