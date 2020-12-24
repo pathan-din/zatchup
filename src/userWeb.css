@@ -103,7 +103,6 @@ body {
 .form-control-input {
   border: none;
   font-family: "SFUIDisplay-Regular";
-  /* color: #b4b4b4; */
 }
 
 .form-control-input::placeholder {
@@ -111,7 +110,6 @@ body {
 }
 
 .form-control:focus {
-  /* border: 1px solid #fff; */
   box-shadow: none;
 }
 
@@ -119,10 +117,9 @@ body {
 .form-control-inputDiv {
   border: 1px solid #c7cbd1;
   box-shadow: 0px 4px 9px 0px #dfdfdf;
-  border-radius: 10px;
+  border-radius: .2rem;
   outline: none;
   background: #ffffff;
-  /* overflow: hidden; */
   position: relative;
 }
 
