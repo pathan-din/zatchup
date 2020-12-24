@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -55,9 +55,9 @@ export class OnboardedOnZatchupListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getOnboardedZatchup();
+    this.subscriptionType(this.route.snapshot.params.type)
     this.getAllState();
-
+    this.getOnboardedZatchup();
   }
 
   onboardedView(data) {
@@ -88,7 +88,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       "university": this.onboardedZatchup.university,
       "is_disabled": this.onboardedZatchup.isDisabled,
       "is_subscription_active": this.onboardedZatchup.subStatus,
-      "page_size": this.onboardedZatchup.pageSize ? this.onboardedZatchup.pageSize : 5,
+      "page_size": this.onboardedZatchup.pageSize,
       "page": page ? page : 1
     }
     this.baseService.getData('admin/ei-onboarded_zatchup-list/', this.onboardedZatchup.listParams).subscribe(
@@ -100,7 +100,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
           this.onboardedZatchup.config.itemsPerPage = res.page_size
           this.onboardedZatchup.config.currentPage = page
           this.onboardedZatchup.config.totalItems = res.count;
-          if (res.count > 0){
+          if (res.count > 0) {
             this.onboardedZatchup.dataSource = res.results;
             this.onboardedZatchup.pageCounts = this.baseService.getCountsOfPage(res.count)
           }
@@ -138,6 +138,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardedZatchup.university,
       "page_size": this.onboardedZatchup.pageSize,
+      "is_subscription_active": this.onboardedZatchup.subStatus,
       "page": page
     }
     this.loader.show();
@@ -201,6 +202,14 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       this.getOnboardedZatchup(page)
   }
 
+  subscriptionType(type: any) {
+    if (type != 'list') {
+      if (type == 'active')
+        this.onboardedZatchup.subStatus = "true";
+      else
+        this.onboardedZatchup.subStatus = "false"
+    }
+  }
 }
 
 

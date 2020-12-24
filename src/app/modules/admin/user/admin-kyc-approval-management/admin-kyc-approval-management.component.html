@@ -12,50 +12,58 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-md-4 MobileCol6MB" (click)="kycPendingReqRoute()" style="cursor: pointer;">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_1('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_1('list')">
                         {{kycApprovalData.kyc_pending_requests_I.no_of_requests_fresh_signup + kycApprovalData.kyc_pending_requests_I.no_of_requests_kyc_retrigger}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0">Requests For Fresh Signups:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_1('fresh-singup')">Requests For Fresh Signups:<span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_I.no_of_requests_fresh_signup}}</span>
                         </p>
-                        <p class="mb-0 ">Requests Because KYC Was Retrigger:<span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_1('retriggered')">Requests Because KYC Was
+                            Retrigger:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_I.no_of_requests_kyc_retrigger}}</span>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB" (click)="kycPendingReqRoute()" style="cursor: pointer;">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_2('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_2('list')">
                         {{kycApprovalData.kyc_pending_requests_II.first_time_submission_count + kycApprovalData.kyc_pending_requests_II.resubmission_count}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 ">First TimeSubmission: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('first-time')">First Time Submission: <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.first_time_submission_count}}</span>
                         </p>
-                        <p class="mb-0 ">Resubmission: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('re-submission')">Re-submission: <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.resubmission_count}}</span>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
-                    (click)="kycPendingReqRoute()" style="cursor: pointer;">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" style="cursor: pointer;">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_3('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_3('list')">
                         {{kycApprovalData.kyc_pending_requests_III.students_alumni_count + kycApprovalData.kyc_pending_requests_III.subadmin_count}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 ">Student/Alumni: <span class="ml-2"
+                        <p class="mb-0 "><span (click)="kycPendingReqRoute_3('STUDENTS')">Student</span>/<span
+                                (click)="kycPendingReqRoute_3('ALUMNI')">Alumni</span>: <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_III.students_alumni_count}}</span>
                         </p>
-                        <p class="mb-0 ">Sub-Admin: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_3('EISUBADMIN')">Sub-Admin: <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_III.subadmin_count}}</span>
                         </p>
                     </div>
@@ -64,20 +72,22 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB" (click)="kycPendingReqRoute()" style="cursor: pointer;">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_4('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_4('list')">
                         {{kycApprovalData.kyc_pending_requests_IV.aadhar + kycApprovalData.kyc_pending_requests_IV.drivinglicense + kycApprovalData.kyc_pending_requests_IV.passport}}
                     </h2>
                     <div
                         class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
-                        <p class="mb-0">Aadhar:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Aadhar')">Aadhar:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.aadhar}}</span></p>
-                        <p class="mb-0">Driving License:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Driving License')">Driving License:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.drivinglicense}}</span>
                         </p>
-                        <p class="mb-0">Passport:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Passport')">Passport:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.passport}}</span>
                         </p>
                     </div>
