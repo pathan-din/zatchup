@@ -10,10 +10,10 @@
 
             <form class="pt-2">
                 <div class="form-group row" *ngFor="let qualifi of qualificationJson; let i=index;">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <div class="form-control-radioDiv-padding">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <div class="form-control-radioDiv-padding p-1">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <label class="custom-label qualificationCustomLabel" for="inlineRadio{{qualifi.id}}">
+                                <label class="custom-label mb-0 qualificationCustomLabel" for="inlineRadio{{qualifi.id}}">
                                     <input class="custom-control-input" [(ngModel)]="model.qualification_type" type="radio"  name="model.qualification_type"
                                         id="inlineRadio{{qualifi.id}}" value="{{qualifi.id}}">
                                     <span class="checkmark qualificationCheckmark"></span>
