@@ -14,7 +14,7 @@
 
             <form id="form1" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
                             <option value="">Select your ID</option>
                             <option value="Aadhar">Aadhar Card</option>
@@ -25,13 +25,13 @@
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_type"></div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}" id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_id_no"></div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <input required (keyup)="isValid($event)" [(ngModel)]="model.kyc_name" name ="kyc_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Your Name">
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_name"></div>
@@ -40,21 +40,21 @@
                     <div class="col-sm-12 ">
                         <h4 class="mb-2 textSpace color-gray">Date Of Birth</h4>
                         <div class="row">
-                            <div class="col-3 mr-1 form-control-inputDiv">
+                            <div class="col-3 p-0 mr-1 form-control-inputDiv">
                                 <select required (change)="isValid($event)" [(ngModel)]="dateModel" name ="dateModel" class="custom-select form-date-col  border-0 pr-2">
                                     <option value="" [selected]='true'>Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
                                    
                                 </select>
                             </div>
-                            <div class="col-3 mr-1 ml-1 form-control-inputDiv">
+                            <div class="col-3 p-0 mr-1 ml-1 form-control-inputDiv">
                                 <select required (change)="isValid($event)" [(ngModel)]="monthModel" name ="monthModel" class="custom-select border-0 form-month-col">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                     
                                 </select>
                             </div>
-                            <div class="col-3 ml-1 mr-1 form-control-inputDiv">
+                            <div class="col-3 p-0 ml-1 mr-1 form-control-inputDiv">
                                 <select required [(ngModel)]="yearModel" (change)="isValid($event)" name ="yearModel" class="custom-select  border-0 form-month-col">
                                     <option value="" selected>Year</option>
                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
