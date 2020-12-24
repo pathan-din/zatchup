@@ -58,7 +58,7 @@
                 </div> -->
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
-                    <div class="col-sm-12 form-control-inputDiv">                        
+                    <div class="col-sm-12 form-control-inputDiv p-0">                        
                         <select (change)="displayStandardList(course_id) " name="course" [(ngModel)]="course_id" class="custom-select form-control-input" required>
                             <option value="">Select Course </option>
                             <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">{{courseObj.course_name}}</option>
@@ -70,7 +70,7 @@
 <!-- Other School Case-->
 <div *ngIf="course_id=='others'">
 <div class="form-group row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 p-0">
         <label for="" class="mediumFont commonFontSize letterspacing">Course Type</label>
         <div class="form-control-inputDiv">                            
             <input required name="course" [(ngModel)]="model.course_name" class="form-control-input form-control form-control-sm"
@@ -82,17 +82,17 @@
 
 
 <div class="form-group row customWidth">
-    <div class="col-sm-6">
+    <div class="col-sm-6 p-0">
         <label for="" class="mediumFont commonFontSize letterspacing">Course Up from</label>
-        <div class="form-control-inputDiv">
+        <div class="form-control-inputDiv mr-1">
             <input autocomplete="off" required [maxDate]="model.end_date" [(ngModel)]="model.start_date" name="start_date" class="form-control-input form-control form-control-sm"
             type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
             <div class="required errorMsg"  [innerHtml]="errorDisplay.start_date"></div> 
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 p-0">
         <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
-        <div class="form-control-inputDiv">
+        <div class="form-control-inputDiv ml-1">
             <input autocomplete="off" required [(ngModel)]="model.end_date" [minDate]="model.start_date" name="end_date" class="form-control-input form-control form-control-sm"
             type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
             <div class="required errorMsg"  [innerHtml]="errorDisplay.end_date"></div>
@@ -102,7 +102,7 @@
 </div>
 
 <div class="form-group row">
-    <div class="col-sm-12"> 
+    <div class="col-sm-12 p-0"> 
         <label for="" class="mediumFont commonFontSize letterspacing">Description</label>                       
         <div class="form-control-inputDiv">
             <textarea [(ngModel)]="model.description" id="description" name="description" required
@@ -143,7 +143,7 @@
                 
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Standard</label>
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select  (change)="displayClassList(model.standard_id)"  name="standard" [(ngModel)]="model.standard_id" class="custom-select form-control-input" required>
                             <option value="">Select Standard </option>
                             <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
@@ -155,14 +155,14 @@
                 <div class="form-group row" *ngIf="model.standard_id">
                     
                     <label for="" class="mediumFont commonFontSize letterspacing">Standard Start Year</label>
-                    <div class="col-sm-12 form-control-inputDiv">                        
+                    <div class="col-sm-12 p-0 form-control-inputDiv">                        
                         <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_start_year" [(ngModel)]="model.standard_start_year"  class="form-control-input form-control form-control-sm" type="text" >
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.standard_start_year"></div>
                 </div>
                 <div class="form-group row" *ngIf="model.standard_id">              
                     <label for="" class="mediumFont commonFontSize letterspacing">Standard End Year</label>
-                    <div class="col-sm-12 form-control-inputDiv">                        
+                    <div class="col-sm-12 p-0 form-control-inputDiv">                        
                         <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_end_year" [(ngModel)]="model.standard_end_year"  class="form-control-input form-control form-control-sm" type="text" >
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.standard_end_year"></div>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input" required>
                             <option value="">Select Class</option>
                             <option  value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
@@ -188,7 +188,7 @@
                     </div>
                 </div> -->
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <textarea [(ngModel)]="model.comment" name="comment" class="form-control-input form-control form-control-textarea" rows="3"
                             placeholder="Add Description of Study..."></textarea>
                     </div>
