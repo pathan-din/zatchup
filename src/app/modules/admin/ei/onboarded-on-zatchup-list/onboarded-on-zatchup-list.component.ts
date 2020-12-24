@@ -52,7 +52,6 @@ export class OnboardedOnZatchupListComponent implements OnInit {
   ) {
     this.onboardedZatchup = new OnboardedZatchup();
     this.maxDate = new Date();
-    console.log(this.router.url)
   }
 
   ngOnInit(): void {
@@ -94,7 +93,6 @@ export class OnboardedOnZatchupListComponent implements OnInit {
     }
     this.baseService.getData('admin/ei-onboarded_zatchup-list/', this.onboardedZatchup.listParams).subscribe(
       (res: any) => {
-        console.log('list params....', res)
         if (res.status == true) {
           if (!page)
             page = this.onboardedZatchup.config.currentPage
@@ -194,7 +192,6 @@ export class OnboardedOnZatchupListComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
-    console.log(location)
   }
 
   filterData(page) {

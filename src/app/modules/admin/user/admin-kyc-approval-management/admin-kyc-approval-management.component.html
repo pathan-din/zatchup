@@ -74,10 +74,10 @@
                         class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
                         <p class="mb-0">Aadhar:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.aadhar}}</span></p>
-                        <p class="mb-0">Passport:<span class="ml-2"
+                        <p class="mb-0">Driving License:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.drivinglicense}}</span>
                         </p>
-                        <p class="mb-0">Driving License:<span class="ml-2"
+                        <p class="mb-0">Passport:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.passport}}</span>
                         </p>
                     </div>
@@ -111,14 +111,16 @@
     </div>
 
     <div class="KYC-signUp-div bg-white px-3 py-2 mt-3">
-        <form (ngSubmit)="dateFilterForm.form.valid && getFilteredKYCApproveData()" #dateFilterForm="ngForm" novalidate>
+        <form (ngSubmit)="dateFilterForm.form.valid && getFilteredKYCApproveData()" #dateFilterForm="ngForm"
+            autocapitalize="off" autocomplete="off">
             <div class="row">
                 <div class="col-12 d-flex flex-wrap align-items-end">
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Sign Up Date From</label>
                         <input type="text" id="fromDate" name="singupFromDate" placeholder="MM/DD/YYYY"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="kycApprovalFromDate"
-                            #singupFromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="kycApprovalFromDate" #singupFromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
                             [ngClass]="{ 'is-invalid': dateFilterForm.submitted && singupFromDate.invalid }" required>
                         <div *ngIf="dateFilterForm.submitted && singupFromDate.invalid" class="invalid-feedback">
                             <div *ngIf="singupFromDate.errors.required">Required.</div>
@@ -128,8 +130,9 @@
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Sign Up Date To</label>
                         <input type="text" placeholder="MM/DD/YYYY" id="signupToDate" name="singupToDate"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="kycApprovalToDate"
-                            #signupToDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="kycApprovalToDate" #signupToDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
                             [ngClass]="{ 'is-invalid': dateFilterForm.submitted && signupToDate.invalid }" required>
                         <div *ngIf="dateFilterForm.submitted && singupFromDate.invalid" class="invalid-feedback">
                             <div *ngIf="signupToDate.errors.required">Required.</div>
@@ -148,7 +151,7 @@
 
         <div class="row pt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 mediumFont commonFontSize">Number Of KYC Requests Raised</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{kycRequestsRaised}}</h2>
                     <p
@@ -159,7 +162,8 @@
             </div>
 
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="completedKyc()"
+                    style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">KYC Requests Completed</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycRequestsCompleted">
                         {{kycRequestsCompleted}}</h2>
@@ -185,8 +189,9 @@
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Retrigger Date From</label>
                         <input type="text" id="retriggerFromDate" name="retriggerFromDate" placeholder="MM/DD/YYYY"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="retriggerKycFromDate"
-                            #retriggerFromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="retriggerKycFromDate" #retriggerFromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
                             [ngClass]="{ 'is-invalid': retriggerFilterForm.submitted && retriggerFromDate.invalid }"
                             required>
                         <div *ngIf="retriggerFilterForm.submitted && retriggerFromDate.invalid"
@@ -198,8 +203,9 @@
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Retrigger Date To</label>
                         <input type="text" placeholder="MM/DD/YYYY" id="retriggerToDate" name="retriggerToDate"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="retriggerKycToDate"
-                            #retriggerToDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="retriggerKycToDate" #retriggerToDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
                             [ngClass]="{ 'is-invalid': retriggerFilterForm.submitted && retriggerToDate.invalid }"
                             required>
                         <div *ngIf="retriggerFilterForm.submitted && retriggerToDate.invalid" class="invalid-feedback">

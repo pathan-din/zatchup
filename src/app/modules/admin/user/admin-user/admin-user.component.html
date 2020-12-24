@@ -7,11 +7,12 @@
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
-                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                         type="text" placeholder="Search..." [(ngModel)]="search" minlength="1" maxlength="20">
                 </div>
                 <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
-                (click)="searchRoute()">Apply</button>
+                    (click)="searchRoute()">Apply</button>
             </div>
         </div>
         <div class="row mt-3">
@@ -27,7 +28,8 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB cursorStyle">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="kycVerifiedUsers()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                    (click)="kycVerifiedUsers()">
                     <p class="p-2 semiBoldFont commonFontSize">KYC Verified Users On ZatchUp</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.total_kyc_verified_count}}</h2>
@@ -40,7 +42,8 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB cursorStyle">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="kycVerifiedByEi()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
+                    (click)="kycVerifiedByEi()">
                     <p class="p-2 semiBoldFont commonFontSize">Users Verified By EI</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
                         {{userDashboard.user_verified_by_ei}}</h2>
@@ -81,60 +84,64 @@
     </div>
 
     <div class="User-unverified-dashboard-div bg-white px-3 pt-3 pb-4 mt-3">
-        <div class="row">
-            <div class="col-12 d-flex align-items-end flex-wrap">
-                <div class="widthFull MobileCol6MB mr-2">
-                    <label for="" class=" commonFontSize mediumFont letterspacing"> From Date</label>
-                    <div class="rounded shadow-none ">
-                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing"
-                            type="text" placeholder="MM/DD/YYYY" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="userManagement.filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+        <form autocomplete="off" autocapitalize="off">
+            <div class="row">
+
+                <div class="col-12 d-flex align-items-end flex-wrap">
+                    <div class="widthFull MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing"> From Date</label>
+                        <div class="rounded shadow-none ">
+                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing"
+                                type="text" placeholder="MM/DD/YYYY" id="fromDate" name="fromDate"
+                                placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
+                                [(ngModel)]="userManagement.filterFromDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        </div>
+                    </div>
+
+                    <div class="widthFull MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">To Date </label>
+                        <div class="rounded  shadow-none ">
+                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                                type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                                [maxDate]="maxDate" [(ngModel)]="userManagement.filterToDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                        </div>
+                    </div>
+                    <div class="medium-filter-box widthFull MobileCol6MB mr-2">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Select State</label>
+                        <div class="form-control-inputDiv rounded  shadow-none  border-top">
+                            <select class="custom-select form-control-input" id="state" name="state"
+                                [(ngModel)]="userManagement.stateId" (change)="getCities()">
+                                <option value=""> Select State</option>
+                                <option *ngFor="let state of userManagement.allStates" [value]="state.id">
+                                    {{state.state}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="medium-filter-box widthFull MobileCol6MB mr-2">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Select City</label>
+                        <div class="form-control-inputDiv rounded  shadow-none  border-top ">
+                            <select class="custom-select form-control-input" id="city" name="city"
+                                [(ngModel)]="userManagement.cityId">
+                                <option value=""> Select City</option>
+                                <option *ngFor="let city of userManagement.allCities" [value]="city.id">{{city.city}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="border-0 p-0 shadow-none  MobileCol6MB">
+                        <button type="button"
+                            class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                            Submit
+                        </button>
                     </div>
                 </div>
-
-                <div class="widthFull MobileCol6MB mr-2">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">To Date </label>
-                    <div class="rounded  shadow-none ">
-                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                        type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                        [maxDate]="maxDate" [(ngModel)]="userManagement.filterToDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true}">
-                    </div>
-                </div>
-                <div class="medium-filter-box widthFull MobileCol6MB mr-2">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Select State</label>
-                    <div class="form-control-inputDiv rounded  shadow-none  border-top">
-                        <select class="custom-select form-control-input" id="pastEI" required
-                            [(ngModel)]="userManagement.stateId" (change)="getCities()">
-                            <option value=""> Select State</option>
-                            <option *ngFor="let state of userManagement.allStates" [value]="state.id"> {{state.state}}
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="medium-filter-box widthFull MobileCol6MB mr-2">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Select City</label>
-                    <div class="form-control-inputDiv rounded  shadow-none  border-top ">
-                        <select class="custom-select form-control-input" id="pastEI" required
-                        [(ngModel)]="userManagement.cityId">
-                            <option value=""> Select City</option>
-                            <option *ngFor="let city of userManagement.allCities" [value]="city.id">{{city.city}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="border-0 p-0 shadow-none  MobileCol6MB">
-                    <button type="button"
-                        class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
-                        Submit
-                    </button>
-
-                </div>
-
 
             </div>
-        </div>
+        </form>
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
@@ -181,62 +188,70 @@
                         {{userDashboard.total_unresolved_userprofile}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary Btn-lg-last">Total Number Of
                         Unresolved User's Profile:
-                        <span class="ml-2" *ngIf="userDashboard">{{userDashboard.total_unresolved_userprofile}}</span></p>
+                        <span class="ml-2" *ngIf="userDashboard">{{userDashboard.total_unresolved_userprofile}}</span>
+                    </p>
                 </div>
             </div>
         </div>
+        <form autocapitalize="off" autocomplete="off">
+            <div class="row mt-3">
+                <div class="col-12 d-flex align-items-end flex-wrap">
+                    <div class="widthFull MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing "> From Date</label>
+                        <div class="rounded shadow-none ">
+                            <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
+                                type="text" placeholder="MM/DD/YYYY" id="fromDate2" name="fromDate"
+                                placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
+                                [(ngModel)]="userManagement.fromDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true }">
 
-        <div class="row mt-3">
-            <div class="col-12 d-flex align-items-end flex-wrap">
-                <div class="widthFull MobileCol6MB mr-2">
-                    <label for="" class=" commonFontSize mediumFont letterspacing "> From Date</label>
-                    <div class="rounded shadow-none ">
-                        <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
-                        type="text" placeholder="MM/DD/YYYY" id="fromDate2" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                        [maxDate]="maxDate" [(ngModel)]="userManagement.fromDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        </div>
+                    </div>
+                    <div class="widthFull MobileCol6MB mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing widthFull">To Date</label>
+                        <div class="rounded shadow-none ">
+                            <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
+                                type="text" id="toDate2" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                                [maxDate]="maxDate" [(ngModel)]="userManagement.toDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true}">
 
+                        </div>
+                    </div>
+                    <div class="border-0 p-0 shadow-none ">
+                        <button type="button"
+                            class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
+                            Submit
+                        </button>
                     </div>
                 </div>
-                <div class="widthFull MobileCol6MB mr-2">
-                    <label for="" class=" commonFontSize mediumFont letterspacing widthFull">To Date</label>
-                    <div class="rounded shadow-none ">
-                        <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
-                        type="text" id="toDate2" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                        [maxDate]="maxDate" [(ngModel)]="userManagement.toDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true}">
-
-                    </div>
-                </div>
-                <div class="border-0 p-0 shadow-none ">
-                    <button type="button"
-                        class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
-                        Submit
-                    </button>
-                </div>
-
-
             </div>
-        </div>
+        </form>
+
+
+
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">New Reports Reporting User's Profile</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">{{userDashboard.new_user_profile_reports}}</h2>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.new_user_profile_reports}}</h2>
                     <p
                         class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
                         Total Number Of New Reports Reporting User's Profile :<span class="ml-2"
-                            *ngIf="userDashboard">{{userDashboard.new_user_profile_reports}}/{{userDashboard.new_user_reported}}</span></p>
+                            *ngIf="userDashboard">{{userDashboard.new_user_profile_reports}}/{{userDashboard.new_user_reported}}</span>
+                    </p>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 semiBoldFont commonFontSize">New Users Reported </p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">{{userDashboard.new_user_reported}}</h2>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="userDashboard">
+                        {{userDashboard.new_user_reported}}</h2>
                     <p
                         class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total Number Of New Users Reported:<span class="ml-2" *ngIf="userDashboard">{{userDashboard.new_user_reported}}</span></p>
+                        Total Number Of New Users Reported:<span class="ml-2"
+                            *ngIf="userDashboard">{{userDashboard.new_user_reported}}</span></p>
                 </div>
             </div>
         </div>

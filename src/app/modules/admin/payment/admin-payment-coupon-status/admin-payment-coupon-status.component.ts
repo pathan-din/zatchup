@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CouponList } from '../modal/coupon.modal'
@@ -14,6 +15,7 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
   couponList = new CouponList()
 
   constructor(
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
@@ -71,19 +73,7 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
     this.baseService.generateExcel('admin/coupon/export_coupons_list/', 'coupons', data);
   }
 
-}
-
-export interface PeriodicElement {
-  position: number;
-  couponPorpuse: string;
-  couponCode: string;
-  activationDate: string;
-  createdBy: string;
-  minimumOrderValue: number;
-  discount: number;
-  MaximumDiscountAmount: number;
-  couponCodeApplied: number;
-  totalDiscountGiven: number;
-  couponExpirationdate: string;
-  expireCouponButton: string;
+  goBack(){
+    this.location.back();
+  }
 }

@@ -1,8 +1,13 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="eiMangPendingForApproval-div bg-white border border-gray mt-3 px-3 py-3">
-        <div class="filterDiv">
-            <h2 class="commonFontSize semiBoldFont m-0"> Subscription History </h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0"> Subscription Fee History </h2>
+            </div>
         </div>
         <div class="tableDiv" *ngIf="dataSource">
             <div class="mat-elevation-z1 table-responsive">
@@ -20,6 +25,11 @@
                     </ng-container>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
+            </div>
+        </div>
+        <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
         <pagination-controls *ngIf="dataSource" (pageChange)="getSubscriptionHistory($event)" class="eiPaginationTag">
