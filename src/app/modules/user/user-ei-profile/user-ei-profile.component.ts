@@ -218,6 +218,10 @@ export class UserEiProfileComponent implements OnInit {
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.model.is_current_course = 1
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
+      this.model.course_start_year = this.baseService.getDateFormat(this.model.course_start_year);
+      this.model.course_end_year = this.baseService.getDateFormat(this.model.course_end_year);
+      this.model.standard_start_year = this.baseService.getDateFormat(this.model.standard_start_year);
+      this.model.standard_end_year = this.baseService.getDateFormat(this.model.standard_end_year);
       this.baseService.actionForFormData('user/add-registered-ei-course/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();

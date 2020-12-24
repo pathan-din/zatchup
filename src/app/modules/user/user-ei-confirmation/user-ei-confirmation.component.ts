@@ -22,6 +22,7 @@ export class UserEiConfirmationComponent implements OnInit {
   confirmationDetails:any=[];
   /*Qualification Master*/
   studentsConfirmation: any = [];
+  school_id:any="";
   constructor(private router: Router,
     private route: ActivatedRoute,
     private SpinnerService: NgxSpinnerService,
@@ -32,6 +33,11 @@ export class UserEiConfirmationComponent implements OnInit {
     public formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(parrams=>{
+      if(parrams['school_id']){
+          this.school_id = parrams['school_id'];
+      }
+    })
     this.getConfirmationDetails();
   }
   
@@ -39,26 +45,27 @@ export class UserEiConfirmationComponent implements OnInit {
   goToUserProfileCreatedPage() {
     this.router.navigate(['user/profile-created']);
  }
+ addPastEi(){
+  this.router.navigate(['user/add-ei'],{queryParams:{"title":"past"}});
+ }
+ addAnotherCourse(){
+  this.router.navigate(['user/add-more-standard'],{queryParams:{"school_id":this.school_id }});
+ }
  getConfirmationDetails(){
   try{
     this.SpinnerService.show(); 
    
     this.baseService.getData('user/get-ei-course-confirmation-list/').subscribe(res => {
       
-      let response:any={};
-      response=res;
-      if(response.status==true){
-        this.SpinnerService.hide(); 
-        this.confirmationDetails=response.data;
-        
-        
-      }else{
-        this.SpinnerService.hide(); 
-      }
-      
-      
-     
-      },(error) => {
+          let response:any={};
+          response=res;
+          if(response.status==true){
+            this.SpinnerService.hide(); 
+            this.confirmationDetails=response.data;
+          }else{
+            this.SpinnerService.hide(); 
+          }
+       },(error) => {
         this.SpinnerService.hide(); 
         console.log(error);
         

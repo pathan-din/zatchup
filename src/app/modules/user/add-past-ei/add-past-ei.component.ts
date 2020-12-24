@@ -5,6 +5,7 @@ import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { BaseService } from '../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -35,7 +36,7 @@ export class AddPastEiComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public baseService:BaseService,
-    
+    private alert:NotificationService,
     public formBuilder: FormBuilder,
     private genericFormValidationService:GenericFormValidationService) { }
 
@@ -88,7 +89,6 @@ getCityByState(state){
       let response:any={};
       response=res;
       this.cityList=response.results;
-      console.log(this.cityList);
       
       this.SpinnerService.hide(); 
      
@@ -150,7 +150,7 @@ goToUserQualificationPage() {
 
           }
         }
-        alert(errorCollection);
+        this.alert.error(errorCollection,"Error");
       }
     }, (error) => {
       this.SpinnerService.hide();

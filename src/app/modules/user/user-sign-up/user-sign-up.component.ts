@@ -125,6 +125,7 @@ export class UserSignUpComponent implements OnInit {
       if (this.model.phone == null) {
         this.model.phone = '';
       }
+       
       this.baseService.action('user/register/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();
@@ -156,19 +157,19 @@ export class UserSignUpComponent implements OnInit {
 
   }
   /*Change Go To Redirect*/
-  goToKycPage() {
-    $("#OTPModel").modal("hide");
-    this.router.navigate(['user/kyc-verification']);
-  }
+  // goToKycPage() {
+  //   $("#OTPModel").modal("hide");
+  //   this.router.navigate(['user/kyc-verification']);
+  // }
 
-  goToUserQualificationPage() {
-    $("#currentStatusModel").modal("hide");
-    this.router.navigate(['user/qualification']);
-  }
+  // goToUserQualificationPage() {
+  //   $("#currentStatusModel").modal("hide");
+  //   this.router.navigate(['user/qualification']);
+  // }
 
   /***********************Mobile Number OR Email Verification Via OTP**********************************/
 
-  goToDashboard() {
+  verifyOtp() {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
     this.error = [];
