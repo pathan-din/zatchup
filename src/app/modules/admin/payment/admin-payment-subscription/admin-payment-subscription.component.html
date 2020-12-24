@@ -2,67 +2,76 @@
 <div class="container main-container p-3">
     <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-6 ">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">Subscription Fees Revenue</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-paret-green text-white px-4 h-100 border-0 mp0" (click)="configureSubscription()">Configure Subscription Fees</button>
-                <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0 mp0">Bought History</button> -->
-                <button type="button" class="bg-blue text-white px-4 h-100 ml-2 border-0 mp0" (click)="subscriptionHistory()">Subscription Plan History</button>
+                <button type="button" class="bg-paret-green text-white px-4 h-100 border-0 mp0"
+                    (click)="configureSubscription()">Configure Subscription Fees</button>
+                <button type="button" class="bg-blue text-white px-4 h-100 ml-2 border-0 mp0"
+                    (click)="subscriptionHistory()">Subscription Plan History</button>
             </div>
         </div>
         <!--Start html for filter for alumni list-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <form autocomplete="off" autocapitalize="off">
+                <div class="d-flex flex-wrap align-items-end">
+                    <div class="widthFull mr-4 mt-3 ">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> From</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
+                                [maxDate]="subscriptionFee.maxDate" [(ngModel)]="subscriptionFee.filterFromDate"
+                                #fromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true}">
 
-            <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Received Date from </label>
-                    <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="date" placeholder="MM/DD/YYYY">
-
+                        </div>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Received Date To</label>
-                    <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                            type="date" placeholder="MM/DD/YYYY">
-
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> To</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                                [maxDate]="subscriptionFee.maxDate" [(ngModel)]="subscriptionFee.filterToDate"
+                                #fromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                        </div>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> State </label>
-                    <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required>
-                            <option value=""> Select State </option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <select class="custom-select  form-control-input" id="state" name="state"
+                                [(ngModel)]="subscriptionFee.stateId" (change)="getAllCities()">
+                                <option value=""> Select State</option>
+                                <option *ngFor="let state of subscriptionFee.allStates" [value]="state.id">
+                                    {{state.state}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> City </label>
-                    <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required>
-                            <option value=""> Select City </option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <select class="custom-select  form-control-input" id="city" name="city"
+                                [(ngModel)]="subscriptionFee.cityId">
+                                <option value=""> Select City</option>
+                                <option *ngFor="let city of subscriptionFee.allCities" [value]="city.id">{{city.city}}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <input type="text" name="board_university" [(ngModel)]="subscriptionFee.university"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                placeholder="Board/University" />
 
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
-                    <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <input type="text" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Board/University"/>
-
+                        </div>
                     </div>
-                </div>
 
-                <div class="widthFull mr-4 mt-3">
+                    <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subscription Type </label>
                     <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
@@ -84,55 +93,62 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
+                </div> -->
+
+                    <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                        (click)="getSubscriptionRevenueList()">Apply</button>
+
                 </div>
-
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
-
-
-            </div>
+            </form>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
         <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center "
+                *ngIf="subscriptionFee.dataSource">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Subscription fees in Database Per Page </label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">
+                    Count Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getSubscriptionRevenueList()" [(ngModel)]="subscriptionFee.pageSize">
                         <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right" *ngIf="subscriptionFee.dataSource">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2"
                         aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for filter for No of alumni per page with export button-->
 
         <!--Start html for table content Alimni information-->
-        <div class="tableDiv ">
+        <div class="tableDiv " *ngIf="subscriptionFee.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="subscriptionFee.dataSource | paginate: subscriptionFee.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + subscriptionFee.startIndex}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="eiZatchupId">
                         <mat-header-cell *matHeaderCellDef> EI ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.eiZatchupId}}
+                            {{element.zatchupid}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="nameOfSchool">
                         <mat-header-cell *matHeaderCellDef> Name of The School </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.nameOfSchool}}
+                            {{element.name_of_school}}
                         </mat-cell>
                     </ng-container>
 
@@ -151,61 +167,73 @@
                     <ng-container matColumnDef="delhiUniversity">
                         <mat-header-cell *matHeaderCellDef> Board/ University </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.delhiUniversity}}
+                            {{element.university}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="subscriptionType">
                         <mat-header-cell *matHeaderCellDef>Subscription Type</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.subscriptionType}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.plan_type}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="planTaken">
                         <mat-header-cell *matHeaderCellDef> Plan Taken </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.planTaken}} </mat-cell>
+                            {{element.plan_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="onboardingFeesGross">
                         <mat-header-cell *matHeaderCellDef> Onboarding Fees Gross </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.onboardingFeesGross}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.original_price}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="onboardingFeesNet">
                         <mat-header-cell *matHeaderCellDef> Onboarding Fees Net </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.onboardingFeesNet}}
+                            {{element.amount}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="couponCodeApplied">
-                        <mat-header-cell *matHeaderCellDef> Coupon Code Applied  </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Coupon Code Applied </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.couponCodeApplied}}
+                            {{element.coupon_code}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="transictionId">
                         <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.transictionId}}
+                            {{element.txnid}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Action">
-                        <mat-header-cell *matHeaderCellDef class="text-center"> View Invoice </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef class="text-center"> Invoice </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="text-center justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
+                            <button type="button" (click)="generatePDF(element.txnid)"
+                                class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
+                                <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> Download</button>
                         </mat-cell>
                     </ng-container>
-
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
-
+                    <mat-header-row *matHeaderRowDef="subscriptionFee.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: subscriptionFee.displayedColumns; "></mat-row>
                 </mat-table>
+            </div>
+        </div>
 
+        <pagination-controls *ngIf="subscriptionFee.dataSource" (pageChange)="getSubscriptionRevenueList($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!subscriptionFee.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
         <!--End html for table content Alimni information-->
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

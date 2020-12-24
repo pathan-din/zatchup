@@ -54,7 +54,7 @@ export class AdminKycApprovalManagementComponent implements OnInit {
         if (res.status == true) {
           this.kycApprovalData = res.data;
           this.kycRequestsRaised = this.kycApprovalData.kyc_requests_raised;
-          this.kycRequestsCompleted = this.kycApprovalData.kyc_requests_completed;
+          this.kycRequestsCompleted = parseInt(this.kycApprovalData.kyc_request_completed.approved) + parseInt(this.kycApprovalData.kyc_request_completed.rejected)
           this.kycRetriggered = this.kycApprovalData.kyc_retriggered;
           // this.kycRequestsCompletedData = this.kycApprovalData.kyc_request_completed;
           this.kycRequestApproved = this.kycApprovalData.kyc_request_completed.approved;
@@ -82,7 +82,7 @@ export class AdminKycApprovalManagementComponent implements OnInit {
       (res: any) => {
         if(res.status == true){
           this.kycRequestsRaised = res.data.kyc_requests_raised;
-          this.kycRequestsCompleted = res.data.kyc_requests_completed;
+          this.kycRequestsCompleted = parseInt(res.data.approved) + parseInt(res.data.rejected);
           this.kycRequestRejected = res.data.rejected
 
         }

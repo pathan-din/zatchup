@@ -1,0 +1,98 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0"> Configure Onboarding Fee</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row" *ngIf="dataSource && dataSource.length == 0">
+                <button type="button" class="bg-dark text-white px-4 py-2 border-0" aria-hidden="true"
+                    data-toggle="modal" data-target="#addSubscriptionModel">Add Onboarding Fee</button>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-3" *ngIf="dataSource && dataSource.length > 0">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="currentAmount">
+                        <mat-header-cell *matHeaderCellDef> Current Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-green">
+                            <a class="a-cursor-pointer" aria-hidden="true " data-toggle="modal"
+                                data-target="#addSubscriptionModel" (click)="updateSubscription(element)">Change</a>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="dataSource && dataSource.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+
+
+        <!-- SubscriptionModel  -->
+        <div class="modal fade" id="addSubscriptionModel" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">
+                            {{onboardingModal.modalHeader}} Onboarding Fee</h2>
+                        <button #closebutton type="button"
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <form (ngSubmit)="addSubscriptionForm.form.valid && addOnboardingFee()"
+                            #addSubscriptionForm="ngForm" novalidate>
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Current Amount
+                                        </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <input
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter Current Amount" name="currentAmount"
+                                                [(ngModel)]="onboardingModal.currentAmount" #currentAmount="ngModel"
+                                                [ngClass]="{ 'is-invalid': addSubscriptionForm.submitted && currentAmount.invalid }"
+                                                numberOnly required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                {{onboardingModal.modalHeader == 'Add' ? 'Add' : 'Update'}} </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

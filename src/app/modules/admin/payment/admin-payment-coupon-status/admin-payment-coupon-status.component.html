@@ -1,18 +1,20 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="eiMangPendingForApproval-div bg-white border border-gray mt-3 px-3 py-3">
-
-        <!--start html for payment OnBoarding information Filter-->
-        <div class="filterDiv">
-            <h2 class="commonFontSize semiBoldFont m-0"> {{couponList.title}} Coupons </h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0"> {{couponList.title}} Coupons </h2>
+            </div>
         </div>
-        <!--End html for payment OnBoarding information Filter-->
 
         <!--Start html for "select no of Onboarding Fees in database info per page" and Export Button-->
         <div class="row my-3" *ngIf="couponList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Number of Coupons in Database
+                <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Count
                     Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getCouponList('1')"
@@ -110,7 +112,8 @@
                     <ng-container matColumnDef="expireCouponButton">
                         <mat-header-cell *matHeaderCellDef> Expire Coupon Button </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-exclamation-triangle mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i class="fa fa-exclamation-triangle mr-2 color-red fa-lg cursorStyle"
+                                aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
