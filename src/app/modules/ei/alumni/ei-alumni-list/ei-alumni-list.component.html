@@ -194,7 +194,7 @@
                     <ng-container matColumnDef="VerificationStatusByEI">
                         <mat-header-cell *matHeaderCellDef> Verification Status By EI </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button class="{{element.VerificationStatusByEI=='Approved'?'bg-paret-green':'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                            <button class="{{element.VerificationStatusByEI=='Approved'?'bg-paret-green':'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
                                 {{element.VerificationStatusByEI}} </button>
                                
                         </mat-cell>
@@ -203,7 +203,7 @@
                     <ng-container matColumnDef="EKYCVerificationStatus">
                         <mat-header-cell *matHeaderCellDef> EKYC Verification Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
                                 {{element.EKYCVerificationStatus}}</button> </mat-cell>
                     </ng-container>
 
