@@ -31,13 +31,8 @@
                 </div>
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
-<<<<<<< HEAD
-                    <div class="col-sm-12 form-control-inputDiv">                        
-                        <select (change)="displayStandardList(model.course_id) " name="course" [(ngModel)]="model.course_id" class="custom-select form-control-input" required>
-=======
                     <div class="col-sm-12 p-0 form-control-inputDiv">                        
                         <select (change)="displayStandardList(course_id) " name="course" [(ngModel)]="course_id" class="custom-select form-control-input" required>
->>>>>>> c4e3da41f4b5610e0b9e5f6f062633d467d1525a
                             <option value="">Select Course </option>
                             <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">{{courseObj.course_name}}</option>
                             
@@ -67,13 +62,8 @@
                 
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Joining standard</label>
-<<<<<<< HEAD
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <select  (change)="displayClassList(model.join_standard_id)"  name="join_standard" [(ngModel)]="model.join_standard_id" class="custom-select form-control-input" required>
-=======
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select  (change)="displayClassList(model.join_standard_id)"  name="join_standard" [(ngModel)]="model.standard_id" class="custom-select form-control-input" required>
->>>>>>> c4e3da41f4b5610e0b9e5f6f062633d467d1525a
                             <option value="">Select Join Standard </option>
                             <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
                              
@@ -83,13 +73,8 @@
                 </div>
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Current standard</label>
-<<<<<<< HEAD
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <select  (change)="displayClassList(model.current_standard_id)"  name="current_standard" [(ngModel)]="model.current_standard_id" class="custom-select form-control-input" required>
-=======
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select  (change)="displayClassList(model.current_standard_id)"  name="current_standard" [(ngModel)]="model.standard_id" class="custom-select form-control-input" required>
->>>>>>> c4e3da41f4b5610e0b9e5f6f062633d467d1525a
                             <option value="">Select Curent Standard </option>
                             <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
                              

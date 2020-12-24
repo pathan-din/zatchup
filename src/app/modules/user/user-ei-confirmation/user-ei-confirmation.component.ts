@@ -6,6 +6,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -32,7 +33,8 @@ export class UserEiConfirmationComponent implements OnInit {
     public baseService: BaseService,
     public eiService:EiServiceService,
     private genericFormValidationService:GenericFormValidationService,
-    public formBuilder: FormBuilder) { }
+    public formBuilder: FormBuilder,
+    public alert:NotificationService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(parrams=>{
@@ -47,6 +49,32 @@ export class UserEiConfirmationComponent implements OnInit {
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');
     this.router.navigate(['user/profile-created']);
+ }
+
+ deleteCourse(course_id){
+    try {
+        let model:any={};
+        model.course_id = course_id;
+        this.SpinnerService.show()
+        this.baseService.action("",model).subscribe(res=>{
+          let response :any ={};
+          response = res;
+          if(response.status==true){
+            this.SpinnerService.hide()
+            this.alert.success("Course delete succesfully","Success");
+          }else{
+            this.SpinnerService.hide()
+            this.alert.warning("Course not delete succesfully","Warning");
+          }
+
+        },(error=>{
+
+          this.SpinnerService.hide()
+          this.alert.error(error,"Error");
+        }))
+    } catch (e) {
+      this.alert.error(e.error,"Error");
+    }
  }
  addPastEi(){
   $("#OTPModel").modal('hide');
