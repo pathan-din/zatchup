@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../../services/user/users-service.service';
 import { BaseService } from '../../../services/base/base.service';
@@ -13,7 +13,9 @@ declare var $: any;
   templateUrl: './user-ei-confirmation.component.html',
   styleUrls: ['./user-ei-confirmation.component.css']
 })
+
 export class UserEiConfirmationComponent implements OnInit {
+  
   model: any = {};
   /*Using Validation For Manage Error Concept*/
   error: any = [];
@@ -43,12 +45,15 @@ export class UserEiConfirmationComponent implements OnInit {
   
 
   goToUserProfileCreatedPage() {
+    $("#OTPModel").modal('hide');
     this.router.navigate(['user/profile-created']);
  }
  addPastEi(){
+  $("#OTPModel").modal('hide');
   this.router.navigate(['user/add-ei'],{queryParams:{"title":"past"}});
  }
  addAnotherCourse(){
+  $("#OTPModel").modal("hide");
   this.router.navigate(['user/add-more-standard'],{queryParams:{"school_id":this.school_id }});
  }
  getConfirmationDetails(){
