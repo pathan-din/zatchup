@@ -116,15 +116,14 @@ export class BaseService {
         formData.append(key, data[key]);
 
       }
-      console.log(formData);
+      
     });
     return formData;
   }
 
   //server Side Validation function
   getErrorResponse(SpinnerService, errors) {
-    console.log(errors);
-
+    
     SpinnerService.hide();
     var errorCollection = '';
     let displayError = {};
