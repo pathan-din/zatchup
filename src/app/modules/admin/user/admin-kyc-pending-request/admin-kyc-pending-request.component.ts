@@ -1,6 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,6 +16,7 @@ export class AdminKycPendingRequestComponent implements OnInit {
   kycPendingRequest: KycPendingRequest;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private datePipe: DatePipe,
     private baseService: BaseService,
@@ -28,6 +29,9 @@ export class AdminKycPendingRequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.setFilter(Object.keys(params)[0], Object.values(params)[0]);
+    });
     this.getKycPendingRequest('')
   }
 
@@ -44,7 +48,7 @@ export class AdminKycPendingRequestComponent implements OnInit {
       'request_type': this.kycPendingRequest.requestType !== undefined ? this.kycPendingRequest.requestType : '',
       'request_reason': this.kycPendingRequest.requestReason !== undefined ? this.kycPendingRequest.requestReason : '',
       'page_size': this.kycPendingRequest.pageSize,
-      'page': page ? page : 1
+      'page': page
     }
     this.baseService.getData('admin/kyc/get_kyc_pending_summary/', this.kycPendingRequest.params).subscribe(
       (res: any) => {
@@ -74,7 +78,28 @@ export class AdminKycPendingRequestComponent implements OnInit {
     this.baseService.generateExcel('admin/kyc/export_kyc_pending/', 'kyc-pending', this.kycPendingRequest.params);
   }
 
-  goBack(): void{
+  goBack(): void {
     this.location.back();
+  }
+
+  setFilter(type: any, value: any) {
+    // debugger
+    if (type == 'user-type' && value != 'list') {
+      this.kycPendingRequest.userType = value
+    } else if (type == 'kyc-type' && value != 'list') {
+      this.kycPendingRequest.kycType = value
+    } else if (type == 'request-type' && value != 'list') {
+      if(value == 'first-time')
+        this.kycPendingRequest.requestType = "0"
+      else
+      this.kycPendingRequest.requestType = "1"
+    } else if (type == 'request-reason' && value != 'list') {
+      if(value == 'fresh-singup')
+        this.kycPendingRequest.requestReason = "1"
+      else
+      this.kycPendingRequest.requestReason = "2"
+    } else {
+
+    }
   }
 }

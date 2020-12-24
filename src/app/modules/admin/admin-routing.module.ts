@@ -258,7 +258,7 @@ const routes: Routes = [
     path: 'payment-coupon-codes', component: AdminPaymentCouponComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'onboarded-on-zatchup-list', component: OnboardedOnZatchupListComponent, canActivate: [AuthGuard]
+    path: 'onboarded-on-zatchup-list/:type', component: OnboardedOnZatchupListComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-onboarding-request-history', component: OnboardingRequestHistoryComponent, canActivate: [AuthGuard]

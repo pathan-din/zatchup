@@ -23,6 +23,7 @@ export class AdminKycApprovalManagementComponent implements OnInit {
   kycRequestsRaised : any;
   kycRequestsCompleted: any;
   kycRetriggered: any;
+  type: any
   // kycRequestsCompletedData: any
   kycRequestApproved: any;
   kycRequestRejected: any;
@@ -44,8 +45,20 @@ export class AdminKycApprovalManagementComponent implements OnInit {
     this.router.navigate(['admin/completed-kyc'])
   }
 
-  kycPendingReqRoute() {
-    this.router.navigate(['admin/kyc-pending-request'])
+  kycPendingReqRoute_1(type: any) {
+    this.router.navigate(['admin/kyc-pending-request'], { queryParams: {"request-reason": type}})
+  }
+
+  kycPendingReqRoute_2(type: any) {
+    this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"request-type": type}})
+  }
+
+  kycPendingReqRoute_3(type: any) {
+    this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"user-type": type}})
+  }
+
+  kycPendingReqRoute_4(type: any) {
+    this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"kyc-type": type}})
   }
 
   getKycApprovalData() {
