@@ -73,8 +73,10 @@ export class KycVerifiedUsersComponent implements OnInit {
           this.kycVerified.config.itemsPerPage = this.kycVerified.page_size
           this.kycVerified.config.currentPage = page
           this.kycVerified.config.totalItems = res.count;
-          if(res.count > 0)
-          this.kycVerified.dataSource = res.results
+          if(res.count > 0){
+            this.kycVerified.pageCount = this.baseService.getCountsOfPage();
+            this.kycVerified.dataSource = res.results
+          }
           else
           this.kycVerified.dataSource = undefined
         }

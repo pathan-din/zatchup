@@ -70,8 +70,10 @@ export class UsersSignedUpZatchupComponent implements OnInit {
           this.signupUsers.config.itemsPerPage = this.signupUsers.page_size
           this.signupUsers.config.currentPage = page
           this.signupUsers.config.totalItems = res.count;
-          if(res.count > 0)
-          this.signupUsers.dataSource = res.results
+          if(res.count > 0){
+            this.signupUsers.dataSource = res.results
+            this.signupUsers.pageCount = this.baseService.getCountsOfPage()
+          }
           else
           this.signupUsers.dataSource = undefined   
         }

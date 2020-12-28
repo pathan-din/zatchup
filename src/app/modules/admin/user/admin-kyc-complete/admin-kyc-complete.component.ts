@@ -84,8 +84,10 @@ export class AdminKycCompleteComponent implements OnInit {
           this.completeKycList.config.itemsPerPage = res.page_size
           this.completeKycList.config.currentPage = page
           this.completeKycList.config.totalItems = res.count;
-          if (res.count > 0)
-            this.completeKycList.dataSource = res.results
+          if (res.count > 0){
+            this.completeKycList.dataSource = res.results;
+            this.completeKycList.pageCount = this.baseService.getCountsOfPage();
+          }
           else
             this.completeKycList.dataSource = undefined
         }

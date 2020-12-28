@@ -14,8 +14,8 @@ import { KycVerifiedByEi } from '../modals/admin-user.modal';
 export class KycVerifiedByEiComponent implements OnInit {
   kycVerifiedByEi: KycVerifiedByEi
   maxDate: any;
-  kycApproved: any= '';
-  status: any= '';
+  kycApproved: any = '';
+  status: any = '';
 
   constructor(
     private router: Router,
@@ -24,7 +24,7 @@ export class KycVerifiedByEiComponent implements OnInit {
     private alert: NotificationService,
     private baseService: BaseService,
     private datePipe: DatePipe
-  ) { 
+  ) {
     this.kycVerifiedByEi = new KycVerifiedByEi();
     this.maxDate = new Date();
 
@@ -61,7 +61,7 @@ export class KycVerifiedByEiComponent implements OnInit {
       "current_ei": this.kycVerifiedByEi.currentEi,
       "previous_ei": this.kycVerifiedByEi.previousEi,
       "age_group": this.kycVerifiedByEi.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
+      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved : '',
       "status": this.status !== undefined ? this.status : '',
     }
 
@@ -75,8 +75,10 @@ export class KycVerifiedByEiComponent implements OnInit {
           this.kycVerifiedByEi.page_size = res.page_size
           this.kycVerifiedByEi.config.currentPage = page
           this.kycVerifiedByEi.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0) {
             this.kycVerifiedByEi.dataSource = res.results
+            this.kycVerifiedByEi.pageCount = this.baseService.getCountsOfPage();
+          }
           else
             this.kycVerifiedByEi.dataSource = undefined
         }
@@ -96,31 +98,31 @@ export class KycVerifiedByEiComponent implements OnInit {
     this.baseService.generateExcel('admin/user/export_users_verified_ei_list/', 'kyc-verified-by-ei', this.kycVerifiedByEi.listParams);
   }
 
-  goBack(){
+  goBack() {
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     this.router.navigate([returnUrl])
   }
 
-  getAllState(){
+  getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
         console.log('get state res ::', res)
-        if (res.count >0)
-        this.kycVerifiedByEi.allStates = res.results
+        if (res.count > 0)
+          this.kycVerifiedByEi.allStates = res.results
       }
     )
   }
-  getCities(){
+  getCities() {
     this.baseService.getData('user/getcitybystateid/' + this.kycVerifiedByEi.stateId).subscribe(
       (res: any) => {
         if (res.count > 0)
-        this.kycVerifiedByEi.allCities = res.results
+          this.kycVerifiedByEi.allCities = res.results
         console.log('get state res ::', res)
       }
     )
   }
 
-  userProfile(id: any){
+  userProfile(id: any) {
     this.router.navigate(['admin/user-profile', id])
   }
 }

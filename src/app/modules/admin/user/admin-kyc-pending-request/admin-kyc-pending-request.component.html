@@ -97,9 +97,9 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getKycPendingRequest('1')" [(ngModel)]="kycPendingRequest.pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of kycPendingRequest.pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>

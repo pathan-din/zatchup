@@ -74,8 +74,10 @@ export class ActiveUsersComponent implements OnInit {
           this.activeUsers.page_size = res.page_size
           this.activeUsers.config.currentPage = page
           this.activeUsers.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
             this.activeUsers.dataSource = res.results
+            this.activeUsers.pageCount = this.baseService.getCountsOfPage();
+          }
           else
             this.activeUsers.dataSource = undefined
         }

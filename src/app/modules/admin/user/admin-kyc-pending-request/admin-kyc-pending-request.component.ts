@@ -60,6 +60,7 @@ export class AdminKycPendingRequestComponent implements OnInit {
           this.kycPendingRequest.config.currentPage = page
           this.kycPendingRequest.config.totalItems = res.count;
           this.kycPendingRequest.dataSource = res.results
+          this.kycPendingRequest.pageCount = this.baseService.getCountsOfPage();
         }
         else
           this.alert.error(res.error.message[0], 'Error')
