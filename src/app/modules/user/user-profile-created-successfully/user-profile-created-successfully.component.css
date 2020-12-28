@@ -5,6 +5,24 @@
     width: 40%;
 }
 
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .mobilePR{
+        padding-right: 0!important;
+    }
+    .mobilePLR{
+        padding-left: 1.5rem!important;
+        padding-right: 1.5rem!important;
+    }
+}
+
+@media (min-width: 415px) and (max-width:1024px){
+    .kycVerificationleftImage{
+        width: 100%;
+        padding-bottom: 0!important;
+    }
+}
+
 @media only screen and (max-width: 414px) {
     .kycVerificationleftImage{
         display: none;
@@ -15,19 +33,6 @@
     .mobilePTB{
         padding-top: 0!important;
         padding-bottom: 0!important;
-    }
-    .mobilePLR{
-        padding-left: 1.5rem!important;
-        padding-right: 1.5rem!important;
-    }
-}
-@media (min-width: 768px) and (max-width: 1024px) {
-    .kycVerificationleftImage{
-        width: 90%;
-        padding-bottom: 0!important;
-    }
-    .mobilePR{
-        padding-right: 0!important;
     }
     .mobilePLR{
         padding-left: 1.5rem!important;
