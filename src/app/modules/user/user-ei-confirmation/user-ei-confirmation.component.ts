@@ -51,26 +51,27 @@ export class UserEiConfirmationComponent implements OnInit {
     this.router.navigate(['user/profile-created']);
  }
 
- deleteCourse(course_id){
+ deleteCourse(standard_id){
     try {
         let model:any={};
-        model.course_id = course_id;
+        model.standard_id = standard_id;
         this.SpinnerService.show()
-        this.baseService.action("",model).subscribe(res=>{
+        this.baseService.action("user/delete-standard-detail-by-student/",model).subscribe(res=>{
           let response :any ={};
           response = res;
           if(response.status==true){
             this.SpinnerService.hide()
-            this.alert.success("Course delete succesfully","Success");
+            this.alert.success(response.message,"Success");
           }else{
-            this.SpinnerService.hide()
-            this.alert.warning("Course not delete succesfully","Warning");
+            this.SpinnerService.hide();
+            var error = this.eiService.getErrorResponse(this.SpinnerService,response.error);
+            this.alert.error(error,"Error");
           }
 
         },(error=>{
 
           this.SpinnerService.hide()
-          this.alert.error(error,"Error");
+          this.alert.error(error.error,"Error");
         }))
     } catch (e) {
       this.alert.error(e.error,"Error");
