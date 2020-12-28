@@ -9,7 +9,7 @@ import { BaseService } from 'src/app/services/base/base.service';
   styleUrls: ['./notification-list.component.css']
 })
 export class NotificationListComponent implements OnInit {
-  dataSource: any;
+  dataSource: any = [];
   displayedColumns: string[] = ['SNo', 'NotificationMessage', 'Time'];
 
   constructor(
