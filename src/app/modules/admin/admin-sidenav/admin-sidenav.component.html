@@ -101,17 +101,28 @@
 
             <span class="h-100 logo_span d-flex align-items-center justify-content-center"><img
                     src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></span>
+            <span class="spacer"></span> 
+            
+            <!-- <select class="custom-select form-control-input" style="width: 180px;" name="" id="" selected>
+                <option>Notification 1</option>
+                <option>Notification 2</option>
+                <option>Notification 3</option>
+                <option>Notification 4</option>
+            </select> -->
+            
             <span class="spacer"></span>
-            <a (click)="notificationList()" class="text-black cursorStyle"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i><sup class="color-white " 
+            <a (click)="notificationList()" class="text-black cursorStyle position-relative"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i><sup class="color-white " 
                 style="background: #22c123;
-                padding: 5px;
+                padding: 4px;
                 border-radius: 50px;
-                width: 25px;
-                height: 25px;
+                width: 20px;
+                height: 20px;
                 display: inline-block;
                 line-height: initial;
                 text-align: center;
-                font-size: 14px;">{{notificationCount? notificationCount : 0}}</sup></a>                
+                font-size: 11px;
+                position: absolute;
+                left: 18px">{{notificationCount? notificationCount : 0}}</sup></a>                
             <a class="text-white ml-4 commonFontSize semiBoldFont">
                 <img src="assets/images/userWebsite/EI-profile-icon.png"
                     class="rounded-circle bg-light-green header-dp">
