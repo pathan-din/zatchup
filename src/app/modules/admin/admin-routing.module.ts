@@ -120,6 +120,7 @@ import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
 import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
+import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 
 const routes: Routes = [
   {
@@ -478,6 +479,9 @@ const routes: Routes = [
   },
   {
     path: 'configure-onboarding-fee', component: OnboardingFeeConfigureComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'notification-list', component: NotificationListComponent, canActivate: [AuthGuard]
   },
 
 

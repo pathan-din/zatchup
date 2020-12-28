@@ -16,8 +16,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class AdminSidenavComponent implements OnInit {
   menus: any;
   moduleList: any;
-  user_type: any
-  userData: any
+  user_type: any;
+  userData: any;
+  notificationCount: any
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -54,6 +55,7 @@ export class AdminSidenavComponent implements OnInit {
     if (localStorage.getItem('user_type'))
       this.user_type = localStorage.getItem('user_type')
     this.getUserInfo();
+    this.getNotificationCount()
 
   }
 
@@ -114,7 +116,20 @@ export class AdminSidenavComponent implements OnInit {
     )
   }
 
-  goBack(){
+  getNotificationCount() {
+    this.baseService.getData('admin/get_notifications_count/').subscribe(
+      (res: any) => {
+        if (res.status == true)
+          this.notificationCount = res.data.unread_notifications_count
+      }
+    )
+  }
+
+  notificationList() {
+    this.router.navigate(['admin/notification-list'])
+  }
+
+  goBack() {
     this.location.back()
   }
 }
