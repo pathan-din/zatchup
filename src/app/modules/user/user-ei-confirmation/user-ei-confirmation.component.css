@@ -24,8 +24,19 @@
 }
 
 .small-size {
-    width: 18px;
     float: right;
+    height: 18px;
+    margin: 3px;
+}
+
+label {
+    display: flex;
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    zoom: 1.4;
 }
 
 .topHeadingLeftSpace {

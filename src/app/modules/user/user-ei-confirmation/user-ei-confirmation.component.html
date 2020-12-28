@@ -54,10 +54,10 @@
                 </div>
 
                 <div class="form-group row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
-                    <div class="col-12 pb-2">
-                        <img src="assets/images/userWebsite/edit.png"  class="img-fluid small-size cursorStyle pr-2" >
-                        <img src="assets/images/userWebsite/delete.png" (click)="openModel(standardData.standard_id)" class="img-fluid small-size cursorStyle">
-
+                    <div class="col-12 pb-2 text-right">
+                        <img src="assets/images/userWebsite/edit.png"  class="img-fluid small-size cursorStyle pl-2" >
+                        <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
+                        <span (click)="deleteCourse(standardData.standard_id)" >Skip</span>
                     </div>
                     <div class="col-12 pb-1">
                         Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
@@ -148,10 +148,10 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="m-0" type="radio" > Current Course </label>
+                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current Course </label>
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="m-0" type="radio" > Past EI </label>
+                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past EI </label>
                         </div>
                     </div>
                 </div>
