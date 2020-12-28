@@ -68,8 +68,10 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
           this.changeDetailRequestsPending.config.itemsPerPage = this.changeDetailRequestsPending.page_size
           this.changeDetailRequestsPending.config.currentPage = page
           this.changeDetailRequestsPending.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
             this.changeDetailRequestsPending.dataSource = res.results
+            this.changeDetailRequestsPending.pageCount = this.baseService.getCountsOfPage()
+          }
           else
             this.changeDetailRequestsPending.dataSource = undefined
         }

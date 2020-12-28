@@ -83,8 +83,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
           this.onboardList.config.itemsPerPage = res.page_size
           this.onboardList.config.currentPage = page
           this.onboardList.config.totalItems = res.count;
-          if (res.count > 0){
-            this.onboardList.pageCounts = this.baseService.getCountsOfPage(res.count);
+          if (res.count > 0) {
+            this.onboardList.pageCounts = this.baseService.getCountsOfPage();
             this.onboardList.dataSource = res.results;
           }
           else
@@ -175,7 +175,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       this.loader.hide();
     }
   }
-  goBack(): void{
+  goBack(): void {
     this.location.back();
     console.log(location)
   }
@@ -204,7 +204,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       "page_size": this.onboardList.pageSize,
       "page": page
     }
-    this.loader.show(); 
+    this.loader.show();
     this.baseService.getData('admin/ei_search/', this.onboardList.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {

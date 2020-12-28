@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from 'src/app/services/base/base.service';
@@ -27,7 +27,6 @@ export class AdminSchoolManagementComponent implements OnInit {
 
   constructor(
     private validationService: GenericFormValidationService,
-    private activatedRoute: ActivatedRoute,
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     private baseService: BaseService,
@@ -35,7 +34,6 @@ export class AdminSchoolManagementComponent implements OnInit {
     private alert: NotificationService
   ) {
     this.maxDate = new Date();
-    console.log(this.router.url)
   }
 
   ngOnInit() {
@@ -50,7 +48,6 @@ export class AdminSchoolManagementComponent implements OnInit {
       this.SpinnerService.show();
 
       this.baseService.getData('admin/ei/get_school_ei_dashboard_summary/').subscribe(res => {
-        console.log(res);
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
@@ -63,7 +60,6 @@ export class AdminSchoolManagementComponent implements OnInit {
         }
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
       });
     }
     catch (e) {

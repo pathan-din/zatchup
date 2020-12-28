@@ -58,8 +58,8 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university": this.notOnZatchup.university,
-      "page_size": this.notOnZatchup.pageSize ? this.notOnZatchup.pageSize : 5,
-      "page": page ? page : 1
+      "page_size": this.notOnZatchup.pageSize,
+      "page": page
     }
 
     this.baseService.getData('admin/ei/get_ei_list_not_onZatchUp/', this.notOnZatchup.listParams).subscribe(
@@ -71,8 +71,10 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
           this.notOnZatchup.config.itemsPerPage = res.page_size
           this.notOnZatchup.config.currentPage = page
           this.notOnZatchup.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
             this.notOnZatchup.dataSource = res.results
+            this.notOnZatchup.pageCount = this.baseService.getCountsOfPage()
+          }
           else
             this.notOnZatchup.dataSource = undefined
         }

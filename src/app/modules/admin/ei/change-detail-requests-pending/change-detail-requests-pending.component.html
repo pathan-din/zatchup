@@ -111,9 +111,10 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="filterData('1')" [(ngModel)]="changeDetailRequestsPending.page_size"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of changeDetailRequestsPending.pageCount" value="{{count}}">{{count}}
+                        </option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
@@ -197,8 +198,8 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" title="View Details" aria-hidden="true" 
-                                routerLink="/admin/change-details-request-view/{{element.id}}"></i>
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" title="View Details"
+                                aria-hidden="true" routerLink="/admin/change-details-request-view/{{element.id}}"></i>
                             <!-- <i class="fa fa-envelope color-green cursorStyle" aria-hidden="true" title="View"></i> -->
                         </mat-cell>
                     </ng-container>
