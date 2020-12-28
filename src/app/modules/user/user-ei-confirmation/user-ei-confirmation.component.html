@@ -55,26 +55,28 @@
 
                 <div class="form-group row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
                     <div class="col-12 pb-2">
+                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle pr-2" >
                         <img src="assets/images/userWebsite/delete.png" class="img-fluid small-size cursorStyle">
+
                     </div>
                     <div class="col-12 pb-1">
                         Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
+                        
                     </div>
 
                     <div class="col-12 pb-1">
                         Starting Year : <span class="text-dark mediumFont">{{standardData.standard_start_year}}</span>
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
+                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
 
                     <div class="col-12 pb-1">
                         Ending Year : <span class="text-dark mediumFont">{{standardData.standard_end_year}}</span>
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
+                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
 
                     <div class="col-12 pb-1">
                         Section : <span class="text-dark mediumFont"> {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span>
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
+                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>                             
                 </div>
 
