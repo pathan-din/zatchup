@@ -32,7 +32,7 @@ export class KycPendingRequest {
   }
   dataSource: any;
   params: { date_from: string; date_to: string; kyc_type: any; user_type: any; request_type: any; request_reason: any; page_size: any; page: any; };
-
+  pageCount: any
 };
 export class CompleteKycList {
   startIndex: number;
@@ -48,4 +48,5 @@ export class CompleteKycList {
   }
   dataSource: any;
   params: { date_from: string; date_to: string; kyc_type: any; user_type: any; status: any; request_type: any; request_reason: any; page_size: any; page: any; };
+  pageCount: any;
 }

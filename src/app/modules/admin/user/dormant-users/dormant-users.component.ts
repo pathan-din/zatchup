@@ -74,8 +74,10 @@ export class DormantUsersComponent implements OnInit {
           this.dormantUsers.page_size = res.page_size
           this.dormantUsers.config.currentPage = page
           this.dormantUsers.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
             this.dormantUsers.dataSource = res.results
+            this.dormantUsers.pageCount = this.baseService.getCountsOfPage();
+          }
           else
             this.dormantUsers.dataSource = undefined
         }
