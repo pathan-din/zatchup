@@ -31,16 +31,15 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB cursorStyle">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
-                    (click)="goToEIOnboardedOnZatchupList()">
-                    <p class="p-2 mediumFont commonFontSize">EI Onboard On ZatchUp</p>
-                    <h2 class="countFontSize text-center semiBoldFont">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <p class="p-2 mediumFont commonFontSize" (click)="goToEIOnboardedOnZatchupList('list')">EI Onboard On ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont" (click)="goToEIOnboardedOnZatchupList('list')">
                         {{responseJson?.total_ei_on_zatchup}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last bg-light-secondary">
-                        <p class="mb-0 ">Active Subscription Plan:
+                        <p class="mb-0 " (click)="goToEIOnboardedOnZatchupList('active')">Active Subscription Plan:
                             <span class="ml-2">{{responseJson?.ei_onboarded_zatch.active_subscription_plans}}</span></p>
-                        <p class="mb-0 ">Expired Subscription Plan:
+                        <p class="mb-0 " (click)="goToEIOnboardedOnZatchupList('expired')">Expired Subscription Plan:
                             <span class="ml-2">{{responseJson?.ei_onboarded_zatch.expired_subscription_plans}}</span>
                         </p>
                     </div>
@@ -84,7 +83,8 @@
                 </div>
             </div>
             <div class="col-md-4 cursorStyle">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="changeDetailRequestsPending()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
+                    (click)="changeDetailRequestsPending()">
                     <p class="p-2 mediumFont commonFontSize">EI Change Detail Requests are Pending</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{responseJson?.ei_change_details_request_pending}}</h2>

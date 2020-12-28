@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
                     <div class="col-sm-12 form-control-inputDiv p-0">                        
-                        <select (change)="displayStandardList(course_id) " name="course" [(ngModel)]="course_id" class="custom-select form-control-input" required>
+                        <select (change)="displayStandardList(model.course_id) " name="course" [(ngModel)]="model.course_id" class="custom-select form-control-input" required>
                             <option value="">Select Course </option>
                             <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">{{courseObj.course_name}}</option>
                             <option value="others">Others </option>
@@ -68,7 +68,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                 </div>
 <!-- Other School Case-->
-<div *ngIf="course_id=='others'">
+<div *ngIf="model.course_id=='others'">
 <div class="form-group row">
     <div class="col-sm-12 p-0">
         <label for="" class="mediumFont commonFontSize letterspacing">Course Type</label>
@@ -118,11 +118,11 @@
     (click)="addCourseNewData()">Add</button>
     </div>
 <!--End Other Course List Code-->
-<div *ngIf="course_id!='others'">
+<div *ngIf="model.course_id!='others'">
 
 
 
-                <div class="form-group row" *ngIf="course_id">
+                <div class="form-group row" *ngIf="model.course_id">
                     
                     <label for="" class="mediumFont commonFontSize letterspacing">Course Start Year</label>
                     <div class="col-sm-12 form-control-inputDiv">                        
@@ -131,7 +131,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course_start_year"></div>
                 
                 </div>
-                <div class="form-group row" *ngIf="course_id">
+                <div class="form-group row" *ngIf="model.course_id">
                 
                     <label for="" class="mediumFont commonFontSize letterspacing">Course End Year</label>
                     <div class="col-sm-12 form-control-inputDiv">                        

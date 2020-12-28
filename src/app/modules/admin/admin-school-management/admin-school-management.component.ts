@@ -76,8 +76,8 @@ export class AdminSchoolManagementComponent implements OnInit {
     this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/school-management' } })
   }
 
-  goToEIOnboardedOnZatchupList() {
-    this.router.navigate(['admin/onboarded-on-zatchup-list'])
+  goToEIOnboardedOnZatchupList(type: any) {
+    this.router.navigate(['admin/onboarded-on-zatchup-list', type])
   }
 
   goToAdminEiManagementIncompleteOnBoardingPage() {

@@ -55,7 +55,11 @@
                     </div>
                 </div>
 
-                <div class="form-group row form-control-inputDiv border-0 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
+                <div class="form-group row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
+                    <div class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col ">
+                         
+                        <img src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
+                    </div>   
                     <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0">
                         Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
                     </div>
@@ -67,8 +71,8 @@
                         Ending Year : <span class="text-dark mediumFont">{{standardData.standard_end_year}}</span>
                     </div>
                     <div class="col-12 form-control-input commonFontSize pl-0">Section :<span
-                            class="text-dark mediumFont"> {{standardData.class_detail[0].class_name}}</span></div>
-
+                            class="text-dark mediumFont"> {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span></div>
+                             
                 </div>
 
                 <!-- <div class="form-group row form-control-inputDiv border-0 rounded-0">
@@ -88,7 +92,7 @@
                 </div> -->
             </div>
             </div>
-                <div  (click)="addAnotherCourse()" class="form-group cursorStyle row align-items-center">
+                <div  data-target="#OTPModel" data-toggle="modal" class="form-group cursorStyle row align-items-center">
 
                     <div class="col-xl-1 col-lg-1  col-md-2 col-2 form-control-fileDiv p-0">
                         <button class="background-purple border-0"><img src="assets/images/userWebsite/add.png"
@@ -100,7 +104,7 @@
                     </div>
 
                 </div>
-                <div (click)="addPastEi()" class="form-group cursorStyle row align-items-center">
+                <!-- <div (click)="addPastEi()" class="form-group cursorStyle row align-items-center">
 
                     <div class="col-xl-1 col-lg-1  col-md-2 col-2 form-control-fileDiv p-0">
                         <button class="background-purple border-0"><img src="assets/images/userWebsite/add.png"
@@ -113,7 +117,7 @@
 
                     
                    
-                </div>
+                </div> -->
                 <button type="submit " class="color-white mt-4 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
                 (click)="goToUserProfileCreatedPage()">Confirm & Send for EI Verification</button>
 
@@ -127,5 +131,34 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
     <p style="color: white">Please Wait. </p>  
 </ngx-spinner> 
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+           
+            <div class="modal-body pl-5 pr-5 text-center">
+                <!-- <form class="pl-5 pr-5"> -->
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                <p class="color-black regularFont commonFontSize">Select One </p>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-between">
+                        <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past"
+                            class=""
+                            type="radio" >Current Course
+                        <input (change)="addPastEi()" id="current_and_past2" name="current_and_past"
+                            class=""
+                            type="radio" >Past EI
+                        
+                    </div>
+                </div>
+                 
+              
 
+                
+                <!-- </form> -->
+
+            </div>
+        </div>
+    </div>
+</div>
 <!-- <app-user-footer></app-user-footer> -->
