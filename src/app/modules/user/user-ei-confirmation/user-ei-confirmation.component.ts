@@ -7,6 +7,7 @@ import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 declare var $: any;
 
 @Component({
@@ -38,6 +39,7 @@ export class UserEiConfirmationComponent implements OnInit {
     public eiService:EiServiceService,
     private genericFormValidationService:GenericFormValidationService,
     public formBuilder: FormBuilder,
+    private confirmDialogService: ConfirmDialogService,
     public alert:NotificationService) { }
 
   ngOnInit(): void {
@@ -56,38 +58,62 @@ export class UserEiConfirmationComponent implements OnInit {
     this.router.navigate(['user/profile-created']);
  }
 /**Delete Course  */
-deleteCourse(course_id){
 
- // 
- try {
-  let model:any={};
-  model.course_id = course_id;
-  this.SpinnerService.show()
-  this.baseService.action("user/delete-course-standard-detail-by-student/",model).subscribe(res=>{
-    let response :any ={};
-    response = res;
-    if(response.status==true){
-      this.SpinnerService.hide()
+deleteCourse(id: any): any {
 
-      this.alert.success(response.message,"Success");
-      location.reload();
-    }else{
+  this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+    this.SpinnerService.show()
+    let model:any={};
+    model.course_id = id;
+    this.baseService.action('user/delete-course-standard-detail-by-student/', model).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.alert.success(res.message, "Success")
+          this.getConfirmationDetails();
+        } else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+        this.SpinnerService.hide();
+      }
+    ), err => {
+      this.alert.error(err.error, 'Error')
       this.SpinnerService.hide();
-      var error = this.eiService.getErrorResponse(this.SpinnerService,response.error);
-      this.alert.error(error,"Error");
-     
     }
-
-  },(error=>{
-
-    this.SpinnerService.hide()
-    this.alert.error(error.error,"Error");
-  }))
-} catch (e) {
-this.alert.error(e.error,"Error");
+  }, () => {
+  });
 }
+// deleteCourse(course_id){
 
-}
+//  // 
+//  try {
+//   let model:any={};
+//   model.course_id = course_id;
+//   this.SpinnerService.show()
+//   this.baseService.action("user/delete-course-standard-detail-by-student/",model).subscribe(res=>{
+//     let response :any ={};
+//     response = res;
+//     if(response.status==true){
+//       this.SpinnerService.hide()
+
+//       this.alert.success(response.message,"Success");
+//       location.reload();
+//     }else{
+//       this.SpinnerService.hide();
+//       var error = this.eiService.getErrorResponse(this.SpinnerService,response.error);
+//       this.alert.error(error,"Error");
+     
+//     }
+
+//   },(error=>{
+
+//     this.SpinnerService.hide()
+//     this.alert.error(error.error,"Error");
+//   }))
+// } catch (e) {
+// this.alert.error(e.error,"Error");
+// }
+
+// }
 /****************************** */
  deleteStandard(standard_id){
     try {
@@ -101,7 +127,8 @@ this.alert.error(e.error,"Error");
             this.SpinnerService.hide()
 
             this.alert.success(response.message,"Success");
-            location.reload();
+            $("#verifiedModel").modal("hide");
+            this.getConfirmationDetails();
           }else{
             this.SpinnerService.hide();
             var error = this.eiService.getErrorResponse(this.SpinnerService,response.error);
@@ -169,8 +196,7 @@ editStandardDetails(){
   } catch (error) {
     this.SpinnerService.hide();
   }
-console.log("Yes");
-  
+ 
 }
 displayClassList(stId) {
   try {
@@ -179,7 +205,7 @@ displayClassList(stId) {
     let data: any = {};
     data.standard_id = stId;
     this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
-      console.log(res);
+      
       this.SpinnerService.hide();
       let response: any = {};
       response = res;
