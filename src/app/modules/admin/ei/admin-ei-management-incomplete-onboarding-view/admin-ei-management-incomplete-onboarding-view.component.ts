@@ -317,7 +317,6 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   }
   goBack(): void{
     this.location.back();
-    console.log(location)
   }
 
 }

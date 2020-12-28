@@ -20,6 +20,7 @@ export class EIPendingApproval {
     additionType: any = '';
     university: any;
     search: any;
+    pageCount: any
 }
 
 export class OnBoardList {
@@ -76,7 +77,8 @@ export class notOnZatchup {
     university: any;
     cityName: any;
     stateName: any;
-    search: any
+    search: any;
+    pageCount: any;
 }
 
 export class OnboardedZatchup {

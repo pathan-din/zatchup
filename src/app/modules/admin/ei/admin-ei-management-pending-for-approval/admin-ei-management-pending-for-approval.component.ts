@@ -47,8 +47,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
       "state": this.eIPendingApproval.stateId ? this.getValue(this.eIPendingApproval.allStates, this.eIPendingApproval.stateId, 'state'): '',
       "university": this.eIPendingApproval.university,
       "addition_type": this.eIPendingApproval.additionType,
-      "page_size": this.eIPendingApproval.pageSize ? this.eIPendingApproval.pageSize : 5,
-      "page": page ? page : 1
+      "page_size": this.eIPendingApproval.pageSize,
+      "page": page
     }
 
     this.baseService.getData('admin/ei-pending-list/', this.eIPendingApproval.listParams).subscribe(
@@ -57,12 +57,15 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
           if (!page)
             page = this.eIPendingApproval.config.currentPage
           this.eIPendingApproval.startIndex = res.page_size * (page - 1) + 1;
-          this.eIPendingApproval.config.itemsPerPage = res.page_size
+          this.eIPendingApproval.config.itemsPerPage = res.page_size;
+          this.eIPendingApproval.pageSize = res.page_size;
           this.eIPendingApproval.config.currentPage = page
           this.eIPendingApproval.config.totalItems = res.count;
 
-          if (res.count > 0)
-            this.eIPendingApproval.dataSource = res.results
+          if (res.count > 0){
+            this.eIPendingApproval.dataSource = res.results;
+            this.eIPendingApproval.pageCount = this.baseService.getCountsOfPage()
+          }
           else
             this.eIPendingApproval.dataSource = undefined
         }

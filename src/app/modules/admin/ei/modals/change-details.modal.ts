@@ -22,6 +22,7 @@ export class ChangeDetailRequestsPending {
     university: any;
     changeField: any = ''
     search: any;
+    pageCount: any;
 }
 
 export class ChangeDetailsView {
