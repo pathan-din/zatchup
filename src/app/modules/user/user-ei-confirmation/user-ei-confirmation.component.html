@@ -39,8 +39,8 @@
                     <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
                         Course Name : <span class="text-dark">{{courseData.course_name}}</span>
                     </div>
-                    <div class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col pb-1">                        
-                        <img src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
+                    <div (click)="deleteCourse(courseData.course_id)" class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col pb-1">                        
+                        <img  src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
                     </div>
                     <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
                         {{courseData.description}}
@@ -55,9 +55,9 @@
 
                 <div class="form-group row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
                     <div class="col-12 pb-2 text-right">
-                        <img src="assets/images/userWebsite/edit.png"  class="img-fluid small-size cursorStyle pl-2" >
+                        <img src="assets/images/userWebsite/edit.png" (click)="openEditModel(standardData.standard_id)" class="img-fluid small-size cursorStyle pl-2" >
                         <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
-                        <span (click)="deleteCourse(standardData.standard_id)" >Skip</span>
+                        <span (click)="openModel(standardData.standard_id)" >Skip</span>
                     </div>
                     <div class="col-12 pb-1">
                         Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
@@ -191,7 +191,7 @@
                  <span class="mx-2 color-blue">Yes</span> -->
                  <button type="button " (click)="closeModel()"
                      class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
-                 <button type="button" (click)="deleteCourse(standard_id)"
+                 <button type="button" (click)="deleteStandard(standard_id)"
                      class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
 
              </p>
@@ -214,60 +214,42 @@ aria-hidden="true">
         <div class="modal-body p-1">
             <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
                 <div class="process3">
-                    <div class="form-group row " *ngIf="editModel.key=='name'">
-                        <div  class="col-md-12 MobileCol6MB">
-                            <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
-
-                            <div class="form-control-inputDiv rounded p-1 shadow-none">
-                               <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="first_name" [(ngModel)]="model.first_name" required id="first_name">
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
-                           
+                    <div class="form-group row">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
+                        <div class="col-sm-12 p-0 form-control-inputDiv">
+                            <select name="class" [(ngModel)]="editmodel.class_id" class="custom-select form-control-input" required>
+                                <option value="">Select Class</option>
+                                <option  value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
+                            </select>
                         </div>
-                        
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
                     </div>
-                    <div class="form-group row " *ngIf="editModel.key=='name'">
-                        <div  class="col-md-12 MobileCol6MB">
-                            <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
-
-                            <div class="form-control-inputDiv rounded p-1 shadow-none">
-                               <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="last_name" [(ngModel)]="model.last_name" required id="last_name">
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
-                           
+                    <div class="form-group row">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Start Date</label>
+                        <div class="col-sm-12 p-0 form-control-inputDiv">
+                            <input autocomplete="off"  [maxDate]="editmodel.standard_end_year" required  [(ngModel)]="editmodel.standard_start_year" name="start_date" class="form-control-input form-control form-control-sm"
+                            type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
+                            
                         </div>
-                        
+                        <div class="required errorMsg"  [innerHtml]="errorDisplay.start_date"></div>
                     </div>
-                    <div class="form-group row " *ngIf="editModel.key=='dob'">
-                        <div  class="col-md-12 MobileCol6MB">
-                            <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
-
-                            <div class="form-control-inputDiv rounded p-1 shadow-none">
-                               <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" required id="dob" bsDatepicker>
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
-                           
+                    <div class="form-group row">
+                        <label for="" class="mediumFont commonFontSize letterspacing">End Date</label>
+                        <div class="col-sm-12 p-0 form-control-inputDiv">
+                            <input autocomplete="off" required [minDate]="editmodel.standard_start_year" [maxDate]="currentDate" [(ngModel)]="editmodel.standard_end_year" name="end_date" class="form-control-input form-control form-control-sm"
+                            type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
+                            
                         </div>
-                        
+                        <div class="required errorMsg"  [innerHtml]="errorDisplay.end_date"></div>
                     </div>
-                    <div class="form-group row " *ngIf="editModel.key=='email'">
-                        <div  class="col-md-12 MobileCol6MB">
-                            <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
-
-                            <div class="form-control-inputDiv rounded p-1 shadow-none">
-                               <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
-                           
-                        </div>
-                        
-                    </div>
+                    
+                 
                    
                 </div>
             </form>
           
             <div class="text-center">
-                <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails(); changeRequestForm.resetForm()">Submit </button>
+                <button type="button" class="btn common-model-Btn mt-3" (click)="editStandardDetails(); changeRequestForm.resetForm()">Submit </button>
             </div>
 
             <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
