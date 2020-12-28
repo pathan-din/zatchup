@@ -36,43 +36,46 @@
                 </div>
                 <div *ngFor="let courseData of confirmData.ei_detail.course_detail;">
                 <div class="form-group row">
-                    <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0">
+                    <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
                         Course Name : <span class="text-dark">{{courseData.course_name}}</span>
                     </div>
-                    <div class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col ">
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid editImg"
-                            (click)="goToUserAddMoreStandardPage()">
+                    <div class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col pb-1">                        
                         <img src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
                     </div>
                     <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
                         {{courseData.description}}
                             Years</span></div> -->
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0 mediumFont">
+                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0 mediumFont pb-1">
                         Starting Year : <span class="text-dark">{{courseData.start_year?courseData.start_year:''}}</span>
                     </div>
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont">
+                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
                         Ending Year : <span class="text-dark">{{courseData.end_year?courseData.end_year:''}}</span>
                     </div>
                 </div>
 
                 <div class="form-group row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
-                    <div class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col ">
-                         
-                        <img src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
-                    </div>   
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0">
+                    <div class="col-12 pb-2">
+                        <img src="assets/images/userWebsite/delete.png" class="img-fluid small-size cursorStyle">
+                    </div>
+                    <div class="col-12 pb-1">
                         Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
+                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
                     </div>
-                    <div class="col-lg-6 col-md-12 form-control-input pl-0"></div>
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0">
+
+                    <div class="col-12 pb-1">
                         Starting Year : <span class="text-dark mediumFont">{{standardData.standard_start_year}}</span>
+                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
                     </div>
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0">
+
+                    <div class="col-12 pb-1">
                         Ending Year : <span class="text-dark mediumFont">{{standardData.standard_end_year}}</span>
+                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
                     </div>
-                    <div class="col-12 form-control-input commonFontSize pl-0">Section :<span
-                            class="text-dark mediumFont"> {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span></div>
-                             
+
+                    <div class="col-12 pb-1">
+                        Section : <span class="text-dark mediumFont"> {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span>
+                        <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()">
+                    </div>                             
                 </div>
 
                 <!-- <div class="form-group row form-control-inputDiv border-0 rounded-0">
@@ -139,16 +142,15 @@
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Select One </p>
+                <h3 class="color-black commonFontSize">Select One </h3>
                 <div class="form-group">
-                    <div class="d-flex flex-row justify-content-between">
-                        <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past"
-                            class=""
-                            type="radio" >Current Course
-                        <input (change)="addPastEi()" id="current_and_past2" name="current_and_past"
-                            class=""
-                            type="radio" >Past EI
-                        
+                    <div class="row">
+                        <div class="col-6 align-items-center d-flex justify-content-center">
+                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="m-0" type="radio" > Current Course </label>
+                        </div>
+                        <div class="col-6 align-items-center d-flex justify-content-center">
+                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="m-0" type="radio" > Past EI </label>
+                        </div>
                     </div>
                 </div>
                  

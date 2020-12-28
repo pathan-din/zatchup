@@ -23,6 +23,11 @@
     padding: 0;
 }
 
+.small-size {
+    width: 18px;
+    float: right;
+}
+
 .topHeadingLeftSpace {
     margin-left: -0.1rem!important;
 }
