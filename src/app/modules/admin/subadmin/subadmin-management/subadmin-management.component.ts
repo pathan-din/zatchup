@@ -32,6 +32,8 @@ export class SubadminManagementComponent implements OnInit {
   displayedColumns: string[] = ['position', 'Name', 'EmployeeID', 'EmailID', 'Phone_no', 'Action'];
 
   dataSource: any;
+  pageCount: any;
+  
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -70,7 +72,8 @@ export class SubadminManagementComponent implements OnInit {
             this.config.itemsPerPage = res.page_size
             this.config.currentPage = page
             this.config.totalItems = res.count
-            this.dataSource = res.results
+            this.dataSource = res.results;
+            this.pageCount = this.baseService.getCountsOfPage();
           }
           else {
             this.dataSource = undefined;
