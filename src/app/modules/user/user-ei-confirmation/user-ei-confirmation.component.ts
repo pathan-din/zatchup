@@ -26,6 +26,7 @@ export class UserEiConfirmationComponent implements OnInit {
   /*Qualification Master*/
   studentsConfirmation: any = [];
   school_id:any="";
+  standard_id:any;
   constructor(private router: Router,
     private route: ActivatedRoute,
     private SpinnerService: NgxSpinnerService,
@@ -61,11 +62,14 @@ export class UserEiConfirmationComponent implements OnInit {
           response = res;
           if(response.status==true){
             this.SpinnerService.hide()
+
             this.alert.success(response.message,"Success");
+            location.reload();
           }else{
             this.SpinnerService.hide();
             var error = this.eiService.getErrorResponse(this.SpinnerService,response.error);
             this.alert.error(error,"Error");
+           
           }
 
         },(error=>{
@@ -76,6 +80,17 @@ export class UserEiConfirmationComponent implements OnInit {
     } catch (e) {
       this.alert.error(e.error,"Error");
     }
+ }
+
+ closeModel(){
+  $("#verifiedModel").modal("hide");
+ }
+ openModel(standard_id){
+   this.standard_id = standard_id;
+   $("#verifiedModel").modal({
+    backdrop: 'static',
+    keyboard: false
+  }); 
  }
  addPastEi(){
   $("#OTPModel").modal('hide');
