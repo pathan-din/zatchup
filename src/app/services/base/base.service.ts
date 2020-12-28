@@ -139,17 +139,8 @@ export class BaseService {
     return errorCollection;
   }
 
-  getCountsOfPage(count: number, val?: number) {
-    let arr = []
-    let length: number;
-    if (!val)
-      val = 5
-    length = Math.floor(count / val);
-    if (count % val)
-      length = length + 1
-    for (let i = 0; i < length; i++) {
-      arr.push((i + 1) * val);
-    }
+  getCountsOfPage() {
+    let arr = [5, 10, 20, 50, 100]
     return arr;
   }
 

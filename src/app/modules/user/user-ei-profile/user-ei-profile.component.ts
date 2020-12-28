@@ -184,6 +184,7 @@ export class UserEiProfileComponent implements OnInit {
         console.log(res);
         let response: any = {};
         response = res;
+        this.loader.hide();
         this.classList = response.results;
 
       }, (error) => {
@@ -222,7 +223,7 @@ export class UserEiProfileComponent implements OnInit {
       this.model.course_end_year = this.baseService.getDateFormat(this.model.course_end_year);
       this.model.standard_start_year = this.baseService.getDateFormat(this.model.standard_start_year);
       this.model.standard_end_year = this.baseService.getDateFormat(this.model.standard_end_year);
-      this.baseService.actionForFormData('user/add-registered-ei-course/', this.model).subscribe(
+      this.baseService.action('user/add-registered-ei-course/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
@@ -253,6 +254,7 @@ export class UserEiProfileComponent implements OnInit {
   }
 
   getProfilePicUrl(data: any) {
+    this.model.profile_pic=data.filename;
     this.imageUrl = this.imagePath + data.filename
   }
 
