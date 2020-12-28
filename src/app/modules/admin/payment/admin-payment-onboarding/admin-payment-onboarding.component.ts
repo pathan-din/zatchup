@@ -96,8 +96,10 @@ export class AdminPaymentOnboardingComponent implements OnInit {
         this.onboardingFee.config.itemsPerPage = res.page_size
         this.onboardingFee.config.currentPage = page
         this.onboardingFee.config.totalItems = res.count;
-        if(res.count >0)
-        this.onboardingFee.dataSource = res.results
+        if(res.count >0){
+          this.onboardingFee.dataSource = res.results
+          this.onboardingFee.pageCount = this.baseService.getCountsOfPage();
+        }
         else
         this.onboardingFee.dataSource = undefined
     }

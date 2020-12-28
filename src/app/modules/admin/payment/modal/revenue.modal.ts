@@ -17,6 +17,7 @@ export class OnboardingFee {
   university: any;
   state: any = '';
   city: any = '';
+  pageCount: any;
 }
 
 export class SubscriptionFee {
