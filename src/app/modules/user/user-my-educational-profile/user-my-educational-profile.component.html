@@ -16,7 +16,7 @@
             <div *ngFor="let objEpData of epData">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
-                        <div class="dpImgDiv">
+                        <div class="dpImgDiv" *ngIf="objEpData.profile_pic">
                             <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img-fluid dpImg">
                         </div>
 
@@ -91,9 +91,8 @@
                             </div>
                             <div class="col-md-12">
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">School Name: <span
-                                        class="regularFont">{{objEd.ei_detail.name_of_school}} <img
-                                            src="assets/images/userWebsite/checkicon.png"
-                                            class="img-fluid ml-1 chckImg"> </span></p>
+                                        class="regularFont">{{objEd.ei_detail.name_of_school}} 
+                                        <img src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> </span></p>
                                 <div class="row">
                                     <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         ZatchUp ID : <span class="regularFont">{{objEd.ei_detail.school_code}}</span>
