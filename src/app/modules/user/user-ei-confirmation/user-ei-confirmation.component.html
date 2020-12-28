@@ -56,7 +56,7 @@
                 <div class="form-group row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
                     <div class="col-12 pb-2">
                         <img src="assets/images/userWebsite/edit.png"  class="img-fluid small-size cursorStyle pr-2" >
-                        <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle">
+                        <img src="assets/images/userWebsite/delete.png" (click)="openModel(standardData.standard_id)" class="img-fluid small-size cursorStyle">
 
                     </div>
                     <div class="col-12 pb-1">
@@ -164,5 +164,117 @@
             </div>
         </div>
     </div>
+</div>
+
+ <!-- verifiedModel  -->
+ <div class="modal fade" id="verifiedModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+ aria-hidden="true">
+ <div class="modal-dialog " role="document">
+     <div class="modal-content unverified container-fluid">
+         <div class="modal-header align-items-center border-0 pb-0 pl-0">
+             <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Skip</h2>
+             <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                 data-dismiss="modal" aria-label="Close ">
+                 <span aria-hidden="true ">
+                     &times;
+                     <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                 </span>
+             </button>
+         </div>
+         <div class="modal-body px-0 py-0">
+             <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+             <p class="commonFontSize regularFont letterspacing">Are you sure you want to skip this
+                standard?
+             </p>
+             <p class="commonFontSize regularFont letterspacing text-right">
+                 <!-- <span class="mx-3 color-blue">No</span>
+                 <span class="mx-2 color-blue">Yes</span> -->
+                 <button type="button " (click)="closeModel()"
+                     class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
+                 <button type="button" (click)="deleteCourse(standard_id)"
+                     class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
+
+             </p>
+         </div>
+     </div>
+ </div>
+</div>
+
+ <!-- Edit Standard Details model -->
+<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content container-fluid">
+        <div class="modal-header border-0 align-items-center justify-content-center pb-0">
+            <button #closeModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                data-dismiss="modal" aria-label="Close ">
+                <span aria-hidden="true "> &times; </span>
+            </button>
+        </div>
+        <div class="modal-body p-1">
+            <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
+                <div class="process3">
+                    <div class="form-group row " *ngIf="editModel.key=='name'">
+                        <div  class="col-md-12 MobileCol6MB">
+                            <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                               <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
+                           
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row " *ngIf="editModel.key=='name'">
+                        <div  class="col-md-12 MobileCol6MB">
+                            <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                               <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
+                           
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row " *ngIf="editModel.key=='dob'">
+                        <div  class="col-md-12 MobileCol6MB">
+                            <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                               <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" required id="dob" bsDatepicker>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
+                           
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row " *ngIf="editModel.key=='email'">
+                        <div  class="col-md-12 MobileCol6MB">
+                            <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                               <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
+                           
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </form>
+          
+            <div class="text-center">
+                <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails(); changeRequestForm.resetForm()">Submit </button>
+            </div>
+
+            <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+            </p> -->
+
+        </div>
+    </div>
+</div>
 </div>
 <!-- <app-user-footer></app-user-footer> -->
