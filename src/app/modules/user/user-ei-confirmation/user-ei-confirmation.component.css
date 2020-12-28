@@ -24,8 +24,9 @@
 }
 
 .small-size {
-    width: 18px;
     float: right;
+    height: 18px;
+    margin: 3px;
 }
 
 .topHeadingLeftSpace {
