@@ -194,14 +194,14 @@
 
 
     <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">
-        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+        <div class="col-md-12 pl-0 d-flex justify-content-start flex-wrap align-items-center">
             <span class="mr-3 cursorStyle" *ngIf="kycHistoryModal.activeParams.kycType == 'completed'">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
 
             <h2 class="commonFontSize semiBoldFont m-0">KYC History</h2>
         </div>        
-        <div class="row mb-3">
+        <div class="row mb-3 mt-3">
             <form #sortKycForm="ngForm" (ngSubmit)="sortKycForm.form.valid && sortKycHistory()">
                 <div class="col-md-12 d-flex align-items-end">
                     <div class="mr-2">
@@ -225,7 +225,7 @@
             <div class="col-md-12 col-left">
                 <div class="row flex-nowrap" *ngFor="let history of kycHistoryModal.kycHistory">
                     <div class="commonFontSize semiBoldFont d-flex flex-row align-items-start pr-0">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <i class="fa fa-circle dotIcon mt-1 mr-3"></i>
                         <p>{{history.created_on | date:'dd MMM, yy'}} & {{history.created_on | date:'shortTime'}}</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize mediumFont pl-0">
