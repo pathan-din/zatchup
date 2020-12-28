@@ -39,7 +39,7 @@
                     <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
                         Course Name : <span class="text-dark">{{courseData.course_name}}</span>
                     </div>
-                    <div (click)="deleteCourse(courseData.course_id)" class="col-lg-4 col-md-2 col-6 form-control-input text-right btn-absolute-col pb-1">                        
+                    <div (click)="deleteCourse(courseData.course_id)" class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">                        
                         <img  src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
                     </div>
                     <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
@@ -57,7 +57,7 @@
                     <div class="col-12 pb-2 text-right">
                         <img src="assets/images/userWebsite/edit.png" (click)="openEditModel(standardData.standard_id)" class="img-fluid small-size cursorStyle pl-2" >
                         <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
-                        <span (click)="openModel(standardData.standard_id)" >Skip</span>
+                        <span (click)="openModel(standardData.standard_id)" class="cursorStyle">Skip</span>
 
                        
                                                 

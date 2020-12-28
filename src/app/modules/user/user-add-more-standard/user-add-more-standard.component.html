@@ -142,15 +142,15 @@
                 </div>
                 
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Select Standard</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Joining Standard</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <select  (change)="displayClassList(model.standard_id)"  name="standard" [(ngModel)]="model.standard_id" class="custom-select form-control-input" required>
+                        <select  (change)="displayClassList(model.join_standard_id)"  name="join_standard" [(ngModel)]="model.join_standard_id" class="custom-select form-control-input" required>
                             <option value="">Select Standard </option>
                             <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
                              
                         </select>
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.join_standard"></div>
                 </div>
                 <div class="form-group row" *ngIf="model.standard_id">
                     
@@ -167,6 +167,17 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.standard_end_year"></div>
                 
+                </div>
+                <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Left Standard</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <select   name="left_standard" [(ngModel)]="model.left_standard_id" class="custom-select form-control-input" required>
+                            <option value="">Left Standard </option>
+                            <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
+                             
+                        </select>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.left_standard"></div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
