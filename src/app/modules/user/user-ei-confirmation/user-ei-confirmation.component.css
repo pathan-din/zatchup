@@ -21,6 +21,10 @@
     padding: 2% 6%!important;
 }
 
+.img-small img{
+    width: 20px;
+}
+
 .paddingL {
     padding: 0;
 }
