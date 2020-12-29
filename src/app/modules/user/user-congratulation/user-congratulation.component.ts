@@ -19,6 +19,7 @@ export class UserCongratulationComponent implements OnInit {
   imageUrl:any; 
   schoolId:any;
   title:any;
+  isalumini:any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -31,7 +32,8 @@ export class UserCongratulationComponent implements OnInit {
     ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
        this.schoolId = params['school_id'];
-       this.title =    params['title'];   
+       this.title =    params['title'];
+       this.isalumini= params['isalumini'];
   
       });
     }
@@ -41,7 +43,11 @@ export class UserCongratulationComponent implements OnInit {
   goToUserAddEiPage() {
     if(this.title=='past'){
       this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:this.schoolId}});
-    }else{
+    }else if(this.isalumini=='p')
+    {
+      this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:this.schoolId,'isalumini':1}});
+    }
+    else{
       
       this.router.navigate(['user/ei-profile'],{queryParams:{school_id:this.schoolId}});
     }

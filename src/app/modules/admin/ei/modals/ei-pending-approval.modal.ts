@@ -134,6 +134,7 @@ export class SignUpEi {
     course_id: any = '';
     standard_id: any = '';
     class_id: any = '';
+  pageCounts: any;
 }
 export class SentForApproval {
     config = {
@@ -159,6 +160,7 @@ export class SentForApproval {
     course: any = '';
     standard: any = '';
     class: any = '';
+  pageCounts: any;
 
 }
 export class StudentApproval {
@@ -189,6 +191,7 @@ export class StudentApproval {
     class_id: any = '';
     standard_id: any = '';
     course_id: any = '';
+  pageCounts: any;
 
     //   courseList: any = [];
     //   standardList: any = [];

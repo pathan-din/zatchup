@@ -31,6 +31,7 @@ export class UserEiConfirmationComponent implements OnInit {
   standard_id:any;
   classList: any[];
   currentDate:any;
+  isalumini:any;
   constructor(private router: Router,
     private route: ActivatedRoute,
     private SpinnerService: NgxSpinnerService,
@@ -46,6 +47,7 @@ export class UserEiConfirmationComponent implements OnInit {
     this.route.queryParams.subscribe(parrams=>{
       if(parrams['school_id']){
           this.school_id = parrams['school_id'];
+          this.isalumini = parrams['isalumini'];
       }
     })
     this.getConfirmationDetails();
@@ -182,6 +184,8 @@ editStandardDetails(){
   try {
 
     this.SpinnerService.show();
+    console.log(this.editmodel.standard_end_year);
+    
     this.editmodel.standard_start_year=this.baseService.getDateFormat(this.editmodel.standard_start_year)
     this.editmodel.standard_end_year=this.baseService.getDateFormat(this.editmodel.standard_end_year)
     this.baseService.action("user/edit-course-standard-detail-by-student/",this.editmodel).subscribe(res=>{
