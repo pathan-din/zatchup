@@ -9,12 +9,13 @@
                         <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY"> -->
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" placeholder="MM/DD/YYYY" [(ngModel)]="model.fromDate" name="fromDate"
-                            bsDatepicker>
+                            bsDatepicker [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                     <div class="form-control-inputDiv rounded shadow-none ml-1 mb-2">
                         <!-- <input  class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY"> -->
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" placeholder="MM/DD/YYYY" [(ngModel)]="model.toDate" name="toDate" bsDatepicker>
+                            type="text" placeholder="MM/DD/YYYY" [(ngModel)]="model.toDate" name="toDate" bsDatepicker
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                     <div class="mb-2">
                         <button (click)="getDate($event)" type="button"

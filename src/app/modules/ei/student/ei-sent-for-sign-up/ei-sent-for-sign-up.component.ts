@@ -54,11 +54,12 @@ export class EiSentForSignUpComponent implements OnInit {
         this.signUpEi.config.itemsPerPage = res.page_size
         this.signUpEi.config.currentPage = page
         this.signUpEi.config.totalItems = res.count;
-        if(res.count > 0)
-        this.signUpEi.dataSource = res.results
-        else 
+        if(res.count > 0){
+        this.signUpEi.dataSource = res.results;
+        this.signUpEi.pageCounts = this.baseService.getCountsOfPage()
+        }else { 
         this.signUpEi.dataSource = undefined
-      }
+      }}
       else
       this.alert.error(res.error.message[0], 'Error')
       this.loader.hide()

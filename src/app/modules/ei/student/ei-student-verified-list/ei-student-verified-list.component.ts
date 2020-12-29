@@ -56,6 +56,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   title:any='';
+  pageCounts: any;
   constructor(
     private genericFormValidationService: GenericFormValidationService, 
     private router: Router,
@@ -64,7 +65,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     public base: BaseService, 
     public formBuilder: FormBuilder,
     private alert: NotificationService, private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private baseService: BaseService
     ) { }
 
 
@@ -222,7 +224,8 @@ this.model.page= page
         this.totalNumberOfPage = response.count;
         this.config.itemsPerPage = this.pageSize
         this.config.currentPage = page
-        this.config.totalItems = this.totalNumberOfPage
+        this.config.totalItems = this.totalNumberOfPage;
+        this.pageCounts = this.baseService.getCountsOfPage();
         let arrStudentList: any = [];
         if (!page) { page = 1 }
         var i = (this.pageSize * (page - 1)) + 1;

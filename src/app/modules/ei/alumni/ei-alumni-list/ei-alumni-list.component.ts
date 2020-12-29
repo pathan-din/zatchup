@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ActivationEnd } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
@@ -71,6 +71,8 @@ export class EiAlumniListComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   title:any='';
+  pageCounts: any;
+
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
   
@@ -82,21 +84,26 @@ export class EiAlumniListComponent implements OnInit {
     public formBuilder: FormBuilder,
     private alert : NotificationService,
     private location: Location,
-    public eiService: EiServiceService
+    public eiService: EiServiceService,
+    private route: ActivatedRoute
     ) { }
 
  
   ngOnInit(): void {
-	  this.config = {
-      itemsPerPage: 0,
-      currentPage: 1,
-      totalItems: 0
-    };
     this.model.gender='';
     this.model.profession='';
     this.model.approved='';
     this.model.kyc_approved='';
     this.model.page_size='';
+    this.route.queryParams.subscribe(params=>{
+      this.model.approved = params['approved'];
+    })
+	  this.config = {
+      itemsPerPage: 0,
+      currentPage: 1,
+      totalItems: 0
+    };
+    
     this.getAluminiList('','')
 	  this.displayCourseList();
   }
@@ -221,12 +228,15 @@ getAluminiList(page,strFilter){
 		  this.totalNumberOfPage=response.count;
 		  this.config.itemsPerPage=this.pageSize
 	    this.config.currentPage=page
-	    this.config.totalItems=this.totalNumberOfPage
+      this.config.totalItems=this.totalNumberOfPage;
+      this.pageCounts = this.baseService.getCountsOfPage();
       let arrAlumniList:any=[];
       if(!page){page=1;}
       var i= (this.pageSize*(page-1))+1;
 		  this.aluminiList.forEach(objData=>{
         let objAlumniList:any={};
+       
+
         objAlumniList.SNo=i;
         objAlumniList.ZatchUpID=objData.zatchup_id;
         objAlumniList.Name=objData.first_name+ ' '+objData.last_name;

@@ -50,11 +50,12 @@ export class SentForApprovalComponent implements OnInit {
           this.sentForApproval.config.itemsPerPage = res.page_size
           this.sentForApproval.config.currentPage = page
           this.sentForApproval.config.totalItems = res.count;
-          if(res.count >0)
-          this.sentForApproval.dataSource = res.results
-          else
+          if(res.count >0){
+          this.sentForApproval.dataSource = res.results;
+          this.sentForApproval.pageCounts = this.baseService.getCountsOfPage();
+          }else{
           this.sentForApproval.dataSource = undefined
-        }
+        }}
         else{
           this.loader.hide()
           this.alert.error(res.error, 'Error')

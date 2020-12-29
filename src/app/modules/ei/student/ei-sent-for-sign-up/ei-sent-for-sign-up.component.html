@@ -21,7 +21,7 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="fromDate" name="fromDate"
                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="signUpEi.maxDate" [(ngModel)]="signUpEi.filterFromDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="toDate" name="toDate"
                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="signUpEi.maxDate" [(ngModel)]="signUpEi.filterToDate" #toDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
@@ -79,9 +79,10 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                     (change)="getSignUpEi('1')" [(ngModel)]="signUpEi.pageSize">
-                            <option value="5">5</option>
+                            <!-- <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="15">15</option>
+                            <option value="15">15</option> -->
+                            <option *ngFor="let count of signUpEi.pageCounts" value="{{count}}">{{count}}</option>
                         </select>
                 </div>
             </div>
