@@ -4,6 +4,8 @@
 
 .confirmForm {
     position: relative;
+    overflow-x: auto;
+    height: 350px;
 }
 
 .confirm {
