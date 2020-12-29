@@ -28,7 +28,7 @@
                         <label for="" class=" mediumFont commonFontSize letterspacing">Date Of Birth</label>
                         <input type="text" id="date_of_birth" name="date_of_birth" placeholder="MM/DD/YYYY"
                             class="form-control" readonly="readonly" bsDatepicker [maxDate]="maxDate"
-                            [(ngModel)]="model.date_of_birth" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            [(ngModel)]="model.date_of_birth" [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             required>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_birth"></div>
                     </div>

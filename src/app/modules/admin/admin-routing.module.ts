@@ -277,7 +277,7 @@ const routes: Routes = [
     path: 'subadmin-authorization-access-view/:id', component: SubadminAuthorizationAccessViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-onboarding-conversation-comments/:id', component: OnboardingConversationCommentsComponent, canActivate: [AuthGuard]
+    path: 'ei-onboarding-conversation-comments/:id/:ei', component: OnboardingConversationCommentsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'management-commission-add', component: ManagementCommissionAddComponent, canActivate: [AuthGuard]

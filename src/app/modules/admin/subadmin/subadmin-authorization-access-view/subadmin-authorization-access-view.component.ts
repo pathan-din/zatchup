@@ -31,7 +31,7 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.activeRoute.snapshot.params.id)
+    // if (this.activeRoute.snapshot.params.id)
       this.getSubadminDataById()
     this.getModuleList()
   }
@@ -187,11 +187,10 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
   passwordReset(){
     this.loader.show();
     let data = {
-      "email": this.subadminData.email
+      "email_or_phone": this.subadminData.email
     }
     this.baseService.action('admin/forgot-password/', data).subscribe(
       (res: any) =>{
-        console.log('res of reset pass is as ::', res)
         if(res.status == true){
           this.alert.success('Email has been sent to '+this.subadminData.email, 'Success')
         }else{
