@@ -20,7 +20,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate"  [(ngModel)]="activeUsers.filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
@@ -29,7 +29,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="activeUsers.filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
@@ -38,7 +38,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="activeUsers.loginFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
@@ -47,7 +47,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="activeUsers.loginToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
