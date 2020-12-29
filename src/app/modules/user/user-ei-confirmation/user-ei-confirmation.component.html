@@ -193,9 +193,9 @@
                  <!-- <span class="mx-3 color-blue">No</span>
                  <span class="mx-2 color-blue">Yes</span> -->
                  <button type="button " (click)="closeModel()"
-                     class="bg-Gainsboro px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing">No</button>
+                     class="px-3 py-2 border-0 mr-3 modalAddStudentsBtn mediumFont letterspacing bg-red color-white">No</button>
                  <button type="button" (click)="deleteStandard(standard_id)"
-                     class="bg-Gainsboro py-2 px-3 border-0  modalAddStudentsBtn mediumFont">Yes</button>
+                     class="py-2 px-3 border-0 modalAddStudentsBtn mediumFont bg-paret-green color-white">Yes</button>
 
              </p>
          </div>
@@ -214,13 +214,13 @@ aria-hidden="true">
                 <span aria-hidden="true "> &times; </span>
             </button>
         </div>
-        <div class="modal-body p-1">
+        <div class="modal-body p-3">
             <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
                 <div class="process3">
                     <div class="form-group row">
                         <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
-                        <div class="col-sm-12 p-0 form-control-inputDiv">
-                            <select name="class" [(ngModel)]="editmodel.class_id" class="custom-select form-control-input" required>
+                        <div class="col-sm-12 p-0">
+                            <select name="class" [(ngModel)]="editmodel.class_id" class="custom-select form-control-input border p-2" required>
                                 <option value="">Select Class</option>
                                 <option  value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
                             </select>
@@ -229,8 +229,8 @@ aria-hidden="true">
                     </div>
                     <div class="form-group row">
                         <label for="" class="mediumFont commonFontSize letterspacing">Start Date</label>
-                        <div class="col-sm-12 p-0 form-control-inputDiv">
-                            <input autocomplete="off"  [maxDate]="editmodel.standard_end_year" required  [(ngModel)]="editmodel.standard_start_year" name="start_date" class="form-control-input form-control form-control-sm"
+                        <div class="col-sm-12 p-0">
+                            <input autocomplete="off"  [maxDate]="editmodel.standard_end_year" required  [(ngModel)]="editmodel.standard_start_year" name="start_date" class="form-control-input form-control form-control-sm border p-2"
                             type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                             
                         </div>
@@ -238,8 +238,8 @@ aria-hidden="true">
                     </div>
                     <div class="form-group row">
                         <label for="" class="mediumFont commonFontSize letterspacing">End Date</label>
-                        <div class="col-sm-12 p-0 form-control-inputDiv">
-                            <input autocomplete="off" required [minDate]="editmodel.standard_start_year" [maxDate]="currentDate" [(ngModel)]="editmodel.standard_end_year" name="end_date" class="form-control-input form-control form-control-sm"
+                        <div class="col-sm-12 p-0">
+                            <input autocomplete="off" required [minDate]="editmodel.standard_start_year" [maxDate]="currentDate" [(ngModel)]="editmodel.standard_end_year" name="end_date" class="form-control-input form-control form-control-sm border p-2"
                             type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                             
                         </div>
