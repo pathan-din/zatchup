@@ -37,7 +37,14 @@ export class DatabaseViewComponent implements OnInit {
   }
 
   conversationComments() {
-    this.router.navigate(['admin/ei-onboarding-conversation-comments', this.eiData.id])
+    let eiStatus: any;
+    if (this.eiData.onboarded_status == 0)
+      eiStatus = 'not-onboarded';
+    else if (this.eiData.onboarded_status == 1)
+      eiStatus = 'incomplete-onboarding';
+    else
+      eiStatus = 'onboarded';
+    this.router.navigate(['admin/ei-onboarding-conversation-comments', this.eiData.id, eiStatus])
   }
 
   eiRequestHistory() {

@@ -13,9 +13,9 @@ import { Pagination } from '../modals/education-institute.modal';
   styleUrls: ['./institute-history.component.css']
 })
 export class InstituteHistoryComponent implements OnInit {
-  errorDisplay: any = {}
+  // errorDisplay: any = {}
   eiId: any;
-  comment: any;
+  // comment: any;
   isDeleted: any = '';
   pagination: Pagination
 
@@ -35,40 +35,40 @@ export class InstituteHistoryComponent implements OnInit {
     this.getEIHistory()
   }
 
-  addComment() {
-    this.errorDisplay = {};
-    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    if (this.errorDisplay.valid) {
-      return false;
-    }
+  // addComment() {
+  //   this.errorDisplay = {};
+  //   this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+  //   if (this.errorDisplay.valid) {
+  //     return false;
+  //   }
 
-    this.loader.show()
-    let data = {
-      'user_id': this.eiId,
-      'comments': this.comment,
-    }
-    this.baseService.action('admin/onboarding-comments/', data).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          this.alert.success(res.message, 'Success')
+  //   this.loader.show()
+  //   let data = {
+  //     'user_id': this.eiId,
+  //     'comments': this.comment,
+  //   }
+  //   this.baseService.action('admin/onboarding-comments/', data).subscribe(
+  //     (res: any) => {
+  //       if (res.status == true) {
+  //         this.alert.success(res.message, 'Success')
 
-        }
-        else {
-          this.alert.error(res.error.message[0], 'Error')
-        }
-        this.loader.hide()
-      }, err => {
-        this.alert.error(err, 'Error')
-        this.loader.hide()
-      }
-    )
-  }
+  //       }
+  //       else {
+  //         this.alert.error(res.error.message[0], 'Error')
+  //       }
+  //       this.loader.hide()
+  //     }, err => {
+  //       this.alert.error(err, 'Error')
+  //       this.loader.hide()
+  //     }
+  //   )
+  // }
 
-  isValid() {
-    if (Object.keys(this.errorDisplay).length !== 0) {
-      this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
-    }
-  }
+  // isValid() {
+  //   if (Object.keys(this.errorDisplay).length !== 0) {
+  //     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+  //   }
+  // }
 
   getEIHistory(page?: any) {
     this.loader.show();
