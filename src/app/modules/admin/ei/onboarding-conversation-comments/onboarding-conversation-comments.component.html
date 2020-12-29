@@ -3,14 +3,22 @@
     <div class="bg-white border border-gray mt-3 px-3 py-3">
         <!-- <h2 class="commonFontSize semiBoldFont m-0"> Onboarding Conversation Comments </h2> -->
         <div class="row topDiv">
-            <div class="col-xl-6 col-lg-6 pr-0 d-flex justify-content-start flex-wrap align-items-center">
+            <div class="col-12 pr-0 d-flex justify-content-start flex-wrap align-items-center">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
                 <h2 class="commonFontSize semiBoldFont m-0 "> Onboarding Conversation Comments </h2>
             </div>
+            <div class="col-12 justify-content-end">
+                <div class="form-group text-right">
+                    <button type="button" class="mt-2 p-2 mb-2 border-0 bg-dark color-white">Add Comment</button>
+                    <textarea class="form-control" id="" rows="2" placeholder="Add Something.."></textarea>
+                    <button type="button" class="mt-2 p-2 mb-2 border-0 bg-purple color-white">Post Comment</button>
+                </div>
+            </div>
         </div>
-        <div class="row" *ngIf="conversionComments && conversionComments.length > 0">
+
+        <div class="row mt-3" *ngIf="conversionComments && conversionComments.length > 0">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-1 pt-2"
                 *ngFor="let comment of conversionComments">
                 <div class="conver_div">
