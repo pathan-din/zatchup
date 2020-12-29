@@ -39,7 +39,7 @@
                             id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="changeDetailRequestsPending.maxDate"
                             [(ngModel)]="changeDetailRequestsPending.filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
                 <div class="mr-4 mt-3">
@@ -49,7 +49,7 @@
                             id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="changeDetailRequestsPending.maxDate"
                             [(ngModel)]="changeDetailRequestsPending.filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
                 <div class="mr-4 mt-3 dropdown-lg-Div">

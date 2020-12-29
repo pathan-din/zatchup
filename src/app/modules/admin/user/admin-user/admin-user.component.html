@@ -95,7 +95,7 @@
                                 type="text" placeholder="MM/DD/YYYY" id="fromDate" name="fromDate"
                                 placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
                                 [(ngModel)]="userManagement.filterFromDate" #fromDate="ngModel"
-                                [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                                 [maxDate]="maxDate" [(ngModel)]="userManagement.filterToDate" #fromDate="ngModel"
-                                [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                         </div>
                     </div>
                     <div class="medium-filter-box widthFull MobileCol6MB mr-2">
@@ -203,7 +203,7 @@
                                 type="text" placeholder="MM/DD/YYYY" id="fromDate2" name="fromDate"
                                 placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
                                 [(ngModel)]="userManagement.fromDate" #fromDate="ngModel"
-                                [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                             <input class="formfocusStyle form-control commonFontSize regularFont letterspacing "
                                 type="text" id="toDate2" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                                 [maxDate]="maxDate" [(ngModel)]="userManagement.toDate" #fromDate="ngModel"
-                                [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                         </div>
                     </div>

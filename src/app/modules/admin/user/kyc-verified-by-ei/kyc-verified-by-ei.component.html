@@ -20,7 +20,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="kycVerifiedByEi.filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="kycVerifiedByEi.filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="kycVerifiedByEi.loginFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="kycVerifiedByEi.loginToDate" #formDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
