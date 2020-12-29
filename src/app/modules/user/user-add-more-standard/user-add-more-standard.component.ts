@@ -19,7 +19,15 @@ export class UserAddMoreStandardComponent implements OnInit {
   standardList: any;
   courseList: any;
   schoolId: any;
-   
+  isalumini:any;
+  uploadInfo: any = {
+    "image_type": "file_name",
+    "url": "ei/uploaddocsfile/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
+  imageUrl: any;
+  imagePath: any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -35,7 +43,9 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.schoolId = params['school_id'];
       this.getCourseBySchoolId(schoolId)
       this.model.school_id = this.schoolId;
+      this.isalumini =params['isalumini'];
     });
+    this.imagePath = this.baseService.serverImagePath;
   }
   getCourseBySchoolId(id) {
     try {
@@ -129,7 +139,12 @@ addCourseData(){
       (res: any) => {
         this.SpinnerService.hide();
         if (res.status == true) {
-          this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
+          if(this.isalumini){
+            this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId,'isalumini':1 } });
+          }else{
+            this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
+          }
+          
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
@@ -190,4 +205,9 @@ addCourseNewData(){
   
   }
 }
+getProfilePicUrl(data: any) {
+  this.model.profile_pic=data.filename;
+  this.imageUrl = this.imagePath + data.filename
+}
+
 }

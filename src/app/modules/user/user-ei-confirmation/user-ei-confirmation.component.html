@@ -55,28 +55,36 @@
 
                 <div class="form-group mx-0 row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;">
                     <div class="col-12 pb-2 text-right">
-                        <img src="assets/images/userWebsite/edit.png" (click)="openEditModel(standardData.standard_id)" class="img-fluid small-size cursorStyle pl-2" >
+                        <img src="assets/images/userWebsite/edit.png" (click)="openEditModel(standardData)" class="img-fluid small-size cursorStyle pl-2" >
                         <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
-                        <span (click)="openModel(standardData.standard_id)" class="cursorStyle">Skip</span>
+                        <span (click)="openModel(standardData.standard_id)" class="cursorStyle">I skip this standard</span>
 
                     </div>
                     <div class="col-12 pb-1">
-                        Standard : <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
+                        Standard : <span *ngIf="!standardData.check" class="text-dark mediumFont">{{standardData.standard_name}}</span>
                         
                     </div>
 
                     <div class="col-6 pb-1">
-                        Starting Year : <span class="text-dark mediumFont">{{standardData.standard_start_year}}</span>
+                        Starting Year : <span *ngIf="!standardData.check" class="text-dark mediumFont">{{standardData.standard_start_year}}</span>
+                        <input (ngModelChange)="editStandardDetails()" [minDate]="editmodel.standard_end_year" *ngIf="standardData.check" required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_end_year_{{i}}"  [(ngModel)]="editmodel.standard_end_year"  class="form-control-input form-control form-control-sm" type="text" >
+                        
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
 
                     <div class="col-6 pb-1">
-                        Ending Year : <span class="text-dark mediumFont">{{standardData.standard_end_year}}</span>
+                        Ending Year : <span *ngIf="!standardData.check" class="text-dark mediumFont">{{standardData.standard_end_year}}</span>
+                        <input [maxDate]="editmodel.standard_start_year"  (ngModelChange)="editStandardDetails()" *ngIf="standardData.check" required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_start_year_{{i}}"  [(ngModel)]="editmodel.standard_start_year"  class="form-control-input form-control form-control-sm" type="text" >
+                       
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
 
                     <div class="col-12 pb-1">
                         Section : <span class="text-dark mediumFont"> {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span>
+                        <select (change)="editStandardDetails()" *ngIf="standardData.check" name="class" [(ngModel)]="editmodel.class_id" class="custom-select form-control-input" required>
+                            <option value="">Select Class</option>
+                            <option value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
+                        </select>
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>                             
                 </div>
@@ -128,10 +136,10 @@
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <h3 class="color-black commonFontSize">Select One </h3>
+               
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-6 align-items-center d-flex justify-content-center">
+                        <div *ngIf="!isalumini" class="col-6 align-items-center d-flex justify-content-center">
                             <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current Course </label>
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
