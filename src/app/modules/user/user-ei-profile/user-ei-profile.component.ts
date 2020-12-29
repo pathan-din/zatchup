@@ -200,8 +200,6 @@ export class UserEiProfileComponent implements OnInit {
   uploadProfilePic(files) {
     let fileList: FileList = files;
     let fileData: File = fileList[0];
-    console.log(fileList);
-
     this.imageUrl = '';
   }
 

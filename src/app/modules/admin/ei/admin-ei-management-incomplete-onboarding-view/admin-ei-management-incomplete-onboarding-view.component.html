@@ -15,6 +15,8 @@
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
                     data-target="#CommentModel">Onboarding Conversation
                     Comments</button> -->
+                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mr-2"
+                    routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.id}}/incomplete-onboarding">View Conversation Comments</button>
                 <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0"
                     routerLink="/admin/education-institute-history/{{eiData.id}}">History</button>
             </div>
@@ -25,13 +27,12 @@
                 <div class="dpImgDiv rounded-circle bg-light-green border border-white">
                     <img *ngIf="!eiData.profile_pic" src="assets/images/profile-default.png"
                         class="img-fluid dpImg cursorStyle">
-                    <img *ngIf="eiData.profile_pic" src="{{eiData.profile_pic}}"
-                        class="img-fluid dpImg cursorStyle">
+                    <img *ngIf="eiData.profile_pic" src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">
                 </div>
 
                 <div class="userInfo" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
-                    <img src="assets/images/userWebsite/blue-menu.png"
-                        class="img-fluid w-50 cursorStyle" [matMenuTriggerFor]="menu">
+                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle"
+                        [matMenuTriggerFor]="menu">
                 </div>
             </div>
             <!--Start div for onboarding Information-->
@@ -325,7 +326,7 @@
 
             <mat-menu #menu="matMenu" class="p-2">
                 <p data-toggle="modal" data-target="#approveModel" class="cursorStyle">Approve</p>
-                <p data-toggle="modal" data-target="#eiEditModel" class="cursorStyle">EI For Edit</p>
+                <p data-toggle="modal" data-target="#eiEditModel" class="cursorStyle">Send back to EI for Edit</p>
                 <p data-toggle="modal" data-target="#rejectModel" class="cursorStyle">Reject</p>
             </mat-menu>
 
@@ -413,7 +414,8 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing School ZatchUp ID
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing School
+                                ZatchUp ID
                             </h2>
                             <button #closeExistingZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
@@ -633,7 +635,8 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter School ZatchUp ID
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter School ZatchUp
+                                ID
                             </h2>
                             <button #closeNewZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
@@ -715,7 +718,8 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New School ZatchUp
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New School
+                                ZatchUp
                                 ID</h2>
                             <button #closeGenerateZatchupIDModel type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"

@@ -9,6 +9,16 @@
             <h2 class="mb-4 textSpace">Add Course Details </h2>
 
             <form class="pt-2">
+                <div class="form-group row justify-content-center">
+                    <div class="col-6   text-center ">
+                        <div class="round-camera-div mx-auto">
+                            <img class="img-fluid p-2 img_profile cursorStyle" src="{{imageUrl}}">
+                            <!-- <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/> -->
+                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                            </app-image-uploader>
+                        </div>
+                    </div>
+                </div>
                 <!-- <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
                         <input class="form-control-input form-control form-control-sm" type="text"
@@ -219,6 +229,13 @@
                         <textarea [(ngModel)]="model.comment" name="comment" class="form-control-input form-control form-control-textarea" rows="3"
                             placeholder="Add Description of Study..."></textarea>
                     </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">El ID Number or Admission Number</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <input required name="admission_number" [(ngModel)]="model.admission_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter El ID Number or Admission Number  ">
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                 </div>
                 <!-- <div class="form-group row">
                     <div class="col-xl-1 col-lg-1  col-md-2 col-2 form-control-fileDiv p-0">
