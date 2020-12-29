@@ -12,11 +12,11 @@
             <!-- <div class="col-6 text-right">
                 <button type="button" class="mt-2 p-2 mb-2 border-0 bg-dark color-white">Add Comment</button>
             </div> -->
-            <div class="col-12 justify-content-end mt-2" *ngIf="eiStatus == 'incomplete-onboarding'">
-                <form #addCommentForm="ngForm" id="comment" class="w-100">
-                    <div class="form-group text-right">
-                        <textarea class="form-control" id="comment" name="comment" rows="1" placeholder="Add Something.." [(ngModel)]="comment" (keyup)="isValid()" required></textarea>
-                        <button type="button" class="mt-2 p-2 mb-2 border-0 bg-purple color-white" (click)="addComment(); addCommentForm.resetForm()">Add Comment</button>
+            <div class="col-12 mt-2" *ngIf="eiStatus == 'incomplete-onboarding'">
+                <form #addCommentForm="ngForm" id="comment">
+                    <div class="form-group text-right d-flex justify-content-end">
+                        <textarea class="form-control w-50" id="comment" name="comment" rows="1" placeholder="Add Something.." [(ngModel)]="comment" (keyup)="isValid()" required></textarea>
+                        <button type="button" class="ml-2 py-2 h-100 px-3 border-0 bg-purple color-white" (click)="addComment(); addCommentForm.resetForm()">Add Comment</button>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.comment"></div>
                 </form>
