@@ -16,7 +16,8 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input
                             class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
-                            type="text" placeholder="MM/DD/YYYY">
+                            type="text" placeholder="MM/DD/YYYY" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
@@ -25,7 +26,8 @@
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input
                             class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
-                            type="text" placeholder="MM/DD/YYYY">
+                            type="text" placeholder="MM/DD/YYYY"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
@@ -60,9 +62,10 @@
                 <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Count Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">5</option>
+                        <!-- <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="15">15</option> -->
+                        <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>

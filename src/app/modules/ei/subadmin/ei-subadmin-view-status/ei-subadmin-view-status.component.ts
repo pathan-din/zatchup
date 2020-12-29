@@ -22,6 +22,7 @@ export class EiSubadminViewStatusComponent implements OnInit {
   listParams: any = {};
   startIndex: any
   dataSource: any;
+  pageCounts: any;
 
   constructor(
     private location: Location,
@@ -73,7 +74,7 @@ export class EiSubadminViewStatusComponent implements OnInit {
           this.config.totalItems = res.count;
           if (res.count > 0){
             console.log("yes");
-          
+            this.pageCounts = this.baseService.getCountsOfPage()
             this.dataSource = res.results
           }
           
