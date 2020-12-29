@@ -23,7 +23,7 @@
                         <input class="form-control formfocusStyle"
                             type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                         <input class="form-control formfocusStyle"
                             type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>

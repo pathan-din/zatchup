@@ -30,7 +30,7 @@
                             class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
                             type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
                             type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
