@@ -23,7 +23,7 @@ export class UserAddEiComponent implements OnInit {
   errorDisplay:any={};
   name_of_school_others:any='';
   name_of_school_first:any='';
-  title:any="Current";
+  title:any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,

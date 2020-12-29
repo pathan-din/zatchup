@@ -6,7 +6,9 @@
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
         <div class="col-md-4 pl-0">
-            <h2 class="mb-4 textSpace">Please enter your {{title}} El</h2>
+            <h2 class="mb-4 textSpace" *ngIf="!title">Please enter your current school</h2>
+            <h2 class="mb-4 textSpace" *ngIf="title=='past'">Please enter your school</h2>
+            <h2 class="mb-4 textSpace" *ngIf="title=='current'">Please enter your school</h2>
 
             <form>
 

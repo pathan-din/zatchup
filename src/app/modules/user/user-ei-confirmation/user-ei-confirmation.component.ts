@@ -156,24 +156,29 @@ deleteCourse(id: any): any {
     keyboard: false
   }); 
  }
- openEditModel(standard_id){
-  this.editmodel={};
-  this.editmodel.standard_id = standard_id;
- 
-  this.displayClassList(standard_id);
-  $("#personalInfoModel").modal({
-   backdrop: 'static',
-   keyboard: false
- }); 
+ openEditModel(standard){
+  //this.editmodel={};
+  standard.check=true;
+  this.editmodel.standard_id = standard.standard_id;
+  this.editmodel.standard_start_year=this.baseService.getDateReverseFormat(standard.org_start_date);
+  this.editmodel.standard_end_year=this.baseService.getDateReverseFormat(standard.org_end_date);
+  if(standard.class_detail.length>0){
+    this.editmodel.class_id = standard.class_detail[0].class_id;
+  }else{
+    this.editmodel.class_id = '';
+  }
+  
+  this.displayClassList(standard.standard_id);
+  
 }
 editStandardDetails(){
    
   
-  this.errorDisplay = {};
-  this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
-  if (this.errorDisplay.valid) {
-    return false;
-  }
+  // this.errorDisplay = {};
+  // this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
+  // if (this.errorDisplay.valid) {
+  //   return false;
+  // }
   try {
 
     this.SpinnerService.show();
