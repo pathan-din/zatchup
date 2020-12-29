@@ -130,7 +130,7 @@
                         <input type="text" id="fromDate" name="singupFromDate" placeholder="MM/DD/YYYY"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
                             [(ngModel)]="kycApprovalFromDate" #singupFromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': dateFilterForm.submitted && singupFromDate.invalid }" required>
                         <div *ngIf="dateFilterForm.submitted && singupFromDate.invalid" class="invalid-feedback">
                             <div *ngIf="singupFromDate.errors.required">Required.</div>
@@ -142,7 +142,7 @@
                         <input type="text" placeholder="MM/DD/YYYY" id="signupToDate" name="singupToDate"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
                             [(ngModel)]="kycApprovalToDate" #signupToDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': dateFilterForm.submitted && signupToDate.invalid }" required>
                         <div *ngIf="dateFilterForm.submitted && singupFromDate.invalid" class="invalid-feedback">
                             <div *ngIf="signupToDate.errors.required">Required.</div>
@@ -201,7 +201,7 @@
                         <input type="text" id="retriggerFromDate" name="retriggerFromDate" placeholder="MM/DD/YYYY"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
                             [(ngModel)]="retriggerKycFromDate" #retriggerFromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': retriggerFilterForm.submitted && retriggerFromDate.invalid }"
                             required>
                         <div *ngIf="retriggerFilterForm.submitted && retriggerFromDate.invalid"
@@ -215,7 +215,7 @@
                         <input type="text" placeholder="MM/DD/YYYY" id="retriggerToDate" name="retriggerToDate"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
                             [(ngModel)]="retriggerKycToDate" #retriggerToDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': retriggerFilterForm.submitted && retriggerToDate.invalid }"
                             required>
                         <div *ngIf="retriggerFilterForm.submitted && retriggerToDate.invalid" class="invalid-feedback">

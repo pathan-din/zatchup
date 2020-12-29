@@ -18,7 +18,7 @@
                     <div class="rounded-0 shadow-none">
                         <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" class="form-control"
                             bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
@@ -26,7 +26,7 @@
                     <div class="rounded-0 shadow-none">
                         <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" class="form-control"
                             bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat:'YYYY-MM-DD' }">
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
