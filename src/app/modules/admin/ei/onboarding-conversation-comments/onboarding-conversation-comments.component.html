@@ -3,7 +3,7 @@
     <div class="bg-white border border-gray mt-3 px-3 py-3">
         <!-- <h2 class="commonFontSize semiBoldFont m-0"> Onboarding Conversation Comments </h2> -->
         <div class="row topDiv">
-            <div class="col-6 pr-0 d-flex justify-content-start flex-wrap align-items-center">
+            <div class="col-12 pr-0 d-flex justify-content-start flex-wrap align-items-center">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
@@ -12,11 +12,11 @@
             <!-- <div class="col-6 text-right">
                 <button type="button" class="mt-2 p-2 mb-2 border-0 bg-dark color-white">Add Comment</button>
             </div> -->
-            <div class="col-12 justify-content-end mt-2" *ngIf="eiStatus == 'incomplete-onboarding'">
-                <form #addCommentForm="ngForm" id="comment" class="w-100">
-                    <div class="form-group text-right">
+            <div class="col-12 mt-2" *ngIf="eiStatus == 'incomplete-onboarding'">
+                <form #addCommentForm="ngForm" id="comment">
+                    <div class="form-group text-right d-flex justify-content-end">
                         <textarea class="form-control" id="comment" name="comment" rows="1" placeholder="Add Something.." [(ngModel)]="comment" (keyup)="isValid()" required></textarea>
-                        <button type="button" class="mt-2 p-2 mb-2 border-0 bg-purple color-white" (click)="addComment(); addCommentForm.resetForm()">Add Comment</button>
+                        <button type="button" class="ml-2 py-2 w150 h-100 px-0 border-0 bg-purple color-white" (click)="addComment(); addCommentForm.resetForm()">Add Comment</button>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.comment"></div>
                 </form>

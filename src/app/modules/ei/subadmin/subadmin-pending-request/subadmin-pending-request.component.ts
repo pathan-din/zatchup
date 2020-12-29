@@ -28,6 +28,7 @@ export class SubadminPendingRequestComponent implements OnInit {
   modelReason: any = {};
   errorDisplay: any = {};
   userId: any;
+  pageCounts: any;
 
   constructor(
     private location: Location,
@@ -66,15 +67,16 @@ export class SubadminPendingRequestComponent implements OnInit {
           this.pageSize = res.page_size
           this.config.currentPage = page
           this.config.totalItems = res.count;
-          if (res.count > 0)
-            this.dataSource = res.results
-          else
+          if (res.count > 0){
+            this.dataSource = res.results;
+            this.pageCounts = this.baseService.getCountsOfPage()
+          }else {
             this.dataSource = []
-        }
-        else
+        }}
+        else{
           this.alert.error(res.error.message[0], 'Error')
         this.loader.hide();
-      }
+      }}
     ), (err: any) => {
       this.alert.error(err, 'Error')
       this.loader.hide();

@@ -26,6 +26,7 @@ export class EiSubadminManagementComponent implements OnInit {
   dataSource: any;
   dasboardSummery: any
   startIndex:any=1;
+  pageCounts: any;
   constructor(
     private genericFormValidationService: GenericFormValidationService,
     private router: Router,
@@ -69,7 +70,8 @@ export class EiSubadminManagementComponent implements OnInit {
         this.totalNumberOfPage = response.count;
         this.config.itemsPerPage = this.pageSize
         this.config.currentPage = page
-        this.config.totalItems = this.totalNumberOfPage
+        this.config.totalItems = this.totalNumberOfPage;
+        this.pageCounts = this.base.getCountsOfPage();
         let arrStudentList: any = [];
         if (!page) { page = 1 }
         var i = (this.pageSize * (page - 1)) + 1;

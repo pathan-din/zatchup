@@ -18,10 +18,11 @@
                     <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Status</label>
                     <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
                         <select class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="pageSize">
-                            <option value="">Select</option>
+                            <!-- <option value="">Select</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="15">15</option>
+                            <option value="15">15</option> -->
+                            <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
                         </select>
                     </div>
                 </div>
