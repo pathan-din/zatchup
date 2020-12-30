@@ -46,16 +46,21 @@ export class SubadminAddComponent implements OnInit {
       data.date_of_birth = this.datePipe.transform(data.date_of_birth, 'yyyy-MM-dd')
       this.baseService.action('admin/sub-admin/add_subadmin/', data).subscribe(
         (res: any) => {
-          console.log('res is as ::', res)
-          if (res.status == true){
+          if (res.status == true) {
             this.alert.success("Added successfully", "Success");
             this.router.navigate(['admin/subadmin-dashboard'])
           }
-          else
-            this.alert.error(res.error.message, "Error")
+          else {
+            if (res.error)
+              this.alert.error(res.error.message, "Error")
+            else{
+              let error =  this.baseService.getErrorResponse(this.loader, res)
+              this.alert.error(error, "Error")
+            }
+          }
           this.loader.hide()
         }
-      ),err =>{
+      ), err => {
         this.loader.hide()
       }
     }
@@ -71,7 +76,7 @@ export class SubadminAddComponent implements OnInit {
     }
   }
 
-  goBack(){
+  goBack() {
     this.location.back()
   }
 }

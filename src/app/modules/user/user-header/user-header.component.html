@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/userWebsite/logo.png"></a>
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto userNavUl">
+            <ul class="navbar-nav ml-auto userNavUl" style="display: none;">
                 <li class="nav-item"><a routerLink="/user/landing-page" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li>
@@ -11,6 +11,38 @@
                 <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"  routerLinkActive="active-link">Logout</a></li>
                 <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
             </ul>
+
+            <ul class="navbar-nav ml-auto userNavUl">
+                <li class="nav-item"><a href="" class="nav-link" routerLinkActive="active-link">Home</a></li>
+                <li class="nav-item"><a href="" class="nav-link" routerLinkActive="active-link">My School</a></li>
+                <li class="nav-item"><a href="" class="nav-link" routerLinkActive="active-link">Messages</a></li>
+
+                <div class="dropdown p-2 ml-4">                    
+                    <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-search cursorStyle" aria-hidden="true"></i>
+                    </span>
+                    
+                    <div class="dropdown-menu customDropDown p-0" aria-labelledby="dropdownSearchButton">
+                        <input type="search" placeholder="Search" class="form-control-input form-control dropdown-item pl-2"/>
+                    </div>  
+                </div>
+                
+                <a class="text-white pt-2 px-0 commonFontSize semiBoldFont">
+                    <img src="assets/images/userWebsite/EI-profile-icon.png" class="rounded-circle bg-light-green header-dp img-small">
+                    <span class="ml-3 text-white">Hi! Pathan</span></a>                
+
+                <div class="dropdown pt-2 px-0">                    
+                    <span class="color-white p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
+                    </span>
+                   
+                    <div class="dropdown-menu customDropDown pl-0" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item pl-3" href="#">Logout</a>
+                    </div>
+                </div>
+
+            </ul>
+
         </div>
     </div>
     <!-- <div class="container-fluid">

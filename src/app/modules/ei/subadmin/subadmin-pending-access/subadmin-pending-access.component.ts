@@ -46,6 +46,7 @@ export class SubadminPendingAccessComponent implements OnInit {
   modelReason: any = {};
   errorDisplay: any = {};
   userId: any;
+  pageCounts: any;
   constructor(
     private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -90,6 +91,7 @@ export class SubadminPendingAccessComponent implements OnInit {
          if(response.results.length>0)
          {
           this.dataSource = response.results;
+          this.pageCounts = this.base.getCountsOfPage()
          }else{
           this.dataSource =[];
          }

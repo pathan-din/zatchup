@@ -122,14 +122,12 @@ export class BaseService {
   }
 
   //server Side Validation function
-  getErrorResponse(SpinnerService, errors) {
-    
-    SpinnerService.hide();
+  getErrorResponse(loader, errors) {
+    loader.hide();
     var errorCollection = '';
     let displayError = {};
     for (var key in errors) {
       displayError[key] = errors[key][0];
-      console.log(displayError);
       if (errors[key][0]) {
         errorCollection = errorCollection + errors[key][0] + '\n'
       } else {
