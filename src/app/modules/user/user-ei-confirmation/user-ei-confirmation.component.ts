@@ -162,8 +162,8 @@ deleteCourse(id: any): any {
   //this.editmodel={};
   standard.check=true;
   this.editmodel.standard_id = standard.standard_id;
-  this.editmodel.standard_start_year=this.baseService.getDateReverseFormat(standard.org_start_date);
-  this.editmodel.standard_end_year=this.baseService.getDateReverseFormat(standard.org_end_date);
+  this.editmodel.standard_start_year=this.editmodel.standard_start_year?this.editmodel.standard_start_year:this.baseService.getDateReverseFormat(standard.org_start_date);
+  this.editmodel.standard_end_year=this.editmodel.standard_end_year?this.editmodel.standard_end_year:this.baseService.getDateReverseFormat(standard.org_end_date);
   if(standard.class_detail.length>0){
     this.editmodel.class_id = standard.class_detail[0].class_id;
   }else{
