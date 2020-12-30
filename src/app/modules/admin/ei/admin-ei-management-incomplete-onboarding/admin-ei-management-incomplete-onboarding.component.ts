@@ -43,6 +43,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
   ngOnInit(): void {
     this.getONBoardList('');
     this.getAllState();
+    this.onboardList.pageCounts = this.baseService.getCountsOfPage();
   }
 
   goToAdminEiMangIncopleteOnboardViewPage(id) {
@@ -84,7 +85,6 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
           this.onboardList.config.currentPage = page
           this.onboardList.config.totalItems = res.count;
           if (res.count > 0) {
-            this.onboardList.pageCounts = this.baseService.getCountsOfPage();
             this.onboardList.dataSource = res.results;
           }
           else

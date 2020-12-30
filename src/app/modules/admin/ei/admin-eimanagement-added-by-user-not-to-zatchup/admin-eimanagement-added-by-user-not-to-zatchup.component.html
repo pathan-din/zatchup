@@ -9,8 +9,9 @@
             <h2 class="commonFontSize semiBoldFont m-0">EI Added By Users Not On ZatchUp</h2>
         </div>
         <!--Start html for fees information Filter-->
-        <div class="filterDiv">
-
+        <div class="filterDiv bg-Gainsboro mt-2 pb-4 px-3">
+            <h2 class="commonFontSize semiBoldFont mb-0 pt-2">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
@@ -33,7 +34,7 @@
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required
+                        <select class="custom-select  form-control-input" name="state" required
                         [(ngModel)]="notOnZatchup.stateId" (change)="getcities()">
                         <option value=""> Select State</option>
                         <option *ngFor=" let state of notOnZatchup.allStates" [value]="state.id">{{state.state}}</option>
@@ -43,7 +44,7 @@
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required
+                        <select class="custom-select  form-control-input" name="city" required
                         [(ngModel)]="notOnZatchup.cityId">
                         <option value=""> Select City</option>
                         <option *ngFor="let city of notOnZatchup.allCities" [value]="city.id">{{city.city}}</option>
@@ -67,6 +68,7 @@
 
 
             </div>
+        </form>
         </div>
         <!--End html for fees information Filter-->
         <!--Start html for "select no of fees info per page" and Export Button-->

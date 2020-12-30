@@ -4,21 +4,21 @@
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
-            <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="link-active" *ngIf="isValid('MODULE001')">
+            <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <span class="commonFontSize"> Dashboard</span>
             </a>
             <a mat-list-item routerLink="/admin/school-management" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE002')">
+                *ngIf="isValid('MODULE020')">
                 <i class="material-icons mr-2 md-18">school</i>
                 <span class="commonFontSize"> School Management </span>
             </a>
             <a class="md-button md-ink-ripple" mat-list-item routerLink="/admin/user" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE003')">
+                *ngIf="isValid('MODULE021')">
                 <i class="material-icons mr-2 md-18">groups</i>
                 <span class="commonFontSize"> User Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE004')" tooltip="Coming Soon...">
+            <a mat-list-item *ngIf="isValid('MODULE000')" tooltip="Coming Soon...">
                 <i class="material-icons mr-2 md-18">groups</i>
                 <span class="commonFontSize"> ZatchUp Starclass Management </span>
             </a>
@@ -39,7 +39,7 @@
                 <span class="commonFontSize"> Post Management </span>
             </a>
             <a mat-list-item routerLink="/admin/kyc-approval-management" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE009')">
+                *ngIf="isValid('MODULE003')">
                 <i class="fa fa-thumbs-up mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> KYC Approval Management </span>
             </a>
@@ -56,11 +56,11 @@
                 <span class="commonFontSize"> Auditors Management </span>
             </a>
             <a mat-list-item routerLink="/admin/payment-management" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE0013')">
+                *ngIf="isValid('MODULE022')">
                 <i class="material-icons mr-2 md-18">payment</i>
                 <span class="commonFontSize"> Payment Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE0014')" tooltip="Coming Soon...">
+            <a mat-list-item *ngIf="isValid('MODULE023')" tooltip="Coming Soon...">
                 <i class="material-icons mr-2 md-18">notification_important</i>
                 <span class="commonFontSize"> Notification Management </span>
             </a>
@@ -77,7 +77,7 @@
                 <i class="fa fa-newspaper-o mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> Advertisement Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE0018')" routerLink="/admin/support-management"
+            <a mat-list-item *ngIf="isValid('MODULE024')" routerLink="/admin/support-management"
                 routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">contact_support</i>
                 <span class="commonFontSize"> Support Management </span>
