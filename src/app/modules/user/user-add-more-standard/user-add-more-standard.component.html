@@ -9,245 +9,205 @@
             <h2 class="mb-4 textSpace">Add Course Details </h2>
 
             <form class="pt-2">
-                <div class="form-group row justify-content-center">
-                    <div class="col-6   text-center ">
-                        <div class="round-camera-div mx-auto">
-                            <img class="img-fluid p-2 img_profile cursorStyle" src="{{imageUrl}}">
-                            <!-- <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/> -->
-                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
-                            </app-image-uploader>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input class="form-control-input form-control form-control-sm" type="text"
-                            placeholder="Enter Course Name">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input class="form-control-input form-control form-control-sm" type="text"
-                            placeholder="Enter Duration of the course">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 pl-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6 mobForm-name">
-                            <input class="form-control-input form-control form-control-sm form-bgImg form-dateBgImg" type="text"
-                                placeholder="Start Date">
-                        </div>
-                    </div>
-                    <div class="col-sm-6 pr-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
-                            <input class="form-control-input form-control form-control-sm form-bgImg form-dateBgImg" type="text"
-                                placeholder="Ending Date">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <select class="custom-select form-control-input" required>
-                            <option value="">Select Standard</option>
-                            <option value="1">10 </option>
-                            <option value="2">11 </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input class="form-control-input form-control form-control-sm form-bgImg form-calenderBgImg" type="number"
-                            placeholder="Select Starting year of standard">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input class="form-control-input form-control form-control-sm form-bgImg form-calenderBgImg" type="number"
-                            placeholder="Select Ending year of standard ">
-                    </div>
-                </div> -->
+
+
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
-                    <div class="col-sm-12 form-control-inputDiv p-0">                        
-                        <select (change)="displayStandardList(model.course_id) " name="course" [(ngModel)]="model.course_id" class="custom-select form-control-input" required>
+                    <div class="col-sm-12 form-control-inputDiv p-0">
+                        <select (change)="displayStandardList(model.course_id) " name="course"
+                            [(ngModel)]="model.course_id" class="custom-select form-control-input" required>
                             <option value="">Select Course </option>
-                            <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">{{courseObj.course_name}}</option>
+                            <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">
+                                {{courseObj.course_name}}</option>
                             <option value="others">Others </option>
                         </select>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                 </div>
-<!-- Other School Case-->
-<div *ngIf="model.course_id=='others'">
-<div class="form-group row">
-    <div class="col-sm-12 p-0">
-        <label for="" class="mediumFont commonFontSize letterspacing">Course Type</label>
-        <div class="form-control-inputDiv">                            
-            <input required name="course" [(ngModel)]="model.course_name" class="form-control-input form-control form-control-sm"
-                type="text" placeholder="Enter course">
-        </div>
-    </div>
-    <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
-</div>
-
-
-<div class="form-group row customWidth">
-    <div class="col-sm-6 p-0">
-        <label for="" class="mediumFont commonFontSize letterspacing">Course Up from</label>
-        <div class="form-control-inputDiv mr-1">
-            <input autocomplete="off" required [maxDate]="model.end_date" [(ngModel)]="model.start_date" name="start_date" class="form-control-input form-control form-control-sm"
-            type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
-            <div class="required errorMsg"  [innerHtml]="errorDisplay.start_date"></div> 
-        </div>
-    </div>
-    <div class="col-sm-6 p-0">
-        <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
-        <div class="form-control-inputDiv ml-1">
-            <input autocomplete="off" required [(ngModel)]="model.end_date" [minDate]="model.start_date" name="end_date" class="form-control-input form-control form-control-sm"
-            type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
-            <div class="required errorMsg"  [innerHtml]="errorDisplay.end_date"></div>
-        </div>
-    </div>
-    
-</div>
-
-<div class="form-group row">
-    <div class="col-sm-12 p-0"> 
-        <label for="" class="mediumFont commonFontSize letterspacing">Description</label>                       
-        <div class="form-control-inputDiv">
-            <textarea [(ngModel)]="model.description" id="description" name="description" required
-                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                rows="3 " placeholder="Enter Description "></textarea>
-        </div>
-        <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
-    </div>                    
-</div>
-
-
-<button type="submit" class="btn common-btn regularFont"
-    (click)="addCourseNewData()">Add</button>
-    </div>
-<!--End Other Course List Code-->
-<div *ngIf="model.course_id!='others'">
-
-
-
-                <div class="form-group row" *ngIf="model.course_id">
-                    
-                    <label for="" class="mediumFont commonFontSize letterspacing">Course Start Year</label>
-                    <div class="col-sm-12 form-control-inputDiv">                        
-                        <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_start_year" [(ngModel)]="model.course_start_year"  class="form-control-input form-control form-control-sm" type="text" >
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.course_start_year"></div>
-                
-                </div>
-                <div class="form-group row" *ngIf="model.course_id">
-                
-                    <label for="" class="mediumFont commonFontSize letterspacing">Course End Year</label>
-                    <div class="col-sm-12 form-control-inputDiv">                        
-                        <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_end_year" [(ngModel)]="model.course_end_year"  class="form-control-input form-control form-control-sm" type="text" >
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.course_end_year"></div>
-                
-                </div>
-
-
-                <div class="row">
-                    <div class="col-6 pl-0">
-                        <div class="form-group">
-                            <label for="" class="mediumFont commonFontSize letterspacing">Joining Standard</label>
-                            <div class="col-sm-12 p-0 form-control-inputDiv">
-                                <select  (change)="displayClassList(model.join_standard_id)"  name="join_standard" [(ngModel)]="model.join_standard_id" class="custom-select form-control-input" required>
-                                    <option value="">Select Standard </option>
-                                    <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
-                                        
-                                </select>
+                <!-- Other School Case-->
+                <div *ngIf="model.course_id=='others'">
+                    <div class="form-group row">
+                        <div class="col-sm-12 p-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Course Type</label>
+                            <div class="form-control-inputDiv">
+                                <input required name="course" [(ngModel)]="model.course_name"
+                                    class="form-control-input form-control form-control-sm" type="text"
+                                    placeholder="Enter course">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.join_standard"></div>
-                        </div>                      
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                     </div>
 
-                    <div class="col-6 pr-0">
-                        <div class="form-group">
-                            <label for="" class="mediumFont commonFontSize letterspacing">Left Standard</label>
-                            <div class="col-sm-12 p-0 form-control-inputDiv">
-                                <select   name="left_standard" [(ngModel)]="model.left_standard_id" class="custom-select form-control-input" required>
-                                    <option value="">Left Standard </option>
-                                    <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
-                                        
-                                </select>
+
+                    <div class="form-group row customWidth">
+                        <div class="col-sm-6 p-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Course Up from</label>
+                            <div class="form-control-inputDiv mr-1">
+                                <input autocomplete="off" required [maxDate]="model.end_date"
+                                    [(ngModel)]="model.start_date" name="start_date"
+                                    class="form-control-input form-control form-control-sm" type="text" bsDatepicker
+                                    placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.start_date"></div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.left_standard"></div>
+                        </div>
+                        <div class="col-sm-6 p-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
+                            <div class="form-control-inputDiv ml-1">
+                                <input autocomplete="off" required [(ngModel)]="model.end_date"
+                                    [minDate]="model.start_date" name="end_date"
+                                    class="form-control-input form-control form-control-sm" type="text" bsDatepicker
+                                    placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.end_date"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12 p-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing">Description</label>
+                            <div class="form-control-inputDiv">
+                                <textarea [(ngModel)]="model.description" id="description" name="description" required
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="3 " placeholder="Enter Description "></textarea>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
                         </div>
                     </div>
-                </div>
-               
 
-                <div class="row">
-                    <div class="col-6 pl-0">
-                        <div class="form-group" *ngIf="model.standard_id">                    
-                            <label for="" class="mediumFont commonFontSize letterspacing">Standard Start Year</label>
-                            <div class="col-sm-12 p-0 form-control-inputDiv">                        
-                                <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_start_year" [(ngModel)]="model.standard_start_year"  class="form-control-input form-control form-control-sm" type="text" >
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard_start_year"></div>
-                        </div>                        
+
+                    <button type="submit" class="btn common-btn regularFont" (click)="addCourseNewData()">Add</button>
+                </div>
+                <!--End Other Course List Code-->
+                <div *ngIf="model.course_id!='others'">
+
+
+
+                    <div class="form-group row" *ngIf="model.course_id">
+
+                        <label for="" class="mediumFont commonFontSize letterspacing">Course Start Year</label>
+                        <div class="col-sm-12 form-control-inputDiv">
+                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                                [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_start_year"
+                                [(ngModel)]="model.course_start_year"
+                                class="form-control-input form-control form-control-sm" type="text">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.course_start_year"></div>
+
+                    </div>
+                    <div class="form-group row" *ngIf="model.course_id">
+
+                        <label for="" class="mediumFont commonFontSize letterspacing">Course End Year</label>
+                        <div class="col-sm-12 form-control-inputDiv">
+                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                                [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_end_year"
+                                [(ngModel)]="model.course_end_year"
+                                class="form-control-input form-control form-control-sm" type="text">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.course_end_year"></div>
+
                     </div>
 
-                    <div class="col-6 pr-0">
-                        <div class="form-group" *ngIf="model.standard_id">              
-                            <label for="" class="mediumFont commonFontSize letterspacing">Standard End Year</label>
-                            <div class="col-sm-12 p-0 form-control-inputDiv">                        
-                                <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_end_year" [(ngModel)]="model.standard_end_year"  class="form-control-input form-control form-control-sm" type="text" >
+
+                    <div class="row">
+                        <div class="col-6 pl-0">
+                            <div class="form-group">
+                                <label for="" class="mediumFont commonFontSize letterspacing">Joining Standard</label>
+                                <div class="col-sm-12 p-0 form-control-inputDiv">
+                                    <select (change)="displayClassList(model.join_standard_id)" name="join_standard"
+                                        [(ngModel)]="model.join_standard_id" class="custom-select form-control-input"
+                                        required>
+                                        <option value="">Select Standard </option>
+                                        <option value="{{standardObj.id}}" *ngFor="let standardObj of standardList">
+                                            {{standardObj.standard_name}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.join_standard"></div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard_end_year"></div>                                
+                        </div>
+
+                        <div class="col-6 pr-0">
+                            <div class="form-group">
+                                <label for="" class="mediumFont commonFontSize letterspacing">Left Standard</label>
+                                <div class="col-sm-12 p-0 form-control-inputDiv">
+                                    <select name="left_standard" [(ngModel)]="model.left_standard_id"
+                                        class="custom-select form-control-input" required>
+                                        <option value="">Left Standard </option>
+                                        <option value="{{standardObj.id}}" *ngFor="let standardObj of standardList">
+                                            {{standardObj.standard_name}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.left_standard"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
-                    <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input" required>
-                            <option value="">Select Class</option>
-                            <option  value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
-                        </select>
+
+                    <div class="row">
+                        <div class="col-6 pl-0">
+                            <div class="form-group" *ngIf="model.standard_id">
+                                <label for="" class="mediumFont commonFontSize letterspacing">Standard Start
+                                    Year</label>
+                                <div class="col-sm-12 p-0 form-control-inputDiv">
+                                    <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                                        [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_start_year"
+                                        [(ngModel)]="model.standard_start_year"
+                                        class="form-control-input form-control form-control-sm" type="text">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.standard_start_year"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 pr-0">
+                            <div class="form-group" *ngIf="model.standard_id">
+                                <label for="" class="mediumFont commonFontSize letterspacing">Standard End Year</label>
+                                <div class="col-sm-12 p-0 form-control-inputDiv">
+                                    <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                                        [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_end_year"
+                                        [(ngModel)]="model.standard_end_year"
+                                        class="form-control-input form-control form-control-sm" type="text">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.standard_end_year"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
+
+                    <div class="form-group row">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
+                        <div class="col-sm-12 p-0 form-control-inputDiv">
+                            <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input"
+                                required>
+                                <option value="">Select Class</option>
+                                <option value="{{classObj.id}}" *ngFor="let classObj of classList">
+                                    {{classObj.class_name}}</option>
+                            </select>
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
+                    </div>
+                
+                    <div class="form-group row">
+                        <div class="col-sm-12 p-0 form-control-inputDiv">
+                            <textarea [(ngModel)]="model.comment" name="comment"
+                                class="form-control-input form-control form-control-textarea" rows="3"
+                                placeholder="Add Description of Study..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="mediumFont commonFontSize letterspacing">El ID Number or Admission
+                            Number</label>
+                        <div class="col-sm-12 p-0 form-control-inputDiv">
+                            <input required name="admission_number" [(ngModel)]="model.admission_no"
+                                class="form-control-input form-control form-control-sm" type="text"
+                                placeholder="Enter El ID Number or Admission Number  ">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
+                    </div>
+                  
+                    <button (click)="addCourseData()" type="submit"
+                        class="btn common-btn regularFont textSpace">Submit</button>
                 </div>
-                <!-- <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <select class="custom-select form-control-input" required>
-                            <option value="">Course Left Standard</option>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                        </select>
-                    </div>
-                </div> -->
-                <div class="form-group row">
-                    <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <textarea [(ngModel)]="model.comment" name="comment" class="form-control-input form-control form-control-textarea" rows="3"
-                            placeholder="Add Description of Study..."></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">El ID Number or Admission Number</label>
-                    <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input required name="admission_number" [(ngModel)]="model.admission_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter El ID Number or Admission Number  ">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
-                </div>
-                <!-- <div class="form-group row">
-                    <div class="col-xl-1 col-lg-1  col-md-2 col-2 form-control-fileDiv p-0">
-                        <button class="background-purple border-0"><img src="assets/images/userWebsite/add.png"
-                                class="img-fluid"></button>
-                    </div>
-                    <div class="col-xl-10 col-md-8 col-10 text-left commonFontSize color-purple mediumFont formPlusText justify-content-between align-items-center align-self-center">
-                        Add More Standard
-                    </div>
-                </div> -->
-                <button (click)="addCourseData()" type="submit" class="btn common-btn regularFont textSpace">Submit</button>
-            </div>
             </form>
         </div>
     </div>

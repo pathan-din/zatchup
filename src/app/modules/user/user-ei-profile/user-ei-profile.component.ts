@@ -91,44 +91,7 @@ export class UserEiProfileComponent implements OnInit {
     }
 
   }
-  /** 
-* Function Name : fileUploadDocument
-*/
-  // fileUploadDocument(files) {
-  //   let fileList: FileList = files;
-  //   let fileData: File = fileList[0];
-  //   const formData = new FormData();
-  //   formData.append('file_name', fileData);
-  //   try {
-  //     this.loader.show();
-
-
-
-  //     this.eiService.uploadFile(formData).subscribe(res => {
-  //       let response: any = {}
-  //       response = res;
-  //       if (response.status == true) {
-  //         this.loader.hide();
-  //         this.imageUrl=this.imagePath+response.filename
-  //         this.model.profile_pic=response.filename;
-  //         return
-  //       } else {
-  //         this.loader.hide();
-  //         this.imageUrl='';
-  //         return '';
-  //       }
-
-  //     }, (error) => {
-  //       this.loader.hide();
-  //       return '';
-
-  //     });
-  //   } catch (err) {
-  //     this.loader.hide();
-  //   }
-
-
-  // }
+  
 
   getCourseBySchoolId(id) {
     try {

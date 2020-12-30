@@ -54,6 +54,7 @@ import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-f
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { MySchoolComponent } from './my-school/my-school.component';
 import { SharedModule } from 'src/app/common/shared.module';
+import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
 
 @NgModule({
 
@@ -103,7 +104,8 @@ import { SharedModule } from 'src/app/common/shared.module';
     AddMoreCourseManuallyComponent,
     AddPastEiComponent,
     UserPageNotFoundComponent,
-    MySchoolComponent
+    MySchoolComponent,
+    UserPersonalInformationComponent
   ],
 
   imports: [

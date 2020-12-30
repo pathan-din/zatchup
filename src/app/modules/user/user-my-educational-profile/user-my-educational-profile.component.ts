@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
+declare var $: any;
 
 @Component({
   selector: 'app-user-my-educational-profile',
@@ -23,13 +24,26 @@ export class UserMyEducationalProfileComponent implements OnInit {
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private validationService: GenericFormValidationService
+    private validationService: GenericFormValidationService,
+    private router:Router
    ) { }
 
   ngOnInit(): void {
     this.model = {};
     this.getEducationalProfile()
   }
+
+  redirectWorkDetailesPage(){
+  this.router.navigate(["user/work-detail"]);
+  }
+  addPastEi(){
+    $("#OTPModel").modal('hide');
+    this.router.navigate(['user/add-ei'],{queryParams:{"title":"past"}});
+   }
+   addAnotherCourse(){
+    $("#OTPModel").modal("hide");
+     this.router.navigate(['user/add-ei'],{queryParams:{"title":"current"}});
+   }
   openModel (label,key,value){
    
    

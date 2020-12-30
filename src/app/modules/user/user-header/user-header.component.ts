@@ -25,6 +25,7 @@ export class UserHeaderComponent implements OnInit {
     
   }
   logout(){
+    
 	  localStorage.clear();
 	  this.router.navigate(['user/login']);
   }
