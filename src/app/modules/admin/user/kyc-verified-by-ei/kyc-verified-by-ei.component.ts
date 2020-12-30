@@ -32,7 +32,8 @@ export class KycVerifiedByEiComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKycVerifiedByEiList('');
-    this.getAllState()
+    this.getAllState();
+    this.kycVerifiedByEi.pageCount = this.baseService.getCountsOfPage();
   }
 
   getKycVerifiedByEiList(page?: any) {
@@ -77,7 +78,6 @@ export class KycVerifiedByEiComponent implements OnInit {
           this.kycVerifiedByEi.config.totalItems = res.count;
           if (res.count > 0) {
             this.kycVerifiedByEi.dataSource = res.results
-            this.kycVerifiedByEi.pageCount = this.baseService.getCountsOfPage();
           }
           else
             this.kycVerifiedByEi.dataSource = undefined

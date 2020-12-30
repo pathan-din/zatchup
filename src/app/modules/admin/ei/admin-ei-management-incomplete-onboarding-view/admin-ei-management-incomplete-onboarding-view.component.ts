@@ -22,7 +22,8 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   @ViewChild('closeGenerateZatchupIDModel') closeGenerateZatchupIDModel: any;
   @ViewChild('closeCommentModel') closeCommentModel: any
   eiId: any
-  eiData: any;
+  eiData: any= {};
+  eiExData: any= {};
   pendingApprovalProfile: PendingApprovalProfile
   user_type: any;
 
@@ -53,9 +54,10 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     let url = 'admin/ei-pending-profile/' + this.eiId
     this.baseService.getData(url).subscribe(
       (res: any) => {
-        if (res.status == true)
-          this.eiData = res.data
-        else
+        if (res.status == true){
+          this.eiData = res.data;
+          this.eiExData = res.data.existing_data;
+        }else
           this.alert.error(res.error.message[0], 'Error')
         this.loader.hide()
       }

@@ -32,6 +32,7 @@ export class ActiveUsersComponent implements OnInit {
   ngOnInit(): void {
     this.getActiveUsersList('');
     this.getAllState();
+    this.activeUsers.pageCount = this.baseService.getCountsOfPage();
   }
 
   getActiveUsersList(page?: any) {
@@ -76,7 +77,6 @@ export class ActiveUsersComponent implements OnInit {
           this.activeUsers.config.totalItems = res.count;
           if (res.count > 0){
             this.activeUsers.dataSource = res.results
-            this.activeUsers.pageCount = this.baseService.getCountsOfPage();
           }
           else
             this.activeUsers.dataSource = undefined

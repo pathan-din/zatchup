@@ -28,6 +28,7 @@ export class UsersSignedUpZatchupComponent implements OnInit {
   ngOnInit(): void {
     this.getSignupUsersList('');
     this.getAllState();
+    this.signupUsers.pageCount = this.baseService.getCountsOfPage()
   }
 
   getSignupUsersList(page?: any) {
@@ -72,7 +73,6 @@ export class UsersSignedUpZatchupComponent implements OnInit {
           this.signupUsers.config.totalItems = res.count;
           if(res.count > 0){
             this.signupUsers.dataSource = res.results
-            this.signupUsers.pageCount = this.baseService.getCountsOfPage()
           }
           else
           this.signupUsers.dataSource = undefined   

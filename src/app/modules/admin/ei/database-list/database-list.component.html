@@ -123,9 +123,9 @@
                         <mat-cell *matCellDef="let element; let i = index;"> {{i + eidbList.startIndex}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="dateOfAdding">
-                        <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.date_joined | date:'dd MMM yyyy'}} </mat-cell>
+                    <ng-container matColumnDef="dateofOnboarding">
+                        <mat-header-cell *matHeaderCellDef> Date of Onboarding </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.onboarded_date | date}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="eiZatchupID">
@@ -182,9 +182,9 @@
                                 *ngIf="element.onboarded_status == 0">Not Onboarded</button> </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="dateofOnboarding">
-                        <mat-header-cell *matHeaderCellDef> Date of Onboarding </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.opening_date | date}} </mat-cell>
+                    <ng-container matColumnDef="dateOfAdding">
+                        <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_joined | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
