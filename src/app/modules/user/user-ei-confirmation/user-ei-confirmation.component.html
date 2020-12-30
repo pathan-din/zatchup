@@ -67,14 +67,14 @@
 
                     <div class="col-6 pb-1">
                         Starting Year : <span *ngIf="!standardData.check" class="text-dark mediumFont">{{standardData.standard_start_year}}</span>
-                        <input (ngModelChange)="editStandardDetails()" [minDate]="editmodel.standard_end_year" *ngIf="standardData.check" required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_end_year_{{i}}"  [(ngModel)]="editmodel.standard_end_year"  class="form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails()"  *ngIf="standardData.check" required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_start_year_{{i}}"  [(ngModel)]="editmodel.standard_start_year"  class="form-control-input form-control form-control-sm" type="text" >
                         
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
 
                     <div class="col-6 pb-1">
                         Ending Year : <span *ngIf="!standardData.check" class="text-dark mediumFont">{{standardData.standard_end_year}}</span>
-                        <input [maxDate]="editmodel.standard_start_year"  (ngModelChange)="editStandardDetails()" *ngIf="standardData.check" required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_start_year_{{i}}"  [(ngModel)]="editmodel.standard_start_year"  class="form-control-input form-control form-control-sm" type="text" >
+                        <input   (ngModelChange)="editStandardDetails()" *ngIf="standardData.check" required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="standard_end_year_{{i}}"  [(ngModel)]="editmodel.standard_end_year"  class="form-control-input form-control form-control-sm" type="text" >
                        
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
@@ -141,11 +141,11 @@
                
                 <div class="form-group">
                     <div class="row">
-                        <div *ngIf="!isalumini" class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current Course </label>
+                        <div class="col-6 align-items-center d-flex justify-content-center">
+                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current education </label>
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past EI </label>
+                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past education </label>
                         </div>
                     </div>
                 </div>
@@ -221,7 +221,7 @@ aria-hidden="true">
                     <div class="form-group row">
                         <label for="" class="mediumFont commonFontSize letterspacing">Start Date</label>
                         <div class="col-sm-12 p-0">
-                            <input autocomplete="off"  [maxDate]="editmodel.standard_end_year" required  [(ngModel)]="editmodel.standard_start_year" name="start_date" class="form-control-input form-control form-control-sm border p-2"
+                            <input autocomplete="off"   required  [(ngModel)]="editmodel.standard_start_year" name="start_date" class="form-control-input form-control form-control-sm border p-2"
                             type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                             
                         </div>
@@ -230,7 +230,7 @@ aria-hidden="true">
                     <div class="form-group row">
                         <label for="" class="mediumFont commonFontSize letterspacing">End Date</label>
                         <div class="col-sm-12 p-0">
-                            <input autocomplete="off" required [minDate]="editmodel.standard_start_year" [maxDate]="currentDate" [(ngModel)]="editmodel.standard_end_year" name="end_date" class="form-control-input form-control form-control-sm border p-2"
+                            <input autocomplete="off" required  [maxDate]="currentDate" [(ngModel)]="editmodel.standard_end_year" name="end_date" class="form-control-input form-control form-control-sm border p-2"
                             type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                             
                         </div>

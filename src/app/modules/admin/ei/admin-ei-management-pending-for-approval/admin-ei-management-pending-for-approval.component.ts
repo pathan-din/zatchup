@@ -30,6 +30,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
   ngOnInit(): void {
     this.getEIApprovalList();
     this.getAllState();
+    this.eIPendingApproval.pageCount = this.baseService.getCountsOfPage()
   }
 
 
@@ -64,7 +65,6 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
           if (res.count > 0){
             this.eIPendingApproval.dataSource = res.results;
-            this.eIPendingApproval.pageCount = this.baseService.getCountsOfPage()
           }
           else
             this.eIPendingApproval.dataSource = undefined
