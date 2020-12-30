@@ -54,6 +54,10 @@ import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-f
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { MySchoolComponent } from './my-school/my-school.component';
 import { SharedModule } from 'src/app/common/shared.module';
+import { ChatComponent } from './chat/chat.component';
+import { StartNewChatComponent } from './start-new-chat/start-new-chat.component';
+import { CreateGroupChatComponent } from './create-group-chat/create-group-chat.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 
 @NgModule({
 
@@ -103,7 +107,11 @@ import { SharedModule } from 'src/app/common/shared.module';
     AddMoreCourseManuallyComponent,
     AddPastEiComponent,
     UserPageNotFoundComponent,
-    MySchoolComponent
+    MySchoolComponent,
+    ChatComponent,
+    StartNewChatComponent,
+    CreateGroupChatComponent,
+    CreateGroupComponent
   ],
 
   imports: [
