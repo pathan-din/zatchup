@@ -27,6 +27,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   ngOnInit(): void {
     this.getChangeRequestList('')
     this.getAllState();
+    this.changeDetailRequestsPending.pageCount = this.baseService.getCountsOfPage()
   }
 
   getChangeRequestList(page?: any) {
@@ -70,7 +71,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
           this.changeDetailRequestsPending.config.totalItems = res.count;
           if (res.count > 0){
             this.changeDetailRequestsPending.dataSource = res.results
-            this.changeDetailRequestsPending.pageCount = this.baseService.getCountsOfPage()
           }
           else
             this.changeDetailRequestsPending.dataSource = undefined

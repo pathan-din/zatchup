@@ -31,6 +31,7 @@ export class SearchComponent implements OnInit {
 
   dataSource: any;
   page_size: any;
+  pageCounts: any;
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
@@ -45,6 +46,8 @@ export class SearchComponent implements OnInit {
     this.search = this.activeRoute.snapshot.params.search;
     this.searchEIList('');
     this.getAllState();
+    this.pageCounts = this.baseService.getCountsOfPage();
+
   }
 
 
@@ -71,11 +74,11 @@ export class SearchComponent implements OnInit {
           this.config.currentPage = page
           this.config.totalItems = res.count;
 
-          if (res.count > 0)
-            this.dataSource = res.results
-          else
+          if (res.count > 0){
+            this.dataSource = res.results;
+          }else{
             this.dataSource = undefined
-        }
+        }}
         else
           this.alert.error(res.error.message[0], 'Error')
         this.loader.hide();

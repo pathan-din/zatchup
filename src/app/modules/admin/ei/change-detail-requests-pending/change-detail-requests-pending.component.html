@@ -31,6 +31,7 @@
         </div> -->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
                 <div class="mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised From</label>
@@ -80,7 +81,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Change Field</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <select class="custom-select  form-control-input"
-                            [(ngModel)]="changeDetailRequestsPending.changeField" id="pastEI" required>
+                            [(ngModel)]="changeDetailRequestsPending.changeField" id="pastEI" name="changeField" required>
                             <option value=""> Select Status</option>
                             <option value="name_of_school">Name of School</option>
                             <option value="email">Email</option>
@@ -100,6 +101,7 @@
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
                     (click)="filterData('1')">Apply</button>
             </div>
+        </form>
         </div>
 
         <!--End html for filter for alumni list-->

@@ -36,6 +36,7 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
   ngOnInit(): void {
     this.getnotOnZatchup('');
     this.getAllStates();
+    this.notOnZatchup.pageCount = this.baseService.getCountsOfPage()
   }
 
   getnotOnZatchup(page?: any) {
@@ -73,7 +74,6 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
           this.notOnZatchup.config.totalItems = res.count;
           if (res.count > 0){
             this.notOnZatchup.dataSource = res.results
-            this.notOnZatchup.pageCount = this.baseService.getCountsOfPage()
           }
           else
             this.notOnZatchup.dataSource = undefined

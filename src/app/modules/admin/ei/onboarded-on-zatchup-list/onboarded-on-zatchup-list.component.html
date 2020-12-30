@@ -21,6 +21,7 @@
         <!--Start html for filter for alumni list-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Added From</label>
@@ -45,7 +46,7 @@
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" name="state" required
                             [(ngModel)]="onboardedZatchup.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of onboardedZatchup.allStates" [value]="state.id">{{state.state}}
@@ -56,7 +57,7 @@
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" name="city" required
                             [(ngModel)]="onboardedZatchup.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of onboardedZatchup.allCities" [value]="city.id">{{city.city}}
@@ -108,6 +109,7 @@
 
                     (click)="filterData('1')">Apply</button> -->
             </div>
+        </form>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
