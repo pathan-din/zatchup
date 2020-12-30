@@ -23,12 +23,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from './common/shared.module';
 import { ConfirmDialogModule } from './common/confirm-dialog/confirm-dialog.module';
+
 // import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent 
   ],
   imports: [
     BrowserModule,

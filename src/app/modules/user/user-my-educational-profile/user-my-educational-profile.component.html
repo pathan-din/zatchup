@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-
+                <a href="#" (click)="redirectWorkDetailesPage()" class="cursorStyle">Add Work Details</a>
                 <div class="row mt-3" *ngIf="objEpData.work_details">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
@@ -119,6 +119,7 @@
                             </div>
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail" >
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details </h3>
+                                <img src="assets/images/userWebsite/edit.png" data-target="#OTPModel" data-toggle="modal" class="img-fluid editIcon"> 
                                 <div class="pr-4 pl-4">
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{objCd.course_name}}</span></p>
@@ -148,31 +149,10 @@
                                             Duration of completion : <span class="regularFont">1 year </span>
                                         </div> -->
                                         <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
-                                            Roll Number : <span class="regularFont">31 </span>
+                                            Roll Number : <span class="regularFont">{{objEd.rollno}} </span>
                                         </div>
                                     </div>
-                                    <!-- <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Class Details </h3>
-                                    <div class="row" *ngFor="let objSd of objCd.standard_detail">
-                                        <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
-                                            Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
-                                        </div>
-                                        <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                            Class (Sub-Section) : <span class="regularFont">6th-A </span>
-                                        </div>
-
-                                        <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
-                                            Starting year : <span class="regularFont">2018 </span>
-                                        </div>
-                                        <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                            Ending year : <span class="regularFont">2019 </span>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
-                                            Duration of completion : <span class="regularFont">1 year </span>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
-                                            Roll Number : <span class="regularFont">31 </span>
-                                        </div>
-                                    </div> -->
+                                    
 
                                 </div>
                             </div>
@@ -255,6 +235,37 @@
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit Education Details-->
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+           
+            <div class="modal-body pl-5 pr-5 text-center">
+                <!-- <form class="pl-5 pr-5"> -->
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+               
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6 align-items-center d-flex justify-content-center">
+                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current education </label>
+                        </div>
+                        <div class="col-6 align-items-center d-flex justify-content-center">
+                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past education </label>
+                        </div>
+                    </div>
+                </div>
+                 
+              
+
+                
+                <!-- </form> -->
 
             </div>
         </div>

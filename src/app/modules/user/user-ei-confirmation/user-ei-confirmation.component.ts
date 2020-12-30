@@ -57,7 +57,9 @@ export class UserEiConfirmationComponent implements OnInit {
 
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');
-    this.router.navigate(['user/profile-created']);
+    
+    this.router.navigate(['user/add-personal-info']);
+    
  }
 /**Delete Course  */
 
@@ -84,39 +86,7 @@ deleteCourse(id: any): any {
   }, () => {
   });
 }
-// deleteCourse(course_id){
-
-//  // 
-//  try {
-//   let model:any={};
-//   model.course_id = course_id;
-//   this.SpinnerService.show()
-//   this.baseService.action("user/delete-course-standard-detail-by-student/",model).subscribe(res=>{
-//     let response :any ={};
-//     response = res;
-//     if(response.status==true){
-//       this.SpinnerService.hide()
-
-//       this.alert.success(response.message,"Success");
-//       location.reload();
-//     }else{
-//       this.SpinnerService.hide();
-//       var error = this.eiService.getErrorResponse(this.SpinnerService,response.error);
-//       this.alert.error(error,"Error");
-     
-//     }
-
-//   },(error=>{
-
-//     this.SpinnerService.hide()
-//     this.alert.error(error.error,"Error");
-//   }))
-// } catch (e) {
-// this.alert.error(e.error,"Error");
-// }
-
-// }
-/****************************** */
+ 
  deleteStandard(standard_id){
     try {
         let model:any={};
