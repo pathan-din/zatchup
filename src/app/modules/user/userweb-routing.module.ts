@@ -163,6 +163,7 @@ const routes: Routes = [
   {
     path: 'user/career', component: CareerComponent, canActivate: [AuthGuard]
   },
+ 
   {
     path: 'user/about-us', component: AboutUsComponent, canActivate: [AuthGuard]
   },

@@ -130,7 +130,7 @@ yearModel:any='';
         response = res;
         this.SpinnerService.hide();
         this.workProfileList=response.results;
-        this.router.navigate(['user/my-school']);
+       // this.router.navigate(['user/my-school']);
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);

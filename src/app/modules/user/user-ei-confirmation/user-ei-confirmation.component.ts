@@ -32,6 +32,8 @@ export class UserEiConfirmationComponent implements OnInit {
   classList: any[];
   currentDate:any;
   isalumini:any;
+  editArr=[];
+  getkeyCalander:any;
   constructor(private router: Router,
     private route: ActivatedRoute,
     private SpinnerService: NgxSpinnerService,
@@ -122,15 +124,19 @@ deleteCourse(id: any): any {
   $("#verifiedModel").modal("hide");
  }
  openModel(standard_id){
+  
+   
    this.standard_id = standard_id;
    $("#verifiedModel").modal({
     backdrop: 'static',
     keyboard: false
   }); 
  }
- openEditModel(standard){
+ openEditModel(event,standard){
+  console.log(event);
   //this.editmodel={};
   standard.check=true;
+  
   this.editmodel.standard_id = standard.standard_id;
   this.editmodel.standard_start_year=this.editmodel.standard_start_year?this.editmodel.standard_start_year:this.baseService.getDateReverseFormat(standard.org_start_date);
   this.editmodel.standard_end_year=this.editmodel.standard_end_year?this.editmodel.standard_end_year:this.baseService.getDateReverseFormat(standard.org_end_date);
@@ -143,9 +149,10 @@ deleteCourse(id: any): any {
   this.displayClassList(standard.standard_id);
   
 }
-editStandardDetails(){
+editStandardDetails(text,event){
+    
    
-  
+  console.log(event)
   // this.errorDisplay = {};
   // this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
   // if (this.errorDisplay.valid) {
@@ -154,10 +161,16 @@ editStandardDetails(){
   try {
 
     this.SpinnerService.show();
-    console.log(this.editmodel.standard_end_year);
-    
     this.editmodel.standard_start_year=this.baseService.getDateFormat(this.editmodel.standard_start_year)
     this.editmodel.standard_end_year=this.baseService.getDateFormat(this.editmodel.standard_end_year)
+    if(text=='start_year'){
+      this.editmodel.standard_start_year=event?this.baseService.getDateFormat(event):this.baseService.getDateFormat(this.editmodel.standard_start_year)
+    }else if(text=='end_year'){
+      this.editmodel.standard_end_year=event?this.baseService.getDateFormat(event):this.baseService.getDateFormat(this.editmodel.standard_end_year)
+      
+    }
+    
+    
     this.baseService.action("user/edit-course-standard-detail-by-student/",this.editmodel).subscribe(res=>{
       let response:any = res;
       if(response.status==true){
