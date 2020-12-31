@@ -41,7 +41,7 @@
 
                     <div class="form-group row customWidth">
                         <div class="col-sm-6 p-0">
-                            <label for="" class="mediumFont commonFontSize letterspacing">Course Up from</label>
+                            <label for="" class="mediumFont commonFontSize letterspacing">Start Date</label>
                             <div class="form-control-inputDiv mr-1">
                                 <input autocomplete="off" required [maxDate]="model.end_date"
                                     [(ngModel)]="model.start_date" name="start_date"
@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 p-0">
-                            <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
+                            <label for="" class="mediumFont commonFontSize letterspacing">End Date</label>
                             <div class="form-control-inputDiv ml-1">
                                 <input autocomplete="off" required [(ngModel)]="model.end_date"
                                     [minDate]="model.start_date" name="end_date"
@@ -81,35 +81,22 @@
                 <!--End Other Course List Code-->
                 <div *ngIf="model.course_id!='others'">
 
-
-
-                    <div class="form-group row" *ngIf="model.course_id">
-
-                        <label for="" class="mediumFont commonFontSize letterspacing">Course Start Year</label>
-                        <div class="col-sm-12 form-control-inputDiv">
-                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
-                                [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_start_year"
-                                [(ngModel)]="model.course_start_year"
-                                class="form-control-input form-control form-control-sm" type="text">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.course_start_year"></div>
-
-                    </div>
-                    <div class="form-group row" *ngIf="model.course_id">
-
-                        <label for="" class="mediumFont commonFontSize letterspacing">Course End Year</label>
-                        <div class="col-sm-12 form-control-inputDiv">
-                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
-                                [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_end_year"
-                                [(ngModel)]="model.course_end_year"
-                                class="form-control-input form-control form-control-sm" type="text">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.course_end_year"></div>
-
-                    </div>
-
-
                     <div class="row">
+                        <div class="col-6 pl-0">
+
+                            <div class="form-group" >
+
+                                <label for="" class="mediumFont commonFontSize letterspacing">Start Year</label>
+                                <div class="col-sm-12 form-control-inputDiv">
+                                    <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                                        [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_start_year"
+                                        [(ngModel)]="model.course_start_year"
+                                        class="form-control-input form-control form-control-sm" type="text">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.course_start_year"></div>
+
+                            </div>
+                        </div>
                         <div class="col-6 pl-0">
                             <div class="form-group">
                                 <label for="" class="mediumFont commonFontSize letterspacing">Joining Standard</label>
@@ -126,7 +113,24 @@
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.join_standard"></div>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="row">
+
+                        <div class="col-6 pl-0">
+                            <div class="form-group" >
+
+                                <label for="" class="mediumFont commonFontSize letterspacing">End Year</label>
+                                <div class="col-sm-12 form-control-inputDiv">
+                                    <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                                        [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="course_end_year"
+                                        [(ngModel)]="model.course_end_year"
+                                        class="form-control-input form-control form-control-sm" type="text">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.course_end_year"></div>
+
+                            </div>
+                        </div>
                         <div class="col-6 pr-0">
                             <div class="form-group">
                                 <label for="" class="mediumFont commonFontSize letterspacing">Left Standard</label>
@@ -174,7 +178,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
                         <div class="col-sm-12 p-0 form-control-inputDiv">
                             <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input"
@@ -185,8 +189,8 @@
                             </select>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
-                    </div>
-                
+                    </div> -->
+
                     <div class="form-group row">
                         <div class="col-sm-12 p-0 form-control-inputDiv">
                             <textarea [(ngModel)]="model.comment" name="comment"
@@ -204,7 +208,7 @@
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                     </div>
-                  
+
                     <button (click)="addCourseData()" type="submit"
                         class="btn common-btn regularFont textSpace">Submit</button>
                 </div>

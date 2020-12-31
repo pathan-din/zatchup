@@ -34,6 +34,7 @@ export class UserEiConfirmationComponent implements OnInit {
   isalumini:any;
   editArr=[];
   getkeyCalander:any;
+  standard:any={};
   constructor(private router: Router,
     private route: ActivatedRoute,
     private SpinnerService: NgxSpinnerService,
@@ -46,6 +47,7 @@ export class UserEiConfirmationComponent implements OnInit {
     public alert:NotificationService) { }
 
   ngOnInit(): void {
+    this.editmodel.class_id = '';
     this.route.queryParams.subscribe(parrams=>{
       if(parrams['school_id']){
           this.school_id = parrams['school_id'];
@@ -133,26 +135,29 @@ deleteCourse(id: any): any {
   }); 
  }
  openEditModel(event,standard){
-  console.log(event);
-  //this.editmodel={};
+   
+  this.standard = standard;
   standard.check=true;
   
-  this.editmodel.standard_id = standard.standard_id;
-  this.editmodel.standard_start_year=this.editmodel.standard_start_year?this.editmodel.standard_start_year:this.baseService.getDateReverseFormat(standard.org_start_date);
-  this.editmodel.standard_end_year=this.editmodel.standard_end_year?this.editmodel.standard_end_year:this.baseService.getDateReverseFormat(standard.org_end_date);
-  if(standard.class_detail.length>0){
-    this.editmodel.class_id = standard.class_detail[0].class_id;
-  }else{
-    this.editmodel.class_id = '';
-  }
+  //this.standard.class_id='';
   
+   
+  
+  this.editmodel.standard_id = standard.standard_id;
+  this.editmodel.standard_start_year=standard.org_start_date;
+  this.editmodel.standard_end_year=standard.org_end_date;
+
+  if(standard.class_detail.length>0){
+    //this.editmodel.class_id = standard.class_detail[0].class_id;
+
+  } 
   this.displayClassList(standard.standard_id);
   
 }
 editStandardDetails(text,event){
     
    
-  console.log(event)
+  
   // this.errorDisplay = {};
   // this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
   // if (this.errorDisplay.valid) {
