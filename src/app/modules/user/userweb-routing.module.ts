@@ -49,6 +49,8 @@ import { CreateGroupChatComponent } from './create-group-chat/create-group-chat.
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
 import { AuthGuard } from 'src/app/auth/auth.guard';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 const routes: Routes = [
@@ -202,6 +204,14 @@ const routes: Routes = [
   
   {
     path: 'user/create-group', component: CreateGroupComponent
+  },
+
+  {
+    path: 'user/group-detail', component: GroupDetailComponent
+  },
+
+  {
+    path: 'user/messages', component: MessagesComponent
   },
   
 
