@@ -121,6 +121,10 @@ body {
     color: #dc3545;
 }
 
+.border-red {
+    border: 1px solid #dc3545;
+}
+
 .color-white {
     color: #ffffff;
 }

@@ -59,6 +59,8 @@ import { StartNewChatComponent } from './start-new-chat/start-new-chat.component
 import { CreateGroupChatComponent } from './create-group-chat/create-group-chat.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
 
@@ -113,7 +115,9 @@ import { UserPersonalInformationComponent } from './user-personal-information/us
     StartNewChatComponent,
     CreateGroupChatComponent,
     CreateGroupComponent,
-    UserPersonalInformationComponent
+    UserPersonalInformationComponent,
+    GroupDetailComponent,
+    MessagesComponent
   ],
 
   imports: [
