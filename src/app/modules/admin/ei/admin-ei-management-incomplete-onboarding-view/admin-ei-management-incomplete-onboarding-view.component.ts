@@ -57,6 +57,9 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
         if (res.status == true){
           this.eiData = res.data;
           this.eiExData = res.data.existing_data;
+          if (Object.keys(this.eiExData).length == 0) {
+            this.eiExData=undefined;
+          }
         }else
           this.alert.error(res.error.message[0], 'Error')
         this.loader.hide()
