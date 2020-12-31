@@ -56,8 +56,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" (click)="redirectWorkDetailesPage()" class="cursorStyle">Add Work Details</a>
-                <div class="row mt-3" *ngIf="objEpData.work_details">
+                <a  (click)="redirectWorkDetailesPage()" class="cursorStyle">Add Work Details</a>
+                <div class="row mt-3" *ngIf="objEpData.work_detail">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
@@ -67,13 +67,13 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" *ngFor="let objWorkDetail of objEpData.work_detail">
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Current Company : <span
-                                        class="regularFont">ABC Infotech Pvt. Ltd. </span></p>
+                                        class="regularFont">{{objWorkDetail.company_name}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Position : <span
-                                        class="regularFont">Network Architect </span></p>
+                                        class="regularFont">{{objWorkDetail.work_type}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Profession : <span
-                                        class="regularFont">Networking </span></p>
+                                        class="regularFont">{{objWorkDetail.job_title}} </span></p>
                             </div>
                         </div>
                     </div>

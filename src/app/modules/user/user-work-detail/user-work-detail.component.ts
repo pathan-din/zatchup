@@ -20,6 +20,10 @@ date:any=[];
 dateModel:any='';
 monthModel:any='';
 yearModel:any='';
+dateEndModel:any='';
+monthEndModel:any='';
+yearEndModel:any='';
+
   month:any=[{monInNumber:'01',monInWord:'Jan'},
              {monInNumber:'02',monInWord:'Feb'},
              {monInNumber:'03',monInWord:'Mar'},
@@ -62,7 +66,7 @@ yearModel:any='';
     this.model.work_type='';
     this.model.work_department='';
     this.model.end_year=year;
-    
+    this.model.is_currently_work=true
     this. getWorkProfile();
    
   }
@@ -74,6 +78,9 @@ yearModel:any='';
 
   }
   goToKycSuccessfulPage() {
+    
+   
+    
     this.error = [];
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
@@ -82,7 +89,13 @@ yearModel:any='';
       return false;
     }
     try {
-
+      this.model.start_date = this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
+      if(this.model.is_currently_work){
+       
+      }else{
+        this.model.end_date= this.yearEndModel+'-'+this.monthEndModel+'-'+this.dateEndModel;
+      }
+      
       this.SpinnerService.show();
  
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
@@ -130,7 +143,7 @@ yearModel:any='';
         response = res;
         this.SpinnerService.hide();
         this.workProfileList=response.results;
-        this.router.navigate(['user/my-school']);
+       // this.router.navigate(['user/my-school']);
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);

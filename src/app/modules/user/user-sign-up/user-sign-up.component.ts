@@ -77,6 +77,8 @@ export class UserSignUpComponent implements OnInit {
       this.date.push(d);
     }
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+
     this.model.profile = {};
     this.model.profile.pronoun = "";
     this.model.is_term_cond = false;
