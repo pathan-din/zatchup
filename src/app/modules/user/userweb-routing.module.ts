@@ -43,6 +43,10 @@ import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-m
 import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
 import { MySchoolComponent } from './my-school/my-school.component';
+import { ChatComponent } from './chat/chat.component';
+import { StartNewChatComponent } from './start-new-chat/start-new-chat.component';
+import { CreateGroupChatComponent } from './create-group-chat/create-group-chat.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
 import { AuthGuard } from 'src/app/auth/auth.guard';
 
@@ -184,6 +188,32 @@ const routes: Routes = [
   {
     path: 'user/add-personal-info', component: UserPersonalInformationComponent, canActivate: [AuthGuard]
   },
+
+  {
+    path: 'user/chat', component: ChatComponent
+  },
+
+  {
+    path: 'user/new-chat', component: StartNewChatComponent
+  },
+
+  {
+    path: 'user/group-chat', component: CreateGroupChatComponent
+  },
+  
+  {
+    path: 'user/create-group', component: CreateGroupComponent
+  },
+  
+
+
+
+
+
+
+
+
+
   {
       path: '**', component: UserPageNotFoundComponent
   },

@@ -201,7 +201,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="eiData.verification_details.length > 0">
+                    <div class="row" *ngIf="!eiData.verification_details">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Verification Documents</p>
                         </div>
@@ -218,7 +218,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="eiData.similar_ei.length > 0">
+                    <div class="row" *ngIf="!eiData.similar_ei">
                         <div class="col-12">
                             <h2 class="commonFontSize">Similar School</h2>
                             <div class="tableDiv ">
@@ -244,7 +244,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-3">
+                    <div class="row mt-3" *ngIf="!eiData.existing_data">
                         <div class="col-12">
                             <h2 class="commonFontSize">Existing Data In School Database</h2>
                             <div class="tableDiv ">
@@ -260,49 +260,49 @@
                                         <tbody>
                                             <tr class="">
                                                 <td>Name Of The School</td>
+                                                <td>{{eiExData.name_of_school}}</td>
                                                 <td>{{eiData.name_of_school}}</td>
-                                                <td>{{eiData.new_data.name_of_school}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>State</td>
+                                                <td>{{eiExData.state}}</td>
                                                 <td>{{eiData.state}}</td>
-                                                <td>{{eiData.new_data.state}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>City</td>
+                                                <td>{{eiExData.city}}</td>
                                                 <td>{{eiData.city}}</td>
-                                                <td>{{eiData.new_data.city}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Enter Complete Address</td>
-                                                <td>{{eiData.address1}} {{eiData.address2}}</td>
-                                                <td>{{eiData.new_data.address1}} {{eiData.new_data.address2}}
+                                                <td>{{eiExData.address1}} {{eiExData.address2}}</td>
+                                                <td>{{eiData.address1}} {{eiData.address2}}
                                                 </td>
                                             </tr>
                                             <tr class="">
                                                 <td>Address Line One</td>
+                                                <td>{{eiExData.address1}}</td>
                                                 <td>{{eiData.address1}}</td>
-                                                <td>{{eiData.new_data.address1}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Address Line Two</td>
+                                                <td>{{eiExData.address2}}</td>
                                                 <td>{{eiData.address2}}</td>
-                                                <td>{{eiData.new_data.address2}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Landmark</td>
+                                                <td>{{eiExData.landmark}}</td>
                                                 <td>{{eiData.landmark}}</td>
-                                                <td>{{eiData.new_data.landmark}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Pincode</td>
+                                                <td>{{eiExData.pincode}}</td>
                                                 <td>{{eiData.pincode}}</td>
-                                                <td>{{eiData.new_data.pincode}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Board / University</td>
+                                                <td>{{eiExData.university}}</td>
                                                 <td>{{eiData.university}}</td>
-                                                <td>{{eiData.new_data.university}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

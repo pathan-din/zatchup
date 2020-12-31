@@ -13,12 +13,13 @@
         <!--Start html for filter for alumni list-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form>
             <div class="d-flex flex-wrap align-items-end">
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="signupFrom" name="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate"  [(ngModel)]="activeUsers.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -27,7 +28,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="signupTo" name="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="activeUsers.filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -36,7 +37,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="lastLoginFrom" name="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="activeUsers.loginFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -45,7 +46,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="lastLoginTo" name="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="activeUsers.loginToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -78,7 +79,7 @@
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="state" required
+                        <select class="custom-select  form-control-input" id="state" name="state" required
                         [(ngModel)]="activeUsers.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of activeUsers.allStates" [value]="state.id"> {{state.state}}
@@ -90,7 +91,7 @@
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="city" required
+                        <select class="custom-select  form-control-input" id="city" name="city" required
                         [(ngModel)]="activeUsers.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of activeUsers.allCities" [value]="city.id">{{city.city}}</option>
@@ -142,10 +143,11 @@
 
 
             </div>
+        </form>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="activeUsers.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of User Per

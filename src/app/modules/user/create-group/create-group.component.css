@@ -1,0 +1,48 @@
+.border-bottomCustom{
+    border-bottom: 1px solid #ccc;
+}
+.chat_content{
+    width: 80%;
+    margin: 0px auto;
+}
+.commentCustom{height: 50px; border-radius: 10px;}
+ul {
+    list-style-type: none;
+    margin-top: 4px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.addChatProfile{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    text-align: center;
+    line-height: 85px;
+    font-size: 20px;
+}
+ul.participantsList li {
+    display: inline-block;
+    margin: 10px 15px 10px;
+    text-align: center;
+}
+ul.participantsList span {
+    display: block;
+    margin-top: 5px;
+}
+
+.addParticipants {
+    width: 40px;
+    height: 40px;
+    margin: 0px auto;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 40px;
+    font-size: 11px;
+}
+
+@media (max-width: 767px){
+    .w-50{
+        width: 100% !important;
+    }
+  }

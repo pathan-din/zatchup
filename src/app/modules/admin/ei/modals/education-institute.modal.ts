@@ -30,8 +30,8 @@ export class EducationInstitute {
 }
 
 export class EIDbList extends Pagination {
-    displayedColumns: string[] = ['position', 'dateOfAdding', 'eiZatchupID', 'schoolName', 'state', 'city', 'address', 'board',
-        'approximateNumber', 'status', 'dateofOnboarding', 'action'];
+    displayedColumns: string[] = ['position', 'dateofOnboarding' , 'eiZatchupID', 'schoolName', 'state', 'city', 'address', 'board',
+        'approximateNumber', 'status', 'dateOfAdding', 'action'];
 
     stateId: any = '';
     cityId: any = '';

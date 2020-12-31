@@ -17,7 +17,9 @@
         </div>
 
         <!--start html for payment OnBoarding information Filter-->
-        <div class="filterDiv">
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> From</label>
@@ -44,7 +46,7 @@
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                     <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                        <select class="custom-select  form-control-input" id="pastEI" name="state" required
                             [(ngModel)]="onboardingFee.stateId" (change)="getAllCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of onboardingFee.allStates" [value]="state.id">{{state.state}}
@@ -55,7 +57,7 @@
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
                     <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" id="pastEI" required
+                        <select class="custom-select  form-control-input" id="pastEI" name="city" required
                             [(ngModel)]="onboardingFee.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of onboardingFee.allCities" [value]="city.id">{{city.city}}
@@ -75,6 +77,7 @@
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
                     (click)="getOnboardingFee('')">Apply</button>
             </div>
+        </form>
         </div>
         <!--End html for payment OnBoarding information Filter-->
 
