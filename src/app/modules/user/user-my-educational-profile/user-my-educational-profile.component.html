@@ -69,18 +69,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 pt-3 d-flex justify-content-between align-items-center">
-                                <h3 class="Heading m-0 d-flex justify-content-start flex-wrap">
+                            <div class="col-md-12 pt-3 d-flex justify-content-between align-items-center" *ngFor="let objWorkDetail of objEpData.work_detail">
+                                <h3 class="Heading m-0 d-flex justify-content-start flex-wrap" >
                                     <img src="assets/images/userWebsite/study_student.png"  class="cursorStyle img-fluid mr-2" style="height: 80px;">
                                     <div class="experiencedetails">
-                                        <span class="d-block regularFont mediumFont">Software Developer</span> 
-                                        <span class="d-block regularFont commonFontSize lineHeight">Name of Course: B-Tech </span>
-                                        <span class="d-block regularFont small-text color-fadded-black">March 2020 - Present</span>
-                                        <span class="d-block regularFont small-text color-fadded-black lineHeight">India</span>
+                                        <span class="d-block regularFont mediumFont">{{objWorkDetail.work_department}}</span> 
+                                        <span class="d-block regularFont commonFontSize lineHeight">Current Company: {{objWorkDetail.company_name}} </span>
+                                        <span class="d-block regularFont small-text color-fadded-black">{{objWorkDetail.start_date}} - {{objWorkDetail.is_currently_work?"Present":objWorkDetail.end_date}}</span>
+                                        <span class="d-block regularFont small-text color-fadded-black lineHeight">{{objWorkDetail.work_country}} {{objWorkDetail.work_state}} {{objWorkDetail.work_city}}</span>
                                     </div>
                                 </h3>
                                 <div class="addWorkcourse">                                    
-                                    <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
+                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid" style="width: 30px;">
                                     </a>
                                 </div>
@@ -89,14 +89,14 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12" *ngFor="let objWorkDetail of objEpData.work_detail">
+                            <!-- <div class="col-md-12" *ngFor="let objWorkDetail of objEpData.work_detail">
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Current Company : <span
                                         class="regularFont">{{objWorkDetail.company_name}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Position : <span
                                         class="regularFont">{{objWorkDetail.work_type}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Profession : <span
                                         class="regularFont">{{objWorkDetail.job_title}} </span></p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
            
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
-                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                    <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px">
                
                 <div class="form-group">
                     <div class="row">

@@ -27,14 +27,6 @@
                     </div>
                 </div>
                
-
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
-                    <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input [required]="role=='1'" name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
-                </div>
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
@@ -42,6 +34,14 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
                 </div>
+                <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <input [required]="role=='1'" name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
+                </div>
+               
               
                  
                 <button type="submit" class="btn common-btn regularFont textSpace" (click)="addCourseData()">Submit</button>

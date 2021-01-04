@@ -33,8 +33,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.getEducationalProfile()
   }
 
-  redirectWorkDetailesPage(){
-  this.router.navigate(["user/work-detail"]);
+  redirectWorkDetailesPage(id){
+  this.router.navigate(["user/work-detail"],{queryParams:{"id":id}});
   }
   addPastEi(){
     $("#OTPModel").modal('hide');

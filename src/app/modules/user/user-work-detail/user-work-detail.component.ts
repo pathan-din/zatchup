@@ -89,11 +89,11 @@ yearEndModel:any='';
       return false;
     }
     try {
-      this.model.start_date = this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
+      this.model.start_date = this.yearModel+'-'+this.monthModel+'-'+"01";
       if(this.model.is_currently_work){
        
       }else{
-        this.model.end_date= this.yearEndModel+'-'+this.monthEndModel+'-'+this.dateEndModel;
+        this.model.end_date= this.yearEndModel+'-'+this.monthEndModel+'-'+"01";
       }
       
       this.SpinnerService.show();
