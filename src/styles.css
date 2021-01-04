@@ -719,6 +719,10 @@ a:hover {
     width: 85% !important;
 }
 
+.lineHeight{
+    line-height: initial;
+}
+
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
     border-color: #463267;
