@@ -89,11 +89,11 @@ export class UserKycVerificationComponent implements OnInit {
       //this.model.kyc_id_no
       this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
     }else if(this.model.kyc_type=='Dl'){
-      this.maxLength = 13;
+      this.maxLength = 20;
       this.placeholder='Eg : MH1420110062821'
       this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
     }else if(this.model.kyc_type=='Passport'){
-      this.maxLength = 8;
+      this.maxLength = 20;
       this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
       this.placeholder='Eg : M00000000'
     }
@@ -103,7 +103,7 @@ export class UserKycVerificationComponent implements OnInit {
     
     if(this.model.kyc_id_no)
     {
-      if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12){
+      if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12 && this.model.kyc_type=='Aadhar'){
         this.model.kyc_id_no=this.model.kyc_id_no+' ';
       }
       this.arrAadhar.push(1);
