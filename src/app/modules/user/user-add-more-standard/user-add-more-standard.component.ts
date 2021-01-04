@@ -57,6 +57,7 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.SpinnerService.show();
       this.baseService.getData('user/course-list-by-schoolid/', { 'school_id': id }).subscribe(
         (res: any) => {
+          this.SpinnerService.hide();
           this.courseList = res.results;
           // if (res.status == true)
           //   this.courseList = res.results;

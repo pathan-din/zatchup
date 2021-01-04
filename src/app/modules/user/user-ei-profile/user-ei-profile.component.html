@@ -33,7 +33,7 @@
                     <div class="col-sm-12 p-0 pr-0 ">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course joining date</label>
                         <div class="form-control-inputDiv mobile-input-6">
-                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY"
+                            <input required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(objCourse.start_date)" [maxDate]="this.baseService.getDateReverseFormat(objCourse.end_date)" placeholder="DD-MM-YYYY"
                                 [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="date_of_joining"
                                 [(ngModel)]="model.date_joining" class="form-control-input form-control form-control-sm"
                                 type="text">
@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Joining standard</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <select name="join_standard" [(ngModel)]="model.join_standard_id"
+                        <select (change)="displayClassList(model.join_standard_id)" name="join_standard" [(ngModel)]="model.join_standard_id"
                             class="custom-select form-control-input" required>
                             <option value="">Select Join Standard </option>
                             <option value="{{standardObj.id}}" *ngFor="let standardObj of standardList">
@@ -58,10 +58,10 @@
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Current standard</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <select (change)="displayClassList(model.current_standard_id)" name="current_standard"
+                        <select  name="current_standard"
                             [(ngModel)]="model.current_standard_id" class="custom-select form-control-input" required>
                             <option value="">Select Curent Standard </option>
-                            <option value="{{standardObj.id}}" *ngFor="let standardObj of standardList">
+                            <option value="{{standardObj.id}}" *ngFor="let standardObj of leftStandardList">
                                 {{standardObj.standard_name}}</option>
 
                         </select>

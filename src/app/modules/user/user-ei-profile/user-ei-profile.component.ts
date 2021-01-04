@@ -19,6 +19,8 @@ export class UserEiProfileComponent implements OnInit {
   imageUrl: any;
   courseList: any;
   standardList: any;
+  leftStandardList : any;
+  objCourse:any={};
   classList: any;
   schoolId: any;
   course_id: any = '';
@@ -42,6 +44,10 @@ export class UserEiProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.model.class_id = '';
+    this.model.course_id= '';
+    this.model.join_standard_id="";
+    this.model.current_standard_id="";
+    
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
       this.model.school_id = this.schoolId;
@@ -52,6 +58,7 @@ export class UserEiProfileComponent implements OnInit {
       this.getSchollConfirmationData();
     }
     this.imagePath = this.baseService.serverImagePath;
+    
   }
 
   /**
@@ -98,11 +105,13 @@ export class UserEiProfileComponent implements OnInit {
       this.loader.show();
       this.baseService.getData('user/course-list-by-schoolid/', { 'school_id': id }).subscribe(
         (res: any) => {
-          if (res.status == true)
-            this.courseList = res.results;
-          else
-            this.alert.error(res.error.message[0], "Error")
-            this.loader.hide();
+          this.loader.hide();
+          this.courseList = res.results;
+          // if (res.status == true)
+          //   this.courseList = res.results;
+          // else
+          //   this.alert.error(res.error.message[0], "Error")
+          //   this.loader.hide();
         }, (error) => {
           this.loader.hide();
           this.alert.error(error.message, "Error")
@@ -121,12 +130,20 @@ export class UserEiProfileComponent implements OnInit {
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
+      this.objCourse = this.courseList.find(e =>
+        
+        
+         e.id === parseInt(courseId)
+       ) ;
+      
+      //console.log(this.courseList);
+      
       this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
         console.log(res);
         let response: any = {};
         response = res;
         this.standardList = response.results;
-
+        this.leftStandardList = response.results;
       }, (error) => {
         this.loader.hide();
         //console.log(error);
@@ -139,10 +156,23 @@ export class UserEiProfileComponent implements OnInit {
   }
   displayClassList(stId) {
     try {
+      if(stId){
       this.loader.show();
       this.classList = [];
       let data: any = {};
       data.standard_id = stId;
+      this.leftStandardList=[];
+        var i=0;
+        //var pos = this.standardList.map(function(e) { return e.id; }).indexOf(stId);
+       
+     
+        this.standardList.forEach(element => {
+          if(element.id >= stId){
+            this.leftStandardList.push(element)
+          }
+         
+          i=i+1;
+        });
       this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
         console.log(res);
         let response: any = {};
@@ -155,6 +185,7 @@ export class UserEiProfileComponent implements OnInit {
         //console.log(error);
 
       });
+    }
     } catch (err) {
       this.loader.hide();
       //console.log(err);
