@@ -2,16 +2,17 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <img class="img-fluid left-Image mt-4" src="assets/images/userWebsite/enter_your_work_details.png">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h2 class="mb-3 textSpace">Enter Your Work Details </h2>
 
             <form class="pt-2">
 
                 <div class="form-group row">
                     <div class="col-sm-12 p-0">
+                        <label> Employment Type </label>
                         <select required (change)="isValid($event)" [(ngModel)]="model.work_type" name="status"  class="border custom-select form-control-input" required>
                             <option value="">Employment Status</option>
                             <option value="Employed">Employed </option>
@@ -22,6 +23,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 p-0">
+                        <label> Employment Profile </label>
                         <select (change)="isValid($event)" class="border custom-select form-control-input" name="department" [(ngModel)]="model.work_department" required>
                             <option value="">Select your work profile</option>
                             <option value="{{wpl.id}}" *ngFor="let wpl of workProfileList;">{{wpl.name}}</option>
@@ -46,7 +48,7 @@
                         </div>
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.work_country"></div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <div class="col-sm-6 pl-0">
                             <div class="p-0 form-control-input-padding mobile-input-6 mobForm-name">
                                 <input [(ngModel)]="model.work_state" name="work_state" required class="form-control-input form-control form-control-sm border" type="text"
@@ -61,7 +63,7 @@
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.work_city"></div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row">
                         <div class="col-sm-12 p-0">
                             <textarea [(ngModel)]="model.work_description" name="work_description" required  class="form-control-input form-control border" rows="3"
@@ -74,6 +76,7 @@
                     <h4 class="mb-3 textSpace color-gray">Work</h4>
                     <div class="form-group row">
                         <div class="col-sm-12 p-0">
+                            <label> Company </label>
                             <input (keyup)="isValid($event)" [(ngModel)]="model.company_name" name="company_name" required class="form-control-input form-control form-control-sm border" type="text"
                                 placeholder="Enter Company Name">
                         </div>
@@ -81,6 +84,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12 p-0">
+                            <label> Job Title </label>
                             <input [(ngModel)]="model.job_title" name="job_title" required class="form-control-input form-control form-control-sm border" type="text"
                                 placeholder="What is your job title? ">
                         </div>
@@ -88,12 +92,13 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12 p-0">
+                            <label> Location </label>
                             <input [(ngModel)]="model.work_country" name="country" required class="form-control-input form-control form-control-sm border" type="text"
                                 placeholder="Enter Country">
                         </div>
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.country"></div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <div class="col-sm-6 pl-0">
                             <div class="p-0 mobile-input-6 mobForm-name">
                                 <input [(ngModel)]="model.work_state" name="state" required class="form-control-input form-control form-control-sm border" type="text"
@@ -108,8 +113,9 @@
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.city"></div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row">
+                        <label> Description </label>
                         <div class="col-sm-12 p-0">
                             <textarea [(ngModel)]="model.work_description" name="description" required class="form-control-input form-control border" rows="3"
                                 placeholder="Write Description Here..."></textarea>
@@ -117,75 +123,97 @@
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.description"></div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-12 ">
-                            <h4 class="mb-2 textSpace color-gray">Time Period</h4>
-                            <div class="row">
-                                
-                                <div class="col-2 mr-1 p-0">
-                                    <input [(ngModel)]="model.start_date" name="start_date" value="{{dateModel}}-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
-                                    >
-                                    <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select form-date-col pr-2 border">
-                                        <option value="" [selected]='true'>Date</option>
-                                        <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
-                                       
-                                    </select>
+                        <div class="col-sm-12">
+                        <h4 class="mb-2 textSpace color-gray">Time Period</h4>
+
+                        <div class="row mb-2">
+                            <div class="col-md-12 pl-0">  
+                                <div class="col p-0">                                                                
+                                    <label class="d-flex align-items-center"><input [(ngModel)]="model.is_currently_work" name="is_currently_work" class="h-auto form-control-input form-control-sm mr-1" type="checkbox">
+                                        I am currently working in this role</label> 
                                 </div>
-                                
-                                <div class="col-3 mr-1 p-0">
-                                    <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select form-month-col border">
-                                        <option value="" selected>Month</option>
-                                        <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
-                                        
-                                    </select>
-                                </div>
-                                
-                                <div class="col-3 ml-1 p-0">
-                                    <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select form-month-col border">
-                                        <option value="" selected>Year</option>
-                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
-                                       
-                                    </select>
-                                </div>
-                                
-                                <div class="required errorMsg"  [innerHtml]="errorDisplay.start_year"></div>
-                                <div class="col p-0 d-flex justify-content-between align-items-center align-self-center">
-                                    <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">
-                                    <span class="regularFont color-gray mr-1">to present</span>
-                                    <input [(ngModel)]="model.is_currently_work" name="is_currently_work" class="h-auto form-control-input form-control-sm" type="checkbox">
-                                </div>
-                                
                             </div>
-                            <div class="row" *ngIf="!model.is_currently_work">
-                                
-                                <div class="col-2 mr-1 p-0">
-                                    <input [(ngModel)]="model.end_date" name="end_date" value="{{dateEndModel}}-{{monthEndModel}}-{{yearEndModel}}" class="form-control-input form-control form-control-sm" type="hidden"
-                                    >
-                                    <select (change)="isValid($event)" id="date" required [(ngModel)]="dateEndModel" name ="dob" class="custom-select form-date-col pr-2 border">
-                                        <option value="" [selected]='true'>Date</option>
-                                        <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
-                                       
-                                    </select>
+                        </div>  
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-12 pl-0"> <label> Start Date </label></div>
+                                <div class="row">                                    
+                                    <!-- <div class="col-2 mr-1 p-0">
+                                        <input [(ngModel)]="model.start_date" name="start_date" value="{{dateModel}}-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
+                                        >
+                                        <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select form-date-col pr-2 border">
+                                            <option value="" [selected]='true'>Date</option>
+                                            <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
+                                            
+                                        </select>
+                                    </div> -->
+                                    
+                                    <div class="col-6 pl-0 pr-0">
+                                        <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select form-month-col border">
+                                            <option value="" selected>Month</option>
+                                            <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-6 pr-0">
+                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select form-month-col border">
+                                            <option value="" selected>Year</option>
+                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="required errorMsg"  [innerHtml]="errorDisplay.start_year"></div>
+                                    
+                                    
+                                    
                                 </div>
-                                
-                                <div class="col-3 mr-1 p-0">
-                                    <select (change)="isValid($event)" id="month" required [(ngModel)]="monthEndModel" name ="dob" class="custom-select form-month-col border">
-                                        <option value="" selected>Month</option>
-                                        <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
-                                        
-                                    </select>
-                                </div>
-                                
-                                <div class="col-3 ml-1 p-0">
-                                    <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="dob" class="custom-select  form-month-col border">
-                                        <option value="" selected>Year</option>
-                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
-                                       
-                                    </select>
-                                </div>
-                                
-                                <div class="required errorMsg"  [innerHtml]="errorDisplay.end_year"></div>
-                                
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-12 pl-0"> <label> End Date </label></div>
+                                <div class="row" *ngIf="!model.is_currently_work">     
+                                        <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
+                                    <!-- <div class="col-2 mr-1 p-0">
+                                        <input [(ngModel)]="model.end_date" name="end_date" value="{{dateEndModel}}-{{monthEndModel}}-{{yearEndModel}}" class="form-control-input form-control form-control-sm" type="hidden"
+                                        >
+                                        <select (change)="isValid($event)" id="date" required [(ngModel)]="dateEndModel" name ="dob" class="custom-select form-date-col pr-2 border">
+                                            <option value="" [selected]='true'>Date</option>
+                                            <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
+                                            
+                                        </select>
+                                    </div> -->
+
+                                    
+                                    
+                                    <div class="col-6 mr pr-0">
+                                        <select (change)="isValid($event)" id="month" required [(ngModel)]="monthEndModel" name ="dob" class="custom-select form-month-col border">
+                                            <option value="" selected>Month</option>
+                                            <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col-6 pr-0">
+                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="dob" class="custom-select  form-month-col border">
+                                            <option value="" selected>Year</option>
+                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="required errorMsg"  [innerHtml]="errorDisplay.end_year"></div>
+
+                                    
+                                </div>
+                                <div *ngIf="model.is_currently_work">Present</div>
+                            </div>
+                        </div>
+
+                            
+                            
                         </div>
                     </div>
 

@@ -4,6 +4,11 @@
 }
 
 .form-control{font-size: inherit;}
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    zoom: 1.4;
+}
 
 @media only screen and (max-width: 414px) {
     .left-Image{

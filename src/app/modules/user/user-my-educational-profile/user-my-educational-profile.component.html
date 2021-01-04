@@ -63,7 +63,7 @@
                             <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h3>
                                 <div class="addWorkcourse">                                    
-                                    <a  (click)="redirectWorkDetailesPage()" class="cursorStyle">
+                                    <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
                                         <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid" style="height: 30px;">
                                      </a>
                                 </div>
@@ -137,7 +137,7 @@
                                             class="regularFont">{{objCd.duration}}</span></p>
 
                                     <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard Details </h3>
-                                    <div class="row" *ngFor="let objSd of objCd.standard_detail">
+                                    <div class="row pb-2 border-bottom mb-2" *ngFor="let objSd of objCd.standard_detail">
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
                                         </div>
