@@ -29,10 +29,10 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <div class="row form-control-inputDiv pt-2">
+                        <div class="row form-control-inputDiv pt-2 pb-3">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information </h3>
-                                <img   src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon"> 
+                                <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon"> 
                             </div>
                             <div class="col-md-12">
                                 <hr>
@@ -56,13 +56,17 @@
                         </div>
                     </div>
                 </div>
-                <a  (click)="redirectWorkDetailesPage()" class="cursorStyle">Add Work Details</a>
+                
                 <div class="row mt-3" *ngIf="objEpData.work_detail">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
-                            <div class="col-md-12 d-flex justify-content-between align-items-center">
+                            <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h3>
-                                <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
+                                <div class="addWorkcourse">                                    
+                                    <a  (click)="redirectWorkDetailesPage()" class="cursorStyle">
+                                        <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid" style="height: 30px;">
+                                     </a>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <hr>
@@ -81,7 +85,7 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12" *ngFor="let objEd of objEpData.educationdetail">
-                        <div class="row form-control-inputDiv pt-2 mb-3">
+                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">EI Details </h3>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
@@ -118,9 +122,11 @@
                                 <hr>
                             </div>
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail" >
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details </h3>
-                                <img src="assets/images/userWebsite/edit.png" data-target="#OTPModel" data-toggle="modal" class="img-fluid editIcon"> 
-                                <div class="pr-4 pl-4">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details 
+                                    <img src="assets/images/userWebsite/edit.png" data-target="#OTPModel" data-toggle="modal" class="img-fluid editIcon float-right"> 
+                                </h3>
+                                
+                                <div class="pr-4 pl-0">
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{objCd.course_name}}</span></p>
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Year of Starting : <span
