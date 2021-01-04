@@ -17,12 +17,17 @@
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
                         <div class="dpImgDiv" *ngIf="objEpData.profile_pic">
-                            <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img-fluid dpImg">
+                            <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}"
+                                class="img-fluid dpImg">
                         </div>
 
                         <div class="pl-2 text-left">
-                            <p class="m-0 commonFontSize semiBoldFont" ><a data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="openModel(objEpData,'name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
-                            <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
+                            <p class="m-0 commonFontSize semiBoldFont"><a data-target="#personalInfoModel"
+                                    data-toggle="modal" class="cursorStyle"
+                                    (click)="openModel(objEpData,'name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a>
+                            </p>
+                            <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID
+                                :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
                 </div>
@@ -31,21 +36,29 @@
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv pt-2 pb-3">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information </h3>
-                                <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon"> 
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information
+                                </h3>
+                                <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editIcon">
                             </div>
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12" >
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
+                            <div class="col-md-12">
+                                <p class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span class="regularFont"><a
+                                            class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
+                                            (click)="openModel(objEpData,'dob',objEpData.dob)">{{objEpData.dob}}</a></span>
+                                </p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{objEpData.gender}} </span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
+                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span class="regularFont"><a
+                                            class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
+                                            (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span>
+                                </p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span></p>
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel"
+                                            data-toggle="modal"
+                                            (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span>
+                                </p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name : <span
                                         class="regularFont">{{objEpData.father_name}}</span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name : <span
@@ -56,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row mt-3" *ngIf="objEpData.work_detail">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
@@ -66,6 +79,11 @@
                                     <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
                                         <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid" style="height: 30px;">
                                      </a>
+                                <div class="addWorkcourse">
+                                    <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
+                                        <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
+                                            style="height: 30px;">
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -78,6 +96,12 @@
                                         class="regularFont">{{objWorkDetail.work_type}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Profession : <span
                                         class="regularFont">{{objWorkDetail.job_title}} </span></p>
+                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Start Date : <span
+                                        class="regularFont">{{objWorkDetail.start_date}} </span></p>
+                                <p *ngIf="!objWorkDetail.is_currently_work" class="m-0 mb-1 commonFontSize semiBoldFont">End Date : <span
+                                        class="regularFont">{{objWorkDetail.end_date}} </span></p>
+                                <p *ngIf="objWorkDetail.is_currently_work" class="m-0 mb-1 commonFontSize semiBoldFont">Current : <span
+                                            class="regularFont">Present </span></p>        
                             </div>
                         </div>
                     </div>
@@ -95,20 +119,22 @@
                             </div>
                             <div class="col-md-12">
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">School Name: <span
-                                        class="regularFont">{{objEd.name_of_school}} 
-                                        <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> </span></p>
+                                        class="regularFont">{{objEd.name_of_school}}
+                                        <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png"
+                                            class="img-fluid ml-1 chckImg"> </span></p>
                                 <div class="row">
                                     <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         ZatchUp ID : <span class="regularFont">{{objEd.school_code}}</span>
                                     </div>
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                        EI Admission Number : <span class="regularFont"> {{objEd.admission_number}}</span>
+                                        EI Admission Number : <span class="regularFont">
+                                            {{objEd.admission_number}}</span>
                                     </div>
                                     <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
-                                        State : <span class="regularFont">{{objEd.state}}  </span>
+                                        State : <span class="regularFont">{{objEd.state}} </span>
                                     </div>
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                        City : <span class="regularFont">{{objEd.city}}  </span>
+                                        City : <span class="regularFont">{{objEd.city}} </span>
                                     </div>
                                     <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         Address : <span class="regularFont">{{objEd.address1}} </span>
@@ -121,11 +147,12 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12" *ngFor="let objCd of objEd.course_detail" >
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details 
-                                    <img src="assets/images/userWebsite/edit.png" data-target="#OTPModel" data-toggle="modal" class="img-fluid editIcon float-right"> 
+                            <div class="col-md-12" *ngFor="let objCd of objEd.course_detail">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details
+                                    <img src="assets/images/userWebsite/edit.png" data-target="#OTPModel"
+                                        data-toggle="modal" class="img-fluid editIcon float-right">
                                 </h3>
-                                
+
                                 <div class="pr-4 pl-0">
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{objCd.course_name}}</span></p>
@@ -138,15 +165,20 @@
 
                                     <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard Details </h3>
                                     <div class="row pb-2 border-bottom mb-2" *ngFor="let objSd of objCd.standard_detail">
+                                    <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard
+                                        Details </h3>
+                                    <div class="row" *ngFor="let objSd of objCd.standard_detail">
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
                                         </div>
-                                        <div  *ngFor="let objCd of objSd.class_detail" class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        <div *ngFor="let objCd of objSd.class_detail"
+                                            class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                             Class (Sub-Section) : <span class="regularFont">{{objCd.class_name}} </span>
                                         </div>
 
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
-                                            Starting year : <span class="regularFont">{{objSd.standard_start_year}} </span>
+                                            Starting year : <span class="regularFont">{{objSd.standard_start_year}}
+                                            </span>
                                         </div>
                                         <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                             Ending year : <span class="regularFont">{{objSd.standard_end_year}} </span>
@@ -158,7 +190,7 @@
                                             Roll Number : <span class="regularFont">{{objEd.rollno}} </span>
                                         </div>
                                     </div>
-                                    
+
 
                                 </div>
                             </div>
@@ -184,59 +216,69 @@
                 <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
                     <div class="process3">
                         <div class="form-group row " *ngIf="editModel.key=='name'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                                    <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        name="first_name" [(ngModel)]="model.first_name" required id="first_name">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='name'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                                    <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        name="last_name" [(ngModel)]="model.last_name" required id="last_name">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='dob'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" required id="dob" bsDatepicker>
+                                    <input
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="dob" [(ngModel)]="model.dob" required id="dob"
+                                        bsDatepicker>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='email'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
+                                    <input type="email"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
-                               
+
                             </div>
-                            
+
                         </div>
-                       
+
                     </div>
                 </form>
-              
+
                 <div class="text-center">
-                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails(); changeRequestForm.resetForm()">Submit </button>
+                    <button type="button" class="btn common-model-Btn mt-3"
+                        (click)="submitPersonalDetails(); changeRequestForm.resetForm()">Submit </button>
                 </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
@@ -252,25 +294,27 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-           
+
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-               
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current education </label>
+                            <label> <input (change)="addAnotherCourse()" id="current_and_past" name="current_and_past"
+                                    class="mr-1" type="radio"> Current education </label>
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past education </label>
+                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past"
+                                    class="mr-1" type="radio"> Past education </label>
                         </div>
                     </div>
                 </div>
-                 
-              
 
-                
+
+
+
                 <!-- </form> -->
 
             </div>

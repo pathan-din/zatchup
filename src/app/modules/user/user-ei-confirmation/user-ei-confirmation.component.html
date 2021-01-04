@@ -63,7 +63,7 @@
                     <div class="col-12 pb-2 text-right">
                         <!-- <img src="assets/images/userWebsite/edit.png"  class="img-fluid small-size cursorStyle pl-2" > -->
                         <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
-                        <span (click)="openModel(standardData.standard_id)" class="cursorStyle">I skipped this standard</span>
+                        <span (click)="openModel(standardData.standard_id)" *ngIf="courseData.standard_detail.length>1" class="cursorStyle">I skipped this standard</span>
 
                     </div>
                     <div class="col-12 pb-1">

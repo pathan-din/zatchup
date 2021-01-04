@@ -17,6 +17,7 @@ export class UserAddMoreStandardComponent implements OnInit {
   errorDisplay:any={};
   classList: any;
   standardList: any;
+  leftStandardList : any;
   courseList: any;
   schoolId: any;
   isalumini:any;
@@ -38,6 +39,10 @@ export class UserAddMoreStandardComponent implements OnInit {
     private alert:NotificationService) { }
 
   ngOnInit(): void {
+    this.model.course_id='';
+    this.model.join_standard_id='';
+    this.model.left_standard_id='';
+
     this.route.queryParams.subscribe(params => {
       var schoolId = params['school_id'];
       this.schoolId = params['school_id'];
@@ -52,11 +57,12 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.SpinnerService.show();
       this.baseService.getData('user/course-list-by-schoolid/', { 'school_id': id }).subscribe(
         (res: any) => {
-          if (res.status == true)
-            this.courseList = res.results;
-          else
-            this.alert.error(res.error.message[0], "Error")
-            this.SpinnerService.hide();
+          this.courseList = res.results;
+          // if (res.status == true)
+          //   this.courseList = res.results;
+          // else
+          //   this.alert.error(res.error.message[0], "Error")
+          //   this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
           this.alert.error(error.message, "Error")
@@ -81,7 +87,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           let response: any = {};
           response = res;
           this.standardList = response.results;
-  
+          this.leftStandardList = response.results;
         }, (error) => {
           this.SpinnerService.hide();
           //console.log(error);
@@ -96,21 +102,38 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
   displayClassList(stId) {
     try {
-      this.SpinnerService.show();
-      this.classList = [];
-      let data: any = {};
-      data.standard_id = stId;
-      this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
-        console.log(res);
-        let response: any = {};
-        response = res;
-        this.classList = response.results;
+      if(stId){
 
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+        this.leftStandardList=[];
+        var i=0;
+        //var pos = this.standardList.map(function(e) { return e.id; }).indexOf(stId);
+       
+     
+        this.standardList.forEach(element => {
+          if(element.id >= stId){
+            this.leftStandardList.push(element)
+          }
+         
+          i=i+1;
+        });
+        
+        this.SpinnerService.show();
+        this.classList = [];
+        let data: any = {};
+        data.standard_id = stId;
+        this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
+          console.log(res);
+          let response: any = {};
+          response = res;
+          this.classList = response.results;
+  
+        }, (error) => {
+          this.SpinnerService.hide();
+          //console.log(error);
+  
+        });
+      }
+      
     } catch (err) {
       this.SpinnerService.hide();
       //console.log(err);
