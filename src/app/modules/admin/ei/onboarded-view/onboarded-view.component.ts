@@ -11,7 +11,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./onboarded-view.component.css']
 })
 export class OnboardedViewComponent implements OnInit {
-  eiData: any;
+  eiData: any= {};
   eiId: any
 
   constructor(
