@@ -26,7 +26,7 @@
                         <label> Employment Profile </label>
                         <select (change)="isValid($event)" class="border custom-select form-control-input" name="department" [(ngModel)]="model.work_department" required>
                             <option value="">Select your work profile</option>
-                            <option value="{{wpl.id}}" *ngFor="let wpl of workProfileList;">{{wpl.name}}</option>
+                            <option value="{{wpl.name}}" *ngFor="let wpl of workProfileList;">{{wpl.name}}</option>
                              <option value="Other">Other</option>
                         </select>
                     </div>
@@ -70,6 +70,83 @@
                                 placeholder="Write Work Bio Here..."></textarea>
                         </div>
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.work_description"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-12 pl-0"> <label> Start Date </label></div>
+                            <div class="row">   
+                                <input [(ngModel)]="model.start_date" name="start_date" value="1-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
+                                >                                 
+                                <!-- <div class="col-2 mr-1 p-0">
+                                   
+                                    <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select form-date-col pr-2 border">
+                                        <option value="" [selected]='true'>Date</option>
+                                        <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
+                                        
+                                    </select>
+                                </div> -->
+                                
+                                <div class="col-6 pl-0 pr-0">
+                                    <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select form-month-col border">
+                                        <option value="" selected>Month</option>
+                                        <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
+                                        
+                                    </select>
+                                </div>
+                                
+                                <div class="col-6 pr-0">
+                                    <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select form-month-col border">
+                                        <option value="" selected>Year</option>
+                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                        
+                                    </select>
+                                </div>
+                                
+                                <div class="required errorMsg"  [innerHtml]="errorDisplay.start_year"></div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="col-md-12 pl-0"> <label> End Date </label></div>
+                            <div class="row" *ngIf="!model.is_currently_work">     
+                                    <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
+                                <!-- <div class="col-2 mr-1 p-0">
+                                    <input [(ngModel)]="model.end_date" name="end_date" value="{{dateEndModel}}-{{monthEndModel}}-{{yearEndModel}}" class="form-control-input form-control form-control-sm" type="hidden"
+                                    >
+                                    <select (change)="isValid($event)" id="date" required [(ngModel)]="dateEndModel" name ="dob" class="custom-select form-date-col pr-2 border">
+                                        <option value="" [selected]='true'>Date</option>
+                                        <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
+                                        
+                                    </select>
+                                </div> -->
+
+                                
+                                
+                                <div class="col-6 mr pr-0">
+                                    <select (change)="isValid($event)" id="month" required [(ngModel)]="monthEndModel" name ="dob" class="custom-select form-month-col border">
+                                        <option value="" selected>Month</option>
+                                        <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
+                                        
+                                    </select>
+                                </div>
+                                
+                                <div class="col-6 pr-0">
+                                    <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="dob" class="custom-select  form-month-col border">
+                                        <option value="" selected>Year</option>
+                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                        
+                                    </select>
+                                </div>
+                                
+                                <div class="required errorMsg"  [innerHtml]="errorDisplay.end_year"></div>
+
+                                
+                            </div>
+                            <div *ngIf="model.is_currently_work">Present</div>
+                        </div>
                     </div>
                 </div> 
                 <div *ngIf="model.work_type== 'Employed'">
