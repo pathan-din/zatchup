@@ -1,6 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import * as fileSaver from 'file-saver';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -49,14 +49,19 @@ export class AdminKycCompleteComponent implements OnInit {
     private datePipe: DatePipe,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {
     this.maxDate = new Date();
     this.completeKycList = new CompleteKycList();
   }
 
   ngOnInit(): void {
-    this.getCompleteKycList('')
+   
+    this.route.queryParams.subscribe(params=>{
+      this.status = params['status'];
+    });
+    this.getCompleteKycList('');
   }
 
   kycHistoryViewRoute(user) {

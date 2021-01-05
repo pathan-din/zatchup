@@ -1,11 +1,17 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-        <div class="row topDiv">
+        <!-- <div class="row topDiv">
             <div class="col-md-5 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">My Assigned EI History</h2>
             </div>
 
+        </div> -->
+        <div class="col-md-6 pl-0 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+
+            <h2 class="commonFontSize semiBoldFont m-0">My Assigned EI History</h2>
         </div>
         <div class="row mb-3">
             <form #orderByForm="ngForm" (ngSubmit)="orderByForm.form.valid && getEIHistory()">

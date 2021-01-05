@@ -6,9 +6,7 @@
     .kycVerificationleftImage {
         display: none;
     }
-    .mobilePR{
-        padding-right: 0!important;
-    }
+   
     .mobilePTB{
         padding-top: 0!important;
         padding-bottom: 0!important;
@@ -23,9 +21,6 @@
     .kycVerificationleftImage{
         width: 90%;
         padding-bottom: 0!important;
-    }
-    .mobilePR{
-        padding-right: 0!important;
     }
     .mobilePLR{
         padding-left: 1.5rem!important;

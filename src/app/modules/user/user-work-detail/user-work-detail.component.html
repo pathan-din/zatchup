@@ -213,7 +213,7 @@
                         </div>  
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 MobileCol6MB">
                                 <div class="col-md-12 pl-0"> <label> Start Date </label></div>
                                 <div class="row">   
                                     <input [(ngModel)]="model.start_date" name="start_date" value="1-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
@@ -228,7 +228,7 @@
                                     </div> -->
                                     
                                     <div class="col-6 pl-0 pr-0">
-                                        <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select form-month-col border">
+                                        <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="start_month" class="custom-select form-month-col border">
                                             <option value="" selected>Month</option>
                                             <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                             
@@ -236,7 +236,7 @@
                                     </div>
                                     
                                     <div class="col-6 pr-0">
-                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select form-month-col border">
+                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="start_year" class="custom-select form-month-col border">
                                             <option value="" selected>Year</option>
                                             <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                             
@@ -267,7 +267,7 @@
                                     
                                     
                                     <div class="col-6 mr pr-0">
-                                        <select (change)="isValid($event)" id="month" required [(ngModel)]="monthEndModel" name ="dob" class="custom-select form-month-col border">
+                                        <select (change)="isValid($event)" id="month" required [(ngModel)]="monthEndModel" name ="month" class="custom-select form-month-col border">
                                             <option value="" selected>Month</option>
                                             <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                             
@@ -275,7 +275,7 @@
                                     </div>
                                     
                                     <div class="col-6 pr-0">
-                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="dob" class="custom-select  form-month-col border">
+                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="year" class="custom-select  form-month-col border">
                                             <option value="" selected>Year</option>
                                             <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                             
@@ -306,6 +306,8 @@
     </div>
 
 </div>
-
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>
 
 <!-- <app-user-footer></app-user-footer> -->
