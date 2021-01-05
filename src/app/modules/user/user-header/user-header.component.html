@@ -6,8 +6,8 @@
                 <li class="nav-item"><a routerLink="/user/landing-page" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li>
-                <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
-                <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li>
+                <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
+                <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
                 <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"  routerLinkActive="active-link">Logout</a></li>
                 <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
             </ul>
