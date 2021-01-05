@@ -53,8 +53,8 @@ export class KycVerifiedByEiComponent implements OnInit {
     this.kycVerifiedByEi.listParams = {
       'date_from': this.kycVerifiedByEi.filterFromDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.kycVerifiedByEi.filterToDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.kycVerifiedByEi.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.kycVerifiedByEi.loginToDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.kycVerifiedByEi.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.kycVerifiedByEi.loginToDate !== undefined ? this.datePipe.transform(this.kycVerifiedByEi.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.kycVerifiedByEi.page_size,
