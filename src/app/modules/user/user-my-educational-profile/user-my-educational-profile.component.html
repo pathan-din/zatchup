@@ -16,7 +16,7 @@
             <div *ngFor="let objEpData of epData">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
-                        <div class="dpImgDiv" *ngIf="objEpData.profile_pic">
+                        <div class="dpImgDiv" *ngIf="objEpData.profile_pic && objEpData.kyc_approved==1">
                             <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img-fluid dpImg">
                         </div>
 
@@ -79,11 +79,11 @@
                                         <span class="d-block regularFont small-text color-fadded-black lineHeight">{{objWorkDetail.work_country}} {{objWorkDetail.work_state}} {{objWorkDetail.work_city}}</span>
                                     </div>
                                 </h3>
-                                <!-- <div class="addWorkcourse">                                    
+                               <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">                                    
                                     <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid" style="width: 30px;">
                                     </a>
-                                </div> -->
+                                </div>
                             </div>
 
                             <div class="col-md-12">
