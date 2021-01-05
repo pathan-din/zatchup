@@ -88,7 +88,7 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
     this.baseService.getData("user/edit-work-detail/"+id).subscribe((res:any)=>{
       if(res.status==true)
       {
-        this.SpinnerService.show();
+        this.SpinnerService.hide();
         this.model = res.data;
         if(res.data.start_date){
           var arrData = res.data.start_date.split("-")
@@ -164,6 +164,7 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
           response = res;
           this.SpinnerService.hide();
           if (response.status == true) {
+            this.SpinnerService.hide();
             this.router.navigate(['user/my-educational-profile']);
           } else {
             this.SpinnerService.hide();
@@ -216,7 +217,7 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
   getWorkProfile() {
     try {
 
-      this.SpinnerService.show();
+     // this.SpinnerService.show();
       this.baseService.getData('user/get-all-work-departments/').subscribe(res => {
         let response: any = {}
         response = res;
