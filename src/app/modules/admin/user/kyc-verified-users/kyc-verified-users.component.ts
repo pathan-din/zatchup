@@ -52,8 +52,8 @@ export class KycVerifiedUsersComponent implements OnInit {
     this.kycVerified.listParams = {
       'date_from': this.kycVerified.filterFromDate !== undefined ? this.datePipe.transform(this.kycVerified.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.kycVerified.filterToDate !== undefined ? this.datePipe.transform(this.kycVerified.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.kycVerified.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerified.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.kycVerified.loginToDate !== undefined ? this.datePipe.transform(this.kycVerified.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.kycVerified.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerified.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.kycVerified.loginToDate !== undefined ? this.datePipe.transform(this.kycVerified.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.kycVerified.page_size,

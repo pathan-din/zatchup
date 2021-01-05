@@ -52,8 +52,8 @@ export class DormantUsersComponent implements OnInit {
     this.dormantUsers.listParams = {
       'date_from': this.dormantUsers.filterFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.dormantUsers.filterToDate !== undefined ? this.datePipe.transform(this.dormantUsers.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.dormantUsers.loginFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.dormantUsers.loginToDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.dormantUsers.loginFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.dormantUsers.loginToDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.dormantUsers.page_size,

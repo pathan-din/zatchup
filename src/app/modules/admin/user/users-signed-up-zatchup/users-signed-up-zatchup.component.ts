@@ -48,8 +48,8 @@ export class UsersSignedUpZatchupComponent implements OnInit {
     this.signupUsers.listParams = {
       'date_from': this.signupUsers.filterFromDate !== undefined ? this.datePipe.transform(this.signupUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.signupUsers.filterToDate !== undefined ? this.datePipe.transform(this.signupUsers.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.signupUsers.loginFromDate !== undefined ? this.datePipe.transform(this.signupUsers.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.signupUsers.loginToDate !== undefined ? this.datePipe.transform(this.signupUsers.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.signupUsers.loginFromDate !== undefined ? this.datePipe.transform(this.signupUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.signupUsers.loginToDate !== undefined ? this.datePipe.transform(this.signupUsers.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.signupUsers.page_size,
