@@ -211,7 +211,12 @@ export class PendingApprovalProfile {
     errorDisplay: any = {};
     editReason: any;
     editDescription: any;
-    comment: any
+    comment: any;
+    searchConfig: any = {
+        "api_endpoint": "admin/fetch-poc-details/",
+        "display": ["first_name", "employee_id"],
+        "display_value": "employee_id"
+    }
 }
 
 export class DatabaseView {

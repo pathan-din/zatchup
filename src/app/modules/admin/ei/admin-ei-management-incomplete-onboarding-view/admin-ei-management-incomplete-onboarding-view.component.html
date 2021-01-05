@@ -16,7 +16,8 @@
                     data-target="#CommentModel">Onboarding Conversation
                     Comments</button> -->
                 <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mr-2"
-                    routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.id}}/incomplete-onboarding">View Conversation Comments</button>
+                    routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.id}}/incomplete-onboarding">View
+                    Conversation Comments</button>
                 <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0"
                     routerLink="/admin/education-institute-history/{{eiData.id}}">History</button>
             </div>
@@ -320,6 +321,12 @@
                         </div>
                     </div>
 
+                    <!-- <div class="row mt-3">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                            <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''" (searchResult)="pocDetails($event)"></input-search>
+                        </div>
+                    </div> -->
+
                 </div>
 
             </div>
@@ -452,13 +459,17 @@
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing">
                                             POC Details</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" id="employeeId" name="employee_id"
                                                 (keyup)="isValid($event)"
                                                 [(ngModel)]="pendingApprovalProfile.employeeId"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 placeholder="Enter POC Details" required />
-                                        </div>
+                                        </div> -->
+                                        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12"> -->
+                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
+                                            (searchResult)="pocDetails($event)"></input-search>
+                                        <!-- </div> -->
                                         <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.employee_id">
                                         </div>
