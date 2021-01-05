@@ -94,11 +94,8 @@
 .custom-control{padding-left: 0px !important;}
 
 
-@media (max-width: 667px){
-    .pl-5{
-        padding-left: 15px !important;
-    }
-    .pr-5{
-        padding-right: 15px !important;
-    }
+@media (max-width: 414px){
+    .pl-0{
+        padding-left: 0px !important;
+      }
 }

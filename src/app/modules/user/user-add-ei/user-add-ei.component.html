@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6 pl-0 pr-1">
-                        <div class="form-control-inputDiv mobile-input-6 mobForm-name ">
+                    <div class="col-sm-6 pl-0 pr-1 MobileCol6MB">
+                        <div class="form-control-inputDiv">
                             <select (change)="getCityByState(model.state)" [(ngModel)] ="model.state" name ="state" required class="custom-select form-control-input down-arrow-6" required>
                                 <option value=""> Select State </option>
                                 <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList;">{{stateObj.state}} </option>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="col-sm-6 pr-0 pl-1">
-                        <div class="form-control-inputDiv mobile-input-6 ">
+                        <div class="form-control-inputDiv  ">
                             <select (change)="getSchoolListBycityId(model.city)" [(ngModel)] ="model.city" name ="city" required class="custom-select form-control-input down-arrow-6" required>
                                 <option value="">City </option>
                                 <option value="{{cityObj.city}}"  *ngFor="let cityObj of cityList;">{{cityObj.city}} </option>
@@ -48,7 +48,7 @@
 
                 <div class="form-group row">
                    
-                    <div class="col-sm-12 p-0 form-control-inputDiv rounded py-1 shadow-none">
+                    <div class="col-sm-12 p-0 form-control-inputDiv rounded shadow-none">
                        
                             <select (change)="changeSchool(name_of_school_first)" id="school_name" [(ngModel)]="name_of_school_first"
                                 name="school_name" class="custom-select form-control-input" required>

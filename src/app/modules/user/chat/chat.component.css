@@ -5,7 +5,7 @@
     height: 55px;
 }
 .chat_content{
-    width: 80%;
+    width: 65%;
     margin: 0px auto;
 }
 .chat_contentBox{
@@ -13,7 +13,7 @@
     margin: 0px auto;
 }
 .addComment{
-    width: 80%;
+    width: 65%;
     margin: 0px auto;
 }
 .img-small{
@@ -62,4 +62,16 @@
     top: 4px;
     /* background: url("assets/images/userWebsite/white_beak.png"); */
     background-repeat: no-repeat;
+}
+
+@media (max-width: 767px){
+    .chat_content{
+        width: 100%;
+    }
+    .addComment {
+        width: 100%;
+    }
+    .chatMessage{
+        width: 75% !important;
+    }
 }
