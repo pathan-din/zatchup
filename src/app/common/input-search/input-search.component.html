@@ -1,0 +1,44 @@
+<div style="margin: 50px;">
+
+    <div class="container" style="text-align:center">
+        <div class="row">
+            <div class="col-12 text-center">
+                <input type="text" #searchText class="form-control" value="{{value}}" placeholder="Search....." />
+            </div>
+        </div>
+        <div class="row" *ngIf="isSearching">
+            <div class="col-12 text-center">
+                <h4>Searching ... </h4>
+            </div>
+        </div>
+        <div class="row">
+            <ng-container *ngIf="apiResponse['status'] == false; else elseTemplate">
+
+                <div class="col-12 text-center">
+                    <div class="alert alert-danger" role="alert">
+                        {{apiResponse['Error']}}
+                    </div>
+                </div>
+
+            </ng-container>
+            <ng-template #elseTemplate>
+                <ul>
+                    <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
+                        <p> {{data['display']}}</p>
+                </ul>
+            </ng-template>
+        </div>
+    </div>
+
+</div>
+
+<!-- <section class="filter-wrapper">
+    <div class="keyword-wrapper">
+        <input type="text" id="keyword" #searchText class="form-control" placeholder="Search....."  autofocus/>
+    </div>
+    <ul class="filter-select">
+        <li class="filter-select-list"><img src="" alt="" width="50" height="50">
+            <p class="artist-name"></p>
+            <span class="tags"></span>
+    </ul>
+</section> -->

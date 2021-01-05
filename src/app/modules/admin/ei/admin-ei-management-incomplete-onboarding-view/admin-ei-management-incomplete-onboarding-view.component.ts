@@ -324,4 +324,9 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.location.back();
   }
 
+
+  pocDetails(data){
+    this.pendingApprovalProfile.employeeId = data.employee_id
+  }
+
 }

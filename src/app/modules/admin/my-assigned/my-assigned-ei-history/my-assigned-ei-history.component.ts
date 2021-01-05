@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -15,7 +16,8 @@ export class MyAssignedEiHistoryComponent implements OnInit {
   constructor(
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class MyAssignedEiHistoryComponent implements OnInit {
     ), err => {
       this.loader.hide()
     }
+  }
+
+  goBack():void{
+    this.location.back()
   }
 
 }
