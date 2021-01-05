@@ -319,6 +319,9 @@ getAluminiList(page,strFilter){
   goToEiStudentEditPage(id) {
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
   }
+  goToEiStudentProfilePage(id) {
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
+  }
   rejectStudent() {
     this.error = [];
     this.errorDisplay = {};
