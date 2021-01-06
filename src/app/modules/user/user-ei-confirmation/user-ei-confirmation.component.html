@@ -41,7 +41,7 @@
                     </div>
                     <div  class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">                        
                         <img (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid deleteImg">
-                        <img (click)="editCourse(courseData.course_id)" src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
+                        <img *ngIf="courseData.standard_detail" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)" src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
                     </div>
                      
                     <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
