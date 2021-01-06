@@ -49,7 +49,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
       "university": this.eIPendingApproval.university,
       "addition_type": this.eIPendingApproval.additionType,
       "page_size": this.eIPendingApproval.pageSize,
-      "page": page
+      "page": page,
+      "added_by_admin": this.eIPendingApproval.additionType,
     }
 
     this.baseService.getData('admin/ei-pending-list/', this.eIPendingApproval.listParams).subscribe(

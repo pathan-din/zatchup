@@ -21,6 +21,7 @@ export class EIPendingApproval {
     university: any;
     search: any;
     pageCount: any
+  added_by_admin: any;
 }
 
 export class OnBoardList {
@@ -231,6 +232,8 @@ export class DatabaseView {
     editDescription: any;
     comment: any;
     eiID: any;
+  eiId: any;
+  ei_id: any;
 }
 
 export class OnboardingView {

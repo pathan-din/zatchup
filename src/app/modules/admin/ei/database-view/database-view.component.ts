@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DatabaseView } from '../modals/ei-pending-approval.modal';
 import { Location } from '@angular/common'
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-database-view',
@@ -25,6 +26,8 @@ export class DatabaseViewComponent implements OnInit {
     private alert: NotificationService,
     private location: Location,
     private loader: NgxSpinnerService,
+    private confirmDialogService: ConfirmDialogService,
+
   ) {
     this.databaseView = new DatabaseView();
   }
@@ -79,4 +82,64 @@ export class DatabaseViewComponent implements OnInit {
   getEIHistory() {
 
   }
+
+  deleteEI(): any {
+    this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+      this.loader.show()
+      // if(data == this.eiData.user_id)
+      // this.baseService.action('admin/ei/delete_incomplete_ei/', {"id": this.eiData.id})
+      // else{
+        let data = {
+          "ei_id": !this.eiData.user_id ? this.eiData.id : this.eiData.ei_id
+        }
+      this.baseService.action('admin/ei/delete_incomplete_ei/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.router.navigate(['admin/ei-database-list'],  { queryParams: { "returnUrl":'admin/school-management' } })
+          } else {
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    // }
+    }, () => {
+    }); 
+  } 
+  getEI_ID(id: any) {
+    this.databaseView.ei_id = id
+  }
+
+  // enableDiableEi(): any {
+
+  //   this.confirmDialogService.confirmThis('Are you sure ?', () => {
+  //     this.loader.show()
+  //     // if(data == this.eiData.user_id)
+  //     // this.baseService.action('admin/ei/delete_incomplete_ei/', {"id": this.eiData.id})
+  //     // else{
+  //       let data = {
+  //         "ei_id": !this.eiData.user_id ? this.eiData.id : this.eiData.ei_id
+  //       }
+  //     this.baseService.action('admin/ei/disable_ei/', data).subscribe(
+  //       (res: any) => {
+  //         if (res.status == true) {
+  //           this.alert.success(res.message, "Success")
+  //           this.router.navigate(['admin/ei-database-list'],  { queryParams: { "returnUrl":'admin/school-management' } })
+  //         } else {
+  //           this.alert.error(res.error.message, 'Error')
+  //         }
+  //         this.loader.hide();
+  //       }
+  //     ), err => {
+  //       this.alert.error(err.error, 'Error')
+  //       this.loader.hide();
+  //     }
+  //   // }
+  //   }, () => {
+  //   }); 
+  // } 
 }
