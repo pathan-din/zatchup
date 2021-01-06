@@ -470,7 +470,7 @@ button:focus {
 }
 
 .landingDiv{
-  padding: 0%;
+  padding: 2%;
 }
 
 }
@@ -510,20 +510,20 @@ button:focus {
 .myProfileImg{height: 80px;}
 
 .editIcon {
-  width: 24px;
+  width: 22px;
 }
 
 .editImg {
   position: absolute;
   right: 30px;
   width: 14%;
-  width: 24px;
+  width: 22px;
 }
 
 .deleteImg {
   position: absolute;
   right: 0%;
   width: 14%;
-  width: 24px;
+  width: 22px;
 }
 
