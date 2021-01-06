@@ -22,8 +22,8 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   @ViewChild('closeGenerateZatchupIDModel') closeGenerateZatchupIDModel: any;
   @ViewChild('closeCommentModel') closeCommentModel: any
   eiId: any
-  eiData: any= {};
-  eiExData: any= {};
+  eiData: any = {};
+  eiExData: any = {};
   pendingApprovalProfile: PendingApprovalProfile
   user_type: any;
 
@@ -46,7 +46,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       this.getProfileData();
     }
     if (localStorage.getItem('user_type'))
-    this.user_type = localStorage.getItem('user_type')
+      this.user_type = localStorage.getItem('user_type')
   }
 
   getProfileData() {
@@ -54,13 +54,13 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     let url = 'admin/ei-pending-profile/' + this.eiId
     this.baseService.getData(url).subscribe(
       (res: any) => {
-        if (res.status == true){
+        if (res.status == true) {
           this.eiData = res.data;
           this.eiExData = res.data.existing_data;
           if (Object.keys(this.eiExData).length == 0) {
-            this.eiExData=undefined;
+            this.eiExData = undefined;
           }
-        }else
+        } else
           this.alert.error(res.error.message[0], 'Error')
         this.loader.hide()
       }
@@ -112,12 +112,22 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.pendingApprovalProfile.errorDisplay = {};
     this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.pendingApprovalProfile.errorDisplay.valid) {
-      if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
-        this.pendingApprovalProfile.requiredMOU = false
+      // if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
+      //   this.pendingApprovalProfile.requiredMOU = false
+
       return false;
-    } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
-      this.pendingApprovalProfile.requiredMOU = false
+    } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
+      this.pendingApprovalProfile.requiredMOU = false;
+      this.pendingApprovalProfile.poc_required = false;
       return false;
+    }
+    else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
+      this.pendingApprovalProfile.requiredMOU = false;
+      return false
+    }
+    else if (!this.pendingApprovalProfile.employeeId) {
+      this.pendingApprovalProfile.poc_required = false;
+      return false
     }
 
     this.loader.show()
@@ -215,11 +225,14 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.pendingApprovalProfile.errorDisplay = {};
     this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[3].elements, false, []);
     if (this.pendingApprovalProfile.errorDisplay.valid) {
-      if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
-        this.pendingApprovalProfile.requiredMOU = false
+      //   if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
+      //     this.pendingApprovalProfile.requiredMOU = false
+      //   return false;
+      // } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
+      //   this.pendingApprovalProfile.requiredMOU = false
+      this.checkValidation();
       return false;
-    } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
-      this.pendingApprovalProfile.requiredMOU = false
+    } else if (!this.checkValidation()) {
       return false;
     }
 
@@ -253,13 +266,28 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.pendingApprovalProfile.errorDisplay = {};
     this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[4].elements, false, []);
     if (this.pendingApprovalProfile.errorDisplay.valid) {
-      if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
-        this.pendingApprovalProfile.requiredMOU = false
+      // if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
+      //   this.pendingApprovalProfile.requiredMOU = false;
+      //   this.pendingApprovalProfile.poc_required = false
+      //   return false;
+      // }
+      // else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
+      //   this.pendingApprovalProfile.requiredMOU = false
+      //   return false;
+      // }
+      // else if (!this.pendingApprovalProfile.employeeId) {
+      //   this.pendingApprovalProfile.poc_required = false
+      //   return false;
+      // }
+      this.checkValidation()
+      // if (!this.checkValidation())
+      return false
+    } else if (!this.checkValidation())
+      // this.pendingApprovalProfile.requiredMOU = false
       return false;
-    } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
-      this.pendingApprovalProfile.requiredMOU = false
-      return false;
-    }
+    // } else if (!this.pendingApprovalProfile.employeeId) {
+    //   return false;
+    // }
 
     this.loader.show()
     let data = {
@@ -270,7 +298,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.baseService.action('admin/ei-approve_autogenerated_zatchupid/', data).subscribe(
       (res: any) => {
         if (res.status == true) {
-          this.closeNewZatchupIDModel.nativeElement.click();
+          this.closeGenerateZatchupIDModel.nativeElement.click();
           this.alert.success(res.message, 'Success')
           this.router.navigate(['admin/ei-management-pending-for-approval'])
 
@@ -320,13 +348,33 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
-  goBack(): void{
+  goBack(): void {
     this.location.back();
   }
 
 
-  pocDetails(data){
+  pocDetails(data) {
     this.pendingApprovalProfile.employeeId = data.employee_id
+    this.pendingApprovalProfile.poc_required = true;
+  }
+
+  checkValidation() {
+    // debugger
+    if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
+      this.pendingApprovalProfile.requiredMOU = false;
+      this.pendingApprovalProfile.poc_required = false
+      return false;
+    }
+    else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
+      this.pendingApprovalProfile.requiredMOU = false
+      return false;
+    }
+    else if (!this.pendingApprovalProfile.employeeId) {
+      this.pendingApprovalProfile.poc_required = false
+      return false;
+    }
+
+    return true;
   }
 
 }
