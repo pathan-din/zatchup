@@ -148,8 +148,11 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
       if(this.yearModel < this.yearEndModel){
 
       }else{
-        this.errorDisplay.end_year="Start date not greater then end date.";
+        if(!this.model.is_currently_work){
+          this.errorDisplay.end_year="Start date not greater then end date.";
         return 
+        }
+        
       }
       this.SpinnerService.show();
  
