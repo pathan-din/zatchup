@@ -1,11 +1,11 @@
-<div class="">
+<div class="position-relative">
 
     <div class="row">
         <div class="col-12 text-center">
             <input type="text" #searchText class="form-control" value="{{value}}" placeholder="Search....." />
         </div>
     </div>
-    <div class="row" *ngIf="isSearching">
+    <div class="row position-relative" *ngIf="isSearching">
         <div class="col-12 text-center">
             <h4>Searching ... </h4>
         </div>
@@ -21,7 +21,7 @@
 
         </ng-container>
         <ng-template #elseTemplate>
-            <ul class="ml-3 pr-3 bg-extra-light-blue w-100 mr-3">
+            <ul class="bg-extra-light-blue searchDropdown">
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
                     <p class="pt-1 pb-1 mb-0"> {{data['display']}}</p>
             </ul>
