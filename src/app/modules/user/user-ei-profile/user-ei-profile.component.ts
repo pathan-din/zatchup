@@ -43,24 +43,64 @@ export class UserEiProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.model.class_id = '';
-    this.model.course_id= '';
-    this.model.join_standard_id="";
-    this.model.current_standard_id="";
+   
+    
+    
     
     this.route.queryParams.subscribe(params => {
-      this.schoolId = params['school_id'];
-      this.model.school_id = this.schoolId;
-      this.getCourseBySchoolId(this.schoolId)
+     
+      
+      if(params['school_id']){
+        this.schoolId = params['school_id'];
+        
+        this.getCourseBySchoolId(this.schoolId)
+       // this.getSchollConfirmationData();
+        
+      }
+      if(params['course_id']){
+        this.model.course_id = params['course_id'];
+       
+      }else{
+        this.model.course_id= '';
+        this.model.class_id = '';
+        this.model.join_standard_id="";
+        this.model.current_standard_id="";
+      }
+      
 
     });
-    if (this.schoolId) {
-      this.getSchollConfirmationData();
-    }
+   
+    this.model.school_id =this.schoolId;
+    
+    this.displayStandardList( this.model.course_id)
+    this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
     
   }
-
+getEiInfo(model){
+  try {
+    var that = this;
+    this.loader.show();
+    this.baseService.action("user/get-admission-number-detail-by-school/",model).subscribe((res:any)=>{
+      if(res.status==true){
+        this.loader.hide();
+        this.model = res.data;
+        this.model.join_standard_id=res.data.join_standard_id
+        this.model.current_standard_id=res.data.current_standard_id
+        
+       // this.displayClassList(res.data.join_standard_id);
+        this.displayClassList(res.data.current_standard_id);
+      }else{
+        this.loader.hide();
+      }
+      
+    },(error)=>{
+      this.loader.hide();   
+    })
+  } catch (e) {
+    this.loader.hide();
+  }
+}
   /**
    * get school data after student confirmation
    * 
@@ -121,8 +161,24 @@ export class UserEiProfileComponent implements OnInit {
 
     }
   }
+  displayJoinStandardBseCurrentStandard(stId){
+    this.leftStandardList=[];
+    var i=0;
+    //var pos = this.standardList.map(function(e) { return e.id; }).indexOf(stId);
+   
+ 
+    this.standardList.forEach(element => {
+      if(element.id >= stId){
+        this.leftStandardList.push(element)
+      }
+     
+      i=i+1;
+    });
+  }
   displayStandardList(courseId) {
     try {
+      console.log("hikjkj");
+      
       this.loader.show();
       this.standardList = []
       //this.model.course_id='';
@@ -130,11 +186,11 @@ export class UserEiProfileComponent implements OnInit {
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
-      this.objCourse = this.courseList.find(e =>
+      // this.objCourse = this.courseList.find(e =>
         
         
-         e.id === parseInt(courseId)
-       ) ;
+      //    e.id === parseInt(courseId)
+      //  ) ;
       
       //console.log(this.courseList);
       
@@ -161,18 +217,7 @@ export class UserEiProfileComponent implements OnInit {
       this.classList = [];
       let data: any = {};
       data.standard_id = stId;
-      this.leftStandardList=[];
-        var i=0;
-        //var pos = this.standardList.map(function(e) { return e.id; }).indexOf(stId);
-       
      
-        this.standardList.forEach(element => {
-          if(element.id >= stId){
-            this.leftStandardList.push(element)
-          }
-         
-          i=i+1;
-        });
       this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
         console.log(res);
         let response: any = {};

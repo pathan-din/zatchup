@@ -65,7 +65,7 @@ export class EiSchoolRegisterComponent implements OnInit {
    
     if(event.name_of_school=='Others'){
       this.name_of_school_first='Others';
-      console.log(this.name_of_school_first);
+      
       
     }else{
       this.name_of_school_first=event.name_of_school;

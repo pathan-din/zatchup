@@ -39,9 +39,11 @@
                     <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
                         Course Name : <span class="text-dark">{{courseData.course_name}}</span>
                     </div>
-                    <div (click)="deleteCourse(courseData.course_id)" class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">                        
-                        <img  src="assets/images/userWebsite/delete.png" class="img-fluid deleteImg">
+                    <div  class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">                        
+                        <img (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid deleteImg">
+                        <img (click)="editCourse(courseData.course_id)" src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
                     </div>
+                     
                     <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
                         {{courseData.description}}
                             Years</span></div> -->
@@ -61,9 +63,9 @@
 
                 <div class="form-group mx-0 row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;let i = index;">
                     <div class="col-12 pb-2 text-right">
-                        <!-- <img src="assets/images/userWebsite/edit.png"  class="img-fluid small-size cursorStyle pl-2" > -->
+                        <img *ngIf="!standardData.is_current_standard" src="assets/images/userWebsite/edit.png" (click)="openEditModel($event,standardData)" class="img-fluid small-size cursorStyle pl-2" >
                         <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
-                        <span (click)="openModel(standardData.standard_id)" *ngIf="courseData.standard_detail.length>1" class="cursorStyle">I skipped this standard</span>
+                        <span (click)="openModel(standardData.standard_id)" *ngIf="courseData.standard_detail.length>1 && !standardData.is_current_standard" class="cursorStyle">I skipped this standard</span>
 
                     </div>
                     <div class="col-12 pb-1">
@@ -76,22 +78,25 @@
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div> 
                     <div class="col-6 pb-1">
-                        Starting Year : <span *ngIf="!standardData.check" class="text-dark mediumFont cursorStyle" id="start_year" (click)="openEditModel($event,standardData)">{{standardData.standard_start_year}}</span>
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check" required bsDatepicker autocomplete="off" [maxDate]="this.baseService.getDateReverseFormat(standardData.org_end_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        Starting Year : <span  class="text-dark mediumFont cursorStyle" id="start_year" (click)="openEditModel($event,standardData)">{{standardData.standard_start_year}}</span>
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i==0" required bsDatepicker autocomplete="off"  placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i > 0 && i < courseData.standard_detail.length" required bsDatepicker  autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(courseData.standard_detail[i-1].org_end_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i==courseData.standard_detail.length" required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(courseData.standard_detail[i].org_end_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
                         
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
 
                     <div class="col-6 pb-1">
-                        Ending Year : <span *ngIf="!standardData.check" class="text-dark mediumFont cursorStyle" id="end_year" (click)="openEditModel($event,standardData)">{{standardData.standard_end_year}}</span>
-                        <input   (ngModelChange)="editStandardDetails('end_year',$event)" *ngIf="standardData.check" required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(standardData.org_start_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_end_year_{{i}}"  [(ngModel)]="standardData.org_end_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                       
+                        {{ standardData.is_current_standard?"":"Ending Year :" }}  <span  class="text-dark mediumFont cursorStyle" id="end_year" (click)="openEditModel($event,standardData)">{{standardData.is_current_standard?"To Current":standardData.standard_end_year}}</span>
+                        <input   (ngModelChange)="editStandardDetails('end_year',$event)" *ngIf="standardData.check && !standardData.is_current_standard" required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(standardData.org_start_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_end_year_{{i}}"  [(ngModel)]="standardData.org_end_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
                        
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
                   
                     <div class="col-12 pb-1 mt-2">
-                        Section : <span class="text-dark mediumFont cursorStyle" *ngIf="!standardData.check" id="end_year" (click)="openEditModel($event,standardData)" > {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span>
-                        <select (change)="editStandardDetails('',$event)" *ngIf="standardData.check" name="class" [(ngModel)]="editmodel.class_id" class="custom-select form-control-input border pl-2 mt-2" required>
+                        Section : <span class="text-dark mediumFont cursorStyle"   id="end_year" (click)="openEditModel($event,standardData)" > {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span>
+                        <select  (change)="editStandardDetails('',$event)" *ngIf="standardData.check && !standardData.is_current_standard" name="class" [(ngModel)]="editmodel.class_id" class="custom-select form-control-input border pl-2 mt-2" required>
                             <option value="">Select Section</option>
                             <option value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
                         </select>

@@ -70,8 +70,11 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
     this.model.is_currently_work=true
     this. getWorkProfile();
     this.route.queryParams.subscribe(params=>{
-      this.getWorkDetails(params["id"]);
-      this.id=params["id"];
+      if(params["id"]){
+        this.getWorkDetails(params["id"]);
+        this.id=params["id"];
+      }
+      
     })
   }
   isValid(event) {

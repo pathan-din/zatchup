@@ -58,7 +58,9 @@ export class UserEiConfirmationComponent implements OnInit {
     this.currentDate  = new Date();
   }
   
-
+  editCourse(courseid){
+    this.router.navigate(['user/ei-profile'],{queryParams:{"school_id":this.school_id,"course_id":courseid}});
+  }
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');
     
@@ -135,14 +137,16 @@ deleteCourse(id: any): any {
   }); 
  }
  openEditModel(event,standard){
-   
+  
   this.standard = standard;
   standard.check=true;
   
   //this.standard.class_id='';
   
    
-  
+  if(standard.is_current_standard && standard.class_detail.length>0){
+    this.editmodel.class_id = standard.class_detail[0].class_id;
+  }
   this.editmodel.standard_id = standard.standard_id;
   this.editmodel.standard_start_year=standard.org_start_date;
   this.editmodel.standard_end_year=standard.org_end_date;
@@ -185,7 +189,7 @@ editStandardDetails(text,event){
         this.getConfirmationDetails();
       }else{
         this.SpinnerService.hide();
-        this.alert.error("No Update","Error");
+        this.alert.error(response.error.message[0],"Error");
       }
     },(error=>{
       this.SpinnerService.hide();
