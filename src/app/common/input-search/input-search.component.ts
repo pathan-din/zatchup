@@ -15,7 +15,6 @@ export class InputSearchComponent implements OnInit {
   @Output() searchResult = new EventEmitter<any>();
   apiResponse: any;
   isSearching: boolean;
-  // view: any = ["first_name", "employee_id"]
 
   constructor(
     private baseService: BaseService
@@ -25,7 +24,6 @@ export class InputSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('config data is as ::', this.config)
     fromEvent(this.searchText.nativeElement, 'keyup').pipe(
       // get value
       map((event: any) => {
@@ -47,10 +45,12 @@ export class InputSearchComponent implements OnInit {
 
       this.searchGetCall(text).subscribe((res: any) => {
         this.isSearching = false;
+        if (this.config.display) {
+          res.results = this.setData(res.results)
+        }
+        else
+          this.apiResponse = res;
 
-        res.results = this.setData(res.results)
-        this.apiResponse = res;
-        console.log('api res is as ::', this.apiResponse)
       }, (err) => {
         this.isSearching = false;
         console.log('error', err);
