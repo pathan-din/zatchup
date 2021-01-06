@@ -62,11 +62,10 @@
                 </div>
 
                 <div class="form-group mx-0 row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;let i = index;">
-                    <div class="col-12 pb-2 text-right">
-                        <img *ngIf="!standardData.is_current_standard" src="assets/images/userWebsite/edit.png" (click)="openEditModel($event,standardData)" class="img-fluid small-size cursorStyle pl-2" >
-                        <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->
+                    <div class="col-12 pb-2 d-flex justify-content-end align-items-center">
                         <span (click)="openModel(standardData.standard_id)" *ngIf="courseData.standard_detail.length>1 && !standardData.is_current_standard" class="cursorStyle">I skipped this standard</span>
-
+                        <img *ngIf="!standardData.is_current_standard" src="assets/images/userWebsite/edit.png" (click)="openEditModel($event,standardData)" class="img-fluid small-size cursorStyle pl-2" >                        
+                        <!-- <img src="assets/images/userWebsite/delete.png" (click)="deleteCourse(standardData.standard_id)" class="img-fluid small-size cursorStyle"> -->                        
                     </div>
                     <div class="col-12 pb-1">
                         Standard : <span  class="text-dark mediumFont">{{standardData.standard_name}}</span>
