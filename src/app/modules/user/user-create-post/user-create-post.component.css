@@ -17,14 +17,11 @@
 }
 
 .camera-icon {
-    width: 35%;
+    width: 24px;
 }
 
 .custom-div {
-    min-width: 6vw;
-    min-height: 12vh;
-    max-width: 6vw;
-    max-height: 12vh;
+    width: 70px;
 }
 
 .card-img-overlay {
@@ -33,7 +30,7 @@
 }
 
 .card-img-overlay img {
-    width: 30%;
+    width: 24px
 }
 
 .common-btn {
@@ -48,30 +45,16 @@
     .dropdownDiv {
         width: 45%;
     }
-    .custom-div {
-        min-width: 20vw;
-        min-height: 10vh;
-        max-width: 20vw;
-        max-height: 10vh;
-    }
+    
     .common-btn {
         width: 33%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .custom-div {
-        min-width: 15vw;
-        min-height: 10vh;
-        max-width: 15vw;
-        max-height: 10vh;
-    }
-    .camera-icon {
-        width: 86%;
-    }
-    .xs-font-size {
-        font-size: 1.3rem;
-    }
+
+   
+   
     .dropdownDiv {
         width: 20%;
     }
