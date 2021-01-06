@@ -18,7 +18,7 @@ body {
 }
 
 .contentTopSpaceLanding {
-  margin-top: 10%;
+  margin-top: 100px;
 }
 
 @media (min-width: 1200px) {
@@ -80,6 +80,7 @@ body {
   color: #b4b4b4;
   background-color: #ffffff;
   line-height: 1;
+  width: max-content;
 }
 
 .searchTab .nav-tabs .nav-link.active {
@@ -296,7 +297,7 @@ body {
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
   background-size: 5%;
-  background-position: 100% center;
+  background-position: 98% center;
 }
 
 .form-phoneBgImg {
@@ -391,21 +392,7 @@ button:focus {
 
 /*************************************/
 
-.editIcon {
-  width: 30%;
-}
 
-.editImg {
-  position: absolute;
-  right: 27%;
-  width: 14%;
-}
-
-.deleteImg {
-  position: absolute;
-  right: 11%;
-  width: 14%;
-}
 
 .subHeaderImg {
   width: 3%;
@@ -419,15 +406,15 @@ button:focus {
   .contentSpaceTop {
     padding-top: 105px;
   }
-  .contentTopSpaceLanding {
+  /* .contentTopSpaceLanding {
     margin-top: 35%;
-  }
+  } */
   .common-btn {
     line-height: 1;
   }
-  .col-sm-6 {
+  /* .col-sm-6 {
     padding: 0;
-  }
+  } */
   .mobile-input-6 {
     padding: 2%;
   }
@@ -439,13 +426,13 @@ button:focus {
     margin-bottom: 7%;
   }
   .form-bgImg {
-    background-size: 6%;
+    background-size: 10%;
   }
   .form-emailBgImg,
   .form-calenderBgImg,
   .form-genderBgImg,
   .form-passwordBgImg {
-    background-size: 8%;
+    background-size: 6%;
   }
   .form-phoneBgImg {
     background-size: 7.5%;
@@ -458,26 +445,39 @@ button:focus {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   /********************/
-  .editIcon {
-    width: 75%;
-  }
-  .editImg {
-    width: 20%;
-  }
-  .deleteImg {
-    right: 2%;
-    width: 20%;
-  }
+ 
+ 
   .subHeaderImg {
     width: 12%;
     margin: 3%;
   }
+
+  .pl-5, .px-5 {
+    padding-left: .5rem!important;
+  }
+  .pr-5, .px-5 {
+    padding-right: .5rem!important;
+  }
+
+  .pl-0, .px-0 {
+    padding-left: 15px !important;
+  }
+
+  .mobilePR {
+    padding-right: 15px!important;
+}
+
+.landingDiv{
+  padding: 0%;
+}
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .contentSpaceTop {
-    padding-top: 5%;
+    padding-top: 15%;
   }
   .form-bgImg {
     background-size: 12.5%;
@@ -498,22 +498,32 @@ button:focus {
     padding-right: 0 !important;
   }
   /******************************/
-  .editIcon {
-    width: 100%;
-  }
-  .editImg {
-    right: 100%;
-    width: 75%;
-  }
-  .deleteImg {
-    width: 75%;
-  }
+  
+ 
   .subHeaderImg {
     width: 6%;
     margin: 3%;
   }
 }
 
-
 .mySchoolDiv{border-radius: 25px;}
 .myProfileImg{height: 80px;}
+
+.editIcon {
+  width: 24px;
+}
+
+.editImg {
+  position: absolute;
+  right: 30px;
+  width: 14%;
+  width: 24px;
+}
+
+.deleteImg {
+  position: absolute;
+  right: 0%;
+  width: 14%;
+  width: 24px;
+}
+
