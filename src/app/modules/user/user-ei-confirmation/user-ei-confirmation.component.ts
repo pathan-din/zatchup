@@ -58,8 +58,16 @@ export class UserEiConfirmationComponent implements OnInit {
     this.currentDate  = new Date();
   }
   
-  editCourse(courseid){
-    this.router.navigate(['user/ei-profile'],{queryParams:{"school_id":this.school_id,"course_id":courseid}});
+  editCourse(standard,school_id,courseid){
+    console.log(standard);
+    
+    if(standard[standard.length-1].is_current_standard)
+    {
+      this.router.navigate(['user/ei-profile'],{queryParams:{"school_id":school_id,"course_id":courseid}});
+    }else{
+      this.router.navigate(['user/add-more-standard'],{queryParams:{"school_id":school_id,"course_id":courseid}});
+    }
+    
   }
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');

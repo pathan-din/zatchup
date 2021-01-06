@@ -59,6 +59,8 @@ export class UserEiProfileComponent implements OnInit {
       }
       if(params['course_id']){
         this.model.course_id = params['course_id'];
+        this.displayStandardList( this.model.course_id)
+        this.model.existing_course_id = params['course_id'];
        
       }else{
         this.model.course_id= '';
@@ -72,7 +74,7 @@ export class UserEiProfileComponent implements OnInit {
    
     this.model.school_id =this.schoolId;
     
-    this.displayStandardList( this.model.course_id)
+    
     this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
     
@@ -87,7 +89,11 @@ getEiInfo(model){
         this.model = res.data;
         this.model.join_standard_id=res.data.join_standard_id
         this.model.current_standard_id=res.data.current_standard_id
-        
+        if(this.model.course_id){
+          this.model.existing_course_id=this.model.course_id;
+         
+        }
+        this.model.school_id =this.schoolId;
        // this.displayClassList(res.data.join_standard_id);
         this.displayClassList(res.data.current_standard_id);
       }else{
