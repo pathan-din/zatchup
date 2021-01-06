@@ -469,9 +469,8 @@
                                         <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12"> -->
                                         <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
                                             (searchResult)="pocDetails($event)"></input-search>
-                                        <!-- </div> -->
-                                        <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.employee_id">
+                                        <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
+                                            Employee id is required
                                         </div>
                                     </div>
                                 </div>
@@ -496,8 +495,8 @@
                                 <div class=" form-group row mt-3">
 
                                     <div class="col-sm-12 ">
-                                        <button type="button " (click)="approveExistingEI()"
-                                            class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                                        <button type="button" (click)="approveExistingEI()"
+                                            class="form-control bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
                                             Approve
                                         </button>
                                     </div>
@@ -695,7 +694,7 @@
                                             POC Details
                                         </label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" id="employee_Id" name="employee_Id"
                                                 [(ngModel)]="pendingApprovalProfile.employeeId"
                                                 (keyup)="isValid($event)"
@@ -704,6 +703,11 @@
                                         </div>
                                         <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.employee_Id">
+                                        </div> -->
+                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
+                                            (searchResult)="pocDetails($event)"></input-search>
+                                        <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
+                                            Employee id is required
                                         </div>
                                     </div>
                                 </div>
@@ -763,7 +767,7 @@
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
                                             POC Details</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" id="employee_id" name="employee_Id"
                                                 [(ngModel)]="pendingApprovalProfile.employeeId"
                                                 (keyup)="isValid($event)"
@@ -772,6 +776,11 @@
                                         </div>
                                         <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.employee_Id">
+                                        </div> -->
+                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
+                                            (searchResult)="pocDetails($event)"></input-search>
+                                        <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
+                                            Employee id is required
                                         </div>
                                     </div>
                                 </div>

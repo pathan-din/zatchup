@@ -736,10 +736,9 @@
                                             <input (change)="handleCancelChequeFileInput($event.target.files)"
                                                 id="cheque" name="cheque"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="file" validFileExtention="png,jpeg,jpg" required>
-                                                <p>* only support pdf and image</p>
-                                                
+                                                type="file" validFileExtention="png,jpeg,jpg" required>                                                
                                         </div>
+                                        <p class="pt-1">* only support pdf and image</p>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                                     </div>
                                 </div>
@@ -792,19 +791,18 @@
 										<input [(ngModel)]="document.document"  id="document_hid_{{i}}" name="document_hid_{{i}}"  
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                             type="hidden">
-                                            <p>* only support pdf and image</p>
-                                          
                                     </div>
+                                    <p class="pt-1">* only support pdf and image</p>
                                     <div class="required errorMsg"
                                         [innerHtml]="display_error(i,'document_')">
                                     </div>
                                 </div>
                                 <div  class="col-sm-1 centerImgDiv" *ngIf="modelDocumentDetails.length==i+1">
-                                    <i (click)="addMoreDocument()"  class="fa fa-plus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i>
+                                    <i (click)="addMoreDocument()"  class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i>
                                     <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
                                 </div>
                                 <div *ngIf="modelDocumentDetails.length!=(i+1)" class="col-sm-1 centerImgDiv">
-                                     <i (click)="removeData(i+1,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> 
+                                     <i (click)="removeData(i+1,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i> 
                                 </div>
                             </div>
                         </div>

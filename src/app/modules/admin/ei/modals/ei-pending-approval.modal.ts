@@ -209,14 +209,13 @@ export class PendingApprovalProfile {
     rejectionRemark: any;
     employeeId: any;
     requiredMOU: boolean = true;
+    poc_required: boolean = true;
     errorDisplay: any = {};
     editReason: any;
     editDescription: any;
     comment: any;
     searchConfig: any = {
-        "api_endpoint": "admin/fetch-poc-details/",
-        "display": ["first_name", "employee_id"],
-        "display_value": "employee_id"
+        "api_endpoint": "admin/fetch-poc-details/"
     }
 }
 

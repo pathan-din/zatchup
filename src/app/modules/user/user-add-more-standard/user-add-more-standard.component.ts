@@ -49,9 +49,51 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.getCourseBySchoolId(schoolId)
       this.model.school_id = this.schoolId;
       this.isalumini =params['isalumini'];
+
+      this.model.course_id = params['course_id'];
+      this.model.existing_course_id = params['course_id'];
+
+       
+     
     });
+
+    this.model.school_id =this.schoolId;
+    
+    this.displayStandardList( this.model.course_id)
+    this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
   }
+
+  getEiInfo(model){
+    try {
+      var that = this;
+      this.SpinnerService.show();
+      this.baseService.action("user/get-admission-number-detail-by-school/",model).subscribe((res:any)=>{
+        if(res.status==true){
+          this.SpinnerService.hide();
+          this.model = res.data;
+          this.model.join_standard_id=res.data.join_standard_id
+          this.model.current_standard_id=res.data.current_standard_id
+          if(this.model.course_id){
+            this.model.existing_course_id=this.model.course_id;
+            this.model.comment = res.data.description;
+          }
+          this.model.school_id =this.schoolId;
+         // this.displayClassList(res.data.join_standard_id);
+          this.displayClassList(res.data.current_standard_id);
+        }else{
+          this.SpinnerService.hide();
+        }
+        
+      },(error)=>{
+        this.SpinnerService.hide();   
+      })
+    } catch (e) {
+      this.SpinnerService.hide();
+    }
+  }
+
+
   getCourseBySchoolId(id) {
     try {
       this.SpinnerService.show();
