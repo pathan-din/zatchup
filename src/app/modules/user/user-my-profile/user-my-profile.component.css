@@ -7,6 +7,7 @@
     position: absolute;
     top: 6%;
     right: 2%;
+    width: 40px;
 }
 
 .landingDiv {
@@ -42,9 +43,7 @@
     margin-top: -50%
 }
 
-.editIcon {
-    width: 7%;
-}
+
 
 .form-control-inputDiv {
     border-radius: 25px;
