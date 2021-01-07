@@ -33,6 +33,14 @@ export class OnboardedViewComponent implements OnInit {
     this.router.navigate(['admin/education-institute-history', this.eiData.id])
   }
 
+  subPlanHistory(){
+    this.router.navigate(['admin/subscription-plan-history', this.eiData.ei_id])
+  }
+
+  docAndMOUHistory(){
+    this.router.navigate(['admin/ei-document-mou-history', this.eiData.ei_id])
+  }
+
   getProfileData() {
     this.loader.show()
     let url = 'admin/ei-pending-profile/' + this.eiId
