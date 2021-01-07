@@ -33,7 +33,7 @@
                     <div class="col-sm-12 p-0 pr-0 ">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course joining date</label>
                         <div class="form-control-inputDiv mobile-input-6">
-                            <input required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(objCourse.start_date)" [maxDate]="this.baseService.getDateReverseFormat(objCourse.end_date)" placeholder="DD-MM-YYYY"
+                            <input required bsDatepicker autocomplete="off" [minDate]="maxDate" [maxDate]="minDate" placeholder="DD-MM-YYYY"
                                 [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="date_of_joining"
                                 [(ngModel)]="model.date_joining" class="form-control-input form-control form-control-sm"
                                 type="text">
@@ -104,11 +104,11 @@
 
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Comments</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Course Description</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv ">
                         <textarea name="comments" [(ngModel)]="model.comment"
                             class="form-control form-control-textarea form-control-input" rows="2"
-                            placeholder="Write Comments (Optional)"></textarea>
+                            placeholder="Enter Course Description(Optional)"></textarea>
                     </div>
 
                 </div>

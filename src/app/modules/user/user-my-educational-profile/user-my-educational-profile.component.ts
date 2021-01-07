@@ -13,102 +13,101 @@ declare var $: any;
   styleUrls: ['./user-my-educational-profile.component.css']
 })
 export class UserMyEducationalProfileComponent implements OnInit {
-  @ViewChild('closeModal') closeModal : any;
+  @ViewChild('closeModal') closeModal: any;
   epData: any;
-  model:any={};
-  editModel:any={};
+  model: any = {};
+  editModel: any = {};
   error: any = [];
-  errorDisplay:any={};
-  errorOtpModelDisplay:any=[];
+  errorDisplay: any = {};
+  errorOtpModelDisplay: any = [];
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private validationService: GenericFormValidationService,
-    private router:Router
-   ) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.model = {};
     this.getEducationalProfile()
   }
 
-  redirectWorkDetailesPage(id){
-  this.router.navigate(["user/work-detail"],{queryParams:{"id":id}});
+  redirectWorkDetailesPage(id) {
+    this.router.navigate(["user/work-detail"], { queryParams: { "id": id } });
   }
-  addPastEi(){
+  addPastEi() {
     $("#OTPModel").modal('hide');
-    this.router.navigate(['user/add-ei'],{queryParams:{"title":"past"}});
-   }
-   addAnotherCourse(){
+    this.router.navigate(['user/add-ei'], { queryParams: { "title": "past" } });
+  }
+  addAnotherCourse() {
     $("#OTPModel").modal("hide");
-     this.router.navigate(['user/add-ei'],{queryParams:{"title":"current"}});
-   }
-  openModel (label,key,value){
-   
-   
-      this.editModel={};
-      //this.model=label;
-      this.model.dob = this.baseService.getDateReverseFormat(label.dob)
-      this.model.email = label.email;
-      this.model.first_name=label.first_name;
-      this.model.last_name=label.last_name;
-      this.editModel.key = key;
-      this.editModel.old_value =value;
-      this.editModel.value = value;
-      
+    this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
   }
-  setModelValue(key){
-    this.editModel.value=key;
+  openModel(label, key, value) {
+
+
+    this.editModel = {};
+    //this.model=label;
+    this.model.dob = this.baseService.getDateReverseFormat(label.dob)
+    this.model.email = label.email;
+    this.model.first_name = label.first_name;
+    this.model.last_name = label.last_name;
+    this.editModel.key = key;
+    this.editModel.old_value = value;
+    this.editModel.value = value;
+
+  }
+  setModelValue(key) {
+    this.editModel.value = key;
     console.log(this.editModel);
-    
+
   }
-   /**Edit Personal Details */
-   submitPersonalDetails(){
-   
-    
+  /**Edit Personal Details */
+  submitPersonalDetails() {
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
-   
-    if(this.errorDisplay.valid){
+    if (this.errorDisplay.valid) {
       return false;
-    }else{
+    } else {
       try {
         this.loader.show();
-       // this.editModel.opening_date= this.baseService.getDateReverseFormat(this.editModel.opening_date);
-       this.baseService.action('user/request-change-user-detail-by-ei/',this.editModel).subscribe(res=>{
-         let response:any={};
-         response=res;
-         if(response.status == true)
-         {
-           this.loader.hide();
-           this.alert.success(response.message,'success');
-           this.closeModal.nativeElement.click()
-           //location.reload();
-         }else{
-           this.alert.error(response.error.message[0],'Error');
-         }
-       },(error=>{
-         this.loader.hide();
-       }))
+        this.baseService.action('user/request-change-user-detail-by-ei/', this.editModel).subscribe(res => {
+          let response: any = {};
+          response = res;
+          if (response.status == true) {
+            this.loader.hide();
+            this.alert.success(response.message, 'success');
+            this.closeModal.nativeElement.click()
+            //location.reload();
+          } else {
+            this.alert.error(response.error.message[0], 'Error');
+          }
+        }, (error => {
+          this.loader.hide();
+        }))
       } catch (e) {
-      
+
       }
     }
   }
-  getEducationalProfile(){
-  this.loader.show()
-  let url = 'user/student-education-profile/'
-  this.baseService.getData(url).subscribe(
-    (res: any)=>{
-      if(res.status == true)
-      this.epData = res.data
-      else
-      this.alert.error(res.error.message[0], 'Error')
-      this.loader.hide()
+  getEducationalProfile() {
+    this.loader.show()
+    let url = 'user/student-education-profile/'
+    this.baseService.getData(url).subscribe(
+      (res: any) => {
+        if (res.status == true)
+          this.epData = res.data
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide()
+      }
+    ), err => {
+      this.loader.hide();
+      this.alert.error(err, 'Error')
     }
-  ), err=>{
-    this.loader.hide();
-    this.alert.error(err, 'Error')
   }
+
+  editCourse(courseid: any, school_id: any) {
+    this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
   }
 }

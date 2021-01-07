@@ -141,7 +141,7 @@
                             </div>
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail" >
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details 
-                                    <!-- <img src="assets/images/userWebsite/edit.png" data-target="#OTPModel" data-toggle="modal" class="img-fluid editIcon float-right">  -->
+                                    <img src="assets/images/userWebsite/edit.png" (click)="editCourse(objCd.course_id, objEd.school_id)" class="img-fluid editIcon float-right"> 
                                 </h3>
                                 
                                 <div class="pr-4 pl-0">
