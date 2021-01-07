@@ -72,7 +72,7 @@
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.work_description"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 MobileCol6MB">
                             <div class="col-md-12 pl-0"> <label> Start Date </label></div>
                             <div class="row">   
                                 <input [(ngModel)]="model.start_date" name="start_date" value="1-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
@@ -109,7 +109,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             <div class="col-md-12 pl-0"> <label> End Date </label></div>
                             <div class="row" *ngIf="!model.is_currently_work">     
                                     <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
@@ -213,7 +213,7 @@
                         </div>  
 
                         <div class="row">
-                            <div class="col-md-6 MobileCol6MB">
+                            <div class="col-md-6 MobileCol6MB pl-0">
                                 <div class="col-md-12 pl-0"> <label> Start Date </label></div>
                                 <div class="row">   
                                     <input [(ngModel)]="model.start_date" name="start_date" value="1-{{monthModel}}-{{yearModel}}" class="form-control-input form-control form-control-sm" type="hidden"
@@ -227,7 +227,7 @@
                                         </select>
                                     </div> -->
                                     
-                                    <div class="col-6 pl-0 pr-0">
+                                    <div class="col-6 pr-0">
                                         <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="start_month" class="custom-select form-month-col border">
                                             <option value="" selected>Month</option>
                                             <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>

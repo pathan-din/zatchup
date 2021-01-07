@@ -105,13 +105,24 @@
                                                 <div *ngIf="kycHistoryModal.kycDetails && kycHistoryModal.kycDetails.kyc_document"
                                                     class="picImg">
                                                     <img src="{{kycHistoryModal.kycDetails.kyc_document}}"
-                                                        class="img-fluid dpImg ">
+                                                        class="img-fluid dpImg border w-100">
                                                 </div>
                                                 <div
                                                     *ngIf="kycHistoryModal.kycDetails && !kycHistoryModal.kycDetails.kyc_document">
-                                                    <img src="assets/images/no-image-icon.jpg" class="img-fluid dpImg ">
+                                                    <img src="assets/images/no-image-icon.jpg" class="img-fluid dpImg border w-100">
                                                 </div>
                                             </div>
+
+                                            <!-- <div class="col-md-12 mt-2">
+                                                <div class="row border-top pt-2">
+                                                    <div class="col-6">
+                                                        <img src="assets/images/no-image-icon.jpg" class="img-fluid border">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <img src="assets/images/no-image-icon.jpg" class="img-fluid border">
+                                                    </div>
+                                                </div>
+                                            </div> -->
 
                                             <div class="col-md-12 mt-3 mb-1">
                                                 <mat-radio-group aria-label="Select an option">
