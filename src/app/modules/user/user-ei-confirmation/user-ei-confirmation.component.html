@@ -50,8 +50,11 @@
                     <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0 mediumFont pb-1">
                         Starting Year : <span class="text-dark">{{courseData.start_year?courseData.start_year:''}}</span>
                     </div>
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                    <div *ngIf="!courseData.is_current_course" class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
                         Ending Year : <span class="text-dark">{{courseData.end_year?courseData.end_year:''}}</span>
+                    </div>
+                    <div *ngIf="courseData.is_current_course" class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                        To Current
                     </div>
                    
                 </div>
@@ -78,9 +81,9 @@
                     </div> 
                     <div class="col-6 pb-1">
                         Starting Year : <span  class="text-dark mediumFont cursorStyle" id="start_year" (click)="openEditModel($event,standardData)">{{standardData.standard_start_year}}</span>
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i==0" required bsDatepicker autocomplete="off"  placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i > 0 && i < courseData.standard_detail.length" required bsDatepicker  autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(courseData.standard_detail[i-1].org_end_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i==courseData.standard_detail.length" required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(courseData.standard_detail[i].org_end_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i==0" required bsDatepicker autocomplete="off"  placeholder="YYYY-MM-DD"  [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i > 0 && i < courseData.standard_detail.length" required bsDatepicker  autocomplete="off"  [minDate]="this.baseService.getDateReverseFormat(courseData.standard_detail[i-1].org_end_date)" placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)"  *ngIf="standardData.check && i==courseData.standard_detail.length" required bsDatepicker autocomplete="off" [maxDate]="todate" [minDate]="this.baseService.getDateReverseFormat(courseData.standard_detail[i].org_end_date)" placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
                         
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
@@ -88,7 +91,7 @@
                     <div class="col-6 pb-1">
                        
                         {{ standardData.is_current_standard?"":"Ending Year :" }}  <span  class="text-dark mediumFont cursorStyle" id="end_year" (click)="openEditModel($event,standardData)">{{standardData.is_current_standard?"To Current":standardData.standard_end_year}}</span>
-                        <input   (ngModelChange)="editStandardDetails('end_year',$event)" *ngIf="standardData.check && !standardData.is_current_standard" required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(standardData.org_start_date)" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_end_year_{{i}}"  [(ngModel)]="standardData.org_end_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input  (ngModelChange)="editStandardDetails('end_year',$event)" *ngIf="standardData.check && !standardData.is_current_standard" required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(standardData.org_start_date)" placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_end_year_{{i}}"  [(ngModel)]="standardData.org_end_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
                        
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
@@ -103,21 +106,7 @@
                     </div>                             
                 </div>
 
-                <!-- <div class="form-group row form-control-inputDiv border-0 rounded-0">
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0">
-                        Standard : <span class="text-dark mediumFont">6th</span>
-                    </div>
-                    <div class="col-lg-6 col-md-12 form-control-input"></div>
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0">
-                        Starting Year : <span class="text-dark mediumFont">2017</span>
-                    </div>
-                    <div class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0">
-                        Ending Year : <span class="text-dark mediumFont">2018</span>
-                    </div>
-                    <div class="col-12 form-control-input commonFontSize pl-0">Course ended standard :<span
-                            class="text-dark mediumFont"> 6th</span></div>
-
-                </div> -->
+            
             </div>
             </div>
                 
@@ -127,14 +116,14 @@
             <div data-target="#OTPModel" data-toggle="modal" class="form-group cursorStyle mt-3">
                 <div class="d-flex align-items-center">
                     <div class="img-small mr-2">
-                        <img src="assets/images/userWebsite/add.png" class="img-fluid">
+                        <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
                     </div>
                     <div class="text-left commonFontSize color-purple mediumFont">
-                        Add More Course
+                        {{confirmationDetails.length>0?"Add More Course":"Add Course"}}
                     </div>
                 </div>
             </div>
-            <button type="submit " class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
+            <button type="submit " *ngIf="confirmationDetails.length>0" class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
             (click)="goToUserProfileCreatedPage()">Confirm & Send for EI Verification</button>
         </div>
     </div>

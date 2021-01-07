@@ -29,6 +29,7 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
   imageUrl: any;
   imagePath: any;
+  courseId:any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -51,15 +52,18 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.isalumini =params['isalumini'];
 
       this.model.course_id = params['course_id'];
+      this.courseId= params['course_id'];
       this.model.existing_course_id = params['course_id'];
-
+      if(params['course_id']){
+        this.displayStandardList( this.model.course_id)
+      }
        
      
     });
 
     this.model.school_id =this.schoolId;
     
-    this.displayStandardList( this.model.course_id)
+   
     this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
   }
@@ -75,7 +79,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           this.model.join_standard_id=res.data.join_standard_id
           this.model.current_standard_id=res.data.current_standard_id
           if(this.model.course_id){
-            this.model.existing_course_id=this.model.course_id;
+            this.model.existing_course_id=this.courseId;
             this.model.comment = res.data.description;
           }
           this.model.school_id =this.schoolId;

@@ -22,6 +22,7 @@ export class AddNewCourseComponent implements OnInit {
   schoolId:any;
   imageUrl:any='';
   checkincourse:boolean=false;
+  title:any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -40,7 +41,9 @@ export class AddNewCourseComponent implements OnInit {
     }
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
-      
+      if(params['title']){
+        this.title = params['title'];
+      }
     });
   }
   /** 
@@ -103,7 +106,7 @@ export class AddNewCourseComponent implements OnInit {
         this.SpinnerService.hide();
         if (response.status == true) {
           this.alert.success(response.message, 'Success')
-          this.router.navigate(['user/add-more-course'], {queryParams: {'school_id':this.schoolId }});
+          this.router.navigate(['user/add-more-course'], {queryParams: {'school_id':this.schoolId ,'title':this.title}});
           
         } else {
           this.SpinnerService.hide();
