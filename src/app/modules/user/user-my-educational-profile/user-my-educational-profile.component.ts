@@ -107,7 +107,12 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
   }
 
-  editCourse(courseid: any, school_id: any) {
-    this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
+  editCourse(data: any, school_id: any) {
+    if (data.is_current_course == true) {
+      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
+    } else {
+      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
+    }
+    // this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
   }
 }

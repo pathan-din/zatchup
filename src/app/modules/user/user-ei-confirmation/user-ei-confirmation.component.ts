@@ -70,7 +70,7 @@ export class UserEiConfirmationComponent implements OnInit {
     if (standard[standard.length - 1].is_current_standard) {
       this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
     } else {
-      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid } });
+      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
     }
 
   }
