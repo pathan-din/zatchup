@@ -68,3 +68,9 @@ export class DatabaseHistory extends Pagination {
 
     isDeleted: any = '';
 }
+
+export class SubscriptionPlanHistory extends Pagination{
+    modal: any;
+    displayedColumns: string[] = ['position', 'dateOfSubscription', 'planDetails', 'grossAmount', 
+   'couponCode','netAmount', 'dateOfSubscriptionExpiry', 'transactionId', 'action']; 
+}
