@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { Coupon } from '../modal/coupon.modal'
 import { BaseService } from 'src/app/services/base/base.service';
 import { DatePipe } from '@angular/common';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-admin-payment-coupon',
@@ -22,6 +23,7 @@ export class AdminPaymentCouponComponent implements OnInit {
     private datePipe: DatePipe,
     private location: Location,
     private baseService: BaseService,
+    private alert: NotificationService,
     private spinnerService: NgxSpinnerService
   ) {
     this.minDate = new Date()
@@ -64,7 +66,7 @@ export class AdminPaymentCouponComponent implements OnInit {
         }else{
           var errorCollection = '';
           errorCollection = this.baseService.getErrorResponse(this.spinnerService, res.error);
-          alert(errorCollection);
+          this.alert.error(errorCollection, 'Error')
         }
       }
     ),err =>{
