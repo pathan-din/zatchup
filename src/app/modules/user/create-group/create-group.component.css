@@ -20,6 +20,7 @@ ul {
     text-align: center;
     line-height: 85px;
     font-size: 20px;
+    margin: 20px 0px;
 }
 ul.participantsList li {
     display: inline-block;
