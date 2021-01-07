@@ -205,7 +205,7 @@ const routes: Routes = [
     path: 'ei-management-added-by-user-not-to-zatchup', component: AdminEIManagementAddedByUserNotToZatchupComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-document-mou-history/:id', component: AdminEiManagementDocumentMouHistoryComponent, canActivate: [AuthGuard]
+    path: 'ei-document-mou-history/:ei_id', component: AdminEiManagementDocumentMouHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-all-course-upload', component: AdminEiManagementAllCourseUploadComponent, canActivate: [AuthGuard]

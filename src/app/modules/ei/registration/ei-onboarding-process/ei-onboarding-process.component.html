@@ -502,13 +502,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-12 col-lg-12 margin-top-col-6 ">
+                                                <div class="col-sm-6">
                                                     <label for=" "
                                                         class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                                         Start
                                                         teaching this class</label>
                                                     <div class="row ">
-                                                        <div class=" col-sm-6 ">
+                                                        <div class="col-sm-12">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
                                                                 <select id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
@@ -543,13 +543,13 @@
                                                     </div>
 
                                                 </div>
-                                                <div  class="col-xl-6 col-lg-6 margin-top-col-6">
+                                                <div  class="col-sm-6">
                                                     <label for=" "
                                                         class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                                         End
                                                         teaching this class</label>
                                                     <div class="row ">
-                                                        <div class=" col-6 " *ngIf="!classD.is_teaching_current">
+                                                        <div class="col-sm-12" *ngIf="!classD.is_teaching_current">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
                                                                 <select [disabled]="classD.is_teaching_current"
@@ -585,7 +585,7 @@
                                                             </div>
                                                         </div> -->
                                                     </div>
-                                                    <div *ngIf="classD.is_teaching_current" class=" col-6 ">
+                                                    <div *ngIf="classD.is_teaching_current" class="col-sm-12 pl-0">
                                                         <label >Present</label>
                                                     </div>
                                                     
