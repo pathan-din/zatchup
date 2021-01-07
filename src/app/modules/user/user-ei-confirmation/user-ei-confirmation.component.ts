@@ -35,6 +35,7 @@ export class UserEiConfirmationComponent implements OnInit {
   editArr=[];
   getkeyCalander:any;
   standard:any={};
+  todate:any;
   constructor(private router: Router,
     private route: ActivatedRoute,
     private SpinnerService: NgxSpinnerService,
@@ -47,6 +48,8 @@ export class UserEiConfirmationComponent implements OnInit {
     public alert:NotificationService) { }
 
   ngOnInit(): void {
+    this.todate=new Date();
+    this.todate = this.baseService.getDateFormat(this.todate);
     this.editmodel.class_id = '';
     this.route.queryParams.subscribe(parrams=>{
       if(parrams['school_id']){
@@ -249,6 +252,22 @@ displayClassList(stId) {
           if(response.status==true){
             this.SpinnerService.hide(); 
             this.confirmationDetails=response.data;
+            localStorage.setItem("role","0");
+            this.confirmationDetails.forEach(elementCourse => {
+              console.log(elementCourse.ei_detail);
+              
+              elementCourse.ei_detail.course_detail.forEach(elementS => {
+                if(elementS.standard_detail){
+                elementS.standard_detail.forEach(ele => {
+                  if(ele.is_current_standard){
+                    localStorage.setItem("role","1");
+                  }
+                 
+                });
+              }
+              });
+              
+            });
           }else{
             this.SpinnerService.hide(); 
           }

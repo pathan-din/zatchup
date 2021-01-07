@@ -138,10 +138,10 @@ goToUserQualificationPage() {
           this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
         }else if(response.check_school_info_on_zatchup==2){
           localStorage.setItem("checkincourse","true");
-          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
+          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
         }else if(response.check_school_info_on_zatchup==3){
           localStorage.removeItem("checkincourse");
-          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id}});
+          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
         }
          
       } else {
