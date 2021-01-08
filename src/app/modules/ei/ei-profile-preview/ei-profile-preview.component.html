@@ -20,6 +20,8 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             User Profile Detail
+                            <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
+                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
                           </button>
                         </h5>
                       </div>
@@ -81,6 +83,7 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Course Detail
+                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
                           </button>
                         </h5>
                       </div>
@@ -210,6 +213,7 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Bank Detail
+                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
                           </button>
                         </h5>
                       </div>
@@ -231,11 +235,13 @@
 
                             <div class="col-md-4" *ngIf="bankData.cancel_cheque">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
-                                <div data-toggle="modal" data-target="#uploadCheck" class="cursorStyle">
+                                <div class="border mt-2">
                                     <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->
-                                    <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                    <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>                                    
                                 </div>
+                                <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button>
+                                <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
                                 
                                 <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
@@ -261,6 +267,7 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             Document Detail
+                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
                           </button>
                         </h5>
                       </div>
@@ -273,11 +280,13 @@
                             </div>
                             <div class="col-md-4" *ngIf="documentData.document">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload Document</h3>
-                              <div data-toggle="modal" data-target="#uploadDocument" class="cursorStyle">
+                              <div class="border mt-2">
                                   <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                   {{documentData.document}} -->
                                   <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
                               </div>
+                              <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button>
+                              <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadDocument"> <i class="fa fa-eye" aria-hidden="true"></i></button>
                               
                               <div class="modal fade documentDetail" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
