@@ -42,7 +42,7 @@
 
 
                     <ng-container matColumnDef="durationOfCourse">
-                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Duration of Course
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Course Duration
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             {{element.durationOfCourse}}
@@ -98,7 +98,7 @@
                         <th scope="col">S.No</th>
                         <th scope="col">Course Name </th>
                         <th scope="col">Standards</th>
-                        <th scope="col">Duration of Standards</th>
+                        <th scope="col">Standard Duration</th>
                         <th scope="col">Number of Class</th>
                         <th scope="col">Start Year</th>
                         <th scope="col">End Year</th>
@@ -134,7 +134,7 @@
                 <thead>
                     <tr class="bg-Gainsboro align-middle">
                         <th scope="col">Standards</th>
-                        <th scope="col">Duration of Students</th>
+                        <th scope="col">Standard Duration</th>
                         <th scope="col">Sub-Section</th>
                         <th scope="col">Class Alias</th>
                         <th scope="col">Start Year</th>
@@ -186,7 +186,7 @@
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
-                <h2>Edit Course</h2>
+                <h2>Update Course</h2>
             </div>
             <div class="modal-body pl-2 pr-2">
                 <form id="editCourse">
@@ -215,7 +215,7 @@
                             <div class="col-12 mt-2">
                                 <label for="description">Course Description</label>
                                 <textarea [(ngModel)]="editModel.description" required name="course_description"
-                                    (keyup)="isValid(0)" class="w-100 rounded p-1 border pl-3 form-control" rows="5"
+                                    (keyup)="isValid(0)" class="w-100 rounded p-1 border pl-2 form-control" rows="5"
                                     style="resize: none;">
                                 </textarea>
                             </div>
@@ -223,7 +223,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn common-model-Btn mt-4" (click)="editCourse();">Edit </button>
+                    <div class="text-center">
+                        <button type="button" class="bg-purple py-2 px-3 color-white border-0 rounded mt-4" (click)="editCourse();">Update </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -239,7 +241,7 @@
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
-                <h2>Edit Standard</h2>
+                <h2>Update Standard</h2>
             </div>
             <div class="modal-body pl-2 pr-2">
                 <form id="editStandard">
@@ -255,10 +257,10 @@
                             <div class="required errorMsg" [innerHtml]="errorDisplay.standard_name">
                             </div>
                             <div class="col-12 mt-20 w-100">
-                                <label for="standard_name">Standard duration</label>
+                                <label for="standard_name">Standard Duration (In Months)</label>
                                 <input [(ngModel)]="editStModel.duration" name="standard_duration" required
                                     (keyup)="isValid(1)" numberOnly
-                                    class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                    class=" form-control custom-select ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                                     type="text">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.standard_duration">
@@ -266,8 +268,9 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn common-model-Btn mt-4" (click)="editStandard(editStModel.id);">Edit
-                    </button>
+                    <div class="text-center">
+                        <button type="button" class="bg-purple py-2 px-3 color-white border-0 rounded mt-4" (click)="editStandard(editStModel.id);">Update </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -286,7 +289,7 @@
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
-                <h2>Edit Class</h2>
+                <h2>Update Class</h2>
             </div>
             <div class="modal-body pl-2 pr-2">
                 <div class="form-group">
@@ -307,7 +310,7 @@
                                 Start
                                 teaching this class</label>
                             <div class="row ">
-                                <div class=" col-6 ">
+                                <div class=" col-12">
                                     <div class=" form-control-inputDiv rounded shadow-none ">
                                         <select id="teaching_start_year" required
                                             [(ngModel)]="editClassModel.teaching_start_year" name="teaching_start_year"
@@ -317,7 +320,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class=" col-6 ">
+                                <!-- <div class=" col-6 ">
                                     <div class="form-control-inputDiv rounded shadow-none ">
                                         <select id="teaching_start_month" required
                                             [(ngModel)]="editClassModel.teaching_start_month"
@@ -327,7 +330,7 @@
                                             <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>
@@ -336,7 +339,7 @@
                                 End
                                 teaching this class</label>
                             <div class="row ">
-                                <div class=" col-6 ">
+                                <div class=" col-12">
                                     <div class=" form-control-inputDiv rounded shadow-none ">
                                         <select id="teaching_end_year" [(ngModel)]="editClassModel.teaching_end_year"
                                             name="teaching_end_year"
@@ -346,7 +349,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class=" col-6 ">
+                                <!-- <div class=" col-6 ">
                                     <div class="form-control-inputDiv rounded shadow-none ">
                                         <select id="teaching_end_month" [(ngModel)]="editClassModel.teaching_end_month"
                                             name="teaching_end_month"
@@ -357,7 +360,7 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>
@@ -366,19 +369,19 @@
 
                     <div class="form-group row ">
                         <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
-                            <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
+                            <!-- <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
                                 Start
                                 teaching
-                                this class</label>
+                                this class</label> -->
                             <div class="d-flex flex-xs-column flex-row justify-content-between ">
                                 <mat-checkbox id="is_teaching_current" [(ngModel)]="editClassModel.is_teaching_current"
-                                    name="is_teaching_current" class="purple-checkbox">Current
+                                    name="is_teaching_current" class="purple-checkbox">Currently
                                     Teaching
                                 </mat-checkbox>
 
-                                <mat-checkbox id="teaching_stopped" [(ngModel)]="editClassModel.teaching_stopped"
+                                <!-- <mat-checkbox id="teaching_stopped" [(ngModel)]="editClassModel.teaching_stopped"
                                     name="teaching_stopped" class="purple-checkbox">Stopped Date
-                                </mat-checkbox>
+                                </mat-checkbox> -->
 
                             </div>
 
@@ -386,12 +389,11 @@
                         </div>
                     </div>
 
-
-
                 </div>
 
-                <button type="button" class="btn common-model-Btn mt-4" (click)="editClassById(editClassModel.id);">Edit
-                </button>
+                <div class="text-center">
+                    <button type="button" class="bg-purple py-2 px-3 color-white border-0 rounded mt-4" (click)="editClassById(editClassModel.id);">Update </button>
+                </div>
 
                 <!-- </form> -->
 

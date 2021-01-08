@@ -25,9 +25,9 @@ export class AdminEiManagementCourseDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courseDetails.courseId = this.activeRoute.snapshot.params.course_id;
+    // this.courseDetails.courseId = this.activeRoute.snapshot.params.course_id;
     this.courseDetails.eiId = this.activeRoute.snapshot.params.id;
-    if (this.courseDetails.courseId) {
+    if (this.courseDetails.eiId) {
       this.getCourseDetails();
     }
 
@@ -37,7 +37,7 @@ export class AdminEiManagementCourseDetailsComponent implements OnInit {
     this.loader.show()
     let data = {
       'id': this.courseDetails.eiId,
-      "course_id": this.courseDetails.courseId
+      // "course_id": this.courseDetails.courseId
     }
 
     this.baseService.getData('admin/ei-course-details/', data).subscribe(
@@ -47,7 +47,7 @@ export class AdminEiManagementCourseDetailsComponent implements OnInit {
           this.getstandardList(this.courseDetails.courseDetail[0].standard_list)
         }
         else
-          this.alert.error(res.error.message, 'Error')
+          this.alert.error(res.error, 'Error')
         this.loader.hide()
       }
     ), err => {

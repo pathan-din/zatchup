@@ -10,10 +10,6 @@
 
 .Btn-lg-last {
     height: 100%;
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap;
-    justify-content: flex-start !important;
 }
 
 .countFontSize {

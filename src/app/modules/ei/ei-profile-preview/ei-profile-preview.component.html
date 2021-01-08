@@ -73,6 +73,27 @@
                               <p>{{userData.overview}}</p>
                                
                             </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">FB Url</h3>
+                              <p>{{userData.fb_url}}</p>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">Twitter Url</h3>
+                              <p>{{userData.twitter_url}}</p>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">School Phone Number</h3>
+                              <p>{{userData.school_phone}}</p>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">School Email Address</h3>
+                              <p>{{userData.school_email}}</p>
+                               
+                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -158,52 +179,7 @@
                             </div>
                           </div>
 
-                          <!-- <div class="row">
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Course Name</h3>
-                              <p>B.Com</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Course Type</h3>
-                              <p>Distance</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Description</h3>
-                              <p>test </p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Name of Standard</h3>
-                              <p>2nd year</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Standard Duration</h3>
-                              <p>3 Years</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Sub Section</h3>
-                              <p>enter sub section </p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">EI Start teaching this class</h3>
-                              <p>current teaching</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">EI Start teaching this class</h3>
-                              <p>1986, feb</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">EI End teaching this class</h3>
-                              <p>1989, Jan </p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Class Alias</h3>
-                              <p>B.Com</p>
-                            </div>
-
-                          </div> -->
+                         
                         </div>
                       </div>
                     </div>
@@ -238,7 +214,7 @@
                                 <div class="border mt-2">
                                     <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->
-                                    <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>                                    
+                                    <img src="{{bankData.cancel_cheque}}" alt="profile pick" class="img-responsive"/>                                    
                                 </div>
                                 <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button>
                                 <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
@@ -252,7 +228,7 @@
                                         </button>
                                       </div>                                    
                                       <!-- {{bankData.cancel_cheque}} -->
-                                      <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                      <img *ngIf="bankData.cancel_cheque" src="{{bankData.cancel_cheque}}" alt="profile pick" class="img-responsive"/>
                                     </div>
                                   </div>
                                 </div>
@@ -283,7 +259,7 @@
                               <div class="border mt-2">
                                   <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                   {{documentData.document}} -->
-                                  <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                  <img src="{{documentData.document_image}}" alt="profile pick" class="img-responsive"/>
                               </div>
                               <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button>
                               <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadDocument"> <i class="fa fa-eye" aria-hidden="true"></i></button>
@@ -297,7 +273,7 @@
                                           </button>
                                         </div>                                     
                                       <!-- {{documentData.document}} -->
-                                      <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                      <img src="{{documentData.document_image}}" alt="profile pick" class="img-responsive"/>
                                   </div>
                                 </div>
                               </div>
