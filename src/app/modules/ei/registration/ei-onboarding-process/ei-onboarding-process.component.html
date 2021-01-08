@@ -467,20 +467,15 @@
 
                                                 </div>
                                                 <div class="col-12">
-                                                    <div class="form-group row mt-3">
+                                                    <div class="row mt-3">
                                                         <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
-                                                            <label for="pronouce "
-                                                                class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                                                Start
-                                                                teaching
-                                                                this class</label>
-                                                            <div
-                                                                class="d-flex flex-xs-column flex-row justify-content-between w-100">
+                                                           
+                                                            <div class="d-flex flex-xs-column flex-row justify-content-between w-100">
                                                                 <mat-checkbox 
                                                                     id="is_teaching_current_{{cNo}}_{{s}}_{{c}}" 
                                                                     [(ngModel)]="classD.is_teaching_current"
                                                                     name="is_teaching_current_{{cNo}}_{{s}}_{{c}}"
-                                                                    class="purple-checkbox">Current
+                                                                    class="purple-checkbox">Currently
                                                                     Teaching
                                                                 </mat-checkbox>
         
@@ -504,9 +499,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for=" "
-                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                                        Start
-                                                        teaching this class</label>
+                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">Start year of this class</label>
                                                     <div class="row ">
                                                         <div class="col-sm-12">
                                                             <div
@@ -545,9 +538,7 @@
                                                 </div>
                                                 <div  class="col-sm-6">
                                                     <label for=" "
-                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">EI
-                                                        End
-                                                        teaching this class</label>
+                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">End year of this class</label>
                                                     <div class="row ">
                                                         <div class="col-sm-12" *ngIf="!classD.is_teaching_current">
                                                             <div

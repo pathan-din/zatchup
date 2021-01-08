@@ -11,14 +11,14 @@
                     </span>
                     School With Incomplete Onboarding View</h2>
             </div>
-            <div class="col-md-6 SearchDiv d-flex flex-row" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
+            <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
                     data-target="#CommentModel">Onboarding Conversation
                     Comments</button> -->
-                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mr-2"
+                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
                     routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.id}}/incomplete-onboarding">View
                     Conversation Comments</button>
-                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0"
+                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
                     routerLink="/admin/education-institute-history/{{eiData.id}}">History</button>
             </div>
         </div>
@@ -355,14 +355,14 @@
                         </div>
                         <div class="modal-body px-0">
                             <div class=" form-group row ">
-                                <div class="col-sm-12 ">
-                                    <button type="button "
-                                        class="bg-light-secondary  border-0 text-dark text-center px-3 py-2 commonFontSize mediumFont letterspacing mr-2"
+                                <div class="col-sm-12 justify-content-center d-flex flex-wrap">
+                                    <button type="button"
+                                        class="bg-light-secondary  border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
                                         data-toggle="modal" data-target="#existingZatchupIDModel"
                                         (click)="closeApproveModal()">With
                                         Existing School ZatchUp ID</button>
-                                    <button type="button "
-                                        class="bg-light-secondary  border-0 text-dark text-center px-3 py-2 commonFontSize mediumFont letterspacing "
+                                    <button type="button"
+                                        class="bg-light-secondary  border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
                                         data-toggle="modal" data-target="#approveWithNewZatchupIDModel"
                                         (click)="closeApproveModal()">With
                                         New School ZatchUp ID</button>
@@ -393,22 +393,17 @@
                             </button>
                         </div>
                         <div class="modal-body px-0">
-                            <div class=" form-group col-sm-12 row">
-                                <div class="col-sm-6">
-                                    <button type="button "
-                                        class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"
-                                        data-toggle="modal" data-target="#newZatchupIDModel"
-                                        (click)="closeNewEIWithZatchupID()">With
-                                        Enter School ZatchUp ID</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel"
-                                        class="bg-light-secondary  border-0 text-dark text-center px-4 py-2 commonFontSize mediumFont letterspacing "
-                                        (click)="closeNewEIWithZatchupID()">
-                                        With Generate New School ZatchUp ID</button>
-                                </div>
+                            <div class="col-sm-12 justify-content-center d-flex">                                 
+                                <button type="button "
+                                    class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
+                                    data-toggle="modal" data-target="#newZatchupIDModel"
+                                    (click)="closeNewEIWithZatchupID()">With
+                                    Enter School ZatchUp ID</button>                                
+                                <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel"
+                                    class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
+                                    (click)="closeNewEIWithZatchupID()">
+                                    With Generate New School ZatchUp ID</button>                                 
                             </div>
-
                         </div>
                     </div>
                 </div>

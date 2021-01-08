@@ -65,7 +65,7 @@
                     <div *ngIf="name_of_school_first=='Others'" class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
 
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded  shadow-none">
 
                                 <input required (keyup)="isValid($event)" id="name_of_school"
                                     [(ngModel)]="name_of_school_others" name="name_of_school_"
@@ -141,6 +141,42 @@
                         </div>
                     </div>
 
+                    <div class="form-group row ml-0 mr-0">
+                        <div class="col-md-12">
+                            <label>School Phone Number</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input id="" required  name="" class="form-control-input form-control commonFontSize regularFont letterspacing" type="tel" placeholder="School Phone Number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row ml-0 mr-0">
+                        <div class="col-md-12">
+                            <label>School Email Address</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input id="" required  name="" class="form-control-input form-control commonFontSize regularFont letterspacing" type="email" placeholder="School Email address">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row ml-0 mr-0">
+                        <div class="col-md-12">
+                            <label>FB URL (If Applicable)</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input id="" required  name="" class="form-control-input form-control commonFontSize regularFont letterspacing" type="url" placeholder="FB URL..">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row ml-0 mr-0">
+                        <div class="col-md-12">
+                            <label>Twitter URL (If Applicable)</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input id="" required  name="" class="form-control-input form-control commonFontSize regularFont letterspacing" type="url" placeholder="Twitter URL..">
+                            </div>
+                        </div>
+                    </div>
+
                     <div *ngIf="model.school_data.school_code" class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="address" class="mediumFont commonFontSize letterspacing">EI's ZatchUp ID</label>
@@ -206,7 +242,7 @@
                     <!--End Fb URL-->
 
 
-                    <h3 class="color-black commonFontSize semiBoldFont m-0 paddingLHeading">School Admin </h3>
+                    <h3 class="color-black commonFontSize semiBoldFont mt-3 mb-0 paddingLHeading">School Admin </h3>
 
                     <div class="col-md-12 mobilePaddingLR">
                         <hr class="hrTopMargin">

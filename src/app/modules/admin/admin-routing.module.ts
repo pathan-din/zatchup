@@ -145,7 +145,7 @@ const routes: Routes = [
     path: 'ei-management-course/:id', component: AdminEiManagementCourseComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-management-course-details/:id/course/:course_id', component: AdminEiManagementCourseDetailsComponent, canActivate: [AuthGuard]
+    path: 'ei-management-course-details/:id', component: AdminEiManagementCourseDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-alumni-list', component: AdminEiManagementAlumniListComponent, canActivate: [AuthGuard]

@@ -44,7 +44,7 @@
                                 <label for="course " class=" commonFontSize mediumFont letterspacing ">Course Name
                                 </label>
 
-                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                <div class="form-control-inputDiv rounded  shadow-none ">
                                     <input id="course_name_{{cNo}}" [(ngModel)]="courseList.course_name" name="course_name_{{cNo}}" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                         type="text " placeholder="Enter Course Name ">
                                 </div>
@@ -57,7 +57,7 @@
                                 <label for="course " class=" commonFontSize mediumFont letterspacing ">Course Type
                                 </label>
 
-                                <div class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                <div class=" form-control-inputDiv  rounded shadow-none ">
                                     <select id="course_type_{{cNo}}" required [(ngModel)]="courseList.course_type" name="course_type_{{cNo}}" class="custom-select  form-control-input form-control-sm "
                                         required>
                                         <option value="">Select type</option>
@@ -80,7 +80,7 @@
                             <div class="col-sm-12 ">
                                 <label for="description " class=" commonFontSize mediumFont letterspacing ">Description</label>
 
-                                <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                <div class="form-control-inputDiv rounded  shadow-none ">
                                     <textarea id="description_{{cNo}}" [(ngModel)]="courseList.description" name="description_{{cNo}}" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                         rows="3 " placeholder="Enter Description "></textarea>
                                 </div>
@@ -108,7 +108,7 @@
                                 <div class="col-xl-6 col-lg-6 MobileCol6MB">
                                     <label for=" " class=" commonFontSize mediumFont letterspacing ">Name of Standard
                                     </label>
-                                    <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                    <div class="form-control-inputDiv rounded  shadow-none ">
                                         <input required id="standard_name_{{cNo}}_{{s}}" [(ngModel)]="standardL.standard_name" name="standard_name_{{cNo}}_{{s}}"
                                             class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
                                             type="text " placeholder="Enter Name of Standard ">
@@ -117,12 +117,12 @@
 
                                 </div>
                                 <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
-                                    <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard Duration
+                                    <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard Duration (In Months)
                                     </label>
                                     <div class="row ">
                                         
                                         <div class=" col-sm-12 ">
-                                            <div class=" form-control-inputDiv py-1 rounded shadow-none">
+                                            <div class=" form-control-inputDiv  rounded shadow-none">
                                                 <select required id="duration_in_month_{{cNo}}_{{s}}" [(ngModel)]="standardL.duration" name="duration_in_month_{{cNo}}_{{s}}"
                                                     class="custom-select form-control-input form-control-sm" required>
                                                     <option value="">Month</option>
@@ -153,9 +153,9 @@
 
                                 <div class="form-group row pt-3">
                                     <div class="col-xl-12 col-lg-12 ">
-                                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section
+                                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section (If Applicable)
                                         </label>
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <div class="form-control-inputDiv rounded  shadow-none ">
                                             <input required id="class_name_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.class_name" name="class_name_{{cNo}}_{{s}}_{{c}}"
                                                 class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
                                                 type="text " placeholder="Enter Sub Section ">
@@ -187,7 +187,7 @@
                                         <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Start year of this class</label>
                                         <div class="row ">
                                             <div class=" col-sm-6 MobileCol6MB">
-                                                <div class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                                <div class=" form-control-inputDiv  rounded shadow-none ">
                                                     <select id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year" name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
                                                         class="custom-select  form-control-input form-control-sm " required>
                                                         <option value="">Year</option>
@@ -198,7 +198,7 @@
                                                 </div>
                                             </div>
                                             <div class=" col-sm-6 MobileCol6MB">
-                                                <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                                <div class=" form-control-inputDiv rounded shadow-none ">
                                                     <select id="teaching_start_month_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_month" name="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
                                                         class="custom-select form-control-input form-control-sm " required>
                                                         <option value="">Month</option>
@@ -211,11 +211,12 @@
                                         </div>
 
                                     </div>
+
                                     <div class="col-xl-6 col-lg-6 margin-top-col-6">
                                         <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">End year of this class</label>
                                         <div class="row ">
                                             <div class=" col-6 " *ngIf="!classD.is_teaching_current">
-                                                <div class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                                <div class=" form-control-inputDiv  rounded shadow-none ">
                                                     <select [disabled]="classD.is_teaching_current" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}" [required]="classD.teaching_stopped"
                                                         [(ngModel)]="classD.teaching_end_year" name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                         class="custom-select  form-control-input form-control-sm ">
@@ -227,7 +228,7 @@
                                                 </div>
                                             </div>
                                             <div class=" col-6 " *ngIf="!classD.is_teaching_current">
-                                                <div class="py-1 form-control-inputDiv rounded shadow-none ">
+                                                <div class=" form-control-inputDiv rounded shadow-none ">
                                                     <select [disabled]="classD.is_teaching_current" id="teaching_end_month_{{cNo}}_{{s}}_{{c}}" [required]="classD.teaching_stopped"
                                                         [(ngModel)]="classD.teaching_end_month" name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
                                                         class="custom-select form-control-input form-control-sm ">
@@ -249,7 +250,7 @@
                                         <label for=" " class=" commonFontSize mediumFont letterspacing ">Class Alias
                                         </label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <div class="form-control-inputDiv rounded  shadow-none ">
                                             <input id="alias_class_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.alias_class" name="alias_class_{{cNo}}_{{s}}_{{c}}"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 type="text " placeholder="Enter Course Name ">
