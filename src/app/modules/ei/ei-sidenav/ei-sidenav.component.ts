@@ -124,42 +124,26 @@ notificationCount:any;
         localStorage.setItem("getreject",JSON.stringify(response))
         this.notificationCount = response.unread_notification_count;
         if(response.status){
-          if(response.is_approved && response.role=='EIREPRESENTATIVE')
+          if(response.role=='EIREPRESENTATIVE' && !response.rejected_reason && !response.is_approved)
           {
-            
-          }else if(!response.is_approved && response.role=='EIREPRESENTATIVE'){
-            
-            if( !localStorage.getItem("rejectStatus")){
-              
-              this.router.navigate(["ei/school-reminder"]);
-            }else{
-              this.router.navigate(["ei/information-and-bank-details"]);
+            if(response.reg_step==1){
+              this.router.navigate(['ei/payment']);
+            }else if(response.reg_step==2){
+              this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '1' } });
+            }else if(response.reg_step==3){
+              this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2' } });
+            }else if(response.reg_step==4){
+              this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3' } });
+            }else if(response.reg_step==5){
+              this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4' } });
             }
-             
-             
+
+            
+           // this.router.navigate(["ei/school-reminder"]);
+          }else{
+            
           }
-          if(response.is_approved && response.reg_step==6 &&  response.role=='STUDENTS')
-          {
-            this.router.navigate(["user/landing-page"]);
-          }else if(!response.is_approved && response.reg_step==6 && response.role=='STUDENTS'){
-            if( !localStorage.getItem("rejectStatus")){
-              
-              this.router.navigate(["user/profile-created"]);
-            }else{
-              this.router.navigate(["user/my-educational-profile"]);
-            }
-          }
-          // if(response.is_approved && response.reg_step==6 &&  response.role=='STUDENTS')
-          // {
-          //   this.router.navigate(["user/landing-page"]);
-          // }else if(!response.is_approved && response.reg_step==6 && response.role=='STUDENTS'){
-          //   if( !localStorage.getItem("rejectStatus")){
-              
-          //     this.router.navigate(["user/profile-created"]);
-          //   }else{
-          //     this.router.navigate(["user/my-educational-profile"]);
-          //   }
-          // }
+    
           
         }
       },(error=>{

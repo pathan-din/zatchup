@@ -126,25 +126,25 @@ export class EiOtpVerificationComponent implements OnInit {
        
       // localStorage.setItem("user_id",response.user_id)
        localStorage.setItem("token",response.token);
-	   if(response.reg_steps===null)
-	   {
-		    this.router.navigate(['ei/payment']);
-	   }else if(response.reg_steps==="1")
-	   {
-		    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '1' } });
-	   }else if(response.reg_steps==="2")
-	   {
-		    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2' } });
-	   }else if(response.reg_steps==="3")
-	   {
-		    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3' } });
-	   }else if(response.reg_steps==="4")
-	   {
-		    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4' } });
-	   }else{
-		    this.router.navigate(['ei/dashboard']);
-	   }		   
-      
+	  //  if(response.reg_steps===null)
+	  //  {
+		//     this.router.navigate(['ei/payment']);
+	  //  }else if(response.reg_steps==="1")
+	  //  {
+		//     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '1' } });
+	  //  }else if(response.reg_steps==="2")
+	  //  {
+		//     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2' } });
+	  //  }else if(response.reg_steps==="3")
+	  //  {
+		//     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3' } });
+	  //  }else if(response.reg_steps==="4")
+	  //  {
+		//     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4' } });
+	  //  }else{
+		//     this.router.navigate(['ei/dashboard']);
+	  //  }		   
+    this.router.navigate(['ei/dashboard']);
       }else{
         this.SpinnerService.hide();
        //this.errorOtpModelDisplay=response.error;

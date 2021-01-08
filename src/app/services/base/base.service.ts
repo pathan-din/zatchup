@@ -108,7 +108,7 @@ export class BaseService {
   }
 
   setFormData(data) {
-    console.log(data);
+    
     const formData = new FormData();
     Object.keys(data).forEach(function (key) {
       if (data[key]) {

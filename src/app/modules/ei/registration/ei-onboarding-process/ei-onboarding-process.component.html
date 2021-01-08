@@ -388,7 +388,7 @@
                                             <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
                                                 <label for="pronouce "
                                                     class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard
-                                                    Duration</label>
+                                                    Duration (in months)</label>
                                                 <div class="row ">
                                                     <!-- <div class="col-6 ">
                                                          <div class="py-1 form-control-inputDiv rounded shadow-none ">
@@ -566,24 +566,7 @@
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
                                                             </div>
                                                         </div> 
-                                                        <!-- <div class=" col-6 " *ngIf="!classD.is_teaching_current">
-                                                            <div
-                                                                class="py-1 form-control-inputDiv rounded shadow-none ">
-                                                                <select [disabled]="classD.is_teaching_current"
-                                                                    id="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
-                                                                    [required]="classD.teaching_stopped"
-                                                                    [(ngModel)]="classD.teaching_end_month"
-                                                                    name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
-                                                                    class="custom-select form-control-input form-control-sm ">
-                                                                    <option value="0">Month</option>
-                                                                    <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                            <div class="required errorMsg"
-                                                                [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_month_')">
-                                                            </div>
-                                                        </div> -->
+                                                        
                                                     </div>
                                                     <div *ngIf="classD.is_teaching_current" class="col-sm-12 pl-0">
                                                         <label >Present</label>
@@ -623,15 +606,6 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <!-- <div class="row justify-content-center ">
-                                        <div class="col-xl-8 col-lg-8 col-md-10 ">
-                                            <button type="button "
-                                                class="bg-red color-white border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                                <i class="fa fa-minus-circle" aria-hidden="true"></i> another Class in this standard
-                                            </button>
-                                        </div>
-                                    </div> -->
-                                        <!---------btns  Add another Class , remove another Class end *ngIf="model2Step.coursedata.length>1 && cNo!=model2Step.coursedata.length-1"-->
                                         
                                     </div>
 
@@ -723,7 +697,7 @@
                                             <input  id="bank_ifsc_code" name="bank_ifsc_code"
                                                 [(ngModel)]="bankModel.bank_ifsc_code"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="text" pattern="^[A-Za-z]{4}\d{7}$" placeholder="Enter IFSC Code " required>
+                                                type="text" maxlength="12" placeholder="Enter IFSC Code " required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.bank_ifsc_code"></div>
                                     </div>
