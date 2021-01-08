@@ -118,7 +118,7 @@
                     <div class="img-small mr-2">
                         <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
                     </div>
-                    <div class="text-left commonFontSize color-purple mediumFont">
+                    <div #clickOtpModel class="text-left commonFontSize color-purple mediumFont">
                         {{confirmationDetails.length>0?"Add More Course":"Add Course"}}
                     </div>
                 </div>
