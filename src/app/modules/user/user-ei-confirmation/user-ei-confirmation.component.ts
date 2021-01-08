@@ -37,6 +37,8 @@ export class UserEiConfirmationComponent implements OnInit {
   getkeyCalander: any;
   standard: any = {};
   todate: any;
+params:any;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -55,6 +57,7 @@ export class UserEiConfirmationComponent implements OnInit {
     this.todate = this.baseService.getDateFormat(this.todate);
     this.editmodel.class_id = '';
     this.route.queryParams.subscribe(parrams => {
+      this.params=parrams;
       if (parrams['school_id']) {
         this.school_id = parrams['school_id'];
         this.isalumini = parrams['isalumini'];
@@ -76,8 +79,12 @@ export class UserEiConfirmationComponent implements OnInit {
   }
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');
-
+    if (this.params.returnUrl)
+    this.router.navigate([this.params.returnUrl])
+    else
     this.router.navigate(['user/add-personal-info']);
+
+    
 
   }
   /**Delete Course  */
