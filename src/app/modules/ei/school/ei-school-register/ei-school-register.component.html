@@ -9,9 +9,10 @@
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="State" class="mediumFont commonFontSize letterspacing">Select State </label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <select  (change)="getCityByState(state1)" id="state_list" [(ngModel)]="state1" name="state_list"
-                                    class="custom-select custom-select-2Col form-control-input" required>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (change)="getCityByState(state1)" id="state_list" [(ngModel)]="state1"
+                                    name="state_list" class="custom-select custom-select-2Col form-control-input"
+                                    required>
                                     <option value="">State</option>
                                     <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
                                         {{stateObj.state}}</option>
@@ -21,9 +22,10 @@
                         </div>
                         <div class="col-sm-6 ">
                             <label for="City" class="mediumFont commonFontSize letterspacing">Select City </label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <select (change)="getSchoolListBycityId(city1)" id="city_list" [(ngModel)]="city1" name="city_list"
-                                    class="custom-select-2Col custom-select form-control-input" required>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (change)="getSchoolListBycityId(city1)" id="city_list" [(ngModel)]="city1"
+                                    name="city_list" class="custom-select-2Col custom-select form-control-input"
+                                    required>
                                     <option value="">City</option>
                                     <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
 
@@ -36,22 +38,28 @@
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR ">
 
+
+
+
                             <label for="pronouce" class="mediumFont commonFontSize letterspacing">Select School
                                 Name</label>
-                          
-                            <div class=" shadow-none">
-                                <ng-autocomplete  placeHolder="Enter School" name="school_name1" [(ngModel)]="name_of_school_first1" id="school_name" [data]="data" [searchKeyword]="keyword" (selected)='suggestData($event)'
-                                (inputChanged)='suggest($event)' (inputCleared)="clearSuggestData()" (inputFocused)='suggest($event)' [itemTemplate]="itemTemplate">
-                            </ng-autocomplete>
-                            <input required name="school_name" [(ngModel)]="name_of_school_first" id="school_name" type="hidden">
-                            <ng-template #itemTemplate let-item>
-                                <a [innerHTML]="item.name_of_school"></a>
-                            </ng-template>
-                           
+
+                            <div class="py-1 shadow-none">
+                                <ng-autocomplete placeHolder="Enter School" name="school_name1"
+                                    [(ngModel)]="name_of_school_first1" id="school_name" [data]="data"
+                                    [searchKeyword]="keyword" (selected)='suggestData($event)'
+                                    (inputChanged)='suggest($event)' (inputCleared)="clearSuggestData()"
+                                    (inputFocused)='suggest($event)' [itemTemplate]="itemTemplate">
+                                </ng-autocomplete>
+                                <input required name="school_name" [(ngModel)]="name_of_school_first" id="school_name"
+                                    type="hidden">
+                                <ng-template #itemTemplate let-item>
+                                    <a [innerHTML]="item.name_of_school"></a>
+                                </ng-template>
+
                             </div>
-                            
-                            <div class="required errorMsg" 
-                                [innerHtml]="errorDisplay.school_name"></div>
+
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.school_name"></div>
                         </div>
                     </div>
                     <div *ngIf="name_of_school_first=='Others'" class="form-group row  ml-0 mr-0">
@@ -59,7 +67,8 @@
 
                             <div class="form-control-inputDiv rounded  shadow-none">
 
-                                <input required (keyup)="isValid($event)" id="name_of_school" [(ngModel)]="name_of_school_others" name="name_of_school_"
+                                <input required (keyup)="isValid($event)" id="name_of_school"
+                                    [(ngModel)]="name_of_school_others" name="name_of_school_"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter School Name">
                             </div>
@@ -71,8 +80,9 @@
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="addressline1" class="mediumFont commonFontSize letterspacing">Full
                                 Address</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="address_Line1" required [(ngModel)]="model.school_data.address1" name="address_Line1"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="address_Line1" required
+                                    [(ngModel)]="model.school_data.address1" name="address_Line1"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Address Line 1">
                             </div>
@@ -83,33 +93,30 @@
 
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" name="address_Line2" [(ngModel)]="model.school_data.address2" class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" name="address_Line2"
+                                    [(ngModel)]="model.school_data.address2"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Address Line 2">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row  ml-0 mr-0">
-                        <!-- <div class="col-sm-6 MobileCol6MB">
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="city" required [(ngModel)]="model.school_data.city" name="city"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Enter City">
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.city"></div>
-                        </div> -->
+
                         <div class="col-sm-6">
-                            <div class="form-control-inputDiv rounded   shadow-none">
-                                <input required (keyup)="isValid($event)" id="country" [(ngModel)]="country" readonly name="country"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input required (keyup)="isValid($event)" id="country" [(ngModel)]="country" readonly
+                                    name="country"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter Country">
                             </div>
 
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" numberOnly maxlength="6" id="pincode" required [(ngModel)]="model.school_data.pincode" name="pincode"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" numberOnly maxlength="6" id="pincode" required
+                                    [(ngModel)]="model.school_data.pincode" name="pincode"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter Pin">
                             </div>
@@ -118,25 +125,15 @@
 
                     </div>
 
-                    <!-- <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-6 MobileCol6MB">
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="state" required [(ngModel)]="model.school_data.state" name="state"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Enter State">
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.state"></div>
-                        </div>
-                      
 
-                    </div> -->
 
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="BoardName" class="mediumFont commonFontSize letterspacing">Board /
                                 University</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="university" required [(ngModel)]="model.school_data.university" name="university"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="university" required
+                                    [(ngModel)]="model.school_data.university" name="university"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Board/University">
                             </div>
@@ -183,14 +180,67 @@
                     <div *ngIf="model.school_data.school_code" class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="address" class="mediumFont commonFontSize letterspacing">EI's ZatchUp ID</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input disabled (keyup)="isValid($event)" id="zatchup_id"  [(ngModel)]="model.school_data.school_code" name="zatchup_id"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input disabled (keyup)="isValid($event)" id="zatchup_id"
+                                    [(ngModel)]="model.school_data.school_code" name="zatchup_id"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter EI's ZatchUp ID">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.zatchup_id"></div>
                         </div>
                     </div>
+                    <!--Add Details of the school admin process-->
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="school_phone" class="mediumFont commonFontSize letterspacing">School Phone
+                                Number</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)" id="school_phone" [(ngModel)]="model.school_phone"
+                                    name="school_phone"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="tel" placeholder="Enter School Phone Number">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="twitter_url" class="mediumFont commonFontSize letterspacing">School Email
+                                address</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="school_email" [(ngModel)]="model.school_email"
+                                    name="school_email"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="email" placeholder="School Email address">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="fb_url" class="mediumFont commonFontSize letterspacing">Facebook url</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.fb_url" name="fb_url"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="www.facebook.com">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row  ml-0 mr-0">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="twitter_url" class="mediumFont commonFontSize letterspacing">Twitter url</label>
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="twitter_url" [(ngModel)]="model.twitter_url"
+                                    name="twitter_url"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="www">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End Fb URL-->
+
 
                     <h3 class="color-black commonFontSize semiBoldFont mt-3 mb-0 paddingLHeading">School Admin </h3>
 
@@ -201,8 +251,9 @@
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="fname" class="mediumFont commonFontSize letterspacing">First Name</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="first_name" required [(ngModel)]="model.first_name" name="first_name"
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="first_name" required [(ngModel)]="model.first_name"
+                                    name="first_name"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter First Name">
                             </div>
@@ -210,8 +261,9 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="lname" class=" mediumFont commonFontSize letterspacing">Last Name</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="last_name" required [(ngModel)]="model.last_name" name="last_name"
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="last_name" required [(ngModel)]="model.last_name"
+                                    name="last_name"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter Last Name">
                             </div>
@@ -222,8 +274,9 @@
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="Designation" class="mediumFont commonFontSize letterspacing">Designation</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <select (change)="isValid($event)" id="designation" required [(ngModel)]="model.designation" name="designation"
+                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                                <select (change)="isValid($event)" id="designation" required
+                                    [(ngModel)]="model.designation" name="designation"
                                     class="custom-select form-control-input">
                                     <option value="">Select</option>
                                     <option value="{{designation.name}}" *ngFor="let designation of designationList">
@@ -239,8 +292,9 @@
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="mobile" class="mediumFont commonFontSize letterspacing">Mobile Number</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="phone" required [(ngModel)]="model.phone" name="phone" maxlength="10"
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="phone" required [(ngModel)]="model.phone"
+                                    name="phone" maxlength="10"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="tel" numberOnly placeholder="Enter Mobile Number">
                             </div>
@@ -248,8 +302,9 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="emailID" class="mediumFont commonFontSize letterspacing">Email ID</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="email" required [(ngModel)]="model.email" name="email"
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="email" required [(ngModel)]="model.email"
+                                    name="email"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="email" placeholder="Enter Email ID">
                             </div>
@@ -262,25 +317,29 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="cPassword" class="mediumFont commonFontSize letterspacing">Create
                                 Password</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="password" required  [(ngModel)]="model.password" name="password"
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password"
+                                    name="password"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="{{showHidePassword}}"
                                     pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
                                     placeholder="Enter Password">
-                                    <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true " (click)="showHidePasswordFunction('p')"></i>
+                                <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "
+                                    (click)="showHidePasswordFunction('p')"></i>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                         </div>
                         <div class="col-sm-6">
                             <label for="confirmPassword" class="mediumFont commonFontSize letterspacing">Confirm
                                 Password</label>
-                            <div class="form-control-inputDiv rounded  shadow-none">
-                                <input (keyup)="isValid($event)" id="confirm_password" match="password,confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" id="confirm_password" required
-                                     [(ngModel)]="cpassword" name="confirm_password"
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input (keyup)="isValid($event)" id="confirm_password" match="password,confirm_password"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
+                                    id="confirm_password" required [(ngModel)]="cpassword" name="confirm_password"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="{{showHidecPassword}}" placeholder="Re-Enter Password">
-                                    <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true " (click)="showHidePasswordFunction('c')"></i>
+                                <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "
+                                    (click)="showHidePasswordFunction('c')"></i>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>
                         </div>
@@ -289,9 +348,12 @@
 
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-12">
-                            <input (click)="isValid($event)" (change)="isValid($event)" id="terms_condition" required [(ngModel)]="model.is_term_cond" name="terms_condition" type="checkbox"
+                            <input (click)="isValid($event)" (change)="isValid($event)" id="terms_condition" required
+                                [(ngModel)]="model.is_term_cond" name="terms_condition" type="checkbox"
                                 id="term-condition">
-                            <label for="term-condition" class="commonFontSize mediumFont ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
+                            <label for="term-condition" class="commonFontSize mediumFont ml-2">By continuing, you agree
+                                to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a
+                                    class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.terms_condition"></div>
                         </div>
 
@@ -315,5 +377,5 @@
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
         <p style="color: white">Please Wait. </p>
     </ngx-spinner>
-   
+
 </div>

@@ -1,6 +1,6 @@
 {
   "name": "zatch-up",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -34,6 +34,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.3",
     "save": "^2.4.0",
+    "screenfull": "^5.1.0",
     "tslib": "^2.0.0",
     "xlsx": "^0.16.8",
     "zone.js": "~0.10.2"

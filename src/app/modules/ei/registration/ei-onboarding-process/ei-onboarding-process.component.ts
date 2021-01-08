@@ -419,11 +419,17 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.baseService.getData('user/reg-step-count/').subscribe(res=>{
         let response:any={};
         response=res;
-        this.countIndex = response.reg_step-3;
+        if(response.reg_step==2){
+          this.countIndex = 0;
+        }else{
+          this.countIndex = response.reg_step-3;
+        }
+        
         setTimeout(() => {
-           
+          if(response.reg_step>2){
           this.myStepper.selectedIndex = this.countIndex;
           this.myStepper.next();
+          }
         },1000);
         // this.myStepper.selectedIndex = this.countIndex;
         // console.log(this.myStepper);
@@ -661,7 +667,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           }
         }, (error) => {
           this.loader.hide();
-          this.alert.error(error.message, 'Error')
+          this.alert.error(error.erorr, 'Error')
         });
     } catch (err) {
       this.loader.hide();
