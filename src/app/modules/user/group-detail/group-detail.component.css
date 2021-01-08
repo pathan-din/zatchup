@@ -13,7 +13,10 @@ ul {
     padding-left: 0px;
 }
 .addChatProfile img {
-    width: 100%;
+    width: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    height: 120px;
 }
 .addChatProfile{
     width: 120px;
@@ -23,12 +26,12 @@ ul {
     text-align: center;
     line-height: 120px;
     font-size: 20px;
-    overflow: hidden;
+    margin: 20px 0px;
 }
 .profileCamara {
     position: absolute;
-    left: 105px;
-    bottom: 5px;
+    left: 95px;
+    bottom: 15px;
     background: #463267;
     width: 35px;
     height: 35px;

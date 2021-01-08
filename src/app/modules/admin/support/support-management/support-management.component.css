@@ -2,6 +2,7 @@
     height: 56px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .col-flex {

@@ -19,13 +19,16 @@ export class UserEiProfileComponent implements OnInit {
   imageUrl: any;
   courseList: any;
   standardList: any;
-  leftStandardList : any;
-  objCourse:any={};
+  leftStandardList: any;
+  objCourse: any = {};
   classList: any;
   schoolId: any;
   course_id: any = '';
   standard: any = '';
   imagePath: any = "";
+  maxDate: any;
+  minDate: any;
+  params: any
   uploadInfo: any = {
     "image_type": "file_name",
     "url": "ei/uploaddocsfile/",
@@ -39,74 +42,64 @@ export class UserEiProfileComponent implements OnInit {
     private route: ActivatedRoute,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private genericFormValidationService: GenericFormValidationService) { }
+    private genericFormValidationService: GenericFormValidationService) {
+    this.maxDate = new Date();
+    this.minDate = new Date();
+  }
 
 
   ngOnInit(): void {
-   
-    
-    
-    
     this.route.queryParams.subscribe(params => {
-     
-      
-      if(params['school_id']){
-        this.schoolId = params['school_id'];
-        
+      this.params = params
+      if (params.school_id) {
+        this.schoolId = params.school_id;
         this.getCourseBySchoolId(this.schoolId)
-       // this.getSchollConfirmationData();
-        
+        // this.getSchollConfirmationData(); 
       }
-      if(params['course_id']){
-        this.model.course_id = params['course_id'];
-        this.displayStandardList( this.model.course_id)
-        this.model.existing_course_id = params['course_id'];
-       
-      }else{
-        this.model.course_id= '';
+      if (params.course_id) {
+        this.model.course_id = params.course_id;
+        this.displayStandardList(this.model.course_id)
+        this.model.existing_course_id = params.course_id;
+      } else {
+        this.model.course_id = '';
         this.model.class_id = '';
-        this.model.join_standard_id="";
-        this.model.current_standard_id="";
+        this.model.join_standard_id = "";
+        this.model.current_standard_id = "";
       }
-      
-
     });
-   
-    this.model.school_id =this.schoolId;
-    
-    
+    this.model.school_id = this.schoolId;
     this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
-    
+
   }
-getEiInfo(model){
-  try {
-    var that = this;
-    this.loader.show();
-    this.baseService.action("user/get-admission-number-detail-by-school/",model).subscribe((res:any)=>{
-      if(res.status==true){
-        this.loader.hide();
-        this.model = res.data;
-        this.model.join_standard_id=res.data.join_standard_id
-        this.model.current_standard_id=res.data.current_standard_id
-        if(this.model.course_id){
-          this.model.existing_course_id=this.model.course_id;
-         
+  getEiInfo(model) {
+    try {
+      var that = this;
+      this.loader.show();
+      this.baseService.action("user/get-admission-number-detail-by-school/", model).subscribe((res: any) => {
+        if (res.status == true) {
+          this.loader.hide();
+          this.model = res.data;
+          this.model.join_standard_id = res.data.join_standard_id
+          this.model.current_standard_id = res.data.current_standard_id
+          if (this.model.course_id) {
+            this.model.existing_course_id = this.model.course_id;
+
+          }
+          this.model.school_id = this.schoolId;
+          // this.displayClassList(res.data.join_standard_id);
+          this.displayClassList(res.data.current_standard_id);
+        } else {
+          this.loader.hide();
         }
-        this.model.school_id =this.schoolId;
-       // this.displayClassList(res.data.join_standard_id);
-        this.displayClassList(res.data.current_standard_id);
-      }else{
+
+      }, (error) => {
         this.loader.hide();
-      }
-      
-    },(error)=>{
-      this.loader.hide();   
-    })
-  } catch (e) {
-    this.loader.hide();
+      })
+    } catch (e) {
+      this.loader.hide();
+    }
   }
-}
   /**
    * get school data after student confirmation
    * 
@@ -144,15 +137,25 @@ getEiInfo(model){
     }
 
   }
-  
+
 
   getCourseBySchoolId(id) {
+    // debugger
     try {
       this.loader.show();
-      this.baseService.getData('user/course-list-by-schoolid/', { 'school_id': id }).subscribe(
+      let data = {
+        "school_id": id,
+        "edit_course_id": this.params.edit_course ? this.params.course_id : undefined
+      }
+      this.baseService.getData('user/get-course-list-for-userpanel/', data).subscribe(
         (res: any) => {
           this.loader.hide();
+
           this.courseList = res.results;
+          this.model.course_id = this.params.course_id
+          // debugger
+          if (this.courseList)
+            this.setCalDates(this.model.course_id)
           // if (res.status == true)
           //   this.courseList = res.results;
           // else
@@ -167,39 +170,27 @@ getEiInfo(model){
 
     }
   }
-  displayJoinStandardBseCurrentStandard(stId){
-    this.leftStandardList=[];
-    var i=0;
-    //var pos = this.standardList.map(function(e) { return e.id; }).indexOf(stId);
-   
- 
+  displayJoinStandardBseCurrentStandard(stId) {
+    this.leftStandardList = [];
+    var i = 0;
     this.standardList.forEach(element => {
-      if(element.id >= stId){
+      if (element.id >= stId) {
         this.leftStandardList.push(element)
       }
-     
-      i=i+1;
+
+      i = i + 1;
     });
   }
   displayStandardList(courseId) {
+    // debugger
     try {
-      console.log("hikjkj");
-      
+      if (this.courseList)
+        this.setCalDates(courseId)
       this.loader.show();
       this.standardList = []
-      //this.model.course_id='';
-
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
-      // this.objCourse = this.courseList.find(e =>
-        
-        
-      //    e.id === parseInt(courseId)
-      //  ) ;
-      
-      //console.log(this.courseList);
-      
       this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
         console.log(res);
         let response: any = {};
@@ -208,35 +199,32 @@ getEiInfo(model){
         this.leftStandardList = response.results;
       }, (error) => {
         this.loader.hide();
-        //console.log(error);
-
       });
     } catch (err) {
       this.loader.hide();
-      //console.log(err);
     }
   }
   displayClassList(stId) {
     try {
-      if(stId){
-      this.loader.show();
-      this.classList = [];
-      let data: any = {};
-      data.standard_id = stId;
-     
-      this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
-        console.log(res);
-        let response: any = {};
-        response = res;
-        this.loader.hide();
-        this.classList = response.results;
+      if (stId) {
+        this.loader.show();
+        this.classList = [];
+        let data: any = {};
+        data.standard_id = stId;
 
-      }, (error) => {
-        this.loader.hide();
-        //console.log(error);
+        this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
+          console.log(res);
+          let response: any = {};
+          response = res;
+          this.loader.hide();
+          this.classList = response.results;
 
-      });
-    }
+        }, (error) => {
+          this.loader.hide();
+          //console.log(error);
+
+        });
+      }
     } catch (err) {
       this.loader.hide();
       //console.log(err);
@@ -250,11 +238,14 @@ getEiInfo(model){
 
   addCourseData() {
     //this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
-    this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    if (this.errorDisplay.valid) {
-      return false;
-    }
+    // if (!this.params.edit_course_id) {
+      this.errorDisplay = {};
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+      if (this.errorDisplay.valid) {
+        return false;
+      }
+    // }
+
     try {
 
       this.loader.show();
@@ -270,7 +261,10 @@ getEiInfo(model){
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
-            this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
+            if (this.params.returnUrl)
+              this.router.navigate([this.params.returnUrl])
+            else
+              this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
           } else {
             this.loader.hide();
             var errorCollection = '';
@@ -297,8 +291,22 @@ getEiInfo(model){
   }
 
   getProfilePicUrl(data: any) {
-    this.model.profile_pic=data.filename;
+    this.model.profile_pic = data.filename;
     this.imageUrl = this.imagePath + data.filename
+  }
+
+  setCalDates(courseId) {
+    this.model.course_id
+    if (this.courseList) {
+      let course = this.courseList.find(val => {
+        return val.id == courseId
+      })
+      if (course) {
+        this.maxDate = new Date(course.start_date)
+        this.minDate = new Date(course.end_date)
+      }
+
+    }
   }
 
 }

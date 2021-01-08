@@ -205,7 +205,7 @@ const routes: Routes = [
     path: 'ei-management-added-by-user-not-to-zatchup', component: AdminEIManagementAddedByUserNotToZatchupComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-management-document-mou-history', component: AdminEiManagementDocumentMouHistoryComponent, canActivate: [AuthGuard]
+    path: 'ei-document-mou-history/:ei_id', component: AdminEiManagementDocumentMouHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-all-course-upload', component: AdminEiManagementAllCourseUploadComponent, canActivate: [AuthGuard]
@@ -397,7 +397,7 @@ const routes: Routes = [
     path: 'service-fees-history', component: ServiceFeesHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subscription-plan-history', component: SubscriptionPlanHistoryComponent, canActivate: [AuthGuard]
+    path: 'subscription-plan-history/:id', component: SubscriptionPlanHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'subadmin-access-history', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]

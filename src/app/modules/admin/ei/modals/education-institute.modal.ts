@@ -43,7 +43,19 @@ export class EIDbList extends Pagination {
     university: any;
     onboardingStatus: any = '';
 }
+ export class DocHistory extends Pagination{
+   
+//    startIndex: any;
+//    page_size: any;
+//    dataSource: any;
+//    pageCounts: any;
+   displayedColumns: string[] = ['position', 'DateOfUploading', 'NameofDocument', 'ViewDocument',
+                               'DownloadDocument','Remarks', 'UploadedByEI', 'UploadedByEmployeeName'];
+   EiId: any;
+   params: any;
+   ascendingOrder: any;
 
+ }
 export class RejectedEIList extends Pagination {
     displayedColumns: string[] = ['position', 'addingDate', 'schoolName', 'state', 'city', 'address', 'board', 'noOfStudent', 'status',
         'zatchUpID', 'action'];
@@ -67,4 +79,10 @@ export class DatabaseHistory extends Pagination {
         'addedRemoved', 'employeeName'];
 
     isDeleted: any = '';
+}
+
+export class SubscriptionPlanHistory extends Pagination{
+    modal: any;
+    displayedColumns: string[] = ['position', 'dateOfSubscription', 'planDetails', 'grossAmount', 
+   'couponCode','netAmount', 'dateOfSubscriptionExpiry', 'transactionId', 'action']; 
 }
