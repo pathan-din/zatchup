@@ -100,7 +100,7 @@
                                 <div class="col-sm-12 p-0 form-control-inputDiv">
                                     <input required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD"
                                         [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  name="course_start_year"
-                                        [(ngModel)]="model.course_start_year"
+                                        [(ngModel)]="model.course_start_year" [maxDate]="startYearMinDate" [minDate]="startYearMaxDate"
                                         class="form-control-input form-control form-control-sm" type="text">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.course_start_year"></div>
@@ -134,7 +134,7 @@
                                 <div class="col-sm-12 p-0 form-control-inputDiv">
                                     <input required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD"
                                         [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  name="course_end_year"
-                                        [(ngModel)]="model.course_end_year"
+                                        [(ngModel)]="model.course_end_year" [minDate]="model.course_start_year" [maxDate]="startYearMinDate"
                                         class="form-control-input form-control form-control-sm" type="text">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.course_end_year"></div>

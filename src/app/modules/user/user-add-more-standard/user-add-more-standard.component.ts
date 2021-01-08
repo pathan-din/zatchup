@@ -45,8 +45,8 @@ export class UserAddMoreStandardComponent implements OnInit {
     private genericFormValidationService: GenericFormValidationService,
     private alert: NotificationService
   ) {
-    this.startYearMaxDate = new Date();
-    this.startYearMinDate = new Date();
+    // this.startYearMaxDate = new Date();
+    // this.startYearMinDate = new Date();
   }
 
   ngOnInit(): void {
