@@ -280,7 +280,7 @@
                                 <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">
 
                                     <div class="row justify-content-center align-items-center mb-3"
-                                        *ngIf="model2Step.coursedata.length>1 && cNo!=model2Step.coursedata.length-1">
+                                        *ngIf="model2Step.coursedata.length>1 && cNo!=model2Step.coursedata.length-1 && cNo!=0">
                                         <div class="col-12">
                                             <button type="button " (click)="removeData(cNo+1,model2Step.coursedata)"
                                                 class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
