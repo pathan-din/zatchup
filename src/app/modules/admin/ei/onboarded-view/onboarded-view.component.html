@@ -1,12 +1,12 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="ECertificates-div bg-white border border-gray mt-3 px-3 py-3">
-        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+        <div class="pl-0 col-md-6 d-flex justify-content-start flex-wrap align-items-center">
             <span class="mr-3 cursorStyle ">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
 
-            <h2 class="commonFontSize semiBoldFont m-0">EI Onboarded View</h2>
+            <h2 class="commonFontSize semiBoldFont m-0">School Onboarded View</h2>
         </div>
         <!--Start html for "e-certificate List" and Export Button-->
         <div class="row">
@@ -31,7 +31,7 @@
             <div class="col-md-4 mt-3">
                 <button type="button"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Contact Us
-                    Messages From EI Pending 
+                    Messages From School Pending 
                     Count: 200</button>
             </div>
             <!-- <div class="col-md-4 mt-3">
@@ -48,7 +48,7 @@
             <div class="col-md-4 mt-3">
                 <button type="button"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Zatchup POC
-                    History Of EI</button>
+                    History Of School</button>
             </div>
             <div class="col-md-4 mt-3">
                 <button type="button" (click)="docAndMOUHistory()"
@@ -141,7 +141,7 @@
                             <mat-slide-toggle class="toggleslider"></mat-slide-toggle>
                         </div>
                         <div class="form-group d-flex justify-content-between align-items-center">
-                            <label for="" class="mediumFont commonFontSize letterspacing"> EI</label>
+                            <label for="" class="mediumFont commonFontSize letterspacing"> School</label>
                             <mat-slide-toggle class="toggleslider"></mat-slide-toggle>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
         <div class="row topDiv">
             <div class="col-xl-12 col-lg-12 pr-0">
-                <h2 class="commonFontSize semiBoldFont m-0 "> EI Onboarded Details </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> School Onboarded Details </h2>
             </div>
             <!-- <div class="col-xl-10 col-lg-12 SearchDiv d-flex flex-row flex-wrap">
                 <button type="button" class="bg-yellow text-white px-4 py-2 ml-2 mb-1 border-0 ">User Reported
@@ -202,7 +202,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>EI ZatchUp ID</p>
+                            <p>School ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{eiData.zatchupId}}</p>
@@ -242,7 +242,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Ei Bio</p>
+                            <p>School Bio</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{eiData.university}}</p>
@@ -259,13 +259,13 @@
 
                     <div class="row">
                         <div class="col-12 commonFontSize mediumFont">
-                            <p>Details of EI Representative</p>
+                            <p>Details of School Representative</p>
                         </div>
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Name
-                                        of EI Representative</p>
+                                        of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{eiData.first_name}} {{eiData.last_name}}</p>
@@ -274,7 +274,7 @@
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
-                                        Designation of EI Representative</p>
+                                        Designation of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{eiData.designation_name}}</p>
@@ -321,7 +321,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Name of the Students Registered with the EI</p>
+                            <p>Name of the Students Registered with the School</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <span class="mr-3">:</span>
@@ -331,7 +331,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Name of the Alumini Registered with the EI</p>
+                            <p>Name of the Alumini Registered with the School</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <span class="mr-3">:</span>

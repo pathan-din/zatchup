@@ -74,7 +74,7 @@
         <div class="row my-3" *ngIf="rejectEI.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">EI count per page
+                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">School count per page
                 </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select [(ngModel)]="rejectEI.page_size" name="count" (change)="getRejectedEIList('1')"
@@ -153,11 +153,11 @@
                         <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
-                                *ngIf="element.is_rejected == 1">Rejected EI</button>
+                                *ngIf="element.is_rejected == 1">Rejected School</button>
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="color-blue">
                             {{element.zatchupId}} </mat-cell>
                     </ng-container>
