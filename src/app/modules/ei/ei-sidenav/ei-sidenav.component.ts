@@ -141,7 +141,7 @@ notificationCount:any;
             
            // this.router.navigate(["ei/school-reminder"]);
           }else{
-            
+
           }
     
           
