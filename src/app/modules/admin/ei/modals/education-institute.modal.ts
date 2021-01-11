@@ -55,6 +55,21 @@ export class DocHistory extends Pagination {
     ascendingOrder: any;
 
 }
+export class MessagesHistory extends Pagination {
+  params: any;
+  displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
+  'resolutionDate','resolveComment', 'attachment'];  
+}
+export class PastPocDetails extends Pagination {
+    displayedColumns: string[] = ['position','fromDate','toDate','employeeId','name','mobileNumber',
+        'emailAddress','addedByEmployeeId', 'addedByemployeeName'];
+  params: any;
+  ei_id: any;
+}
+export class CurrentPocDetails extends PastPocDetails{
+  response: any;
+}
+
 export class RejectedEIList extends Pagination {
     displayedColumns: string[] = ['position', 'addingDate', 'schoolName', 'state', 'city', 'address', 'board', 'noOfStudent', 'status',
         'zatchUpID', 'action'];
