@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class OnboardedViewComponent implements OnInit {
   eiData: any= {};
   eiId: any
+  ei_id: any;
 
   constructor(
     private router: Router,
@@ -41,6 +42,12 @@ export class OnboardedViewComponent implements OnInit {
     this.router.navigate(['admin/ei-document-mou-history', this.eiData.ei_id])
   }
 
+  contactUsMessage(){
+    this.router.navigate(['admin/contact-us-messages', this.eiData.ei_id])
+  }
+  goToPocDetails(){
+    this.router.navigate(['admin/poc-details', this.eiData.ei_id])
+  }
   getProfileData() {
     this.loader.show()
     let url = 'admin/ei-pending-profile/' + this.eiId

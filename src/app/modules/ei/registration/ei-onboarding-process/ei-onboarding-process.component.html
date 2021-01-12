@@ -280,9 +280,9 @@
                                 <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">
 
                                     <div class="row justify-content-center align-items-center mb-3"
-                                        *ngIf="model2Step.coursedata.length>1 && cNo!=model2Step.coursedata.length-1">
+                                        *ngIf="cNo>0">
                                         <div class="col-12">
-                                            <button type="button " (click)="removeData(cNo+1,model2Step.coursedata)"
+                                            <button type="button " (click)="removeData(cNo,model2Step.coursedata)"
                                                 class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                             </button>
@@ -353,14 +353,13 @@
                                         *ngFor="let standardL of courseList.standarddata; let s=index;">
                                         
 
-                                            <div class="row justify-content-center align-items-center mb-3"
-                                                *ngIf="courseList.standarddata.length>1 && s!=courseList.standarddata.length-1">
+                                            <div class="row justify-content-center align-items-center mb-3">
                                                 <div class="col-6">
                                                     <h2 class="text-left commonFontSize semiBoldFont mb-0"
-                                                    *ngIf="courseList.standarddata.length>1">Standard {{s+1}}</h2>
+                                                    >Standard {{s+1}}</h2>
                                                 </div>
                                                 <div class="col-6">
-                                                    <button type="button " (click)="removeData(s+1,courseList.standarddata)"
+                                                    <button  *ngIf="s>0" type="button " (click)="removeData(s,courseList.standarddata)"
                                                         class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                         <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                                     </button>
@@ -390,24 +389,7 @@
                                                     class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard
                                                     Duration (in months)</label>
                                                 <div class="row ">
-                                                    <!-- <div class="col-6 ">
-                                                         <div class="py-1 form-control-inputDiv rounded shadow-none ">
-                                                            <select required id="duration_in_year_{{cNo}}_{{s}}"
-                                                                (change)="changeDuration(standardL)"
-                                                                [(ngModel)]="durationModel.duration_in_year"
-                                                                name="duration_in_year_{{cNo}}_{{s}}"
-                                                                class="custom-select form-control-input form-control-sm "
-                                                                required>
-                                                                <option value="">Year</option>
-                                                                <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
-                                                                 
-                                                            </select>
-                                                        </div> -->
-                                                        <!-- <div class="required errorMsg"
-                                                            [innerHtml]="display_error(cNo+'_'+s,'duration_in_year_')">
-                                                        </div>  
-
-                                                    </div> -->
+                                                
                                                     <div class=" col-sm-12 ">
                                                         <div class=" form-control-inputDiv py-1 rounded shadow-none">
                                                             <select   required
@@ -436,14 +418,12 @@
                                         <div class="Another-class "
                                             *ngFor="let classD of standardL.classdata; let c=index;">                                            
                                             
-                                            <div class="row justify-content-center align-items-center mb-3"
-                                                *ngIf="standardL.classdata.length>1 && c!=standardL.classdata.length-1">
+                                            <div class="row justify-content-center align-items-center mb-3">
                                                 <div class="col-6">
-                                                    <h2 class="text-left commonFontSize semiBoldFont mb-0"
-                                                    *ngIf="standardL.classdata.length>1">Class {{c+1}}</h2>
+                                                    <h2 class="text-left commonFontSize semiBoldFont mb-0">Class {{c+1}}</h2>
                                                 </div>
-                                                <div class="col-6">
-                                                    <button type="button " (click)="removeData(c+1,standardL.classdata)"
+                                                <div  class="col-6">
+                                                    <button *ngIf="c>0" type="button " (click)="removeData(c,standardL.classdata)"
                                                         class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                         <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                                     </button>

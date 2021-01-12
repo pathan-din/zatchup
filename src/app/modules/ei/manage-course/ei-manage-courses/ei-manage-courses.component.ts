@@ -55,6 +55,9 @@ export class EiManageCoursesComponent implements OnInit {
     };
     this.getCourseList('','');
   }
+  goToEiEditPage(id){
+    this.router.navigate(["ei/manage-courses-add"],{queryParams:{action:'edit',course_id:id}});
+  }
   getCourseList(page, strFilter) {
 
     try {

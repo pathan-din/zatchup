@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">EI Onboarded On ZatchUp</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">School Onboarded On ZatchUp</h2>
             </div>
             <div class="col-md-7 SearchDiv d-flex flex-row">
                 <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
@@ -116,7 +116,7 @@
         <div class="row my-3" *ngIf="onboardedZatchup.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI In Database Per
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of School In Database Per
                     Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
@@ -214,7 +214,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="eiPocName">
-                        <mat-header-cell *matHeaderCellDef> EI POC Name </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> School POC Name </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.poc_name}} </mat-cell>
                     </ng-container>
 

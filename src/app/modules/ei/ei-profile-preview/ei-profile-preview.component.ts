@@ -23,6 +23,9 @@ export class EiProfilePreviewComponent implements OnInit {
   ngOnInit(): void {
     this.getEiProfileData();
   }
+  redirectToOnboardingSecondSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2',"redirect_url":"ei-profile-preview" } });
+  }
  getEiProfileData(){
    try {
      this.loader.show();

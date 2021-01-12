@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Users Verified By EI</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">Users Verified By School</h2>
             </div>
 
         </div>
@@ -56,17 +56,17 @@
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Current EI</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Current School</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                        type="input" id="currentEi" placeholder="Enter Current EI" name="current_ei" [(ngModel)]="kycVerifiedByEi.currentEi">
+                        type="input" id="currentEi" placeholder="Enter Current School" name="current_ei" [(ngModel)]="kycVerifiedByEi.currentEi">
                     </div>
                 </div>
                 <div class="widthFull mr-3 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Past EI</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Past School</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                        type="input" id="previousEi" placeholder="Enter Previous EI" name="previous_ei" [(ngModel)]="kycVerifiedByEi.previousEi">
+                        type="input" id="previousEi" placeholder="Enter Previous School" name="previous_ei" [(ngModel)]="kycVerifiedByEi.previousEi">
                     </div>
                 </div>
                 <!-- <div class="widthFull mr-3 mt-3">
@@ -182,7 +182,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ZatchUpID">
-                        <mat-header-cell *matHeaderCellDef>EI ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>School ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.zatchupId}}
                         </mat-cell>
@@ -192,9 +192,9 @@
                         <mat-header-cell *matHeaderCellDef>Profile Picture </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <div class="imgCircle">
-                                <img *ngIf="element.profile_img" src="{{element.profile_img}}" alt="ei profile"
+                                <img *ngIf="element.profile_img" src="{{element.profile_img}}" alt="School profile"
                                     class="img-fluid cerImg rounded">
-                                <img *ngIf="!element.profile_img" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                <img *ngIf="!element.profile_img" src="assets/images/no-image-icon.jpg" alt="School profile"
                                     class="img-fluid cerImg rounded">
                             </div>
                         </mat-cell>
@@ -208,27 +208,27 @@
                     </ng-container>
 
                     <ng-container matColumnDef="noOfEducationPro">
-                        <mat-header-cell *matHeaderCellDef> Total No of EI In Education Profile </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Total No of School In Education Profile </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.total_no_ei}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfVerifiedUserPro">
-                        <mat-header-cell *matHeaderCellDef> Total No of EI Who Have Verified The Profile of User
+                        <mat-header-cell *matHeaderCellDef> Total No of School Who Have Verified The Profile of User
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.total_verified_profile_no}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="currentEI">
-                        <mat-header-cell *matHeaderCellDef> Current EI </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Current School </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.current_ei}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="lastEI">
-                        <mat-header-cell *matHeaderCellDef>Last EI</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Last School</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.previous_ei}} </mat-cell>
                     </ng-container>
 

@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0"> EI On Database </h2>
+                <h2 class="commonFontSize semiBoldFont m-0"> School On Database </h2>
             </div>
             <div class="col-md-7 SearchDiv d-flex flex-row">
                 <button type="button" class="bg-dark text-white mt-2 px-4 py-2 border-0 "
@@ -97,7 +97,7 @@
         <div class="row my-3" *ngIf="eidbList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI in Database Per
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of School in Database Per
                     Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
@@ -129,7 +129,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="eiZatchupID">
-                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchupId}} </mat-cell>
                     </ng-container>
 

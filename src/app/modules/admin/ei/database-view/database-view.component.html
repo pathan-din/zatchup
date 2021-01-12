@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0 "> EI On Database View </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> School On Database View </h2>
             </div>
             <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
                 <button type="button" class="bg-yellow text-white px-4 py-2 mb-1 border-0 " (click)="conversationComments()">Onboarding Conversation Comments</button>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>EI ZatchUp ID</p>
+                            <p>School ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                             <p><span class="mr-3">: {{eiData.zatchupId}}</span></p>
@@ -110,7 +110,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number Of Student On ZatchUp <br/> (Basis EI ZatchUp ID)</p>
+                            <p>Number Of Student On ZatchUp <br/> (Basis School ZatchUp ID)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                             <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.no_of_students}}</span><span
@@ -120,7 +120,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number Of Alumini On ZatchUp <br/> (Basis EI ZatchUp ID)</p>
+                            <p>Number Of Alumini On ZatchUp <br/> (Basis School ZatchUp ID)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                             <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.no_of_alumni}}</span><span
@@ -142,12 +142,12 @@
 
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12 commonFontSize mediumFont">
-                            <p>Disable EI/Enable EI</p>
+                            <p>Disable School/Enable School</p>
                         </div>
                         <div class="col-12 ml-2 small-text-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Disable EI/Enable EI Reason</p>
+                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Disable School/Enable School Reason</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">:</span> </p>
@@ -155,7 +155,7 @@
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Disable EI/Enable EI</p>
+                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Disable School/Enable School</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                                     <p>
@@ -183,7 +183,7 @@
         </div>
         <div class="row" *ngIf="!eiData">
             <div class="col-12 pt-2 pb-2">
-                <p class="text-center dataNotFound pt-4 pb-4">EI data not available</p>
+                <p class="text-center dataNotFound pt-4 pb-4">School data not available</p>
             </div>
         </div>
 
