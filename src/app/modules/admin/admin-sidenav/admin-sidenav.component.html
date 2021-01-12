@@ -126,7 +126,7 @@
             <a class="text-white ml-4 commonFontSize semiBoldFont">
                 <img src="assets/images/userWebsite/EI-profile-icon.png"
                     class="rounded-circle bg-light-green header-dp">
-                <span class="ml-3 text-white">{{userData ? userData.user_first_name: ''}}</span></a>
+                <span class="ml-3 text-white">{{userData ? userData.first_name + ' '+ userData.last_name : ''}}</span></a>
         </mat-toolbar>
     </mat-sidenav-content>
 </mat-sidenav-container>
