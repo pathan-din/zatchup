@@ -21,13 +21,16 @@
                           <button class="btn btn-link color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             User Profile Detail
                             <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
-                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
+                            
                           </button>
                         </h5>
                       </div>
                   
                       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body" *ngFor="let userData of userProfile.ei_detail">
+                          <div class="row">
+                            <div class="col-md-12 text-right"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
                           <div class="row">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">School Name</h3>
@@ -104,13 +107,16 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Course Detail
-                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
+                            
                           </button>
                         </h5>
                       </div>
                       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                          <div class="row" *ngFor="let courseData of userProfile.course_detail">
+                          <div class="row">
+                            <div class="col-md-12 text-right"><i (click)="redirectToOnboardingSecondSepEdit()" class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
+                          <div class="row mt-3" *ngFor="let courseData of userProfile.course_detail">
                             <div class="col-md-12 mb-3">
                               <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">{{courseData.course_name}} ({{courseData.start_year}}-{{courseData.end_year}} {{courseData.course_type}})</h3>
                               <div class="row">
@@ -189,12 +195,15 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Bank Detail
-                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
+                            
                           </button>
                         </h5>
                       </div>
                       <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-12 text-right"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
                           <div class="row" *ngFor="let bankData of userProfile.bank_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Bank Name</h3>
@@ -243,12 +252,15 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             Document Detail
-                            <i class="fa fa-pencil-square-o text-right ml-3 cursorStyle" aria-hidden="true"></i>
+                            
                           </button>
                         </h5>
                       </div>
                       <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-12 text-right"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
                           <div class="row"  *ngFor="let documentData of userProfile.document_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Document Name</h3>

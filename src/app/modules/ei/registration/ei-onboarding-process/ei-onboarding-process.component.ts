@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef , HostListener} from '@angular/core';
-import { Router} from '@angular/router';
+import { Router,ActivatedRoute} from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -59,6 +59,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   bankNameList = [];
   countIndex: any;
   extentionCheck:any='';
+  params:any;
 //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
 //     console.log("Processing beforeunload...", this.countIndex);
 //     this.getRegistrationStep();
@@ -73,18 +74,24 @@ export class EiOnboardingProcessComponent implements OnInit {
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private route:ActivatedRoute
   ) { }
   
   ngOnInit(): void {
     
+    this.route.queryParams.subscribe(param=>{
+      this.countIndex= param.reg_steps-1;
+      this.params=param;
+    })
+   
     this.getAllState()
     this.getStepFirstData();
     this.getCourseDetailsByEiOnboard();
     //this.getNumberOfAluminiList();
     this.getNumberOfStudentList();
     this.getBankNameList();
-    this.getRegistrationStep()
+    //this.getRegistrationStep()
     this.model.no_of_students = '';
     this.model.no_of_alumni = '';
     this.bankModel.bank_name = '';
@@ -121,9 +128,10 @@ export class EiOnboardingProcessComponent implements OnInit {
       }],
     }];
      
+     
   }
   ngAfterViewInit(){
-    this.getRegistrationStep()
+   // this.getRegistrationStep()
   }
   /**getBankNameList */
 
@@ -474,6 +482,8 @@ export class EiOnboardingProcessComponent implements OnInit {
    */
 
   addAnotherClass(standardList) {
+    console.log(standardList.classdata);
+    
     standardList.classdata.push({
       class_name: '',
       teaching_start_year: "",
@@ -495,6 +505,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     dataArray.splice(index, 1);
   }
 
+
   /**
  * Function Name: addCourseDataStep2
  */
@@ -512,6 +523,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            if( this.params.redirect_url){
+              this.router.navigate(["ei/"+this.params.redirect_url]);
+            }
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
