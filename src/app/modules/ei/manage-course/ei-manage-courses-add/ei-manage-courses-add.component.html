@@ -21,12 +21,12 @@
 
 
                         <!---------btns  Add another Standard , remove another Standard end-->
-                        <div class="row justify-content-center mt-3" *ngIf="cNo>0">
+                        <div class="row justify-content-center mt-3" >
                             <div class="col-6">
-                                <h2 class="text-left commonFontSize semiBoldFont"> </h2>
+                                <h2 class="text-left commonFontSize semiBoldFont " *ngIf="!params.action">Course {{cNo+1}}</h2>
                             </div>
                             <div class="col-6">
-                                <button type="button" (click)="removeData(cNo,model2Step.coursedata,'course')" class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
+                                <button *ngIf="cNo>0" type="button" (click)="removeData(cNo,model2Step.coursedata,'course')" class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
                                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                 </button>
                             </div>

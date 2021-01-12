@@ -20,6 +20,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay: any = [];
+  requestChangeDetails: any;
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
@@ -114,5 +115,23 @@ export class UserMyEducationalProfileComponent implements OnInit {
       this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
     }
     // this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
+  }
+  getRequestChangeDetails(){
+    try {
+      this.loader.show();
+      this.baseService.getData("ei/request-change-student-list-of-ei/").subscribe((res:any)=>{
+        if(res.status == true){
+          this.loader.hide();
+          this.requestChangeDetails = res.results;
+        }else{
+          this.loader.hide();
+        }
+
+      },(error)=>{
+        this.loader.hide();
+      })
+    } catch (e) {
+      this.loader.hide();
+    }
   }
 }
