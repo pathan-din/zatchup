@@ -31,7 +31,7 @@ export class AdminUserProfileComponent implements OnInit {
 
 
   goToUserEducationDetail() {
-    this.router.navigate(['admin/user-education-profile']);
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': this.userData.id}});
   }
 
   getUserProfile() {
@@ -51,6 +51,8 @@ export class AdminUserProfileComponent implements OnInit {
       this.loader.hide();
     }
   }
+
+
 
   goBack(){
     this.location.back()

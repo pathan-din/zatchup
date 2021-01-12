@@ -24,8 +24,8 @@ export class MessageContactComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.ei_id = this.route.snapshot.params.ei_id;
     this.getMessageCount()
-    this.ei_id = this.route.snapshot.params.ei_id
   }
 
   goToMessages(ticket_status: any){
@@ -34,7 +34,7 @@ export class MessageContactComponent implements OnInit {
   
   getMessageCount(){
     this.spinnerService.show();
-    this.baseService.getData('admin/onboarded_contactus_dashboard_summary' ).subscribe(
+    this.baseService.getData('admin/onboarded_contactus_dashboard_summary',{'ei_id': this.ei_id} ).subscribe(
       (res: any) =>{
         if(res.status == true)
         this.eiData = res.data

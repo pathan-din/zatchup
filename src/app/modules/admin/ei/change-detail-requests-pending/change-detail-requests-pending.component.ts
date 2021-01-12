@@ -1,5 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -14,17 +15,20 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   changeDetailRequestsPending: ChangeDetailRequestsPending
 
   constructor(
+    private route: ActivatedRoute,
     private datePipe: DatePipe,
     private location: Location,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-  ) { 
+  ) {
     this.changeDetailRequestsPending = new ChangeDetailRequestsPending();
     this.changeDetailRequestsPending.maxDate = new Date()
   }
 
   ngOnInit(): void {
+    console.log('route id....', this.route.snapshot.queryParamMap.get('ei_id'))
+    this.changeDetailRequestsPending.eId = this.route.snapshot.queryParamMap.get('ei_id')
     this.getChangeRequestList('')
     this.getAllState();
     this.changeDetailRequestsPending.pageCount = this.baseService.getCountsOfPage()
@@ -56,12 +60,12 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
       "field_name": this.changeDetailRequestsPending.changeField,
       'page': page,
       'page_size': this.changeDetailRequestsPending.page_size,
+      'ei_id': this.changeDetailRequestsPending.eId
     }
 
     this.baseService.getData('admin/ei_change_details_list/', this.changeDetailRequestsPending.modal).subscribe(
       (res: any) => {
         if (res.status == true) {
-          // this.changeDetailRequestsPending.dataSource = res.results
           if (!page)
             page = this.changeDetailRequestsPending.config.currentPage
           this.changeDetailRequestsPending.startIndex = res.page_size * (page - 1) + 1;
@@ -69,7 +73,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
           this.changeDetailRequestsPending.config.itemsPerPage = this.changeDetailRequestsPending.page_size
           this.changeDetailRequestsPending.config.currentPage = page
           this.changeDetailRequestsPending.config.totalItems = res.count;
-          if (res.count > 0){
+          if (res.count > 0) {
             this.changeDetailRequestsPending.dataSource = res.results
           }
           else
@@ -114,7 +118,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   goBack() {
     this.location.back()
   }
-  
+
   searchList(page?: any) {
     let stateFind: any;
     let cityFind: any;
@@ -139,7 +143,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
       "page_size": this.changeDetailRequestsPending.page_size,
       "page": page
     }
-    this.loader.show(); 
+    this.loader.show();
     this.baseService.getData('admin/ei_search/', this.changeDetailRequestsPending.modal).subscribe(
       (res: any) => {
         if (res.status == true) {

@@ -23,6 +23,7 @@ export class ChangeDetailRequestsPending {
     changeField: any = ''
     search: any;
     pageCount: any;
+    eId: any
 }
 
 export class ChangeDetailsView {
