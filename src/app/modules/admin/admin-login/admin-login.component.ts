@@ -23,7 +23,7 @@ export class AdminLoginComponent implements OnInit {
     public adminService: AdminService,
     public formBuilder: FormBuilder,
     private alert: NotificationService
-    ) {
+  ) {
     localStorage.clear();
     sessionStorage.clear();
   }
@@ -48,39 +48,46 @@ export class AdminLoginComponent implements OnInit {
     }
     try {
       /**Api For the Register School */
-
       this.SpinnerService.show();
       this.adminService.adminlogin(this.model).subscribe(
         (res: any) => {
-        this.SpinnerService.hide();
-        if (res.status == true) {
-          if (this.remember) {
-            localStorage.setItem('userDetail', JSON.stringify(this.model));
-          } else {
-            localStorage.removeItem('userDetail')
-          }
-          localStorage.setItem("token", res.token);
-          localStorage.setItem('user_type', res.user_type)
-          sessionStorage.setItem('permissions', JSON.stringify(res.permissions))
-          this.router.navigate(['admin/dashboard']);
-        } else {
+
           this.SpinnerService.hide();
-          this.alert.error(res.error.message[0], 'Error')
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        this.alert.error(error.message, 'Error')
-      });
+          if (res.status == true) {
+            let user = {
+              email: res.email,
+              first_name: res.first_name,
+              last_name: res.last_name,
+              phone: res.phone
+            }
+            sessionStorage.setItem('user', JSON.stringify(user))
+            if (this.remember) {
+              localStorage.setItem('userDetail', JSON.stringify(this.model));
+            } else {
+              localStorage.removeItem('userDetail')
+            }
+            localStorage.setItem("token", res.token);
+            localStorage.setItem('user_type', res.user_type)
+            sessionStorage.setItem('permissions', JSON.stringify(res.permissions))
+
+            this.router.navigate(['admin/dashboard']);
+          } else {
+            this.SpinnerService.hide();
+            this.alert.error(res.error.message[0], 'Error')
+          }
+        }, (error) => {
+          this.SpinnerService.hide();
+          this.alert.error(error.message, 'Error')
+        });
     }
     catch (e) {
       console.log("Something Went Wrong!")
     }
   }
 
-  isValid(event) {
+  isValid() {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
-
 }
