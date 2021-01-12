@@ -68,6 +68,17 @@ export class PastPocDetails extends Pagination {
 }
 export class CurrentPocDetails extends PastPocDetails{
   response: any;
+  employeeId: any;
+  poc_required: boolean = true;
+  searchConfig: any = {
+    "api_endpoint": "admin/fetch-poc-details/"
+}
+  firstName: any;
+  ei_id: any;
+  employee_id: any;
+  phone: any;
+  email: any;
+  model: any = {};
 }
 
 export class RejectedEIList extends Pagination {

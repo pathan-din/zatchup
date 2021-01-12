@@ -61,7 +61,7 @@
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header align-items-center justify-content-center pb-0">
                     <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Change POC</h2>
-                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <button type="button " #closeModel class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                         <span aria-hidden="true "> &times; </span>
                     </button>
                 </div>
@@ -72,8 +72,15 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Enter Employee ID </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Employee ID">
+                                    <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
+                                    type="text" placeholder="Enter Employee ID" [(ngModel)]="currentPocDetails.model.employeeId"> -->
+                                    <input-search [config]="currentPocDetails.searchConfig" [value]="''"
+                                    (searchResult)="pocDetails($event)"></input-search>
                                 </div>
+                                
+                            <div *ngIf="!currentPocDetails.poc_required" class="required errorMsg">
+                                Employee id is required
+                            </div>
                             </div>
                         </div>
     
@@ -81,7 +88,8 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Employee Name </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Employee Name">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
+                                    type="text" placeholder="Enter Employee Name" readonly="true" [(ngModel)]="currentPocDetails.model.fullName">
                                 </div>
                             </div>
                         </div>
@@ -90,7 +98,8 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Mobile Number </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="tel" placeholder="Enter Mobile Number">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
+                                    type="tel" placeholder="Enter Mobile Number" readonly="true" [(ngModel)]="currentPocDetails.model.phone">
                                 </div>
                             </div>
                         </div>
@@ -99,13 +108,14 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Email ID </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="email" placeholder="Enter Email ID">
+                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
+                                    type="email" placeholder="Enter Email ID" readonly="true" [(ngModel)]="currentPocDetails.model.email">
                                 </div>
                             </div>
                         </div>
     
                     </div>
-                    <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Submit </button>
+                    <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing" (click)="changePoc()"> Submit </button>
                 </div>
             </div>
         </div>
@@ -125,7 +135,7 @@
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" 
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " 
                         id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
@@ -135,7 +145,7 @@
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                         id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
                         [(ngModel)]="filterToDate" #fromDate="ngModel"
                         [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
