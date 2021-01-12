@@ -316,10 +316,10 @@ const routes: Routes = [
     path: 'lecture-details', component: LectureDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'message-contact', component: MessageContactComponent, canActivate: [AuthGuard]
+    path: 'contact-us-messages/:ei_id', component: MessageContactComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'message-resolved', component: MessageResolvedComponent, canActivate: [AuthGuard]
+    path: 'contact-us-messages-list', component: MessageResolvedComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-database-history', component: DatabaseHistoryComponent, canActivate: [AuthGuard]
@@ -334,7 +334,7 @@ const routes: Routes = [
     path: 'ei-database-view', component: DatabaseViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'current-poc', component: CurrentPocComponent, canActivate: [AuthGuard]
+    path: 'poc-details/:ei_id', component: CurrentPocComponent, canActivate: [AuthGuard]
   },
   {
     path: 'starclass-bought', component: StarclassBoughtComponent, canActivate: [AuthGuard]

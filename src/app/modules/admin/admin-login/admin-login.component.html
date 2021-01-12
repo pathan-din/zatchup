@@ -37,7 +37,7 @@
                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                     </div>
                     <div class="remember-forget-div d-flex justify-content-between">
-                        <mat-checkbox [checked]="remember" (change)="changeRemember($event)" class="purple-checkbox">
+                        <mat-checkbox [checked]="true" (change)="changeRemember($event)" class="purple-checkbox">
                             Remember Me</mat-checkbox>
                         <p class="text-right textUnderlineStyle commonFontSize mediumFont "
                             (click)="goToAdminForgotPasswordPage()">Forgot Password?</p>

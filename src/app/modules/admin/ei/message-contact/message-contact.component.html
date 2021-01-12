@@ -1,34 +1,37 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3 pb-5">
-        <div class="row topDiv">
-            <div class="col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Contact Us Messages From EI</h2>
-            </div>
+        <div class="pl-0 col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+
+            <h2 class="commonFontSize semiBoldFont m-0">Contact Us Messages From EI</h2>
         </div>
 
-        <div class="row mt-2">
+        <div class="row mt-3">
             <div class="col-12">
                 <h3 class="commonFontSize semiBoldFont m-0">Total Messages - 
-                     <span class="countFontSize semiBoldFont"> 100 </span>
+                     <span class="countFontSize semiBoldFont"> {{eiData.total_messages}} </span>
                 </h3>
             </div>
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-3" >
             <div class="col-md-4 MobileCol6MB cursorStyle">
-                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none">
+                <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none"
+                (click)="goToMessages(true)">
                     <p class="p-2 mediumFont commonFontSize">Resolved Messages</p>
                     <h2 class="countFontSize text-center semiBoldFont">
-                        50
+                       {{eiData.resolved_messages}}
                     </h2>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB cursorStyle">
+            <div class="col-md-4 MobileCol6MB cursorStyle" (click)="goToMessages(false)">
                 <div class="form-control-inputDiv h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Unresolved Messages</p>
                     <h2 class="countFontSize text-center semiBoldFont">
-                        50
+                        {{eiData.unresolved_messages}}
                      </h2>
                 </div>
             </div>

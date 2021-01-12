@@ -3,48 +3,48 @@
 
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
         <div class="row topDiv">
-            <div class="col-6 ">
-                <h2 class="commonFontSize semiBoldFont m-0">Resolve Messages</h2>
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">{{ticket_status == 'true' ? 'Resolve' : 'Un-Resolve'}} Messages</h2>
             </div>
         </div>
         
-        <div class="tableDiv mt-2">
+        <div class="tableDiv mt-2" *ngIf="messagesHistory.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="messagesHistory.dataSource | paginate: messagesHistory.config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i =index;"> {{i + messagesHistory.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ticketId">
                         <mat-header-cell *matHeaderCellDef> Ticket ID </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.ticketId}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ticket_id}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateOfMessage">
                         <mat-header-cell *matHeaderCellDef> Date of Messages </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.dateOfMessage}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.created_on | date}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="message">
                         <mat-header-cell *matHeaderCellDef> Messages </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.message}}
-                            Lorem ipsum or lipsum as it is sometimes known is dummy text used in laying out 
-                            print graphic or web designs The passage is attributed to an unknown typesetter.
-                        </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.message}}</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolutionDate">
                         <mat-header-cell *matHeaderCellDef> Resolution Date </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.resolutionDate}}
+                            {{element.resolve_date}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveComment">
                         <mat-header-cell *matHeaderCellDef> Resolve Comments </mat-header-cell>
                         <mat-cell class="color-blue" *matCellDef="let element">
-                            {{element.resolveComment}}
+                            {{element.resolve_comment}}
                         </mat-cell>
                     </ng-container>
 
@@ -55,9 +55,17 @@
                         </mat-cell>
                     </ng-container> 
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="messagesHistory.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns:messagesHistory.displayedColumns; "></mat-row>
                 </mat-table>
+                <pagination-controls *ngIf="messagesHistory.dataSource" (pageChange)="getMessagesHistory($event)"
+                class="eiPaginationTag">
+            </pagination-controls>
+            </div>
+        </div>
+        <div class="row mt-3" *ngIf="!messagesHistory.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
     </div>

@@ -2,7 +2,10 @@
 <div class="container main-container p-3">
     <div class="bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
-            <div class="col-xl-6 col-12">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0 "> Current POC Details </h2>
             </div>
             <div class="col-xl-6 col-12 d-flex justify-content-end flex-wrap">                
@@ -10,14 +13,14 @@
             </div>
         </div>
         
-        <div class="row">
+        <div class="row mt-3"  *ngIf="currentPocDetails.response">
             <div class="col-md-12">
                 <div class="row ml-0">
                     <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Emplyee ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> Employee 5252 </span></p>
+                        <p class="pt-2"> <span> {{currentPocDetails.response.employee_id}} </span></p>
                     </div>
                 </div>
 
@@ -26,7 +29,7 @@
                         <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span>Ankit Patel </span></p>
+                        <p class="pt-2"> <span>{{currentPocDetails.response.full_name}} </span></p>
                     </div>
                 </div>
 
@@ -35,7 +38,7 @@
                         <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> +91 9876543210 </span></p>
+                        <p class="pt-2"> <span> {{currentPocDetails.response.phone}}</span></p>
                     </div>
                 </div>
 
@@ -44,7 +47,7 @@
                         <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> ankit@gmail.com </span></p>
+                        <p class="pt-2"> <span> {{currentPocDetails.response.email}} </span></p>
                     </div>
                 </div>
             </div>
@@ -122,18 +125,25 @@
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" 
+                        id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
                 
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                        id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
+                        [(ngModel)]="filterToDate" #fromDate="ngModel"
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
 
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
+                (click)="getPastPocDetails()">Apply</button>
             </div>
         </div>
 
@@ -155,72 +165,79 @@
             </div>
         </div> -->
 
-        <div class="tableDiv my-3">
+        <div class="tableDiv my-3" *ngIf="pastPocDetails.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="pastPocDetails.dataSource | paginate:pastPocDetails.config">
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element let i = index"> {{i + pastPocDetails.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="fromDate">
                         <mat-header-cell *matHeaderCellDef> From Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.fromDate}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.start_date | date}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="toDate">
                         <mat-header-cell *matHeaderCellDef> To Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.toDate}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.end_date | date}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="employeeId">
                         <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.employeeId}}
+                            {{element.employee_id}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.name}}
+                            {{element.full_name}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="mobileNumber">
                         <mat-header-cell *matHeaderCellDef> Mobile Number </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.mobileNumber}}
+                            {{element.phone}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="emailAddress">
                         <mat-header-cell *matHeaderCellDef> Email Address </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.emailAddress}}
+                            {{element.email}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="addedByEmployeeId">
                         <mat-header-cell *matHeaderCellDef> Added By Employee ID </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.addedByEmployeeId}}
+                            {{element.added_by_empID}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="addedByemployeeName">
                         <mat-header-cell *matHeaderCellDef> Added By Employee Name</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.addedByemployeeName}}
+                            {{element.added_by_empName}}
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="pastPocDetails.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: pastPocDetails.displayedColumns; "></mat-row>
                 </mat-table>
             </div>
         </div>
-
+        <pagination-controls *ngIf="pastPocDetails.dataSource" (pageChange)="getPastPocDetails($event)"
+        class="eiPaginationTag">
+    </pagination-controls>
+        <div class="row" *ngIf="!pastPocDetails.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
     </div>
 </div>
