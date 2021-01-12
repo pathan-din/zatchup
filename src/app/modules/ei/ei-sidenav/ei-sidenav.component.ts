@@ -16,6 +16,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class EiSidenavComponent {
 permission:any;
 notificationCount:any;
+subscriptionActive:boolean= true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -124,8 +125,10 @@ notificationCount:any;
         localStorage.setItem("getreject",JSON.stringify(response))
         this.notificationCount = response.unread_notification_count;
         if(response.status){
+          this. subscriptionActive=response.is_subscription_active;
           if(response.role=='EIREPRESENTATIVE' && !response.rejected_reason && !response.is_approved)
           {
+           
             if(response.reg_step==1){
               this.router.navigate(['ei/payment']);
             }else if(response.reg_step==2){
