@@ -46,6 +46,24 @@
 
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col-6 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i  class="fa fa-download color-light-black cursorStyle" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont bulkLink"><a href="https://docs.google.com/viewerng/viewer?url=http://staging.zatchup.com/zatchupapi/zatchup/media/sample/add_student_withzatchupid.xls">Open Google SpreadSheet With Zatchup-Id</a></p>
+                    
+                </div>
+
+            </div>
+            <div class="col-6 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i (click)="fileInput.click()" class="fa fa-download color-light-black cursorStyle" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont bulkLink"><a href="https://docs.google.com/viewerng/viewer?url=http://staging.zatchup.com/zatchupapi/zatchup/media/sample/sample_bulk_add_student.xlsx">Open Google SpreadSheet Without Zatchup-Id</a></p>
+                    <input #fileInput (change)="uploadXlsSheet($event.target.files)" type="file" style="display:none;" />
+                </div>
+
+            </div>
+        </div>
        
         <!-- <form>
             <div class="form-group mt-3 ">

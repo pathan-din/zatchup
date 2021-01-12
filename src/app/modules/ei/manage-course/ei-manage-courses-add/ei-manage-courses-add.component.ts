@@ -44,7 +44,7 @@ export class EiManageCoursesAddComponent implements OnInit {
   uploadedCoverContent: any = '';
   uploadedCancelCheque: any = '';
   uploadedProfileContent: any = '';
-  
+  params:any={};
   constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
     , private router: Router,private base:BaseService, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
   public formBuilder: FormBuilder,
@@ -53,6 +53,14 @@ export class EiManageCoursesAddComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params=>{
+      this.params =  params;
+      if(this.params.course_id){
+        this.getCourseDetails(this.params.course_id)
+      }
+      
+    })
+    this.model2Step.is_login=1;
     this.model2Step.coursedata = [{
       course_name: "",
       course_type:"",
@@ -64,7 +72,7 @@ export class EiManageCoursesAddComponent implements OnInit {
         classdata: [{
           class_name: '',
           teaching_start_year: "",
-          teaching_start_month: "",
+          teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
@@ -87,6 +95,26 @@ export class EiManageCoursesAddComponent implements OnInit {
 	/*************************************************************/
 
   }
+  getCourseDetails(id){
+    try {
+      this.SpinnerService.show();
+    this.base.getData("ei/course-data-by-course-id/"+id+"/").subscribe((res:any)=>{
+      if(res.status==true){
+        this.SpinnerService.hide();
+        if(id){
+          this.model2Step.coursedata=[];
+          this.model2Step.coursedata.push(res.data);
+        }
+      }else{
+        this.SpinnerService.hide();
+      }
+    
+      
+    })
+    } catch (e) {
+      this.SpinnerService.hide();
+    }
+    }
   
  /* Function Name : isValid
    * Check Form Validation on change and keyUp Event of the input Filed;
@@ -116,7 +144,7 @@ export class EiManageCoursesAddComponent implements OnInit {
         classdata: [{
           class_name: '',
           teaching_start_year: "",
-          teaching_start_month: "",
+          teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
@@ -141,7 +169,7 @@ export class EiManageCoursesAddComponent implements OnInit {
       classdata: [{
         class_name: '',
         teaching_start_year: "",
-        teaching_start_month: "",
+        teaching_start_month: 0,
         teaching_stopped: false,
         teaching_end_year: 0,
         teaching_end_month: 0,
@@ -157,10 +185,13 @@ export class EiManageCoursesAddComponent implements OnInit {
    */
 
   addAnotherClass(standardList){
+    if(!standardList.classdata){
+      standardList.classdata=[];
+    }
     standardList.classdata.push({
       class_name: '',
       teaching_start_year: "",
-      teaching_start_month: "",
+      teaching_start_month: 0,
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,
@@ -174,9 +205,44 @@ export class EiManageCoursesAddComponent implements OnInit {
    * Parameter : index of array , dataArray(array)
    *
    */
-  removeData(index,dataArray){
-    //console.log(index,dataArray);
-    dataArray.splice(index, 1);
+  removeData(index,dataArray,text){
+    //dataArray.splice(index, 1);
+    
+    if(dataArray[index].id){
+      if(text=='standard'){
+        dataArray[index].is_deleted=true;
+       
+
+        this.deleteData("ei/get-standard-by-id/"+dataArray[index].id+"/",dataArray[index]);
+
+      }else if(text=='section'){
+        dataArray[index].is_deleted=true;
+        this.deleteData("ei/get-class-by-id/"+dataArray[index].id+"/",dataArray[index]);
+      }
+      
+    }else{
+      dataArray.splice(index, 1);
+    }
+    
+  }
+  deleteData(url,data){
+    try {
+    this.base.action(url,data).subscribe((res:any)=>{
+      if(res.status==true){
+        this.getCourseDetails(this.params.course_id)
+      }else{
+
+      }
+    },(error=>{
+
+    }))
+    } catch (e) {
+    
+    }
+  }
+  addDeletedData(index,dataArray){
+    dataArray.is_deleted=false;
+    
   }
     /**
    * Function Name: addCourseDataStep2
@@ -186,33 +252,62 @@ export class EiManageCoursesAddComponent implements OnInit {
    
      
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,this.model2Step.coursedata);
-    console.log(this.errorDisplay)
+    
     if(this.errorDisplay.valid)
     {
       return false;
     } try {
       this.SpinnerService.show();
-      
-      this.base.action('ei/add-new-course/',this.model2Step).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
+      if(this.params.action){
+        var editUrl = "ei/course-data-by-course-id/"+this.params.course_id+"/";
+        this.base.actionForPutMethod(editUrl,this.model2Step).subscribe(res => {
+          let response: any = {}
+          response = res;
+          if (response.status == true) {
+              this.SpinnerService.hide();
+              var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+              this.alert.success(error, 'Success')
+              this.router.navigate(["ei/manage-courses"]);
+              
+             
+          } else {
             this.SpinnerService.hide();
-            var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
-            this.alert.success(error, 'Success')
+            var error = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+            this.alert.error(error, 'Error')
            
-        } else {
+          }
+  
+        }, (error) => {
           this.SpinnerService.hide();
-          var error = this.eiService.getErrorResponse(this.SpinnerService, response.error)
           this.alert.error(error, 'Error')
-         
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        this.alert.error(error, 'Error')
-
-      });
+  
+        });
+      }else{
+        var editUrl = "ei/add-new-course/";
+        this.base.action(editUrl,this.model2Step).subscribe(res => {
+          let response: any = {}
+          response = res;
+          if (response.status == true) {
+              this.SpinnerService.hide();
+              var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+              this.alert.success(error, 'Success')
+              this.router.navigate(["ei/manage-courses"]);
+              
+             
+          } else {
+            this.SpinnerService.hide();
+            var error = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+            this.alert.error(error, 'Error')
+           
+          }
+  
+        }, (error) => {
+          this.SpinnerService.hide();
+          this.alert.error(error, 'Error')
+  
+        });
+      }
+   
     } catch (err) {
       this.SpinnerService.hide();
       console.log("vaeryfy Otp Exception", err);
