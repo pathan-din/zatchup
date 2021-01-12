@@ -21,7 +21,7 @@
 
 
                         <!---------btns  Add another Standard , remove another Standard end-->
-                        <div class="row justify-content-center " *ngIf="cNo>0">
+                        <div class="row justify-content-center mt-3" *ngIf="cNo>0">
                             <div class="col-6">
                                 <h2 class="text-left commonFontSize semiBoldFont"> </h2>
                             </div>
@@ -87,7 +87,7 @@
                                 <div class="required errorMsg" [innerHtml]="display_error(cNo,'description_')"></div>
                             </div>
                         </div>
-                        <div class="anotherStandard" *ngFor="let standardL of courseList.standarddata; let s=index;">
+                        <div class="anotherStandard mt-3" *ngFor="let standardL of courseList.standarddata; let s=index;">
 
                             <div class="row justify-content-center " >
                                 <div class="col-6">
