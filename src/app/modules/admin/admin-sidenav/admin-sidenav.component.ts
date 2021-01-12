@@ -6,6 +6,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class AdminSidenavComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private baseService: BaseService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private firebaseService: FirebaseService
   ) {
     this.breakpointObserver
       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
@@ -50,11 +52,21 @@ export class AdminSidenavComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log('current user....',this.firebaseService.currentUser)
+    // this.firebaseService.currentUser.subscribe(
+    //   res =>{
+    //     console.log('current user....',res)
+    //     if(!res)
+    //       this.firebaseSignup()
+    //   }
+    // )
+    this.userData = JSON.parse(sessionStorage.getItem('user'))
+    // console.log('user is as ::', this.userData)
     if (sessionStorage.getItem('permissions'))
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
     if (localStorage.getItem('user_type'))
       this.user_type = localStorage.getItem('user_type')
-    this.getUserInfo();
+    // this.getUserInfo();
     this.getNotificationCount()
 
   }
@@ -107,11 +119,20 @@ export class AdminSidenavComponent implements OnInit {
     return true
   }
 
-  getUserInfo() {
-    this.baseService.getData('ei/auth-user-info/').subscribe(
-      (res: any) => {
-        if (res.status == true)
-          this.userData = res
+  // getUserInfo() {
+  //   this.baseService.getData('ei/auth-user-info/').subscribe(
+  //     (res: any) => {
+  //       if (res.status == true)
+  //         this.userData = res
+  //     }
+  //   )
+  // }
+
+  firebaseSignup(){
+    // console.log('firebase signup call')
+    this.firebaseService.firebaseSignUp(this.userData.first_name,this.userData.last_name,this.userData.email,'Asdf@321#').then(
+      res =>{
+        console.log('firebase signup res is as ::',res)
       }
     )
   }
