@@ -280,9 +280,13 @@
                                 <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">
 
                                     <div class="row justify-content-center align-items-center mb-3"
-                                        *ngIf="cNo>0">
-                                        <div class="col-12">
-                                            <button type="button " (click)="removeData(cNo,model2Step.coursedata)"
+                                        >
+                                        <div class="col-6">
+                                            <h2 class="text-left commonFontSize semiBoldFont mb-0"
+                                            >Course {{cNo+1}}</h2>
+                                        </div>
+                                        <div class="col-6">
+                                            <button *ngIf="cNo>0" type="button " (click)="removeData(cNo,model2Step.coursedata)"
                                                 class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                             </button>

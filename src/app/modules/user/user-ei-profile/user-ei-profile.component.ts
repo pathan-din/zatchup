@@ -185,16 +185,16 @@ export class UserEiProfileComponent implements OnInit {
     // debugger
     try {
       if (this.courseList)
-        this.setCalDates(courseId)
+      this.setCalDates(courseId)
       this.loader.show();
       this.standardList = []
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
       this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
-        console.log(res);
         let response: any = {};
         response = res;
+        this.loader.hide();
         this.standardList = response.results;
         this.leftStandardList = response.results;
       }, (error) => {
