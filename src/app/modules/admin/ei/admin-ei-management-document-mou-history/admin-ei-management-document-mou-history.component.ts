@@ -22,7 +22,7 @@ export class AdminEiManagementDocumentMouHistoryComponent implements OnInit {
   // EiId: any;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     private route: ActivatedRoute,
     private location: Location,
     private baseService: BaseService,
@@ -56,7 +56,8 @@ export class AdminEiManagementDocumentMouHistoryComponent implements OnInit {
       'page': page,
       'page_size': this.docHistory.page_size,
       'ei_id': this.docHistory.school_id,
-      'ascending_order': this.docHistory.ascendingOrder
+      'ascending_order': this.docHistory.ascendingOrder,
+      'type': this.docHistory.doc_type
     }
     this.baseService.getData('admin/ei/get_document_mou_history/', this.docHistory.params).subscribe(
       (res: any) => {
@@ -116,7 +117,8 @@ export class AdminEiManagementDocumentMouHistoryComponent implements OnInit {
     }
   }
 
-  viewImage(src){
+  viewImage(src) {
+    this.images = []
     this.images.push(src);
   }
 
@@ -155,5 +157,18 @@ export class AdminEiManagementDocumentMouHistoryComponent implements OnInit {
         this.loader.hide()
       }
     )
+  }
+
+  fileType(file: any) {
+    return file.split('.').pop();
+  }
+
+  generatePDF(file: any) {
+
+    this.baseService.generatePdf(file, 'mou_doc')
+  }
+
+  download_file(fileURL) {
+    window.open(fileURL, '_blank');
   }
 }

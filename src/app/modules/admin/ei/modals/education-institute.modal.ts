@@ -49,36 +49,36 @@ export class DocHistory extends Pagination {
     errorDisplay: any = {};
     remarks: any;
     displayedColumns: string[] = ['position', 'DateOfUploading', 'NameofDocument', 'ViewDocument',
-        'DownloadDocument', 'Remarks', 'UploadedByEI', 'UploadedByEmployeeName'];
+         'Remarks', 'UploadedByEI', 'UploadedByEmployeeName'];
     school_id: any;
     params: any;
-    ascendingOrder: any;
-
+    ascendingOrder: any = 'true';
+    doc_type: any = '';
 }
 export class MessagesHistory extends Pagination {
-  params: any;
-  displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
-  'resolutionDate','resolveComment', 'attachment'];  
+    params: any;
+    displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
+        'resolutionDate', 'resolveComment', 'attachment'];
 }
 export class PastPocDetails extends Pagination {
-    displayedColumns: string[] = ['position','fromDate','toDate','employeeId','name','mobileNumber',
-        'emailAddress','addedByEmployeeId', 'addedByemployeeName'];
-  params: any;
-  ei_id: any;
+    displayedColumns: string[] = ['position', 'fromDate', 'toDate', 'employeeId', 'name', 'mobileNumber',
+        'emailAddress', 'addedByEmployeeId', 'addedByemployeeName'];
+    params: any;
+    ei_id: any;
 }
-export class CurrentPocDetails extends PastPocDetails{
-  response: any;
-  employeeId: any;
-  poc_required: boolean = true;
-  searchConfig: any = {
-    "api_endpoint": "admin/fetch-poc-details/"
-}
-  firstName: any;
-  ei_id: any;
-  employee_id: any;
-  phone: any;
-  email: any;
-  model: any = {};
+export class CurrentPocDetails extends PastPocDetails {
+    response: any;
+    employeeId: any;
+    poc_required: boolean = true;
+    searchConfig: any = {
+        "api_endpoint": "admin/fetch-poc-details/"
+    }
+    firstName: any;
+    ei_id: any;
+    employee_id: any;
+    phone: any;
+    email: any;
+    model: any = {};
 }
 
 export class RejectedEIList extends Pagination {
