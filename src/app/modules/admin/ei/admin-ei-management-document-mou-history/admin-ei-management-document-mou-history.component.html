@@ -24,11 +24,10 @@
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div">
                     <label for="" class="mediumFont commonFontSize letterspacing">Document Type</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required>
+                        <select class="custom-select  form-control-input" [(ngModel)]="docHistory.doc_type">
                             <option value=""> Select Type </option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="mou">MOU</option>
+                            <option value="other">Other Document</option>
                         </select>
                     </div>
                 </div>
@@ -36,8 +35,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required id="selectionOrder"
-                            name="selectionOrder" [(ngModel)]="this.docHistory.ascendingOrder">
-                            <option value=""> Select Sort</option>
+                            name="selectionOrder" [(ngModel)]="docHistory.ascendingOrder">
                             <option value="true">Ascending</option>
                             <option value="false">Descending</option>
 
@@ -80,16 +78,21 @@
                         <mat-cell *matCellDef="let element">
                             <!-- <img [src]="element.ViewDocument" /> -->
                             <div class="imgCircle cursorStyle">
-                                <img (click)="viewImage(element.document)" *ngIf="element.document" src="{{element.document}}" alt="ei profile"
-                                    class="img-fluid cerImg rounded" aria-hidden="true "
-                                    data-toggle="modal" data-target="#imageViewer">
+                                <img (click)="viewImage(element.document)"
+                                    *ngIf="element.document && fileType(element.document) != 'pdf'"
+                                    src="{{element.document}}" alt="ei profile" class="img-fluid cerImg rounded"
+                                    aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
+
+                                <img (click)="download_file(element.document)"
+                                    *ngIf="element.document && fileType(element.document) == 'pdf'" 
+                                    src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
                                 <img *ngIf="!element.document" src="assets/images/no-image-icon.jpg" alt="ei profile"
                                     class="img-fluid cerImg rounded">
                             </div>
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="DownloadDocument">
+                    <!-- <ng-container matColumnDef="DownloadDocument">
                         <mat-header-cell *matHeaderCellDef> Download Document </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             <button type="button"
@@ -97,7 +100,7 @@
                                 <i class="fa fa-download text-white cursorStyle" aria-hidden="true"></i>
                                 {{element.DownloadDocument}}</button>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="Remarks">
                         <mat-header-cell *matHeaderCellDef> Remarks </mat-header-cell>
@@ -121,15 +124,16 @@
 
                 </mat-table>
 
-                <pagination-controls *ngIf="docHistory.dataSource" (pageChange)="getDocHistory($event)"
-                    class="eiPaginationTag">
-                </pagination-controls>
+               
                 <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
                     <p style="color: white">Please Wait. </p>
                 </ngx-spinner> -->
 
             </div>
         </div>
+        <pagination-controls *ngIf="docHistory.dataSource" (pageChange)="getDocHistory($event)"
+        class="eiPaginationTag">
+    </pagination-controls>
         <div class="row" *ngIf="!docHistory.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
@@ -210,8 +214,7 @@
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <ngx-image-viewer [src]="images" [(index)]="imageIndexOne"
-                            (customEvent)="handleEvent($event)">
+                        <ngx-image-viewer [src]="images" [(index)]="imageIndexOne" (customEvent)="handleEvent($event)">
                         </ngx-image-viewer>
                     </div>
                 </div>

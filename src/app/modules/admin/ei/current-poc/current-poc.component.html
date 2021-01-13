@@ -8,12 +8,13 @@
                 </span>
                 <h2 class="commonFontSize semiBoldFont m-0 "> Current POC Details </h2>
             </div>
-            <div class="col-xl-6 col-12 d-flex justify-content-end flex-wrap">                
-                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 mb-2" data-toggle="modal" data-target="#changepoc">Change POC</button>
+            <div class="col-xl-6 col-12 d-flex justify-content-end flex-wrap">
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 mb-2" data-toggle="modal"
+                    data-target="#changepoc">Change POC</button>
             </div>
         </div>
-        
-        <div class="row mt-3"  *ngIf="currentPocDetails.response">
+
+        <div class="row mt-3" *ngIf="currentPocDetails.response">
             <div class="col-md-12">
                 <div class="row ml-0">
                     <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
@@ -25,7 +26,7 @@
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                      
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
@@ -43,7 +44,7 @@
                 </div>
 
                 <div class="row ml-0">
-                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">                       
+                    <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
@@ -56,40 +57,45 @@
     </div>
 
     <!-- changepoc  -->
-    <div class="modal fade" id="changepoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="changepoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header align-items-center justify-content-center pb-0">
                     <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Change POC</h2>
-                    <button type="button " #closeModel class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <button type="button " #closeModel class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
                         <span aria-hidden="true "> &times; </span>
                     </button>
                 </div>
                 <div class="modal-body px-0">
                     <div class="row">
-    
+
                         <div class="col-md-12 mt-2">
                             <div class="form-group row  ml-0 mr-0">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Enter Employee ID </label>
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Enter Employee ID
+                                </label>
                                 <div class="rounded-0 p-0 w-100 shadow-none">
                                     <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
                                     type="text" placeholder="Enter Employee ID" [(ngModel)]="currentPocDetails.model.employeeId"> -->
                                     <input-search [config]="currentPocDetails.searchConfig" [value]="''"
-                                    (searchResult)="pocDetails($event)"></input-search>
+                                        (searchResult)="pocDetails($event)"></input-search>
                                 </div>
-                                
-                            <div *ngIf="!currentPocDetails.poc_required" class="required errorMsg">
-                                Employee id is required
-                            </div>
+
+                                <div *ngIf="!currentPocDetails.poc_required" class="required errorMsg">
+                                    Employee id is required
+                                </div>
                             </div>
                         </div>
-    
+
                         <div class="col-md-12">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Employee Name </label>
                                 <div class="p-0 w-100 border rounded shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
-                                    type="text" placeholder="Enter Employee Name" readonly="true" [(ngModel)]="currentPocDetails.model.fullName">
+                                    <input
+                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Enter Employee Name" readonly="true"
+                                        [(ngModel)]="currentPocDetails.model.fullName">
                                 </div>
                             </div>
                         </div>
@@ -98,8 +104,10 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Mobile Number </label>
                                 <div class="p-0 w-100 border rounded shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
-                                    type="tel" placeholder="Enter Mobile Number" readonly="true" [(ngModel)]="currentPocDetails.model.phone">
+                                    <input
+                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        type="tel" placeholder="Enter Mobile Number" readonly="true"
+                                        [(ngModel)]="currentPocDetails.model.phone">
                                 </div>
                             </div>
                         </div>
@@ -108,14 +116,18 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Email ID </label>
                                 <div class="p-0 w-100 border rounded shadow-none">
-                                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" 
-                                    type="email" placeholder="Enter Email ID" readonly="true" [(ngModel)]="currentPocDetails.model.email">
+                                    <input
+                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        type="email" placeholder="Enter Email ID" readonly="true"
+                                        [(ngModel)]="currentPocDetails.model.email">
                                 </div>
                             </div>
                         </div>
-    
+
                     </div>
-                    <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing" (click)="changePoc()"> Submit </button>
+                    <button type="button "
+                        class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing"
+                        (click)="changePoc()"> Submit </button>
                 </div>
             </div>
         </div>
@@ -130,31 +142,32 @@
         </div>
 
         <div class="filterDiv">
-            <div class="d-flex flex-wrap align-items-end"> 
-
-                <div class="widthFull mr-4 mt-3 ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " 
-                        id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
+            <form autocapitalize="off" autocomplete="off">
+                <div class="d-flex flex-wrap align-items-end">
+                    <div class="widthFull mr-4 mt-3 ">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Date From</label>
+                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                                id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                                [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
+                        </div>
                     </div>
-                </div>
-                
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                        id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
-                        [(ngModel)]="filterToDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
-                    </div>
-                </div>
 
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
-                (click)="getPastPocDetails()">Apply</button>
-            </div>
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Date To</label>
+                        <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                                id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
+                                [(ngModel)]="filterToDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
+                        </div>
+                    </div>
+
+                    <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
+                        (click)="getPastPocDetails()">Apply</button>
+                </div>
+            </form>
         </div>
 
         <!--Start html for "table Course Lecture" and Export Button-->
@@ -242,8 +255,8 @@
             </div>
         </div>
         <pagination-controls *ngIf="pastPocDetails.dataSource" (pageChange)="getPastPocDetails($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
+            class="eiPaginationTag">
+        </pagination-controls>
         <div class="row" *ngIf="!pastPocDetails.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>

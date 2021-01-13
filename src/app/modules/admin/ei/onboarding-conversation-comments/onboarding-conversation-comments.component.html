@@ -28,7 +28,7 @@
                 *ngFor="let comment of conversionComments">
                 <div class="conver_div">
                     <span class="conver_name semiBoldFont">{{comment.first_name}} {{comment.last_name}} </span>
-                    <span class="commonFontSize semiBoldFont">( {{comment.employee_id}} )</span>
+                    <span class="commonFontSize semiBoldFont" *ngIf="comment.employee_id">( {{comment.employee_id}} )</span>
                 </div>
                 <!-- <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">20 March, 2020 | 12:00 P.M</div> -->
                 <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">

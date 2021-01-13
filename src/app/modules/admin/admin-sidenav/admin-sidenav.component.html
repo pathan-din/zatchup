@@ -82,7 +82,8 @@
                 <i class="material-icons mr-2 md-18">contact_support</i>
                 <span class="commonFontSize"> Support Management </span>
             </a>
-            <a mat-list-item routerLink="/admin/my-assigned-ei" routerLinkActive="link-active" *ngIf="user_type == 'ZATCHUPSUBADMIN'">
+            <a mat-list-item routerLink="/admin/my-assigned-ei" routerLinkActive="link-active"
+                *ngIf="user_type == 'ZATCHUPSUBADMIN'">
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize"> My Assigned EI </span>
             </a>
@@ -101,18 +102,18 @@
 
             <span class="h-100 logo_span d-flex align-items-center justify-content-center"><img
                     src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></span>
-            <span class="spacer"></span> 
-            
+            <span class="spacer"></span>
+
             <!-- <select class="custom-select form-control-input" style="width: 180px;" name="" id="" selected>
                 <option>Notification 1</option>
                 <option>Notification 2</option>
                 <option>Notification 3</option>
                 <option>Notification 4</option>
             </select> -->
-            
+
             <span class="spacer"></span>
-            <a (click)="notificationList()" class="text-black cursorStyle position-relative"><i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i><sup class="color-white " 
-                style="background: #22c123;
+            <a (click)="notificationList()" class="text-black cursorStyle position-relative"><i
+                    class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i><sup class="color-white " style="background: #22c123;
                 padding: 4px;
                 border-radius: 50px;
                 width: 20px;
@@ -122,11 +123,14 @@
                 text-align: center;
                 font-size: 11px;
                 position: absolute;
-                left: 18px">{{notificationCount? notificationCount : 0}}</sup></a>                
+                left: 18px">{{notificationCount? notificationCount : 0}}</sup></a>
             <a class="text-white ml-4 commonFontSize semiBoldFont">
-                <img src="assets/images/userWebsite/EI-profile-icon.png"
+                <img *ngIf="userData && userData.profile_pic" src="{{userData.profile_pic}}"
                     class="rounded-circle bg-light-green header-dp">
-                <span class="ml-3 text-white">{{userData ? userData.first_name + ' '+ userData.last_name : ''}}</span></a>
+                <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile-default.png"
+                    class="rounded-circle bg-light-green header-dp">
+                <span
+                    class="ml-3 text-white">{{userData ? userData.first_name + ' '+ userData.last_name : ''}}</span></a>
         </mat-toolbar>
     </mat-sidenav-content>
 </mat-sidenav-container>

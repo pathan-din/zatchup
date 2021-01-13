@@ -61,7 +61,7 @@ export class AdminSidenavComponent implements OnInit {
     //   }
     // )
     this.userData = JSON.parse(sessionStorage.getItem('user'))
-    // console.log('user is as ::', this.userData)
+    console.log('user is as ::', this.userData)
     if (sessionStorage.getItem('permissions'))
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
     if (localStorage.getItem('user_type'))
