@@ -50,7 +50,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
   courseId: any;
   displayedColumns: string[] = ['SNo', 'courseName', 'startYear',
     'endYear', 'durationOfCourse', 'noOfStandards', 'noOfClass',
-    'noOfStudents', 'noOfAlumni', 'action'];
+    'noOfStudents', 'noOfAlumni'];
 
   dataSource = ELEMENT_DATA;
   errorDisplay: any = {}

@@ -20,10 +20,10 @@
                     Conversation Comments</button>
             </div>
             <div class="col-md-4 mt-3">
-                <button type="button" routerLink="/admin/change-detail-requests-pending"
+                <button type="button" (click)="pendingChangeReqDetails()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Pending
                     Change Request Details
-                    Count:200
+                    Count: <span *ngIf="dashCounts">{{dashCounts.contactus_count}}</span>
                 </button>
 
             </div>
@@ -31,8 +31,8 @@
             <div class="col-md-4 mt-3">
                 <button type="button" (click)="contactUsMessage()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Contact Us
-                    Messages From School Pending 
-                    Count: 200</button>
+                    Messages From School Pending
+                    Count: <span *ngIf="dashCounts">{{dashCounts.pending_change_count}}</span></button>
             </div>
             <!-- <div class="col-md-4 mt-3">
                 <button type="button"
@@ -258,6 +258,51 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Email</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.school_email ? eiData.school_email : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Phone Number</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.school_phone ? eiData.school_phone : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Facebook Url</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.fb_url ? eiData.fb_url : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Twitter Url</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.twitter_url ? eiData.twitter_url : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Overview</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.overview}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-12 commonFontSize mediumFont">
                             <p>Details of School Representative</p>
                         </div>
@@ -364,8 +409,8 @@
                             <p>Name of the POC Zatchup POC</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
-                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span
-                                    (click)="goToUserEducationDetail()"> {{eiData.poc_name}} </span></p>
+                            <p><span class="mr-3 text-dark">:</span><span (click)="goToUserEducationDetail()">
+                                    {{eiData.poc_details}} </span></p>
                         </div>
                     </div>
 
@@ -577,7 +622,8 @@
                                         of Subscription Plan </p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:{{eiData.subscription_name}}</span> </p>
+                                    <p><span class="mr-3"><span class="mr-3">:</span>
+                                            {{eiData.subscription_name ? eiData.subscription_name : 'None'}}</span> </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -586,7 +632,9 @@
                                         Validity of Subscription Plan </p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:{{eiData.subscription_validity}}</span> </p>
+                                    <p><span class="mr-3"><span class="mr-3">:</span>
+                                            {{eiData.subscription_validity ? eiData.subscription_validity : 'None'}}</span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -595,7 +643,9 @@
                                         Amount of Subscription Plan </p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:{{eiData.subscription_amount}}</span> </p>
+                                    <p><span class="mr-3"><span class="mr-3">:</span>
+                                            {{eiData.subscription_amount ? eiData.subscription_amount : 'None'}}</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -611,12 +661,7 @@
                         </div>
                     </div> -->
 
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <p><span class="commonFontSize semiBoldFont">Overview of the School</span>:
-                                {{eiData.overview}}</p>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>

@@ -12,7 +12,7 @@
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
             <h2 class="mb-3 text-center">My Education Profile </h2>
-
+            <span data-target="#requestChangeDetail" data-toggle="modal" (click)="getRequestChangeDetails()" class="textUnderlineStyle cursorStyle">Request Pending</span>
             <div *ngFor="let objEpData of epData">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
@@ -253,6 +253,19 @@
                             </div>
                             
                         </div>
+
+                        <div class="form-group row " *ngIf="editModel.key=='phone'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input type="tel" [numberOnly] class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required id="phone_number">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
+                               
+                            </div>
+                            
+                        </div>
                        
                     </div>
                 </form>
@@ -286,6 +299,39 @@
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
                             <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past education </label>
+                        </div>
+                    </div>
+                </div>
+                 
+              
+
+                
+                <!-- </form> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="requestChangeDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+           
+            <div class="modal-body pl-5 pr-5 text-center">
+                <!-- <form class="pl-5 pr-5"> -->
+                    <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
+                    <i class="fa fa-book" aria-hidden="true" style="font-size: 105px; padding: 20px 0px; color: #463267;"></i>
+                <div class="form-group">
+                    <div class="row" *ngFor="let requestData of requestChangeDetails;let i=index;">
+                        <div class="col-4 align-items-center d-flex justify-content-center">
+                           
+                        </div>
+                        <div class="col-4 align-items-center d-flex justify-content-center">
+                           
+                        </div>
+                        <div class="col-4 align-items-center d-flex justify-content-center">
+                           
                         </div>
                     </div>
                 </div>

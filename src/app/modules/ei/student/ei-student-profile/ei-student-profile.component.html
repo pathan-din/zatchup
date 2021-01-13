@@ -79,36 +79,15 @@
                         <p><span class="mr-3">: </span>{{studentData.mother_name}}</p>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
-                        <p>Work Details</p>
-                    </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div> -->
-                <!-- <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
-                        <p>Bio for EI Profile</p>
-                    </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
-                        <p>Messages</p>
-                    </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p class="color-blue"><span class="mr-3 text-dark">:</span>2</p>
-                    </div>
-                </div> -->
+               
             </div>
             <div class="col-md-6 col-right text-right">
                 <p class="color-blue text-right cursorStyle" (click)="goToEiStudentHistoryPage(stid)">View History</p>
                 <div class="RightimgDiv mt-2">
-                    <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
-                    <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png">
+                    <!-- <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
+                    <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png"> -->
+                    <img src="{{studentData.profile_pic?studentData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img-fluid Rightimg" >
+                    <img *ngIf="studentData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid verifiedTick">
                 </div>
             </div>
 
@@ -118,7 +97,7 @@
 
     <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngFor="let eduDetail of studentData.educationdetail">
         <h2 class="commonFontSize semiBoldFont m-0">Education Details</h2>
-        <h2 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.ei_detail.name_of_school}} </h2>
+        <h2 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.name_of_school}} </h2>
         <div class="row mt-3  border-0 mx-0">
 
             <div class="col-md-12 col-left">
@@ -128,7 +107,7 @@
                         <p class="m-0">Name of the El</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.ei_detail.name_of_school}}  </p>
+                        <p><span class="mr-3">:</span>{{eduDetail.name_of_school}}  </p>
                     </div>
                 </div>
 
@@ -139,7 +118,7 @@
                         <p class="m-0"> El ZatchUp ID</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.ei_detail.school_code}} </p>
+                        <p><span class="mr-3">:</span>{{eduDetail.school_code}} </p>
                     </div>
                 </div>
 
@@ -150,7 +129,7 @@
                         <p class="m-0">El ID Number/Admission number</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                        <p><span class="mr-3">:</span>{{eduDetail.admission_number}} </p>
                     </div>
                 </div>
 
@@ -161,7 +140,7 @@
                         <p class="m-0">Year of Joining the El</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                        <p><span class="mr-3">:</span>{{eduDetail.date_joining}} </p>
                     </div>
                 </div>
 
@@ -172,7 +151,7 @@
                         <p class="m-0">Year of leaving the El/ Currently studying </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                        <p><span class="mr-3">:</span>{{eduDetail.leaving_year}} </p>
                     </div>
                 </div>
 
@@ -182,10 +161,10 @@
 
 
         </div>
-        <h2  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
-        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="row mt-3  border-0 mx-0">
+        <h2  *ngIf="eduDetail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
+        <div  *ngIf="eduDetail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
-            <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.ei_detail.course_detail">
+            <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.course_detail">
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -235,28 +214,28 @@
 
 
         </div>
-        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="mt-2 table-responsive">
+        <div  *ngIf="eduDetail.course_detail.length>0" class="mt-2 table-responsive">
             <table class="table table-striped border table-responsive">
                 <thead>
                     <tr class="bg-Gainsboro">
                         <th scope="col">Standard</th>
                         <th scope="col">Class( sub-Section) </th>
-                        <th scope="col">Class Alias</th>
+                        <!-- <th scope="col">Class Alias</th> -->
                         <th scope="col">Year of Starting The Standard</th>
                         <th scope="col">Year of Ending The Standard</th>
                         <th scope="col">Duration of Completion</th>
-                        <th scope="col">Roll Number(If Available)</th>
+                        <!-- <th scope="col">Roll Number(If Available)</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let standardData of eduDetail.ei_detail.course_detail[0].standard_detail" >
+                    <tr *ngFor="let standardData of eduDetail.course_detail[0].standard_detail" >
                         <td>{{standardData.standard_name}}</td>
-                        <td>{{standardData.class_detail[0].class_name}}</td>
-                        <td>{{standardData.class_detail[0].alias_class}}</td>
-                        <td>{{standardData.class_detail[0].teaching_start_year}}</td>
-                        <td>{{standardData.class_detail[0].teaching_end_year}}</td>
+                        <td>{{standardData.class_detail.length>0?standardData.class_detail[0].class_name:""}}</td>
+                        <!-- <td>{{standardData.class_detail[0].alias_class}}</td> -->
+                        <td>{{standardData.standard_start_year}}</td>
+                        <td>{{standardData.standard_end_year}}</td>
                         <td>{{standardData.duration}}</td>
-                        <td>{{standardData.class_detail[0].roll_no}}</td>
+                        <!-- <td></td> -->
                     </tr>
                     <!-- <tr>
                         <td>B.Com 2</td>

@@ -187,7 +187,7 @@ const routes: Routes = [
     path: 'user', component: AdminUserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user-education-profile', component: AdminUserEducationProfileComponent, canActivate: [AuthGuard]
+    path: 'user-education-profile/:id', component: AdminUserEducationProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user-report-history', component: AdminUserReportHistoryComponent, canActivate: [AuthGuard]

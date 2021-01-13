@@ -229,15 +229,18 @@ export class EiManageCoursesAddComponent implements OnInit {
     try {
     this.base.action(url,data).subscribe((res:any)=>{
       if(res.status==true){
+        //this.alert.success(res.message,"Error");
         this.getCourseDetails(this.params.course_id)
+      
       }else{
-
+        var displayError = this.eiService.getErrorResponse(this.SpinnerService,res.error);
+        this.alert.error(displayError,"Error");
       }
     },(error=>{
-
+      this.alert.error(error.error,"Error");
     }))
     } catch (e) {
-    
+      this.alert.error(e.error,"Error");
     }
   }
   addDeletedData(index,dataArray){
