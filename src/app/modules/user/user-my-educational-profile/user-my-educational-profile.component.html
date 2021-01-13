@@ -10,10 +10,12 @@
 
 <div class="container contentTopSpaceLanding containerScrolling landingPageWidth">
     <div class="landingDiv">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-            <h2 class="mb-3 text-center">My Education Profile </h2>
-            <!-- <span data-target="#requestChangeDetail" data-toggle="modal" (click)="getRequestChangeDetails()" class="textUnderlineStyle cursorStyle">Request Pending</span> -->
-            <div *ngFor="let objEpData of epData">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <h2 class="mb-3 text-center">My Education Profile 
+                <span data-target="#requestChangeDetail" data-toggle="modal" (click)="getRequestChangeDetails()" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending</span>
+            </h2>
+            
+            <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
                         <div class="position-relative" *ngIf="objEpData.profile_pic && objEpData.kyc_approved==1">
@@ -142,7 +144,7 @@
                             </div>
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail" >
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details 
-                                    <img src="assets/images/userWebsite/edit.png" (click)="editCourse(objCd, objEd.school_id)" class="img-fluid editIcon float-right"> 
+                                    <img src="assets/images/userWebsite/edit.png" (click)="editCourse(objCd, objEd.school_id)" class="img-fluid editIcon float-right cursorStyle"> 
                                 </h3>
                                 
                                 <div class="pr-4 pl-0">
@@ -261,7 +263,7 @@
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
                                    <input type="tel" [numberOnly] class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required id="phone_number">
                                 </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
                                
                             </div>
                             
