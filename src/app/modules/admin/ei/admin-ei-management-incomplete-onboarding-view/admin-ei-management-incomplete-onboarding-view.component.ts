@@ -25,7 +25,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   eiData: any = {};
   eiExData: any = {};
   pendingApprovalProfile: PendingApprovalProfile
-  user_type: any;
+  // user_type: any;
 
   constructor(
     private alert: NotificationService,
@@ -45,8 +45,8 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       this.eiId = this.activeRoute.snapshot.params.id
       this.getProfileData();
     }
-    if (localStorage.getItem('user_type'))
-      this.user_type = localStorage.getItem('user_type')
+    // if (localStorage.getItem('user_type'))
+    //   this.user_type = localStorage.getItem('user_type')
   }
 
   getProfileData() {

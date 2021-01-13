@@ -11,12 +11,12 @@
                     </span>
                     School With Incomplete Onboarding View</h2>
             </div>
-            <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
+            <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap">
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
                     data-target="#CommentModel">Onboarding Conversation
                     Comments</button> -->
                 <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
-                    routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.id}}/incomplete-onboarding">View
+                    routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.ei_id}}/incomplete-onboarding">View
                     Conversation Comments</button>
                 <!-- <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
                     routerLink="/admin/education-institute-history/{{eiData.id}}">History</button> -->
@@ -31,7 +31,7 @@
                     <img *ngIf="eiData.profile_pic" src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">
                 </div>
 
-                <div class="userInfo" *ngIf="user_type !== 'ZATCHUPSUBADMIN'">
+                <div class="userInfo">
                     <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle"
                         [matMenuTriggerFor]="menu">
                 </div>
@@ -87,7 +87,7 @@
                             <p><span class="mr-3">: </span>{{eiData.university}}</p>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>School Overview</p>

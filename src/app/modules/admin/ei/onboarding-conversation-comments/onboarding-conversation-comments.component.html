@@ -7,12 +7,12 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0 "> Onboarding Conversation Comments </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> School Conversation Comments </h2>
             </div>
             <!-- <div class="col-6 text-right">
                 <button type="button" class="mt-2 p-2 mb-2 border-0 bg-dark color-white">Add Comment</button>
             </div> -->
-            <div class="col-12 mt-2" *ngIf="eiStatus == 'incomplete-onboarding'">
+            <div class="col-12 mt-2" *ngIf="eiStatus != 'onboarded'">
                 <form #addCommentForm="ngForm" id="comment">
                     <div class="form-group text-right d-flex justify-content-end">
                         <textarea class="form-control" id="comment" name="comment" rows="1" placeholder="Add Something.." [(ngModel)]="comment" (keyup)="isValid()" required></textarea>
@@ -27,8 +27,8 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-1 pt-2"
                 *ngFor="let comment of conversionComments">
                 <div class="conver_div">
-                    <span class="conver_name semiBoldFont">{{comment.first_name}} {{comment.last_name}} </span>
-                    <span class="commonFontSize semiBoldFont" *ngIf="comment.employee_id">( {{comment.employee_id}} )</span>
+                    <span class="conver_name semiBoldFont">{{comment.display}} </span>
+                    <!-- <span class="commonFontSize semiBoldFont" *ngIf="comment.employee_id">( {{comment.employee_id}} )</span> -->
                 </div>
                 <!-- <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">20 March, 2020 | 12:00 P.M</div> -->
                 <div class="conver_date commonFontSize semiBoldFont pt-1 pb-1">

@@ -42,10 +42,11 @@ export class DatabaseListComponent implements OnInit {
   }
 
   eiDbView(data) {
-    if (data.user_id)
-      this.router.navigate(['admin/ei-database-view'], { queryParams: { "user_id": data.user_id } });
+    if (data.user_id){
+      let url = data.onboarded_status == 2 ? 'admin/ei-onboarded-view' : 'ei-profile-details'
+      this.router.navigate([url, data.user_id]);
+    }
     else
-
       this.router.navigate(['admin/ei-database-view'], { queryParams: { "id": data.id } })
   }
 

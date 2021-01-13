@@ -17,6 +17,7 @@ export class OnboardingConversationCommentsComponent implements OnInit {
   errorDisplay: any = {}
   comment: any;
   eiStatus: any;
+  title: any = ''
 
   constructor(
     private location: Location,
