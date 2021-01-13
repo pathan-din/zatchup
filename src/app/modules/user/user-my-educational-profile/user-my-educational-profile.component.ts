@@ -50,7 +50,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
 
     this.editModel = {};
     //this.model=label;
-    this.model.dob = this.baseService.getDateReverseFormat(label.dob)
+    this.model.dob = label.dob;//this.baseService.getDateReverseFormat()
     this.model.email = label.email;
     this.model.first_name = label.first_name;
     this.model.last_name = label.last_name;
