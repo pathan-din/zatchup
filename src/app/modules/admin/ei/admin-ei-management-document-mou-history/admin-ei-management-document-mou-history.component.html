@@ -79,7 +79,7 @@
                         <mat-header-cell *matHeaderCellDef> View Document </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <!-- <img [src]="element.ViewDocument" /> -->
-                            <div class="imgCircle">
+                            <div class="imgCircle cursorStyle">
                                 <img (click)="viewImage(element.document)" *ngIf="element.document" src="{{element.document}}" alt="ei profile"
                                     class="img-fluid cerImg rounded" aria-hidden="true "
                                     data-toggle="modal" data-target="#imageViewer">
@@ -94,7 +94,7 @@
                         <mat-cell *matCellDef="let element ">
                             <button type="button"
                                 class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
-                                <i class="fa fa-download mr-1 text-white cursorStyle" aria-hidden="true"></i>
+                                <i class="fa fa-download text-white cursorStyle" aria-hidden="true"></i>
                                 {{element.DownloadDocument}}</button>
                         </mat-cell>
                     </ng-container>
