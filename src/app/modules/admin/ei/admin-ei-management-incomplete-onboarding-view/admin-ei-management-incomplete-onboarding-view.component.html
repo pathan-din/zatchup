@@ -88,14 +88,14 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>School Overview</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{eiData.overview}}</p>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
@@ -103,6 +103,50 @@
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{eiData.gst_no}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Email Address</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.school_email ? eiData.school_email : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Phone Number</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.school_phone ? eiData.school_phone : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Facebook Profile</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.fb_url ? eiData.fb_url : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Twitter Profile</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.twitter_url ? eiData.twitter_url : 'None'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>School Overview</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span> {{eiData.overview}}</p>
                         </div>
                     </div>
 
