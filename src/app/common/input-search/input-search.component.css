@@ -96,10 +96,13 @@ body {
 
 .searchDropdown {
   position: absolute;
-  top: 43px;
+  top: 45px;
   left: 0px;
   width: -webkit-fill-available;
   z-index: 2;
+  overflow-y: scroll;
+  height: min-content;
+  background: #e8f0fe;
 }
 @media only screen and (max-width: 768px) {
   .filter-select,
