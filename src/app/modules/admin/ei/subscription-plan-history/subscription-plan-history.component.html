@@ -1,7 +1,7 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
-        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+        <div class="pl-0 col-md-12 d-flex justify-content-start flex-wrap align-items-center">
             <span class="mr-3 cursorStyle ">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
@@ -9,7 +9,7 @@
         </div>
 
 
-        <div class="tableDiv mt-2" *ngIf="subPlanHistory.dataSource">
+        <div class="tableDiv mt-3" *ngIf="subPlanHistory.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="subPlanHistory.dataSource | paginate: subPlanHistory.config">
                     <ng-container matColumnDef="position">
@@ -64,7 +64,7 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button type="button" class="rounded bg-blue border-0 color-white p-1 px-2" (click)="generatePDF(element.txnid)">View
+                            <button type="button" class="rounded bg-blue border-0 color-white p-1 px-2" (click)="generatePDF(element.txnid)">Download
                                 Invoice</button>
                         </mat-cell>
                     </ng-container>

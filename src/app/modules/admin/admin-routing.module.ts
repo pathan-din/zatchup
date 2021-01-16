@@ -121,6 +121,8 @@ import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.compo
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
 import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
+import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
+
 
 const routes: Routes = [
   {
@@ -482,6 +484,9 @@ const routes: Routes = [
   },
   {
     path: 'notification-list', component: NotificationListComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-education-details', component: UserEducationDetailsComponent, canActivate: [AuthGuard]
   },
 
 

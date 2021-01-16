@@ -141,6 +141,7 @@ import { ConfirmDialogModule } from 'src/app/common/confirm-dialog/confirm-dialo
 import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
+import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -297,7 +298,8 @@ const config = {
     PaymentInvoiceComponent,
     ChangeDetailsRequestViewComponent,
     OnboardingFeeConfigureComponent,
-    NotificationListComponent
+    NotificationListComponent,
+    UserEducationDetailsComponent
   ],
   imports: [
     CommonModule,
