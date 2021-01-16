@@ -70,7 +70,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardList.university,
-      "stage_pending": this.onboardList.stagePending,
+      "is_payment": this.onboardList.stagePending,
       "page_size": this.onboardList.pageSize ? this.onboardList.pageSize : 5,
       "page": page ? page : 1
     }
