@@ -27,6 +27,8 @@ export class TicketsOnboardingComponent implements OnInit {
   ngOnInit(): void {
     this.getAllState();
     this.getTicketsList('');
+    this.ticketsList.pageCounts = this.baseService.getCountsOfPage();
+
   }
 
   getTicketsList(page?: any) {

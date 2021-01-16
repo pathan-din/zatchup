@@ -26,6 +26,7 @@ export class AdminEiManagementCourseComponent implements OnInit {
   }
   startIndex: any;
   pageSize: any = 5;
+  pageCounts: any;
 
   constructor(
     private router: Router,
@@ -42,6 +43,7 @@ export class AdminEiManagementCourseComponent implements OnInit {
     this.eiId = this.activeRoute.snapshot.params.id
     if (this.eiId)
       this.getCourseList('')
+      this.pageCounts = this.baseService.getCountsOfPage();
   }
 
   getCourseList(page) {
@@ -49,8 +51,8 @@ export class AdminEiManagementCourseComponent implements OnInit {
 
     let params = {
       "id": this.eiId,
-      "page_size": this.pageSize,
-      "page": page
+      "page_size": this.pageSize ? this.pageSize : 5,
+      "page": page ? page : 1
     }
 
     this.baseService.getData('admin/ei-list-of-course/', params).subscribe(
