@@ -31,11 +31,11 @@ import { UsersServiceService } from './services/user/users-service.service';
 import { GenericFormValidationService } from './services/common/generic-form-validation.service';
 
 // components
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent 
+    AppComponent
   ],
   imports: [
     BrowserModule,

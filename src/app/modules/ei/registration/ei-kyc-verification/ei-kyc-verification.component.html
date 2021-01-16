@@ -16,7 +16,7 @@
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
                                 <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
                                     <option value="">Select your ID</option>
-                                    <option value="Aadhar">Aadhar Card</option>
+                                    <option value="Aadhar">Aadhaar Card</option>
                                     <option value="Dl">Driving License</option>
                                     <option value="Passport">Passport Number</option>
                                 </select>
@@ -56,8 +56,8 @@
                         </div>
                     </div>
                     <div class="form-group row ml-0 mr-0">
-                        <div class="col-sm-12 mobilePaddingLR">
-                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Photo Aadhar/Driving/Passport</label>
+                        <div class="col-sm-12 mobilePaddingLR">Upload Photo Aadhar/Driving/Passport
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Photo</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInput($event.target.files)"   name ="document">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group row ml-0 mr-0">
                         <div class="col-sm-12 mobilePaddingLR">
-                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back side Photo Aadhar/Driving/Passport</label>
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back side Photo</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInputBack($event.target.files)"   name ="document_back">

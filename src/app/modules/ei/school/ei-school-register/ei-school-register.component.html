@@ -195,7 +195,7 @@
                             <label for="school_phone" class="mediumFont commonFontSize letterspacing">School Phone
                                 Number</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)" id="school_phone" [(ngModel)]="model.school_phone"
+                                <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)" id="school_phone" [(ngModel)]="model.school_data.school_phone"
                                     name="school_phone"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="tel" placeholder="Enter School Phone Number">
@@ -208,7 +208,7 @@
                             <label for="twitter_url" class="mediumFont commonFontSize letterspacing">School Email
                                 address</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="school_email" [(ngModel)]="model.school_email"
+                                <input (keyup)="isValid($event)" id="school_email" [(ngModel)]="model.school_data.school_email"
                                     name="school_email"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="email" placeholder="School Email address">
@@ -220,9 +220,9 @@
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="fb_url" class="mediumFont commonFontSize letterspacing">Facebook url</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.fb_url" name="fb_url"
+                                <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.school_data.fb_url" name="fb_url"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="www.facebook.com">
+                                    type="text" placeholder="Facebook URL">
                             </div>
 
                         </div>
@@ -231,10 +231,10 @@
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="twitter_url" class="mediumFont commonFontSize letterspacing">Twitter url</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="twitter_url" [(ngModel)]="model.twitter_url"
+                                <input (keyup)="isValid($event)" id="twitter_url" [(ngModel)]="model.school_data.twitter_url"
                                     name="twitter_url"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="www">
+                                    type="text" placeholder="Twitter URL">
                             </div>
 
                         </div>

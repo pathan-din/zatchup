@@ -12,7 +12,7 @@
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h2 class="mb-3 text-center">My Education Profile 
-                <span data-target="#requestChangeDetail" data-toggle="modal" (click)="getRequestChangeDetails()" class="text-white float-right small-text px-2 py-0 rounded bg-yellow cursorStyle">Request Pending</span>
+                <span (click)="getRequestChangeDetails()" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending</span>
             </h2>
             
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
@@ -123,7 +123,8 @@
                                         ZatchUp ID : <span class="regularFont">{{objEd.school_code}}</span>
                                     </div>
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                        School Admission Number : <span class="regularFont"> {{objEd.admission_number}}</span>
+                                        School Admission Number : <span class="regularFont">
+                                            <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEd,'admission_number',objEd.admission_number)">{{objEd.admission_number}}</a></span>
                                     </div>
                                     <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         State : <span class="regularFont">{{objEd.state}}  </span>
@@ -178,8 +179,8 @@
                                         <!-- <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Duration of completion : <span class="regularFont">1 year </span>
                                         </div> -->
-                                        <div *ngIf="objEd.rollno" class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
-                                            Roll Number : <span class="regularFont">{{objEd.rollno}} </span>
+                                        <div *ngIf="objCd.is_current_course" class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            Roll Number : <span class="regularFont"><a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objCd,'roll_no',objCd.roll_no)">{{objCd.roll_no}}</a> </span>
                                         </div>
                                     </div>
                                     
@@ -236,7 +237,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" required id="dob" bsDatepicker>
+                                   <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  required id="dob" bsDatepicker>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
                                
@@ -261,9 +262,33 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input type="tel" [numberOnly] class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required id="phone_number">
+                                   <input type="tel" [numberOnly] maxLength="10" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required id="phone_number">
                                 </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row " *ngIf="editModel.key=='roll_no'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Roll Number</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input type="text" [numberOnly] class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="roll_number" [(ngModel)]="model.roll_no" required id="roll_number">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row " *ngIf="editModel.key=='admission_number'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Admission number</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input type="text" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="admission_number" [(ngModel)]="model.admission_number" required id="admission_number">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                                
                             </div>
                             
@@ -273,7 +298,7 @@
                 </form>
               
                 <div class="text-center">
-                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails(); changeRequestForm.resetForm()">Submit </button>
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
                 </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
@@ -314,34 +339,36 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="requestChangeDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+ 
+<div class="modal fade" id="OTPpModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-           
             <div class="modal-body pl-5 pr-5 text-center">
-                <!-- <form class="pl-5 pr-5"> -->
-                    <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
-                    <i class="fa fa-book" aria-hidden="true" style="font-size: 105px; padding: 20px 0px; color: #463267;"></i>
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id. </p>
                 <div class="form-group">
-                    <div class="row" *ngFor="let requestData of requestChangeDetails;let i=index;">
-                        <div class="col-4 align-items-center d-flex justify-content-center">
-                           
-                        </div>
-                        <div class="col-4 align-items-center d-flex justify-content-center">
-                           
-                        </div>
-                        <div class="col-4 align-items-center d-flex justify-content-center">
-                           
-                        </div>
+                    <div class="d-flex flex-row justify-content-between">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input [(ngModel)]="model.otp4" name="otp4"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                            type="text" maxlength="1">
                     </div>
                 </div>
-                 
-              
+                <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
 
-                
-                <!-- </form> -->
+                <button type="button" class="btn common-model-Btn mt-3" (click)="goToDashboard();">Submit </button>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
 
             </div>
         </div>

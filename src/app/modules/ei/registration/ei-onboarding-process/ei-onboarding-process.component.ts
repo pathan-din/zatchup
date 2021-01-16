@@ -235,6 +235,7 @@ export class EiOnboardingProcessComponent implements OnInit {
 
   isValid(event) { 
     if (Object.keys(this.errorDisplay).length !== 0) {
+      
       this.errorDisplay = this.validationService.checkValidationFormAllControls(event, true, []);
     }
   }
@@ -245,12 +246,18 @@ export class EiOnboardingProcessComponent implements OnInit {
    * responce : Object
    */
 
-  getStepFirstData() {
+ getStepFirstData() {
     try {
       this.loader.show();
       this.eiService.getOnboardStepFirstData(localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           this.validationService.hideSpeanerWithConsole(this.loader, 'suceess')
+          setTimeout(() => {
+            this.getCityByState(this.model.state)
+              
+          }, 100);
+          
+          
           this.model = res;
           if(this.model.opening_date){
             this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
@@ -259,7 +266,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           }
           
           //this.countIndex = this.model.reg_steps ? this.model.reg_steps : 0;
-          this.getCityByState(this.model.state)
+         
           this.loader.hide();
         }, (error) => {
           this.validationService.hideSpeanerWithConsole(this.loader, error)
@@ -301,29 +308,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     }
 
   }
-  // getNumberOfAluminiList() {
-  //   try {
-  //     this.loader.show();
-  //     this.eiService.getNumberOfStudentList().subscribe(
-  //       (res: any) => {
-  //         if (res.status == true) {
-  //           this.loader.hide();
-  //           this.numberOfAluminiList = res.results;
-  //         } else {
-  //           this.loader.hide();
-  //           this.alert.error(res.error.message[0], 'Error')
-  //         }
-  //       }, (error) => {
-  //         this.loader.hide();
-  //         this.alert.error(error.message, 'Error')
-
-  //       });
-  //   } catch (err) {
-  //     this.loader.hide();
-  //     this.alert.error(err, 'Error')
-  //   }
-
-  // }
+  
   goToEiDashboardPage() {
     this.router.navigate(['ei/dashboard']);
 
@@ -345,7 +330,7 @@ export class EiOnboardingProcessComponent implements OnInit {
 
         classdata: [{
           class_name: '',
-          teaching_start_year: "",
+          teaching_start_year: 0,
           teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
@@ -453,6 +438,17 @@ export class EiOnboardingProcessComponent implements OnInit {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
     this.uploadedCancelCheque = fileData;
+    this.errorDisplay.cheque = "";
+    if(this.uploadedCancelCheque.type!= "application/pdf"
+     && this.uploadedCancelCheque.type!= "image/png"
+      && this.uploadedCancelCheque.type!= "image/jpg"
+     && this.uploadedCancelCheque.type!= "image/jpeg"){
+       this.errorDisplay.cheque = "only support pdf and image";
+     }
+    //type: "application/pdf"
+    //type: "image/png"
+    
+    
   }
 
 
@@ -466,7 +462,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       duration: "",
       classdata: [{
         class_name: '',
-        teaching_start_year: "",
+        teaching_start_year: 0,
         teaching_start_month: 0,
         teaching_stopped: false,
         teaching_end_year: 0,
@@ -486,7 +482,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     
     standardList.classdata.push({
       class_name: '',
-      teaching_start_year: "",
+      teaching_start_year: 0,
       teaching_start_month: 0,
       teaching_stopped: false,
       teaching_end_year: 0,
@@ -505,6 +501,9 @@ export class EiOnboardingProcessComponent implements OnInit {
     dataArray.splice(index, 1);
   }
 
+  endYearCheckValidation(classD){
+    classD.teaching_end_year = 0;
+  }
 
   /**
  * Function Name: addCourseDataStep2

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserwebRoutingModule } from './userweb-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
+
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
@@ -61,6 +63,7 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
 
 @NgModule({
 
@@ -117,11 +120,13 @@ import { MessagesComponent } from './messages/messages.component';
     CreateGroupComponent,
     UserPersonalInformationComponent,
     GroupDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    PendingRequestForUserComponent
   ],
 
   imports: [
     CommonModule,
+    MaterialDesignModule,
     UserwebRoutingModule,
     PaginationModule,
     TabsModule,
