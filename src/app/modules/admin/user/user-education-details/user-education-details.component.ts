@@ -17,6 +17,7 @@ import { Location } from '@angular/common';
 export class UserEducationDetailsComponent implements OnInit {
   studentDetails:any=[];
   stid:any='';
+  userid: any='';
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService,
@@ -26,21 +27,21 @@ export class UserEducationDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.stid=params['stId'];
+      this.userid=params['user_id'];
       
-     this.getStudentDetails(params['stId'])
+     this.getStudentDetails(params['user_id'])
 
    });
   }
 
-  getStudentDetails(studentId){
+  getStudentDetails(userId){
     try {
       this.SpinnerService.show();
     //base
   
   
     //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
-    this.base.getData('ei/student-profile/'+studentId+'/').subscribe(res => {
+    this.base.getData('ei/student-profile/'+userId+'/').subscribe(res => {
   
       let response: any = {};
       response = res;

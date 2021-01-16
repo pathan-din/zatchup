@@ -31,7 +31,7 @@ export class AdminUserProfileComponent implements OnInit {
 
 
   goToUserEducationDetail() {
-    this.router.navigate(['admin/user-education-details'], { queryParams: { 'stId': this.userData.id}});
+    this.router.navigate(['admin/user-education-details'], { queryParams: { 'user_id': this.userData.user_id}});
   }
 
   getUserProfile() {
