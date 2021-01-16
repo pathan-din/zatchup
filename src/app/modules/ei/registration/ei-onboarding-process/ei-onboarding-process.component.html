@@ -65,13 +65,7 @@
                                 </div>
                                 <div class="form-group row ">
                                     <div class="col-md-6 margin-top-col-6">
-                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="country" [(ngModel)]="model.country" name="country"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Country">
-                                        </div>
-                                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.country">
-                                        </div> -->
+                                        
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-control-inputDiv rounded p-1 shadow-none">
@@ -81,9 +75,7 @@
                                             <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
                                                 {{stateObj.state}}</option>
                                         </select>
-                                            <!-- <input id="state" required [(ngModel)]="model.state" name="state"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="State"> -->
+                                           
                                         </div>
                                         <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
                                         </div>
@@ -99,9 +91,7 @@
                                             <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
         
                                         </select>
-                                            <!-- <input id="city" required [(ngModel)]="model.city" name="city"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="City"> -->
+                                            
                                         </div>
                                         <div class="required" style="color: red;" [innerHtml]="errorDisplay.city"></div>
                                     </div>
@@ -230,38 +220,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row ">
-                                    <!-- <div class="col-md-6">
-                                        <label for="description"
-                                            class=" commonFontSize mediumFont letterspacing">Profile
-                                            Picture</label>
-
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="picture1" name="picture1"
-                                                (change)="handleProfilePicFileInput($event.target.files)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="file">
-                                        </div>
-										
-                                    </div> -->
-                                    <!-- <div class="col-md-6 margin-top-col-6">
-                                        <label for="description" class=" commonFontSize mediumFont letterspacing">Cover
-                                            Picture</label>
-
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                            <input id="picture2" name="picture2"
-                                                (change)="handleCoverPicFileInput($event.target.files)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                                type="file">
-                                        </div>
-										
-                                    </div> -->
+                                   
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-xl-4 col-lg-5 col-md-5 text-left">
-                                        <!-- <button type="button "
-                                            class="bg-purple border-0 text-white w-100 text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
-                                            Save as Draft
-                                        </button> -->
+                                      
                                     </div>
                                     <div class="col-xl-5 col-lg-3 col-md-3"></div>
                                     <div class="col-xl-3 col-lg-4 col-md-4 text-right">
@@ -463,21 +426,10 @@
                                                                     Teaching
                                                                 </mat-checkbox>
         
-                                                                <!-- <mat-checkbox [disabled]="classD.is_teaching_current"
-                                                                    id="teaching_stopped_{{cNo}}_{{s}}_{{c}}" [required]="!classD.is_teaching_current"
-                                                                    [(ngModel)]="classD.teaching_stopped"
-                                                                    name="teaching_stopped_{{cNo}}_{{s}}_{{c}}"
-                                                                    class="purple-checkbox">Stopped Date
-                                                                </mat-checkbox> -->
+                                                              
     
                                                             </div>
-                                                            <!-- <div class="required errorMsg"
-                                                                        [innerHtml]="display_error(cNo+'_'+s+'_'+c,'is_teaching_current_')">
-                                                            </div>
-                                                            <div class="required errorMsg"
-                                                                        [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_stopped_')">
-                                                            </div>		 -->
-        
+                                                           
                                                         </div>
                                                     </div>
                                                 </div>
@@ -488,35 +440,22 @@
                                                         <div class="col-sm-12">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                                <select id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                                <select (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
                                                                     required [(ngModel)]="classD.teaching_start_year"
                                                                     name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select  form-control-input form-control-sm "
                                                                     required>
                                                                     <option value="">Year</option>
-                                                                    <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                                                    <option  value="{{y}}"  *ngFor="let y of year;">{{y}}</option>
+                                                                    
+                                                                    
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
                                                                 [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
                                                             </div>
                                                         </div>
-                                                        <!-- <div class=" col-sm-6 ">
-                                                            <div
-                                                                class="py-1 form-control-inputDiv rounded shadow-none ">
-                                                                <select id="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
-                                                                    required [(ngModel)]="classD.teaching_start_month"
-                                                                    name="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
-                                                                    class="custom-select form-control-input form-control-sm "
-                                                                    required>
-                                                                    <option value="">Month</option>
-                                                                    <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="required errorMsg"
-                                                                [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_month_')">
-                                                            </div>
-                                                        </div> -->
+                                                        
                                                     </div>
 
                                                 </div>
@@ -527,14 +466,14 @@
                                                         <div class="col-sm-12" *ngIf="!classD.is_teaching_current">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                                <select [disabled]="classD.is_teaching_current"
+                                                                <select  [disabled]="classD.is_teaching_current"
                                                                     id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                                     [required]="classD.teaching_stopped"
                                                                     [(ngModel)]="classD.teaching_end_year"
                                                                     name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select  form-control-input form-control-sm ">
                                                                     <option value="0">Year</option>
-                                                                    <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                                                    <option [disabled]="y<classD.teaching_start_year" value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                                                 </select>
                                                             </div>
                                                             <div class="required errorMsg"
@@ -655,7 +594,7 @@
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input id="bank_account_no" name="bank_account_no"
-                                                [(ngModel)]="bankModel.bank_account_no"
+                                                [(ngModel)]="bankModel.bank_account_no" [numberOnly]
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 type="text " placeholder="Enter Account Number " required>
                                         </div>

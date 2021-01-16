@@ -139,6 +139,8 @@ subscriptionActive:boolean= true;
               this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3' } });
             }else if(response.reg_step==5){
               this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4' } });
+            }else if(response.reg_step==6){
+              this.router.navigate(['ei/ei-profile-preview']);
             }
 
             

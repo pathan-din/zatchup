@@ -49,7 +49,23 @@ export class EiProfilePreviewComponent implements OnInit {
    }
  }
  redirectToLoginPage(){
-  this.router.navigate(['ei/dashboard']);
+   try {
+    this.loader.show()
+    this.baseService.action("ei/send-for-approval-for-admin/",{}).subscribe((res:any)=>{
+      if(res.status == true){
+        this.loader.hide();
+        this.router.navigate(['ei/dashboard']);
+      }else{
+        this.loader.hide();
+      }
+     
+    },(error)=>{
+      this.loader.hide();
+    })
+   } catch (e) {
+    this.loader.hide();
+   }
+  
  }
  getDuration(classdata){
    console.log(classdata);

@@ -51,6 +51,7 @@ import { UserPersonalInformationComponent } from './user-personal-information/us
 import { AuthGuard } from 'src/app/auth/auth.guard';
 import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
 
 
 const routes: Routes = [
@@ -171,7 +172,7 @@ const routes: Routes = [
   },
  
   {
-    path: 'user/about-us', component: AboutUsComponent, canActivate: [AuthGuard]
+    path: 'user/about-us', component: AboutUsComponent
   },
   {
     path: 'user/contact-us', component: ContactUsComponent, canActivate: [AuthGuard]
@@ -214,17 +215,13 @@ const routes: Routes = [
   {
     path: 'user/messages', component: MessagesComponent
   },
+  {
+    path: 'user/pending-request', component: PendingRequestForUserComponent, canActivate: [AuthGuard]
+  },
+  
   
 
-
-
-
-
-
-
-
-
-  {
+ {
       path: '**', component: UserPageNotFoundComponent
   },
 
