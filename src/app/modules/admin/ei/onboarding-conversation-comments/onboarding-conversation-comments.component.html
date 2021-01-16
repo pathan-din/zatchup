@@ -12,19 +12,19 @@
             <!-- <div class="col-6 text-right">
                 <button type="button" class="mt-2 p-2 mb-2 border-0 bg-dark color-white">Add Comment</button>
             </div> -->
-            <div class="col-12 mt-2" *ngIf="eiStatus != 'onboarded'">
+            <div class="col-12 mt-3" *ngIf="eiStatus != 'onboarded'">
                 <form #addCommentForm="ngForm" id="comment">
                     <div class="form-group text-right d-flex justify-content-end">
                         <textarea class="form-control" id="comment" name="comment" rows="1" placeholder="Add Something.." [(ngModel)]="comment" (keyup)="isValid()" required></textarea>
-                        <button type="button" class="ml-2 py-2 w150 h-100 px-0 border-0 bg-purple color-white" (click)="addComment(); addCommentForm.resetForm()">Add Comment</button>
+                        <button type="button" class="ml-2 py-2 w150 h-100 border-0 bg-purple color-white" (click)="addComment(); addCommentForm.resetForm()">Add Comment</button>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.comment"></div>
                 </form>
             </div>
         </div>
 
-        <div class="row mt-3" *ngIf="conversionComments && conversionComments.length > 0">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-1 pt-2"
+        <div class="row" *ngIf="conversionComments && conversionComments.length > 0">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12 border-bottom pb-0 pt-2"
                 *ngFor="let comment of conversionComments">
                 <div class="conver_div">
                     <span class="conver_name semiBoldFont">{{comment.display}} </span>
