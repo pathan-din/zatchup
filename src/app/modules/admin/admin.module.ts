@@ -142,6 +142,8 @@ import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-config
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
 import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
+import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
+import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -299,7 +301,9 @@ const config = {
     ChangeDetailsRequestViewComponent,
     OnboardingFeeConfigureComponent,
     NotificationListComponent,
-    UserEducationDetailsComponent
+    UserEducationDetailsComponent,
+    AdminKycPendingChangeRequestsComponent,
+    AdminKycChangeRequestDetailsComponent
   ],
   imports: [
     CommonModule,

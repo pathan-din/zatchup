@@ -57,7 +57,11 @@ export class AdminKycApprovalManagementComponent implements OnInit {
     this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"user-type": type}})
   }
 
-  kycPendingReqRoute_4(type: any) {
+  kycChangeRequests() {
+    this.router.navigate(['admin/kyc-change-requests'])
+  }
+
+  kycPendingReqRoute_5(type: any) {
     this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"kyc-type": type}})
   }
 

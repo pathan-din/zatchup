@@ -41,10 +41,12 @@
                         {{kycApprovalData.kyc_pending_requests_II.first_time_submission_count + kycApprovalData.kyc_pending_requests_II.resubmission_count}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 " (click)="kycPendingReqRoute_2('first-time')">First Time Submission: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('first-time')">First Time Submission: <span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.first_time_submission_count}}</span>
                         </p>
-                        <p class="mb-0 " (click)="kycPendingReqRoute_2('re-submission')">Re-submission: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('re-submission')">Re-submission: <span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.resubmission_count}}</span>
                         </p>
                     </div>
@@ -84,12 +86,34 @@
                         class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
                         <p class="mb-0" (click)="kycPendingReqRoute_4('Aadhar')">Aadhar:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.aadhar}}</span></p>
-                        <p class="mb-0" (click)="kycPendingReqRoute_4('Driving License')">Driving License:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Driving License')">Driving License:<span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.drivinglicense}}</span>
                         </p>
                         <p class="mb-0" (click)="kycPendingReqRoute_4('Passport')">Passport:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.passport}}</span>
                         </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;" (click)="kycChangeRequests('list')">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">KYC Change Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                        {{kycApprovalData.total_no_of_pending_requests_change}}
+                    </h2>
+                    <div
+                        class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
+                        <!-- <p class="mb-0" (click)="kycPendingReqRoute_4('Aadhar')">Pending:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.aadhar}}</span></p>
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Driving License')">Driving License:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.drivinglicense}}</span>
+                        </p>
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Passport')">Passport:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.passport}}</span>
+                        </p> -->
                     </div>
                 </div>
             </div>
@@ -107,7 +131,7 @@
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
                         {{kycApprovalData.kyc_request_completed.approved + kycApprovalData.kyc_request_completed.rejected}}
                     </h2>
-                    <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary" >
+                    <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
                         <p class="mb-0" (click)="goToKycApproved()">Approved:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_request_completed.approved}}</span></p>
                         <p class="mb-0 " (click)="goToKycRejected()">Rejected:<span class="ml-2"

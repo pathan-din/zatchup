@@ -122,6 +122,8 @@ import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-v
 import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
+import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
+import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
 
 
 const routes: Routes = [
@@ -487,6 +489,12 @@ const routes: Routes = [
   },
   {
     path: 'user-education-details', component: UserEducationDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'kyc-change-requests', component: AdminKycPendingChangeRequestsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'kyc-change-request-details/:id', component: AdminKycChangeRequestDetailsComponent, canActivate: [AuthGuard]
   },
 
 
