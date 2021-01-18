@@ -342,9 +342,21 @@ export class SubadminAddComponent implements OnInit {
     }
 
     if (id == 'TEACHER') {
+      this.arrayList=[];
+      let obj: any = {};
+
+      obj.course = '';
+      obj.standard = '';
+      obj.class_id = '';
+      this.arrayList.push(obj);
       this.isTeacher = true;
+       
     } else {
+      this.isClass=false;
       this.isTeacher = false;
+      this.arrayList=[];
+      
+       
     }
 
 

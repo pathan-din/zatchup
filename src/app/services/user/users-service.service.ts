@@ -56,6 +56,14 @@ export class UsersServiceService {
   */
  addKyc(data) {return this.http.post(this.env.apiUrl+'kyc-upload/', data);}
 
+   /*
+  For KYC Upload Api 
+  API Name : addKyc
+  Parameter : Kyc Type,Id Depend on Kyc type,Document Upload,Date of birth
+  */
+ addRequestSendKyc(data) {return this.http.post(this.env.apiUrl+'upload-ekyc-for-detail-change/', data);}
+
+
  /*
   For Get Qualification Type
   API Name : user/qualificationtype/

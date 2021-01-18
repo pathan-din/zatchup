@@ -194,7 +194,17 @@ export class UserMyEducationalProfileComponent implements OnInit {
       }
     }
   }
-
+  redirectKYCPage(text,value){
+    if(text=='name'){
+      localStorage.setItem("kyc_name",value);
+    }else if(text=='dob'){
+      var data = value.split('-');
+      localStorage.setItem("year",data[0]);
+      localStorage.setItem("month",data[1]);
+      localStorage.setItem("day",data[2]);
+    }
+    this.router.navigate(['user/kyc-verification'], { queryParams: {"action":"sendrequest","returnUrl": "user/my-educational-profile" } });
+  }
   getEducationalProfile() {
     try {
       this.loader.show()

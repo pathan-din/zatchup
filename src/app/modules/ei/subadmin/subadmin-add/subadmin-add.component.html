@@ -162,7 +162,7 @@
                             <th scope="col" class="w-25">Sub Module</th>
                             <th scope="col" class="w-25">Description</th>
                             <th scope="col">Access</th>
-                            <th scope="col">Add Classes</th>
+                            <!-- <th scope="col">Add Classes</th> -->
                             <th scope="col">Remarks</th>
                         </tr>
 
@@ -177,8 +177,8 @@
                             <td><mat-checkbox class="purple-checkbox" [(ngModel)]="module.is_access"
                                 (change)="isAllSelected($event ,module.module_code)" name="is_access_{{module.module_code}}">
                             </mat-checkbox></td>
-                            <td *ngIf="module.is_classid_available" (click)="openClassModel(module.module_code)" class="color-blue cursorStyle">Add Class</td>
-                            <td *ngIf="!module.is_classid_available">NA</td>
+                            <!-- <td *ngIf="module.is_classid_available" (click)="openClassModel(module.module_code)" class="color-blue cursorStyle">Add Class</td>
+                            <td *ngIf="!module.is_classid_available">NA</td> -->
                             <td>NA</td>
                             
                         </tr>
