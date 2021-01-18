@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="pl-2 text-left">
-                            <p class="m-0 commonFontSize semiBoldFont" ><a data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="openModel(objEpData,'name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
+                            <p class="m-0 commonFontSize semiBoldFont" ><a data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-md-12" >
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{objEpData.gender}} </span></p>
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span

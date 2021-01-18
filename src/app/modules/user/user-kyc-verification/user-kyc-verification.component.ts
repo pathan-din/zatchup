@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../../services/user/users-service.service';
 import { BaseService } from '../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
@@ -50,15 +50,20 @@ export class UserKycVerificationComponent implements OnInit {
   errorDisplay: any = {};
   errorOtpModelDisplay: any;
   uploadedContentForBackPhoto: any;
+  params:any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
      private router: Router, 
      private SpinnerService: NgxSpinnerService,
      public userService: UsersServiceService, 
      public formBuilder: FormBuilder,
-     public alert:NotificationService) { }
+     public alert:NotificationService,
+     private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      this.params = params;
+    })
     this.model.kyc_type = "";
     this.dateModel = '';
     this.monthModel = '';
@@ -137,9 +142,6 @@ export class UserKycVerificationComponent implements OnInit {
       return false;
     }
     try {
-
-      this.SpinnerService.show();
-
       const formData = new FormData();
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
@@ -147,61 +149,84 @@ export class UserKycVerificationComponent implements OnInit {
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
-      // if(localStorage.getItem('user_id'))
-      // {
-      // this.model.user_id=localStorage.getItem('user_id')
-      // formData.append('user_id',this.model.user_id) ;
-      // }
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
 
-      this.userService.addKyc(formData).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          localStorage.removeItem("year");
-          localStorage.removeItem("month");
-          localStorage.removeItem("day");
-          localStorage.removeItem("kyc_name");
-          //localStorage.setItem("");
-          if(response.is_already_registered==true)
-          {
-            this.router.navigate(['user/school-confirmation']);
-          }else{
-            if(localStorage.getItem("isrejected")){
-              location.reload();
+      this.SpinnerService.show();
+
+      if(this.params.action == 'sendrequest'){
+        this.userService.addRequestSendKyc(formData).subscribe((response:any) => {
+         
+          this.SpinnerService.hide();
+          if (response.status == true) {
+            this.router.navigate([this.params.returnUrl]);
+            
+          }else {
+            this.SpinnerService.hide();
+            var errorCollection = '';
+            for (var key in response.error) {
+              if (response.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + response.error[key][0] + '\n'
+  
+              }
+            }
+            this.alert.error(errorCollection,'Error');
+          }
+        }, (error) => {
+          this.SpinnerService.hide();
+          console.log(error);
+  
+        });
+       
+        
+      }else{
+        this.userService.addKyc(formData).subscribe(res => {
+          let response: any = {}
+          response = res;
+          this.SpinnerService.hide();
+          if (response.status == true) {
+            localStorage.removeItem("year");
+            localStorage.removeItem("month");
+            localStorage.removeItem("day");
+            localStorage.removeItem("kyc_name");
+            //localStorage.setItem("");
+            if(response.is_already_registered==true)
+            {
+              this.router.navigate(['user/school-confirmation']);
             }else{
-              $("#currentStatusModel").modal({
-                backdrop: 'static',
-                keyboard: false
-              });
+              if(localStorage.getItem("isrejected")){
+                location.reload();
+              }else{
+                $("#currentStatusModel").modal({
+                  backdrop: 'static',
+                  keyboard: false
+                });
+              }
             }
             
-          }
-          
-
-          
-         /* $("#currentStatusModel").modal({
-            backdrop: 'static',
-            keyboard: false
-          });*/
-          // this.router.navigate(['user/qualification']);
-        } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
-
+  
+            
+           /* $("#currentStatusModel").modal({
+              backdrop: 'static',
+              keyboard: false
+            });*/
+            // this.router.navigate(['user/qualification']);
+          } else {
+            this.SpinnerService.hide();
+            var errorCollection = '';
+            for (var key in response.error) {
+              if (response.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + response.error[key][0] + '\n'
+  
+              }
             }
+            this.alert.error(errorCollection,'Error');
           }
-          this.alert.error(errorCollection,'Error');
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+        }, (error) => {
+          this.SpinnerService.hide();
+          console.log(error);
+  
+        });
+      }
+    
     } catch (err) {
       this.SpinnerService.hide();
 
