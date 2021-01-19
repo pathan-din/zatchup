@@ -83,10 +83,10 @@
                 <i class="fa fa-envelope mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Contact Us</span>
             </a>
-            <a mat-list-item (click)="logout()" routerLinkActive="link-active">
+            <!-- <a mat-list-item (click)="logout()" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">exit_to_app</i>
                 <span class="commonFontSize">Logout </span>
-            </a>
+            </a> -->
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -118,16 +118,15 @@
                 <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/EiWebsite/kyc_logo.png'}}" class="rounded-circle bg-light-green header-dp">
                 <span class="ml-3 color-black">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>                                
 
-                <div class="dropdown">
+                <div class="dropdown" *ngIf="isLogin">
                     <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-angle-down ml-3 cursorStyle" aria-hidden="true"></i>
                     </a>                      
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Change Password</a>
-                        <a class="dropdown-item" href="#">Privacy Sttings</a>
-                        <a class="dropdown-item" href="#">Term & Condition</a>
-                        <a class="dropdown-item" href="#">About Us</a>
-                        <a class="dropdown-item" href="#">Contact</a>
+                    <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
+                        <div class="row p-2">
+                            <div class="col-sm-12 cursorStyle" routerLink="/ei/change-password"> Change Password </div>
+                            <div class="col-sm-12 cursorStyle" (click)="logout()"> Logout </div>
+                        </div>
                     </div>
                 </div>
 
