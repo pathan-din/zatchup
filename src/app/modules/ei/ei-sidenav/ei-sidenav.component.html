@@ -116,7 +116,20 @@
             <!-- <a class="ml-4"><i class="fa fa-cog fa-lg color-gray" aria-hidden="true"></i></a> -->
             <a class=" ml-4 commonFontSize semiBoldFont">
                 <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/EiWebsite/kyc_logo.png'}}" class="rounded-circle bg-light-green header-dp">
-                <span class="ml-3 color-black">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>
+                <span class="ml-3 color-black">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>                                
+
+                <div class="dropdown">
+                    <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-angle-down ml-3 cursorStyle" aria-hidden="true"></i>
+                    </a>                      
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Change Password</a>
+                        <a class="dropdown-item" href="#">Privacy Sttings</a>
+                        <a class="dropdown-item" href="#">Term & Condition</a>
+                        <a class="dropdown-item" href="#">About Us</a>
+                        <a class="dropdown-item" href="#">Contact</a>
+                    </div>
+                </div>
 
         </mat-toolbar>
     </mat-sidenav-content>
