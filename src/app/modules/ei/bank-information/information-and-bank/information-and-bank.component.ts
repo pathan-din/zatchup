@@ -242,7 +242,7 @@ goToDashboard() {
       if (response.status == true) {
         
         $("#OTPModel").modal('hide');
-        this.alert.success('Request has been sent for approved','Success');
+        this.alert.success('Request has been send for approved','Success');
         location.reload();
         //
         

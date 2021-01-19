@@ -9,12 +9,11 @@
                 <form>
                     <div class="form-group">
                         <label for="" class="commonFontSize mediumFont letterspacing">Enter OTP Recived on your mobile number</label>
-                        <div class="d-flex flex-row justify-content-between">
+                        <div class="d-flex justify-content-between">
                             <input (keyup)="changeInput($event)" [(ngModel)]="otp1" name="otp1" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
                             <input (keyup)="changeInput($event)" [(ngModel)]="otp2" name="otp2" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
                             <input (keyup)="changeInput($event)" [(ngModel)]="otp3" name="otp3" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
                             <input  [(ngModel)]="otp4" name="otp4" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1">
-
                         </div>
                     </div>
                     <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
