@@ -79,12 +79,12 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.model.gender = '';
     // this.model.age = '';
     this.model.approved=""
-    this.model.kyc_approved=""
+    // this.model.kyc_approved=""
     this.route.queryParams.subscribe(params => {
      
       this.model.approved=params['approved']?params['approved']:'';
       
-      this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
+     // this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
 
       this.model.is_rejected=params['is_rejected']?params['is_rejected']:'';
 

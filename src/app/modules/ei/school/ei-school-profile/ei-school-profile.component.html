@@ -69,6 +69,21 @@
                         {{userProfile.overview}}
                     </p>
 
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">School phone : </span>
+                        {{userProfile.school_phone}}
+                    </p>
+
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Facebook URL : </span>
+                        {{userProfile.fb_url}}
+                    </p>
+
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Twitter URL : </span>
+                        {{userProfile.twitter_url}}
+                    </p>
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">School Email : </span>
+                        {{userProfile.school_email}}
+                    </p>
+
 
                 </div>
 
@@ -76,12 +91,12 @@
 
                     <div class="form-control-inputDiv border-0 bg-light-green py-4 w-75">
                         <p class="text-center m-0">Students in the school</p>
-                        <p class="text-center m-0 semiBoldFont"> {{userProfile.total_student}}</p>
+                        <p class="text-center m-0 semiBoldFont cursorStyle" (click)="goToEiVerifiedStudentPage()"> {{userProfile.total_student}}</p>
                     </div>
                     <div class=" form-control-inputDiv border-0 bg-gary mt-3 py-4 w-75">
                         <p class="text-center m-0 "> Alumni on ZatchUp
                         </p>
-                        <p class="m-0 text-center color-purple semiBoldFont "> {{userProfile.total_alumni}}</p>
+                        <p class="m-0 text-center color-purple semiBoldFont cursorStyle" (click)="goToEiVerifiedAlumniPage()"> {{userProfile.total_alumni}}</p>
                     </div>
                     <!-- <div>
                         <app-image-uploader (imageData)="getImageData($event)"></app-image-uploader>

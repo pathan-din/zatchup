@@ -134,39 +134,42 @@ export class EiSidenavComponent {
         if (response.status) {
           this.subscriptionActive = response.is_subscription_active;
           this.isApproved = !response.is_approved ? false : true;
-          if (response.role == 'EIREPRESENTATIVE' && !response.rejected_reason && !response.is_approved) {
+          if(response.role == 'EIREPRESENTATIVE' ){
+            if ( !response.rejected_reason && !response.is_approved) {
 
-            if (response.reg_step == 1) {
-              this.router.navigate(['ei/payment']);
-            } else if (response.reg_step == 2) {
-              this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '1' } });
-            } else if (response.reg_step == 3) {
-              this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '2' } });
-            } else if (response.reg_step == 4) {
-              this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '3' } });
-            } else if (response.reg_step == 5) {
-              this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '4' } });
-            } else if (response.reg_step == 6) {
-              this.router.navigate(['ei/ei-profile-preview']);
-            } else if (!response.rejected_reason && !response.is_approved && !this.subscriptionActive) {
+              if (response.reg_step == 1) {
+                this.router.navigate(['ei/payment']);
+              } else if (response.reg_step == 2) {
+                this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '1' } });
+              } else if (response.reg_step == 3) {
+                this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '2' } });
+              } else if (response.reg_step == 4) {
+                this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '3' } });
+              } else if (response.reg_step == 5) {
+                this.router.navigate(['ei/onboarding-process'], { queryParams: { reg_steps: '4' } });
+              } else if (response.reg_step == 6) {
+                this.router.navigate(['ei/ei-profile-preview']);
+              } else if (!response.rejected_reason && !response.is_approved && !this.subscriptionActive) {
+                var nUrl = arrMenuList.includes(thisUrl);
+                if (nUrl) {
+                  this.router.navigate(['ei/' + thisUrl]);
+                } else {
+                  this.router.navigate(['ei/information-and-bank-details']);
+                }
+  
+              }
+            } else if (!response.rejected_reason && response.is_approved && !this.subscriptionActive) {
+  
               var nUrl = arrMenuList.includes(thisUrl);
+              console.log(nUrl);
+  
               if (nUrl) {
                 this.router.navigate(['ei/' + thisUrl]);
-              } else {
-                this.router.navigate(['ei/information-and-bank-details']);
               }
-
+  
             }
-          } else if (!response.rejected_reason && response.is_approved && !this.subscriptionActive) {
-
-            var nUrl = arrMenuList.includes(thisUrl);
-            console.log(nUrl);
-
-            if (nUrl) {
-              this.router.navigate(['ei/' + thisUrl]);
-            }
-
           }
+         
 
 
 

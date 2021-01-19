@@ -65,7 +65,7 @@
                     </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Gender</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
                         <select [(ngModel)]="model.gender" class="custom-select  form-control-input" required>
@@ -75,7 +75,7 @@
 
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Age</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
@@ -86,7 +86,7 @@
                         </select>
                     </div>
                 </div> -->
-                <div class="widthFull mr-4 mt-3">
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
                         <select [(ngModel)]="model.approved" class="custom-select  form-control-input" required>
@@ -96,8 +96,8 @@
                             
                         </select>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Kyc Status</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
                         <select [(ngModel)]="model.kyc_approved" class="custom-select  form-control-input" required>
@@ -107,7 +107,7 @@
                             
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Age</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
@@ -145,7 +145,7 @@
                     Students</button> -->
                 <button type='button' (click)="getExportData()"  class="bg-paret-green text-white border-0 px-3 py-1 mr-2 mt-2"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
-                <button type='button' class="bg-blue text-white border-0 px-3 py-1 mt-2" data-toggle="modal" data-target="#changeClassModel">Bulk Action</button>
+                <button *ngIf="model.approved=='1'" type='button' class="bg-blue text-white border-0 px-3 py-1 mt-2" data-toggle="modal" data-target="#changeClassModel">Bulk Action</button>
             </div>
         </div>
         <div class="tableDiv ">
@@ -203,7 +203,7 @@
                     <ng-container matColumnDef="class">
                         <mat-header-cell *matHeaderCellDef> Class Alias </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.class}}
+                            {{element.alias_class}}
                         </mat-cell>
                     </ng-container>
 
@@ -211,7 +211,7 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
-                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" title="Edit" *ngIf="model.kyc_approved==1 && model.approved==1" aria-hidden="true " (click)="goToEiStudentEditPage(element.student_id)"></i>
+                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" title="Edit" *ngIf="model.approved==1" aria-hidden="true " (click)="goToEiStudentEditPage(element.student_id)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
                             aria-hidden="true "></i> -->

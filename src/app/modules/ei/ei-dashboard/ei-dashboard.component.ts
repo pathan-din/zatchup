@@ -39,7 +39,7 @@ export class EiDashboardComponent implements OnInit {
     console.log(event,this.model)
   }
   goToEiAlumniListPage(){
-    this.router.navigate(['ei/alumni-list']);
+    this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':1}});
   }
 
   goToEiVerifiedAlumniPage(){
@@ -47,11 +47,11 @@ export class EiDashboardComponent implements OnInit {
   }
 
   goToEiUnverifiedAlumniPage(){
-    this.router.navigate(['ei/alumni-list']);
+    this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':0}});
   }
 
   redirectTotalStudentPage(){
-    this.router.navigate(['ei/student-list']);
+    this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':1,'kyc_approved':1,'title':'Verified'}});
   }
 
   /*
