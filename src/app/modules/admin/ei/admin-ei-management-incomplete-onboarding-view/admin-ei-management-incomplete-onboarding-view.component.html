@@ -30,8 +30,7 @@
                         class="img-fluid dpImg cursorStyle">
                     <img *ngIf="eiData.profile_pic" src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">
                 </div>
-
-                <div class="userInfo">
+                <div class="userInfo" *ngIf="pendingApprovalProfile.stage == 'true'">
                     <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle"
                         [matMenuTriggerFor]="menu">
                 </div>

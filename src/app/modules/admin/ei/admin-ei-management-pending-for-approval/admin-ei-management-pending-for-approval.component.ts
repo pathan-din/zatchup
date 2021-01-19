@@ -35,7 +35,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
 
   goToAdminEiManagementIncompleteOnboardingViewPage(data) {
-    this.router.navigate(['admin/ei-profile-details', data.id]);
+    this.router.navigate(['admin/ei-profile-details'], { queryParams: { "id": data.id, "stage_pending": "true" } });
   }
 
   getEIApprovalList(page?: any) {
@@ -44,8 +44,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
     this.eIPendingApproval.listParams = {
       "date_from": this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
       "date_to": this.eIPendingApproval.filterToDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterToDate, 'yyyy-MM-dd') : '',
-      "city": this.eIPendingApproval.cityId ? this.getValue(this.eIPendingApproval.allCities, this.eIPendingApproval.cityId, 'city'): '',
-      "state": this.eIPendingApproval.stateId ? this.getValue(this.eIPendingApproval.allStates, this.eIPendingApproval.stateId, 'state'): '',
+      "city": this.eIPendingApproval.cityId ? this.getValue(this.eIPendingApproval.allCities, this.eIPendingApproval.cityId, 'city') : '',
+      "state": this.eIPendingApproval.stateId ? this.getValue(this.eIPendingApproval.allStates, this.eIPendingApproval.stateId, 'state') : '',
       "university": this.eIPendingApproval.university,
       "addition_type": this.eIPendingApproval.additionType,
       "page_size": this.eIPendingApproval.pageSize,
@@ -64,7 +64,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
           this.eIPendingApproval.config.currentPage = page
           this.eIPendingApproval.config.totalItems = res.count;
 
-          if (res.count > 0){
+          if (res.count > 0) {
             this.eIPendingApproval.dataSource = res.results;
           }
           else
@@ -122,7 +122,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
     return find[value];
   }
 
-  goBack(): void{
+  goBack(): void {
     this.location.back();
   }
 
@@ -150,7 +150,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
       "page_size": this.eIPendingApproval.pageSize,
       "page": page
     }
-    this.loader.show(); 
+    this.loader.show();
     this.baseService.getData('admin/ei_search/', this.eIPendingApproval.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {

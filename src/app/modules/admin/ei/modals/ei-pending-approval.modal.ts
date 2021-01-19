@@ -214,6 +214,7 @@ export class PendingApprovalProfile {
     editReason: any;
     editDescription: any;
     comment: any;
+    stage: any
     searchConfig: any = {
         "api_endpoint": "admin/fetch-poc-details/"
     }
