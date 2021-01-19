@@ -47,7 +47,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
   }
 
   goToAdminEiMangIncopleteOnboardViewPage(id) {
-    this.router.navigate(['admin/ei-profile-details', id]);
+  this.router.navigate(['admin/ei-profile-details'], { queryParams: { "id": id, "stage_pending": "false"}});
   }
 
   getONBoardList(page?: any) {
