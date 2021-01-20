@@ -207,6 +207,15 @@
                         <p><span class="mr-3">:</span>{{courseData.duration}}</p>
                     </div>
                 </div>
+                <div class="row" *ngIf="courseData.is_current_course">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p class="m-0">Roll Number </p>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                        <p><span class="mr-3">:</span>{{courseData.roll_no}}</p>
+                    </div>
+                </div>
 
 
 
@@ -377,7 +386,7 @@
 
     </div> -->
 
-    <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
+    <!-- <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row">
             <div class="col-xl-11 col-lg-10 col-md-10 col-10">
                 <h2 class="commonFontSize semiBoldFont m-0">List Of Certificates And E-Results </h2>
@@ -434,7 +443,7 @@
             <p data-toggle="modal" data-target="#BlockModel"> Block user</p>
         </mat-menu>
 
-        <!-- UnVerifyModel  -->
+ 
         <div class="modal fade" id="UnVerifyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
@@ -463,8 +472,7 @@
             </div>
         </div>
 
-        <!-- RejectModel  -->
-        <div class="modal fade" id="RejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="RejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
@@ -492,8 +500,7 @@
             </div>
         </div>
 
-        <!-- ReportModel  -->
-        <div class="modal fade" id="ReportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="ReportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
@@ -521,8 +528,7 @@
             </div>
         </div>
 
-        <!-- BlockModel  -->
-        <div class="modal fade" id="BlockModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="BlockModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center border-0 pb-0 pl-0">
@@ -547,6 +553,6 @@
 
 
 
-    </div>
+    </div> -->
 
 </div>

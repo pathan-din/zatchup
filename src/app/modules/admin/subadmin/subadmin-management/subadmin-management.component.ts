@@ -65,7 +65,7 @@ export class SubadminManagementComponent implements OnInit {
       }
       this.baseService.getData('admin/sub-admin/subadmin_management_list/', params).subscribe(
         (res: any) => {
-          if (res.status == true && res.count != 0) {
+          if (res.status == true) {
             if (!page)
               page = this.config.currentPage
             this.startIndex = res.page_size * (page - 1) + 1;

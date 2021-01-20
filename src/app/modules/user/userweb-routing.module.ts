@@ -71,7 +71,7 @@ const routes: Routes = [
     path: 'user/forgot-password', component: UserForgotPasswordComponent
   }, 
   {
-    path: 'user/reset-password', component: UserResetPasswordComponent
+    path: 'user/create-new-password', component: UserResetPasswordComponent
   }, 
   {
     path: 'user/kyc-verification', component: UserKycVerificationComponent, canActivate: [AuthGuard]

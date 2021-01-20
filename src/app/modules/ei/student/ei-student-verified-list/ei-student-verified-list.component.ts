@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
@@ -33,6 +33,7 @@ const ELEMENT_DATA: UnVerifiedAlumniListElement[] = [
   styleUrls: ['./ei-student-verified-list.component.css']
 })
 export class EiStudentVerifiedListComponent implements OnInit {
+  @ViewChild("closeModel1") closeModel1:any;
   model: any = {};
   modelReason: any = {};
   studentList: any = [];
@@ -79,12 +80,12 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.model.gender = '';
     // this.model.age = '';
     this.model.approved=""
-    this.model.kyc_approved=""
+    // this.model.kyc_approved=""
     this.route.queryParams.subscribe(params => {
      
       this.model.approved=params['approved']?params['approved']:'';
       
-      this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
+     // this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
 
       this.model.is_rejected=params['is_rejected']?params['is_rejected']:'';
 
@@ -343,7 +344,7 @@ this.model.page= page
 
             }
           }
-          alert(errorCollection);
+          this.alert.error(errorCollection,"Error");
 
         }
 
@@ -392,7 +393,10 @@ this.model.page= page
         response=res;
         if (response.status == true) {
           this.SpinnerService.hide();
+         
           this.alert.success(response.message,'Success');
+          this.closeModel();
+          this.getGetVerifiedStudent('', '')
         } else {
           this.SpinnerService.hide();
           //this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error);

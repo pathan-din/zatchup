@@ -52,7 +52,7 @@
                     data-toggle="modal" data-target="#AddStudentModel">Add Students</button>
             </div> -->
             <div class="col-xl-6 col-lg-7 col-md-6">
-                <h2 class="commonFontSize semiBoldFont">View Status ({{(courseWiseStudentCount.total_ekyc_approved+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.sent_for_signup+courseWiseStudentCount.sent_for_approval)?(courseWiseStudentCount.total_ekyc_approved+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.sent_for_signup+courseWiseStudentCount.sent_for_approval):0}})</h2>
+                <h2 class="commonFontSize semiBoldFont">View Status ({{(courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.sent_for_signup+courseWiseStudentCount.sent_for_approval)?(courseWiseStudentCount.total_verified_student+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user+courseWiseStudentCount.sent_for_signup+courseWiseStudentCount.sent_for_approval):0}})</h2>
                 <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-3">
                     <div class="row pt-2">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
@@ -60,7 +60,7 @@
                             <p class="cursorStyle">Approved</p>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6">
-                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.total_ekyc_approved}}</p>
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.total_verified_student}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
                         (click)="goToEiSentForSignUpComponent()">
-                            <p class="cursorStyle">Sent For Sign Up</p>
+                            <p class="cursorStyle">Send For Sign Up</p>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6">
                             <p><span class="mr-2">:</span>{{courseWiseStudentCount.sent_for_signup?courseWiseStudentCount.sent_for_signup:0}}</p>
@@ -101,7 +101,7 @@
                     <div class="row">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
                         (click)="goToSentForApprovalComponent()">
-                            <p class="cursorStyle">Sent For Approval</p>
+                            <p class="cursorStyle">Send For Approval</p>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6">
                             <p><span class="mr-2">:</span>{{courseWiseStudentCount.sent_for_approval?courseWiseStudentCount.sent_for_approval:0}}</p>
