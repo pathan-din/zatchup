@@ -212,45 +212,43 @@
                           </div>
                       </div>
                 </div>
-                <div class="row">
-                    <div class="row"  *ngFor="let documentData of userProfile.document_detail">
-                        <div class="col-md-4">
-                          <h3 class="commonFontSize semiBoldFont mb-0">Document Name</h3>
-                          <p>{{documentData.name}}</p>
+                
+                <div class="row mt-3"  *ngFor="let documentData of userProfile.document_detail">
+                    <div class="col-md-4">
+                        <h3 class="commonFontSize semiBoldFont mb-0">Document Name</h3>
+                        <p>{{documentData.name}}</p>
+                    </div>
+                    <div class="col-md-4 mb-3" *ngIf="documentData.document">
+                        <h3 class="commonFontSize semiBoldFont mb-0">Uploaded Document</h3>
+                        <div class="border mt-2">
+                            <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
+                            {{documentData.document}} -->
+                            <img src="{{documentData.document_image}}" alt="profile pick" class="img-responsive"/>
                         </div>
-                        <div class="col-md-4" *ngIf="documentData.document">
-                          <h3 class="commonFontSize semiBoldFont mb-0 mt-2">Uploaded Document</h3>
-                          <div class="border mt-2">
-                              <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
-                              {{documentData.document}} -->
-                              <img src="{{documentData.document_image}}" alt="profile pick" class="img-responsive"/>
-                          </div>
-                          <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
-                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadDocument" (click)="viewImage(documentData.document_image)"> <i class="fa fa-eye" aria-hidden="true"></i></button>
-                          
-                         
+                        <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
+                        <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadDocument" (click)="viewImage(documentData.document_image)"> <i class="fa fa-eye" aria-hidden="true"></i></button>                        
+                    </div>
 
-                        </div>
-
-                      </div>
-                      <div  class="col-sm-1 centerImgDiv" >
+                    <div class="col-md-12 addDocument mt-2" >
                         <i (click)="addMoreDocument()"  class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i>
                         <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
                     </div>
-                      <div class="modal fade documentDetail" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                          <div class="modal-content" > 
-                              <div class="modal-header border-0">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>                                     
-                              <!-- {{documentData.document}} -->
-                              <img src="{{document_image}}" alt="profile pick" class="img-responsive"/>
-                          </div>
-                        </div>
-                      </div>
                 </div>
+
+                <div class="modal fade documentDetail" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" > 
+                            <div class="modal-header border-0">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>                                     
+                            <!-- {{documentData.document}} -->
+                            <img src="{{document_image}}" alt="profile pick" class="img-responsive"/>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <!--End div for View bank Details-->
