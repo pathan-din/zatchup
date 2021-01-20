@@ -96,4 +96,12 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
     }
 
   }
+
+  goBack() {
+    this.location.back()
+  }
+  
+  handleEvent(event: any) {
+
+  }
 }

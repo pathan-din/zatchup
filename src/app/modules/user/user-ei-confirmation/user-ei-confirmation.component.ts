@@ -61,8 +61,17 @@ params:any;
       if (parrams['school_id']) {
         this.school_id = parrams['school_id'];
         this.isalumini = parrams['isalumini'];
+       
+         
       }
     })
+    if(this.params.add_course){
+      setTimeout(() => {
+        this.clickOtpModel.nativeElement.click();
+      }, 500);
+      
+        
+    }
     this.getConfirmationDetails();
     this.currentDate = new Date();
   }
@@ -262,11 +271,11 @@ params:any;
           this.SpinnerService.hide();
           this.confirmationDetails = res.data;
           localStorage.setItem("role", "0");
-          console.log('confirmation details',this.confirmationDetails.length)
+          
           if(this.confirmationDetails.length <= 0)
             this.clickOtpModel.nativeElement.click();
           this.confirmationDetails.forEach(elementCourse => {
-            console.log(elementCourse.ei_detail);
+            
 
             elementCourse.ei_detail.course_detail.forEach(elementS => {
               if (elementS.standard_detail) {

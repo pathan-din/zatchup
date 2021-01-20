@@ -672,6 +672,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            if( this.params.redirect_url){
+              this.router.navigate(["ei/"+this.params.redirect_url]);
+            }
             this.router.navigate(['ei/ei-profile-preview']);
           } else {
             this.loader.hide();

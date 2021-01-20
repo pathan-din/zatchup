@@ -161,7 +161,7 @@ const routes: Routes = [
     path: 'ei-management-incomplete-onboarding', component: AdminEiManagementIncompleteOnboardingComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-profile-details/:id', component: AdminEiManagementIncompleteOnboardingViewComponent, canActivate: [AuthGuard]
+    path: 'ei-profile-details', component: AdminEiManagementIncompleteOnboardingViewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-pending-for-approval', component: AdminEiManagementPendingForApprovalComponent, canActivate: [AuthGuard]

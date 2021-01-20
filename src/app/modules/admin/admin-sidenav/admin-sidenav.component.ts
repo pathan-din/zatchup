@@ -61,7 +61,6 @@ export class AdminSidenavComponent implements OnInit {
     //   }
     // )
     this.userData = JSON.parse(sessionStorage.getItem('user'))
-    console.log('user is as ::', this.userData)
     if (sessionStorage.getItem('permissions'))
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
     if (localStorage.getItem('user_type'))
@@ -129,7 +128,6 @@ export class AdminSidenavComponent implements OnInit {
   // }
 
   firebaseSignup(){
-    // console.log('firebase signup call')
     this.firebaseService.firebaseSignUp(this.userData.first_name,this.userData.last_name,this.userData.email,'Asdf@321#').then(
       res =>{
         console.log('firebase signup res is as ::',res)

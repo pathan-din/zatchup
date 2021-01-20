@@ -41,10 +41,17 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   }
 
   ngOnInit(): void {
-    if (this.activeRoute.snapshot.params.id) {
-      this.eiId = this.activeRoute.snapshot.params.id
+    this.activeRoute.queryParams.subscribe(params => {
+      this.eiId = params.id;
+      this.pendingApprovalProfile.stage = params.stage_pending
       this.getProfileData();
-    }
+      // this.params = params;
+      // this.getDatabaseView();
+    });
+    // if (this.activeRoute.snapshot.params.id) {
+    //   this.eiId = this.activeRoute.snapshot.params.id
+    //   this.getProfileData();
+    // }
     // if (localStorage.getItem('user_type'))
     //   this.user_type = localStorage.getItem('user_type')
   }

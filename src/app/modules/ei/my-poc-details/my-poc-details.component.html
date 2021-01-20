@@ -4,7 +4,7 @@
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="row">
             <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">My POC Details</h2>
+                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Level 1 POC</h2>
             </div>
             <div class="col-md-12">
                 <div class="row ml-0">
@@ -12,7 +12,7 @@
                         <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> {{poc_details?.first_name}} {{poc_details?.last_name}} </span></p>
+                        <p class="pt-2"> <span> {{poc_details.first_name ? poc_details.first_name : 'N/A'}} {{poc_details?.last_name}} </span></p>
                     </div>
                 </div>
 
@@ -21,7 +21,7 @@
                         <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> {{poc_details?.phone}} </span></p>
+                        <p class="pt-2"> <span> {{poc_details.phone ? poc_details.phone : 'N/A'}} </span></p>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                         <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> {{poc_details?.email}}</span></p>
+                        <p class="pt-2"> <span> {{poc_details.email ? poc_details.email : 'N/A'}}</span></p>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="row">
             <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Escalation Details</h2>
+                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Level 2 POC</h2>
             </div>
             <div class="col-md-12">
                 <div class="row ml-0">

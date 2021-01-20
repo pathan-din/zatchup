@@ -32,7 +32,7 @@ export class MyAssignedEiComponent implements OnInit {
   }
 
   goToAdminEiManagementIncompleteOnboardingViewPage(data) {
-    this.router.navigate(['admin/ei-profile-details', data.id]);
+    this.router.navigate(['admin/ei-onboarded-view', data.id]);
   }
 
 

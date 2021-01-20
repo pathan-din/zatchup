@@ -23,7 +23,7 @@
                 <button type="button" (click)="pendingChangeReqDetails()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Pending
                     Change Request Details
-                    Count: <span *ngIf="dashCounts">{{dashCounts.contactus_count}}</span>
+                    Count: <span *ngIf="dashCounts">{{dashCounts.pending_change_count}}</span>
                 </button>
 
             </div>
@@ -32,7 +32,7 @@
                 <button type="button" (click)="contactUsMessage()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Contact Us
                     Messages From School Pending
-                    Count: <span *ngIf="dashCounts">{{dashCounts.pending_change_count}}</span></button>
+                    Count: <span *ngIf="dashCounts">{{dashCounts.contactus_count}}</span></button>
             </div>
             <!-- <div class="col-md-4 mt-3">
                 <button type="button"

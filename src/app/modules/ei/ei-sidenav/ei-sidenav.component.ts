@@ -26,6 +26,8 @@ export class EiSidenavComponent {
 
   small = false;
   userProfile: any = {};
+  isLogin: boolean
+
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
@@ -48,7 +50,8 @@ export class EiSidenavComponent {
 
   }
   ngOnInit(): void {
-
+    this.isLogin = this.baseService.isLoggedIn()
+    console.log('is login......', this.baseService.isLoggedIn())
     if (localStorage.getItem("token")) {
       this.getDasboardDetails();
     }
