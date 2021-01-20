@@ -131,7 +131,7 @@ import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-a
 import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
 import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
 import { ContactComponent } from './setting/contact/contact.component';
-import { ChangePasswordComponent } from '../components/change-password/change-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
