@@ -15,6 +15,7 @@ import { Location } from '@angular/common';
 export class AdminKycHistoryOrViewComponent implements OnInit {
   // @ViewChild('rejectedCloseButton') rejectedCloseButton: any;
   @ViewChild('approveCloseButton') approveCloseButton: any;
+  images: any = [];
   kycHistoryModal = new KYCHistory()
 
   constructor(
@@ -106,6 +107,10 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
 
   }
 
+  viewImage(src) {
+    this.images = []
+    this.images.push(src);
+  }
   sortKycHistory() {
     this.kycHistoryModal.kycDetailsParams['order_by'] = this.kycHistoryModal.sortBy;
     this.getKycHistory();

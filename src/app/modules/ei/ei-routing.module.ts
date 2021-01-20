@@ -97,8 +97,6 @@ import { SubadminPendingAccessComponent } from './subadmin/subadmin-pending-acce
 import { SubadminPendingRequestComponent } from './subadmin/subadmin-pending-request/subadmin-pending-request.component';
 import { SubadminRequestChangingComponent } from './subadmin/subadmin-request-changing/subadmin-request-changing.component';
 import { AboutUsComponent } from './setting/about-us/about-us.component';
-import { ChangePasswordComponent } from './setting/change-password/change-password.component';
-import { ContactComponent } from './setting/contact/contact.component';
 import { PersonalComponent } from './setting/personal/personal.component';
 import { PrivacyComponent } from './setting/privacy/privacy.component';
 import { SettingComponent } from './setting/setting/setting.component';
@@ -132,6 +130,8 @@ import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-
 import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component';
 import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
 import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
+import { ContactComponent } from './setting/contact/contact.component';
+import { ChangePasswordComponent } from '../components/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -432,7 +432,7 @@ const routes: Routes = [
     path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'change-password', component: ChangePasswordComponent
+    path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
   },
   {
     path: 'contact', component: ContactComponent, canActivate: [AuthGuard]
