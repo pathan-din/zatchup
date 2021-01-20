@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef , HostListener} from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
+import { environment } from '../../../../../environments/environment'
 import { FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -60,6 +61,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   countIndex: any;
   extentionCheck:any='';
   params:any;
+  serverImageUrl: any
 //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
 //     console.log("Processing beforeunload...", this.countIndex);
 //     this.getRegistrationStep();
@@ -79,7 +81,8 @@ export class EiOnboardingProcessComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    
+    this.serverImageUrl = environment.serverImagePath
+    console.log('environment......',this.serverImageUrl)
     this.route.queryParams.subscribe(param=>{
       this.countIndex= param.reg_steps-1;
       this.params=param;

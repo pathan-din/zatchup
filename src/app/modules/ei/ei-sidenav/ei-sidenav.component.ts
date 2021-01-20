@@ -51,7 +51,6 @@ export class EiSidenavComponent {
   }
   ngOnInit(): void {
     this.isLogin = this.baseService.isLoggedIn()
-    console.log('is login......', this.baseService.isLoggedIn())
     if (localStorage.getItem("token")) {
       this.getDasboardDetails();
     }
