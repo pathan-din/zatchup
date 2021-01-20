@@ -213,7 +213,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           this.SpinnerService.hide();
           if (res.status == true) {
             if (this.params.returnUrl)
-              this.router.navigate([this.params.returnUrl])
+              this.router.navigate([this.params.returnUrl],{ queryParams: {  "returnUrl": "user/my-educational-profile" } })
             else {
               if (this.isalumini) {
                 this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId, 'isalumini': 1 } });

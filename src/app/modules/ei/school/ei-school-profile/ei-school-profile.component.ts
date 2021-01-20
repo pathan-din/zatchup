@@ -45,6 +45,12 @@ export class EiSchoolProfileComponent implements OnInit {
       this.postOptionActiveImage = 'active';
     }
   }
+  goToEiVerifiedAlumniPage(){
+    this.router.navigate(['ei/alumni-list'], {queryParams: {approved : 1}});
+  }
+  goToEiVerifiedStudentPage(){
+    this.router.navigate(['ei/student-verified-list'], {queryParams: {approved : 1}});
+  }
   goToEISchoolPostPage() {
     this.router.navigate(['ei/school-post']);
 

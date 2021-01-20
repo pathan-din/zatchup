@@ -56,8 +56,8 @@
                 <h2 class="commonFontSize semiBoldFont m-0"> Onboarding Fees History </h2>
             </div>
         </div>
-        <div class="tableDiv" *ngIf="dataSource">
-            <div class="mat-elevation-z1 table-responsive">
+        <div class="tableDiv mt-3" *ngIf="dataSource">
+            <div class="table-responsive">
                 <mat-table [dataSource]="dataSource | paginate: config">
                     <ng-container matColumnDef="time">
                         <mat-header-cell *matHeaderCellDef> </mat-header-cell>

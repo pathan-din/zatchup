@@ -21,17 +21,21 @@ export class UserMyEducationalProfileComponent implements OnInit {
   errorDisplay: any = {};
   errorOtpModelDisplay: any = [];
   requestChangeDetails: any;
+  params:any;
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private validationService: GenericFormValidationService,
-    private router: Router
+    private router: Router,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.model = {};
+    $("#OTPModel").modal("hide");
     this.getEducationalProfile()
+   
   }
 
   redirectWorkDetailesPage(id) {
@@ -230,6 +234,14 @@ export class UserMyEducationalProfileComponent implements OnInit {
       this.loader.hide()
     }
    
+  }
+  /**Add MOre COurse Function */
+  addMoreCourse(data: any, school_id: any){
+    if (data.is_current_course == true) {
+      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "add_course":"true", "returnUrl": "user/my-educational-profile" } });
+    } else {
+      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "add_course":"true", "returnUrl": "user/my-educational-profile" } });
+    }
   }
 
   editCourse(data: any, school_id: any) {  

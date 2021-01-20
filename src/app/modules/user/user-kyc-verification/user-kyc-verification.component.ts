@@ -89,11 +89,11 @@ export class UserKycVerificationComponent implements OnInit {
   checkIdValidation(){
     this.pattran='';
     if(this.model.kyc_type=='Aadhar'){
-      this.maxLength = 14;
+      this.maxLength = 12;
       this.placeholder='xxxx xxxx xxxx'
       //this.model.kyc_id_no
-      this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
-      //this.pattran = "";
+      //this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
+      this.pattran = "";
     }else if(this.model.kyc_type=='Dl'){
       this.maxLength = 20;
       this.placeholder='Eg : MH1420110062821'

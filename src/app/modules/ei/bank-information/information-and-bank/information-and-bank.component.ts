@@ -26,6 +26,9 @@ export class InformationAndBankComponent implements OnInit {
   bankNameList = [];
   bankModel:any={};
   uploadedCancelCheque: any;
+  userProfile: any={};
+  document_image:any;
+  displayError: string;
   constructor(
     private baseService: BaseService,
     private validationService: GenericFormValidationService,
@@ -39,6 +42,7 @@ export class InformationAndBankComponent implements OnInit {
     this.bankModel.bank_name='';
     this.getBankNameList();
     this.getBankDetails();
+    this.getEiProfileData();
   }
   /**getBankNameList */
 
@@ -86,6 +90,12 @@ export class InformationAndBankComponent implements OnInit {
         }
       }
     )
+  }
+  addMoreDocument(){
+    this.router.navigate(["ei/onboarding-process"],{queryParams:{"reg_steps":"4","action":"edit","redirect_url":"information-and-bank-details"}})
+  }
+  viewImage(url){
+    this.document_image = url
   }
   openChangeDetailsPopup(label,key,value){
      this.model={};
@@ -266,6 +276,28 @@ changeInput($ev) {
     $nextInput.focus();
   }
 
+}
+getEiProfileData(){
+  try {
+    this.loader.show();
+  this.baseService.getData('ei/onboarding-preview/').subscribe(res=>{
+     let response:any={};
+     response=res;
+     if(response.status==true){
+       this.userProfile=response.data[0];
+       this.loader.hide();
+     }else{
+       this.loader.hide();
+       this.displayError = this.eiService.getErrorResponse(this.loader,response.error);
+       this.alert.error(this.displayError,"Error");
+     }
+  },(error)=>{
+   this.loader.hide();
+   this.alert.error("Something went wrong.","Error");
+  })
+  } catch (e) {
+  
+  }
 }
 bankDetailsPopup(){
   this.model={};

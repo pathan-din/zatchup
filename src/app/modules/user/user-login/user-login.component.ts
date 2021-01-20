@@ -22,6 +22,7 @@ export class UserLoginComponent implements OnInit {
   errorDisplay: any = {};
   errorOtpModelDisplay = '';
   modelForOtpModal:any={};
+  passwordType:any="password";
   constructor(
     private genericFormValidationService: GenericFormValidationService, 
     private router: Router, 
@@ -91,7 +92,14 @@ export class UserLoginComponent implements OnInit {
 
 
   }
-
+  viewPassword(){
+    if(this.passwordType=='password'){
+      this.passwordType="text";
+    }else{
+      this.passwordType="password";
+    }
+    
+  }
   resendOtp() {
     try {
       let data: any = {};
