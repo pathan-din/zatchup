@@ -111,7 +111,7 @@ import { SubadminPendingAccessComponent } from './subadmin/subadmin-pending-acce
 import { SubadminPendingRequestComponent } from './subadmin/subadmin-pending-request/subadmin-pending-request.component';
 import { SubadminRequestChangingComponent } from './subadmin/subadmin-request-changing/subadmin-request-changing.component';
 import { AboutUsComponent } from './setting/about-us/about-us.component';
-import { ChangePasswordComponent } from './setting/change-password/change-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SettingComponent } from './setting/setting/setting.component';
 import { ContactComponent } from './setting/contact/contact.component';
 import { PersonalComponent } from './setting/personal/personal.component';

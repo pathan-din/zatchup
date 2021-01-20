@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class AdminSidenavComponent implements OnInit {
     );
 
   small = false;
+  isLogin: boolean
 
   constructor(
     private location: Location,
@@ -34,7 +36,8 @@ export class AdminSidenavComponent implements OnInit {
     private router: Router,
     private baseService: BaseService,
     private alert: NotificationService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private SpinnerService : NgxSpinnerService
   ) {
     this.breakpointObserver
       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
@@ -60,6 +63,7 @@ export class AdminSidenavComponent implements OnInit {
     //       this.firebaseSignup()
     //   }
     // )
+    this.isLogin = this.baseService.isLoggedIn()
     this.userData = JSON.parse(sessionStorage.getItem('user'))
     if (sessionStorage.getItem('permissions'))
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
@@ -95,6 +99,7 @@ export class AdminSidenavComponent implements OnInit {
   }
 
   logout() {
+    this.SpinnerService.hide();
     localStorage.clear();
     sessionStorage.clear();
     this.router.navigate(['admin/login']);

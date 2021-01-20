@@ -144,6 +144,8 @@ import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.modu
 import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
 import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
 import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
+import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -303,7 +305,9 @@ const config = {
     NotificationListComponent,
     UserEducationDetailsComponent,
     AdminKycPendingChangeRequestsComponent,
-    AdminKycChangeRequestDetailsComponent
+    AdminKycChangeRequestDetailsComponent,
+    ContectAndStaticContentManagementComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
