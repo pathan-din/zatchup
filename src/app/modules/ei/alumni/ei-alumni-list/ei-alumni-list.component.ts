@@ -387,6 +387,7 @@ getAluminiList(page,strFilter){
         response=res;
         if (response.status == true) {
           this.SpinnerService.hide();
+          this.closeModel();
           this.getAluminiList('','');
           this.alert.success(response.message,'Success');
         } else {
