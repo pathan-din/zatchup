@@ -64,7 +64,8 @@
                 <i class="material-icons mr-2 md-18">notification_important</i>
                 <span class="commonFontSize"> Notification Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE0015')" tooltip="Coming Soon...">
+            <a mat-list-item routerLink="/admin/contact-and-static-content-management"
+                routerLinkActive="link-active" *ngIf="user_type == 'ADMIN'">
                 <i class="material-icons mr-2 md-18">contacts</i>
                 <span class="commonFontSize"> Contact & Static Content Management </span>
             </a>

@@ -124,6 +124,7 @@ import { NotificationListComponent } from './notification/notification-list/noti
 import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
 import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
 import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
+import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
 
 
 const routes: Routes = [
@@ -495,6 +496,9 @@ const routes: Routes = [
   },
   {
     path: 'kyc-change-request-details/:id', component: AdminKycChangeRequestDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'contact-and-static-content-management', component: ContectAndStaticContentManagementComponent, canActivate: [AuthGuard]
   },
 
 
