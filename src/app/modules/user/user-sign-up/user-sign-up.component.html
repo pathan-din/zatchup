@@ -73,7 +73,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.gender"></div>
                 </div>
                 <div class="form-group row" *ngIf="model.profile.gender=='C'">
-                    <div class="col-sm-12 selectPadding form-control-inputDiv">
+                    <div class="col-sm-12 selectPadding form-control-inputDiv p-0">
                         <select (change)="isValid($event)" required id="pronoun" [(ngModel)]="model.profile.pronoun" name ="pronoun" class="custom-select form-control-input">
                             <option selected value="">Select your pronoun</option>
                             <option value="He">He</option>
@@ -85,7 +85,7 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.pronoun"></div>
                 </div>
                 <div class="form-group row" *ngIf="model.profile.gender=='C'">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 form-control-inputDiv p-0">
                         <input (keyup)="isValid($event)" class="form-control-input form-control form-control-sm" type="text" id="custom_gender" [(ngModel)]="model.profile.custom_gender" name ="model.profile.custom_gender" placeholder="Gender (optional)">
                     </div>
                     
