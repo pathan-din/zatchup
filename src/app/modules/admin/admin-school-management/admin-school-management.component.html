@@ -167,7 +167,8 @@
         </form>
         <div class="row mt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                (click)="paymentOnboardingRoute()" style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">On Boarding Fees Received</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="feeData">
                         {{feeData?.onboarding_fees_received}}</h2>
@@ -178,7 +179,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                (click)="subscriptionFeeRevenueRoute()" style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">Subscription Fees Received</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{feeData?.subscription_fees_received}}</h2>
                     <p

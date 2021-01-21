@@ -67,7 +67,14 @@ export class AdminSchoolManagementComponent implements OnInit {
     }
   }
 
+  subscriptionFeeRevenueRoute() {
+    this.router.navigate(['admin/payment-subscription-revenue'])
+  }
 
+  paymentOnboardingRoute() {
+    this.router.navigate(['admin/payment-onboarding'])
+  }
+  
   goToAdminEIDatabase() {
     this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/school-management' } })
   }
