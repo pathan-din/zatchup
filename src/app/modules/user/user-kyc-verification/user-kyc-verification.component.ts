@@ -112,7 +112,7 @@ export class UserKycVerificationComponent implements OnInit {
     if(this.model.kyc_id_no)
     {
       if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12 && this.model.kyc_type=='Aadhar'){
-        this.model.kyc_id_no=this.model.kyc_id_no+' ';
+        this.model.kyc_id_no=this.model.kyc_id_no;
       }
       this.arrAadhar.push(1);
     } else{
@@ -268,12 +268,13 @@ export class UserKycVerificationComponent implements OnInit {
         if (response.status == true) {
           localStorage.setItem("role",data.is_currently_student);
           $("#currentStatusModel").modal('hide');
-         if(isStudent == 1)
-         {
-          this.router.navigate(['user/qualification'], {queryParams: {'title': 'What are you currently studying?'},   skipLocationChange: true});
-         }else{
-          this.router.navigate(['user/qualification'], {queryParams: {'title': 'Your highest level of education?'}, skipLocationChange: true});
-         }
+          this.router.navigate(['user/add-ei']);
+        //  if(isStudent == 1)
+        //  {
+        //   this.router.navigate(['user/qualification'], {queryParams: {'title': 'What are you currently studying?'},   skipLocationChange: true});
+        //  }else{
+        //   this.router.navigate(['user/qualification'], {queryParams: {'title': 'Your highest level of education?'}, skipLocationChange: true});
+        //  }
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
