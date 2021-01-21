@@ -162,6 +162,17 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" aria-hidden="true "
+                            data-toggle="modal" data-target="#approveEI" class="bg-light-blue text-white h-100 border-0 rounded"
+                            *ngIf="element.send_back_to_edit == 1"  >Send Back To Edit</button>
+                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
+                            *ngIf="element.send_back_to_edit == 0"  >Pending For Approval </button>
+                             </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef>Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
@@ -190,27 +201,36 @@
 </div>
 
 
-<!-- <div class="modal fade" id="approveEI" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div class="modal fade" id="approveEI" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
             <div class="modal-header pb-0 pl-0 border-0">
-                <h2 class=" modal-title commonFontSize mediumFont mb-1">Approve</h2>
                 <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
-            <div class="modal-body px-0 pt-0 pb-0">
-                <p>Are you sure you want to Approve the Education Institute?</p>
-            </div>
-            <div class="modal-footer border-0">
-                <span class="color-blue mr-3 cursorStyle" data-dismiss="modal" (click)="cancel()">No</span>
-                <span class="color-blue cursorStyle" data-dismiss="modal" (click)="approveEI()">Yes</span>
+            <div class="modal-body px-0 pt-0 pb-3">
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <h3 class="commonFontSize mediumFont mb-2">Reason</h3>
+                        <input type="text" name="reason" class="form-control border pl-2 py-1 rounded" placeholder="Reason" readonly/>
+                        <!--  <p>fdsgfsdfgfgsfgsfgsgsgsfg sgsfdgsfgsfgsgsg</p> -->
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <!--  <p>fdsgfsdfgfgsfgsfgsgsgsfg sgsfdgsfgsfgsgsg</p> -->
+                        <h3 class="commonFontSize mediumFont mb-2">Description</h3>
+                        <input type="text" name="description" class="form-control border pl-2 py-1 rounded" placeholder="Description" readonly/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>

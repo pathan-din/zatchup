@@ -7,7 +7,7 @@ export class EIPendingApproval {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'signUpDate', 'action'];
+    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'signUpDate', 'status', 'action'];
     dataSource: any;
     userId: any;
     filterFromDate: any;
