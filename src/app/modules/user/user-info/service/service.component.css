@@ -186,7 +186,8 @@ p { margin: 0; padding: 0; }
     position: relative;
     text-transform: capitalize;
     transition: all 0.5s ease-in-out;
-    font-weight: 600;
+    font-weight: 400;
+    display: inline-block;
 }
 
 .Header .navbar .navbar-nav li a:hover {
@@ -402,7 +403,7 @@ p { margin: 0; padding: 0; }
     position: relative;
     text-transform: capitalize;
     transition: all 0.5s ease-in-out;
-    font-weight: 600;
+    font-weight: 400;
     display: block;
 }
 
@@ -997,7 +998,7 @@ font-size: 15px;
 }
  
 @media screen and (max-width: 425px){
-	.Header{padding:10px;height:120px}
+	.Header{padding:10px;height:auto}
 	.Header figure{float:none;margin:0 auto 10px}
 	.Header aside{float:none;margin:0;text-align:center}
 	.VideoArea{margin:120px 0 0 0}
@@ -1051,6 +1052,10 @@ font-size: 15px;
     padding: 0px;
 }
 
+.navbar-expand-lg .navbar-collapse {
+    justify-content: flex-end;
+}
+
 
 @media (min-width: 768px){
     /* .navbar-toggle {
@@ -1066,6 +1071,13 @@ font-size: 15px;
     
     .col-sm-push-6 {
         left: initial !important;
+    }
+
+    .Header .navbar .navbar-nav li a{
+        padding: 8px 0px;
+    }
+    .Header .navbar .navbar-nav li {
+        margin: 0 0 0 10px;
     }
     
 }
