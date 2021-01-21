@@ -41,10 +41,10 @@
                         <p>Coupons for Onboarding :<span class="ml-2">{{coupons.active_coupons.onboarding}}</span></p>
                         <p>Coupons for Subscription:<span class="ml-2">{{coupons.active_coupons.subscription}}</span>
                         </p>
-                        <p>Coupons for Advertisement:<span class="ml-2">{{coupons.active_coupons.advertisement}}</span>
+                        <!-- <p>Coupons for Advertisement:<span class="ml-2">{{coupons.active_coupons.advertisement}}</span>
                         </p>
                         <p>Coupons for Zatchup StarClass:<span
-                                class="ml-2">{{coupons.active_coupons.zatchup_starclasses}}</span></p>
+                                class="ml-2">{{coupons.active_coupons.zatchup_starclasses}}</span></p> -->
                     </div>
                 </div>
             </div>
@@ -59,10 +59,10 @@
                         <p>Coupons for Onboarding :<span class="ml-2">{{coupons.expired_coupons.onboarding}}</span></p>
                         <p>Coupons for Subscription:<span class="ml-2">{{coupons.expired_coupons.subscription}}</span>
                         </p>
-                        <p>Coupons for Advertisement:<span class="ml-2">{{coupons.expired_coupons.advertisement}}</span>
+                        <!-- <p>Coupons for Advertisement:<span class="ml-2">{{coupons.expired_coupons.advertisement}}</span>
                         </p>
                         <p>Coupons for Zatchup StarClass:<span
-                                class="ml-2">{{coupons.expired_coupons.zatchup_starclasses}}</span></p>
+                                class="ml-2">{{coupons.expired_coupons.zatchup_starclasses}}</span></p> -->
                     </div>
                 </div>
             </div>
@@ -95,8 +95,8 @@
                                                 <option value=""> Select Coupon</option>
                                                 <option value="Onboarding Fees">Onboarding Fees</option>
                                                 <option value="Subscription Fees">Subscription Fees</option>
-                                                <option value="Advertisement">Advertisement</option>
-                                                <option value="ZatchUp StarClass">ZatchUp StarClass</option>
+                                                <!-- <option value="Advertisement">Advertisement</option>
+                                                <option value="ZatchUp StarClass">ZatchUp StarClass</option> -->
                                             </select>
                                         </div>
                                     </div>
@@ -135,20 +135,6 @@
 
                                 <div class="col-md-12">
                                     <div class="form-group row  ml-0 mr-0">
-                                        <label for="" class="mediumFont commonFontSize letterspacing"> Discount </label>
-                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                            <input
-                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Discount" name="discount" maxlength="3"
-                                                [(ngModel)]="couponModal.discount_amount" #discount="ngModel"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && discount.invalid }"
-                                                (keypress)="keyPressNumbers($event)" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Discount
                                             Type</label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -159,6 +145,20 @@
                                                 <option value=""> Discount Type</option>
                                                 <option value="percentage">Percentage (%)</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Discount </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <input
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter Discount" name="discount" maxlength="3"
+                                                [(ngModel)]="couponModal.discount_amount" #discount="ngModel"
+                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && discount.invalid }"
+                                                (keypress)="keyPressNumbers($event)" required>
                                         </div>
                                     </div>
                                 </div>

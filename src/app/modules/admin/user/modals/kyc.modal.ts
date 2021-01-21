@@ -47,7 +47,8 @@ export class CompleteKycList extends Pagination {
 export class PendingChangeRequests extends Pagination {
   filterFromDate: any;
   filterToDate: any;
-  maxDate: any
+  maxDate: any;
+  changeField: any = '';
   displayedColumns: string[] = ['position', 'eiZatchupId', 'kycDetails', 'name', 'dateAndTime',
     'fieldOfChange', 'oldData', 'newData', 'action'];
 }

@@ -82,7 +82,7 @@ export class AdminPaymentOnboardingComponent implements OnInit {
       "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'): '',
       "city": cityFind ? cityFind.city: '',
       "state": stateFind ? stateFind.state: '',
-      "university": this.onboardingFee.university,
+      // "university": this.onboardingFee.university,
       "page_size": this.onboardingFee.pageSize ? this.onboardingFee.pageSize : 5,
       "page": page ? page : 1
   }
