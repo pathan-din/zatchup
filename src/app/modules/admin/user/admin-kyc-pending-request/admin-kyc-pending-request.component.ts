@@ -96,9 +96,9 @@ export class AdminKycPendingRequestComponent implements OnInit {
       this.kycPendingRequest.requestType = "1"
     } else if (type == 'request-reason' && value != 'list') {
       if(value == 'fresh-singup')
-        this.kycPendingRequest.requestReason = "1"
+        this.kycPendingRequest.requestReason = "0"
       else
-      this.kycPendingRequest.requestReason = "2"
+      this.kycPendingRequest.requestReason = "1"
     } else {
 
     }
