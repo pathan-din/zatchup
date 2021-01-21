@@ -42,6 +42,8 @@ export class EIDbList extends Pagination {
     modal: any = {};
     university: any;
     onboardingStatus: any = '';
+  subStatus: any;
+  search: any;
 }
 export class DocHistory extends Pagination {
     existingZatchIDMOUDoc: any;

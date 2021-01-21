@@ -80,6 +80,7 @@ export class notOnZatchup {
     stateName: any;
     search: any;
     pageCount: any;
+  subStatus: any;
 }
 
 export class OnboardedZatchup {

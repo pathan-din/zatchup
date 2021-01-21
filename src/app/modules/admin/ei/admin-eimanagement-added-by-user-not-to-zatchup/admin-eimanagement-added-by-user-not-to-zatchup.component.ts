@@ -88,6 +88,54 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
     }
   }
 
+  searchList(page?: any) {
+    let stateFind: any;
+    let cityFind: any;
+    if (this.notOnZatchup.allStates && this.notOnZatchup.stateId) {
+      stateFind = this.notOnZatchup.allStates.find(val => {
+        return val.id == this.notOnZatchup.stateId
+      })
+    }
+    if (this.notOnZatchup.allCities) {
+      cityFind = this.notOnZatchup.allCities.find(val => {
+        return val.id == this.notOnZatchup.cityId
+      })
+    }
+    this.notOnZatchup.listParams = {
+      "search": this.notOnZatchup.search,
+      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "university": this.notOnZatchup.university,
+      "page_size": this.notOnZatchup.pageSize,
+      "is_subscription_active": this.notOnZatchup.subStatus,
+      "page": page
+    }
+    this.loader.show();
+    this.baseService.getData('admin/ei_search/', this.notOnZatchup.listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.notOnZatchup.config.currentPage
+          this.notOnZatchup.startIndex = res.page_size * (page - 1) + 1;
+          this.notOnZatchup.pageSize = res.page_size;
+          this.notOnZatchup.config.itemsPerPage = res.page_size
+          this.notOnZatchup.config.currentPage = page
+          this.notOnZatchup.config.totalItems = res.count;
+
+          if (res.count > 0)
+            this.notOnZatchup.dataSource = res.results
+          else
+            this.notOnZatchup.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
   generateExcel() {
     delete this.notOnZatchup.listParams.page_size;
     delete this.notOnZatchup.listParams.page;
@@ -116,40 +164,40 @@ export class AdminEIManagementAddedByUserNotToZatchupComponent implements OnInit
     this.location.back();
   }
 
-  searchList(page?: any) {
-    this.notOnZatchup.listParams = {
-      "search": this.notOnZatchup.search,
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
-      "city": this.notOnZatchup.cityName,
-      "state": this.notOnZatchup.stateName,
-      "university": this.notOnZatchup.university,
-      "page_size": this.notOnZatchup.pageSize,
-      "page": page
-    }
-    this.loader.show();
-    this.baseService.getData('admin/ei_search/', this.notOnZatchup.listParams).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          if (!page)
-            page = this.notOnZatchup.config.currentPage
-          this.notOnZatchup.startIndex = res.page_size * (page - 1) + 1;
-          this.notOnZatchup.pageSize = res.page_size;
-          this.notOnZatchup.config.itemsPerPage = res.page_size
-          this.notOnZatchup.config.currentPage = page
-          this.notOnZatchup.config.totalItems = res.count;
+  // searchList(page?: any) {
+  //   this.notOnZatchup.listParams = {
+  //     "search": this.notOnZatchup.search,
+  //     'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
+  //     'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+  //     "city": this.notOnZatchup.cityName,
+  //     "state": this.notOnZatchup.stateName,
+  //     "university": this.notOnZatchup.university,
+  //     "page_size": this.notOnZatchup.pageSize,
+  //     "page": page
+  //   }
+  //   this.loader.show();
+  //   this.baseService.getData('admin/ei_search/', this.notOnZatchup.listParams).subscribe(
+  //     (res: any) => {
+  //       if (res.status == true) {
+  //         if (!page)
+  //           page = this.notOnZatchup.config.currentPage
+  //         this.notOnZatchup.startIndex = res.page_size * (page - 1) + 1;
+  //         this.notOnZatchup.pageSize = res.page_size;
+  //         this.notOnZatchup.config.itemsPerPage = res.page_size
+  //         this.notOnZatchup.config.currentPage = page
+  //         this.notOnZatchup.config.totalItems = res.count;
 
-          if (res.count > 0)
-            this.notOnZatchup.dataSource = res.results
-          else
-            this.notOnZatchup.dataSource = undefined
-        }
-        else
-          this.alert.error(res.error.message[0], 'Error')
-        this.loader.hide();
-      }
-    )
-  }
+  //         if (res.count > 0)
+  //           this.notOnZatchup.dataSource = res.results
+  //         else
+  //           this.notOnZatchup.dataSource = undefined
+  //       }
+  //       else
+  //         this.alert.error(res.error.message[0], 'Error')
+  //       this.loader.hide();
+  //     }
+  //   )
+  // }
 
   filterData(page) {
     if (this.notOnZatchup.search)
