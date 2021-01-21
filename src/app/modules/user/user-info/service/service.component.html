@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>Zatchup</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="https://zatchup.com/images/fav.png" />
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="Header">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Menu"
+                            aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.php">
+                            <img src="./assets/images/about-us/Logo.png">
+                        </a>
+
+                        <a class="Service-mobile" href="service.php">Services</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="Menu">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#Career">Career</a></li>
+                            <li><a routerLink="/user/login">Sign In</a></li>
+                            <li><a (click)="scrollToTargetAdjusted('contact_us')">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+    <carousel>
+        <slide>
+            <img src="./assets/images/about-us/Slider1.png" alt="first slide" style="display: block; width: 100%;">
+        </slide>
+        <slide>
+            <img src="./assets/images/about-us/Slider2.png" alt="second slide" style="display: block; width: 100%;">
+        </slide>
+        <slide>
+            <img src="./assets/images/about-us/Slider3.png" alt="third slide" style="display: block; width: 100%;">
+        </slide>
+    </carousel>
+
+    <section>
+        <div id="services-header" class="AffixArea affix-top">
+            <div class="container">
+                <ul>
+                    <li class="active">
+                        <a (click)="scrollToTargetAdjusted('service1')">Donations from alumni</a>
+                    </li>
+
+                    <li>
+                        <a (click)="scrollToTargetAdjusted('service2')">alumni engagement</a>
+                    </li>
+
+                    <li>
+                        <a (click)="scrollToTargetAdjusted('service3')">Student engagement</a>
+                    </li>
+
+                    <li>
+                        <a (click)="scrollToTargetAdjusted('service4')">E-certificates / E-Results</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="ServicesArea">
+        <div class="ServicesHead">
+            <div class="container">
+                <h3>Zatchup services</h3>
+            </div>
+        </div>
+        <div class="ServicesBody">
+            <article id="service1">
+                <div class="container">
+                    <figcaption>
+                        <h3>Donations from alumni</h3>
+
+                        <p>ZatchUp builds Alumni Networks for the educational institutions with one click access to
+                            their alumni.</p>
+
+                        <p>This network enables educational institutions to raise funds from their alumni in the form of
+                            Donations for something big as construction of new building or as small as buying Lab
+                            equipment or water purifiers.</p>
+
+                        <h5>We do this in the most secure and safe way</h5>
+
+                    </figcaption>
+                    <video controls="">
+                        <source src="{{serverVideoUrl}}/Donation.mp4" type="video/mp4">
+                    </video>
+                    <div class="clear"></div>
+                </div>
+            </article>
+
+            <article id="service2">
+                <div class="container">
+                    <figcaption>
+                        <h3>alumni engagement</h3>
+                        <p>ZatchUp provides detailed summary of alumni and their current professions along with alumni
+                            testimonials to create more visibility for educational institutions</p>
+
+                        <p>Educational institutions also get platform to Invite alumni to their campus as guests or as
+                            career counsellors for current students </p>
+
+                        <h5>We do this with utmost care and lot of creativity</h5>
+
+                    </figcaption>
+                    <video controls="">
+                        <source src="{{serverVideoUrl}}/Engagment.mp4" type="video/mp4">
+                    </video>
+                    <div class="clear"></div>
+                </div>
+            </article>
+
+            <article id="service3">
+                <div class="container">
+                    <figcaption>
+                        <h3>Easy Interaction of students and teachers</h3>
+
+                        <p>Easy flow of information between teachers and its students is a huge problem specially during
+                            off school hours and exam time.</p>
+
+                        <p>ZatchUp helps teachers to send messages/reminders or study material to students in one click,
+                            these can be customized to send to all active students, any class or any student.</p>
+
+                        <p>This doesn’t require teachers to share their personal numbers with students.</p>
+
+                        <p>This also helps teachers to interact with parents of junior students.</p>
+
+                        <h5>We know how important free flow of Information is.</h5>
+
+                    </figcaption>
+                    <video controls="">
+                        <source src="{{serverVideoUrl}}/Reminders.mp4" type="video/mp4">
+                    </video>
+                    <div class="clear"></div>
+                </div>
+            </article>
+
+            <article id="service4">
+                <div class="container">
+                    <figcaption>
+                        <h3>E-certificates / E-Results</h3>
+
+                        <p>Making manual report cards for hundreds of students take lot of efforts and time of teachers
+                            and it involves high cost in terms of paper and printing.</p>
+
+                        <p>We make the entire process of issuing report cards and certificates digital and super easy.
+                        </p>
+
+                        <p>This helps students to maintain record of all their achievements at one place, which can be
+                            shared by students for job interviews or higher admissions in one click.</p>
+
+                        <p>This not only brings efficiency to process but also reduce margin of error to minimum while
+                            saving huge costs for educational institutions.</p>
+
+                        <h5>By Doing this we not only save precious time but life saving trees too</h5>
+
+                    </figcaption>
+                    <video controls="">
+                        <source src="{{serverVideoUrl}}/Certificates.mp4" type="video/mp4">
+                    </video>
+                    <div class="clear"></div>
+                </div>
+            </article>
+            <div class="clear"></div>
+
+        </div>
+    </div>
+
+
+    <section id="contact_us">
+        <div class="TouchArea">
+            <div class="container">
+
+                <h3> Onboard <span> Your Educational Institution</span></h3>
+
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <form method="post" id="form_register">
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label></label>
+                                    <input type="text" name="name" id="reg_name" class="form-control"
+                                        placeholder="Enter Name" required="required">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label></label>
+                                    <input type="email" name="email" id="reg_email" class="form-control"
+                                        placeholder="Enter Email" required="required">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label></label>
+                                    <input type="text" name="subject" id="reg_subject" class="form-control"
+                                        placeholder="Enter Subject" required="required">
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label></label>
+                                    <textarea rows="5" name="message" id="reg_message" class="form-control"
+                                        placeholder="Message"></textarea>
+                                </div>
+                                <div class="form-group col-sm-10">
+                                    <button name="submit" value="submit">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Contact">
+        <div class="ContactArea">
+            <div class="container">
+                <h3>Get started now</h3>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-8">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <article>
+                                    <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                    <p>rohin@zatchup.com</p>
+                                </article>
+                            </div>
+                            <div class="col-sm-6">
+                                <article>
+                                    <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                    <p>+91-8054441372</p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© {{date | date: 'yyyy'}} ZatchUp All Rights Reserved</p>
+    </footer>
+
+    <div id="Career" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="Decline">
+                        <a class="CloseModal" data-dismiss="modal" href="JavaScript:Void(0);">×</a>
+                        <h3>Career</h3>
+                        <p>Please Upload your resume</p>
+                        <input type="file" name="image" required="required">
+                        <button type="submit" name="savefile" value="Send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

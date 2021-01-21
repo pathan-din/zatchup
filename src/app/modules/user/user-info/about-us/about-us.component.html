@@ -1,28 +1,327 @@
-<app-user-header></app-user-header>
+<header>
+    <div class="Header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Menu"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="javascript:void(0);">
+                        <img src="./assets/images/about-us/Logo.png">
+                    </a>
+                    <a class="Service-mobile" href="service.php">Services</a>
+                </div>
 
-<div class="container contentSpaceTop">
-    <div class="row">
-        <div class="col-12">
-            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+                <div class="collapse navbar-collapse" id="Menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#Career">Career</a></li>
+                        <li><a routerLink="/user/login">Sign In</a></li>
+                        <li><a (click)="scrollToTargetAdjusted('contact_us')">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<carousel>
+    <slide>
+        <img src="./assets/images/about-us/Slider1.png" alt="first slide" style="display: block; width: 100%;">
+    </slide>
+    <slide>
+        <img src="./assets/images/about-us/Slider2.png" alt="second slide" style="display: block; width: 100%;">
+    </slide>
+    <slide>
+        <img src="./assets/images/about-us/Slider3.png" alt="third slide" style="display: block; width: 100%;">
+    </slide>
+</carousel>
+
+<section>
+    <div id="about-us-header" class="AffixArea">
+        <div class="container">
+            <ul>
+                <li class="active cursorStyle">
+                    <a (click)="scrollToTargetAdjusted('overview')">Overview</a>
+                </li>
+
+                <li class="cursorStyle">
+                    <a (click)="scrollToTargetAdjusted('how_to_work')">How it works</a>
+                </li>
+
+                <li class="dropdown cursorStyle">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">Services </a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/user/services">Donations from alumni</a></li>
+                        <li><a routerLink="/user/services">Alumni engagement</a></li>
+                        <li><a routerLink="/user/services">Student engagement</a></li>
+                        <li><a routerLink="/user/services">E-Certificates / E-Results</a></li>
+                    </ul>
+                </li>
+
+                <li class="cursorStyle">
+                    <a (click)="scrollToTargetAdjusted('alumni_donations')">Alumni donations
+                        across globe</a>
+                </li>
+            </ul>
         </div>
     </div>
+</section>
 
-    <div class="row">
-        <div class="col-12"><h1 class="pb-3 pt-3 border-bottom">About Us</h1></div>
-        <div class="col-md-4 pt-2 pb-3">
-            <img src="assets/images/userWebsite/highest_level_education_image.png" class="img-responsive border rounded p-2 bg-white">
+<section>
+    <div class="OverviewArea" id="overview">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="OverviewLeft">
+                        <h5>Overview</h5>
+                        <h4>ZatchUp is as a three-way bridge between Educational Institutions, its alumni and
+                            students.</h4>
+                        <p>By using this unique bridge, ZatchUp provides all educational institutions a unique
+                            opportunity to have one click reach to all its alumni and students, which further
+                            enables them to provide best in class education and facilities to its students</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="OverviewRight">
+                        <iframe src="https://www.youtube.com/embed/xsfLlbeFhFU" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-8">
-            <h2 class="mb-2">Overview</h2>
-            <p>ZatchUp is as a three-way bridge between Educational Institutions, its alumni and students.</p>
-            <p>By using this unique bridge, ZatchUp provides all educational institutions a unique opportunity to have one click reach to all its alumni and students, which further enables them to provide best in class education and facilities to its students</p>
+    </div>
+</section>
 
-            <h2 class="mb-2">How it works</h2>
-            <p>At ZatchUp we help educational institutions by</p>
-            <p>Building alumni networks and drawing a detailed alumni engagement plan for educational institutions (Schools, Colleges and Universities)</p>
-            <p>Raising Donations for educational institutions from alumni</p>
-            <p>Providing one click access to all current students</p>
-            <p>Making educational institutions go digital</p>
+<section>
+    <div class="WorkArea" id="how_to_work">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-6 col-sm-push-6">
+                    <div class="WorkRight">
+                        <h5>How it works</h5>
+                        <h4>At ZatchUp we help educational institutions by</h4>
+                        <ul>
+                            <li>Building alumni networks and drawing a detailed alumni engagement plan for
+                                educational institutions (Schools, Colleges and Universities)</li>
+                            <li>Raising Donations for educational institutions from alumni </li>
+                            <li>Providing one click access to all current students </li>
+                            <li>Making educational institutions go digital </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-sm-pull-6">
+                    <div class="WorkLeft">
+                        <iframe src="https://www.youtube.com/embed/oH6ddvOW_ZY" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="DonationArea" id="alumni_donations">
+        <div class="container">
+
+            <h1>Alumni Donations Across Globe</h1>
+            <h5>Educational Institutions across the world raise billions of dollars in donations from their alumni.
+            </h5>
+            <p><b>USA</b> - Alumni contributions to U.S. colleges and universities increased by 6.9% between fiscal
+                year 2017 and fiscal year 2018, climbing to a grand total of $12.15 billion, according to a 2019
+                report from the Council for Advancement and Support of Education. The uptick in alumni giving is
+                even more profound when viewing historical trends. Within the 30 years between 1988 and 2018, alumni
+                gifts increased by 495%, the CASE report shows </p>
+
+            <p><b>United Kingdom</b> - Philanthropic donations to UK universities have exceeded £1bn a year in 2017
+            </p>
+
+            <p><b>Australia</b> - . The University of Melbourne and the University of Sydney have exceeded their
+                initial campaign targets of A$500 million and A$600 million, respectively, before their scheduled
+                completion dates. Both have announced new goals: Sydney is aiming for A$750 million by the end of
+                2017, and Melbourne announced in March a dual target of A$1 billion and 100,000 engaged alumni by
+                2021. </p>
+
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="DonationBox">
+                        <div class="DonationBoxInner">
+                            <div class="DonationBoxFront"
+                                style="background-image: url('./assets/images/about-us/USAFront.jpg');">
+                                <h2>USA</h2>
+                            </div>
+                            <div class="DonationBoxBack"
+                                style="background-image: url('./assets/images/about-us/USABack.jpg');">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="DonationBox">
+                        <div class="DonationBoxInner">
+                            <div class="DonationBoxFront"
+                                style="background-image: url('./assets/images/about-us/UKFront.jpg');">
+                                <h2>UK </h2>
+                            </div>
+                            <div class="DonationBoxBack"
+                                style="background-image: url('./assets/images/about-us/UKBack.jpg');">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="DonationBox">
+                        <div class="DonationBoxInner">
+                            <div class="DonationBoxFront"
+                                style="background-image: url('./assets/images/about-us/Indiafront.jpg');">
+                                <h2>INDIA</h2>
+                            </div>
+                            <div class="DonationBoxBack"
+                                style="background-image: url('./assets/images/about-us/IndiaBack.jpg');">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="ServeArea">
+        <div class="container">
+            <h3>Our Services</h3>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="ServeBox">
+                        <a routerLink="/user/services">
+                            Donations From Alumni
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="ServeBox">
+                        <a routerLink="/user/services">
+                            Alumni Engagement
+
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="ServeBox">
+                        <a routerLink="/user/services">
+                            Student Engagement
+
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="ServeBox">
+                        <a routerLink="/user/services">
+                            E-Certificates / E-Results
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="contact_us">
+    <div class="TouchArea">
+        <div class="container">
+
+            <h3> Onboard <span> Your Educational Institution</span></h3>
+
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <form method="post" id="form_register">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label></label>
+                                <input type="text" name="name" id="reg_name" class="form-control"
+                                    placeholder="Enter Name" required="required">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label></label>
+                                <input type="email" name="email" id="reg_email" class="form-control"
+                                    placeholder="Enter Email" required="required">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label></label>
+                                <input type="text" name="subject" id="reg_subject" class="form-control"
+                                    placeholder="Enter Subject" required="required">
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label></label>
+                                <textarea rows="5" name="message" id="reg_message" class="form-control"
+                                    placeholder="Message"></textarea>
+                            </div>
+                            <div class="form-group col-sm-10">
+                                <button name="submit" value="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="Contact">
+    <div class="ContactArea">
+        <div class="container">
+            <h3>Get started now</h3>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <article>
+                                <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                <p>rohin@zatchup.com</p>
+                            </article>
+                        </div>
+                        <div class="col-sm-6">
+                            <article>
+                                <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+                                <p>+91-8054441372</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© {{date | date:'yyyy'}} ZatchUp All Rights Reserved</p>
+</footer>
+
+<div id="Career" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="Decline">
+                    <a class="CloseModal" data-dismiss="modal" href="JavaScript:Void(0);">×</a>
+                    <h3>Career</h3>
+                    <p>Please Upload your resume</p>
+                    <input type="file" name="image" required="required">
+                    <button type="submit" name="savefile" value="Send">Send</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

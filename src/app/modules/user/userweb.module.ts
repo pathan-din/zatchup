@@ -5,6 +5,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { CarouselModule } from 'ngx-bootstrap/carousel'
 import { UserhomeComponent } from './userhome/userhome.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { UserFooterComponent } from './user-footer/user-footer.component';
@@ -48,6 +49,7 @@ import { UserResetPasswordComponent } from './user-reset-password/user-reset-pas
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AboutUsComponent } from './user-info/about-us/about-us.component';
+import { ServiceComponent } from './user-info/service/service.component';
 import { CareerComponent } from './user-info/career/career.component';
 import { ContactUsComponent } from './user-info/contact-us/contact-us.component';
 import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-more-course-manually.component';
@@ -108,6 +110,7 @@ import { PendingRequestForUserComponent } from './pending-request-for-user/pendi
     UserResetPasswordComponent,
     AddNewCourseComponent,
     AboutUsComponent,
+    ServiceComponent,
     CareerComponent,
     ContactUsComponent,
     AddMoreCourseManuallyComponent,
@@ -133,7 +136,8 @@ import { PendingRequestForUserComponent } from './pending-request-for-user/pendi
     FormsModule, NgxSpinnerModule, ReactiveFormsModule,
     BsDatepickerModule,
     DirectiveModule,
-    SharedModule
+    SharedModule,
+    CarouselModule.forRoot()
   ]
 })
 export class UserwebModule { }
