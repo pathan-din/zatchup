@@ -125,6 +125,7 @@ import { UserEducationDetailsComponent } from './user/user-education-details/use
 import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
 import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
 import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
+import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 
 
 const routes: Routes = [
@@ -499,6 +500,9 @@ const routes: Routes = [
   },
   {
     path: 'contact-and-static-content-management', component: ContectAndStaticContentManagementComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-poc', component: EditPocDetailsComponent, canActivate: [AuthGuard]
   },
 
 
