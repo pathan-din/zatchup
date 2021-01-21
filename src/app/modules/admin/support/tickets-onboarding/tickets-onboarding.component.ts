@@ -50,7 +50,7 @@ export class TicketsOnboardingComponent implements OnInit {
       'date_to': this.ticketsList.filterToDate !== undefined ? this.datePipe.transform(this.ticketsList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.ticketsList.university,
+      "status": this.ticketsList.status,
       "page_size": this.ticketsList.pageSize,
       "page": page
     }
@@ -102,7 +102,6 @@ export class TicketsOnboardingComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.ticketsList.allCities = res.results
-        console.log('get state res ::', res)
       }
     )
   }
@@ -112,6 +111,9 @@ export class TicketsOnboardingComponent implements OnInit {
     // this.router.navigate([returnUrl]);
     this.location.back();
     console.log(location)
+  }
+  viewMessage(data: any){
+    this.ticketsList.messageFromSchool = data.message
   }
 
 }
