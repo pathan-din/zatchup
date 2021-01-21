@@ -9,7 +9,7 @@
                     <span class="mr-3 cursorStyle">
                         <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                     </span>
-                    School With Incomplete Onboarding View</h2>
+                    {{pendingApprovalProfile.stage == 'true' ? 'School With Pending For Approval View' : 'School With Incomplete Onboarding View'}}</h2>
             </div>
             <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap">
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"

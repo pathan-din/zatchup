@@ -126,6 +126,7 @@ import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-cha
 import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
 import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -504,7 +505,9 @@ const routes: Routes = [
   {
     path: 'edit-poc', component: EditPocDetailsComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
+  },
 
 
 

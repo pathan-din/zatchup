@@ -24,6 +24,7 @@ export class UserAddEiComponent implements OnInit {
   name_of_school_others:any='';
   name_of_school_first:any='';
   title:any;
+  params:any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -38,6 +39,7 @@ export class UserAddEiComponent implements OnInit {
     this.model.state='';
     this.model.city='';
     this.route.queryParams.subscribe(params=>{
+      this.params = params;
       if(params['title']){
         this.title = params['title'];
       }
@@ -134,14 +136,15 @@ goToUserQualificationPage() {
       if (response.status == true) {
         if(response.check_school_info_on_zatchup==1)
         {
-          localStorage.removeItem("checkincourse");
+          
           this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
-        }else if(response.check_school_info_on_zatchup==2){
-          localStorage.setItem("checkincourse","true");
-          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
-        }else if(response.check_school_info_on_zatchup==3){
-          localStorage.removeItem("checkincourse");
-          this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
+        }else{
+          if(this.params.returnUrl){
+            this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title,'returnUrl':this.params.returnUrl}});
+          }else{
+            this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
+          }
+          
         }
          
       } else {

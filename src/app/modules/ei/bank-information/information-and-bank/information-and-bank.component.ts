@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ImageViewerConfig, CustomEvent } from 'src/app/common/image-viewer/image-viewer-config.model';
 
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -29,6 +30,8 @@ export class InformationAndBankComponent implements OnInit {
   userProfile: any={};
   document_image:any;
   displayError: string;
+  images: any = [];
+  imageIndexOne = 0;
   constructor(
     private baseService: BaseService,
     private validationService: GenericFormValidationService,
@@ -94,8 +97,12 @@ export class InformationAndBankComponent implements OnInit {
   addMoreDocument(){
     this.router.navigate(["ei/onboarding-process"],{queryParams:{"reg_steps":"4","action":"edit","redirect_url":"information-and-bank-details"}})
   }
-  viewImage(url){
-    this.document_image = url
+  viewImage(src) {
+    this.images = []
+    this.images.push(src);
+  }
+  download_file(fileURL) {
+    window.open(fileURL, '_blank');
   }
   openChangeDetailsPopup(label,key,value){
      this.model={};
@@ -219,6 +226,11 @@ export class InformationAndBankComponent implements OnInit {
     this.alert.error(err, 'Error')
   }
 }
+
+fileType(file: any) {
+  return file.split('.').pop();
+}
+
 goToDashboard() {
   var flagRequired = true;
   this.errorOtpModelDisplay = '';

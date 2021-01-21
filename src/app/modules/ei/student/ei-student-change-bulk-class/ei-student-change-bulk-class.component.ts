@@ -102,7 +102,7 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();	
-          this.alert.success(response.message[0], 'Success')
+          this.alert.success(response.message, 'Success')
           // alert(response.message[0]);
         } else {
           this.SpinnerService.hide();

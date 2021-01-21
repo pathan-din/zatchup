@@ -252,11 +252,21 @@ params:any;
   }
   addPastEi() {
     $("#OTPModel").modal('hide');
-    this.router.navigate(['user/add-ei'], { queryParams: { "title": "past" } });
+    if(this.params.returnUrl){
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "past", "returnUrl": "user/ei-confirmation" } });
+    }else{
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "past" } });
+    }
+    
   }
   addAnotherCourse() {
     $("#OTPModel").modal("hide");
-    this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
+    if(this.params.returnUrl){
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "current", "returnUrl": "user/ei-confirmation" } });
+    }else{
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
+    }
+    
   }
   getConfirmationDetails() {
     try {
