@@ -61,7 +61,8 @@
                     <h4 class="commonFontSize semiBoldFont mb-1">Total Number of Added Users</h4>
                     <div class="row pb-1 mx-0">
                         <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
+                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start"
+                            (click)="activeUsers()" style="cursor: pointer;">
                             Total Number of Active users (Last Login < 7 days)
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
@@ -71,7 +72,8 @@
                     </div>
                     <div class="row pb-1 mx-0">
                         <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
+                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start"
+                            (click)="dormantUsers()" style="cursor: pointer;">
                             Total Number of Dormant Users (Last Login > 7 days)
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
@@ -135,7 +137,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                (click)="activeUsers()" style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">Active Users</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse?filteredResponse.active_users:0}}</h2>
@@ -148,7 +151,8 @@
 
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                (click)="dormantUsers()" style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">Dormant Users</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse ? filteredResponse.dormant_users : 0}}</h2>
@@ -200,7 +204,7 @@
             <div class="col-md-6 mt-3">
                 <div class="bg-offwhite border border-gray p-2 mr-1 h-100">
                     <h4 class="commonFontSize semiBoldFont mb-1">Revenue </h4>
-                    <div class="row pb-1 mx-0">
+                    <div class="row pb-1 mx-0" (click)="paymentOnboardingRoute()" style="cursor: pointer;">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                             From onboarding fees
@@ -210,7 +214,7 @@
                                 class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.onboarding_fees : 0}}
                         </div>
                     </div>
-                    <div class="row pb-1 mx-0">
+                    <div class="row pb-1 mx-0" (click)="subscriptionFeeRevenueRoute()" style="cursor: pointer;">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                             Subscription fees

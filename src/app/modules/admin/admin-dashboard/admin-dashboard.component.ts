@@ -98,4 +98,20 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/dashboard' } })
   }
 
+  activeUsers(){
+    this.router.navigate(['admin/active-users'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  }
+
+  dormantUsers(){
+    this.router.navigate(['admin/dormant-users'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  }
+
+  subscriptionFeeRevenueRoute() {
+    this.router.navigate(['admin/payment-subscription-revenue'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  }
+
+  paymentOnboardingRoute() {
+    this.router.navigate(['admin/payment-onboarding'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  }
+
 }
