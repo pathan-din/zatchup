@@ -65,14 +65,17 @@
 
             <div class="row mt-3">
                 <div class="col-6">
-                    <div class="form-control-inputDiv rounded p-0 shadow-none">
-                        <input id="landmark" name="landmark"
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
+                    <div class="form-control-inputDiv rounded p-0  shadow-none">
+                        <input id="board_or_university"
                             class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Enter Landmark" [(ngModel)]="educationInstitute.landmark" required>
+                            type="text" name="board_or_university" placeholder="Board/University"
+                            [(ngModel)]="educationInstitute.university" required>
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.landmark"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.board_or_university"></div>
                 </div>
                 <div class="col-6">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Pincode </label>
                     <div class="form-control-inputDiv rounded p-0 shadow-none">
                         <input id="pincode" name="pincode"
                             class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -83,7 +86,7 @@
                 </div>
             </div>
 
-            <div class="form-group mt-3 ">
+            <!-- <div class="form-group mt-3 ">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
                 <div class="form-control-inputDiv rounded p-0  shadow-none">
                     <input id="board_or_university"
@@ -92,11 +95,10 @@
                         [(ngModel)]="educationInstitute.university" required>
                 </div>
                 <div class="required errorMsg" [innerHtml]="errorDisplay.board_or_university"></div>
-            </div>
+            </div> -->
 
-            <div class="form-group mt-3 ">
+            <!-- <div class="form-group mt-3 ">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Approximate Number of Students </label>
-                <!-- <div class="col-md-12"> -->
                 <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                     <select id="state" required [(ngModel)]="educationInstitute.students" name="state"
                         class="custom-select  form-control-input" required>
@@ -107,7 +109,7 @@
                     </select>
                 </div>
                 <div class="required errorMsg" [innerHtml]="errorDisplay.approximate_number_of_students"></div>
-            </div>
+            </div> -->
 
             <div class="form-group row  mt-3">
                 <div class="col-12 text-center">

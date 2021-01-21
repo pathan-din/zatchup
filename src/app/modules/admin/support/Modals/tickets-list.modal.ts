@@ -12,14 +12,16 @@ export class TicketsList {
     allStates: any;
     allCities: any;
     university: any;
-    maxDate: any
+    maxDate: any;
+    messageFromSchool: any;
+    status: any = '';
     config = {
         itemsPerPage: 0,
         currentPage: 1,
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'ticket_raising_date', 'ticketName', 'zatchUpID', 'eiName', 'address', 'state', 'city',
-        'board', 'emailId', 'phoneNumber', 'message'];
+        'board', 'emailId', 'phoneNumber', 'message', 'resolve'];
   pageCounts: any;
 
 }
