@@ -31,6 +31,7 @@ export class AdminUserSearchComponent implements OnInit {
   params: any= {};
   currentEi: any;
   previousEi: any;
+  pageCount: any;
 
   constructor(
     private router: Router,
@@ -45,7 +46,8 @@ export class AdminUserSearchComponent implements OnInit {
     this.search = this.activeRoute.snapshot.params.search;
     this.searchUserList('');
     this.getAllState();
-    this.stateId=''
+    this.stateId='';
+    this.pageCount = this.baseService.getCountsOfPage()
   }
 
   searchUserList(page? : any){
