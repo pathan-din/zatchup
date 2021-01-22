@@ -14,7 +14,9 @@ export class CouponList {
     title: any = '';
     startIndex: Number;
     couponParams: any = {}
-    pageSize: any = 5;
+    pageSize: any;
+    couponType: any = '';
+    pageCounts: any;
     config = {
         itemsPerPage: 0,
         currentPage: 1,
