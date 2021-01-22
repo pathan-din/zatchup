@@ -133,6 +133,8 @@ import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.c
 import { ContactComponent } from './setting/contact/contact.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
+import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
+
 
 const routes: Routes = [
   {
@@ -517,10 +519,12 @@ const routes: Routes = [
     path: 'school-reminder', component: SchooReminderComponent, canActivate: [AuthGuard]
   }, {
     path: 'add-more-document', component: AddMoreDocumentComponent, canActivate: [AuthGuard]
+  },{
+    path: 'request-for-course-list', component: RequestPendingForCourseComponent, canActivate: [AuthGuard]
   },
   
 
-
+  
 
   
   

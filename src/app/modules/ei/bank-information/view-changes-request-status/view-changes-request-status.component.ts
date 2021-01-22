@@ -16,11 +16,21 @@ export interface PeriodicElement {
   newDetails: string;
   viewAttachments: string;
   status: string;
-  remarks: string;
+   
   action: string;
 }
 
+export interface bankElement {
+  position: number;
+  name: string;
+  ifsc: string;
+  account: string;
+  document: string;
+  
+}
+
 const ELEMENT_DATA: PeriodicElement[] = [];
+const ELEMENTS_DATA: bankElement[] = [];
 
 @Component({
   selector: 'app-view-changes-request-status',
@@ -30,9 +40,12 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class ViewChangesRequestStatusComponent implements OnInit {
   requestStatusList:any;//,'action'
   displayedColumns: string[] = ['position', 'fieldChange', 'oldDetails', 'newDetails',
-  'viewAttachments','status', 'remarks'];   
+  'viewAttachments','status'];  
+  bankColumns: string[] = ['position', 'name', 'ifsc', 'account',
+  'document'];   
 startIndex:any;
   dataSource = ELEMENT_DATA;
+  dataSourceBank = ELEMENTS_DATA;
   pageSize:any=1;
   totalNumberOfPage:any=10;
   config: any;
@@ -59,7 +72,10 @@ startIndex:any;
   getPendingBankData(){
     try {
     this.baseService.getData("ei/ei-bank-detail-pending-list/").subscribe((res:any)=>{
-      console.log(res);
+      if(res.status==true)
+      {
+        this.dataSourceBank = res.results;
+      }
       
     })
     } catch (e) {

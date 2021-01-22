@@ -225,8 +225,50 @@ export class AddMoreDocumentComponent implements OnInit {
     } 
     let documentdata: any = {};
     documentdata.documentdata = this.modelDocumentDetails;
-    localStorage.setItem("documentdata",JSON.stringify(documentdata));
-    this.router.navigate(["ei/information-and-bank-details"]);
+    if( localStorage.getItem("is_ei_approved")){
+        this. submitDocument(documentdata)
+    }else{
+      localStorage.setItem("documentdata",JSON.stringify(documentdata));
+      this.router.navigate(["ei/information-and-bank-details"]);
+    }
+    
+  }
+  /**
+   * Function Name: submitDocumentFourStep
+   * 
+   */
+  submitDocument(documentdata) {
+    // this.error = [];
+    // this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, this.modelDocumentDetails);
+    // if (this.errorDisplay.valid) {
+    //   return false;
+    // }
+     try {
+      this.loader.show();
+      
+      //documentdata.documentdata = this.modelDocumentDetails;
+      
+      this.eiService.updateOnboardStepFourData(documentdata).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.loader.hide();
+            localStorage.removeItem("documentdata");
+
+            this.router.navigate(['ei/information-and-bank-details']);
+            
+          } else {
+            this.loader.hide();
+            var collection = this.eiService.getErrorResponse(this.loader, res.error);
+            this.alert.error(collection, 'Error')
+          }
+        }, (error) => {
+          this.loader.hide();
+          this.alert.error(error.erorr, 'Error')
+        });
+    } catch (err) {
+      this.loader.hide();
+      this.alert.error(err, 'Error')
+    }
   }
 
 }

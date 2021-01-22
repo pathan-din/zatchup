@@ -42,7 +42,7 @@
                     <img *ngIf="model.profile_pic" src="{{model.profile_pic}}" width="100" height="100" alt="profile pic">
                 </div> -->
 
-                <div class="row mt-3">
+                <div class="row mt-3" *ngIf="is_approve=='1'">
                     <div class="col-12">
                         <p class="mediumFont commonFontSize letterspacing">Current Class</p>
                     </div>
@@ -62,7 +62,7 @@
                         
 
                     </div>
-                    <div class="col-md-6 pl-4">
+                    <div class="col-md-6 pl-4" *ngIf="is_approve=='1'">
                         <!-- <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Promote To New Class</mat-checkbox> -->
                         <mat-checkbox [(ngModel)]="model.mark_as_alumni" name="mark_as_alumni" class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
                     </div>

@@ -44,10 +44,12 @@
                         <p>Gender</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.gender?studentData.gender:''}}</p>
+                        <p *ngIf="studentData.gender=='M'"><span class="mr-3">:</span>Male</p>
+                        <p *ngIf="studentData.gender=='F'"><span class="mr-3">:</span>Female</p>
+                        <!-- <p *ngIf="studentData.gender=='C'"><span class="mr-3">:</span>{{studentData.proun}}</p> -->
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.email">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Email ID</p>
                     </div>
@@ -55,7 +57,7 @@
                         <p><span class="mr-3">:</span> {{studentData.email}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.phone">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Phone Number</p>
                     </div>
@@ -63,7 +65,7 @@
                         <p><span class="mr-3">:</span>{{studentData.phone}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.father_name">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Father Name</p>
                     </div>
@@ -71,7 +73,7 @@
                         <p><span class="mr-3">:</span>{{studentData.father_name}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.mother_name">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Mother Name</p>
                     </div>

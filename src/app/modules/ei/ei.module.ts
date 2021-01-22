@@ -149,6 +149,7 @@ import { RequestChangeDetailsComponent } from './student/request-change-details/
 import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
 import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
 import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
+import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
 
 
 const config = {
@@ -315,7 +316,8 @@ const config = {
     SentForApprovalComponent,
     RequestChangeDetailsComponent,
     SchooReminderComponent,
-    AddMoreDocumentComponent
+    AddMoreDocumentComponent,
+    RequestPendingForCourseComponent,
   ],
   imports: [
     CommonModule,
