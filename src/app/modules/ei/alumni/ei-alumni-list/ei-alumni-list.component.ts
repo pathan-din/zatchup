@@ -62,7 +62,7 @@ export class EiAlumniListComponent implements OnInit {
   standardList:any=[];
   classList:any=[];
   displayedColumns: string[] = ['SNo', 'ZatchUpID','Name', 'Gender', 'Age',
-  'Profession','Tenure','Duration','LastClassTaken','VerificationStatusByEI',
+  'Profession','Duration','LastClassTaken','VerificationStatusByEI',
   'EKYCVerificationStatus','Action'];
 
   dataSource = ELEMENT_DATA;

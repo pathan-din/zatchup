@@ -35,7 +35,12 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.model = {};
     $("#OTPModel").modal("hide");
     this.getEducationalProfile()
-   
+    if(localStorage.getItem("addcourse")){
+      localStorage.removeItem("addcourse")
+    }
+    if(localStorage.getItem("editcourse")){
+      localStorage.removeItem("editcourse")
+    }
   }
 
   redirectWorkDetailesPage(id) {
@@ -237,6 +242,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
   /**Add MOre COurse Function */
   addMoreCourse(data: any, school_id: any){
+    localStorage.setItem("addcourse","yes");
     if (data.is_current_course == true) {
       this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "add_course":"true", "returnUrl": "user/my-educational-profile" } });
     } else {
@@ -244,7 +250,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
   }
 
-  editCourse(data: any, school_id: any) {  
+  editCourse(data: any, school_id: any) {
+    localStorage.setItem("editcourse","yes");  
     if (data.is_current_course == true) {
       this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
     } else {
