@@ -9,10 +9,10 @@
                     <div class="col-sm-12 ">
                         <label for=" " class=" commonFontSize mediumFont letterspacing ">Document Name</label>
 
-                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                        <div class="shadow-none">
                             <input id="document_name_{{i}}" required
                             [(ngModel)]="document.name" name="document_name_{{i}}"
-                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                class="form-control-input border form-control form-control-sm commonFontSize regularFont letterspacing "
                                 type="text " placeholder="Enter Document Name ">
                         </div>
                         <div class="required errorMsg"
@@ -25,12 +25,12 @@
                         <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload
                             Document</label>
 
-                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                        <div class="shadow-none">
                             <input #inputFile (change)="fileUploadDocument($event.target.files,document)" validFileExtention="png,jpeg,jpg" id="document_{{i}}" name="document_{{i}}" required 
-                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                class="form-control-input border form-control form-control-sm commonFontSize regularFont letterspacing "
                                 type="file">
                             <input [(ngModel)]="document.document"  id="document_hid_{{i}}" name="document_hid_{{i}}"  
-                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                class="form-control-input border form-control form-control-sm commonFontSize regularFont letterspacing "
                                 type="hidden">
                         </div>
                         <p class="pt-1">* only support pdf and image</p>
@@ -38,26 +38,26 @@
                             [innerHtml]="display_error(i,'document_')">
                         </div>
                     </div>
-                    <div  class="col-sm-1 centerImgDiv" *ngIf="modelDocumentDetails.length==i+1">
-                        <i (click)="addMoreDocument()"  class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i>
+                    <div class="col-sm-1 centerImgDiv text-right" *ngIf="modelDocumentDetails.length==i+1">
+                        <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true" style="font-size:18px"></i>
                         <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
                     </div>
-                    <div *ngIf="modelDocumentDetails.length!=(i+1)" class="col-sm-1 centerImgDiv">
-                         <i (click)="removeData(i+1,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i> 
+                    <div *ngIf="modelDocumentDetails.length!=(i+1)" class="col-sm-1 centerImgDiv text-right">
+                         <i (click)="removeData(i+1,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true" style="font-size:18px"></i> 
                     </div>
                 </div>
             </div>
-                <div class="form-group row " *ngIf="modelDocumentDetails.length>0">
-                    <div class="col-12 ">
-                        <div class="row form-control-inputDiv ml-0 mr-0 ">
+                <div class="form-group row" *ngIf="modelDocumentDetails.length>0">
+                    <div class="col-12">
+                        <div class="row ml-0 mr-0 ">
                         <div></div>
-                            <div *ngFor="let doc of modelDocumentDetails"  class="col-4 p-1 ID-img-div ">
-                                <img *ngIf="doc.document!='' &&  doc.extention==''" class="img-fluid w-100 h-100"
+                            <div *ngFor="let doc of modelDocumentDetails"  class="col-6 ID-img-div">
+                                <img *ngIf="doc.document!='' &&  doc.extention==''" class="img-fluid w-100 h-100 p-1 border rounded"
                                     src="{{serverImageUrl}}/{{doc.document}}">
-                                   <a *ngIf="doc.document!='' && doc.extention=='pdf'" href="{{serverImageUrl}}/{{doc.document}}"> <img  class="img-fluid w-100 h-100"
+                                   <a *ngIf="doc.document!='' && doc.extention=='pdf'" href="{{serverImageUrl}}/{{doc.document}}">
+                                     <img  class="img-fluid w-100 h-100 p-1 border rounded"
                                     src="assets/images/userWebsite/pdf.png"></a>    
-                            </div>
-                          
+                            </div>                          
                         </div>
                     </div>
 

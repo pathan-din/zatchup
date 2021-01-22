@@ -188,14 +188,14 @@
                         <p><span class="mr-3">: {{bankDetails?.bank_ifsc_code}}</span></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4" *ngIf="bankDetails?.cancel_cheque">
-                        <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
-                       
-                          <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
-                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
-                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" (click)="downloadImage(bankDetails?.cancel_cheque)"> <i class="fa fa-download" aria-hidden="true"></i></button>
-                          
+                <div class="row mt-3">
+                    <div class="col-md-12" *ngIf="bankDetails?.cancel_cheque">
+                        <h3 class="commonFontSize semiBoldFont mb-0">
+                            Upload copy cancelled cheque
+                            <button type="button" class="ml-5 mr-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button type="button" class="mr-3 px-2 py-1 btn-success color-white border-0 rounded" (click)="downloadImage(bankDetails?.cancel_cheque)"> <i class="fa fa-download" aria-hidden="true"></i></button>
+                        </h3>                       
+                          <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->                                                    
                           <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                               <div class="modal-content" >  
@@ -221,11 +221,14 @@
                                         <h3 class="commonFontSize semiBoldFont m-0 p-1">Document Name</h3>
                                     </th>
                                     <th>
-                                        <h3 class="commonFontSize semiBoldFont m-0 p-1">Uploaded Document
+                                        <h3 class="commonFontSize semiBoldFont m-0 p-1">Uploaded Document</h3>
+                                    </th>
+                                    <th> 
+                                        <h3 class="commonFontSize semiBoldFont m-0 p-1">Download Document
                                             <span style="float:right;">
-                                                <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle addDocument ml-2" aria-hidden="true"></i>
+                                                <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle addDocument mr-2" aria-hidden="true"></i>
                                             </span>
-                                        </h3>
+                                        </h3>                                        
                                     </th>
                                 </tr>
                             </thead>
@@ -234,7 +237,7 @@
                                     <td>
                                         <p class="m-0">{{documentData.name}}</p>
                                     </td>
-                                    <td >
+                                    <td>
                                         <div class="imgCircle cursorStyle">
                                             <img (click)="viewImage(documentData.document_image)"
                                                 *ngIf="documentData.document_image && fileType(documentData.document_image) != 'pdf'"
@@ -247,6 +250,11 @@
                                             <img *ngIf="!documentData.document_image" src="assets/images/no-image-icon.jpg" alt="ei profile"
                                                 class="img-fluid cerImg rounded">
                                         </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="px-2 py-1 btn-success color-white border-0 rounded">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -304,17 +312,17 @@
                 <form id="updateForm">
                 <div class="courseLecture-div bg-white border mt-0 px-3 py-3">
                     <h2 class="commonFontSize semiBoldFont m-0">Personal Information</h2>
-                    <div class="row bg-light-gray w-100 ml-1 mt-2">   
+                    <div class="row bg-light-gray w-100 ml-0 mt-2">   
                         <div class="col-md-12 mt-2">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> {{title}} </label>
-                                <div  *ngIf="model.key!='full_address'"  class="{{model.key}} form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input required  name="model.key" [(ngModel)]="model.value" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
+                                <div  *ngIf="model.key!='full_address'"  class="{{model.key}} rounded-0 p-0 w-100 shadow-none">
+                                    <input required  name="model.key" [(ngModel)]="model.value" class="border form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
                                 </div>
-                                <div  *ngIf="model.key=='full_address'" class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <textarea disabled name="full_address" [(ngModel)]="model.value" class="form-control-input form-control  commonFontSize regularFont letterspacing border-bottom"  placeholder="Enter New {{title}}" required></textarea>
-                                    <textarea required name="address_1" [(ngModel)]="address_1" (keyup)="changeValue(address_1,'full_address',model)" class="mt-2 border-bottom form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
-                                    <textarea required name="address_2" [(ngModel)]="address_2" (keyup)="changeValue(address_2,'full_address',model)" class="mt-2 form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
+                                <div  *ngIf="model.key=='full_address'" class="rounded-0 p-0 w-100 shadow-none">
+                                    <textarea disabled name="full_address" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
+                                    <textarea required name="address_1" [(ngModel)]="address_1" (keyup)="changeValue(address_1,'full_address',model)" class="mt-2 form-control-input border form-control commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
+                                    <textarea required name="address_2" [(ngModel)]="address_2" (keyup)="changeValue(address_2,'full_address',model)" class="mt-2 form-control-input border form-control commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay[model.key]"></div>
                             </div>
@@ -323,8 +331,8 @@
                         <div class="col-md-12" *ngIf="model.key!='phone' && model.key!='email'">
                             <div class="form-group row  ml-0 mr-0">
                             <label for="" class="mediumFont commonFontSize letterspacing"> Attach Proof </label>
-                            <div  class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                <input required name="document"   (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" required>
+                            <div  class="rounded-0 p-0 w-100 shadow-none">
+                                <input required name="document" (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control border commonFontSize regularFont letterspacing" type="file" required>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
                              
