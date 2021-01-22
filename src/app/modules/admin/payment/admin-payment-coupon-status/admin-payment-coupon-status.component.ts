@@ -23,6 +23,7 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.couponList.pageCounts = this.baseService.getCountsOfPage();
     this.couponList.activeParams = this.activeRoute.snapshot.params;
     if (this.couponList.activeParams.coupanType == 'active')
       this.couponList.title = 'Active'
@@ -36,8 +37,9 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
     this.loader.show()
     this.couponList.couponParams = {
       "coupon_status": this.couponList.activeParams.coupanType == 'active' ? 'true' : 'false',
-      "page_size": this.couponList.pageSize ? this.couponList.pageSize : 5,
-      "page": page ? page : 1
+      "coupon_type": this.couponList.couponType,
+      "page_size": this.couponList.pageSize,
+      "page": page
     }
 
     this.baseService.getData('admin/coupon/get_coupons_list/', this.couponList.couponParams).subscribe(
@@ -47,7 +49,8 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
           if (!page)
             page = this.couponList.config.currentPage
           this.couponList.startIndex = res.page_size * (page - 1) + 1;
-          this.couponList.config.itemsPerPage = res.page_size
+          this.couponList.config.itemsPerPage = res.page_size;
+          this.couponList.pageSize = res.page_size;
           this.couponList.config.currentPage = page
           this.couponList.config.totalItems = res.count
           this.couponList.dataSource = res.results;

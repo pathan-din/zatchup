@@ -9,6 +9,26 @@
                 <h2 class="commonFontSize semiBoldFont m-0"> {{couponList.title}} Coupons </h2>
             </div>
         </div>
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <form autocomplete="off" autocapitalize="off">
+                <div class="d-flex flex-wrap align-items-end">
+                    <div class="widthFull mr-4 mt-3">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Coupon Type</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <select class="custom-select  form-control-input" id="coupon_type" name="coupon_type"
+                                [(ngModel)]="couponList.couponType">
+                                <option value=""> Select Coupon Type</option>
+                                <option value="Onboarding Fees"> Onboarding Fees </option>
+                                <option value="Subscription Fees"> Subscription Fees </option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                        (click)="getCouponList('1')">Apply</button>
+                </div>
+
+            </form>
+        </div>
 
         <!--Start html for "select no of Onboarding Fees in database info per page" and Export Button-->
         <div class="row my-3" *ngIf="couponList.dataSource">
@@ -20,9 +40,9 @@
                     <select (change)="getCouponList('1')"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         [(ngModel)]="couponList.pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of couponList.pageCounts" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
