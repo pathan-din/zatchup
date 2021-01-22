@@ -132,6 +132,7 @@ import { RequestChangeDetailsComponent } from './student/request-change-details/
 import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
 import { ContactComponent } from './setting/contact/contact.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
 
 const routes: Routes = [
   {
@@ -514,6 +515,8 @@ const routes: Routes = [
     path: 'request-for-change-list', component: RequestChangeDetailsComponent, canActivate: [AuthGuard]
   }, {
     path: 'school-reminder', component: SchooReminderComponent, canActivate: [AuthGuard]
+  }, {
+    path: 'add-more-document', component: AddMoreDocumentComponent, canActivate: [AuthGuard]
   },
   
 

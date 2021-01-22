@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 })
 export class EiServiceService {
   public env: any = environment;
-  public globalYear: any = 1970;
+  public globalYear: any = 1900;
   public globalCurrentYear: any = 2020;
   public checkErrorFlagForAllConsole: boolean = this.env.debugMode;
   public razorApiKey: any = this.env.razorPaymentApiKey;

@@ -148,6 +148,7 @@ import { SharedModule } from 'src/app/common/shared.module';
 import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component';
 import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
 import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
+import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
 
 
 const config = {
@@ -313,7 +314,8 @@ const config = {
     EiSentForSignUpComponent,
     SentForApprovalComponent,
     RequestChangeDetailsComponent,
-    SchooReminderComponent
+    SchooReminderComponent,
+    AddMoreDocumentComponent
   ],
   imports: [
     CommonModule,
