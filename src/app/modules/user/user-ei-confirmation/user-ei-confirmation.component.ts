@@ -91,7 +91,12 @@ params:any;
     if (this.params.returnUrl)
     this.router.navigate([this.params.returnUrl])
     else
-    this.router.navigate(['user/add-personal-info']);
+    if(localStorage.getItem("addcourse")){
+      this.router.navigate(['user/my-educational-profile']);
+    }else{
+      this.router.navigate(['user/add-personal-info']);
+    }
+    
 
     
 

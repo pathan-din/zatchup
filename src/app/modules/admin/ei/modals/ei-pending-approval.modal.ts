@@ -122,7 +122,7 @@ export class SignUpEi {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'addingDate', 'name', 'phoneNumber', 'userID', 'class', 'rollNumber'];
+    displayedColumns: string[] = ['position', 'zatchup_id', 'phone', 'email','added_by','action'];
 
     dataSource: any;
     course: any = '';

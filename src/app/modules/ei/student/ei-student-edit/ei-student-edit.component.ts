@@ -19,6 +19,7 @@ export class EiStudentEditComponent implements OnInit {
   errorDisplay: any = {};
   uploaded: any = '';
   classList: any = [];
+  is_approve:any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService, public formBuilder: FormBuilder) { }
@@ -30,6 +31,7 @@ export class EiStudentEditComponent implements OnInit {
       this.modelEdit.studentId = params['stId'];
       this.modelEdit.roll_no = this.model.roll_no;
       this.modelEdit.admission_no = this.model.userID;
+      this.is_approve=params['approve']
       this.getStudent()
 
     });
