@@ -188,6 +188,14 @@
                         <p><span class="mr-3">: {{bankDetails?.bank_ifsc_code}}</span></p>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4" *ngIf="bankDetails?.cancel_cheque">
+                        <h3 class="commonFontSize semiBoldFont mb-0">Cancelled cheque</h3>
+                       
+                          <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
+                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
+                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" > <i class="fa fa-download" aria-hidden="true"></i></button>
+                          
                 <div class="row mt-3">
                     <div class="col-md-12" *ngIf="bankDetails?.cancel_cheque">
                         <h3 class="commonFontSize semiBoldFont mb-0">
@@ -328,8 +336,8 @@
                             </div>
                         </div>
             
-                        <div class="col-md-12" *ngIf="model.key!='phone' && model.key!='email'">
-                            <div class="form-group row  ml-0 mr-0">
+                        <div class="col-md-12" >
+                            <div class="form-group row  ml-0 mr-0" *ngIf="model.key!='phone' && model.key!='email'">
                             <label for="" class="mediumFont commonFontSize letterspacing"> Attach Proof </label>
                             <div  class="rounded-0 p-0 w-100 shadow-none">
                                 <input required name="document" (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control border commonFontSize regularFont letterspacing" type="file" required>

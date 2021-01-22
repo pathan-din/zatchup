@@ -104,6 +104,7 @@ export class InformationAndBankComponent implements OnInit {
 
         });
       }else{
+        this.loader.hide();
         this.alert.error("Please edit any information before click","Error");
       }
       
@@ -196,8 +197,12 @@ export class InformationAndBankComponent implements OnInit {
       this.model.old_value =value;
       this.model.value = value;
      }
+     if(this.model.key=='email' || this.model.key=='phone'){
      
-     this.model.image = '';
+    }else{
+      this.model.image = '';
+    }
+     
      this.title = label;
       
      
@@ -242,6 +247,7 @@ export class InformationAndBankComponent implements OnInit {
       }
     }
   }
+
   /**Edit Data for personal information */
   editDetails(){
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
@@ -266,7 +272,8 @@ export class InformationAndBankComponent implements OnInit {
             this.alert.success(response.message,'Success');
           }
         }else{
-          this.alert.error(response.error,'Success');
+          this.loader.hide();
+          this.alert.error(response.error.message,'Error');
         }
       },(error=>{
         this.loader.hide();
@@ -474,6 +481,8 @@ goToRequestStatusPage(){
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            localStorage.removeItem("documentdata");
+
             //this.router.navigate(['ei/information-and-bank-details']);
             
           } else {
@@ -490,7 +499,5 @@ goToRequestStatusPage(){
       this.alert.error(err, 'Error')
     }
   }
-  downloadImage(url){
-    this.baseService.getImage(url);
-  }
+  
 }
