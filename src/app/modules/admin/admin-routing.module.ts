@@ -127,7 +127,7 @@ import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-r
 import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-
+import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 
 const routes: Routes = [
   {
@@ -508,11 +508,9 @@ const routes: Routes = [
   {
     path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
   },
-
-
-
-
-
+  {
+    path: 'resolve-ticket', component: ResolveTicketsComponent, canActivate: [AuthGuard]
+  },
   {
     path: '**', component: AdminPageNotFoundComponent
   }

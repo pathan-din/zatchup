@@ -82,6 +82,16 @@
                         </select>
                     </div>
                 </div>
+                <div class="widthFull mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" name="status" [(ngModel)]="eIPendingApproval.send_back_to_edit">
+                            <option value=""> Select Status</option>
+                            <option value="0">Pending For Approval</option>
+                            <option value="1">Send Back To Edit</option>
+                        </select>
+                    </div>
+                </div>
                 <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getEIApprovalList('')">Apply</button> -->
                 <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="filterData('1')">Apply</button>
@@ -167,7 +177,7 @@
                         <mat-cell *matCellDef="let element">
                             <button type="button" aria-hidden="true "
                             data-toggle="modal" data-target="#approveEI" class="bg-light-blue text-white h-100 border-0 rounded"
-                            *ngIf="element.send_back_to_edit == 1"  >Send Back To Edit</button>
+                            *ngIf="element.send_back_to_edit == 1" (click)="sendBackDetails(element.ei_id)" >Send Back To Edit</button>
                             <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
                             *ngIf="element.send_back_to_edit == 0"  >Pending For Approval </button>
                              </mat-cell>
@@ -202,7 +212,7 @@
 
 
 <div class="modal fade" id="approveEI" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+    aria-hidden="true" >
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
             <div class="modal-header pb-0 pl-0 border-0">
@@ -215,14 +225,15 @@
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <h3 class="commonFontSize mediumFont mb-2">Reason</h3>
-                        <input type="text" name="reason" class="form-control border pl-2 py-1 rounded" placeholder="Reason" readonly/>
+                        <input *ngIf="eiData" type="text" name="reason" class="form-control border pl-2 py-1 rounded" value="{{eiData.reason_for_send_back}}" placeholder="Reason" readonly
+                        />
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <h3 class="commonFontSize mediumFont mb-2">Description</h3>
-                        <input type="text" name="description" class="form-control border pl-2 py-1 rounded" placeholder="Description" readonly/>
+                        <input *ngIf="eiData" type="text" name="description" class="form-control border pl-2 py-1 rounded" value="{{eiData.description}}" placeholder="Description" readonly/>
                     </div>
                 </div>
             </div>

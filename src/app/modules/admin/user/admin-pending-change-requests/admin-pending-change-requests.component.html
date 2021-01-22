@@ -94,10 +94,10 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Field of Change</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <select class="custom-select  form-control-input"
-                            [(ngModel)]="pendingChangeRequests.changeField" id="changeField" name="changeField">
+                            [(ngModel)]="pendingChangeRequests.field_change_type" id="changeField" name="changeField">
                             <option value=""> Select Change Field </option>
-                            <option value="name_of_school">Name </option>
-                            <option value="email">Date of Birth</option>
+                            <option value="name">Name </option>
+                            <option value="dob">Date of Birth</option>
                         </select>
                     </div>
                 </div>
@@ -152,16 +152,21 @@
                             {{element.kyc_id_no}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="name">
+                    <!-- <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.name_of_user}} </mat-cell>
+                    </ng-container> -->
+
+                     <ng-container matColumnDef="kyc_type">
+                        <mat-header-cell *matHeaderCellDef> Kyc Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.kyc_type}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="dateAndTime">
+                    <!-- <ng-container matColumnDef="dateAndTime">
                         <mat-header-cell *matHeaderCellDef> Date & Time </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.created_on | date: 'dd MMM, yyyy'}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="fieldOfChange">
                         <mat-header-cell *matHeaderCellDef> Field of Change </mat-header-cell>
@@ -171,7 +176,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="oldData">
-                        <mat-header-cell *matHeaderCellDef> Old Data </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Existing Data </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.old_value}}
                         </mat-cell>

@@ -62,6 +62,7 @@ export class AdminKycCompleteComponent implements OnInit {
       this.status = params['status'];
     });
     this.getCompleteKycList('');
+    this.completeKycList.pageCount = this.baseService.getCountsOfPage();
   }
 
   kycHistoryViewRoute(user) {
@@ -74,27 +75,27 @@ export class AdminKycCompleteComponent implements OnInit {
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       'kyc_type': this.kycType !== undefined ? this.kycType : '',
       'user_type': this.userType !== undefined ? this.userType : '',
-      'status': this.status !== undefined ? this.status : '',
+      'status': this.completeKycList.status !== undefined ? this.completeKycList.status : '',
       'request_type': this.requestType !== undefined ? this.requestType : '',
       'request_reason': this.requestReason !== undefined ? this.requestReason : '',
-      'page_size': this.completeKycList.pageSize,
+      'page_size': this.completeKycList.page_size,
       'page': page
     }
     this.baseService.getData('admin/kyc/get_kyc_complete_summary/', this.completeKycList.params).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.completeKycList.config.currentPage
+          page = this.completeKycList.config.currentPage
           this.completeKycList.startIndex = res.page_size * (page - 1) + 1;
-          this.completeKycList.config.itemsPerPage = res.page_size
+          this.completeKycList.page_size = res.page_size
+          this.completeKycList.config.itemsPerPage = this.completeKycList.page_size
           this.completeKycList.config.currentPage = page
           this.completeKycList.config.totalItems = res.count;
-          if (res.count > 0){
-            this.completeKycList.dataSource = res.results;
-            this.completeKycList.pageCount = this.baseService.getCountsOfPage();
+          if(res.count > 0){
+            this.completeKycList.dataSource = res.results
           }
           else
-            this.completeKycList.dataSource = undefined
+          this.completeKycList.dataSource = undefined 
         }
         else
           this.alert.error(res.error.message[0], 'Error')

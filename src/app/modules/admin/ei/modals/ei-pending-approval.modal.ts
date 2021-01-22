@@ -22,6 +22,8 @@ export class EIPendingApproval {
     search: any;
     pageCount: any
   added_by_admin: any;
+  send_back_to_edit: any = '';
+  ei_id: any= '';
 }
 
 export class OnBoardList {

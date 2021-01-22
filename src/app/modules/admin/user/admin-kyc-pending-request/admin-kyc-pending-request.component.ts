@@ -32,7 +32,8 @@ export class AdminKycPendingRequestComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.setFilter(Object.keys(params)[0], Object.values(params)[0]);
     });
-    this.getKycPendingRequest('')
+    this.getKycPendingRequest('');
+    this.kycPendingRequest.pageCount = this.baseService.getCountsOfPage();
   }
 
   kycHistoryViewRoute(user) {
@@ -47,20 +48,25 @@ export class AdminKycPendingRequestComponent implements OnInit {
       'user_type': this.kycPendingRequest.userType !== undefined ? this.kycPendingRequest.userType : '',
       'request_type': this.kycPendingRequest.requestType !== undefined ? this.kycPendingRequest.requestType : '',
       'request_reason': this.kycPendingRequest.requestReason !== undefined ? this.kycPendingRequest.requestReason : '',
-      'page_size': this.kycPendingRequest.pageSize,
+      'page_size': this.kycPendingRequest.page_size,
       'page': page
     }
     this.baseService.getData('admin/kyc/get_kyc_pending_summary/', this.kycPendingRequest.params).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.kycPendingRequest.config.currentPage
+          page = this.kycPendingRequest.config.currentPage
           this.kycPendingRequest.startIndex = res.page_size * (page - 1) + 1;
-          this.kycPendingRequest.config.itemsPerPage = res.page_size
+          this.kycPendingRequest.page_size = res.page_size
+          this.kycPendingRequest.config.itemsPerPage = this.kycPendingRequest.page_size
           this.kycPendingRequest.config.currentPage = page
           this.kycPendingRequest.config.totalItems = res.count;
-          this.kycPendingRequest.dataSource = res.results
-          this.kycPendingRequest.pageCount = this.baseService.getCountsOfPage();
+          if(res.count > 0){
+            this.kycPendingRequest.dataSource = res.results
+          }
+          else
+          this.kycPendingRequest.dataSource = undefined 
+         
         }
         else
           this.alert.error(res.error.message[0], 'Error')
