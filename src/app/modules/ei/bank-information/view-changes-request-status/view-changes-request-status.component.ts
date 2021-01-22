@@ -53,6 +53,18 @@ startIndex:any;
       totalItems: 0
     };
   this.getViewChangesRequestStatus('');
+  this. getPendingBankData();
+  }
+
+  getPendingBankData(){
+    try {
+    this.baseService.getData("ei/ei-bank-detail-pending-list/").subscribe((res:any)=>{
+      console.log(res);
+      
+    })
+    } catch (e) {
+    
+    }
   }
   getViewChangesRequestStatus(page){
     

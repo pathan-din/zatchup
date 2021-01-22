@@ -78,6 +78,8 @@ export class AddMoreDocumentComponent implements OnInit {
     document.name = '';
     document.document = '';
     this.modelDocumentDetails.push(document);
+    localStorage.removeItem("documentdata");
+    
    
      
      
@@ -224,6 +226,7 @@ export class AddMoreDocumentComponent implements OnInit {
     let documentdata: any = {};
     documentdata.documentdata = this.modelDocumentDetails;
     localStorage.setItem("documentdata",JSON.stringify(documentdata));
+    this.router.navigate(["ei/information-and-bank-details"]);
   }
 
 }

@@ -3,8 +3,6 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from '../../../environments/environment';
 import * as fileSaver from 'file-saver';
 import { DatePipe } from '@angular/common';
-import { map } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'
@@ -52,15 +50,6 @@ export class BaseService {
       params = new HttpParams()
     }
     return this.http.get(this.environment.baseUrl + url, { params, responseType: 'blob' })
-  }
-  downloadImage(url: any, args?: any): any {
-    let params: any
-    if (args) {
-      params = this.setParams(args)
-    } else {
-      params = new HttpParams()
-    }
-    return this.http.get( url, { params, responseType: 'blob' })
   }
 
   generateExcel(url: any, fileName: any, args?: any) {
@@ -156,21 +145,6 @@ export class BaseService {
   isLoggedIn() {
     return !!localStorage.getItem("token");
   }
- 
-  getImage(imageUrl: string) {
-
-    this.downloadImage(imageUrl).subscribe(res=>{
-      let blob: any = new Blob([res], { type: 'application/octet-stream' });
-      const url = window.URL.createObjectURL(blob);
-      fileSaver.saveAs(blob, 'abc.png');
-    }), error => console.log('Error downloading the file'),
-    () => console.info('File downloaded successfully');
-     
-    // return this.http.get(imageUrl, {observe: 'response', responseType: 'blob'}).pipe(
-    //   map((res) => {
-    //     return new Blob([res.body], {type: res.headers.get('Content-Type')});
-    //   })
-    // )
-  }
+  
 
 }

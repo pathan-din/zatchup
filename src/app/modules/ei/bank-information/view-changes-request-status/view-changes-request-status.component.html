@@ -9,7 +9,7 @@
         </div>
         
         <div class="tableDiv mt-3">
-            <div class="mat-elevation-z1 table-responsive">
+            <div *ngIf="dataSource" class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource  | paginate: config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
@@ -54,12 +54,7 @@
                         </mat-cell>
                     </ng-container>
 
-                    <!-- <ng-container matColumnDef="action">
-                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"></i>
-                        </mat-cell>
-                    </ng-container> -->
+                   
 
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
