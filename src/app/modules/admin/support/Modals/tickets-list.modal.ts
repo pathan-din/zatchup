@@ -26,5 +26,5 @@ export class TicketsList {
 
 }
 export class ResolveTicket extends TicketsList {
-    displayedColumns: any = ['position', 'zatchUpID', 'ticketName', 'resolveDate', 'resolveComment',];
+    displayedColumns: any = ['position', 'zatchUpID', 'ticketName', 'ticket_raised_date', 'resolveDate', 'resolveBy', 'resolveComment',];
 }
