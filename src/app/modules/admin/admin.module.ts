@@ -148,6 +148,7 @@ import { ContectAndStaticContentManagementComponent } from './contact-and-static
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
+import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -311,7 +312,8 @@ const config = {
     ContectAndStaticContentManagementComponent,
     EditPocDetailsComponent,
     ChangePasswordComponent,
-    ResolveTicketsComponent
+    ResolveTicketsComponent,
+    TermsConditionsComponent
   ],
   imports: [
     CommonModule,
