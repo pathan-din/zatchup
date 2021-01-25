@@ -64,7 +64,7 @@ export class AdminPaymentCouponComponent implements OnInit {
       return false;
     }
 
-    if (!this.discountValue && !this.maxDisValidation) {
+    if (!this.discountValue) {
       this.spinnerService.show()
       let data = this.couponModal
       this.couponModal.coupon_type = this.couponModal.purpose
@@ -73,8 +73,7 @@ export class AdminPaymentCouponComponent implements OnInit {
         (res: any) => {
           this.spinnerService.hide()
           if (res.status == true) {
-            // this.discountValue = false
-            // this.maxDisValidation = false
+            this.alert.success(res.message, 'Success')
             this.getCouponCount();
             this.closeModel();
           } else {
@@ -129,28 +128,25 @@ export class AdminPaymentCouponComponent implements OnInit {
     if (this.couponModal.discount_amount > 100 && this.couponModal.discount_type == 'percentage') {
       // console.log('greater than 100')
       this.discountValue = true;
-    }else if(this.couponModal.discount_type == 'flat'){
+    } else if (this.couponModal.discount_type == 'flat') {
       this.couponModal.maximum_discount_amount = 0
     }
 
     this.isValid()
   }
 
-  checkMinimunDiscountVal() {
-    // console.log('coupon purpose iis as ::', this.couponModal.purpose)
-    // console.log('discount_amount iis as ::', this.couponModal.discount_amount)
-    // console.log('maximum_discount_amount iis as ::', this.couponModal.maximum_discount_amount)
-    if (this.couponModal.purpose == 'Subscription Fees' && this.couponModal.discount_amount < this.couponModal.maximum_discount_amount) {
-      this.maxDisValidation = true
-    }
-    else
-      this.maxDisValidation = false
+  // checkMinimunDiscountVal() {
+  //   if (this.couponModal.purpose == 'Subscription Fees' && this.couponModal.discount_amount < this.couponModal.maximum_discount_amount) {
+  //     this.maxDisValidation = true
+  //   }
+  //   else
+  //     this.maxDisValidation = false
 
-    this.isValid()
-  }
+  //   this.isValid()
+  // }
 
-  changeCouponPurpose() {
-    this.checkMinimunDiscountVal()
-  }
+  // changeCouponPurpose() {
+  //   this.checkMinimunDiscountVal()
+  // }
 
 }
