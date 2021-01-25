@@ -70,8 +70,7 @@ export class notOnZatchup {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'schoolName', 'state', 'city', 'board', 'address', 'zatchUpID', 'addedBy',
-        'messages', 'action'];
+    displayedColumns: string[] = ['position', 'schoolName', 'state', 'city', 'board'];
     maxDate: any;
 
     dataSource: any;

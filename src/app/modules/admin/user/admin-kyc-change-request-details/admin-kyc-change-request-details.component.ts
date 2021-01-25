@@ -5,7 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { KycChangeRequestDetails } from '../modals/kyc.modal';
+import { KycChangeRequestDetails, Pagination } from '../modals/kyc.modal';
 
 @Component({
   selector: 'app-admin-kyc-change-request-details',
@@ -16,7 +16,8 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
   @ViewChild('approveCloseButton') approveCloseButton: any
   images: any = [];
   imageIndexOne = 0;
-  kycChangeRequestDetails: KycChangeRequestDetails
+  kycChangeRequestDetails: KycChangeRequestDetails;
+  pagination: Pagination
 
   constructor(
     private router: Router,
@@ -27,7 +28,8 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
     private validationService: GenericFormValidationService,
     private location: Location
   ) {
-    this.kycChangeRequestDetails = new KycChangeRequestDetails()
+    this.kycChangeRequestDetails = new KycChangeRequestDetails();
+    this.pagination = new Pagination();
   }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
       (res: any) => {
         if (res.status == true) {
           this.kycChangeRequestDetails.kycDetails = res.results[0];
-          // this.getKycHistory();
+          this.getEIHistory();
         }
         else {
           this.notificationService.error(res.error.message, 'Error');
@@ -95,6 +97,32 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
       this.loader.hide()
     }
 
+  }
+
+  getEIHistory() {
+    this.loader.show();
+
+    let listParams = {
+      "eid": this.kycChangeRequestDetails.kycDetails.user_id,
+      "module_name": "KYCCHANGEDETAIL"
+    }
+    this.baseService.getData('admin/common_history/', listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (res.count > 0) {
+            this.pagination.dataSource = res.results;
+          }
+          else
+            this.pagination.dataSource = undefined
+        }
+        else
+          this.notificationService.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    ), (err: any) => {
+      this.notificationService.error(err, 'Error')
+      this.loader.hide();
+    }
   }
 
   goBack() {
