@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0 "> Ticket From Onboarding </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> Unresolved Tickets </h2>
             </div>
             <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
                 <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0"
@@ -30,10 +30,16 @@
                             <div class="row">
                                 <div class="col-md-12 mt-2">
                                     <div class="form-group row  ml-0 mr-0">
+<<<<<<< HEAD
                                         <div class="p-0 w-100 hadow-none">
                                             <textarea value="{{ticketsList.messageFromSchool}}" name="resolve"
                                                 class="form-control-input form-control border commonFontSize regularFont letterspacing"
                                                 [(ngModel)]="this.resolve_comment" placeholder="Write Comment.."></textarea>
+=======
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <textarea name="resolve" [(ngModel)]="resolve_comment"
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"></textarea>
+>>>>>>> 0230e2b91437ff5cbab5b7528e1aa4941b27da51
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +76,7 @@
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
-                    <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <!-- <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <select class="custom-select form-control-input" id="pastEI"
@@ -91,7 +97,7 @@
                                 </option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="widthFull mr-4 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> School Status</label>
@@ -113,7 +119,8 @@
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records
+                    Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getTicketsList('1')" [(ngModel)]="ticketsList.pageSize"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
@@ -135,7 +142,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ticket_raising_date">
-                        <mat-header-cell *matHeaderCellDef> Date of Ticket Raizing </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Ticket Raising Date </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.created_on | date:'dd MMM, yyyy'}} </mat-cell>
                     </ng-container>
 
@@ -145,11 +152,11 @@
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef>ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="eiName">
+                    <!-- <ng-container matColumnDef="eiName">
                         <mat-header-cell *matHeaderCellDef> School Name </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.name_of_school}}
@@ -192,7 +199,7 @@
                     <ng-container matColumnDef="phoneNumber">
                         <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.phone}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="message">
                         <mat-header-cell *matHeaderCellDef> Message From School </mat-header-cell>

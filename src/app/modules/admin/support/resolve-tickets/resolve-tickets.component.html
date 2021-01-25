@@ -45,17 +45,17 @@
                     </ng-container>
                     <ng-container matColumnDef="ticket_raised_date">
                         <mat-header-cell *matHeaderCellDef>Ticket Raised Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.resolve_date}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.created_on | date: 'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveDate">
                         <mat-header-cell *matHeaderCellDef>Ticket Reslove Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.resolve_date}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.resolve_date | date: 'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveBy">
                         <mat-header-cell *matHeaderCellDef>Reslove By </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.resolve_date}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.resolve_by}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveComment">
