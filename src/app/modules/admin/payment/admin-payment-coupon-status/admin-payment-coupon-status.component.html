@@ -95,9 +95,16 @@
                     </ng-container>
 
                     <ng-container matColumnDef="discount">
-                        <mat-header-cell *matHeaderCellDef> Discount % </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.discount_amount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="discount_type">
+                        <mat-header-cell *matHeaderCellDef> Discount Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.discount_type == 'flat' ? 'Flat' : 'Percent'}}
                         </mat-cell>
                     </ng-container>
 

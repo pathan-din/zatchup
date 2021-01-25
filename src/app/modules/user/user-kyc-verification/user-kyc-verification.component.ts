@@ -90,7 +90,7 @@ export class UserKycVerificationComponent implements OnInit {
     this.pattran='';
     if(this.model.kyc_type=='Aadhar'){
       this.maxLength = 12;
-      this.placeholder='xxxx xxxx xxxx'
+      this.placeholder='Enter id'
       //this.model.kyc_id_no
       //this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
       this.pattran = "";

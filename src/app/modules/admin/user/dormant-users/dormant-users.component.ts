@@ -61,8 +61,9 @@ export class DormantUsersComponent implements OnInit {
       "current_ei": this.dormantUsers.currentEi,
       "previous_ei": this.dormantUsers.previousEi,
       "age_group": this.dormantUsers.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "kyc_aprroved": this.dormantUsers.kycApproved !== undefined ? this.dormantUsers.kycApproved: '',
+      "school_verified": this.dormantUsers.schoolStatus !== undefined ? this.dormantUsers.schoolStatus : '',
+      "zatchupId": this.dormantUsers.zatchupId,
     }
 
     this.baseService.getData('admin/user/dormant_users_list/', this.dormantUsers.listParams).subscribe(
