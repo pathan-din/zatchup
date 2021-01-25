@@ -345,20 +345,21 @@ body {
     display: table-cell;
     padding: 5px 10px;
     line-break: unset;
-    width: auto;
-    word-wrap: break-word;
     vertical-align: middle;
-    max-width: 180px;
-    min-width: 95px;
+    word-break: break-word;
+    /* white-space: nowrap; */
+    min-width: 125px;
+    max-width: 225px;
+}
+
+.mat-cell-noOfEducationPro{
+    max-width: 50px;
 }
 
 .mat-header-row {
     background: #dcdcdc;
 }
-.mat-cell-position, .mat-header-cell-position{
-    max-width: 180px;
-    min-width: 120px;
-}
+
 
 
 .mat-row:nth-child(even) {
