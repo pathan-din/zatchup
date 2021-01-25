@@ -61,8 +61,9 @@ export class ActiveUsersComponent implements OnInit {
       "current_ei": this.activeUsers.currentEi,
       "previous_ei": this.activeUsers.previousEi,
       "age_group": this.activeUsers.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "kyc_aprroved": this.activeUsers.kycApproved !== undefined ? this.activeUsers.kycApproved: '',
+      "school_verified": this.activeUsers.schoolStatus !== undefined ? this.activeUsers.schoolStatus : '',
+      "zatchupId": this.activeUsers.zatchupId,
     }
 
     this.baseService.getData('admin/user/active_users_list/', this.activeUsers.listParams).subscribe(

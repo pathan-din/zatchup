@@ -20,18 +20,20 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Student Profile</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">User Profile</h2>
             </div>
 
         </div>
         <div class=" mt-3 border-0 mx-0">
             <!-- start Div for banner-->
-            <div *ngIf="userData" class="Onboard-viewbanner-div p-2 d-flex align-items-end"
+            <div *ngIf="userData" class="Onboard-viewbanner-div p-2 d-flex align-items-end position-relative"
                 [ngStyle]="userData.cover_pic ? {'background-image': 'url(' + userData.cover_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
-                <div class="dpImgDiv rounded-circle bg-light-green border border-white ">
+                <div class="dpImgCircle rounded-circle bg-light-green border border-white">
                     <img *ngIf="!userData.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg cursorStyle">
                     <img *ngIf="userData.profile_pic" src="{{userData.profile_pic}}" class="img-fluid dpImg cursorStyle">
+                    
                 </div>
+                <img *ngIf="userData.kyc_aprroved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid verifiedTick">
             </div>
             <!--Start div for    Information-->
             <div class="row mt-3" *ngIf="userData">
@@ -46,20 +48,20 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>School ZatchUp ID</p>
+                            <p>User ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{userData.zatchupId}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Bio</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span> {{userData.bio}}</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-12 commonFontSize mediumFont">
                             <p>Personal Details</p>
@@ -67,14 +69,13 @@
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Date
-                                        of Birth Of The User</p>
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> DOB</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{userData.dob}}</p>
                                 </div>
                             </div>
-                            <div class="row mx-0">
+                            <div class="row mx-0" *ngIf="userData.email">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Email
                                         Id</p>
@@ -83,7 +84,7 @@
                                     <p><span class="mr-3">: </span> {{userData.email}}</p>
                                 </div>
                             </div>
-                            <div class="row mx-0">
+                            <div class="row mx-0" *ngIf="userData.phone">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Phone
                                         Number</p>
@@ -101,7 +102,7 @@
                                     <p><span class="mr-3">: </span> {{userData.role}}</p>
                                 </div>
                             </div>
-                            <div class="row mx-0">
+                            <!-- <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
                                         Current City</p>
@@ -109,7 +110,7 @@
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{userData.city}}</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>
