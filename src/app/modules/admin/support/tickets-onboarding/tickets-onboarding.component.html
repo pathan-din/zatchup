@@ -9,7 +9,8 @@
                 <h2 class="commonFontSize semiBoldFont m-0 "> Ticket From Onboarding </h2>
             </div>
             <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
-                <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0" (click)="resolveTicket()">Resolved Tickets</button>
+                <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0"
+                    (click)="resolveTicket()">Resolved Tickets</button>
             </div>
         </div>
         <div class="modal fade" id="resolveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -18,28 +19,31 @@
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1"> Comment</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                            data-dismiss="modal" aria-label="Close ">
+                        <button #closeModel type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
                             <span aria-hidden="true "> &times; </span>
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <div class="row">
-                            <div class="col-md-12 mt-2">
-                                <div class="form-group row  ml-0 mr-0">
-                                    <!-- <label for="" class="mediumFont commonFontSize letterspacing"> Comment </label> -->
-                                    <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                        <textarea value="{{ticketsList.messageFromSchool}}"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing" 
-                                    [(ngModel)]="this.resolve_comment"></textarea>
+                        <form #resolveForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <textarea value="{{ticketsList.messageFromSchool}}" name="resolve"
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                [(ngModel)]="this.resolve_comment"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="button "
-                            class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
-                            (click)="resolveComment()">
-                            Resolve </button>
+                            <button type="button "
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                                (click)="resolveComment(resolveForm);">
+                                Resolve </button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -203,8 +207,9 @@
                     <ng-container matColumnDef="resolve">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Resolve </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center text-center">
-                            <i *ngIf="element.ticket_status == false" class="fa fa-check mr-2 color-green cursorStyle" (click)="setResolveData(element)" title="view" aria-hidden="true "
-                                data-toggle="modal" data-target="#resolveModal"></i>
+                            <i *ngIf="element.ticket_status == false" class="fa fa-check mr-2 color-green cursorStyle"
+                                (click)="setResolveData(element)" title="view" aria-hidden="true " data-toggle="modal"
+                                data-target="#resolveModal"></i>
                         </mat-cell>
                     </ng-container>
 
@@ -241,7 +246,8 @@
                             <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
                             <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                                 <textarea value="{{ticketsList.messageFromSchool}}"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing" readonly></textarea>
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    readonly></textarea>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -13,7 +14,7 @@ import { TicketsList } from '../Modals/tickets-list.modal';
   styleUrls: ['./tickets-onboarding.component.css']
 })
 export class TicketsOnboardingComponent implements OnInit {
-  @ViewChild('resolveClose') resolveClose: any;
+  @ViewChild('closeModel') closeModel: any;
   ticketsList: TicketsList
   errorDisplay: any = {};
   // userId: any;
@@ -30,7 +31,7 @@ export class TicketsOnboardingComponent implements OnInit {
     private validationService: GenericFormValidationService,
     private router: Router,
     private route: ActivatedRoute
-  ) { 
+  ) {
     this.ticketsList = new TicketsList();
     this.ticketsList.maxDate = new Date();
   }
@@ -42,8 +43,8 @@ export class TicketsOnboardingComponent implements OnInit {
 
   }
 
-  resolveTicket(){
-    this.router.navigate(['admin/resolve-ticket'], {queryParams: {ticket_status :'true'}})
+  resolveTicket() {
+    this.router.navigate(['admin/resolve-ticket'], { queryParams: { ticket_status: 'true' } })
   }
   getTicketsList(page?: any) {
     this.loader.show();
@@ -66,8 +67,10 @@ export class TicketsOnboardingComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "status": this.ticketsList.status,
       "page_size": this.ticketsList.pageSize,
+      "ticket_status": 'false',
       "page": page
     }
+    // debugger
     this.baseService.getData('admin/contact_query_admin_list/', this.ticketsList.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
@@ -120,7 +123,7 @@ export class TicketsOnboardingComponent implements OnInit {
     )
   }
 
-  resolveComment() {
+  resolveComment(form: NgForm) {
     this.errorDisplay = {};
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
@@ -128,11 +131,6 @@ export class TicketsOnboardingComponent implements OnInit {
     }
 
     this.loader.show()
-    // this.ticketsList.listParams = {
-    //   'id': this.id,
-    //   'ticket_status': this.ticket_status,
-    //   'resolve_comment': this.resolve_comment,
-    // }
     let data = {
       'id': this.id,
       'ticket_status': true,
@@ -141,9 +139,10 @@ export class TicketsOnboardingComponent implements OnInit {
     this.baseService.action('admin/update_ticket_status/', data).subscribe(
       (res: any) => {
         if (res.status == true) {
-         
           this.alert.success(res.message, 'Success')
-          this.router.navigate(['admin/tickets-onboarding-list'])
+          this.closeResolveComment();
+          form.reset();
+          this.getTicketsList(this.ticketsList.config.currentPage);
         }
         else {
           this.alert.error(res.error.message[0], 'Error')
@@ -157,7 +156,7 @@ export class TicketsOnboardingComponent implements OnInit {
   }
 
   closeResolveComment() {
-    this.resolveClose.nativeElement.click()
+    this.closeModel.nativeElement.click()
   }
 
   isValid() {
@@ -172,11 +171,11 @@ export class TicketsOnboardingComponent implements OnInit {
     this.location.back();
     console.log(location)
   }
-  viewMessage(data: any){
+  viewMessage(data: any) {
     this.ticketsList.messageFromSchool = data.message
   }
 
-  setResolveData(data: any){
+  setResolveData(data: any) {
     this.id = data.id
   }
 

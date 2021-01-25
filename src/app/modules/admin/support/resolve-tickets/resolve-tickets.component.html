@@ -8,105 +8,7 @@
                 </span>
                 <h2 class="commonFontSize semiBoldFont m-0 "> Resolve Tickets </h2>
             </div>
-            <!-- <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
-                <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0" (click)="resolveTicket()">Resolved Tickets</button>
-            </div> -->
         </div>
-        <!-- <div class="modal fade" id="resolveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog " role="document">
-                <div class="modal-content unverified container-fluid">
-                    <div class="modal-header align-items-center justify-content-center pb-0">
-                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1"> Comment</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                            data-dismiss="modal" aria-label="Close ">
-                            <span aria-hidden="true "> &times; </span>
-                        </button>
-                    </div>
-                    <div class="modal-body px-0">
-                        <div class="row">
-                            <div class="col-md-12 mt-2">
-                                <div class="form-group row  ml-0 mr-0">
-                                    <label for="" class="mediumFont commonFontSize letterspacing"> Comment </label> 
-                                    <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                        <textarea value="{{resolveTicket.resolve_comment}}"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing" 
-                                    [(ngModel)]="this.resolve_comment"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button "
-                            class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
-                            (click)="resolveComment()">
-                            Resolve </button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="filterDiv">
-            <form autocapitalize="off" autocomplete="off">
-                <div class="d-flex flex-wrap align-items-end">
-                    <div class="widthFull mr-4 mt-3 ">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised From</label>
-                        <div class="rounded-0 p-0 shadow-none">
-                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                                id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
-                                [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterFromDate"
-                                #fromDate="ngModel"
-                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
-                        </div>
-                    </div>
-                    <div class="widthFull mr-4 mt-3">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised To</label>
-                        <div class="rounded-0 p-0 shadow-none">
-                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                                type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                                [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterToDate"
-                                #fromDate="ngModel"
-                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
-                        </div>
-                    </div>
-                    <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
-                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="pastEI"
-                                [(ngModel)]="ticketsList.stateId" (change)="getCities()" name="state">
-                                <option value=""> Select State</option>
-                                <option *ngFor="let state of ticketsList.allStates" [value]="state.id">{{state.state}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="widthFull mr-4 mt-3">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
-                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="pastEI"
-                                [(ngModel)]="ticketsList.cityId" name="city">
-                                <option value=""> Select City</option>
-                                <option *ngFor="let city of ticketsList.allCities" [value]="city.id">{{city.city}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="widthFull mr-4 mt-3">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> School Status</label>
-                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="status"
-                                [(ngModel)]="ticketsList.status" name="status">
-                                <option value=""> Select School Status</option>
-                                <option value="1"> Onboarded </option>
-                                <option value="0"> Pending for Approval</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                        (click)="getTicketsList()">Apply</button>
-                </div>
-            </form>
-
-        </div> -->
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
@@ -133,7 +35,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
                     </ng-container>
 
@@ -141,9 +43,18 @@
                         <mat-header-cell *matHeaderCellDef> Ticket Id </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.ticket_id}} </mat-cell>
                     </ng-container>
+                    <ng-container matColumnDef="ticket_raised_date">
+                        <mat-header-cell *matHeaderCellDef>Ticket Raised Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.resolve_date}} </mat-cell>
+                    </ng-container>
 
                     <ng-container matColumnDef="resolveDate">
-                        <mat-header-cell *matHeaderCellDef>Reslove Date </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Ticket Reslove Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.resolve_date}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="resolveBy">
+                        <mat-header-cell *matHeaderCellDef>Reslove By </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.resolve_date}} </mat-cell>
                     </ng-container>
 

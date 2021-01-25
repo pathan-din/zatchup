@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
-import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Pagination } from '../modals/education-institute.modal';
 
@@ -13,11 +12,11 @@ import { Pagination } from '../modals/education-institute.modal';
   styleUrls: ['./institute-history.component.css']
 })
 export class InstituteHistoryComponent implements OnInit {
-  // errorDisplay: any = {}
+  recordCount: any
   eiId: any;
-  // comment: any;
-  isDeleted: any = '';
   pagination: Pagination
+  displayedColumns: string[] = ['position', 'date_time', 'school_zatchup_id',
+    'message', 'emp_name'];
 
   constructor(
     private location: Location,
@@ -25,8 +24,7 @@ export class InstituteHistoryComponent implements OnInit {
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private validationService: GenericFormValidationService
-  ) { 
+  ) {
     this.pagination = new Pagination()
   }
 
@@ -35,48 +33,12 @@ export class InstituteHistoryComponent implements OnInit {
     this.getEIHistory()
   }
 
-  // addComment() {
-  //   this.errorDisplay = {};
-  //   this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-  //   if (this.errorDisplay.valid) {
-  //     return false;
-  //   }
-
-  //   this.loader.show()
-  //   let data = {
-  //     'user_id': this.eiId,
-  //     'comments': this.comment,
-  //   }
-  //   this.baseService.action('admin/onboarding-comments/', data).subscribe(
-  //     (res: any) => {
-  //       if (res.status == true) {
-  //         this.alert.success(res.message, 'Success')
-
-  //       }
-  //       else {
-  //         this.alert.error(res.error.message[0], 'Error')
-  //       }
-  //       this.loader.hide()
-  //     }, err => {
-  //       this.alert.error(err, 'Error')
-  //       this.loader.hide()
-  //     }
-  //   )
-  // }
-
-  // isValid() {
-  //   if (Object.keys(this.errorDisplay).length !== 0) {
-  //     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
-  //   }
-  // }
-
   getEIHistory(page?: any) {
     this.loader.show();
 
     let listParams = {
-      "eid": this.eiId,
+      "school_id": this.eiId,
       "module_name": "EDUCATIONINSTITUTE",
-      "is_deleted": this.isDeleted,
       "page_size": this.pagination.page_size,
       "page": page
     }
@@ -90,6 +52,7 @@ export class InstituteHistoryComponent implements OnInit {
           this.pagination.config.currentPage = page;
           this.pagination.page_size = res.page_size;
           this.pagination.config.totalItems = res.count;
+          this.recordCount = this.baseService.getCountsOfPage()
           if (res.count > 0) {
             this.pagination.dataSource = res.results;
           }
@@ -106,7 +69,7 @@ export class InstituteHistoryComponent implements OnInit {
     }
   }
 
-  goBack(){
+  goBack() {
     this.location.back()
   }
 }
