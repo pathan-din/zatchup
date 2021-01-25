@@ -35,6 +35,7 @@ export class KycPendingRequest extends Pagination {
   maxDate: any;
   displayedColumns: string[] = ['SNo', 'NameOfUser', 'UserType', 'ProofName',
     'RequestReason', 'RequestType', 'Action'];
+  page_size: any;
 };
 export class CompleteKycList extends Pagination {
   status: any = '';
@@ -42,6 +43,7 @@ export class CompleteKycList extends Pagination {
     'RequestReason', 'RequestType', 'Status', 'RejectionRemarks', 'Action'];
   dataSource: any;
   pageCount: any;
+  page_size: any;
 }
 
 export class PendingChangeRequests extends Pagination {
@@ -49,8 +51,9 @@ export class PendingChangeRequests extends Pagination {
   filterToDate: any;
   maxDate: any;
   changeField: any = '';
-  displayedColumns: string[] = ['position', 'eiZatchupId', 'kycDetails', 'name', 'dateAndTime',
+  displayedColumns: string[] = ['position', 'eiZatchupId', 'kycDetails', 'kyc_type', 
     'fieldOfChange', 'oldData', 'newData', 'action'];
+  field_change_type: any= '';
 }
 
 export class KycChangeRequestDetails extends KYCHistory {

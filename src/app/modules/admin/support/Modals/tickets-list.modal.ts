@@ -25,3 +25,6 @@ export class TicketsList {
   pageCounts: any;
 
 }
+export class ResolveTicket extends TicketsList {
+    displayedColumns: any = ['position', 'zatchUpID', 'ticketName', 'resolveDate', 'resolveComment',];
+}

@@ -27,6 +27,7 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKycPendingChangeRequests();
+    this.pendingChangeRequests.pageCount = this.baseService.getCountsOfPage()
   }
 
   getKycPendingChangeRequests(page?: any) {
@@ -34,24 +35,25 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
       'date_from': this.pendingChangeRequests.filterFromDate !== undefined ? this.datePipe.transform(this.pendingChangeRequests.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.pendingChangeRequests.filterToDate !== undefined ? this.datePipe.transform(this.pendingChangeRequests.filterToDate, 'yyyy-MM-dd') : '',
       'page_size': this.pendingChangeRequests.pageSize,
-      'page': page
+      'page': page,
+      'field_change_type': this.pendingChangeRequests.field_change_type,
     }
     this.baseService.getData('admin/kyc/request_for_change_details/', this.pendingChangeRequests.params).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.pendingChangeRequests.config.currentPage
+          page = this.pendingChangeRequests.config.currentPage
           this.pendingChangeRequests.startIndex = res.page_size * (page - 1) + 1;
-          this.pendingChangeRequests.config.itemsPerPage = res.page_size
-          this.pendingChangeRequests.pageSize = res.page_size
+          this.pendingChangeRequests.config.itemsPerPage = res.page_size;
+          this.pendingChangeRequests.pageSize = res.page_size;
           this.pendingChangeRequests.config.currentPage = page
           this.pendingChangeRequests.config.totalItems = res.count;
 
-          this.pendingChangeRequests.pageCount = this.baseService.getCountsOfPage();
-          if (res.count == 0)
-            this.pendingChangeRequests.dataSource = undefined
+          if (res.count > 0) {
+            this.pendingChangeRequests.dataSource = res.results;
+          }
           else
-            this.pendingChangeRequests.dataSource = res.results
+            this.pendingChangeRequests.dataSource = undefined
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -67,4 +69,8 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
     this.location.back();
   }
 
+  filterData(page) {
+    this.getKycPendingChangeRequests(page)
+      
+  }
 }

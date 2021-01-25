@@ -1,7 +1,9 @@
 import { DatePipe, Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { TicketsList } from '../Modals/tickets-list.modal';
 
@@ -11,14 +13,23 @@ import { TicketsList } from '../Modals/tickets-list.modal';
   styleUrls: ['./tickets-onboarding.component.css']
 })
 export class TicketsOnboardingComponent implements OnInit {
-
+  @ViewChild('resolveClose') resolveClose: any;
   ticketsList: TicketsList
+  errorDisplay: any = {};
+  // userId: any;
+  // comment: any;
+  id: any;
+  ticket_status: any;
+  resolve_comment: any;
   constructor(
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
     private datePipe: DatePipe,
-    private location: Location
+    private location: Location,
+    private validationService: GenericFormValidationService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { 
     this.ticketsList = new TicketsList();
     this.ticketsList.maxDate = new Date();
@@ -31,6 +42,9 @@ export class TicketsOnboardingComponent implements OnInit {
 
   }
 
+  resolveTicket(){
+    this.router.navigate(['admin/resolve-ticket'], {queryParams: {ticket_status :'true'}})
+  }
   getTicketsList(page?: any) {
     this.loader.show();
     let stateFind: any;
@@ -106,6 +120,52 @@ export class TicketsOnboardingComponent implements OnInit {
     )
   }
 
+  resolveComment() {
+    this.errorDisplay = {};
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+
+    this.loader.show()
+    // this.ticketsList.listParams = {
+    //   'id': this.id,
+    //   'ticket_status': this.ticket_status,
+    //   'resolve_comment': this.resolve_comment,
+    // }
+    let data = {
+      'id': this.id,
+      'ticket_status': true,
+      'resolve_comment': this.resolve_comment,
+    }
+    this.baseService.action('admin/update_ticket_status/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+         
+          this.alert.success(res.message, 'Success')
+          this.router.navigate(['admin/tickets-onboarding-list'])
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+        this.loader.hide()
+      }, err => {
+        this.alert.error(err, 'Error')
+        this.loader.hide()
+      }
+    )
+  }
+
+  closeResolveComment() {
+    this.resolveClose.nativeElement.click()
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
   goBack(): void {
     // let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     // this.router.navigate([returnUrl]);
@@ -114,6 +174,10 @@ export class TicketsOnboardingComponent implements OnInit {
   }
   viewMessage(data: any){
     this.ticketsList.messageFromSchool = data.message
+  }
+
+  setResolveData(data: any){
+    this.id = data.id
   }
 
 }

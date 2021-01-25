@@ -80,7 +80,7 @@
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" name="status" [(ngModel)]="status">
+                        <select class="custom-select form-control-input" name="status" [(ngModel)]="completeKycList.status">
                             <option value=""> Select Status</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>
@@ -106,7 +106,7 @@
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getCompleteKycList('1')" [(ngModel)]="completeKycList.pageSize">
+                        (change)="getCompleteKycList('1')" [(ngModel)]="completeKycList.page_size">
                         <option *ngFor="let count of completeKycList.pageCount" value="{{count}}">{{count}}</option>
                         <!-- <option value="10">10</option>
                         <option value="15">15</option> -->

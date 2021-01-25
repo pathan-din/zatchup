@@ -22,6 +22,8 @@ export class EIPendingApproval {
     search: any;
     pageCount: any
   added_by_admin: any;
+  send_back_to_edit: any = '';
+  ei_id: any= '';
 }
 
 export class OnBoardList {
@@ -70,8 +72,7 @@ export class notOnZatchup {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'schoolName', 'state', 'city', 'board', 'address', 'zatchUpID', 'addedBy',
-        'messages', 'action'];
+    displayedColumns: string[] = ['position', 'schoolName', 'state', 'city', 'board'];
     maxDate: any;
 
     dataSource: any;

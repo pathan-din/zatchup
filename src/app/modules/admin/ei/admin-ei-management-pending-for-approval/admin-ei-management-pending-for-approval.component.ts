@@ -14,6 +14,9 @@ import { Location } from '@angular/common';
 })
 export class AdminEiManagementPendingForApprovalComponent implements OnInit {
   eIPendingApproval: EIPendingApproval;
+  id: string;
+  eiData: any;
+  ei_id: string;
 
   constructor(
     private router: Router,
@@ -51,6 +54,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
       "page_size": this.eIPendingApproval.pageSize,
       "page": page,
       "added_by_admin": this.eIPendingApproval.additionType,
+      "send_back_to_edit": this.eIPendingApproval.send_back_to_edit,
+      "ei_id": this.eIPendingApproval.ei_id
     }
 
     this.baseService.getData('admin/ei-pending-list/', this.eIPendingApproval.listParams).subscribe(
@@ -148,7 +153,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "university": this.eIPendingApproval.university,
       "page_size": this.eIPendingApproval.pageSize,
-      "page": page
+      "page": page,
+
     }
     this.loader.show();
     this.baseService.getData('admin/ei_search/', this.eIPendingApproval.listParams).subscribe(
@@ -169,6 +175,22 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
         }
         else
           this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
+  sendBackDetails(ei_id) {
+    this.loader.show();
+    this.baseService.getData('admin/send-back-details/' + ei_id).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.eiData = res.data;
+        }
+        else {
+          this.alert.error(res.error.message, 'Error')
+
+        }
         this.loader.hide();
       }
     )
