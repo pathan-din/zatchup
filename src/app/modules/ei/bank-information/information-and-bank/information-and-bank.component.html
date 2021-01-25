@@ -189,12 +189,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4" *ngIf="bankDetails?.cancel_cheque">
-                        <h3 class="commonFontSize semiBoldFont mb-0">Cancelled cheque</h3>
-                       
-                          <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
-                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
-                          <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" > <i class="fa fa-download" aria-hidden="true"></i></button>
+                    <div class="col-md-12" *ngIf="bankDetails?.cancel_cheque">
+                        <h3 class="commonFontSize semiBoldFont mb-0">Cancelled cheque
+                            <button type="button" class="mr-3 ml-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button type="button" class="mr-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" > <i class="fa fa-download" aria-hidden="true"></i></button>
+                        </h3>
                           
                           <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -212,65 +211,7 @@
                       </div>
                 </div>
                 
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <table style="width: 100%;">
-                            <thead class="bg-light-gray">
-                                <tr>
-                                    <th>
-                                        <h3 class="commonFontSize semiBoldFont m-0 p-1">Document Name</h3>
-                                    </th>
-                                    <th>
-                                        <h3 class="commonFontSize semiBoldFont m-0 p-1">Uploaded Document
-                                            <span style="float:right;">
-                                                <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle addDocument ml-2" aria-hidden="true"></i>
-                                            </span>
-                                        </h3>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody *ngFor="let documentData of userProfile.document_detail">
-                                <tr>
-                                    <td>
-                                        <p class="m-0">{{documentData.name}}</p>
-                                    </td>
-                                    <td >
-                                        <div class="imgCircle cursorStyle">
-                                            <img (click)="viewImage(documentData.document_image)"
-                                                *ngIf="documentData.document_image && fileType(documentData.document_image) != 'pdf'"
-                                                src="{{documentData.document_image}}" alt="ei profile" class="img-fluid cerImg rounded"
-                                                aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
-            
-                                            <img (click)="download_file(documentData.document_image)"
-                                                *ngIf="documentData.document_image && fileType(documentData.document_image) == 'pdf'" 
-                                                src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
-                                            <img *ngIf="!documentData.document_image" src="assets/images/no-image-icon.jpg" alt="ei profile"
-                                                class="img-fluid cerImg rounded">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="modal fade" id="imageViewer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                        aria-hidden="true">
-                        <div class="modal-dialog " role="document">
-                            <div class="modal-content unverified container-fluid">
-                                <div class="modal-header align-items-center justify-content-center pb-0 ">
-                                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                                        data-dismiss="modal" aria-label="Close ">
-                                        <span aria-hidden="true ">
-                                            &times;
-                                        </span>
-                                    </button>
-                                    </div>                                    
-                                    <!-- {{bankDetails.cancel_cheque}} -->
-                                    <img *ngIf="bankDetails.cancel_cheque" src="{{bankDetails?.cancel_cheque}}" alt="profile pick" class="img-responsive"/>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
             
                     <div class="row mt-3">
                         <div class="col-md-12">
