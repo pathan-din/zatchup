@@ -119,6 +119,7 @@ export class DatabaseViewComponent implements OnInit {
 
   enableDiableEi(isDisabled): any {
     // debugger
+    // this.
     var changeTextMsg="Are you sure you want to enable this ei?";
     if(!this.eiData.is_disabled){
       changeTextMsg="Are you sure you want to disable this ei?";
@@ -131,7 +132,7 @@ export class DatabaseViewComponent implements OnInit {
       // else{
         let data = {
           "ei_id": !this.eiData.user_id ? this.eiData.id : this.eiData.ei_id,
-          "is_disabled": this.eiData.is_disabled
+          "is_disabled": !isDisabled.checked
         }
       this.baseService.action('admin/ei/disable_ei/', data).subscribe(
         (res: any) => {
