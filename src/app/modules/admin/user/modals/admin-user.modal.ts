@@ -66,7 +66,7 @@ export class SignupUsers {
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
-        'noOfVerifiedUserPro', 'currentEI', 'lastEI', 'status', 'LastLoginDate', 'Action'];
+        'noOfVerifiedUserPro', 'signupdate', 'onlinestatus', 'kycstatus', 'schoolverification', 'LastLoginDate', 'Action'];
 
     dataSource: any;
     university: any;
@@ -85,21 +85,28 @@ export class SignupUsers {
     maxDate: Date;
     pageCount: any;
     kycVerified: any
+  schoolStatus: any = '';
+  zatchupId: any;
 }
 
 export class KycVerifiedUsers extends SignupUsers {
-
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'signupdate', 'onlinestatus',  'schoolverification', 'LastLoginDate', 'Action'];
 }
 
 export class KycVerifiedByEi extends SignupUsers {
-
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'signupdate', 'onlinestatus', 'LastLoginDate', 'Action'];
 }
 
 export class ActiveUsers extends SignupUsers {
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+    'noOfVerifiedUserPro', 'signupdate',  'kycstatus', 'schoolverification', 'LastLoginDate', 'Action'];
 
 }
 
 
 export class DormantUsers extends SignupUsers {
-
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+    'noOfVerifiedUserPro', 'signupdate',  'kycstatus', 'schoolverification', 'LastLoginDate', 'Action'];
 }

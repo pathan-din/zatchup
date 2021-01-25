@@ -58,11 +58,13 @@ export class KycVerifiedUsersComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "page_size": this.kycVerified.page_size,
       "page": page,
-      "current_ei": this.kycVerified.currentEi,
-      "previous_ei": this.kycVerified.previousEi,
+      // "current_ei": this.kycVerified.currentEi,
+      // "previous_ei": this.kycVerified.previousEi,
       "age_group": this.kycVerified.ageGroup,
       "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "is_disabled": this.kycVerified.status !== undefined ? this.kycVerified.status : '',
+      "school_verified": this.kycVerified.schoolStatus !== undefined ? this.kycVerified.schoolStatus : '',
+      "zatchupId": this.kycVerified.zatchupId,
     }
 
     this.baseService.getData('admin/user/kyc_verified_list/', this.kycVerified.listParams).subscribe(
