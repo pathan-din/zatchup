@@ -43,7 +43,7 @@ export class ResolveTicketsComponent implements OnInit {
     // let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     // this.router.navigate([returnUrl]);
     this.location.back();
-    console.log(location)
+    // console.log(location)
   }
   openReasonModel(reason){
     this.model.resolve_comment = reason

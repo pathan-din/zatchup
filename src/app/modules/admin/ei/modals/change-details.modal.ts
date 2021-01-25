@@ -28,7 +28,7 @@ export class ChangeDetailRequestsPending {
 
 export class ChangeDetailsView {
     approveOrReject: any = 'approve';
-    errorDisplay: any;
+    errorDisplay: any = {};
     changeDetailsView: any;
     requestId: any;
     rejectionReason: any;

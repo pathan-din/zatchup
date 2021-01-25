@@ -132,6 +132,26 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
   
   }
+  storePendingCourseDataAfterApprove(data,school_id){
+    
+    try {
+    let coursedata:any={};
+    coursedata.course_id = data.course_id;
+    this.loader.show();
+    this.baseService.action("user/change-course-standard-detail-by-student-by-id/",coursedata).subscribe((res:any)=>{
+      if(res.status == true){
+        this.loader.hide();
+        this.editCourse(data, school_id);
+      }else{
+        this.loader.hide();
+      }
+    },(error)=>{
+      this.loader.hide();
+    })
+    } catch (e) {
+      this.loader.hide();
+    }
+  }
   changeInput($ev) {
     console.log($ev);
     if ($ev.target.value.length == $ev.target.maxLength) {

@@ -128,6 +128,7 @@ import { ContectAndStaticContentManagementComponent } from './contact-and-static
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
+import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 
 const routes: Routes = [
   {
@@ -510,6 +511,9 @@ const routes: Routes = [
   },
   {
     path: 'resolve-ticket', component: ResolveTicketsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'terms-conditions', component: TermsConditionsComponent, canActivate: [AuthGuard]
   },
   {
     path: '**', component: AdminPageNotFoundComponent

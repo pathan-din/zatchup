@@ -1,9 +1,9 @@
 export class Coupon {
     code: any;
     purpose: any = '';
-    maximum_discount_amount: any;
-    minimum_order_value: any;
-    discount_amount: any;
+    maximum_discount_amount: number;
+    minimum_order_value: number;
+    discount_amount: number;
     enddate: any;
     coupon_type: any;
     discount_type: any = '';
@@ -22,7 +22,7 @@ export class CouponList {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'MaximumDiscountAmount', 'couponCodeApplied', 'totalDiscountGiven', 'couponExpirationdate', 'expireCouponButton'];
+    displayedColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'discount_type', 'MaximumDiscountAmount', 'couponCodeApplied', 'totalDiscountGiven', 'couponExpirationdate', 'expireCouponButton'];
 
     dataSource: any;
 }
