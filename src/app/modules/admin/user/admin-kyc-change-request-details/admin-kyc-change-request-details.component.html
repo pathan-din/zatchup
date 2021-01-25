@@ -17,7 +17,7 @@
 
                         <div class="row">
                             <div class="col-3 commonFontSize mediumFont">
-                                <p>School ZatchUp ID of user</p>
+                                <p>User ZatchUp ID</p>
                             </div>
                             <div class="col-6 commonFontSize regularFont">
                                 <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
@@ -45,6 +45,15 @@
                         </div>
                         <div class="row">
                             <div class="col-3 commonFontSize mediumFont">
+                                <p>Kyc Type</p>
+                            </div>
+                            <div class="col-6 commonFontSize regularFont">
+                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                        {{kycChangeRequestDetails.kycDetails.kyc_type}}</span></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 commonFontSize mediumFont">
                                 <p>Field of change</p>
                             </div>
                             <div class="col-6 commonFontSize regularFont">
@@ -54,7 +63,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 commonFontSize mediumFont">
-                                <p>Old Value</p>
+                                <p>Existing Data</p>
                             </div>
                             <div class="col-6 commonFontSize regularFont">
                                 <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
@@ -63,7 +72,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 commonFontSize mediumFont">
-                                <p>New Value</p>
+                                <p>New Data</p>
                             </div>
                             <div class="col-6 commonFontSize regularFont">
                                 <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:

@@ -271,7 +271,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="eiData.similar_ei">
+                    <div class="row" *ngFor="let ei of eiData.similar_ei">
                         <div class="col-12">
                             <h2 class="commonFontSize">Similar School</h2>
                             <div class="tableDiv ">
@@ -283,7 +283,7 @@
                                                 <th>Pin Code</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let ei of eiData.similar_ei">
+                                        <tbody >
                                             <tr class="">
                                                 <td>{{ei.name_of_school}}</td>
                                                 <td>{{ei.pincode}}</td>

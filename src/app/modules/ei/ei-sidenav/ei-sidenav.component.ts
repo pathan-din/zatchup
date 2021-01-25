@@ -26,7 +26,8 @@ export class EiSidenavComponent {
 
   small = false;
   userProfile: any = {};
-  isLogin: boolean
+
+  isLogin: any 
 
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
@@ -120,12 +121,16 @@ export class EiSidenavComponent {
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
     try {
-      var arrMenuList = ['poc-details', 'information-and-bank-details', 'invoices', 'school-profile', 'add-subscription'];
+      var arrMenuList = ['poc-details','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices', 'school-profile', 'add-subscription','onboarding','subscription'];
       let thisUrl: any = '';
+      let parameter : any = '';
+      
       this.route.snapshot.url.map(url => {
 
         thisUrl = url.path;
+        
       })
+      thisUrl=this.route.routeConfig.path?this.route.routeConfig.path: thisUrl;
 
       this.baseService.getData('user/reg-step-count/').subscribe(res => {
         let response: any = {};
@@ -134,6 +139,12 @@ export class EiSidenavComponent {
         localStorage.setItem("getreject", JSON.stringify(response))
         this.notificationCount = response.unread_notification_count;
         if (response.status) {
+          localStorage.setItem("is_subscription_active",response.is_subscription_active);
+          if(!response.is_approved)
+          localStorage.setItem("is_ei_approved","0");
+          else
+          localStorage.setItem("is_ei_approved","1");
+          
           this.subscriptionActive = response.is_subscription_active;
           this.isApproved = !response.is_approved ? false : true;
           if(response.role == 'EIREPRESENTATIVE' ){
@@ -152,9 +163,16 @@ export class EiSidenavComponent {
               } else if (response.reg_step == 6) {
                 this.router.navigate(['ei/ei-profile-preview']);
               } else if (!response.rejected_reason && !response.is_approved && !this.subscriptionActive) {
+                
+                
                 var nUrl = arrMenuList.includes(thisUrl);
                 if (nUrl) {
-                  this.router.navigate(['ei/' + thisUrl]);
+                  if(this.route.snapshot.params.invoice=='onboarding'){
+                    this.router.navigate(['ei/invoice-list/' +this.route.snapshot.params.invoice]);
+                  }else{
+                    this.router.navigate(['ei/' + thisUrl]);
+                  }
+                  
                 } else {
                   this.router.navigate(['ei/information-and-bank-details']);
                 }
@@ -163,7 +181,7 @@ export class EiSidenavComponent {
             } else if (!response.rejected_reason && response.is_approved && !this.subscriptionActive) {
   
               var nUrl = arrMenuList.includes(thisUrl);
-              console.log(nUrl);
+              
   
               if (nUrl) {
                 this.router.navigate(['ei/' + thisUrl]);

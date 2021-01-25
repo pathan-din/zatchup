@@ -288,8 +288,8 @@ this.model.page= page
 
 
   }
-  goToEiStudentEditPage(id) {
-    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
+  goToEiStudentEditPage(id,approve) {
+    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id,'approve':approve } });
   }
 
   goToEiStudentProfilePage(id) {
@@ -332,7 +332,7 @@ this.model.page= page
 
         if (response.status === true)// Condition True Success 
         {
-
+          this.closeRejectModel();
           this.alert.success(response.message, 'Success')
           this.getGetVerifiedStudent('', '')
         } else { // Condition False Validation failure
@@ -378,6 +378,9 @@ this.model.page= page
   }
   closeModel(){
     $("#verifiedModel").modal('hide');
+  }
+  closeRejectModel(){
+    $("#rejectModel").modal('hide');
   }
 
   approveStudent(action, studentId) {

@@ -145,5 +145,6 @@ export class BaseService {
   isLoggedIn() {
     return !!localStorage.getItem("token");
   }
+  
 
 }

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -6,9 +7,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { Location } from '@angular/common';
 
-declare var $: any;
+
+// declare var $: any;
+
+
+
+
 export interface PeriodicElement {
   position: number;
   fieldChange: string;
@@ -21,11 +26,13 @@ export interface PeriodicElement {
 }
 const ELEMENT_DATA: PeriodicElement[] = [];
 @Component({
-  selector: 'app-request-change-details',
-  templateUrl: './request-change-details.component.html',
-  styleUrls: ['./request-change-details.component.css']
+  selector: 'app-request-pending-for-course',
+  templateUrl: './request-pending-for-course.component.html',
+  styleUrls: ['./request-pending-for-course.component.css']
 })
-export class RequestChangeDetailsComponent implements OnInit {
+
+export class RequestPendingForCourseComponent implements OnInit {
+
   startIndex:any;
   requestStatusList:any;//,'action'
   displayedColumns: string[] = ['position', 'fieldChange', 'oldDetails', 'newDetails',

@@ -31,10 +31,10 @@ export class EiStudentBulkAddComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.model.course_id = '';
-    this.model.standard_id = '';
-    this.model.class_id = '';
-    this.displayCourseList();
+    // this.model.course_id = '';
+    // this.model.standard_id = '';
+    // this.model.class_id = '';
+   // this.displayCourseList();
   }
   displayCourseList() {
     try {
@@ -150,11 +150,11 @@ export class EiStudentBulkAddComponent implements OnInit {
         if (response.status === true)// Condition True Success 
         {
           this.SpinnerService.hide();
-          this.alert.warning(response.message, 'Warning')
+          this.alert.success(response.message, 'Success')
           this.model = {};
-          this.model.course_id = '';
-          this.model.standard_id = '';
-          this.model.class_id = '';
+          // this.model.course_id = '';
+          // this.model.standard_id = '';
+          // this.model.class_id = '';
         } else { // Condition False Validation failure
           this.SpinnerService.hide();
           // var errorCollection = '';

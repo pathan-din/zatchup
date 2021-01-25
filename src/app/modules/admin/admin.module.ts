@@ -147,6 +147,7 @@ import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-r
 import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -309,7 +310,8 @@ const config = {
     AdminKycChangeRequestDetailsComponent,
     ContectAndStaticContentManagementComponent,
     EditPocDetailsComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResolveTicketsComponent
   ],
   imports: [
     CommonModule,
