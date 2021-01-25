@@ -21,9 +21,9 @@ export class EIPendingApproval {
     university: any;
     search: any;
     pageCount: any
-  added_by_admin: any;
-  send_back_to_edit: any = '';
-  ei_id: any= '';
+    added_by_admin: any;
+    send_back_to_edit: any = '';
+    ei_id: any = '';
 }
 
 export class OnBoardList {
@@ -81,7 +81,7 @@ export class notOnZatchup {
     stateName: any;
     search: any;
     pageCount: any;
-  subStatus: any;
+    subStatus: any;
 }
 
 export class OnboardedZatchup {
@@ -102,13 +102,16 @@ export class OnboardedZatchup {
     stateName: any;
     cityName: any;
     pageCounts: any;
+    filterFromDate: any;
+    filterToDate: any;
+    maxDate: any;
     config = {
         itemsPerPage: 0,
         currentPage: 1,
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'board', 'onboardingDate', 'studentZatchup',
-        'totalAlumnizatchup', 'commission', 'subscriptionStatus', 'status', 'eiPocName', 'action'];
+        'totalAlumnizatchup', 'subscriptionStatus', 'status', 'eiPocName', 'action'];
 
 }
 
@@ -121,7 +124,7 @@ export class SignUpEi {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'zatchup_id', 'phone', 'email','added_by','action'];
+    displayedColumns: string[] = ['position', 'zatchup_id', 'phone', 'email', 'added_by', 'action'];
 
     dataSource: any;
     course: any = '';
@@ -137,7 +140,7 @@ export class SignUpEi {
     course_id: any = '';
     standard_id: any = '';
     class_id: any = '';
-  pageCounts: any;
+    pageCounts: any;
 }
 export class SentForApproval {
     config = {
@@ -163,7 +166,7 @@ export class SentForApproval {
     course: any = '';
     standard: any = '';
     class: any = '';
-  pageCounts: any;
+    pageCounts: any;
 
 }
 export class StudentApproval {
@@ -194,7 +197,7 @@ export class StudentApproval {
     class_id: any = '';
     standard_id: any = '';
     course_id: any = '';
-  pageCounts: any;
+    pageCounts: any;
 
     //   courseList: any = [];
     //   standardList: any = [];
@@ -234,8 +237,8 @@ export class DatabaseView {
     editDescription: any;
     comment: any;
     eiID: any;
-  eiId: any;
-  ei_id: any;
+    eiId: any;
+    ei_id: any;
 }
 
 export class OnboardingView {

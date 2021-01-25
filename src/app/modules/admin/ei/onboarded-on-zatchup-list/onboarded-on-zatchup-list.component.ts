@@ -7,40 +7,14 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { OnboardedZatchup } from '../modals/ei-pending-approval.modal';
 import { Location } from '@angular/common'
 
-
-export interface PeriodicElement {
-  position: number;
-  schoolName: string;
-  zatchUpID: string;
-  state: string;
-  city: string;
-  board: string;
-  onboardingDate: string;
-  studentZatchup: string;
-  totalAlumnizatchup: string;
-  commission: string;
-  subscriptionStatus: string;
-  status: string;
-  eiPocName: string;
-  action: string;
-}
-
 @Component({
   selector: 'app-onboarded-on-zatchup-list',
   templateUrl: './onboarded-on-zatchup-list.component.html',
   styleUrls: ['./onboarded-on-zatchup-list.component.css']
 })
 export class OnboardedOnZatchupListComponent implements OnInit {
-  filterFromDate: any;
-  filterToDate: any;
-  maxDate: any;
-  params: any = {};
   onboardedZatchup: OnboardedZatchup;
 
-  displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'board', 'onboardingDate', 'studentZatchup',
-    'totalAlumnizatchup', 'commission', 'subscriptionStatus', 'status', 'eiPocName', 'action'];
-
-  dataSource: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -51,7 +25,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
     private location: Location
   ) {
     this.onboardedZatchup = new OnboardedZatchup();
-    this.maxDate = new Date();
+    this.onboardedZatchup.maxDate = new Date();
   }
 
   ngOnInit(): void {
@@ -82,8 +56,8 @@ export class OnboardedOnZatchupListComponent implements OnInit {
 
     this.onboardedZatchup.listParams = {
       "search": this.onboardedZatchup.search,
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      'date_from': this.onboardedZatchup.filterFromDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardedZatchup.university,
@@ -132,8 +106,8 @@ export class OnboardedOnZatchupListComponent implements OnInit {
     }
     this.onboardedZatchup.listParams = {
       "search": this.onboardedZatchup.search,
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      'date_from': this.onboardedZatchup.filterFromDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardedZatchup.university,

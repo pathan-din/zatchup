@@ -5,6 +5,7 @@ import { CouponList } from '../modal/coupon.modal'
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-payment-coupon-status',
@@ -19,7 +20,8 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -55,12 +57,12 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
           this.couponList.config.totalItems = res.count
           this.couponList.dataSource = res.results;
           this.loader.hide()
-        }else{
+        } else {
           this.loader.hide();
           this.alert.error(res.error.message, 'Error');
         }
       }
-    ),err =>{
+    ), err => {
       this.loader.hide();
       this.alert.error(err, 'Error');
     }
@@ -76,7 +78,32 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
     this.baseService.generateExcel('admin/coupon/export_coupons_list/', 'coupons', data);
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
+  }
+
+  expireCoupon(coupon: any): any {
+    this.confirmDialogService.confirmThis("Are you sure you want to expire this coupon?", () => {
+      this.loader.show()
+      let data = {
+        "id": coupon.id,
+        "coupon_status": false
+      }
+      this.baseService.action('admin/coupon/edit_coupon/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success("Coupon expired", "Success")
+            this.getCouponList(this.couponList.config.currentPage);
+          } else {
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
   }
 }
