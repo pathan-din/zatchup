@@ -140,20 +140,22 @@
     aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
-            <div class="modal-header align-items-center justify-content-center pb-0">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
                 <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
+                <h2 class="mediumFont commonFontSize letterspacing m-0">Comments</h2>
             </div>
             <div class="modal-body px-0">
                 <div class="row">
                     <div class="col-md-12 mt-2">
-                        <div class="form-group row  ml-0 mr-0">
-                            <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
-                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                <textarea value="{{model.resolve_comment}}"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"></textarea>
+                        <div class="form-group row ml-0 mr-0">
+                            <!-- <label for="" class="mediumFont commonFontSize letterspacing"> Message </label> -->
+                            <div class="shadow-none w-100">
+                                <textarea value="{{model.resolve_comment}}" 
+                                class="form-control-input form-control commonFontSize regularFont letterspacing border" 
+                                readonly></textarea>
                             </div>
                         </div>
                     </div>

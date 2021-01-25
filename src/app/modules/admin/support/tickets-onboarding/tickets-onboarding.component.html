@@ -17,8 +17,8 @@
             aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
-                    <div class="modal-header align-items-center justify-content-center pb-0">
-                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1"> Comment</h2>
+                    <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                        <h2 class="text-center modal-title commonFontSize mediumFont mb-0"> Comment</h2>
                         <button #closeModel type="button "
                             class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                             aria-label="Close ">
@@ -26,22 +26,21 @@
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <form #resolveForm="ngForm">
+                        <form #resolveForm="ngForm" class="text-center">
                             <div class="row">
                                 <div class="col-md-12 mt-2">
                                     <div class="form-group row  ml-0 mr-0">
-                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                        <div class="p-0 w-100 hadow-none">
                                             <textarea value="{{ticketsList.messageFromSchool}}" name="resolve"
-                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                [(ngModel)]="this.resolve_comment"></textarea>
+                                                class="form-control-input form-control border commonFontSize regularFont letterspacing"
+                                                [(ngModel)]="this.resolve_comment" placeholder="Write Comment.."></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button "
-                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                            <button type="button" class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
                                 (click)="resolveComment(resolveForm);">
-                                Resolve </button>
+                                Submit </button>
                         </form>
 
                     </div>
@@ -114,8 +113,7 @@
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Tickets
-                    Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getTicketsList('1')" [(ngModel)]="ticketsList.pageSize"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
@@ -198,7 +196,7 @@
 
                     <ng-container matColumnDef="message">
                         <mat-header-cell *matHeaderCellDef> Message From School </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
+                        <mat-cell *matCellDef="let element " class="text-center">
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
                                 aria-hidden="true" data-toggle="modal" data-target="#messageFromSchool"
                                 (click)="viewMessage(element)"></i> </mat-cell>
@@ -233,20 +231,21 @@
     aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
-            <div class="modal-header align-items-center justify-content-center pb-0">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
                 <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
+                <h2 class="mediumFont commonFontSize letterspacing m-0">Message</h2>
             </div>
             <div class="modal-body px-0">
                 <div class="row">
                     <div class="col-md-12 mt-2">
-                        <div class="form-group row  ml-0 mr-0">
-                            <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
-                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                        <div class="form-group row ml-0 mr-0">
+                            <!-- <label for="" class="mediumFont commonFontSize letterspacing">  </label> -->
+                            <div class="w-100 shadow-none">
                                 <textarea value="{{ticketsList.messageFromSchool}}"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control commonFontSize regularFont letterspacing border"
                                     readonly></textarea>
                             </div>
                         </div>
