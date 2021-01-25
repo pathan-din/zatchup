@@ -54,11 +54,13 @@ export class UsersSignedUpZatchupComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "page_size": this.signupUsers.page_size,
       "page": page,
-      "current_ei": this.signupUsers.currentEi,
-      "previous_ei": this.signupUsers.previousEi,
+      // "current_ei": this.signupUsers.currentEi,
+      // "previous_ei": this.signupUsers.previousEi,
       "age_group": this.signupUsers.ageGroup,
-      "kyc_approved": this.signupUsers.kycApproved !== undefined ? this.signupUsers.kycApproved: '',
-      "status": this.signupUsers.status !== undefined ? this.signupUsers.status : '',
+      "kyc_aprroved": this.signupUsers.kycApproved !== undefined ? this.signupUsers.kycApproved: '',
+      "is_disabled": this.signupUsers.status !== undefined ? this.signupUsers.status : '',
+      "school_verified": this.signupUsers.schoolStatus !== undefined ? this.signupUsers.schoolStatus : '',
+      "zatchupId": this.signupUsers.zatchupId,
     }
 
     this.baseService.getData('admin/user/signed_up_users_list/', this.signupUsers.listParams).subscribe(

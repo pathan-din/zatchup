@@ -19,6 +19,10 @@ export class EiMobileVerificationComponent implements OnInit {
   otp2:any;
   otp3:any;
   otp4:any;
+  otp5:any;
+  otp6:any;
+  otp7:any;
+  otp8:any;
   error:any=[];
   errorDisplay:any={};
   schoolNumber:any;
@@ -112,7 +116,7 @@ export class EiMobileVerificationComponent implements OnInit {
    try{
      let data:any={};
      data.username=this.model.phone;
-     data.verify_otp_no=this.otp1+this.otp2+this.otp3+this.otp4;
+     data.verify_otp_no=this.otp1+this.otp2+this.otp3+this.otp4+this.otp5+this.otp6+this.otp7+this.otp8;
      this.SpinnerService.show();
      this.eiService.verifyOtpWithMobile(data).subscribe(res => {
       let response:any={}

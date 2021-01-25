@@ -62,28 +62,7 @@
                         <p><span class="mr-3">: {{bankDetails?.name_of_principle}}</span></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>Email</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.email}} </span>
-                            <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Email','email',bankDetails.email)"></i>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>Phone Number</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.phone}} </span>
-                            <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Phone Number','phone',bankDetails.phone)"></i>
-                        </p>
-                    </div>
-                </div>
+               
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -149,6 +128,50 @@
             </div>
         </div>
     </div>
+
+<div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+    <div class="row topDiv">
+        <div class="col-md-5 col-12">
+            <h2 class="commonFontSize semiBoldFont m-0">School Admin Details</h2>
+        </div>
+        <div class="col-md-7 col-12 d-flex justify-content-end"> 
+            <button type="button" class="bg-dark text-white px-4 py-2 h-100 ml-2 border-0 " (click)="bankDetailsPopup()">Edit</button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p>Email</p>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                    <p><span class="mr-3">: {{bankDetails?.email}} </span>
+                        <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Email','email',bankDetails.email)"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p>Phone Number</p>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                    <p><span class="mr-3">: {{bankDetails?.phone}} </span>
+                        <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Phone Number','phone',bankDetails.phone)"></i>
+                    </p>
+                </div>
+            </div>
+          
+           
+            
+            
+                       
+            </div>
+    </div>
+    <!--End div for View bank Details-->
+</div>
+
 
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
         <div class="row topDiv">

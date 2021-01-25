@@ -51,7 +51,42 @@
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
+
                 <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> ZatchUp ID</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
+                        type="input" id="zatchupId" placeholder="Enter ZatchUp ID" name="zatchupId" [(ngModel)]="activeUsers.zatchupId">
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="Status" required name="kyc_approved"
+                        [(ngModel)]="activeUsers.kycApproved">
+                            <option value=""> Select Status</option>
+                            <option value="1">Approved</option>
+                            <option value="0">Pending</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">School Verification</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select class="custom-select  form-control-input" id="verifyByEI" required name="schoolverification"
+                        [(ngModel)]="activeUsers.schoolStatus">>
+                            <option value=""> Select Status</option>
+                            <option value="1">Verified</option>
+                            <option value="0">Unverified</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Current School</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
@@ -64,7 +99,7 @@
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
                         type="input" id="previousEi" placeholder="Enter Previous School" name="previous_ei" [(ngModel)]="activeUsers.previousEi">
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Age Group</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
@@ -125,7 +160,7 @@
                     </div>
                 </div> -->
 
-                <div class="widthFull mr-3 mt-3">
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="verifyByEI" required name="status"
@@ -136,7 +171,7 @@
 
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
                 (click)="getActiveUsersList('')">Apply</button>
@@ -178,7 +213,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ZatchUpID">
-                        <mat-header-cell *matHeaderCellDef>School ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.zatchupId}}
                         </mat-cell>
@@ -216,7 +251,7 @@
                         <mat-cell *matCellDef="let element "> {{element.total_verified_profile_no}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="currentEI">
+                    <!-- <ng-container matColumnDef="currentEI">
                         <mat-header-cell *matHeaderCellDef> Current School </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.current_ei}}
@@ -226,14 +261,32 @@
                     <ng-container matColumnDef="lastEI">
                         <mat-header-cell *matHeaderCellDef>Last School</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.previous_ei}} </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="signupdate">
+                        <mat-header-cell *matHeaderCellDef> Sign Up Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.signup_date | date}}
+                        </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="status">
-                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                    <ng-container matColumnDef="kycstatus">
+                        <mat-header-cell *matHeaderCellDef>Kyc Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
+                                <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 1">Approved</button>
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 0">Pending</button> 
+                        </mat-cell>
+                    </ng-container>
 
-                            <button class="bg-paret-green text-white rounded border-0 cursorDefault px-2 buttonFullWidth">
-                                {{element.is_disabled ? 'In-Active' : 'Active'}}</button>
+                    <ng-container matColumnDef="schoolverification">
+                        <mat-header-cell *matHeaderCellDef>School Verification </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                                <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.school_verified == 1">Verified</button>
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.school_verified == 0">Unverified</button> 
                         </mat-cell>
                     </ng-container>
 

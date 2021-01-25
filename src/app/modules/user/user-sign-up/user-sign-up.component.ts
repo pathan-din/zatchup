@@ -50,6 +50,8 @@ export class UserSignUpComponent implements OnInit {
   dateModel: any;
   monthModel: any;
   yearModel: any;
+  type:any;
+  maxlength:any;
   /*********************************************************/
   constructor(
     private genericFormValidationService: GenericFormValidationService,
@@ -83,6 +85,27 @@ export class UserSignUpComponent implements OnInit {
     this.model.profile.pronoun = "";
     this.model.is_term_cond = false;
   }
+  isCheckEmailOrPhone(event){
+    this.maxlength = ''
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(event.target.value)){
+      
+      this.type='email';
+      this.maxlength = 50;
+      this.model.email = event.target.value;
+    }else{
+     const numbers = /^[0-9]+$/;
+     if(numbers.test(event.target.value))
+     {
+       console.log(numbers.test(event.target.value));
+       
+      this.type='tel'
+      this.maxlength = 10;
+      this.model.phone = event.target.value;
+     }
+     
+    }
+   }
   /*function for show hide password using inputbox*/
   showHidePasswordFunction(type) {
     if (type == 'p') {
@@ -124,9 +147,9 @@ export class UserSignUpComponent implements OnInit {
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
       /**********************************************************************/
-      if (this.model.phone == null) {
-        this.model.phone = '';
-      }
+      // if (this.model.phone == null) {
+      //   this.model.phone = '';
+      // }
        
       this.baseService.action('user/register/', this.model).subscribe(
         (res: any) => {
@@ -158,17 +181,7 @@ export class UserSignUpComponent implements OnInit {
 
 
   }
-  /*Change Go To Redirect*/
-  // goToKycPage() {
-  //   $("#OTPModel").modal("hide");
-  //   this.router.navigate(['user/kyc-verification']);
-  // }
-
-  // goToUserQualificationPage() {
-  //   $("#currentStatusModel").modal("hide");
-  //   this.router.navigate(['user/qualification']);
-  // }
-
+ 
   /***********************Mobile Number OR Email Verification Via OTP**********************************/
 
   verifyOtp() {

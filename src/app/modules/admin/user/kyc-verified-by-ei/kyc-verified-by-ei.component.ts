@@ -62,8 +62,9 @@ export class KycVerifiedByEiComponent implements OnInit {
       "current_ei": this.kycVerifiedByEi.currentEi,
       "previous_ei": this.kycVerifiedByEi.previousEi,
       "age_group": this.kycVerifiedByEi.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved : '',
-      "status": this.status !== undefined ? this.status : '',
+      "kyc_approved": this.kycVerifiedByEi !== undefined ? this.kycVerifiedByEi : '',
+      "is_disabled": this.kycVerifiedByEi.status !== undefined ? this.kycVerifiedByEi.status : '',
+      "zatchupId": this.kycVerifiedByEi.zatchupId,
     }
 
     this.baseService.getData('admin/user/users_verified_ei_list/', this.kycVerifiedByEi.listParams).subscribe(
