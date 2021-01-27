@@ -239,6 +239,9 @@ export class DatabaseView {
     eiID: any;
     eiId: any;
     ei_id: any;
+    isDisabled: any;
+    enableDisableModalTitle: any;
+    enableDisableReason: any;
 }
 
 export class OnboardingView {

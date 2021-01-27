@@ -114,4 +114,7 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['admin/payment-onboarding'], {queryParams: { returnUrl: 'admin/dashboard'}})
   }
 
+  onboardedSchools(type: any){
+    this.router.navigate(['admin/onboarded-on-zatchup-list', type], {queryParams: { returnUrl: 'admin/dashboard'}})
+  }
 }

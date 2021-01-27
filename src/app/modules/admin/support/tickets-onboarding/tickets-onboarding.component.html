@@ -31,13 +31,16 @@
                                 <div class="col-md-12 mt-2">
                                     <div class="form-group row  ml-0 mr-0">
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                            <textarea name="resolve" [(ngModel)]="resolve_comment"
+                                            <textarea name="resolve_comment" [(ngModel)]="resolve_comment" required
+                                                (keyup)="isValid()"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"></textarea>
                                         </div>
+                                        <div class="required errorMsg" [innerHTML]="errorDisplay.resolve_comment"></div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                            <button type="button"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
                                 (click)="resolveComment(resolveForm);">
                                 Submit </button>
                         </form>
