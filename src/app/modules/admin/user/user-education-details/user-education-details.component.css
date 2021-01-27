@@ -12,3 +12,8 @@ img.verifiedTick {
     top: 0px;
 }
 
+.RightimgDiv .Rightimg {
+    border-radius: 50%;
+    height: 100%;
+}
+
