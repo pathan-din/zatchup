@@ -136,7 +136,7 @@
 
                     <ng-container matColumnDef="ticket_raising_date">
                         <mat-header-cell *matHeaderCellDef> Ticket Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.created_on | date:'dd MMM, yyyy'}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.created_on | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ticketName">
@@ -145,7 +145,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
                     </ng-container>
 
