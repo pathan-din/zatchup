@@ -29,7 +29,7 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> Change Request From</label>
                         <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                                id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                                id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="pendingChangeRequests.maxDate"
                                 [(ngModel)]="pendingChangeRequests.filterFromDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
@@ -39,7 +39,7 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> Change Request To</label>
                         <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                                type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                                type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="pendingChangeRequests.maxDate"
                                 [(ngModel)]="pendingChangeRequests.filterToDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
