@@ -83,7 +83,7 @@
             </div>
             <div class="col-md-6 order-sm-6 order-1 my-3">
                 <!-- <p class="color-blue text-right cursorStyle" (click)="goToEiStudentHistoryPage(stid)">View History</p> -->
-                <div class="RightimgDiv mt-2">
+                <div class="RightimgDiv mt-2 float-md-right float-sm-none">
                     <!-- <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
                     <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png"> -->
                     <img src="{{studentData.profile_pic?studentData.profile_pic:'assets/images/profile-default.png'}}" class="img-fluid Rightimg" >
@@ -97,7 +97,7 @@
 
     <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngFor="let eduDetail of studentData.educationdetail">
         <h2 class="commonFontSize semiBoldFont m-0">Education Details</h2>
-        <h2 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.name_of_school}} </h2>
+        <h3 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.name_of_school}} </h3>
         <div class="row mt-3  border-0 mx-0">
 
             <div class="col-md-12 col-left">
