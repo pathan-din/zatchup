@@ -1,6 +1,6 @@
 import { DatePipe, Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
-import { count } from 'console';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -15,6 +15,8 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
   pendingChangeRequests: PendingChangeRequests
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -37,6 +39,7 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
       'page_size': this.pendingChangeRequests.pageSize,
       'page': page,
       'field_change_type': this.pendingChangeRequests.field_change_type,
+      'status': this.pendingChangeRequests.status
     }
     this.baseService.getData('admin/kyc/request_for_change_details/', this.pendingChangeRequests.params).subscribe(
       (res: any) => {
@@ -66,7 +69,9 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    // this.location.back();
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
+    this.router.navigate([returnUrl])
   }
 
   filterData(page) {

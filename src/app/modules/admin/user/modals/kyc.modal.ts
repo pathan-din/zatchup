@@ -51,6 +51,7 @@ export class PendingChangeRequests extends Pagination {
   filterToDate: any;
   maxDate: any;
   changeField: any = '';
+  status: any = '';
   displayedColumns: string[] = ['position', 'eiZatchupId', 'kycDetails', 'kyc_type', 
     'fieldOfChange', 'oldData', 'newData', 'action'];
   field_change_type: any= '';

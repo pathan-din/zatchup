@@ -90,17 +90,33 @@
                             [(ngModel)]="pendingChangeRequests.university">
                     </div>
                 </div> -->
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Field of Change</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input"
-                            [(ngModel)]="pendingChangeRequests.field_change_type" id="changeField" name="changeField">
-                            <option value=""> Select Change Field </option>
-                            <option value="name">Name </option>
-                            <option value="dob">Date of Birth</option>
-                        </select>
+                    <div class="mr-3 mt-3 widthFull medium-filter-box">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Field of Change</label>
+                        <div
+                            class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                            <select class="custom-select  form-control-input"
+                                [(ngModel)]="pendingChangeRequests.field_change_type" id="changeField"
+                                name="changeField">
+                                <option value=""> Select Change Field </option>
+                                <option value="name">Name </option>
+                                <option value="dob">Date of Birth</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="mr-3 mt-3 widthFull medium-filter-box">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
+                        <div
+                            class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                            <select class="custom-select  form-control-input"
+                                [(ngModel)]="pendingChangeRequests.status" id="status"
+                                name="status">
+                                <option value=""> Select Status </option>
+                                <option value="0">Pending </option>
+                                <option value="2">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
                     <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
                         (click)="getKycPendingChangeRequests('1')">Apply</button>
                 </div>
@@ -145,7 +161,7 @@
                         <mat-header-cell *matHeaderCellDef> User ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchupId}} </mat-cell>
                     </ng-container>
-                    
+
                     <ng-container matColumnDef="kycDetails">
                         <mat-header-cell *matHeaderCellDef> Kyc Details </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -157,7 +173,7 @@
                         <mat-cell *matCellDef="let element "> {{element.name_of_user}} </mat-cell>
                     </ng-container> -->
 
-                     <ng-container matColumnDef="kyc_type">
+                    <ng-container matColumnDef="kyc_type">
                         <mat-header-cell *matHeaderCellDef> Kyc Type </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.kyc_type}} </mat-cell>
                     </ng-container>

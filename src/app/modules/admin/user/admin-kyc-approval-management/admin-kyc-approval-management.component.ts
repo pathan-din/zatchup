@@ -20,7 +20,7 @@ export class AdminKycApprovalManagementComponent implements OnInit {
   kycApprovalToDate: any;
   retriggerKycFromDate: any;
   retriggerKycToDate: any;
-  kycRequestsRaised : any;
+  kycRequestsRaised: any;
   kycRequestsCompleted: any;
   kycRetriggered: any;
   type: any
@@ -46,31 +46,31 @@ export class AdminKycApprovalManagementComponent implements OnInit {
   }
 
   kycPendingReqRoute_1(type: any) {
-    this.router.navigate(['admin/kyc-pending-request'], { queryParams: {"request-reason": type}})
+    this.router.navigate(['admin/kyc-pending-request'], { queryParams: { "request-reason": type, returnUrl: "admin/kyc-approval-management" } })
   }
 
   kycPendingReqRoute_2(type: any) {
-    this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"request-type": type}})
+    this.router.navigate(['admin/kyc-pending-request'], { queryParams: { "request-type": type, returnUrl: "admin/kyc-approval-management" } })
   }
 
   kycPendingReqRoute_3(type: any) {
-    this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"user-type": type}})
+    this.router.navigate(['admin/kyc-pending-request'], { queryParams: { "user-type": type, returnUrl: "admin/kyc-approval-management" } })
   }
 
   kycChangeRequests() {
-    this.router.navigate(['admin/kyc-change-requests'])
+    this.router.navigate(['admin/kyc-change-requests'], { queryParams: { returnUrl: "admin/kyc-approval-management"}})
   }
 
   kycPendingReqRoute_4(type: any) {
-    this.router.navigate(['admin/kyc-pending-request'],  { queryParams: {"kyc-type": type}})
+    this.router.navigate(['admin/kyc-pending-request'], { queryParams: { "kyc-type": type, returnUrl: "admin/kyc-approval-management" } })
   }
 
-  goToKycApproved(){
-    this.router.navigate(['admin/completed-kyc'], {queryParams:{status: 1}});
+  goToKycApproved() {
+    this.router.navigate(['admin/completed-kyc'], { queryParams: { status: 1 } });
   }
 
-  goToKycRejected(){
-    this.router.navigate(['admin/completed-kyc'], {queryParams: {status: 2}});
+  goToKycRejected() {
+    this.router.navigate(['admin/completed-kyc'], { queryParams: { status: 2 } });
   }
 
   getKycApprovalData() {
@@ -86,7 +86,7 @@ export class AdminKycApprovalManagementComponent implements OnInit {
           this.kycRequestRejected = this.kycApprovalData.kyc_request_completed.rejected
         }
         else
-        this.alert.error(res.error.message[0], 'Error')
+          this.alert.error(res.error.message[0], 'Error')
         this.loader.hide();
       }
     ), err => {
@@ -105,14 +105,14 @@ export class AdminKycApprovalManagementComponent implements OnInit {
 
     this.baseService.action('admin/kyc/get_kyc_dashboard_summary/', this.kycSignupParams).subscribe(
       (res: any) => {
-        if(res.status == true){
+        if (res.status == true) {
           this.kycRequestsRaised = res.data.kyc_requests_raised;
           this.kycRequestsCompleted = parseInt(res.data.approved) + parseInt(res.data.rejected);
           this.kycRequestRejected = res.data.rejected
 
         }
         else
-        this.alert.error(res.error.message[0], 'Error')
+          this.alert.error(res.error.message[0], 'Error')
         this.loader.hide();
       }
     ), err => {
@@ -122,24 +122,24 @@ export class AdminKycApprovalManagementComponent implements OnInit {
     }
   }
 
-  getFilteredKycRetriggerData(){
+  getFilteredKycRetriggerData() {
     this.kycRetriggerParams = {
       "from_date": this.retriggerKycFromDate !== undefined ? this.datePipe.transform(this.retriggerKycFromDate, 'yyyy-MM-dd') : '',
       "to_date": this.retriggerKycToDate !== undefined ? this.datePipe.transform(this.retriggerKycToDate, 'yyyy-MM-dd') : ''
     }
 
     this.baseService.action('admin/kyc/get_kyc_dashboard_summary/', this.kycRetriggerParams).subscribe(
-      (res: any) =>{
-        console.log('retrigger filter res is as ::',res);
-        if(res.status == true){
+      (res: any) => {
+        console.log('retrigger filter res is as ::', res);
+        if (res.status == true) {
           this.kycRetriggered = res.data.kyc_retriggered
         }
         else
-        this.alert.error(res.error.message[0], 'Error')
+          this.alert.error(res.error.message[0], 'Error')
         this.loader.hide();
       }
-    ),err =>{
-      console.log('err',err)
+    ), err => {
+      console.log('err', err)
       this.alert.error(err, 'Error')
       this.loader.hide();
     }
