@@ -22,7 +22,7 @@ export class CouponList {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'discount_type', 'MaximumDiscountAmount', 'couponCodeApplied', 'totalDiscountGiven', 'couponExpirationdate', 'expireCouponButton'];
+    displayedColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'discount_type', 'MaximumDiscountAmount', 'couponCodeApplied', 'couponExpirationdate', 'expireCouponButton'];
 
     dataSource: any;
 }
