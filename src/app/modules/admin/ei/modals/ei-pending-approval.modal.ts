@@ -223,6 +223,8 @@ export class PendingApprovalProfile {
     searchConfig: any = {
         "api_endpoint": "admin/fetch-poc-details/"
     }
+    addressLineOne: any;
+    addressLineTwo: any;
 }
 
 export class DatabaseView {

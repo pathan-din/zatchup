@@ -9,7 +9,8 @@
                     <span class="mr-3 cursorStyle">
                         <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                     </span>
-                    {{pendingApprovalProfile.stage == 'true' ? 'School With Pending For Approval View' : 'School With Incomplete Onboarding View'}}</h2>
+                    {{pendingApprovalProfile.stage == 'true' ? 'School With Pending For Approval View' : 'School With Incomplete Onboarding View'}}
+                </h2>
             </div>
             <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap">
                 <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
@@ -71,11 +72,29 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Address</p>
+                        <div class="col-12 commonFontSize mediumFont">
+                            <p>Address <span class="cursorStyle color-blue" (click)="setAddressData()"><i data-toggle="modal" data-target="#editAddress"
+                                        class="textUnderlineStyle" class="fa fa-pencil-square-o"></i></span></p>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.address1}} {{eiData.address2}}</p>
+                        <div class="col-12 ml-2 small-text-2">
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                        Address Line One</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: {{eiData.address1}}</span> </p>
+                                </div>
+                            </div>
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                        Address Line Two</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: {{eiData.address2}}</span> </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -283,7 +302,7 @@
                                                 <th>Pin Code</th>
                                             </tr>
                                         </thead>
-                                        <tbody >
+                                        <tbody>
                                             <tr class="">
                                                 <td>{{ei.name_of_school}}</td>
                                                 <td>{{ei.pincode}}</td>
@@ -438,16 +457,16 @@
                             </button>
                         </div>
                         <div class="modal-body px-0">
-                            <div class="col-sm-12 justify-content-center d-flex">                                 
+                            <div class="col-sm-12 justify-content-center d-flex">
                                 <button type="button "
                                     class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
                                     data-toggle="modal" data-target="#newZatchupIDModel"
                                     (click)="closeNewEIWithZatchupID()">With
-                                    Enter School ZatchUp ID</button>                                
+                                    Enter School ZatchUp ID</button>
                                 <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel"
                                     class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
                                     (click)="closeNewEIWithZatchupID()">
-                                    With Generate New School ZatchUp ID</button>                                 
+                                    With Generate New School ZatchUp ID</button>
                             </div>
                         </div>
                     </div>
@@ -842,13 +861,13 @@
 
 
             <!--Start of CommentModel  -->
-            <!-- <div class="modal fade" id="CommentModel" tabindex="-1" role="dialog"
+            <div class="modal fade" id="editAddress" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 ">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Comment</h2>
-                            <button #closeCommentModel type="button "
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Edit Address</h2>
+                            <button #closeEditAddress type="button "
                                 class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true ">
@@ -862,28 +881,39 @@
 
                                     <div class="col-sm-12 ">
                                         <label for="Remarks "
-                                            class=" commonFontSize semiBoldFont letterspacing ">Comments</label>
+                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 1</label>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
-                                                id="comment" name="comment" [(ngModel)]="pendingApprovalProfile.comment"
-                                                (keyup)="isValid($event)"
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="address_line_1" name="address_line_1"
+                                                [(ngModel)]="pendingApprovalProfile.addressLineOne" (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                rows="4" placeholder="Enter Remarks" required></textarea>
+                                                rows="4" placeholder="Please enter address line 1" required>
                                         </div>
                                         <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.comment">
+                                            [innerHtml]="pendingApprovalProfile.errorDisplay.address_line_1">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 2</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="address_line_2" name="address_line_2"
+                                                [(ngModel)]="pendingApprovalProfile.addressLineTwo" (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Please enter Address line 2">
                                         </div>
                                     </div>
                                 </div>
                                 <button type="button " (click)="addComment()"
                                     class="bg-purple  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                                    Send
+                                    Edit
                                 </button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <!-- End of CommentModel  -->
         </div>
 
