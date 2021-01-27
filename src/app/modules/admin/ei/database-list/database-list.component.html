@@ -31,7 +31,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle"
-                            type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -41,7 +41,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle"
-                            type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
@@ -196,7 +196,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="action">
-                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="text-center">
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details" aria-hidden="true"
                                 (click)="eiDbView(element)"></i>
