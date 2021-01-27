@@ -1,4 +1,4 @@
-import { DatePipe, Location } from '@angular/common'
+import { DatePipe } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -20,7 +20,6 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private location: Location,
     private datePipe: DatePipe
   ) {
     this.pendingChangeRequests = new PendingChangeRequests();
@@ -28,6 +27,8 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.route.snapshot.queryParamMap.get("request-type") && this.route.snapshot.queryParamMap.get("request-type") !== 'list')
+      this.pendingChangeRequests.status = this.route.snapshot.queryParamMap.get("request-type") == 'pending' ? '0' : '2'
     this.getKycPendingChangeRequests();
     this.pendingChangeRequests.pageCount = this.baseService.getCountsOfPage()
   }
@@ -45,7 +46,7 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
       (res: any) => {
         if (res.status == true) {
           if (!page)
-          page = this.pendingChangeRequests.config.currentPage
+            page = this.pendingChangeRequests.config.currentPage
           this.pendingChangeRequests.startIndex = res.page_size * (page - 1) + 1;
           this.pendingChangeRequests.config.itemsPerPage = res.page_size;
           this.pendingChangeRequests.pageSize = res.page_size;
@@ -76,6 +77,6 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
 
   filterData(page) {
     this.getKycPendingChangeRequests(page)
-      
+
   }
 }

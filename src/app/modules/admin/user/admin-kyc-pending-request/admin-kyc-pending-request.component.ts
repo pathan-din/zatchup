@@ -42,10 +42,11 @@ export class AdminKycPendingRequestComponent implements OnInit {
 
   getKycPendingRequest(page) {
     this.kycPendingRequest.params = {
-      'date_from': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
       'kyc_type': this.kycPendingRequest.kycType !== undefined ? this.kycPendingRequest.kycType : '',
-      'user_type': this.kycPendingRequest.userType !== undefined ? this.kycPendingRequest.userType : '',
+      'user_type': this.kycPendingRequest.userType !== undefined && this.kycPendingRequest.userType !== 'User' ? this.kycPendingRequest.userType : '',
+      'user': this.kycPendingRequest.userType !== undefined && this.kycPendingRequest.userType == 'User' ? this.kycPendingRequest.userType : '',
       'request_type': this.kycPendingRequest.requestType !== undefined ? this.kycPendingRequest.requestType : '',
       'request_reason': this.kycPendingRequest.requestReason !== undefined ? this.kycPendingRequest.requestReason : '',
       'page_size': this.kycPendingRequest.page_size,

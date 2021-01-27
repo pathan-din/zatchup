@@ -71,10 +71,11 @@ export class AdminKycCompleteComponent implements OnInit {
 
   getCompleteKycList(page?: any) {
     this.completeKycList.params = {
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       'kyc_type': this.kycType !== undefined ? this.kycType : '',
-      'user_type': this.userType !== undefined ? this.userType : '',
+      'user_type': this.userType !== undefined && this.userType !== 'User' ? this.userType : '',
+      'user': this.userType !== undefined && this.userType == 'User' ? this.userType : '',
       'status': this.completeKycList.status !== undefined ? this.completeKycList.status : '',
       'request_type': this.requestType !== undefined ? this.requestType : '',
       'request_reason': this.requestReason !== undefined ? this.requestReason : '',

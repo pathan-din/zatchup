@@ -110,8 +110,7 @@ export class OnboardedZatchup {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'board', 'onboardingDate', 'studentZatchup',
-        'totalAlumnizatchup', 'subscriptionStatus', 'status', 'eiPocName', 'action'];
+    displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'onboardingDate', 'eiPocName', 'subscriptionStatus', 'status', 'action'];
 
 }
 

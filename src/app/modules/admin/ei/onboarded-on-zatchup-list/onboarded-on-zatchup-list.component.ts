@@ -60,7 +60,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       'date_to': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.onboardedZatchup.university,
+      // "university": this.onboardedZatchup.university,
       "is_disabled": this.onboardedZatchup.isDisabled,
       "is_subscription_active": this.onboardedZatchup.subStatus,
       "page_size": this.onboardedZatchup.pageSize,
@@ -110,7 +110,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       'date_to': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.onboardedZatchup.university,
+      // "university": this.onboardedZatchup.university,
       "page_size": this.onboardedZatchup.pageSize,
       "is_subscription_active": this.onboardedZatchup.subStatus,
       "page": page
