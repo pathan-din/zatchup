@@ -28,7 +28,7 @@
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                             id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [maxDate]="onboardedZatchup.maxDate" [(ngModel)]="onboardedZatchup.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
@@ -37,8 +37,8 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Added To</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " type="text"
-                            id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate"
-                            [(ngModel)]="filterToDate" #fromDate="ngModel"
+                            id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="onboardedZatchup.maxDate"
+                            [(ngModel)]="onboardedZatchup.filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
@@ -193,10 +193,10 @@
                             {{element.alumni_students}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="commission">
+                    <!-- <ng-container matColumnDef="commission">
                         <mat-header-cell *matHeaderCellDef> commission % </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.commission}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="subscriptionStatus">
                         <mat-header-cell *matHeaderCellDef> Subscription Status </mat-header-cell>
