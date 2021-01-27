@@ -139,7 +139,7 @@
                     <ng-container matColumnDef="expireCouponButton">
                         <mat-header-cell *matHeaderCellDef> Expire Coupon Button </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i (click)="expireCoupon(element)" class="fa fa-exclamation-triangle mr-2 color-red fa-lg cursorStyle"
+                            <i *ngIf="couponList.coupon_status == 'active'" (click)="expireCoupon(element)" class="fa fa-exclamation-triangle mr-2 color-red fa-lg cursorStyle"
                                 aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>

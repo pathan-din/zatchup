@@ -27,7 +27,8 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
   ngOnInit(): void {
     this.couponList.pageCounts = this.baseService.getCountsOfPage();
     this.couponList.activeParams = this.activeRoute.snapshot.params;
-    if (this.couponList.activeParams.coupanType == 'active')
+    this.couponList.coupon_status =  this.activeRoute.snapshot.params.coupanType
+    if (this.couponList.coupon_status == 'active')
       this.couponList.title = 'Active'
     else
       this.couponList.title = 'Expired'
@@ -38,7 +39,7 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
   getCouponList(page: any = '') {
     this.loader.show()
     this.couponList.couponParams = {
-      "coupon_status": this.couponList.activeParams.coupanType == 'active' ? 'true' : 'false',
+      "coupon_status": this.couponList.coupon_status == 'active' ? 'true' : 'false',
       "coupon_type": this.couponList.couponType,
       "page_size": this.couponList.pageSize,
       "page": page
@@ -47,7 +48,7 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
     this.baseService.getData('admin/coupon/get_coupons_list/', this.couponList.couponParams).subscribe(
       (res: any) => {
 
-        if (res.status == true && res.count != 0) {
+        if (res.status == true) {
           if (!page)
             page = this.couponList.config.currentPage
           this.couponList.startIndex = res.page_size * (page - 1) + 1;
@@ -55,7 +56,10 @@ export class AdminPaymentCouponStatusComponent implements OnInit {
           this.couponList.pageSize = res.page_size;
           this.couponList.config.currentPage = page
           this.couponList.config.totalItems = res.count
-          this.couponList.dataSource = res.results;
+          if (res.results.length > 0)
+            this.couponList.dataSource = res.results;
+          else
+            this.couponList.dataSource = undefined
           this.loader.hide()
         } else {
           this.loader.hide();
