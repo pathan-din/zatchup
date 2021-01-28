@@ -744,6 +744,10 @@ a:hover {
     background-color: #463267 !important;
 }
 
+.custumInputWidth {
+    width: 22%;
+}
+
 @media (max-width: 767px){
     .backimg{
         width: 30px;
@@ -753,12 +757,14 @@ a:hover {
     h2 {
         font-size: 1.1rem !important;
     }
+
+    .custumInputWidth {
+        width: 42%;
+    }
 }
+
 .mat-slide-toggle-thumb {
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     background-color: #f3f3f3;
 }
 
-.custumInputWidth {
-    width: 22%;
-}

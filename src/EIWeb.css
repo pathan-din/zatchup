@@ -86,7 +86,6 @@ app-ei-sidenav+.container.main-container {
 .numberDropdown {
     height: calc(0.8em + 0.75rem + 2px) !important;
     appearance: auto;
-    width: 70px !important;
 }
 
 .courseDiv {
