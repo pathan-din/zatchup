@@ -86,6 +86,7 @@ app-ei-sidenav+.container.main-container {
 .numberDropdown {
     height: calc(0.8em + 0.75rem + 2px) !important;
     appearance: auto;
+    width: 70px !important;
 }
 
 .courseDiv {
@@ -96,9 +97,9 @@ app-ei-sidenav+.container.main-container {
     width: 100%;
 }
 
-.dropdown-lg-Div {
+/* .dropdown-lg-Div {
     width: 150px;
-}
+} */
 
 .dropdown-lg-Div .form-control-inputDiv {
     width: 100%;
