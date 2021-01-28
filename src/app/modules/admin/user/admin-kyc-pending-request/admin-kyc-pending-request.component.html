@@ -18,7 +18,7 @@
                     <div class="widthFull mr-4 mt-3 ">
                         <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
                         <div class="rounded-0 p-0  border-top shadow-none">
-                            <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY"
+                            <input type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD"
                                 class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
                                 [(ngModel)]="kycPendingRequest.filterFromDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
@@ -27,7 +27,7 @@
                     <div class="widthFull mr-4 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
                         <div class="rounded-0 p-0  border-top shadow-none">
-                            <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY"
+                            <input type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD"
                                 class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
                                 [(ngModel)]="kycPendingRequest.filterToDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
@@ -38,8 +38,9 @@
                         <div class="form-control-inputDiv rounded shadow-none">
                             <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="kycPendingRequest.userType">
                                 <option value=""> Select User</option>
-                                <option value="STUDENTS">Student</option>
-                                <option value="ALUMNI">Alumni</option>
+                                <option value="User">Student/Alumni</option>
+                                    <!-- <option value="STUDENTS">Student</option>
+                                    <option value="ALUMNI">Alumni</option> -->
                                 <option value="EISUBADMIN">School Sub-admin</option>
                             </select>
                         </div>
@@ -89,7 +90,7 @@
         <!--End html for filter for Kyc Complete-->
 
         <!--Start html for filter for No of KYC per page with export button-->
-        <div class="row my-3" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0">
+        <div class="row my-3" *ngIf="kycPendingRequest.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
@@ -110,10 +111,9 @@
         <!--End html for filter for No of KYC per page with export button-->
 
         <!--Start html for table content KYC information-->
-        <div class="tableDiv" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0">
+        <div class="tableDiv" *ngIf="kycPendingRequest.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="kycPendingRequest.dataSource | paginate: kycPendingRequest.config">
-
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i = index"> {{i+ kycPendingRequest.startIndex}}
@@ -174,10 +174,10 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource.length > 0" (pageChange)="getKycPendingRequest($event)"
+        <pagination-controls *ngIf="kycPendingRequest.dataSource" (pageChange)="getKycPendingRequest($event)"
             class="eiPaginationTag">
         </pagination-controls>
-        <div class="row" *ngIf="kycPendingRequest.dataSource && kycPendingRequest.dataSource == 0">
+        <div class="row" *ngIf="!kycPendingRequest.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
             </div>

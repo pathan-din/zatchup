@@ -42,10 +42,11 @@ export class AdminKycPendingRequestComponent implements OnInit {
 
   getKycPendingRequest(page) {
     this.kycPendingRequest.params = {
-      'date_from': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
       'kyc_type': this.kycPendingRequest.kycType !== undefined ? this.kycPendingRequest.kycType : '',
-      'user_type': this.kycPendingRequest.userType !== undefined ? this.kycPendingRequest.userType : '',
+      'user_type': this.kycPendingRequest.userType !== undefined && this.kycPendingRequest.userType !== 'User' ? this.kycPendingRequest.userType : '',
+      'user': this.kycPendingRequest.userType !== undefined && this.kycPendingRequest.userType == 'User' ? this.kycPendingRequest.userType : '',
       'request_type': this.kycPendingRequest.requestType !== undefined ? this.kycPendingRequest.requestType : '',
       'request_reason': this.kycPendingRequest.requestReason !== undefined ? this.kycPendingRequest.requestReason : '',
       'page_size': this.kycPendingRequest.page_size,
@@ -55,18 +56,18 @@ export class AdminKycPendingRequestComponent implements OnInit {
       (res: any) => {
         if (res.status == true) {
           if (!page)
-          page = this.kycPendingRequest.config.currentPage
+            page = this.kycPendingRequest.config.currentPage
           this.kycPendingRequest.startIndex = res.page_size * (page - 1) + 1;
           this.kycPendingRequest.page_size = res.page_size
           this.kycPendingRequest.config.itemsPerPage = this.kycPendingRequest.page_size
           this.kycPendingRequest.config.currentPage = page
           this.kycPendingRequest.config.totalItems = res.count;
-          if(res.count > 0){
+          if (res.count > 0) {
             this.kycPendingRequest.dataSource = res.results
           }
           else
-          this.kycPendingRequest.dataSource = undefined 
-         
+            this.kycPendingRequest.dataSource = undefined
+
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -86,7 +87,8 @@ export class AdminKycPendingRequestComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
+    this.router.navigate([returnUrl])
   }
 
   setFilter(type: any, value: any) {
@@ -96,15 +98,15 @@ export class AdminKycPendingRequestComponent implements OnInit {
     } else if (type == 'kyc-type' && value != 'list') {
       this.kycPendingRequest.kycType = value
     } else if (type == 'request-type' && value != 'list') {
-      if(value == 'first-time')
+      if (value == 'first-time')
         this.kycPendingRequest.requestType = "0"
       else
-      this.kycPendingRequest.requestType = "1"
+        this.kycPendingRequest.requestType = "1"
     } else if (type == 'request-reason' && value != 'list') {
-      if(value == 'fresh-singup')
+      if (value == 'fresh-singup')
         this.kycPendingRequest.requestReason = "0"
       else
-      this.kycPendingRequest.requestReason = "1"
+        this.kycPendingRequest.requestReason = "1"
     } else {
 
     }

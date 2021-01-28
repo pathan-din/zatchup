@@ -20,7 +20,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   @ViewChild('closeApproveWithNewZatchupIDModel') closeApproveWithNewZatchupIDModel: any;
   @ViewChild('closeNewZatchupIDModel') closeNewZatchupIDModel: any
   @ViewChild('closeGenerateZatchupIDModel') closeGenerateZatchupIDModel: any;
-  @ViewChild('closeCommentModel') closeCommentModel: any
+  @ViewChild('closeEditAddress') closeEditAddress: any
   eiId: any
   eiData: any = {};
   eiExData: any = {};
@@ -321,35 +321,36 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     )
   }
 
-  // addComment() {
-  //   this.pendingApprovalProfile.errorDisplay = {};
-  //   this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[5].elements, false, []);
-  //   if (this.pendingApprovalProfile.errorDisplay.valid) {
-  //     return false;
-  //   }
+  addComment() {
+    this.pendingApprovalProfile.errorDisplay = {};
+    this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[5].elements, false, []);
+    if (this.pendingApprovalProfile.errorDisplay.valid) {
+      return false;
+    }
 
-  //   this.loader.show()
-  //   let data = {
-  //     'user_id': this.eiData.id,
-  //     'comments': this.pendingApprovalProfile.comment,
-  //   }
-  //   this.baseService.action('admin/onboarding-comments/', data).subscribe(
-  //     (res: any) => {
-  //       if (res.status == true) {
-  //         this.closeCommentModel.nativeElement.click();
-  //         this.alert.success(res.message, 'Success')
-
-  //       }
-  //       else {
-  //         this.alert.error(res.error.message[0], 'Error')
-  //       }
-  //       this.loader.hide()
-  //     }, err => {
-  //       this.alert.error(err, 'Error')
-  //       this.loader.hide()
-  //     }
-  //   )
-  // }
+    this.loader.show()
+    let data = {
+      'ei_id': this.eiData.ei_id,
+      'address1': this.pendingApprovalProfile.addressLineOne,
+      'address2': this.pendingApprovalProfile.addressLineTwo
+    }
+    this.baseService.action('admin/school/update_address/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.closeEditAddress.nativeElement.click();
+          this.alert.success(res.message, 'Success')
+          this.getProfileData();
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+        this.loader.hide()
+      }, err => {
+        this.alert.error(err, 'Error')
+        this.loader.hide()
+      }
+    )
+  }
   isValid(event) {
     if (Object.keys(this.pendingApprovalProfile.errorDisplay).length !== 0) {
       this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
@@ -382,6 +383,11 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     }
 
     return true;
+  }
+
+  setAddressData(){
+    this.pendingApprovalProfile.addressLineOne = this.eiData.address1
+    this.pendingApprovalProfile.addressLineTwo = this.eiData.address2
   }
 
 }

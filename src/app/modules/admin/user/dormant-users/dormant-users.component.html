@@ -19,7 +19,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="signupFrom" name="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="signupFrom" name="signupFrom" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="maxDate"  [(ngModel)]="dormantUsers.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -28,7 +28,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="signupTo" name="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="signupTo" name="signupTo" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="dormantUsers.filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -37,7 +37,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="lastLoginFrom" type="text" name="lastloginFrom" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="lastLoginFrom" type="text" name="lastloginFrom" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="dormantUsers.loginFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -46,7 +46,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="lastLoginTo" name="lastloginTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="lastLoginTo" name="lastloginTo" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="maxDate" [(ngModel)]="dormantUsers.loginToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>

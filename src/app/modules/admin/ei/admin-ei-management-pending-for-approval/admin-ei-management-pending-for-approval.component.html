@@ -174,9 +174,9 @@
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <button type="button" aria-hidden="true "
-                            data-toggle="modal" data-target="#approveEI" class="bg-light-blue text-white h-100 border-0 rounded"
+                            data-toggle="modal" data-target="#approveEI" class="bg-dark text-white h-100 border-0 rounded"
                             *ngIf="element.send_back_to_edit == 1" (click)="sendBackDetails(element.ei_id)" >Send Back To Edit</button>
-                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
+                            <button type="button" class="bg-yellow text-white h-100 border-0 rounded"
                             *ngIf="element.send_back_to_edit == 0"  >Pending For Approval </button>
                              </mat-cell>
                     </ng-container>

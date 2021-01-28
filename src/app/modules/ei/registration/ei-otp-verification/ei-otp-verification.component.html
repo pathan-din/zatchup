@@ -8,20 +8,19 @@
                 <h2 class="text-center my-3 semiBoldFont">OTP Verification</h2>
                 <form>
                     <div class="form-group">
-                        <label for="" class="commonFontSize mediumFont letterspacing">Enter OTP Recived on your mobile number</label>
-                        <div class="d-flex justify-content-between">
-                            <label for="" class="commonFontSize mediumFont letterspacing">Mobile number otp</label>
-                            <input (keyup)="changeInput($event)" [(ngModel)]="otp1" name="otp1" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
-                            <input (keyup)="changeInput($event)" [(ngModel)]="otp2" name="otp2" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
-                            <input (keyup)="changeInput($event)" [(ngModel)]="otp3" name="otp3" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
-                            <input  [(ngModel)]="otp4" name="otp4" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1">
+                        <label for="" class="commonFontSize letterspacing">Enter OTP Received on your Mobile Number</label>
+                        <div class="d-flex justify-content-between">                            
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp1" name="otp1" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp2" name="otp2" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp3" name="otp3" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
+                            <input  [(ngModel)]="otp4" name="otp4" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1" numberOnly>
                         </div>
-                        <label for="" class="commonFontSize mediumFont letterspacing">Email otp</label>
+                        <label for="" class="commonFontSize letterspacing mt-3">Enter OTP Received on your Email Address</label>
                         <div class="d-flex justify-content-between">
-                            <input (keyup)="changeInput($event)" [(ngModel)]="otp5" name="otp5" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
-                            <input (keyup)="changeInput($event)" [(ngModel)]="otp6" name="otp6" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
-                            <input (keyup)="changeInput($event)" [(ngModel)]="otp7" name="otp7" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1">
-                            <input  [(ngModel)]="otp8" name="otp8" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1">
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp5" name="otp5" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp6" name="otp6" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
+                            <input (keyup)="changeInput($event)" [(ngModel)]="otp7" name="otp7" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
+                            <input  [(ngModel)]="otp8" name="otp8" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1" numberOnly>
                         </div>
                     </div>
                     <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing" (click)="resendOtp()">Resend OTP</p>

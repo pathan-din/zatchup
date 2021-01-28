@@ -121,9 +121,8 @@
                     <div class="row bg-light pt-3 ml-0">
                         <div class="col-12 medium-filter-box">
                             <label for="" class="mediumFont commonFontSize letterspacing">Issue</label>
-                            <div
-                                class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                                <input class="form-control-input form-control commonFontSize regularFont letterspacing"
+                            <div class="shadow-none">
+                                <input class="form-control-input form-control border commonFontSize regularFont letterspacing"
                                     id="issye" type="text" placeholder="Enter issue" name="issue_type"
                                     [(ngModel)]="modal.issue" (change)="isValid()" required>
                             </div>
@@ -133,13 +132,12 @@
                         <div class="col-md-12 mt-2">
                             <div class="form-group">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
-                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <div class="w-100 shadow-none">
                                     <textarea name="message" (keyup)="isValid()" [(ngModel)]="modal.message" required
-                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        class="form-control-input form-control border commonFontSize regularFont letterspacing"
                                         type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
                                 </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.message">
-                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.message"></div>
                             </div>
                         </div>
                         <div class="col-md-12">

@@ -86,7 +86,8 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
         if (res.status == true) {
           this.approveCloseButton.nativeElement.click();
           this.notificationService.success(res.message, 'Success')
-          this.router.navigate(['admin/kyc-change-requests'])
+          // this.router.navigate(['admin/kyc-change-requests'])
+          this.router.navigate(['admin/kyc-change-requests'], { queryParams: { returnUrl: "admin/kyc-approval-management"}})
         } else {
           this.notificationService.error(res.error.message, 'Error')
         }

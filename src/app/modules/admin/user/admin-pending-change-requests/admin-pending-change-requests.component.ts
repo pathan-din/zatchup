@@ -1,6 +1,6 @@
-import { DatePipe, Location } from '@angular/common'
+import { DatePipe } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
-import { count } from 'console';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -15,10 +15,11 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
   pendingChangeRequests: PendingChangeRequests
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private location: Location,
     private datePipe: DatePipe
   ) {
     this.pendingChangeRequests = new PendingChangeRequests();
@@ -26,6 +27,8 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.route.snapshot.queryParamMap.get("request-type") && this.route.snapshot.queryParamMap.get("request-type") !== 'list')
+      this.pendingChangeRequests.status = this.route.snapshot.queryParamMap.get("request-type") == 'pending' ? '0' : '2'
     this.getKycPendingChangeRequests();
     this.pendingChangeRequests.pageCount = this.baseService.getCountsOfPage()
   }
@@ -37,12 +40,13 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
       'page_size': this.pendingChangeRequests.pageSize,
       'page': page,
       'field_change_type': this.pendingChangeRequests.field_change_type,
+      'status': this.pendingChangeRequests.status
     }
     this.baseService.getData('admin/kyc/request_for_change_details/', this.pendingChangeRequests.params).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-          page = this.pendingChangeRequests.config.currentPage
+            page = this.pendingChangeRequests.config.currentPage
           this.pendingChangeRequests.startIndex = res.page_size * (page - 1) + 1;
           this.pendingChangeRequests.config.itemsPerPage = res.page_size;
           this.pendingChangeRequests.pageSize = res.page_size;
@@ -66,11 +70,13 @@ export class AdminKycPendingChangeRequestsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    // this.location.back();
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
+    this.router.navigate([returnUrl])
   }
 
   filterData(page) {
     this.getKycPendingChangeRequests(page)
-      
+
   }
 }

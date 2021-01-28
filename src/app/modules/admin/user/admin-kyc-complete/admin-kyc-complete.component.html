@@ -17,7 +17,7 @@
                 <div class="widthFull mr-4 mt-3 ">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
                     <div class="rounded-0 shadow-none">
-                        <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" class="form-control"
+                        <input type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" class="form-control"
                             bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
@@ -25,7 +25,7 @@
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
                     <div class="rounded-0 shadow-none">
-                        <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" class="form-control"
+                        <input type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" class="form-control"
                             bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat:'YYYY-MM-DD' }">
                     </div>
@@ -35,8 +35,8 @@
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="user_type" [(ngModel)]="userType">
                             <option value=""> Select User</option>
-                            <option value="STUDENTS">Student</option>
-                            <option value="ALUMNI">Alumni</option>
+                            <option value="User">Student/Alumni</option>
+                            <!-- <option value="ALUMNI">Alumni</option> -->
                             <option value="EISUBADMIN">Sub-admin</option>
                         </select>
                     </div>
@@ -131,7 +131,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="EIZatchUpIDOfUser">
-                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID Of User </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.zatchupId}}
                         </mat-cell>

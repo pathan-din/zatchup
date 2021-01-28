@@ -6,14 +6,13 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0 "> Resolve Tickets </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> Resolved Tickets </h2>
             </div>
         </div>
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Tickets
-                    Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getResolveTicketsList('1')" [(ngModel)]="resolveTicket.pageSize"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
@@ -35,7 +34,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
                     </ng-container>
 
@@ -44,22 +43,22 @@
                         <mat-cell *matCellDef="let element"> {{element.ticket_id}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="ticket_raised_date">
-                        <mat-header-cell *matHeaderCellDef>Ticket Raised Date </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Ticket Date </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.created_on | date: 'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveDate">
-                        <mat-header-cell *matHeaderCellDef>Ticket Reslove Date </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Resolved Date </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.resolve_date | date: 'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveBy">
-                        <mat-header-cell *matHeaderCellDef>Reslove By </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Resolved By </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.resolve_by}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="resolveComment">
-                        <mat-header-cell *matHeaderCellDef> Resolve Comment </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
                                 aria-hidden="true" (click)="openReasonModel(element.resolve_comment)" data-toggle="modal" data-target="#messageFromSchool"
@@ -145,7 +144,7 @@
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
-                <h2 class="mediumFont commonFontSize letterspacing m-0">Comments</h2>
+                <h2 class="mediumFont commonFontSize letterspacing m-0">Message</h2>
             </div>
             <div class="modal-body px-0">
                 <div class="row">

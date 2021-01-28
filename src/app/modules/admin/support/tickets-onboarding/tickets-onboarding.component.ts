@@ -61,8 +61,8 @@ export class TicketsOnboardingComponent implements OnInit {
     //   })
     // }
     this.ticketsList.listParams = {
-      'date_from': this.ticketsList.filterFromDate !== undefined ? this.datePipe.transform(this.ticketsList.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.ticketsList.filterToDate !== undefined ? this.datePipe.transform(this.ticketsList.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.ticketsList.filterFromDate !== undefined ? this.datePipe.transform(this.ticketsList.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.ticketsList.filterToDate !== undefined ? this.datePipe.transform(this.ticketsList.filterToDate, 'yyyy-MM-dd') : '',
       // "city": cityFind ? cityFind.city : '',
       // "state": stateFind ? stateFind.state : '',
       "status": this.ticketsList.status,

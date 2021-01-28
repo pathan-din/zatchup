@@ -37,7 +37,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised From</label>
                     <div class="rounded-0 p-0 shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                            id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="changeDetailRequestsPending.maxDate"
                             [(ngModel)]="changeDetailRequestsPending.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
@@ -47,7 +47,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised To</label>
                     <div class="rounded-0 p-0 shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " type="text"
-                            id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="changeDetailRequestsPending.maxDate"
                             [(ngModel)]="changeDetailRequestsPending.filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
