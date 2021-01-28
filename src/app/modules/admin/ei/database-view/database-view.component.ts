@@ -15,6 +15,7 @@ import { GenericFormValidationService } from 'src/app/services/common/generic-fo
 })
 export class DatabaseViewComponent implements OnInit {
   @ViewChild('closeEnableDisableModal') closeEnableDisableModal: any;
+  @ViewChild('closeEditAddress') closeEditAddress: any;
   databaseView: DatabaseView;
   eiData: any;
   user_type: any;
@@ -162,5 +163,41 @@ export class DatabaseViewComponent implements OnInit {
     if (Object.keys(this.databaseView.errorDisplay).length !== 0) {
       this.databaseView.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
+  }
+
+  setAddressData(){
+    this.databaseView.addressLineOne = this.eiData.address1
+    this.databaseView.addressLineTwo = this.eiData.address2
+  }
+
+  editAddress() {
+    this.databaseView.errorDisplay = {};
+    this.databaseView.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
+    if (this.databaseView.errorDisplay.valid) {
+      return false;
+    }
+
+    this.loader.show()
+    let data = {
+      'ei_id': this.eiData.id,
+      'address1': this.databaseView.addressLineOne,
+      'address2': this.databaseView.addressLineTwo
+    }
+    this.baseService.action('admin/school/update_address/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.closeEditAddress.nativeElement.click();
+          this.alert.success(res.message, 'Success')
+          this.getDatabaseView();
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+        this.loader.hide()
+      }, err => {
+        this.alert.error(err, 'Error')
+        this.loader.hide()
+      }
+    )
   }
 }
