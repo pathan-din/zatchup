@@ -21,7 +21,7 @@ export class TicketsList {
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'ticket_raising_date', 'ticketName', 'zatchUpID',
-        'message', 'resolve'];
+        'status', 'message', 'resolve'];
     pageCounts: any;
 
 }
