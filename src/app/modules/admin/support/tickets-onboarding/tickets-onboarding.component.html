@@ -197,6 +197,18 @@
                         <mat-cell *matCellDef="let element "> {{element.phone}} </mat-cell>
                     </ng-container> -->
 
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> School Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <!-- <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
+                                aria-hidden="true" data-toggle="modal" data-target="#messageFromSchool"
+                                (click)="viewMessage(element)"></i>  -->
+                            <button type="button" class=" {{element.is_onboarded == '0' ? 'bg-paret-green' : 'bg-yellow'}} text-white h-100 border-0 rounded">
+                                {{element.is_onboarded == '0' ? 'Pending For Approval' : 'Onboarded'}}
+                            </button>
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="message">
                         <mat-header-cell *matHeaderCellDef> School Message </mat-header-cell>
                         <mat-cell *matCellDef="let element">
