@@ -199,9 +199,9 @@
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycRequestsCompleted">
                         {{kycRequestsCompleted}}</h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0" (click)="goToKycApproved()">KYC Requests Approved:<span class="ml-2"
+                        <p class="mb-0" (click)="goToKycCompleted('1')()">KYC Requests Approved:<span class="ml-2"
                                 *ngIf="kycRequestApproved">{{kycRequestApproved}}</span></p>
-                        <p class="mb-0 " (click)="goToKycRejected()">KYC Requests Rejected:<span class="ml-2"
+                        <p class="mb-0 " (click)="goToKycCompleted('2')()">KYC Requests Rejected:<span class="ml-2"
                                 *ngIf="kycRequestApproved">{{kycRequestRejected}}</span>
                         </p>
                     </div>
