@@ -21,8 +21,8 @@ p.cursorStyle.ng-star-inserted:hover {
 
 .eyeIcon {
     position: absolute;
-    right: 25px;
-    bottom: 16px;
+    right: 15px;
+    bottom: 13px;
 }
 @media only screen and (max-width: 414px) {
     .paddingLHeading{
