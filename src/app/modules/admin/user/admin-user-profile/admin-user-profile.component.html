@@ -93,7 +93,7 @@
                                     <p><span class="mr-3">: </span> {{userData.phone}}</p>
                                 </div>
                             </div>
-                            <div class="row mx-0">
+                            <!-- <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
                                         Profession</p>
@@ -101,7 +101,7 @@
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: </span> {{userData.role}}</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
@@ -115,7 +115,7 @@
 
                     </div>
 
-                    <div class="row">
+                    <div class="row" *ngIf="userData.education_detail">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Education Details</p>
                         </div>
