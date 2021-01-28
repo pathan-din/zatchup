@@ -61,8 +61,8 @@
                         {{kycApprovalData.kyc_pending_requests_III.students_alumni_count + kycApprovalData.kyc_pending_requests_III.subadmin_count}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 "><span (click)="kycPendingReqRoute_3('STUDENTS')">Student</span>/<span
-                                (click)="kycPendingReqRoute_3('ALUMNI')">Alumni</span>: <span class="ml-2"
+                        <p class="mb-0 "><span (click)="kycPendingReqRoute_3('User')">Student/Alumni</span>:
+                            <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_III.students_alumni_count}}</span>
                         </p>
                         <p class="mb-0 " (click)="kycPendingReqRoute_3('EISUBADMIN')">Sub-Admin: <span class="ml-2"
@@ -97,23 +97,20 @@
                 </div>
             </div>
 
-            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;" (click)="kycChangeRequests()">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;" (click)="kycChangeRequests('list')">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 mediumFont commonFontSize">KYC Change Requests
                     </p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
-                        {{kycApprovalData.total_no_of_pending_requests_change}}
+                        {{kycApprovalData.total_change_requests}}
                     </h2>
                     <div
                         class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
-                        <!-- <p class="mb-0" (click)="kycPendingReqRoute_4('Aadhar')">Pending:<span class="ml-2"
-                                *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.aadhar}}</span></p>
-                        <p class="mb-0" (click)="kycPendingReqRoute_4('Driving License')">Driving License:<span class="ml-2"
-                                *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.drivinglicense}}</span>
+                        <p class="mb-0" (click)="kycChangeRequests('pending')">Pending:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.total_pending_change_requests}}</span></p>
+                        <p class="mb-0" (click)="kycChangeRequests('rejected')">Rejected:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.total_rejected_change_requests}}</span>
                         </p>
-                        <p class="mb-0" (click)="kycPendingReqRoute_4('Passport')">Passport:<span class="ml-2"
-                                *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.passport}}</span>
-                        </p> -->
                     </div>
                 </div>
             </div>

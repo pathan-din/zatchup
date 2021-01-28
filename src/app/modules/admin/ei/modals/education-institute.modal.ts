@@ -30,8 +30,8 @@ export class EducationInstitute {
 }
 
 export class EIDbList extends Pagination {
-    displayedColumns: string[] = ['position', 'dateofOnboarding', 'eiZatchupID', 'schoolName', 'state', 'city', 'address', 'board',
-        'approximateNumber', 'status', 'dateOfAdding', 'action'];
+    displayedColumns: string[] = ['position', 'eiZatchupID', 'schoolName', 'state', 'city',
+        'status', 'dateOfAdding', 'action'];
 
     stateId: any = '';
     cityId: any = '';
@@ -42,8 +42,8 @@ export class EIDbList extends Pagination {
     modal: any = {};
     university: any;
     onboardingStatus: any = '';
-  subStatus: any;
-  search: any;
+    subStatus: any;
+    search: any;
 }
 export class DocHistory extends Pagination {
     existingZatchIDMOUDoc: any;
@@ -51,7 +51,7 @@ export class DocHistory extends Pagination {
     errorDisplay: any = {};
     remarks: any;
     displayedColumns: string[] = ['position', 'DateOfUploading', 'NameofDocument', 'ViewDocument',
-         'Remarks', 'UploadedByEI', 'UploadedByEmployeeName'];
+        'Remarks', 'UploadedByEI', 'UploadedByEmployeeName'];
     school_id: any;
     params: any;
     ascendingOrder: any = 'true';

@@ -71,7 +71,7 @@ export class DatabaseListComponent implements OnInit {
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.eidbList.university,
+      // "university": this.eidbList.university,
       "onboarded_status": this.eidbList.onboardingStatus,
       'page': page,
       'page_size': this.eidbList.page_size,
@@ -129,7 +129,7 @@ export class DatabaseListComponent implements OnInit {
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.eidbList.university,
+      // "university": this.eidbList.university,
       "page_size": this.eidbList.page_size,
       "is_subscription_active": this.eidbList.subStatus,
       "page": page

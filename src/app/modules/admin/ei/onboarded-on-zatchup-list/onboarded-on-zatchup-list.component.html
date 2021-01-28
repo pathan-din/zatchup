@@ -65,7 +65,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-3 mt-3">
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <input type="text" name="board_university" [(ngModel)]="this.onboardedZatchup.university"
@@ -73,7 +73,7 @@
                             placeholder="Board/University" />
 
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Subscription Status</label>
                     <div class="">
@@ -170,12 +170,12 @@
                     </ng-container>
 
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="board">
+                    <!-- <ng-container matColumnDef="board">
                         <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.university}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <!-- Symbol Column -->
                     <ng-container matColumnDef="onboardingDate">
@@ -183,15 +183,20 @@
                         <mat-cell *matCellDef="let element "> {{element.onboarded_date}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="studentZatchup">
+                    <ng-container matColumnDef="eiPocName">
+                        <mat-header-cell *matHeaderCellDef> School POC Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.poc_name}} </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="studentZatchup">
                         <mat-header-cell *matHeaderCellDef> Students of ZatchUp </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.zatchup_students}} </mat-cell>
-                    </ng-container>
-                    <ng-container matColumnDef="totalAlumnizatchup">
+                    </ng-container> -->
+                    <!-- <ng-container matColumnDef="totalAlumnizatchup">
                         <mat-header-cell *matHeaderCellDef> Total Alumni ZatchUp </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.alumni_students}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <!-- <ng-container matColumnDef="commission">
                         <mat-header-cell *matHeaderCellDef> commission % </mat-header-cell>
@@ -210,11 +215,6 @@
                         <mat-cell *matCellDef="let element "> <button type="button"
                                 class="{{element.is_disabled == false ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.is_disabled == true ? 'Inactive' : 'Active'}}</button>
                         </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="eiPocName">
-                        <mat-header-cell *matHeaderCellDef> School POC Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.poc_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
