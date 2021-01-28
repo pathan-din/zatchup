@@ -45,10 +45,10 @@
             </div>
         </div>
         <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+            <div class="col-md-12 d-flex flex-wrap align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records per page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select (change)="getEIHistory('1')" class="custom-select  form-control-input" id="count"
+                    <select (change)="getEIHistory('1')" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0" id="count"
                         [(ngModel)]="pagination.page_size">
                         <option value=""> Select count</option>
                         <option *ngFor="let count of recordCount" value="{{count}}">{{count}}</option>
