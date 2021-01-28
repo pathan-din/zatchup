@@ -243,6 +243,8 @@ export class DatabaseView {
     isDisabled: any;
     enableDisableModalTitle: any;
     enableDisableReason: any;
+    addressLineOne: any;
+    addressLineTwo: any;
 }
 
 export class OnboardingView {

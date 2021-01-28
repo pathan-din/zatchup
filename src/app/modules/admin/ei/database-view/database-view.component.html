@@ -54,7 +54,9 @@
 
                         <div class="row">
                             <div class="col-12 commonFontSize mediumFont">
-                                <p>Complete Address</p>
+                                <p>Complete Address <span class="cursorStyle color-blue" (click)="setAddressData()"><i
+                                            data-toggle="modal" data-target="#editAddress" class="textUnderlineStyle"
+                                            class="fa fa-pencil-square-o"></i></span></p>
                             </div>
                             <div class="col-12 ml-2 small-text-2">
                                 <div class="row mx-0">
@@ -196,7 +198,7 @@
                 </div>
             </div>
 
-            <!-- addComments  -->
+            <!-- Start School eneble disable Model  -->
             <div class="modal fade" id="enableDisableModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
@@ -239,9 +241,67 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End eiEditModel  -->
+            <!-- End School eneble disable Model  -->
 
+            <!-- Start School edit address Model -->
+            <div class="modal fade" id="editAddress" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 ">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Edit Address</h2>
+                            <button #closeEditAddress type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <form id="comment">
+                                <div class=" form-group row ">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 1</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="address_line_1" name="address_line_1"
+                                                [(ngModel)]="databaseView.addressLineOne"
+                                                (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Please enter address line 1" required>
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="databaseView.errorDisplay.address_line_1">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 2</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="address_line_2" name="address_line_2"
+                                                [(ngModel)]="databaseView.addressLineTwo"
+                                                (keyup)="isValid($event)"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Please enter Address line 2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button " (click)="editAddress()"
+                                    class="bg-purple  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                    Edit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End School edit address Model -->
+        </div>
     </div>
 </div>
 
