@@ -65,13 +65,13 @@ export class AdminKycApprovalManagementComponent implements OnInit {
     this.router.navigate(['admin/kyc-pending-request'], { queryParams: { "kyc-type": type, returnUrl: "admin/kyc-approval-management" } })
   }
 
-  goToKycApproved() {
-    this.router.navigate(['admin/completed-kyc'], { queryParams: { status: 1 } });
+  goToKycCompleted(status: any) {
+    this.router.navigate(['admin/completed-kyc'], { queryParams: { status: status, returnUrl: "admin/kyc-approval-management" } });
   }
 
-  goToKycRejected() {
-    this.router.navigate(['admin/completed-kyc'], { queryParams: { status: 2 } });
-  }
+  // goToKycRejected() {
+  //   this.router.navigate(['admin/completed-kyc'], { queryParams: { status: 2, returnUrl: "admin/kyc-approval-management" } });
+  // }
 
   getKycApprovalData() {
     this.baseService.getData('admin/kyc/get_kyc_dashboard_summary/').subscribe(

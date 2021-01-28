@@ -55,7 +55,7 @@
 
         <!--Start html for EI Database information table-->
         <div class="tableDiv" *ngIf="couponList.dataSource">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="couponList.coupon_status == 'active'">
                 <mat-table [dataSource]="couponList.dataSource | paginate: couponList.config">
 
                     <ng-container matColumnDef="position">
@@ -139,16 +139,101 @@
                     <ng-container matColumnDef="expireCouponButton">
                         <mat-header-cell *matHeaderCellDef> Expire Coupon Button </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i *ngIf="couponList.coupon_status == 'active'" (click)="expireCoupon(element)" class="fa fa-exclamation-triangle mr-2 color-red fa-lg cursorStyle"
+                            <i (click)="expireCoupon(element)"
+                                class="fa fa-exclamation-triangle mr-2 color-red fa-lg cursorStyle"
                                 aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="couponList.displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: couponList.displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="couponList.displayedActiveCouponColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: couponList.displayedActiveCouponColumns; "></mat-row>
                 </mat-table>
             </div>
+            <div class="mat-elevation-z1 table-responsive" *ngIf="couponList.coupon_status == 'expired'">
+                <mat-table [dataSource]="couponList.dataSource | paginate: couponList.config">
 
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + couponList.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponPorpuse">
+                        <mat-header-cell *matHeaderCellDef> Coupon Purpose </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.coupon_type}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponCode">
+                        <mat-header-cell *matHeaderCellDef>Coupon Code </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="activationDate">
+                        <mat-header-cell *matHeaderCellDef> Activation Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.created_on | date: 'yyyy-MM-dd'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="createdBy">
+                        <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.added_by}}
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="minimumOrderValue">
+                        <mat-header-cell *matHeaderCellDef> Minimum Order Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.minimum_order_value}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="discount">
+                        <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.discount_amount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="discount_type">
+                        <mat-header-cell *matHeaderCellDef> Discount Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.discount_type == 'flat' ? 'Flat' : 'Percent'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="MaximumDiscountAmount">
+                        <mat-header-cell *matHeaderCellDef> Maximum Discount Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.maximum_discount_amount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponCodeApplied">
+                        <mat-header-cell *matHeaderCellDef> Number of Times Coupon Code Applied </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.no_of_times}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="totalDiscountGiven">
+                        <mat-header-cell *matHeaderCellDef> Total Discount Given </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.maximum_discount_amount}}
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="couponExpirationdate">
+                        <mat-header-cell *matHeaderCellDef> Coupon Expiration Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.enddate}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="couponList.displayedExpiredCouponColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: couponList.displayedExpiredCouponColumns; "></mat-row>
+                </mat-table>
+            </div>
         </div>
         <pagination-controls *ngIf="couponList.dataSource" (pageChange)="getCouponList($event)" class="eiPaginationTag">
         </pagination-controls>

@@ -23,7 +23,9 @@ export class CouponList {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'discount_type', 'MaximumDiscountAmount', 'couponCodeApplied', 'couponExpirationdate', 'expireCouponButton'];
+    displayedActiveCouponColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'discount_type', 'MaximumDiscountAmount', 'couponCodeApplied', 'couponExpirationdate', 'expireCouponButton'];
+    displayedExpiredCouponColumns: string[] = ['position', 'couponPorpuse', 'couponCode', 'activationDate', 'minimumOrderValue', 'discount', 'discount_type', 'MaximumDiscountAmount', 'couponCodeApplied', 'couponExpirationdate'];
+
 
     dataSource: any;
 }

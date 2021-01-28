@@ -59,7 +59,7 @@ export class AdminKycCompleteComponent implements OnInit {
   ngOnInit(): void {
    
     this.route.queryParams.subscribe(params=>{
-      this.status = params['status'];
+      this.completeKycList.status = params['status'];
     });
     this.getCompleteKycList('');
     this.completeKycList.pageCount = this.baseService.getCountsOfPage();
@@ -117,5 +117,12 @@ export class AdminKycCompleteComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  setFilter(type: any, value: any) {
+    // debugger
+    if (type == 'status' && value != 'list') {
+      this.completeKycList.status = value
+    }
   }
 }

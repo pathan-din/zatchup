@@ -73,8 +73,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 commonFontSize mediumFont">
-                            <p>Address <span class="cursorStyle color-blue" (click)="setAddressData()"><i data-toggle="modal" data-target="#editAddress"
-                                        class="textUnderlineStyle" class="fa fa-pencil-square-o"></i></span></p>
+                            <p>Address</p>
                         </div>
                         <div class="col-12 ml-2 small-text-2">
                             <div class="row mx-0">
@@ -223,7 +222,7 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number of the Students Registered with the School(If Not Entered Manually)</p>
+                            <p>Approximate Number Of Student On ZatchUp</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <p><span class="mr-3 text-dark">: </span>{{eiData.no_of_students}}</p>
@@ -232,10 +231,28 @@
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number of the Alumini Registered with the School (If Not Entered Manually)</p>
+                            <p>Approximate Number Of Alumini On ZatchUp</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
                             <p><span class="mr-3 text-dark">: </span>{{eiData.no_of_alumni}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Number Of Student On ZatchUp <br /> (Basis School ZatchUp ID)</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p><span class="mr-3 text-dark">: </span>{{eiData.total_no_of_students}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Number Of Alumini On ZatchUp <br /> (Basis School ZatchUp ID)</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
+                            <p><span class="mr-3 text-dark">: </span>{{eiData.total_no_of_alumni}}</p>
                         </div>
                     </div>
 
@@ -861,7 +878,7 @@
 
 
             <!--Start of CommentModel  -->
-            <div class="modal fade" id="editAddress" tabindex="-1" role="dialog"
+            <!-- <div class="modal fade" id="editAddress" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
@@ -913,7 +930,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- End of CommentModel  -->
         </div>
 
