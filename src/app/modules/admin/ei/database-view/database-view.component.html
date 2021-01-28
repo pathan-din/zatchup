@@ -121,7 +121,7 @@
                             </div>
                             <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                 <p class="color-blue"><span class="mr-3 text-dark">:
-                                        {{eiData.no_of_students}}</span><span class="textUnderlineStyle "> </span></p>
+                                        {{eiData.total_no_of_students}}</span><span class="textUnderlineStyle "> </span></p>
                             </div>
                         </div>
 
@@ -130,7 +130,7 @@
                                 <p>Number Of Alumini On ZatchUp <br /> (Basis School ZatchUp ID)</p>
                             </div>
                             <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.no_of_alumni}}</span><span
+                                <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.total_no_of_alumni}}</span><span
                                         class="textUnderlineStyle "> </span></p>
                             </div>
                         </div>
@@ -268,8 +268,7 @@
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" id="address_line_1" name="address_line_1"
-                                                [(ngModel)]="databaseView.addressLineOne"
-                                                (keyup)="isValid($event)"
+                                                [(ngModel)]="databaseView.addressLineOne" (keyup)="isValid()"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 rows="4" placeholder="Please enter address line 1" required>
                                         </div>
@@ -284,7 +283,6 @@
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" id="address_line_2" name="address_line_2"
                                                 [(ngModel)]="databaseView.addressLineTwo"
-                                                (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 rows="4" placeholder="Please enter Address line 2">
                                         </div>
