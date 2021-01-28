@@ -68,7 +68,7 @@ export class EiManageCoursesComponent implements OnInit {
         this.baseService.action("ei/get-course-by-id/"+courseId+"/",{}).subscribe((res:any)=>{
           if(res.status==true){
             this.SpinnerService.hide();
-            this.alert.success(res.message[0],"Success");
+            this.alert.success(res.message,"Success");
           }else{
             this.SpinnerService.hide();
             this.alert.error(res.error.message[0],"Error");

@@ -5,6 +5,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { NotificationService } from '../../../../services/notification/notification.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatCheckboxChange } from '@angular/material/checkbox';
 declare var $: any;
 
 @Component({
@@ -20,6 +21,7 @@ export class EiStudentEditComponent implements OnInit {
   uploaded: any = '';
   classList: any = [];
   is_approve:any;
+  class_edit:boolean=false;
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService, public formBuilder: FormBuilder) { }
@@ -37,6 +39,20 @@ export class EiStudentEditComponent implements OnInit {
     });
 
   }
+
+  showOptionsMark(event:MatCheckboxChange): void {
+   if(event.checked){
+    this.class_edit = false;
+    this.model.mark_as_alumni=true;
+   }
+  }
+  showOptions(event:MatCheckboxChange): void {
+    if(event.checked){
+     this.class_edit = true;
+     this.model.mark_as_alumni=false;
+    }
+   }
+
   displayClassList(stId, check) {
     try {
       

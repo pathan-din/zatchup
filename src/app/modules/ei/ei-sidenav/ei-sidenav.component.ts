@@ -121,7 +121,7 @@ export class EiSidenavComponent {
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
     try {
-      var arrMenuList = ['poc-details','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices', 'school-profile', 'add-subscription','onboarding','subscription'];
+      var arrMenuList = ['poc-details','manage-courses','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices', 'school-profile', 'add-subscription','onboarding','subscription'];
       let thisUrl: any = '';
       let parameter : any = '';
       

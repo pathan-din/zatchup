@@ -44,11 +44,11 @@
 
                 <div class="row mt-3" *ngIf="is_approve=='1'">
                     <div class="col-12">
-                        <p class="mediumFont commonFontSize letterspacing">Current Class</p>
+                        <p class="mediumFont commonFontSize letterspacing">Change Section</p>
                     </div>
                     <div class="col-md-6 pl-4">
-                        <mat-checkbox (change)="displayClassList(model.standard_id,$event)"  class="purple-checkbox mediumFont commonFontSize letterspacing">Edit Current class</mat-checkbox>
-                        <div class="row">
+                        <mat-checkbox name="class_edit" (change)="displayClassList(model.standard_id,$event);showOptions($event)" [(ngModel)]="class_edit"  class="purple-checkbox mediumFont commonFontSize letterspacing">Edit Current class</mat-checkbox>
+                        <div class="row" *ngIf="class_edit">
                             <div class="col-12">
                                 <div class="col-6" *ngFor="let class of classList;">
                                     <input type="radio" [(ngModel)]="model.class_id" name="class" [checked]="model.class_id==class.id" name="class" value="{{class.id}}"  />{{class.class_name}}
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-6 pl-4" *ngIf="is_approve=='1'">
                         <!-- <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Promote To New Class</mat-checkbox> -->
-                        <mat-checkbox [(ngModel)]="model.mark_as_alumni" name="mark_as_alumni" class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
+                        <mat-checkbox (change)="showOptionsMark($event)" [(ngModel)]="model.mark_as_alumni" name="mark_as_alumni" class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
                     </div>
                 </div>
 

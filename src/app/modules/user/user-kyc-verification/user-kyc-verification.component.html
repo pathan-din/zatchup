@@ -93,7 +93,7 @@
                                 <input  #fileInput1 [required]="model.kyc_type=='Aadhar'" (change)="handleFileInputForBackPhoto($event.target.files)"  [(ngModel)]="model.kyc_document_back" name ="kyc_document_back" type="file" />
                             </div>
                             <div class="col-xl-10 col-md-8 col-sm-10 col-xs-10 text-left pl-1">
-                                <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back photo</p>
+                                <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</p>
                                 <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above</p>
 								<p *ngIf="filename1" class="text-secondary regularFont commonMaterialFontSize m-0">{{filename1}}</p>
 								 

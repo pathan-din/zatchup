@@ -44,4 +44,8 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
     this.router.navigate(['admin/edit-poc'])
   }
 
+  viewOrEditTermsAndConditions(type: any){
+    this.router.navigate(['terms-conditions', type])
+  }
+
 }
