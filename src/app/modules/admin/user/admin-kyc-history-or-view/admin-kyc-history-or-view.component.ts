@@ -94,7 +94,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
         if (res.status == true) {
           this.approveCloseButton.nativeElement.click();
           this.notificationService.success(res.message, 'Success')
-          this.router.navigate(['admin/kyc-pending-request'])
+          this.router.navigate(['admin/kyc-pending-request'], { queryParams: {returnUrl: "admin/kyc-approval-management"}})
         } else {
           this.notificationService.error(res.error.message, 'Error')
         }
