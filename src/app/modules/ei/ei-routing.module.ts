@@ -134,6 +134,7 @@ import { ContactComponent } from './setting/contact/contact.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
 import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
+import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
 
 
 const routes: Routes = [
@@ -522,10 +523,13 @@ const routes: Routes = [
   },{
     path: 'request-for-course-list', component: RequestPendingForCourseComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'subscription-history', component: SubscriptionHistoryComponent, canActivate: [AuthGuard]
+  },
   
 
   
-
+  
   
   
   //

@@ -83,7 +83,9 @@ export class EiSchoolRegisterComponent implements OnInit {
   suggestData(event) {
    // this.data=[];
    this.changeSchool(event.name_of_school);
-  // this.model.school_data.name_of_school=event.name_of_school; 
+   this.model.school_data.name_of_school=event.name_of_school; 
+   
+   
     
    
   }
@@ -221,6 +223,8 @@ export class EiSchoolRegisterComponent implements OnInit {
        
     let obj = this.schoolList.find(o => o.name_of_school === schoolData);
     this.model.school_data.name_of_school=obj.name_of_school;
+    console.log(this.model.school_data);
+    
     this.model.school_data.state=obj.state;
     this.model.school_data.city=obj.city;
     this.model.school_data.address1=obj.address1;
