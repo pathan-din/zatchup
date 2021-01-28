@@ -150,6 +150,7 @@ import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.c
 import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
 import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
 import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
+import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
 
 
 const config = {
@@ -318,6 +319,7 @@ const config = {
     SchooReminderComponent,
     AddMoreDocumentComponent,
     RequestPendingForCourseComponent,
+    SubscriptionHistoryComponent,
   ],
   imports: [
     CommonModule,

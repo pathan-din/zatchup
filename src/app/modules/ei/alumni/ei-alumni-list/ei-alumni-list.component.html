@@ -200,13 +200,13 @@
                                
                         </mat-cell>
                     </ng-container>
-
+<!-- 
                     <ng-container matColumnDef="EKYCVerificationStatus">
                         <mat-header-cell *matHeaderCellDef> EKYC Verification Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
                                 {{element.EKYCVerificationStatus}}</button> </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <!-- <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
@@ -227,7 +227,7 @@
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
                             aria-hidden="true "></i> -->
                         <span  *ngIf="element.kyc_approved==1">
-                        <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
+                        <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve" class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
                             data-toggle="modal"></i>
                         <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
                         </span>
