@@ -106,6 +106,10 @@ export class DatabaseHistory extends Pagination {
         'addedRemoved', 'employeeName'];
 
     isDeleted: any = '';
+    filterFromDate:any;
+    filterToDate:any;
+   
+    
 }
 
 export class SubscriptionPlanHistory extends Pagination {

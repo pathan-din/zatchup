@@ -10,7 +10,34 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Database History</h2>
             </div>
         </div>
+        <div class="filterDiv">
+            <div class="row">
+                <div class="col-12 d-flex align-items-end">
+                    <div class="mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">From Date</label>
+                        <input type="text" id="filter_From_Date" name="fee_Received_From_Date" placeholder="YYYY/MM/DD"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="fromMaxDate"
+                            [(ngModel)]="filterFromDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true,  dateInputFormat: 'YYYY-MM-DD' }">
+                    </div>
 
+                    <div class="mr-2">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">To Date</label>
+                        <input type="text" id="fromDate" name="filter_To_Date" placeholder="YYYY/MM/DD"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="toMaxDate"
+                            [(ngModel)]="filterToDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD' }"
+                            (bsValueChange)="changeFilterToDate($event)">
+                    </div>
+                    <div class="border-0 p-0 shadow-none mx-1">
+                        <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0"
+                        (click)="getEIHistory()">Apply</button>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+<!-- 
         <div class="filterDiv">
             <div class="d-flex flex-wrap align-items-end">
                 <div class="mr-3 mt-3 widthFull medium-filter-box">
@@ -26,7 +53,7 @@
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0"
                     (click)="getEIHistory()">Apply</button>
             </div>
-        </div>
+        </div> -->
 
         <div class="tableDiv mt-4" *ngIf="databaseHistory.dataSource">
             <div class="mat-elevation-z1 table-responsive">
@@ -40,7 +67,7 @@
                     <ng-container matColumnDef="dateAndTime">
                         <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}} </mat-cell>
+                            {{element.is_deleted == true ?  this.baseService.getDateFormat(element.updated_on)  : this.baseService.getDateFormat(element.created_on)}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="eiZatchupId">
