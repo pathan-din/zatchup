@@ -12,7 +12,7 @@
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <form autocomplete="off" autocapitalize="off">
                 <div class="d-flex flex-wrap align-items-end">
-                    <div class="widthFull mr-4 mt-3">
+                    <div class="widthFull custumInputWidth mr-3 mt-3">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Coupon Type</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <select class="custom-select  form-control-input" id="coupon_type" name="coupon_type"
@@ -34,8 +34,7 @@
         <div class="row my-3" *ngIf="couponList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0">Count
-                    Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing  mr-2 mb-0"> Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getCouponList('1')"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
