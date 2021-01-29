@@ -13,6 +13,10 @@ import { DatabaseHistory } from '../modals/education-institute.modal';
 })
 export class DatabaseHistoryComponent implements OnInit {
   databaseHistory: DatabaseHistory
+  fromMaxDate: any;
+  toMaxDate: any;
+  filterFromDate:any;
+  filterToDate:any;
   constructor(
     private location: Location,
     private alert: NotificationService,
@@ -20,17 +24,28 @@ export class DatabaseHistoryComponent implements OnInit {
     private baseService: BaseService
   ) { 
     this.databaseHistory = new DatabaseHistory();
+    this.fromMaxDate = new Date();
+    this.toMaxDate = new Date();
+    
   }
 
   ngOnInit(): void {
+    this.databaseHistory.isDeleted = true;
+    
     this.getEIHistory('');
   }
-
+  changeFilterToDate(date) {
+    if (date)
+      this.fromMaxDate = new Date(date)
+  }
   getEIHistory(page?: any) {
     this.loader.show();
-
+    this.databaseHistory.filterFromDate = this.baseService.getDateFormat(this.filterFromDate);
+    this.databaseHistory.filterToDate = this.baseService.getDateFormat(this.filterToDate);
     let listParams = {
       "is_deleted": this.databaseHistory.isDeleted,
+      'start_date':this.databaseHistory.filterFromDate, 
+      'end_date':this.databaseHistory.filterToDate, 
       "page_size": this.databaseHistory.page_size,
       "page": page
     }
