@@ -90,9 +90,9 @@
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
                         <p class="pt-2" style="font-size: 16px;"> 
-                            <i class="fa fa-eye mr-2 color-blue cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-plus-circle color-purple mr-2 cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-pencil-square-o color-dark mr-2 cursorStyle" aria-hidden="true"></i>
+                            <i class="fa fa-eye mr-2 color-blue cursorStyle" aria-hidden="true" (click)="viewOrAddTermsAndConditions('user', 'view')"></i>
+                            <i *ngIf="!tcForUser" class="fa fa-plus-circle color-purple mr-2 cursorStyle" aria-hidden="true" (click)="viewOrAddTermsAndConditions('user', 'add')"></i>
+                            <i *ngIf="tcForUser" class="fa fa-pencil-square-o color-dark mr-2 cursorStyle" aria-hidden="true" (click)="editTermsAndConditions('user', 'edit', tcForUserId)"></i>
                         </p>
                     </div>
                 </div>
@@ -103,9 +103,9 @@
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
                         <p class="pt-2" style="font-size: 16px;"> 
-                            <i class="fa fa-eye mr-2 color-blue cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-plus-circle color-purple mr-2 cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-pencil-square-o color-dark mr-2 cursorStyle" aria-hidden="true"></i>
+                            <i class="fa fa-eye mr-2 color-blue cursorStyle" aria-hidden="true" (click)="viewOrAddTermsAndConditions('school', 'view')"></i>
+                            <i *ngIf="!tcForSchool" class="fa fa-plus-circle color-purple mr-2 cursorStyle" aria-hidden="true" (click)="viewOrAddTermsAndConditions('school', 'add')"></i>
+                            <i *ngIf="tcForSchool" class="fa fa-pencil-square-o color-dark mr-2 cursorStyle" aria-hidden="true" (click)="editTermsAndConditions('school', 'edit', tcForSchoolId)"></i>
                         </p>
                     </div>
                 </div>
@@ -116,9 +116,9 @@
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
                         <p class="pt-2" style="font-size: 16px;"> 
-                            <i class="fa fa-eye mr-2 color-blue cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-plus-circle color-purple mr-2 cursorStyle" aria-hidden="true"></i>
-                            <i class="fa fa-pencil-square-o color-dark mr-2 cursorStyle" aria-hidden="true"></i>
+                            <i class="fa fa-eye mr-2 color-blue cursorStyle" aria-hidden="true" (click)="viewOrAddTermsAndConditions('school_subadmin', 'view')"></i>
+                            <i *ngIf="!tcForSchoolSubadmin" class="fa fa-plus-circle color-purple mr-2 cursorStyle" aria-hidden="true" (click)="viewOrAddTermsAndConditions('school_subadmin', 'add')"></i>
+                            <i *ngIf="tcForSchoolSubadmin" class="fa fa-pencil-square-o color-dark mr-2 cursorStyle" aria-hidden="true" (click)="editTermsAndConditions('school_subadmin', 'edit', tcForSchoolSubadminId)"></i>
                         </p>
                     </div>
                 </div>

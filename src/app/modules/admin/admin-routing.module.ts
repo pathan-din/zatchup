@@ -513,7 +513,7 @@ const routes: Routes = [
     path: 'resolve-ticket', component: ResolveTicketsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'terms-conditions/:type', component: TermsConditionsComponent, canActivate: [AuthGuard]
+    path: 'terms-conditions/:type/:action', component: TermsConditionsComponent, canActivate: [AuthGuard]
   },
   {
     path: '**', component: AdminPageNotFoundComponent
