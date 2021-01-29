@@ -30,7 +30,7 @@ export class DatabaseHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.databaseHistory.isDeleted = true;
+    // this.databaseHistory.isDeleted = true;
     
     this.getEIHistory('');
   }
@@ -43,7 +43,7 @@ export class DatabaseHistoryComponent implements OnInit {
     this.databaseHistory.filterFromDate = this.baseService.getDateFormat(this.filterFromDate);
     this.databaseHistory.filterToDate = this.baseService.getDateFormat(this.filterToDate);
     let listParams = {
-      "is_deleted": this.databaseHistory.isDeleted,
+      "is_deleted": "true",
       'start_date':this.databaseHistory.filterFromDate, 
       'end_date':this.databaseHistory.filterToDate, 
       "page_size": this.databaseHistory.page_size,

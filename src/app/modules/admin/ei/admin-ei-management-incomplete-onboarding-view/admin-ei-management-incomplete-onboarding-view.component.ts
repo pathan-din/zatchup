@@ -6,6 +6,7 @@ import { GenericFormValidationService } from 'src/app/services/common/generic-fo
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { PendingApprovalProfile } from '../modals/ei-pending-approval.modal';
 import { Location } from '@angular/common'
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-ei-management-incomplete-onboarding-view',
@@ -34,6 +35,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     private activeRoute: ActivatedRoute,
     private router: Router,
     private location: Location,
+    private confirmDialogService: ConfirmDialogService,
     private validationService: GenericFormValidationService
 
   ) {
@@ -232,11 +234,6 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.pendingApprovalProfile.errorDisplay = {};
     this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[3].elements, false, []);
     if (this.pendingApprovalProfile.errorDisplay.valid) {
-      //   if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
-      //     this.pendingApprovalProfile.requiredMOU = false
-      //   return false;
-      // } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
-      //   this.pendingApprovalProfile.requiredMOU = false
       this.checkValidation();
       return false;
     } else if (!this.checkValidation()) {
@@ -389,5 +386,29 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   //   this.pendingApprovalProfile.addressLineOne = this.eiData.address1
   //   this.pendingApprovalProfile.addressLineTwo = this.eiData.address2
   // }
+
+  confirmForApproveEI(data: any, message: any): any {
+    this.confirmDialogService.confirmThis('School is already onboarded with same name and pin code. Are you sure you want approve this school', () => {
+      this.loader.show()
+      // model.course_id = id;
+      this.baseService.action('admin/approve-ei/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.closeExistingZatchupIDModel.nativeElement.click();
+            this.alert.success(res.message, "Success")
+            this.router.navigate(['admin/ei-management-pending-for-approval'])
+            // this.getConfirmationDetails();
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
+  }
 
 }

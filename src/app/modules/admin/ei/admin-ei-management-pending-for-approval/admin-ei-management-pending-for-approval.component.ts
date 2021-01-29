@@ -38,7 +38,10 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
 
   goToAdminEiManagementIncompleteOnboardingViewPage(data) {
-    this.router.navigate(['admin/ei-profile-details'], { queryParams: { "id": data.id, "stage_pending": "true" } });
+    let stage = true;
+    if (data.send_back_to_edit == 1)
+      stage = false
+    this.router.navigate(['admin/ei-profile-details'], { queryParams: { "id": data.id, "stage_pending": stage } });
   }
 
   getEIApprovalList(page?: any) {
