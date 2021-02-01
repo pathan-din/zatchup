@@ -410,9 +410,9 @@ const routes: Routes = [
   {
     path: 'subadmin-access-history', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]
   },
-  {
-    path: 'subadmin-access-history/:id', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'subadmin-access-history/:id', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]
+  // },
   {
     path: 'my-assigned-ei', component: MyAssignedEiComponent, canActivate: [AuthGuard]
   },

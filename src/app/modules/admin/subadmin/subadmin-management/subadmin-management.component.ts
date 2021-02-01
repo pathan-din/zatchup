@@ -33,7 +33,7 @@ export class SubadminManagementComponent implements OnInit {
 
   dataSource: any;
   pageCount: any;
-  
+
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -42,15 +42,15 @@ export class SubadminManagementComponent implements OnInit {
   ) { }
 
   goToSubadminAddPage() {
-    this.router.navigate(['admin/subadmin-add']);
+    this.router.navigate(['admin/subadmin-add'],{ queryParams: { "returnUrl": "admin/subadmin-dashboard" } });
   }
 
   goToSubadminAccessHistoryPage() {
-    this.router.navigate(['admin/subadmin-access-history']);
+    this.router.navigate(['admin/subadmin-access-history'], { queryParams: { "returnUrl": "admin/subadmin-dashboard" } });
   }
 
   goToSubadminAuthorirtyPage(data) {
-    this.router.navigate(['admin/subadmin-authorization-access-view', data.id]);
+    this.router.navigate(['admin/subadmin-authorization-access-view', data.id], { queryParams: { "returnUrl": "admin/subadmin-dashboard" } });
   }
   ngOnInit(): void {
     this.getSubadminList('')

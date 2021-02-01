@@ -1,11 +1,10 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-subadmin-add',
@@ -18,12 +17,12 @@ export class SubadminAddComponent implements OnInit {
   maxDate: any;
 
   constructor(
-    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private datePipe: DatePipe,
-    private router: Router,
     private validationService: GenericFormValidationService
   ) {
     this.maxDate = new Date()
@@ -77,6 +76,8 @@ export class SubadminAddComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back()
+    // this.location.back()
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
+    this.router.navigate([returnUrl])
   }
 }
