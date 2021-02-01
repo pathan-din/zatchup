@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div *ngIf="action == 'view'" class="row">
+        <div *ngIf="action == 'view'" class="row mt-3">
             <div *ngIf="content" class="col-12">
                 <!-- <p>It is a long established fact that a reader will be distracted by the readable content of a page when
                     looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="row" *ngIf="action !== 'view' && (action == 'add' || action == 'edit')">
+        <div class="row mt-3" *ngIf="action !== 'view' && (action == 'add' || action == 'edit')">
             <div class="col-12">
                 <form autocapitalize="off" autocomplete="off">
                     <textarea placeholder="Term & Conditions" class="w-100 rounded" cols="12" rows="20"
