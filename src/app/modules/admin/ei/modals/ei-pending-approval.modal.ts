@@ -1,7 +1,7 @@
 export class EIPendingApproval {
     startIndex: Number;
     listParams: any = {}
-    pageSize: any = 5;
+    pageSize: any;
     config = {
         itemsPerPage: 0,
         currentPage: 1,
@@ -29,7 +29,7 @@ export class EIPendingApproval {
 export class OnBoardList {
     startIndex: Number;
     listParams: any = {}
-    pageSize: any = 5;
+    pageSize: any;
     stateId: any = '';
     cityId: any = '';
     allStates: any;
@@ -87,7 +87,7 @@ export class notOnZatchup {
 export class OnboardedZatchup {
     startIndex: any;
     listParams: any = {};
-    pageSize: any = 5;
+    pageSize: any;
     dataSource: any;
     state: any = '';
     city: any = '';

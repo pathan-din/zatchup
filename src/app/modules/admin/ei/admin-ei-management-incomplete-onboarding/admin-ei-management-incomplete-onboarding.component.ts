@@ -71,8 +71,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardList.university,
       "is_payment": this.onboardList.stagePending,
-      "page_size": this.onboardList.pageSize ? this.onboardList.pageSize : 5,
-      "page": page ? page : 1
+      "page_size": this.onboardList.pageSize,
+      "page": page
     }
 
     this.baseService.getData('admin/ei/get_incomplete_ei_list/', this.onboardList.listParams).subscribe(
@@ -200,7 +200,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.onboardList.university,
+      // "university": this.onboardList.university,
       "page_size": this.onboardList.pageSize,
       "page": page
     }
@@ -212,7 +212,8 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
             page = this.onboardList.config.currentPage
           this.onboardList.startIndex = res.page_size * (page - 1) + 1;
           this.onboardList.pageSize = res.page_size;
-          this.onboardList.config.itemsPerPage = res.page_size
+          this.onboardList.config.itemsPerPage = res.page_size;
+          this.onboardList.pageSize = res.page_size;
           this.onboardList.config.currentPage = page
           this.onboardList.config.totalItems = res.count;
 

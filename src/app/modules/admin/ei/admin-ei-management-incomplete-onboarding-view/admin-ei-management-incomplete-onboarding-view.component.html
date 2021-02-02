@@ -1,6 +1,4 @@
 <app-admin-sidenav></app-admin-sidenav>
-
-
 <div class="container main-container p-3">
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
         <div class="row topDiv">
@@ -13,9 +11,6 @@
                 </h2>
             </div>
             <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap">
-                <!-- <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0" data-toggle="modal"
-                    data-target="#CommentModel">Onboarding Conversation
-                    Comments</button> -->
                 <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
                     routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.ei_id}}/incomplete-onboarding">View
                     Conversation Comments</button>
@@ -114,15 +109,6 @@
                             <p><span class="mr-3">: </span>{{eiData.university}}</p>
                         </div>
                     </div>
-
-                    <!-- <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>School Overview</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.overview}}</p>
-                        </div>
-                    </div> -->
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
@@ -388,11 +374,6 @@
                                                 <td>{{eiExData.address2}}</td>
                                                 <td>{{eiData.address2}}</td>
                                             </tr>
-                                            <!-- <tr class="">
-                                                <td>Landmark</td>
-                                                <td>{{eiExData.landmark}}</td>
-                                                <td>{{eiData.landmark}}</td>
-                                            </tr> -->
                                             <tr class="">
                                                 <td>Pincode</td>
                                                 <td>{{eiExData.pincode}}</td>
@@ -411,13 +392,6 @@
 
                         </div>
                     </div>
-
-                    <!-- <div class="row mt-3">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                            <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''" (searchResult)="pocDetails($event)"></input-search>
-                        </div>
-                    </div> -->
-
                 </div>
 
             </div>
@@ -544,15 +518,6 @@
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing">
                                             POC Details</label>
-
-                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" id="employeeId" name="employee_id"
-                                                (keyup)="isValid($event)"
-                                                [(ngModel)]="pendingApprovalProfile.employeeId"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                placeholder="Enter POC Details" required />
-                                        </div> -->
-                                        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-12"> -->
                                         <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
                                             (searchResult)="pocDetails($event)"></input-search>
                                         <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
@@ -581,7 +546,7 @@
                                 <div class=" form-group row mt-3">
 
                                     <div class="col-sm-12 ">
-                                        <button type="button" (click)="approveExistingEI()"
+                                        <button type="button" (click)="validateExistingEI()"
                                             class="form-control bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
                                             Approve
                                         </button>
@@ -779,17 +744,6 @@
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
                                             POC Details
                                         </label>
-
-                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" id="employee_Id" name="employee_Id"
-                                                [(ngModel)]="pendingApprovalProfile.employeeId"
-                                                (keyup)="isValid($event)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                placeholder="Enter POC Details" required />
-                                        </div>
-                                        <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.employee_Id">
-                                        </div> -->
                                         <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
                                             (searchResult)="pocDetails($event)"></input-search>
                                         <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
@@ -852,17 +806,6 @@
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
                                             POC Details</label>
-
-                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" id="employee_id" name="employee_Id"
-                                                [(ngModel)]="pendingApprovalProfile.employeeId"
-                                                (keyup)="isValid($event)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                placeholder="Enter POC Details" required />
-                                        </div>
-                                        <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.employee_Id">
-                                        </div> -->
                                         <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
                                             (searchResult)="pocDetails($event)"></input-search>
                                         <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
@@ -885,63 +828,6 @@
                 </div>
             </div>
             <!-- End of generateZatchupIDModel -->
-
-
-            <!--Start of CommentModel  -->
-            <!-- <div class="modal fade" id="editAddress" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog " role="document">
-                    <div class="modal-content unverified container-fluid">
-                        <div class="modal-header align-items-center justify-content-center pb-0 ">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Edit Address</h2>
-                            <button #closeEditAddress type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
-                                aria-label="Close ">
-                                <span aria-hidden="true ">
-                                    &times;
-                                </span>
-                            </button>
-                        </div>
-                        <div class="modal-body px-0">
-                            <form id="comment">
-                                <div class=" form-group row ">
-
-                                    <div class="col-sm-12 ">
-                                        <label for="Remarks "
-                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 1</label>
-
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" id="address_line_1" name="address_line_1"
-                                                [(ngModel)]="pendingApprovalProfile.addressLineOne" (keyup)="isValid($event)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                rows="4" placeholder="Please enter address line 1" required>
-                                        </div>
-                                        <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.address_line_1">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 ">
-                                        <label for="Remarks "
-                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 2</label>
-
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" id="address_line_2" name="address_line_2"
-                                                [(ngModel)]="pendingApprovalProfile.addressLineTwo" (keyup)="isValid($event)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                rows="4" placeholder="Please enter Address line 2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="button " (click)="addComment()"
-                                    class="bg-purple  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                                    Edit
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- End of CommentModel  -->
         </div>
 
 

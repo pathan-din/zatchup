@@ -46,7 +46,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   suggestions: string[] = [];
   showHidePassword: string='password';
   showHidecPassword: string='password';;
-
+  name_of_school:any;
   
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -75,20 +75,21 @@ export class EiSchoolRegisterComponent implements OnInit {
    /*****************************************/ 
   }
   suggest(event) {
+    console.log("school name"+event);
     if(typeof(event)=='string'){
       this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event.toLowerCase()));
+      if(this.data.length==0){
+        this.model.school_data.name_of_school=event; 
+      }
     }
    
   }
   suggestData(event) {
-   // this.data=[];
+    console.log("school name"+event);
+    // this.data=[];
    this.changeSchool(event.name_of_school);
    this.model.school_data.name_of_school=event.name_of_school; 
-   
-   
-    
-   
-  }
+   }
   clearSuggestData(){
     
     this.model.school_data.name_of_school='';
