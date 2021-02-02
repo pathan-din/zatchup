@@ -1,4 +1,16 @@
-export class ChangeDetailRequestsPending {
+export class Pagination {
+    dataSource: any;
+    page_size: any;
+    startIndex: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    };
+    pageCounts: any;
+}
+
+export class ChangeDetailRequestsPending extends Pagination {
     displayedColumns: string[] = ['position', 'eiZatchupId', 'nameOfTheschool', 'dateAndTime',
         'state', 'city', 'boardUniversity', 'fieldOfChange', 'oldData', 'newData', 'action'];
     filterFromDate: any;
@@ -9,16 +21,16 @@ export class ChangeDetailRequestsPending {
     allCities: any;
     state: any = '';
     city: any = '';
-    dataSource: any;
+    // dataSource: any;
     maxDate: any;
-    startIndex: any;
-    config = {
-        itemsPerPage: 0,
-        currentPage: 1,
-        totalItems: 0
-    }
+    // startIndex: any;
+    // config = {
+    //     itemsPerPage: 0,
+    //     currentPage: 1,
+    //     totalItems: 0
+    // }
     modal: any = {};
-    page_size: any
+    // page_size: any
     university: any;
     changeField: any = ''
     search: any;
@@ -26,11 +38,12 @@ export class ChangeDetailRequestsPending {
     eId: any
 }
 
-export class ChangeDetailsView {
+export class ChangeDetailsView extends Pagination {
     approveOrReject: any = 'approve';
     errorDisplay: any = {};
     changeDetailsView: any;
     requestId: any;
     rejectionReason: any;
-    rejectionRemark: any
+    rejectionRemark: any;
+    eiId: any;
 }

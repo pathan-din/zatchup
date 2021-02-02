@@ -150,6 +150,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -314,7 +315,8 @@ const config = {
     EditPocDetailsComponent,
     ChangePasswordComponent,
     ResolveTicketsComponent,
-    TermsConditionsComponent
+    TermsConditionsComponent,
+    OnboardedSchoolHistoryComponent
   ],
   imports: [
     CommonModule,
