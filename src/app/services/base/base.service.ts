@@ -56,7 +56,7 @@ export class BaseService {
     this.downloadFile(url, args).subscribe(response => {
       let blob: any = new Blob([response], { type: 'application/vnd.ms-excel' });
       const url = window.URL.createObjectURL(blob);
-      fileSaver.saveAs(blob, fileName + '.xlsx');
+      fileSaver.saveAs(blob, fileName + '.xls');
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
