@@ -31,7 +31,7 @@ export class TermsConditionsComponent implements OnInit {
     placeholder: 'Enter text here...',
     defaultParagraphSeparator: '',
     defaultFontName: 'Arial',
-    defaultFontSize: '4',
+    defaultFontSize: '3',
     fonts: [
       { class: 'arial', name: 'Arial' },
       { class: 'times-new-roman', name: 'Times New Roman' },
