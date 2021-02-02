@@ -125,7 +125,7 @@
                             <td rowspan="3">
                                 {{module.module_name}}
                             </td>
-                            <td *ngIf="subModuleList">
+                            <td>
                                 <div *ngFor="let sub_module of module.sub_module">
                                     <mat-checkbox class="purple-checkbox" [(ngModel)]="sub_module.is_access"
                                         (change)="isAllSelected($event ,sub_module.id)"> {{sub_module.module_name}}
