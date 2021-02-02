@@ -145,7 +145,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
     delete this.onboardedZatchup.listParams.page_size;
     delete this.onboardedZatchup.listParams.page;
     this.onboardedZatchup.listParams['export_csv'] = true
-    this.baseService.generateExcel('', 'onboarded-zatchup-list', this.onboardedZatchup.listParams);
+    this.baseService.generateExcel('admin/export_ei_onboarded_zatchup_list/', 'onboarded-zatchup-list', this.onboardedZatchup.listParams);
   }
 
 
