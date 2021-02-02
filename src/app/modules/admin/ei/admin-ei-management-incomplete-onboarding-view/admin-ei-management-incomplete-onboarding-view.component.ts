@@ -26,7 +26,6 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   eiData: any = {};
   eiExData: any = {};
   pendingApprovalProfile: PendingApprovalProfile
-  // user_type: any;
 
   constructor(
     private alert: NotificationService,
@@ -47,15 +46,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       this.eiId = params.id;
       this.pendingApprovalProfile.stage = params.stage_pending
       this.getProfileData();
-      // this.params = params;
-      // this.getDatabaseView();
     });
-    // if (this.activeRoute.snapshot.params.id) {
-    //   this.eiId = this.activeRoute.snapshot.params.id
-    //   this.getProfileData();
-    // }
-    // if (localStorage.getItem('user_type'))
-    //   this.user_type = localStorage.getItem('user_type')
   }
 
   getProfileData() {
@@ -117,13 +108,10 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     }
   }
 
-  approveExistingEI() {
+  validateExistingEI() {
     this.pendingApprovalProfile.errorDisplay = {};
     this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.pendingApprovalProfile.errorDisplay.valid) {
-      // if (!this.pendingApprovalProfile.existingZatchIDMOUDoc)
-      //   this.pendingApprovalProfile.requiredMOU = false
-
       return false;
     } else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
       this.pendingApprovalProfile.requiredMOU = false;
@@ -146,16 +134,22 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       'zatchUpID': this.pendingApprovalProfile.zatchupId,
       'employeeID': this.pendingApprovalProfile.employeeId
     }
-    this.baseService.action('admin/ei-approve/', data).subscribe(
+    this.baseService.action('admin/validate_school_approve/', data).subscribe(
       (res: any) => {
-        if (res.status == true) {
+        if (res.status == true && res.is_exists == true) {
           this.closeExistingZatchupIDModel.nativeElement.click();
-          this.alert.success(res.message, 'Success')
-          this.router.navigate(['admin/ei-management-pending-for-approval'])
-
+          this.approveSchoolConfirmation('admin/ei-approve/', data, res.error.message[0])
+        }
+        else if(res.status == false && res.is_exists == true){
+          this.alert.error(res.error.message[0], 'Error');
+          this.closeExistingZatchupIDModel.nativeElement.click();
+        }
+        else if(res.status == true && res.is_exists == false){
+          this.closeExistingZatchupIDModel.nativeElement.click();
+          this.approveSchool('admin/ei-approve/', data)
         }
         else {
-          this.alert.error(res.error.message[0], 'Error')
+          this.alert.error(res.error.message[0], 'Error');
         }
         this.loader.hide()
       }, err => {
@@ -247,13 +241,19 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       'zatchUpID': this.pendingApprovalProfile.zatchupId,
       'employeeID': this.pendingApprovalProfile.employeeId
     }
-    this.baseService.action('admin/ei-approve_new_zatchupid/', data).subscribe(
+    this.baseService.action('admin/validate_school_approve/', data).subscribe(
       (res: any) => {
-        if (res.status == true) {
+        if (res.status == true && res.is_exists == true) {
           this.closeNewZatchupIDModel.nativeElement.click();
-          this.alert.success(res.message, 'Success')
-          this.router.navigate(['admin/ei-management-pending-for-approval'])
-
+          this.approveSchoolConfirmation('admin/ei-approve_new_zatchupid/', data, res.error.message[0])
+        }
+        else if(res.status == false && res.is_exists == true){
+          this.alert.error(res.error.message[0], 'Error');
+          this.closeNewZatchupIDModel.nativeElement.click();
+        }
+        else if(res.status == true && res.is_exists == false){
+          this.closeNewZatchupIDModel.nativeElement.click();
+          this.approveSchool('admin/ei-approve_new_zatchupid/', data)
         }
         else {
           this.alert.error(res.error.message[0], 'Error')
@@ -270,42 +270,29 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.pendingApprovalProfile.errorDisplay = {};
     this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[4].elements, false, []);
     if (this.pendingApprovalProfile.errorDisplay.valid) {
-      // if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
-      //   this.pendingApprovalProfile.requiredMOU = false;
-      //   this.pendingApprovalProfile.poc_required = false
-      //   return false;
-      // }
-      // else if (!this.pendingApprovalProfile.existingZatchIDMOUDoc) {
-      //   this.pendingApprovalProfile.requiredMOU = false
-      //   return false;
-      // }
-      // else if (!this.pendingApprovalProfile.employeeId) {
-      //   this.pendingApprovalProfile.poc_required = false
-      //   return false;
-      // }
       this.checkValidation()
-      // if (!this.checkValidation())
       return false
     } else if (!this.checkValidation())
-      // this.pendingApprovalProfile.requiredMOU = false
       return false;
-    // } else if (!this.pendingApprovalProfile.employeeId) {
-    //   return false;
-    // }
-
     this.loader.show()
     let data = {
       'user_id': this.eiData.id,
       'mou_document': this.pendingApprovalProfile.existingZatchIDMOUDoc,
       'employeeID': this.pendingApprovalProfile.employeeId
     }
-    this.baseService.action('admin/ei-approve_autogenerated_zatchupid/', data).subscribe(
+    this.baseService.action('admin/validate_school_approve/', data).subscribe(
       (res: any) => {
-        if (res.status == true) {
+        if (res.status == true && res.is_exists == true) {
           this.closeGenerateZatchupIDModel.nativeElement.click();
-          this.alert.success(res.message, 'Success')
-          this.router.navigate(['admin/ei-management-pending-for-approval'])
-
+          this.approveSchoolConfirmation('admin/ei-approve_autogenerated_zatchupid/', data, res.error.message[0])
+        }
+        else if(res.status == false && res.is_exists == true){
+          this.alert.error(res.error.message[0], 'Error');
+          this.closeGenerateZatchupIDModel.nativeElement.click();
+        }
+        else if(res.status == true && res.is_exists == false){
+          this.closeGenerateZatchupIDModel.nativeElement.click();
+          this.approveSchool('admin/ei-approve_autogenerated_zatchupid/', data)
         }
         else {
           this.alert.error(res.error.message[0], 'Error')
@@ -318,36 +305,6 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     )
   }
 
-  // addComment() {
-  //   this.pendingApprovalProfile.errorDisplay = {};
-  //   this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[5].elements, false, []);
-  //   if (this.pendingApprovalProfile.errorDisplay.valid) {
-  //     return false;
-  //   }
-
-  //   this.loader.show()
-  //   let data = {
-  //     'ei_id': this.eiData.ei_id,
-  //     'address1': this.pendingApprovalProfile.addressLineOne,
-  //     'address2': this.pendingApprovalProfile.addressLineTwo
-  //   }
-  //   this.baseService.action('admin/school/update_address/', data).subscribe(
-  //     (res: any) => {
-  //       if (res.status == true) {
-  //         this.closeEditAddress.nativeElement.click();
-  //         this.alert.success(res.message, 'Success')
-  //         this.getProfileData();
-  //       }
-  //       else {
-  //         this.alert.error(res.error.message[0], 'Error')
-  //       }
-  //       this.loader.hide()
-  //     }, err => {
-  //       this.alert.error(err, 'Error')
-  //       this.loader.hide()
-  //     }
-  //   )
-  // }
   isValid(event) {
     if (Object.keys(this.pendingApprovalProfile.errorDisplay).length !== 0) {
       this.pendingApprovalProfile.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
@@ -357,14 +314,12 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.location.back();
   }
 
-
   pocDetails(data) {
     this.pendingApprovalProfile.employeeId = data.employee_id
     this.pendingApprovalProfile.poc_required = true;
   }
 
   checkValidation() {
-    // debugger
     if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
       this.pendingApprovalProfile.requiredMOU = false;
       this.pendingApprovalProfile.poc_required = false
@@ -378,26 +333,18 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       this.pendingApprovalProfile.poc_required = false
       return false;
     }
-
     return true;
   }
-
-  // setAddressData(){
-  //   this.pendingApprovalProfile.addressLineOne = this.eiData.address1
-  //   this.pendingApprovalProfile.addressLineTwo = this.eiData.address2
-  // }
 
   confirmForApproveEI(data: any, message: any): any {
     this.confirmDialogService.confirmThis('School is already onboarded with same name and pin code. Are you sure you want approve this school', () => {
       this.loader.show()
-      // model.course_id = id;
       this.baseService.action('admin/approve-ei/', data).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.closeExistingZatchupIDModel.nativeElement.click();
             this.alert.success(res.message, "Success")
             this.router.navigate(['admin/ei-management-pending-for-approval'])
-            // this.getConfirmationDetails();
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }
@@ -409,6 +356,31 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
       }
     }, () => {
     });
+  }
+
+  approveSchoolConfirmation(apiUrl: any, data: any, message: any) {
+    this.confirmDialogService.confirmThis(message, () => {
+        this.approveSchool(apiUrl, data)
+    }, () => {
+    });
+  }
+
+  approveSchool(apiUrl: any, data: any) {
+      this.loader.show()
+      this.baseService.action(apiUrl, data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.router.navigate(['admin/ei-management-pending-for-approval'])
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
   }
 
 }
