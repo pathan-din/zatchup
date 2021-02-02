@@ -131,7 +131,7 @@ import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verifie
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
-import  { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SupportManagementComponent } from './support/support-management/support-management.component';
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
@@ -149,6 +149,7 @@ import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-d
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -336,6 +337,7 @@ const config = {
     TooltipModule.forRoot(),
     SharedModule,
     ImageViewerModule.forRoot(config),
+    AngularEditorModule
   ],
   providers: [DatePipe]
 })
