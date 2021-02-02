@@ -129,6 +129,7 @@ import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-d
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
+import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
 
 const routes: Routes = [
   {
@@ -400,6 +401,9 @@ const routes: Routes = [
   },
   {
     path: 'education-institute-history/:id', component: InstituteHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'onboarded-school-history/:id', component: OnboardedSchoolHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'service-fees-history', component: ServiceFeesHistoryComponent, canActivate: [AuthGuard]
