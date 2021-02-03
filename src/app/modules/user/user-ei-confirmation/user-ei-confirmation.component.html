@@ -113,14 +113,24 @@
 
             </form>
 
-            <div data-target="#OTPModel" data-toggle="modal" class="form-group cursorStyle mt-3">
+            <div  class="form-group cursorStyle mt-3">
                 <div class="d-flex align-items-center">
-                    <div class="img-small mr-2">
+                    <!-- <div class="img-small mr-2">
                         <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
+                    </div> -->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6 align-items-center d-flex justify-content-center">
+                                <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Add Current education </label>
+                            </div>
+                            <div class="col-6 align-items-center d-flex justify-content-center">
+                                <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Add Past education </label>
+                            </div>
+                        </div>
                     </div>
-                    <div #clickOtpModel class="text-left commonFontSize color-purple mediumFont">
+                    <!-- <div class="text-left commonFontSize color-purple mediumFont">
                         {{confirmationDetails.length>0?"Add More Course":"Add Course"}}
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <button type="submit " *ngIf="confirmationDetails.length>0" class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
@@ -133,15 +143,15 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
     <p style="color: white">Please Wait. </p>  
 </ngx-spinner> 
-<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<!-- <div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
            
-            <div class="modal-body pl-5 pr-5 text-center">
+            <div class="modal-body pl-5 pr-5 text-center"> -->
                 <!-- <form class="pl-5 pr-5"> -->
                 <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
-                <i class="fa fa-book" aria-hidden="true" style="font-size: 105px; padding: 20px 0px; color: #463267;"></i>
+                <!-- <i class="fa fa-book" aria-hidden="true" style="font-size: 105px; padding: 20px 0px; color: #463267;"></i>
                
                 <div class="form-group">
                     <div class="row">
@@ -153,16 +163,16 @@
                         </div>
                     </div>
                 </div>
-                 
+                  -->
               
 
                 
                 <!-- </form> -->
-
+<!-- 
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
  <!-- verifiedModel  -->
  <div class="modal fade" id="verifiedModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

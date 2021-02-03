@@ -66,9 +66,9 @@ params:any;
       }
     })
     if(this.params.add_course){
-      setTimeout(() => {
-        this.clickOtpModel.nativeElement.click();
-      }, 500);
+      // setTimeout(() => {
+      //   this.clickOtpModel.nativeElement.click();
+      // }, 500);
       
         
     }
@@ -288,7 +288,7 @@ params:any;
           localStorage.setItem("role", "0");
           
           if(this.confirmationDetails.length <= 0)
-            this.clickOtpModel.nativeElement.click();
+            // this.clickOtpModel.nativeElement.click();
           this.confirmationDetails.forEach(elementCourse => {
             
 

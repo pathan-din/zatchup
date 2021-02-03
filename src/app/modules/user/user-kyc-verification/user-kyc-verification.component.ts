@@ -195,6 +195,7 @@ export class UserKycVerificationComponent implements OnInit {
               if(localStorage.getItem("isrejected")){
                 //location.reload();
               }else{
+                this.router.navigate(['user/add-ei']);
                 // $("#currentStatusModel").modal({
                 //   backdrop: 'static',
                 //   keyboard: false

@@ -20,13 +20,13 @@ export class UserCongratulationComponent implements OnInit {
   schoolId:any;
   title:any;
   isalumini:any;
+  params:any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
-    public baseService:BaseService
-    , private route: ActivatedRoute,
-    public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService) { }
+    public baseService:BaseService,
+    private route: ActivatedRoute,
+    public formBuilder: FormBuilder) { }
 
 
     ngOnInit(): void {
@@ -34,7 +34,7 @@ export class UserCongratulationComponent implements OnInit {
        this.schoolId = params['school_id'];
        this.title =    params['title'];
        this.isalumini= params['isalumini'];
-  
+       this.params = params;
       });
     }
   redirectToContinueEiProfile(){

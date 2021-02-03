@@ -78,7 +78,11 @@ export class UserAddMoreStandardComponent implements OnInit {
     this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
   }
-
+  editEi(schoolId){
+    this.router.navigate(["user/add-ei"],{queryParams:{
+      school_id:schoolId
+    }});
+  }
   getEiInfo(model) {
     try {
       var that = this;

@@ -6,6 +6,7 @@ import { BaseService } from '../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner"; 
 import { NotificationService } from '../../../services/notification/notification.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 declare var $: any;
 @Component({
   selector: 'app-user-add-ei',
@@ -38,15 +39,29 @@ export class UserAddEiComponent implements OnInit {
     this.getAllState(); 
     this.model.state='';
     this.model.city='';
+    
     this.route.queryParams.subscribe(params=>{
       this.params = params;
       if(params['title']){
         this.title = params['title'];
       }
+      this.getEiDetailsBySchoolId();
     
     })
   }
-
+getEiDetailsBySchoolId(){
+  try {
+  this.baseService.action("user/get-school-detail-schoolid/",{school_id:this.params.school_id}).subscribe((res:any)=>{
+    if(res.status==true){
+     this.modelZatchup.zatchup_id = res.data.school_code;
+     this.getDataByZatchupId();
+    }
+  })
+  } catch (e) {
+  
+  }
+  //
+}
   goToUserEiProfilePage() {
     this.router.navigate(['user/ei-profile']);
  }
@@ -137,12 +152,12 @@ goToUserQualificationPage() {
         if(response.check_school_info_on_zatchup==1)
         {
           
-          this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
+          this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
         }else{
           if(this.params.returnUrl){
-            this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title,'returnUrl':this.params.returnUrl}});
+            this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title,'returnUrl':this.params.returnUrl,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
           }else{
-            this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title}});
+            this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
           }
           
         }
