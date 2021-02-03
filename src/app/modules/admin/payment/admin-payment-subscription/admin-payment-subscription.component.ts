@@ -1,48 +1,11 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { SubscriptionFee } from '../modal/revenue.modal';
 
-
-export interface TotalAlumniListElement {
-
-  'SNo': number;
-  eiZatchupId: string;
-  nameOfSchool: string;
-  state: string;
-  city: string;
-  planTaken: string;
-  delhiUniversity: string;
-  subscriptionType: string;
-  onboardingFeesGross: number;
-  onboardingFeesNet: number;
-  couponCodeApplied: string;
-  transictionId: string;
-  Action: string;
-
-}
-
-const ELEMENT_DATA: TotalAlumniListElement[] = [
-  {
-    'SNo': 1,
-    eiZatchupId: 'ZATCHUP 8535',
-    nameOfSchool: 'Adarsh Public School',
-    state: 'Delhi',
-    city: 'Delhi',
-    planTaken: 'Quarterly',
-    delhiUniversity: 'Delhi University',
-    subscriptionType: 'New',
-    onboardingFeesGross: 100000,
-    onboardingFeesNet: 100000,
-    couponCodeApplied: 'Coupon 7426',
-    transictionId: 'TRANSACTION 1122',
-    Action: ''
-  }
-
-];
 
 @Component({
   selector: 'app-admin-payment-subscription',
@@ -51,10 +14,10 @@ const ELEMENT_DATA: TotalAlumniListElement[] = [
 })
 export class AdminPaymentSubscriptionComponent implements OnInit {
   subscriptionFee: SubscriptionFee
-  // dataSource = ELEMENT_DATA;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private location: Location,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -66,6 +29,12 @@ export class AdminPaymentSubscriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscriptionFee.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
+    if(this.subscriptionFee.filterParams)
+    {
+      this.subscriptionFee.filterFromDate = JSON.parse(this.subscriptionFee.filterParams).from_date;
+      this.subscriptionFee.filterToDate = JSON.parse(this.subscriptionFee.filterParams).to_date;
+    }
     this.getSubscriptionRevenueList('');
     this.getAllStates();
   }
@@ -134,7 +103,6 @@ export class AdminPaymentSubscriptionComponent implements OnInit {
       "date_to": this.subscriptionFee.filterToDate !== undefined ? this.datePipe.transform(this.subscriptionFee.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.subscriptionFee.university,
       "page_size": this.subscriptionFee.pageSize,
       "page": page
     }

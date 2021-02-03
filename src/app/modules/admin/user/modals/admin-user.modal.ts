@@ -86,6 +86,7 @@ export class SignupUsers {
     pageCount: any;
     kycVerified: any
   schoolStatus: any = '';
+  filterParams: string;
   zatchupId: any;
 }
 

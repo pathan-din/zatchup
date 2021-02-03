@@ -18,7 +18,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
                     <div class="rounded-0 shadow-none">
                         <input type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" class="form-control"
-                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
                     <div class="rounded-0 shadow-none">
                         <input type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" class="form-control"
-                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat:'YYYY-MM-DD' }">
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" name="status" [(ngModel)]="completeKycList.status">
+                        <select class="custom-select form-control-input" name="status" [(ngModel)]="status">
                             <option value=""> Select Status</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>

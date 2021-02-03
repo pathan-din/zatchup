@@ -23,9 +23,9 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> From</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker
+                                type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker readonly
                                 [maxDate]="subscriptionFee.maxDate" [(ngModel)]="subscriptionFee.filterFromDate"
-                                #fromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                         </div>
                     </div>
@@ -33,9 +33,9 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> To</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                                readonly type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="subscriptionFee.maxDate" [(ngModel)]="subscriptionFee.filterToDate"
-                                #fromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                         </div>
                     </div>
                     <div class="widthFull mr-3 mt-3 custumInputWidth">
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <!-- <div class="widthFull mr-3 mt-3 custumInputWidth">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <input type="text" name="board_university" [(ngModel)]="subscriptionFee.university"
@@ -69,7 +69,7 @@
                                 placeholder="Board/University" />
 
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subscription Type </label>
@@ -120,8 +120,8 @@
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right" *ngIf="subscriptionFee.dataSource">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2"
-                        aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for filter for No of alumni per page with export button-->

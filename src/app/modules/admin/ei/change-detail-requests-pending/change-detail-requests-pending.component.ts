@@ -27,7 +27,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('route id....', this.route.snapshot.queryParamMap.get('ei_id'))
     this.changeDetailRequestsPending.eId = this.route.snapshot.queryParamMap.get('ei_id')
     this.getChangeRequestList('')
     this.getAllState();
@@ -93,13 +92,12 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   generateExcel() {
     delete this.changeDetailRequestsPending.modal.page_size;
     delete this.changeDetailRequestsPending.modal.page;
-    this.baseService.generateExcel('admin/ei/export-all-ei-list/', 'change-detail-pending-request', this.changeDetailRequestsPending.modal);
+    this.baseService.generateExcel('admin/export_ei_change_details_list/', 'change-detail-pending-request', this.changeDetailRequestsPending.modal);
   }
 
   getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
-        console.log('get state res ::', res)
         if (res.count > 0)
           this.changeDetailRequestsPending.allStates = res.results
       }
@@ -110,7 +108,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.changeDetailRequestsPending.allCities = res.results
-        console.log('get state res ::', res)
       }
     )
   }

@@ -141,7 +141,7 @@
                         <label for="" class=" commonFontSize mediumFont letterspacing">Date From</label>
                         <input type="text" id="fee_Received_From_Date" name="fee_Received_From_Date"
                             placeholder="MM/DD/YYYY" class="form-control formfocusStyle" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="feeReceivedFromDate"
+                            [maxDate]="maxDate" [(ngModel)]="feeReceivedFromDate" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }" required>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_From_Date"></div>
                     </div>
@@ -149,7 +149,7 @@
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Date To</label>
                         <input type="text" id="fromDate" name="fee_Received_To_Date" placeholder="MM/DD/YYYY"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" readonly
                             [(ngModel)]="feeReceivedToDate" [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat:'YYYY-MM-DD' }"
                             required>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_To_Date"></div>

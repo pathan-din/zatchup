@@ -29,6 +29,12 @@ export class OnboardedOnZatchupListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onboardedZatchup.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
+    if(this.onboardedZatchup.filterParams)
+    {
+      this.onboardedZatchup.filterFromDate = JSON.parse(this.onboardedZatchup.filterParams).from_date;
+      this.onboardedZatchup.filterToDate = JSON.parse(this.onboardedZatchup.filterParams).to_date;
+    }
     this.subscriptionType(this.route.snapshot.params.type)
     this.getAllState();
     this.getOnboardedZatchup();
@@ -56,8 +62,8 @@ export class OnboardedOnZatchupListComponent implements OnInit {
 
     this.onboardedZatchup.listParams = {
       "search": this.onboardedZatchup.search,
-      'date_from': this.onboardedZatchup.filterFromDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.onboardedZatchup.filterFromDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       // "university": this.onboardedZatchup.university,

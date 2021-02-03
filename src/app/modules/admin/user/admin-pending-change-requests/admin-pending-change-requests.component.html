@@ -30,7 +30,7 @@
                         <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
-                                [maxDate]="pendingChangeRequests.maxDate"
+                                [maxDate]="pendingChangeRequests.maxDate" readonly
                                 [(ngModel)]="pendingChangeRequests.filterFromDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
@@ -40,7 +40,7 @@
                         <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
-                                [maxDate]="pendingChangeRequests.maxDate"
+                                [maxDate]="pendingChangeRequests.maxDate" readonly
                                 [(ngModel)]="pendingChangeRequests.filterToDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>

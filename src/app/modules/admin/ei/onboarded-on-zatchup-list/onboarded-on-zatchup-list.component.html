@@ -27,7 +27,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Added From</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                            id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
+                            id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker readonly
                             [maxDate]="onboardedZatchup.maxDate" [(ngModel)]="onboardedZatchup.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
 
@@ -38,7 +38,7 @@
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " type="text"
                             id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker [maxDate]="onboardedZatchup.maxDate"
-                            [(ngModel)]="onboardedZatchup.filterToDate" #fromDate="ngModel"
+                            [(ngModel)]="onboardedZatchup.filterToDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>

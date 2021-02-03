@@ -24,7 +24,7 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
     private loader: NgxSpinnerService,
     private alert: NotificationService,
     private validationService: GenericFormValidationService
-  ) { 
+  ) {
     this.changeDetails = new ChangeDetailsView()
   }
 
@@ -34,11 +34,12 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
 
   getChangeRequestData() {
     this.loader.show();
-    this.baseService.getData('admin/ei_change_details_list/',{"id": this.route.snapshot.params.id}).subscribe(
+    this.baseService.getData('admin/ei_change_details_list/', { "id": this.route.snapshot.params.id }).subscribe(
       (res: any) => {
         if (res.status == true) {
-         this.changeDetails.changeDetailsView = res.results[0];
-         this.getChangeRequestHistory();
+          this.changeDetails.changeDetailsView = res.results[0];
+          if (this.changeDetails.changeDetailsView)
+            this.getChangeRequestHistory();
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -82,7 +83,7 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
     }
   }
 
-  radioChange(event: any){
+  radioChange(event: any) {
     this.changeDetails.approveOrReject = event.value
   }
   goBack() {
