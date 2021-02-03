@@ -64,7 +64,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       "is_disabled": this.onboardedZatchup.isDisabled,
       "is_subscription_active": this.onboardedZatchup.subStatus,
       "page_size": this.onboardedZatchup.pageSize,
-      "page": page ? page : 1
+      "page": page
     }
     this.baseService.getData('admin/ei-onboarded_zatchup-list/', this.onboardedZatchup.listParams).subscribe(
       (res: any) => {
@@ -111,6 +111,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       // "university": this.onboardedZatchup.university,
+      "is_onboarded": '1',
       "page_size": this.onboardedZatchup.pageSize,
       "is_subscription_active": this.onboardedZatchup.subStatus,
       "page": page
@@ -123,7 +124,8 @@ export class OnboardedOnZatchupListComponent implements OnInit {
             page = this.onboardedZatchup.config.currentPage
           this.onboardedZatchup.startIndex = res.page_size * (page - 1) + 1;
           this.onboardedZatchup.pageSize = res.page_size;
-          this.onboardedZatchup.config.itemsPerPage = res.page_size
+          this.onboardedZatchup.config.itemsPerPage = res.page_size;
+          this.onboardedZatchup.pageSize = res.page_size;
           this.onboardedZatchup.config.currentPage = page
           this.onboardedZatchup.config.totalItems = res.count;
 
@@ -143,7 +145,7 @@ export class OnboardedOnZatchupListComponent implements OnInit {
     delete this.onboardedZatchup.listParams.page_size;
     delete this.onboardedZatchup.listParams.page;
     this.onboardedZatchup.listParams['export_csv'] = true
-    this.baseService.generateExcel('', 'onboarded-zatchup-list', this.onboardedZatchup.listParams);
+    this.baseService.generateExcel('admin/export_ei_onboarded_zatchup_list/', 'onboarded-zatchup-list', this.onboardedZatchup.listParams);
   }
 
 

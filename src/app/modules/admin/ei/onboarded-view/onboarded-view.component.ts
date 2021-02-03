@@ -34,7 +34,7 @@ export class OnboardedViewComponent implements OnInit {
   }
 
   eiHistory() {
-    this.router.navigate(['admin/education-institute-history', this.eiData.id])
+    this.router.navigate(['admin/onboarded-school-history', this.eiData.ei_id])
   }
 
   subPlanHistory() {

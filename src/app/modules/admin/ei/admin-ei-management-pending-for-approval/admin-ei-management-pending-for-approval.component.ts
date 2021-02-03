@@ -154,7 +154,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
       'date_to': this.eIPendingApproval.filterToDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "university": this.eIPendingApproval.university,
+      "is_onboarded": '0',
       "page_size": this.eIPendingApproval.pageSize,
       "page": page,
 

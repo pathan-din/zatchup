@@ -1,4 +1,4 @@
-import { DatePipe, Location } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -22,7 +22,6 @@ export class AdminKycPendingRequestComponent implements OnInit {
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private location: Location
   ) {
     this.kycPendingRequest = new KycPendingRequest();
     this.kycPendingRequest.maxDate = new Date();
