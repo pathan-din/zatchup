@@ -93,7 +93,6 @@ export class AdminPaymentOnboardingComponent implements OnInit {
   }
   this.baseService.getData('admin/payment/payment_details_list/', this.onboardingFee.listParams).subscribe(
     (res: any) => {
-      console.log('list params....', res)
       if (res.status == true) {
         if (!page)
           page = this.onboardingFee.config.currentPage
@@ -141,7 +140,6 @@ export class AdminPaymentOnboardingComponent implements OnInit {
       (res: any) => {
         if(res.count > 0)
         this.onboardingFee.allStates = res.results
-        console.log('get state res ::', res)
       }
     ) 
   }
@@ -150,7 +148,6 @@ export class AdminPaymentOnboardingComponent implements OnInit {
       (res: any) => {
         if(res.count > 0)
         this.onboardingFee.allCities = res.results
-        console.log('get city res ::', res)
       }
     )
   }

@@ -47,4 +47,5 @@ export class SubscriptionFee {
   filterFromDate: any;
   filterToDate: any;
   maxDate: any;
+  filterParams: any;
 }
