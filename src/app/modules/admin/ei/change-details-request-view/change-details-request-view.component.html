@@ -89,103 +89,100 @@
 
                     </div>
 
-                    <!-- approve or reject Model  -->
-                    <div class="modal fade" id="approveModel" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog " role="document">
-                            <div class="modal-content unverified container-fluid">
-                                <div class="modal-header align-items-center justify-content-center pb-0">
-                                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Change Request
-                                    </h2>
-                                    <button type="button" #approveCloseButton
-                                        class="close rounded-circle border bg-white model-close-btn p-0"
-                                        data-dismiss="modal" aria-label="Close ">
-                                        <span aria-hidden="true "> &times; </span>
-                                    </button>
-                                </div>
-                                <div class="modal-body px-0">
-                                    <form id="approveOrRejectForm">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group row  ml-0 mr-0">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing"> Image
-                                                        of Attachment </label>
-                                                </div>
-                                                <div *ngIf="changeDetails.changeDetailsView && changeDetails.changeDetailsView.document"
-                                                    class="picImg">
-                                                    <img src="{{changeDetails.changeDetailsView.document}}"
-                                                        class="img-fluid dpImg ">
-                                                </div>
-                                                <div
-                                                    *ngIf="changeDetails.changeDetailsView && !changeDetails.changeDetailsView.document">
-                                                    <img src="assets/images/no-image-icon.jpg" class="img-fluid dpImg ">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 mt-3 mb-1">
-                                                <mat-radio-group aria-label="Select an option">
-                                                    <mat-radio-button [checked]="true" class="mr-3" color="primary"
-                                                        value="approve" (change)="radioChange($event)">Approve
-                                                    </mat-radio-button>
-                                                    <mat-radio-button value="reject" color="primary"
-                                                        (change)="radioChange($event)">Reject</mat-radio-button>
-                                                </mat-radio-group>
-                                            </div>
 
-                                            <div class="col-md-12" *ngIf="changeDetails.approveOrReject == 'reject'">
-                                                <div class="form-group row  ml-0 mr-0">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing">
-                                                        Rejection Reason </label>
-                                                    <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-                                                        <input
-                                                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                            placeholder="Enter Rejection Reason" type="text"
-                                                            id="rejection_reason" name="rejection_reason"
-                                                            [(ngModel)]="changeDetails.rejectionReason"
-                                                            (keyup)="isValid()" required>
-                                                    </div>
-                                                    <div class="required errorMsg"
-                                                        [innerHtml]="changeDetails.errorDisplay.rejection_reason">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12" *ngIf="changeDetails.approveOrReject == 'reject'">
-                                                <div class="form-group row  ml-0 mr-0">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing">
-                                                        Rejection Remarks </label>
-                                                    <div
-                                                        class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                                        <textarea
-                                                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                            type="text" cols="4" rows="5" id="remark"
-                                                            (keyup)="isValid()" placeholder="Rejection Remarks"
-                                                            name="rejection_remark"
-                                                            [(ngModel)]="changeDetails.rejectionRemark"
-                                                            required></textarea>
-                                                    </div>
-                                                    <div class="required errorMsg"
-                                                        [innerHtml]="changeDetails.errorDisplay.rejection_remark">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-3 text-center">
-                                                <button type="button" (click)="ApproveRejectChangeRequest()"
-                                                    class="{{changeDetails.approveOrReject == 'approve' ? 'bg-paret-green' : 'bg-danger'}} border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                                                    {{changeDetails.approveOrReject | titlecase}} </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- approve or reject end -->
                 </div>
             </div>
         </div>
 
 
     </div>
+
+    <!-- approve or reject Model  -->
+    <div class="modal fade" id="approveModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Change Request
+                    </h2>
+                    <button type="button" #approveCloseButton
+                        class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                        aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <form id="approveOrRejectForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row  ml-0 mr-0">
+                                    <label for="" class="mediumFont commonFontSize letterspacing"> Image
+                                        of Attachment </label>
+                                </div>
+                                <div *ngIf="changeDetails.changeDetailsView && changeDetails.changeDetailsView.document"
+                                    class="picImg">
+                                    <img src="{{changeDetails.changeDetailsView.document}}" class="img-fluid dpImg ">
+                                </div>
+                                <div
+                                    *ngIf="changeDetails.changeDetailsView && !changeDetails.changeDetailsView.document">
+                                    <img src="assets/images/no-image-icon.jpg" class="img-fluid dpImg ">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3 mb-1">
+                                <mat-radio-group aria-label="Select an option">
+                                    <mat-radio-button [checked]="true" class="mr-3" color="primary" value="approve"
+                                        (change)="radioChange($event)">Approve
+                                    </mat-radio-button>
+                                    <mat-radio-button value="reject" color="primary" (change)="radioChange($event)">
+                                        Reject</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                            <div class="col-md-12" *ngIf="changeDetails.approveOrReject == 'reject'">
+                                <div class="form-group row  ml-0 mr-0">
+                                    <label for="" class="mediumFont commonFontSize letterspacing">
+                                        Rejection Reason </label>
+                                    <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
+                                        <input
+                                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                            placeholder="Enter Rejection Reason" type="text" id="rejection_reason"
+                                            name="rejection_reason" [(ngModel)]="changeDetails.rejectionReason"
+                                            (keyup)="isValid()" required>
+                                    </div>
+                                    <div class="required errorMsg"
+                                        [innerHtml]="changeDetails.errorDisplay.rejection_reason">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" *ngIf="changeDetails.approveOrReject == 'reject'">
+                                <div class="form-group row  ml-0 mr-0">
+                                    <label for="" class="mediumFont commonFontSize letterspacing">
+                                        Rejection Remarks </label>
+                                    <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                        <textarea
+                                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                            type="text" cols="4" rows="5" id="remark" (keyup)="isValid()"
+                                            placeholder="Rejection Remarks" name="rejection_remark"
+                                            [(ngModel)]="changeDetails.rejectionRemark" required></textarea>
+                                    </div>
+                                    <div class="required errorMsg"
+                                        [innerHtml]="changeDetails.errorDisplay.rejection_remark">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3 text-center">
+                                <button type="button" (click)="ApproveRejectChangeRequest()"
+                                    class="{{changeDetails.approveOrReject == 'approve' ? 'bg-paret-green' : 'bg-danger'}} border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                    {{changeDetails.approveOrReject | titlecase}} </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- approve or reject end -->
 
 
     <!-- <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">

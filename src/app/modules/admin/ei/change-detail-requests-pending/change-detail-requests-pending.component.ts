@@ -93,7 +93,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   generateExcel() {
     delete this.changeDetailRequestsPending.modal.page_size;
     delete this.changeDetailRequestsPending.modal.page;
-    this.baseService.generateExcel('admin/ei/export-all-ei-list/', 'change-detail-pending-request', this.changeDetailRequestsPending.modal);
+    this.baseService.generateExcel('admin/export_ei_change_details_list/', 'change-detail-pending-request', this.changeDetailRequestsPending.modal);
   }
 
   getAllState() {
