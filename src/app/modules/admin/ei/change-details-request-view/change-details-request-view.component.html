@@ -10,7 +10,7 @@
 
             <h2 class="commonFontSize semiBoldFont m-0">Change Request</h2>
         </div>
-        <div class="row">
+        <div *ngIf="changeDetails.changeDetailsView" class="row">
             <div class="col-md-6">
                 <div class="row mt-2 py-2 border-0 mx-0">
                     <div class="col-md-12 col-left">
@@ -91,6 +91,12 @@
 
 
                 </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!changeDetails.changeDetailsView">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Record Not Available</p>
             </div>
         </div>
 
