@@ -66,7 +66,6 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       'end_date': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardedZatchup.university,
       "is_disabled": this.onboardedZatchup.isDisabled,
       "is_subscription_active": this.onboardedZatchup.subStatus,
       "page_size": this.onboardedZatchup.pageSize,
@@ -78,7 +77,8 @@ export class OnboardedOnZatchupListComponent implements OnInit {
           if (!page)
             page = this.onboardedZatchup.config.currentPage
           this.onboardedZatchup.startIndex = res.page_size * (page - 1) + 1;
-          this.onboardedZatchup.config.itemsPerPage = res.page_size
+          this.onboardedZatchup.config.itemsPerPage = res.page_size;
+          this.onboardedZatchup.pageSize = res.page_size;
           this.onboardedZatchup.config.currentPage = page
           this.onboardedZatchup.config.totalItems = res.count;
           if (res.count > 0) {
@@ -116,7 +116,6 @@ export class OnboardedOnZatchupListComponent implements OnInit {
       'date_to': this.onboardedZatchup.filterToDate !== undefined ? this.datePipe.transform(this.onboardedZatchup.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      // "university": this.onboardedZatchup.university,
       "is_onboarded": '1',
       "page_size": this.onboardedZatchup.pageSize,
       "is_subscription_active": this.onboardedZatchup.subStatus,

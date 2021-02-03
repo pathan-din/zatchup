@@ -30,6 +30,12 @@ export class ActiveUsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.activeUsers.lastLoginParams = this.route.snapshot.queryParamMap.get('lastLoginParams');
+    if(this.activeUsers.lastLoginParams)
+    {
+      this.activeUsers.loginFromDate = JSON.parse(this.activeUsers.lastLoginParams).start_date;
+      this.activeUsers.loginToDate = JSON.parse(this.activeUsers.lastLoginParams).end_date;
+    }
     this.getActiveUsersList('');
     this.getAllState();
     this.activeUsers.pageCount = this.baseService.getCountsOfPage();

@@ -83,8 +83,8 @@ export class AdminPaymentOnboardingComponent implements OnInit {
 
 
     this.onboardingFee.listParams = {
-      "date_from": this.onboardingFee.filterFromDate !== undefined ? this.datePipe.transform(this.onboardingFee.filterFromDate, 'yyyy-MM-dd'): '',
-      "date_to": this.onboardingFee.filterToDate !== undefined ? this.datePipe.transform(this.onboardingFee.filterToDate, 'yyyy-MM-dd'): '',
+      "start_date": this.onboardingFee.filterFromDate !== undefined ? this.datePipe.transform(this.onboardingFee.filterFromDate, 'yyyy-MM-dd'): '',
+      "end_date": this.onboardingFee.filterToDate !== undefined ? this.datePipe.transform(this.onboardingFee.filterToDate, 'yyyy-MM-dd'): '',
       "city": cityFind ? cityFind.city: '',
       "state": stateFind ? stateFind.state: '',
       // "university": this.onboardingFee.university,

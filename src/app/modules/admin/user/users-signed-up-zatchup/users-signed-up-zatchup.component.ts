@@ -26,11 +26,18 @@ export class UsersSignedUpZatchupComponent implements OnInit {
     this.signupUsers.maxDate = new Date();
   }
   ngOnInit(): void {
-    this.signupUsers.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
+    this.signupUsers.filterParams = this.route.snapshot.queryParamMap.get("filterParams");
     if(this.signupUsers.filterParams)
     {
       this.signupUsers.filterFromDate = JSON.parse(this.signupUsers.filterParams).from_date;
       this.signupUsers.filterToDate = JSON.parse(this.signupUsers.filterParams).to_date;
+    }
+
+    if(this.signupUsers.lastLoginParams)
+    {
+      debugger
+      this.signupUsers.loginFromDate = JSON.parse(this.signupUsers.lastLoginParams).start_date;
+      this.signupUsers.loginToDate = JSON.parse(this.signupUsers.lastLoginParams).end_date;
     }
     this.getSignupUsersList('');
     this.getAllState();
@@ -40,8 +47,8 @@ export class UsersSignedUpZatchupComponent implements OnInit {
   getSignupUsersList(page?: any) {
     this.loader.show();
     this.signupUsers.listParams = {
-      'date_from': this.signupUsers.filterFromDate !== undefined ? this.datePipe.transform(this.signupUsers.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.signupUsers.filterToDate !== undefined ? this.datePipe.transform(this.signupUsers.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.signupUsers.filterFromDate !== undefined ? this.datePipe.transform(this.signupUsers.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.signupUsers.filterToDate !== undefined ? this.datePipe.transform(this.signupUsers.filterToDate, 'yyyy-MM-dd') : '',
       'last_login_from': this.signupUsers.loginFromDate !== undefined ? this.datePipe.transform(this.signupUsers.loginFromDate, 'yyyy-MM-dd') : '',
       'last_login_to': this.signupUsers.loginToDate !== undefined ? this.datePipe.transform(this.signupUsers.loginToDate, 'yyyy-MM-dd') : '',
       "kyc_aprroved": this.signupUsers.kycApproved !== undefined ? this.signupUsers.kycApproved : '',

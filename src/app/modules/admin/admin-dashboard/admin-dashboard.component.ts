@@ -102,7 +102,14 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   activeUsers() {
-    this.router.navigate(['admin/active-users'], { queryParams: { returnUrl: 'admin/dashboard' } })
+    let lastLoginStartDate = new Date();
+    let lastLoginEndDate = new Date();
+    lastLoginStartDate = new Date(lastLoginStartDate.setDate(lastLoginStartDate.getDate() - 7))
+    let obj ={
+      "start_date": lastLoginStartDate,
+      "end_date": lastLoginEndDate
+    }
+    this.router.navigate(['admin/active-users'], { queryParams: { returnUrl: 'admin/dashboard', lastLoginParams: JSON.stringify(obj) } })
   }
 
   dormantUsers() {
