@@ -41,7 +41,7 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDashboardCount();
-    // this.filterRecords();
+    this.filterRecords();
   }
 
   getDashboardCount() {
@@ -53,7 +53,6 @@ export class AdminDashboardComponent implements OnInit {
           this.loader.hide();
           if (res.status === true) {
             this.countJson = res.data;
-            this.filteredResponse = res.data.dashboard;
           } else {
             this.alert.error(res.error.message[0], 'Error');
           }
