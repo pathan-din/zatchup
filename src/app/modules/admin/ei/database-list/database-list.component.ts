@@ -50,7 +50,7 @@ export class DatabaseListComponent implements OnInit {
       this.router.navigate(['admin/ei-onboarded-view', data.user_id]);
     }
     else
-      this.router.navigate(['admin/ei-database-view'], { queryParams: { "id": data.id } })
+      this.router.navigate(['admin/ei-database-view'], { queryParams: { "id": data.id, "returnUrl": "admin/ei-database-list" } })
   }
 
   getEIDbList(page?: any) {
