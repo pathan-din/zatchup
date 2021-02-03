@@ -28,7 +28,7 @@ export class AdminSchoolManagementComponent implements OnInit {
   constructor(
     private validationService: GenericFormValidationService,
     private router: Router,
-    private SpinnerService: NgxSpinnerService,
+    private loader: NgxSpinnerService,
     private baseService: BaseService,
     private datePipe: DatePipe,
     private alert: NotificationService
@@ -43,23 +43,20 @@ export class AdminSchoolManagementComponent implements OnInit {
   getDashboardCount() {
     this.error = [];
     try {
-      /**Api For the dashboard count */
-
-      this.SpinnerService.show();
-
+      this.loader.show();
       this.baseService.getData('admin/ei/get_school_ei_dashboard_summary/').subscribe(res => {
         let response: any = {};
         response = res;
-        this.SpinnerService.hide();
+        this.loader.hide();
         if (response.status === true) {
           this.responseJson = response.data;
           this.feeData = response.data.fees_received;
           this.reportedEI = response.data.reported;
         } else {
-          this.SpinnerService.hide();
+          this.loader.hide();
         }
       }, (error) => {
-        this.SpinnerService.hide();
+        this.loader.hide();
       });
     }
     catch (e) {
@@ -72,9 +69,12 @@ export class AdminSchoolManagementComponent implements OnInit {
   }
 
   paymentOnboardingRoute() {
-    this.router.navigate(['admin/payment-onboarding'])
+    if (this.feeReceivedFromDate && this.feeReceivedToDate)
+      this.router.navigate(['admin/payment-onboarding'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams(this.feeReceivedFromDate, this.feeReceivedToDate)}})
+    else
+      this.router.navigate(['admin/payment-onboarding'])
   }
-  
+
   goToAdminEIDatabase() {
     this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/school-management' } })
   }
@@ -95,11 +95,11 @@ export class AdminSchoolManagementComponent implements OnInit {
     this.router.navigate(['admin/ei-management-pending-for-approval']);
   }
 
-  changeDetailRequestsPending(){
+  changeDetailRequestsPending() {
     this.router.navigate(['admin/change-detail-requests-pending']);
   }
 
-  rejectedEI(){
+  rejectedEI() {
     this.router.navigate(['admin/rejected-ei-list']);
   }
 
@@ -110,7 +110,7 @@ export class AdminSchoolManagementComponent implements OnInit {
     if (this.errorDisplay.valid) {
       return false;
     }
-
+    this.loader.show();
     let data = {
       "from_date": fromDate ? this.datePipe.transform(fromDate, 'yyyy-MM-dd') : this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
       "to_date": toDate ? this.datePipe.transform(toDate, 'yyyy-MM-dd') : this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
@@ -124,6 +124,7 @@ export class AdminSchoolManagementComponent implements OnInit {
           else
             this.reportedEI = res.data.reported
         }
+        this.loader.hide();
       }
     )
   }
@@ -148,5 +149,13 @@ export class AdminSchoolManagementComponent implements OnInit {
 
   addEducationInstitute() {
     this.router.navigate(['admin/add-education-institute'])
+  }
+
+  getFilterParams(filterFromDate: any, filterToDate: any) {
+    let filterParams = {
+      "from_date": filterFromDate,
+      "to_date": filterToDate
+    }
+    return JSON.stringify(filterParams)
   }
 }
