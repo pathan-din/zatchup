@@ -50,6 +50,7 @@ export class SearchUserList {
 }
 
 export class SignupUsers {
+    filterParams: any;
     startIndex: Number;
     listParams: any = {}
     stateId: any = '';

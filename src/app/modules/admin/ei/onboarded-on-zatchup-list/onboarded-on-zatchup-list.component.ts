@@ -29,6 +29,12 @@ export class OnboardedOnZatchupListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onboardedZatchup.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
+    if(this.onboardedZatchup.filterParams)
+    {
+      this.onboardedZatchup.filterFromDate = JSON.parse(this.onboardedZatchup.filterParams).from_date;
+      this.onboardedZatchup.filterToDate = JSON.parse(this.onboardedZatchup.filterParams).to_date;
+    }
     this.subscriptionType(this.route.snapshot.params.type)
     this.getAllState();
     this.getOnboardedZatchup();

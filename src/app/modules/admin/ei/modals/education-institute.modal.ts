@@ -44,6 +44,9 @@ export class EIDbList extends Pagination {
     onboardingStatus: any = '';
     subStatus: any;
     search: any;
+    filterFromDate: any;
+    filterToDate: any;
+    filterParams: any;
 }
 export class DocHistory extends Pagination {
     existingZatchIDMOUDoc: any;
@@ -106,10 +109,10 @@ export class DatabaseHistory extends Pagination {
         'addedRemoved', 'employeeName'];
 
     isDeleted: any = '';
-    filterFromDate:any;
-    filterToDate:any;
-   
-    
+    filterFromDate: any;
+    filterToDate: any;
+
+
 }
 
 export class SubscriptionPlanHistory extends Pagination {

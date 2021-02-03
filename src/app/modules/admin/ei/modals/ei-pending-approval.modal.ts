@@ -85,6 +85,7 @@ export class notOnZatchup {
 }
 
 export class OnboardedZatchup {
+    filterParams: any;
     startIndex: any;
     listParams: any = {};
     pageSize: any;

@@ -14,8 +14,6 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class DatabaseListComponent implements OnInit {
-  filterFromDate: any;
-  filterToDate: any;
   maxDate: any;
   params: any = {};
   eidbList: EIDbList;
@@ -33,6 +31,12 @@ export class DatabaseListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.eidbList.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
+    if(this.eidbList.filterParams)
+    {
+      this.eidbList.filterFromDate = JSON.parse(this.eidbList.filterParams).from_date;
+      this.eidbList.filterToDate = JSON.parse(this.eidbList.filterParams).to_date;
+    }
     this.getEIDbList('');
     this.getAllState();
   }
@@ -66,8 +70,8 @@ export class DatabaseListComponent implements OnInit {
     }
 
     this.eidbList.modal = {
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      'date_from': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       // "university": this.eidbList.university,
@@ -124,11 +128,10 @@ export class DatabaseListComponent implements OnInit {
     }
     this.eidbList.modal = {
       "search": this.eidbList.search,
-      'date_from': this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : '',
+      'date_from': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      // "university": this.eidbList.university,
       "page_size": this.eidbList.page_size,
       "is_subscription_active": this.eidbList.subStatus,
       "page": page
