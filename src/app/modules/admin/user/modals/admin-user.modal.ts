@@ -50,7 +50,6 @@ export class SearchUserList {
 }
 
 export class SignupUsers {
-    filterParams: any;
     startIndex: Number;
     listParams: any = {}
     stateId: any = '';
@@ -87,6 +86,7 @@ export class SignupUsers {
     pageCount: any;
     kycVerified: any
   schoolStatus: any = '';
+  filterParams: string;
   zatchupId: any;
 }
 
