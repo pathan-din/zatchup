@@ -51,7 +51,37 @@ export class BaseService {
     }
     return this.http.get(this.environment.baseUrl + url, { params, responseType: 'blob' })
   }
+  downloadImage(imgUrl) {
+    //const imgUrl = img.src;
+    const imgName = imgUrl.substr(imgUrl.lastIndexOf('/') + 1);
+    this.http.get(imgUrl, {responseType: 'blob' as 'json'})
+      .subscribe((res: any) => {
+        const file = new Blob([res], {type: res.type});
 
+        // IE
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(file);
+          return;
+        }
+
+        const blob = window.URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = blob;
+        link.download = imgName;
+
+        // Version link.click() to work at firefox
+        link.dispatchEvent(new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        }));
+
+        setTimeout(() => { // firefox
+          window.URL.revokeObjectURL(blob);
+          link.remove();
+        }, 100);
+      });
+  }
   generateExcel(url: any, fileName: any, args?: any) {
     this.downloadFile(url, args).subscribe(response => {
       let blob: any = new Blob([response], { type: 'application/vnd.ms-excel' });

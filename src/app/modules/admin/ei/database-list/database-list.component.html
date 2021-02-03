@@ -9,17 +9,17 @@
                 <h2 class="commonFontSize semiBoldFont m-0"> School On Database </h2>
             </div>
             
-            <div class="col-md-6 SearchDiv d-flex flex-row">
-                <div class="form-control-inputDiv rounded p-0 shadow-none mr-2">
-                    <input
-                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+            <div class="col-md-6 SearchDiv d-flex flex-wrap">
+                <div class="form-control-inputDiv rounded p-0 shadow-none mb-2">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                         type="text" placeholder="Search..." name="search" [(ngModel)]="eidbList.search">
                 </div>
-                <button type="button" class="bg-purple text-white px-4  h-100 ml-2 border-0 "
+
+                <button type="button" class="bg-purple text-white px-4 py-2 ml-2 border-0 mb-2"
                 (click)="searchList('1')" >Apply</button>
 
-                    <button type="button" class="bg-dark text-white ml-2 px-4 py-2 border-0 h-100 "
-                    (click)="eiDbHistory()">History</button>
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 mb-2"
+                (click)="eiDbHistory()">History</button>
             </div>
         </div>
         <!--Start html for filter for alumni list-->
@@ -103,9 +103,8 @@
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3" *ngIf="eidbList.dataSource">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
-
+        <div class="row my-3 align-items-center" *ngIf="eidbList.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
@@ -116,9 +115,14 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
-                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+
+                <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                    
+                    <div class="cursorStyle px-2" (click)="generateExcel()"> Download xlsx </div>
+                    <div class="cursorStyle px-2" (click)="generateExcel()"> Download xls </div>                   
+                </div> -->
             </div>
         </div>
         <!--End html for "select no of fees info per page" and Export Button-->

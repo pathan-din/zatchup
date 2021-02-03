@@ -4,6 +4,9 @@
     cursor: pointer;
 }
 
+.row{margin-right: 0px;
+    margin-left: 0px;}
+
 .paymant-method:focus {
     background: #463267;
 }
