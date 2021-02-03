@@ -9,6 +9,18 @@
             <h2 class="mb-3 textSpace">Add Course Details </h2>
             <form class="pt-2">
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">School Name :</label>
+                    <div class="col-sm-6 p-0">
+                        {{model.name_of_school}} ({{model.school_code}})
+                        <h3 *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
+                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2"> 
+                            
+                        </h3>
+                    </div>
+                     
+                </div>
+
+                <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
                     <div class="col-sm-12 form-control-inputDiv p-0">
                         <select (change)="displayStandardList(model.course_id) " name="course"

@@ -118,25 +118,27 @@
 
             <div class="row mt-3">
                 <div class="col-md-4 MobileCol6MB">
-                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle"
+                        (click)="filteredSchools()">
                         <p class="p-2 mediumFont commonFontSize">New Added School In School Database</p>
                         <h2 class="countFontSize text-center semiBoldFont">
                             {{filteredResponse ? filteredResponse.new_added_ei : 0}}</h2>
                         <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
-                            Total
-                            Number Of New Added School In School Database:<span
-                                class="ml-2">{{filteredResponse ? filteredResponse.new_added_ei : 0}}</span></p>
+                            Total Number Of New Added School In School Database:
+                            <span class="ml-2">{{filteredResponse ? filteredResponse.new_added_ei : 0}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4 MobileCol6MB">
-                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
+                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle"
+                        (click)="filteredUsers()">
                         <p class="p-2 mediumFont commonFontSize">New Added Users </p>
                         <h2 class="countFontSize text-center semiBoldFont">
                             {{filteredResponse ? filteredResponse.new_added_user : 0}}</h2>
                         <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
-                            Total
-                            Number Of New Added Users:<span
-                                class="ml-2">{{filteredResponse ? filteredResponse.new_added_user : 0}}</span></p>
+                            Total Number Of New Added Users:
+                            <span class="ml-2">{{filteredResponse ? filteredResponse.new_added_user : 0}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -146,9 +148,9 @@
                         <h2 class="countFontSize text-center semiBoldFont">
                             {{filteredResponse?filteredResponse.active_users:0}}</h2>
                         <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
-                            Total
-                            Number Of Active Users:<span
-                                class="ml-2">{{filteredResponse ? filteredResponse.active_users : 0}}</span></p>
+                            Total Number Of Active Users:
+                            <span class="ml-2">{{filteredResponse ? filteredResponse.active_users : 0}}</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -184,7 +186,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="bg-offwhite border border-gray p-2  h-100">
                         <h4 class="commonFontSize semiBoldFont mb-1">New School Onboarded on ZatchUp</h4>
-                        <div class="row pb-1 mx-0">
+                        <div class="row pb-1 mx-0 cursorStyle" (click)="filteredOnboardedSchools('active')">
                             <div
                                 class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                                 Total Number of New Active School (Using the platform with active subscription plan)
@@ -194,7 +196,7 @@
                                     class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_active_ei_count : 0}}
                             </div>
                         </div>
-                        <div class="row pb-1 mx-0">
+                        <div class="row pb-1 mx-0 cursorStyle" (click)="filteredOnboardedSchools('expired')">
                             <div
                                 class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                                 Total Number of New Dormant School (Stopped using platform due to expired)
@@ -209,7 +211,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="bg-offwhite border border-gray p-2 mr-1 h-100">
                         <h4 class="commonFontSize semiBoldFont mb-1">Revenue </h4>
-                        <div class="row pb-1 mx-0" (click)="paymentOnboardingRoute()" style="cursor: pointer;">
+                        <div class="row pb-1 mx-0" (click)="filteredOnboardingFeeRevenue()" style="cursor: pointer;">
                             <div
                                 class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                                 From onboarding fees
@@ -219,7 +221,7 @@
                                     class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.onboarding_fees : 0}}
                             </div>
                         </div>
-                        <div class="row pb-1 mx-0" (click)="subscriptionFeeRevenueRoute()" style="cursor: pointer;">
+                        <div class="row pb-1 mx-0" (click)="filteredSubscriptionFeeRevenue()" style="cursor: pointer;">
                             <div
                                 class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                                 Subscription fees

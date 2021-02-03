@@ -18,6 +18,9 @@ export class OnboardingFee {
   state: any = '';
   city: any = '';
   pageCount: any;
+  filterFromDate: any;
+  filterToDate: any;
+  filterParams: any;
 }
 
 export class SubscriptionFee {
@@ -44,4 +47,5 @@ export class SubscriptionFee {
   filterFromDate: any;
   filterToDate: any;
   maxDate: any;
+  filterParams: any;
 }

@@ -58,7 +58,7 @@
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterFromDate"
-                                #fromDate="ngModel"
+                                #fromDate="ngModel" readonly
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
                                 type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterToDate"
-                                #fromDate="ngModel"
+                                #fromDate="ngModel" readonly
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>

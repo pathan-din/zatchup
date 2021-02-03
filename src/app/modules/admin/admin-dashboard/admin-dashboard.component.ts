@@ -101,23 +101,43 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/dashboard' } })
   }
 
-  activeUsers(){
-    this.router.navigate(['admin/active-users'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  activeUsers() {
+    this.router.navigate(['admin/active-users'], { queryParams: { returnUrl: 'admin/dashboard' } })
   }
 
-  dormantUsers(){
-    this.router.navigate(['admin/dormant-users'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  dormantUsers() {
+    this.router.navigate(['admin/dormant-users'], { queryParams: { returnUrl: 'admin/dashboard' } })
   }
 
-  subscriptionFeeRevenueRoute() {
-    this.router.navigate(['admin/payment-subscription-revenue'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  onboardedSchools(type: any) {
+    this.router.navigate(['admin/onboarded-on-zatchup-list', type], { queryParams: { returnUrl: 'admin/dashboard' } })
   }
 
-  paymentOnboardingRoute() {
-    this.router.navigate(['admin/payment-onboarding'], {queryParams: { returnUrl: 'admin/dashboard'}})
+  filteredUsers() {
+    this.router.navigate(['admin/signed-up-users'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
   }
 
-  onboardedSchools(type: any){
-    this.router.navigate(['admin/onboarded-on-zatchup-list', type], {queryParams: { returnUrl: 'admin/dashboard'}})
+  filteredSchools() {
+    this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredOnboardedSchools(type: any) {
+    this.router.navigate(['admin/onboarded-on-zatchup-list', type], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredSubscriptionFeeRevenue() {
+    this.router.navigate(['admin/payment-subscription-revenue'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredOnboardingFeeRevenue() {
+    this.router.navigate(['admin/payment-onboarding'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  getFilterParams() {
+    let filterParams = {
+      "from_date": this.filterFromDate,
+      "to_date": this.filterToDate
+    }
+    return JSON.stringify(filterParams)
   }
 }

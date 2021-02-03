@@ -29,7 +29,7 @@
                     <div class="rounded-0 p-0 shadow-none">
                         <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="eIPendingApproval.maxDate"
-                            [(ngModel)]="eIPendingApproval.filterFromDate" #fromDate="ngModel"
+                            [(ngModel)]="eIPendingApproval.filterFromDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="rounded-0 p-0 shadow-none">
                         <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="eIPendingApproval.maxDate"
-                            [(ngModel)]="eIPendingApproval.filterToDate" #fromDate="ngModel"
+                            [(ngModel)]="eIPendingApproval.filterToDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>

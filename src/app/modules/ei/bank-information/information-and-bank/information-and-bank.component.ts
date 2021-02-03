@@ -183,6 +183,9 @@ export class InformationAndBankComponent implements OnInit {
   download_file(fileURL) {
     window.open(fileURL, '_blank');
   }
+  downloadImage(imageUrl){
+    this.baseService.downloadImage(imageUrl);
+  }
   openChangeDetailsPopup(label,key,value){
      this.model={};
      this.model.key = key;
