@@ -34,11 +34,14 @@ export class AdminDashboardComponent implements OnInit {
   ) {
     this.fromMaxDate = new Date();
     this.toMaxDate = new Date();
+    this.filterFromDate = this.fromMaxDate;
+    this.filterToDate = this.toMaxDate;
+    this.filterFromDate = new Date(this.filterFromDate.setDate(this.filterFromDate.getDate() - 7))
   }
 
   ngOnInit(): void {
     this.getDashboardCount();
-    // this.filterRecords();
+    this.filterRecords();
   }
 
   getDashboardCount() {
@@ -50,7 +53,6 @@ export class AdminDashboardComponent implements OnInit {
           this.loader.hide();
           if (res.status === true) {
             this.countJson = res.data;
-            this.filteredResponse = res.data.dashboard;
           } else {
             this.alert.error(res.error.message[0], 'Error');
           }
@@ -79,6 +81,7 @@ export class AdminDashboardComponent implements OnInit {
             this.filteredResponse = res.data.dashboard;
           } else {
             this.loader.hide();
+            this.alert.error(res.error.message[0], 'Error');
           }
         }, (error) => {
           this.loader.hide();
