@@ -279,8 +279,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
     // this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
   }
-  redirectEiConfirmationPagePage(){
-    this.router.navigate(['user/ei-confirmation'], { queryParams: {  "returnUrl": "user/my-educational-profile" } });
+  redirectEiConfirmationPagePage(school_id: any){
+    this.router.navigate(['user/add-ei'], { queryParams: {  "school_id": school_id,"returnUrl": "user/my-educational-profile" } });
   }
   getRequestChangeDetails(){
 this.router.navigate(["user/pending-request/"]);
