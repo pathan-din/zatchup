@@ -25,9 +25,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Receipt date from </label>
                     <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                         <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
                             type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
 
                     </div>
@@ -36,9 +36,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Receipt date to </label>
                     <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                         <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true}">
 
                     </div>

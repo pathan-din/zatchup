@@ -28,9 +28,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
+                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
@@ -39,9 +39,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
+                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel" readonly
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
