@@ -27,7 +27,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('route id....', this.route.snapshot.queryParamMap.get('ei_id'))
     this.changeDetailRequestsPending.eId = this.route.snapshot.queryParamMap.get('ei_id')
     this.getChangeRequestList('')
     this.getAllState();
@@ -99,7 +98,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
-        console.log('get state res ::', res)
         if (res.count > 0)
           this.changeDetailRequestsPending.allStates = res.results
       }
@@ -110,7 +108,6 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.changeDetailRequestsPending.allCities = res.results
-        console.log('get state res ::', res)
       }
     )
   }
