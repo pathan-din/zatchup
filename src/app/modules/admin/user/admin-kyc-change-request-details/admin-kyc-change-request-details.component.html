@@ -3,181 +3,177 @@
 <div class="container main-container p-3">
 
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
-        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+        <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
             <span class="mr-3 cursorStyle ">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
 
             <h2 class="commonFontSize semiBoldFont m-0">Kyc Change Request Details</h2>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row mt-2 py-2 border-0 mx-0">
-                    <div class="col-md-12 col-left">
 
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>User ZatchUp ID</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.zatchupId}}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>Name Of User</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.name_of_user}}
-                                    </span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>Kyc Details</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.kyc_id_no}}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>Kyc Type</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.kyc_type}}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>Field of change</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.field_change}}</span></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>Existing Data</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.old_value}}</span> </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3 commonFontSize mediumFont">
-                                <p>New Data</p>
-                            </div>
-                            <div class="col-6 commonFontSize regularFont">
-                                <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
-                                        {{kycChangeRequestDetails.kycDetails.new_value}}</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button type="button" class="bg-purple text-white py-2 px-4 border-0 mr-3"
-                                    data-toggle="modal" data-target="#approveModel">View</button>
-                            </div>
-                        </div>
+        <div class="row mt-2 py-2 border-0 mx-0">
+            <div class="col-md-12 col-left">
 
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>User ZatchUp ID</p>
                     </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.zatchupId}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>Name Of User</p>
+                    </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.name_of_user}}
+                            </span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>Kyc Details</p>
+                    </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.kyc_id_no}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>Kyc Type</p>
+                    </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.kyc_type}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>Field of change</p>
+                    </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.field_change}}</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>Existing Data</p>
+                    </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.old_value}}</span> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-6 commonFontSize mediumFont">
+                        <p>New Data</p>
+                    </div>
+                    <div class="col-md-6 col-6 commonFontSize regularFont">
+                        <p><span class="mr-3" *ngIf="kycChangeRequestDetails.kycDetails">:
+                                {{kycChangeRequestDetails.kycDetails.new_value}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="bg-purple text-white py-2 px-4 border-0 mr-3"
+                            data-toggle="modal" data-target="#approveModel">View</button>
+                    </div>
+                </div>
 
-                    <!-- approve or reject Model  -->
-                    <div class="modal fade" id="approveModel" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog " role="document">
-                            <div class="modal-content unverified container-fluid">
-                                <div class="modal-header align-items-center justify-content-center pb-0">
-                                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">
-                                        KYC Change Request
-                                    </h2>
-                                    <button type="button" #approveCloseButton
-                                        class="close rounded-circle border bg-white model-close-btn p-0"
-                                        data-dismiss="modal" aria-label="Close ">
-                                        <span aria-hidden="true "> &times; </span>
-                                    </button>
-                                </div>
-                                <div class="modal-body px-0">
-                                    <form id="approveOrRejectForm">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group row ml-0 mr-0">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing"> Image
-                                                        of Attachment </label>
-                                                </div>
-                                                <div *ngIf="kycChangeRequestDetails.kycDetails && kycChangeRequestDetails.kycDetails.kyc_document && !kycChangeRequestDetails.kycDetails.kyc_document_back"
-                                                    class="picImg">
-                                                    <img (click)="viewImage(kycChangeRequestDetails.kycDetails.kyc_document)"
-                                                        src="{{kycChangeRequestDetails.kycDetails.kyc_document}}"
-                                                        class="img-fluid dpImg border w-100" aria-hidden="true "
-                                                        data-toggle="modal" data-target="#imageViewer">
-                                                </div>
-                                                <div
-                                                    *ngIf="kycChangeRequestDetails.kycDetails && !kycChangeRequestDetails.kycDetails.kyc_document">
-                                                    <img src="assets/images/no-image-icon.jpg"
-                                                        class="img-fluid dpImg border w-100">
-                                                </div>
-                                            </div>
+            </div>
 
-                                            <div class="col-md-12 mt-2"
-                                                *ngIf="kycChangeRequestDetails.kycDetails && kycChangeRequestDetails.kycDetails.kyc_document && kycChangeRequestDetails.kycDetails.kyc_document_back">
-                                                <div class="row border-top pt-2">
-                                                    <div class="col-6">
-                                                        <img (click)="viewImage(kycChangeRequestDetails.kycDetails.kyc_document)"
-                                                            src="{{kycChangeRequestDetails.kycDetails.kyc_document}}"
-                                                            class="img-fluid border" aria-hidden="true "
-                                                            data-toggle="modal" data-target="#imageViewer">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <img (click)="viewImage(kycChangeRequestDetails.kycDetails.kyc_document_back)"
-                                                            src="{{kycChangeRequestDetails.kycDetails.kyc_document_back}}"
-                                                            class="img-fluid border" aria-hidden="true "
-                                                            data-toggle="modal" data-target="#imageViewer">
-                                                    </div>
-                                                </div>
-                                            </div>
+            <!-- approve or reject Model  -->
+            <div class="modal fade" id="approveModel" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">
+                                KYC Change Request
+                            </h2>
+                            <button type="button" #approveCloseButton
+                                class="close rounded-circle border bg-white model-close-btn p-0"
+                                data-dismiss="modal" aria-label="Close ">
+                                <span aria-hidden="true "> &times; </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <form id="approveOrRejectForm">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing"> Image
+                                                of Attachment </label>
+                                        </div>
+                                        <div *ngIf="kycChangeRequestDetails.kycDetails && kycChangeRequestDetails.kycDetails.kyc_document && !kycChangeRequestDetails.kycDetails.kyc_document_back"
+                                            class="picImg">
+                                            <img (click)="viewImage(kycChangeRequestDetails.kycDetails.kyc_document)"
+                                                src="{{kycChangeRequestDetails.kycDetails.kyc_document}}"
+                                                class="img-fluid dpImg border w-100" aria-hidden="true "
+                                                data-toggle="modal" data-target="#imageViewer">
+                                        </div>
+                                        <div
+                                            *ngIf="kycChangeRequestDetails.kycDetails && !kycChangeRequestDetails.kycDetails.kyc_document">
+                                            <img src="assets/images/no-image-icon.jpg"
+                                                class="img-fluid dpImg border w-100">
+                                        </div>
+                                    </div>
 
-                                            <div class="col-md-12 mt-3 mb-1">
-                                                <mat-radio-group aria-label="Select an option">
-                                                    <mat-radio-button [checked]="true" class="mr-3" color="primary"
-                                                        value="approve" (change)="radioChange($event)">Approve
-                                                    </mat-radio-button>
-                                                    <mat-radio-button value="reject" color="primary"
-                                                        (change)="radioChange($event)">Reject</mat-radio-button>
-                                                </mat-radio-group>
+                                    <div class="col-md-12 mt-2"
+                                        *ngIf="kycChangeRequestDetails.kycDetails && kycChangeRequestDetails.kycDetails.kyc_document && kycChangeRequestDetails.kycDetails.kyc_document_back">
+                                        <div class="row border-top pt-2">
+                                            <div class="col-6">
+                                                <img (click)="viewImage(kycChangeRequestDetails.kycDetails.kyc_document)"
+                                                    src="{{kycChangeRequestDetails.kycDetails.kyc_document}}"
+                                                    class="img-fluid border" aria-hidden="true "
+                                                    data-toggle="modal" data-target="#imageViewer">
                                             </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group row  ml-0 mr-0" style="display: grid;">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing">
-                                                        Current Changes </label>
-                                                    <span
-                                                        *ngIf="kycChangeRequestDetails.kycDetails">{{kycChangeRequestDetails.kycDetails.new_value}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-3 text-center">
-                                                <button type="button" (click)="ApproveRejectRequest()"
-                                                    class="{{kycChangeRequestDetails.approveOrReject == 'approve' ? 'bg-paret-green' : 'bg-danger'}} border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                                                    {{kycChangeRequestDetails.approveOrReject | titlecase}} </button>
+                                            <div class="col-6">
+                                                <img (click)="viewImage(kycChangeRequestDetails.kycDetails.kyc_document_back)"
+                                                    src="{{kycChangeRequestDetails.kycDetails.kyc_document_back}}"
+                                                    class="img-fluid border" aria-hidden="true "
+                                                    data-toggle="modal" data-target="#imageViewer">
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
+
+                                    <div class="col-md-12 mt-3 mb-1">
+                                        <mat-radio-group aria-label="Select an option">
+                                            <mat-radio-button [checked]="true" class="mr-3" color="primary"
+                                                value="approve" (change)="radioChange($event)">Approve
+                                            </mat-radio-button>
+                                            <mat-radio-button value="reject" color="primary"
+                                                (change)="radioChange($event)">Reject</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row  ml-0 mr-0" style="display: grid;">
+                                            <label for="" class="mediumFont commonFontSize letterspacing">
+                                                Current Changes </label>
+                                            <span
+                                                *ngIf="kycChangeRequestDetails.kycDetails">{{kycChangeRequestDetails.kycDetails.new_value}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-3 text-center">
+                                        <button type="button" (click)="ApproveRejectRequest()"
+                                            class="{{kycChangeRequestDetails.approveOrReject == 'approve' ? 'bg-paret-green' : 'bg-danger'}} border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                            {{kycChangeRequestDetails.approveOrReject | titlecase}} </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <!-- approve or reject end -->
                 </div>
             </div>
+            <!-- approve or reject end -->
         </div>
-
 
     </div>
 

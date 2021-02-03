@@ -10,106 +10,109 @@
                 <h2 class="commonFontSize semiBoldFont mb-0">Add Sub Admin</h2>
             </div>
         </div>
-        <div class="bg-offwhite">
-            <form id="subAdminForm" autocomplete="off">
-                <div class="row mx-0 mt-4">
-                    <div class="col-md-6 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Name</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-
-                            <input required (keyup)="isValid()"
-                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" id="name" placeholder="Enter user name" [(ngModel)]="model.name"
-                                name="name">
+        
+        <div class="row">
+            <div class="col-sm-12 bg-offwhite">
+                <form id="subAdminForm" autocomplete="off">
+                    <div class="row mx-0 mt-4">
+                        <div class="col-md-6 MobileCol6MB">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Name</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+    
+                                <input required (keyup)="isValid()"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" id="name" placeholder="Enter user name" [(ngModel)]="model.name"
+                                    name="name">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Date Of Birth</label>
-                        <input type="text" id="date_of_birth" name="date_of_birth" placeholder="MM/DD/YYYY"
-                            class="form-control" readonly="readonly" bsDatepicker [maxDate]="maxDate"
-                            [(ngModel)]="model.date_of_birth" [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
-                            required>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_birth"></div>
-                    </div>
-                </div>
-
-                <div class="row mx-0 mt-4">
-                    <div class="col-md-6 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Designation</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" placeholder="Enter designation" id="designation" name="designation"
-                                [(ngModel)]="model.designation" (keyup)="isValid()" required>
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.designation"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Email ID</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-                            <input id="email_address" required (keyup)="isValid()"
-                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                type="email" placeholder="Enter email address" [(ngModel)]="model.email_address"
-                                name="email_address">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.email_address"></div>
-                    </div>
-                </div>
-
-                <div class="row mx-0 mt-4">
-                    <div class="col-md-6 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Employee ID</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                placeholder="Enter employee id" type="text" id="employee_id" name="employee_id"
-                                [(ngModel)]="model.employee_id" (keyup)="isValid()" required>
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Phone Number</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                placeholder="Enter phone number" type="tel" id="phone_number" name="phone_number"
-                                [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid()" numberOnly
+                        <div class="col-md-6">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Date Of Birth</label>
+                            <input type="text" id="date_of_birth" name="date_of_birth" placeholder="MM/DD/YYYY"
+                                class="form-control" readonly="readonly" bsDatepicker [maxDate]="maxDate"
+                                [(ngModel)]="model.date_of_birth" [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                                 required>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_birth"></div>
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
                     </div>
-                </div>
-
-                <div class="row mx-0 mt-4">
-                    <div class="col-md-6 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Create Temp Password</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-                            <input name="password" (keyup)="isValid()" placeholder="Enter password"
-                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
-                                id="password" [(ngModel)]="model.password" required>
+    
+                    <div class="row mx-0 mt-4">
+                        <div class="col-md-6 MobileCol6MB">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Designation</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter designation" id="designation" name="designation"
+                                    [(ngModel)]="model.designation" (keyup)="isValid()" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.designation"></div>
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Confirm Temp Password</label>
-                        <div class="form-control-inputDiv rounded shadow-none">
-
-                            <input match="password,confirm_password" name="confirm_password" (keyup)="isValid()"
-                                placeholder="Confirm password"
-                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="password" id="confirm_password" [(ngModel)]="model.confirm_password" required>
+                        <div class="col-md-6">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Email ID</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input id="email_address" required (keyup)="isValid()"
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    type="email" placeholder="Enter email address" [(ngModel)]="model.email_address"
+                                    name="email_address">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.email_address"></div>
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>
                     </div>
-                </div>
-
-                <div class="row ">
-                    <div class="col-12 text-center my-4">
-                        <button type='button'
-                            class="bg-paret-green text-white border-0 px-5 py-2 commonFontSize mediumFont"
-                            (click)="addSubadmin()">Submit</button>
+    
+                    <div class="row mx-0 mt-4">
+                        <div class="col-md-6 MobileCol6MB">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Employee ID</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    placeholder="Enter employee id" type="text" id="employee_id" name="employee_id"
+                                    [(ngModel)]="model.employee_id" (keyup)="isValid()" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Phone Number</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    placeholder="Enter phone number" type="tel" id="phone_number" name="phone_number"
+                                    [(ngModel)]="model.phone_number" maxlength="10" (keyup)="isValid()" numberOnly
+                                    required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
+                        </div>
                     </div>
-                </div>
-            </form>
+    
+                    <div class="row mx-0 mt-4">
+                        <div class="col-md-6 MobileCol6MB">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Create Temp Password</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+                                <input name="password" (keyup)="isValid()" placeholder="Enter password"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
+                                    id="password" [(ngModel)]="model.password" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Confirm Temp Password</label>
+                            <div class="form-control-inputDiv rounded shadow-none">
+    
+                                <input match="password,confirm_password" name="confirm_password" (keyup)="isValid()"
+                                    placeholder="Confirm password"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="password" id="confirm_password" [(ngModel)]="model.confirm_password" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>
+                        </div>
+                    </div>
+    
+                    <div class="row ">
+                        <div class="col-12 text-center my-4">
+                            <button type='button'
+                                class="bg-paret-green text-white border-0 px-5 py-2 commonFontSize mediumFont"
+                                (click)="addSubadmin()">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
