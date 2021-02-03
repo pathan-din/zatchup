@@ -193,12 +193,12 @@ export class UserKycVerificationComponent implements OnInit {
               this.router.navigate(['user/school-confirmation']);
             }else{
               if(localStorage.getItem("isrejected")){
-                location.reload();
+                //location.reload();
               }else{
-                $("#currentStatusModel").modal({
-                  backdrop: 'static',
-                  keyboard: false
-                });
+                // $("#currentStatusModel").modal({
+                //   backdrop: 'static',
+                //   keyboard: false
+                // });
               }
             }
             
