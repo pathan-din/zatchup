@@ -53,6 +53,7 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
 import { ServiceComponent } from './user-info/service/service.component';
+import { SettingComponent } from './setting/setting.component';
 
 
 const routes: Routes = [
@@ -222,6 +223,10 @@ const routes: Routes = [
   {
     path: 'user/pending-request', component: PendingRequestForUserComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'user/setting', component: SettingComponent, canActivate: [AuthGuard]
+  },
+  
   
   
 

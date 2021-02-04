@@ -56,10 +56,11 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
   getKycHistory() {
     this.loader.show()
     this.kycHistoryModal.kycDetailsParams = {
-      "id": this.kycHistoryModal.kycDetails.user_id,
-      "order_by": this.kycHistoryModal.sortBy ? this.kycHistoryModal.sortBy : ''
+      "user_id": this.kycHistoryModal.kycDetails.user_id,
+      "module_name": "KYC"
+      // "order_by": this.kycHistoryModal.sortBy ? this.kycHistoryModal.sortBy : ''
     }
-    this.baseService.getData('admin/kyc/pending_history_details/', this.kycHistoryModal.kycDetailsParams).subscribe(
+    this.baseService.getData('admin/common_history/', this.kycHistoryModal.kycDetailsParams).subscribe(
       (res: any) => {
         if (res.status == true && res.count != 0) {
           this.kycHistoryModal.kycHistory = res.results
