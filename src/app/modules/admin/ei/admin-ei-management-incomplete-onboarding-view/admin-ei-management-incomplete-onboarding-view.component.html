@@ -712,17 +712,36 @@
                                 <div class=" form-group row mt-3">
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
-                                            Enter School ZatchUp ID</label>
+                                            School ZatchUp ID</label>
+                                        <input-search [config]="pendingApprovalProfile.searchConfigOne" [value]="''"
+                                            (searchResult)="schoolZatchupId($event)"></input-search>
+                                            <div class="required errorMsg"
+                                            [innerHTML]="pendingApprovalProfile.errorDisplay.zatchup_id">
+                                        </div>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" name="zatchup_Id" id="zatchup_Id"
                                                 [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 placeholder="Enter School ZatchUp ID" required />
-                                        </div>
-                                        <div class="required errorMsg"
+                                        </div> -->
+                                        <!-- <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_Id">
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
+                                            School Name
+                                        </label>
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" name="zatchup_id" id="name_of_school"
+                                                [(ngModel)]="pendingApprovalProfile.name_of_school"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                readonly placeholder="School Name" required />
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">

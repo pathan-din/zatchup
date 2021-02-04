@@ -223,8 +223,14 @@ export class PendingApprovalProfile {
     searchConfig: any = {
         "api_endpoint": "admin/fetch-poc-details/"
     }
+    searchConfigOne: any = {
+        "api_endpoint": "admin/fetch-school-details/",
+        "display": ["school_code"]
+    }
     addressLineOne: any;
     addressLineTwo: any;
+  name_of_school: any;
+  school_code_required: boolean = true;
 }
 
 export class DatabaseView {
