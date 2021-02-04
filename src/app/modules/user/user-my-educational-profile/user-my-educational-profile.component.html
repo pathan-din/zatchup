@@ -18,7 +18,7 @@
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
-                        <div class="position-relative" *ngIf="objEpData.profile_pic && objEpData.kyc_approved==1">
+                        <div class="position-relative" *ngIf="objEpData.profile_pic">
                             <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img-fluid">
                             <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
                         </div>
@@ -41,17 +41,17 @@
                                 <hr>
                             </div>
                             <div class="col-md-12" >
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
+                                <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
+                                <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{objEpData.gender}} </span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
+                                <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span
+                                <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name : <span
+                                <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name : <span
                                         class="regularFont">{{objEpData.father_name}}</span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name : <span
+                                <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name : <span
                                         class="regularFont">{{objEpData.mother_name}}</span></p>
                                 <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Bio : <br> <span
                                         class="regularFont">{{objEpData.bio?objEpData.bio:''}}</span></p> -->
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 
-                <div class="row mt-3" *ngIf="objEpData.work_detail">
+                <!-- <div class="row mt-3" *ngIf="objEpData.work_detail">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
                             <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
@@ -92,17 +92,10 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <!-- <div class="col-md-12" *ngFor="let objWorkDetail of objEpData.work_detail">
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Current Company : <span
-                                        class="regularFont">{{objWorkDetail.company_name}} </span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Position : <span
-                                        class="regularFont">{{objWorkDetail.work_type}} </span></p>
-                                <p class="m-0 mb-1 commonFontSize semiBoldFont">Profession : <span
-                                        class="regularFont">{{objWorkDetail.job_title}} </span></p>
-                            </div> -->
+                           
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row mt-3 form-control-inputDiv" *ngIf="objEpData.educationdetail.length==0">
                 <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
                     <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>                                
@@ -135,10 +128,10 @@
                                         class="regularFont">{{objEd.name_of_school}} 
                                         <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> </span></p>
                                 <div class="row">
-                                    <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                    <div *ngIf="objEd.school_code" class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         ZatchUp ID : <span class="regularFont">{{objEd.school_code}}</span>
                                     </div>
-                                    <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                    <div *ngIf="objEd.admission_number" class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                         School Admission Number : <span class="regularFont">
                                             <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEd,'admission_number',objEd.admission_number)">{{objEd.admission_number}}</a></span>
                                     </div>
@@ -148,7 +141,7 @@
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                         City : <span class="regularFont">{{objEd.city}}  </span>
                                     </div>
-                                    <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                    <div *ngIf="objEd.address1" class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         Address : <span class="regularFont">{{objEd.address1}} </span>
                                     </div>
                                     <!-- <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
@@ -169,14 +162,14 @@
                                 <div class="pr-4 pl-0">
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{objCd.course_name}}</span></p>
-                                    <p class="m-0 mb-1 commonFontSize semiBoldFont">Year of Starting : <span
-                                            class="regularFont">{{objCd.start_year}}</span></p>
-                                    <p class="m-0 mb-1 commonFontSize semiBoldFont">Year of Ending : <span
-                                            class="regularFont">{{objCd.end_year}} </span></p>
-                                    <p class="m-0 mb-1 commonFontSize semiBoldFont">Duration of Course : <span
+                                    <p class="m-0 mb-1 commonFontSize semiBoldFont"> Course Duration : <span
+                                            class="regularFont">{{objCd.start_year}}-{{objCd.is_current_course?'Current':objCd.end_year}}</span></p>
+                                    <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Year of Ending : <span
+                                            class="regularFont">{{objCd.end_year}} </span></p> -->
+                                    <p class="m-0 mb-1 commonFontSize semiBoldFont">Course Tenure : <span
                                             class="regularFont">{{objCd.duration}}</span></p>
 
-                                    <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard Details </h3>
+                                    <h3 *ngIf="objCd.standard_detail" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard Details </h3>
                                     <div class="row pb-2 border-bottom mb-2" *ngFor="let objSd of objCd.standard_detail">
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
@@ -185,14 +178,14 @@
                                             Class (Sub-Section) : <span class="regularFont">{{objCd.class_name}} </span>
                                         </div>
 
-                                        <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                        <!-- <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Starting year : <span class="regularFont">{{objSd.standard_start_year}} </span>
                                         </div>
                                         <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                             Ending year : <span class="regularFont">{{objSd.standard_end_year}} </span>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                            Duration : <span class="regularFont">{{objSd.duration}} </span>
+                                            Standard Duration : <span class="regularFont">{{objSd.standard_start_year}}-{{objSd.standard_end_year}} </span>
                                         </div>
                                         <!-- <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Duration of completion : <span class="regularFont">1 year </span>
