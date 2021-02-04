@@ -243,8 +243,10 @@
                         <mat-cell *matCellDef="let element">
                                 <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.kyc_aprroved == 1">Approved</button>
-                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                            <button type="button" class="bg-yellow text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.kyc_aprroved == 0">Pending</button> 
+                                <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 2">Rejected</button> 
                         </mat-cell>
                     </ng-container>
 

@@ -32,8 +32,7 @@ export class DatabaseListComponent implements OnInit {
 
   ngOnInit(): void {
     this.eidbList.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
-    if(this.eidbList.filterParams)
-    {
+    if (this.eidbList.filterParams) {
       this.eidbList.filterFromDate = JSON.parse(this.eidbList.filterParams).from_date;
       this.eidbList.filterToDate = JSON.parse(this.eidbList.filterParams).to_date;
     }
@@ -74,11 +73,9 @@ export class DatabaseListComponent implements OnInit {
       'date_to': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      // "university": this.eidbList.university,
       "onboarded_status": this.eidbList.onboardingStatus,
       'page': page,
       'page_size': this.eidbList.page_size,
-      // 'is_ei_in_zatchup': this.eidbList.onboardingStatus == 2 ? 'false' : undefined
     }
 
     this.baseService.getData('admin/ei/get-all-ei-list/', this.eidbList.modal).subscribe(
@@ -169,7 +166,6 @@ export class DatabaseListComponent implements OnInit {
   getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
-        console.log('get state res ::', res)
         if (res.count > 0)
           this.eidbList.allStates = res.results
       }
@@ -180,7 +176,6 @@ export class DatabaseListComponent implements OnInit {
       (res: any) => {
         if (res.count > 0)
           this.eidbList.allCities = res.results
-        console.log('get state res ::', res)
       }
     )
   }

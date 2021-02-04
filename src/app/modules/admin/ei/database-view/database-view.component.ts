@@ -83,8 +83,7 @@ export class DatabaseViewComponent implements OnInit {
   }
 
   goBack(): void {
-    // this.location.back();
-    this.router.navigate([this.params.returnUrl])
+    this.location.back();
   }
 
   deleteEI(): any {
