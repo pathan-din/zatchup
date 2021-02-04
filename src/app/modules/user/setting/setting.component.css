@@ -1,0 +1,7 @@
+.settingRow{width: 80%; margin: 0px auto;}
+
+@media (max-width: 575px){
+    .settingRow{
+        width: 100%;
+    }
+}
