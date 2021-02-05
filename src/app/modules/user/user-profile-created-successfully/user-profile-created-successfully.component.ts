@@ -14,15 +14,16 @@ export class UserProfileCreatedSuccessfullyComponent implements OnInit {
   }
 
   goToUserLandingPage() {
-    if(localStorage.getItem("role")){
-      var role = parseInt(localStorage.getItem("role"));
-      if(role==1){
-        this.router.navigate(['user/my-school']);
-      }else{
-        this.router.navigate(['user/my-school']);
-       //this.router.navigate(['user/work-detail']);
-      }
-    }
+    this.router.navigate(['user/my-school']);
+    // if(localStorage.getItem("role")){
+    //   var role = parseInt(localStorage.getItem("role"));
+    //   if(role==1){
+        
+    //   }else{
+    //     this.router.navigate(['user/my-school']);
+    //    //this.router.navigate(['user/work-detail']);
+    //   }
+    // }
 
     
     
