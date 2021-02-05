@@ -17,6 +17,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
   @ViewChild('approveCloseButton') approveCloseButton: any;
   images: any = [];
   kycHistoryModal = new KYCHistory()
+  recordCount: any;
 
   constructor(
     private router: Router,
@@ -53,19 +54,31 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
     }
   }
 
-  getKycHistory() {
+  getKycHistory(page?:any) {
     this.loader.show()
     this.kycHistoryModal.kycDetailsParams = {
       "user_id": this.kycHistoryModal.kycDetails.user_id,
-      "module_name": "KYC"
+      "module_name": "KYC",
+      "page_size": this.kycHistoryModal.page_size,
+      "page": page
       // "order_by": this.kycHistoryModal.sortBy ? this.kycHistoryModal.sortBy : ''
     }
     this.baseService.getData('admin/common_history/', this.kycHistoryModal.kycDetailsParams).subscribe(
       (res: any) => {
-        if (res.status == true && res.count != 0) {
-          this.kycHistoryModal.kycHistory = res.results
-        } else {
-          this.kycHistoryModal.kycHistory = undefined;
+        if (res.status == true ) {
+          if (!page)
+            page = this.kycHistoryModal.config.currentPage
+          this.kycHistoryModal.startIndex = res.page_size * (page - 1) + 1;
+          this.kycHistoryModal.config.itemsPerPage = res.page_size
+          this.kycHistoryModal.config.currentPage = page;
+          this.kycHistoryModal.page_size = res.page_size;
+          this.kycHistoryModal.config.totalItems = res.count;
+          this.recordCount = this.baseService.getCountsOfPage()
+          if (res.count > 0) {
+            this.kycHistoryModal.kycHistory = res.results;
+          }
+          else
+            this.kycHistoryModal.kycHistory = undefined
         }
         this.loader.hide()
       }

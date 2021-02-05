@@ -10,7 +10,7 @@ export class Pagination {
   dataSource: any;
   pageCount: any
 }
-export class KYCHistory {
+export class KYCHistory extends Pagination{
   activeParams: any;
   kycDetails: any;
   kycHistory: any;
@@ -24,6 +24,8 @@ export class KYCHistory {
   rejectionRemark: any
   approveOrReject: any = 'approve';
   errorDisplay: any = {};
+  displayedColumns: string[] = ['position', 'date_time', 'message', 'emp_name', 'user_name'];
+  page_size: any;
 };
 export class KycPendingRequest extends Pagination {
   kycType: any = '';

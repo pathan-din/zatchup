@@ -47,10 +47,10 @@ export class InputSearchComponent implements OnInit {
         this.isSearching = false;
         if (this.config.display) {
           res.results = this.setData(res.results)
+          this.apiResponse = res
         }
         else
           this.apiResponse = res;
-
       }, (err) => {
         this.isSearching = false;
         console.log('error', err);
@@ -83,7 +83,7 @@ export class InputSearchComponent implements OnInit {
         // console.log('val is as ::',res[this.view[i]])
       }
       res['display'] = display;
-
+      console.log('set data res is as ....',res)
     })
     return res;
   }

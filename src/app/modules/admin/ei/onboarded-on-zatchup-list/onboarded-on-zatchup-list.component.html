@@ -27,7 +27,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Added From</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                            id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker readonly
+                            id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker 
                             [maxDate]="onboardedZatchup.maxDate" [(ngModel)]="onboardedZatchup.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
 
@@ -38,7 +38,7 @@
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " type="text"
                             id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker [maxDate]="onboardedZatchup.maxDate"
-                            [(ngModel)]="onboardedZatchup.filterToDate" #fromDate="ngModel" readonly
+                            [(ngModel)]="onboardedZatchup.filterToDate" #fromDate="ngModel" 
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
@@ -206,7 +206,7 @@
                     <ng-container matColumnDef="subscriptionStatus">
                         <mat-header-cell *matHeaderCellDef> Subscription Status </mat-header-cell>
                         <mat-cell *matCellDef="let element "> <button type="button"
-                                class="{{element.is_subscription_active == true ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.is_subscription_active == true ? 'Active' : 'Expired'}}</button>
+                                class="{{element.is_subscription_active == true ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.is_subscription_active == true ? 'Active' : 'Pending/Expired'}}</button>
                         </mat-cell>
                     </ng-container>
 

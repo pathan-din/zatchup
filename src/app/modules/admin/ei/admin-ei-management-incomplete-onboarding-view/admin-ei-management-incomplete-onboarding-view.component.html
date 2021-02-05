@@ -123,7 +123,7 @@
                             <p>School Email Address</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.school_email ? eiData.school_email : 'None'}}</p>
+                            <p><span class="mr-3">: </span> {{eiData.school_email ? eiData.school_email : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -132,7 +132,7 @@
                             <p>School Phone Number</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.school_phone ? eiData.school_phone : 'None'}}</p>
+                            <p><span class="mr-3">: </span> {{eiData.school_phone ? eiData.school_phone : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -141,7 +141,7 @@
                             <p>School Facebook Profile</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.fb_url ? eiData.fb_url : 'None'}}</p>
+                            <p><span class="mr-3">: </span> {{eiData.fb_url ? eiData.fb_url : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -150,7 +150,7 @@
                             <p>School Twitter Profile</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.twitter_url ? eiData.twitter_url : 'None'}}</p>
+                            <p><span class="mr-3">: </span> {{eiData.twitter_url ? eiData.twitter_url : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -712,17 +712,36 @@
                                 <div class=" form-group row mt-3">
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
-                                            Enter School ZatchUp ID</label>
+                                            School ZatchUp ID</label>
+                                        <input-search [config]="pendingApprovalProfile.searchConfigOne" [value]="''"
+                                            (searchResult)="schoolZatchupId($event)"></input-search>
+                                            <div class="required errorMsg"
+                                            [innerHTML]="pendingApprovalProfile.errorDisplay.zatchup_id">
+                                        </div>
 
-                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" name="zatchup_Id" id="zatchup_Id"
                                                 [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 placeholder="Enter School ZatchUp ID" required />
-                                        </div>
-                                        <div class="required errorMsg"
+                                        </div> -->
+                                        <!-- <div class="required errorMsg"
                                             [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_Id">
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class=" form-group row mt-3">
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
+                                            School Name
+                                        </label>
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" name="zatchup_id" id="name_of_school"
+                                                [(ngModel)]="pendingApprovalProfile.name_of_school"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                readonly placeholder="School Name" required />
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">

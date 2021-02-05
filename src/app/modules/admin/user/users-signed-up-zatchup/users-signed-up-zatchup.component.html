@@ -19,7 +19,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="signupFrom" name="signupFrom" type="text" placeholder="YYYY/MM/DD" bsDatepicker readonly
+                            id="signupFrom" name="signupFrom" type="text" placeholder="YYYY/MM/DD" bsDatepicker 
                             [maxDate]="signupUsers.maxDate"  [(ngModel)]="signupUsers.filterFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -28,7 +28,7 @@
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="signupTo" name="signupTo" placeholder="YYYY/MM/DD" bsDatepicker readonly
+                            type="text" id="signupTo" name="signupTo" placeholder="YYYY/MM/DD" bsDatepicker 
                             [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.filterToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
@@ -36,7 +36,7 @@
                 <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " readonly
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " 
                             id="lastLoginFrom" name="lastLoginFrom" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.loginFromDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
@@ -45,7 +45,7 @@
                 <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " readonly
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " 
                             type="text" id="lastLoginTo" name="lastLoginTo" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.loginToDate" #fromDate="ngModel"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
@@ -243,8 +243,10 @@
                         <mat-cell *matCellDef="let element">
                                 <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.kyc_aprroved == 1">Approved</button>
-                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                            <button type="button" class="bg-yellow text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.kyc_aprroved == 0">Pending</button> 
+                                <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 2">Rejected</button> 
                         </mat-cell>
                     </ng-container>
 

@@ -23,7 +23,7 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> From</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker readonly
+                                type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker 
                                 [maxDate]="subscriptionFee.maxDate" [(ngModel)]="subscriptionFee.filterFromDate"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
@@ -33,7 +33,7 @@
                         <label for="" class="mediumFont commonFontSize letterspacing"> To</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
                             <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                readonly type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                                 type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="subscriptionFee.maxDate" [(ngModel)]="subscriptionFee.filterToDate"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                         </div>

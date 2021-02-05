@@ -278,7 +278,8 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     let data = {
       'user_id': this.eiData.id,
       'mou_document': this.pendingApprovalProfile.existingZatchIDMOUDoc,
-      'employeeID': this.pendingApprovalProfile.employeeId
+      'employeeID': this.pendingApprovalProfile.employeeId,
+      'zatchupId': this.pendingApprovalProfile.zatchupId
     }
     this.baseService.action('admin/validate_school_approve/', data).subscribe(
       (res: any) => {
@@ -318,6 +319,11 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     this.pendingApprovalProfile.employeeId = data.employee_id
     this.pendingApprovalProfile.poc_required = true;
   }
+    schoolZatchupId(data){
+      // debugger
+      this.pendingApprovalProfile.name_of_school = data.name_of_school
+      // this.pendingApprovalProfile.school_code_required = true;
+    }
 
   checkValidation() {
     if (!this.pendingApprovalProfile.existingZatchIDMOUDoc && !this.pendingApprovalProfile.employeeId) {
