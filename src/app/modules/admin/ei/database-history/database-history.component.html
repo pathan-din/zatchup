@@ -16,7 +16,7 @@
                     <div class="mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">From Date</label>
                         <input type="text" id="filter_From_Date" name="fee_Received_From_Date" placeholder="YYYY/MM/DD"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="fromMaxDate"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="fromMaxDate" readonly
                             [(ngModel)]="filterFromDate"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true,  dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
@@ -24,7 +24,7 @@
                     <div class="mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">To Date</label>
                         <input type="text" id="fromDate" name="filter_To_Date" placeholder="YYYY/MM/DD"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="toMaxDate"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="toMaxDate" readonly
                             [(ngModel)]="filterToDate"
                             [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD' }"
                             (bsValueChange)="changeFilterToDate($event)">
@@ -70,9 +70,9 @@
                             {{element.is_deleted == true ?  this.baseService.getDateFormat(element.updated_on)  : this.baseService.getDateFormat(element.created_on)}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="eiZatchupId">
-                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.school_code}} </mat-cell>
+                    <ng-container matColumnDef="name_of_school">
+                        <mat-header-cell *matHeaderCellDef> School Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name_of_school}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="status">
@@ -88,7 +88,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="addedRemoved">
-                        <mat-header-cell *matHeaderCellDef> Added By/Removed By </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Removed By </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.added_by}}
                         </mat-cell>

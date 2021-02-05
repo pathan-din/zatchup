@@ -105,7 +105,7 @@ export class RejectedEIList extends Pagination {
 }
 
 export class DatabaseHistory extends Pagination {
-    displayedColumns: string[] = ['position', 'dateAndTime', 'eiZatchupId', 'status',
+    displayedColumns: string[] = ['position', 'dateAndTime', 'name_of_school', 'status',
         'addedRemoved', 'employeeName'];
 
     isDeleted: any = '';

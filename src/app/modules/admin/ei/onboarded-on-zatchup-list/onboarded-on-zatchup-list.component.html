@@ -206,7 +206,7 @@
                     <ng-container matColumnDef="subscriptionStatus">
                         <mat-header-cell *matHeaderCellDef> Subscription Status </mat-header-cell>
                         <mat-cell *matCellDef="let element "> <button type="button"
-                                class="{{element.is_subscription_active == true ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.is_subscription_active == true ? 'Active' : 'Expired'}}</button>
+                                class="{{element.is_subscription_active == true ? 'bg-paret-green' : 'bg-danger'}} rounded text-white border-0 cursorDefault">{{element.is_subscription_active == true ? 'Active' : 'Pending/Expired'}}</button>
                         </mat-cell>
                     </ng-container>
 
