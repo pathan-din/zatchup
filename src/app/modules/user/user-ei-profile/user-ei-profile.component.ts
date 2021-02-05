@@ -72,7 +72,12 @@ export class UserEiProfileComponent implements OnInit {
     this.imagePath = this.baseService.serverImagePath;
 
   }
-
+  addPastEi(schoolId){
+    this.router.navigate(["user/add-more-standard"],{queryParams:{
+      school_id:schoolId
+      
+    }});
+  }
   editEi(schoolId){
     this.router.navigate(["user/add-ei"],{queryParams:{
       school_id:schoolId

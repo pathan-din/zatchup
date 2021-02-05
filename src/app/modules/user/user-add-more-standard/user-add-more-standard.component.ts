@@ -83,6 +83,12 @@ export class UserAddMoreStandardComponent implements OnInit {
       school_id:schoolId
     }});
   }
+  addAnotherCourse(schoolId){
+    this.router.navigate(["user/ei-profile"],{queryParams:{
+      school_id:schoolId
+      
+    }});
+  }
   getEiInfo(model) {
     try {
       var that = this;
