@@ -1,26 +1,37 @@
-import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { debounceTime, map, distinctUntilChanged, filter } from "rxjs/operators";
-import { fromEvent, of } from 'rxjs';
+import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { debounceTime, map, filter } from "rxjs/operators";
+import { fromEvent, of, Subscription } from 'rxjs';
 import { BaseService } from 'src/app/services/base/base.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 @Component({
   selector: 'input-search',
   templateUrl: './input-search.component.html',
   styleUrls: ['./input-search.component.css']
 })
-export class InputSearchComponent implements OnInit {
+export class InputSearchComponent implements OnInit, OnDestroy {
   @ViewChild('searchText', { static: true }) searchText: ElementRef;
   @Input() config: any;
   @Input() value: any;
   @Output() searchResult = new EventEmitter<any>();
+  subscription: Subscription
   apiResponse: any;
   isSearching: boolean;
 
   constructor(
-    private baseService: BaseService
+    private baseService: BaseService,
+    private communicationService: CommunicationService
   ) {
     this.isSearching = false;
     this.apiResponse = [];
+
+    this.subscription = this.communicationService.getFieldValue().subscribe(value => {
+      if (!value) {
+        this.value = '';
+      } else {
+        this.value = value
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -59,6 +70,10 @@ export class InputSearchComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   searchGetCall(term: string) {
     if (term === '') {
       return of([]);
@@ -83,7 +98,7 @@ export class InputSearchComponent implements OnInit {
         // console.log('val is as ::',res[this.view[i]])
       }
       res['display'] = display;
-      console.log('set data res is as ....',res)
+      console.log('set data res is as ....', res)
     })
     return res;
   }
