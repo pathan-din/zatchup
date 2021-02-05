@@ -54,18 +54,17 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
     }
   }
 
-  getKycHistory(page?:any) {
+  getKycHistory(page?: any) {
     this.loader.show()
     this.kycHistoryModal.kycDetailsParams = {
       "user_id": this.kycHistoryModal.kycDetails.user_id,
       "module_name": "KYC",
       "page_size": this.kycHistoryModal.page_size,
       "page": page
-      // "order_by": this.kycHistoryModal.sortBy ? this.kycHistoryModal.sortBy : ''
     }
     this.baseService.getData('admin/common_history/', this.kycHistoryModal.kycDetailsParams).subscribe(
       (res: any) => {
-        if (res.status == true ) {
+        if (res.status == true) {
           if (!page)
             page = this.kycHistoryModal.config.currentPage
           this.kycHistoryModal.startIndex = res.page_size * (page - 1) + 1;
@@ -82,7 +81,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
         }
         this.loader.hide()
       }
-    ),err =>{
+    ), err => {
       this.notificationService.error(err, "Error")
       this.loader.hide()
     }
@@ -108,7 +107,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
         if (res.status == true) {
           this.approveCloseButton.nativeElement.click();
           this.notificationService.success(res.message, 'Success')
-          this.router.navigate(['admin/kyc-pending-request'], { queryParams: {returnUrl: "admin/kyc-approval-management"}})
+          this.router.navigate(['admin/kyc-pending-request'], { queryParams: { returnUrl: "admin/kyc-approval-management" } })
         } else {
           this.notificationService.error(res.error.message, 'Error')
         }
@@ -133,8 +132,8 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
   radioChange(event) {
     this.kycHistoryModal.approveOrReject = event.value
   }
-  
-  goBack(): void{
+
+  goBack(): void {
     this.location.back();
   }
 }
