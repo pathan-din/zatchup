@@ -1,6 +1,6 @@
-.form-control {
+/* .form-control {
     height: calc(1.4em + .75rem + 2px);
-}
+} */
 
 .calendarText{
     padding:2%;
@@ -71,7 +71,7 @@
 .eyeIcon{
     position: absolute;
     right: 7px;
-    top: 10px;
+    top: 13px;
 }
 
 .form-emailBgImg {
@@ -83,9 +83,9 @@
     background-size: 3%;
     background-position: 98% center;
 }
-.custom-select {
+/* .custom-select {
     height: calc(1.4em + .75rem + 2px);
-}
+} */
 
 .custom-control-inline {
     margin-right: 1.7rem;
