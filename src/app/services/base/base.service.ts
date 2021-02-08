@@ -188,5 +188,13 @@ export class BaseService {
     }
   }
 
+  calculateAge(birthday) { // birthday is a date
+    let currentDate = new Date().getTime()
+    let birthDate = new Date(birthday).getTime()
+    var ageDifMs = currentDate - birthDate  ;
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
 
 }
