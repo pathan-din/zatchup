@@ -185,18 +185,17 @@ export class EiStudentVerifiedListComponent implements OnInit {
             objStudentList.checked = '';
             objStudentList.SNo = i;
             objStudentList.zatchupID = objData.zatchup_id;
-
             objStudentList.student_id = objData.user_id;
             objStudentList.kyc_approved = objData.kyc_approved;
             objStudentList.approved = objData.approved;
             objStudentList.is_rejected = objData.is_rejected;
             objStudentList.reason_reject = objData.reason_reject;
-
             objStudentList.name = objData.first_name + ' ' + objData.last_name;
             objStudentList.gender = objData.gender;
             objStudentList.age = objData.dob;
             objStudentList.userID = objData.admission_no;
-            objStudentList.class = objData.class_name;;
+            objStudentList.class = objData.class_name;
+            objStudentList.alias_class = objData.alias_class
             objStudentList.Action = '';
             i = i + 1;
             arrStudentList.push(objStudentList);
