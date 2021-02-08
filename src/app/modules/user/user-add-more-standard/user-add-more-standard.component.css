@@ -4,6 +4,11 @@
 .formPlusText{
     padding-left: 1%;
 }
+input[type=radio]{
+    box-sizing: border-box;
+    padding: 0;
+    zoom: 1.4;
+}
 @media (max-width: 414px){
 
     .pl-5, .px-5 {
