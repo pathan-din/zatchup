@@ -54,9 +54,9 @@ export class BaseService {
   downloadImage(imgUrl) {
     //const imgUrl = img.src;
     const imgName = imgUrl.substr(imgUrl.lastIndexOf('/') + 1);
-    this.http.get(imgUrl, {responseType: 'blob' as 'json'})
+    this.http.get(imgUrl, { responseType: 'blob' as 'json' })
       .subscribe((res: any) => {
-        const file = new Blob([res], {type: res.type});
+        const file = new Blob([res], { type: res.type });
 
         // IE
         if (window.navigator && window.navigator.msSaveOrOpenBlob) {
@@ -138,7 +138,7 @@ export class BaseService {
   }
 
   setFormData(data) {
-    
+
     const formData = new FormData();
     Object.keys(data).forEach(function (key) {
       if (data[key]) {
@@ -146,7 +146,7 @@ export class BaseService {
         formData.append(key, data[key]);
 
       }
-      
+
     });
     return formData;
   }
@@ -175,6 +175,18 @@ export class BaseService {
   isLoggedIn() {
     return !!localStorage.getItem("token");
   }
-  
+
+  getGender(data: any) {
+    if (data && data.gender == 'C') {
+      let pronoun = data.pronoun ? data.pronoun : '';
+      let custom_gender = data.custom_gender ? data.custom_gender : ''
+      return "Custom " + pronoun + " " + custom_gender
+    }
+    else {
+      let gender = data.gender == 'M' ? 'Male' : 'Female'
+      return gender
+    }
+  }
+
 
 }
