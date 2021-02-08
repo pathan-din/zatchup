@@ -67,6 +67,7 @@ import { GroupDetailComponent } from './group-detail/group-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
 import { SettingComponent } from './setting/setting.component';
+import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 
 @NgModule({
 
@@ -126,7 +127,8 @@ import { SettingComponent } from './setting/setting.component';
     GroupDetailComponent,
     MessagesComponent,
     PendingRequestForUserComponent,
-    SettingComponent
+    SettingComponent,
+    PendingCourseDetailComponent
   ],
 
   imports: [

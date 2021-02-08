@@ -69,8 +69,8 @@ export class DatabaseListComponent implements OnInit {
     }
 
     this.eidbList.modal = {
-      'date_from': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "onboarded_status": this.eidbList.onboardingStatus,
@@ -125,8 +125,8 @@ export class DatabaseListComponent implements OnInit {
     }
     this.eidbList.modal = {
       "search": this.eidbList.search,
-      'date_from': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.eidbList.page_size,

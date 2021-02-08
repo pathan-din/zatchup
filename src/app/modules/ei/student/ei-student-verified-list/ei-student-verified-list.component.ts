@@ -244,7 +244,7 @@ this.model.page= page
 
           objStudentList.Name = objData.first_name + ' ' + objData.last_name;
           objStudentList.Gender = objData.gender;
-          objStudentList.Age = objData.dob;
+          objStudentList.Age = objData.age;
           objStudentList.userID = objData.admission_no;
           objStudentList.class = objData.class_name;;
           objStudentList.Action = '';
@@ -399,7 +399,8 @@ this.model.page= page
          
           this.alert.success(response.message,'Success');
           this.closeModel();
-          this.getGetVerifiedStudent('', '')
+          this.router.navigate(["ei/student-management"]);
+          // this.getGetVerifiedStudent('', '')
         } else {
           this.SpinnerService.hide();
           //this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error);

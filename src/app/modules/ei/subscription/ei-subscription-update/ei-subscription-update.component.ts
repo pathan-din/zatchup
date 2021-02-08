@@ -119,7 +119,8 @@ export class EiSubscriptionUpdateComponent implements OnInit {
     this.loader.show();
     let data = {
       "subscription_id": this.subscription.id,
-      "coupon_code": this.couponCode
+      "coupon_code": this.couponCode,
+      "coupon_type": "subscription_fees"
     }
     this.baseService.action('ei/get-subscription-data-after-coupon/', data).subscribe(
       (res: any) => {
