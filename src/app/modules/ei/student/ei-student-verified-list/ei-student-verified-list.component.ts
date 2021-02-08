@@ -327,7 +327,6 @@ export class EiStudentVerifiedListComponent implements OnInit {
   }
 
   getGender(data: any) {
-    console.log('eeeeeeeee',data)
     if (data)
       return this.baseService.getGender(data)
     return ''
