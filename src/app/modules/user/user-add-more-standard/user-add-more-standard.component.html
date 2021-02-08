@@ -10,26 +10,25 @@
             <form class="pt-2">
                
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">School Name :</label>
-                    <div class="col-sm-6 p-0">
+                    <!-- <label for="" class="mediumFont commonFontSize letterspacing">School Name :</label> -->
+                    <h3 class="p-0 commonFontSize semiBoldFont m-0">
                         {{model.name_of_school}} ({{model.school_code}})
-                        <h3 *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
+                        <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
                             <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2"> 
                             
-                        </h3>
-                    </div>
+                        </span>
+                    </h3>
                      
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input  (change)="addAnotherCourse(schoolId)" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Student </label>
-                        </div>
-                        <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input checked=true id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Alumni </label>
-                        </div>
+                
+                <div class="form-group row">
+                    <div class="col-6 px-0">
+                        <label class="cursorStyle d-flex"> <input  (change)="addAnotherCourse(schoolId)" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Student </label>
                     </div>
-                </div>
+                    <div class="col-6 px-0">
+                        <label class="cursorStyle d-flex"> <input checked=true id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Alumni </label>
+                    </div>
+                </div>               
 
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
@@ -224,7 +223,7 @@
                         <div class="col-sm-12 p-0 form-control-inputDiv">
                             <input  name="admission_number" [(ngModel)]="model.admission_no"
                                 class="form-control-input form-control form-control-sm" type="text"
-                                placeholder="Enter El ID Number or Admission Number  ">
+                                placeholder="Enter School ID">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                     </div>

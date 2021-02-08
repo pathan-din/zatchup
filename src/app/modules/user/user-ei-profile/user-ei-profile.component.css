@@ -23,7 +23,11 @@
 .left-Image {
     width: 80%;
 }
-
+input[type=radio]{
+    box-sizing: border-box;
+    padding: 0;
+    zoom: 1.4;
+}
 
 @media (min-width: 768px) and (max-width: 1024px) {
 

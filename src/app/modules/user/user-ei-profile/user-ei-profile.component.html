@@ -7,36 +7,31 @@
         </div>
         <div class="col-md-4 pl-0">
             <div class="row">
-                <div class="col-9">
-                    <h2 class="mb-4 textSpace">Education profile </h2>
-                </div>
-                <div class="col-3 text-right">
+                <div class="col-12">
+                    <h2 class="mb-4 textSpace">Education Profile </h2>
                 </div>
             </div>
 
 
             <form>
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">School Name :</label>
-                    <div class="col-sm-6 p-0">
+                <div class="form-group row">                    
+                    <h3 class="p-0 commonFontSize semiBoldFont m-0">
                         {{model.name_of_school}} ({{model.school_code}})
-                        <h3 *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
-                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2"> 
-                            
-                        </h3>
-                    </div>
-                     
+                        <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
+                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">                             
+                        </span>
+                    </h3>                     
                 </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input checked=true id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Current Education </label>
-                        </div>
-                        <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input  (change)="addPastEi(schoolId)" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Past Education </label>
-                        </div>
+
+                <div class="form-group row">
+                    <div class="col-6 px-0">
+                        <label class="cursorStyle d-flex"> <input checked=true id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Current Education </label>
+                    </div>
+                    <div class="col-6 px-0">
+                        <label class="cursorStyle d-flex"> <input  (change)="addPastEi(schoolId)" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Past Education </label>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
@@ -52,9 +47,9 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 pr-0 ">
-                        <label for="" class="mediumFont commonFontSize letterspacing">Course joining date</label>
+                        <label for="" class="mediumFont commonFontSize letterspacing">Course Joining Date</label>
                         <div class="form-control-inputDiv mobile-input-6">
-                            <input required bsDatepicker autocomplete="off" [minDate]="maxDate" [maxDate]="minDate" placeholder="DD-MM-YYYY"
+                            <input required bsDatepicker autocomplete="off" [minDate]="maxDate" [maxDate]="minDate" placeholder="YYYY-MM-DD"
                                 [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="date_of_joining"
                                 [(ngModel)]="model.date_joining" class="form-control-input form-control form-control-sm"
                                 type="text">
@@ -65,7 +60,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Joining standard</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Joining Standard</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select (change)="displayJoinStandardBseCurrentStandard(model.join_standard_id)" name="join_standard" [(ngModel)]="model.join_standard_id"
                             class="custom-select form-control-input" required>
@@ -77,11 +72,11 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.join_standard"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Current standard</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Current Standard</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select (change)="displayClassList(model.current_standard_id)" name="current_standard"
                             [(ngModel)]="model.current_standard_id" class="custom-select form-control-input" required>
-                            <option value="">Select Curent Standard </option>
+                            <option value="">Select Current Standard </option>
                             <option value="{{standardObj.id}}" *ngFor="let standardObj of leftStandardList">
                                 {{standardObj.standard_name}}</option>
 
@@ -103,12 +98,11 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">School ID Number or Admission
-                        Number</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">School ID Number</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <input required name="admission_number" [(ngModel)]="model.admission_no"
                             class="form-control-input form-control form-control-sm" type="text"
-                            placeholder="Enter El ID Number or Admission Number  ">
+                            placeholder="Enter School ID Number">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                 </div>
@@ -118,18 +112,18 @@
                         <div class="form-control-inputDiv mobile-input-6 mobForm-name">
                             <input required name="roll_no" [(ngModel)]="model.roll_no"
                                 class="form-control-input form-control form-control-sm" type="number"
-                                placeholder="Roll Number">
+                                placeholder="Enter Roll Number">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
                     </div>
 
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Course Description</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing">Course Description (Optional)</label>
                     <div class="col-sm-12 p-0 form-control-inputDiv ">
                         <textarea name="comments" [(ngModel)]="model.comment"
                             class="form-control form-control-textarea form-control-input" rows="2"
-                            placeholder="Enter Course Description(Optional)"></textarea>
+                            placeholder="Enter Course Description"></textarea>
                     </div>
 
                 </div>
