@@ -5,14 +5,30 @@
             <ul class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item"><a routerLink="/user/landing-page" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
-                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li>
+                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li> -->
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
                 <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"  routerLinkActive="active-link">Logout</a></li>
                 <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <!-- <ul class="navbar-nav ml-auto userNavUl">
+            <ul class="navbar-nav ml-auto userNavUl">
+
+                <li class="nav-item">
+                    <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                        <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
+                    <sup class="color-white " style="background: #22c123;
+                        padding: 4px;
+                        border-radius: 50px;
+                        width: 20px;
+                        height: 20px;
+                        display: inline-block;
+                        line-height: initial;
+                        text-align: center;
+                        font-size: 11px;
+                        position: absolute;
+                        left: 18px">{{notificationCount? notificationCount : 0}}</sup></a></li>
+
                 <li class="nav-item"><a href="" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a href="" class="nav-link" routerLinkActive="active-link">My School</a></li>
                 <li class="nav-item"><a href="" class="nav-link" routerLinkActive="active-link">Messages</a></li>
@@ -41,7 +57,7 @@
                     </div>
                 </div>
 
-            </ul> -->
+            </ul>
 
         </div>
     </div>
