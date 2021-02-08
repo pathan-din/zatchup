@@ -8,20 +8,24 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./user-header.component.css']
 })
 export class UserHeaderComponent implements OnInit {
-
+isCheck:any;
   constructor(private router: Router,
     private baseService : BaseService,
     private alert:NotificationService) { }
-  authCheck : boolean=false;
+     authCheck : boolean=false;
   ngOnInit(): void {
     if(localStorage.getItem("token")){
       this.authCheck=true;
+      this.getRegistrationStep();
     }else{
       this.authCheck=false;
     }
-    if(localStorage.getItem('token')){
-      this.getRegistrationStep();
+    this.isCheck='0';
+    if(localStorage.getItem('approved')){
+      this.isCheck = localStorage.getItem('approved');
+
     }
+
     
   }
   logout(){

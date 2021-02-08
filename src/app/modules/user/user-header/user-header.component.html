@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/userWebsite/logo.png"></a>
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto userNavUl" >
+            <ul *ngIf="isCheck=='0'" class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item"><a routerLink="/user/landing-page" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li> -->
@@ -12,7 +12,7 @@
                 <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul class="navbar-nav ml-auto userNavUl">
+            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl">
 
                 <li class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
