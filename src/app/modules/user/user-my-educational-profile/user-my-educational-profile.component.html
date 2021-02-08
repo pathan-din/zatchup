@@ -13,6 +13,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h2 class="mb-3 text-center" *ngFor="let objEpData of epData">My Education Profile 
                 <span  (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending</span>
+                
             </h2>
             
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
@@ -108,13 +109,11 @@
                 <div class="row mt-3" *ngIf="objEpData.educationdetail.length>0">
                     <div class="col-md-12" *ngFor="let objEd of objEpData.educationdetail">
                         <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
-                            <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details
-                                    
-                                    
-                                </h3>
-                                <div class="addWorkcourse">                                    
-                                    <a (click)="redirectEiConfirmationPagePage(objEd.school_id)" class="cursorStyle">
+                            <div class="col-md-12 d-flex justify-content-between align-items-center flex-wrap">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>
+                                <div class="addWorkcourse mt-2">  
+                                    <span  (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1" class="text-white mr-2 small-text px-2 py-2 rounded bg-paret-green cursorStyle">Request Pending Course</span>                                  
+                                    <a (click)="redirectEiConfirmationPagePage(objEd.school_id)">
                                         <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid" style="height: 30px;">
                                      </a>  
                                 </div>
@@ -185,7 +184,7 @@
                                             Ending year : <span class="regularFont">{{objSd.standard_end_year}} </span>
                                         </div> -->
                                         <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                            Standard Duration : <span class="regularFont">{{objSd.standard_start_year}}-{{objSd.standard_end_year}} </span>
+                                            Standard Duration : <span class="regularFont">{{objSd.standard_start_year}}-{{objSd.is_current_standard?'Current':objSd.standard_end_year}} </span>
                                         </div>
                                         <!-- <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Duration of completion : <span class="regularFont">1 year </span>

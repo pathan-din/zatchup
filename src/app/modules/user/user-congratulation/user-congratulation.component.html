@@ -11,12 +11,13 @@
                 <div class="col-sm-12 form-control-inputDiv">
                     <div class="text-center pr-5 mt-3 pl-5 mb-4 mobilePLR">
                         <h2 class="mb-4 semiBoldFont">Congratulations! </h2>
-                        <p class="regularFont" *ngIf="params.check_school_info_on_zatchup==1">Your school is Onboarded on ZatchUp (Onboarded). </p>
-                        <p class="regularFont" *ngIf="params.check_school_info_on_zatchup==2">Your School is in ZatchUp DataBase (Non - Onboarded including Pending Approval). </p>
+                        <p class="regularFont" *ngIf="params.check_school_info_on_zatchup==1">Your school is Onboarded on ZatchUp. </p>
+                        <p class="regularFont" *ngIf="params.check_school_info_on_zatchup==2">Your School is in ZatchUp DataBase. </p>
                         <!-- <p class="regularFont">Congratulations for e-connecting with your educational institute.</p> -->
                     </div>
-                </div>
-
+                </div>                
+            </div>
+            <div class="form-group text-center">
                 <button type="submit" class="btn common-btn regularFont mt-4 mr-2" (click)="goToUserAddEiPage()">Confirm</button>
             </div>
         </div>

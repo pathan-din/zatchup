@@ -167,7 +167,7 @@ export class UserLoginComponent implements OnInit {
         response = res;
         if (response.status == "True") {
           localStorage.setItem("token", response.token);
-          // localStorage.setItem("token", response.token);
+          localStorage.setItem("approved", response.approved);
           
           $("#OTPModel").modal('hide');
           this.router.navigate(['user/my-educational-profile']);

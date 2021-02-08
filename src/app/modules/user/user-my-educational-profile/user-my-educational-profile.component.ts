@@ -22,6 +22,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   errorOtpModelDisplay: any = [];
   requestChangeDetails: any;
   params:any;
+  courseList:any;
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
@@ -35,6 +36,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.model = {};
     $("#OTPModel").modal("hide");
     this.getEducationalProfile()
+    
     if(localStorage.getItem("addcourse")){
       localStorage.removeItem("addcourse")
     }
@@ -283,6 +285,26 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.router.navigate(['user/add-ei'], { queryParams: {  "school_id": school_id,"returnUrl": "user/my-educational-profile" } });
   }
   getRequestChangeDetails(){
-this.router.navigate(["user/pending-request/"]);
+      this.router.navigate(["user/pending-request/"]);
+  }
+
+  getRequestCourseDetails(){
+    this.router.navigate(["user/pending-course-details/"]);
+}
+  getPendingCourseList(){
+    try {
+    this.baseService.getData("user/pending-course-list-of-user/").subscribe((res:any)=>{
+      if(res.status==true){
+        this.courseList  = res.result;
+        //console.log(this.courseList);
+        
+      }
+    },(error)=>{
+      console.log(error);
+      
+    })
+    } catch (e) {
+    
+    }
   }
 }

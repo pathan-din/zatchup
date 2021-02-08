@@ -5,7 +5,7 @@
         <div class="col-md-7">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-5 pl-0 mobilePL">
+        <div class="col-md-5 mobilePL">
             <h2 class="mb-3 textSpace topHeadingLeftSpace"> School Confirmation </h2>
 
            
@@ -113,26 +113,23 @@
 
             </form>
 
-            <div  class="form-group cursorStyle mt-3">
-                <div class="d-flex align-items-center">
-                    <!-- <div class="img-small mr-2">
-                        <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
-                    </div> -->
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-6 align-items-center d-flex justify-content-center">
-                                <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Add Current education </label>
-                            </div>
-                            <div class="col-6 align-items-center d-flex justify-content-center">
-                                <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Add Past education </label>
-                            </div>
+            <div class="mt-3">
+                <!-- <div class="img-small mr-2">
+                    <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
+                </div> -->
+                    <div class="row form-group">
+                        <div class="col-6">
+                            <label class="cursorStyle"> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Add Current education </label>
+                        </div>
+                        <div class="col-6">
+                            <label class="cursorStyle"> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Add Past education </label>
                         </div>
                     </div>
-                    <!-- <div class="text-left commonFontSize color-purple mediumFont">
-                        {{confirmationDetails.length>0?"Add More Course":"Add Course"}}
-                    </div> -->
-                </div>
+                <!-- <div class="text-left commonFontSize color-purple mediumFont">
+                    {{confirmationDetails.length>0?"Add More Course":"Add Course"}}
+                </div> -->
             </div>
+
             <button type="submit " *ngIf="confirmationDetails.length>0" class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont float-right"
             (click)="goToUserProfileCreatedPage()">Confirm & Send for School Verification</button>
         </div>
