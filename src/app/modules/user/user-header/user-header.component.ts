@@ -32,6 +32,9 @@ userProfile:any={};
 
     
   }
+  goToSetting(){
+    this.router.navigate(["user/setting"]);
+  }
   getDasboardDetails() {
     try {
       
