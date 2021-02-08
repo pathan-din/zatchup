@@ -9,15 +9,19 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class UserHeaderComponent implements OnInit {
 isCheck:any;
+userProfile:any={};
   constructor(private router: Router,
     private baseService : BaseService,
     private alert:NotificationService) { }
      authCheck : boolean=false;
+
   ngOnInit(): void {
     if(localStorage.getItem("token")){
       this.authCheck=true;
       this.getRegistrationStep();
+      this.getDasboardDetails() 
     }else{
+      localStorage.removeItem('approved')
       this.authCheck=false;
     }
     this.isCheck='0';
@@ -27,6 +31,32 @@ isCheck:any;
     }
 
     
+  }
+  getDasboardDetails() {
+    try {
+      
+
+      this.baseService.getData("ei/auth-user-info").subscribe(res => {
+
+        let response: any = {};
+        response = res;
+        if (response.status == true) {
+          
+          this.userProfile = response;
+        } 
+
+
+      }, (error) => {
+      
+        console.log(error);
+      });
+    } catch (err) {
+      
+      console.log(err);
+    }
+  }
+  notificationList() {
+    this.router.navigate(["user/notifications"]);
   }
   logout(){
     

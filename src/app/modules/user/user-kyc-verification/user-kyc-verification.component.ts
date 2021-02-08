@@ -91,19 +91,21 @@ export class UserKycVerificationComponent implements OnInit {
     if(this.model.kyc_type=='Aadhar'){
       this.maxLength = 12;
       this.placeholder='Enter id'
-      //this.model.kyc_id_no
+      this.model.kyc_id_no='';
       //this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
       this.pattran = "";
     }else if(this.model.kyc_type=='Dl'){
-      this.maxLength = 20;
-      this.placeholder='Eg : MH1420110062821'
+      this.maxLength = 16;
+      this.placeholder='Enter id'
+      this.model.kyc_id_no='';
      // this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
       this.pattran = "";
     }else if(this.model.kyc_type=='Passport'){
-      this.maxLength = 20;
+      this.maxLength = 8;
       //this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
       this.pattran = "";
-      this.placeholder='Eg : M00000000'
+      this.model.kyc_id_no='';
+      this.placeholder='Enter id'
     }
   } 
   isValid(event) {
