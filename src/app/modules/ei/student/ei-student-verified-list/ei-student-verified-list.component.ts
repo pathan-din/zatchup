@@ -24,7 +24,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   arrAge: any = [];
   studentArr: any = [];
   modelUserId: any = '';
-  displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'Gender', 'Age',
+  displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
     'class', 'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
@@ -192,10 +192,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
             objStudentList.reason_reject = objData.reason_reject;
             objStudentList.name = objData.first_name + ' ' + objData.last_name;
             objStudentList.gender = objData.gender;
-            objStudentList.age = objData.dob;
+            objStudentList.age = objData.age;
             objStudentList.userID = objData.admission_no;
             objStudentList.class = objData.class_name;
-            objStudentList.alias_class = objData.alias_class
+            objStudentList.alias_class = objData.alias_class;
+            objStudentList.roll_no = objData.roll_no
             objStudentList.Action = '';
             i = i + 1;
             arrStudentList.push(objStudentList);

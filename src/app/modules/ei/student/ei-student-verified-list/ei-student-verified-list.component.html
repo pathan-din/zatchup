@@ -199,6 +199,13 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="roll_no">
+                        <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.roll_no}}
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="Gender">
                         <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
