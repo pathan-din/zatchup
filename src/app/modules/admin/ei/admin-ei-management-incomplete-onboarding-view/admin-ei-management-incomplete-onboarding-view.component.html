@@ -492,7 +492,7 @@
                                 </span>
                             </button>
                         </div>
-                        <form id="existingZatchupEI">
+                        <form #approveWithExistingZatchupID="ngForm" id="existingZatchupEI">
                             <div class="modal-body px-0 py-0">
                                 <div class=" form-group row mt-3">
 
@@ -533,7 +533,7 @@
                                             MOU</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                            <input #docInput type="file" (change)="fileUploadDocument($event.target.files)"
                                                 id="mou_doc" name="mou_document"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
                                         </div>
@@ -707,7 +707,7 @@
                                 </span>
                             </button>
                         </div>
-                        <form id="newZatchupID">
+                        <form id="newZatchupID" #newZatchupIDForm="ngForm">
                             <div class="modal-body px-0 py-0">
                                 <div class=" form-group row mt-3">
                                     <div class="col-sm-12 ">
@@ -718,22 +718,12 @@
                                             <div class="required errorMsg"
                                             [innerHTML]="pendingApprovalProfile.errorDisplay.zatchup_id">
                                         </div>
-
-                                        <!-- <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" name="zatchup_Id" id="zatchup_Id"
-                                                [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                placeholder="Enter School ZatchUp ID" required />
-                                        </div> -->
-                                        <!-- <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_Id">
-                                        </div> -->
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
-                                            School Name
+                                            School name
                                         </label>
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                             <input type="text" name="zatchup_id" id="name_of_school"
@@ -750,7 +740,7 @@
                                             MOU</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                            <input #docInputForNewZatchupId type="file" (change)="fileUploadDocument($event.target.files)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
@@ -774,7 +764,7 @@
                                     <div class="col-sm-12 ">
                                         <button type="button "
                                             class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing"
-                                            (click)="approveWithEIZatchupId()">
+                                            (click)="approveWithEIZatchupId(); newZatchupIDForm.resetForm()">
                                             Approve
                                         </button>
                                     </div>
@@ -812,7 +802,7 @@
                                             MOU</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                            <input #docInputGenerateZatchupId type="file" (change)="fileUploadDocument($event.target.files)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
@@ -833,7 +823,6 @@
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">
-
                                     <div class="col-sm-12 ">
                                         <button type="button " (click)="generateEIZatchupId()"
                                             class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">

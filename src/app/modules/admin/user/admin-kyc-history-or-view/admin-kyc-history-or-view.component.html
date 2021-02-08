@@ -87,7 +87,8 @@
                         <div class="modal-dialog " role="document">
                             <div class="modal-content unverified container-fluid">
                                 <div class="modal-header align-items-center justify-content-center pb-0">
-                                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">KYC Approval</h2>
+                                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">KYC Approval
+                                    </h2>
                                     <button type="button" #approveCloseButton
                                         class="close rounded-circle border bg-white model-close-btn p-0"
                                         data-dismiss="modal" aria-label="Close ">
@@ -99,7 +100,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group row  ml-0 mr-0">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing">Kyc Document</label>
+                                                    <label for="" class="mediumFont commonFontSize letterspacing">Kyc
+                                                        Document</label>
                                                 </div>
                                                 <!-- <div *ngIf="kycHistoryModal.kycDetails">
                                                     <img src="{{kycHistoryModal.kycDetails.kyc_document}}"
@@ -115,22 +117,22 @@
                                                         class="img-fluid dpImg border w-100">
                                                 </div>
                                                 <div class="col-md-12 mt-2"
-                                                *ngIf="kycHistoryModal.kycDetails && kycHistoryModal.kycDetails.kyc_document && kycHistoryModal.kycDetails.kyc_document_back">
-                                                <div class="row border-top pt-2">
-                                                    <div class="col-6">
-                                                        <img (click)="viewImage(kycHistoryModal.kycDetails.kyc_document)"
-                                                            src="{{kycHistoryModal.kycDetails.kyc_document}}"
-                                                            class="img-fluid border" aria-hidden="true "
-                                                            data-toggle="modal" data-target="#imageViewer">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <img (click)="viewImage(kycHistoryModal.kycDetails.kyc_document_back)"
-                                                            src="{{kycHistoryModal.kycDetails.kyc_document_back}}"
-                                                            class="img-fluid border" aria-hidden="true "
-                                                            data-toggle="modal" data-target="#imageViewer">
+                                                    *ngIf="kycHistoryModal.kycDetails && kycHistoryModal.kycDetails.kyc_document && kycHistoryModal.kycDetails.kyc_document_back">
+                                                    <div class="row border-top pt-2">
+                                                        <div class="col-6">
+                                                            <img (click)="viewImage(kycHistoryModal.kycDetails.kyc_document)"
+                                                                src="{{kycHistoryModal.kycDetails.kyc_document}}"
+                                                                class="img-fluid border" aria-hidden="true "
+                                                                data-toggle="modal" data-target="#imageViewer">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <img (click)="viewImage(kycHistoryModal.kycDetails.kyc_document_back)"
+                                                                src="{{kycHistoryModal.kycDetails.kyc_document_back}}"
+                                                                class="img-fluid border" aria-hidden="true "
+                                                                data-toggle="modal" data-target="#imageViewer">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </div>
 
                                             <!-- <div class="col-md-12 mt-2">
@@ -232,32 +234,14 @@
 
             <h2 class="commonFontSize semiBoldFont m-0">KYC History</h2>
         </div>
-        <!-- <div class="row mb-3 mt-3">
-            <form #sortKycForm="ngForm" (ngSubmit)="sortKycForm.form.valid && sortKycHistory()">
-                <div class="col-md-12 d-flex align-items-end">
-                    <div class="mr-2">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
-                        <div class="w-100 shadow-none">
-                            <select class="custom-select border form-control-input" id="classAlias" name="orderBy"
-                                [(ngModel)]="kycHistoryModal.sortBy" #orderBy="ngModel"
-                                [ngClass]="{'is-invalid': sortKycForm.submitted && orderBy.invalid}" required>
-                                <option value=""> Select Sort</option>
-                                <option value="ascending">Ascending</option>
-                                <option value="descending">Descending</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="bg-purple text-white py-2 px-4 border-0">Apply</button>
-                </div>
-            </form>
-        </div> -->
 
         <div class="row my-3" *ngIf="kycHistoryModal.kycHistory">
             <div class="col-md-12 d-flex flex-wrap align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records per page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select (change)="getKycHistory('')" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0" id="count"
-                        [(ngModel)]="kycHistoryModal.page_size">
+                    <select (change)="getKycHistory('')"
+                        class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        id="count" [(ngModel)]="kycHistoryModal.page_size">
                         <option value=""> Select count</option>
                         <option *ngFor="let count of recordCount" value="{{count}}">{{count}}</option>
                     </select>
@@ -266,7 +250,7 @@
         </div>
 
         <div class="tableDiv mt-4" *ngIf="kycHistoryModal.kycHistory">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="kycHistoryModal.activeParams.kycType !== 'pending'">
                 <mat-table [dataSource]="kycHistoryModal.kycHistory | paginate: kycHistoryModal.config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
@@ -280,11 +264,6 @@
                             {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}}
                         </mat-cell>
                     </ng-container>
-
-                    <!-- <ng-container matColumnDef="school_zatchup_id">
-                        <mat-header-cell *matHeaderCellDef> Enable/Disable Reason </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.new_value}} </mat-cell>
-                    </ng-container> -->
 
                     <ng-container matColumnDef="message">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
@@ -300,8 +279,8 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="user_name" *ngIf="kycHistoryModal.activeParams.kycType == 'completed'">
-                        <mat-header-cell *matHeaderCellDef > User Name </mat-header-cell>
+                    <ng-container matColumnDef="user_name">
+                        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.tousername}}
                         </mat-cell>
@@ -311,28 +290,44 @@
                     <mat-row *matRowDef="let row; columns: kycHistoryModal.displayedColumns; "></mat-row>
                 </mat-table>
             </div>
-        </div>
-        <pagination-controls *ngIf="kycHistoryModal.kycHistory" (pageChange)="getKycHistory($event)" class="eiPaginationTag">
-        </pagination-controls>
-        <!-- <div class="row" *ngIf="!pagination.dataSource">
-            <div class="col-12 pt-2 pb-2">
-                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
-            </div>
-        </div> -->
 
-        <!-- <div class="row mobile-col-reverse border-0 mt-1 mx-0" *ngIf="kycHistoryModal.kycHistory">
-            <div class="col-md-12 col-left">
-                <div class="row flex-nowrap" *ngFor="let history of kycHistoryModal.kycHistory">
-                    <div class="commonFontSize semiBoldFont d-flex flex-row align-items-start pr-0">
-                        <i class="fa fa-circle dotIcon mt-1 mr-3"></i>
-                        <p>{{history.created_on | date:'dd MMM, yy'}} & {{history.created_on | date:'shortTime'}}</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize mediumFont pl-0">
-                        <p><span class="mx-2">:</span>{{history.reason_remarks}}</p>
-                    </div>
-                </div>
+            <div class="mat-elevation-z1 table-responsive" *ngIf="kycHistoryModal.activeParams.kycType == 'pending'">
+                <mat-table [dataSource]="kycHistoryModal.kycHistory | paginate: kycHistoryModal.config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + kycHistoryModal.startIndex}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date_time">
+                        <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="message">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.display_message}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="user_name">
+                        <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.tousername}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="kycHistoryModal.pendingDisplayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: kycHistoryModal.pendingDisplayedColumns; "></mat-row>
+                </mat-table>
             </div>
-        </div> -->
+        </div>
+        <pagination-controls *ngIf="kycHistoryModal.kycHistory" (pageChange)="getKycHistory($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
         <div class="row" *ngIf="!kycHistoryModal.kycHistory">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">KYC History Not Available</p>

@@ -25,6 +25,7 @@ export class KYCHistory extends Pagination{
   approveOrReject: any = 'approve';
   errorDisplay: any = {};
   displayedColumns: string[] = ['position', 'date_time', 'message', 'emp_name', 'user_name'];
+  pendingDisplayedColumns: string[] = ['position', 'date_time', 'message', 'user_name'];
   page_size: any;
 };
 export class KycPendingRequest extends Pagination {
