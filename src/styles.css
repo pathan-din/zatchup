@@ -771,3 +771,7 @@ a:hover {
     background-color: #f3f3f3;
 }
 
+.dropdown-item.active, .dropdown-item:active{
+    background: #e8f0fe !important;
+}
+

@@ -528,4 +528,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes), MaterialDesignModule],
   exports: [RouterModule, MaterialDesignModule]
 })
-export class AdminwebRoutingModule { }
+export class AdminRoutingModule { }

@@ -58,8 +58,8 @@ export class ActiveUsersComponent implements OnInit {
     this.activeUsers.listParams = {
       'date_from': this.activeUsers.filterFromDate !== undefined ? this.datePipe.transform(this.activeUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.activeUsers.filterToDate !== undefined ? this.datePipe.transform(this.activeUsers.filterToDate, 'yyyy-MM-dd') : '',
-      'last_login_from': this.activeUsers.loginFromDate !== undefined ? this.datePipe.transform(this.activeUsers.loginFromDate, 'yyyy-MM-dd') : '',
-      'last_login_to': this.activeUsers.loginToDate !== undefined ? this.datePipe.transform(this.activeUsers.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_start_date': this.activeUsers.loginFromDate !== undefined ? this.datePipe.transform(this.activeUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_end_date': this.activeUsers.loginToDate !== undefined ? this.datePipe.transform(this.activeUsers.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.activeUsers.page_size,
