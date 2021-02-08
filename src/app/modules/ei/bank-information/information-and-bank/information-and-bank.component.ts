@@ -157,7 +157,7 @@ export class InformationAndBankComponent implements OnInit {
             this.bankDetails.opening_date=this.baseService.getDateReverseFormat(this.model.opening_date);
             this.bankDetails.gst_no=this.model.gst_no;
             this.bankDetails.overview=this.model.overview;
-            
+            this.bankDetails.full_address = this.model.address1 +' ' + this.model.address2
           }
           this.bankModel.bank_name=this.bankDetails.bank_name;
           this.bankModel.bank_account_no=this.bankDetails.bank_account_no;
@@ -476,27 +476,31 @@ goToRequestStatusPage(){
     //   return false;
     // }
      try {
-      this.loader.show();
-      let documentdata: any = {};
-      //documentdata.documentdata = this.modelDocumentDetails;
-      documentdata = JSON.parse(localStorage.getItem("documentdata"));
-      this.eiService.updateOnboardStepFourData(documentdata).subscribe(
-        (res: any) => {
-          if (res.status == true) {
+       if(localStorage.getItem("documentdata")){
+        this.loader.show();
+        let documentdata: any = {};
+  
+        //documentdata.documentdata = this.modelDocumentDetails;
+        documentdata = JSON.parse(localStorage.getItem("documentdata"));
+        this.eiService.updateOnboardStepFourData(documentdata).subscribe(
+          (res: any) => {
+            if (res.status == true) {
+              this.loader.hide();
+              localStorage.removeItem("documentdata");
+  
+              //this.router.navigate(['ei/information-and-bank-details']);
+              
+            } else {
+              this.loader.hide();
+              var collection = this.eiService.getErrorResponse(this.loader, res.error);
+              this.alert.error(collection, 'Error')
+            }
+          }, (error) => {
             this.loader.hide();
-            localStorage.removeItem("documentdata");
-
-            //this.router.navigate(['ei/information-and-bank-details']);
-            
-          } else {
-            this.loader.hide();
-            var collection = this.eiService.getErrorResponse(this.loader, res.error);
-            this.alert.error(collection, 'Error')
-          }
-        }, (error) => {
-          this.loader.hide();
-          this.alert.error(error.erorr, 'Error')
-        });
+            this.alert.error(error.erorr, 'Error')
+          });
+       }
+      
     } catch (err) {
       this.loader.hide();
       this.alert.error(err, 'Error')
