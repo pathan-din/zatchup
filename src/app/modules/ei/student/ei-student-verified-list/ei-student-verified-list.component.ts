@@ -263,10 +263,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.eiService.postRejectReason(this.modelReason).subscribe(
         (res: any) => {
           if (res.status === true) {
-            // this.closeRejectModel();
             this.closeRejectModel.nativeElement.click()
             this.alert.success(res.message, 'Success')
-            this.getGetVerifiedStudent('', '')
+            this.router.navigate(['ei/student-management']);
           } else {
             this.loader.hide();
             var errorCollection = '';
@@ -310,7 +309,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
             this.loader.hide();
             this.alert.success(res.message, 'Success');
             this.closeRejectModel.nativeElement.click()
-            this.getGetVerifiedStudent('', '')
+            this.router.navigate(['ei/student-management']);
           } else {
             this.loader.hide();
             this.alert.error(res.error, 'Error');
