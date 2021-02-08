@@ -1,3 +1,16 @@
+export class Pagination {
+    dataSource: any;
+    page_size: any;
+    params: any = {};
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    startIndex: number;
+    countData: any;
+}
+
 export class UserDashboard {
     filteredUsers: any = {};
     users: any = {};

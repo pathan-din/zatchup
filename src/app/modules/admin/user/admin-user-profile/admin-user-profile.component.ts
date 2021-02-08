@@ -34,6 +34,10 @@ export class AdminUserProfileComponent implements OnInit {
     this.router.navigate(['admin/user-education-details'], { queryParams: { 'user_id': this.userData.user_id}});
   }
 
+  userProfileHistory(){
+    this.router.navigate(['admin/user-profile-history'], { queryParams: { 'user_id': this.userData.user_id}});
+  }
+
   getUserProfile() {
     this.loader.show();
 

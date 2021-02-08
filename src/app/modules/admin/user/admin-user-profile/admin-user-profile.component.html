@@ -1,28 +1,22 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="AlumniProf-div bg-white border border-gray px-3 py-3">
-        <!-- <div class="row topDiv">
-            <div class="col-xl-2 col-lg-12 pr-0">
-                <h2 class="commonFontSize semiBoldFont m-0 ">Student Profile</h2>
+        <div class="row topDiv">
+            <div class="col-xl-4 col-lg-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0 ">User Profile</h2>
             </div>
-            <div class="col-xl-10 col-lg-12 SearchDiv d-flex flex-row flex-wrap">
-                <button type="button" class="bg-yellow text-white px-4 py-2 ml-2 mb-1 border-0 ">User Reported
+            <div class="col-xl-8 col-lg-12 SearchDiv d-flex flex-row flex-wrap">
+                <!-- <button type="button" class="bg-yellow text-white px-4 py-2 ml-2 mb-1 border-0 ">User Reported
                     History</button>
                 <button type="button" class="bg-paret-green text-white px-4 py-2 ml-2 mb-1 border-0 ">User KYC Pending
                     And History</button>
                 <button type="button" class="bg-red text-white px-4 py-2 ml-2 mb-1 border-0 ">Reports By User
-                    History</button>
-                <button type="button" class="bg-blue text-white px-4 py-2 ml-2 mb-1 border-0 ">Profile History</button>
+                    History</button> -->
+                <button type="button" (click)="userProfileHistory()" class="bg-blue text-white px-4 py-2 ml-2 mb-1 border-0 "> User Profile History</button>
             </div>
-        </div> -->
-        <div class="row topDiv">
-            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont m-0">User Profile</h2>
-            </div>
-
         </div>
         <div class=" mt-3 border-0 mx-0">
             <!-- start Div for banner-->
@@ -75,6 +69,15 @@
                                     <p><span class="mr-3">: </span> {{userData.dob}}</p>
                                 </div>
                             </div>
+
+                            <div class="row mx-0">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Gender</p>
+                                </div>
+                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                    <p><span class="mr-3">: </span> {{userData.gender}}</p>
+                                </div>
+                            </div>
                             <div class="row mx-0" *ngIf="userData.email">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Email
@@ -113,6 +116,24 @@
                             </div> -->
                         </div>
 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Mother Name</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{userData.mother_name}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Father Name</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{userData.father_name}}</p>
+                        </div>
                     </div>
 
                     <div class="row" *ngIf="userData.education_detail">
