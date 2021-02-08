@@ -9,66 +9,47 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { Location } from '@angular/common';
 declare var $: any;
 
-export interface UnVerifiedAlumniListElement {
-  checked: string;
-  'SNo': number;
-  ZatchUpID: string;
-  Name: string;
-  Gender: string;
-  Age: number;
-  userID: string;
-  class: string;
-  Action: string;
-
-}
-
-const ELEMENT_DATA: UnVerifiedAlumniListElement[] = [
-
-
-];
-
 @Component({
   selector: 'app-ei-student-verified-list',
   templateUrl: './ei-student-verified-list.component.html',
   styleUrls: ['./ei-student-verified-list.component.css']
 })
 export class EiStudentVerifiedListComponent implements OnInit {
-  @ViewChild("closeModel1") closeModel1:any;
+  @ViewChild("verifiedModel") closeVerifiedModel: any;
+  @ViewChild("closeModel") closeRejectModel: any;
   model: any = {};
   modelReason: any = {};
   studentList: any = [];
-  studentDetails:any=[];
+  studentDetails: any = [];
   arrAge: any = [];
-  studentArr:any=[];
-  modelUserId:any='';
-  displayedColumns: string[] = ['checked','SNo', 'ZatchUpID', 'Name', 'userID', 'Gender', 'Age',
+  studentArr: any = [];
+  modelUserId: any = '';
+  displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'Gender', 'Age',
     'class', 'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
   collection = { count: 60, data: [] };
-  dataSource = ELEMENT_DATA;
-  //columnsToDisplay: string[] = this.displayedColumns.slice();
-  // dataSource: PeriodicElement[] = ELEMENT_DATA;
+  dataSource: any;
   courseList: any = [];
   standardList: any = [];
   classList: any = [];
-  studentListSendForBulk:any=[];
+  studentListSendForBulk: any = [];
   error: any = [];
   errorDisplay: any = {};
-  title:any='';
+  title: any = '';
   pageCounts: any;
   constructor(
-    private genericFormValidationService: GenericFormValidationService, 
     private router: Router,
-    private SpinnerService: NgxSpinnerService, 
-    public eiService: EiServiceService, 
-    public base: BaseService, 
-    public formBuilder: FormBuilder,
-    private alert: NotificationService, private route: ActivatedRoute,
     private location: Location,
-    private baseService: BaseService
-    ) { }
+    private loader: NgxSpinnerService,
+    public eiService: EiServiceService,
+    public baseService: BaseService,
+    public formBuilder: FormBuilder,
+    private alert: NotificationService,
+    private route: ActivatedRoute,
+    private formValidationService: GenericFormValidationService,
+  ) { }
 
 
   ngOnInit(): void {
@@ -79,19 +60,14 @@ export class EiStudentVerifiedListComponent implements OnInit {
     };
     this.model.gender = '';
     // this.model.age = '';
-    this.model.approved=""
+    this.model.approved = ""
     // this.model.kyc_approved=""
     this.route.queryParams.subscribe(params => {
-     
-      this.model.approved=params['approved']?params['approved']:'';
-      
-     // this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
-
-      this.model.is_rejected=params['is_rejected']?params['is_rejected']:'';
-
-      this.model.rejectedby=params['rejectedby']?params['rejectedby']:'';
-      this.title=params['title'];
-
+      this.model.approved = params['approved'] ? params['approved'] : '';
+      // this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
+      this.model.is_rejected = params['is_rejected'] ? params['is_rejected'] : '';
+      this.model.rejectedby = params['rejectedby'] ? params['rejectedby'] : '';
+      this.title = params['title'];
     });
     for (var i = 5; i < 70; i++) {
       this.arrAge.push(i);
@@ -101,171 +77,140 @@ export class EiStudentVerifiedListComponent implements OnInit {
   }
   displayCourseList() {
     try {
-      this.SpinnerService.show();
-
+      this.loader.show();
       this.model.course = '';
       this.model.standard = '';
       this.model.teaching_class = '';
       this.eiService.displayCourseList().subscribe(res => {
-
         let response: any = {};
         response = res;
         this.courseList = response.results;
-
       }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
+        this.loader.hide();
       });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
   displayStandardList(courseId) {
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.standardList = []
       this.model.standard = '';
-      //this.model.course_id='';
-
       this.model.teaching_class = '';
       this.eiService.displayStandardList(courseId).subscribe(res => {
-        this.SpinnerService.hide();
+        this.loader.hide();
         let response: any = {};
         response = res;
         this.standardList = response.standarddata;
-
       }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
+        this.loader.hide();
       });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
   displayClassList(stId) {
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.classList = [];
-      this.eiService.displayClassList(stId).subscribe(res => {
-        this.SpinnerService.hide();
-        let response: any = {};
-        response = res;
-        this.classList = response.classdata;
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+      this.eiService.displayClassList(stId).subscribe(
+        (res: any) => {
+          this.classList = res.classdata;
+          this.loader.hide();
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
-  editBulkClass(){
-    if(!this.model.teaching_class && this.studentListSendForBulk.length==0){
+  editBulkClass() {
+    if (!this.model.teaching_class && this.studentListSendForBulk.length == 0) {
       alert("Please select student list of particular class.")
       return;
-    }else{
-        try {
-        this.SpinnerService.show();
-        this.base.actionForPutMethod('ei/bulk-editclass-by-ei/', {'student_ids':this.studentListSendForBulk.join(','),'class_id':this.model.class_id}).subscribe(res => {
-          let response: any = {};
-          response = res;
-          this.SpinnerService.hide();
-          this.alert.error(response.message,'Error');
-        }, (error) => {
-          this.SpinnerService.hide();
-          console.log(error);
-        });
+    } else {
+      try {
+        this.loader.show();
+        this.baseService.actionForPutMethod('ei/bulk-editclass-by-ei/', { 'student_ids': this.studentListSendForBulk.join(','), 'class_id': this.model.class_id }).subscribe(
+          (res: any) => {
+            this.loader.hide();
+            this.alert.error(res.message, 'Error');
+          }, (error) => {
+            this.loader.hide();
+          });
       } catch (err) {
-        this.SpinnerService.hide();
-        console.log(err);
+        this.loader.hide();
       }
     }
   }
-  getStudentBycheckboxClickForStudentBulkAction(stId,event){
-    
-    if(event.checked){
-      if(this.studentListSendForBulk.indexOf(stId)===-1){
+  getStudentBycheckboxClickForStudentBulkAction(stId, event) {
+
+    if (event.checked) {
+      if (this.studentListSendForBulk.indexOf(stId) === -1) {
         this.studentListSendForBulk.push(stId)
       }
-    }else{
-      if(this.studentListSendForBulk.indexOf(stId)===-1){
-       
-      }else{
-        var index=this.studentListSendForBulk.indexOf(stId)
+    } else {
+      if (this.studentListSendForBulk.indexOf(stId) === -1) {
+
+      } else {
+        var index = this.studentListSendForBulk.indexOf(stId)
         this.studentListSendForBulk.splice(index, 1);
       }
     }
-   }
-  
+  }
+
   getGetVerifiedStudent(page, strFilter) {
 
     try {
-        this.SpinnerService.show();
-   
+      this.loader.show();
+      this.model.page = page
+      this.baseService.getData('ei/student-list/', this.model).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.studentList = res.results;
+          this.model.page = page
+          this.pageSize = res.page_size;
+          this.model.page_size = this.pageSize
+          this.totalNumberOfPage = res.count;
+          this.config.itemsPerPage = this.pageSize
+          this.config.currentPage = page
+          this.config.totalItems = this.totalNumberOfPage;
+          this.pageCounts = this.baseService.getCountsOfPage();
+          let arrStudentList: any = [];
+          if (!page) { page = 1 }
+          var i = (this.pageSize * (page - 1)) + 1;
+          this.studentList.forEach(objData => {
+            let objStudentList: any = {};
+            objStudentList.checked = '';
+            objStudentList.SNo = i;
+            objStudentList.zatchupID = objData.zatchup_id;
 
-this.model.page= page
-      //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
-      this.base.getData('ei/student-list/', this.model).subscribe(res => {
+            objStudentList.student_id = objData.user_id;
+            objStudentList.kyc_approved = objData.kyc_approved;
+            objStudentList.approved = objData.approved;
+            objStudentList.is_rejected = objData.is_rejected;
+            objStudentList.reason_reject = objData.reason_reject;
 
-        let response: any = {};
-        response = res;
-        this.SpinnerService.hide();
+            objStudentList.name = objData.first_name + ' ' + objData.last_name;
+            objStudentList.gender = objData.gender;
+            objStudentList.age = objData.dob;
+            objStudentList.userID = objData.admission_no;
+            objStudentList.class = objData.class_name;;
+            objStudentList.Action = '';
+            i = i + 1;
+            arrStudentList.push(objStudentList);
+          })
 
-        this.studentList = response.results;
-        this.model.page= page
-        this.pageSize = response.page_size;
-        this.model.page_size=this.pageSize
-        this.totalNumberOfPage = response.count;
-        this.config.itemsPerPage = this.pageSize
-        this.config.currentPage = page
-        this.config.totalItems = this.totalNumberOfPage;
-        this.pageCounts = this.baseService.getCountsOfPage();
-        let arrStudentList: any = [];
-        if (!page) { page = 1 }
-        var i = (this.pageSize * (page - 1)) + 1;
-        this.studentList.forEach(objData => {
-          let objStudentList: any = {};
-          objStudentList.checked = '';
-          objStudentList.SNo = i;
-          objStudentList.ZatchUpID = objData.zatchup_id;
-
-          objStudentList.student_id = objData.user_id;
-          objStudentList.kyc_approved = objData.kyc_approved;
-          objStudentList.approved = objData.approved;
-          objStudentList.is_rejected = objData.is_rejected;
-          objStudentList.reason_reject = objData.reason_reject;
-
-          objStudentList.Name = objData.first_name + ' ' + objData.last_name;
-          objStudentList.Gender = objData.gender;
-          objStudentList.Age = objData.dob;
-          objStudentList.userID = objData.admission_no;
-          objStudentList.class = objData.class_name;;
-          objStudentList.Action = '';
-          i = i + 1;
-          arrStudentList.push(objStudentList);
-        })
-
-        this.dataSource = arrStudentList;
-        if (response.status == false)
-        {
-          this.alert.error(response.error.message[0], 'Error')
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        // console.log(error);
-        // this.alert.error(response.message[0], 'Error')
-      });
+          this.dataSource = arrStudentList;
+          if (res.status == false) {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log(err);
-      // this.alert.error(err, 'Error')
+      this.loader.hide();
     }
   }
   applyFilter() {
@@ -274,22 +219,18 @@ this.model.page= page
       var course = 'course=' + this.model.course
       var standard = 'standard=' + this.model.standard
       var teaching_class = 'teaching_class=' + this.model.teaching_class
-      // var age = 'age=' + this.model.age
       var gender = 'gender=' + this.model.gender
       arrFilter.push(course)
       arrFilter.push(standard)
       arrFilter.push(teaching_class)
-      // arrFilter.push(age)
       arrFilter.push(gender)
       var strFilter = arrFilter.join("&");
-
       this.getGetVerifiedStudent('', strFilter)
     }
-
-
   }
-  goToEiStudentEditPage(id,approve) {
-    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id,'approve':approve } });
+
+  goToEiStudentEditPage(id, approve) {
+    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
   }
 
   goToEiStudentProfilePage(id) {
@@ -301,13 +242,11 @@ this.model.page= page
    * Export Data
    */
 
-  getExportData(){
+  getExportData() {
     try {
-      let params:any=[];
+      let params: any = [];
       params['export_csv'] = true
-      this.base.generateExcel('ei/export-verifiedstudent-by-ei/', 'verified-student', params)
-    
-      
+      this.baseService.generateExcel('ei/export-verifiedstudent-by-ei/', 'verified-student', params)
     } catch (error) {
       console.log(error)
     }
@@ -315,49 +254,34 @@ this.model.page= page
   rejectStudent() {
     this.error = [];
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-      this.SpinnerService.show();
-      /***************Merge dob after all selected dropdown *****************/
-      //this.model.profile.dob=this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
-      /**********************************************************************/
-
-      this.eiService.postRejectReason(this.modelReason).subscribe(res => {
-
-        let response: any = {};
-        response = res;
-
-        if (response.status === true)// Condition True Success 
-        {
-          this.closeRejectModel();
-          this.alert.success(response.message, 'Success')
-          this.getGetVerifiedStudent('', '')
-        } else { // Condition False Validation failure
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
-
+      this.loader.show();
+      this.eiService.postRejectReason(this.modelReason).subscribe(
+        (res: any) => {
+          if (res.status === true) {
+            // this.closeRejectModel();
+            this.closeRejectModel.nativeElement.click()
+            this.alert.success(res.message, 'Success')
+            this.getGetVerifiedStudent('', '')
+          } else {
+            this.loader.hide();
+            var errorCollection = '';
+            for (var key in res.error) {
+              if (res.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + res.error[key][0] + '\n'
+              }
             }
+            this.alert.error(errorCollection, "Error");
           }
-          this.alert.error(errorCollection,"Error");
-
-        }
-
-        /*End else*/
-        //this.router.navigate(['user/signup']);
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
 
@@ -366,21 +290,12 @@ this.model.page= page
     this.modelReason.student_id = studentId;
   }
 
-
-  openModel(studentID)
-  {
+  openModel(studentID) {
     this.modelUserId = studentID;
     $("#verifiedModel").modal({
       backdrop: 'static',
       keyboard: false
     });
-   
-  }
-  closeModel(){
-    $("#verifiedModel").modal('hide');
-  }
-  closeRejectModel(){
-    $("#rejectModel").modal('hide');
   }
 
   approveStudent(action, studentId) {
@@ -388,36 +303,34 @@ this.model.page= page
     data.student_id = studentId;
     data.approve_student = action;
     try {
-
-      this.SpinnerService.show();
-
-      this.eiService.approveStudent(data).subscribe(res => {
-        let response: any = {};
-        response=res;
-        if (response.status == true) {
-          this.SpinnerService.hide();
-         
-          this.alert.success(response.message,'Success');
-          this.closeModel();
-          this.getGetVerifiedStudent('', '')
-        } else {
-          this.SpinnerService.hide();
-          //this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error);
-          this.alert.error(response.error,'Error');
-           
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-      });
+      this.loader.show();
+      this.eiService.approveStudent(data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.loader.hide();
+            this.alert.success(res.message, 'Success');
+            this.closeRejectModel.nativeElement.click()
+            this.getGetVerifiedStudent('', '')
+          } else {
+            this.loader.hide();
+            this.alert.error(res.error, 'Error');
+          }
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log(err);
+      this.loader.hide();
     }
   }
-  goBack(): void{
+  goBack(): void {
     this.location.back()
+  }
+
+  getGender(data: any) {
+    console.log('eeeeeeeee',data)
+    if (data)
+      return this.baseService.getGender(data)
+    return ''
   }
 
 }

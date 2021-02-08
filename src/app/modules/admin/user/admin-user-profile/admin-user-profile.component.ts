@@ -31,11 +31,11 @@ export class AdminUserProfileComponent implements OnInit {
 
 
   goToUserEducationDetail() {
-    this.router.navigate(['admin/user-education-details'], { queryParams: { 'user_id': this.userData.user_id}});
+    this.router.navigate(['admin/user-education-details'], { queryParams: { 'user_id': this.userData.user_id } });
   }
 
-  userProfileHistory(){
-    this.router.navigate(['admin/user-profile-history'], { queryParams: { 'user_id': this.userData.user_id}});
+  userProfileHistory() {
+    this.router.navigate(['admin/user-profile-history'], { queryParams: { 'user_id': this.userData.user_id } });
   }
 
   getUserProfile() {
@@ -58,7 +58,13 @@ export class AdminUserProfileComponent implements OnInit {
 
 
 
-  goBack(){
+  goBack() {
     this.location.back()
+  }
+
+  getGender(data: any) {
+    if (data)
+      return this.baseService.getGender(data)
+    return ''
   }
 }

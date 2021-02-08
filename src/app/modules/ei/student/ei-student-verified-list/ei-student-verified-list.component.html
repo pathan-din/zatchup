@@ -181,14 +181,14 @@
                     <ng-container matColumnDef="ZatchUpID">
                         <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.ZatchUpID}}
+                            {{element.zatchupID}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="color-lightBlue">
-                            {{element.Name}}
+                            {{element.name}}
                         </mat-cell>
                     </ng-container>
 
@@ -202,13 +202,13 @@
                     <ng-container matColumnDef="Gender">
                         <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.Gender}}
+                            {{getGender(element)}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Age">
                         <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.Age}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="class">
@@ -353,8 +353,9 @@
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header align-items-center border-0 pb-0 pl-0">
                     <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Verified</h2>
-                    <button type="button " #closeModel1 class="close rounded-circle border bg-white model-close-btn p-0"
-                        data-dismiss="modal" aria-label="Close ">
+                    <button type="button " #verifiedModel
+                        class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                        aria-label="Close ">
                         <span aria-hidden="true ">
                             &times;
                             <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
