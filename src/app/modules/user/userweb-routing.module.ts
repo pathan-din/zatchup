@@ -54,6 +54,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
 import { ServiceComponent } from './user-info/service/service.component';
 import { SettingComponent } from './setting/setting.component';
+import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 
 
 const routes: Routes = [
@@ -223,6 +224,11 @@ const routes: Routes = [
   {
     path: 'user/pending-request', component: PendingRequestForUserComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'user/pending-course-details', component: PendingCourseDetailComponent, canActivate: [AuthGuard]
+  },
+  //
+
   {
     path: 'user/setting', component: SettingComponent, canActivate: [AuthGuard]
   },

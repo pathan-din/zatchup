@@ -13,6 +13,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h2 class="mb-3 text-center" *ngFor="let objEpData of epData">My Education Profile 
                 <span  (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending</span>
+                
             </h2>
             
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
@@ -113,7 +114,8 @@
                                     
                                     
                                 </h3>
-                                <div class="addWorkcourse">                                    
+                                <div class="addWorkcourse">  
+                                    <span  (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1" class="text-white mr-2 float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending Course</span>                                  
                                     <a (click)="redirectEiConfirmationPagePage(objEd.school_id)" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid" style="height: 30px;">
                                      </a>  

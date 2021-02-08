@@ -244,6 +244,9 @@ changeSchool(schoolData){
     this.modelZatchup.zatchup_id=obj.school_code;
     }else{
     this.model.school_data={};
+    this.model.university="";
+    this.model.address1="";
+    this.modelZatchup.zatchup_id="";
   }
 }
 /**Get data using zatchupId */

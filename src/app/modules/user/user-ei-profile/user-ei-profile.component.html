@@ -17,7 +17,7 @@
 
             <form>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">School Name :</label>
+                    <!-- <label for="" class="mediumFont commonFontSize letterspacing">School Name :</label> -->
                     <div class="col-sm-6 p-0">
                         {{model.name_of_school}} ({{model.school_code}})
                         <h3 *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
@@ -30,10 +30,10 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input checked=true id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Current Education </label>
+                            <label> <input checked=true id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Student</label>
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input  (change)="addPastEi(schoolId)" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Past Education </label>
+                            <label> <input  (change)="addPastEi(schoolId)" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Alumni </label>
                         </div>
                     </div>
                 </div>
