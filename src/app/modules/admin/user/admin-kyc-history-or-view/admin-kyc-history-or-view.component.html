@@ -261,7 +261,7 @@
                     <ng-container matColumnDef="date_time">
                         <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}}
+                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM yyyy h:m a'}}
                         </mat-cell>
                     </ng-container>
 
@@ -302,7 +302,7 @@
                     <ng-container matColumnDef="date_time">
                         <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}}
+                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM yyyy h:m a'}}
                         </mat-cell>
                     </ng-container>
 
