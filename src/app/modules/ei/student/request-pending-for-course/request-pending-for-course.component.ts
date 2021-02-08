@@ -155,8 +155,8 @@ export class RequestPendingForCourseComponent implements OnInit {
       /***************Merge dob after all selected dropdown *****************/
       //this.model.profile.dob=this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
       /**********************************************************************/
-
-      this.eiService.postRejectReason(this.modelReason).subscribe(res => {
+      //ei/reject-course-by-ei/
+      this.baseService.action('ei/reject-course-by-ei/',this.modelReason).subscribe(res => {
 
         let response: any = {};
         response = res;

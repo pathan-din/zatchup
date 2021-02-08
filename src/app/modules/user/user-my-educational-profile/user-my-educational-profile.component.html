@@ -187,7 +187,7 @@
                                             Ending year : <span class="regularFont">{{objSd.standard_end_year}} </span>
                                         </div> -->
                                         <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                            Standard Duration : <span class="regularFont">{{objSd.standard_start_year}}-{{objSd.standard_end_year}} </span>
+                                            Standard Duration : <span class="regularFont">{{objSd.standard_start_year}}-{{objSd.is_current_standard?'Current':objSd.standard_end_year}} </span>
                                         </div>
                                         <!-- <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Duration of completion : <span class="regularFont">1 year </span>
