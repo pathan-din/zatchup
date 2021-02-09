@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class EiStudentVerifiedListComponent implements OnInit {
   @ViewChild("verifiedModel") closeVerifiedModel: any;
-  @ViewChild("closeModel") closeRejectModel: any;
+  @ViewChild("closeRejectModel") closeRejectModel: any;
   model: any = {};
   modelReason: any = {};
   studentList: any = [];
@@ -308,7 +308,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             this.alert.success(res.message, 'Success');
-            this.closeRejectModel.nativeElement.click()
+            this.closeVerifiedModel.nativeElement.click()
             this.router.navigate(['ei/student-management']);
           } else {
             this.loader.hide();
@@ -329,6 +329,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
     if (data)
       return this.baseService.getGender(data)
     return ''
+  }
+
+  closeModel(){
+    this.closeVerifiedModel.nativeElement.click()
   }
 
 }

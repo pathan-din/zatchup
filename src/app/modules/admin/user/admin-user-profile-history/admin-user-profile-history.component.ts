@@ -42,7 +42,7 @@ export class AdminUserProfileHistoryComponent implements OnInit {
     this.loader.show()
     this.params = {
       "user_id": this.userId,
-      "module_name": "STUDENT",
+      "module_name": "STUDENTS",
       "page_size": this.pagination.page_size,
       "page": page
     }
