@@ -9,12 +9,12 @@
                 <h2 class="text-center mb-3 mt-0 semiBoldFont">Sign-up (Sub- admin and Teachers)</h2>
                 <form>
                     <div class="form-group row  ml-0 mr-0">
-                        <label for="emailid" class=" commonFontSize mediumFont letterspacing">EmailID</label>
+                        <label for="emailid" class=" commonFontSize mediumFont letterspacing">Email ID</label>
                         <div class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-user text-white" aria-hidden="true"></i>
                                     </span>
-                            <input required [(ngModel)]="model.username" name="email_Or_phone_number" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Enter EmailID / Mobile Number">
+                            <input required [(ngModel)]="model.username" name="email_Or_phone_number" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email ID / Mobile Number">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.email_Or_phone_number"></div>
                     </div>
