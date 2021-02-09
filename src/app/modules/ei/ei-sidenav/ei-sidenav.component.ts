@@ -8,6 +8,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+
 @Component({
   selector: 'app-ei-sidenav',
   templateUrl: './ei-sidenav.component.html',
@@ -18,6 +19,7 @@ export class EiSidenavComponent {
   notificationCount: any;
   subscriptionActive: boolean = true;
   isApproved: boolean = false;
+  params:any;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -121,15 +123,19 @@ export class EiSidenavComponent {
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
     try {
-      var arrMenuList = ['poc-details','manage-courses','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices', 'school-profile', 'add-subscription','onboarding','subscription'];
+      var arrMenuList = ['poc-details','manage-courses','manage-courses-add','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices','manage-courses-details/:id','manage-courses-details', 'school-profile', 'add-subscription','onboarding','subscription'];
       let thisUrl: any = '';
-      let parameter : any = '';
+      let parameter : any ={};
       
-      this.route.snapshot.url.map(url => {
-
-        thisUrl = url.path;
-        
-      })
+      if (Object.keys(this.route.snapshot.queryParams).length !== 0) { 
+        parameter = this.route.snapshot.queryParams;
+      }else{
+        parameter = this.route.snapshot.params;
+      }
+      
+      
+     
+      this.route.snapshot.url.map(url => {thisUrl = url.path; })
       thisUrl=this.route.routeConfig.path?this.route.routeConfig.path: thisUrl;
 
       this.baseService.getData('user/reg-step-count/').subscribe(res => {
@@ -169,8 +175,24 @@ export class EiSidenavComponent {
                 if (nUrl) {
                   if(this.route.snapshot.params.invoice=='onboarding'){
                     this.router.navigate(['ei/invoice-list/' +this.route.snapshot.params.invoice]);
-                  }else{
-                    this.router.navigate(['ei/' + thisUrl]);
+                  }
+                  else{
+                    if(typeof(parameter)=='object'){
+                      console.log(Object.keys(parameter).length);
+                      var arrUrl = thisUrl.split(":");
+                      if (Object.keys(parameter).length === 1) { 
+                        
+                        this.router.navigate(['ei/' + arrUrl[0]+'/'+parameter[Object.keys(parameter)[0]]]);
+                        
+                      }else{
+                        this.router.navigate(['ei/' + thisUrl],{queryParams:parameter});
+                      }
+                      
+                      
+                    }
+                    else{
+                      this.router.navigate(['ei/' + thisUrl]);
+                    }
                   }
                   
                 } else {

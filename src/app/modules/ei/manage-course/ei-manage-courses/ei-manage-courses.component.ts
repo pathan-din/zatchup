@@ -5,6 +5,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 
 export interface subAdminManagementElement {
@@ -47,7 +48,8 @@ export class EiManageCoursesComponent implements OnInit {
     private router: Router,
     private baseService:BaseService,
     private SpinnerService: NgxSpinnerService,
-    private alert : NotificationService) { }
+    private alert : NotificationService,
+    private confirmDialogService:ConfirmDialogService) { }
 
 
   ngOnInit(): void {
@@ -61,27 +63,46 @@ export class EiManageCoursesComponent implements OnInit {
   goToEiEditPage(id){
     this.router.navigate(["ei/manage-courses-add"],{queryParams:{action:'edit',course_id:id}});
   }
-
-  goToDelete(courseId){
-      try {
-        this.SpinnerService.show();
-        this.baseService.action("ei/get-course-by-id/"+courseId+"/",{}).subscribe((res:any)=>{
-          if(res.status==true){
-            this.SpinnerService.hide();
-            this.alert.success(res.message,"Success");
-          }else{
-            this.SpinnerService.hide();
-            this.alert.error(res.error.message[0],"Error");
+  goToDelete(courseId: any): any {
+    this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+      this.SpinnerService.show()
+      this.baseService.action("ei/get-course-by-id/"+courseId+"/",{}).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
           }
-          
-        },(error)=>{
           this.SpinnerService.hide();
-
-        })
-      } catch (e) {
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
         this.SpinnerService.hide();
       }
+    }, () => {
+    });
   }
+  // goToDelete(courseId){
+  //     try {
+  //       this.SpinnerService.show();
+  //       this.baseService.action("ei/get-course-by-id/"+courseId+"/",{}).subscribe((res:any)=>{
+  //         if(res.status==true){
+  //           this.SpinnerService.hide();
+  //           this.alert.success(res.message,"Success");
+  //         }else{
+  //           this.SpinnerService.hide();
+  //           this.alert.error(res.error.message[0],"Error");
+  //         }
+          
+  //       },(error)=>{
+  //         this.SpinnerService.hide();
+
+  //       })
+  //     } catch (e) {
+  //       this.SpinnerService.hide();
+  //     }
+  // }
 
   getCourseList(page, strFilter) {
 

@@ -132,8 +132,9 @@ export class BaseService {
   }
 
   actionForFormData(url: any, data: any) {
-    console.log(this.setFormData(data));
-
+   if(typeof(data)=='object'){
+    return this.http.post(this.environment.baseUrl + url, data)
+   }
     return this.http.post(this.environment.baseUrl + url, this.setFormData(data))
   }
 
