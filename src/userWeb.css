@@ -143,14 +143,14 @@ body {
 
 .form-control-radioDiv-padding .custom-label {
   font-size: 0.875rem;
-  color: #b4b4b4;
+  /* color: #b4b4b4; */
   font-family: "SFUIDisplay-Regular";
 }
 
 .custom-label {
   display: block;
   position: relative;
-  padding-left: 12px;
+  padding-left: 18px;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
