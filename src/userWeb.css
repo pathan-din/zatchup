@@ -150,7 +150,7 @@ body {
 .custom-label {
   display: block;
   position: relative;
-  padding-left: 18px;
+  padding-left: 12px;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
