@@ -5,22 +5,24 @@
                 <a class="navbar-brand" href="index.php">
                     <img src="./assets/images/about-us/Logo.png">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-              
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#Career">Career</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/user/login">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a (click)="scrollToTargetAdjusted('contact_us')" class="cursorStyle">Contact Us</a>
-                    </li>
-                  </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#Career">Career</a>
+                        </li>
+                        <li class="nav-item">
+                            <a routerLink="/user/login">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a (click)="scrollToTargetAdjusted('contact_us')" class="cursorStyle">Contact Us</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -244,32 +246,38 @@
 
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <form method="post" id="form_register">
+                    <form #contactUsForm="ngForm" id="form_register">
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label></label>
-                                <input type="text" name="name" id="reg_name" class="form-control"
-                                    placeholder="Enter Name" required="required">
+                                <input type="text" name="name" id="reg_name" class="form-control" (keyup)="isValid()"
+                                    placeholder="Enter Name" [(ngModel)]="model.name" required>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label></label>
-                                <input type="email" name="email" id="reg_email" class="form-control"
-                                    placeholder="Enter Email" required="required">
+                                <input type="email" name="email" id="reg_email" class="form-control" (keyup)="isValid()"
+                                    placeholder="Enter Email" [(ngModel)]="model.email" required>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-12">
                                 <label></label>
                                 <input type="text" name="subject" id="reg_subject" class="form-control"
-                                    placeholder="Enter Subject" required="required">
+                                    placeholder="Enter Subject" [(ngModel)]="model.subject" (keyup)="isValid()"
+                                    required>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.subject"></div>
                             </div>
                             <div class="form-group col-sm-12">
                                 <label></label>
                                 <textarea rows="5" name="message" id="reg_message" class="form-control"
-                                    placeholder="Message"></textarea>
+                                    placeholder="Message" (keyup)="isValid()" [(ngModel)]="model.message"
+                                    required></textarea>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.message"></div>
                             </div>
                             <div class="form-group col-sm-10">
-                                <button name="submit" value="submit">Send Message</button>
+                                <button name="submit" (click)="sendMessage(); contactUsForm.resetForm()">Send Message</button>
                             </div>
                         </div>
                     </form>
@@ -324,3 +332,7 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

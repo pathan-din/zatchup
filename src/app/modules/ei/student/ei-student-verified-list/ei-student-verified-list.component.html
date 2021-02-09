@@ -309,7 +309,7 @@
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header align-items-center justify-content-center pb-0 ">
                     <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
-                    <button type="button " #closeModel class="close rounded-circle border bg-white model-close-btn p-0"
+                    <button type="button " #closeRejectModel class="close rounded-circle border bg-white model-close-btn p-0"
                         data-dismiss="modal" aria-label="Close ">
                         <span aria-hidden="true "> &times; </span>
                     </button>
@@ -360,7 +360,7 @@
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header align-items-center border-0 pb-0 pl-0">
                     <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Verified</h2>
-                    <button type="button " #verifiedModel
+                    <button type="button" #verifiedModel
                         class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                         aria-label="Close ">
                         <span aria-hidden="true ">
@@ -377,7 +377,7 @@
                     <p class="commonFontSize regularFont letterspacing text-right">
                         <!-- <span class="mx-3 color-blue">No</span>
                       <span class="mx-2 color-blue">Yes</span> -->
-                        <button type="button " (click)="closeModel()"
+                        <button type="button" (click)="closeModel()"
                             class="bg-red px-3 color-white py-2 border-0 rounded mr-3 modalAddStudentsBtn mediumFont">No</button>
                         <button type="button" (click)="approveStudent(1, modelUserId)"
                             class="bg-purple py-2 px-3 color-white border-0 rounded modalAddStudentsBtn mediumFont">Yes</button>
