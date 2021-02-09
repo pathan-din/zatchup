@@ -23,6 +23,18 @@ export class UserMyEducationalProfileComponent implements OnInit {
   requestChangeDetails: any;
   params:any;
   courseList:any;
+  filename: string;
+  uploadedContent: File;
+  postOption: string = "matrix";
+  postOptionActiveImage: string = 'dead';
+  postOptionActiveMatrix: string = 'active';
+  profile_pic: any = '';
+  uploadInfo: any = {
+    "image_type": "profile_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
@@ -305,6 +317,40 @@ export class UserMyEducationalProfileComponent implements OnInit {
     })
     } catch (e) {
     
+    }
+  }
+  handleFileInputForBackPhoto(file,object) {
+    let fileList: FileList = file;
+    let fileData: File = fileList[0];
+    if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png') {
+      this.loader.hide();
+      this.alert.error("File format not supported", 'Error');
+      return
+    }
+    try {
+      this.loader.show();
+      const formData = new FormData();
+      formData.append('profile_pic', fileData);
+      this.baseService.actionForFormData("admin/user/update_profile_pic/",formData).subscribe(res => {
+        let response: any = {}
+        response = res;
+        if (response.status == true) {
+          this.loader.hide();
+          this.alert.success(response.message,"Success");
+          object.profile_pic = response.data.profile_pic;
+        } else {
+          this.loader.hide();
+          console.log("Error:Data not update");
+        }
+
+      }, (error) => {
+        this.loader.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.loader.hide();
+      console.log("vaeryfy Otp Exception", err);
     }
   }
 }

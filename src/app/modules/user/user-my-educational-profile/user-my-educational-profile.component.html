@@ -19,9 +19,11 @@
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
-                        <div class="position-relative" *ngIf="objEpData.profile_pic">
+                        <div class="position-relative border" *ngIf="objEpData.profile_pic">
+                            <img (click)="inputFile.click()" src="assets/images/userWebsite/camera.png" alt="" class="profileIcon img-fluid cursorStyle"/>
                             <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img-fluid">
                             <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
+                        <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">
                         </div>
 
                         <div class="pl-2 text-left">
