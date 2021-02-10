@@ -43,16 +43,16 @@
                 <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link" routerLinkActive="active-link">My School</a></li>
                 <li class="nav-item"><a  class="nav-link" routerLinkActive="active-link">Messages</a></li>
 
-                <!-- <div class="dropdown p-2 ml-4">                    
-                    <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="dropdown mx-4">
+                    <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-search cursorStyle" aria-hidden="true"></i>
-                    </span>
-                    
-                    <div class="dropdown-menu customDropDown p-0" aria-labelledby="dropdownSearchButton">
-                        <input type="search" placeholder="Search" class="form-control-input form-control dropdown-item pl-2"/>
-                    </div>  
-                </div> -->
-                
+                    </span> -->
+                    <div>
+                        <input type="search" placeholder="Search"
+                            class="form-control-input form-control pl-2 h-100" />
+                    </div>
+                </div>
+
                 <a *ngIf="authCheck" class="text-white px-0 commonFontSize semiBoldFont">
                     <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp img-small">
                     <span class="ml-3 text-white">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>                

@@ -130,6 +130,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
+import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-view/admin-ei-reject-details-view.component';
 
 const routes: Routes = [
   {
@@ -518,6 +519,9 @@ const routes: Routes = [
   },
   {
     path: 'terms-conditions/:type/:action', component: TermsConditionsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: "rejected-ei-view/:id", component: AdminEiRejectDetailsViewComponent, canActivate: [AuthGuard]
   },
   {
     path: '**', component: AdminPageNotFoundComponent

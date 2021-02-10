@@ -22,6 +22,12 @@ export class EiSchoolProfileComponent implements OnInit {
     "icon": "fa fa-camera",
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
+  uploadCoverInfo: any = {
+    "image_type": "cover_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
   userProfile: any = {};
   cover_pic: any = '';
 
@@ -152,5 +158,9 @@ export class EiSchoolProfileComponent implements OnInit {
 
   getProfilePicUrl(file: any) {
     this.userProfile.profile_pic = file.data[0].profile_pic_url
+  }
+
+  getCoverPicUrl(file: any) {
+    this.userProfile.cover_pic = file.data[0].cover_pic_url;
   }
 }

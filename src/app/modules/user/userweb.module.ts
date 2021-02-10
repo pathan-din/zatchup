@@ -68,6 +68,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
+import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 
 @NgModule({
 
@@ -128,7 +129,8 @@ import { PendingCourseDetailComponent } from './pending-course-detail/pending-co
     MessagesComponent,
     PendingRequestForUserComponent,
     SettingComponent,
-    PendingCourseDetailComponent
+    PendingCourseDetailComponent,
+    ChatPrivacyComponent
   ],
 
   imports: [
