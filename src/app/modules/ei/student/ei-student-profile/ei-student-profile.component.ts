@@ -16,6 +16,7 @@ import { Location } from '@angular/common';
 export class EiStudentProfileComponent implements OnInit {
   studentDetails:any=[];
   stid:any='';
+  userprofile:any={};
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService,
@@ -25,6 +26,11 @@ export class EiStudentProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(localStorage.getItem("userprofile")){
+      this.userprofile = JSON.parse(localStorage.getItem("userprofile"));
+      //userprofile.user_education_instituite_id
+    }
+    
     this.route.queryParams.subscribe(params => {
        this.stid=params['stId'];
        

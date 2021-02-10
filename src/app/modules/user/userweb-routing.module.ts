@@ -55,6 +55,7 @@ import { PendingRequestForUserComponent } from './pending-request-for-user/pendi
 import { ServiceComponent } from './user-info/service/service.component';
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
+import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 
 
 const routes: Routes = [
@@ -232,7 +233,9 @@ const routes: Routes = [
   {
     path: 'user/setting', component: SettingComponent, canActivate: [AuthGuard]
   },
-  
+  {
+    path: 'user/chat-privacy', component: ChatPrivacyComponent, canActivate: [AuthGuard]
+  },
   
   
 

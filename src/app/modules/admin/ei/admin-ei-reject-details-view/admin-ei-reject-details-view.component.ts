@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
-import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-admin-ei-reject-details-view',
@@ -63,7 +62,7 @@ export class AdminEiRejectDetailsViewComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.alert.success(res.message, "Success")
-            this.router.navigate(['admin/school-management'])
+            this.router.navigate(['admin/rejected-ei-list'])
           } else {
             this.alert.error(res.error.message, 'Error')
           }
@@ -78,6 +77,6 @@ export class AdminEiRejectDetailsViewComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['admin/school-management'])
+    this.router.navigate(['admin/rejected-ei-list'])
   }
 }

@@ -73,6 +73,7 @@ export class EiSidenavComponent {
         if (response.status == true) {
           this.SpinnerService.hide();
           this.userProfile = response;
+          localStorage.setItem("userprofile",JSON.stringify(response));
         } else {
           this.SpinnerService.hide();
 

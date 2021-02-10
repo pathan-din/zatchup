@@ -38,6 +38,14 @@
     position: relative;
 }
 
+.customButton {
+    position: absolute !important;
+    left: inherit !important;
+    right: 15px !important;
+    transform: inherit !important;
+    top: 30px !important;
+}
+
 .chatOut {
     padding: 8px 15px;
     border-radius: 20px;
