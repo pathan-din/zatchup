@@ -93,7 +93,7 @@ export class InformationAndBankComponent implements OnInit {
             this.submitDocumentFourStep()
             this.getEiProfileData();
             localStorage.removeItem("personalInfo");
-           
+            this.alert.success("Update Successfully","Success")
           } else {
             this.loader.hide();
           }
@@ -404,6 +404,7 @@ getEiProfileData(){
        this.editModel.school_phone = this.userData.school_phone
        this.editModel.school_email = this.userData.school_email
        this.loader.hide();
+       
      }else{
        this.loader.hide();
        this.displayError = this.eiService.getErrorResponse(this.loader,response.error);
@@ -440,9 +441,14 @@ submitBankDetail() {
     formData.append('bank_account_no', this.bankModel.bank_account_no);
     formData.append('bank_ifsc_code', this.bankModel.bank_ifsc_code);
     formData.append('cancel_cheque', this.uploadedCancelCheque);
-  
+    var url="";
+    if(localStorage.getItem("is_ei_approved")=='0'){
+      url = "ei/bankdetail-add/";
+    }else{
+      url = "ei/ei-request-for-bank-detail-change/";
+    }
 
-    this.baseService.action('ei/ei-request-for-bank-detail-change/',formData).subscribe(
+    this.baseService.action(url,formData).subscribe(
       (res: any) => {
         if (res.status == true) {
           this.loader.hide();
@@ -464,6 +470,7 @@ submitBankDetail() {
 }
 goToRequestStatusPage(){
   this.router.navigate(['ei/view-changes-request-status']);
+  
 }
   /**
    * Function Name: submitDocumentFourStep

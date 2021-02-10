@@ -1,5 +1,5 @@
 <app-ei-sidenav></app-ei-sidenav>
-<div class="container main-container p-3">    
+<div class="container main-container p-3">
     <div class="subadmin-Access-div bg-white border border-gray px-3 py-3 mb-3">
         <div class="row topDiv">
             <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
@@ -10,16 +10,19 @@
             </div>
 
         </div>
-       
+
         <div class="bg-extra-light-gray mt-3">
             <h3 class="commonFontSize semiBoldFont mb-0 border-bottom px-3 py-1">Add Subadmin</h3>
-            <form id ="addstudent" class="p-3">
+            <form id="addstudent" class="p-3">
                 <div class="form-group mt-1 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> User's Unique ZatchUp ID </label>
                     <div class="form-control-inputDiv rounded p-0  shadow-none">
-                        <input (keyup)="isValid()" [(ngModel)]="model.zatchup_id" name="zatchup_id" [required]="!model.username"  id="zatchup_id" name="zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="User's Unique ZatchUp ID">
-                    </div>  
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.zatchup_id"></div>    
+                        <input (keyup)="isValid()" [(ngModel)]="model.zatchup_id" name="zatchup_id"
+                            [required]="!model.username" id="zatchup_id" name="zatchup_id"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            type="text" placeholder="User's Unique ZatchUp ID">
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.zatchup_id"></div>
                 </div>
 
                 <div class="form-group row mt-3">
@@ -29,27 +32,30 @@
                 </div>
 
                 <div class="form-group row  mt-3">
-                    <div class="col-sm-6 MobileCol6MB">
+                    <!-- <div class="col-sm-6 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Name (Alphabetical Only)</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
                             <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.name" name="name" id="first_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Your Name">
                         </div> 
                         <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>                   
-                    </div>
+                    </div> -->
 
-                    <div class="col-sm-6 MobileCol6MB">
+                    <div class="col-sm-12 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Email ID / Phone Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.username" name="email"  id="email" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email ID / Phone Number">
-                        </div>  
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>                      
+                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.username"
+                                name="email" id="email"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Email ID / Phone Number">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
                     </div>
-                </div>  
+                </div>
 
-                <div class="form-group row  mt-3">
-                    <div class="col-sm-4" *ngFor="let designation of designationList; let i=index;">
-                        <label  for="" class=" mediumFont commonFontSize letterspacing">{{i==0?'Designation':''}}</label>
-                        <!-- <div class=" form-control-inputDiv rounded py-1 shadow-none">
+                <!-- <div class="form-group row  mt-3"> -->
+                <!-- <div class="col-sm-4" *ngFor="let designation of designationList; let i=index;"> -->
+                <!-- <label  for="" class=" mediumFont commonFontSize letterspacing">{{i==0?'Designation':''}}</label> -->
+                <!-- <div class=" form-control-inputDiv rounded py-1 shadow-none">
                             <select (change)="isValid()" id="designation" required [(ngModel)]="model.designation" name="designation"
                                 class="custom-select form-control-input">
                                 <option value="">Select</option>
@@ -59,15 +65,15 @@
                             </select>
                             
                         </div> -->
-                        <div class="" >
+                <!-- <div class="" >
                             <mat-checkbox (change)="chooseDesignation($event,designation.id,designation.name)" [(ngModel)]="designations[designation.id]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
                              
-                        </div> 
-                        
-                    </div>
-                     
-                   
-                  <!--   <div class="col-sm-4">
+                        </div>  -->
+
+                <!-- </div> -->
+
+
+                <!--   <div class="col-sm-4">
                         <label for="" class=" mediumFont commonFontSize letterspacing"> Designation </label>
                         <div class="">
                             <mat-checkbox  required [(ngModel)]="model.designation" name="designation" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">Sub-Admin</mat-checkbox>
@@ -88,17 +94,17 @@
                             <mat-checkbox  required [(ngModel)]="model.designation" name="designation" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle ">Management</mat-checkbox>
                         </div>                        
                     </div>-->
-                </div>   
-                
-                <div class="form-group mt-1 ">
+                <!-- </div>    -->
+
+                <!-- <div class="form-group mt-1 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Employee ID Number </label>
                     <div class="form-control-inputDiv rounded p-0  shadow-none">
                         <input (keyup)="isValid()" required [(ngModel)]="model.employee_id_num" name="employee_id" id="employee_id_num" name="employee_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Employee ID Number">
                     </div> 
                     <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>       
-                </div>
+                </div> -->
 
-                <div class="form-group row  mt-3" *ngIf="isTeacher">
+                <!-- <div class="form-group row  mt-3" *ngIf="isTeacher">
                     <div class="col-sm-4 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing"> Add Classes Tought By Teacher </label>
                         <div class="">
@@ -107,8 +113,8 @@
                         <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>                   
                     </div>
                    
-                </div>  
-                <div class="form-group row  mt-3" *ngFor="let addNew of arrayList;let i=index">
+                </div>   -->
+                <!-- <div class="form-group row  mt-3" *ngFor="let addNew of arrayList;let i=index">
                 <div *ngIf="isClass" class="col-sm-4  mt-3  ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
@@ -139,17 +145,21 @@
                     </select>
                     </div>
                 </div> 
-            </div>
-            <div *ngIf="isClass" class="col-sm-1 centerImgDiv" >
-                <i (click)="addMore()" style="font-size: 30px;" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i>
+            </div> -->
+                <!-- <div *ngIf="isClass" class="col-sm-1 centerImgDiv" > -->
+                <!-- <i (click)="addMore()" style="font-size: 30px;" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i> -->
                 <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
-            </div>
+                <!-- </div> -->
+                <button type="button" (click)="addSubadmin()" data-dismiss="modal" aria-label="Close "
+                    class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing mt-1">
+                    Submit
+                </button>
             </form>
         </div>
     </div>
 
 
-    <div class="subadmin-Access-div bg-white border border-gray px-3 py-3">
+    <!-- <div class="subadmin-Access-div bg-white border border-gray px-3 py-3">
         <div class="Access-Roll">
             <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin Module Access</h2>
 
@@ -157,65 +167,69 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr class="bg-Gainsboro">
-                            <!-- <th scope="col">S.No</th> -->
                             <th scope="col" class="w-25">Modules </th>
                             <th scope="col" class="w-25">Sub Module</th>
                             <th scope="col" class="w-25">Description</th>
                             <th scope="col">Access</th>
-                            <!-- <th scope="col">Add Classes</th> -->
                             <th scope="col">Remarks</th>
                         </tr>
 
                     </thead>
-                    <tbody >
-                        
+                    <tbody>
+
                         <tr *ngFor="let module of modifiedModulesList; let i = index;">
-                            
+
                             <td>{{module.parentmodule?module.parentmodule:module.module_name}}</td>
                             <td>{{module.count==0?'NA':module.module_name}}</td>
                             <td>{{module.description}}</td>
-                            <td><mat-checkbox class="purple-checkbox" [(ngModel)]="module.is_access"
-                                (change)="isAllSelected($event ,module.module_code)" name="is_access_{{module.module_code}}">
-                            </mat-checkbox></td>
-                            <!-- <td *ngIf="module.is_classid_available" (click)="openClassModel(module.module_code)" class="color-blue cursorStyle">Add Class</td>
-                            <td *ngIf="!module.is_classid_available">NA</td> -->
+                            <td>
+                                <mat-checkbox class="purple-checkbox" [(ngModel)]="module.is_access"
+                                    (change)="isAllSelected($event ,module.module_code)"
+                                    name="is_access_{{module.module_code}}">
+                                </mat-checkbox>
+                            </td>
                             <td>NA</td>
-                            
+
                         </tr>
                     </tbody>
-                    
+
 
 
                 </table>
             </div>
         </div>
 
-       
-        <button (click)="submitPermissionWithClass()" type="button" class="bg-paret-green border-0 py-2 px-5 text-white mt-2">Submit</button>
+
+        <button (click)="submitPermissionWithClass()" type="button"
+            class="bg-paret-green border-0 py-2 px-5 text-white mt-2">Submit</button>
 
 
-        <!-- addClassModel  -->
-        <div class="modal fade" id="addClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="addClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0 ">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Class access</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
-                  <span aria-hidden="true ">
-                      &times;
-                      <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
-                    </span>
-                </button>
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                            data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
+                            </span>
+                        </button>
                     </div>
                     <div class="modal-body px-0">
-                        <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
                         <div class="form-group row mb-1 ">
                             <div class="col-md-6 ">
-                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" (change)="clearClassAccess()" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
+                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" (change)="clearClassAccess()"
+                                    class="addStudent-check mediumFont commonFontSize letterspacing ">All Students
+                                </mat-checkbox>
 
                             </div>
                             <div class="col-md-6 ">
-                                <mat-checkbox [(ngModel)]="isModuleAccessClass" (change)="displayCourseListModuleAccess()" class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class</mat-checkbox>
+                                <mat-checkbox [(ngModel)]="isModuleAccessClass"
+                                    (change)="displayCourseListModuleAccess()"
+                                    class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class
+                                </mat-checkbox>
 
                             </div>
 
@@ -223,26 +237,35 @@
 
                         <div *ngIf="isModuleAccessClass" class="form-group row mb-1 ">
                             <div class="col-md-12" *ngFor="let course of courseListModuleAccess">
-                                <mat-checkbox (change)="displayStandardListModuleAccess(course.id)"  class="addStudent-check mediumFont commonFontSize letterspacing">{{course.course_name}}</mat-checkbox>
+                                <mat-checkbox (change)="displayStandardListModuleAccess(course.id)"
+                                    class="addStudent-check mediumFont commonFontSize letterspacing">
+                                    {{course.course_name}}</mat-checkbox>
                                 <div *ngIf="isModuleAccessClass" class="form-group row mb-1 ">
-                                    <div class="col-md-12 ml-4" *ngFor="let standard of standardListModuleAccess[course.id]">
-                                        <mat-checkbox (change)="displayClassListModuleAccess(standard.id)" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                    <div class="col-md-12 ml-4"
+                                        *ngFor="let standard of standardListModuleAccess[course.id]">
+                                        <mat-checkbox (change)="displayClassListModuleAccess(standard.id)"
+                                            class="addStudent-check mediumFont commonFontSize letterspacing ">
+                                            {{standard.standard_name}}</mat-checkbox>
                                         <div class="col-md-12 d-flex flex-column ml-4 ">
-                                            <mat-checkbox (change)="getclassListArrayModuleAccess(classes.id)" *ngFor="let classes of classListModuleAccess[standard.id]" class="addStudent-check mediumFont commonFontSize letterspacing ">{{classes.class_name}}</mat-checkbox>
-                                            
+                                            <mat-checkbox (change)="getclassListArrayModuleAccess(classes.id)"
+                                                *ngFor="let classes of classListModuleAccess[standard.id]"
+                                                class="addStudent-check mediumFont commonFontSize letterspacing ">
+                                                {{classes.class_name}}</mat-checkbox>
+
                                             <input [(ngModel)]="modelCodeIndex" type="hidden">
                                         </div>
                                     </div>
-                                   
-        
+
+
                                 </div>
                             </div>
                         </div>
 
-                      
-                        <button  type="button " data-dismiss="modal" aria-label="Close " class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing mt-1">
-                    Submit
-                </button>
+
+                        <button type="button " data-dismiss="modal" aria-label="Close "
+                            class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing mt-1">
+                            Submit
+                        </button>
                     </div>
                 </div>
             </div>
@@ -250,12 +273,12 @@
 
 
 
-    </div>
+    </div> -->
 
 
 
 
 </div>
- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-        <p style="color: white">Please Wait. </p>
-    </ngx-spinner>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

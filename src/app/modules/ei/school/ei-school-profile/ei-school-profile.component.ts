@@ -15,8 +15,6 @@ export class EiSchoolProfileComponent implements OnInit {
   postOption: string = "matrix";
   postOptionActiveImage: string = 'dead';
   postOptionActiveMatrix: string = 'active';
-  userProfile: any = {};
-  cover_pic: any = '';
   profile_pic: any = '';
   uploadInfo: any = {
     "image_type": "profile_pic",
@@ -24,6 +22,9 @@ export class EiSchoolProfileComponent implements OnInit {
     "icon": "fa fa-camera",
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
+  userProfile: any = {};
+  cover_pic: any = '';
+
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
