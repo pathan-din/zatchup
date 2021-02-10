@@ -39,11 +39,11 @@ export class EiDashboardComponent implements OnInit {
     console.log(event,this.model)
   }
   goToEiAlumniListPage(){
-    this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':1}});
+    this.router.navigate(['ei/alumni-list']);
   }
 
   goToEiVerifiedAlumniPage(){
-    this.router.navigate(['ei/alumni-list']);
+    this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':1}});
   }
 
   goToEiUnverifiedAlumniPage(){

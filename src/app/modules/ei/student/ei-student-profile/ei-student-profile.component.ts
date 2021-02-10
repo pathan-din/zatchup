@@ -16,6 +16,8 @@ import { Location } from '@angular/common';
 export class EiStudentProfileComponent implements OnInit {
   studentDetails:any=[];
   stid:any='';
+  userprofile:any={};
+  ischeckStudentOrAlumni:boolean=false;
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService,
@@ -25,6 +27,11 @@ export class EiStudentProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(localStorage.getItem("userprofile")){
+      this.userprofile = JSON.parse(localStorage.getItem("userprofile"));
+      //userprofile.user_education_instituite_id
+    }
+    
     this.route.queryParams.subscribe(params => {
        this.stid=params['stId'];
        
@@ -52,7 +59,15 @@ export class EiStudentProfileComponent implements OnInit {
       if(response.status == true)
       {
         this.studentDetails = response.data;
-        console.log(this.studentDetails);
+        this.studentDetails[0].educationdetail.forEach(element => {
+          element.course_detail.forEach(elementCourse => {
+            if(elementCourse.is_current_course){
+              this.ischeckStudentOrAlumni = true;
+            }
+          });
+        });
+        
+        
         
       }else{
         this.SpinnerService.hide();
