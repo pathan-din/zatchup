@@ -123,7 +123,7 @@ export class EiSidenavComponent {
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
     try {
-      var arrMenuList = ['poc-details','manage-courses','manage-courses-add','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices','manage-courses-details/:id','manage-courses-details', 'school-profile', 'add-subscription','onboarding','subscription'];
+      var arrMenuList = ['poc-details','manage-courses','notification','manage-courses-add','personal-information','add-more-document', 'information-and-bank-details','invoice-list/:invoice', 'invoices','manage-courses-details/:id','manage-courses-details', 'school-profile', 'add-subscription','onboarding','subscription'];
       let thisUrl: any = '';
       let parameter : any ={};
       
@@ -209,6 +209,10 @@ export class EiSidenavComponent {
                 this.router.navigate(['ei/' + thisUrl]);
               }
   
+            }else if (response.rejected_reason && !response.is_approved && !this.subscriptionActive) {
+              localStorage.clear();
+              this.alert.info(response.rejected_reason,"Information");
+              this.router.navigate(['ei/login']);
             }
           }
          

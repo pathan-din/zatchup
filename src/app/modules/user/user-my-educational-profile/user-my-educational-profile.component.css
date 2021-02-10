@@ -19,8 +19,9 @@
     position: absolute;
     bottom: -8px;
     right: -4px;
+    z-index: 1;
 }
-
+ 
 .profileIcon {
     position: absolute;
     background: #000;
