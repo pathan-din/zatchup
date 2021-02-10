@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Students Profile</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">{{ischeckStudentOrAlumni?'Students':'Alumni'}} Profile</h2>
             </div>
 
         </div>
@@ -148,7 +148,7 @@
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p class="m-0">Year of Joining the El</p>
+                            <p class="m-0">Tenure with School</p>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{eduDetail.date_joining}} </p>
@@ -156,7 +156,7 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row" *ngIf="!ischeckStudentOrAlumni">
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -194,15 +194,15 @@
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p class="m-0"> Year of starting course </p>
+                            <p class="m-0"> Tenure of course </p>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.start_year}}</p>
+                            <p><span class="mr-3">:</span>{{courseData.start_year}} - {{courseData.is_current_course?'Present':courseData.end_year}}</p>
                         </div>
                     </div>
 
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -212,7 +212,7 @@
                             <p><span class="mr-3">:</span>{{courseData.is_current_course?'Present':courseData.end_year}}
                             </p>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="row">
