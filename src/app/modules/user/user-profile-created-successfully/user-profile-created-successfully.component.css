@@ -35,4 +35,11 @@
         padding-left: 1.5rem!important;
         padding-right: 1.5rem!important;
     }
+    .pl-5, .px-5 {
+        padding-left: .5rem!important;
+    }
+    .pr-5, .px-5 {
+        padding-right: .5rem!important;
+    } 
 }
+
