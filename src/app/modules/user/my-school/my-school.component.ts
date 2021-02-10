@@ -22,6 +22,10 @@ export class MySchoolComponent  implements  OnInit{
   }
 gotToProfilePage(){
   this.router.navigate(["user/my-educational-profile"]);
-
 }
+
+gotoChatWithTeachers(){
+  this.router.navigate(['user/new-chat']);
+}
+
 }
