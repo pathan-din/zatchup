@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
-import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
-import { FormBuilder } from "@angular/forms";
+// import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { findIndex } from 'rxjs/operators';
+// import { findIndex } from 'rxjs/operators';
 import { Location } from '@angular/common';
 declare var $: any;
 
@@ -41,24 +39,29 @@ export class EiSubadminAccessComponent implements OnInit {
   classAccessFromDb: any = [];
   userId: any;
   module: any = {};
+  historyModuleList: Array<any> = [];
+  addPermissionList: Array<any> = [];
+  removePermissionList: Array<any> = [];
+  historyArr: Array<any> = [];
+  userProfileId: any;
+  subAdminName: any;
+
   constructor(
     private router: Router,
-    private SpinnerService: NgxSpinnerService,
+    private location: Location,
+    private loader: NgxSpinnerService,
     public baseService: BaseService,
-    public formBuilder: FormBuilder,
+    // public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private route: ActivatedRoute,
-    public eiService: EiServiceService,
-    private genericFormValidationService: GenericFormValidationService, 
-    private location: Location) { }
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.model.module_details = [];
     this.module.module_details = [];
     this.route.queryParams.subscribe(params => {
       var id = params['id'];
-      if(!id)
-      {
+      if (!id) {
         this.router.navigate(['ei/subadmin-management'])
         return
       }
@@ -68,73 +71,55 @@ export class EiSubadminAccessComponent implements OnInit {
 
   }
   sudAdminListAccessDetails(id) {
+    // debugger
     try {
-      this.SpinnerService.show();
-
+      this.loader.show();
       this.classAccessFromDb = [];
       this.modifiedModulesList = [];
       this.model.module_details = [];
-
-
-      //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
-      this.baseService.getData('ei/edit-ei-subadmin-by-ei/' + id).subscribe(res => {
-
-        let response: any = {};
-        
-        
-      
-
-        response = res;
-        this.moduleList = response.data.module_detail;
-        
-        this.moduleList.forEach(element => {
-          let objModel: any = {};
-          if (element.sub_module_set.length > 0) {
-
-            element.sub_module_set.forEach(subElement => {
-              let objModel: any = {};
-              subElement.count = element.sub_module_set.length
-              subElement.parentmodule = element.module_name
-              this.modifiedModulesList.push(subElement);
-              this.model.module_details.push(subElement)
-              if(subElement.is_access){
-                objModel.module_code = subElement.module_code;
+      this.baseService.getData('ei/edit-ei-subadmin-by-ei/' + id).subscribe(
+        (res: any) => {
+          this.moduleList = res.data.module_detail;
+          this.userProfileId = res.data.userprofile_id;
+          this.subAdminName = res.data.name;
+          this.moduleList.forEach(element => {
+            let objModel: any = {};
+            if (element.sub_module_set.length > 0) {
+              element.sub_module_set.forEach(subElement => {
+                let objModel: any = {};
+                subElement.count = element.sub_module_set.length
+                subElement.parentmodule = element.module_name
+                this.modifiedModulesList.push(subElement);
+                this.model.module_details.push(subElement)
+                if (subElement.is_access) {
+                  objModel.module_code = subElement.module_code;
+                  this.module.module_details.push(objModel);
+                  this.historyModuleList.push(objModel)
+                }
+              });
+            } else {
+              this.modifiedModulesList.push(element);
+              this.model.module_details.push(element)
+              if (element.is_access) {
+                objModel.module_code = element.module_code;
                 this.module.module_details.push(objModel);
+                this.historyModuleList.push(objModel)
               }
-              
-            });
-
-          } else {
-            this.modifiedModulesList.push(element);
-            this.model.module_details.push(element)
-            if(element.is_access){
-              objModel.module_code = element.module_code;
-              this.module.module_details.push(objModel);
             }
-            
-          }
-
+          });
+        }, (error) => {
+          this.loader.hide();
         });
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        // console.log(error);
-        // this.alert.error(response.message[0], 'Error')
-      });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log(err);
-      // this.alert.error(err, 'Error')
+      this.loader.hide();
     }
   }
-  checkStatus(id, checkname) {
 
+  checkStatus(id, checkname) {
     if (checkname == 'standard') {
       var index = this.classAccessFromDb.findIndex(codes => codes.standard_id === id);
-      // this.displayClassListModuleAccess(id);
     } else if (checkname == 'class') {
       var index = this.classAccessFromDb.findIndex(codes => codes.class_id === id);
-      // this.getclassListArrayModuleAccess(id);
     } else if (checkname == 'course') {
       var index = this.classAccessFromDb.findIndex(codes => codes.course_id === id);
     }
@@ -148,108 +133,81 @@ export class EiSubadminAccessComponent implements OnInit {
 
 
   submitPermissionWithClass() {
-
-
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       var id = this.userId;
+      this.addPermissionList = this.difference(this.historyModuleList, this.module.module_details)
+      this.removePermissionList = this.difference(this.module.module_details, this.historyModuleList)
       this.baseService.actionForPutMethod('ei/edit-ei-subadmin-by-ei/' + id + '/', this.module).subscribe(res => {
-        this.SpinnerService.hide();
+        this.loader.hide();
         let response: any = {};
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
+          this.historyArr = []
+          this.makeHistoryObject(this.removePermissionList, false);
+          this.makeHistoryObject(this.addPermissionList, true)
+          this.loader.hide();
+          this.addHistory()
           this.alert.success('Success', response.message);
+          this.goBack()
         } else {
-          this.SpinnerService.hide();
+          this.loader.hide();
           this.alert.error('Error', response.message);
         }
-        //this.moduleList=response.results;
-
-
       }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
+        this.loader.hide();
       });
-
-
     } catch (e) {
-
+      this.loader.hide();
     }
   }
 
 
   displayCourseListModuleAccess() {
     try {
-      this.SpinnerService.show();
-
-      // this.model.course = '';
-      //this.model.standard = '';
-      // this.model.teaching_class = '';
-
-      this.eiService.displayCourseList().subscribe(res => {
-        this.SpinnerService.hide();
-        let response: any = {};
-        response = res;
-        this.courseListModuleAccess = response.results;
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+      this.loader.show();
+      this.baseService.getData('user/course-list/').subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.courseListModuleAccess = res.results;
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
   displayStandardListModuleAccess(courseId) {
     try {
-      this.SpinnerService.show();
-      // this.standardList = []
-      //this.model.standard = '';
-      //this.model.course_id='';
-
-      // this.model.teaching_class = '';
-      this.eiService.displayStandardList(courseId).subscribe(res => {
-        this.SpinnerService.hide();
-        let response: any = {};
-        response = res;
-        this.standardListModuleAccess[courseId] = response.standarddata;
-
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+      this.loader.show();
+      this.baseService.getData('user/standard-list/', { "course_id": courseId }).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.standardListModuleAccess[courseId] = res.standarddata;
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
+
   displayClassListModuleAccess(stId) {
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.classList = [];
-      this.eiService.displayClassList(stId).subscribe(res => {
-        this.SpinnerService.hide();
-        let response: any = {};
-        response = res;
-        this.classListModuleAccess[stId] = response.classdata;
-
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+      this.baseService.getData('user/class-list/', { "standard_id": stId }).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.classListModuleAccess[stId] = res.classdata;
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
   }
+
   getClassesOnSelect(id) {
     var index = this.classListArrayAccess.findIndex(codes => codes === id);
     if (index == -1) {
@@ -258,10 +216,9 @@ export class EiSubadminAccessComponent implements OnInit {
       this.alert.error("You have already added.", "Error");
       return;
     }
-    console.log(this.classListArrayAccess);
-
     this.model.teacher_class_id = this.classListArrayAccess.join();
   }
+
   getclassListArrayModuleAccess(id) {
     var index = this.classListArrayModuleAccess.findIndex(codes => codes === id);
     if (index == -1) {
@@ -270,26 +227,20 @@ export class EiSubadminAccessComponent implements OnInit {
 
       this.classListArrayModuleAccess.splice(index, 1);
     }
-    console.log(this.modelCodeIndex);
-
     this.module.module_details[this.modelCodeIndex].class_id = this.classListArrayModuleAccess.join();
   }
-  changeAddClass(isAccess){
-    //console.log(isAccess);
-    
-    if(isAccess){
-      this.displayCourseListModuleAccess() ;
-    }else{
+
+  changeAddClass(isAccess) {
+    if (isAccess) {
+      this.displayCourseListModuleAccess();
+    } else {
       this.module.module_details.forEach(element => {
         delete element.class_id;
       });
     }
   }
-  /**Open Class Model Access */
-  openClassModel(module_code) {
 
-    console.log(this.module);
-    
+  openClassModel(module_code) {
     const index = this.module.module_details.findIndex(codes => codes.module_code === module_code);
     if (index == -1) {
       this.alert.error('Please select respective module.', 'Error');
@@ -297,45 +248,41 @@ export class EiSubadminAccessComponent implements OnInit {
     }
     this.classListArrayModuleAccess = [];
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.classList = [];
       let moduleData: any = {};
       moduleData.subadmin_id = this.userId;
       moduleData.module_code = module_code;
-      this.baseService.action('ei/get-class-by-modulecode/', moduleData).subscribe(res => {
-        this.SpinnerService.hide();
-        let response: any = {};
-        response = res;
-        this.classAccessFromDb = response.data;
-        let moduleDataFromDb: any = {};
-        moduleDataFromDb.module_code = module_code;
-        if (this.classAccessFromDb.length > 0) {
-          this.classAccessFromDb.forEach(element => {
-            this.isModuleAccessClass = true;
-            this.classListModuleAccess = [];
-            this.standardListModuleAccess = [];
-            this.courseListModuleAccess = [];
-            this.displayCourseListModuleAccess();
-            this.displayStandardListModuleAccess(element.course_id);
-            this.displayClassListModuleAccess(element.standard_id);
-            this.classList.push(element.class_id);
-            this.classListArrayModuleAccess.push(element.class_id);
-          });
-          moduleDataFromDb.class_id = this.classList.join();
-        } else {
-          this.isModuleAccessClass = false;
-        }
-        this.module.module_details.push(moduleDataFromDb);
-        this.modelCodeIndex = this.module.module_details.findIndex(codes => codes.module_code === module_code);
+      this.baseService.action('ei/get-class-by-modulecode/', moduleData).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.classAccessFromDb = res.data;
+          let moduleDataFromDb: any = {};
+          moduleDataFromDb.module_code = module_code;
+          if (this.classAccessFromDb.length > 0) {
+            this.classAccessFromDb.forEach(element => {
+              this.isModuleAccessClass = true;
+              this.classListModuleAccess = [];
+              this.standardListModuleAccess = [];
+              this.courseListModuleAccess = [];
+              this.displayCourseListModuleAccess();
+              this.displayStandardListModuleAccess(element.course_id);
+              this.displayClassListModuleAccess(element.standard_id);
+              this.classList.push(element.class_id);
+              this.classListArrayModuleAccess.push(element.class_id);
+            });
+            moduleDataFromDb.class_id = this.classList.join();
+          } else {
+            this.isModuleAccessClass = false;
+          }
+          this.module.module_details.push(moduleDataFromDb);
+          this.modelCodeIndex = this.module.module_details.findIndex(codes => codes.module_code === module_code);
 
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
     }
 
     $("#addClassModel").modal({
@@ -343,33 +290,73 @@ export class EiSubadminAccessComponent implements OnInit {
       keyboard: false
     });
   }
+
   isAllSelected(event, code) {
     let objModel: any = {};
     if (event.checked) {
       const index = this.module.module_details.findIndex(codes => codes.module_code === code);
-
-
       if (index == -1) {
         objModel.module_code = code;
         this.module.module_details.push(objModel);
-
-
       } else {
         this.module.module_details.splice(index, 1);
       }
-
     } else {
       const index = this.module.module_details.findIndex(codes => codes.module_code === code);
 
       if (index != -1) {
         this.module.module_details.splice(index, 1);
-
       }
     }
-
-
   }
-  goBack(): void{
+
+  makeHistoryObject(difference: any, status: boolean) {
+    difference.forEach(elem => {
+      let find = this.modifiedModulesList.find(val => {
+        return val.module_code == elem.module_code
+      })
+      if (find) {
+        let str = {}
+        str = {
+          "module_name": find.module_name,
+          "permission_type": status == true ? "Add access premission" : "Remove access premission"
+
+        }
+        this.historyArr.push(str)
+      }
+    })
+  }
+
+  difference(obj1, obj2) {
+    return obj2.filter(item => !obj1.some(other =>
+      item.module_code == other.module_code
+    ));
+  }
+
+  goBack(): void {
     this.location.back()
+  }
+
+  addHistory() {
+    let data = {
+      "user_profile_id": this.userProfileId,
+      "name": this.subAdminName,
+      "permissions_list": this.historyArr
+    }
+    this.loader.show()
+    this.baseService.action('admin/sub-admin/update_subadmin_permissions/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          // console.log('permission add res...',res)
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error');
+        }
+
+        this.loader.hide()
+      }
+    ), err => {
+      this.loader.hide();
+    }
   }
 }
