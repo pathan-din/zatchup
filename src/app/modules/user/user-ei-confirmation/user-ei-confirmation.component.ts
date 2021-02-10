@@ -77,7 +77,7 @@ params:any;
   }
 
   editCourse(standard, school_id, courseid) {
-    console.log(standard);
+   
 
     if (standard[standard.length - 1].is_current_standard) {
       this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
@@ -90,10 +90,12 @@ params:any;
     $("#OTPModel").modal('hide');
     if (this.params.returnUrl)
     this.router.navigate([this.params.returnUrl])
-    else
-    if(localStorage.getItem("addcourse")){
+    else if(localStorage.getItem("addcourse")){
       this.router.navigate(['user/my-educational-profile']);
-    }else{
+    }else if(localStorage.getItem("editcourse")){
+      this.router.navigate(['user/my-educational-profile']);
+    }
+    else{
       this.router.navigate(['user/add-personal-info']);
     }
     

@@ -21,7 +21,7 @@
                         <div class="rounded-0 p-0 shadow-none">
                             <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY"
                                 class="form-control formfocusStyle" bsDatepicker [maxDate]="rejectEI.maxDate"
-                                [(ngModel)]="rejectEI.filterFromDate" #fromDate="ngModel" 
+                                [(ngModel)]="rejectEI.filterFromDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true }">
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                         <div class="rounded-0 p-0 shadow-none">
                             <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY"
                                 class="form-control formfocusStyle" bsDatepicker [maxDate]="rejectEI.maxDate"
-                                [(ngModel)]="rejectEI.filterToDate" #fromDate="ngModel" 
+                                [(ngModel)]="rejectEI.filterToDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true }">
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                     <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                         <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                            <select class="custom-select  form-control-input" [(ngModel)]="rejectEI.stateId" name="state"
-                                (change)="getCities()">
+                            <select class="custom-select  form-control-input" [(ngModel)]="rejectEI.stateId"
+                                name="state" (change)="getCities()">
                                 <option value="">State</option>
                                 <option *ngFor="let state of rejectEI.allStates" [value]="state.id">{{state.state}}
                                 </option>
@@ -65,7 +65,8 @@
 
                         </div>
                     </div>
-                    <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getRejectedEIList()">Apply</button>
+                    <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                        (click)="getRejectedEIList()">Apply</button>
                 </div>
             </form>
         </div>
@@ -87,8 +88,8 @@
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
-                <button (click)="generateExcel()" type='button' class="bg-purple text-white border-0 px-2 py-1"><i class="fa fa-file-excel-o mr-2"
-                        aria-hidden="true"></i>Export</button>
+                <button (click)="generateExcel()" type='button' class="bg-purple text-white border-0 px-2 py-1"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for "select no of Rejected EI info per page" and Export Button-->
@@ -104,8 +105,14 @@
                     </ng-container>
 
                     <ng-container matColumnDef="addingDate">
-                        <mat-header-cell *matHeaderCellDef>Date of Adding </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Date of Rejection </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.date_joined | date:'dd MMM yyyy'}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchUpID">
+                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="color-blue">
+                            {{element.zatchupId}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="schoolName">
@@ -128,25 +135,25 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="address">
+                    <!-- <ng-container matColumnDef="address">
                         <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.address1}} {{element.address2}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="board">
+                    <!-- <ng-container matColumnDef="board">
                         <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.university}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <!-- Symbol Column -->
-                    <ng-container matColumnDef="noOfStudent">
+                    <!-- <ng-container matColumnDef="noOfStudent">
                         <mat-header-cell *matHeaderCellDef>Approximate Number of Students </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.no_of_students}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef>status</mat-header-cell>
@@ -154,11 +161,6 @@
                             <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
                                 *ngIf="element.is_rejected == 1">Rejected School</button>
                         </mat-cell>
-                    </ng-container>
-                    <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef> School ZatchUp ID </mat-header-cell>
-                        <mat-cell *matCellDef="let element " class="color-blue">
-                            {{element.zatchupId}} </mat-cell>
                     </ng-container>
 
                     <!-- <ng-container matColumnDef="viewEI">
@@ -169,9 +171,10 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef class="text-center">Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="justify-content-center text-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"
+                                (click)="rejectedSchoolView(element.id)"></i>
+                            <!-- <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
+                            <!-- <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i> -->
                         </mat-cell>
                     </ng-container>
 

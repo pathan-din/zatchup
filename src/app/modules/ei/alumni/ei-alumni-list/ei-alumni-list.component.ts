@@ -91,7 +91,7 @@ export class EiAlumniListComponent implements OnInit {
   ngOnInit(): void {
     this.model.gender='';
     this.model.profession='';
-    this.model.approved='1';
+    this.model.approved='';
     this.model.kyc_approved='';
     this.model.page_size='';
     this.route.queryParams.subscribe(params=>{

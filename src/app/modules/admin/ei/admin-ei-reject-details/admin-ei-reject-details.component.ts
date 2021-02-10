@@ -72,7 +72,7 @@ export class AdminEiRejectDetailsComponent implements OnInit {
       }
     } catch (error) {
       this.alert.error(error, 'Error')
-        this.loader.hide();
+      this.loader.hide();
     }
   }
 
@@ -119,6 +119,10 @@ export class AdminEiRejectDetailsComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  rejectedSchoolView(id: any) {
+    this.router.navigate(['admin/rejected-ei-view', id])
   }
 
 }

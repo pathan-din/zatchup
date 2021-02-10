@@ -56,4 +56,5 @@ goToUserProfilePage(){
 goToMyEducationalProfilePage(){
   this.router.navigate(['user/my-educational-profile']);
 }
+
 }

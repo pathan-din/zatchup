@@ -70,6 +70,8 @@ export class InformationAndBankComponent implements OnInit {
       const formData = new FormData();
       if(localStorage.getItem("personalInfo")){
         this.model = JSON.parse(localStorage.getItem("personalInfo"));
+        console.log(this.model);
+        
         formData.append('name_of_school', this.model.name_of_school);
       formData.append('name_of_principle', this.model.name_of_principle);
       formData.append('state', this.model.state);
@@ -84,8 +86,10 @@ export class InformationAndBankComponent implements OnInit {
       formData.append('no_of_students', this.model.no_of_students);
       formData.append('no_of_alumni', this.model.no_of_alumni);
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
+      formData.append('send_back_to_edit', this.model.send_back_to_edit);
       formData.append('gst_no', this.model.gst_no);
       formData.append('overview', this.model.overview);
+      
       this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
@@ -105,7 +109,7 @@ export class InformationAndBankComponent implements OnInit {
         });
       }else{
         this.loader.hide();
-        this.alert.error("Please edit any information before click","Error");
+        this.alert.error("Please edit any information before click","");
       }
       
       

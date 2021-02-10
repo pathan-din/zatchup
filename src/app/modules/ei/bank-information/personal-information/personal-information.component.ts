@@ -190,6 +190,7 @@ export class PersonalInformationComponent implements OnInit {
 
   }
   goForward() {
+    this.model.send_back_to_edit = 0;
     localStorage.setItem("personalInfo",JSON.stringify(this.model));
     this.router.navigate(["ei/information-and-bank-details"])
     // this.error = [];

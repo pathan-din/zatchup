@@ -87,8 +87,8 @@ export class CurrentPocDetails extends PastPocDetails {
 }
 
 export class RejectedEIList extends Pagination {
-    displayedColumns: string[] = ['position', 'addingDate', 'schoolName', 'state', 'city', 'address', 'board', 'noOfStudent', 'status',
-        'zatchUpID', 'action'];
+    displayedColumns: string[] = ['position', 'addingDate', 'zatchUpID', 'schoolName', 'state', 'city', 'status',
+         'action'];
 
     filterFromDate: any;
     filterToDate: any;
