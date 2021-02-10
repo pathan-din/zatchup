@@ -19,6 +19,12 @@
     position: absolute;
     bottom: -8px;
     right: -4px;
+    z-index: 1;
+}
+ 
+
+.chckImg {
+    width: 20px;
 }
 
 .profileIcon {

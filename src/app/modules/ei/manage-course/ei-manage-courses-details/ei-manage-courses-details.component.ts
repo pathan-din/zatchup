@@ -4,8 +4,11 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+
 import { BaseService } from '../../../../services/base/base.service';
 import { Location } from '@angular/common';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 export interface subAdminManagementElement {
@@ -64,7 +67,9 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     private validationService: GenericFormValidationService,
-    private location: Location
+    private location: Location,
+    private confirmDialogService:ConfirmDialogService,
+    private alert: NotificationService,
   ) { }
 
 
@@ -188,6 +193,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
       this.SpinnerService.hide();
     }
   }
+
   editClassById(id) {
     try {
       console.log('edit class model data is as ::',this.editClassModel)
@@ -292,6 +298,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
           objCourseList.SNo = i;
           objCourseList.courseName = objData.course_name;
           objCourseList.course_id = objData.course_id;
+          objCourseList.durationOfCourse = objData.duration;
           objCourseList.startYear = objData.start_year;
           objCourseList.endYear = objData.end_year;
           objCourseList.noOfStandards = objData.num_of_standard;

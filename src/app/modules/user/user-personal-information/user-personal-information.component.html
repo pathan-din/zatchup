@@ -5,20 +5,17 @@
         <div class="col-md-8">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4 pl-0">
+        <div class="col-md-4">
             <div class="row">
-                <div class="col-9">
+                <div class="col-12">
                     <h2 class="mb-4 textSpace">Personal Information </h2>
-                </div>
-                <div class="col-3 text-right">
-                   
                 </div>
             </div>
 
 
             <form>
                 <div class="form-group row justify-content-center">
-                    <div class="col-6   text-center ">
+                    <div class="col-12 text-center ">
                         <div class="round-camera-div mx-auto">
                             <img class="img-fluid p-2 img_profile cursorStyle" src="{{imageUrl}}">
                             <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
