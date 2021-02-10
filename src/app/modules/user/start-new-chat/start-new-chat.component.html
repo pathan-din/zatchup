@@ -1,7 +1,7 @@
 <app-user-header></app-user-header>
 
 <div class="container contentSpaceTop">
-    <div class="row">
+    <div class="row" (click)="goBack()">
         <div class="col-12">
             <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
         </div>
@@ -19,7 +19,8 @@
                     <div class="profile_name ml-3 border-bottomCustom w-100">
                         <p class="m-0 pt-2">Mahesh Chand 
                             <span class="small-text-2">(Student)</span>
-                            <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true" style="font-size: 22px"></i>
+                            <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true" style="font-size: 22px"
+                            (click)="gotoChat()"></i>
                         </p>                                                    
                     </div>
                 </div> 
