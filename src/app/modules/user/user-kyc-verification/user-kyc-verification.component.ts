@@ -192,20 +192,25 @@ export class UserKycVerificationComponent implements OnInit {
             localStorage.removeItem("day");
             localStorage.removeItem("kyc_name");
             //localStorage.setItem("");
-            if(response.is_already_registered==true)
-            {
-              this.router.navigate(['user/school-confirmation']);
-            }else{
-              if(localStorage.getItem("isrejected")){
-                //location.reload();
+            if(response.reg_steps<5){
+              if(response.is_already_registered==true)
+              {
+                this.router.navigate(['user/school-confirmation']);
               }else{
-                this.router.navigate(['user/add-ei']);
-                // $("#currentStatusModel").modal({
-                //   backdrop: 'static',
-                //   keyboard: false
-                // });
+                if(localStorage.getItem("isrejected")){
+                  //location.reload();
+                }else{
+                  this.router.navigate(['user/add-ei']);
+                  // $("#currentStatusModel").modal({
+                  //   backdrop: 'static',
+                  //   keyboard: false
+                  // });
+                }
               }
+            }else{
+              this.router.navigate(['user/my-educational-profile']);
             }
+            
             
   
             
