@@ -135,7 +135,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
 import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
 import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
-
+import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
 
 const routes: Routes = [
   {
@@ -526,7 +526,9 @@ const routes: Routes = [
   {
     path: 'subscription-history', component: SubscriptionHistoryComponent, canActivate: [AuthGuard]
   },
-  
+  {
+    path: 'alumni-summary', component: AlumniSummaryComponent, canActivate: [AuthGuard]
+  },
 
   
   
