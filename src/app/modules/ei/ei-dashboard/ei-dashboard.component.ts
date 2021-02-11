@@ -38,17 +38,17 @@ export class EiDashboardComponent implements OnInit {
   getDate(event){
     console.log(event,this.model)
   }
-  goToEiAlumniListPage(){
-    this.router.navigate(['ei/alumni-list']);
-  }
+  // goToEiAlumniListPage(){
+  //   this.router.navigate(['ei/alumni-list']);
+  // }
 
   goToEiVerifiedAlumniPage(){
     this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':1}});
   }
 
-  goToEiUnverifiedAlumniPage(){
-    this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':0}});
-  }
+  // goToEiUnverifiedAlumniPage(){
+  //   this.router.navigate(['ei/alumni-list'],{queryParams:{'approved':0}});
+  // }
 
   redirectTotalStudentPage(){
     this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':1,'kyc_approved':1,'title':'Verified'}});

@@ -151,6 +151,7 @@ import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.modu
 import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
 import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
 import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
+import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
 
 
 const config = {
@@ -320,6 +321,7 @@ const config = {
     AddMoreDocumentComponent,
     RequestPendingForCourseComponent,
     SubscriptionHistoryComponent,
+    AlumniSummaryComponent,
   ],
   imports: [
     CommonModule,

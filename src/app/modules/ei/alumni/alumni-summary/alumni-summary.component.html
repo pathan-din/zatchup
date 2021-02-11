@@ -1,0 +1,77 @@
+<app-ei-sidenav></app-ei-sidenav>
+
+<div class="container main-container p-3">
+    <div class="Student-summary-div bg-white px-3 py-2 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-0">Alumni Summary</h2>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-xl-10 col-lg-10 col-md-10 col-12">
+                <div class="form-control-inputDiv  d-flex flex-column rounded-0 p-0 shadow-none ">
+				
+                    <div class="row commonFontSize semiBoldFont bg-light-secondary mx-0">
+                        <div class="col-4 py-2">Course Name </div>
+                        <div class="col-4 py-2">Number of Students</div>
+                        <div class="col-4 py-2">Sign</div>
+                    </div>
+                    <!-- <div class="row commonFontSize m-0 p-2" *ngFor="let courseData of courseWiseStudentCountCourse"> -->
+                        <!-- <div class="col-4">{{courseData.course_name}} </div> -->
+                        <!-- <div class="col-4">{{courseData.num_of_student}}</div> -->
+                        <!-- <div class="col-4"> -->
+                            <!-- <button class="rounded bg-paret-green border-0  text-white"><i -->
+                                    <!-- class="fa fa-angle-double-down" aria-hidden="true"></i></button> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                    <div class="row courseName commonFontSize m-0" *ngFor="let courseData of courseWiseAlumniCountCourse">
+                        <div class="col-4 py-2">{{courseData.course_name}}</div>
+                        <div class="col-4 py-2">{{courseData.num_of_student}}</div>
+                        <div class="col-4 py-2">
+                            <button class="rounded bg-purple border-0  text-white " (click)="toOpenStandard(courseData.course_id)"><i
+                                    class="fa fa-angle-double-down" aria-hidden="true"></i></button>
+                        </div>
+
+                        <div class="col-12 standardName px-0"  id="standard_{{courseData.course_id}}" style="display:none">
+                            <div class="row commonFontSize semiBoldFont bg-light-gray mx-0">
+                                <div class="col-4 py-2">Standard Name </div>
+                                <div class="col-4 py-2">Number of Students</div>
+                                <div class="col-4 py-2">Sign</div>
+                            </div>
+                            <div class="row  commonFontSize m-0 standardRowSubDetailList" style="box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);" *ngFor="let stData of standardWiseAlumniCountCourse['st'+courseData.course_id]" >
+                                <div class="col-4 py-2">{{stData.standard_name}}</div>
+                                <div class="col-4 py-2">{{stData.num_of_student}}</div>
+                                <div class="col-4 py-2">
+                                    <button class="rounded bg-dark border-0  text-white" (click)="toOpenClass(stData.standard_id)"><i
+                                    class="fa fa-angle-double-down" aria-hidden="true"></i></button>
+                                </div>
+                                <div  id="class_{{stData.standard_id}}" class="col-12 className px-0 border-bottom border-gray" style="display:none">
+                                    <div class="row commonFontSize semiBoldFont bg-gary mx-0">
+                                        <div class="col-4 py-2">Class Name </div>
+                                        <div class="col-4 py-2">Number of Students</div>
+                                    </div>
+                                    <div   *ngFor="let classData of classWiseAlumniCountCourse['cs'+stData.standard_id]" class="row  commonFontSize m-0 classRowSubDetailList">
+                                        <div class="col-4 py-2">{{classData.class_name}}</div>
+                                        <div class="col-4 py-2">{{classData.num_of_student}}</div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

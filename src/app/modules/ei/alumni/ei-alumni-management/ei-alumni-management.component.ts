@@ -68,4 +68,7 @@ ngOnInit(): void {
     this.router.navigate(['ei/alumni-list'], {queryParams: {approved : 0}});
   }
 
+  gotoAlumniSummary(){
+    this.router.navigate(['ei/alumni-summary']);
+  }
 }

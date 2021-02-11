@@ -17,6 +17,10 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  gotoChatPrivacy(){
+    this.router.navigate(['user/chat-privacy']);
+  }
+
   goBack(){
     this.location.back()
   }
