@@ -21,7 +21,7 @@
                         {{kycApprovalData.kyc_pending_requests_I.no_of_requests_fresh_signup + kycApprovalData.kyc_pending_requests_I.no_of_requests_kyc_retrigger}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0" (click)="kycPendingReqRoute_1('fresh-singup')">Requests For Fresh Signups:<span
+                        <p class="mb-0" (click)="kycPendingReqRoute_1('new-singup')">Requests For Fresh Signups:<span
                                 class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_I.no_of_requests_fresh_signup}}</span>
                         </p>
@@ -45,7 +45,7 @@
                                 class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.first_time_submission_count}}</span>
                         </p>
-                        <p class="mb-0 " (click)="kycPendingReqRoute_2('re-submission')">Re-submission: <span
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('re-submitted')">Re-submission: <span
                                 class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.resubmission_count}}</span>
                         </p>
