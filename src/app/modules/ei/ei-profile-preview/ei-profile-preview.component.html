@@ -29,7 +29,7 @@
                       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body" *ngFor="let userData of userProfile.ei_detail">
                           <div class="row">
-                            <div class="col-md-12 text-right"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                            <div class="col-md-12 text-right" (click)="redirectToOnboardingFirstSepEdit()"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
                           </div>
                           <div class="row">
                             <div class="col-md-4">
@@ -202,7 +202,7 @@
                       <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-12 text-right"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                            <div class="col-md-12 text-right" (click)="redirectToOnboardingThirdSepEdit()"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
                           </div>
                           <div class="row" *ngFor="let bankData of userProfile.bank_detail">
                             <div class="col-md-4">

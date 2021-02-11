@@ -175,9 +175,12 @@ export class EiSidenavComponent {
                 var nUrl = arrMenuList.includes(thisUrl);
                 if (nUrl) {
                   if(this.route.snapshot.params.invoice=='onboarding'){
+                   
+                    console.log('dfdfdf'+this.route.snapshot.params.invoice,parameter);
                     this.router.navigate(['ei/invoice-list/' +this.route.snapshot.params.invoice]);
                   }
                   else{
+                    console.log(this.route.snapshot.params.invoice,parameter);
                     if(typeof(parameter)=='object'){
                       console.log(Object.keys(parameter).length);
                       var arrUrl = thisUrl.split(":");
@@ -192,6 +195,7 @@ export class EiSidenavComponent {
                       
                     }
                     else{
+                      console.log(this.route.snapshot.params.invoice,parameter);
                       this.router.navigate(['ei/' + thisUrl]);
                     }
                   }
@@ -204,9 +208,12 @@ export class EiSidenavComponent {
             } else if (!response.rejected_reason && response.is_approved && !this.subscriptionActive) {
   
               var nUrl = arrMenuList.includes(thisUrl);
-              
-  
-              if (nUrl) {
+             if (nUrl) {
+              if(this.route.snapshot.params.invoice=='onboarding'){
+                   
+                console.log('dfdfdf'+this.route.snapshot.params.invoice,parameter);
+                this.router.navigate(['ei/invoice-list/' +this.route.snapshot.params.invoice]);
+              }else
                 this.router.navigate(['ei/' + thisUrl]);
               }
   
