@@ -26,6 +26,15 @@ export class EiProfilePreviewComponent implements OnInit {
   redirectToOnboardingSecondSepEdit(){
     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2',"redirect_url":"ei-profile-preview" } });
   }
+  redirectToOnboardingFirstSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '1',"redirect_url":"ei-profile-preview" } });
+  }
+  redirectToOnboardingThirdSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3',"redirect_url":"ei-profile-preview" } });
+  }
+  redirectToOnboardingFourthSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4',"redirect_url":"ei-profile-preview" } });
+  }
  getEiProfileData(){
    try {
      this.loader.show();
