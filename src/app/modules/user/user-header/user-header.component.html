@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-sm fixed-top userHeaderBgColor">
     <div class="container-fluid">
-        <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/userWebsite/logo.png"></a>
+        <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg"
+                src="assets/images/userWebsite/logo.png"></a>
         <div class="collapse navbar-collapse">
+<<<<<<< HEAD
             <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
@@ -20,12 +22,24 @@
                 <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li> 
+=======
+            <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl">
+                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
+                        routerLinkActive="active-link">Home</a></li>
+                <li class="nav-item"><a routerLink="/ei/login" class="nav-link "
+                        routerLinkActive="active-link">Login/Register Your School</a></li>
+                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link "
+                        routerLinkActive="active-link">About Us</a></li>
+>>>>>>> 42a8ec77e1cf3f0c935e6da794eba262d5bebb2a
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
-                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"  routerLinkActive="active-link">Logout</a></li>
-                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
+                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"
+                        routerLinkActive="active-link">Logout</a></li>
+                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "
+                        routerLinkActive="active-link">Login</a></li>
             </ul>
 
+<<<<<<< HEAD
             <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
@@ -44,18 +58,31 @@
                 <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li>
+=======
+            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl">
+                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
+                        routerLinkActive="active-link">Home</a></li>
+                <li class="nav-item"><a routerLink="/ei/login" class="nav-link "
+                        routerLinkActive="active-link">Login/Register Your School</a></li>
+                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link "
+                        routerLinkActive="active-link">About Us</a></li>
+>>>>>>> 42a8ec77e1cf3f0c935e6da794eba262d5bebb2a
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
-                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"  routerLinkActive="active-link">Logout</a></li>
-                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "  routerLinkActive="active-link">Login</a></li>
+                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"
+                        routerLinkActive="active-link">Logout</a></li>
+                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "
+                        routerLinkActive="active-link">Login</a></li>
             </ul>
 
             <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl">
 
                 <li class="nav-item">
-                    <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="notificationList()"
+                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
-                    <sup class="color-white " style="background: #22c123;
+                        <sup class="color-white "
+                            style="background: #22c123;
                         padding: 4px;
                         border-radius: 50px;
                         width: 20px;
@@ -67,29 +94,38 @@
                         position: absolute;
                         left: 18px">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a></li>
 
-                <li class="nav-item"><a routerLink="/user/my-school"  class="nav-link" routerLinkActive="active-link">Home</a></li>
-                <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link" routerLinkActive="active-link">My School</a></li>
-                <li class="nav-item"><a  class="nav-link" routerLinkActive="active-link">Messages</a></li>
+                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
+                        routerLinkActive="active-link">Home</a></li>
+                <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link"
+                        routerLinkActive="active-link">My School</a></li>
+                <li class="nav-item"><a class="nav-link" routerLinkActive="active-link">Messages</a></li>
 
                 <div class="dropdown mx-4">
                     <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-search cursorStyle" aria-hidden="true"></i>
                     </span> -->
-                    <div>
+                    <!-- <div>
                         <input type="search" placeholder="Search"
                             class="form-control-input form-control pl-2 h-100" />
-                    </div>
+                    </div> -->
+                    <!-- <div>
+                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)">
+                        </input-search>
+                    </div> -->
                 </div>
 
                 <a *ngIf="authCheck" class="text-white px-0 commonFontSize semiBoldFont">
-                    <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp img-small">
-                    <span class="ml-3 text-white">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>                
+                    <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}"
+                        class="rounded-circle bg-light-green header-dp img-small">
+                    <span class="ml-3 text-white">{{userProfile.user_first_name}}
+                        {{userProfile.user_last_name}}</span></a>
 
-                <div *ngIf="authCheck" class="dropdown pt-2 px-0">                    
-                    <span class="color-white p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div *ngIf="authCheck" class="dropdown pt-2 px-0">
+                    <span class="color-white p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                         <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
                     </span>
-                   
+
                     <div class="dropdown-menu customDropDown pl-0" aria-labelledby="dropdownMenuButton">
                         <!-- <a class="dropdown-item pl-3 cursorStyle" (click)="goToSetting()">Setting</a> -->
                         <a class="dropdown-item pl-3 cursorStyle" (click)="logout()">Logout</a>

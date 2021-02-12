@@ -54,8 +54,8 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3 custumInputWidth">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                <!-- <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="request_type" [(ngModel)]="requestType">
                             <option value=""> Select Request</option>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="request_reason"
                             [(ngModel)]="requestReason">
@@ -75,12 +75,36 @@
                             <option value="2">Retriggered</option>
                         </select>
                     </div>
+                </div> -->
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select  form-control-input" name="request_type"
+                            [(ngModel)]="requestReason">
+                            <option value=""> Select Request Reason</option>
+                            <option value="0">First Time</option>
+                            <option value="1">Re-submitted</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select  form-control-input" name="request_reason"
+                            [(ngModel)]="requestType">
+                            <option value=""> Select Request Type</option>
+                            <option value="0">New Sign-up</option>
+                            <option value="1">Retriggered</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" name="status" [(ngModel)]="status">
+                        <select class="custom-select form-control-input" name="status" [(ngModel)]="completeKycList.status">
                             <option value=""> Select Status</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>
@@ -159,14 +183,15 @@
                     <ng-container matColumnDef="RequestReason">
                         <mat-header-cell *matHeaderCellDef> Request Reason </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.request_reason}}
+                            {{element.request_reason == 0 ? 'First Time' : 'Re-submitted'}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="RequestType">
                         <mat-header-cell *matHeaderCellDef>Request Type</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.request_type == 0 ? 'First Time' : 'Re-submitted'}} </mat-cell>
+                            {{element.request_type == 0 ? 'New Sign-up' : 'Retriggered'}}
+                        </mat-cell>
                     </ng-container>
 
 

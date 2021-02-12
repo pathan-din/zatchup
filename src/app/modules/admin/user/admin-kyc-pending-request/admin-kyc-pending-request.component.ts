@@ -91,7 +91,6 @@ export class AdminKycPendingRequestComponent implements OnInit {
   }
 
   setFilter(type: any, value: any) {
-    // debugger
     if (type == 'user-type' && value != 'list') {
       this.kycPendingRequest.userType = value
     } else if (type == 'kyc-type' && value != 'list') {
