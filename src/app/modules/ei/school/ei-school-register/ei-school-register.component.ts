@@ -40,9 +40,6 @@ export class EiSchoolRegisterComponent implements OnInit {
   //errorOtpModelDisplay:any;
   data: any;
   keyword:any = 'name_of_school';
-  
-  
-
   suggestions: string[] = [];
   showHidePassword: string='password';
   showHidecPassword: string='password';;
@@ -60,13 +57,13 @@ export class EiSchoolRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllState(); 
+    
     this.getAllDesignationList();
     this.model.school_data = {};
     /*Selected Blank Value of Select box*/
     this.country='India';
     this.model.school_data.landmark='';
-    this.state1='';
-    this.city1='';
+    this.model.school_data.city = '';
     
     this.model.designation='';
     this.model.is_term_cond=false;
@@ -107,12 +104,14 @@ export class EiSchoolRegisterComponent implements OnInit {
     //getallstate
     try{
      // this.model.school_data = {};
+
       this.SpinnerService.show(); 
      
       this.eiService.getallstate(this.model).subscribe(res => {
         
         let response:any={};
         response=res;
+        this.model.school_data.state = '';
         this.stateList=response.results;
         this.SpinnerService.hide(); 
        
@@ -142,6 +141,7 @@ export class EiSchoolRegisterComponent implements OnInit {
         
         let response:any={};
         response=res;
+        
         this.cityList=response.results;
         this.SpinnerService.hide(); 
        

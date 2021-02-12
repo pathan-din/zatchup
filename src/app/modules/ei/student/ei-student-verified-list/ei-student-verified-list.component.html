@@ -229,7 +229,8 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
-                            <i *ngIf="element.approved==1" class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" title="Edit" aria-hidden="true "
+                            <i *ngIf="element.approved==1" class="fa fa-pencil mr-2 color-green fa-lg cursorStyle"
+                                title="Edit" aria-hidden="true "
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
                                 (click)="goToEiStudentProfilePage(element.student_id)"></i>
@@ -309,8 +310,9 @@
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header align-items-center justify-content-center pb-0 ">
                     <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
-                    <button type="button " #closeRejectModel class="close rounded-circle border bg-white model-close-btn p-0"
-                        data-dismiss="modal" aria-label="Close ">
+                    <button type="button " #closeRejectModel
+                        class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                        aria-label="Close ">
                         <span aria-hidden="true "> &times; </span>
                     </button>
                 </div>
@@ -371,8 +373,7 @@
                 </div>
                 <div class="modal-body px-0 py-0">
                     <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
-                    <p class="commonFontSize regularFont letterspacing">Are you sure you want to Verified this
-                        Student?
+                    <p class="commonFontSize regularFont letterspacing">Are you sure you want to Verify this Student?
                     </p>
                     <p class="commonFontSize regularFont letterspacing text-right">
                         <!-- <span class="mx-3 color-blue">No</span>

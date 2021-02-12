@@ -38,11 +38,14 @@ export class AdminPaymentSubscriptionHistoryComponent implements OnInit {
     }
     this.baseService.getData('admin/subscription/get_subscription_fees_history/', params).subscribe(
       (res: any) => {
-        if (res.status == true && res.count != 0) {
+        if (res.status == true) {
           this.config.itemsPerPage = res.page_size
           this.config.currentPage = page
           this.config.totalItems = res.count
-          this.dataSource = res.results
+          if (res.count == 0)
+            this.dataSource = undefined
+          else
+            this.dataSource = res.results
         }
         else {
           this.alert.error(res.error.message[0], 'Error')
@@ -55,7 +58,7 @@ export class AdminPaymentSubscriptionHistoryComponent implements OnInit {
     }
   }
 
-  goBack(){
+  goBack() {
     this.location.back()
   }
 }

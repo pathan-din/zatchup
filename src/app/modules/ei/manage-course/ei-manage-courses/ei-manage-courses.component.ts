@@ -64,7 +64,7 @@ export class EiManageCoursesComponent implements OnInit {
     this.router.navigate(["ei/manage-courses-add"],{queryParams:{action:'edit',course_id:id}});
   }
   goToDelete(courseId: any): any {
-    this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+    this.confirmDialogService.confirmThis('Are you sure you want to delete ?', () => {
       this.SpinnerService.show()
       this.baseService.action("ei/get-course-by-id/"+courseId+"/",{}).subscribe(
         (res: any) => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ActivationEnd } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
@@ -51,6 +51,7 @@ const ELEMENT_DATA: TotalAlumniListElement[] = [
   styleUrls: ['./ei-alumni-list.component.css']
 })
 export class EiAlumniListComponent implements OnInit {
+  @ViewChild("closeRejectModel") closeRejectModel: any;
 	model:any={};
   aluminiList:any=[];
   arrAge:any=[]
@@ -346,7 +347,9 @@ getAluminiList(page,strFilter){
         {
 
           this.alert.success(response.message, 'Success')
+          this.closeRejectModel.nativeElement.click();
           this.getAluminiList('', '')
+
         } else { // Condition False Validation failure
           this.SpinnerService.hide();
           var errorCollection = '';

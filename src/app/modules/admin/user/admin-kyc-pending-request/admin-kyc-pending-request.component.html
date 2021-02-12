@@ -20,7 +20,7 @@
                         <div class="rounded-0 p-0  border-top shadow-none">
                             <input type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD"
                                 class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
-                                [(ngModel)]="kycPendingRequest.filterFromDate" #fromDate="ngModel" 
+                                [(ngModel)]="kycPendingRequest.filterFromDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
@@ -29,17 +29,18 @@
                         <div class="rounded-0 p-0  border-top shadow-none">
                             <input type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD"
                                 class="form-control formfocusStyle" bsDatepicker [maxDate]="kycPendingRequest.maxDate"
-                                [(ngModel)]="kycPendingRequest.filterToDate" #fromDate="ngModel" 
+                                [(ngModel)]="kycPendingRequest.filterToDate" #fromDate="ngModel"
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
                     <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
                         <div class="form-control-inputDiv rounded shadow-none">
-                            <select class="custom-select  form-control-input" name="user_type" [(ngModel)]="kycPendingRequest.userType">
+                            <select class="custom-select  form-control-input" name="user_type"
+                                [(ngModel)]="kycPendingRequest.userType">
                                 <option value=""> Select User</option>
                                 <option value="User">Student/Alumni</option>
-                                    <!-- <option value="STUDENTS">Student</option>
+                                <!-- <option value="STUDENTS">Student</option>
                                     <option value="ALUMNI">Alumni</option> -->
                                 <option value="EISUBADMIN">School Sub-admin</option>
                             </select>
@@ -48,7 +49,8 @@
                     <div class="widthFull mr-3 mt-3 custumInputWidth">
                         <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
                         <div class="form-control-inputDiv rounded shadow-none">
-                            <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycPendingRequest.kycType">
+                            <select class="custom-select form-control-input" name="kyc_type"
+                                [(ngModel)]="kycPendingRequest.kycType">
                                 <option value=""> Select KYC</option>
                                 <option value="Aadhar">Aadhar</option>
                                 <option value="Passport">Passport</option>
@@ -149,22 +151,23 @@
                     <ng-container matColumnDef="RequestReason">
                         <mat-header-cell *matHeaderCellDef> Request Reason </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.request_reason}}
+                            {{element.request_reason == 0 ? 'First Time' : 'Re-submitted'}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="RequestType">
                         <mat-header-cell *matHeaderCellDef>Request Type</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.request_type == 0 ? 'First Time' : 'Re-submitted'}} </mat-cell>
+                            {{element.request_type == 0 ? 'New Sign-up' : 'Retriggered'}}
+                        </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i = index" class="text-center justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View Details"
-                                (click)="kycHistoryViewRoute(element)"></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
+                                title="View Details" (click)="kycHistoryViewRoute(element)"></i>
                         </mat-cell>
                     </ng-container>
 
