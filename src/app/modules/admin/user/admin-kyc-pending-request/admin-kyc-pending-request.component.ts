@@ -97,12 +97,12 @@ export class AdminKycPendingRequestComponent implements OnInit {
     } else if (type == 'kyc-type' && value != 'list') {
       this.kycPendingRequest.kycType = value
     } else if (type == 'request-type' && value != 'list') {
-      if (value == 'first-time')
-        this.kycPendingRequest.requestType = "0"
-      else
+      if (value == 'retriggered')
         this.kycPendingRequest.requestType = "1"
+      else
+        this.kycPendingRequest.requestType = "0"
     } else if (type == 'request-reason' && value != 'list') {
-      if (value == 'fresh-singup')
+      if (value == 'first-time')
         this.kycPendingRequest.requestReason = "0"
       else
         this.kycPendingRequest.requestReason = "1"

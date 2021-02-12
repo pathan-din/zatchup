@@ -1,5 +1,6 @@
 import { Location } from '@angular/common'
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -11,8 +12,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./admin-user-profile.component.css']
 })
 export class AdminUserProfileComponent implements OnInit {
+  @ViewChild('closeRetriggerModel') closeRetriggerModel: any;
   userId: any;
-  userData: any;
+  userData: any = {};
 
   constructor(
     private router: Router,
@@ -21,7 +23,9 @@ export class AdminUserProfileComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService
-  ) { }
+  ) {
+    // this.userData = new UserData()
+  }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.params.id;
@@ -56,6 +60,33 @@ export class AdminUserProfileComponent implements OnInit {
     }
   }
 
+  kycRetriggeredRequest() {
+    this.loader.show();
+
+    let data = {
+      'user_id': this.userData.id,
+      'comments': this.userData.comments,
+      'reason': this.userData.reason
+    }
+    this.baseService.action(['admin/kyc/kyc_retrigger_update/'], data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          // this.userData = res.data
+          this.closeRetriggerModel.nativeElement.click();
+          this.alert.success(res.message, 'Success');
+          // form.resetForm();
+          this.goBack();
+        }
+        else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide();
+      }
+    ), (err: any) => {
+      this.loader.hide();
+      this.alert.error(err, 'Error')
+    }
+  }
 
 
   goBack() {

@@ -59,11 +59,11 @@
                     </div>
 
                     <div class="widthFull mr-3 mt-3 custumInputWidth">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
                         <div class="form-control-inputDiv rounded shadow-none">
                             <select class="custom-select  form-control-input" name="request_type"
-                                [(ngModel)]="kycPendingRequest.requestType">
-                                <option value=""> Select Request</option>
+                                [(ngModel)]="kycPendingRequest.requestReason">
+                                <option value=""> Select Request Reason</option>
                                 <option value="0">First Time</option>
                                 <option value="1">Re-submitted</option>
                             </select>
@@ -71,11 +71,11 @@
                     </div>
 
                     <div class="widthFull mr-3 mt-3 custumInputWidth">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
                         <div class="form-control-inputDiv rounded shadow-none">
                             <select class="custom-select  form-control-input" name="request_reason"
-                                [(ngModel)]="kycPendingRequest.requestReason">
-                                <option value=""> Select Reason</option>
+                                [(ngModel)]="kycPendingRequest.requestType">
+                                <option value=""> Select Request Type</option>
                                 <option value="0">New Sign-up</option>
                                 <option value="1">Retriggered</option>
                             </select>
