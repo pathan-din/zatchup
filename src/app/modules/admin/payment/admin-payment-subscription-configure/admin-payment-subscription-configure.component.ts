@@ -76,7 +76,7 @@ export class AdminPaymentSubscriptionConfigureComponent implements OnInit {
       "name": this.subscriptionModal.name ? this.subscriptionModal.name : '',
       "current_amount": this.subscriptionModal.currentAmount ? this.subscriptionModal.currentAmount : 0,
       "no_of_days": this.subscriptionModal.numberOfDays ? this.subscriptionModal.numberOfDays : 0,
-      "is_active": this.subscriptionModal.status == 'true' ? true : false
+      "is_active": this.subscriptionModal.status == true ? true : false
     }
     if(this.subscriptionModal.modalHeader == 'Add')
       this.subscriptionModal.subscriptionUrl = 'admin/subscription/add_subscription/';
