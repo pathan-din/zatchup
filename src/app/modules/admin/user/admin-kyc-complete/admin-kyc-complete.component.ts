@@ -8,22 +8,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CompleteKycList } from '../modals/kyc.modal';
 
 
-
-export interface TotalAlumniListElement {
-  'SNo': number;
-  EIZatchUpIDOfUser: string;
-  NameOfUser: string;
-  UserType: string;
-  ProofName: string;
-  RequestReason: string;
-  RequestType: string;
-  Status: string;
-  RejectionRemarks: string;
-  Action: string;
-}
-
-
-
 @Component({
   selector: 'app-admin-kyc-complete',
   templateUrl: './admin-kyc-complete.component.html',
@@ -57,9 +41,10 @@ export class AdminKycCompleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
-    this.route.queryParams.subscribe(params=>{
-      this.completeKycList.status = params['status'];
+
+    this.route.queryParams.subscribe(params => {
+      // this.completeKycList.status = params['status'];
+      this.setFilter(Object.keys(params)[0], Object.values(params)[0]);
     });
     this.getCompleteKycList('');
     this.completeKycList.pageCount = this.baseService.getCountsOfPage();
@@ -86,17 +71,17 @@ export class AdminKycCompleteComponent implements OnInit {
       (res: any) => {
         if (res.status == true) {
           if (!page)
-          page = this.completeKycList.config.currentPage
+            page = this.completeKycList.config.currentPage
           this.completeKycList.startIndex = res.page_size * (page - 1) + 1;
           this.completeKycList.page_size = res.page_size
           this.completeKycList.config.itemsPerPage = this.completeKycList.page_size
           this.completeKycList.config.currentPage = page
           this.completeKycList.config.totalItems = res.count;
-          if(res.count > 0){
+          if (res.count > 0) {
             this.completeKycList.dataSource = res.results
           }
           else
-          this.completeKycList.dataSource = undefined 
+            this.completeKycList.dataSource = undefined
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -120,9 +105,11 @@ export class AdminKycCompleteComponent implements OnInit {
   }
 
   setFilter(type: any, value: any) {
-    // debugger
-    if (type == 'status' && value != 'list') {
-      this.completeKycList.status = value
+    if (type == 'status') {
+      if (value != 'list')
+        this.completeKycList.status = value
+      else
+        this.completeKycList.status = ''
     }
   }
 }
