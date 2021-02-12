@@ -13,7 +13,8 @@ userProfile:any={};
 regProfile:any={};
   constructor(private router: Router,
     private baseService : BaseService,
-    private alert:NotificationService) { }
+    private alert:NotificationService,
+    private route:ActivatedRoute) { }
      authCheck : boolean=false;
 
   ngOnInit(): void {
@@ -74,32 +75,42 @@ regProfile:any={};
           
           
           this.regProfile = res;
-          if(res.reg_step<=6 && !res.is_approved && res.is_kyc_rejected){
-            if( res.ekyc_rejected_reason){
-                  this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason+" Remark : "+res.ekyc_rejected_remark,"Rejected");
-                  this.router.navigate(['user/kyc-verification']);
-                }else{
-                  if(res.reg_step==6){
-                    this.router.navigate(['user/my-educational-profile']);
-                   
-                  }
-                }
-          }else if(res.reg_step<=6 && res.is_approved && res.is_kyc_rejected){
-            if( res.ekyc_rejected_reason){
-                  this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason+" Remark : "+res.ekyc_rejected_remark,"Rejected");
-                  this.router.navigate(['user/kyc-verification']);
-                }else{
-                  if(res.reg_step==6){
-                    this.router.navigate(['user/my-educational-profile']);
-                   
-                  }
-                }
+          if(this.route.snapshot.routeConfig.path=="user/notifications")
+          {
+
           }else{
-            // if(res.reg_step==5){
-            //   this.router.navigate(['user/my-educational-profile']);
-             
-            // }
+            if(res.reg_step<=6 && !res.is_approved && res.is_kyc_rejected){
+              if( res.ekyc_rejected_reason){
+                    this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason+" Remark : "+res.ekyc_rejected_remark,"Rejected");
+                    this.router.navigate(['user/kyc-verification']);
+                  }else{
+                    if(res.reg_step==6){
+                      this.router.navigate(['user/my-educational-profile']);
+                     
+                    }
+                  }
+            }else if(res.reg_step<=6 && res.is_approved && res.is_kyc_rejected){
+              if( res.ekyc_rejected_reason){
+                    this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason+" Remark : "+res.ekyc_rejected_remark,"Rejected");
+                    this.router.navigate(['user/kyc-verification']);
+                  }else{
+                    if(res.reg_step==6){
+                      this.router.navigate(['user/my-educational-profile']);
+                     
+                    }
+                  }
+            }else{
+              if(res.reg_step==1){
+                this.router.navigate(['user/kyc-verification']);
+              }else if(res.reg_step==2){
+                this.router.navigate(['user/add-ei']);
+              }else{
+
+              }
+            }
           }
+          
+         
           // if(response.reg_step==6 && !response.is_approved && response.is_kyc_rejected){
           //   if( response.rejected_reason){
           //     this.alert.error("Your Profile has been rejected reason by " + response.rejected_reason+" Remark : "+response.rejected_remark,"Rejected"); 

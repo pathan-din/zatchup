@@ -109,7 +109,7 @@
                                 </select>
                             </div>
                             <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
-                                <select (change)="isValid($event)" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0">
+                                <select (change)="isValid($event);changeMOnth(monthModel,yearModel);" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                     
