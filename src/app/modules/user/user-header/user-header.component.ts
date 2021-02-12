@@ -74,12 +74,22 @@ regProfile:any={};
           
           
           this.regProfile = res;
-          if(res.reg_step<=5 && !res.is_approved && res.is_kyc_rejected){
+          if(res.reg_step<=6 && !res.is_approved && res.is_kyc_rejected){
             if( res.ekyc_rejected_reason){
                   this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason+" Remark : "+res.ekyc_rejected_remark,"Rejected");
                   this.router.navigate(['user/kyc-verification']);
                 }else{
-                  if(res.reg_step==5){
+                  if(res.reg_step==6){
+                    this.router.navigate(['user/my-educational-profile']);
+                   
+                  }
+                }
+          }else if(res.reg_step<=6 && res.is_approved && res.is_kyc_rejected){
+            if( res.ekyc_rejected_reason){
+                  this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason+" Remark : "+res.ekyc_rejected_remark,"Rejected");
+                  this.router.navigate(['user/kyc-verification']);
+                }else{
+                  if(res.reg_step==6){
                     this.router.navigate(['user/my-educational-profile']);
                    
                   }
