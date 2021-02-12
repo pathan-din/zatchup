@@ -3,7 +3,6 @@
         <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg"
                 src="assets/images/userWebsite/logo.png"></a>
         <div class="collapse navbar-collapse">
-<<<<<<< HEAD
             <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
@@ -22,15 +21,6 @@
                 <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li> 
-=======
-            <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl">
-                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
-                        routerLinkActive="active-link">Home</a></li>
-                <li class="nav-item"><a routerLink="/ei/login" class="nav-link "
-                        routerLinkActive="active-link">Login/Register Your School</a></li>
-                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link "
-                        routerLinkActive="active-link">About Us</a></li>
->>>>>>> 42a8ec77e1cf3f0c935e6da794eba262d5bebb2a
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
                 <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"
@@ -39,7 +29,6 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-<<<<<<< HEAD
             <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
@@ -58,15 +47,6 @@
                 <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li>
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " routerLinkActive="active-link">About Us</a></li>
-=======
-            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl">
-                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
-                        routerLinkActive="active-link">Home</a></li>
-                <li class="nav-item"><a routerLink="/ei/login" class="nav-link "
-                        routerLinkActive="active-link">Login/Register Your School</a></li>
-                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link "
-                        routerLinkActive="active-link">About Us</a></li>
->>>>>>> 42a8ec77e1cf3f0c935e6da794eba262d5bebb2a
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
                 <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"

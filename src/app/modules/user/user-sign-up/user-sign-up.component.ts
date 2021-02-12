@@ -104,8 +104,9 @@ export class UserSignUpComponent implements OnInit {
       
       this.type='email';
       this.maxlength = 50;
-      this.model.email = event.target.value;
+      this.model.email =event.target.value;
       this.model.phone = '';
+      
     }else{
      const numbers = /^[0-9]+$/;
      if(numbers.test(event.target.value))
@@ -167,7 +168,9 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("month",this.monthModel);
       localStorage.setItem("day",this.dateModel);
       localStorage.setItem("kyc_name",this.model.first_name+' '+this.model.last_name);
-      
+      if(this.model.email){
+        this.model.email = this.model.username;
+      }
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
       /**********************************************************************/
