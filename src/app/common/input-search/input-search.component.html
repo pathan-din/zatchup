@@ -1,5 +1,4 @@
 <div class="position-relative">
-
     <div class="row">
         <div class="col-12 text-center">
             <input type="text" #searchText class="form-control" value="{{value}}" placeholder="Search....." />
@@ -11,15 +10,14 @@
         </div>
     </div>
     <div class="row">
-        <ng-container *ngIf="apiResponse['status'] == false; else elseTemplate">
-
-            <div class="col-12 text-center">
-                <div class="alert alert-danger" role="alert">
-                    {{apiResponse['Error']}}
+        <ng-container *ngIf="apiResponse['count'] == 0; else elseTemplate">
+            <ul class="notFound rounded">
+                <div>
+                    Data Not found
                 </div>
-            </div>
-
+            </ul>
         </ng-container>
+
         <ng-template #elseTemplate>
             <ul class="searchDropdown shadow rounded">
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
@@ -27,16 +25,4 @@
             </ul>
         </ng-template>
     </div>
-
 </div>
-
-<!-- <section class="filter-wrapper">
-    <div class="keyword-wrapper">
-        <input type="text" id="keyword" #searchText class="form-control" placeholder="Search....."  autofocus/>
-    </div>
-    <ul class="filter-select">
-        <li class="filter-select-list"><img src="" alt="" width="50" height="50">
-            <p class="artist-name"></p>
-            <span class="tags"></span>
-    </ul>
-</section> -->
