@@ -2,29 +2,29 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5 mobPaddingLR">
-        <div class="col-12 pl-5 pr-5 mobPaddingLR">
-            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+        <div class="col-12 pl-5 pr-5 mobPaddingLR cursorStyle">
+            <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="img-fluid subHeaderImg">
         </div>
     </div>
 </div>
 <div class="container containerScrolling mt-4 landingPageWidth ">
     <div class="bannerDiv position-relative">
-        <img src="assets/images/userWebsite/User_profile_banner.png" class="img-fluid">
-        <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute">
+        <img src="assets/images/cover-pic-default.png" class="img-fluid">
+        <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
     </div>
     <div class="landingDiv">
         <div class="row pt-2">
             <div class="col-md-5 text-right d-flex profileDivLeft  p-0 align-items-center">
-                <div class="dpImgDiv" (click)="goToUserMyprofilePage()">
-                    <img src="assets/images/userWebsite/successfully_done.png" class="img-fluid dpImg">
+                <div class="dpImgDiv">
+                    <img src="assets/images/profile-default.png" class="img-fluid dpImg">
                 </div>
 
-                <div class="pl-2 text-left">
-                    <p class="m-0 commonFontSize mediumFont">Neha Sharma</p>
-                    <p class="m-0 commonFontSize regularFont">You were in same clas in 2019</p>
+                <div class="pl-2 text-left" *ngIf="userProfile">
+                    <p class="m-0 commonFontSize mediumFont">{{userProfile.name}}</p>
+                    <!-- <p class="m-0 commonFontSize regularFont">You were in same clas in 2019</p> -->
                 </div>
             </div>
-            <div class="col-md-7 text-right d-flex profileDivRight flex-row">
+            <!-- <div class="col-md-7 text-right d-flex profileDivRight flex-row">
                 <div class="col-2 padding-0">
                     <p class="m-0 commonFontSize mediumFont text-center">20K</p>
                     <p class="m-0 commonFontSize regularFont">Followers</p>
@@ -38,59 +38,71 @@
                     <button type="button" class=" common-btn  bg-white color-purple addBuddyBtn w-75 ">Add
                         Buddy</button></div>
 
-            </div>
+            </div> -->
         </div>
         <div class="row mt-3">
-            <div class="col-md-5">
-                <div class="educationDiv row form-control-inputDiv py-2">
+            <div class="col-md-12">
+                <div class="informationDiv row form-control-inputDiv mt-2 py-2">
+                    <div class="col-md-12 informationHeader  d-flex justify-content-between align-items-center">
+                        <h3 class="color-purple commonFontSize semiBoldFont m-0">Personal Information</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                    <div class="col-md-12" *ngIf="userProfile">
+                        <p class="m-0 commonFontSize semiBoldFont">DOB : <span
+                                class="regularFont">{{userProfile.dob}}</span>
+                        </p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender">Gender : <span
+                                class="regularFont">{{userProfile.gender}}</span></p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email">Email : <span
+                                class="regularFont">{{userProfile.email}}</span></p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone">Phone : <span
+                                class="regularFont">{{userProfile.phone}}</span></p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name : <span
+                                class="regularFont">{{userProfile.mother_name}}</span></p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.father_name">Father Name : <span
+                                class="regularFont">{{userProfile.father_name}}</span></p>
+                        <!-- <p class="m-0 commonFontSize semiBoldFont">Profession : <span class="regularFont">Student</span> -->
+                        <!-- </p> -->
+                    </div>
+                </div>
+                <div class="educationDiv row form-control-inputDiv py-2 mt-2">
                     <div class="col-md-12 educationHeader  d-flex justify-content-between align-items-center">
                         <h3 class="color-purple commonFontSize semiBoldFont m-0">Education</h3>
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon">
+                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                     </div>
                     <div class="col-md-12">
                         <hr>
                     </div>
-                    <div class="col-md-12">
-                        <p class="m-0 commonFontSize semiBoldFont position-relative" (click)="goToUserSchoolProfilePage()">Delhi Public School
-                            <span class="ml-2">
-                                <img src="assets/images/userWebsite/checkicon.png"
-                                    class="img-fluid  check_absolute-image">
-                            </span></p>
-                        <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
-                                2016-2017)</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
-                                2016-2017)</span></p>
-                    </div>
-                    <div class="col-md-12">
-                        <hr>
-                    </div>
-                    <div class="col-md-12">
+                    <ng-template *ngIf="userProfile">
+                        <div class="col-md-12">
+                            <p class="m-0 commonFontSize semiBoldFont position-relative">Delhi Public School
+                                <span class="ml-2">
+                                    <img src="assets/images/userWebsite/checkicon.png"
+                                        class="img-fluid  check_absolute-image">
+                                </span></p>
+                            <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
+                                    2016-2017)</span></p>
+                            <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
+                                    2016-2017)</span></p>
+                        </div>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                    </ng-template>
+
+                    <!-- <div class="col-md-12">
                         <p class="m-0 commonFontSize semiBoldFont">Army Public School</p>
                         <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
                                 2018-2019)</span></p>
                         <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
                                 2019-2020)</span></p>
                         <p class="m-0 pl-4 color-purple commonFontSize mediumFont">Current School</p>
-                    </div>
-                </div>
-                <div class="informationDiv row form-control-inputDiv mt-2 py-2">
-                    <div class="col-md-12 informationHeader  d-flex justify-content-between align-items-center">
-                        <h3 class="color-purple commonFontSize semiBoldFont m-0">Personal Information</h3>
-                        <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon">
-                    </div>
-                    <div class="col-md-12">
-                        <hr>
-                    </div>
-                    <div class="col-md-12">
-                        <p class="m-0 commonFontSize semiBoldFont">DOB : <span class="regularFont">30/Oct/1997</span>
-                        </p>
-                        <p class="m-0 commonFontSize semiBoldFont">Email : <span class="regularFont">Simmi.sh@gmail.com</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont">Profession : <span class="regularFont">Student</span>
-                        </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <div class="col-md-7">
+            <!-- <div class="col-md-7">
                 <div class="row ">
                     <div class="col-12 colLeftPost">
                         <div class="form-control-inputDiv py-2">
@@ -218,7 +230,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
