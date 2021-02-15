@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log('ddddd',this.route.snapshot.queryParamMap.get('id'))
+
     this.userId = this.route.snapshot.queryParamMap.get('id')
     this.getProfile();
   }

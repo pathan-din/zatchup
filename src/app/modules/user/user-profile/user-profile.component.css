@@ -19,7 +19,7 @@
 
 .check_absolute-image {
     position: absolute;
-    width: 6%;
+    width: 16px;
 }
 
 .w-12 {
@@ -39,7 +39,7 @@
 }
 
 .dpImg {
-    margin-top: -50%
+    height: 100%;
 }
 
 .img-container {
@@ -56,6 +56,17 @@
     border-radius: 25px;
 }
 
+.dpImgCircle {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.customProfile{
+    position: absolute;
+    z-index: 1;
+    bottom: -70px;
+    left: 15px;
+}
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
         width: 100%!important;
