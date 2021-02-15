@@ -8,7 +8,7 @@
     </div>
 </div> -->
 
-<div class="container contentTopSpaceLanding containerScrolling landingPageWidth">
+<div class="container contentTopSpaceLanding landingPageWidth">
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h2 class="mb-3 text-center" *ngFor="let objEpData of epData">My Education Profile 
@@ -30,7 +30,7 @@
                             </div>
 
                         <div class="pl-2 text-left">
-                            <p class="m-0 commonFontSize semiBoldFont" ><a data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
+                            <p class="m-0 commonFontSize semiBoldFont" ><span *ngIf="objEpData.kyc_approved==0">{{objEpData.name}}</span><a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
@@ -48,9 +48,11 @@
                             </div>
                             <div class="col-md-12" >
                                 <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
+                                        class="regularFont">
+                                        <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
+                                        <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
                                 <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
-                                        class="regularFont">{{objEpData.gender}} </span></p>
+                                        class="regularFont">{{objEpData.gender=='M'?'MALE':'FEMALE'}} </span></p>
                                 <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
                                 <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span

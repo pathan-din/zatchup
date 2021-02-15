@@ -65,9 +65,12 @@ export class UserSignUpComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.dateModel = '';
-    this.monthModel = '';
-    this.yearModel = '';
+    //this.dateModel = '';
+    //this.monthModel = '';
+   
+     
+    
+    //this.yearModel = '';
     var dt = new Date();
     /**Get Current year for date of birth year dropdown**/
     var year = dt.getFullYear();
@@ -75,9 +78,18 @@ export class UserSignUpComponent implements OnInit {
       this.year.push(i);
     }
     /**init day for day Dropdown **/
+    //daysInMonth
+    
+  
     for (var d = 1; d <= 31; d++) {
       this.date.push(d);
     }
+    var now = new Date();
+    //var month = now.getMonth()+1;
+    this.yearModel = now.getFullYear()
+    
+    this.monthModel =  (now.getMonth()+1).toString();
+    this.dateModel = this.baseService.daysInMonth(this.monthModel, this.yearModel).toString();
     localStorage.removeItem('token');
     localStorage.removeItem('role');
 
@@ -92,7 +104,9 @@ export class UserSignUpComponent implements OnInit {
       
       this.type='email';
       this.maxlength = 50;
-      this.model.email = event.target.value;
+      this.model.email =event.target.value;
+      this.model.phone = '';
+      
     }else{
      const numbers = /^[0-9]+$/;
      if(numbers.test(event.target.value))
@@ -102,8 +116,19 @@ export class UserSignUpComponent implements OnInit {
       this.type='tel'
       this.maxlength = 10;
       this.model.phone = event.target.value;
+      this.model.email = '';
      }
      
+    }
+   }
+   changeMOnth(month,year){
+    console.log(month,year);
+    this.date=[];
+    var now = new Date();
+    //var month = now.getMonth()+1;
+    //var year = now.getFullYear()
+    for (var d = 1; d <= this.baseService.daysInMonth(month,year); d++) {
+      this.date.push(d);
     }
    }
   /*function for show hide password using inputbox*/
@@ -143,7 +168,9 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("month",this.monthModel);
       localStorage.setItem("day",this.dateModel);
       localStorage.setItem("kyc_name",this.model.first_name+' '+this.model.last_name);
-      
+      if(this.model.email){
+        this.model.email = this.model.username;
+      }
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
       /**********************************************************************/

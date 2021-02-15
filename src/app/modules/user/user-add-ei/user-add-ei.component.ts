@@ -153,8 +153,22 @@ goToUserQualificationPage() {
         {
           
           this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
-        }else{
+        
+        
+        }else  if(response.check_school_info_on_zatchup==1){
           if(this.params.returnUrl){
+            
+            this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title,'returnUrl':this.params.returnUrl,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
+          }else{
+            this.router.navigate(['user/congratulation'],{queryParams:{school_id:response.data.school_id,'title':this.title,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
+          }
+        }
+
+       // check_school_info_on_zatchup=3
+        
+        else{
+           if(this.params.returnUrl){
+            
             this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title,'returnUrl':this.params.returnUrl,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
           }else{
             this.router.navigate(['user/add-new-course'],{queryParams:{school_id:response.data.school_id,'title':this.title,'check_school_info_on_zatchup':response.check_school_info_on_zatchup}});
@@ -239,14 +253,19 @@ changeSchool(schoolData){
   {
     var ev =event;
     let obj = this.schoolList.find(o => o.name_of_school === schoolData);
-    this.model.university=obj.university;
-    this.model.address1=obj.address1;
-    this.modelZatchup.zatchup_id=obj.school_code;
+    if(obj){
+      this.model.university=obj.university;
+      this.modelZatchup.zatchup_id=obj.school_code;
+      this.model.address1=obj.address1;
+    }
+    
+    
     }else{
     this.model.school_data={};
     this.model.university="";
     this.model.address1="";
     this.modelZatchup.zatchup_id="";
+    this.name_of_school_others ='';
   }
 }
 /**Get data using zatchupId */
@@ -257,7 +276,7 @@ getDataByZatchupId() {
     this.SpinnerService.show();
     if(!this.modelZatchup.zatchup_id){
       // alert("Enter Zatchup Id.");
-      this.alert.warning("Enter Zatchup Id.", 'Warning')
+      this.alert.error("Enter Zatchup Id.", 'Warning')
       return false;
     }
     this.baseService.action('user/get-school-detail-zatchupid/',this.modelZatchup).subscribe(res => {

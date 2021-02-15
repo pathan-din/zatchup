@@ -121,7 +121,9 @@ export class BaseService {
     }
     return this.http.put(this.environment.baseUrl + url, data, { params })
   }
-
+  daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+  }
   setActionData(data) {
     let obj = {}
     Object.keys(data).forEach(function (key) {
