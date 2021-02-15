@@ -10,6 +10,11 @@
     width: 40px;
 }
 
+.bannerDiv .userSchoolProfileCover {
+    width: 100%;
+    height: 180px;
+}
+
 .landingDiv {
     padding-top: 0;
 }

@@ -41,9 +41,12 @@ export class UserProfileComponent implements OnInit {
           this.loader.hide();
           if (res.status == true)
             this.userProfile = res.data[0];
+            else{
+              this.alert.error(res.error.message, 'Error')
+            }
         }, (error) => {
           this.loader.hide();
-          console.log(error);
+          console.log(error)
         });
     } catch (err) {
       this.loader.hide();

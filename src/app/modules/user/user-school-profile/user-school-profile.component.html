@@ -8,19 +8,21 @@
     </div>
 </div>
 <div class="container containerScrolling mt-4 landingPageWidth ">
-    <div class="bannerDiv position-relative">
-        <img src="assets/images/cover-pic-default.png" class="img-fluid">
+    <div class="bannerDiv Onboard-viewbanner-div p-2 d-flex align-items-end position-relative" *ngIf="schoolProfile">
+        <img *ngIf="!schoolProfile.cover_pic" src="assets/images/cover-pic-default.png" class="img-fluid userSchoolProfileCover">
+        <img *ngIf="schoolProfile.cover_pic" src="{{schoolProfile.cover_pic}}" class="img-fluid userSchoolProfileCover">
         <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
     </div>
     <div class="landingDiv">
         <div class="row pt-2">
             <div class="col-md-5 text-right d-flex profileDivLeft  p-0 ">
-                <div class="dpImgDiv">
-                    <img src="assets/images/profile-default.png" class="img-fluid dpImg">
+                <div class="dpImgDiv" *ngIf="schoolProfile">
+                    <img *ngIf="!schoolProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
+                    <img *ngIf="schoolProfile.profile_pic" src="{{schoolProfile.profile_pic}}" class="img-fluid dpImg">
                 </div>
 
-                <div class="pl-2 text-left">
-                    <p class="m-0 commonFontSize mediumFont">ABC School</p>
+                <div class="pl-2 text-left" *ngIf="schoolProfile">
+                    <p class="m-0 commonFontSize mediumFont">{{schoolProfile.name_of_school}}</p>
                 </div>
             </div>
             <!-- <div class="col-md-7 text-right d-flex profileDivRight flex-row">
@@ -36,14 +38,10 @@
                 </div>
             </div> -->
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3" *ngIf="schoolProfile">
             <div class="col-md-5">
-                <p class="commonFontSize regularFont"><span class="semiBoldFont">Address : </span>H146/147 Sector 63</p>
-                <p class="commonFontSize regularFont"><span class="semiBoldFont">Overview of School : </span> Lorem
-                    Ipsum is simply dummy text of the printing and typesetting in-dustry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took
-                    a galley of type and scrambled it to make a type specimen book.
-                </p>
+                <p class="commonFontSize regularFont"><span class="semiBoldFont">Address : </span>{{schoolProfile.address1}} {{schoolProfile.address2}}</p>
+                <p class="commonFontSize regularFont"><span class="semiBoldFont">Overview of School : </span>{{schoolProfile.overview}} </p>
 
                 <!-- <div class="row mt-3">
                     <div class="col-6">
@@ -58,12 +56,12 @@
             <div class=" col-md-7 ">
                 <div class="form-control-inputDiv border-0 bg-light-green py-2">
                     <p class="text-center m-0">Number of Students</p>
-                    <p class="text-center text-green m-0 mediumFont"> 1,758</p>
+                    <p class="text-center text-green m-0 mediumFont">{{schoolProfile.total_student}}</p>
                 </div>
                 <div class=" form-control-inputDiv border-0 bg-gary mt-3 py-2">
                     <p class="text-center m-0">Number of alumni on ZatchUp
                     </p>
-                    <p class="m-0 text-center color-purple mediumFont"> 950</p>
+                    <p class="m-0 text-center color-purple mediumFont"> {{schoolProfile.total_alumni}}</p>
                 </div>
                 <!-- <div class="row ">
                     <div class="col-12 colLeftPost ">
