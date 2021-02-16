@@ -17,6 +17,7 @@ export class AddMoreCourseManuallyComponent implements OnInit {
   model: any = {}
   courseList:any;
   schoolId:any;
+  title:any;
   constructor(
     private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
@@ -31,6 +32,7 @@ export class AddMoreCourseManuallyComponent implements OnInit {
      
       this.route.queryParams.subscribe(params => {
         this.schoolId = params['school_id'];
+        this.title=params['title'];
         this.model.school_id=this.schoolId;
         this.getCourseDetails();
       });
@@ -60,10 +62,21 @@ export class AddMoreCourseManuallyComponent implements OnInit {
       }
     }
     addMoreCourse(){
-      this.router.navigate(['user/add-new-course'], {queryParams: {'school_id':this.schoolId }});
+      if(this.title=='past'){
+        this.router.navigate(['user/ei-confirmation'], {queryParams: {'school_id':this.schoolId,'title':this.title }});
+      }else{
+        this.router.navigate(['user/add-new-course'], {queryParams: {'school_id':this.schoolId,'title':this.title }});
+      }
+
+      
     }
     goToUserAddMoreEiPage(){
-      this.router.navigate(['user/profile-created'], {queryParams: {'school_id':this.schoolId }});
+      if(this.title=='past'){
+        this.router.navigate(['user/ei-confirmation'], {queryParams: {'school_id':this.schoolId }});
+      }else{
+        this.router.navigate(['user/profile-created'], {queryParams: {'school_id':this.schoolId }});
+      }
+      
     }
 }
 

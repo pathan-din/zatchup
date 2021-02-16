@@ -15,11 +15,12 @@
                 </span>
                 <h2 class="commonFontSize semiBoldFont letterspacing mb-0">User Search</h2>
             </div>
+            <form autocomplete="off" autocapitalize="off">
             <div class="d-flex flex-wrap align-items-end mt-3"> 
                 <div class="medium-filter-box widthFull MobileCol6MB mr-2">
                     <label for="" class="mediumFont commonFontSize letterspacing">Current State</label>
                     <div class="form-control-inputDiv rounded  shadow-none  border-top">
-                        <select class="custom-select  form-control-input" id="pastEI" required [(ngModel)]="stateId"
+                        <select class="custom-select  form-control-input" id="pastEI" name="state" required [(ngModel)]="stateId"
                             (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of allStates" [value]="state.id"> {{state.state}}
@@ -31,7 +32,7 @@
                 <div class="medium-filter-box widthFull MobileCol6MB mr-2">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Current City</label>
                     <div class="form-control-inputDiv rounded  shadow-none  border-top ">
-                        <select class="custom-select  form-control-input" id="pastEI" required [(ngModel)]="cityId">
+                        <select class="custom-select  form-control-input" id="pastEI" name="city" required [(ngModel)]="cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
                         </select>
@@ -62,6 +63,7 @@
 
 
             </div>
+        </form>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
@@ -73,9 +75,10 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="searchUserList()" [(ngModel)]="page_size">
-                        <option value="5">5</option>
+                        <option *ngFor="let count of pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>

@@ -67,7 +67,7 @@ export class EiSubscriptionUpdateComponent implements OnInit {
     this.loader.show();
     let data = {
       "coupon_code": code,
-      "coupon_type": "2",
+      "coupon_type": "subscription_fees",
       "subscription_id": this.subscription.id
     }
     this.baseService.action('ei/payment-process/', data).subscribe(
@@ -119,7 +119,8 @@ export class EiSubscriptionUpdateComponent implements OnInit {
     this.loader.show();
     let data = {
       "subscription_id": this.subscription.id,
-      "coupon_code": this.couponCode
+      "coupon_code": this.couponCode,
+      "coupon_type": "subscription_fees"
     }
     this.baseService.action('ei/get-subscription-data-after-coupon/', data).subscribe(
       (res: any) => {

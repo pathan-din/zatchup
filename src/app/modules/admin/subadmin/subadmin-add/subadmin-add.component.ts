@@ -1,11 +1,10 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-subadmin-add',
@@ -18,12 +17,12 @@ export class SubadminAddComponent implements OnInit {
   maxDate: any;
 
   constructor(
-    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private datePipe: DatePipe,
-    private router: Router,
     private validationService: GenericFormValidationService
   ) {
     this.maxDate = new Date()
@@ -46,16 +45,21 @@ export class SubadminAddComponent implements OnInit {
       data.date_of_birth = this.datePipe.transform(data.date_of_birth, 'yyyy-MM-dd')
       this.baseService.action('admin/sub-admin/add_subadmin/', data).subscribe(
         (res: any) => {
-          console.log('res is as ::', res)
-          if (res.status == true){
+          if (res.status == true) {
             this.alert.success("Added successfully", "Success");
             this.router.navigate(['admin/subadmin-dashboard'])
           }
-          else
-            this.alert.error(res.error.message, "Error")
+          else {
+            if (res.error)
+              this.alert.error(res.error.message, "Error")
+            else{
+              let error =  this.baseService.getErrorResponse(this.loader, res)
+              this.alert.error(error, "Error")
+            }
+          }
           this.loader.hide()
         }
-      ),err =>{
+      ), err => {
         this.loader.hide()
       }
     }
@@ -71,7 +75,9 @@ export class SubadminAddComponent implements OnInit {
     }
   }
 
-  goBack(){
-    this.location.back()
+  goBack() {
+    // this.location.back()
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
+    this.router.navigate([returnUrl])
   }
 }

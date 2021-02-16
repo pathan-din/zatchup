@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -11,9 +12,11 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class BankDetailsComponent implements OnInit {
   eiId: any;
-  bankDetails: any
+  bankDetails: any;
+  status: any
 
   constructor(
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
@@ -34,17 +37,24 @@ export class BankDetailsComponent implements OnInit {
 
     this.baseService.getData('admin/ei-payment-details/'+this.eiId).subscribe(
       (res: any) => {
-        if (res.status){
+        if (res.status == true){
           this.bankDetails = res.data;
+          this.status = Object.entries(this.bankDetails)
         }
         else
           this.alert.error(res.error.message[0], 'Error')
         this.loader.hide()
+
+        console.log('bankDetails......',this.status)
       }
     ), err => {
       this.alert.error(err, 'Error');
       this.loader.hide();
     }
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

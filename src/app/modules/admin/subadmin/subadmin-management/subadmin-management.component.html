@@ -7,33 +7,32 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Sub Admin Management</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-paret-green text-white px-3 py-2 border-0 " aria-hidden="true "
+                <button type="button" class="bg-paret-green text-white px-2 py-2 border-0 " aria-hidden="true "
                     (click)="goToSubadminAddPage()">Add Sub-Admin</button>
-                <button type="button" class="bg-blue text-white px-3 py-2  ml-2 border-0 " aria-hidden="true "
+                <button type="button" class="bg-blue text-white px-2 py-2 ml-2 border-0 " aria-hidden="true "
                     (click)="goToSubadminAccessHistoryPage()">Access History</button>
             </div>
         </div>
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+        <div class="row my-3 align-items-center" *ngIf="dataSource && dataSource.length > 0">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Sub Admin Per
-                    Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0" (change)="getSubadminList('1')" [(ngModel)]="pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2"
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"><i class="fa fa-file-excel-o mr-2"
                         aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for filter for No of alumni per page with export button-->
-        <div class="tableDiv ">
+        <div class="tableDiv" *ngIf="dataSource && dataSource.length > 0">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource | paginate: config">
 
@@ -72,7 +71,7 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center cursorStyle">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View Details"
                                 (click)="goToSubadminAuthorirtyPage(element)"></i>
                         </mat-cell>
                     </ng-container>
@@ -82,12 +81,12 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="dataSource" (pageChange)="getSubadminList($event)" class="eiPaginationTag">
+        <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getSubadminList($event)" class="eiPaginationTag">
         </pagination-controls>
         <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
             <p style="color: white">Please Wait. </p>
         </ngx-spinner>
-        <div class="row" *ngIf="!dataSource">
+        <div class="row" *ngIf="dataSource && dataSource.length == 0">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>

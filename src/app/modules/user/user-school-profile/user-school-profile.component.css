@@ -1,12 +1,18 @@
-.containerScrolling {
+/* .containerScrolling {
     height: 100vh;
     overflow-y: scroll;
-}
+} */
 
 .email_position-absolute {
     position: absolute;
     top: 6%;
     right: 2%;
+    width: 40px;
+}
+
+.bannerDiv .userSchoolProfileCover {
+    width: 100%;
+    height: 180px;
 }
 
 .landingDiv {

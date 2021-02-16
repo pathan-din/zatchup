@@ -18,21 +18,21 @@
         <div class="row mt-4">
             <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1" (click)="subadminPendingRequest()">
-                    <p class="p-2 mediumFont commonFontSize ">Pending Requests</p>
+                    <p class="p-2 mediumFont commonFontSize ">Sub-admins Pending for Verification</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{dasboardSummery?.ei_pending_requests_count}}
                     </h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary pblock">Requests To Add
                         Sub-Admin:<span class="ml-2">{{dasboardSummery?.total_ei_pending_requests_count}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB cursorStyle">
+            <!-- <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div (click)="subadminPendingAccessRequest()" class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize ">Pending Access </p>
                     <h2 class="countFontSize text-center semiBoldFont">{{dasboardSummery?.ei_pending_access_count}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary pblock">Access Requests:<span
                             class="ml-2">{{dasboardSummery?.total_ei_pending_access_count}}</span></p>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="col-md-4">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
                     <p class="p-2 mediumFont commonFontSize ">Requests For Changing</p>
@@ -46,12 +46,12 @@
 
         <div class="row mt-4">
             <div class="col-md-4 MobileCol6MB">
-                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple"
+                <button type="button" class="px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple"
                     (click)="goToEiSubadminModuleWisePage()">Module wise
                     summary</button>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <button type="button" class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple"
+                <button type="button" class="px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple"
                     (click)="goToEiSubadminAccessHistoryPage()">Access
                     History</button>
             </div>
@@ -62,15 +62,14 @@
     <div class="addStudent-div bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row mt-2 ">
             <div class="col-xl-6 col-lg-5 col-md-6 MobileCol6MB">
-                <button type="button"
-                    class=" px-3 commonFontSize mediumFont py-4 border-0 addSubAdminPurpleBtn bg-purple"
+                <button type="button" class="px-2 commonFontSize mediumFont py-4 border-0 addSubAdminPurpleBtn bg-purple"
                     (click)="goToEiSubadminAccessPage()">Add Sub
                     Admin</button>
             </div>
             <div class="col-xl-6 col-lg-7 col-md-6">
                 <h2 class="commonFontSize semiBoldFont">View Status ({{dasboardSummery?.status.ei_subadmin_sent_for_approval+dasboardSummery?.status.ei_subadmin_sent_for_signup+dasboardSummery?.status.ei_subadmin_approved+dasboardSummery?.status.ei_subadmin_rejected_by_user}}) </h2>
                 <div class="form-control-inputDiv rounded-0 bg-offwhite shadow-none clearfix p-2">
-                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('')">
+                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('approved')">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Approved By Subadmin</p>
                         </div>
@@ -110,17 +109,18 @@
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
         <h2 class="commonFontSize semiBoldFont m-0">Sub Admin</h2>
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Alumni Per
                     Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select (change)="sudAdminList('1', '')"
+                    <select (change)="sudAdminList('', '')" [(ngModel)]="model.page_size"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">5</option>
+                        <!-- <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="15">15</option> -->
+                        <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && dataSource.length > 0">
                 <mat-table [dataSource]="dataSource |  paginate: config">
 
                     <ng-container matColumnDef="SNo">
@@ -180,7 +180,7 @@
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i (click)="redirectToDetailPage(element.user_id)"
-                                class="fa fa-eye mr-2 cursorStyle color-lightBlue fa-lg" aria-hidden="true "></i>
+                                class="fa fa-eye mr-2 cursorStyle color-lightBlue fa-lg" title="View" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
@@ -189,6 +189,14 @@
 
                 </mat-table>
 
+            </div>
+            <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="sudAdminList($event,'')"
+                class="eiPaginationTag">
+            </pagination-controls>
+            <div class="row" *ngIf="dataSource && dataSource.length == 0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
+                </div>
             </div>
         </div>
     </div>

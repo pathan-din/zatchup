@@ -51,12 +51,42 @@ export class BaseService {
     }
     return this.http.get(this.environment.baseUrl + url, { params, responseType: 'blob' })
   }
+  downloadImage(imgUrl) {
+    //const imgUrl = img.src;
+    const imgName = imgUrl.substr(imgUrl.lastIndexOf('/') + 1);
+    this.http.get(imgUrl, { responseType: 'blob' as 'json' })
+      .subscribe((res: any) => {
+        const file = new Blob([res], { type: res.type });
 
+        // IE
+        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(file);
+          return;
+        }
+
+        const blob = window.URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = blob;
+        link.download = imgName;
+
+        // Version link.click() to work at firefox
+        link.dispatchEvent(new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        }));
+
+        setTimeout(() => { // firefox
+          window.URL.revokeObjectURL(blob);
+          link.remove();
+        }, 100);
+      });
+  }
   generateExcel(url: any, fileName: any, args?: any) {
     this.downloadFile(url, args).subscribe(response => {
       let blob: any = new Blob([response], { type: 'application/vnd.ms-excel' });
       const url = window.URL.createObjectURL(blob);
-      fileSaver.saveAs(blob, fileName + '.xlsx');
+      fileSaver.saveAs(blob, fileName + '.xls');
     }), error => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
@@ -91,7 +121,9 @@ export class BaseService {
     }
     return this.http.put(this.environment.baseUrl + url, data, { params })
   }
-
+  daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+  }
   setActionData(data) {
     let obj = {}
     Object.keys(data).forEach(function (key) {
@@ -102,13 +134,14 @@ export class BaseService {
   }
 
   actionForFormData(url: any, data: any) {
-    console.log(this.setFormData(data));
-
+   if(typeof(data)=='object'){
+    return this.http.post(this.environment.baseUrl + url, data)
+   }
     return this.http.post(this.environment.baseUrl + url, this.setFormData(data))
   }
 
   setFormData(data) {
-    console.log(data);
+
     const formData = new FormData();
     Object.keys(data).forEach(function (key) {
       if (data[key]) {
@@ -116,21 +149,18 @@ export class BaseService {
         formData.append(key, data[key]);
 
       }
-      console.log(formData);
+
     });
     return formData;
   }
 
   //server Side Validation function
-  getErrorResponse(SpinnerService, errors) {
-    console.log(errors);
-
-    SpinnerService.hide();
+  getErrorResponse(loader, errors) {
+    loader.hide();
     var errorCollection = '';
     let displayError = {};
     for (var key in errors) {
       displayError[key] = errors[key][0];
-      console.log(displayError);
       if (errors[key][0]) {
         errorCollection = errorCollection + errors[key][0] + '\n'
       } else {
@@ -139,5 +169,35 @@ export class BaseService {
     }
     return errorCollection;
   }
+
+  getCountsOfPage() {
+    let arr = [5, 10, 20, 50, 100]
+    return arr;
+  }
+
+  isLoggedIn() {
+    return !!localStorage.getItem("token");
+  }
+
+  getGender(data: any) {
+    if (data && data.gender == 'C') {
+      let pronoun = data.pronoun ? data.pronoun : '';
+      let custom_gender = data.custom_gender ? data.custom_gender : ''
+      return "Custom " + pronoun + " " + custom_gender
+    }
+    else {
+      let gender = data.gender == 'M' ? 'Male' : 'Female'
+      return gender
+    }
+  }
+
+  calculateAge(birthday) { // birthday is a date
+    let currentDate = new Date().getTime()
+    let birthDate = new Date(birthday).getTime()
+    var ageDifMs = currentDate - birthDate  ;
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
 
 }

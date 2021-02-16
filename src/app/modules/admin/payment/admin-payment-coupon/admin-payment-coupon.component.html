@@ -2,7 +2,10 @@
 <div class="container main-container p-3">
     <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">Coupon Codes</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
@@ -10,6 +13,21 @@
                     data-toggle="modal" data-target="#addCouponModel">Add New Coupon</button>
             </div>
         </div>
+
+        <!-- <div class="row topDiv">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Subscription Fees Revenue</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-paret-green text-white px-4 h-100 border-0 mp0"
+                    (click)="configureSubscription()">Configure Subscription Fees</button>
+                <button type="button" class="bg-blue text-white px-4 h-100 ml-2 border-0 mp0"
+                    (click)="subscriptionHistory()">Subscription Plan History</button>
+            </div>
+        </div> -->
 
         <div class="row mt-3" *ngIf="coupons">
             <div class="col-md-4 MobileCol6MB">
@@ -23,10 +41,10 @@
                         <p>Coupons for Onboarding :<span class="ml-2">{{coupons.active_coupons.onboarding}}</span></p>
                         <p>Coupons for Subscription:<span class="ml-2">{{coupons.active_coupons.subscription}}</span>
                         </p>
-                        <p>Coupons for Advertisement:<span class="ml-2">{{coupons.active_coupons.advertisement}}</span>
+                        <!-- <p>Coupons for Advertisement:<span class="ml-2">{{coupons.active_coupons.advertisement}}</span>
                         </p>
                         <p>Coupons for Zatchup StarClass:<span
-                                class="ml-2">{{coupons.active_coupons.zatchup_starclasses}}</span></p>
+                                class="ml-2">{{coupons.active_coupons.zatchup_starclasses}}</span></p> -->
                     </div>
                 </div>
             </div>
@@ -41,10 +59,10 @@
                         <p>Coupons for Onboarding :<span class="ml-2">{{coupons.expired_coupons.onboarding}}</span></p>
                         <p>Coupons for Subscription:<span class="ml-2">{{coupons.expired_coupons.subscription}}</span>
                         </p>
-                        <p>Coupons for Advertisement:<span class="ml-2">{{coupons.expired_coupons.advertisement}}</span>
+                        <!-- <p>Coupons for Advertisement:<span class="ml-2">{{coupons.expired_coupons.advertisement}}</span>
                         </p>
                         <p>Coupons for Zatchup StarClass:<span
-                                class="ml-2">{{coupons.expired_coupons.zatchup_starclasses}}</span></p>
+                                class="ml-2">{{coupons.expired_coupons.zatchup_starclasses}}</span></p> -->
                     </div>
                 </div>
             </div>
@@ -63,43 +81,41 @@
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <form (ngSubmit)="addCouponForm.form.valid && addCoupon()" #addCouponForm="ngForm" novalidate>
+                        <form (ngSubmit)="addCoupon()" autocapitalize="off" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row  ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Coupon Purpose
                                         </label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                            <select class="custom-select  form-control-input" name="couponPurpose"
-                                                [(ngModel)]="couponModal.purpose" #couponPurpose="ngModel"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && couponPurpose.invalid }"
-                                                required>
+                                            <select class="custom-select  form-control-input" name="coupon_purpose"
+                                                [(ngModel)]="couponModal.purpose" (change)="isValid()" required>
                                                 <option value=""> Select Coupon</option>
                                                 <option value="Onboarding Fees">Onboarding Fees</option>
                                                 <option value="Subscription Fees">Subscription Fees</option>
-                                                <option value="Advertisement">Advertisement</option>
-                                                <option value="ZatchUp StarClass">ZatchUp StarClass</option>
+                                                <!-- <option value="Advertisement">Advertisement</option>
+                                                <option value="ZatchUp StarClass">ZatchUp StarClass</option> -->
                                             </select>
                                         </div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.coupon_purpose"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-group row  ml-0 mr-0">
-                                        <label for="" class="mediumFont commonFontSize letterspacing"> Enter Code
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Enter Coupon Code
                                         </label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                                             <input
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Code" name="couponCode"
-                                                [(ngModel)]="couponModal.code" #couponCode="ngModel"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && couponCode.invalid }"
-                                                required>
+                                                type="text" placeholder="Enter Coupon Code" name="coupon_code"
+                                                [(ngModel)]="couponModal.code" (keyup)="isValid()" required>
                                         </div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.coupon_code"></div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
+                                <div class="col-md-12" *ngIf="couponModal.purpose !== 'Onboarding Fees'">
                                     <div class="form-group row  ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Minimum Order
                                             Value
@@ -107,24 +123,11 @@
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                                             <input
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Minimum Order Value" name="minimumOrder"
-                                                [(ngModel)]="couponModal.minimum_order_value" #minimumOrder="ngModel"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && minimumOrder.invalid }"
-                                                (keypress)="keyPressNumbers($event)" required>
+                                                type="text" placeholder="Enter Minimum Order Value" (keyup)="isValid()"
+                                                name="minimum_order_value" maxlength="5" [(ngModel)]="couponModal.minimum_order_value"
+                                                numberOnly required>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
-                                        <label for="" class="mediumFont commonFontSize letterspacing"> Discount </label>
-                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                            <input
-                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Discount" name="discount" maxlength="3"
-                                                [(ngModel)]="couponModal.discount_amount" #discount="ngModel"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && discount.invalid }"
-                                                (keypress)="keyPressNumbers($event)" required>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.minimum_order_value">
                                         </div>
                                     </div>
                                 </div>
@@ -134,18 +137,36 @@
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Discount
                                             Type</label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                            <select class="custom-select  form-control-input" name="discountType"
-                                                [(ngModel)]="couponModal.discount_type" #discountType="ngModel"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && discountType.invalid }"
+                                            <select class="custom-select  form-control-input" name="discount_type"
+                                                [(ngModel)]="couponModal.discount_type" (change)="changeDiscountType()"
                                                 required>
                                                 <option value=""> Discount Type</option>
-                                                <option value="percentage">Percentage (%)</option>
+                                                <option value="flat">Flat Discount</option>
+                                                <option value="percentage">% Discount</option>
                                             </select>
                                         </div>
+
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.discount_type"></div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Discount </label>
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <input
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter Discount" name="discount_amount"
+                                                maxlength="5" [(ngModel)]="couponModal.discount_amount" numberOnly
+                                                (keyup)="match($event)" required>
+                                        </div>
+                                        <div *ngIf="discountValue" class="errorMsg">Discount limit should be 0 to 100
+                                        </div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.discount_amount"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" *ngIf="couponModal.discount_type == 'percentage'">
                                     <div class="form-group row  ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Maximum Discount
                                             Amount </label>
@@ -153,25 +174,27 @@
                                             <input
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                                 type="text" placeholder="Enter Maximum Discount Amount"
-                                                name="maximumDiscount" [(ngModel)]="couponModal.maximum_discount_amount"
-                                                #maximumDiscount="ngModel" (keypress)="keyPressNumbers($event)"
-                                                maxlength="3"
-                                                [ngClass]="{ 'is-invalid': addCouponForm.submitted && maximumDiscount.invalid }"
-                                                required>
+                                                name="maximum_discount_amount" numberOnly
+                                                [(ngModel)]="couponModal.maximum_discount_amount"
+                                                (keyup)="isValid()" maxlength="5" required>
                                         </div>
+                                        <!-- <div *ngIf="maxDisValidation" class="errorMsg"> Maximum amount should be less
+                                            than discount amount</div> -->
+                                        <div class="required errorMsg"
+                                            [innerHtml]="errorDisplay.maximum_discount_amount"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group row  ml-0 mr-0">
                                         <label for="" class=" commonFontSize mediumFont letterspacing">Coupon Expiration
                                             Date</label>
-                                        <input type="text" id="enddate" name="enddate" placeholder="YYYY/DD/MM"
-                                            class="form-control" bsDatepicker [minDate]="minDate"
-                                            [(ngModel)]="couponModal.enddate" #enddate="ngModel"
+                                        <input type="text" id="enddate" name="coupon_expiry_date"
+                                            placeholder="YYYY/DD/MM" class="form-control" bsDatepicker
+                                            [minDate]="minDate" [(ngModel)]="couponModal.enddate" (change)="isValid()"
                                             [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}"
-                                            [ngClass]="{ 'is-invalid': addCouponForm.submitted && enddate.invalid }"
                                             required>
                                     </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.coupon_expiry_date"></div>
                                 </div>
                             </div>
 

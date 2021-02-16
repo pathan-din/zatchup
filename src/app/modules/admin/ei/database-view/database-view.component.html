@@ -6,129 +6,136 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0 "> EI On Database View </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> School On Database View </h2>
             </div>
             <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
-                <button type="button" class="bg-yellow text-white px-4 py-2 mb-1 border-0 " (click)="conversationComments()">Onboarding Conversation Comments</button>
-                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 mb-1 border-0 " (click)="eiRequestHistory()">History</button>
+                <button type="button" class="bg-yellow text-white px-4 py-2 mb-1 border-0 "
+                    (click)="conversationComments()">Onboarding Conversation Comments</button>
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 mb-1 border-0 "
+                    (click)="eiRequestHistory()">History</button>
             </div>
         </div>
         <div class="border-0 mx-0 mt-3">
-        <div class="border-0 mx-0 mt-2" *ngIf="eiData">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Name of The School</p>
+            <div class="border-0 mx-0 mt-2" *ngIf="eiData">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>Name of The School</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p><span class="mr-3">: {{eiData.name_of_school}}</span></p>
+                            </div>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">: {{eiData.name_of_school}}</span></p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>School ZatchUp ID</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p><span class="mr-3">: {{eiData.zatchupId}}</span></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>EI ZatchUp ID</p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>State</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p><span class="mr-3">: {{eiData.state}}</span></p>
+                            </div>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">: {{eiData.zatchupId}}</span></p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>City</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p><span class="mr-3">: {{eiData.city}}</span></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>State</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">: {{eiData.state}}</span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>City</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">: {{eiData.city}}</span></p>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-12 commonFontSize mediumFont">
-                            <p>Complete Address</p>
-                        </div>
-                        <div class="col-12 ml-2 small-text-2">
-                            <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Address Line One</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: {{eiData.address1}}</span> </p>
-                                </div>
+                        <div class="row">
+                            <div class="col-12 commonFontSize mediumFont">
+                                <p>Complete Address <span class="cursorStyle color-blue" (click)="setAddressData()"><i
+                                            data-toggle="modal" data-target="#editAddress" class="textUnderlineStyle"
+                                            class="fa fa-pencil-square-o"></i></span></p>
                             </div>
-                            <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Address Line Two</p>
+                            <div class="col-12 ml-2 small-text-2">
+                                <div class="row mx-0">
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                        <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                            Address Line One</p>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                        <p><span class="mr-3">: {{eiData.address1}}</span> </p>
+                                    </div>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: {{eiData.address2}}</span> </p>
+                                <div class="row mx-0">
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                        <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                            Address Line Two</p>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                        <p><span class="mr-3">: {{eiData.address2}}</span> </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mx-0">
+                                <!-- <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Landmark</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                                     <p><span class="mr-3">: {{eiData.landmark}}</span> </p>
                                 </div>
-                            </div>
-                            <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Pin Code</p>
+                            </div> -->
+                                <div class="row mx-0">
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                        <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                            Pin Code</p>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                        <p><span class="mr-3">: {{eiData.pincode}}</span> </p>
+                                    </div>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: {{eiData.pincode}}</span> </p>
-                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Board/University</p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>Board/University</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p><span class="mr-3">: {{eiData.university}}</span></p>
+                            </div>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p><span class="mr-3">: {{eiData.university}}</span></p>
-                        </div>
-                    </div>
 
-                    <div class="row">
+                        <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Approximate Number of Students</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7">
                             <p><span class="mr-3">:</span></p>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number Of Student On ZatchUp <br/> (Basis EI ZatchUp ID)</p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>Number Of Student On ZatchUp <br /> (Basis School ZatchUp ID)</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p class="color-blue"><span class="mr-3 text-dark">:
+                                        {{eiData.total_no_of_students}}</span><span class="textUnderlineStyle "> </span></p>
+                            </div>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.no_of_students}}</span><span
-                             class="textUnderlineStyle "> </span></p>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number Of Alumini On ZatchUp <br/> (Basis EI ZatchUp ID)</p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>Number Of Alumini On ZatchUp <br /> (Basis School ZatchUp ID)</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.total_no_of_alumni}}</span><span
+                                        class="textUnderlineStyle "> </span></p>
+                            </div>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p class="color-blue"><span class="mr-3 text-dark">: {{eiData.no_of_alumni}}</span><span
-                             class="textUnderlineStyle "> </span></p>
-                        </div>
-                    </div>
 
-                    <div class="row">
+                        <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Onboarding Conversation Comments</p>
                         </div>
@@ -138,85 +145,161 @@
                                 <span class="textUnderlineStyle" data-toggle="modal" data-target="#addComments"> Add Comments </span>
                             </p>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-12 commonFontSize mediumFont">
-                            <p>Disable EI/Enable EI</p>
-                        </div>
-                        <div class="col-12 ml-2 small-text-2">
-                            <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Disable EI/Enable EI Reason</p>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-12 commonFontSize mediumFont">
+                                <p>Disable School/Enable School</p>
+                            </div>
+                            <div class="col-12 ml-2 small-text-2">
+                                <div class="row mx-0">
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                        <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                            Disable School/Enable School</p>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                                        <p>
+                                            <span class="mr-3">:</span>
+                                            <mat-slide-toggle (change)="setEnableDisableSchoolData($event)"
+                                                data-toggle="modal" data-target="#enableDisableModal"
+                                                [(ngModel)]="eiDisable"></mat-slide-toggle>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> </p>
+                                <div class="row mx-0">
+                                    <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                                        <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                            Disable School/Enable School Reason</p>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                        <p><span class="mr-3">:</span> {{eiData.disable_reason}} </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row mx-0">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span> Disable EI/Enable EI</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p>
-                                        <span class="mr-3">:</span> 
-                                        <mat-slide-toggle class="toggleslider"></mat-slide-toggle>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Delete</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                            <p class="color-red">
-                                <span class="mr-3 text-dark">:</span>
-                                <span class="textUnderlineStyle">Delete</span>  
-                            </p>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                                <p>Delete</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                                <p class="color-red">
+                                    <span class="mr-3 text-dark">:</span>
+                                    <span class="textUnderlineStyle" (click)="deleteEI()">Delete</span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row" *ngIf="!eiData">
-            <div class="col-12 pt-2 pb-2">
-                <p class="text-center dataNotFound pt-4 pb-4">EI data not available</p>
+            <div class="row" *ngIf="!eiData">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">School data not available</p>
+                </div>
             </div>
-        </div>
 
-        <!-- addComments  -->
-        <div class="modal fade" id="addComments" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <!-- Start School eneble disable Model  -->
+            <div class="modal fade" id="enableDisableModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Comment</h2>
-                            <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
-                        <span aria-hidden="true "> &times; </span>
-                    </button>
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">
+                                {{databaseView.enableDisableModalTitle}}</h2>
+                            <button #closeEnableDisableModal type="button" (click)="closeModel()"
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true "> &times; </span>
+                            </button>
                         </div>
-                        <div class="modal-body px-0">
-                            <div class="row">
-    
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
-                                        <label for="" class="mediumFont commonFontSize letterspacing"> Comments </label>
-                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                            <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Remarks"></textarea>
+                        <form #enableDisableSchoolForm="ngForm" autocapitalize="off" autocomplete="off">
+                            <div class="modal-body px-0">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing"> Reason
+                                            </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <textarea id="reason" name="reason" type="text" (keyup)="isValid()"
+                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    cols="4" rows="4" placeholder="Enter Reason"
+                                                    [(ngModel)]="databaseView.enableDisableReason" required></textarea>
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="databaseView.errorDisplay.reason">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-    
+                                <button type="button "
+                                    class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing"
+                                    (click)="enableDiableSchool(); enableDisableSchoolForm.reset()"> Submit </button>
                             </div>
-                            <button type="button " class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Send </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End School eneble disable Model  -->
+
+            <!-- Start School edit address Model -->
+            <div class="modal fade" id="editAddress" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content unverified container-fluid">
+                        <div class="modal-header align-items-center justify-content-center pb-0 ">
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Edit Address</h2>
+                            <button #closeEditAddress type="button "
+                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                                aria-label="Close ">
+                                <span aria-hidden="true ">
+                                    &times;
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body px-0">
+                            <form id="comment">
+                                <div class=" form-group row ">
+
+                                    <div class="col-sm-12 ">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 1</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="address_line_1" name="address_line_1"
+                                                [(ngModel)]="databaseView.addressLineOne" (keyup)="isValid()"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Please enter address line 1" required>
+                                        </div>
+                                        <div class="required errorMsg"
+                                            [innerHtml]="databaseView.errorDisplay.address_line_1">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 mt-3">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Address Line 2</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="address_line_2" name="address_line_2"
+                                                [(ngModel)]="databaseView.addressLineTwo"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Please enter Address line 2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button " (click)="editAddress()"
+                                    class="bg-purple  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                    Edit
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End eiEditModel  -->
 
+            <!-- End School edit address Model -->
+        </div>
     </div>
 </div>
 

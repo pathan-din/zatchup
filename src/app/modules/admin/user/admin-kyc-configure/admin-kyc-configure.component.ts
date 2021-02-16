@@ -93,6 +93,10 @@ export class AdminKycConfigureComponent implements OnInit {
     }
   }
 
+  setCount(){
+    this.addCount = this.retriggerCount
+  }
+
   closeModel() {
     this.closebutton.nativeElement.click()
   }

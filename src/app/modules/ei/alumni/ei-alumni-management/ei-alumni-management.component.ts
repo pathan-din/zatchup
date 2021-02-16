@@ -61,11 +61,14 @@ ngOnInit(): void {
   }
 
   goToEiVerifiedAlumniPage(){
-    this.router.navigate(['ei/verified-alumni']);
+    this.router.navigate(['ei/alumni-list'], {queryParams: {approved : 1}});
   }
 
   goToEiUnverifiedAlumniPage(){
-    this.router.navigate(['ei/unverified-alumni']);
+    this.router.navigate(['ei/alumni-list'], {queryParams: {approved : 0}});
   }
 
+  gotoAlumniSummary(){
+    this.router.navigate(['ei/alumni-summary']);
+  }
 }

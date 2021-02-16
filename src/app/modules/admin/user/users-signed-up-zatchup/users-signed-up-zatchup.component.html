@@ -6,65 +6,66 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Signed Up Users On ZatchUp</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">Users on ZatchUp</h2>
             </div>
 
         </div>
         <!--Start html for filter for alumni list-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="signupFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                            id="signupFrom" name="signupFrom" type="text" placeholder="YYYY/MM/DD" bsDatepicker 
                             [maxDate]="signupUsers.maxDate"  [(ngModel)]="signupUsers.filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Sign up To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="signupTo" placeholder="MM/DD/YYYY" bsDatepicker
+                            type="text" id="signupTo" name="signupTo" placeholder="YYYY/MM/DD" bsDatepicker 
                             [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            id="lastLoginFrom" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " 
+                            id="lastLoginFrom" name="lastLoginFrom" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.loginFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
                     <label for="" class="mediumFont commonFontSize letterspacing">Last Login To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" id="lastLoginTo" placeholder="MM/DD/YYYY" bsDatepicker
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " 
+                            type="text" id="lastLoginTo" name="lastLoginTo" placeholder="YYYY/MM/DD" bsDatepicker
                             [maxDate]="signupUsers.maxDate" [(ngModel)]="signupUsers.loginToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
-                <div class="widthFull mr-3 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Current EI</label>
+                <div class="widthFull custumInputWidth mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">School ZatchUp ID</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                        type="input" id="currentEi" placeholder="Enter Current EI" name="current_ei" [(ngModel)]="signupUsers.currentEi">
+                        type="input" id="zatchupId" placeholder="Enter ZatchUp ID" name="zatchupId" [(ngModel)]="signupUsers.zatchupId">
                     </div>
                 </div>
-                <div class="widthFull mr-3 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Past EI</label>
+                <!-- <div class="widthFull mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Past School</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                        type="input" id="previousEi" placeholder="Enter Previous EI" name="previous_ei" [(ngModel)]="signupUsers.previousEi">
+                        type="input" id="previousEi" placeholder="Enter Previous School" name="previous_ei" [(ngModel)]="signupUsers.previousEi">
                     </div>
-                </div>
-                <div class="widthFull mr-3 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Age Group</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="ageGroup" required>
@@ -74,11 +75,11 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
-                <div class="widthFull mr-3 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="state" required
+                        <select class="custom-select  form-control-input" id="state" name="state" required
                         [(ngModel)]="signupUsers.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of signupUsers.allStates" [value]="state.id"> {{state.state}}
@@ -90,48 +91,50 @@
                 <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="city" required
+                        <select class="custom-select  form-control-input" id="city" name="city" required
                         [(ngModel)]="signupUsers.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of signupUsers.allCities" [value]="city.id">{{city.city}}</option>
 
                         </select>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="widthFull mr-3 mt-3">
+                <div class="widthFull custumInputWidth mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="Status" required name="kyc_approved"
                         [(ngModel)]="signupUsers.kycApproved">
                             <option value=""> Select Status</option>
                             <option value="1">Approved</option>
-                            <option value="0">Rejected</option>
-
+                            <option value="0">Pending</option>
+                            <option value="2">Rejected</option>
+                            <option value="3">Retriggered</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Verified by at least one EI</label>
+                <div class="widthFull custumInputWidth mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">School Verification</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" id="verifyByEI" required>
-                            <option value=""> Select</option>
+                        <select class="custom-select  form-control-input" id="verifyByEI" required name="schoolverification"
+                        [(ngModel)]="signupUsers.schoolStatus">>
+                            <option value=""> Select Status</option>
                             <option value="1">Verified</option>
-                            <option value="2">Inverified</option>
+                            <option value="0">Unverified</option>
 
                         </select>
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
+                <div class="widthFull custumInputWidth mr-3 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Online Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" id="verifyByEI" required name="status"
                         [(ngModel)]="signupUsers.status">
                             <option value=""> Select Status</option>
-                            <option value="True">Verified</option>
-                            <option value="False">Unverified</option>
+                            <option value="0">Active</option>
+                            <option value="1">In-Active</option>
 
                         </select>
                     </div>
@@ -141,25 +144,25 @@
 
 
             </div>
+        </form>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+        <div class="row my-3 align-items-center">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of User Per
-                    Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                     (change)="getSignupUsersList('')" [(ngModel)]="signupUsers.page_size">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of signupUsers.pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
@@ -176,7 +179,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ZatchUpID">
-                        <mat-header-cell *matHeaderCellDef>EI ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>User ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.zatchupId}}
                         </mat-cell>
@@ -186,9 +189,9 @@
                         <mat-header-cell *matHeaderCellDef>Profile Picture </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <div class="imgCircle">
-                                <img *ngIf="element.profile_img" src="{{element.profile_img}}" alt="ei profile"
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="School profile"
                                     class="img-fluid cerImg rounded">
-                                <img *ngIf="!element.profile_img" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                <img *ngIf="!element.profile_pic" src="assets/images/no-image-icon.jpg" alt="School profile"
                                     class="img-fluid cerImg rounded">
                             </div>
                         </mat-cell>
@@ -202,48 +205,73 @@
                     </ng-container>
 
                     <ng-container matColumnDef="noOfEducationPro">
-                        <mat-header-cell *matHeaderCellDef> Total No of EI In Education Profile </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Total No of School In Education Profile </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.total_no_ei}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfVerifiedUserPro">
-                        <mat-header-cell *matHeaderCellDef> Total No of EI Who Have Verified The Profile of User
+                        <mat-header-cell *matHeaderCellDef> Total No of School Who Have Verified The Profile of User
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.total_verified_profile_no}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="currentEI">
-                        <mat-header-cell *matHeaderCellDef> Current EI </mat-header-cell>
+                    <ng-container matColumnDef="signupdate">
+                        <mat-header-cell *matHeaderCellDef> Sign Up Date </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.current_ei}}
+                            {{element.signup_date | date}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="lastEI">
-                        <mat-header-cell *matHeaderCellDef>Last EI</mat-header-cell>
+                    <!-- <ng-container matColumnDef="lastEI">
+                        <mat-header-cell *matHeaderCellDef>Last School</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.previous_ei}} </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="onlinestatus">
+                        <mat-header-cell *matHeaderCellDef>Online Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                                <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.is_disabled == 0">Active</button>
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.is_disabled == 1">In-Active</button> 
+                        </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="status">
-                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                    <ng-container matColumnDef="kycstatus">
+                        <mat-header-cell *matHeaderCellDef>Kyc Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
+                                <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 1">Approved</button>
+                            <button type="button" class="bg-yellow text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 0">Pending</button> 
+                                <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 2">Rejected</button> 
+                                <button type="button" class="bg-dark text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.kyc_aprroved == 3">Retriggered</button> 
+                        </mat-cell>
+                    </ng-container>
 
-                            <button class="bg-paret-green text-white rounded border-0  px-2 buttonFullWidth">
-                                {{element.is_disabled ? 'In-Active' : 'Active'}}</button>
+                    <ng-container matColumnDef="schoolverification">
+                        <mat-header-cell *matHeaderCellDef>School Verification </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                                <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.school_verified == 1">Verified</button>
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.school_verified == 0">Unverified</button> 
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="LastLoginDate">
                         <mat-header-cell *matHeaderCellDef> Last Login Date </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.last_login}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.last_login | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="text-center justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue cursorStyle " title="view" aria-hidden="true " (click)="userProfile(element.id)"></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue cursorStyle " title="View Details" aria-hidden="true " (click)="userProfile(element.id)"></i>
                         </mat-cell>
                     </ng-container>
 

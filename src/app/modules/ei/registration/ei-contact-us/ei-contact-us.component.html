@@ -6,10 +6,10 @@
                 <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
                 <h2 class="text-center my-3 semiBoldFont">Contact Us</h2>
                 <form id="Form1">
-                    <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-6 ">
+                    <div class="form-group row  ">
+                        <div class="col-sm-6 MobileCol6MB">
                             <label for="City" class="mediumFont commonFontSize letterspacing">Select State </label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <select id="state" name="state" [(ngModel)]="contactUs.stateId" (change)="getCities();"
                                     class="custom-select-2Col custom-select form-control-input" required>
                                     <option value="">State </option>
@@ -20,9 +20,9 @@
                             <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.state"></div>
                         </div>
 
-                        <div class="col-sm-6 MobileCol6MB">
+                        <div class="col-sm-6">
                             <label for="City" class="mediumFont commonFontSize letterspacing">Select City </label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <select id="city" name="city" [(ngModel)]="contactUs.cityId" (change)="getSchools();"
                                     class="custom-select custom-select-2Col form-control-input" required>
                                     <option value="">City </option>
@@ -34,11 +34,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group row  ml-0 mr-0">
+                    <div class="form-group row  ">
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="School" class="mediumFont commonFontSize letterspacing">Select School
                                 Name </label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <select id="School_name" name="School_name" [(ngModel)]="contactUs.schoolId"
                                     (change)="getUniversityOrBoardName()"
                                     class="custom-select custom-select-2Col form-control-input" required>
@@ -52,7 +52,7 @@
                         <div class="col-sm-6 ">
                             <label for="board" class="mediumFont commonFontSize letterspacing">Board /
                                 University </label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input id="board" (keyup)="isValid()" [(ngModel)]="contactUs.university"
                                     name="Board_or_University" readonly="readonly"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -61,11 +61,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-12 mobilePaddingLR">
+                    <div class="form-group row  ">
+                        <div class="col-sm-12 ">
                             <label for="Address" class="mediumFont commonFontSize letterspacing">Full
                                 Address</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input id="address" (keyup)="isValid()" [(ngModel)]="contactUs.fullAddress"
                                     name="address" readonly="readonly"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -73,11 +73,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-12 mobilePaddingLR">
+                    <div class="form-group row  ">
+                        <div class="col-sm-12 ">
                             <label for="Address" class="mediumFont commonFontSize letterspacing">
                                 Issue</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input id="issue" required (keyup)="isValid()" [(ngModel)]="contactUs.issue"
                                     name="issue"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -86,10 +86,10 @@
                             <div class="required errorMsg" [innerHtml]="contactUs.errorDisplay.issue"></div>
                         </div>
                     </div>
-                    <div class="form-group row  ml-0 mr-0">
-                        <div class="col-sm-12 mobilePaddingLR">
+                    <div class="form-group row  ">
+                        <div class="col-sm-12 ">
                             <label for="Address" class="mediumFont commonFontSize letterspacing">Messages</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <textarea id="Messages" required (keyup)="isValid()" [(ngModel)]="contactUs.message"
                                     name="Messages"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -101,8 +101,8 @@
                     <button type="submit"
                         class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing"
                         (click)="submit()">Submit</button>
-                    <p class="text-center commonFontSize mediumFont letterspacing mt-4">Contact us at <span
-                            class="textUnderlineStyle letterspacing">help@zatchup.com</span></p>
+                    <!-- <p class="text-center commonFontSize mediumFont letterspacing mt-4">Contact us at <span
+                            class="textUnderlineStyle letterspacing">help@zatchup.com</span></p> -->
                 </form>
             </div>
         </div>

@@ -2,15 +2,21 @@
 <div class="container main-container p-3">
     <div class="DocumentMOUHistory-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-6 ">
+            <!-- <div class="col-md-6 ">
                 <h2 class="commonFontSize semiBoldFont m-0">Document and MOU History</h2>
+            </div> -->
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1"> Document and MOU History </h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-light-black text-white px-4 h-100 ml-2 border-0 " aria-hidden="true "
+                <button type="button" class="bg-light-black text-white px-4 py-2 border-0" aria-hidden="true "
                     data-toggle="modal" data-target="#uploadNewMOUModel">Upload New
                     MOU</button>
             </div>
-        </div>
+        </div>  
 
         <!--Start html for filter for Document and MOU History List-->
         <div class="filterDiv">
@@ -18,94 +24,119 @@
                 <div class="widthFull mr-4 mt-3 dropdown-lg-Div">
                     <label for="" class="mediumFont commonFontSize letterspacing">Document Type</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required>
+                        <select class="custom-select  form-control-input" [(ngModel)]="docHistory.doc_type">
                             <option value=""> Select Type </option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="mou">MOU</option>
+                            <option value="other">Other Document</option>
                         </select>
                     </div>
                 </div>
                 <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required>
-                            <option value=""> Select Sort</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select  form-control-input" required id="selectionOrder"
+                            name="selectionOrder" [(ngModel)]="docHistory.ascendingOrder">
+                            <option value="true">Ascending</option>
+                            <option value="false">Descending</option>
+
                         </select>
                     </div>
                 </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                    (click)="getDocHistory()">Apply</button>
             </div>
         </div>
         <!--End html for filter for Document and MOU History List-->
 
 
         <!--Start html for table content Document and MOU History information-->
-        <div class="tableDiv mt-3">
+        <div class="tableDiv mt-3" *ngIf="docHistory.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="docHistory.dataSource | paginate: docHistory.config">
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + docHistory.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="DateOfUploading">
                         <mat-header-cell *matHeaderCellDef> Date Of Uploading </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.DateOfUploading}}
+                            {{element.updated_on | date}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="NameofDocument">
                         <mat-header-cell *matHeaderCellDef> Name of Document </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.NameofDocument}}
+                            {{element.name}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ViewDocument">
                         <mat-header-cell *matHeaderCellDef> View Document </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <img [src]="element.ViewDocument" />
+                            <!-- <img [src]="element.ViewDocument" /> -->
+                            <div class="imgCircle cursorStyle">
+                                <img (click)="viewImage(element.document)"
+                                    *ngIf="element.document && fileType(element.document) != 'pdf'"
+                                    src="{{element.document}}" alt="ei profile" class="img-fluid cerImg rounded"
+                                    aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
+
+                                <img (click)="download_file(element.document)"
+                                    *ngIf="element.document && fileType(element.document) == 'pdf'" 
+                                    src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.document" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                                    class="img-fluid cerImg rounded">
+                            </div>
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="DownloadDocument">
+                    <!-- <ng-container matColumnDef="DownloadDocument">
                         <mat-header-cell *matHeaderCellDef> Download Document </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             <button type="button"
                                 class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
-                                <i class="fa fa-download mr-1 text-white cursorStyle" aria-hidden="true"></i>
+                                <i class="fa fa-download text-white cursorStyle" aria-hidden="true"></i>
                                 {{element.DownloadDocument}}</button>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="Remarks">
                         <mat-header-cell *matHeaderCellDef> Remarks </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.Remarks}}
+                            {{element.remark}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="UploadedByEI">
-                        <mat-header-cell *matHeaderCellDef>Uploaded By EI</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.UploadedByEI}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef>Uploaded By School</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.uploaded_by}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="UploadedByEmployeeName">
                         <mat-header-cell *matHeaderCellDef> Uploaded By Employee Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.UploadedByEmployeeName}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.employee_name}} </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="docHistory.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: docHistory.displayedColumns; "></mat-row>
 
                 </mat-table>
 
+               
+                <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+                    <p style="color: white">Please Wait. </p>
+                </ngx-spinner> -->
+
+            </div>
+        </div>
+        <pagination-controls *ngIf="docHistory.dataSource" (pageChange)="getDocHistory($event)"
+        class="eiPaginationTag">
+    </pagination-controls>
+        <div class="row" *ngIf="!docHistory.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
         <!--End html for table content Document and MOU History information-->
@@ -118,6 +149,63 @@
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0 ">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Upload New MOU</h2>
+                        <button #closeUploadMOUModel type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <form autocapitalize="off" autocomplete="off">
+                            <div class=" form-group row ">
+                                <div class="col-sm-12 mb-3">
+                                    <label for="description" class=" commonFontSize semiBoldFont letterspacing">Upload
+                                        Attachment</label>
+
+                                    <!-- <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            type="file">
+                                    </div> -->
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                        <input type="file" (change)="fileUploadDocument($event.target.files)"
+                                            class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing " />
+                                    </div>
+                                    <div *ngIf="!docHistory.requiredMOU" class="required errorMsg">
+                                        MOU Document is required.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 ">
+                                    <label for="Remarks "
+                                        class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea name="remarks"
+                                            [(ngModel)]="docHistory.remarks"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            rows="4" placeholder="Enter Remarks" required></textarea>
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="docHistory.errorDisplay.remarks">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" (click)="addMouDoc()"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of uploadNewMOUModel  -->
+
+        <div class="modal fade" id="imageViewer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 ">
                         <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                             data-dismiss="modal" aria-label="Close ">
                             <span aria-hidden="true ">
@@ -126,36 +214,12 @@
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <div class=" form-group row ">
-
-                            <div class="col-sm-12 mb-3">
-                                <label for="description"
-                                    class=" commonFontSize semiBoldFont letterspacing">Upload Attachment</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        type="file">
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 ">
-                                <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Remarks</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none "><textarea
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        rows="4" placeholder="Enter Remarks "></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button "
-                            class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                            Submit
-                        </button>
+                        <ngx-image-viewer [src]="images" [(index)]="imageIndexOne" (customEvent)="handleEvent($event)">
+                        </ngx-image-viewer>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End of uploadNewMOUModel  -->
     </div>
 
 </div>

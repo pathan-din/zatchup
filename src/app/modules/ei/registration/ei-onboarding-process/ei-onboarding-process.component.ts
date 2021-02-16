@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router} from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef , HostListener} from '@angular/core';
+import { Router,ActivatedRoute} from '@angular/router';
+import { environment } from '../../../../../environments/environment'
 import { FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -23,6 +24,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 export class EiOnboardingProcessComponent implements OnInit {
   @ViewChild(MatStepper, { static: false }) myStepper: MatStepper;
   @ViewChild('inputFile') myInputVariable: ElementRef;
+
   completed: boolean = false;
   state: string;
   stateList: any = [];
@@ -56,8 +58,17 @@ export class EiOnboardingProcessComponent implements OnInit {
   uploadedProfileContent: any = '';
   bankModel: any = {};
   bankNameList = [];
-  index: any;
+  countIndex: any;
   extentionCheck:any='';
+  params:any;
+  serverImageUrl: any
+//   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
+//     console.log("Processing beforeunload...", this.countIndex);
+//     this.getRegistrationStep();
+   
+//     console.log( this.myStepper.selectedIndex);
+    
+// }
   constructor(
     private validationService: GenericFormValidationService,
     private router: Router,
@@ -65,15 +76,25 @@ export class EiOnboardingProcessComponent implements OnInit {
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private route:ActivatedRoute
   ) { }
-
+  
   ngOnInit(): void {
+    this.serverImageUrl = environment.serverImagePath
+    console.log('environment......',this.serverImageUrl)
+    this.route.queryParams.subscribe(param=>{
+      this.countIndex= param.reg_steps-1;
+      this.params=param;
+    })
+   
     this.getAllState()
     this.getStepFirstData();
-    this.getNumberOfAluminiList();
+    this.getCourseDetailsByEiOnboard();
+    //this.getNumberOfAluminiList();
     this.getNumberOfStudentList();
     this.getBankNameList();
+    //this.getRegistrationStep()
     this.model.no_of_students = '';
     this.model.no_of_alumni = '';
     this.bankModel.bank_name = '';
@@ -100,7 +121,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         classdata: [{
           class_name: '',
           teaching_start_year: "",
-          teaching_start_month: "",
+          teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
@@ -109,9 +130,30 @@ export class EiOnboardingProcessComponent implements OnInit {
         }]
       }],
     }];
+     
+     
+  }
+  ngAfterViewInit(){
+   // this.getRegistrationStep()
   }
   /**getBankNameList */
 
+  getCourseDetailsByEiOnboard(){
+    try {
+    this.loader.show();
+    this.baseService.getData("ei/course-data-by-ei/").subscribe(res=>{
+      let responce:any = {};
+      responce = res;
+      this.loader.hide();
+      if(responce.results.length>0){
+        this.model2Step.coursedata = responce.results;
+      }
+      
+    })
+    } catch (e) {
+    
+    }
+  }
   getBankNameList(){
     //ei/get-allbankname/
     try {
@@ -196,6 +238,7 @@ export class EiOnboardingProcessComponent implements OnInit {
 
   isValid(event) { 
     if (Object.keys(this.errorDisplay).length !== 0) {
+      
       this.errorDisplay = this.validationService.checkValidationFormAllControls(event, true, []);
     }
   }
@@ -206,16 +249,27 @@ export class EiOnboardingProcessComponent implements OnInit {
    * responce : Object
    */
 
-  getStepFirstData() {
+ getStepFirstData() {
     try {
       this.loader.show();
       this.eiService.getOnboardStepFirstData(localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           this.validationService.hideSpeanerWithConsole(this.loader, 'suceess')
+          setTimeout(() => {
+            this.getCityByState(this.model.state)
+              
+          }, 100);
+          
+          
           this.model = res;
-          this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
-          this.index = this.model.reg_steps ? this.model.reg_steps : 0;
-          this.getCityByState(this.model.state)
+          if(this.model.opening_date){
+            this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
+          }else{
+            this.model.opening_date='';
+          }
+          
+          //this.countIndex = this.model.reg_steps ? this.model.reg_steps : 0;
+         
           this.loader.hide();
         }, (error) => {
           this.validationService.hideSpeanerWithConsole(this.loader, error)
@@ -257,29 +311,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     }
 
   }
-  getNumberOfAluminiList() {
-    try {
-      this.loader.show();
-      this.eiService.getNumberOfStudentList().subscribe(
-        (res: any) => {
-          if (res.status == true) {
-            this.loader.hide();
-            this.numberOfAluminiList = res.results;
-          } else {
-            this.loader.hide();
-            this.alert.error(res.error.message[0], 'Error')
-          }
-        }, (error) => {
-          this.loader.hide();
-          this.alert.error(error.message, 'Error')
-
-        });
-    } catch (err) {
-      this.loader.hide();
-      this.alert.error(err, 'Error')
-    }
-
-  }
+  
   goToEiDashboardPage() {
     this.router.navigate(['ei/dashboard']);
 
@@ -301,8 +333,8 @@ export class EiOnboardingProcessComponent implements OnInit {
 
         classdata: [{
           class_name: '',
-          teaching_start_year: "",
-          teaching_start_month: "",
+          teaching_start_year: 0,
+          teaching_start_month: 0,
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
@@ -339,11 +371,12 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('no_of_alumni', this.model.no_of_alumni);
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
       formData.append('gst_no', this.model.gst_no);
-      formData.append('overview', this.model.description);
+      formData.append('overview', this.model.overview);
       this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            this.getCourseDetailsByEiOnboard();
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
@@ -375,10 +408,50 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   }
+
+   /**Find the step of the register process for all Users */
+   getRegistrationStep(){
+    try {
+      this.baseService.getData('user/reg-step-count/').subscribe(res=>{
+        let response:any={};
+        response=res;
+        if(response.reg_step==2){
+          this.countIndex = 0;
+        }else{
+          this.countIndex = response.reg_step-3;
+        }
+        
+        setTimeout(() => {
+          if(response.reg_step>2){
+          this.myStepper.selectedIndex = this.countIndex;
+          this.myStepper.next();
+          }
+        },1000);
+        // this.myStepper.selectedIndex = this.countIndex;
+        // console.log(this.myStepper);
+        
+      },(error=>{
+          //this.alert.warning("Data not Fetched","Warning");
+      }))
+    } catch (e) {
+      //this.alert.error("Something went wrong, Please contact administrator.","Error");
+    }
+  }
   handleCancelChequeFileInput(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
     this.uploadedCancelCheque = fileData;
+    this.errorDisplay.cheque = "";
+    if(this.uploadedCancelCheque.type!= "application/pdf"
+     && this.uploadedCancelCheque.type!= "image/png"
+      && this.uploadedCancelCheque.type!= "image/jpg"
+     && this.uploadedCancelCheque.type!= "image/jpeg"){
+       this.errorDisplay.cheque = "only support pdf and image";
+     }
+    //type: "application/pdf"
+    //type: "image/png"
+    
+    
   }
 
 
@@ -392,8 +465,8 @@ export class EiOnboardingProcessComponent implements OnInit {
       duration: "",
       classdata: [{
         class_name: '',
-        teaching_start_year: "",
-        teaching_start_month: "",
+        teaching_start_year: 0,
+        teaching_start_month: 0,
         teaching_stopped: false,
         teaching_end_year: 0,
         teaching_end_month: 0,
@@ -408,10 +481,12 @@ export class EiOnboardingProcessComponent implements OnInit {
    */
 
   addAnotherClass(standardList) {
+    console.log(standardList.classdata);
+    
     standardList.classdata.push({
       class_name: '',
-      teaching_start_year: "",
-      teaching_start_month: "",
+      teaching_start_year: 0,
+      teaching_start_month: 0,
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,
@@ -427,6 +502,10 @@ export class EiOnboardingProcessComponent implements OnInit {
    */
   removeData(index, dataArray) {
     dataArray.splice(index, 1);
+  }
+
+  endYearCheckValidation(classD){
+    classD.teaching_end_year = 0;
   }
 
   /**
@@ -446,6 +525,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            if( this.params.redirect_url){
+              this.router.navigate(["ei/"+this.params.redirect_url]);
+            }
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
@@ -593,6 +675,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            if( this.params.redirect_url){
+              this.router.navigate(["ei/"+this.params.redirect_url]);
+            }
             this.router.navigate(['ei/ei-profile-preview']);
           } else {
             this.loader.hide();
@@ -601,7 +686,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           }
         }, (error) => {
           this.loader.hide();
-          this.alert.error(error.message, 'Error')
+          this.alert.error(error.erorr, 'Error')
         });
     } catch (err) {
       this.loader.hide();

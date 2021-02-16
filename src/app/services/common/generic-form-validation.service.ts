@@ -18,7 +18,7 @@ export class GenericFormValidationService {
    */
   checkValidationFormAllControls(controls, check, arrayData = []) {
 
-   
+    
     
     if (arrayData.length > 0) {
 
@@ -122,12 +122,16 @@ export class GenericFormValidationService {
         }
         //check All pattern based on type = text filed
         else if (controls[i].type == 'text' && controls[i].value) {
-
+          var msg=" is not valid format.";
+          if(controls[i].getAttribute('message'))
+          {
+            msg=controls[i].getAttribute('message');
+          }
           var pattern = new RegExp(controls[i].pattern);
           if (pattern.test(controls[i].value)) {
 
           } else {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid format.";
+            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + msg;
           }
 
         }
@@ -138,7 +142,7 @@ export class GenericFormValidationService {
           if (controls[i].value.length != controls[i].maxLength) {
             this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid " + controls[i].maxLength + " digit number.";
           }
-          var msg=" is not valid format.";
+            var msg=" is not valid format.";
             if(controls[i].getAttribute('message'))
             {
               msg=controls[i].getAttribute('message');

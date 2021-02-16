@@ -1,0 +1,75 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Add Documents</h2>
+        <form id="Form4" enctype="multipart/form-data">
+            <div class="process4 mt-4 " >
+                <div *ngFor="let document of modelDocumentDetails;let i=index;">
+                <div class="form-group row ">
+                    <div class="col-sm-12 ">
+                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Document Name</label>
+
+                        <div class="shadow-none">
+                            <input id="document_name_{{i}}" required
+                            [(ngModel)]="document.name" name="document_name_{{i}}"
+                                class="form-control-input border form-control form-control-sm commonFontSize regularFont letterspacing "
+                                type="text " placeholder="Enter Document Name ">
+                        </div>
+                        <div class="required errorMsg"
+                            [innerHtml]="display_error(i,'document_name_')">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row align-items-center" >
+                    <div class="col-9 col-md-11">
+                        <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload
+                            Document</label>
+
+                        <div class="shadow-none">
+                            <input #inputFile (change)="fileUploadDocument($event.target.files,document)" validFileExtention="png,jpeg,jpg" id="document_{{i}}" name="document_{{i}}" required 
+                                class="form-control-input border form-control form-control-sm commonFontSize regularFont letterspacing "
+                                type="file">
+                            <input [(ngModel)]="document.document"  id="document_hid_{{i}}" name="document_hid_{{i}}"  
+                                class="form-control-input border form-control form-control-sm commonFontSize regularFont letterspacing "
+                                type="hidden">
+                        </div>
+                        <p class="pt-1">* only support pdf and image</p>
+                        <div class="required errorMsg"
+                            [innerHtml]="display_error(i,'document_')">
+                        </div>
+                    </div>
+                    <div *ngIf="modelDocumentDetails.length!=(i+1)" class="col-3 col-md-1 centerImgDiv text-center">
+                        <i (click)="removeData(i+1,modelDocumentDetails)" class="fa fa-minus-square fafaAddDeleteIcon color-red cursorStyle" aria-hidden="true" style="font-size:30px"></i> 
+                   </div>
+                    <div class="col-3 col-md-1 centerImgDiv text-center" *ngIf="modelDocumentDetails.length==i+1">
+                        <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true" style="font-size:30px;"></i>
+                        <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
+                    </div>                    
+                </div>
+            </div>
+                <div class="form-group row" *ngIf="modelDocumentDetails.length>0">
+                    <div class="col-12">
+                        <div class="row ml-0 mr-0 ">
+                        <div></div>
+                            <div *ngFor="let doc of modelDocumentDetails"  class="col-6 ID-img-div">
+                                <img *ngIf="doc.document!='' &&  doc.extention==''" class="img-fluid w-100 h-100 p-1 border rounded"
+                                    src="{{serverImageUrl}}/{{doc.document}}">
+                                   <a *ngIf="doc.document!='' && doc.extention=='pdf'" href="{{serverImageUrl}}/{{doc.document}}">
+                                     <img  class="img-fluid w-100 h-100 p-1 border rounded"
+                                    src="assets/images/userWebsite/pdf.png"></a>    
+                            </div>                          
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                        <button mat-button (click)="submitDocumentFourStep()" class="bg-purple px-4 border-0 text-white text-center mt-2 commonFontSize mediumFont letterspacing">Save</button>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+</div>
+</div>

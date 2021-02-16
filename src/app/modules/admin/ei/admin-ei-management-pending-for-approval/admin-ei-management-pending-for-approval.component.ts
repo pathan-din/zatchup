@@ -14,6 +14,9 @@ import { Location } from '@angular/common';
 })
 export class AdminEiManagementPendingForApprovalComponent implements OnInit {
   eIPendingApproval: EIPendingApproval;
+  id: string;
+  eiData: any;
+  ei_id: string;
 
   constructor(
     private router: Router,
@@ -30,11 +33,15 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
   ngOnInit(): void {
     this.getEIApprovalList();
     this.getAllState();
+    this.eIPendingApproval.pageCount = this.baseService.getCountsOfPage()
   }
 
 
   goToAdminEiManagementIncompleteOnboardingViewPage(data) {
-    this.router.navigate(['admin/ei-profile-details', data.id]);
+    let stage = true;
+    if (data.send_back_to_edit == 1)
+      stage = false
+    this.router.navigate(['admin/ei-profile-details'], { queryParams: { "id": data.id, "stage_pending": stage } });
   }
 
   getEIApprovalList(page?: any) {
@@ -42,13 +49,16 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
     this.eIPendingApproval.listParams = {
       "date_from": this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
-      "date_to": this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
-      "city": this.eIPendingApproval.cityId ? this.getValue(this.eIPendingApproval.allCities, this.eIPendingApproval.cityId, 'city'): '',
-      "state": this.eIPendingApproval.stateId ? this.getValue(this.eIPendingApproval.allStates, this.eIPendingApproval.stateId, 'state'): '',
+      "date_to": this.eIPendingApproval.filterToDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterToDate, 'yyyy-MM-dd') : '',
+      "city": this.eIPendingApproval.cityId ? this.getValue(this.eIPendingApproval.allCities, this.eIPendingApproval.cityId, 'city') : '',
+      "state": this.eIPendingApproval.stateId ? this.getValue(this.eIPendingApproval.allStates, this.eIPendingApproval.stateId, 'state') : '',
       "university": this.eIPendingApproval.university,
       "addition_type": this.eIPendingApproval.additionType,
-      "page_size": this.eIPendingApproval.pageSize ? this.eIPendingApproval.pageSize : 5,
-      "page": page ? page : 1
+      "page_size": this.eIPendingApproval.pageSize,
+      "page": page,
+      "added_by_admin": this.eIPendingApproval.additionType,
+      "send_back_to_edit": this.eIPendingApproval.send_back_to_edit,
+      "ei_id": this.eIPendingApproval.ei_id
     }
 
     this.baseService.getData('admin/ei-pending-list/', this.eIPendingApproval.listParams).subscribe(
@@ -57,12 +67,14 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
           if (!page)
             page = this.eIPendingApproval.config.currentPage
           this.eIPendingApproval.startIndex = res.page_size * (page - 1) + 1;
-          this.eIPendingApproval.config.itemsPerPage = res.page_size
+          this.eIPendingApproval.config.itemsPerPage = res.page_size;
+          this.eIPendingApproval.pageSize = res.page_size;
           this.eIPendingApproval.config.currentPage = page
           this.eIPendingApproval.config.totalItems = res.count;
 
-          if (res.count > 0)
-            this.eIPendingApproval.dataSource = res.results
+          if (res.count > 0) {
+            this.eIPendingApproval.dataSource = res.results;
+          }
           else
             this.eIPendingApproval.dataSource = undefined
         }
@@ -118,7 +130,79 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
     return find[value];
   }
 
-  goBack(): void{
+  goBack(): void {
     this.location.back();
+  }
+
+  searchList(page?: any) {
+    let stateFind: any;
+    let cityFind: any;
+    if (this.eIPendingApproval.allStates && this.eIPendingApproval.stateId) {
+      stateFind = this.eIPendingApproval.allStates.find(val => {
+        return val.id == this.eIPendingApproval.stateId
+      })
+    }
+    if (this.eIPendingApproval.allCities) {
+      cityFind = this.eIPendingApproval.allCities.find(val => {
+        return val.id == this.eIPendingApproval.cityId
+      })
+    }
+
+    this.eIPendingApproval.listParams = {
+      "search": this.eIPendingApproval.search,
+      'date_from': this.eIPendingApproval.filterFromDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterFromDate, 'yyyy-MM-dd') : '',
+      'date_to': this.eIPendingApproval.filterToDate !== undefined ? this.datePipe.transform(this.eIPendingApproval.filterToDate, 'yyyy-MM-dd') : '',
+      "city": cityFind ? cityFind.city : '',
+      "state": stateFind ? stateFind.state : '',
+      "is_onboarded": '0',
+      "page_size": this.eIPendingApproval.pageSize,
+      "page": page,
+
+    }
+    this.loader.show();
+    this.baseService.getData('admin/ei_search/', this.eIPendingApproval.listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.eIPendingApproval.config.currentPage
+          this.eIPendingApproval.startIndex = res.page_size * (page - 1) + 1;
+          this.eIPendingApproval.pageSize = res.page_size;
+          this.eIPendingApproval.config.itemsPerPage = res.page_size
+          this.eIPendingApproval.config.currentPage = page
+          this.eIPendingApproval.config.totalItems = res.count;
+
+          if (res.count > 0)
+            this.eIPendingApproval.dataSource = res.results
+          else
+            this.eIPendingApproval.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    )
+  }
+
+  sendBackDetails(ei_id) {
+    this.loader.show();
+    this.baseService.getData('admin/send-back-details/' + ei_id).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.eiData = res.data;
+        }
+        else {
+          this.alert.error(res.error.message, 'Error')
+
+        }
+        this.loader.hide();
+      }
+    )
+  }
+
+  filterData(page) {
+    if (this.eIPendingApproval.search)
+      this.searchList(page)
+    else
+      this.getEIApprovalList(page)
   }
 }

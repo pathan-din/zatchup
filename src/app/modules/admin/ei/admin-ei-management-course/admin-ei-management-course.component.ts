@@ -1,3 +1,4 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -25,9 +26,11 @@ export class AdminEiManagementCourseComponent implements OnInit {
   }
   startIndex: any;
   pageSize: any = 5;
+  pageCounts: any;
 
   constructor(
     private router: Router,
+    private location: Location,
     private activeRoute: ActivatedRoute,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -40,6 +43,7 @@ export class AdminEiManagementCourseComponent implements OnInit {
     this.eiId = this.activeRoute.snapshot.params.id
     if (this.eiId)
       this.getCourseList('')
+      this.pageCounts = this.baseService.getCountsOfPage();
   }
 
   getCourseList(page) {
@@ -47,8 +51,8 @@ export class AdminEiManagementCourseComponent implements OnInit {
 
     let params = {
       "id": this.eiId,
-      "page_size": this.pageSize,
-      "page": page
+      "page_size": this.pageSize ? this.pageSize : 5,
+      "page": page ? page : 1
     }
 
     this.baseService.getData('admin/ei-list-of-course/', params).subscribe(
@@ -71,6 +75,10 @@ export class AdminEiManagementCourseComponent implements OnInit {
       this.alert.error(err, 'Error');
       this.loader.hide();
     }
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

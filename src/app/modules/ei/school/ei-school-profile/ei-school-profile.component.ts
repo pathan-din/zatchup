@@ -15,9 +15,22 @@ export class EiSchoolProfileComponent implements OnInit {
   postOption: string = "matrix";
   postOptionActiveImage: string = 'dead';
   postOptionActiveMatrix: string = 'active';
+  profile_pic: any = '';
+  uploadInfo: any = {
+    "image_type": "profile_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
+  uploadCoverInfo: any = {
+    "image_type": "cover_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
   userProfile: any = {};
   cover_pic: any = '';
-  profile_pic: any = '';
+
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
@@ -39,6 +52,12 @@ export class EiSchoolProfileComponent implements OnInit {
       this.postOptionActiveImage = 'active';
     }
   }
+  goToEiVerifiedAlumniPage(){
+    this.router.navigate(['ei/alumni-list'], {queryParams: {approved : 1}});
+  }
+  goToEiVerifiedStudentPage(){
+    this.router.navigate(['ei/student-verified-list'], {queryParams: {approved : 1}});
+  }
   goToEISchoolPostPage() {
     this.router.navigate(['ei/school-post']);
 
@@ -47,15 +66,11 @@ export class EiSchoolProfileComponent implements OnInit {
   getProfile() {
     try {
       this.SpinnerService.show();
-
       this.eiService.getEiProfileDetails().subscribe(res => {
-
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
         this.userProfile = response;
-
-
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
@@ -65,56 +80,15 @@ export class EiSchoolProfileComponent implements OnInit {
       console.log(err);
     }
   }
-  uploadCoverPic(file) {
 
-    console.log(file);
-    
-    try {
-      this.SpinnerService.show();
-      let fileList: FileList = file;
-     
-
-      let fileData: File = fileList[0];
-      if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
-      {
-        this.SpinnerService.hide();
-        this.alert.error("File format not supported",'Error');
-        return
-      }
-      const formData = new FormData();
-      formData.append('cover_pic', fileData);
-      this.eiService.updateCoverPic(formData).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
-          this.SpinnerService.hide();
-          this.cover_pic = response.data[0].cover_pic_url;
-        } else {
-          this.SpinnerService.hide();
-          console.log("Error:Data not update");
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
-    } catch (err) {
-      this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
-    }
-
-
-  }
   uploadProfilePic(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
-    if(fileData.type!=='image/jpeg' && fileData.type!=='image/jpg' && fileData.type!=='image/png')
-      {
-        this.SpinnerService.hide();
-        this.alert.error("File format not supported",'Error');
-        return
-      }
+    if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png') {
+      this.SpinnerService.hide();
+      this.alert.error("File format not supported", 'Error');
+      return
+    }
     try {
       this.SpinnerService.show();
       const formData = new FormData();
@@ -139,5 +113,54 @@ export class EiSchoolProfileComponent implements OnInit {
       this.SpinnerService.hide();
       console.log("vaeryfy Otp Exception", err);
     }
+  }
+
+  uploadCoverPic(file) {
+
+    console.log(file);
+
+    try {
+      this.SpinnerService.show();
+      let fileList: FileList = file;
+
+
+      let fileData: File = fileList[0];
+      if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png') {
+        this.SpinnerService.hide();
+        this.alert.error("File format not supported", 'Error');
+        return
+      }
+      const formData = new FormData();
+      formData.append('cover_pic', fileData);
+      this.eiService.updateCoverPic(formData).subscribe(res => {
+        let response: any = {}
+        response = res;
+        if (response.status == true) {
+          this.SpinnerService.hide();
+          this.userProfile.cover_pic = response.data[0].cover_pic_url;
+        } else {
+          this.SpinnerService.hide();
+          console.log("Error:Data not update");
+        }
+
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("vaeryfy Otp Exception", err);
+    }
+
+
+  }
+
+  getProfilePicUrl(file: any) {
+    this.userProfile.profile_pic = file.data[0].profile_pic_url
+  }
+
+  getCoverPicUrl(file: any) {
+    this.userProfile.cover_pic = file.data[0].cover_pic_url;
   }
 }

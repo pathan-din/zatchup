@@ -4,6 +4,8 @@
 
 .confirmForm {
     position: relative;
+    overflow-x: auto;
+    height: 350px;
 }
 
 .confirm {
@@ -19,8 +21,28 @@
     padding: 2% 6%!important;
 }
 
+.img-small img{
+    width: 20px;
+}
+
 .paddingL {
     padding: 0;
+}
+
+.small-size {
+    float: right;
+    height: 24px;
+    margin: 3px;
+}
+
+label {
+    display: flex;
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    zoom: 1.4;
 }
 
 .topHeadingLeftSpace {
@@ -31,6 +53,12 @@
     .fixedBtn {
         left: 1%;
     }
+    .pl-5, .px-5 {
+        padding-left: .5rem!important;
+    }
+    .pr-5, .px-5 {
+        padding-right: .5rem!important;
+    } 
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

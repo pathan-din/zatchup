@@ -7,47 +7,49 @@
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
 
-                <h2 class="commonFontSize semiBoldFont m-0">EI With Incomplete Onboarding</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">School With Incomplete Onboarding</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="text" placeholder="Search...">
+                        type="text" placeholder="Search..." [(ngModel)]="onboardList.search" name="search">
                 </div>
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 "
+                    (click)="searchList()">Apply</button>
             </div>
         </div>
         <!--Start html for Incomplete Onboarding information Filter-->
         <div class="filterDiv bg-Gainsboro mt-2 pb-4 px-3">
-            <h2 class="commonFontSize semiBoldFont mb-0 pt-2">filter</h2>
+            <h2 class="commonFontSize semiBoldFont mb-0 pt-2">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input
-                            class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                            class="form-control-input form-control  commonFontSize regularFont letterspacing "
                             type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required [(ngModel)]="onboardList.stateId"
+                        <select class="custom-select  form-control-input" name="state" required [(ngModel)]="onboardList.stateId"
                             (change)="getCities()">
                             <option value="">State</option>
                             <option *ngFor="let state of onboardList.allStates" [value]="state.id">{{state.state}}
@@ -55,16 +57,16 @@
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" required [(ngModel)]="onboardList.cityId">
+                        <select class="custom-select  form-control-input" name="city" required [(ngModel)]="onboardList.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of onboardList.allCities" [value]="city.id">{{city.city}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input type="text" name="board_university" [(ngModel)]="this.onboardList.university"
@@ -72,45 +74,45 @@
                             placeholder="Board/University" />
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Stage Pending</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" id="status" required
+                        <select class="custom-select  form-control-input" id="status" name="status" required
                             [(ngModel)]="this.onboardList.stagePending">
                             <option value=""> Select Stage</option>
-                            <option value="1">OnBoarding Stage 1</option>
-                            <option value="2">OnBoarding Stage 2</option>
-                            <option value="3">OnBoarding Stage 3</option>
-                            <option value="4">OnBoarding Stage 4</option>
+                            <option value="0">Onboarding Fees Pending</option>
+                            <option value="1">Onboarding Details Pending</option>
                         </select>
                     </div>
                 </div>
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                    (click)="getONBoardList()">Apply</button>
+                    (click)="filterData('1')">Apply</button>
+
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
 
 
             </div>
+        </form>
         </div>
         <!--End html for Incomplete Onboarding information Filter-->
         <!--Start html for "select no of EI info per page" and Export Button-->
-        <div class="row my-3" *ngIf="onboardList.dataSource">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+        <div class="row my-3 align-items-center" *ngIf="onboardList.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of Fees Per
-                    Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getONBoardList('1')" [(ngModel)]="onboardList.pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        (change)="filterData('1')" [(ngModel)]="onboardList.pageSize">
+                        <option *ngFor="let count of onboardList.pageCounts" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
@@ -120,7 +122,6 @@
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="onboardList.dataSource | paginate: onboardList.config">
 
-                    <!-- Position Column -->
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i=index"> {{i + onboardList.startIndex}} </mat-cell>
@@ -136,7 +137,6 @@
                         <mat-cell *matCellDef="let element"> {{element.name_of_school}} </mat-cell>
                     </ng-container>
 
-                    <!-- Name Column -->
                     <ng-container matColumnDef="state">
                         <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -157,43 +157,29 @@
                             {{element.sign_up_date  | date }}
                         </mat-cell>
                     </ng-container>
-                    <!-- Weight Column -->
+
                     <ng-container matColumnDef="onboardStage">
-                        <mat-header-cell *matHeaderCellDef> Onboarding Stage</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Stage Pending</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.is_onboarded}}
+                            <button type="button"
+                                class="bg-yellow text-white h-100 border-0 rounded cursorDefault">
+                                {{element.is_payment == 0 ? 'Onboarding Fees Pending' : 'Onboarding Details Pending'}}</button>
                         </mat-cell>
-                    </ng-container>
-
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="plan">
-                        <mat-header-cell *matHeaderCellDef>Plan Taken </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.plan}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="grossSubscriptionFees">
-                        <mat-header-cell *matHeaderCellDef>Subscription Fees Gross</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.grossSubscriptionFees}} </mat-cell>
-                    </ng-container>
-                    <ng-container matColumnDef="netSubscriptionFees">
-                        <mat-header-cell *matHeaderCellDef> Subscription Fees Net </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.netSubscriptionFees}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="appliedCouponCode">
-                        <mat-header-cell *matHeaderCellDef> Coupon Code Applied </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.appliedCouponCode}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center">Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
-                                (click)="goToAdminEiMangIncopleteOnboardViewPage(element.id)"></i>
-                            <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
-                                data-toggle="modal" (click)="getEI_ID(element.ei_id)" data-target="#emailModel"></i>
-                            <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true "
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
+                                aria-hidden="true " (click)="goToAdminEiMangIncopleteOnboardViewPage(element.id)"></i>
+                            <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" title="Send Email"
+                                aria-hidden="true " data-toggle="modal" (click)="getEI_ID(element.ei_id)"
+                                data-target="#emailModel">
+                            </i>
+                            <!-- <a href="mailto:{{element.email}}">
+                                <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" title="Send Email"></i>
+                            </a> -->
+                            <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" title="Remove" aria-hidden="true "
                                 (click)="deleteEI(element.ei_id)"></i>
                         </mat-cell>
                     </ng-container>
@@ -203,8 +189,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="onboardList.dataSource" (pageChange)="getONBoardList($event)"
-            class="eiPaginationTag">
+        <pagination-controls *ngIf="onboardList.dataSource" (pageChange)="filterData($event)" class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="!onboardList.dataSource">
             <div class="col-12 pt-2 pb-2">

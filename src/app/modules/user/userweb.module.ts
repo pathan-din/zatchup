@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UserwebRoutingModule } from './userweb-routing.module';
-
-/****************************/
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
+
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
-
-/*****************************/
+import { CarouselModule } from 'ngx-bootstrap/carousel'
 import { UserhomeComponent } from './userhome/userhome.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { UserFooterComponent } from './user-footer/user-footer.component';
@@ -52,6 +49,7 @@ import { UserResetPasswordComponent } from './user-reset-password/user-reset-pas
 import { AddNewCourseComponent } from './add-new-course/add-new-course.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AboutUsComponent } from './user-info/about-us/about-us.component';
+import { ServiceComponent } from './user-info/service/service.component';
 import { CareerComponent } from './user-info/career/career.component';
 import { ContactUsComponent } from './user-info/contact-us/contact-us.component';
 import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-more-course-manually.component';
@@ -59,8 +57,18 @@ import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { MySchoolComponent } from './my-school/my-school.component';
-
-
+import { SharedModule } from 'src/app/common/shared.module';
+import { ChatComponent } from './chat/chat.component';
+import { StartNewChatComponent } from './start-new-chat/start-new-chat.component';
+import { CreateGroupChatComponent } from './create-group-chat/create-group-chat.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { MessagesComponent } from './messages/messages.component';
+import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
+import { SettingComponent } from './setting/setting.component';
+import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
+import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 
 @NgModule({
 
@@ -105,22 +113,37 @@ import { MySchoolComponent } from './my-school/my-school.component';
     UserResetPasswordComponent,
     AddNewCourseComponent,
     AboutUsComponent,
+    ServiceComponent,
     CareerComponent,
     ContactUsComponent,
     AddMoreCourseManuallyComponent,
     AddPastEiComponent,
     UserPageNotFoundComponent,
-    MySchoolComponent
+    MySchoolComponent,
+    ChatComponent,
+    StartNewChatComponent,
+    CreateGroupChatComponent,
+    CreateGroupComponent,
+    UserPersonalInformationComponent,
+    GroupDetailComponent,
+    MessagesComponent,
+    PendingRequestForUserComponent,
+    SettingComponent,
+    PendingCourseDetailComponent,
+    ChatPrivacyComponent
   ],
 
   imports: [
     CommonModule,
+    MaterialDesignModule,
     UserwebRoutingModule,
     PaginationModule,
     TabsModule,
     FormsModule, NgxSpinnerModule, ReactiveFormsModule,
     BsDatepickerModule,
-    DirectiveModule
+    DirectiveModule,
+    SharedModule,
+    CarouselModule.forRoot()
   ]
 })
 export class UserwebModule { }

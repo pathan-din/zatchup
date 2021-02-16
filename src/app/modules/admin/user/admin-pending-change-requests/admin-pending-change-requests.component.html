@@ -1,0 +1,235 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-6 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    Kyc Change Requests
+                </h2>
+            </div>
+            <!-- <div class="col-md-6 col-12 d-flex justify-content-end">
+                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="search" placeholder="Search..." [(ngModel)]="pendingChangeRequests.search"
+                        name="search">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
+                    (click)="searchList('1')">Apply</button>
+            </div> -->
+        </div>
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
+                <div class="d-flex flex-wrap align-items-end">
+                    <div class="mr-3 mt-3 custumInputWidth">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Change Request From</label>
+                        <div class="rounded-0 p-0 shadow-none">
+                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                                id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
+                                [maxDate]="pendingChangeRequests.maxDate" 
+                                [(ngModel)]="pendingChangeRequests.filterFromDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
+                        </div>
+                    </div>
+                    <div class="mr-3 mt-3 custumInputWidth">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Change Request To</label>
+                        <div class="rounded-0 p-0 shadow-none">
+                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                                type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                                [maxDate]="pendingChangeRequests.maxDate" 
+                                [(ngModel)]="pendingChangeRequests.filterToDate" #fromDate="ngModel"
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
+                        </div>
+                    </div>
+                    <!-- <div class="mr-4 mt-3 dropdown-lg-Div">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
+                            [(ngModel)]="pendingChangeRequests.stateId" (change)="getCities()" name="state">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let state of pendingChangeRequests.allStates" [value]="state.id">
+                                {{state.state}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-4 mt-3">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
+                            [(ngModel)]="pendingChangeRequests.cityId" name="city">
+                            <option value=""> Select City</option>
+                            <option *ngFor="let city of pendingChangeRequests.allCities" [value]="city.id">
+                                {{city.city}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Change Field</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <select class="custom-select  form-control-input"
+                            [(ngModel)]="pendingChangeRequests.changeField" id="pastEI" name="changeField" required>
+                            <option value=""> Select Status</option>
+                            <option value="name_of_school">Name of School</option>
+                            <option value="email">Email</option>
+                            <option value="full_address">Full Address</option>
+                            <option value="phone">Phone</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Board/University</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            type="text" id="board_university" placeholder="Board/University" name="board_university"
+                            [(ngModel)]="pendingChangeRequests.university">
+                    </div>
+                </div> -->
+                    <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Field of Change</label>
+                        <div
+                            class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                            <select class="custom-select  form-control-input"
+                                [(ngModel)]="pendingChangeRequests.field_change_type" id="changeField"
+                                name="changeField">
+                                <option value=""> Select Change Field </option>
+                                <option value="name">Name </option>
+                                <option value="dob">Date of Birth</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Status</label>
+                        <div
+                            class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                            <select class="custom-select  form-control-input"
+                                [(ngModel)]="pendingChangeRequests.status" id="status"
+                                name="status">
+                                <option value=""> Select Status </option>
+                                <option value="0">Pending </option>
+                                <option value="2">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
+                        (click)="getKycPendingChangeRequests('1')">Apply</button>
+                </div>
+            </form>
+        </div>
+
+        <!--End html for filter for alumni list-->
+        <!--Start html for filter for No of alumni per page with export button-->
+
+        <div class="row my-3" *ngIf="pendingChangeRequests.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="filterData('1')" [(ngModel)]="pendingChangeRequests.pageSize"
+                        class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option *ngFor="let count of pendingChangeRequests.pageCount" value="{{count}}">{{count}}
+                        </option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div> -->
+        </div>
+
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+
+        <div class="tableDiv mt-4" *ngIf="pendingChangeRequests.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="pendingChangeRequests.dataSource | paginate: pendingChangeRequests.config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            {{i + pendingChangeRequests.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="eiZatchupId">
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.zatchupId}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="kycDetails">
+                        <mat-header-cell *matHeaderCellDef> Kyc Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.kyc_id_no}} </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.name_of_user}} </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="kyc_type">
+                        <mat-header-cell *matHeaderCellDef> Kyc Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.kyc_type}} </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="dateAndTime">
+                        <mat-header-cell *matHeaderCellDef> Date & Time </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.created_on | date: 'dd MMM, yyyy'}}
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="fieldOfChange">
+                        <mat-header-cell *matHeaderCellDef> Field of Change </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.field_change}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="oldData">
+                        <mat-header-cell *matHeaderCellDef> Existing Data </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.old_value}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="newData">
+                        <mat-header-cell *matHeaderCellDef> New Data </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.new_value}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" title="View Details"
+                                aria-hidden="true" routerLink="/admin/kyc-change-request-details/{{element.id}}"></i>
+                            <!-- <i class="fa fa-envelope color-green cursorStyle" aria-hidden="true" title="View"></i> -->
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="pendingChangeRequests.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: pendingChangeRequests.displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="pendingChangeRequests.dataSource" (pageChange)="getKycPendingChangeRequests($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!pendingChangeRequests.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

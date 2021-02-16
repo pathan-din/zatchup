@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
                 <mat-table [dataSource]="dataSource |  paginate: config">
 
                     <ng-container matColumnDef="SNo">
@@ -84,7 +84,7 @@
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i (click)="redirectToDetailPage(element.user_id)"
-                                class="fa fa-eye mr-2 cursorStyle color-lightBlue fa-lg" aria-hidden="true "></i>
+                                class="fa fa-eye mr-2 cursorStyle color-lightBlue fa-lg" title="View" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
@@ -94,6 +94,13 @@
                 </mat-table>
 
             </div>
+            <div class="row" *ngIf="dataSource.length==0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                </div>
+            </div>
+            <pagination-controls *ngIf="dataSource.length>0" (pageChange)="sudAdminList($event)"
+                class="eiPaginationTag"></pagination-controls>
         </div>
     </div>
 

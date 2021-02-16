@@ -165,6 +165,9 @@ export class EiStudentListComponent implements OnInit {
       //console.log(err);
     }
   }
+  goToEiStudentProfilePage(id) {
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
+  }
   getStudentList(page, strFilter) {
 
     try {

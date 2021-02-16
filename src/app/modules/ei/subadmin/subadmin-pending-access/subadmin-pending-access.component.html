@@ -1,18 +1,24 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Pending Access Requests</h2>
+        <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center pl-0">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Pending Access Requests</h2>
+        </div>
         
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3">
+        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Student Count Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getPendingAccessRequest('')" [(ngModel)]="model.page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="">select One</option>
+                        <!-- <option value="">select One</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="15">15</option> -->
+                        <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
@@ -23,8 +29,8 @@
         <!--End html for filter for No of alumni per page with export button-->
         
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && dataSource.length > 0">
+                <mat-table [dataSource]="dataSource | paginate: config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
@@ -96,8 +102,8 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i (click)="approveUser(element.id)" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i  data-toggle="modal" data-target="#rejectModel" (click)="rejectUserModal(element.id)"  class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i (click)="approveUser(element.id)" class="fa fa-check mr-2 color-green fa-lg cursorStyle" title="Approve" aria-hidden="true "></i>
+                            <i  data-toggle="modal" data-target="#rejectModel" (click)="rejectUserModal(element.id)" title="Reject" class="fa fa-ban mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
@@ -105,11 +111,15 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
             </div>
-            <div class="row" *ngIf="!dataSource">
+              
+            <div class="row" *ngIf="dataSource.length == 0">
                 <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
                 </div>
             </div>
+            <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getPendingAccessRequest($event)"
+                class="eiPaginationTag">
+            </pagination-controls>
         </div>
     </div>
 </div>

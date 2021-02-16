@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ImageViewerConfig, CustomEvent } from 'src/app/common/image-viewer/image-viewer-config.model';
 
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -26,6 +27,16 @@ export class InformationAndBankComponent implements OnInit {
   bankNameList = [];
   bankModel:any={};
   uploadedCancelCheque: any;
+  userProfile: any={};
+  userData: any={};
+  document_image:any;
+  displayError: string;
+  images: any = [];
+  imageIndexOne = 0;
+  is_ei_approved:any="0";
+  address_1:any;
+  address_2:any;
+  modelDocumentDetails: any = [];
   constructor(
     private baseService: BaseService,
     private validationService: GenericFormValidationService,
@@ -39,6 +50,76 @@ export class InformationAndBankComponent implements OnInit {
     this.bankModel.bank_name='';
     this.getBankNameList();
     this.getBankDetails();
+    this.getEiProfileData();
+    if(localStorage.getItem("is_ei_approved")!='null' && localStorage.getItem("is_ei_approved")!='' && localStorage.getItem("is_ei_approved")!=undefined){
+      this.is_ei_approved = localStorage.getItem("is_ei_approved");
+    }
+  }
+  changeValue(address_1:any,full_address,model){
+    if(full_address=='full_address'){
+      model.value=this.address_1+' '+this.address_2;
+    }
+    
+  }
+  goForward() {
+    
+    try {
+      this.loader.show();
+      
+      
+      const formData = new FormData();
+      if(localStorage.getItem("personalInfo")){
+        this.model = JSON.parse(localStorage.getItem("personalInfo"));
+        console.log(this.model);
+        
+        formData.append('name_of_school', this.model.name_of_school);
+      formData.append('name_of_principle', this.model.name_of_principle);
+      formData.append('state', this.model.state);
+      formData.append('city', this.model.city);
+      formData.append('address1', this.model.address1);
+
+      formData.append('address2', this.model.address2);
+      formData.append('landmark', this.model.landmark);
+      formData.append('school_code', this.model.school_code);
+      formData.append('pincode', this.model.pincode);
+      formData.append('university', this.model.university);
+      formData.append('no_of_students', this.model.no_of_students);
+      formData.append('no_of_alumni', this.model.no_of_alumni);
+      formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
+      formData.append('send_back_to_edit', this.model.send_back_to_edit);
+      formData.append('gst_no', this.model.gst_no);
+      formData.append('overview', this.model.overview);
+      
+      this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.loader.hide();
+            this.submitDocumentFourStep()
+            this.getEiProfileData();
+            localStorage.removeItem("personalInfo");
+            this.alert.success("Update Successfully","Success")
+          } else {
+            this.loader.hide();
+          }
+
+        }, (error) => {
+          this.loader.hide();
+          this.alert.error(error.message, 'Error')
+
+        });
+      }else{
+        this.loader.hide();
+        this.alert.error("Please edit any information before click","");
+      }
+      
+      
+    } catch (err) {
+      this.loader.hide();
+      this.alert.error(err, 'Error')
+    }
+
+
+
   }
   /**getBankNameList */
 
@@ -73,6 +154,15 @@ export class InformationAndBankComponent implements OnInit {
         console.log('info is as ::',res)
         if (res.status == true) {
           this.bankDetails = res.data
+          if(localStorage.getItem("personalInfo")){
+            this.model=JSON.parse(localStorage.getItem("personalInfo"))
+            this.bankDetails.name_of_school=this.model.name_of_school;
+            this.bankDetails.name_of_principle=this.model.name_of_principle;
+            this.bankDetails.opening_date=this.baseService.getDateReverseFormat(this.model.opening_date);
+            this.bankDetails.gst_no=this.model.gst_no;
+            this.bankDetails.overview=this.model.overview;
+            this.bankDetails.full_address = this.model.address1 +' ' + this.model.address2
+          }
           this.bankModel.bank_name=this.bankDetails.bank_name;
           this.bankModel.bank_account_no=this.bankDetails.bank_account_no;
           this.bankModel.bank_ifsc_code=this.bankDetails.bank_ifsc_code;
@@ -87,14 +177,41 @@ export class InformationAndBankComponent implements OnInit {
       }
     )
   }
+  addMoreDocument(){
+    this.router.navigate(["ei/add-more-document"])
+  }
+  viewImage(src) {
+    this.images = []
+    this.images.push(src);
+  }
+  download_file(fileURL) {
+    window.open(fileURL, '_blank');
+  }
+  downloadImage(imageUrl){
+    this.baseService.downloadImage(imageUrl);
+  }
   openChangeDetailsPopup(label,key,value){
      this.model={};
      this.model.key = key;
-     this.model.old_value =value;
-     this.model.value = value;
-     this.model.image = '';
+     if(key=='full_address'){
+       console.log(value);
+       
+      this.model.old_value =value.address1+' '+value.address2;
+      this.model.value = value.full_address;
+      this.address_1 = value.address1
+      this.address_2 = value.address2
+     }else{
+      this.model.old_value =value;
+      this.model.value = value;
+     }
+     if(this.model.key=='email' || this.model.key=='phone'){
+     
+    }else{
+      this.model.image = '';
+    }
+     
      this.title = label;
-     console.log(this.model.key);
+      
      
      $("#editModel").modal({
       keyboard: false
@@ -125,7 +242,7 @@ export class InformationAndBankComponent implements OnInit {
          {
            this.loader.hide();
            $("#personalInfoModel").modal('hide');
-           location.reload();
+          // location.reload();
          }else{
            this.alert.error(response.error.message[0],'Error');
          }
@@ -137,6 +254,7 @@ export class InformationAndBankComponent implements OnInit {
       }
     }
   }
+
   /**Edit Data for personal information */
   editDetails(){
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
@@ -154,14 +272,15 @@ export class InformationAndBankComponent implements OnInit {
           $("#editModel").modal('hide');
           if(this.model.key=='email' || this.model.key=='phone'){
             $("#OTPModel").modal({
-              backdrop:'static',
+              
               keyboard: false
             });
           }else{
             this.alert.success(response.message,'Success');
           }
         }else{
-          this.alert.error(response.error,'Success');
+          this.loader.hide();
+          this.alert.error(response.error.message,'Error');
         }
       },(error=>{
         this.loader.hide();
@@ -209,6 +328,11 @@ export class InformationAndBankComponent implements OnInit {
     this.alert.error(err, 'Error')
   }
 }
+
+fileType(file: any) {
+  return file.split('.').pop();
+}
+
 goToDashboard() {
   var flagRequired = true;
   this.errorOtpModelDisplay = '';
@@ -239,10 +363,10 @@ goToDashboard() {
     this.baseService.action('ei/ei-request-verify-otp-detail-change/',data).subscribe(res => {
       let response: any = {}
       response = res;
-      if (response.status == "True") {
+      if (response.status == true) {
         
         $("#OTPModel").modal('hide');
-        this.alert.success('Request has been sent for approved','Success');
+        this.alert.success('Request has been send for approved','Success');
         location.reload();
         //
         
@@ -267,6 +391,37 @@ changeInput($ev) {
   }
 
 }
+gotoEditPersonalInfo(){
+  this.router.navigate(["ei/personal-information"]);
+}
+getEiProfileData(){
+  try {
+    this.loader.show();
+  this.baseService.getData('ei/onboarding-preview/').subscribe(res=>{
+     let response:any={};
+     response=res;
+     if(response.status==true){
+       this.userProfile=response.data[0];
+       this.userData = this.userProfile.ei_detail[0];
+       this.editModel.fb_url = this.userData.fb_url 
+       this.editModel.twitter_url = this.userData.twitter_url
+       this.editModel.school_phone = this.userData.school_phone
+       this.editModel.school_email = this.userData.school_email
+       this.loader.hide();
+       
+     }else{
+       this.loader.hide();
+       this.displayError = this.eiService.getErrorResponse(this.loader,response.error);
+       this.alert.error(this.displayError,"Error");
+     }
+  },(error)=>{
+   this.loader.hide();
+   this.alert.error("Something went wrong.","Error");
+  })
+  } catch (e) {
+  
+  }
+}
 bankDetailsPopup(){
   this.model={};
   $("#bankDetailModel").modal({
@@ -290,9 +445,14 @@ submitBankDetail() {
     formData.append('bank_account_no', this.bankModel.bank_account_no);
     formData.append('bank_ifsc_code', this.bankModel.bank_ifsc_code);
     formData.append('cancel_cheque', this.uploadedCancelCheque);
-  
+    var url="";
+    if(localStorage.getItem("is_ei_approved")=='0'){
+      url = "ei/bankdetail-add/";
+    }else{
+      url = "ei/ei-request-for-bank-detail-change/";
+    }
 
-    this.baseService.action('ei/ei-request-for-bank-detail-change/',formData).subscribe(
+    this.baseService.action(url,formData).subscribe(
       (res: any) => {
         if (res.status == true) {
           this.loader.hide();
@@ -314,5 +474,48 @@ submitBankDetail() {
 }
 goToRequestStatusPage(){
   this.router.navigate(['ei/view-changes-request-status']);
+  
 }
+  /**
+   * Function Name: submitDocumentFourStep
+   * 
+   */
+  submitDocumentFourStep() {
+    // this.error = [];
+    // this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, this.modelDocumentDetails);
+    // if (this.errorDisplay.valid) {
+    //   return false;
+    // }
+     try {
+       if(localStorage.getItem("documentdata")){
+        this.loader.show();
+        let documentdata: any = {};
+  
+        //documentdata.documentdata = this.modelDocumentDetails;
+        documentdata = JSON.parse(localStorage.getItem("documentdata"));
+        this.eiService.updateOnboardStepFourData(documentdata).subscribe(
+          (res: any) => {
+            if (res.status == true) {
+              this.loader.hide();
+              localStorage.removeItem("documentdata");
+  
+              //this.router.navigate(['ei/information-and-bank-details']);
+              
+            } else {
+              this.loader.hide();
+              var collection = this.eiService.getErrorResponse(this.loader, res.error);
+              this.alert.error(collection, 'Error')
+            }
+          }, (error) => {
+            this.loader.hide();
+            this.alert.error(error.erorr, 'Error')
+          });
+       }
+      
+    } catch (err) {
+      this.loader.hide();
+      this.alert.error(err, 'Error')
+    }
+  }
+  
 }

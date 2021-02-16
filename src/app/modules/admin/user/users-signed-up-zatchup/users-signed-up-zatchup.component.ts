@@ -26,54 +26,54 @@ export class UsersSignedUpZatchupComponent implements OnInit {
     this.signupUsers.maxDate = new Date();
   }
   ngOnInit(): void {
+    this.signupUsers.filterParams = this.route.snapshot.queryParamMap.get("filterParams");
+    if(this.signupUsers.filterParams)
+    {
+      this.signupUsers.filterFromDate = JSON.parse(this.signupUsers.filterParams).from_date;
+      this.signupUsers.filterToDate = JSON.parse(this.signupUsers.filterParams).to_date;
+    }
+
+    if(this.signupUsers.lastLoginParams)
+    {
+      debugger
+      this.signupUsers.loginFromDate = JSON.parse(this.signupUsers.lastLoginParams).start_date;
+      this.signupUsers.loginToDate = JSON.parse(this.signupUsers.lastLoginParams).end_date;
+    }
     this.getSignupUsersList('');
     this.getAllState();
+    this.signupUsers.pageCount = this.baseService.getCountsOfPage()
   }
 
   getSignupUsersList(page?: any) {
     this.loader.show();
-    let stateFind: any;
-    let cityFind: any;
-    if (this.signupUsers.allStates && this.signupUsers.stateId) {
-      stateFind = this.signupUsers.allStates.find(val => {
-        return val.id == this.signupUsers.stateId
-      })
-    }
-    if (this.signupUsers.allCities) {
-      cityFind = this.signupUsers.allCities.find(val => {
-        return val.id == this.signupUsers.cityId
-      })
-    }
     this.signupUsers.listParams = {
-      'date_from': this.signupUsers.filterFromDate !== undefined ? this.datePipe.transform(this.signupUsers.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.signupUsers.filterToDate !== undefined ? this.datePipe.transform(this.signupUsers.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.signupUsers.loginFromDate !== undefined ? this.datePipe.transform(this.signupUsers.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.signupUsers.loginToDate !== undefined ? this.datePipe.transform(this.signupUsers.loginToDate, 'yyyy-MM-dd') : '',
-      "city": cityFind ? cityFind.city : '',
-      "state": stateFind ? stateFind.state : '',
+      'start_date': this.signupUsers.filterFromDate !== undefined ? this.datePipe.transform(this.signupUsers.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.signupUsers.filterToDate !== undefined ? this.datePipe.transform(this.signupUsers.filterToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.signupUsers.loginFromDate !== undefined ? this.datePipe.transform(this.signupUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.signupUsers.loginToDate !== undefined ? this.datePipe.transform(this.signupUsers.loginToDate, 'yyyy-MM-dd') : '',
+      "kyc_aprroved": this.signupUsers.kycApproved !== undefined ? this.signupUsers.kycApproved : '',
+      "is_disabled": this.signupUsers.status !== undefined ? this.signupUsers.status : '',
+      "school_verified": this.signupUsers.schoolStatus !== undefined ? this.signupUsers.schoolStatus : '',
+      "zatchupId": this.signupUsers.zatchupId,
       "page_size": this.signupUsers.page_size,
       "page": page,
-      "current_ei": this.signupUsers.currentEi,
-      "previous_ei": this.signupUsers.previousEi,
-      "age_group": this.signupUsers.ageGroup,
-      "kyc_approved": this.signupUsers.kycApproved !== undefined ? this.signupUsers.kycApproved: '',
-      "status": this.signupUsers.status !== undefined ? this.signupUsers.status : '',
     }
 
     this.baseService.getData('admin/user/signed_up_users_list/', this.signupUsers.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-          page = this.signupUsers.config.currentPage
+            page = this.signupUsers.config.currentPage
           this.signupUsers.startIndex = res.page_size * (page - 1) + 1;
           this.signupUsers.page_size = res.page_size
           this.signupUsers.config.itemsPerPage = this.signupUsers.page_size
           this.signupUsers.config.currentPage = page
           this.signupUsers.config.totalItems = res.count;
-          if(res.count > 0)
-          this.signupUsers.dataSource = res.results
+          if (res.count > 0) {
+            this.signupUsers.dataSource = res.results
+          }
           else
-          this.signupUsers.dataSource = undefined   
+            this.signupUsers.dataSource = undefined
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -87,33 +87,30 @@ export class UsersSignedUpZatchupComponent implements OnInit {
   generateExcel() {
     delete this.signupUsers.listParams.page_size;
     delete this.signupUsers.listParams.page;
-    // this.onboardList.listParams['export_csv'] = true
     this.baseService.generateExcel('admin/user/export_signed_up_users_list/', 'signup-users', this.signupUsers.listParams);
   }
 
-  goBack(){
+  goBack() {
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     this.router.navigate([returnUrl])
   }
 
-  userProfile(id: any){
-    this.router.navigate(['admin/user-profile', id], {queryParams: { returnUrl: 'admin/signed-up-users'}})
+  userProfile(id: any) {
+    this.router.navigate(['admin/user-profile', id], { queryParams: { returnUrl: 'admin/signed-up-users' } })
   }
-  getAllState(){
+  getAllState() {
     this.baseService.getData('user/getallstate/').subscribe(
       (res: any) => {
-        console.log('get state res ::', res)
-        if (res.count >0)
-        this.signupUsers.allStates = res.results
+        if (res.count > 0)
+          this.signupUsers.allStates = res.results
       }
     )
   }
-  getCities(){
+  getCities() {
     this.baseService.getData('user/getcitybystateid/' + this.signupUsers.stateId).subscribe(
       (res: any) => {
         if (res.count > 0)
-        this.signupUsers.allCities = res.results
-        console.log('get state res ::', res)
+          this.signupUsers.allCities = res.results
       }
     )
   }

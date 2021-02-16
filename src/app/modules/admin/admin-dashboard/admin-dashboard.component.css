@@ -1,7 +1,8 @@
 .twoLineText {
-    height: 56px;
-    display: flex;
+    height: 100%;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .col-flex {

@@ -119,6 +119,18 @@ import { SupportManagementComponent } from './support/support-management/support
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
+import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
+import { NotificationListComponent } from './notification/notification-list/notification-list.component';
+import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
+import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
+import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
+import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
+import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
+import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
+import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
+import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-view/admin-ei-reject-details-view.component';
 
 const routes: Routes = [
   {
@@ -143,7 +155,7 @@ const routes: Routes = [
     path: 'ei-management-course/:id', component: AdminEiManagementCourseComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-management-course-details/:id/course/:course_id', component: AdminEiManagementCourseDetailsComponent, canActivate: [AuthGuard]
+    path: 'ei-management-course-details/:id', component: AdminEiManagementCourseDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-alumni-list', component: AdminEiManagementAlumniListComponent, canActivate: [AuthGuard]
@@ -155,7 +167,7 @@ const routes: Routes = [
     path: 'ei-management-incomplete-onboarding', component: AdminEiManagementIncompleteOnboardingComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-profile-details/:id', component: AdminEiManagementIncompleteOnboardingViewComponent, canActivate: [AuthGuard]
+    path: 'ei-profile-details', component: AdminEiManagementIncompleteOnboardingViewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-pending-for-approval', component: AdminEiManagementPendingForApprovalComponent, canActivate: [AuthGuard]
@@ -170,7 +182,7 @@ const routes: Routes = [
     path: 'payment-onboarding-fee-history', component: AdminPaymentOnboardingFeeHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-reject-details', component: AdminEiRejectDetailsComponent, canActivate: [AuthGuard]
+    path: 'rejected-ei-list', component: AdminEiRejectDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'zatch-certificate-result', component: AdminZatchCertificateResultComponent, canActivate: [AuthGuard]
@@ -185,7 +197,7 @@ const routes: Routes = [
     path: 'user', component: AdminUserComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user-education-profile', component: AdminUserEducationProfileComponent, canActivate: [AuthGuard]
+    path: 'user-education-profile/:id', component: AdminUserEducationProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user-report-history', component: AdminUserReportHistoryComponent, canActivate: [AuthGuard]
@@ -203,7 +215,7 @@ const routes: Routes = [
     path: 'ei-management-added-by-user-not-to-zatchup', component: AdminEIManagementAddedByUserNotToZatchupComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-management-document-mou-history', component: AdminEiManagementDocumentMouHistoryComponent, canActivate: [AuthGuard]
+    path: 'ei-document-mou-history/:ei_id', component: AdminEiManagementDocumentMouHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-management-all-course-upload', component: AdminEiManagementAllCourseUploadComponent, canActivate: [AuthGuard]
@@ -257,7 +269,7 @@ const routes: Routes = [
     path: 'payment-coupon-codes', component: AdminPaymentCouponComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'onboarded-on-zatchup-list', component: OnboardedOnZatchupListComponent, canActivate: [AuthGuard]
+    path: 'onboarded-on-zatchup-list/:type', component: OnboardedOnZatchupListComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-onboarding-request-history', component: OnboardingRequestHistoryComponent, canActivate: [AuthGuard]
@@ -275,7 +287,7 @@ const routes: Routes = [
     path: 'subadmin-authorization-access-view/:id', component: SubadminAuthorizationAccessViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-onboarding-conversation-comments/:id', component: OnboardingConversationCommentsComponent, canActivate: [AuthGuard]
+    path: 'ei-onboarding-conversation-comments/:id/:ei', component: OnboardingConversationCommentsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'management-commission-add', component: ManagementCommissionAddComponent, canActivate: [AuthGuard]
@@ -314,10 +326,10 @@ const routes: Routes = [
     path: 'lecture-details', component: LectureDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'message-contact', component: MessageContactComponent, canActivate: [AuthGuard]
+    path: 'contact-us-messages/:ei_id', component: MessageContactComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'message-resolved', component: MessageResolvedComponent, canActivate: [AuthGuard]
+    path: 'contact-us-messages-list', component: MessageResolvedComponent, canActivate: [AuthGuard]
   },
   {
     path: 'ei-database-history', component: DatabaseHistoryComponent, canActivate: [AuthGuard]
@@ -329,10 +341,10 @@ const routes: Routes = [
     path: 'incomplete-onboarding-view/:id', component: IncompleteOnboardingViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'ei-database-view/:id', component: DatabaseViewComponent, canActivate: [AuthGuard]
+    path: 'ei-database-view', component: DatabaseViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'current-poc', component: CurrentPocComponent, canActivate: [AuthGuard]
+    path: 'poc-details/:ei_id', component: CurrentPocComponent, canActivate: [AuthGuard]
   },
   {
     path: 'starclass-bought', component: StarclassBoughtComponent, canActivate: [AuthGuard]
@@ -348,6 +360,9 @@ const routes: Routes = [
   },
   {
     path: 'add-education-institute', component: EducationStatusComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'add-education-institute/:id', component: EducationStatusComponent, canActivate: [AuthGuard]
   },
   {
     path: 'status-added', component: StatusAddedComponent, canActivate: [AuthGuard]
@@ -389,17 +404,20 @@ const routes: Routes = [
     path: 'education-institute-history/:id', component: InstituteHistoryComponent, canActivate: [AuthGuard]
   },
   {
+    path: 'onboarded-school-history/:id', component: OnboardedSchoolHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
     path: 'service-fees-history', component: ServiceFeesHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'subscription-plan-history', component: SubscriptionPlanHistoryComponent, canActivate: [AuthGuard]
+    path: 'subscription-plan-history/:id', component: SubscriptionPlanHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'subadmin-access-history', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]
   },
-  {
-    path: 'subadmin-access-history/:id', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'subadmin-access-history/:id', component: SubadminAccessHistoryComponent, canActivate: [AuthGuard]
+  // },
   {
     path: 'my-assigned-ei', component: MyAssignedEiComponent, canActivate: [AuthGuard]
   },
@@ -470,15 +488,43 @@ const routes: Routes = [
     path: 'payment-invoice', component: PaymentInvoiceComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent,  canActivate: [AuthGuard]
+    path: 'change-details-request-view/:id', component: ChangeDetailsRequestViewComponent, canActivate: [AuthGuard]
   },
-
-
-
-
-
   {
-    path: '**', component:AdminPageNotFoundComponent
+    path: 'configure-onboarding-fee', component: OnboardingFeeConfigureComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'notification-list', component: NotificationListComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-education-details', component: UserEducationDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'kyc-change-requests', component: AdminKycPendingChangeRequestsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'kyc-change-request-details/:id', component: AdminKycChangeRequestDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'contact-and-static-content-management', component: ContectAndStaticContentManagementComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-poc', component: EditPocDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'resolve-ticket', component: ResolveTicketsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'terms-conditions/:type/:action', component: TermsConditionsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: "rejected-ei-view/:id", component: AdminEiRejectDetailsViewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: '**', component: AdminPageNotFoundComponent
   }
 ];
 
@@ -486,4 +532,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes), MaterialDesignModule],
   exports: [RouterModule, MaterialDesignModule]
 })
-export class AdminwebRoutingModule { }
+export class AdminRoutingModule { }

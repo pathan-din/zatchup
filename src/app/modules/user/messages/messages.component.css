@@ -1,0 +1,28 @@
+.border-bottomCustom{
+    border-bottom: 1px solid #ccc;
+}
+.chat_content{
+    width: 65%;
+    margin: 0px auto;
+}
+.profile_pick{
+    border-radius: 50%;
+    width: 55px;
+    overflow: hidden;
+    height: 55px;
+}
+
+.chat_contentBox{
+    width: 90%;
+    margin: 0px auto;
+}
+
+.img-small{
+    height: 24px;
+}
+
+@media (max-width: 767px){
+    .chat_content{
+        width: 100%;
+    }
+}

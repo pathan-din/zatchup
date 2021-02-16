@@ -43,6 +43,21 @@ import { AddMoreCourseManuallyComponent } from './add-more-course-manually/add-m
 import { AddPastEiComponent } from './add-past-ei/add-past-ei.component';
 import { UserPageNotFoundComponent } from './user-page-not-found/user-page-not-found.component';
 import { MySchoolComponent } from './my-school/my-school.component';
+import { ChatComponent } from './chat/chat.component';
+import { StartNewChatComponent } from './start-new-chat/start-new-chat.component';
+import { CreateGroupChatComponent } from './create-group-chat/create-group-chat.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
+import { UserPersonalInformationComponent } from './user-personal-information/user-personal-information.component';
+import { AuthGuard } from 'src/app/auth/auth.guard';
+import { GroupDetailComponent } from './group-detail/group-detail.component';
+import { MessagesComponent } from './messages/messages.component';
+import { PendingRequestForUserComponent } from './pending-request-for-user/pending-request-for-user.component';
+import { ServiceComponent } from './user-info/service/service.component';
+import { SettingComponent } from './setting/setting.component';
+import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
+import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+
+
 const routes: Routes = [
   {
     path: '', component: UserSignUpComponent
@@ -60,136 +75,173 @@ const routes: Routes = [
     path: 'user/forgot-password', component: UserForgotPasswordComponent
   }, 
   {
-    path: 'user/reset-password', component: UserResetPasswordComponent
+    path: 'user/create-new-password', component: UserResetPasswordComponent
   }, 
   {
-    path: 'user/kyc-verification', component: UserKycVerificationComponent
+    path: 'user/kyc-verification', component: UserKycVerificationComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/Kyc-successful-done', component: UserKycSuccessfulDoneComponent
+    path: 'user/Kyc-successful-done', component: UserKycSuccessfulDoneComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/qualification', component: UserQualificationComponent
+    path: 'user/qualification', component: UserQualificationComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/work-detail', component: UserWorkDetailComponent
+    path: 'user/work-detail', component: UserWorkDetailComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/school-confirmation', component: UserSchoolConfirmationComponent
+    path: 'user/school-confirmation', component: UserSchoolConfirmationComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/congratulation', component: UserCongratulationComponent
+    path: 'user/congratulation', component: UserCongratulationComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/add-ei', component: UserAddEiComponent
+    path: 'user/add-ei', component: UserAddEiComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/ei-profile', component: UserEiProfileComponent
+    path: 'user/ei-profile', component: UserEiProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/add-new-course', component: AddNewCourseComponent
+    path: 'user/add-new-course', component: AddNewCourseComponent, canActivate: [AuthGuard]
   },
   
   {
-    path: 'user/add-course', component: UserAddCourseComponent
+    path: 'user/add-course', component: UserAddCourseComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/add-more-standard', component: UserAddMoreStandardComponent
+    path: 'user/add-more-standard', component: UserAddMoreStandardComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/add-more-ei', component: UserAddMoreEiComponent
+    path: 'user/add-more-ei', component: UserAddMoreEiComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/ei-confirmation', component: UserEiConfirmationComponent
+    path: 'user/ei-confirmation', component: UserEiConfirmationComponent, canActivate: [AuthGuard]
   }, 
   {
-    path: 'user/profile-created', component: UserProfileCreatedSuccessfullyComponent
+    path: 'user/profile-created', component: UserProfileCreatedSuccessfullyComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/landing-page', component: UserLandingPageComponent
+    path: 'user/landing-page', component: UserLandingPageComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/payment-page', component: UserPaymentComponent
+    path: 'user/payment-page', component: UserPaymentComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/my-school-tab', component: UserMySchoolTabComponent
+    path: 'user/my-school-tab', component: UserMySchoolTabComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/certificate', component: UserCertificateComponent
+    path: 'user/certificate', component: UserCertificateComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/zatchup-star-class', component: UserZatchupStarClassComponent
+    path: 'user/zatchup-star-class', component: UserZatchupStarClassComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/project-funding', component: UserProjectFundingComponent
+    path: 'user/project-funding', component: UserProjectFundingComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/funding-details', component: UserFundingDetailsComponent
+    path: 'user/funding-details', component: UserFundingDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/lecture-request', component: UserLectureRequestComponent
+    path: 'user/lecture-request', component: UserLectureRequestComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/profile', component: UserProfileComponent
+    path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/notifications', component: UserNotificationsComponent
+    path: 'user/notifications', component: UserNotificationsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/remainders', component: UserRemaindersComponent
+    path: 'user/remainders', component: UserRemaindersComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/search', component: UserSearchComponent
+    path: 'user/search', component: UserSearchComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/my-educational-profile', component: UserMyEducationalProfileComponent
+    path: 'user/my-educational-profile', component: UserMyEducationalProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/my-buddies', component: UserMyBuddiesComponent
+    path: 'user/my-buddies', component: UserMyBuddiesComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/create-post', component: UserCreatePostComponent
+    path: 'user/create-post', component: UserCreatePostComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/school-profile', component: UserSchoolProfileComponent
+    path: 'user/school-profile', component: UserSchoolProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/my-profile', component: UserMyProfileComponent
+    path: 'user/profile', component: UserMyProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/career', component: CareerComponent
+    path: 'user/career', component: CareerComponent, canActivate: [AuthGuard]
   },
+ 
   {
     path: 'user/about-us', component: AboutUsComponent
   },
   {
-    path: 'user/contact-us', component: ContactUsComponent
+    path: 'user/services', component: ServiceComponent
+  },
+  {
+    path: 'user/contact-us', component: ContactUsComponent, canActivate: [AuthGuard]
   }
   ,
   {
-    path: 'user/add-more-course', component: AddMoreCourseManuallyComponent
+    path: 'user/add-more-course', component: AddMoreCourseManuallyComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/add-past-ei', component: AddPastEiComponent
+    path: 'user/add-past-ei', component: AddPastEiComponent, canActivate: [AuthGuard]
   },
 
   {
-    path: 'user/my-school', component: MySchoolComponent
+    path: 'user/my-school', component: MySchoolComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/add-personal-info', component: UserPersonalInformationComponent, canActivate: [AuthGuard]
   },
 
-
-
-
-
-
-
-
-
-
+  {
+    path: 'user/chat', component: ChatComponent
+  },
 
   {
-    path: '**', component: UserPageNotFoundComponent
-},
+    path: 'user/new-chat', component: StartNewChatComponent
+  },
+
+  {
+    path: 'user/group-chat', component: CreateGroupChatComponent
+  },
+  
+  {
+    path: 'user/create-group', component: CreateGroupComponent
+  },
+
+  {
+    path: 'user/group-detail', component: GroupDetailComponent
+  },
+
+  {
+    path: 'user/messages', component: MessagesComponent
+  },
+  {
+    path: 'user/pending-request', component: PendingRequestForUserComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/pending-course-details', component: PendingCourseDetailComponent, canActivate: [AuthGuard]
+  },
+  //
+
+  {
+    path: 'user/setting', component: SettingComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/chat-privacy', component: ChatPrivacyComponent, canActivate: [AuthGuard]
+  },
+  
+  
+
+ {
+      path: '**', component: UserPageNotFoundComponent
+  },
 
   
   

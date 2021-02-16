@@ -21,7 +21,7 @@
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
             <div class="d-flex flex-wrap align-items-end">
                
-                <div class="widthFull mr-4 mt-3 courseDiv ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select (change)="displayStandardList(model.course)" id="course_id" [(ngModel)]="model.course"
@@ -34,7 +34,7 @@
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select (change)="displayClassList(model.standard)" id="standard_id"
@@ -47,7 +47,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select id="class_id" [(ngModel)]="model.teaching_class" name="class"
@@ -58,7 +58,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Gender</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" [(ngModel)]="model.gender" name="gender"
@@ -69,8 +69,8 @@
 
                         </select>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Profession</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" [(ngModel)]="model.profession"
@@ -81,8 +81,8 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">Verification Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select class="custom-select  form-control-input" required [(ngModel)]="model.approved"
@@ -93,8 +93,8 @@
 
                         </select>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
                         <select [(ngModel)]="model.kyc_approved" name="kyc_approved"
@@ -104,7 +104,7 @@
                             <option value="0">Incomplete</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <button (click)="getAluminiList('','')" type="button"
                     class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
 
@@ -114,15 +114,16 @@
         <div class="row my-3" *ngIf="aluminiList.length>0">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Alumni Per
-                    Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getAluminiList('','')" [(ngModel)]="model.page_size" name="page_size"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="">select One</option>
-                        <option value="5">5</option>
+                        <!-- <option value="">select One</option> -->
+                        <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
+
+                        <!-- <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
@@ -175,10 +176,10 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="Tenure">
+                    <!-- <ng-container matColumnDef="Tenure">
                         <mat-header-cell *matHeaderCellDef>Tenure</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.Tenure}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="Duration">
                         <mat-header-cell *matHeaderCellDef> Duration </mat-header-cell>
@@ -192,22 +193,22 @@
                     </ng-container>
 
                     <ng-container matColumnDef="VerificationStatusByEI">
-                        <mat-header-cell *matHeaderCellDef> Verification Status By EI </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Verification Status By School </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button class="{{element.VerificationStatusByEI=='Approved'?'bg-paret-green':'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                            <button class="{{element.VerificationStatusByEI=='Approved'?'bg-paret-green':'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
                                 {{element.VerificationStatusByEI}} </button>
                                
                         </mat-cell>
                     </ng-container>
-
+<!-- 
                     <ng-container matColumnDef="EKYCVerificationStatus">
                         <mat-header-cell *matHeaderCellDef> EKYC Verification Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
                                 {{element.EKYCVerificationStatus}}</button> </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="Action">
+                    <!-- <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
@@ -215,8 +216,25 @@
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View"
                                 (click)="goToEiAlumniProfilePage()"></i>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
+                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
+                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" title="Edit" *ngIf="model.kyc_approved==1 && model.approved==1" aria-hidden="true " (click)="goToEiStudentEditPage(element.student_id)"></i>
+                            <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
+                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
+                            aria-hidden="true "></i> -->
+                        <span  *ngIf="element.kyc_approved==1">
+                        <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
+                            data-toggle="modal"></i>
+                        <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
+                        </span>
+                        <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" title="Reject" aria-hidden="true "
+                            data-toggle="modal" (click)="openRejectModel(element.student_id)" data-target="#rejectModel"></i>
+                        </mat-cell>
+                    </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
 
@@ -233,3 +251,82 @@
         <pagination-controls *ngIf="aluminiList.length>0" (pageChange)="getAluminiList($event,'')"
             class="eiPaginationTag"></pagination-controls>
     </div>
+  
+  <!-- verifiedModel  -->
+  <div class="modal fade" id="verifiedModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog " role="document">
+          <div class="modal-content unverified container-fluid">
+              <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                  <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Verify</h2>
+                  <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                      data-dismiss="modal" aria-label="Close ">
+                      <span aria-hidden="true ">
+                          &times;
+                          <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                      </span>
+                  </button>
+              </div>
+              <div class="modal-body px-0 py-0">
+                  <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                  <p class="commonFontSize regularFont letterspacing">Are you sure you want to Verify this Alumni?
+                  </p>
+                  <p class="commonFontSize regularFont letterspacing text-right">
+                      <!-- <span class="mx-3 color-blue">No</span>
+                      <span class="mx-2 color-blue">Yes</span> -->
+                      <button type="button " (click)="closeModel()" class="bg-red px-3 color-white py-2 border-0 rounded mr-3 modalAddStudentsBtn mediumFont">No</button>
+                      <button type="button" (click)="approveStudent(1, modelUserId)" class="bg-purple py-2 px-3 color-white border-0 rounded modalAddStudentsBtn mediumFont">Yes</button>
+
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+      <!-- rejectModel  -->
+      <div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog " role="document">
+          <div class="modal-content unverified container-fluid">
+              <div class="modal-header align-items-center justify-content-center pb-0 ">
+                  <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
+                  <button #closeModelReject type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                      data-dismiss="modal" aria-label="Close ">
+                      <span aria-hidden="true "> &times; </span>
+                  </button>
+              </div>
+              
+
+              <div class="modal-body px-0">
+                  <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                  <form id="rejectReason">
+                  <div class=" form-group row ">
+                   <div class="col-md-12 ">
+              <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
+              <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
+                  <input id="remark" [(ngModel)]="modelReason.remark" name="reason_type" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
+              </div>
+              <div class="required errorMsg" [innerHtml]="errorDisplay.reason_type"></div>
+          </div>
+                  </div>
+                  <div class=" form-group row ">
+                      <div class="col-md-12 ">
+                          <label for="Remarks "
+                              class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
+
+                          <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea [(ngModel)]="modelReason.rejected_reason" name="remarks" required
+                                  class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                  rows="3 " placeholder="Enter Remarks "></textarea>
+                          </div>
+                      </div>
+                      <div class="required errorMsg" [innerHtml]="errorDisplay.remarks"></div>
+                  </div>
+                  <button (click)="rejectStudent()" type="button "
+                      class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                      Submit
+                  </button>
+                   </form>
+              </div>
+          </div>
+      </div>
+
+  </div>

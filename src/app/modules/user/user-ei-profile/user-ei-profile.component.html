@@ -5,128 +5,137 @@
         <div class="col-md-8">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4 pl-0">
+        <div class="col-md-4">
             <div class="row">
-                <div class="col-9">
-                    <h2 class="mb-4 textSpace">El Profile </h2>
-                </div>
-                <div class="col-3 text-right">
-                    <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
-                    
-                    <!-- <button type="button" class="rounded-circle border-0 p-0 mt-2"><img src="assets/images/userWebsite/edit.png" class="img-fluid form-control-inputDiv rounded-circle"></button> -->
+                <div class="col-12">
+                    <h2 class="mb-4 textSpace">Education Profile </h2>
                 </div>
             </div>
 
 
             <form>
-                <div class="form-group row justify-content-center">
-                    <div class="col-6   text-center ">
-                        <div class="round-camera-div mx-auto">
-                            <img (click)="fileInput.click()"  class="img-fluid p-2 img_profile" src="{{imageUrl?imageUrl:'assets/images/userWebsite/profile-image.png'}}">
-                            <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/>
-                        </div>
-                        
+                <div class="form-group row">                    
+                    <h3 class="p-0 commonFontSize semiBoldFont m-0">
+                        {{model.name_of_school}} ({{model.school_code}})
+                        <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
+                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">                             
+                        </span>
+                    </h3>                     
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-6 px-0">
+                        <label class="cursorStyle d-flex"> <input checked=true id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Student</label>
+                    </div>
+                    <div class="col-6 px-0">
+                        <label class="cursorStyle d-flex"> <input  (change)="addPastEi(schoolId)" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Alumni </label>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Course</label>
-                    <div class="col-sm-12 form-control-inputDiv">                        
-                        <select (change)="displayStandardList(course_id) " name="course" [(ngModel)]="course_id" class="custom-select form-control-input" required>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <select (change)="displayStandardList(model.course_id) " name="course"
+                            [(ngModel)]="model.course_id" class="custom-select form-control-input" required>
                             <option value="">Select Course </option>
-                            <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">{{courseObj.course_name}}</option>
-                            
+                            <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">
+                                {{courseObj.course_name}}</option>
+
                         </select>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Select Standard</label>
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <select  (change)="displayClassList(standard)"  name="standard" [(ngModel)]="standard" class="custom-select form-control-input" required>
-                            <option value="">Select Standard </option>
-                            <option  value="{{standardObj.id}}"  *ngFor="let standardObj of standardList" >{{standardObj.standard_name}}</option>
-                             
+                    <div class="col-sm-12 p-0 pr-0 ">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Course Joining Date</label>
+                        <div class="form-control-inputDiv mobile-input-6">
+                            <input required bsDatepicker autocomplete="off" [minDate]="maxDate" [maxDate]="minDate" placeholder="YYYY-MM-DD"
+                                [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="date_of_joining"
+                                [(ngModel)]="model.date_joining" class="form-control-input form-control form-control-sm"
+                                type="text">
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_joining"></div>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Joining Standard</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <select (change)="displayJoinStandardBseCurrentStandard(model.join_standard_id)" name="join_standard" [(ngModel)]="model.join_standard_id"
+                            class="custom-select form-control-input" required>
+                            <option value="">Select Join Standard </option>
+                            <option value="{{standardObj.id}}" *ngFor="let standardObj of standardList">
+                                {{standardObj.standard_name}}</option>
                         </select>
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.join_standard"></div>
                 </div>
                 <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Current Standard</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <select (change)="displayClassList(model.current_standard_id)" name="current_standard"
+                            [(ngModel)]="model.current_standard_id" class="custom-select form-control-input" required>
+                            <option value="">Select Current Standard </option>
+                            <option value="{{standardObj.id}}" *ngFor="let standardObj of leftStandardList">
+                                {{standardObj.standard_name}}</option>
+
+                        </select>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.current_standard"></div>
+                </div>
+
+                <div class="form-group row">
                     <label for="" class="mediumFont commonFontSize letterspacing">Select Class</label>
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input" required>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <select name="class" [(ngModel)]="model.class_id" class="custom-select form-control-input"
+                            required>
                             <option value="">Select Class</option>
-                            <option  value="{{classObj.id}}"  *ngFor="let classObj of classList" >{{classObj.class_name}}</option>
+                            <option value="{{classObj.id}}" *ngFor="let classObj of classList">{{classObj.class_name}}
+                            </option>
                         </select>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
                 </div>
                 <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">El ID Number or Admission Number</label>
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="admission_number" [(ngModel)]="model.admission_no" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter El ID Number or Admission Number  ">
+                    <label for="" class="mediumFont commonFontSize letterspacing">School ID</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <input required name="admission_number" [(ngModel)]="model.admission_no"
+                            class="form-control-input form-control form-control-sm" type="text"
+                            placeholder="Enter School ID">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6 pl-0">
+                    <div class="col-sm-12 p-0 pl-0">
                         <label for="" class="mediumFont commonFontSize letterspacing">Roll Number</label>
                         <div class="form-control-inputDiv mobile-input-6 mobForm-name">
-                            <input required name="roll_no" [(ngModel)]="model.roll_no" class="form-control-input form-control form-control-sm" type="number" placeholder="Roll Number">
+                            <input required name="roll_no" [(ngModel)]="model.roll_no"
+                                class="form-control-input form-control form-control-sm" type="number"
+                                placeholder="Enter Roll Number">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
                     </div>
-                    <div class="col-sm-6 pr-0">
-                        <label for="" class="mediumFont commonFontSize letterspacing">Date of Joining</label>
-                        <div class="form-control-inputDiv mobile-input-6">
-                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="date_of_joining" [(ngModel)]="model.date_joining"  class="form-control-input form-control form-control-sm" type="text" >
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_joining"></div>
+
+                </div>
+                <div class="form-group row">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Course Description (Optional)</label>
+                    <div class="col-sm-12 p-0 form-control-inputDiv ">
+                        <textarea name="comments" [(ngModel)]="model.comment"
+                            class="form-control form-control-textarea form-control-input" rows="2"
+                            placeholder="Enter Course Description"></textarea>
                     </div>
+
                 </div>
 
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="mother_name" [(ngModel)]="model.mother_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Mother's Name">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Comments</label>
-                    <div class="col-sm-12 form-control-inputDiv ">
-                        <textarea  name="comments" [(ngModel)]="model.comment" class="form-control form-control-textarea form-control-input" rows="2" placeholder="Write Comments (Optional)"></textarea>
-                    </div>
-                   
-                </div>
-                <!-- <div class="form-group row">
-                    <div class="col-sm-12 ">
-                        <div class="form-control-file row d-flex">
-                            <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-3 form-control-fileDiv p-0">
-                                <button class="fileBtn"><img src="assets/images/userWebsite/attachment_icon.png" class="img-fluid"></button>
-                                <input name="comments" [(ngModel)]="model.comment" type="file" name="myfile" />
-                            </div>
-                            <div class="col-xl-10 col-md-8 col-sm-10 col-9 text-left pl-1">
-                                <p class="m-0 text-dark mediumFont commonMaterialFontSize">Attach Document</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    
-                </div> -->
-                <button type="submit" class="btn common-btn regularFont textSpace" (click)="addCourseData()">Submit</button>
+                <button type="submit" class="btn common-btn regularFont textSpace"
+                    (click)="addCourseData()">Submit</button>
 
             </form>
         </div>
     </div>
 
 </div>
-
-
-<app-user-footer></app-user-footer>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>

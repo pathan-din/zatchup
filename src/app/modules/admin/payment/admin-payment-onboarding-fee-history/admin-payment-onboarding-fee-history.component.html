@@ -1,7 +1,14 @@
-<app-admin-sidenav></app-admin-sidenav>
+<!-- <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">Onboarding Fees History</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">Onboarding Fees History</h2>
+            </div>
+        </div>
         <div class="row mobile-col-reverse border-0 mt-1 mx-0">
             <div class="col-md-12 col-left">
                 <div class="row">
@@ -36,5 +43,46 @@
             </div>
         </div>
 
+    </div>
+</div> -->
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="eiMangPendingForApproval-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0"> Onboarding Fees History </h2>
+            </div>
+        </div>
+        <div class="tableDiv mt-3" *ngIf="dataSource">
+            <div class="table-responsive">
+                <mat-table [dataSource]="dataSource | paginate: config">
+                    <ng-container matColumnDef="time">
+                        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">{{element.updated_on | date:'dd MMM, yyyy'}}
+                            & {{element.updated_on | date:'shortTime'}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="history">
+                        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            Onboarding Fee changed from {{element.old_value}} to {{element.new_value}} by
+                            {{element.byusername}} </mat-cell>
+                    </ng-container>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <div class="row" *ngIf="!dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+        <pagination-controls *ngIf="dataSource" (pageChange)="getOnboardingFeeHistory($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
     </div>
 </div>

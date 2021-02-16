@@ -23,6 +23,18 @@ export class EiProfilePreviewComponent implements OnInit {
   ngOnInit(): void {
     this.getEiProfileData();
   }
+  redirectToOnboardingSecondSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2',"redirect_url":"ei-profile-preview" } });
+  }
+  redirectToOnboardingFirstSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '1',"redirect_url":"ei-profile-preview" } });
+  }
+  redirectToOnboardingThirdSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3',"redirect_url":"ei-profile-preview" } });
+  }
+  redirectToOnboardingFourthSepEdit(){
+    this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4',"redirect_url":"ei-profile-preview" } });
+  }
  getEiProfileData(){
    try {
      this.loader.show();
@@ -46,6 +58,26 @@ export class EiProfilePreviewComponent implements OnInit {
    }
  }
  redirectToLoginPage(){
-  this.router.navigate(['ei/dashboard']);
+   try {
+    this.loader.show()
+    this.baseService.action("ei/send-for-approval-for-admin/",{}).subscribe((res:any)=>{
+      if(res.status == true){
+        this.loader.hide();
+        this.router.navigate(['ei/dashboard']);
+      }else{
+        this.loader.hide();
+      }
+     
+    },(error)=>{
+      this.loader.hide();
+    })
+   } catch (e) {
+    this.loader.hide();
+   }
+  
+ }
+ getDuration(classdata){
+   console.log(classdata);
+   
  }
 }

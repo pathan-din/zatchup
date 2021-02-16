@@ -32,6 +32,7 @@ export class DormantUsersComponent implements OnInit {
   ngOnInit(): void {
     this.getDormantUsersList('');
     this.getAllState();
+    this.dormantUsers.pageCount = this.baseService.getCountsOfPage();
   }
 
   getDormantUsersList(page?: any) {
@@ -51,8 +52,8 @@ export class DormantUsersComponent implements OnInit {
     this.dormantUsers.listParams = {
       'date_from': this.dormantUsers.filterFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.dormantUsers.filterToDate !== undefined ? this.datePipe.transform(this.dormantUsers.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.dormantUsers.loginFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.dormantUsers.loginToDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.dormantUsers.loginFromDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.dormantUsers.loginToDate !== undefined ? this.datePipe.transform(this.dormantUsers.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.dormantUsers.page_size,
@@ -60,8 +61,9 @@ export class DormantUsersComponent implements OnInit {
       "current_ei": this.dormantUsers.currentEi,
       "previous_ei": this.dormantUsers.previousEi,
       "age_group": this.dormantUsers.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "kyc_aprroved": this.dormantUsers.kycApproved !== undefined ? this.dormantUsers.kycApproved: '',
+      "school_verified": this.dormantUsers.schoolStatus !== undefined ? this.dormantUsers.schoolStatus : '',
+      "zatchupId": this.dormantUsers.zatchupId,
     }
 
     this.baseService.getData('admin/user/dormant_users_list/', this.dormantUsers.listParams).subscribe(
@@ -74,8 +76,9 @@ export class DormantUsersComponent implements OnInit {
           this.dormantUsers.page_size = res.page_size
           this.dormantUsers.config.currentPage = page
           this.dormantUsers.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
             this.dormantUsers.dataSource = res.results
+          }
           else
             this.dormantUsers.dataSource = undefined
         }
@@ -116,6 +119,10 @@ export class DormantUsersComponent implements OnInit {
         console.log('get state res ::', res)
       }
     )
+  }
+
+  userProfile(id: any){
+    this.router.navigate(['admin/user-profile', id])
   }
 
 }

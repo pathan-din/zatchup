@@ -1,58 +1,59 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3" *ngIf="!dashboardPremission">
-    <div class="school-dashboard-div bg-white px-2 py-2">
+    <div class="school-dashboard-div bg-white px-3 py-2">
         <h2 class="commonFontSize semiBoldFont">School Dashboard</h2>
-        <div class="row">
+        <!-- <div class="row">
             <form autocomplete="off" autocapitalize="off">
-                <div class="col-12 d-flex">
-                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
-                        <!-- <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY"> -->
+                <div class="col-12 d-flex justify-content-start flex-wrap">
+                    <div class="form-control-inputDiv rounded shadow-none ml-1 mb-2">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" placeholder="MM/DD/YYYY" [(ngModel)]="model.fromDate" name="fromDate"
-                            bsDatepicker>
-
-
+                            type="text" placeholder="YYYY/MM/DD" [(ngModel)]="model.fromDate" name="fromDate"
+                            bsDatepicker [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
-                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
-                        <!-- <input  class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY"> -->
+                    <div class="form-control-inputDiv rounded shadow-none ml-1 mb-2">
+                         <input  class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY"> 
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="text" placeholder="MM/DD/YYYY" [(ngModel)]="model.toDate" name="toDate" bsDatepicker>
-
+                            type="text" placeholder="YYYY/MM/DD" [(ngModel)]="model.toDate" name="toDate" bsDatepicker
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
-                    <div class="form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <div class="mb-2">
                         <button (click)="getDate($event)" type="button"
-                            class="bg-light-black border-0  h-100 col-flex school-Dashboard-btn text-white p-2 commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
+                            class="h-100 bg-light-black border-0 text-white p-2 px-4 border-0  rounded commonFontSize mediumFont letterspacing">
                             Submit
                         </button>
-
                     </div>
                 </div>
             </form>
-        </div>
+        </div> -->
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
-                    <p class="p-2 mediumFont commonFontSize">ZatchUp Alumni</p>
-                    <h2 class="countFontSize text-center semiBoldFont"><span
-                            (click)="goToEiAlumniListPage()">{{dashboardCount.total_alumni}}</span></h2>
-                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Verified / Unverified:<span
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle"
+                (click)="goToEiVerifiedAlumniPage()">
+                    <p class="p-2 mediumFont commonFontSize">Alumni on ZatchUp </p>
+                    <h2 class="countFontSize text-center semiBoldFont"><span>{{dashboardCount.verified_alumni}}</span></h2>
+                    <!-- <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary"> / :<span
                             class="ml-2"><span
-                                (click)="goToEiVerifiedAlumniPage()">{{dashboardCount.verified_alumni}}</span>/<span
-                                (click)="goToEiUnverifiedAlumniPage()">{{dashboardCount.pending_alumni}}</span> </span>
-                    </p>
+                                ></span>/<span
+                                ></span> </span>
+                    </p> -->
+                    <p class="mb-0 p-1  mediumFont commonFontSize bg-light-secondary" (click)="goToEiVerifiedAlumniPage()">Total Alumni On ZatchUp:<span
+                        class="ml-2">{{dashboardCount.verified_alumni}}</span></p>
+                        <!-- <p class="mb-0 p-1  mediumFont commonFontSize bg-light-secondary" (click)="goToEiUnverifiedAlumniPage()">Unverified:<span
+                            class="ml-2">{{dashboardCount.pending_alumni}}</span></p> -->
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
                 <div (click)="redirectTotalStudentPage()"
                     class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
-                    <p class="p-2 mediumFont commonFontSize">ZatchUp Students</p>
-                    <h2 class="countFontSize text-center semiBoldFont">{{dashboardCount.total_student}}</h2>
+                    <p class="p-2 mediumFont commonFontSize">Students on ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashboardCount.verified_student}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Total ZatchUp Students:<span
-                            class="ml-2">{{dashboardCount.total_student}}</span></p>
+                            class="ml-2">{{dashboardCount.verified_student}}</span></p>
                 </div>
             </div>
             <!-- <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none  cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Funding Received</p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Total Funding Received:<span
@@ -61,11 +62,12 @@
             </div> -->
         </div>
     </div>
-    <div class="Pending-div bg-white px-2 py-2 mt-3">
+    
+    <div class="Pending-div bg-white px-3 py-2 mt-3">
         <h2 class="commonFontSize semiBoldFont">Pending Action</h2>
         <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0   cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Student Pending </p>
                     <h2 class="countFontSize text-center semiBoldFont">{{dashboardCount.pending_student}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Student
@@ -73,15 +75,15 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0   cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Alumni Pending</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashboardCount.pending_alumni}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Alumni
-                        Verification Pending:<span class="ml-2">0</span></p>
+                        Verification Pending:<span class="ml-2">{{dashboardCount.pending_alumni}}</span></p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Sub-Admin Access </p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Sub-Admin
@@ -89,17 +91,17 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
+        <!-- <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0   cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Sub-Admin Access </p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Sub-Admin
                         Access Requests:<span class="ml-2">0/0</span></p>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0   cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">ZatchUp StarClass Pending</p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">ZatchUp
@@ -107,17 +109,17 @@
                 </div>
             </div> -->
             <!-- <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Unread Messages for EI</p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Unread Messages
                         for EI:<span class="ml-2">0</span></p>
                 </div>
             </div> -->
-        </div>
+        <!-- </div> -->
         <!-- <div class="row mt-3">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0   cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Unread Messages</p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Unread Messages
@@ -125,7 +127,7 @@
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0   cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Post Approvals Students</p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Post Approvals
@@ -133,7 +135,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 ml-1 cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0  cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Post Approvals Alumni</p>
                     <h2 class="countFontSize text-center semiBoldFont">0</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-purple purple-lg-height text-white">Post Approvals
@@ -143,67 +145,7 @@
         </div> -->
 
     </div>
-    <div class="zatchup-summary-div bg-white px-2 py-2 mt-3">
-        <h2 class="commonFontSize semiBoldFont">Zatchup Summary</h2>
-
-        <div class="row mt-3">
-            <div class="col-xl-3 col-lg-4 col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
-                    <p class="p-2 commonFontSize mediumFont">ZatchUp Students</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
-                    <p
-                        class="mb-0 p-2  commonFontSize mediumFont bg-light-secondary zatchupSummaryBtn zatchupSummaryBtn-lg">
-                        Total Number of ZatchUp Students: <span class="ml-2">0/0</span></p>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
-                    <p class="p-2 commonFontSize mediumFont">ZatchUp Alumni</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
-                    <p
-                        class="mb-0 p-2  commonFontSize mediumFont bg-light-secondary zatchupSummaryBtn zatchupSummaryBtn-lg">
-                        Total ZatchUp Alumni: <span class="ml-2">0/0</span></p>
-                </div>
-            </div>
-            <!-- <div class="col-xl-3 col-lg-4 col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
-                    <p class="p-2 commonFontSize mediumFont">Project</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
-                    <p
-                        class="mb-0 p-2  commonFontSize mediumFont bg-light-secondary zatchupSummaryBtn zatchupSummaryBtn-lg">
-                        Total Funding Projects: <span class="ml-2">0/0</span></p>
-                </div>
-            </div> -->
-            <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-4-single">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
-                    <p class="p-2 commonFontSize mediumFont">Lecturer</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
-                    <p
-                        class="mb-0 p-2  commonFontSize mediumFont bg-light-secondary zatchupSummaryBtn zatchupSummaryBtn-lg">
-                        Total Guest Lecture: <span class="ml-2">0/0</span></p>
-                </div>
-            </div> -->
-        </div>
-    </div>
-    <!-- <div class="contact-div bg-white px-2 py-2 mt-3">
-        <h2 class="commonFontSize semiBoldFont">Contact US</h2>
-
-        <div class="row mt-3">
-            <div class="col-xl-4 col-lg-4 col-md-12 pt-1 d-flex align-items-center ">
-                <span class="rounded-circle bg-purple text-white material-icons p-2 mr-4">phone</span>+91-8054441372
-            </div>
-
-            <div class="col-xl-4 col-lg-4 col-md-12 pt-1 d-flex align-items-center ">
-                <span class="rounded-circle bg-purple text-white material-icons p-2 mr-4">mail</span>rohin@zatchup.com
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-12 pt-1 d-flex align-items-center ">
-                <span class="rounded-circle bg-purple text-white material-icons p-2 mr-4">location_on</span>
-                <p class="m-0 pr-2">H - 146/147 Noida Sector-63, U.P - 201301</p>
-            </div>
-        </div>
-
-
-    </div> -->
+   
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
         <p style="color: white">Please Wait. </p>
     </ngx-spinner>

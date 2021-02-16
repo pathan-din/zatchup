@@ -1,0 +1,66 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
+        <div class="pl-0 col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Requests Pending for Changing Details</h2>
+        </div>
+        
+        <div class="tableDiv mt-3" >
+            <div class="mat-elevation-z1 table-responsive" *ngIf= "dataSource.length>0">
+                <mat-table [dataSource]="dataSource  | paginate: config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i =index;"> {{startIndex+i}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fieldChange">
+                        <mat-header-cell *matHeaderCellDef> Field Change </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldChange}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="oldDetails">
+                        <mat-header-cell *matHeaderCellDef> Old Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.oldDetails.replace("&"," ")}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="newDetails">
+                        <mat-header-cell *matHeaderCellDef> New Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.newDetails.replace("&"," ")}}
+                        </mat-cell>
+                    </ng-container>
+
+          
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">                            
+                            <button type="button" class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                 
+
+                    <!-- <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"></i>
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+            <div class="row" *ngIf="dataSource.length==0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                </div>
+            </div>
+            <pagination-controls *ngIf="dataSource.length>0" (pageChange)="getViewChangesRequestStatus($event)"
+                class="eiPaginationTag"></pagination-controls>
+        </div>
+    </div>
+</div>

@@ -24,7 +24,7 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
     private loader: NgxSpinnerService,
     private alert: NotificationService,
     private validationService: GenericFormValidationService
-  ) { 
+  ) {
     this.changeDetails = new ChangeDetailsView()
   }
 
@@ -34,10 +34,12 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
 
   getChangeRequestData() {
     this.loader.show();
-    this.baseService.getData('admin/ei_change_details_list/',{"id": this.route.snapshot.params.id}).subscribe(
+    this.baseService.getData('admin/ei_change_details_list/', { "id": this.route.snapshot.params.id }).subscribe(
       (res: any) => {
         if (res.status == true) {
-         this.changeDetails.changeDetailsView = res.results[0]
+          this.changeDetails.changeDetailsView = res.results[0];
+          if (this.changeDetails.changeDetailsView)
+            this.getChangeRequestHistory();
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -81,7 +83,7 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
     }
   }
 
-  radioChange(event: any){
+  radioChange(event: any) {
     this.changeDetails.approveOrReject = event.value
   }
   goBack() {
@@ -91,6 +93,42 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
   isValid() {
     if (Object.keys(this.changeDetails.errorDisplay).length !== 0) {
       this.changeDetails.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  getChangeRequestHistory(page?: any) {
+    this.loader.show();
+
+    let listParams = {
+      "school_id": this.changeDetails.changeDetailsView.school_id,
+      "module_name": "EDUCATIONINSTITUTE",
+      "page_size": this.changeDetails.page_size,
+      "page": page
+    }
+    this.baseService.getData('admin/common_history/', listParams).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (!page)
+            page = this.changeDetails.config.currentPage
+          this.changeDetails.startIndex = res.page_size * (page - 1) + 1;
+          this.changeDetails.config.itemsPerPage = res.page_size
+          this.changeDetails.config.currentPage = page;
+          this.changeDetails.page_size = res.page_size;
+          this.changeDetails.config.totalItems = res.count;
+          this.changeDetails.pageCounts = this.baseService.getCountsOfPage()
+          if (res.count > 0) {
+            this.changeDetails.dataSource = res.results;
+          }
+          else
+            this.changeDetails.dataSource = undefined
+        }
+        else
+          this.alert.error(res.error.message[0], 'Error')
+        this.loader.hide();
+      }
+    ), (err: any) => {
+      this.alert.error(err, 'Error')
+      this.loader.hide();
     }
   }
 

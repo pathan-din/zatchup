@@ -1,5 +1,9 @@
+import { Location } from '@angular/common'
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,31 +11,46 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  postOption:string="matrix";
-  postOptionActiveImage:string='dead';
-  postOptionActiveMatrix:string='active';
-  constructor(private router: Router) { }
+  userId: any;
+  userProfile: any;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location,
+    private baseService: BaseService,
+    private loader: NgxSpinnerService,
+    private alert: NotificationService
+  ) { }
 
   ngOnInit(): void {
+
+    this.userId = this.route.snapshot.queryParamMap.get('id')
+    this.getProfile();
   }
-  postTabFunction(event){
-    this.postOption= event;
-    if(event==='matrix'){
-      this.postOptionActiveMatrix='active';
-      this.postOptionActiveImage='dead';
-    }
-    if(event==='image'){
-      this.postOptionActiveMatrix='dead';
-      this.postOptionActiveImage='active';
-    }
-    }
 
-    goToUserSchoolProfilePage(){
-      this.router.navigate(['user/school-profile']);
-    }
+  goBack() {
+    this.location.back()
+  }
 
-    goToUserMyprofilePage(){
-      this.router.navigate(['user/my-profile']);
+  getProfile() {
+    try {
+      this.loader.show();
+      this.baseService.getData('user/profile-detail-of-users/', { "user_id": this.userId }).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true)
+            this.userProfile = res.data[0];
+            else{
+              this.alert.error(res.error.message, 'Error')
+            }
+        }, (error) => {
+          this.loader.hide();
+          console.log(error)
+        });
+    } catch (err) {
+      this.loader.hide();
+      console.log(err);
     }
-
+  }
 }

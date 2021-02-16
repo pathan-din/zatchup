@@ -1,6 +1,5 @@
 <app-ei-sidenav></app-ei-sidenav>
-<div class="container main-container p-3">
-
+<!-- <div class="container main-container p-3">
 
     <div class="SubadminAcess-Summary-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
@@ -8,17 +7,109 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont mb-1">Access History</h2>
+                <h2 class="commonFontSize semiBoldFont mb-1">Subadmin All History</h2>
             </div>
-
         </div>
        
-        <div class="row mt-3">
+        <div class="row">
             <ul>
-                <li class="regularFont mb-2">Mr.XX edited the discription of Lecture from ZZZ to YYY</li>
-                <li class="regularFont mb-2">MS.YY added lecture titled RRR to the course </li>
+                <li *ngFor="let objHistory of historyList" class="regularFont mb-2">{{objHistory.created_on}} {{objHistory.display_message}} From {{objHistory.tousername}} To {{objHistory.byusername}}</li>
+                
             </ul>
         </div>
-    </div>
 
+        <div class="row" *ngIf="historyList.length==0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+            </div>
+        </div>
+    </div>
+   
+</div> -->
+
+<div class="container main-container p-3">
+
+    <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+
+                <h2 class="commonFontSize semiBoldFont m-0">Access History</h2>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-12 d-flex flex-row align-items-center">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getAccessHistory('1')" [(ngModel)]="pagination.page_size">
+                        <option *ngFor="let count of pageCount" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-4" *ngIf="pagination.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="pagination.dataSource | paginate: pagination.config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + pagination.startIndex}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateAndTime">
+                        <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.created_on | date: 'dd MMM yyyy'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="permission">
+                        <mat-header-cell *matHeaderCellDef> Permission </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.permissions}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="module_name">
+                        <mat-header-cell *matHeaderCellDef> Module Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.module_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="permission_by">
+                        <mat-header-cell *matHeaderCellDef> Added By/Removed By </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.added_by}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="subadmin_name">
+                        <mat-header-cell *matHeaderCellDef> Sub Admin Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="pagination.dataSource" (pageChange)="getAccessHistory($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!pagination.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

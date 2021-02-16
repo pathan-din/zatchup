@@ -1,72 +1,90 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont mb-1"> Subscription Plan History </h2>        
+        <div class="pl-0 col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont mb-1"> Subscription Plan History </h2>
+        </div>
 
-        <div class="tableDiv mt-2">
+
+        <div class="tableDiv mt-3" *ngIf="subPlanHistory.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="subPlanHistory.dataSource | paginate: subPlanHistory.config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{ i + subPlanHistory.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateOfSubscription">
                         <mat-header-cell *matHeaderCellDef> Date of Subscription </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.dateOfSubscription}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.subscription_start | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="planDetails">
                         <mat-header-cell *matHeaderCellDef> Plan Details </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.planDetails}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.plan_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="grossAmount">
                         <mat-header-cell *matHeaderCellDef> Gross Amount </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.grossAmount}}
+                        <mat-cell *matCellDef="let element"> {{element.original_price}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="couponCode">
                         <mat-header-cell *matHeaderCellDef> Coupon Code </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.couponCode}}
+                            {{element.coupon_code}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="netAmount">
                         <mat-header-cell *matHeaderCellDef> Net Amount </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.netAmount}}
+                            {{element.amount}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateOfSubscriptionExpiry">
                         <mat-header-cell *matHeaderCellDef> Date of Subcription Expiry </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.dateOfSubscriptionExpiry}}
+                            {{element.subscription_expiry | date:'dd MMM yyyy'}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="transactionId">
                         <mat-header-cell *matHeaderCellDef> Transaction ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.transactionId}}
+                            {{element.txnid}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button type="button" class="rounded bg-blue border-0 color-white p-1 px-2">View Invoice</button>
+                            <button type="button" class="rounded bg-blue border-0 color-white p-1 px-2" (click)="generatePDF(element.txnid)">Download
+                                Invoice</button>
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="subPlanHistory.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: subPlanHistory.displayedColumns; "></mat-row>
                 </mat-table>
             </div>
         </div>
-
+        <pagination-controls *ngIf="subPlanHistory.dataSource" (pageChange)="getSubHistoryList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        
+        <div class="row" *ngIf="!subPlanHistory.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

@@ -7,10 +7,12 @@ import { environment } from '../../../environments/environment';
 })
 export class EiServiceService {
   public env: any = environment;
-  public globalYear: any = 1970;
+  public globalYear: any = 1900;
   public globalCurrentYear: any = 2020;
   public checkErrorFlagForAllConsole: boolean = this.env.debugMode;
   public razorApiKey: any = this.env.razorPaymentApiKey;
+  public imagePath: any = this.env.serverImagePath;
+   
   constructor(private http: HttpClient) {
     var date = new Date();
 
@@ -77,6 +79,7 @@ export class EiServiceService {
 
   getSchoolListByCity(data) { return this.http.get(this.env.apiEiUrl + 'getschoollistwithcity/' + data + '/'); }
 
+  getSchoolsListByCity(data) { return this.http.get(this.env.apiEiUrl + 'get-notonboarded-ei-by-city/' + data + '/'); }
   /*
   Api Name : verify-mobile
   Parameter : mobile number and otp

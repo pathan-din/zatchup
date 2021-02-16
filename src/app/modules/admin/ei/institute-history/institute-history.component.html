@@ -1,68 +1,112 @@
-<app-admin-sidenav></app-admin-sidenav>
+<!-- <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
-            <!-- <div class="col-md-4">
-                <h2 class="commonFontSize semiBoldFont m-0 mt-2"> Education Institute History </h2>
-            </div> -->
             <div class="col-xl-4 col-lg-4 col-lg-4 pr-0 d-flex justify-content-start flex-wrap align-items-center">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
                 <h2 class="commonFontSize semiBoldFont m-0 mt-2"> Education Institute History </h2>
             </div>
-            <div class="col-md-8 SearchDiv d-flex flex-row">
-                <form id="comment" class="w-100">
-                    <div class="row justify-content-end mr-2">
-                        <div class="co-md-8 mt-2">
-                            <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-                                <input id="ei-comment" name="comment" [(ngModel)]="comment" (keyup)="isValid($event)"
-                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                    type="text" placeholder="Type... " required>
-                            </div>
-                            <div class="required errorMsg position-absolute" [innerHtml]="errorDisplay.comment"></div>
-                        </div>
-                        <div class="co-md-4 mt-2">
-                            <button type="button" class="bg-dark text-white ml-2 px-4 py-2 border-0 w-100"(click)="addComment()">Add Comment</button>                            
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-        <div class="filterDiv">
-            <div class="d-flex flex-wrap align-items-end">
-
-                <div class="mr-3 mt-2 widthFull medium-filter-box">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Select Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                        <select class="custom-select  form-control-input" id="pastEI" required>
-                            <option value=""> Select Status</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ">Apply</button>
-            </div>
-        </div>
-
-        <div class="row mobile-col-reverse border-0 mt-1 mx-0 mt-3">
+        <div class="row mobile-col-reverse border-0 mt-1 mx-0 mt-3" *ngIf="pagination.dataSource">
             <div class="col-md-12 col-left">
-                <div class="row">
+                <div class="row" *ngFor="let history of pagination.dataSource">
                     <div
                         class="col-xl-3 col-lg-3 col-md-3 col-12 commonFontSize semiBoldFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-1 mr-3"></i>
-                        <p>20 March,2020 & 12:00 P.M</p>
+                        <p>{{history.updated_on | date:'dd MMM, yyyy h:m a'}}</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-12 commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 5000 to 6000 by Employee
-                            Name(Employee ID)</p>
+                        <p><span class="mr-3">:</span>{{history.display_message}} from {{history.old_value}} to {{history.new_value}} by {{history.byusername}}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!pagination.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
             </div>
         </div>
 
     </div>
+</div> -->
+
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">History</h2>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-12 d-flex flex-wrap align-items-center">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records per page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="getEIHistory('1')" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0" id="count"
+                        [(ngModel)]="pagination.page_size">
+                        <option value=""> Select count</option>
+                        <option *ngFor="let count of recordCount" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-4" *ngIf="pagination.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="pagination.dataSource | paginate: pagination.config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + pagination.startIndex}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date_time">
+                        <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.is_deleted == true ?  element.updated_on : element.created_on | date: 'dd MMM, yyyy h:m a'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="school_zatchup_id">
+                        <mat-header-cell *matHeaderCellDef> Enable/Disable Reason </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.new_value}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="message">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.display_message}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="emp_name">
+                        <mat-header-cell *matHeaderCellDef> Employee Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.byusername}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="pagination.dataSource" (pageChange)="getEIHistory($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!pagination.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

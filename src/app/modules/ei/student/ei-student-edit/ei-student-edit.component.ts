@@ -5,6 +5,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { NotificationService } from '../../../../services/notification/notification.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatCheckboxChange } from '@angular/material/checkbox';
 declare var $: any;
 
 @Component({
@@ -19,6 +20,8 @@ export class EiStudentEditComponent implements OnInit {
   errorDisplay: any = {};
   uploaded: any = '';
   classList: any = [];
+  is_approve:any;
+  class_edit:boolean=false;
   constructor(private genericFormValidationService: GenericFormValidationService,
     private alert:NotificationService,
     private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService, public formBuilder: FormBuilder) { }
@@ -30,11 +33,26 @@ export class EiStudentEditComponent implements OnInit {
       this.modelEdit.studentId = params['stId'];
       this.modelEdit.roll_no = this.model.roll_no;
       this.modelEdit.admission_no = this.model.userID;
+      this.is_approve=params['approve']
       this.getStudent()
 
     });
 
   }
+
+  showOptionsMark(event:MatCheckboxChange): void {
+   if(event.checked){
+    this.class_edit = false;
+    this.model.mark_as_alumni=true;
+   }
+  }
+  showOptions(event:MatCheckboxChange): void {
+    if(event.checked){
+     this.class_edit = true;
+     this.model.mark_as_alumni=false;
+    }
+   }
+
   displayClassList(stId, check) {
     try {
       
@@ -93,8 +111,14 @@ export class EiStudentEditComponent implements OnInit {
 
         } else {
           //this.SpinnerService.hide(); 
-          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-          this.alert.error(this.errorDisplay.message,'Error')
+          // if(response.error)
+          // {
+          // this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+          // this.alert.error(this.errorDisplay.message,'Error')
+          // }else{
+          //   this.alert.error(response.message[0],'Error')
+          // }
+          
         }
 
       }, (error) => {

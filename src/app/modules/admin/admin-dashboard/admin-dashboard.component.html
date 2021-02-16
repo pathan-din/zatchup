@@ -1,21 +1,23 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
 
-    <div class="zatchUpSummary-div bg-white px-2 pt-2 pb-5">
+    <div class="zatchUpSummary-div bg-white px-3 pt-2 pb-5">
         <h2 class="commonFontSize semiBoldFont mb-1">ZatchUp Summary</h2>
 
         <div class="row">
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">EI In Database</p>
+            <div class="col-md-4 MobileCol6MB cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                    (click)="goToAdminEIDatabase()">
+                    <p class="p-2 mediumFont commonFontSize">School In Database</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{countJson?.total_no_of_ei ? countJson?.total_no_of_ei : 0}}</h2>
-                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Total Number Of EI In Database:
+                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Total Number Of School In
+                        Database:
                         <span class="ml-2">{{countJson?.total_no_of_ei ? countJson?.total_no_of_ei : 0}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+            <!-- <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Donation Collected On ZatchUp </p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{countJson?.total_donation_collected ? countJson?.total_donation_collected : 0}}</h2>
@@ -25,16 +27,16 @@
                             class="ml-2">{{countJson?.total_donation_collected ? countJson?.total_donation_collected : 0}}</span>
                     </p>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-4">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6 mt-3">
-                <div class="bg-offwhite border border-gray p-2 ml-1 h-100">
-                    <h4 class="commonFontSize semiBoldFont mb-1">Total Number of EI Onboarded on ZatchUp</h4>
-                    <div class="row pb-1 mx-0">
+                <div class="bg-offwhite border border-gray p-2  h-100">
+                    <h4 class="commonFontSize semiBoldFont mb-1">Total Number of School Onboarded on ZatchUp</h4>
+                    <div class="row pb-1 mx-0 cursorStyle" (click)="onboardedSchools('active')">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                             Total Number of Active Schools (Using the platform with active subscription plan)
@@ -44,10 +46,10 @@
                                 class="mr-3">:</span>{{countJson?.total_no_of_ei_onboarded.total_no_of_active_schools ? countJson?.total_no_of_ei_onboarded.total_no_of_active_schools : 0}}
                         </div>
                     </div>
-                    <div class="row pb-1 mx-0">
+                    <div class="row pb-1 mx-0 cursorStyle" (click)="onboardedSchools('expired')">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of Dorman EI on ZatchUp (With Expired Subscription Plans)
+                            Total Number of Dormant School on ZatchUp (With Expired Subscription Plans)
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
                             <span
@@ -60,105 +62,114 @@
                 <div class="bg-offwhite border border-gray p-2 mr-1 h-100">
                     <h4 class="commonFontSize semiBoldFont mb-1">Total Number of Added Users</h4>
                     <div class="row pb-1 mx-0">
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of Active users (Last Login > 7 days)
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start cursorStyle"
+                            (click)="activeUsers()">
+                            Total Number of Active users (Last Login < 7 days) </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
+                                    <span
+                                        class="mr-3">:</span>{{countJson?.added_users.active_users_count ? countJson?.added_users.active_users_count : 0}}
+                                </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
-                            <span
-                                class="mr-3">:</span>{{countJson?.added_users.active_users_count ? countJson?.added_users.active_users_count : 0}}
+                        <div class="row pb-1 mx-0">
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 cursorStyle commonMaterialFontSize regularFont d-flex flex-row align-items-start"
+                                (click)="dormantUsers()">
+                                Total Number of Dormant Users (Last Login > 7 days)
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
+                                <span
+                                    class="mr-3">:</span>{{countJson?.added_users.dormant_users_count ? countJson?.added_users.dormant_users_count : 0}}
+                            </div>
                         </div>
                     </div>
-                    <div class="row pb-1 mx-0">
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of Dormant Users (Last Login > 7 days)
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
-                            <span
-                                class="mr-3">:</span>{{countJson?.added_users.dormant_users_count ? countJson?.added_users.dormant_users_count : 0}}
-                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="Dashboard-div bg-white px-3 py-2 mt-3">
+            <h2 class="commonFontSize semiBoldFont mb-1">Dashboard</h2>
+
+            <div class="row">
+                <div class="col-12 d-flex flex-wrap align-items-end">
+                    <div class="mr-2 MobileCol6MB">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">From Date</label>
+                        <input type="text" id="filter_From_Date" name="fee_Received_From_Date" placeholder="YYYY/MM/DD"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="fromMaxDate"
+                            [(ngModel)]="filterFromDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true,  dateInputFormat: 'YYYY-MM-DD' }">
+                    </div>
+
+                    <div class="mr-2 MobileCol6MB">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">To Date</label>
+                        <input type="text" id="fromDate" name="filter_To_Date" placeholder="YYYY/MM/DD"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="toMaxDate"
+                            [(ngModel)]="filterToDate"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD' }"
+                            (bsValueChange)="changeFilterToDate($event)">
+                    </div>
+                    <div class="border-0 p-0 shadow-none mx-1">
+                        <button type="button" (click)="filterRecords()"
+                            class="bg-dark border-0 col-flex text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                            Submit
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-
-    <div class="Dashboard-div bg-white px-2 py-2 mt-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">Dashboard</h2>
-
-        <div class="row">
-            <div class="col-12 d-flex align-items-end">
-                <div class="mr-2">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">From Date</label>
-                    <input type="text" id="filter_From_Date" name="fee_Received_From_Date" placeholder="MM/DD/YYYY"
-                        class="form-control formfocusStyle" bsDatepicker [maxDate]="fromMaxDate"
-                        [(ngModel)]="filterFromDate" [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+            <div class="row mt-3">
+                <div class="col-md-4 MobileCol6MB">
+                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle"
+                        (click)="filteredSchools()">
+                        <p class="p-2 mediumFont commonFontSize">New Added School In School Database</p>
+                        <h2 class="countFontSize text-center semiBoldFont">
+                            {{filteredResponse ? filteredResponse.new_added_ei : 0}}</h2>
+                        <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
+                            Total Number Of New Added School In School Database:
+                            <span class="ml-2">{{filteredResponse ? filteredResponse.new_added_ei : 0}}</span>
+                        </p>
+                    </div>
                 </div>
-
-                <div class="mr-2">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">To Date</label>
-                    <input type="text" id="fromDate" name="filter_To_Date" placeholder="MM/DD/YYYY"
-                        class="form-control formfocusStyle" bsDatepicker [maxDate]="toMaxDate"
-                        [(ngModel)]="filterToDate" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
-                        (bsValueChange)="changeFilterToDate($event)">
+                <div class="col-md-4 MobileCol6MB">
+                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle"
+                        (click)="filteredUsers()">
+                        <p class="p-2 mediumFont commonFontSize">New Added Users </p>
+                        <h2 class="countFontSize text-center semiBoldFont">
+                            {{filteredResponse ? filteredResponse.new_added_user : 0}}</h2>
+                        <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
+                            Total Number Of New Added Users:
+                            <span class="ml-2">{{filteredResponse ? filteredResponse.new_added_user : 0}}</span>
+                        </p>
+                    </div>
                 </div>
-                <div class="border-0 p-0 shadow-none mx-1">
-                    <button type="button" (click)="filterRecords()"
-                        class="bg-dark border-0 col-flex text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
-                        Submit
-                    </button>
+                <div class="col-md-4">
+                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                        (click)="activeUsers()" style="cursor: pointer;">
+                        <p class="p-2 mediumFont commonFontSize">Active Users</p>
+                        <h2 class="countFontSize text-center semiBoldFont">
+                            {{filteredResponse?filteredResponse.active_users:0}}</h2>
+                        <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
+                            Total Number Of Active Users:
+                            <span class="ml-2">{{filteredResponse ? filteredResponse.active_users : 0}}</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">New Added EI In EI Dashboard</p>
-                    <h2 class="countFontSize text-center semiBoldFont">
-                        {{filteredResponse ? filteredResponse.new_added_ei : 0}}</h2>
-                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of New Added EI In EI Dashboard:<span
-                            class="ml-2">{{filteredResponse ? filteredResponse.new_added_ei : 0}}</span></p>
+            <!-- <div class="row mt-3">
+                <div class="col-md-4 MobileCol6MB">
+                    <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                        (click)="dormantUsers()" style="cursor: pointer;">
+                        <p class="p-2 mediumFont commonFontSize">Dormant Users</p>
+                        <h2 class="countFontSize text-center semiBoldFont">
+                            {{filteredResponse ? filteredResponse.dormant_users : 0}}</h2>
+                        <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">
+                            Total
+                            Number Of Dormant Users (Last Login > 7 days) :<span
+                                class="ml-2">{{filteredResponse ? filteredResponse.dormant_users : 0}}</span></p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">New Added Users </p>
-                    <h2 class="countFontSize text-center semiBoldFont">
-                        {{filteredResponse ? filteredResponse.new_added_user : 0}}</h2>
-                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of New Added Users:<span
-                            class="ml-2">{{filteredResponse ? filteredResponse.new_added_user : 0}}</span></p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">Active Users</p>
-                    <h2 class="countFontSize text-center semiBoldFont">
-                        {{filteredResponse?filteredResponse.active_users:0}}</h2>
-                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of Active Users:<span
-                            class="ml-2">{{filteredResponse ? filteredResponse.active_users : 0}}</span></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">Dormant Users</p>
-                    <h2 class="countFontSize text-center semiBoldFont">
-                        {{filteredResponse ? filteredResponse.dormant_users : 0}}</h2>
-                    <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary twoLineText twoLineText-lg">Total
-                        Number Of Dormant Users (Last Login > 7 days) :<span
-                            class="ml-2">{{filteredResponse ? filteredResponse.dormant_users : 0}}</span></p>
-                </div>
-            </div>
-            <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize"> Donation Collected </p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{filteredResponse ? filteredResponse.donation_collected : 0}}</h2>
@@ -167,60 +178,60 @@
                             class="ml-2">{{filteredResponse ? filteredResponse.donation_collected : 0}}</span></p>
                 </div>
             </div>
-            <div class="col-md-4">
-            </div>
-        </div>
+                <div class="col-md-4">
+                </div>
+            </div> -->
 
-        <div class="row">
-            <div class="col-md-6 mt-3">
-                <div class="bg-offwhite border border-gray p-2 ml-1 h-100">
-                    <h4 class="commonFontSize semiBoldFont mb-1">New EI Onboarded on ZatchUp</h4>
-                    <div class="row pb-1 mx-0">
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of New Active EI (Using the platform with active subscription plan)
+            <div class="row">
+                <div class="col-md-6 mt-3">
+                    <div class="bg-offwhite border border-gray p-2  h-100">
+                        <h4 class="commonFontSize semiBoldFont mb-1">New School Onboarded on ZatchUp</h4>
+                        <div class="row pb-1 mx-0 cursorStyle" (click)="filteredOnboardedSchools('active')">
+                            <div
+                                class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
+                                Total Number of New Active School (Using the platform with active subscription plan)
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
+                                <span
+                                    class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_active_ei_count : 0}}
+                            </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
-                            <span
-                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_active_ei_count : 0}}
-                        </div>
-                    </div>
-                    <div class="row pb-1 mx-0">
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Total Number of New Dorman EI (Stopped using platform due to expired)
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
-                            <span
-                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_dorman_ei_count : 0}}
+                        <div class="row pb-1 mx-0 cursorStyle" (click)="filteredOnboardedSchools('expired')">
+                            <div
+                                class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
+                                Total Number of New Dormant School (Stopped using platform due to expired)
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
+                                <span
+                                    class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_no_of_new_ei_onboarded.new_dorman_ei_count : 0}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-3">
-                <div class="bg-offwhite border border-gray p-2 mr-1 h-100">
-                    <h4 class="commonFontSize semiBoldFont mb-1">Revenue </h4>
-                    <div class="row pb-1 mx-0">
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            From onboarding fees
+                <div class="col-md-6 mt-3">
+                    <div class="bg-offwhite border border-gray p-2 mr-1 h-100">
+                        <h4 class="commonFontSize semiBoldFont mb-1">Revenue </h4>
+                        <div class="row pb-1 mx-0" (click)="filteredOnboardingFeeRevenue()" style="cursor: pointer;">
+                            <div
+                                class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
+                                From onboarding fees
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
+                                <span
+                                    class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.onboarding_fees : 0}}
+                            </div>
                         </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
-                            <span
-                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.onboarding_fees : 0}}
+                        <div class="row pb-1 mx-0" (click)="filteredSubscriptionFeeRevenue()" style="cursor: pointer;">
+                            <div
+                                class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
+                                Subscription fees
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
+                                <span
+                                    class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.subscription_fees : 0}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pb-1 mx-0">
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
-                            Subscription fees
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-3 col-3 p-0 commonFontSize regularFont">
-                            <span
-                                class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.subscription_fees : 0}}
-                        </div>
-                    </div>
-                    <div class="row pb-1 mx-0">
+                        <!-- <div class="row pb-1 mx-0">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                             ZatchUp Star class
@@ -229,8 +240,8 @@
                             <span
                                 class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.zatchUp_star_class : 0}}
                         </div>
-                    </div>
-                    <div class="row pb-1 mx-0">
+                    </div> -->
+                        <!-- <div class="row pb-1 mx-0">
                         <div
                             class="col-xl-9 col-lg-9 col-md-9 col-9 p-0 commonMaterialFontSize regularFont d-flex flex-row align-items-start">
                             Advertisement
@@ -239,14 +250,14 @@
                             <span
                                 class="mr-3">:</span>{{filteredResponse ? filteredResponse.total_revenue.advertisement : 0}}
                         </div>
-                    </div>
+                    </div> -->
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-    <p style="color: white">Please Wait. </p>
-</ngx-spinner>
+    </div>
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>

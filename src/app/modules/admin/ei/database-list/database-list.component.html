@@ -2,46 +2,56 @@
 <div class="container main-container p-3">
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv mb-1">
-            <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0"> EI On Database </h2>
+                <h2 class="commonFontSize semiBoldFont m-0"> School On Database </h2>
             </div>
-            <div class="col-md-7 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-dark text-white mt-2 px-4 py-2 border-0 "
-                    (click)="eiDbHistory()">History</button>
+            
+            <div class="col-md-6 SearchDiv d-flex flex-wrap">
+                <div class="form-control-inputDiv rounded p-0 shadow-none mb-2">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="text" placeholder="Search..." name="search" [(ngModel)]="eidbList.search">
+                </div>
+
+                <button type="button" class="bg-purple text-white px-4 py-2 ml-2 border-0 mb-2"
+                (click)="searchList('1')" >Apply</button>
+
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 mb-2"
+                (click)="eiDbHistory()">History</button>
             </div>
         </div>
         <!--Start html for filter for alumni list-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle"
-                            type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="eidbList.filterFromDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
 
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle"
-                            type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true}">
+                            type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="eidbList.filterToDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
 
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 widthFull medium-filter-box custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing">State</label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" name="state" required
                             [(ngModel)]="eidbList.stateId" (change)="getCities()">
                             <option value=""> Select State</option>
                             <option *ngFor="let state of eidbList.allStates" [value]="state.id"> {{state.state}}
@@ -50,10 +60,10 @@
                     </div>
                 </div>
 
-                <div class="mr-3 mt-3 widthFull medium-filter-box">
+                <div class="mr-3 mt-3 widthFull medium-filter-box custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing">City</label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" name="city" required
                             [(ngModel)]="eidbList.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of eidbList.allCities" [value]="city.id">{{city.city}}</option>
@@ -61,25 +71,24 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3">
+                <!-- <div class="widthFull mr-3 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <input type="text" name="board_university" [(ngModel)]="eidbList.university"
                             class="custom-select form-control-input"
                             placeholder="Board/University" />
                     </div>
-                </div>
+                </div> -->
 
-                <div class="widthFull mr-3 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing">Onboarding Status</label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" id="pastEI" required
+                        <select class="custom-select form-control-input" id="pastEI" name="onboardingStatus" required
                             [(ngModel)]="eidbList.onboardingStatus">
                             <option value=""> Select Status</option>
-                            <option value="1">OnBoarding Stage 1</option>
-                            <option value="2">OnBoarding Stage 2</option>
-                            <option value="3">OnBoarding Stage 3</option>
-                            <option value="4">OnBoarding Stage 4</option>
+                            <option value="1">Incomplete Onboarding</option>
+                            <option value="2">Onboarded</option>
+                            <option value="0">Not Onboarded</option>
                         </select>
                     </div>
                 </div>
@@ -87,27 +96,33 @@
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
                     (click)="getEIDbList('')">Apply</button>
 
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
+
             </div>
+        </form>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3" *ngIf="eidbList.dataSource">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
-
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI in Database Per
-                    Page </label>
+        <div class="row my-3 align-items-center" *ngIf="eidbList.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getEIDbList('1')" [(ngModel)]="eidbList.page_size">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of eidbList.pageCounts" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
-                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+
+                <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                    
+                    <div class="cursorStyle px-2" (click)="generateExcel()"> Download xlsx </div>
+                    <div class="cursorStyle px-2" (click)="generateExcel()"> Download xls </div>                   
+                </div> -->
             </div>
         </div>
         <!--End html for "select no of fees info per page" and Export Button-->
@@ -120,13 +135,13 @@
                         <mat-cell *matCellDef="let element; let i = index;"> {{i + eidbList.startIndex}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="dateOfAdding">
-                        <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.date_joined | date:'dd MMM yyyy'}} </mat-cell>
-                    </ng-container>
+                    <!-- <ng-container matColumnDef="dateofOnboarding">
+                        <mat-header-cell *matHeaderCellDef> Date of Onboarding </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.onboarded_date | date}} </mat-cell>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="eiZatchupID">
-                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchupId}} </mat-cell>
                     </ng-container>
 
@@ -149,46 +164,46 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="address">
+                    <!-- <ng-container matColumnDef="address">
                         <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.address1}} {{element.address2}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="board">
+                    <!-- <ng-container matColumnDef="board">
                         <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.university}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="approximateNumber">
+                    <!-- <ng-container matColumnDef="approximateNumber">
                         <mat-header-cell *matHeaderCellDef> Approximate Number </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.no_of_students}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="text-center">
-                            <button type="button" class="bg-light-blue text-white h-100 border-0 rounded"
-                                *ngIf="element.is_onboarded == 0">Incomplete Onboarding</button>
-                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded"
-                                *ngIf="element.is_onboarded == 1">Onboarded</button>
-                            <button type="button" class="bg-red text-white h-100 border-0 rounded"
-                                *ngIf="element.is_onboarded == 2">Not Onboarded</button> </mat-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" class="bg-light-blue text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.onboarded_status == 1">Incomplete Onboarding</button>
+                            <button type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.onboarded_status == 2">Onboarded</button>
+                            <button type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                                *ngIf="element.onboarded_status == 0">Not Onboarded</button> </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="dateofOnboarding">
-                        <mat-header-cell *matHeaderCellDef> Date of Onboarding </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.opening_date}} </mat-cell>
+                    <ng-container matColumnDef="dateOfAdding">
+                        <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_joined | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="action">
-                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="text-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"
-                                (click)="eiDbView(element.user_id)"></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details" aria-hidden="true"
+                                (click)="eiDbView(element)"></i>
                         </mat-cell>
                     </ng-container>
 

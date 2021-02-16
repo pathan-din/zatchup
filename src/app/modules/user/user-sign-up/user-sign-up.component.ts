@@ -50,6 +50,8 @@ export class UserSignUpComponent implements OnInit {
   dateModel: any;
   monthModel: any;
   yearModel: any;
+  type:any;
+  maxlength:any;
   /*********************************************************/
   constructor(
     private genericFormValidationService: GenericFormValidationService,
@@ -63,9 +65,12 @@ export class UserSignUpComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.dateModel = '';
-    this.monthModel = '';
-    this.yearModel = '';
+    //this.dateModel = '';
+    //this.monthModel = '';
+   
+     
+    
+    //this.yearModel = '';
     var dt = new Date();
     /**Get Current year for date of birth year dropdown**/
     var year = dt.getFullYear();
@@ -73,14 +78,59 @@ export class UserSignUpComponent implements OnInit {
       this.year.push(i);
     }
     /**init day for day Dropdown **/
+    //daysInMonth
+    
+  
     for (var d = 1; d <= 31; d++) {
       this.date.push(d);
     }
+    var now = new Date();
+    //var month = now.getMonth()+1;
+    this.yearModel = now.getFullYear()
+    
+    this.monthModel =  (now.getMonth()+1).toString();
+    this.dateModel = this.baseService.daysInMonth(this.monthModel, this.yearModel).toString();
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+
     this.model.profile = {};
     this.model.profile.pronoun = "";
-    this.model.is_term_cond = true;
+    this.model.is_term_cond = false;
   }
+  isCheckEmailOrPhone(event){
+    this.maxlength = ''
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(event.target.value)){
+      
+      this.type='email';
+      this.maxlength = 50;
+      this.model.email =event.target.value;
+      this.model.phone = '';
+      
+    }else{
+     const numbers = /^[0-9]+$/;
+     if(numbers.test(event.target.value))
+     {
+       console.log(numbers.test(event.target.value));
+       
+      this.type='tel'
+      this.maxlength = 10;
+      this.model.phone = event.target.value;
+      this.model.email = '';
+     }
+     
+    }
+   }
+   changeMOnth(month,year){
+    console.log(month,year);
+    this.date=[];
+    var now = new Date();
+    //var month = now.getMonth()+1;
+    //var year = now.getFullYear()
+    for (var d = 1; d <= this.baseService.daysInMonth(month,year); d++) {
+      this.date.push(d);
+    }
+   }
   /*function for show hide password using inputbox*/
   showHidePasswordFunction(type) {
     if (type == 'p') {
@@ -118,13 +168,16 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("month",this.monthModel);
       localStorage.setItem("day",this.dateModel);
       localStorage.setItem("kyc_name",this.model.first_name+' '+this.model.last_name);
-      
+      if(this.model.email){
+        this.model.email = this.model.username;
+      }
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
       /**********************************************************************/
-      if (this.model.phone == null) {
-        this.model.phone = '';
-      }
+      // if (this.model.phone == null) {
+      //   this.model.phone = '';
+      // }
+       
       this.baseService.action('user/register/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();
@@ -155,20 +208,10 @@ export class UserSignUpComponent implements OnInit {
 
 
   }
-  /*Change Go To Redirect*/
-  goToKycPage() {
-    $("#OTPModel").modal("hide");
-    this.router.navigate(['user/kyc-verification']);
-  }
-
-  goToUserQualificationPage() {
-    $("#currentStatusModel").modal("hide");
-    this.router.navigate(['user/qualification']);
-  }
-
+ 
   /***********************Mobile Number OR Email Verification Via OTP**********************************/
 
-  goToDashboard() {
+  verifyOtp() {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
     this.error = [];

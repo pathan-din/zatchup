@@ -4,19 +4,19 @@
         <div class="col-xl-4 col-lg-6 col-md-6  ">
             <div class="bg-white px-5 py-4">
                 <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></div>
-                <h2 class="text-center my-3 semiBoldFont">eKYC Verification</h2>
+                <h2 class="text-center my-3 semiBoldFont">KYC Verification</h2>
                 <form id="kycUpdate">
 
 
 
-                    <div class="form-group row  ml-0 mr-0">
+                    <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="idProof" class="mediumFont commonFontSize letterspacing">
                                 ID Proof</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
                                     <option value="">Select your ID</option>
-                                    <option value="Aadhar">Adhar Card</option>
+                                    <option value="Aadhar">Aadhaar Card</option>
                                     <option value="Dl">Driving License</option>
                                     <option value="Passport">Passport Number</option>
                                 </select>
@@ -25,47 +25,57 @@
                         </div>
                     </div>
 
-                    <div class="form-group row  ml-0 mr-0">
+                    <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="idNo" class="mediumFont commonFontSize letterspacing">
                                 ID Number</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()" pattern="{{pattran}}" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.id_no"></div>
                         </div>
                     </div>
-                    <div class="form-group row  ml-0 mr-0">
+                    <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="name" class="mediumFont commonFontSize letterspacing">Name</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input required (keyup)="isValid()" [(ngModel)]="model.kyc_name" name ="name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Your Name">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.name"></div>
                         </div>
                     </div>
-                    <div class="form-group row  ml-0 mr-0">
+                    <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="dob " class=" mediumFont commonFontSize letterspacing">DOB</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input autocomplete="off" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" required (change)="isValid()" class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text"  placeholder="MM/DD/YYYY" [(ngModel)]="model.kyc_dob" name="dob"
+                                <input autocomplete="off" [bsConfig]="{dateInputFormat: 'YYYY/MM/DD'}" required (change)="isValid()" class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text"  placeholder="YYYY/MM/DD" [(ngModel)]="model.kyc_dob" name="dob"
                                 bsDatepicker>
 
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.dob"></div>
                         </div>
                     </div>
-                    <div class="form-group row ml-0 mr-0">
-                        <div class="col-sm-12 mobilePaddingLR">
-                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Photo Aadhar/Driving/Passport</label>
+                    <div class="form-group row ">
+                        <div class="col-sm-12 mobilePaddingLR"> 
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Photo</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInput($event.target.files)"   name ="document">
+                                <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing" type="file" (change)="handleFileInput($event.target.files)"   name ="document">
                             </div>
                         </div>
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.document"></div>
                     </div>
-                    <!-- <div class="form-group row row ml-0 mr-0">
+                    <div class="form-group row ">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back Side Photo</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input validFileExtention="png,jpeg,jpg" class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInputBack($event.target.files)"   name ="document_back">
+                            </div>
+                        </div>
+                        <div class="required errorMsg"  [innerHtml]="errorDisplay.document_back"></div>
+                    </div>
+                    <!-- <div class="form-group row row ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <div (click)="fileInput.click()" class="row form-control-file">
                                 <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-xs-2 form-control-fileDiv p-0">
@@ -86,10 +96,10 @@
     
                     
     
-                    <!-- <div class="form-group row  ml-0 mr-0">
+                    <!-- <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="otp" class="mediumFont commonFontSize letterspacing">OTP</label>
-                            <div class="form-control-inputDiv rounded py-1 shadow-none">
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter OTP">
                             </div>
                         </div>

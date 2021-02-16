@@ -1,3 +1,16 @@
+export class Pagination {
+    dataSource: any;
+    page_size: any;
+    params: any = {};
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    }
+    startIndex: number;
+    countData: any;
+}
+
 export class UserDashboard {
     filteredUsers: any = {};
     users: any = {};
@@ -66,7 +79,7 @@ export class SignupUsers {
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
-        'noOfVerifiedUserPro', 'currentEI', 'lastEI', 'status', 'LastLoginDate', 'Action'];
+        'noOfVerifiedUserPro', 'signupdate', 'onlinestatus', 'kycstatus', 'schoolverification', 'LastLoginDate', 'Action'];
 
     dataSource: any;
     university: any;
@@ -77,27 +90,38 @@ export class SignupUsers {
     currentEi: any;
     previousEi: any;
     ageGroup: any;
-    status: any ='';
-    kycApproved: any ='';
+    status: any = '';
+    kycApproved: any = '';
     page_size: any;
     loginFromDate: any;
     loginToDate: any;
-  maxDate: Date;
+    maxDate: Date;
+    pageCount: any;
+    kycVerified: any
+    schoolStatus: any = '';
+    filterParams: string;
+    zatchupId: any;
+    lastLoginParams: any;
 }
 
 export class KycVerifiedUsers extends SignupUsers {
-
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'signupdate', 'onlinestatus', 'schoolverification', 'LastLoginDate', 'Action'];
 }
 
 export class KycVerifiedByEi extends SignupUsers {
-
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'signupdate', 'onlinestatus', 'LastLoginDate', 'Action'];
 }
 
 export class ActiveUsers extends SignupUsers {
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'signupdate', 'kycstatus', 'schoolverification', 'LastLoginDate', 'Action'];
 
 }
 
 
 export class DormantUsers extends SignupUsers {
-
+    displayedColumns: string[] = ['position', 'ZatchUpID', 'profilePic', 'Name', 'noOfEducationPro',
+        'noOfVerifiedUserPro', 'signupdate', 'kycstatus', 'schoolverification', 'LastLoginDate', 'Action'];
 }

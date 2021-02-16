@@ -14,7 +14,7 @@
                             <span class="ei-signup-bg-box">
                                 <i class="fa fa-user text-white" aria-hidden="true"></i>
                             </span>
-                            <input id="Email_ID" required (keyup)="isValid($event)" [(ngModel)]="model.username"
+                            <input id="Email_ID" required (keyup)="isValid()" [(ngModel)]="model.username"
                                 name="Email_ID"
                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                 type="email" placeholder="Enter Email ID">
@@ -29,7 +29,7 @@
                             <span class="ei-signup-bg-box">
                                 <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
                             </span>
-                            <input id="password" name="password" required (keyup)="isValid($event)"
+                            <input id="password" name="password" required (keyup)="isValid()"
                                 [(ngModel)]="model.password"
                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                 type="password" placeholder="Enter Password">

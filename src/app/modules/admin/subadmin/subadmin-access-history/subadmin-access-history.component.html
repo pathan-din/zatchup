@@ -3,35 +3,35 @@
 <div class="container main-container p-3">
 
     <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3 mt-3">
-        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
-            <span class="mr-3 cursorStyle ">
-                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-            </span>
-
-            <h2 class="commonFontSize semiBoldFont m-0">Access History</h2>
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+    
+                <h2 class="commonFontSize semiBoldFont m-0">Access History</h2>
+            </div>
         </div>
 
         <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
-
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of access history Per
-                    Page</label>
+            <div class="col-12 d-flex flex-row align-items-center">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getAccessHistory()" [(ngModel)]="pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        (change)="getAccessHistory('1')" [(ngModel)]="accessHistoryModel.page_size">
+                        <option *ngFor="let count of pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
         </div>
-        <div class="row mobile-col-reverse border-0 mt-1 mx-0">
+
+        <!-- <div class="row mobile-col-reverse border-0 mt-1 mx-0">
             <div class="col-md-12 col-left" *ngFor="let history of accessHistory">
                 <div class="row flex-nowrap">
                     <div class="commonFontSize semiBoldFont d-flex flex-row align-items-start pr-0">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <!-- <p>20 March,2020 & 12:00 P.M</p> -->
                         <p> {{history.created_on | date: 'dd MMM, yyyy'}} & {{ history.created_on | date: 'shortTime'}} </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont pl-0">
@@ -39,6 +39,66 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div class="tableDiv mt-4" *ngIf="accessHistoryModel.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="accessHistoryModel.dataSource | paginate: accessHistoryModel.config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + accessHistoryModel.startIndex}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateAndTime">
+                        <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.created_on | date: 'dd MMM yyyy'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="permission">
+                        <mat-header-cell *matHeaderCellDef> Permission </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.permissions}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="module_name">
+                        <mat-header-cell *matHeaderCellDef> Module Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.module_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="permission_by">
+                        <mat-header-cell *matHeaderCellDef> Added By/Removed By </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.added_by}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="subadmin_name">
+                        <mat-header-cell *matHeaderCellDef> Sub Admin Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="accessHistoryModel.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: accessHistoryModel.displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="accessHistoryModel.dataSource" (pageChange)="getAccessHistory($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!accessHistoryModel.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">History Not Available</p>
+            </div>
         </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

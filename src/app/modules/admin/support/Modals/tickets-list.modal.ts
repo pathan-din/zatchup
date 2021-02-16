@@ -12,13 +12,19 @@ export class TicketsList {
     allStates: any;
     allCities: any;
     university: any;
-    maxDate: any
+    maxDate: any;
+    messageFromSchool: any;
+    status: any = '';
     config = {
         itemsPerPage: 0,
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'ticket_raising_date', 'ticketName', 'zatchUpID', 'eiName', 'address', 'state', 'city',
-        'board', 'emailId', 'phoneNumber', 'message'];
+    displayedColumns: string[] = ['position', 'ticket_raising_date', 'ticketName', 'zatchUpID',
+        'status', 'message', 'resolve'];
+    pageCounts: any;
 
+}
+export class ResolveTicket extends TicketsList {
+    displayedColumns: any = ['position', 'zatchUpID', 'ticketName', 'ticket_raised_date', 'resolveDate', 'resolveBy', 'resolveComment',];
 }

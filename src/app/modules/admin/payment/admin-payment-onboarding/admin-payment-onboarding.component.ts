@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
-import { OnboardingFee } from '../modal/onboarding-fee.modal';
+import { OnboardingFee } from '../modal/revenue.modal';
 import { DatePipe, Location } from '@angular/common';
 
 
@@ -36,16 +36,15 @@ export interface PeriodicElement {
   providers: [DatePipe]
 })
 export class AdminPaymentOnboardingComponent implements OnInit {
-  filterFromDate: any;
-  filterToDate: any;
   maxDate: any;
-  onboardingFee : OnboardingFee ;
+  onboardingFee : OnboardingFee;
 
   displayedColumns: string[] = ['position','zatchUpID','schoolName', 'state','city','board','onboardingFeesGross','onboardingFeesNet','couponCodeApplied','transactionID','viewInvoice'];   
 
   dataSource : any;
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
@@ -57,6 +56,12 @@ export class AdminPaymentOnboardingComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.onboardingFee.filterParams = this.route.snapshot.queryParamMap.get("filterParams")
+    if(this.onboardingFee.filterParams)
+    {
+      this.onboardingFee.filterFromDate = JSON.parse(this.onboardingFee.filterParams).from_date;
+      this.onboardingFee.filterToDate = JSON.parse(this.onboardingFee.filterParams).to_date;
+    }
     this.getOnboardingFee('');
     this.getAllStates();
   }
@@ -78,26 +83,28 @@ export class AdminPaymentOnboardingComponent implements OnInit {
 
 
     this.onboardingFee.listParams = {
-      "date_from": this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
-      "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'): '',
+      "start_date": this.onboardingFee.filterFromDate !== undefined ? this.datePipe.transform(this.onboardingFee.filterFromDate, 'yyyy-MM-dd'): '',
+      "end_date": this.onboardingFee.filterToDate !== undefined ? this.datePipe.transform(this.onboardingFee.filterToDate, 'yyyy-MM-dd'): '',
       "city": cityFind ? cityFind.city: '',
       "state": stateFind ? stateFind.state: '',
-      "university": this.onboardingFee.university,
-      "page_size": this.onboardingFee.pageSize ? this.onboardingFee.pageSize : 5,
-      "page": page ? page : 1
+      // "university": this.onboardingFee.university,
+      "page_size": this.onboardingFee.pageSize,
+      "page": page
   }
   this.baseService.getData('admin/payment/payment_details_list/', this.onboardingFee.listParams).subscribe(
     (res: any) => {
-      console.log('list params....', res)
       if (res.status == true) {
         if (!page)
           page = this.onboardingFee.config.currentPage
         this.onboardingFee.startIndex = res.page_size * (page - 1) + 1;
         this.onboardingFee.config.itemsPerPage = res.page_size
+        this.onboardingFee.pageSize = res.page_size;
         this.onboardingFee.config.currentPage = page
         this.onboardingFee.config.totalItems = res.count;
-        if(res.count >0)
-        this.onboardingFee.dataSource = res.results
+        if(res.count >0){
+          this.onboardingFee.dataSource = res.results
+          this.onboardingFee.pageCount = this.baseService.getCountsOfPage();
+        }
         else
         this.onboardingFee.dataSource = undefined
     }
@@ -115,12 +122,12 @@ export class AdminPaymentOnboardingComponent implements OnInit {
     delete this.onboardingFee.listParams.page_size;
     delete this.onboardingFee.listParams.page;
     this.onboardingFee.listParams['export_csv'] = true
-    this.baseService.generateExcel('admin/payment/export_payment_details_list/', 'on-boarding-fee', this.onboardingFee.listParams);
+    this.baseService.generateExcel('admin/payment/export_payment_details_list/', 'onboarding-fee-revenue', this.onboardingFee.listParams);
   }
 
 
   configureOnboardingFee(){
-    this.router.navigate(['admin/payment-onboarding-fee-history']);
+    this.router.navigate(['admin/configure-onboarding-fee']);
 
   }
 
@@ -133,7 +140,6 @@ export class AdminPaymentOnboardingComponent implements OnInit {
       (res: any) => {
         if(res.count > 0)
         this.onboardingFee.allStates = res.results
-        console.log('get state res ::', res)
       }
     ) 
   }
@@ -142,13 +148,19 @@ export class AdminPaymentOnboardingComponent implements OnInit {
       (res: any) => {
         if(res.count > 0)
         this.onboardingFee.allCities = res.results
-        console.log('get city res ::', res)
       }
     )
   }
 
   goBack(): void{
     this.location.back();
+  }
+
+  generatePDF(transactionId: any){
+    let data = {
+      "payment_id": transactionId
+    }
+    this.baseService.generatePdf('admin/download_payment_invoice/', 'onboarding_invoice_'+transactionId, data)
   }
 
 }

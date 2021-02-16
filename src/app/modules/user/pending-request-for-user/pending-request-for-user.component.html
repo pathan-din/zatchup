@@ -1,0 +1,47 @@
+<app-user-header></app-user-header>
+
+<div class="container contentTopSpaceLanding containerScrolling landingPageWidth">
+    <div class="landingDiv">       
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Pending Requests</h2>
+            </div>
+        </div>
+        
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                   
+                    <ng-container matColumnDef="field_name">
+                        <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.field_name}}
+                        </mat-cell>
+                    </ng-container>
+                     <ng-container matColumnDef="old_value">
+                        <mat-header-cell *matHeaderCellDef> Old Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.old_value}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="new_value">
+                        <mat-header-cell *matHeaderCellDef> New Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.new_value}}
+                        </mat-cell>
+                    </ng-container>
+
+                  
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+    </div>
+</div>

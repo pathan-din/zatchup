@@ -32,6 +32,8 @@ export class SubadminManagementComponent implements OnInit {
   displayedColumns: string[] = ['position', 'Name', 'EmployeeID', 'EmailID', 'Phone_no', 'Action'];
 
   dataSource: any;
+  pageCount: any;
+
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -40,15 +42,15 @@ export class SubadminManagementComponent implements OnInit {
   ) { }
 
   goToSubadminAddPage() {
-    this.router.navigate(['admin/subadmin-add']);
+    this.router.navigate(['admin/subadmin-add'],{ queryParams: { "returnUrl": "admin/subadmin-dashboard" } });
   }
 
   goToSubadminAccessHistoryPage() {
-    this.router.navigate(['admin/subadmin-access-history']);
+    this.router.navigate(['admin/subadmin-access-history'], { queryParams: { "returnUrl": "admin/subadmin-dashboard" } });
   }
 
   goToSubadminAuthorirtyPage(data) {
-    this.router.navigate(['admin/subadmin-authorization-access-view', data.id]);
+    this.router.navigate(['admin/subadmin-authorization-access-view', data.id], { queryParams: { "returnUrl": "admin/subadmin-dashboard" } });
   }
   ngOnInit(): void {
     this.getSubadminList('')
@@ -63,14 +65,15 @@ export class SubadminManagementComponent implements OnInit {
       }
       this.baseService.getData('admin/sub-admin/subadmin_management_list/', params).subscribe(
         (res: any) => {
-          if (res.status == true && res.count != 0) {
+          if (res.status == true) {
             if (!page)
               page = this.config.currentPage
             this.startIndex = res.page_size * (page - 1) + 1;
             this.config.itemsPerPage = res.page_size
             this.config.currentPage = page
             this.config.totalItems = res.count
-            this.dataSource = res.results
+            this.dataSource = res.results;
+            this.pageCount = this.baseService.getCountsOfPage();
           }
           else {
             this.dataSource = undefined;

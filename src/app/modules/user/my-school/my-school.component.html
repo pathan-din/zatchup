@@ -3,14 +3,14 @@
 <div class="container-fluid contentSpaceTop">
     <div class="row ">
         <div class="col-12">
-            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid float-left">
-            <img src="assets/images/userWebsite/bell-icon.png" class="img-fluid float-right mr-3">
+            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid float-left subHeaderImg">
+            <img src="assets/images/userWebsite/bell-icon.png" class="img-fluid float-right mr-3 subHeaderImg">
         </div>
     </div>
     <div class="container w-75 bg-light-gray pt-5 pb-5 justify-content-center">
         <div class="row justify-content-center">
             <div class="col-md-7">
-                <div class="row">
+                <div class="row" *ngIf="!roleCheck">
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding" class="myProfileImg"/>
@@ -29,14 +29,14 @@
                             <p class="pt-2">E-Certificates & E-report</p>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                    <div class="col-md-6 mb-3 cursorStyle">
+                        <div (click)="gotToProfilePage()" class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding" class="myProfileImg"/>
-                            <p class="pt-2">Share My Profile</p>
+                            <p class="pt-2">View My Education Profile</p>
                         </div>
                     </div>
 
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-12 mb-3 cursorStyle"  (click)="gotoChatWithTeachers()">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/chat-teacher.png" alt="project funding" class="myProfileImg"/>
                             <p class="pt-2">Chat with Teachers</p>
@@ -44,9 +44,46 @@
                     </div>
 
                 </div>
+
+
+
+
+
+
+                <div class="row" *ngIf="roleCheck">
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">Project Funding</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/lecturer-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">Lecture/Career Counselling</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/e-certificate-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">E-Certificates & E-report</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3 cursorStyle">
+                        <div (click)="gotToProfilePage()" class="bg-white mySchoolDiv p-3 shadow text-center">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding" class="myProfileImg"/>
+                            <p class="pt-2">View My Education Profile</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
 </div>
 
-<app-user-footer></app-user-footer>
+<!-- <app-user-footer></app-user-footer> -->

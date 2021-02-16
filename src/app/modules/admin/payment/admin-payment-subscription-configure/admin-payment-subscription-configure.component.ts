@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -26,6 +27,7 @@ export class AdminPaymentSubscriptionConfigureComponent implements OnInit {
   dataSource: any;
   constructor(
     private router: Router,
+    private location: Location,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService
@@ -74,7 +76,7 @@ export class AdminPaymentSubscriptionConfigureComponent implements OnInit {
       "name": this.subscriptionModal.name ? this.subscriptionModal.name : '',
       "current_amount": this.subscriptionModal.currentAmount ? this.subscriptionModal.currentAmount : 0,
       "no_of_days": this.subscriptionModal.numberOfDays ? this.subscriptionModal.numberOfDays : 0,
-      "is_active": this.subscriptionModal.status == 'true' ? true : false
+      "is_active": this.subscriptionModal.status == true ? true : false
     }
     if(this.subscriptionModal.modalHeader == 'Add')
       this.subscriptionModal.subscriptionUrl = 'admin/subscription/add_subscription/';
@@ -106,6 +108,10 @@ export class AdminPaymentSubscriptionConfigureComponent implements OnInit {
     this.subscriptionModal.currentAmount = subscription.current_amount;
     this.subscriptionModal.numberOfDays = subscription.no_of_days;
     this.subscriptionModal.status = subscription.is_active
+  }
+
+  goBack() {
+    this.location.back()
   }
 
 }

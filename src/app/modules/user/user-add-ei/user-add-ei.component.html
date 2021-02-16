@@ -5,13 +5,15 @@
         <div class="col-md-8">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4 pl-0">
-            <h2 class="mb-4 textSpace">Please enter your current El</h2>
+        <div class="col-md-4">
+            <h2 class="mb-4 textSpace" *ngIf="!title">Please Add your School </h2>
+            <h2 class="mb-4 textSpace" *ngIf="title=='past'">Please Add your School </h2>
+            <h2 class="mb-4 textSpace" *ngIf="title=='current'">Please Add your School </h2>
 
             <form>
 
                 <div class="form-group row mb-1">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <input (blur)="getDataByZatchupId()" [(ngModel)] ="modelZatchup.zatchup_id" name ="zatchup_id"  class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your ZatchUp ID">
                     </div>
                     
@@ -22,8 +24,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6 pl-0 pr-1">
-                        <div class="form-control-inputDiv mobile-input-6 mobForm-name ">
+                    <div class="col-sm-6 pl-0 pr-1 MobileCol6MB">
+                        <div class="form-control-inputDiv">
                             <select (change)="getCityByState(model.state)" [(ngModel)] ="model.state" name ="state" required class="custom-select form-control-input down-arrow-6" required>
                                 <option value=""> Select State </option>
                                 <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList;">{{stateObj.state}} </option>
@@ -34,7 +36,7 @@
                     </div>
 
                     <div class="col-sm-6 pr-0 pl-1">
-                        <div class="form-control-inputDiv mobile-input-6 ">
+                        <div class="form-control-inputDiv  ">
                             <select (change)="getSchoolListBycityId(model.city)" [(ngModel)] ="model.city" name ="city" required class="custom-select form-control-input down-arrow-6" required>
                                 <option value="">City </option>
                                 <option value="{{cityObj.city}}"  *ngFor="let cityObj of cityList;">{{cityObj.city}} </option>
@@ -46,7 +48,7 @@
 
                 <div class="form-group row">
                    
-                    <div class="col-sm-12 form-control-inputDiv rounded py-1 shadow-none">
+                    <div class="col-sm-12 p-0 form-control-inputDiv rounded shadow-none">
                        
                             <select (change)="changeSchool(name_of_school_first)" id="school_name" [(ngModel)]="name_of_school_first"
                                 name="school_name" class="custom-select form-control-input" required>
@@ -62,7 +64,7 @@
                         
                     </div>
                     <div *ngIf="name_of_school_first=='Others'" class="form-group row  ml-0 mr-0 mb-0 col-sm-12 px-0">
-                        <div class="col-sm-12 col-md-12 form-control-inputDiv rounded mt-3 py-1 shadow-none">
+                        <div class="col-sm-12 p-0 col-md-12 form-control-inputDiv rounded mt-3 py-1 shadow-none">
 
                                 <input required (keyup)="isValid($event)" id="name_of_school" [(ngModel)]="name_of_school_others" name="name_of_school_"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -74,13 +76,13 @@
                     
                 </div>
 
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv ">
-                        <textarea [(ngModel)]="model.address1" name="address" required class="form-control form-control-textarea form-control-input" rows="3" placeholder="Address"></textarea>
+                <div *ngIf="name_of_school_first!='Others'" class="form-group row">
+                    <div class="col-sm-12 p-0 form-control-inputDiv ">
+                        <textarea  [(ngModel)]="model.address1" name="address" required class="form-control form-control-textarea form-control-input" rows="3" placeholder="Address"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
                         <!-- <select class="custom-select form-control-input" required>
                             <option value="">Select Board/Univertsity </option>
                             <option value="1">One</option>
@@ -99,4 +101,4 @@
 
 </div>
 
-<app-user-footer></app-user-footer>
+<!-- <app-user-footer></app-user-footer> -->

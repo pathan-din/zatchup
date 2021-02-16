@@ -1,8 +1,16 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="OnboardingFeesHistory-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">User Profile History</h2>
-        <div class="row mobile-col-reverse border-0 mt-1 mx-0">
+        <!-- <h2 class="commonFontSize semiBoldFont mb-1">User Profile History</h2> -->
+        <div class="row topDiv">
+            <div class="col-xl-12 col-lg-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0 ">User Profile History </h2>
+            </div>
+        </div>
+        <!-- <div class="row mobile-col-reverse border-0 mt-1 mx-0">
             <div class="col-md-12 col-left">
                 <div class="row flex-nowrap">
                     <div class="commonFontSize semiBoldFont d-flex flex-row align-items-start pr-0">
@@ -44,6 +52,71 @@
                     </div>
                 </div>
 
+            </div>
+        </div> -->
+
+        <div class="row my-3">
+            <div class="col-md-12 d-flex flex-wrap align-items-center">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records per page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="getUserProfileHistory('')"
+                        class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        id="count" [(ngModel)]="pagination.page_size">
+                        <option value=""> Select count</option>
+                        <option *ngFor="let count of pagination.countData" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-4" *ngIf="pagination.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="pagination.dataSource | paginate: pagination.config">
+                    <ng-container matColumnDef="index">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + pagination.startIndex}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="date_time">
+                        <mat-header-cell *matHeaderCellDef> Date And Time </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{ element.created_on | date: 'dd MMM yyyy h:m a'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="message">
+                        <mat-header-cell *matHeaderCellDef> Message </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.message}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="old_value">
+                        <mat-header-cell *matHeaderCellDef> Old Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.old_value? element.old_value: 'N/A'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="new_value">
+                        <mat-header-cell *matHeaderCellDef> New Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.new_value ? element.new_value : 'N/A'}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="pagination.dataSource" (pageChange)="getUserProfileHistory($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!pagination.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">User Profile History Not Available</p>
             </div>
         </div>
 

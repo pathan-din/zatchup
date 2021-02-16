@@ -2,7 +2,15 @@
 <div class="container main-container p-3">
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont mb-3"> Courses Details</h2>
+        <div class="row topDiv mb-3">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-0"> Courses Details</h2>
+            </div>
+        </div>
+
 
         <!--Start html for table content Course Details-->
         <div class="tableDiv">
@@ -30,7 +38,7 @@
 
 
                     <ng-container matColumnDef="durationOfCourse">
-                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Duration of Course
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Course Duration
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             {{element.duration}}
@@ -51,7 +59,7 @@
 
                     <ng-container matColumnDef="noOfStudents">
                         <mat-header-cell *matHeaderCellDef>Number Of Students </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="color-blue">
+                        <mat-cell *matCellDef="let element">
                             {{element.num_of_student}}</mat-cell>
                     </ng-container>
 
@@ -80,7 +88,7 @@
                         <th scope="col">S.No</th>
                         <th scope="col">Course Name </th>
                         <th scope="col">Standards</th>
-                        <th scope="col">Duration of Standards</th>
+                        <th scope="col">Standards Duration</th>
                         <th scope="col">Number of Class</th>
                         <th scope="col">Start Year</th>
                         <th scope="col">End Year</th>
@@ -100,7 +108,7 @@
                         <td>{{standard.num_of_class}}</td>
                         <td>{{standard.start_year}}</td>
                         <td class="w-15">{{standard.end_year}}</td>
-                        <td class="color-blue">{{standard.num_of_student}}</td>
+                        <td>{{standard.num_of_student}}</td>
                         <td>{{standard.num_of_alumni}}</td>
                     </tr>
 
@@ -113,7 +121,7 @@
                 <thead>
                     <tr class="bg-Gainsboro align-middle">
                         <th scope="col">Standards</th>
-                        <th scope="col">Duration of Students</th>
+                        <th scope="col">Students Duration</th>
                         <th scope="col">Sub-Section</th>
                         <th scope="col">Class Alias</th>
                         <th scope="col">Start Year</th>
@@ -136,7 +144,7 @@
                         <td>{{classes.alias_class}}</td>
                         <td>{{classes.start_year}}</td>
                         <td>{{classes.end_year}}</td>
-                        <td class="color-blue">{{classes.num_of_student}}</td>
+                        <td>{{classes.num_of_student}}</td>
                         <td>{{classes.num_of_alumni}}</td>
                     </tr>
                 </tbody>

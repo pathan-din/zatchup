@@ -6,13 +6,13 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Students Profile</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">{{ischeckStudentOrAlumni?'Students':'Alumni'}} Profile</h2>
             </div>
 
         </div>
-       
 
-        <div class="row mt-3 form-control-inputDiv mobile-col-reverse border-0 mx-0">
+
+        <div class="row mt-3 mobile-col-reverse border-0 mx-0">
             <div class="col-md-6 col-left">
                 <h2 class="commonFontSize mediumFont mb-1">1. Personal Details</h2>
                 <div class="row">
@@ -44,10 +44,12 @@
                         <p>Gender</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.gender?studentData.gender:''}}</p>
+                        <p *ngIf="studentData.gender=='M'"><span class="mr-3">:</span>Male</p>
+                        <p *ngIf="studentData.gender=='F'"><span class="mr-3">:</span>Female</p>
+                        <!-- <p *ngIf="studentData.gender=='C'"><span class="mr-3">:</span>{{studentData.proun}}</p> -->
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.email">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Email ID</p>
                     </div>
@@ -55,7 +57,7 @@
                         <p><span class="mr-3">:</span> {{studentData.email}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.phone">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Phone Number</p>
                     </div>
@@ -63,7 +65,7 @@
                         <p><span class="mr-3">:</span>{{studentData.phone}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.father_name">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Father Name</p>
                     </div>
@@ -71,7 +73,7 @@
                         <p><span class="mr-3">:</span>{{studentData.father_name}}</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="studentData.mother_name">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Mother Name</p>
                     </div>
@@ -79,36 +81,17 @@
                         <p><span class="mr-3">: </span>{{studentData.mother_name}}</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
-                        <p>Work Details</p>
-                    </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
-                        <p>Bio for EI Profile</p>
-                    </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
-                        <p>Messages</p>
-                    </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p class="color-blue"><span class="mr-3 text-dark">:</span>2</p>
-                    </div>
-                </div>
+
             </div>
             <div class="col-md-6 col-right text-right">
-                <p class="color-blue text-right cursorStyle" (click)="goToEiStudentHistoryPage()">View History</p>
-                <div class="RightimgDiv mt-2">
-                    <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
-                    <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png">
+                <p class="color-blue text-right cursorStyle" (click)="goToEiStudentHistoryPage(stid)">View History</p>
+                <div class="RightimgDiv mt-2 float-md-right float-sm-none">
+                    <!-- <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
+                    <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png"> -->
+                    <img src="{{studentData.profile_pic?studentData.profile_pic:'assets/images/userWebsite/profile-default.png'}}"
+                        class="img-fluid Rightimg">
+                    <img *ngIf="studentData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png"
+                        class="img-fluid verifiedTick">
                 </div>
             </div>
 
@@ -116,149 +99,175 @@
 
     </div>
 
-    <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngFor="let eduDetail of studentData.educationdetail">
-        <h2 class="commonFontSize semiBoldFont m-0">Education Details</h2>
-        <h2 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.ei_detail.name_of_school}} </h2>
-        <div class="row mt-3  border-0 mx-0">
+    <div 
+        *ngFor="let eduDetail of studentData.educationdetail">
 
-            <div class="col-md-12 col-left">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">Name of the El</p>
+        <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngIf="userprofile.user_education_instituite_id == eduDetail.school_id">
+            <h2 class="commonFontSize semiBoldFont m-0">Education Details</h2>
+            <h2 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.name_of_school}} </h2>
+            <div class="row mt-3  border-0 mx-0">
+
+                <div class="col-md-12 col-left">
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Name of the El</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eduDetail.name_of_school}} </p>
+                        </div>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.ei_detail.name_of_school}}  </p>
+
+
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3 mt-1"></i>
+                            <p class="m-0"> El ZatchUp ID</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eduDetail.school_code}} </p>
+                        </div>
                     </div>
+
+
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">El ID Number/Admission number</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eduDetail.admission_number}} </p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Tenure with School</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eduDetail.date_joining}} </p>
+                        </div>
+                    </div>
+
+
+                    <div class="row" *ngIf="!ischeckStudentOrAlumni">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Year of leaving the El/ Currently studying </p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eduDetail.leaving_year}} </p>
+                        </div>
+                    </div>
+
+
+
                 </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3 mt-1"></i>
-                        <p class="m-0"> El ZatchUp ID</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.ei_detail.school_code}} </p>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">El ID Number/Admission number</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">Year of Joining the El</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">Year of leaving the El/ Currently studying </p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
-                    </div>
-                </div>
-
 
 
             </div>
+            <h2 *ngIf="eduDetail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">
+                Course Details</h2>
+            <div *ngIf="eduDetail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
-
-        </div>
-        <h2  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
-        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="row mt-3  border-0 mx-0">
-
-            <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.ei_detail.course_detail">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">Name of Course </p>
+                <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.course_detail">
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Name of Course </p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.course_name}} </p>
+                        </div>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.course_name}} </p>
+
+
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0"> Tenure of course </p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.start_year}} - {{courseData.is_current_course?'Present':courseData.end_year}}</p>
+                        </div>
                     </div>
+
+
+                    <!-- <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Year of ending course/Currently studying </p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.is_current_course?'Present':courseData.end_year}}
+                            </p>
+                        </div>
+                    </div> -->
+
+
+                    <div class="row">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Duration of total course </p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.duration}}</p>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="courseData.is_current_course">
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p class="m-0">Roll Number </p>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.roll_no}}</p>
+                        </div>
+                    </div>
+
+
+
                 </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0"> Year of starting course </p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.start_year}}</p>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">Year of ending tho course/Currently studying </p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.end_year}}</p>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p class="m-0">Duration of total course </p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.duration}}</p>
-                    </div>
-                </div>
-
 
 
             </div>
-
-
-        </div>
-        <div  *ngIf="eduDetail.ei_detail.course_detail.length>0" class="tableDiv mt-2 table-responsive">
-            <table class="table table-striped border ">
-                <thead>
-                    <tr class="bg-Gainsboro">
-                        <th scope="col">Standard</th>
-                        <th scope="col">Class( sub-Section) </th>
-                        <th scope="col">Class Alias</th>
-                        <th scope="col">Year of Starting The Standard</th>
-                        <th scope="col">Year of Ending The Standard</th>
-                        <th scope="col">Duration of Completion</th>
-                        <th scope="col">Roll Number(If Available)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let standardData of eduDetail.ei_detail.course_detail[0].standard_detail" >
-                        <td>{{standardData.standard_name}}</td>
-                        <td>{{standardData.class_detail[0].class_name}}</td>
-                        <td>{{standardData.class_detail[0].alias_class}}</td>
-                        <td>{{standardData.class_detail[0].teaching_start_year}}</td>
-                        <td>{{standardData.class_detail[0].teaching_end_year}}</td>
-                        <td>{{standardData.duration}}</td>
-                        <td>{{standardData.class_detail[0].roll_no}}</td>
-                    </tr>
-                    <!-- <tr>
+            <div *ngIf="eduDetail.course_detail.length>0">
+                <div *ngIf="eduDetail.course_detail[0].standard_detail" class="mt-2 table-responsive">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr class="bg-Gainsboro">
+                                <th scope="col">Standard</th>
+                                <th scope="col">Class( sub-Section) </th>
+                                <!-- <th scope="col">Class Alias</th> -->
+                                <th scope="col">Year of Starting The Standard</th>
+                                <th scope="col">Year of Ending The Standard</th>
+                                <th scope="col">Duration of Completion</th>
+                                <!-- <th scope="col">Roll Number(If Available)</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let standardData of eduDetail.course_detail[0].standard_detail">
+                                <td>{{standardData.standard_name}}</td>
+                                <td>{{standardData.class_detail.length>0?standardData.class_detail[0].class_name:""}}
+                                </td>
+                                <!-- <td>{{standardData.class_detail[0].alias_class}}</td> -->
+                                <td>{{standardData.standard_start_year}}</td>
+                                <td>{{standardData.standard_end_year}}</td>
+                                <td>{{standardData.duration}}</td>
+                                <!-- <td></td> -->
+                            </tr>
+                            <!-- <tr>
                         <td>B.Com 2</td>
                         <td>Unspecified</td>
                         <td>B.Com 1 A</td>
@@ -276,11 +285,12 @@
                         <td>1</td>
                         <td>42</td>
                     </tr> -->
-                </tbody>
+                        </tbody>
 
-            </table>
+                    </table>
+                </div>
+            </div>
         </div>
-
     </div>
 
     <!-- <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
@@ -398,13 +408,13 @@
 
     </div> -->
 
-    <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
+    <!-- <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row">
             <div class="col-xl-11 col-lg-10 col-md-10 col-10">
                 <h2 class="commonFontSize semiBoldFont m-0">List Of Certificates And E-Results </h2>
             </div>
             <div class="col-xl-1 col-lg-2 col-md-2 col-2 text-right">
-                <img src="assets/images/userWebsite/menu.png" class="img-fluid  menuIcon " [matMenuTriggerFor]="menu"></div>
+                <img src="assets/images/userWebsite/menu.png" class="img-fluid  menuIcon cursorStyle" [matMenuTriggerFor]="menu"></div>
         </div>
         <div class="row mt-3  border-0 mx-0">
 
@@ -422,8 +432,8 @@
             </div>
 
         </div>
-        <div class="tableDiv mt-2">
-            <table class="table table-striped border">
+        <div class="mt-2">
+            <table class="table table-striped border table-responsive" style="display: inline-table;">
                 <thead>
                     <tr class="bg-Gainsboro">
                         <th scope="col">S.No</th>
@@ -455,13 +465,13 @@
             <p data-toggle="modal" data-target="#BlockModel"> Block user</p>
         </mat-menu>
 
-        <!-- UnVerifyModel  -->
+ 
         <div class="modal fade" id="UnVerifyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0 ">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Unverified</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn" data-dismiss="modal" aria-label="Close ">
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                           <span aria-hidden="true ">
                               &times;
                             </span>
@@ -484,13 +494,12 @@
             </div>
         </div>
 
-        <!-- RejectModel  -->
-        <div class="modal fade" id="RejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="RejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn" data-dismiss="modal" aria-label="Close ">
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                           <span aria-hidden="true ">
                               &times;
                             </span>
@@ -513,13 +522,12 @@
             </div>
         </div>
 
-        <!-- ReportModel  -->
-        <div class="modal fade" id="ReportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="ReportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Report</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn" data-dismiss="modal" aria-label="Close ">
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                           <span aria-hidden="true ">
                               &times;
                             </span>
@@ -542,13 +550,12 @@
             </div>
         </div>
 
-        <!-- BlockModel  -->
-        <div class="modal fade" id="BlockModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal fade" id="BlockModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center border-0 pb-0 pl-0">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Block</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn" data-dismiss="modal" aria-label="Close ">
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                           <span aria-hidden="true ">
                               &times;
                             </span>
@@ -568,6 +575,6 @@
 
 
 
-    </div>
+    </div> -->
 
 </div>

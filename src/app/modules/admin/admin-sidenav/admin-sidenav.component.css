@@ -23,9 +23,16 @@
 
 /*******************/
 
+
+
 .mat-drawer-content {
     z-index: 3;
     margin-left: 0!important;
+    overflow: inherit;
+}
+
+.dropdown a:hover {
+    color: #fff;
 }
 
 /* .mat-toolbar.mat-primary{

@@ -96,9 +96,9 @@ app-ei-sidenav+.container.main-container {
     width: 100%;
 }
 
-.dropdown-lg-Div {
+/* .dropdown-lg-Div {
     width: 150px;
-}
+} */
 
 .dropdown-lg-Div .form-control-inputDiv {
     width: 100%;
@@ -216,11 +216,8 @@ app-ei-sidenav+.container.main-container {
     }
     /*********** Content top of table for listing****************/
     .SearchDiv {
-        justify-content: flex-start;
         margin-top: 0.5rem;
-    }
-    .numberDropdown {
-        width: auto !important;
+        /* justify-content: flex-start; */
     }
 }
 

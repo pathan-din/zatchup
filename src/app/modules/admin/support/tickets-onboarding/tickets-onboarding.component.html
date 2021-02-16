@@ -6,39 +6,45 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0 "> Ticket From Onboarding </h2>
+                <h2 class="commonFontSize semiBoldFont m-0 "> Unresolved Tickets </h2>
             </div>
             <div class="col-xl-6 col-lg-6 d-flex justify-content-end flex-wrap mt-2">
-                <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0">History</button>
+                <button type="button" class="bg-dark text-white px-4 p-2 ml-2 border-0"
+                    (click)="resolveTicket()">Resolved Tickets</button>
             </div>
         </div>
         <div class="modal fade" id="resolveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
-                    <div class="modal-header align-items-center justify-content-center pb-0">
-                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Resolution Remarks</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                            data-dismiss="modal" aria-label="Close ">
+                    <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                        <h2 class="text-center modal-title commonFontSize mediumFont mb-0"> Message </h2>
+                        <button #closeModel type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
                             <span aria-hidden="true "> &times; </span>
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <div class="row">
-                            <div class="col-md-12 mt-2">
-                                <div class="form-group row  ml-0 mr-0">
-                                    <label for="" class="mediumFont commonFontSize letterspacing"> Attachments </label>
-                                    <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                        <input
-                                            class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                            type="file">
+                        <form #resolveForm="ngForm" class="text-center">
+                            <div class="row">
+                                <div class="col-md-12 mt-2">
+                                    <div class="form-group row  ml-0 mr-0">
+                                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                            <textarea name="resolve_comment" [(ngModel)]="resolve_comment" required
+                                                (keyup)="isValid()"
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"></textarea>
+                                        </div>
+                                        <div class="required errorMsg" [innerHTML]="errorDisplay.resolve_comment"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <button type="button "
-                            class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                            Resolve </button>
+                            <button type="button"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                                (click)="resolveComment(resolveForm);">
+                                Submit </button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -46,28 +52,30 @@
         <div class="filterDiv">
             <form autocapitalize="off" autocomplete="off">
                 <div class="d-flex flex-wrap align-items-end">
-                    <div class="widthFull mr-4 mt-3 ">
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised From</label>
                         <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                                id="fromDate" name="fromDate" type="text" placeholder="MM/DD/YYYY" bsDatepicker
+                                id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterFromDate"
-                                #fromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                                #fromDate="ngModel" 
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
-                    <div class="widthFull mr-4 mt-3">
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised To</label>
                         <div class="rounded-0 p-0 shadow-none">
                             <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
-                                type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" bsDatepicker
+                                type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
                                 [maxDate]="ticketsList.maxDate" [(ngModel)]="ticketsList.filterToDate"
-                                #fromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                                #fromDate="ngModel" 
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
-                    <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                    <!-- <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="pastEI" required
+                            <select class="custom-select form-control-input" id="pastEI"
                                 [(ngModel)]="ticketsList.stateId" (change)="getCities()" name="state">
                                 <option value=""> Select State</option>
                                 <option *ngFor="let state of ticketsList.allStates" [value]="state.id">{{state.state}}
@@ -75,23 +83,27 @@
                             </select>
                         </div>
                     </div>
-                    <div class="widthFull mr-4 mt-3">
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
                         <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="pastEI" required
+                            <select class="custom-select form-control-input" id="pastEI"
                                 [(ngModel)]="ticketsList.cityId" name="city">
                                 <option value=""> Select City</option>
                                 <option *ngFor="let city of ticketsList.allCities" [value]="city.id">{{city.city}}
                                 </option>
                             </select>
                         </div>
-                    </div>
-                    <div class="widthFull mr-4 mt-3">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none d-flex align-items-center">
-                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" id="board_university" placeholder="Board/University" name="board_university"
-                                [(ngModel)]="ticketsList.university">
+                    </div> -->
+
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> School Status</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <select class="custom-select form-control-input" id="status"
+                                [(ngModel)]="ticketsList.status" name="status">
+                                <option value=""> Select School Status</option>
+                                <option value="1"> Onboarded </option>
+                                <option value="0"> Pending for Approval</option>
+                            </select>
                         </div>
                     </div>
                     <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
@@ -100,22 +112,19 @@
             </form>
 
         </div>
-        <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+        <div class="row my-3 align-items-center">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Tickets
-                    Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getTicketsList('1')" [(ngModel)]="ticketsList.pageSize"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option *ngFor="let count of ticketsList.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
@@ -128,8 +137,8 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ticket_raising_date">
-                        <mat-header-cell *matHeaderCellDef> Date of Ticket Raizing </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.created_on | date:'dd MMM, yyyy'}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef> Ticket Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.created_on | date:'dd MMM yyyy'}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ticketName">
@@ -138,12 +147,12 @@
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef>ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="eiName">
-                        <mat-header-cell *matHeaderCellDef> EI Name </mat-header-cell>
+                    <!-- <ng-container matColumnDef="eiName">
+                        <mat-header-cell *matHeaderCellDef> School Name </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.name_of_school}}
                         </mat-cell>
@@ -185,20 +194,36 @@
                     <ng-container matColumnDef="phoneNumber">
                         <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.phone}} </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> School Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <!-- <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
+                                aria-hidden="true" data-toggle="modal" data-target="#messageFromSchool"
+                                (click)="viewMessage(element)"></i>  -->
+                            <button type="button" class=" {{element.is_onboarded == '0' ? 'bg-paret-green' : 'bg-yellow'}} text-white h-100 border-0 rounded">
+                                {{element.is_onboarded == '0' ? 'Pending For Approval' : 'Onboarded'}}
+                            </button>
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="message">
-                        <mat-header-cell *matHeaderCellDef> Message From EI </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.message}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef> School Message </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
+                                aria-hidden="true" data-toggle="modal" data-target="#messageFromSchool"
+                                (click)="viewMessage(element)"></i> </mat-cell>
                     </ng-container>
 
-                    <!-- <ng-container matColumnDef="resolve">
-                        <mat-header-cell *matHeaderCellDef class="text-center"> Resolve </mat-header-cell>
-                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
-                            <i class="fa fa-check mr-2 color-green cursorStyle " title="view" aria-hidden="true " data-toggle="modal" data-target="#resolveModal"></i>
+                    <ng-container matColumnDef="resolve">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i *ngIf="element.ticket_status == false" class="fa fa-check mr-2 color-green cursorStyle"
+                                (click)="setResolveData(element)" title="view" aria-hidden="true " data-toggle="modal"
+                                data-target="#resolveModal"></i>
                         </mat-cell>
-                    </ng-container> -->
+                    </ng-container>
 
                     <mat-header-row *matHeaderRowDef="ticketsList.displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: ticketsList.displayedColumns; "></mat-row>
@@ -211,6 +236,35 @@
         <div class="row" *ngIf="!ticketsList.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="messageFromSchool" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+                <h2 class="mediumFont commonFontSize letterspacing m-0">Message</h2>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group row ml-0 mr-0">
+                            <!-- <label for="" class="mediumFont commonFontSize letterspacing">  </label> -->
+                            <div class="w-100 shadow-none">
+                                <textarea value="{{ticketsList.messageFromSchool}}"
+                                    class="form-control-input form-control commonFontSize regularFont letterspacing border"
+                                    readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

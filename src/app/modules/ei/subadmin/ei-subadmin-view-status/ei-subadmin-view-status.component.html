@@ -18,10 +18,11 @@
                     <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Status</label>
                     <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
                         <select class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="pageSize">
-                            <option value="">Select</option>
+                            <!-- <option value="">Select</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="15">15</option>
+                            <option value="15">15</option> -->
+                            <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
                         </select>
                     </div>
                 </div>
@@ -73,13 +74,13 @@
                     </ng-container>
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                        <mat-cell *matCellDef="let element " class="justify-content-center ">
                             <button *ngIf="element.status == 'SENTFORAPPROVAL'" type="button"
-                                class="bg-blue text-white border-0 rounded mb-2">Sent for approval</button> <br />
+                                class="bg-blue text-white border-0 rounded mb-2 cursorDefault">Sent for approval</button> <br />
                             <button *ngIf="element.status == 'SENTFORSIGNUP'" type="button"
-                                class="bg-paret-green text-white border-0 rounded mb-2">Sent for sign-up</button> <br />
+                                class="bg-paret-green text-white border-0 rounded mb-2 cursorDefault">Sent for sign-up</button> <br />
                             <button *ngIf="element.rejected == 1" type="button"
-                                class="bg-red text-white border-0 rounded mb-2">Rejected by user</button>
+                                class="bg-red text-white border-0 rounded mb-2 cursorDefault">Rejected by user</button>
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="Action">
@@ -93,19 +94,15 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
             </div>
-            <div class="row" *ngIf="!dataSource">
-                <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
-                </div>
-            </div>
+           
         </div>
-
+        
         <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getEIStatus($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="dataSource && dataSource.length == 0">
             <div class="col-12 pt-2 pb-2">
-                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
             </div>
         </div>
     </div>

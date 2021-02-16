@@ -2,16 +2,23 @@
 <div class="container main-container p-3">
 
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-        <div class="row topDiv">
+        <!-- <div class="row topDiv">
             <div class="col-6 ">
                 <h2 class="commonFontSize semiBoldFont m-0">Bank Details</h2>
             </div>
+        </div> -->
+        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle ">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+
+            <h2 class="commonFontSize semiBoldFont m-0">Bank Details</h2>
         </div>
         <div class="mt-2 border-0 mx-0">
             <!-- start Div for banner-->
 
             <!--Start div for oView Course Details-->
-            <div class="row m-0" *ngIf="bankDetails">
+            <div class="row m-0" *ngIf="status && status.length > 0">
                 <div class="col-md-12">
                     <div class="row">
                         <div
@@ -60,7 +67,7 @@
             </div>
             <!--End div for oView Course Details-->
 
-            <div class="row" *ngIf="!bankDetails">
+            <div class="row" *ngIf="status && status.length == 0">
                 <div class="col-12 pt-2 pb-2">
                     <p class="text-center dataNotFound pt-4 pb-4">Bank Details Not Available</p>
                 </div>

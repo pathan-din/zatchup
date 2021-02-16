@@ -29,66 +29,66 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this. getUploadClassesIds();
+    //this. getUploadClassesIds();
   }
   /**
    * Get Class Ids for bulk upload 
    * 
    */
 
-   getUploadClassesIds(){
-     try {
-      this.baseService.getData('ei/class-id-of-course-by-ei/').subscribe(res => {
-        let response: any = {}
-        response = res;
-        if(response.status == true){
-        this.SpinnerService.hide();	
-       this.courseList = response.results;
-       if(this.courseList.length>0)
-       {
-         var i=1;
-        this.courseList.forEach(element => {
-          element.standarddata.forEach(newelement => {
-            newelement.classdata.forEach(elements => {
-              elements.standarddata = newelement;
-              elements.coursedata = element;
-              elements.standardcount = element.standarddata.length;
-              elements.classcount = newelement.classdata.length;
-              this.classDataList.push(elements);   
-            });
+  //  getUploadClassesIds(){
+  //    try {
+  //     this.baseService.getData('ei/class-id-of-course-by-ei/').subscribe(res => {
+  //       let response: any = {}
+  //       response = res;
+  //       if(response.status == true){
+  //       this.SpinnerService.hide();	
+  //      this.courseList = response.results;
+  //      if(this.courseList.length>0)
+  //      {
+  //        var i=1;
+  //       this.courseList.forEach(element => {
+  //         element.standarddata.forEach(newelement => {
+  //           newelement.classdata.forEach(elements => {
+  //             elements.standarddata = newelement;
+  //             elements.coursedata = element;
+  //             elements.standardcount = element.standarddata.length;
+  //             elements.classcount = newelement.classdata.length;
+  //             this.classDataList.push(elements);   
+  //           });
             
-          });
-        });
-      }
-       }else{
-         this.SpinnerService.hide();
-         this.alert.error(response.error.message[0], 'Error')
-       }
-       //console.log( this.classDataList);
+  //         });
+  //       });
+  //     }
+  //      }else{
+  //        this.SpinnerService.hide();
+  //        this.alert.error(response.error.message[0], 'Error')
+  //      }
+  //      //console.log( this.classDataList);
        
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-        this.alert.error(error, 'Error')
-      });
-     } catch (err) {
-      this.SpinnerService.hide();
-      this.alert.error(err, 'Error')
-      console.log("verify Otp Exception", err);
-     }
-   }
+  //     }, (error) => {
+  //       this.SpinnerService.hide();
+  //       console.log(error);
+  //       this.alert.error(error, 'Error')
+  //     });
+  //    } catch (err) {
+  //     this.SpinnerService.hide();
+  //     this.alert.error(err, 'Error')
+  //     console.log("verify Otp Exception", err);
+  //    }
+  //  }
    /*Export Class */
-   getExportData(){
-    try {
-      let params:any=[];
-      params['export_csv'] = true
-      this.baseService.generateExcel('ei/export-class-id-of-course-by-ei/', 'class_list', params)
+  //  getExportData(){
+  //   try {
+  //     let params:any=[];
+  //     params['export_csv'] = true
+  //     this.baseService.generateExcel('ei/export-class-id-of-course-by-ei/', 'class_list', params)
     
       
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
  
   uploadXlsSheet(file){
     let fileList: FileList = file;
@@ -102,7 +102,7 @@ export class EiStudentChangeBulkClassComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();	
-          this.alert.success(response.success.message[0], 'Success')
+          this.alert.success(response.message, 'Success')
           // alert(response.message[0]);
         } else {
           this.SpinnerService.hide();

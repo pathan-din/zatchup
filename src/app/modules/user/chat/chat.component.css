@@ -1,0 +1,85 @@
+.profile_pick{
+    border-radius: 50%;
+    width: 55px;
+    overflow: hidden;
+    height: 55px;
+}
+.chat_content{
+    width: 65%;
+    margin: 0px auto;
+}
+.chat_contentBox{
+    width: 85%;
+    margin: 0px auto;
+}
+.addComment{
+    width: 65%;
+    margin: 0px auto;
+}
+.img-small{
+    height: 24px;
+}
+.chatMessage{
+    border-radius: 20px;
+    height: 45px;
+    width: 92% !important;
+}
+.imgComment{
+    height: 35px;
+}
+.border-bottomCustom{
+    border-bottom: 1px solid #ccc;
+}
+.chatIn {
+    padding: 8px 15px;
+    background: #463267;
+    border-radius: 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.customButton {
+    position: absolute !important;
+    left: inherit !important;
+    right: 15px !important;
+    transform: inherit !important;
+    top: 30px !important;
+}
+
+.chatOut {
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    position: relative;
+    border: 1px solid rgba(70, 50, 103, 0.34);
+}
+
+.chatIn:before {
+    position: absolute;
+    content: url("../../../../assets/images/userWebsite/purple_beak.png");
+    left: -22px;
+    top: 4px;
+    /* background: url("assets/images/userWebsite/purple_beak.png"); */
+    background-repeat: no-repeat;
+}
+
+.chatOut:before {
+    position: absolute;
+    content: url("../../../../assets/images/userWebsite/white_beak.png");
+    right: -22px;
+    top: 4px;
+    /* background: url("assets/images/userWebsite/white_beak.png"); */
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 767px){
+    .chat_content{
+        width: 100%;
+    }
+    .addComment {
+        width: 100%;
+    }
+    .chatMessage{
+        width: 75% !important;
+    }
+}

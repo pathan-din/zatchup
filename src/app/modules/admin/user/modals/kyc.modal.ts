@@ -1,4 +1,16 @@
-export class KYCHistory {
+export class Pagination {
+  config = {
+    itemsPerPage: 0,
+    currentPage: 1,
+    totalItems: 0
+  }
+  startIndex: number;
+  pageSize: any;
+  params: any = {};
+  dataSource: any;
+  pageCount: any
+}
+export class KYCHistory extends Pagination{
   activeParams: any;
   kycDetails: any;
   kycHistory: any;
@@ -12,40 +24,42 @@ export class KYCHistory {
   rejectionRemark: any
   approveOrReject: any = 'approve';
   errorDisplay: any = {};
+  displayedColumns: string[] = ['position', 'date_time', 'message', 'emp_name', 'user_name'];
+  pendingDisplayedColumns: string[] = ['position', 'date_time', 'message', 'user_name'];
+  page_size: any;
 };
-export class KycPendingRequest {
+export class KycPendingRequest extends Pagination {
   kycType: any = '';
   userType: any = '';
   requestType: any = '';
   requestReason: any = '';
-  startIndex: number;
-  pageSize: any = 5;
   filterFromDate: any;
   filterToDate: any;
   maxDate: any;
-  displayedColumns: string[] = ['SNo', 'EIZatchUpIDOfUser', 'NameOfUser', 'UserType', 'ProofName',
+  displayedColumns: string[] = ['SNo', 'NameOfUser', 'UserType', 'ProofName',
     'RequestReason', 'RequestType', 'Action'];
-  config = {
-    itemsPerPage: 0,
-    currentPage: 1,
-    totalItems: 0
-  }
-  dataSource: any;
-  params: { date_from: string; date_to: string; kyc_type: any; user_type: any; request_type: any; request_reason: any; page_size: any; page: any; };
-
+  page_size: any;
 };
-export class CompleteKycList {
-  startIndex: number;
-  pageSize: any = 5;
+export class CompleteKycList extends Pagination {
   status: any = '';
-
   displayedColumns: string[] = ['SNo', 'EIZatchUpIDOfUser', 'NameOfUser', 'UserType', 'ProofName',
     'RequestReason', 'RequestType', 'Status', 'RejectionRemarks', 'Action'];
-  config = {
-    itemsPerPage: 0,
-    currentPage: 1,
-    totalItems: 0
-  }
   dataSource: any;
-  params: { date_from: string; date_to: string; kyc_type: any; user_type: any; status: any; request_type: any; request_reason: any; page_size: any; page: any; };
+  pageCount: any;
+  page_size: any;
+}
+
+export class PendingChangeRequests extends Pagination {
+  filterFromDate: any;
+  filterToDate: any;
+  maxDate: any;
+  changeField: any = '';
+  status: any = '';
+  displayedColumns: string[] = ['position', 'eiZatchupId', 'kycDetails', 'kyc_type', 
+    'fieldOfChange', 'oldData', 'newData', 'action'];
+  field_change_type: any= '';
+}
+
+export class KycChangeRequestDetails extends KYCHistory {
+
 }

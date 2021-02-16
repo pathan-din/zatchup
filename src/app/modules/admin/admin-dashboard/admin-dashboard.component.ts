@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { AdminService } from 'src/app/services/Admin/admin.service';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -25,7 +25,7 @@ export class AdminDashboardComponent implements OnInit {
 
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private loader: NgxSpinnerService,
     public adminService: AdminService,
     private baseService: BaseService,
@@ -34,11 +34,14 @@ export class AdminDashboardComponent implements OnInit {
   ) {
     this.fromMaxDate = new Date();
     this.toMaxDate = new Date();
+    this.filterFromDate = this.fromMaxDate;
+    this.filterToDate = this.toMaxDate;
+    this.filterFromDate = new Date(this.filterFromDate.setDate(this.filterFromDate.getDate() - 7))
   }
 
   ngOnInit(): void {
     this.getDashboardCount();
-    // this.filterRecords();
+    this.filterRecords();
   }
 
   getDashboardCount() {
@@ -50,7 +53,6 @@ export class AdminDashboardComponent implements OnInit {
           this.loader.hide();
           if (res.status === true) {
             this.countJson = res.data;
-            this.filteredResponse = res.data.dashboard;
           } else {
             this.alert.error(res.error.message[0], 'Error');
           }
@@ -79,6 +81,7 @@ export class AdminDashboardComponent implements OnInit {
             this.filteredResponse = res.data.dashboard;
           } else {
             this.loader.hide();
+            this.alert.error(res.error.message[0], 'Error');
           }
         }, (error) => {
           this.loader.hide();
@@ -94,4 +97,54 @@ export class AdminDashboardComponent implements OnInit {
       this.fromMaxDate = new Date(date)
   }
 
+  goToAdminEIDatabase() {
+    this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/dashboard' } })
+  }
+
+  activeUsers() {
+    let lastLoginStartDate = new Date();
+    let lastLoginEndDate = new Date();
+    lastLoginStartDate = new Date(lastLoginStartDate.setDate(lastLoginStartDate.getDate() - 7))
+    let obj ={
+      "start_date": lastLoginStartDate,
+      "end_date": lastLoginEndDate
+    }
+    this.router.navigate(['admin/active-users'], { queryParams: { returnUrl: 'admin/dashboard', lastLoginParams: JSON.stringify(obj) } })
+  }
+
+  dormantUsers() {
+    this.router.navigate(['admin/dormant-users'], { queryParams: { returnUrl: 'admin/dashboard' } })
+  }
+
+  onboardedSchools(type: any) {
+    this.router.navigate(['admin/onboarded-on-zatchup-list', type], { queryParams: { returnUrl: 'admin/dashboard' } })
+  }
+
+  filteredUsers() {
+    this.router.navigate(['admin/signed-up-users'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredSchools() {
+    this.router.navigate(['admin/ei-database-list'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredOnboardedSchools(type: any) {
+    this.router.navigate(['admin/onboarded-on-zatchup-list', type], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredSubscriptionFeeRevenue() {
+    this.router.navigate(['admin/payment-subscription-revenue'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  filteredOnboardingFeeRevenue() {
+    this.router.navigate(['admin/payment-onboarding'], { queryParams: { returnUrl: 'admin/dashboard', filterParams: this.getFilterParams() } })
+  }
+
+  getFilterParams() {
+    let filterParams = {
+      "from_date": this.filterFromDate,
+      "to_date": this.filterToDate
+    }
+    return JSON.stringify(filterParams)
+  }
 }

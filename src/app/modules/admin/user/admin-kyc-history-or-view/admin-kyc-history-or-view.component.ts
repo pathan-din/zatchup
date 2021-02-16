@@ -15,7 +15,9 @@ import { Location } from '@angular/common';
 export class AdminKycHistoryOrViewComponent implements OnInit {
   // @ViewChild('rejectedCloseButton') rejectedCloseButton: any;
   @ViewChild('approveCloseButton') approveCloseButton: any;
+  images: any = [];
   kycHistoryModal = new KYCHistory()
+  recordCount: any;
 
   constructor(
     private router: Router,
@@ -52,22 +54,34 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
     }
   }
 
-  getKycHistory() {
+  getKycHistory(page?: any) {
     this.loader.show()
     this.kycHistoryModal.kycDetailsParams = {
-      "id": this.kycHistoryModal.kycDetails.user_id,
-      "order_by": this.kycHistoryModal.sortBy ? this.kycHistoryModal.sortBy : ''
+      "user_id": this.kycHistoryModal.kycDetails.user_id,
+      "module_name": "KYC",
+      "page_size": this.kycHistoryModal.page_size,
+      "page": page
     }
-    this.baseService.getData('admin/kyc/pending_history_details/', this.kycHistoryModal.kycDetailsParams).subscribe(
+    this.baseService.getData('admin/common_history/', this.kycHistoryModal.kycDetailsParams).subscribe(
       (res: any) => {
-        if (res.status == true && res.count != 0) {
-          this.kycHistoryModal.kycHistory = res.results
-        } else {
-          this.kycHistoryModal.kycHistory = undefined;
+        if (res.status == true) {
+          if (!page)
+            page = this.kycHistoryModal.config.currentPage
+          this.kycHistoryModal.startIndex = res.page_size * (page - 1) + 1;
+          this.kycHistoryModal.config.itemsPerPage = res.page_size
+          this.kycHistoryModal.config.currentPage = page;
+          this.kycHistoryModal.page_size = res.page_size;
+          this.kycHistoryModal.config.totalItems = res.count;
+          this.recordCount = this.baseService.getCountsOfPage()
+          if (res.count > 0) {
+            this.kycHistoryModal.kycHistory = res.results;
+          }
+          else
+            this.kycHistoryModal.kycHistory = undefined
         }
         this.loader.hide()
       }
-    ),err =>{
+    ), err => {
       this.notificationService.error(err, "Error")
       this.loader.hide()
     }
@@ -93,7 +107,7 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
         if (res.status == true) {
           this.approveCloseButton.nativeElement.click();
           this.notificationService.success(res.message, 'Success')
-          this.router.navigate(['admin/kyc-pending-request'])
+          this.router.navigate(['admin/kyc-pending-request'], { queryParams: { returnUrl: "admin/kyc-approval-management" } })
         } else {
           this.notificationService.error(res.error.message, 'Error')
         }
@@ -106,6 +120,10 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
 
   }
 
+  viewImage(src) {
+    this.images = []
+    this.images.push(src);
+  }
   sortKycHistory() {
     this.kycHistoryModal.kycDetailsParams['order_by'] = this.kycHistoryModal.sortBy;
     this.getKycHistory();
@@ -114,8 +132,8 @@ export class AdminKycHistoryOrViewComponent implements OnInit {
   radioChange(event) {
     this.kycHistoryModal.approveOrReject = event.value
   }
-  
-  goBack(): void{
+
+  goBack(): void {
     this.location.back();
   }
 }

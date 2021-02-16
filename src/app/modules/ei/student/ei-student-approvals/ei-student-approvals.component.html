@@ -13,28 +13,28 @@
         
         <!-- <h2 class="commonFontSize semiBoldFont m-0">Approval Pending List</h2> -->
 
-        <div class="filterDiv">
+        <!-- <div class="filterDiv">
             
             <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="fromDate" name="fromDate"
                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" id="toDate" name="toDate"
                         placeholder="MM/DD/YYYY" bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #toDate="ngModel"
-                        [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEI" required
@@ -44,7 +44,7 @@
                     </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
@@ -54,7 +54,7 @@
                     </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" id="pastEi" required
@@ -71,7 +71,7 @@
 
 
             </div>
-        </div>
+        </div> -->
         <div class="row my-3" *ngIf="studentApproval.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
@@ -79,9 +79,10 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                     (change)="getStudentApproval('1')" [(ngModel)]="studentApproval.pageSize">
-                            <option value="5">5</option>
+                    <option *ngFor="let count of studentApproval.pageCounts" value="{{count}}">{{count}}</option>
+                            <!-- <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="15">15</option>
+                            <option value="15">15</option> -->
                         </select>
                 </div>
             </div>
@@ -172,8 +173,8 @@
                     <ng-container matColumnDef="unverifyStudent">
                         <mat-header-cell *matHeaderCellDef> Un-Verify Stuent </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-edit text-green fa-lg color-green mr-3 cursorStyle"></i>
-                            <i class="fa fa-retweet text-primary fa-lg cursorStyle" aria-hidden="true"></i>
+                            <i (click)="goToEiStudentEditPage(element.user_id)" class="fa fa-edit text-green fa-lg color-green mr-3 cursorStyle"></i>
+                            <!-- <i class="fa fa-retweet text-primary fa-lg cursorStyle" aria-hidden="true"></i> -->
                             <!-- {{element.unverifyStudent}} -->
                         </mat-cell>
                     </ng-container>
@@ -188,7 +189,7 @@
     </pagination-controls>
     <div class="row" *ngIf="!studentApproval.dataSource">
         <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
         </div>
     </div>
     </div>

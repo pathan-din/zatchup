@@ -22,6 +22,7 @@ export class EiSubadminViewStatusComponent implements OnInit {
   listParams: any = {};
   startIndex: any
   dataSource: any;
+  pageCounts: any;
 
   constructor(
     private location: Location,
@@ -49,18 +50,19 @@ export class EiSubadminViewStatusComponent implements OnInit {
     }
     let url:any ='';
     this.route.queryParams.subscribe(params=>{
-      if(params['status']!='rejected'){
+      if(params['status']=='approved'){
         this.listParams.status =params['status'];
-        url ='ei/sent-for-approval-subadmin-list-by-ei/';
-      }else{
+        url ='ei/approved-subadmin-list-by-ei/';
+      }else if(params['status']=='rejected'){
         this.listParams.status='';
         url ='ei/rejected-by-zatchup-subadmin-list-by-ei/';
+      }else{
+        this.listParams.status =params['status'];
+        url ='ei/sent-for-approval-subadmin-list-by-ei/';
       }
       
     })
-   
-    
-    this.baseService.getData(url , this.listParams).subscribe(
+   this.baseService.getData(url , this.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
@@ -70,10 +72,18 @@ export class EiSubadminViewStatusComponent implements OnInit {
           this.pageSize = res.page_size
           this.config.currentPage = page
           this.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
+            console.log("yes");
+            this.pageCounts = this.baseService.getCountsOfPage()
             this.dataSource = res.results
-          else
+          }
+          
+          else{
+            console.log("yes");
             this.dataSource = undefined
+            this.dataSource =[];
+          }
+          
         }
         else
           this.alert.error(res.error.message[0], 'Error')

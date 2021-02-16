@@ -56,6 +56,9 @@ export class EiStudentApprovalsComponent implements OnInit {
     this.getCourseList();
 
   }
+  goToEiStudentEditPage(id) {
+    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
+  }
 
   getStudentApproval(page?:any) {
     this.loader.show();
@@ -79,11 +82,13 @@ export class EiStudentApprovalsComponent implements OnInit {
         this.studentApproval.config.itemsPerPage = res.page_size
         this.studentApproval.config.currentPage = page
         this.studentApproval.config.totalItems = res.count;
-        if(res.count > 0)
-          this.studentApproval.dataSource = res.results
-          else
+        if(res.count > 0){
+          this.studentApproval.dataSource = res.results;
+          this.studentApproval.pageCounts = this.baseService.getCountsOfPage()
+         } else{
           this.studentApproval.dataSource = undefined
     }
+  }
     else
     this.alert.error(res.error.message[0], 'Error')
     this.loader.hide();

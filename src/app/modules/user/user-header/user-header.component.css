@@ -12,6 +12,16 @@
     letter-spacing: 0.2px;
 }
 
+.img-small{
+    width: 30px;
+    height: 30px;
+}
+
+.customDropDown {
+    right: 0px !important;
+    left: auto;
+}
+
 .userNavUl a.nav-link:hover {
     color: #ccc;
 }

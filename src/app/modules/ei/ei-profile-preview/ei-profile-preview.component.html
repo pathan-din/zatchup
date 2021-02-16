@@ -20,12 +20,17 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             User Profile Detail
+                            <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
+                            
                           </button>
                         </h5>
                       </div>
                   
                       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body" *ngFor="let userData of userProfile.ei_detail">
+                          <div class="row">
+                            <div class="col-md-12 text-right" (click)="redirectToOnboardingFirstSepEdit()"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
                           <div class="row">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">School Name</h3>
@@ -62,7 +67,7 @@
                               <p>{{userData.no_of_alumni}}</p>
                             </div>
                             <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">GST Number(Optional)</h3>
+                              <h3 class="commonFontSize semiBoldFont mb-0">GST Number (Optional)</h3>
                               <p>{{userData.gst_no}}</p>
                             </div>
 
@@ -71,6 +76,27 @@
                               <p>{{userData.overview}}</p>
                                
                             </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">FB Url</h3>
+                              <p>{{userData.fb_url}}</p>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">Twitter Url</h3>
+                              <p>{{userData.twitter_url}}</p>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">School Phone Number</h3>
+                              <p>{{userData.school_phone}}</p>
+                               
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="commonFontSize semiBoldFont mb-0">School Email Address</h3>
+                              <p>{{userData.school_email}}</p>
+                               
+                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -81,14 +107,18 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Course Detail
+                            
                           </button>
                         </h5>
                       </div>
                       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                          <div class="row" *ngFor="let courseData of userProfile.course_detail">
-                            <div class="col-md-12 mb-3">
-                              <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">{{courseData.course_name}} ({{courseData.course_type}})</h3>
+                          <div class="row">
+                            <div class="col-md-12 text-right"><i (click)="redirectToOnboardingSecondSepEdit()" class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
+                          <div class="row mt-3" *ngFor="let courseData of userProfile.course_detail">
+                            <div class="col-md-12">
+                              <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-black color-white">{{courseData.course_name}} <span class="mediumFont small-text">({{courseData.start_year}}-{{courseData.end_year}})</span> <span class="lightFont small-text"> {{courseData.course_type}} </span></h3>
                               <div class="row">
                                   <!-- <div class="col-md-12">
                                     <h4 class="commonFontSize semiBoldFont mb-0">Course Type</h4>
@@ -110,7 +140,7 @@
                                           </div>
                                           <div class="col-md-12">
                                             <h4 class="commonFontSize semiBoldFont mb-0">Standard Duration</h4>
-                                            <p>{{standarddata.duration}}</p>
+                                            <p>{{standarddata.duration}} in months </p>
                                           </div>
                                       </div>
         
@@ -123,27 +153,27 @@
                                                   <p>{{classdata.class_name}} </p>
                                                 </div>
                                                 <div class="col-md-4">
-                                                  <h4 class="commonFontSize semiBoldFont mb-0">Teaching start year</h4>
+                                                  <h4 class="commonFontSize semiBoldFont mb-0"> Start Year</h4>
                                                   <p>{{classdata.teaching_start_year}} </p>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <!-- <div class="col-md-4">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching start month</h4>
                                                   <p>{{classdata.teaching_start_month}} </p>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-4" *ngIf="classdata.is_teaching_current">
-                                                  <h4 class="commonFontSize semiBoldFont mb-0">Current Teaching</h4>
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">End Year</h4>
                                                   <p>Present </p>
                                                 </div>
                                                 <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
-                                                  <h4 class="commonFontSize semiBoldFont mb-0">Teaching end year</h4>
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">End Year</h4>
                                                   <p>{{classdata.teaching_end_year}} </p>
                                                 </div>
-                                                <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
+                                                <!-- <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching end month</h4>
                                                   <p>{{classdata.teaching_end_month}} </p>
-                                                </div>
-                                                <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
-                                                  <h4 class="commonFontSize semiBoldFont mb-0">Alias class</h4>
+                                                </div> -->
+                                                <div class="col-md-4" >
+                                                  <h4 class="commonFontSize semiBoldFont mb-0">Alias Class</h4>
                                                   <p>{{classdata.alias_class}} </p>
                                                 </div>
                                                 
@@ -155,52 +185,7 @@
                             </div>
                           </div>
 
-                          <!-- <div class="row">
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Course Name</h3>
-                              <p>B.Com</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Course Type</h3>
-                              <p>Distance</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Description</h3>
-                              <p>test </p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Name of Standard</h3>
-                              <p>2nd year</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Standard Duration</h3>
-                              <p>3 Years</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Sub Section</h3>
-                              <p>enter sub section </p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">EI Start teaching this class</h3>
-                              <p>current teaching</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">EI Start teaching this class</h3>
-                              <p>1986, feb</p>
-                            </div>
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">EI End teaching this class</h3>
-                              <p>1989, Jan </p>
-                            </div>
-
-                            <div class="col-md-4">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Class Alias</h3>
-                              <p>B.Com</p>
-                            </div>
-
-                          </div> -->
+                         
                         </div>
                       </div>
                     </div>
@@ -210,11 +195,15 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Bank Detail
+                            
                           </button>
                         </h5>
                       </div>
                       <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-12 text-right" (click)="redirectToOnboardingThirdSepEdit()"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
                           <div class="row" *ngFor="let bankData of userProfile.bank_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Bank Name</h3>
@@ -231,11 +220,13 @@
 
                             <div class="col-md-4" *ngIf="bankData.cancel_cheque">
                               <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
-                                <div data-toggle="modal" data-target="#uploadCheck" class="cursorStyle">
+                                <div class="border mt-2">
                                     <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->
-                                    <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                    <img src="{{bankData.cancel_cheque}}" alt="profile pick" class="img-responsive"/>                                    
                                 </div>
+                                <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
+                                <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
                                 
                                 <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
@@ -246,7 +237,7 @@
                                         </button>
                                       </div>                                    
                                       <!-- {{bankData.cancel_cheque}} -->
-                                      <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                      <img *ngIf="bankData.cancel_cheque" src="{{bankData.cancel_cheque}}" alt="profile pick" class="img-responsive"/>
                                     </div>
                                   </div>
                                 </div>
@@ -261,23 +252,29 @@
                         <h5 class="mb-0">
                           <button class="btn btn-link collapsed color-white hover-white w-100 py-2" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             Document Detail
+                            
                           </button>
                         </h5>
                       </div>
                       <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordion">
                         <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-12 text-right"><i class="fa fa-pencil-square-o ml-3 cursorStyle" aria-hidden="true"></i></div>
+                          </div>
                           <div class="row"  *ngFor="let documentData of userProfile.document_detail">
                             <div class="col-md-4">
                               <h3 class="commonFontSize semiBoldFont mb-0">Document Name</h3>
                               <p>{{documentData.name}}</p>
                             </div>
                             <div class="col-md-4" *ngIf="documentData.document">
-                              <h3 class="commonFontSize semiBoldFont mb-0">Upload Document</h3>
-                              <div data-toggle="modal" data-target="#uploadDocument" class="cursorStyle">
+                              <h3 class="commonFontSize semiBoldFont mb-0 mt-2">Upload Document</h3>
+                              <div class="border mt-2">
                                   <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                   {{documentData.document}} -->
-                                  <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                  <img src="{{documentData.document_image}}" alt="profile pick" class="img-responsive"/>
                               </div>
+                              <!-- <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded"> <i class="fa fa-download" aria-hidden="true"></i></button> -->
+                              <button type="button" class="mr-3 mt-3 px-2 py-1 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadDocument"> <i class="fa fa-eye" aria-hidden="true"></i></button>
                               
                               <div class="modal fade documentDetail" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -288,7 +285,7 @@
                                           </button>
                                         </div>                                     
                                       <!-- {{documentData.document}} -->
-                                      <img src="./assets/images/userWebsite/highest_level_education_image.png" alt="profile pick" class="img-responsive"/>
+                                      <img src="{{documentData.document_image}}" alt="profile pick" class="img-responsive"/>
                                   </div>
                                 </div>
                               </div>

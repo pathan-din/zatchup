@@ -26,6 +26,7 @@
 .mat-drawer-content {
     z-index: 3;
     margin-left: 0!important;
+    overflow: inherit;
 }
 
 .mat-toolbar.mat-primary {
@@ -52,6 +53,8 @@
 
 .header-dp {
     width: 40px;
+    height: 40px;
+    border: 1px solid #d6d6d6;
 }
 
 .fa[data-count] {

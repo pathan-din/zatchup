@@ -2,10 +2,13 @@
 <div class="container main-container p-3">
     <div class="subadminView-div bg-white border border-gray px-3 py-3 mt-3" *ngIf="subadminData">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle ">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin View</h2>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-6 text-right mt-3 mb-3">
                 <button type='button' class="bg-purple text-white border-0 px-3 py-2" (click)="subadminAccessHistory()">Sub-Admin Specific Access
                     History</button>
             </div>
@@ -96,11 +99,7 @@
 
     <div class="subadmin-Access-div bg-white border border-gray px-3 py-3 mt-3">
         <div class="Access-Roll">
-            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle ">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-    
+            <div class="col-md-6 pl-0 d-flex justify-content-start flex-wrap align-items-center">    
                 <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin Access</h2>
             </div>
 
@@ -126,7 +125,7 @@
                             <td rowspan="3">
                                 {{module.module_name}}
                             </td>
-                            <td *ngIf="subModuleList">
+                            <td>
                                 <div *ngFor="let sub_module of module.sub_module">
                                     <mat-checkbox class="purple-checkbox" [(ngModel)]="sub_module.is_access"
                                         (change)="isAllSelected($event ,sub_module.id)"> {{sub_module.module_name}}

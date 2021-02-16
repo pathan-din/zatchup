@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../../services/user/users-service.service';
 import { BaseService } from '../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
@@ -19,6 +19,7 @@ export class UserKycVerificationComponent implements OnInit {
   model: any = {}
   uploadedContent: any;
   filename: any = "";
+  filename1: any = "";
   date: any = [];
   isStudent: boolean = true;
   pattran:any="";
@@ -49,24 +50,31 @@ export class UserKycVerificationComponent implements OnInit {
   errorDisplay: any = {};
   errorOtpModelDisplay: any;
   uploadedContentForBackPhoto: any;
+  params:any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
      private router: Router, 
      private SpinnerService: NgxSpinnerService,
      public userService: UsersServiceService, 
      public formBuilder: FormBuilder,
-     public alert:NotificationService) { }
+     public alert:NotificationService,
+     private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      this.params = params;
+    })
     this.model.kyc_type = "";
     this.dateModel = '';
     this.monthModel = '';
     this.yearModel = '';
-    if(!localStorage.getItem("year") && !localStorage.getItem("month") && !localStorage.getItem("day")){}else{
+    if(!localStorage.getItem("year") && !localStorage.getItem("month") && !localStorage.getItem("day") && !localStorage.getItem("kyc_name")){
+
+    }else{
       this.yearModel = localStorage.getItem("year");
       this.monthModel = localStorage.getItem("month");
       this.dateModel = localStorage.getItem("day");
-      this.model.kyc_name= localStorage.getItem("kyc_name");
+      this.model.kyc_name= localStorage.getItem("kyc_name").replace("&", " ");;
     }
     
     var dt = new Date();
@@ -83,18 +91,23 @@ export class UserKycVerificationComponent implements OnInit {
   checkIdValidation(){
     this.pattran='';
     if(this.model.kyc_type=='Aadhar'){
-      this.maxLength = 14;
-      this.placeholder='xxxx xxxx xxxx'
-      //this.model.kyc_id_no
-      this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
+      this.maxLength = 12;
+      this.placeholder='Enter id'
+      this.model.kyc_id_no='';
+      //this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
+      this.pattran = "";
     }else if(this.model.kyc_type=='Dl'){
-      this.maxLength = 13;
-      this.placeholder='Eg : MH1420110062821'
-      this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
+      this.maxLength = 16;
+      this.placeholder='Enter id'
+      this.model.kyc_id_no='';
+     // this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
+      this.pattran = "";
     }else if(this.model.kyc_type=='Passport'){
       this.maxLength = 8;
-      this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
-      this.placeholder='Eg : M00000000'
+      //this.pattran = "^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$";
+      this.pattran = "";
+      this.model.kyc_id_no='';
+      this.placeholder='Enter id'
     }
   } 
   isValid(event) {
@@ -102,8 +115,8 @@ export class UserKycVerificationComponent implements OnInit {
     
     if(this.model.kyc_id_no)
     {
-      if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12){
-        this.model.kyc_id_no=this.model.kyc_id_no+' ';
+      if(this.arrAadhar.length%4==0 && this.arrAadhar.length<12 && this.model.kyc_type=='Aadhar'){
+        this.model.kyc_id_no=this.model.kyc_id_no;
       }
       this.arrAadhar.push(1);
     } else{
@@ -133,63 +146,97 @@ export class UserKycVerificationComponent implements OnInit {
       return false;
     }
     try {
-
-      this.SpinnerService.show();
-
       const formData = new FormData();
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
       formData.append('kyc_document_back', this.uploadedContentForBackPhoto);
-      
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
-      // if(localStorage.getItem('user_id'))
-      // {
-      // this.model.user_id=localStorage.getItem('user_id')
-      // formData.append('user_id',this.model.user_id) ;
-      // }
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
 
-      this.userService.addKyc(formData).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          //localStorage.setItem("user_id",response.user_id);
-          if(response.is_already_registered==true)
-          {
-            this.router.navigate(['user/school-confirmation']);
-          }else{
-            $("#currentStatusModel").modal({
+      this.SpinnerService.show();
+
+      if(this.params.action == 'sendrequest'){
+        this.userService.addRequestSendKyc(formData).subscribe((response:any) => {
+         
+          this.SpinnerService.hide();
+          if (response.status == true) {
+            this.router.navigate([this.params.returnUrl]);
+            
+          }else {
+            this.SpinnerService.hide();
+            var errorCollection = '';
+            for (var key in response.error) {
+              if (response.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + response.error[key][0] + '\n'
+  
+              }
+            }
+            this.alert.error(errorCollection,'Error');
+          }
+        }, (error) => {
+          this.SpinnerService.hide();
+          console.log(error);
+  
+        });
+       
+        
+      }else{
+        this.userService.addKyc(formData).subscribe(res => {
+          let response: any = {}
+          response = res;
+          this.SpinnerService.hide();
+          if (response.status == true) {
+            localStorage.removeItem("year");
+            localStorage.removeItem("month");
+            localStorage.removeItem("day");
+            localStorage.removeItem("kyc_name");
+            //localStorage.setItem("");
+            if(response.reg_steps<5){
+              if(response.is_already_registered==true)
+              {
+                this.router.navigate(['user/school-confirmation']);
+              }else{
+                if(localStorage.getItem("isrejected")){
+                  //location.reload();
+                }else{
+                  this.router.navigate(['user/add-ei']);
+                  // $("#currentStatusModel").modal({
+                  //   backdrop: 'static',
+                  //   keyboard: false
+                  // });
+                }
+              }
+            }else{
+              this.router.navigate(['user/my-educational-profile']);
+            }
+            
+            
+  
+            
+           /* $("#currentStatusModel").modal({
               backdrop: 'static',
               keyboard: false
-            });
-          }
-          
-
-          
-         /* $("#currentStatusModel").modal({
-            backdrop: 'static',
-            keyboard: false
-          });*/
-          // this.router.navigate(['user/qualification']);
-        } else {
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
-
+            });*/
+            // this.router.navigate(['user/qualification']);
+          } else {
+            this.SpinnerService.hide();
+            var errorCollection = '';
+            for (var key in response.error) {
+              if (response.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + response.error[key][0] + '\n'
+  
+              }
             }
+            this.alert.error(errorCollection,'Error');
           }
-          this.alert.error(errorCollection,'Error');
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+        }, (error) => {
+          this.SpinnerService.hide();
+          console.log(error);
+  
+        });
+      }
+    
     } catch (err) {
       this.SpinnerService.hide();
 
@@ -207,7 +254,7 @@ export class UserKycVerificationComponent implements OnInit {
     handleFileInputForBackPhoto(file) {
       let fileList: FileList = file;
       let fileData: File = fileList[0];
-      this.filename = fileData.name;
+      this.filename1 = fileData.name;
       this.uploadedContentForBackPhoto = fileData;
     }
   /*************************************************/
@@ -223,18 +270,21 @@ export class UserKycVerificationComponent implements OnInit {
 
       let data:any={};
       data.is_currently_student= isStudent?1:0;
+
       this.baseService.action('user/add-role/',data).subscribe(res => {
         let response: any = {}
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
+          localStorage.setItem("role",data.is_currently_student);
           $("#currentStatusModel").modal('hide');
-         if(isStudent == 'yes')
-         {
-          this.router.navigate(['user/qualification'], {queryParams: {'title': 'What are you currently studying?'},   skipLocationChange: true});
-         }else{
-          this.router.navigate(['user/qualification'], {queryParams: {'title': 'Your highest level of education?'}, skipLocationChange: true});
-         }
+          this.router.navigate(['user/add-ei']);
+        //  if(isStudent == 1)
+        //  {
+        //   this.router.navigate(['user/qualification'], {queryParams: {'title': 'What are you currently studying?'},   skipLocationChange: true});
+        //  }else{
+        //   this.router.navigate(['user/qualification'], {queryParams: {'title': 'Your highest level of education?'}, skipLocationChange: true});
+        //  }
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
@@ -244,7 +294,7 @@ export class UserKycVerificationComponent implements OnInit {
 
             }
           }
-          alert(errorCollection);
+          this.alert.error(errorCollection,'Error');
         }
       }, (error) => {
         this.SpinnerService.hide();

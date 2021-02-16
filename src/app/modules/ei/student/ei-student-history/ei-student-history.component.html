@@ -1,8 +1,18 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="Alumnihistory-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont mb-2">History of Students</h2>
-        <div class="row mb-2 pl-1">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <!-- <h2 class="commonFontSize semiBoldFont m-0">Students Profile</h2> -->
+                <h2 class="commonFontSize semiBoldFont mb-0">History of Students</h2>
+            </div>
+
+        </div>
+        
+        <!-- <div class="row mb-2 pl-1">
             <div class="col-xl-3 col-lg-4 col-md-4 col-8 commonFontSize mediumFont d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Sort</label>
                 <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none w-75 ml-3">
@@ -14,18 +24,29 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="row mb-2 pl-1">
+        <div class="row mt-3 pl-1" *ngFor="let objHistoryList of studentHistoryList ;let i=index">
             <div class="col-xl-3 col-lg-4 col-md-4 col-4 commonFontSize mediumFont d-flex flex-row align-items-start">
-                <p class="">1. 05 may 2020 / 12:00 PM </p>
+                <p class="">{{i+1}}. {{objHistoryList.created_on}} </p>
             </div>
-            <div class="col-xl-8 col-lg-8 col-md-8 col-8 commonFontSize regularFont">
-                <p><span class="mr-3">:</span>Mr. Rohin Gupta added as a student by Mr. Anil</p>
+            <div class="col-xl-8 col-lg-8 col-md-8 col-8 commonFontSize regularFont" >
+                <p><span class="mr-3">:</span>
+                    Mr. Rohin Gupta added as a student by Mr. Anil
+                    {{objHistoryList.tousername}} {{objHistoryList.display_message}} {{objHistoryList.old_value?objHistoryList.old_value:'-'}} to {{objHistoryList.new_value?objHistoryList.new_value:'-'}} by {{objHistoryList.byusername}}</p>
+            </div>
+        </div>
+        
+        <div class="row mt-3" *ngIf="studentHistoryList.length==0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
             </div>
         </div>
 
-        <div class="row mb-2 mx-0 ml-1">
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
+        <!-- <div class="row mb-2 mx-0 ml-1">
 
             <div class="col-md-12 ">
                 <div class="row mb-2">
@@ -85,7 +106,7 @@
             </div>
 
 
-        </div>
+        </div> -->
 
     </div>
 </div>

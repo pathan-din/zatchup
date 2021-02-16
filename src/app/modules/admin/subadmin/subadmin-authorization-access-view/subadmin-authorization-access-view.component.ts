@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,26 +13,31 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
   moduleList: any;
   subadminData: any;
   _selectAll: boolean = false;
-  subModuleList: Array<any> = [];
-  subModuleListData: any;
+  // subModuleList: Array<any> = [];
+  // subModuleListData: any;
+  historyArr: Array<any> = []
+  arrayList: Array<any> = []
   masterSelected: boolean
   accessModel: any = {}
   idList: any
-  subModuleEnable: any
+  subModuleEnable: any;
+  idArray1: any = [];
+  idArray2: any = []
+  userdata: any;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private activeRoute: ActivatedRoute,
-    private location: Location
+    private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    if (this.activeRoute.snapshot.params.id)
-      this.getSubadminDataById()
+    this.getSubadminDataById()
     this.getModuleList()
+    this.userdata = JSON.stringify(sessionStorage.getItem('user'))
   }
 
   getSubadminDataById() {
@@ -62,6 +66,7 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
         if (res[0].status == true) {
           this.moduleList = res[0].data;
           this.makeAccessModal()
+          this.makeArr1()
         } else if (res[0].status == false) {
           this.alert.error(res.error, 'Error')
         }
@@ -80,6 +85,26 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     }
   }
 
+  makeArr1() {
+    this.accessModel['user_id'] = parseInt(this.activeRoute.snapshot.params.id)
+    let idList = []
+    this.moduleList.forEach(ele => {
+      if (ele.sub_module && ele.sub_module.length > 0) {
+        ele.sub_module.forEach(child_ele => {
+          // child_ele['isSelected'] = false;
+          let obj = {
+            "id": child_ele.id,
+            "status": child_ele.is_access
+          }
+          this.arrayList.push(child_ele)
+          idList.push(obj)
+        })
+      }
+    })
+    this.idArray1 = idList;
+    // this.accessModel['ids'] = idList
+  }
+
   makeAccessModal() {
     this.accessModel['user_id'] = parseInt(this.activeRoute.snapshot.params.id)
     let idList = []
@@ -95,7 +120,7 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
         })
       }
     })
-
+    // this.idArray1 = idList
     this.accessModel['ids'] = idList
   }
 
@@ -134,11 +159,60 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
 
   addAccessPermissions() {
     this.loader.show()
+    this.idArray2 = this.accessModel.ids
+
+    // console.log('difference is as ::', difference)
     this.baseService.action('admin/sub-admin/set_all_permissions/', this.accessModel).subscribe(
       (res: any) => {
         if (res.status == true) {
+          let difference = this.difference(this.idArray1, this.idArray2)
+          if (difference.length > 0)
+            this.makeHistoryObject(difference)
           this.alert.success(res.message, 'Success');
           this.router.navigate(['admin/subadmin-dashboard'])
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error');
+        }
+
+        this.loader.hide()
+      }
+    ), err => {
+      this.loader.hide();
+    }
+  }
+
+  makeHistoryObject(difference: any) {
+    this.historyArr = []
+    difference.forEach(elem => {
+      let find = this.arrayList.find(val => {
+        return val.id == elem.id
+      })
+      if (find) {
+        let str = {}
+        // if(elem.statue == true)
+        str = {
+          "module_name": find.module_name,
+          "permission_type": elem.status == true ? "Add access premission" : "Remove access premission"
+
+        }
+        this.historyArr.push(str)
+      }
+    })
+    this.addHistory();
+  }
+
+  addHistory() {
+    let data = {
+      "user_profile_id": this.subadminData.user_profile,
+      "name": this.subadminData.firstname,
+      "permissions_list": this.historyArr
+    }
+    this.loader.show()
+    this.baseService.action('admin/sub-admin/update_subadmin_permissions/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          // console.log('permission add res...',res)
         }
         else {
           this.alert.error(res.error.message[0], 'Error');
@@ -184,32 +258,39 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     return module
   }
 
-  passwordReset(){
+  passwordReset() {
     this.loader.show();
     let data = {
-      "email": this.subadminData.email
+      "email_or_phone": this.subadminData.email
     }
     this.baseService.action('admin/forgot-password/', data).subscribe(
-      (res: any) =>{
-        console.log('res of reset pass is as ::', res)
-        if(res.status == true){
-          this.alert.success('Email has been sent to '+this.subadminData.email, 'Success')
-        }else{
+      (res: any) => {
+        if (res.status == true) {
+          this.alert.success('Email has been sent to ' + this.subadminData.email, 'Success')
+        } else {
           this.alert.error('Error while sending email, Please check your email', 'Error')
         }
 
         this.loader.hide();
       }
-    ),err =>{
+    ), err => {
       this.loader.hide();
     }
   }
 
-  subadminAccessHistory(){
-    this.router.navigate(['admin/subadmin-access-history',this.subadminData.id])
+  subadminAccessHistory() {
+    this.router.navigate(['admin/subadmin-access-history'], { queryParams: { "user_profile": this.subadminData.user_profile, "returnUrl": "admin/subadmin-authorization-access-view" + "/" + this.activeRoute.snapshot.params.id } })
   }
 
-  goBack(): void{
-    this.location.back()
+  goBack(): void {
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
+    this.router.navigate([returnUrl])
+    // this.location.back()
+  }
+
+  difference(obj1, obj2) {
+    return obj2.filter(item => !obj1.some(other =>
+      item.id == other.id && item.status == other.status
+    ));
   }
 }

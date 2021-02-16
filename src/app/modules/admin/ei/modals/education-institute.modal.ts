@@ -1,3 +1,15 @@
+export class Pagination {
+    dataSource: any;
+    page_size: any;
+    startIndex: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    };
+    pageCounts: any;
+}
+
 export class EducationInstitute {
     name_of_school: any;
     address1: any;
@@ -10,11 +22,16 @@ export class EducationInstitute {
     allCities: any
     stateId: any = '';
     cityId: any = '';
+    isExists: boolean;
+    numberOfStudentList: any;
+    students: any = '';
+    id: any;
+    city: any
 }
 
-export class EIDbList {
-    displayedColumns: string[] = ['position', 'dateOfAdding', 'eiZatchupID', 'schoolName', 'state', 'city', 'address', 'board',
-        'approximateNumber', 'status', 'dateofOnboarding', 'action'];
+export class EIDbList extends Pagination {
+    displayedColumns: string[] = ['position', 'eiZatchupID', 'schoolName', 'state', 'city',
+        'status', 'dateOfAdding', 'action'];
 
     stateId: any = '';
     cityId: any = '';
@@ -22,15 +39,84 @@ export class EIDbList {
     allCities: any;
     state: any = '';
     city: any = '';
-    dataSource: any;
-    startIndex: any;
-    config = {
-        itemsPerPage: 0,
-        currentPage: 1,
-        totalItems: 0
-    }
     modal: any = {};
-    page_size: any
     university: any;
     onboardingStatus: any = '';
+    subStatus: any;
+    search: any;
+    filterFromDate: any;
+    filterToDate: any;
+    filterParams: any;
+}
+export class DocHistory extends Pagination {
+    existingZatchIDMOUDoc: any;
+    requiredMOU: boolean = true;
+    errorDisplay: any = {};
+    remarks: any;
+    displayedColumns: string[] = ['position', 'DateOfUploading', 'NameofDocument', 'ViewDocument',
+        'Remarks', 'UploadedByEI', 'UploadedByEmployeeName'];
+    school_id: any;
+    params: any;
+    ascendingOrder: any = 'true';
+    doc_type: any = '';
+}
+export class MessagesHistory extends Pagination {
+    params: any;
+    displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
+        'resolutionDate', 'resolveComment', 'attachment'];
+}
+export class PastPocDetails extends Pagination {
+    displayedColumns: string[] = ['position', 'fromDate', 'toDate', 'employeeId', 'name', 'mobileNumber',
+        'emailAddress', 'addedByEmployeeId', 'addedByemployeeName'];
+    params: any;
+    ei_id: any;
+}
+export class CurrentPocDetails extends PastPocDetails {
+    response: any;
+    employeeId: any;
+    poc_required: boolean = true;
+    searchConfig: any = {
+        "api_endpoint": "admin/fetch-poc-details/"
+    }
+    firstName: any;
+    ei_id: any;
+    employee_id: any;
+    phone: any;
+    email: any;
+    model: any = {};
+}
+
+export class RejectedEIList extends Pagination {
+    displayedColumns: string[] = ['position', 'addingDate', 'zatchUpID', 'schoolName', 'state', 'city', 'status',
+         'action'];
+
+    filterFromDate: any;
+    filterToDate: any;
+    stateId: any = '';
+    cityId: any = '';
+    allStates: any;
+    allCities: any;
+    state: any = '';
+    city: any = '';
+    modal: any = {};
+    university: any;
+    maxDate: any
+    onboardingStatus: any = '';
+}
+
+export class DatabaseHistory extends Pagination {
+    displayedColumns: string[] = ['position', 'dateAndTime', 'name_of_school', 'status',
+        'addedRemoved', 'employeeName'];
+
+    isDeleted: any = '';
+    filterFromDate: any;
+    filterToDate: any;
+
+
+}
+
+export class SubscriptionPlanHistory extends Pagination {
+    modal: any;
+    displayedColumns: string[] = ['position', 'dateOfSubscription', 'planDetails', 'grossAmount',
+        'couponCode', 'netAmount', 'dateOfSubscriptionExpiry', 'transactionId', 'action'];
 }

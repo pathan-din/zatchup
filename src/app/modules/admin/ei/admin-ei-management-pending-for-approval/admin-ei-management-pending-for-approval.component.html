@@ -7,44 +7,46 @@
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
 
-                <h2 class="commonFontSize semiBoldFont m-0"> EI Pending For Approval</h2>
+                <h2 class="commonFontSize semiBoldFont m-0"> School Pending For Approval</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input
                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                        type="text" placeholder="Search...">
+                        type="text" [(ngModel)]="eIPendingApproval.search" name="search" placeholder="Search...">
                 </div>
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 " (click)="searchList()">Apply</button>
             </div>
         </div>
 
         <!--start html for EI pending for approval information Filter-->
-        <div class="filterDiv">
+        <div class="filterDiv bg-Gainsboro mt-2 pb-4 px-3">
+            <h2 class="commonFontSize semiBoldFont mb-0 pt-2">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Sign Up date From</label>
+                <div class="widthFull mr-3 mt-3 custumInputWidth ">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Sign Up Date From</label>
                     <div class="rounded-0 p-0 shadow-none">
                         <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="eIPendingApproval.maxDate"
-                            [(ngModel)]="eIPendingApproval.filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [(ngModel)]="eIPendingApproval.filterFromDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Signup date To</label>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Sign Up Date To</label>
                     <div class="rounded-0 p-0 shadow-none">
                         <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY"
                             class="form-control formfocusStyle" bsDatepicker [maxDate]="eIPendingApproval.maxDate"
-                            [(ngModel)]="eIPendingApproval.filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                            [(ngModel)]="eIPendingApproval.filterToDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
 
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" [(ngModel)]="eIPendingApproval.stateId"
+                        <select class="custom-select  form-control-input" name="state" [(ngModel)]="eIPendingApproval.stateId"
                             (change)="getCities()">
                             <option value="">State</option>
                             <option *ngFor="let state of eIPendingApproval.allStates" [value]="state.id">{{state.state}}
@@ -52,16 +54,16 @@
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" [(ngModel)]="eIPendingApproval.cityId">
+                        <select class="custom-select  form-control-input" name="city" [(ngModel)]="eIPendingApproval.cityId">
                             <option value=""> Select City</option>
                             <option *ngFor="let city of eIPendingApproval.allCities" [value]="city.id">{{city.city}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Board/University</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <input type="text" name="board_university" [(ngModel)]="eIPendingApproval.university"
@@ -70,39 +72,50 @@
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Addition Type</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" name="additionType" [(ngModel)]="eIPendingApproval.additionType">
                             <option value=""> Select Type</option>
-                            <option value="0">Manual</option>
-                            <option value="1">From Database</option>
+                            <option value="false">Manual</option>
+                            <option value="true">From Database</option>
                         </select>
                     </div>
                 </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getEIApprovalList('')">Apply</button>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Status</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select  form-control-input" name="status" [(ngModel)]="eIPendingApproval.send_back_to_edit">
+                            <option value=""> Select Status</option>
+                            <option value="0">Pending For Approval</option>
+                            <option value="1">Send Back To Edit</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="getEIApprovalList('')">Apply</button> -->
+                <!-- <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 ml-3">Reset</button> -->
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3" (click)="filterData('1')">Apply</button>
             </div>
+        </form>
         </div>
         <!--End html for EI pending for approval information Filter-->
 
         <!--Start html for "select no of EI database info per page" and Export Button-->
-        <div class="row my-3" *ngIf="eIPendingApproval.dataSource">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+        <div class="row my-3 align-items-center" *ngIf="eIPendingApproval.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of EI In
-                    Database Per
-                    Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getEIApprovalList('1')" [(ngModel)]="eIPendingApproval.pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        (change)="filterData('1')" [(ngModel)]="eIPendingApproval.pageSize">
+                        <option *ngFor="let count of eIPendingApproval.pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
@@ -120,7 +133,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
-                        <mat-header-cell *matHeaderCellDef>EI ZatchUp ID </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>School ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchupId}} </mat-cell>
                     </ng-container>
 
@@ -143,12 +156,12 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="additionType">
+                    <!-- <ng-container matColumnDef="additionType">
                         <mat-header-cell *matHeaderCellDef> Addition Type </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.additionType}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="signUpDate">
                         <mat-header-cell *matHeaderCellDef>Sign Up Date </mat-header-cell>
@@ -157,13 +170,24 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button" aria-hidden="true "
+                            data-toggle="modal" data-target="#approveEI" class="bg-dark text-white h-100 border-0 rounded"
+                            *ngIf="element.send_back_to_edit == 1" (click)="sendBackDetails(element.ei_id)" >Send Back To Edit</button>
+                            <button type="button" class="bg-yellow text-white h-100 border-0 rounded"
+                            *ngIf="element.send_back_to_edit == 0"  >Pending For Approval </button>
+                             </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef>Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details" aria-hidden="true "
                                 (click)="goToAdminEiManagementIncompleteOnboardingViewPage(element)"></i>
 
-                            <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
+                            <!-- <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
                         </mat-cell>
                     </ng-container>
 
@@ -172,7 +196,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="eIPendingApproval.dataSource" (pageChange)="getEIApprovalList($event)"
+        <pagination-controls *ngIf="eIPendingApproval.dataSource" (pageChange)="filterData($event)"
             class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="!eIPendingApproval.dataSource">
@@ -185,27 +209,35 @@
 </div>
 
 
-<!-- <div class="modal fade" id="approveEI" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="approveEI" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" >
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
             <div class="modal-header pb-0 pl-0 border-0">
-                <h2 class=" modal-title commonFontSize mediumFont mb-1">Approve</h2>
                 <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
-            <div class="modal-body px-0 pt-0 pb-0">
-                <p>Are you sure you want to Approve the Education Institute?</p>
-            </div>
-            <div class="modal-footer border-0">
-                <span class="color-blue mr-3 cursorStyle" data-dismiss="modal" (click)="cancel()">No</span>
-                <span class="color-blue cursorStyle" data-dismiss="modal" (click)="approveEI()">Yes</span>
+            <div class="modal-body px-0 pt-0 pb-3">
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <h3 class="commonFontSize mediumFont mb-2">Reason</h3>
+                        <input *ngIf="eiData" type="text" name="reason" class="form-control border pl-2 py-1 rounded" value="{{eiData.reason_for_send_back}}" placeholder="Reason" readonly
+                        />
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h3 class="commonFontSize mediumFont mb-2">Description</h3>
+                        <input *ngIf="eiData" type="text" name="description" class="form-control border pl-2 py-1 rounded" value="{{eiData.description}}" placeholder="Description" readonly/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>

@@ -97,8 +97,6 @@ import { SubadminPendingAccessComponent } from './subadmin/subadmin-pending-acce
 import { SubadminPendingRequestComponent } from './subadmin/subadmin-pending-request/subadmin-pending-request.component';
 import { SubadminRequestChangingComponent } from './subadmin/subadmin-request-changing/subadmin-request-changing.component';
 import { AboutUsComponent } from './setting/about-us/about-us.component';
-import { ChangePasswordComponent } from './setting/change-password/change-password.component';
-import { ContactComponent } from './setting/contact/contact.component';
 import { PersonalComponent } from './setting/personal/personal.component';
 import { PrivacyComponent } from './setting/privacy/privacy.component';
 import { SettingComponent } from './setting/setting/setting.component';
@@ -129,6 +127,15 @@ import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
 import { EiInvoiceListComponent } from './invoice/ei-invoice-list/ei-invoice-list.component';
 import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
+import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component';
+import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component'
+import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
+import { ContactComponent } from './setting/contact/contact.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
+import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
+import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
+import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
 
 const routes: Routes = [
   {
@@ -232,6 +239,9 @@ const routes: Routes = [
   },
   {
     path: 'sent-for-sign-up', component: EiSentForSignUpComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'sent-for-approval', component: SentForApprovalComponent, canActivate: [AuthGuard]
   },
   {
     path: 'student-bulk-add', component: EiStudentBulkAddComponent, canActivate: [AuthGuard]
@@ -426,7 +436,7 @@ const routes: Routes = [
     path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'change-password', component: ChangePasswordComponent
+    path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
   },
   {
     path: 'contact', component: ContactComponent, canActivate: [AuthGuard]
@@ -504,11 +514,24 @@ const routes: Routes = [
   },
   {
     path: 'invoice-list/:invoice', component: EiInvoiceListComponent, canActivate: [AuthGuard]
+  }, {
+    path: 'request-for-change-list', component: RequestChangeDetailsComponent, canActivate: [AuthGuard]
+  }, {
+    path: 'school-reminder', component: SchooReminderComponent, canActivate: [AuthGuard]
+  }, {
+    path: 'add-more-document', component: AddMoreDocumentComponent, canActivate: [AuthGuard]
+  },{
+    path: 'request-for-course-list', component: RequestPendingForCourseComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'subscription-history', component: SubscriptionHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'alumni-summary', component: AlumniSummaryComponent, canActivate: [AuthGuard]
   },
 
-
-
-
+  
+  
   
   
   //

@@ -1,6 +1,5 @@
 .Onboard-viewbanner-div {
     height: 175px;
-    background: url("../../../../../assets/images/userWebsite/loreal.jpg") no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -16,7 +15,22 @@
     border-width: 2px!important;
     padding: 0.4rem;
 }
+.dpImgCircle {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
 
+.verifiedTick {
+    position: absolute;
+    left: 85px;
+    bottom: 15px;
+}
+.dpImg {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
 .dpImgDiv img {
     max-height: 14vh;
     min-height: 14vh;

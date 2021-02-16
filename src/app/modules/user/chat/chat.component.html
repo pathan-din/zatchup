@@ -1,0 +1,60 @@
+<app-user-header></app-user-header>
+
+<div class="container contentSpaceTop">
+    <div class="row" (click)="goBack()">
+        <div class="col-12">
+            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="chat_content bg-light-gray pb-5">
+                <div class="border-bottomCustom mb-3 pt-3 pb-3 d-flex justify-content-between flex-wrap align-items-center">
+                    <div class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
+                        <div class="profile_pick">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
+                        </div>
+                        <div class="profile_name ml-2">
+                            <p class="m-0">Mahesh Chand</p>
+                            <span class="small-text-2">Online</span>
+                        </div>
+                    </div>                
+                    <div class="setting_info text-right pr-3 dropdown">    
+                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle" >
+                        </a>                            
+                        <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
+                            <span class="dropdown-item" (click)="gotoChatPrivacy()">Setting</span>
+                            <!-- <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat_contentBox pt-3">
+                    <div class="chatIn">
+                        <p class="color-white m-0">Hi</p>
+                        <span class="text-right color-white small-text-2 ml-4">7:30 pm</span>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="chatOut bg-white">
+                            <p class="m-0">Hi</p>
+                            <span class="text-right small-text-2 d-block color-gray ml-4">7:32 pm</span>                    
+                            <img src="assets/images/userWebsite/message-delivered.png" class="img-fluid cursorStyle ml-5 text-right" style="width: 17px; float: right;">
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <div class="addComment mt-2 d-flex justify-content-between align-items-center flex-wrap">
+                <textarea class="form-control chatMessage ml-2" id="" name="message" rows="1" placeholder="Write a Message.."  required></textarea>
+                <img src="assets/images/userWebsite/sent-message.png" class="img-fluid cursorStyle imgComment mr-3">
+            </div> 
+        </div>
+               
+    </div>
+</div>

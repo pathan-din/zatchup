@@ -2,21 +2,26 @@
 <div class="container main-container p-3">
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <div class="d-flex justify-content-between mb-3">
-            <h2 class="commonFontSize semiBoldFont m-0">EI Courses</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">EI Courses</h2>
+            </div>
         </div>
 
         <div class="row my-3" *ngIf="courseList && courseList.length > 0">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
+            <div class="col-12 d-flex flex-row align-items-center">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mobile-w-35  mr-2 mb-0">Number of course
-                    Per Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getCourseList('1')" [(ngModel)]="pageSize">
-                        <option value="5">5</option>
+                        <option *ngFor="let count of pageCounts" value="{{count}}">{{count}}</option>
+                        <!-- <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
@@ -39,27 +44,27 @@
                     <ng-container matColumnDef="startYera">
                         <mat-header-cell *matHeaderCellDef> Start Year </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.startyear}}
+                            {{element.start_year}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="endYear">
                         <mat-header-cell *matHeaderCellDef> End Year </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.endyear}}
+                            {{element.end_year}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfStandards">
                         <mat-header-cell *matHeaderCellDef> Number Of Standards </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.total_standard_count}}
+                            {{element.num_of_standard}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfClass">
                         <mat-header-cell *matHeaderCellDef>Number Of Class </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.total_class_count}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.num_of_class}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfStudents">
@@ -79,7 +84,7 @@
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center text-center">
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "
-                                routerLink="/admin/ei-management-course-details/{{eiId}}/course/{{element.course_id}}"></i>
+                                routerLink="/admin/ei-management-course-details/{{element.id}}"></i>
                         </mat-cell>
                     </ng-container>
 

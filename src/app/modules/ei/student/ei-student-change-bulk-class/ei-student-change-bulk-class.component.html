@@ -10,41 +10,59 @@
 
     </div>
         <div class="row mt-3">
-            <div class="col-6 ">
+            <div class="col-12 ">
                 <div class="d-flex flex-column dashed-border text-center p-3">
                     <i (click)="fileInput1.click()" class="fa fa-upload color-light-black cursorStyle" aria-hidden="true"></i>
-                    <p class="commonFontSize mediumFont">Upload SpreadSheet With Zatchup-Id</p>
-                    <input #fileInput1  type="file" style="display:none;" />
+                    <p class="commonFontSize mediumFont">Upload SpreadSheet</p>
+                    <input #fileInput1 (change)="uploadXlsSheet($event.target.files)"   type="file" style="display:none;" />
                 </div>
 
             </div>
-            <div class="col-6 ">
+            <!-- <div class="col-6 ">
                 <div class="d-flex flex-column dashed-border text-center p-3">
                     <i (click)="fileInput.click()" class="fa fa-upload color-light-black cursorStyle" aria-hidden="true"></i>
                     <p class="commonFontSize mediumFont">Upload SpreadSheet Without Zatchup-Id</p>
                     <input #fileInput (change)="uploadXlsSheet($event.target.files)" type="file" style="display:none;" />
                 </div>
 
-            </div>
+            </div> -->
         </div>
 
-        <div class="row mt-3">
-            <div class="col-6 ">
+       <div class="row mt-3">
+             <div class="col-12 ">
                 <div class="d-flex flex-column dashed-border text-center p-3">
                     <i  class="fa fa-download color-light-black cursorStyle" aria-hidden="true"></i>
-                    <p class="commonFontSize mediumFont bulkLink"><a href="http://staging.zatchup.com/zatchupapi/zatchup/media/sample/add_student_withzatchupid.xls">Download SpreadSheet With Zatchup-Id</a></p>
+                    <p class="commonFontSize mediumFont bulkLink"><a href="http://staging.zatchup.com/zatchupapi/zatchup/media/sample/add_student_withzatchupid.xls">Download SpreadSheet</a></p>
+                    
+                </div>
+
+            </div>  
+           <!--   <div class="col-12">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i (click)="fileInput.click()" class="fa fa-download color-light-black cursorStyle" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont bulkLink"><a href="http://staging.zatchup.com/zatchupapi/zatchup/media/sample/sample_bulk_add_student.xlsx">Download Sample SpreadSheet</a></p>
+                    <input #fileInput (change)="uploadXlsSheet($event.target.files)" type="file" style="display:none;" />
+                </div>
+
+            </div> -->
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 ">
+                <div class="d-flex flex-column dashed-border text-center p-3">
+                    <i  class="fa fa-download color-light-black cursorStyle" aria-hidden="true"></i>
+                    <p class="commonFontSize mediumFont bulkLink"><a target="_blank" href="https://docs.google.com/viewerng/viewer?url=http://staging.zatchup.com/zatchupapi/zatchup/media/sample/add_student_withzatchupid.xls">Open Google SpreadSheet</a></p>
                     
                 </div>
 
             </div>
-            <div class="col-6 ">
+            <!-- <div class="col-6 ">
                 <div class="d-flex flex-column dashed-border text-center p-3">
                     <i (click)="fileInput.click()" class="fa fa-download color-light-black cursorStyle" aria-hidden="true"></i>
-                    <p class="commonFontSize mediumFont bulkLink"><a href="http://staging.zatchup.com/zatchupapi/zatchup/media/sample/sample_bulk_add_student.xlsx">Download SpreadSheet Without Zatchup-Id</a></p>
+                    <p class="commonFontSize mediumFont bulkLink"><a href="https://docs.google.com/viewerng/viewer?url=http://staging.zatchup.com/zatchupapi/zatchup/media/sample/sample_bulk_add_student.xlsx">Open Google SpreadSheet Without Zatchup-Id</a></p>
                     <input #fileInput (change)="uploadXlsSheet($event.target.files)" type="file" style="display:none;" />
                 </div>
 
-            </div>
+            </div> -->
         </div>
        
         <!-- <form>
@@ -149,8 +167,8 @@
             </div>
         </form> -->
     </div>
-    <div><button (click)="getExportData()" class="bg-purple text-white px-5 py-2 h-100 mt-2 mb-2 border-0" style="float: right;">Export</button></div>
-    <table style="width: 100%;" class="bg-white studentbulkTable">
+    <!-- <div><button (click)="getExportData()" class="bg-purple text-white px-5 py-2 h-100 mt-2 mb-2 border-0" style="float: right;">Export</button></div> -->
+    <!-- <table style="width: 100%;" class="bg-white studentbulkTable">
         <tr>
             <th>
                 <strong>Course name</strong> 
@@ -183,7 +201,10 @@
 
 
         
-    </table>
+    </table> -->
 
   
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

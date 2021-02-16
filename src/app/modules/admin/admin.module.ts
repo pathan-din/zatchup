@@ -1,11 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { AdminwebRoutingModule } from './admin-routing.module';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { AdminForgotPasswordComponent } from './admin-forgot-password/admin-forgot-password.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { AdminSchoolManagementComponent } from './admin-school-management/admin-school-management.component';
-import { AdminSidenavComponent } from './admin-sidenav/admin-sidenav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,6 +7,28 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+//services
+import { CookieService } from 'ngx-cookie-service';
+
+// admin routing
+import { AdminRoutingModule } from './admin-routing.module';
+
+// common module
+import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
+import { SharedModule } from 'src/app/common/shared.module';
+
+// components
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminForgotPasswordComponent } from './admin-forgot-password/admin-forgot-password.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminSchoolManagementComponent } from './admin-school-management/admin-school-management.component';
+import { AdminSidenavComponent } from './admin-sidenav/admin-sidenav.component';
 import { AdminEiManagementCourseComponent } from './ei/admin-ei-management-course/admin-ei-management-course.component';
 import { AdminEiManagementCourseDetailsComponent } from './ei/admin-ei-management-course-details/admin-ei-management-course-details.component';
 import { AdminEiManagementAlumniListComponent } from './ei/admin-ei-management-alumni-list/admin-ei-management-alumni-list.component';
@@ -37,7 +53,6 @@ import { AdminUserPostDetailsComponent } from './user/admin-user-post-details/ad
 import { AdminEIManagementAddedByUserNotToZatchupComponent } from './ei/admin-eimanagement-added-by-user-not-to-zatchup/admin-eimanagement-added-by-user-not-to-zatchup.component';
 import { AdminEiManagementDocumentMouHistoryComponent } from './ei/admin-ei-management-document-mou-history/admin-ei-management-document-mou-history.component';
 import { AdminEiManagementAllCourseUploadComponent } from './ei/admin-ei-management-all-course-upload/admin-ei-management-all-course-upload.component';
-import { NgxSpinnerModule } from "ngx-spinner";
 import { AdminUserPostComponent } from './user/admin-user-post/admin-user-post.component';
 import { AdminKycApprovalManagementComponent } from './user/admin-kyc-approval-management/admin-kyc-approval-management.component';
 import { AdminKycConfigureComponent } from './user/admin-kyc-configure/admin-kyc-configure.component';
@@ -96,8 +111,6 @@ import { StarclassBoughtLectureViewComponent } from './ei/starclass-bought-lectu
 import { StarclassBoughtViewComponent } from './ei/starclass-bought-view/starclass-bought-view.component';
 import { EducationStatusComponent } from './ei/education-status/education-status.component';
 import { StatusAddedComponent } from './ei/status-added/status-added.component';
-import { ToastrModule } from 'ngx-toastr';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { CertificatesIssuedComponent } from './ei/certificates-issued/certificates-issued.component';
 import { SearchComponent } from './ei/search/search.component';
 import { StudentsComponent } from './ei/students/students.component';
@@ -131,12 +144,48 @@ import { KycVerifiedUsersComponent } from './user/kyc-verified-users/kyc-verifie
 import { KycVerifiedByEiComponent } from './user/kyc-verified-by-ei/kyc-verified-by-ei.component';
 import { ActiveUsersComponent } from './user/active-users/active-users.component';
 import { DormantUsersComponent } from './user/dormant-users/dormant-users.component';
-import  { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SupportManagementComponent } from './support/support-management/support-management.component';
 import { TicketsOnboardingComponent } from './support/tickets-onboarding/tickets-onboarding.component';
 import { PaymentInvoiceComponent } from './payment-invoice/payment-invoice.component';
 import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-view/change-details-request-view.component';
+import { OnboardingFeeConfigureComponent } from './payment/onboarding-fee-configure/onboarding-fee-configure.component';
+import { NotificationListComponent } from './notification/notification-list/notification-list.component';
+import { UserEducationDetailsComponent } from './user/user-education-details/user-education-details.component';
+import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
+import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
+import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
+import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
+import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
+import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
+import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-view/admin-ei-reject-details-view.component';
 
+const config = {
+  btnClass: 'default', // The CSS class(es) that will apply to the buttons
+  zoomFactor: 0.1, // The amount that the scale will be increased by
+  containerBackgroundColor: '#ccc', // The color to use for the background. This can provided in hex, or rgb(a).
+  wheelZoom: true, // If true, the mouse wheel can be used to zoom in
+  allowFullscreen: true, // If true, the fullscreen button will be shown, allowing the user to entr fullscreen mode
+  allowKeyboardNavigation: true, // If true, the left / right arrow keys can be used for navigation
+  btnIcons: { // The icon classes that will apply to the buttons. By default, font-awesome is used.
+    zoomIn: 'fa fa-plus',
+    zoomOut: 'fa fa-minus',
+    rotateClockwise: 'fa fa-repeat',
+    rotateCounterClockwise: 'fa fa-undo',
+    next: 'fa fa-arrow-right',
+    prev: 'fa fa-arrow-left',
+    fullscreen: 'fa fa-arrows-alt',
+  },
+  btnShow: {
+    zoomIn: true,
+    zoomOut: true,
+    rotateClockwise: true,
+    rotateCounterClockwise: true,
+    next: true,
+    prev: true
+  }
+};
 @NgModule({
   declarations: [
     AdminLoginComponent,
@@ -265,11 +314,23 @@ import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-v
     SupportManagementComponent,
     TicketsOnboardingComponent,
     PaymentInvoiceComponent,
-    ChangeDetailsRequestViewComponent
+    ChangeDetailsRequestViewComponent,
+    OnboardingFeeConfigureComponent,
+    NotificationListComponent,
+    UserEducationDetailsComponent,
+    AdminKycPendingChangeRequestsComponent,
+    AdminKycChangeRequestDetailsComponent,
+    ContectAndStaticContentManagementComponent,
+    EditPocDetailsComponent,
+    ChangePasswordComponent,
+    ResolveTicketsComponent,
+    TermsConditionsComponent,
+    OnboardedSchoolHistoryComponent,
+    AdminEiRejectDetailsViewComponent
   ],
   imports: [
     CommonModule,
-    AdminwebRoutingModule,
+    AdminRoutingModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -285,8 +346,14 @@ import { ChangeDetailsRequestViewComponent } from './ei/change-details-request-v
     }),
     NgxPaginationModule,
     DirectiveModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedModule,
+    ImageViewerModule.forRoot(config),
+    AngularEditorModule
   ],
-  providers: [DatePipe]
+  providers: [
+    DatePipe,
+    CookieService,
+  ]
 })
 export class AdminModule { }

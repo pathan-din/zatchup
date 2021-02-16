@@ -4,15 +4,15 @@
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="row">
             <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">My POC Details</h2>
+                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Level 1 POC</h2>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" *ngIf="poc_details">
                 <div class="row ml-0">
                     <div class="col-xl-3 col-lg-4 col-md-3 col-5 commonFontSize mediumFont border-bottom bg-light">
                         <p class="pt-2 d-flex justify-content-between">Name <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> {{poc_details?.first_name}} {{poc_details?.last_name}} </span></p>
+                        <p class="pt-2"> <span> {{poc_details.first_name ? poc_details.first_name : 'N/A'}} {{poc_details?.last_name}} </span></p>
                     </div>
                 </div>
 
@@ -21,7 +21,7 @@
                         <p class="pt-2 d-flex justify-content-between">Number <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> {{poc_details?.phone}} </span></p>
+                        <p class="pt-2"> <span> {{poc_details.phone ? poc_details.phone : 'N/A'}} </span></p>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                         <p class="pt-2 d-flex justify-content-between">Email ID <span>:</span></p>
                     </div>
                     <div class="col-xl-5 col-lg-4 col-md-5 col-7 commonFontSize regularFont border-bottom">
-                        <p class="pt-2"> <span> {{poc_details?.email}}</span></p>
+                        <p class="pt-2"> <span> {{poc_details.email ? poc_details.email : 'N/A'}}</span></p>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="row">
             <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Escalation Details</h2>
+                <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Level 2 POC</h2>
             </div>
             <div class="col-md-12">
                 <div class="row ml-0">
@@ -121,9 +121,8 @@
                     <div class="row bg-light pt-3 ml-0">
                         <div class="col-12 medium-filter-box">
                             <label for="" class="mediumFont commonFontSize letterspacing">Issue</label>
-                            <div
-                                class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
-                                <input class="form-control-input form-control commonFontSize regularFont letterspacing"
+                            <div class="shadow-none">
+                                <input class="form-control-input form-control border commonFontSize regularFont letterspacing"
                                     id="issye" type="text" placeholder="Enter issue" name="issue_type"
                                     [(ngModel)]="modal.issue" (change)="isValid()" required>
                             </div>
@@ -133,20 +132,19 @@
                         <div class="col-md-12 mt-2">
                             <div class="form-group">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Message </label>
-                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <div class="w-100 shadow-none">
                                     <textarea name="message" (keyup)="isValid()" [(ngModel)]="modal.message" required
-                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        class="form-control-input form-control border commonFontSize regularFont letterspacing"
                                         type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
                                 </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.message">
-                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.message"></div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group row ml-0 mr-0 d-flex justify-content-center">
                                 <button type="button"
                                     class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing"
-                                    (click)="sendMessage(); pocDetailsForm.reset()"> Sent </button>
+                                    (click)="sendMessage(); pocDetailsForm.reset()"> Send </button>
                             </div>
                         </div>
                     </div>
@@ -157,8 +155,8 @@
                 <h2 class="commonFontSize semiBoldFont m-0 pt-2 pb-2">Contact Summary</h2>
                 <div class="contact_history" *ngIf="contactSummery && contactSummery.length > 0">
                     <div class="row pt-2 pb-2" *ngFor="let summery of contactSummery">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-6">
-                            <p class="commonFontSize semiBoldFont mb-1">{{summery.issue}} <span class="small-text-2 pb-2 regularFont"> ({{summery.created_on | date: 'dd MMM yyyy, h:mm:ss a'}}) </span></p> 
+                        <div class="col-12">
+                            <p class="commonFontSize semiBoldFont mb-1">{{summery.issue}}({{summery.ticket_id}}) <span class="small-text-2 pb-2 regularFont"> ({{summery.created_on | date: 'dd MMM yyyy, h:mm:ss a'}}) </span></p> 
                         </div>
                         <div class="col-12 border-top pt-2">
                             <p>{{summery.message}}</p>

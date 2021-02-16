@@ -12,50 +12,60 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-md-4 MobileCol6MB" (click)="kycPendingReqRoute()" style="cursor: pointer;">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_1('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_1('list')">
                         {{kycApprovalData.kyc_pending_requests_I.no_of_requests_fresh_signup + kycApprovalData.kyc_pending_requests_I.no_of_requests_kyc_retrigger}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0">Requests For Fresh Signups:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_1('new-singup')">Requests For Fresh Signups:<span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_I.no_of_requests_fresh_signup}}</span>
                         </p>
-                        <p class="mb-0 ">Requests Because KYC Was Retrigger:<span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_1('retriggered')">Requests Because KYC Was
+                            Retrigger:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_I.no_of_requests_kyc_retrigger}}</span>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 MobileCol6MB" (click)="kycPendingReqRoute()" style="cursor: pointer;">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_2('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_2('list')">
                         {{kycApprovalData.kyc_pending_requests_II.first_time_submission_count + kycApprovalData.kyc_pending_requests_II.resubmission_count}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 ">First TimeSubmission: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('first-time')">First Time Submission: <span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.first_time_submission_count}}</span>
                         </p>
-                        <p class="mb-0 ">Resubmission: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_2('re-submitted')">Re-submission: <span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_II.resubmission_count}}</span>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
-                    (click)="kycPendingReqRoute()" style="cursor: pointer;">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" style="cursor: pointer;">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_3('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_3('list')">
                         {{kycApprovalData.kyc_pending_requests_III.students_alumni_count + kycApprovalData.kyc_pending_requests_III.subadmin_count}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 ">Student/Alumni: <span class="ml-2"
+                        <p class="mb-0 "><span (click)="kycPendingReqRoute_3('User')">Student/Alumni</span>:
+                            <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_III.students_alumni_count}}</span>
                         </p>
-                        <p class="mb-0 ">Sub-Admin: <span class="ml-2"
+                        <p class="mb-0 " (click)="kycPendingReqRoute_3('EISUBADMIN')">Sub-Admin: <span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_III.subadmin_count}}</span>
                         </p>
                     </div>
@@ -64,21 +74,42 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col-md-4 MobileCol6MB" (click)="kycPendingReqRoute()" style="cursor: pointer;">
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
-                    <p class="p-2 mediumFont commonFontSize">KYC Pending Requests</p>
-                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                    <p class="p-2 mediumFont commonFontSize" (click)="kycPendingReqRoute_4('list')">KYC Pending Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData"
+                        (click)="kycPendingReqRoute_4('list')">
                         {{kycApprovalData.kyc_pending_requests_IV.aadhar + kycApprovalData.kyc_pending_requests_IV.drivinglicense + kycApprovalData.kyc_pending_requests_IV.passport}}
                     </h2>
                     <div
                         class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
-                        <p class="mb-0">Aadhar:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Aadhar')">Aadhar:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.aadhar}}</span></p>
-                        <p class="mb-0">Passport:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Dl')">Driving License:<span
+                                class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.drivinglicense}}</span>
                         </p>
-                        <p class="mb-0">Driving License:<span class="ml-2"
+                        <p class="mb-0" (click)="kycPendingReqRoute_4('Passport')">Passport:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_pending_requests_IV.passport}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB" style="cursor: pointer;" (click)="kycChangeRequests('list')">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">KYC Change Requests
+                    </p>
+                    <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycApprovalData">
+                        {{kycApprovalData.total_change_requests}}
+                    </h2>
+                    <div
+                        class="p-2  mediumFont commonFontSize Btn-lg-last3Content d-flex flex-column bg-light-secondary">
+                        <p class="mb-0" (click)="kycChangeRequests('pending')">Pending:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.total_pending_change_requests}}</span></p>
+                        <p class="mb-0" (click)="kycChangeRequests('rejected')">Rejected:<span class="ml-2"
+                                *ngIf="kycApprovalData">{{kycApprovalData.total_rejected_change_requests}}</span>
                         </p>
                     </div>
                 </div>
@@ -98,9 +129,9 @@
                         {{kycApprovalData.kyc_request_completed.approved + kycApprovalData.kyc_request_completed.rejected}}
                     </h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0">Approved:<span class="ml-2"
+                        <p class="mb-0" (click)="goToKycCompleted('1')">Approved:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_request_completed.approved}}</span></p>
-                        <p class="mb-0 ">Rejected:<span class="ml-2"
+                        <p class="mb-0 " (click)="goToKycCompleted('2')">Rejected:<span class="ml-2"
                                 *ngIf="kycApprovalData">{{kycApprovalData.kyc_request_completed.rejected}}</span>
                         </p>
                     </div>
@@ -110,15 +141,17 @@
 
     </div>
 
-    <div class="KYC-signUp-div bg-white px-2 py-2 mt-3">
-        <form (ngSubmit)="dateFilterForm.form.valid && getFilteredKYCApproveData()" #dateFilterForm="ngForm" novalidate>
+    <div class="KYC-signUp-div bg-white px-3 py-2 mt-3">
+        <form (ngSubmit)="dateFilterForm.form.valid && getFilteredKYCApproveData()" #dateFilterForm="ngForm"
+            autocapitalize="off" autocomplete="off">
             <div class="row">
                 <div class="col-12 d-flex flex-wrap align-items-end">
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Sign Up Date From</label>
-                        <input type="text" id="fromDate" name="singupFromDate" placeholder="MM/DD/YYYY"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="kycApprovalFromDate"
-                            #singupFromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                        <input type="text" id="fromDate" name="singupFromDate" placeholder="YYYY/MM/DD"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="kycApprovalFromDate" #singupFromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': dateFilterForm.submitted && singupFromDate.invalid }" required>
                         <div *ngIf="dateFilterForm.submitted && singupFromDate.invalid" class="invalid-feedback">
                             <div *ngIf="singupFromDate.errors.required">Required.</div>
@@ -127,16 +160,17 @@
 
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Sign Up Date To</label>
-                        <input type="text" placeholder="MM/DD/YYYY" id="signupToDate" name="singupToDate"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="kycApprovalToDate"
-                            #signupToDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                        <input type="text" placeholder="YYYY/MM/DD" id="signupToDate" name="singupToDate"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" 
+                            [(ngModel)]="kycApprovalToDate" #signupToDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': dateFilterForm.submitted && signupToDate.invalid }" required>
                         <div *ngIf="dateFilterForm.submitted && singupFromDate.invalid" class="invalid-feedback">
                             <div *ngIf="signupToDate.errors.required">Required.</div>
                         </div>
                     </div>
 
-                    <div class="border-0 p-0 shadow-none mx-1">
+                    <div class="border-0 p-0 shadow-none ">
                         <button type="submit"
                             class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
                             Submit
@@ -148,7 +182,7 @@
 
         <div class="row pt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 mediumFont commonFontSize">Number Of KYC Requests Raised</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{kycRequestsRaised}}</h2>
                     <p
@@ -159,14 +193,15 @@
             </div>
 
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="completedKyc()"
+                    style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">KYC Requests Completed</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="kycRequestsCompleted">
                         {{kycRequestsCompleted}}</h2>
                     <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0">KYC Requests Approved:<span class="ml-2"
+                        <p class="mb-0" (click)="goToKycCompleted('1')">KYC Requests Approved:<span class="ml-2"
                                 *ngIf="kycRequestApproved">{{kycRequestApproved}}</span></p>
-                        <p class="mb-0 ">KYC Requests Rejected:<span class="ml-2"
+                        <p class="mb-0 " (click)="goToKycCompleted('2')">KYC Requests Rejected:<span class="ml-2"
                                 *ngIf="kycRequestApproved">{{kycRequestRejected}}</span>
                         </p>
                     </div>
@@ -176,7 +211,7 @@
         </div>
     </div>
 
-    <div class="KYC-retrigged-div bg-white px-2 py-2 mt-3">
+    <div class="KYC-retrigged-div bg-white px-3 py-2 mt-3">
         <h2 class="commonFontSize semiBoldFont">KYC Retriggered Summary</h2>
         <form (ngSubmit)="retriggerFilterForm.form.valid && getFilteredKycRetriggerData()" #retriggerFilterForm="ngForm"
             novalidate>
@@ -184,9 +219,10 @@
                 <div class="col-12 d-flex flex-wrap align-items-end">
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Retrigger Date From</label>
-                        <input type="text" id="retriggerFromDate" name="retriggerFromDate" placeholder="MM/DD/YYYY"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="retriggerKycFromDate"
-                            #retriggerFromDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                        <input type="text" id="retriggerFromDate" name="retriggerFromDate" placeholder="YYYY/MM/DD"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="retriggerKycFromDate" #retriggerFromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': retriggerFilterForm.submitted && retriggerFromDate.invalid }"
                             required>
                         <div *ngIf="retriggerFilterForm.submitted && retriggerFromDate.invalid"
@@ -197,9 +233,10 @@
 
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Retrigger Date To</label>
-                        <input type="text" placeholder="MM/DD/YYYY" id="retriggerToDate" name="retriggerToDate"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" [(ngModel)]="retriggerKycToDate"
-                            #retriggerToDate="ngModel" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                        <input type="text" placeholder="YYYY/MM/DD" id="retriggerToDate" name="retriggerToDate"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
+                            [(ngModel)]="retriggerKycToDate" #retriggerToDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }"
                             [ngClass]="{ 'is-invalid': retriggerFilterForm.submitted && retriggerToDate.invalid }"
                             required>
                         <div *ngIf="retriggerFilterForm.submitted && retriggerToDate.invalid" class="invalid-feedback">
@@ -207,7 +244,7 @@
                         </div>
                     </div>
 
-                    <div class="border-0 p-0 shadow-none mx-1">
+                    <div class="border-0 p-0 shadow-none ">
                         <button type="submit"
                             class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center align-self-center">
                             Submit
@@ -218,7 +255,7 @@
         </form>
         <div class="row pt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">KYC Retriggered </p>
                     <h2 class="countFontSize text-center semiBoldFont">{{kycRetriggered}}</h2>
                     <p

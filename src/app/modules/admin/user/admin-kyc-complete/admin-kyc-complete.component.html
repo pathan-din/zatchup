@@ -1,7 +1,7 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="KYC-Complete-div bg-white border border-gray mt-3 px-3 py-3">
-        <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+        <div class="col-md-6 pl-0 d-flex justify-content-start flex-wrap align-items-center">
             <span class="mr-3 cursorStyle ">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
@@ -11,37 +11,37 @@
 
         <!--Start html for filter for Kyc Complete-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
-
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
             <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth ">
                     <label for="" class="mediumFont commonFontSize letterspacing">KYC Submission date From</label>
                     <div class="rounded-0 shadow-none">
-                        <input type="text" id="fromDate" name="fromDate" placeholder="MM/DD/YYYY" class="form-control"
-                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        <input type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" class="form-control"
+                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterFromDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Submission date To</label>
                     <div class="rounded-0 shadow-none">
-                        <input type="text" id="toDate" name="toDate" placeholder="MM/DD/YYYY" class="form-control"
-                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }">
+                        <input type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" class="form-control"
+                            bsDatepicker [maxDate]="maxDate" [(ngModel)]="filterToDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat:'YYYY-MM-DD' }">
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> User Type</label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="user_type" [(ngModel)]="userType">
                             <option value=""> Select User</option>
-                            <option value="ADMIN">Admin</option>
-                            <option value="STUDENT">Student</option>
-                            <option value="ALUMNI">Alumni</option>
-                            <option value="ZATCHUPSUBADMIN">Sub-admin</option>
+                            <option value="User">Student/Alumni</option>
+                            <!-- <option value="ALUMNI">Alumni</option> -->
+                            <option value="EISUBADMIN">Sub-admin</option>
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> KYC Type </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycType">
@@ -54,8 +54,8 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                <!-- <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="request_type" [(ngModel)]="requestType">
                             <option value=""> Select Request</option>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="request_reason"
                             [(ngModel)]="requestReason">
@@ -75,12 +75,36 @@
                             <option value="2">Retriggered</option>
                         </select>
                     </div>
+                </div> -->
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Reason </label>
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select  form-control-input" name="request_type"
+                            [(ngModel)]="requestReason">
+                            <option value=""> Select Request Reason</option>
+                            <option value="0">First Time</option>
+                            <option value="1">Re-submitted</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="widthFull mr-4 mt-3">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request Type </label>
+                    <div class="form-control-inputDiv rounded shadow-none">
+                        <select class="custom-select  form-control-input" name="request_reason"
+                            [(ngModel)]="requestType">
+                            <option value=""> Select Request Type</option>
+                            <option value="0">New Sign-up</option>
+                            <option value="1">Retriggered</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Status </label>
                     <div class="form-control-inputDiv rounded shadow-none">
-                        <select class="custom-select form-control-input" name="status" [(ngModel)]="status">
+                        <select class="custom-select form-control-input" name="status" [(ngModel)]="completeKycList.status">
                             <option value=""> Select Status</option>
                             <option value="1">Approved</option>
                             <option value="2">Rejected</option>
@@ -90,47 +114,48 @@
 
 
                 <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
-                    (click)="getCompleteKycList('')">Apply</button>
+                    (click)="getCompleteKycList()">Apply</button>
 
 
             </div>
+        </form>
         </div>
         <!--End html for filter for Kyc Complete-->
 
         <!--Start html for filter for No of KYC per page with export button-->
-        <div class="row my-3"  *ngIf="completeKycList.dataSource" >
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center">
+        <div class="row my-3 align-items-center" *ngIf="completeKycList.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center">
 
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per
-                    Page</label>
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                    (change)="getCompleteKycList('1')" [(ngModel)]="completeKycList.pageSize">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                        (change)="getCompleteKycList('1')" [(ngModel)]="completeKycList.page_size">
+                        <option *ngFor="let count of completeKycList.pageCount" value="{{count}}">{{count}}</option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="download()"><i
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="download()"><i
                         class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for filter for No of KYC per page with export button-->
 
         <!--Start html for table content KYC information-->
-        <div class="tableDiv" *ngIf="completeKycList.dataSource" >
+        <div class="tableDiv" *ngIf="completeKycList.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="completeKycList.dataSource | paginate: completeKycList.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> {{i + completeKycList.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + completeKycList.startIndex}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="EIZatchUpIDOfUser">
-                        <mat-header-cell *matHeaderCellDef> EI ZatchUp ID Of User </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.zatchupId}}
                         </mat-cell>
@@ -139,7 +164,7 @@
                     <ng-container matColumnDef="NameOfUser">
                         <mat-header-cell *matHeaderCellDef> Name Of User </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.name_of_user}}
+                            {{element.name_of_user}} {{element.last_name}}
                         </mat-cell>
                     </ng-container>
 
@@ -158,21 +183,22 @@
                     <ng-container matColumnDef="RequestReason">
                         <mat-header-cell *matHeaderCellDef> Request Reason </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.request_reason}}
+                            {{element.request_reason == 0 ? 'First Time' : 'Re-submitted'}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="RequestType">
                         <mat-header-cell *matHeaderCellDef>Request Type</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.request_type == 0 ? 'First Time' : 'Re-submitted'}} </mat-cell>
+                            {{element.request_type == 0 ? 'New Sign-up' : 'Retriggered'}}
+                        </mat-cell>
                     </ng-container>
 
 
                     <ng-container matColumnDef="Status">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="text-center justify-content-center">
-                            <button class="{{element.status == 1 ? 'bg-paret-green' : 'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth">
+                            <button class="{{element.status == 1 ? 'bg-paret-green' : 'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
                                 {{element.status == 1 ? 'Approved' : 'Rejected'}} </button>
                         </mat-cell>
                     </ng-container>
@@ -187,7 +213,7 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="text-center justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View"
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View Details"
                                 (click)="kycHistoryViewRoute(element)"></i>
                         </mat-cell>
                     </ng-container>
@@ -198,13 +224,13 @@
             </div>
         </div>
         <pagination-controls *ngIf="completeKycList.dataSource" (pageChange)="getCompleteKycList($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
-    <div class="row" *ngIf="!completeKycList.dataSource">
-        <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!completeKycList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
         </div>
-    </div>
         <!-- <div class="row" *ngIf="!dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>

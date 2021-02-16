@@ -3,33 +3,34 @@
 <div class="container containerScrolling my-3  main-container pt-3">
     <div class=" bg-white px-3 py-2">
         <h2 class="commonFontSize semiBoldFont mb-0">School Profile</h2>
-        <div class="bannerDiv position-relative">
-            <img src="{{cover_pic?cover_pic:userProfile.cover_pic}}" class="img-fluid w-100">
-            <!-- <button class=" btn_position-absolute border-0 bg-light-black text-white p-2">Upload Cover Photo</button> -->
-            <button type="button" (click)="fileInput.click()"
+        <div class="bannerDiv position-relative mt-3">
+            <img *ngIf="userProfile"
+                src="{{userProfile.cover_pic ? userProfile.cover_pic : 'assets/images/cover-pic-default.png'}}"
+                class="img-fluid w-100">
+            <app-image-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadCoverInfo"></app-image-uploader>
+            <!-- <button type="button" (click)="fileInput.click()"
                 class=" btn_position-absolute border-0 bg-light-black text-white p-2">
-                <i class="fa fa-camera" aria-hidden="true"></i>
+                <i class="fa fa-camera" title="Upload" aria-hidden="true"></i>
                 <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
-            </button>
-            <!-- <span class=" btn_position-absolute border-0 bg-light-black text-white p-2" (click)="fileInput.click()"><i class="fa fa-camera" aria-hidden="true"></i></span> -->
-            
+            </button> -->
         </div>
-        <div class="">
-            <div class="row pt-2">
+        <div class="pt-2">
+            <div class="row">
                 <div class="col-md-5 text-right d-flex profileDivLeft py-0 pr-0 pl-5">
-
                     <div class="dpImgDiv rounded-circle border border-primary mb-3"
-                        style="background-image: url({{userProfile.profile_pic}})">
+                        [ngStyle]="userProfile.profile_pic ? {'background-image': 'url(' + userProfile.profile_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/profile-default.png' + ')'}">
                         <div class="upload-dp position-absolute">
-                            <button type="button" (click)="fileInput1.click()"
-                                class=" border-0 bg-transparent text-white p-2 cursorStyle">
+                            <!-- <button type="button" (click)="fileInput1.click()"
+                                class=" border-0 bg-transparent text-white p-2 cursorStyle d-block mt-3">
                                 <span><i class="fa fa-camera" aria-hidden="true"></i></span>
                                 <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
                                     style="display:none;" />
-                            </button>
+                            </button> -->
+                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                            </app-image-uploader>
                         </div>
                     </div>
-                    <img class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
+                    <img *ngIf="userProfile.approved == 1" class="img-fluid tick-img" src="assets/images/userWebsite/checkicon.png">
                     <div class="pl-4 pr-4 text-left">
                         <p class="m-0 commonFontSize mediumFont" title="name of school">{{userProfile.name_of_school}}
                         </p>
@@ -68,20 +69,38 @@
                         {{userProfile.overview}}
                     </p>
 
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">School phone : </span>
+                        {{userProfile.school_phone}}
+                    </p>
+
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Facebook URL : </span>
+                        {{userProfile.fb_url}}
+                    </p>
+
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">Twitter URL : </span>
+                        {{userProfile.twitter_url}}
+                    </p>
+                    <p class="commonFontSize regularFont"><span class="semiBoldFont">School Email : </span>
+                        {{userProfile.school_email}}
+                    </p>
+
 
                 </div>
 
                 <div class=" col-md-7 mtStyle pb-5">
 
                     <div class="form-control-inputDiv border-0 bg-light-green py-4 w-75">
-                        <p class="text-center m-0">Students in the school</p>
-                        <p class="text-center m-0 semiBoldFont"> {{userProfile.total_student}}</p>
+                        <p class="text-center m-0">Verified Students</p>
+                        <p class="text-center m-0 semiBoldFont cursorStyle" (click)="goToEiVerifiedStudentPage()"> {{userProfile.total_student}}</p>
                     </div>
                     <div class=" form-control-inputDiv border-0 bg-gary mt-3 py-4 w-75">
-                        <p class="text-center m-0 "> Alumni on ZatchUp
+                        <p class="text-center m-0 ">Verified Alumnis
                         </p>
-                        <p class="m-0 text-center color-purple semiBoldFont "> {{userProfile.total_alumni}}</p>
+                        <p class="m-0 text-center color-purple semiBoldFont cursorStyle" (click)="goToEiVerifiedAlumniPage()"> {{userProfile.total_alumni}}</p>
                     </div>
+                    <!-- <div>
+                        <app-image-uploader (imageData)="getImageData($event)"></app-image-uploader>
+                    </div> -->
                     <!-- <div class="row ">
                         <div class="col-12 colLeftPost ">
                             <div class="form-control-inputDiv ">

@@ -30,8 +30,15 @@ export class ActiveUsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.activeUsers.lastLoginParams = this.route.snapshot.queryParamMap.get('lastLoginParams');
+    if(this.activeUsers.lastLoginParams)
+    {
+      this.activeUsers.loginFromDate = JSON.parse(this.activeUsers.lastLoginParams).start_date;
+      this.activeUsers.loginToDate = JSON.parse(this.activeUsers.lastLoginParams).end_date;
+    }
     this.getActiveUsersList('');
     this.getAllState();
+    this.activeUsers.pageCount = this.baseService.getCountsOfPage();
   }
 
   getActiveUsersList(page?: any) {
@@ -51,8 +58,8 @@ export class ActiveUsersComponent implements OnInit {
     this.activeUsers.listParams = {
       'date_from': this.activeUsers.filterFromDate !== undefined ? this.datePipe.transform(this.activeUsers.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.activeUsers.filterToDate !== undefined ? this.datePipe.transform(this.activeUsers.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.activeUsers.loginFromDate !== undefined ? this.datePipe.transform(this.activeUsers.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.activeUsers.loginToDate !== undefined ? this.datePipe.transform(this.activeUsers.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_start_date': this.activeUsers.loginFromDate !== undefined ? this.datePipe.transform(this.activeUsers.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_end_date': this.activeUsers.loginToDate !== undefined ? this.datePipe.transform(this.activeUsers.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.activeUsers.page_size,
@@ -60,8 +67,9 @@ export class ActiveUsersComponent implements OnInit {
       "current_ei": this.activeUsers.currentEi,
       "previous_ei": this.activeUsers.previousEi,
       "age_group": this.activeUsers.ageGroup,
-      "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "kyc_aprroved": this.activeUsers.kycApproved !== undefined ? this.activeUsers.kycApproved: '',
+      "school_verified": this.activeUsers.schoolStatus !== undefined ? this.activeUsers.schoolStatus : '',
+      "zatchupId": this.activeUsers.zatchupId,
     }
 
     this.baseService.getData('admin/user/active_users_list/', this.activeUsers.listParams).subscribe(
@@ -74,8 +82,9 @@ export class ActiveUsersComponent implements OnInit {
           this.activeUsers.page_size = res.page_size
           this.activeUsers.config.currentPage = page
           this.activeUsers.config.totalItems = res.count;
-          if (res.count > 0)
+          if (res.count > 0){
             this.activeUsers.dataSource = res.results
+          }
           else
             this.activeUsers.dataSource = undefined
         }
@@ -116,6 +125,10 @@ export class ActiveUsersComponent implements OnInit {
         console.log('get state res ::', res)
       }
     )
+  }
+
+  userProfile(id: any){
+    this.router.navigate(['admin/user-profile', id])
   }
 
 }

@@ -1,6 +1,6 @@
-import { DatePipe, Location } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,19 +16,23 @@ export class AdminKycPendingRequestComponent implements OnInit {
   kycPendingRequest: KycPendingRequest;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private datePipe: DatePipe,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private location: Location
   ) {
     this.kycPendingRequest = new KycPendingRequest();
     this.kycPendingRequest.maxDate = new Date();
   }
 
   ngOnInit(): void {
-    this.getKycPendingRequest('')
+    this.route.queryParams.subscribe(params => {
+      this.setFilter(Object.keys(params)[0], Object.values(params)[0]);
+    });
+    this.getKycPendingRequest('');
+    this.kycPendingRequest.pageCount = this.baseService.getCountsOfPage();
   }
 
   kycHistoryViewRoute(user) {
@@ -37,14 +41,15 @@ export class AdminKycPendingRequestComponent implements OnInit {
 
   getKycPendingRequest(page) {
     this.kycPendingRequest.params = {
-      'date_from': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
-      'date_to': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
+      'start_date': this.kycPendingRequest.filterFromDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.kycPendingRequest.filterToDate !== undefined ? this.datePipe.transform(this.kycPendingRequest.filterToDate, 'yyyy-MM-dd') : '',
       'kyc_type': this.kycPendingRequest.kycType !== undefined ? this.kycPendingRequest.kycType : '',
-      'user_type': this.kycPendingRequest.userType !== undefined ? this.kycPendingRequest.userType : '',
+      'user_type': this.kycPendingRequest.userType !== undefined && this.kycPendingRequest.userType !== 'User' ? this.kycPendingRequest.userType : '',
+      'user': this.kycPendingRequest.userType !== undefined && this.kycPendingRequest.userType == 'User' ? this.kycPendingRequest.userType : '',
       'request_type': this.kycPendingRequest.requestType !== undefined ? this.kycPendingRequest.requestType : '',
       'request_reason': this.kycPendingRequest.requestReason !== undefined ? this.kycPendingRequest.requestReason : '',
-      'page_size': this.kycPendingRequest.pageSize,
-      'page': page ? page : 1
+      'page_size': this.kycPendingRequest.page_size,
+      'page': page
     }
     this.baseService.getData('admin/kyc/get_kyc_pending_summary/', this.kycPendingRequest.params).subscribe(
       (res: any) => {
@@ -52,10 +57,16 @@ export class AdminKycPendingRequestComponent implements OnInit {
           if (!page)
             page = this.kycPendingRequest.config.currentPage
           this.kycPendingRequest.startIndex = res.page_size * (page - 1) + 1;
-          this.kycPendingRequest.config.itemsPerPage = res.page_size
+          this.kycPendingRequest.page_size = res.page_size
+          this.kycPendingRequest.config.itemsPerPage = this.kycPendingRequest.page_size
           this.kycPendingRequest.config.currentPage = page
           this.kycPendingRequest.config.totalItems = res.count;
-          this.kycPendingRequest.dataSource = res.results
+          if (res.count > 0) {
+            this.kycPendingRequest.dataSource = res.results
+          }
+          else
+            this.kycPendingRequest.dataSource = undefined
+
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -74,7 +85,28 @@ export class AdminKycPendingRequestComponent implements OnInit {
     this.baseService.generateExcel('admin/kyc/export_kyc_pending/', 'kyc-pending', this.kycPendingRequest.params);
   }
 
-  goBack(): void{
-    this.location.back();
+  goBack(): void {
+    let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
+    this.router.navigate([returnUrl])
+  }
+
+  setFilter(type: any, value: any) {
+    if (type == 'user-type' && value != 'list') {
+      this.kycPendingRequest.userType = value
+    } else if (type == 'kyc-type' && value != 'list') {
+      this.kycPendingRequest.kycType = value
+    } else if (type == 'request-type' && value != 'list') {
+      if (value == 'retriggered')
+        this.kycPendingRequest.requestType = "1"
+      else
+        this.kycPendingRequest.requestType = "0"
+    } else if (type == 'request-reason' && value != 'list') {
+      if (value == 'first-time')
+        this.kycPendingRequest.requestReason = "0"
+      else
+        this.kycPendingRequest.requestReason = "1"
+    } else {
+
+    }
   }
 }

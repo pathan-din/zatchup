@@ -9,8 +9,15 @@ import { DOCUMENT } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
 })
 export class UserMySchoolTabComponent implements  OnInit, OnDestroy {
+  roleCheck:boolean=true;
   constructor(private router: Router, @Inject(DOCUMENT) private _document ) { }
   ngOnInit(): void {
+    var role = parseInt(localStorage.getItem("role"))
+    if(role==1 ){
+      this.roleCheck=true;
+    }else{
+      this.roleCheck=false;
+    }
     this._document.body.classList.add('bodybg-color');
   }
 
@@ -49,4 +56,5 @@ goToUserProfilePage(){
 goToMyEducationalProfilePage(){
   this.router.navigate(['user/my-educational-profile']);
 }
+
 }

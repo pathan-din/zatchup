@@ -5,7 +5,7 @@ body {
 }
 
 .contentSpaceTop {
-  margin-top: 8.5%;
+  padding-top: 8.5%;
 }
 
 .textSpace {
@@ -18,7 +18,7 @@ body {
 }
 
 .contentTopSpaceLanding {
-  margin-top: 10%;
+  margin-top: 100px;
 }
 
 @media (min-width: 1200px) {
@@ -80,6 +80,7 @@ body {
   color: #b4b4b4;
   background-color: #ffffff;
   line-height: 1;
+  width: max-content;
 }
 
 .searchTab .nav-tabs .nav-link.active {
@@ -103,7 +104,6 @@ body {
 .form-control-input {
   border: none;
   font-family: "SFUIDisplay-Regular";
-  /* color: #b4b4b4; */
 }
 
 .form-control-input::placeholder {
@@ -111,7 +111,6 @@ body {
 }
 
 .form-control:focus {
-  /* border: 1px solid #fff; */
   box-shadow: none;
 }
 
@@ -119,10 +118,10 @@ body {
 .form-control-inputDiv {
   border: 1px solid #c7cbd1;
   box-shadow: 0px 4px 9px 0px #dfdfdf;
-  border-radius: 10px;
+  border-radius: .2rem;
   outline: none;
   background: #ffffff;
-  overflow: hidden;
+  position: relative;
 }
 
 .form-control-input-padding {
@@ -144,7 +143,7 @@ body {
 
 .form-control-radioDiv-padding .custom-label {
   font-size: 0.875rem;
-  color: #b4b4b4;
+  /* color: #b4b4b4; */
   font-family: "SFUIDisplay-Regular";
 }
 
@@ -176,7 +175,7 @@ body {
 
 .checkmark {
   position: absolute;
-  top: 5px;
+  top: 3px;
   left: -20%;
   height: 20px;
   width: 20px;
@@ -207,7 +206,6 @@ body {
 
 .custom-radio input:checked ~ span {
   color: #463267;
-  font-weight: bold;
 }
 
 /* Style the indicator (dot/circle) */
@@ -236,9 +234,9 @@ body {
 /****************** select css*************************/
 
 .custom-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
   background: url("assets/images/gray_downArrow.png") #fff;
   background-repeat: no-repeat;
   background-size: 14px;
@@ -288,7 +286,7 @@ body {
 
 .form-bgImg {
   background-repeat: no-repeat;
-  background-size: 8.5%;
+  background-size: 7%;
   background-position: 98% center;
 }
 
@@ -299,7 +297,7 @@ body {
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
   background-size: 5%;
-  background-position: 100% center;
+  background-position: 98% center;
 }
 
 .form-phoneBgImg {
@@ -394,21 +392,7 @@ button:focus {
 
 /*************************************/
 
-.editIcon {
-  width: 30%;
-}
 
-.editImg {
-  position: absolute;
-  right: 27%;
-  width: 14%;
-}
-
-.deleteImg {
-  position: absolute;
-  right: 11%;
-  width: 14%;
-}
 
 .subHeaderImg {
   width: 3%;
@@ -420,17 +404,17 @@ button:focus {
 
 @media only screen and (max-width: 414px) {
   .contentSpaceTop {
-    padding-top: 70px;
+    padding-top: 105px;
   }
-  .contentTopSpaceLanding {
+  /* .contentTopSpaceLanding {
     margin-top: 35%;
-  }
+  } */
   .common-btn {
     line-height: 1;
   }
-  .col-sm-6 {
+  /* .col-sm-6 {
     padding: 0;
-  }
+  } */
   .mobile-input-6 {
     padding: 2%;
   }
@@ -442,13 +426,13 @@ button:focus {
     margin-bottom: 7%;
   }
   .form-bgImg {
-    background-size: 6%;
+    background-size: 10%;
   }
   .form-emailBgImg,
   .form-calenderBgImg,
   .form-genderBgImg,
   .form-passwordBgImg {
-    background-size: 8%;
+    background-size: 6%;
   }
   .form-phoneBgImg {
     background-size: 7.5%;
@@ -461,26 +445,39 @@ button:focus {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   /********************/
-  .editIcon {
-    width: 75%;
-  }
-  .editImg {
-    width: 20%;
-  }
-  .deleteImg {
-    right: 2%;
-    width: 20%;
-  }
+ 
+ 
   .subHeaderImg {
     width: 12%;
     margin: 3%;
   }
+
+  /* .pl-5, .px-5 {
+    padding-left: .5rem!important;
+  }
+  .pr-5, .px-5 {
+    padding-right: .5rem!important;
+  } */
+
+  /* .pl-0, .px-0 {
+    padding-left: 15px !important;
+  } */
+
+  .mobilePR {
+    padding-right: 15px!important;
+}
+
+.landingDiv{
+  padding: 2%;
+}
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .contentSpaceTop {
-    padding-top: 5%;
+    padding-top: 15%;
   }
   .form-bgImg {
     background-size: 12.5%;
@@ -501,22 +498,32 @@ button:focus {
     padding-right: 0 !important;
   }
   /******************************/
-  .editIcon {
-    width: 100%;
-  }
-  .editImg {
-    right: 100%;
-    width: 75%;
-  }
-  .deleteImg {
-    width: 75%;
-  }
+  
+ 
   .subHeaderImg {
     width: 6%;
     margin: 3%;
   }
 }
 
-
 .mySchoolDiv{border-radius: 25px;}
 .myProfileImg{height: 80px;}
+
+.editIcon {
+  width: 22px;
+}
+
+.editImg {
+  position: absolute;
+  right: 30px;
+  width: 14%;
+  width: 22px;
+}
+
+.deleteImg {
+  position: absolute;
+  right: 0%;
+  width: 14%;
+  width: 22px;
+}
+

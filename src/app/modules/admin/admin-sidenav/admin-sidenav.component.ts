@@ -6,6 +6,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -16,8 +18,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class AdminSidenavComponent implements OnInit {
   menus: any;
   moduleList: any;
-  user_type: any
-  userData: any
+  user_type: any;
+  userData: any;
+  notificationCount: any
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -25,13 +28,16 @@ export class AdminSidenavComponent implements OnInit {
     );
 
   small = false;
+  isLogin: boolean
 
   constructor(
     private location: Location,
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private baseService: BaseService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private firebaseService: FirebaseService,
+    private SpinnerService : NgxSpinnerService
   ) {
     this.breakpointObserver
       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
@@ -49,11 +55,22 @@ export class AdminSidenavComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log('current user....',this.firebaseService.currentUser)
+    // this.firebaseService.currentUser.subscribe(
+    //   res =>{
+    //     console.log('current user....',res)
+    //     if(!res)
+    //       this.firebaseSignup()
+    //   }
+    // )
+    this.isLogin = this.baseService.isLoggedIn()
+    this.userData = JSON.parse(sessionStorage.getItem('user'))
     if (sessionStorage.getItem('permissions'))
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
     if (localStorage.getItem('user_type'))
       this.user_type = localStorage.getItem('user_type')
-    this.getUserInfo();
+    // this.getUserInfo();
+    this.getNotificationCount()
 
   }
 
@@ -82,6 +99,7 @@ export class AdminSidenavComponent implements OnInit {
   }
 
   logout() {
+    this.SpinnerService.hide();
     localStorage.clear();
     sessionStorage.clear();
     this.router.navigate(['admin/login']);
@@ -105,16 +123,37 @@ export class AdminSidenavComponent implements OnInit {
     return true
   }
 
-  getUserInfo() {
-    this.baseService.getData('ei/auth-user-info/').subscribe(
-      (res: any) => {
-        if (res.status == true)
-          this.userData = res
+  // getUserInfo() {
+  //   this.baseService.getData('ei/auth-user-info/').subscribe(
+  //     (res: any) => {
+  //       if (res.status == true)
+  //         this.userData = res
+  //     }
+  //   )
+  // }
+
+  firebaseSignup(){
+    this.firebaseService.firebaseSignUp(this.userData.first_name,this.userData.last_name,this.userData.email,'Asdf@321#').then(
+      res =>{
+        console.log('firebase signup res is as ::',res)
       }
     )
   }
 
-  goBack(){
+  getNotificationCount() {
+    this.baseService.getData('admin/get_notifications_count/').subscribe(
+      (res: any) => {
+        if (res.status == true)
+          this.notificationCount = res.data.unread_notifications_count
+      }
+    )
+  }
+
+  notificationList() {
+    this.router.navigate(['admin/notification-list'])
+  }
+
+  goBack() {
     this.location.back()
   }
 }

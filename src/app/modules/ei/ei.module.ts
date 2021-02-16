@@ -111,7 +111,7 @@ import { SubadminPendingAccessComponent } from './subadmin/subadmin-pending-acce
 import { SubadminPendingRequestComponent } from './subadmin/subadmin-pending-request/subadmin-pending-request.component';
 import { SubadminRequestChangingComponent } from './subadmin/subadmin-request-changing/subadmin-request-changing.component';
 import { AboutUsComponent } from './setting/about-us/about-us.component';
-import { ChangePasswordComponent } from './setting/change-password/change-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SettingComponent } from './setting/setting/setting.component';
 import { ContactComponent } from './setting/contact/contact.component';
 import { PersonalComponent } from './setting/personal/personal.component';
@@ -142,7 +142,43 @@ import { DirectiveModule } from 'src/app/directives/directive.module';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SignUpPendingListComponent } from './student/sign-up-pending-list/sign-up-pending-list.component';
 import { EiProfilePreviewComponent } from './ei-profile-preview/ei-profile-preview.component';
-import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component'
+import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-for-sign-up.component';
+import { SentForApprovalComponent } from './student/sent-for-approval/sent-for-approval.component';
+import { SharedModule } from 'src/app/common/shared.module';
+import { RequestChangeDetailsComponent } from './student/request-change-details/request-change-details.component';
+import { SchooReminderComponent } from './school/schoo-reminder/schoo-reminder.component'
+import { ImageViewerModule } from 'src/app/common/image-viewer/image-viewer.module';
+import { AddMoreDocumentComponent } from './bank-information/add-more-document/add-more-document.component';
+import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
+import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
+import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
+
+
+const config = {
+  btnClass: 'default', // The CSS class(es) that will apply to the buttons
+  zoomFactor: 0.1, // The amount that the scale will be increased by
+  containerBackgroundColor: '#ccc', // The color to use for the background. This can provided in hex, or rgb(a).
+  wheelZoom: true, // If true, the mouse wheel can be used to zoom in
+  allowFullscreen: true, // If true, the fullscreen button will be shown, allowing the user to entr fullscreen mode
+  allowKeyboardNavigation: true, // If true, the left / right arrow keys can be used for navigation
+  btnIcons: { // The icon classes that will apply to the buttons. By default, font-awesome is used.
+    zoomIn: 'fa fa-plus',
+    zoomOut: 'fa fa-minus',
+    rotateClockwise: 'fa fa-repeat',
+    rotateCounterClockwise: 'fa fa-undo',
+    next: 'fa fa-arrow-right',
+    prev: 'fa fa-arrow-left',
+    fullscreen: 'fa fa-arrows-alt',
+  },
+  btnShow: {
+    zoomIn: true,
+    zoomOut: true,
+    rotateClockwise: true,
+    rotateCounterClockwise: true,
+    next: true,
+    prev: true
+  }
+};
 
 @NgModule({
   declarations: [
@@ -278,8 +314,14 @@ import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-
     SubadminschoolconfirmationComponent,
     SignUpPendingListComponent,
     EiProfilePreviewComponent,
-    SignUpPendingListComponent,
-    EiSentForSignUpComponent
+    EiSentForSignUpComponent,
+    SentForApprovalComponent,
+    RequestChangeDetailsComponent,
+    SchooReminderComponent,
+    AddMoreDocumentComponent,
+    RequestPendingForCourseComponent,
+    SubscriptionHistoryComponent,
+    AlumniSummaryComponent,
   ],
   imports: [
     CommonModule,
@@ -292,7 +334,9 @@ import { EiSentForSignUpComponent } from './student/ei-sent-for-sign-up/ei-sent-
     BsDatepickerModule,
     AutocompleteLibModule,
     DirectiveModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    SharedModule,
+    ImageViewerModule.forRoot(config),
   ],
   exports: [
     EiLoginComponent

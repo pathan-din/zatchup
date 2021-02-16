@@ -3,16 +3,16 @@
 
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row mb-3">
-            <div class="col-md-6"><h2 class="commonFontSize semiBoldFont mb-3 m-0">Manage Courses Offered by EI</h2></div>
+            <div class="col-md-6"><h2 class="commonFontSize semiBoldFont mb-3 m-0">Manage Courses Offered by School</h2></div>
             <div class="col-md-6">
                 <div class="button-div d-flex justify-content-end">
-                    <button type="button" class="bg-dark text-white py-2 px-3 border-0" (click)="goToCourseHistoryPage()">History</button>
+                    <!-- <button type="button" class="bg-dark text-white py-2 px-3 border-0" (click)="goToCourseHistoryPage()">History</button> -->
                     <button type="button" class="bg-dark text-white py-2 px-3 ml-3 border-0" (click)="goToManageCourseAddPage()">Add Course</button>
                 </div>
             </div>
         </div>
 
-        <div class="tableDiv ">
+        <div class="tableDiv " >
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource | paginate: config">
 
@@ -67,7 +67,9 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true" (click)="goToEiManageCoursesDetailsPage(element.id)"></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View" aria-hidden="true" (click)="goToEiManageCoursesDetailsPage(element.id)"></i>
+                            <i class="fa fa-pencil-square-o mr-2 color-lightBlue fa-lg cursorStyle" title="Edit" aria-hidden="true" (click)="goToEiEditPage(element.id)"></i>
+                            <i class="fa fa-trash-o mr-2 color-red fa-lg cursorStyle" title="Delete" aria-hidden="true" (click)="goToDelete(element.id)"></i>
                         </mat-cell>
                     </ng-container>
 

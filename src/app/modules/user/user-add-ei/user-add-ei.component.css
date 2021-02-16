@@ -1,19 +1,15 @@
-.down-arrow-6 {
-    background-size: 9%;
-}
+
 
 .left-Image {
     width: 80%;
 }
 
-@media only screen and (max-width: 414px) {
-    .down-arrow-6 {
-        background-size: 5.2%;
-    }
-}
+@media (max-width: 414px){    
 
-@media (min-width: 768px) and (max-width: 1024px) {
-    .down-arrow-6 {
-        background-size: 9%;
+    .pl-5, .px-5 {
+        padding-left: .5rem!important;
     }
+    .pr-5, .px-5 {
+        padding-right: .5rem!important;
+    } 
 }

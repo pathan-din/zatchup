@@ -48,13 +48,14 @@ export class UserSchoolConfirmationComponent implements OnInit {
   }
 
   goToUserCongratulationPage() {
-    this.router.navigate(['user/ei-profile'],{queryParams:{'school_id':this.schoolId}});
+    this.router.navigate(['user/add-ei'],{queryParams:{'school_id':this.schoolId}});
  }
  redirectToCurrentlyStudent(){
-  $("#currentStatusModel").modal({
-    backdrop: 'static',
-    keyboard: false
-  });
+   this.router.navigate(["user/add-ei"]);
+  // $("#currentStatusModel").modal({
+  //   backdrop: 'static',
+  //   keyboard: false
+  // });
  }
  
  getUserconfirmationBySchoolDetails()

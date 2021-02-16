@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { ConfirmDialogService } from 'src/app/common/confirm-dialog.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { Location } from '@angular/common';
 
 export interface subAdminManagementElement {
   'SNo': number;
@@ -45,13 +46,15 @@ export class SubadminPendingAccessComponent implements OnInit {
   modelReason: any = {};
   errorDisplay: any = {};
   userId: any;
+  pageCounts: any;
   constructor(
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     public base: BaseService,
     private alert: NotificationService,
     private confirmDialogService: ConfirmDialogService,
-    private ValidationService: GenericFormValidationService) { }
+    private ValidationService: GenericFormValidationService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.config = {
@@ -66,7 +69,7 @@ export class SubadminPendingAccessComponent implements OnInit {
     try {
       this.SpinnerService.show();
       //base
-      
+      this.model.page=page;
 
       //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
       this.base.getData('ei/pending-access-subadmin-list-by-ei/', this.model).subscribe(res => {
@@ -88,6 +91,7 @@ export class SubadminPendingAccessComponent implements OnInit {
          if(response.results.length>0)
          {
           this.dataSource = response.results;
+          this.pageCounts = this.base.getCountsOfPage()
          }else{
           this.dataSource =[];
          }
@@ -173,4 +177,7 @@ export class SubadminPendingAccessComponent implements OnInit {
     }
   }
 
+  goBack(): void{
+    this.location.back()
+  }
 }

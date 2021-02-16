@@ -5,6 +5,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 declare var $: any;
 
 @Component({
@@ -31,7 +32,8 @@ export class SubadminprofileComponent implements OnInit {
     public baseService: BaseService
     , private route: ActivatedRoute,
     public formBuilder: FormBuilder,
-    private genericFormValidationService: GenericFormValidationService) { }
+    private genericFormValidationService: GenericFormValidationService,
+    private alert:NotificationService) { }
 
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class SubadminprofileComponent implements OnInit {
      
 
     });
-    
+    this.getEiNumber();
     this.imagePath=this.baseService.serverImagePath;
   }
  
@@ -87,7 +89,23 @@ export class SubadminprofileComponent implements OnInit {
 
 
   }
-
+getEiNumber(){
+  try {
+   this.baseService.getData("subadmin/get-employe-num-of-subadmin/").subscribe(res=>{
+    let response:any=res;
+    if(response.status==true){
+      this.model.employee_num=response.employee_num;
+    }else{
+      this.alert.error("Id Number Not Fetched","Error")
+    }
+   },(error=>{
+     console.log("Error",error);
+     
+   }))
+  } catch (e) {
+  
+  }
+}
  
   uploadProfilePic(files) {
     let fileList: FileList = files;
@@ -98,6 +116,11 @@ export class SubadminprofileComponent implements OnInit {
 
   subAdminProfile(){
     this.errorDisplay = {};
+    if(!this.model.profile_pic)
+    {
+      this.alert.warning("Please upload image","Warning");
+     return false; 
+    }
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;

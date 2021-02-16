@@ -1,5 +1,5 @@
 <app-ei-sidenav></app-ei-sidenav>
-<div class="container main-container p-3">
+<div class="container main-container p-3" *ngIf="is_activate_subscription">
 
 
     <div class="Subscription-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
@@ -7,10 +7,10 @@
         <div class="row px-3">
             <div class="col-md-6 SubscriptionColDetail">
                 <!-- <img class=" img-fluid img-container mb-2" src="assets/images/userWebsite/loreal.jpg " alt="Card image "> -->
-                <div class="row pb-2 mx-0 mt-2 subscriptionBorderBottomStyle">
+                <!-- <div class="row pb-2 mx-0 mt-2 subscriptionBorderBottomStyle">
                     <div
                         class="col-xl-4 col-lg-4 col-md-4 col-4 p-0 commonFontSize mediumFont d-flex flex-row align-items-start">
-                        Plan Type
+                        Plan Duration
                     </div>
                     <div class="col-xl-8 col-lg-8 col-md-8 col-8 p-0 commonFontSize regularFont">
                         <span class="mr-3">:</span> {{subscriptionDetails?.name}}
@@ -33,7 +33,7 @@
                     <div class="col-xl-8 col-lg-8 col-md-8 col-8 p-0 commonFontSize regularFont">
                         <span class="mr-3">:</span> {{subscriptionDetails?.start_date | date: 'dd MMM yyyy'}}
                     </div>
-                </div>
+                </div> -->
                 <div class="row pb-2 mx-0 mt-2 subscriptionBorderBottomStyle">
                     <div
                         class="col-xl-4 col-lg-4 col-md-4 col-4 p-0 commonFontSize mediumFont d-flex flex-row align-items-start">
@@ -43,20 +43,192 @@
                         <span class="mr-3">:</span> {{subscriptionDetails?.end_date | date: 'dd MMM yyyy'}}
                     </div>
                 </div>
-                <div>
+                <!-- <div>
                     <h4 class="commonFontSize semiBoldFont mt-2 mb-1">Benefits </h4>
                     <p class="commonFontSize regularFont">
-                        <!-- At vero was N accusamus et iusto oclio dignissimos ducimus qui blandniis praesentium voluptatum
-                        deleniti alque corrupt quos dolores N quas molestias exsspturi sint occaecati cupid... -->
+                        At vero was N accusamus et iusto oclio dignissimos ducimus qui blandniis praesentium voluptatum
+                        deleniti alque corrupt quos dolores N quas molestias exsspturi sint occaecati cupid...
                     </p>
-                </div>
-                <div class="col-12 text-center">
-                    <button type="button" class="bg-blue text-white border-0 mr-3 py-2 px-4 commonFontSize regularFont letterspacing" (click)="renewSubscription()">Renew</button>
+                </div> -->
+                <div class="col-12 text-center mt-4">
+                    <button type="button" class="bg-purple text-white border-0 mr-3 py-2 px-4 commonFontSize regularFont letterspacing" (click)="renewSubscription()">Renew</button>
                     <!-- <button type="button" class="bg-paret-green text-white border-0  py-2 px-4 commonFontSize regularFont letterspacing" (click)="updateSubscription()">Update</button> -->
                 </div>
 
             </div>
             <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container main-container p-3" *ngIf="!is_activate_subscription">
+    <div class="SubscriptionUpdate-div bg-white border border-gray px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">                
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    Subscription</h2>
+            </div>
+        </div>
+      
+        <div class="row" *ngIf="subscriptionList && subscriptionList.length > 0">
+            <div class="col-12 border-bottom">
+                <h3 class="commonFontSize mediumFont my-2">Buy Subscription Plan</h3>
+            </div>
+            <div class="col-xl-7 col-12 bg-offwhite">                
+                <div class="form-group row pt-4">
+                    <div class="col-xl-6 col-lg-7-col-md-10 col-10 d-flex flex-column "
+                        *ngFor="let subscription of subscriptionList">
+                        <div class="d-flex flex-xs-column flex-row justify-content-between ">
+                            <mat-radio-button (change)="getAmount(subscription)" class="purple-checkbox mediumFont">
+                                {{subscription.name}}</mat-radio-button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3" *ngIf="subscription">
+                    <div class="col-md-12">
+                        <label for="" class=" mediumFont commonFontSize letterspacing">Amount</label>
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input [disabled]="true" name="subAmount" [(ngModel)]="subscription.current_amount"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Subscription Amount">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row mt-3" *ngIf="subscription">
+                    <div class="col-md-8">
+                        <div class="form-control-inputDiv rounded p-0 shadow-none">
+                            <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Coupon" name="coupon_code" [(ngModel)]="couponCode">
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <button type="button" class="bg-paret-green text-white py-2 px-4 border-0 mb-4"
+                            (click)="applyCoupon()">Apply Coupon
+                        </button>
+                    </div>
+                </div> -->
+
+                <div class="row mt-3">
+                    <div class="col-12 color-red commonFontSize mediumFont">** Selected Subscription plan will be added to your Current Plan </div>
+                </div>
+
+                <!-- <div class="row mt-3" *ngIf="applyCouponData">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-5">Subscription Total</div>
+                            <div class="col-7"><span class="mr-1">: {{applyCouponData.current_amount}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Discount Applied</div>
+                            <div class="col-7"><span class="mr-1">: {{applyCouponData.discount_amount}}</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5">Total Amount</div>
+                            <div class="col-7"><span class="mr-1">: {{applyCouponData.price}}</span></div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button type="button"
+                            class="bg-paret-green text-white py-2 px-4 border-0 mb-4" [disabled]="!subscription"
+                            (click)="makePayment()" aria-hidden="true" data-toggle="modal"
+                            data-target="#paymentModel">Proceed To
+                            Pay</button></div>
+                </div>
+
+                <!--col-7 end-->
+                <div class="col-xl-7">
+                </div>
+            </div>
+
+        </div>
+        <div class="row" *ngIf="subscriptionList && subscriptionList.length == 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+
+
+
+        <!-- Payment Model -->
+        <div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                        <button #closePaymentModel type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <div class="bg-white px-5 py-4">
+                            <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid">
+                            </div>
+                            <h2 class="text-center my-3 semiBoldFont">Payment Methods</h2>
+
+                            <form>
+                                <div class="form-group row" (click)="requestForTheRazorPayment(couponCode, true)">
+                                    <div
+                                        class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                                        <p class="m-0"> RazorPay</p>
+                                        <span class="double-right-spn">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <div
+                                        class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+
+                                        <p class="m-0"> Paytm</p>
+                                        <span class="double-right-spn">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row" (click)="goToEiChequeDetailsPage()">
+                                    <div
+                                        class="col-sm-12 form-control-inputDiv  p-2 py-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                                        <p class="m-0"> Cheque / DD</p>
+                                        <span class="double-right-spn">
+                                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row ">
+                                    <div class="col-7 form-control-inputDiv  p-1 rounded-0 shadow-none">
+                                        <input [(ngModel)]="couponCode" name="coupon_code"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing img-bg-div"
+                                            type="text" placeholder="Enter Coupon Code">
+
+                                    </div>
+                                    <div class="col-5   p-0 rounded-0 shadow-none">
+                                        <button type="button "
+                                            class="bg-purple border-0 text-white w-100 h-100 text-center p-2 commonFontSize mediumFont letterspacing"
+                                            (click)="applyCoupon()">Apply
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-6"></div>
+                                <div class=" col-md-6 letterspacing text-black text-right" [innerHtml]="paymentHtml">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

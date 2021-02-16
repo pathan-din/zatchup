@@ -3,7 +3,7 @@
     <div class="EI-management-div bg-white px-3 pt-2 pb-3">
         <div class="row topDiv mb-1">
             <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
-                <h2 class="commonFontSize semiBoldFont m-0">EI Management</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">School Management</h2>
             </div>
             <div class="col-md-7 SearchDiv d-flex flex-row justify-content-end flex-wrap mt-2">
                 <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0 mb-2"
@@ -23,24 +23,24 @@
             <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEIDatabase()">
-                    <p class="p-2 mediumFont commonFontSize">EI On Database</p>
+                    <p class="p-2 mediumFont commonFontSize">School On Database</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_no_of_ei}}</h2>
                     <p
                         class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total EI On Database:<span class="ml-2">{{responseJson?.total_no_of_ei}}</span></p>
+                        Total School On Database:<span class="ml-2">{{responseJson?.total_no_of_ei}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
-                    (click)="goToEIOnboardedOnZatchupList()">
-                    <p class="p-2 mediumFont commonFontSize">EI Onboard On ZatchUp</p>
-                    <h2 class="countFontSize text-center semiBoldFont">
+                (click)="goToEIOnboardedOnZatchupList('list')">
+                    <p class="p-2 mediumFont commonFontSize" >School Onboard On ZatchUp</p>
+                    <h2 class="countFontSize text-center semiBoldFont" (click)="goToEIOnboardedOnZatchupList('list')">
                         {{responseJson?.total_ei_on_zatchup}}
                     </h2>
-                    <div class="p-2  mediumFont commonFontSize Btn-lg-last d-flex flex-column bg-light-secondary">
-                        <p class="mb-0 ">Active SubscriptionPlan:
+                    <div class="p-2  mediumFont commonFontSize Btn-lg-last bg-light-secondary">
+                        <p class="mb-0 " (click)="goToEIOnboardedOnZatchupList('active')">Active Subscription Plan:
                             <span class="ml-2">{{responseJson?.ei_onboarded_zatch.active_subscription_plans}}</span></p>
-                        <p class="mb-0 ">Expired SubscriptionPlan:
+                        <p class="mb-0 " (click)="goToEIOnboardedOnZatchupList('expired')">Expired Subscription Plan:
                             <span class="ml-2">{{responseJson?.ei_onboarded_zatch.expired_subscription_plans}}</span>
                         </p>
                     </div>
@@ -49,12 +49,11 @@
             <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEiManagementIncompleteOnBoardingPage()">
-                    <p class="p-2 mediumFont commonFontSize">EI With Incomplete Onboarding</p>
+                    <p class="p-2 mediumFont commonFontSize">School With Incomplete Onboarding</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.ei_with_incomplete_onboard}}</h2>
-                    <p
-                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total No of EI With Incomplete Onboarding:<span
-                            class="ml-2">{{responseJson?.ei_with_incomplete_onboard}}</span></p>
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last bg-light-secondary">
+                        Total No of School With Incomplete Onboarding:
+                        <span class="ml-2">{{responseJson?.ei_with_incomplete_onboard}}</span></p>
                 </div>
             </div>
         </div>
@@ -63,34 +62,32 @@
             <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
                     (click)="goToAdminEiAddedByUserNotOnZatchUpPage()">
-                    <p class="p-2 mediumFont commonFontSize">EI Added by Users Not On ZatchUp</p>
+                    <p class="p-2 mediumFont commonFontSize">School Added by Users Not On ZatchUp</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_ei_not_on_zatchup}}</h2>
-                    <p
-                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total No of EI Added by Users Not On ZatchUp:<span
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last align-items-start bg-light-secondary">
+                        Total No of School Added by Users Not On ZatchUp:<span
                             class="ml-2">{{responseJson?.total_ei_not_on_zatchup}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 MobileCol6MB cursorStyle">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
                     (click)="goToAdminEiManagementPendingForApprovalPage()">
-                    <p class="p-2 mediumFont commonFontSize">EI Pending For Approval</p>
+                    <p class="p-2 mediumFont commonFontSize">School Pending For Approval</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{responseJson?.total_ei_pending_for_approval}}
                     </h2>
-                    <p
-                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total No Of EI Pending For Approval:
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last bg-light-secondary">
+                        Total No Of School Pending For Approval:
                         <span class="ml-2">{{responseJson?.total_ei_pending_for_approval}}</span></p>
                 </div>
             </div>
             <div class="col-md-4 cursorStyle">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none" (click)="changeDetailRequestsPending()">
-                    <p class="p-2 mediumFont commonFontSize">EI Change Detail Requests are Pending</p>
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none"
+                    (click)="changeDetailRequestsPending()">
+                    <p class="p-2 mediumFont commonFontSize">School Change Detail Requests are Pending</p>
                     <h2 class="countFontSize text-center semiBoldFont">
                         {{responseJson?.ei_change_details_request_pending}}</h2>
-                    <p
-                        class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last d-flex align-items-start bg-light-secondary">
-                        Total No of EI Change Detail Requests are Pending:
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg-last align-items-start bg-light-secondary">
+                        Total No of School Change Detail Requests are Pending:
                         <span class="ml-2">{{responseJson?.ei_change_details_request_pending}}</span></p>
                 </div>
             </div>
@@ -104,7 +101,7 @@
                     ({{responseJson?.view_status.added+responseJson?.view_status.similar_ei+responseJson?.view_status.rejected_ei}})
                 </h2>
                 <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-2">
-                    <div class="row pt-2">
+                    <div class="row cursorStyle pt-2" (click)="goToAdminEIDatabase()">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Added</p>
                         </div>
@@ -112,7 +109,7 @@
                             <p><span class="mr-2">:</span>{{responseJson?.view_status.added}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row cursorStyle">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Similar Education Institute</p>
                         </div>
@@ -120,8 +117,8 @@
                             <p><span class="mr-2">:</span>{{responseJson?.view_status.similar_ei}}</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                    <div class="row cursorStyle">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont" (click)="rejectedEI()">
                             <p>Rejected Education Institute</p>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
@@ -134,9 +131,9 @@
 
     </div>
 
-    <div class="Fee-dashboard-div bg-white px-2 py-2 mt-3">
+    <div class="Fee-dashboard-div bg-white px-3 py-2 mt-3">
         <h2 class="commonFontSize semiBoldFont">Fee Received</h2>
-        <form id="feeFilterForm">
+        <form id="feeFilterForm" autocapitalize="off" autocomplete="off">
             <div class="row">
                 <div class="col-12 d-flex flex-wrap align-items-end">
 
@@ -144,16 +141,16 @@
                         <label for="" class=" commonFontSize mediumFont letterspacing">Date From</label>
                         <input type="text" id="fee_Received_From_Date" name="fee_Received_From_Date"
                             placeholder="MM/DD/YYYY" class="form-control formfocusStyle" bsDatepicker
-                            [maxDate]="maxDate" [(ngModel)]="feeReceivedFromDate"
-                            [bsConfig]="{isAnimated: true, adaptivePosition: true }" required>
+                            [maxDate]="maxDate" [(ngModel)]="feeReceivedFromDate" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }" required>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_From_Date"></div>
                     </div>
 
                     <div class="MobileCol6MB mr-2">
                         <label for="" class=" commonFontSize mediumFont letterspacing">Date To</label>
                         <input type="text" id="fromDate" name="fee_Received_To_Date" placeholder="MM/DD/YYYY"
-                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate"
-                            [(ngModel)]="feeReceivedToDate" [bsConfig]="{isAnimated: true, adaptivePosition: true }"
+                            class="form-control formfocusStyle" bsDatepicker [maxDate]="maxDate" 
+                            [(ngModel)]="feeReceivedToDate" [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat:'YYYY-MM-DD' }"
                             required>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.fee_Received_To_Date"></div>
                     </div>
@@ -171,18 +168,20 @@
         </form>
         <div class="row mt-4">
             <div class="col-md-4 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
-                    <p class="p-2 mediumFont commonFontSize">On Boarding Fees Received</p>
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                (click)="paymentOnboardingRoute()" style="cursor: pointer;">
+                    <p class="p-2 mediumFont commonFontSize">Onboarding Fees Received</p>
                     <h2 class="countFontSize text-center semiBoldFont" *ngIf="feeData">
                         {{feeData?.onboarding_fees_received}}</h2>
                     <p
                         class="mb-0 p-2  mediumFont Btn-lg-last d-flex align-items-start commonFontSize bg-light-secondary">
-                        On Boarding Fees Received:<span class="ml-2"
+                        Onboarding Fees Received:<span class="ml-2"
                             *ngIf="feeData">{{feeData?.onboarding_fees_received}}</span></p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none "
+                (click)="subscriptionFeeRevenueRoute()" style="cursor: pointer;">
                     <p class="p-2 mediumFont commonFontSize">Subscription Fees Received</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{feeData?.subscription_fees_received}}</h2>
                     <p
@@ -193,7 +192,7 @@
         </div>
     </div>
 
-    <div class="comission-div bg-white px-3 py-2 mt-3">
+    <!-- <div class="comission-div bg-white px-3 py-2 mt-3">
         <div class="row">
             <div class="col-md-6">
                 <h2 class="commonFontSize semiBoldFont">Commission</h2>
@@ -213,8 +212,8 @@
             </div>
         </div>
 
-    </div>
-    <div class="school-ManagementReported-div bg-white px-2 py-2 mt-3">
+    </div> -->
+    <!-- <div class="school-ManagementReported-div bg-white px-3 py-2 mt-3">
         <h2 class="commonFontSize semiBoldFont">Reported</h2>
         <form id="reportedEIFilterForm">
             <div class="row">
@@ -250,7 +249,7 @@
         </form>
         <div class="row mt-4">
             <div class="col-md-5 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Times All El Are Reported</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{reportedEI?.no_of_all_ei_reported}}</h2>
                     <p
@@ -262,7 +261,7 @@
             </div>
 
             <div class="col-md-5">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ">
                     <p class="p-2 mediumFont commonFontSize">Number Of El Reported</p>
                     <h2 class="countFontSize text-center semiBoldFont">{{reportedEI?.no_of_ei_reported}}</h2>
                     <p
@@ -271,7 +270,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <!-- AddStudentModel  -->

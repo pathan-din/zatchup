@@ -10,59 +10,59 @@
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Name of user</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Lauren Molive</p>
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData">
+                        <p><span class="mr-3">:</span>{{userData.name}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Unique ZatchUp User ID</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData">
+                        <p><span class="mr-3">:</span>{{userData.zatchup_id}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Date Of Birth</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>25 Aug 1996</p>
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData">
+                        <p><span class="mr-3">:</span>{{userData.dob}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Gender</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Male</p>
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData">
+                        <p><span class="mr-3">:</span>{{userData.gender}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Email ID</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span> </p>
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData">
+                        <p><span class="mr-3">:</span> {{userData.email}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Phone Number</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span></p>
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData">
+                        <p><span class="mr-3">:</span>{{userData.phone}}</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6 commonFontSize mediumFont">
+                <div class="row" *ngIf="userData">
+                    <div class="col-6 commonFontSize mediumFont" *ngIf="userData.work_detail.length > 0">
                         <p>Work Details</p>
                     </div>
-                    <div class="col-6 commonFontSize regularFont">
+                    <div class="col-6 commonFontSize regularFont" *ngIf="userData.work_detail.length > 0">
                         <p><span class="mr-3"></span></p>
                     </div>
 
-                    <div class="col-12 commonFontSize regularFont">
+                    <div class="col-12 commonFontSize regularFont" *ngIf="userData.work_detail.length > 0">
                         <div class="row mx-0">
                             <div class="col-6 commonFontSize mediumFont">
                                 <p>Profession</p>
@@ -90,45 +90,46 @@
                     </div>
 
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="userData">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Father Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>Jimmy Changa</p>
+                        <p><span class="mr-3">:</span> {{userData.father_name}} </p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="userData">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Mother Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span>Pete Sariya</p>
+                        <p><span class="mr-3">: </span> {{userData.mother_name}} </p>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Work Details</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
                         <p><span class="mr-3">:</span></p>
                     </div>
-                </div>
-                <div class="row">
+                </div> -->
+                <!-- <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Bio for EI Profile</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
                         <p><span class="mr-3">:</span></p>
                     </div>
-                </div>
+                </div> -->
 
             </div>
-            <div class="col-md-6 col-right text-right">
+            <div class="col-md-6 col-right text-right" *ngIf="userData">
                 <p class="color-blue text-right">View History</p>
                 <div class="RightimgDiv mt-2">
-                    <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
-                    <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png">
+                    <img *ngIf="userData.kyc_approved == 1" class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
+                    <img *ngIf="userData.profile_pic" class="img-fluid Rightimg " src="{{userData.profile_pic}}">
+                    <img *ngIf="!userData.profile_pic" class="img-fluid Rightimg " src="assets/images/profile-default.png">
                 </div>
             </div>
 

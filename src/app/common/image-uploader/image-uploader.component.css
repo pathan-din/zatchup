@@ -1,0 +1,37 @@
+.btn_upload {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.round-camera-div {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    background-color: #FFF;
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 9px 0px #dfdfdf;
+    overflow: hidden;
+}
+
+.round-camera-div img {
+    position: absolute;
+    top: -8px;
+    left: -10px;
+    max-width: initial;
+}
+
+
+.left-Image {
+    width: 80%;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}

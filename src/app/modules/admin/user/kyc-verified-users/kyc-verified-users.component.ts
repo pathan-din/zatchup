@@ -30,7 +30,9 @@ export class KycVerifiedUsersComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getKycVerifiedUsersList('')
+    this.getKycVerifiedUsersList('');
+    this.getAllState();
+    this.kycVerified.pageCount = this.baseService.getCountsOfPage();
   }
 
   getKycVerifiedUsersList(page?: any) {
@@ -50,17 +52,19 @@ export class KycVerifiedUsersComponent implements OnInit {
     this.kycVerified.listParams = {
       'date_from': this.kycVerified.filterFromDate !== undefined ? this.datePipe.transform(this.kycVerified.filterFromDate, 'yyyy-MM-dd') : '',
       'date_to': this.kycVerified.filterToDate !== undefined ? this.datePipe.transform(this.kycVerified.filterToDate, 'yyyy-MM-dd') : '',
-      'login_from': this.kycVerified.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerified.loginFromDate, 'yyyy-MM-dd') : '',
-      'login_to': this.kycVerified.loginToDate !== undefined ? this.datePipe.transform(this.kycVerified.loginToDate, 'yyyy-MM-dd') : '',
+      'last_login_from': this.kycVerified.loginFromDate !== undefined ? this.datePipe.transform(this.kycVerified.loginFromDate, 'yyyy-MM-dd') : '',
+      'last_login_to': this.kycVerified.loginToDate !== undefined ? this.datePipe.transform(this.kycVerified.loginToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "page_size": this.kycVerified.page_size,
       "page": page,
-      "current_ei": this.kycVerified.currentEi,
-      "previous_ei": this.kycVerified.previousEi,
+      // "current_ei": this.kycVerified.currentEi,
+      // "previous_ei": this.kycVerified.previousEi,
       "age_group": this.kycVerified.ageGroup,
       "kyc_approved": this.kycApproved !== undefined ? this.kycApproved: '',
-      "status": this.status !== undefined ? this.status : '',
+      "is_disabled": this.kycVerified.status !== undefined ? this.kycVerified.status : '',
+      "school_verified": this.kycVerified.schoolStatus !== undefined ? this.kycVerified.schoolStatus : '',
+      "zatchupId": this.kycVerified.zatchupId,
     }
 
     this.baseService.getData('admin/user/kyc_verified_list/', this.kycVerified.listParams).subscribe(
@@ -73,8 +77,9 @@ export class KycVerifiedUsersComponent implements OnInit {
           this.kycVerified.config.itemsPerPage = this.kycVerified.page_size
           this.kycVerified.config.currentPage = page
           this.kycVerified.config.totalItems = res.count;
-          if(res.count > 0)
-          this.kycVerified.dataSource = res.results
+          if(res.count > 0){
+            this.kycVerified.dataSource = res.results
+          }
           else
           this.kycVerified.dataSource = undefined
         }
@@ -116,6 +121,10 @@ export class KycVerifiedUsersComponent implements OnInit {
         console.log('get state res ::', res)
       }
     )
+  }
+
+  userProfile(id){
+    this.router.navigate(['admin/user-profile',id])
   }
 
 }

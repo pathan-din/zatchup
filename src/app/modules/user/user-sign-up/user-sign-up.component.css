@@ -1,10 +1,7 @@
-.form-month-col {
-    background-size: 20%;
-}
+/* .form-control {
+    height: calc(1.4em + .75rem + 2px);
+} */
 
-.form-date-col {
-    background-size: 30%;
-}
 .calendarText{
     padding:2%;
 }
@@ -24,6 +21,9 @@
     border-radius: 10px!important;
 }
 
+.ptop {
+    padding-top: 70px;
+}
 
 /**************Role Model css start*********************/
 
@@ -71,5 +71,38 @@
 .eyeIcon{
     position: absolute;
     right: 7px;
-    top: 16px;
+    top: 13px;
+}
+
+.form-emailBgImg {
+    background-size: 4%;
+    background-position: 98% center;
+}
+
+.form-phoneBgImg {
+    background-size: 3%;
+    background-position: 98% center;
+}
+/* .custom-select {
+    height: calc(1.4em + .75rem + 2px);
+} */
+
+.custom-control-inline {
+    margin-right: 1.7rem;
+}
+
+.custom-control{padding-left: 0px !important;}
+
+
+@media (max-width: 414px){
+    .pl-0 {
+        padding-left: 0px !important;
+    }
+
+    .pl-5, .px-5 {
+        padding-left: .5rem!important;
+    }
+    .pr-5, .px-5 {
+        padding-right: .5rem!important;
+    } 
 }

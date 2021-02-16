@@ -25,7 +25,8 @@ export class EiSubadminManagementComponent implements OnInit {
     'Designation', 'Action'];
   dataSource: any;
   dasboardSummery: any
-
+  startIndex:any=1;
+  pageCounts: any;
   constructor(
     private genericFormValidationService: GenericFormValidationService,
     private router: Router,
@@ -46,12 +47,15 @@ export class EiSubadminManagementComponent implements OnInit {
   }
   sudAdminList(page, id) {
     try {
+      console.log(page);
+      
+
       this.SpinnerService.show();
       //base
       if (id) {
         this.model.user_id = id;
       }
-
+      this.model.page=page;
       //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
       this.base.getData('ei/subadmin-lists-by-ei/', this.model).subscribe(res => {
 
@@ -61,11 +65,13 @@ export class EiSubadminManagementComponent implements OnInit {
 
         this.subAdminList = response.results;
         this.pageSize = response.page_size;
+       
         this.model.page_size = this.pageSize
         this.totalNumberOfPage = response.count;
         this.config.itemsPerPage = this.pageSize
         this.config.currentPage = page
-        this.config.totalItems = this.totalNumberOfPage
+        this.config.totalItems = this.totalNumberOfPage;
+        this.pageCounts = this.base.getCountsOfPage();
         let arrStudentList: any = [];
         if (!page) { page = 1 }
         var i = (this.pageSize * (page - 1)) + 1;
@@ -82,8 +88,9 @@ export class EiSubadminManagementComponent implements OnInit {
           objStudentList.user_id = objData.user_id;
 
           objStudentList.Action = '';
-          i = i + 1;
           arrStudentList.push(objStudentList);
+          i = i + 1;
+          
         })
 
         this.dataSource = arrStudentList;
