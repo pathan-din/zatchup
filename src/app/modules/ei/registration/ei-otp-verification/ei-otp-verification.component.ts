@@ -105,20 +105,20 @@ export class EiOtpVerificationComponent implements OnInit {
    {
      flagRequired=false;
    }
-   if(!this.otp5)
-   {
-     flagRequired=false;
-   }else if(!this.otp6)
-   {
-     flagRequired=false;
-   }else if(!this.otp7)
-   {
-     flagRequired=false;
-   }
-   else if(!this.otp8)
-   {
-     flagRequired=false;
-   }
+  //  if(!this.otp5)
+  //  {
+  //    flagRequired=false;
+  //  }else if(!this.otp6)
+  //  {
+  //    flagRequired=false;
+  //  }else if(!this.otp7)
+  //  {
+  //    flagRequired=false;
+  //  }
+  //  else if(!this.otp8)
+  //  {
+  //    flagRequired=false;
+  //  }
    if(flagRequired==false)
    {
      this.error.push("Please enter OTP!");
@@ -131,7 +131,7 @@ export class EiOtpVerificationComponent implements OnInit {
    try{
      let data:any={};
      data.email=this.model.username;
-     data.phone_otp=this.otp1+this.otp2+this.otp3+this.otp4+this.otp5+this.otp6+this.otp7+this.otp8;
+     data.phone_otp=this.otp1+this.otp2+this.otp3+this.otp4;
      this.SpinnerService.show();
      this.eiService.verifyOtp(data).subscribe(res => {
       let response:any={}
