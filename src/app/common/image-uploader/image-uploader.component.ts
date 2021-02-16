@@ -96,7 +96,7 @@ export class ImageUploaderComponent implements OnInit {
         });
     } catch (err) {
       this.loader.hide();
-      console.log("vaeryfy Otp Exception", err);
+      console.log("exception", err);
     }
   }
 
