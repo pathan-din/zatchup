@@ -26,6 +26,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
 
   dataSource: any;
   educationInstitute: any;
+  message: any= {};
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -71,7 +72,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
       "state": stateFind ? stateFind.state : '',
       "university": this.onboardList.university,
       "is_payment": this.onboardList.stagePending,
-      "page_size": this.onboardList.pageSize,
+      "page_size": this.onboardList.page_size,
       "page": page
     }
 
@@ -83,6 +84,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
           this.onboardList.startIndex = res.page_size * (page - 1) + 1;
           this.onboardList.config.itemsPerPage = res.page_size
           this.onboardList.config.currentPage = page
+          this.onboardList.page_size = res.page_size;
           this.onboardList.config.totalItems = res.count;
           if (res.count > 0) {
             this.onboardList.dataSource = res.results;
@@ -125,8 +127,13 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     )
   }
 
-  deleteEI(id: any): any {
-    this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+  deleteEI(id: any , is_payment): any {
+   this.message = 'Are you sure you want to delete this User ?'
+   if(is_payment == 1){
+    this.message = 'This User has already given the onboarding fees. Are you sure you want to delete this user?'
+   }
+
+    this.confirmDialogService.confirmThis(this.message, () => {
       this.loader.show()
       this.baseService.action('admin/ei/delete_incomplete_ei/', { "ei_id": id }).subscribe(
         (res: any) => {

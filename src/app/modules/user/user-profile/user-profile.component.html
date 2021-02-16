@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="container containerScrolling mt-4 landingPageWidth ">
-    <div class="bannerDiv position-relative">
+    <div class="bannerDiv position-relative" *ngIf="userProfile">
         <img src="assets/images/cover-pic-default.png" class="img-fluid">
         <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
 
@@ -19,10 +19,13 @@
             </div>
 
             <div class="pl-2 text-left" *ngIf="userProfile">
-                <p class="m-0 commonFontSize mediumFont">{{userProfile.name}}</p>
+                <p class="m-0 commonFontSize mediumFont pt-4">{{userProfile.name}}</p>
+                <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
                 <!-- <p class="m-0 commonFontSize regularFont">You were in same clas in 2019</p> -->
             </div>
         </div>
+        <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
+
     </div>
     <div class="landingDiv pt-5 mt-2">
         <div class="row pt-2">
@@ -90,9 +93,7 @@
                                 <div *ngFor="let courseDetails of eduDetails.course_detail">
                                     <div class="mb-3">
                                         <p class="m-0 commonFontSize semiBoldFont">{{courseDetails.course_name}} <span
-                                                class="regularFont">( {{courseDetails.start_year}}-{{courseDetails.end_year}})</span></p>
-                                        <p class="color-purple " *ngIf="courseDetails.is_current_course"> Current School
-                                        </p>
+                                                class="regularFont">( {{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span></p>
                                     </div>
 
                                     <!-- <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch

@@ -68,10 +68,19 @@
     max-height: 25vh;
     height: 25vh;
 }
+.tickImg {
+    position: absolute;
+    bottom: 0px;
+    left: 27%;
+    z-index: 1;
+}
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
         width: 100%!important;
+    }
+    .tickImg{
+        left: 24%;
     }
 }
 
@@ -104,5 +113,9 @@
     }
     .dotted_img {
         width: 25%!important;
+    }
+    .tickImg{
+        bottom: 20px;
+        left: 58%;
     }
 }

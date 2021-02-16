@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit,ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
+
 @Component({
-  selector: 'app-image-uploader',
-  templateUrl: './image-uploader.component.html',
-  styleUrls: ['./image-uploader.component.css']
+  selector: 'app-cover-uploader',
+  templateUrl: './cover-uploader.component.html',
+  styleUrls: ['./cover-uploader.component.css']
 })
-export class ImageUploaderComponent implements OnInit {
+export class CoverUploaderComponent implements OnInit {
   @ViewChild('openModalButton') openModalButton: any;
   @ViewChild('closeButton') closeButton: any;
   @Output() imageData: EventEmitter<any> = new EventEmitter();
@@ -35,17 +36,14 @@ export class ImageUploaderComponent implements OnInit {
   icon: any;
   image: any;
   class_div: any;
-
   constructor(
     private loader: NgxSpinnerService,
     private alert: NotificationService,
     private baseService: BaseService
-
   ) { }
 
   ngOnInit(): void {
   }
-
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
     if (this.imageChangedEvent) {
@@ -66,7 +64,7 @@ export class ImageUploaderComponent implements OnInit {
     debugger
     /* show cropper */
   }
-  cropperReady() {
+  cropperReady(event: any) {
     debugger
     /* cropper ready */
   }
@@ -113,3 +111,4 @@ export class ImageUploaderComponent implements OnInit {
     return new File([u8arr], filename, { type: mime });
   }
 }
+
