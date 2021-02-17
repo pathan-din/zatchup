@@ -27,6 +27,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
   dataSource: any;
   educationInstitute: any;
   message: any= {};
+  model: any = {};
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -127,7 +128,11 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
     )
   }
 
-  deleteEI(id: any , is_payment): any {
+  deleteEI(id: any , is_payment, userId): any {
+    this.model ={
+      "ei_id": id,
+      "user_id": userId
+    }
    this.message = 'Are you sure you want to delete this User ?'
    if(is_payment == 1){
     this.message = 'This User has already given the onboarding fees. Are you sure you want to delete this user?'
@@ -135,7 +140,7 @@ export class AdminEiManagementIncompleteOnboardingComponent implements OnInit {
 
     this.confirmDialogService.confirmThis(this.message, () => {
       this.loader.show()
-      this.baseService.action('admin/ei/delete_incomplete_ei/', { "ei_id": id }).subscribe(
+      this.baseService.action('admin/ei/delete_incomplete_ei/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.alert.success(res.message, "Success")

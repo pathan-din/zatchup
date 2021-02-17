@@ -66,7 +66,7 @@ export class EiMobileVerificationComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          alert("OTP Resend On Your Register Mobile Number Or Email-Id.")
+          this.alert.success(response.message,"Success")
         } else {
           this.errorOtpModelDisplay = response.error;
           //alert(response.error)

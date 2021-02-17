@@ -1,0 +1,193 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    Bank Details Change Request Pending
+                </h2>
+            </div>
+            <!-- <div class="col-md-6 col-12 d-flex justify-content-end">
+                <div class="form-control-inputDiv rounded p-0 shadow-none ml-2">
+                    <input
+                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                        type="search" placeholder="Search..." [(ngModel)]="changeDetailRequestsPending.search"
+                        name="search">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 "
+                    (click)="searchList('1')">Apply</button>
+            </div> -->
+        </div>
+        <!-- <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">Add Sub Admin</h2>
+            </div>
+        </div> -->
+        <!-- <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <form autocapitalize="off" autocomplete="off">
+            <div class="d-flex flex-wrap align-items-end">
+                <div class="mr-3 mt-3 custumInputWidth ">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request From</label>
+                    <div class="rounded-0 p-0 shadow-none">
+                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                            id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="changeDetailRequestsPending.maxDate" 
+                            [(ngModel)]="changeDetailRequestsPending.filterFromDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Request To</label>
+                    <div class="rounded-0 p-0 shadow-none">
+                        <input class="form-control formfocusStyle commonFontSize regularFont letterspacing " type="text"
+                            id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="changeDetailRequestsPending.maxDate" 
+                            [(ngModel)]="changeDetailRequestsPending.filterToDate" #fromDate="ngModel"
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 custumInputWidth dropdown-lg-Div">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
+                            [(ngModel)]="changeDetailRequestsPending.stateId" (change)="getCities()" name="state">
+                            <option value=""> Select State</option>
+                            <option *ngFor="let state of changeDetailRequestsPending.allStates" [value]="state.id">
+                                {{state.state}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
+                        <select class="custom-select form-control-input" id="pastEI" required
+                            [(ngModel)]="changeDetailRequestsPending.cityId" name="city">
+                            <option value=""> Select City</option>
+                            <option *ngFor="let city of changeDetailRequestsPending.allCities" [value]="city.id">
+                                {{city.city}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Change Field</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none d-flex align-items-center">
+                        <select class="custom-select  form-control-input"
+                            [(ngModel)]="changeDetailRequestsPending.changeField" id="pastEI" name="changeField" required>
+                            <option value=""> Select Status</option>
+                            <option value="name_of_school">Name of School</option>
+                             <option value="email">Email</option> 
+                            <option value="full_address">Full Address</option>
+                             <option value="phone">Phone</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="mr-3 mt-3 custumInputWidth widthFull medium-filter-box">
+                    <label for="" class="mediumFont commonFontSize letterspacing">Board/University</label>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none d-flex align-items-center">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            type="text" id="board_university" placeholder="Board/University" name="board_university"
+                            [(ngModel)]="changeDetailRequestsPending.university">
+                    </div>
+                </div>
+                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-4 border-0 "
+                    (click)="filterData('1')">Apply</button>
+            </div>
+        </form>
+        </div> -->
+
+        <!--End html for filter for alumni list-->
+        <!--Start html for filter for No of alumni per page with export button-->
+
+        <div class="row my-3 align-items-center" *ngIf="changeInBankDetails.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="filterData('1')" [(ngModel)]="changeInBankDetails.page_size"
+                        class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option *ngFor="let count of changeInBankDetails.pageCount" value="{{count}}">{{count}}
+                        </option>
+                        <!-- <option value="10">10</option>
+                        <option value="15">15</option> -->
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div> -->
+        </div>
+
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+
+        <div class="tableDiv mt-4" *ngIf="changeInBankDetails.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table
+                    [dataSource]="changeInBankDetails.dataSource | paginate: changeInBankDetails.config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index">
+                            {{i + changeInBankDetails.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="bankName">
+                        <mat-header-cell *matHeaderCellDef> Bank Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.bank_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ifscCode">
+                        <mat-header-cell *matHeaderCellDef> IFSC Code </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.bank_ifsc_code}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="accountNo">
+                        <mat-header-cell *matHeaderCellDef> Bank Account No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.bank_account_no }}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="attachments">
+                        <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            
+                            <img src="{{element.cancel_cheque}}" alt="Attachments" style="height: 60px;"/>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" title="View Details"
+                                aria-hidden="true" routerLink="/admin/change-in-bank-details-view/{{element.id}}"></i>
+                            <!-- <i class="fa fa-envelope color-green cursorStyle" aria-hidden="true" title="View"></i> -->
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="changeInBankDetails.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: changeInBankDetails.displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="changeInBankDetails.dataSource" (pageChange)="filterData($event)"
+            class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="!changeInBankDetails.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

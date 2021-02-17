@@ -131,6 +131,9 @@ import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-ticke
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
 import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-view/admin-ei-reject-details-view.component';
+import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details-pending/change-in-bank-details-pending.component';
+import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
+
 
 const routes: Routes = [
   {
@@ -522,6 +525,12 @@ const routes: Routes = [
   },
   {
     path: "rejected-ei-view/:id", component: AdminEiRejectDetailsViewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path:"change-in-bank-details-pending", component:ChangeInBankDetailsPendingComponent, canActivate: [AuthGuard]
+  },
+  {
+    path:"change-in-bank-details-view/:id", component:ChangeInBankDetailsViewComponent, canActivate:[AuthGuard]
   },
   {
     path: '**', component: AdminPageNotFoundComponent

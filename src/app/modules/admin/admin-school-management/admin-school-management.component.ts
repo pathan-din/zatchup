@@ -98,7 +98,9 @@ export class AdminSchoolManagementComponent implements OnInit {
   changeDetailRequestsPending() {
     this.router.navigate(['admin/change-detail-requests-pending']);
   }
-
+ changeBankDetailsRequestPending(){
+   this.router.navigate(['admin/change-in-bank-details-pending'])
+ }
   rejectedEI() {
     this.router.navigate(['admin/rejected-ei-list']);
   }

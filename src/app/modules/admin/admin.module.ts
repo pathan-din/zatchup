@@ -160,6 +160,8 @@ import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-ticke
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
 import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-view/admin-ei-reject-details-view.component';
+import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details-pending/change-in-bank-details-pending.component';
+import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -326,7 +328,9 @@ const config = {
     ResolveTicketsComponent,
     TermsConditionsComponent,
     OnboardedSchoolHistoryComponent,
-    AdminEiRejectDetailsViewComponent
+    AdminEiRejectDetailsViewComponent,
+    ChangeInBankDetailsPendingComponent,
+    ChangeInBankDetailsViewComponent
   ],
   imports: [
     CommonModule,
