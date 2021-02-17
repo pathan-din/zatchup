@@ -4,6 +4,7 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { InputSearchComponent } from './input-search/input-search.component';
 import { AutoSearchComponent } from './auto-search/auto-search.component';
+import { CoverUploaderComponent } from './cover-uploader/cover-uploader.component';
 
 
 
@@ -11,7 +12,8 @@ import { AutoSearchComponent } from './auto-search/auto-search.component';
   declarations: [
     ImageUploaderComponent,
     InputSearchComponent,
-    AutoSearchComponent
+    AutoSearchComponent,
+    CoverUploaderComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { AutoSearchComponent } from './auto-search/auto-search.component';
   ],
   exports: [
     ImageUploaderComponent,
-    InputSearchComponent
+    InputSearchComponent,
+    CoverUploaderComponent
   ]
 })
 export class SharedModule { }

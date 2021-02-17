@@ -123,7 +123,7 @@ export class UserHeaderComponent implements OnInit {
 
   getSearchResult(data: any) {
     if (data.user_type == 'SCHOOL')
-      this.router.navigate(['user/school-profile'], { queryParams: { "id": data.id } })
+      this.router.navigate(['user/school-profile'], { queryParams: { "school_id": data.school_id } })
     else
       this.router.navigate(['user/profile'], { queryParams: { "id": data.id } })
   }

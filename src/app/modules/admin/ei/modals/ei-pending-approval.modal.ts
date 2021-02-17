@@ -1,3 +1,14 @@
+export class Pagination {
+    dataSource: any;
+    page_size: any;
+    startIndex: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    };
+    pageCounts: any;
+}
 export class EIPendingApproval {
     startIndex: Number;
     listParams: any = {}
@@ -26,8 +37,8 @@ export class EIPendingApproval {
     ei_id: any = '';
 }
 
-export class OnBoardList {
-    startIndex: Number;
+export class OnBoardList extends Pagination {
+    // startIndex: Number;
     listParams: any = {}
     pageSize: any;
     stateId: any = '';
@@ -36,15 +47,15 @@ export class OnBoardList {
     allCities: any;
     state: any = '';
     city: any = '';
-    pageCounts: any;
-    config = {
-        itemsPerPage: 0,
-        currentPage: 1,
-        totalItems: 0
-    }
+    // pageCounts: any;
+    // config = {
+    //     itemsPerPage: 0,
+    //     currentPage: 1,
+    //     totalItems: 0
+    // }
     displayedColumns: string[] = ['position', 'zatchUpID', 'schoolName', 'state', 'city', 'signUpDate', 'onboardStage', 'action'];
 
-    dataSource: any;
+    // dataSource: any;
     university: any;
     stagePending: any = '';
     message: any
@@ -53,6 +64,7 @@ export class OnBoardList {
     stateName: any;
     cityName: any;
     search: any;
+//   page_size: any;
 }
 
 export class notOnZatchup {

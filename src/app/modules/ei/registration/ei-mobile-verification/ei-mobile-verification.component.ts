@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class EiMobileVerificationComponent implements OnInit {
   model:any={};
+  email: any
   errorOtpModelDisplay:any;
   otp1:any;
   otp2:any;
@@ -40,8 +41,8 @@ export class EiMobileVerificationComponent implements OnInit {
     if(localStorage.getItem('num'))
     {
       this.model.phone = atob(localStorage.getItem('num'));
+      this.email = atob(localStorage.getItem('email'))
     }
-    
   }
   changeInput($ev)
   {

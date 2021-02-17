@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-6 commonFontSize regularFont">
                                 <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
-                                        {{kycHistoryModal.kycDetails.request_reason}}</span> </p>
+                                        {{kycHistoryModal.kycDetails.request_reason == 0 ? 'First Time' : 'Re-Submitted'}}</span> </p>
                             </div>
                         </div>
                         <div class="row">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="col-6 commonFontSize regularFont">
                                 <p><span class="mr-3" *ngIf="kycHistoryModal.kycDetails">:
-                                        {{kycHistoryModal.kycDetails.request_type == 0 ? 'First Time' : 'Re-submitted'}}</span>
+                                        {{kycHistoryModal.kycDetails.request_type == 0 ? 'New Sign Up' : 'Retriggered'}}</span>
                                 </p>
                             </div>
                         </div>

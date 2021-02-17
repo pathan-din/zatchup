@@ -285,6 +285,7 @@ export class EiSchoolRegisterComponent implements OnInit {
           {
 
             localStorage.setItem('num', btoa(this.model.phone));
+            localStorage.setItem('email', btoa(this.model.email));
             this.router.navigate(['ei/mobile-verification']);
           }else{
            
