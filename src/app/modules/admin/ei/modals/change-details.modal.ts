@@ -60,4 +60,5 @@ export class ChangeInBankDetailView extends Pagination {
     rejectionReason: any;
     rejectionRemark: any;
     id: any;
+    cancel_cheque:any;
 }
