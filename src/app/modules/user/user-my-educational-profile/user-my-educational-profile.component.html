@@ -29,7 +29,7 @@
                              </app-image-uploader>
                             </div>
 
-                        <div class="pl-2 text-left">
+                        <div class="pl-5 text-left">
                             <p class="m-0 commonFontSize semiBoldFont" ><span *ngIf="objEpData.kyc_approved==0">{{objEpData.name}}</span><a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>

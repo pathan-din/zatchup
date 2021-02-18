@@ -26,12 +26,12 @@
     color: #ccc;
 }
 
-.userNavUl .nav-item a.nav-link:active {
+/* .userNavUl .nav-item a.nav-link:active {
     border-radius: 10px;
     background: #ffffff;
     color: #463267;
     font-weight: 600;
-}
+} */
 
 .headerDP {
     width: 50px;
