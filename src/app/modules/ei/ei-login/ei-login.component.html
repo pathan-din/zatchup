@@ -12,9 +12,10 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-user text-white" aria-hidden="true"></i>
                                     </span>
-                            <input id="Email_ID" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="email" placeholder="Enter Email ID / Mobile Number" [(ngModel)]="model.username" name ="Email_ID">
+                            <input id="Email_ID" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" 
+                            type="text" optional="email,phone" placeholder="Enter Email ID / Mobile Number" [(ngModel)]="model.username" name ="Email_ID">
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.Email_ID"></div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.username"></div>
                     </div>
 
                     <div class="form-group row  ml-0 mr-0">
