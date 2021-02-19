@@ -83,6 +83,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   ngOnInit(): void {
     this.serverImageUrl = environment.serverImagePath
     console.log('environment......',this.serverImageUrl)
+    console.log('lllllll.....',localStorage.getItem('user_id'))
     this.route.queryParams.subscribe(param=>{
       this.countIndex= param.reg_steps-1;
       this.params=param;
@@ -189,7 +190,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   }
 
   getCityByState(state) {
-    this.model.school_data = {};
+    // this.model.school_data = {};
     this.isValid(event);
     let obj = this.stateList.find(o => o.state === state);
 
@@ -212,7 +213,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   getAllState() {
     //getallstate
     try {
-      this.model.school_data = {};
+      // this.model.school_data = {};
       this.loader.show();
 
       this.eiService.getallstate(this.model).subscribe(res => {
@@ -372,7 +373,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       formData.append('opening_date', this.baseService.getDateFormat(this.model.opening_date));
       formData.append('gst_no', this.model.gst_no);
       formData.append('overview', this.model.overview);
-      this.eiService.updateOnboardStepFirstData(formData, localStorage.getItem('user_id')).subscribe(
+      this.eiService.updateOnboardStepFirstData(this.model, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
