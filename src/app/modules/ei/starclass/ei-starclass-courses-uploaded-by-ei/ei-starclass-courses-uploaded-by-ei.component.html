@@ -3,17 +3,19 @@
 
     <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
         
-        <div class="d-flex justify-content-between mb-2">
-            <span class="mr-3 cursorStyle">
-                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-            </span>
-            <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>
-            <div class="button-div">
+        <div class="row">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center mb-2">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>            
+            </div>
+            <div class="col-md-6 text-right">
                 <button type="button" class="bg-dark text-white py-2 px-3 border-0">Create Course</button>
             </div>
         </div>
 
-        <div class="tableDiv ">
+        <div class="tableDiv mt-3">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource">
 
