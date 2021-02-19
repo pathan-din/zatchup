@@ -9,20 +9,22 @@
             </div>
             <div class="col-xl-9 col-12 button-div commonFontSize regularFont">
                 <button type="button" class="btn  py-2 px-2 border-0">Upload</button>
-                <select class="border-0 px-2">
+                <button type="button" class="btn  py-2 px-2 border-0" (click)="goToMyCourse()">My Courses</button>
+                <button type="button" class="btn  py-2 px-2 border-0" (click)="goToYourOrder()">Your Orders</button>
+
+                <!-- <select class="border-0 px-2">
                     <option value="">My Courses</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
+                    <option value="1">ZatchUp StarClass </option>
+                    <option value="2">Uploaded by EI
+                    </option>
                 </select>
                 <select class="border-0 px-2">
                     <option value="">Your Orders</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                </select>
+                    <option value="1">Download Invoice</option>
+                </select> -->
                 <button type="button" class="btn py-2 px-2 border-0">Pending ZatchUp StarClass</button>
-                <button type="button" class="btn  py-2 px-2 border-0">My Cart</button>
-
-            </div>
+                <button type="button" class="btn  py-2 px-2 border-0" (click)="goToMyCart()">My Cart</button>
+             </div>
         </div>
         <!--ZatchUp StarClass Filter-->
         <div class="filterDiv  px-3 pb-4 mt-3">
@@ -93,7 +95,7 @@
         <!--ZatchUp StarClass Package-->
         <div class="row m-0">
             <div class="col-md-4 col-sm-4 mb-3">
-                <div class="card p-2 rounded-0">
+                <div class="card p-2 rounded-0" (click)="goToCoursePreview()">
                     <img class="card-img-top starclass-card-img border border-gray rounded-0" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
                     <div class="card-body p-0">
                         <div class="row commonFontSize regularFont border-bottom border-gray py-2 m-0">

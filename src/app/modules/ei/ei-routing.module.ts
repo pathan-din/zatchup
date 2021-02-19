@@ -136,6 +136,9 @@ import { AddMoreDocumentComponent } from './bank-information/add-more-document/a
 import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
 import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
 import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
+import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourses/ei-starclass-mycourses.component';
+import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
+
 
 const routes: Routes = [
   {
@@ -529,6 +532,13 @@ const routes: Routes = [
   {
     path: 'alumni-summary', component: AlumniSummaryComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'ei-starclass-mycourses', component: EiStarclassMycoursesComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'ei-starclass-your-order', component: EiStarclassYourOrderComponent, canActivate: [AuthGuard]
+  },
+
 
   
   

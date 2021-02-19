@@ -45,7 +45,7 @@ export class DatabaseListComponent implements OnInit {
   }
 
   eiDbView(data) {
-    if (data.user_id && data.user_id !== null) {
+    if (data.is_onboarded == 1) {
       this.router.navigate(['admin/ei-onboarded-view', data.user_id]);
     }
     else

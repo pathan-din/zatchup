@@ -1,7 +1,14 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="coursePreview-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
+        <div class="row topDiv">
+            <div class="col-xl-6 col-lg-6 pr-0 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
+            </div>
+        </div>
         <!--Video image div of coursePReview-->
 
         <div class="row">
@@ -9,10 +16,10 @@
                 <iframe class="previewVideo w-100 border border-gray" src="https://www.youtube.com/embed/tgbNymZ7vqY">
                 </iframe>
             </div>
-            <div class="col-4">
+            <!-- <div class="col-4">
                 <img src="assets/images/userWebsite/kyc_successfully_done.png" class="img-fluid previewImg border border-gray">
 
-            </div>
+            </div> -->
         </div>
         <!--End Video image div of coursePReview-->
 
@@ -24,9 +31,9 @@
             <div class="col-6 ">
                 <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
             </div>
-            <div class="col-6 text-right">
+            <!-- <div class="col-6 text-right">
                 <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 ">History</button>
-            </div>
+            </div> -->
         </div>
         <div class="mt-2 border-0 mx-0">
             <!-- start Div for banner-->
@@ -109,6 +116,16 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Buy Course</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span class="textUnderlineStyle color-blue cursorStyle"> Click</span></p>
+
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Audience For The Course
                             </p>
                         </div>
@@ -116,16 +133,7 @@
                             <p><span class="mr-3">:</span></p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Add Audience</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="color-blue"><span class="mr-3 text-dark">:</span><span class="textUnderlineStyle color-blue cursorStyle"> Add</span></p>
-
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -198,7 +206,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p class="color-blue"><span class="mr-3 text-dark">:</span><span class="textUnderlineStyle color-blue cursorStyle"> Edit</span></p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!--End div for oView Course Details-->
@@ -206,10 +214,10 @@
 
     </div>
 
-    <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">
+    <!-- <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
 
-        <!--Start html for "table Course Lecture" and Export Button-->
+        Start html for "table Course Lecture" and Export Button
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
@@ -231,7 +239,7 @@
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource">
 
-                    <!-- Position Column -->
+                     Position Column 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
@@ -242,7 +250,7 @@
                         <mat-cell *matCellDef="let element"> {{element.lectureTitle}} </mat-cell>
                     </ng-container>
 
-                    <!-- Name Column -->
+                    Name Column 
                     <ng-container matColumnDef="topicsCoverd">
                         <mat-header-cell *matHeaderCellDef> Topics Covered </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -297,6 +305,6 @@
                 </mat-table>
             </div>
         </div>
-        <!--End html for " table Course Lecture" and Export Button-->
-    </div>
+        End html for " table Course Lecture" and Export Button
+    </div> -->
 </div>
