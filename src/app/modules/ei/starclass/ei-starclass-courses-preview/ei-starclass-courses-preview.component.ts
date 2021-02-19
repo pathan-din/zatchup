@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
+
 export interface PeriodicElement {
   position: number;
   lectureTitle: string;
@@ -30,10 +32,16 @@ export class EiStarclassCoursesPreviewComponent implements OnInit {
   displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd','viewDetails','durationOfLecture','uploadedBy', 'uploadDate','deleteLecture','play'];   
 
   dataSource = ELEMENT_DATA;
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private location: Location
+    ) { }
 
 
   ngOnInit(): void {
   }
 
+  goBack(){
+    this.location.back()
+  }
 }
