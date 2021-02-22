@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 mb-3 cursorStyle"  (click)="gotoChatWithTeachers()">
+                    <div *ngIf="verified == '1'" class="col-md-12 mb-3 cursorStyle"  (click)="gotoChatWithTeachers()">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/chat-teacher.png" alt="project funding" class="myProfileImg"/>
                             <p class="pt-2">Chat with Teachers</p>
