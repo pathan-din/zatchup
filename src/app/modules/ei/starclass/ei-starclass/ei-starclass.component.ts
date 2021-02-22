@@ -30,4 +30,7 @@ export class EiStarclassComponent implements OnInit {
   goToMyCart(){
     this.router.navigate(['ei/star-class-cart'])
   }
+  goToPendingRequest(){
+    this.router.navigate(['ei/starclass-requests-pending'])
+  }
 }
