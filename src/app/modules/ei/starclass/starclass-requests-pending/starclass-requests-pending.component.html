@@ -1,0 +1,109 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+
+    <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
+        
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center mb-2">               
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    ZatchUp Starclass Requests Pending</h2>            
+            </div>
+            <!-- <div class="col-md-6 text-right">
+                <button type="button" class="bg-dark text-white py-2 px-3 border-0">Create Course</button>
+            </div> -->
+        </div>
+
+        <div class="row my-3">
+            <div class="col-12 col-md-6 d-flex flex-row align-items-center MobileCol6MB">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select name="page_size"
+                        class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <!-- <option value="">select One</option> -->
+                        <!-- <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option> -->
+
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1 mr-2">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-blue text-white border-0 px-2 py-1">Bulk Action</button>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="selectCheck">
+                        <mat-header-cell *matHeaderCellDef class="text-center"> <input type="checkbox" name="check"> </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center"> <input type="checkbox" name="check"> </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfStudent">
+                        <mat-header-cell *matHeaderCellDef> Name of Student </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.nameOfStudent}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.class}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rollNumber">
+                        <mat-header-cell *matHeaderCellDef> Roll Number </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.rollNumber}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="courseTitle">
+                        <mat-header-cell *matHeaderCellDef> Course Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.courseTitle}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lectureTitle">
+                        <mat-header-cell *matHeaderCellDef> Lecture Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.lectureTitle}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="byStudent">
+                        <mat-header-cell *matHeaderCellDef>Remarks By Student </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.byStudent}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
