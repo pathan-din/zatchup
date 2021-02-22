@@ -3,6 +3,13 @@
     overflow-y: scroll;
 }
 
+.customDiv {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 .dpImgDiv {
     width: 10%;
 }
