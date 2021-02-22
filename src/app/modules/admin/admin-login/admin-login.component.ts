@@ -69,11 +69,6 @@ export class AdminLoginComponent implements OnInit {
               phone: res.phone
             }
             sessionStorage.setItem('user', JSON.stringify(user))
-            if (this.remember) {
-              localStorage.setItem('userDetail', JSON.stringify(this.model));
-            } else {
-              localStorage.removeItem('userDetail')
-            }
             localStorage.setItem("token", res.token);
             localStorage.setItem('user_type', res.user_type)
             sessionStorage.setItem('permissions', JSON.stringify(res.permissions))
