@@ -104,8 +104,6 @@ export class EiSidenavComponent {
       var data = moduleList.find(el => {
         return el.module_code == module_code
       })
-
-
       if (data) {
         return data.is_access;
       } else {
@@ -211,7 +209,7 @@ export class EiSidenavComponent {
              if (nUrl) {
               if(this.route.snapshot.params.invoice=='onboarding'){
                    
-                console.log('dfdfdf'+this.route.snapshot.params.invoice,parameter);
+                
                 this.router.navigate(['ei/invoice-list/' +this.route.snapshot.params.invoice]);
               }else
                 this.router.navigate(['ei/' + thisUrl]);

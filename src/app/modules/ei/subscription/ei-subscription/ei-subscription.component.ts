@@ -128,7 +128,9 @@ export class EiSubscriptionComponent implements OnInit {
               "handler": function (res) {
                 if (res.razorpay_payment_id) {
                   that.closePaymentModel.nativeElement.click()
-                  window.location.href = '#/ei/subscription';
+                  that.getSubscriptionDetail()
+                  that.getSubList();
+                  // window.location.href = '#/ei/subscription';
                 }
               },
               "notes": {

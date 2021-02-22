@@ -378,6 +378,9 @@ export class EiOnboardingProcessComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             this.getCourseDetailsByEiOnboard();
+            if( this.params.redirect_url){
+              this.router.navigate(["ei/"+this.params.redirect_url]);
+            }
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
@@ -584,6 +587,9 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
+            if( this.params.redirect_url){
+              this.router.navigate(["ei/"+this.params.redirect_url]);
+            }
             this.myStepper.selected.completed = true;
             this.myStepper.next();
 

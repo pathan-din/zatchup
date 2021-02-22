@@ -97,6 +97,7 @@ export class UserEiProfileComponent implements OnInit {
             this.model.existing_course_id = this.model.course_id;
 
           }
+          this.model.comment = res.data.description;
           this.model.school_id = this.schoolId;
           // this.displayClassList(res.data.join_standard_id);
           this.displayClassList(res.data.current_standard_id);
