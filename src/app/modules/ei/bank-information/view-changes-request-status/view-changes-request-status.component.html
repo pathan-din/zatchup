@@ -44,6 +44,7 @@
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">                            
                             <button type="button" class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
+                            <button (click)="downloadImage(element.viewAttachments)" type="button" class="mr-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" > <i class="fa fa-download" aria-hidden="true" ></i></button>
                         </mat-cell>
                     </ng-container>
 

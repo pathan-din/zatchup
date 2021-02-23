@@ -396,8 +396,9 @@ export class InformationAndBankComponent implements OnInit {
         if (response.status == true) {
 
           $("#OTPModel").modal('hide');
-          this.alert.success('Request has been send for approved', 'Success');
-          location.reload();
+          this.alert.success(data.key+' has been updated', 'Success');
+          localStorage.clear();
+          this.router.navigate(['ei/login']);
           //
 
         } else {

@@ -68,6 +68,9 @@ startIndex:any;
   this.getViewChangesRequestStatus('');
   this. getPendingBankData();
   }
+  downloadImage(imageUrl) {
+    this.baseService.downloadImage(imageUrl);
+  }
 
   getPendingBankData(){
     try {
