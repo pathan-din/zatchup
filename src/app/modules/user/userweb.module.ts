@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserwebRoutingModule } from './userweb-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
+import { environment } from '../../../environments/environment'
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel'
@@ -69,6 +70,7 @@ import { PendingRequestForUserComponent } from './pending-request-for-user/pendi
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+// import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
 
@@ -143,7 +145,8 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     BsDatepickerModule,
     DirectiveModule,
     SharedModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    // AngularFireModule.initializeApp(environment.firebase),
   ]
 })
 export class UserwebModule { }

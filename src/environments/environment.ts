@@ -19,7 +19,7 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyDJsZUk0pW_PR_KalCuzZciu3GeC0aVRks",
     authDomain: "angularchatmaheshtriazine.firebaseapp.com",
-    databaseURL: "https://angularchatmaheshtriazine-default-rtdb.firebaseio.com",
+    databaseURL: "https://angularchatmaheshtriazine-default-rtdb.firebaseio.com/",
     projectId: "angularchatmaheshtriazine",
     storageBucket: "angularchatmaheshtriazine.appspot.com",
     messagingSenderId: "575727521539",
