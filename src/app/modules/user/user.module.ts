@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserwebRoutingModule } from './userweb-routing.module';
+import { UserRoutingModule } from './user-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
 import { environment } from '../../../environments/environment'
@@ -138,7 +138,7 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
   imports: [
     CommonModule,
     MaterialDesignModule,
-    UserwebRoutingModule,
+    UserRoutingModule,
     PaginationModule,
     TabsModule,
     FormsModule, NgxSpinnerModule, ReactiveFormsModule,
@@ -149,4 +149,4 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     // AngularFireModule.initializeApp(environment.firebase),
   ]
 })
-export class UserwebModule { }
+export class UserModule { }
