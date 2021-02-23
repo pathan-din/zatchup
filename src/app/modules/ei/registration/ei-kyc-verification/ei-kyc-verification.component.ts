@@ -72,8 +72,9 @@ export class EiKycVerificationComponent implements OnInit {
       // formData.append('user_id',this.model.user_id) ;
       // }
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
-
-      this.eiService.addKyc(formData).subscribe(res => {
+      //this.eiService.addKyc
+      
+      this.userService.addKyc(formData).subscribe(res => {
         let response: any = {}
         response = res;
         this.SpinnerService.hide();
@@ -84,7 +85,12 @@ export class EiKycVerificationComponent implements OnInit {
           {
             this.router.navigate(['ei/subadmin-school-confirm']);
           }else{
+            if(response.reg_steps){
+              this.router.navigate(['ei/my-profile']);
+            }else{
               this.router.navigate(['ei/add-ei']);
+            }
+              
           }
         } else {
           this.SpinnerService.hide();

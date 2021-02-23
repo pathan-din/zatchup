@@ -9,6 +9,11 @@
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">Dashboard</span>
             </a>
+            <a *ngIf="userRoleDetails.role=='EISUBADMIN'" mat-list-item routerLink="/ei/my-profile" routerLinkActive="link-active">
+                <i class="fa fa-users mr-2"></i>
+                <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
+                <span class="commonFontSize">My Profile</span>
+            </a>
             <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile"
                 routerLinkActive="link-active">
                 <i class="fa fa-users mr-2" aria-hidden="true"></i>
@@ -124,6 +129,7 @@
                     </a>                      
                     <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
                         <div class="row p-2">
+                            <div *ngIf="userRoleDetails.role=='EISUBADMIN'" class="col-sm-12 cursorStyle" routerLink="/ei/my-profile"> My Profile </div>
                             <div class="col-sm-12 cursorStyle" routerLink="/ei/change-password"> Change Password </div>
                             <div class="col-sm-12 cursorStyle" (click)="logout()"> Logout </div>
                         </div>

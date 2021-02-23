@@ -154,7 +154,7 @@ export class EiLoginSubadminComponent implements OnInit {
           sessionStorage.setItem("permission", JSON.stringify(response.permission));
           
            $("#OTPModel").modal('hide');
-           this.router.navigate(['ei/dashboard']);
+           this.router.navigate(['ei/my-profile']);
           // if(response.steps>=3 && response.approved==1)
           // {
           //   this.router.navigate(['user/my-profile']);
