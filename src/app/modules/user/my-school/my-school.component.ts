@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./my-school.component.css']
 })
 export class MySchoolComponent  implements  OnInit{
-
   roleCheck:boolean=true;
+  verified: any;
+
   constructor(private router: Router) { }
   ngOnInit(): void {
     var role = parseInt(localStorage.getItem("role"))
+    this.verified = localStorage.getItem('approved');
     if(role==1 ){
       this.roleCheck=true;
     }else{

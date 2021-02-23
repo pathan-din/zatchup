@@ -2,9 +2,13 @@
     height: auto!important;
 }
 
-::ng-deep .mat-list-item-content {
+/* ::ng-deep .mat-list-item-content {
     padding: 1rem 0!important;
     align-items: flex-start!important;
+} */
+
+.mat-list-base .mat-list-item .mat-list-item-content{
+    padding: 1rem 0!important;
 }
 
 input#couponCode:focus {

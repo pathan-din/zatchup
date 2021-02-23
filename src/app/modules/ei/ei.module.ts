@@ -154,6 +154,7 @@ import { SubscriptionHistoryComponent } from './subscription/subscription-histor
 import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
 import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourses/ei-starclass-mycourses.component';
 import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
+import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
 
 
 const config = {
@@ -326,6 +327,7 @@ const config = {
     AlumniSummaryComponent,
     EiStarclassMycoursesComponent,
     EiStarclassYourOrderComponent,
+    StarclassRequestsPendingComponent,
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable, of, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-// import { HttpClient } from "@angular/common/http";
+// import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { User, SignupUser } from './User.model';
-// import { DatePipe } from '@angular/common';
+import { User } from './User.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +15,8 @@ export class FirebaseService {
     public currentUser: Observable<User | null>
     constructor(
         private afAuth: AngularFireAuth,
-        private db: AngularFirestore
+        private db: AngularFirestore,
+        // private firdb: AngularFireDatabase
     ) {
         this.currentUser = this.afAuth.authState.pipe(
             switchMap((user) => {
@@ -54,5 +54,17 @@ export class FirebaseService {
 
     subscribeQueryPostsByUsernameAndCategory(email: string, category: string) {
         
+    }
+
+
+    getChatRooms(): Observable<any>{
+        let chatRooms = this.db.collection('chatrooms').valueChanges();
+        // let chatRooms = this.firdb.object('/users').valueChanges();
+        return chatRooms
+    }
+
+    getUsers(): Observable<any>{
+       let users =  this.db.collection(`users`).valueChanges();
+        return users
     }
 }

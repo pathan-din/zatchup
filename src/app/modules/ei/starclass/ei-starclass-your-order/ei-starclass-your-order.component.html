@@ -37,25 +37,20 @@
             </div>
         </div>
         <div class="row my-3" >
-            <div class="col-md-5 d-flex flex-row align-items-center ">
-
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select   name="page_size"
-                        class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="">select One</option>
+                    <select name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">                       
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
                         <!-- <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option> -->
-
                     </select>
                 </div>
             </div>
-            <div class="col-md-7 justify-content-end d-flex flex-row flex-wrap">
-                <button type='button' 
-                    class="bg-paret-green text-white border-0 px-3 py-1 mr-2 mt-2"><i class="fa fa-file-excel-o mr-2"
-                        aria-hidden="true"></i>Export</button>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <div class="tableDiv ">

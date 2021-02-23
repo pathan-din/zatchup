@@ -34,4 +34,7 @@ export class EiStarclassComponent implements OnInit {
   goToUploadLecture(){
     this.router.navigate(['ei/star-class-lecture-upload'])
   }
+  goToPendingRequest(){
+    this.router.navigate(['ei/starclass-requests-pending'])
+  }
 }
