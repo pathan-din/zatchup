@@ -1,0 +1,172 @@
+<app-ei-sidenav></app-ei-sidenav>
+
+<!-- <div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5 mobPaddingLR">
+        <div class="col-12 pl-5 pr-5 mobPaddingLR">
+            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+        </div>
+    </div>
+</div> -->
+
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <h2 class="mb-3 pt-3" *ngFor="let objEpData of epData">My Profile 
+                <span  (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending</span>                
+            </h2>
+            
+            <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
+                <div class="row">
+                    <div class="col-md-12 text-right d-flex p-0 align-items-center">
+                        <div class="position-relative border customDiv" >                            
+                            <img *ngIf="objEpData.profile_pic" src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img_profile img-fluid">
+                            <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
+                             <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">                              
+                             <app-image-uploader (imageData)="getProfilePicUrl($event,objEpData)" [uploadInfo]="uploadInfo">
+                             </app-image-uploader>
+                        </div>
+
+                        <div class="pl-3 text-left">
+                            <p class="m-0 commonFontSize semiBoldFont" ><span *ngIf="objEpData.kyc_approved==0" class="text-capitalize">{{objEpData.name}}</span><a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
+                            <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="row form-control-inputDiv pt-2 pb-3">
+                            <div class="col-md-12 d-flex justify-content-between align-items-center">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information </h3>
+                                <!-- <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon">  -->
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                            <div class="col-md-12" >
+                                <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
+                                        class="regularFont">
+                                        <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
+                                        <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
+                                <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
+                                        class="regularFont">{{objEpData.gender=='M'?'MALE':'FEMALE'}} </span></p>
+                                <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
+                                <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span></p>
+                                <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name : <span
+                                        class="regularFont">{{objEpData.father_name}}</span></p>
+                                <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name : <span
+                                        class="regularFont">{{objEpData.mother_name}}</span></p>
+                                <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Bio : <br> <span
+                                        class="regularFont">{{objEpData.bio?objEpData.bio:''}}</span></p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- personal information model -->
+<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-header border-0 align-items-center justify-content-center pb-0">
+                <button #closeModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body p-1">
+                <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
+                    <div class="process3">
+                        <div class="form-group row " *ngIf="editModel.key=='name'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row " *ngIf="editModel.key=='name'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row " *ngIf="editModel.key=='dob'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  required id="dob" bsDatepicker>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row " *ngIf="editModel.key=='email'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
+                               
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-group row " *ngIf="editModel.key=='phone'">
+                            <div  class="col-md-12 MobileCol6MB">
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
+
+                                <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                   <input type="tel" [numberOnly] maxLength="10" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required id="phone_number">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
+                               
+                            </div>
+                            
+                        </div>
+                      
+                       
+                    </div>
+                </form>
+              
+                <div class="text-center">
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+                </div>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>
+<!-- <app-user-footer></app-user-footer> -->
