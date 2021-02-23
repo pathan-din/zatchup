@@ -1,4 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-ei-starclass-lecture-upload',
@@ -7,9 +12,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EiStarclassLectureUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private baseService: BaseService,
+    private router: Router,
+    private location : Location,
+    private route: ActivatedRoute,
+    private alert: NotificationService,
+    private loader: NgxSpinnerService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  goBack(){
+    this.location.back()
+  }
 }

@@ -30,4 +30,8 @@ export class EiStarclassComponent implements OnInit {
   goToMyCart(){
     this.router.navigate(['ei/star-class-cart'])
   }
+
+  goToUploadLecture(){
+    this.router.navigate(['ei/star-class-lecture-upload'])
+  }
 }

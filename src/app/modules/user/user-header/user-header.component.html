@@ -4,7 +4,7 @@
                 src="assets/images/userWebsite/logo.png"></a>
         <div class="collapse navbar-collapse">
             <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl" >
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                     <sup class="color-white " style="background: #22c123;
@@ -29,8 +29,8 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl" >
-                <li class="nav-item">
+            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl align-items-center" >
+                <li *ngIf="authCheck" class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                     <sup class="color-white " style="background: #22c123;
@@ -55,9 +55,9 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl">
+            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl align-items-center">
 
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()"
                         class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
@@ -89,8 +89,7 @@
                             class="form-control-input form-control pl-2 h-100" />
                     </div> -->
                     <div>
-                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)">
-                        </input-search>
+                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)" class="h-100"></input-search>
                     </div>
                 </div>
 
@@ -100,7 +99,7 @@
                     <span class="ml-3 text-white">{{userProfile.user_first_name}}
                         {{userProfile.user_last_name}}</span></a>
 
-                <div *ngIf="authCheck" class="dropdown pt-2 px-0">
+                <div *ngIf="authCheck" class="dropdown px-0">
                     <span class="color-white p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
