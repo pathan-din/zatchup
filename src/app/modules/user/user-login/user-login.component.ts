@@ -177,10 +177,10 @@ export class UserLoginComponent implements OnInit {
             this.router.navigate(['user/add-ei']);
           }else if (response.steps == 5) {
             this.router.navigate(['user/ei-confirmation']);
-          }else if (response.steps >= 6) {
-            this.router.navigate(['user/my-school']);
+          }else if (response.steps == 6) {
+            this.router.navigate(['user/add-personal-info']);
           }else {
-            this.router.navigate(['user/my-educational-profile']);
+            this.router.navigate(['user/my-school']);
           }
           //this.router.navigate(['user/my-educational-profile']);
           // if(response.approved==1)

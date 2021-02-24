@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
@@ -25,20 +25,42 @@ export class AddEiComponent implements OnInit {
   errorDisplay:any={};
   name_of_school_others:any='';
   name_of_school_first:any='';
-  
+  params:any;
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public baseService:BaseService,
     private alert : NotificationService,
     public formBuilder: FormBuilder,
-    private genericFormValidationService:GenericFormValidationService) { }
+    private genericFormValidationService:GenericFormValidationService,
+    private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     
     this.model.state='';
     this.model.city='';
     this.getAllState(); 
+    this.getEiDetailsBySchoolId();
+    this.route.queryParams.subscribe(params=>{
+      this.params = params;
+     
+      this.getEiDetailsBySchoolId();
+    
+    })
+  }
+
+  getEiDetailsBySchoolId(){
+    try {
+    this.baseService.action("user/get-school-detail-schoolid/",{school_id:this.params.school_id}).subscribe((res:any)=>{
+      if(res.status==true){
+       this.modelZatchup.zatchup_id = res.data.school_code;
+       this.getDataByZatchupId();
+      }
+    })
+    } catch (e) {
+    
+    }
+    //
   }
 
   goToUserEiProfilePage() {

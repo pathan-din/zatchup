@@ -30,7 +30,7 @@
                             <label for="email " class=" mediumFont commonFontSize letterspacing">Email ID / Mobile No*</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input id="email_id_or_mobile_no" (keyup)="isValid($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email ID / Mobile No">
+                                <input maxlength="{{maxlength}}" id="email_id_or_mobile_no" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="{{type}}" placeholder="Enter Email ID / Mobile No">
                             </div>
                         </div>
 						<div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_no"></div>
