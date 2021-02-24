@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ei-starclass',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EiStarclassComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  goToCoursePreview(){
+    this.router.navigate(['ei/star-class-courses-preview'])
+  }
+
+  goToMyCourse(){
+    this.router.navigate(['ei/ei-starclass-mycourses'])
+  }
+
+  goToYourOrder(){
+    this.router.navigate(['ei/ei-starclass-your-order'])
+  }
+
+  goToMyCart(){
+    this.router.navigate(['ei/star-class-cart'])
+  }
+
+  goToUploadLecture(){
+    this.router.navigate(['ei/star-class-lecture-upload'])
+  }
+  goToPendingRequest(){
+    this.router.navigate(['ei/starclass-requests-pending'])
+  }
 }
