@@ -76,7 +76,11 @@ export class UserKycVerificationComponent implements OnInit {
       this.yearModel = localStorage.getItem("year");
       this.monthModel = localStorage.getItem("month");
       this.dateModel = localStorage.getItem("day");
-      this.model.kyc_name= localStorage.getItem("kyc_name").replace("&", " ");;
+      if(localStorage.getItem("kyc_name")){
+        this.model.kyc_name= localStorage.getItem("kyc_name").replace("&", " ");;
+      }
+      this.getKYC()
+      
     }
     
     var dt = new Date();
