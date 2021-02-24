@@ -28,8 +28,11 @@ export class UserSchoolProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.schoolId = this.route.snapshot.queryParamMap.get('school_id')
+   
     this.getProfile();
   }
+
+   
   postTabFunction(event) {
     this.postOption = event;
     if (event === 'matrix') {
