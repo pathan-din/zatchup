@@ -224,15 +224,15 @@ export class EiSidenavComponent {
           } else if(response.role == 'EISUBADMIN' ){
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
 
-              if (response.reg_step == 1) {
-                this.router.navigate(['ei/kyc-verification']);
-              } else if (response.reg_step == 2) {
-                this.router.navigate(['ei/add-ei']);
-              } else if (response.reg_step == 3) {
-                this.router.navigate(['ei/subadminprofile'], { queryParams: { reg_steps: '2' } });
-              } else if (response.reg_step == 4) {
+              // if (response.reg_step == 1) {
+              //   this.router.navigate(['ei/kyc-verification']);
+              // } else if (response.reg_step == 2) {
+              //   this.router.navigate(['ei/add-ei']);
+              // } else if (response.reg_step == 3) {
+              //   this.router.navigate(['ei/subadminprofile'], { queryParams: { reg_steps: '2' } });
+              // } else if (response.reg_step == 4) {
                
-              }else{} 
+              // }else{} 
                
   
               }else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {

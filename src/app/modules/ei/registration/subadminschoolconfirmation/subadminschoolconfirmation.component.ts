@@ -63,7 +63,8 @@ export class SubadminschoolconfirmationComponent implements OnInit {
           this.SpinnerService.hide();
           if(response.data.length>0){
             this.studentsConfirmation = response.data[0];
-          this.schoolId= response.data[0].school_id;
+            this.schoolId= response.data[0].school_id;
+           
           }
           
         }
@@ -131,7 +132,7 @@ continue(){
        }else{
         this.SpinnerService.hide();
        }
-       this.router.navigate(['ei/subadminprofile']);
+       this.router.navigate(['ei/add-ei'],{queryParams:{school_id:this.schoolId}});
      
        }, (error) => {
          this.SpinnerService.hide();

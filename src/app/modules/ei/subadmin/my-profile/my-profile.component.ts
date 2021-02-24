@@ -14,7 +14,7 @@ declare var $: any;
 })
 export class MyProfileComponent implements OnInit {
   @ViewChild('closeModal') closeModal: any;
-  epData: any;
+  epData: any = {};
   model: any = {};
   editModel: any = {};
   error: any = [];
