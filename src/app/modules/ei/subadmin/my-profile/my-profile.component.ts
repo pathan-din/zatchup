@@ -1,8 +1,8 @@
-import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
+// import { environment } from './../../../../../environments/environment';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 declare var $: any;
@@ -28,7 +28,7 @@ export class MyProfileComponent implements OnInit {
   postOption: string = "matrix";
   postOptionActiveImage: string = 'dead';
   postOptionActiveMatrix: string = 'active';
-  profile_pic: any = '';
+  // profile_pic: any ;
   uploadInfo: any = {
     "image_type": "file_name",
     "url": "ei/uploaddocsfile/",
@@ -36,7 +36,8 @@ export class MyProfileComponent implements OnInit {
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
   imageUrl: any;
-  imagePath: any;
+  // imagePath: any = environment.serverImagePath;
+
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
@@ -258,7 +259,8 @@ export class MyProfileComponent implements OnInit {
         (res: any) => {
           if (res.status == true){
             this.loader.hide()
-            this.epData = res.data
+            this.imageUrl = res.data[0].profile_pic
+            this.epData = res.data[0]
           }
           
           else{
@@ -321,25 +323,25 @@ export class MyProfileComponent implements OnInit {
     
     }
   }
-  getProfilePicUrl(data: any,object) {
+  getProfilePicUrl(data: any) {
     this.model.profile_pic=data.filename;
-    this.imageUrl = this.imagePath + data.filename
-    this.handleFileInputForBackPhoto(object);
+    // this.imageUrl = this.imagePath + data.filename
+    this.handleFileInputForBackPhoto();
+    // debugger
   }
 
-  handleFileInputForBackPhoto(object) {
-   
-     
+  handleFileInputForBackPhoto() {
     try {
       this.loader.show();
-    
-      this.baseService.action("user/add-profile-pic-info/",this.model).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
-          this.loader.hide();
-          this.alert.success(response.message,"Success");
+      this.baseService.action("user/add-profile-pic-info/",this.model).subscribe(
+        (res: any) => {
+        if (res.status == true) {
+          this.imageUrl = undefined;
+          // this.getEducationalProfile()
+          // this.loader.hide();
+          // this.alert.success(response.message,"Success");
           //object.profile_pic = response.data.profile_pic;
+          this.imageUrl = res.profile_pic
         } else {
           this.loader.hide();
           console.log("Error:Data not update");
@@ -354,6 +356,12 @@ export class MyProfileComponent implements OnInit {
       this.loader.hide();
       console.log("vaeryfy Otp Exception", err);
     }
+  }
+
+  getGender(data: any) {
+    if (data)
+      return this.baseService.getGender(data)
+    return ''
   }
 
 }
