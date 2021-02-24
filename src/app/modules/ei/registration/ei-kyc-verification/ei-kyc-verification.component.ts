@@ -85,7 +85,7 @@ export class EiKycVerificationComponent implements OnInit {
           {
             this.router.navigate(['ei/subadmin-school-confirm']);
           }else{
-            if(response.reg_steps){
+            if(response.reg_steps>=4){
               this.router.navigate(['ei/my-profile']);
             }else{
               this.router.navigate(['ei/add-ei']);
@@ -140,6 +140,7 @@ export class EiKycVerificationComponent implements OnInit {
   }
   checkIdValidation(){
     this.pattran='';
+    this.model.kyc_id_no='';
     if(this.model.kyc_type=='Aadhar'){
       this.maxLength = 12;
       this.placeholder='Enter Id'
