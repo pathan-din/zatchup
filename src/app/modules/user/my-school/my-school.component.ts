@@ -27,7 +27,7 @@ gotToProfilePage(){
 }
 
 gotoChatWithTeachers(){
-  this.router.navigate(['user/new-chat']);
+  this.router.navigate(['user/new-chat'], { queryParams: { "returnUrl": "user/my-school"}});
 }
 
 }
