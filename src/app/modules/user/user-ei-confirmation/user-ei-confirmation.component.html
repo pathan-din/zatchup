@@ -19,6 +19,7 @@
                                         class="text-dark mediumFont">{{confirmData.ei_detail.school_code}}</span></p>
                             </div>
                             <div class="col-3 text-right">
+                                <img *ngIf="confirmData.ei_detail.approved=='0'" (click)="deleteEi(confirmData.ei_detail.school_id)" src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid deleteImg">
                                  <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                             </div>
                         </div>

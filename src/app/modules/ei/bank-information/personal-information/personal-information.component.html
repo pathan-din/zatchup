@@ -28,233 +28,275 @@
 
         </div>        
     </div> -->
-    <form id="Form1" enctype="multipart/form-data">
-        <div class="process1 mt-4 {{countIndex}}">
-            <div class="form-group row ">
-                <div class="col-sm-12 ">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">School
-                        Name</label>
+        <form id="Form1" enctype="multipart/form-data">
+            <div class="process1 mt-4 {{countIndex}}">
+                <div class="form-group row ">
+                    <div class="col-sm-12 ">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">School
+                            Name</label>
 
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input (keyup)="isValid($event)" id="name_of_school" required [(ngModel)]="model.name_of_school"
-                            name="school_name"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Enter School Name">
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input (keyup)="isValid($event)" id="name_of_school" required
+                                [(ngModel)]="model.name_of_school" name="school_name"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter School Name">
+                        </div>
+                    </div>
+                    <div class="required" style="color: red;" [innerHtml]="errorDisplay.school_name">
                     </div>
                 </div>
-                <div class="required" style="color: red;" [innerHtml]="errorDisplay.school_name">
+                <div class="form-group row " *ngIf="model.school_code">
+                    <div class="col-sm-12 ">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">EI's Unique
+                            ZatchUp
+                            ID</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input readonly id="school_id" [(ngModel)]="model.school_code" name="school_id"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Unique ID">
+                        </div>
+                    </div>
                 </div>
+                <div class="form-group row ">
+                    <div class="col-sm-12 ">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Full
+                            Address</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input (keyup)="isValid($event)" id="address1" required [(ngModel)]="model.address1"
+                                name="address_line1"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Address Line 1">
+                        </div>
+                    </div>
+                    <div class="required" style="color: red;" [innerHtml]="errorDisplay.address_line1">
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-sm-12 ">
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input id="address2" [(ngModel)]="model.address2" name="address_line2"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Address Line 2">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group row ">
+                    <div class="col-md-6 margin-top-col-6">
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <select (change)="getCityByState(model.state)" id="state" required [(ngModel)]="model.state"
+                                name="state" class="custom-select custom-select-2Col form-control-input" required>
+                                <option value="">State</option>
+                                <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
+                                    {{stateObj.state}}</option>
+                            </select>
+
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group row ">
+                    <div class="col-md-6">
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <select id="city" required [(ngModel)]="model.city" name="city"
+                                class="custom-select-2Col custom-select form-control-input" required>
+                                <option value="">City</option>
+                                <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
+
+                            </select>
+
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.city"></div>
+                    </div>
+                    <div class="col-md-6 margin-top-col-6">
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input id="pincode" required [(ngModel)]="model.pincode" name="pincode" maxlength="6"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Pincode">
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.pincode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <div class="col-sm-12 ">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Board /
+                            University</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input id="university" required [(ngModel)]="model.university" name="university"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Board / University Name">
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.university">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group row  ">
+                    <div class="col-sm-12 ">
+                        <label for="school_phone" class="mediumFont commonFontSize letterspacing">School Phone
+                            Number</label>
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)" id="school_phone"
+                                [(ngModel)]="model.school_phone" name="school_phone"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="tel" placeholder="Enter School Phone Number">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row  ">
+                    <div class="col-sm-12 ">
+                        <label for="twitter_url" class="mediumFont commonFontSize letterspacing">School Email
+                            address</label>
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input (keyup)="isValid($event)" id="school_email"
+                                [(ngModel)]="model.school_email" name="school_email"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="email" placeholder="School Email address">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row  ">
+                    <div class="col-sm-12 ">
+                        <label for="fb_url" class="mediumFont commonFontSize letterspacing">Facebook url</label>
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.fb_url"
+                                name="fb_url"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Facebook URL">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row  ">
+                    <div class="col-sm-12 ">
+                        <label for="twitter_url" class="mediumFont commonFontSize letterspacing">Twitter url</label>
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input (keyup)="isValid($event)" id="twitter_url"
+                                [(ngModel)]="model.twitter_url" name="twitter_url"
+                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Twitter URL">
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group row ">
+                    <div class="col-md-6">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Name of Principal
+                            /
+                            Dean</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input id="name_of_principle" [(ngModel)]="model.name_of_principle" name="principal_name"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Name of Principal / Dean">
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.principal_name"></div>
+                    </div>
+                    <div class="col-md-6 margin-top-col-6">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date /
+                            Openning Date</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input id="opening_date" required [(ngModel)]="model.opening_date" name="opening_date"
+                                autocomplete="off"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" bsDatepicker placeholder="Enter Foundation Date">
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.opening_date"></div>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-md-6">
+                        <label for="" class=" commonFontSize mediumFont letterspacing"> Number of
+                            Current
+                            Student</label>
+
+
+                        <div class="py-1 form-control-inputDiv rounded shadow-none">
+                            <select id="no_of_students" required [(ngModel)]="model.no_of_students"
+                                name="no_of_students"
+                                class="custom-select custom-select-2Col form-control-input form-control-sm" required>
+                                <option value="">Select Students</option>
+                                <option value="{{noofstudent.display_text}}"
+                                    *ngFor="let noofstudent of numberOfStudentList">
+                                    {{noofstudent.display_text}}</option>
+
+                            </select>
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.no_of_students"></div>
+                    </div>
+                    <div class="col-md-6 margin-top-col-6">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">Number of
+                            Alumni</label>
+
+                        <div class="py-1 form-control-inputDiv rounded shadow-none">
+                            <select (change)="isValid($event)" id="no_of_alumni" required
+                                [(ngModel)]="model.no_of_alumni" name="no_of_alumni"
+                                class="custom-select custom-select-2Col form-control-input form-control-sm" required>
+                                <option value="">Select Alumni</option>
+                                <option value="{{noofAlustudent.display_text}}"
+                                    *ngFor="let noofAlustudent of numberOfStudentList">
+                                    {{noofAlustudent.display_text}}</option>
+                            </select>
+
+                        </div>
+                        <div class="required" style="color: red;" [innerHtml]="errorDisplay.no_of_alumni"></div>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-sm-12 ">
+                        <label for="" class=" commonFontSize mediumFont letterspacing">GST
+                            Number(Optional)</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input id="gst_no" [(ngModel)]="model.gst_no" name="model.gst_no"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter GST Number">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 ">
+                        <label for="description" class=" commonFontSize mediumFont letterspacing">About School</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <textarea id="description" [(ngModel)]="model.overview" name="model.overview"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                rows="3" placeholder="Typing...."></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row ">
+
+                </div>
+                <div class="row mt-2">
+                    <div class="col-xl-4 col-lg-5 col-md-5 text-left">
+
+                    </div>
+                    <div class="col-xl-5 col-lg-3 col-md-3"></div>
+                    <div class="col-xl-3 col-lg-4 col-md-4 text-right">
+                        <button id="form1NextButton" name="form1NextButton" mat-button (click)="goForward()"
+                            class="bg-purple border-0 text-white w-100 text-center mt-2 commonFontSize mediumFont letterspacing ">Update</button>
+                    </div>
+                </div>
+
             </div>
-            <div class="form-group row " *ngIf="model.school_code">
-                <div class="col-sm-12 ">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">EI's Unique
-                        ZatchUp
-                        ID</label>
-
-                    <div  class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input readonly id="school_id" [(ngModel)]="model.school_code" name="school_id"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Enter Unique ID">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row ">
-                <div class="col-sm-12 ">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">Full
-                        Address</label>
-
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input (keyup)="isValid($event)" id="address1" required [(ngModel)]="model.address1"
-                            name="address_line1"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Address Line 1">
-                    </div>
-                </div>
-                <div class="required" style="color: red;" [innerHtml]="errorDisplay.address_line1">
-                </div>
-            </div>
-            <div class="form-group row ">
-                <div class="col-sm-12 ">
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input id="address2" [(ngModel)]="model.address2" name="address_line2"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Address Line 2">
-                    </div>
-                </div>
-
-            </div>
-            <div class="form-group row ">
-                <div class="col-md-6 margin-top-col-6">
-                    
-                </div>
-                <div class="col-md-12">
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <select  (change)="getCityByState(model.state)" id="state" required [(ngModel)]="model.state" name="state"
-                        class="custom-select custom-select-2Col form-control-input" required>
-                        <option value="">State</option>
-                        <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
-                            {{stateObj.state}}</option>
-                    </select>
-                       
-                    </div>
-                    <div class="required" style="color: red;" [innerHtml]="errorDisplay.state">
-                    </div>
-                </div>
-                
-            </div>
-            <div class="form-group row ">
-                <div class="col-md-6">
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <select id="city" required [(ngModel)]="model.city" name="city"
-                        class="custom-select-2Col custom-select form-control-input" required>
-                        <option value="">City</option>
-                        <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
-
-                    </select>
-                        
-                    </div>
-                    <div class="required" style="color: red;" [innerHtml]="errorDisplay.city"></div>
-                </div>
-                <div class="col-md-6 margin-top-col-6">
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input id="pincode" required [(ngModel)]="model.pincode" name="pincode"
-                            maxlength="6"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Pincode">
-                    </div>
-                    <div class="required" style="color: red;" [innerHtml]="errorDisplay.pincode">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-group row ">
-                <div class="col-sm-12 ">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">Board /
-                        University</label>
-
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input id="university" required [(ngModel)]="model.university"
-                            name="university"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Board / University Name">
-                    </div>
-                    <div class="required" style="color: red;" [innerHtml]="errorDisplay.university">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row ">
-                <div class="col-md-6">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">Name of Principal
-                        /
-                        Dean</label>
-
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input id="name_of_principle" [(ngModel)]="model.name_of_principle"
-                            name="principal_name"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Enter Name of Principal / Dean">
-                    </div>
-                    <div class="required" style="color: red;"
-                        [innerHtml]="errorDisplay.principal_name"></div>
-                </div>
-                <div class="col-md-6 margin-top-col-6">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date /
-                        Openning Date</label>
-
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input id="opening_date" required [(ngModel)]="model.opening_date"
-                            name="opening_date" autocomplete="off"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" bsDatepicker placeholder="Enter Foundation Date">
-                    </div>
-                    <div class="required" style="color: red;"
-                        [innerHtml]="errorDisplay.opening_date"></div>
-                </div>
-            </div>
-            <div class="form-group row ">
-                <div class="col-md-6">
-                    <label for="" class=" commonFontSize mediumFont letterspacing"> Number of
-                        Current
-                        Student</label>
-
-
-                    <div class="py-1 form-control-inputDiv rounded shadow-none">
-                        <select id="no_of_students" required [(ngModel)]="model.no_of_students"
-                            name="no_of_students"
-                            class="custom-select custom-select-2Col form-control-input form-control-sm"
-                            required>
-                            <option value="">Select Students</option>
-                            <option value="{{noofstudent.display_text}}"
-                                *ngFor="let noofstudent of numberOfStudentList">
-                                {{noofstudent.display_text}}</option>
-
-                        </select>
-                    </div>
-                    <div class="required" style="color: red;"
-                        [innerHtml]="errorDisplay.no_of_students"></div>
-                </div>
-                <div class="col-md-6 margin-top-col-6">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">Number of
-                        Alumni</label>
-
-                    <div class="py-1 form-control-inputDiv rounded shadow-none">
-                        <select (change)="isValid($event)" id="no_of_alumni" required [(ngModel)]="model.no_of_alumni"
-                            name="no_of_alumni"
-                            class="custom-select custom-select-2Col form-control-input form-control-sm"
-                            required>
-                            <option value="">Select Alumni</option>
-                            <option value="{{noofAlustudent.display_text}}"
-                                *ngFor="let noofAlustudent of numberOfStudentList">
-                                {{noofAlustudent.display_text}}</option>
-                        </select>
-
-                    </div>
-                    <div class="required" style="color: red;"
-                        [innerHtml]="errorDisplay.no_of_alumni"></div>
-                </div>
-            </div>
-            <div class="form-group row ">
-                <div class="col-sm-12 ">
-                    <label for="" class=" commonFontSize mediumFont letterspacing">GST
-                        Number(Optional)</label>
-
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <input id="gst_no" [(ngModel)]="model.gst_no" name="model.gst_no"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Enter GST Number">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-12 ">
-                    <label for="description"
-                        class=" commonFontSize mediumFont letterspacing">About School</label>
-
-                    <div class="form-control-inputDiv rounded p-1 shadow-none">
-                        <textarea id="description" [(ngModel)]="model.overview"
-                            name="model.overview"
-                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            rows="3" placeholder="Typing...."></textarea>
-                    </div>
-
-                </div>
-            </div>
-            <div class="form-group row ">
-               
-            </div>
-            <div class="row mt-2">
-                <div class="col-xl-4 col-lg-5 col-md-5 text-left">
-                  
-                </div>
-                <div class="col-xl-5 col-lg-3 col-md-3"></div>
-                <div class="col-xl-3 col-lg-4 col-md-4 text-right">
-                    <button id="form1NextButton" name="form1NextButton" mat-button
-                        (click)="goForward()"
-                        class="bg-purple border-0 text-white w-100 text-center mt-2 commonFontSize mediumFont letterspacing ">Update</button>
-                </div>
-            </div>
-
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 </div>
