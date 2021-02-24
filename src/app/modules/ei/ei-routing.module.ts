@@ -139,6 +139,7 @@ import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.c
 import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourses/ei-starclass-mycourses.component';
 import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
 import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
+import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 
 
 const routes: Routes = [
@@ -541,6 +542,10 @@ const routes: Routes = [
   },
   {
     path: 'starclass-requests-pending', component: StarclassRequestsPendingComponent, canActivate: [AuthGuard]
+  }
+  ,
+  {
+    path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]
   },
 
   
