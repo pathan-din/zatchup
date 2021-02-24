@@ -70,7 +70,6 @@
 }
 .tickImg {
     position: absolute;
-    bottom: 0px;
     left: 27%;
     z-index: 1;
 }
@@ -115,7 +114,6 @@
         width: 25%!important;
     }
     .tickImg{
-        bottom: 20px;
-        left: 58%;
+        left: 60%;
     }
 }

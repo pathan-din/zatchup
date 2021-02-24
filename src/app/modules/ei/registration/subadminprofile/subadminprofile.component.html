@@ -22,8 +22,10 @@
                 <div class="form-group row justify-content-center">
                     <div class="col-6 text-center ">
                         <div class="round-camera-div mx-auto">
-                            <img (click)="fileInput.click()"  class="img-fluid p-2 cursorStyle" src="{{imageUrl?imageUrl:'assets/images/userWebsite/camera_icons.png'}}">
-                            <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/>
+                            <img   class="img-fluid p-2 cursorStyle" src="{{imageUrl?imageUrl:'assets/images/userWebsite/camera_icons.png'}}">
+                            <!-- <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)"/> -->
+                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                            </app-image-uploader>
                         </div>
                         
                     </div>
