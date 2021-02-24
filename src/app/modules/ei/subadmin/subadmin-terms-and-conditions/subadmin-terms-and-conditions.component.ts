@@ -15,7 +15,7 @@ export class SubadminTermsAndConditionsComponent implements OnInit {
   htmlContent: any = '';
   type: any;
   action: any;
-
+  content:any
   constructor(
     private baseService: BaseService,
     private location: Location,

@@ -338,7 +338,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.loader.hide();
-          this.alert.success(response.message,"Success");
+          this.getEducationalProfile()
           //object.profile_pic = response.data.profile_pic;
         } else {
           this.loader.hide();
