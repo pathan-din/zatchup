@@ -140,6 +140,7 @@ import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourse
 import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
 import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
+import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 
 
 const routes: Routes = [
@@ -548,6 +549,9 @@ const routes: Routes = [
     path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]
   },
 
+  {
+    path: 'subadmin-terms-and-conditions/:type/:action', component: SubadminTermsAndConditionsComponent
+  },
   
   
   

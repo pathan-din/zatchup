@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
@@ -35,14 +35,13 @@ export class EiSubadminRegisterComponent implements OnInit {
     private router: Router,
     private loader: NgxSpinnerService,
     public formBuilder: FormBuilder,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private route: ActivatedRoute
   ) { }
   ngOnInit(): void {
     this.model.profile = {};
     this.model.profile.pronoun = '';
     this.model.profile.custom_gender = '';
-
-
   }
   submitSubAdminRegister() {
     this.error = [];
@@ -203,5 +202,9 @@ export class EiSubadminRegisterComponent implements OnInit {
       this.loader.hide();
       this.alert.error(err, 'Error')
     }
+  }
+
+  goToSubadminTermsAndConditions(type: any, action: any){
+    this.router.navigate(['ei/subadmin-terms-and-conditions', type, action])
   }
 }

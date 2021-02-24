@@ -156,6 +156,7 @@ import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourse
 import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
 import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
+import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -329,6 +330,7 @@ const config = {
     EiStarclassYourOrderComponent,
     StarclassRequestsPendingComponent,
     MyProfileComponent,
+    SubadminTermsAndConditionsComponent,
   ],
   imports: [
     CommonModule,
