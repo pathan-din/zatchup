@@ -98,6 +98,9 @@ export class EiAlumniListComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       if( params['approved']){
         this.model.approved = params['approved'];
+        this.model.course = params['course'];
+        this.model.standard = params['standard'];
+        this.model.teaching_class = params['teaching_class'];
       }
       
     })
@@ -106,9 +109,9 @@ export class EiAlumniListComponent implements OnInit {
       currentPage: 1,
       totalItems: 0
     };
-    
+    this.displayCourseList();
     this.getAluminiList('','')
-	  this.displayCourseList();
+	  
   }
   /** Function name: displayCourseList
    * Data bind in course list dropdown filter
@@ -118,14 +121,19 @@ export class EiAlumniListComponent implements OnInit {
 	try{
       this.SpinnerService.show(); 
 	  
-      this.model.course='';
-	    this.model.standard='';
-	    this.model.teaching_class='';
+      
       this.baseService.getData('ei/course-list/').subscribe(res => {
         let response:any={};
         response=res;
         // if(response.status == true){
-		    this.courseList=response.results;
+        this.courseList=response.results;
+        if(!this.model.course){
+          this.model.course='';
+	        this.model.standard='';
+	        this.model.teaching_class='';
+        }else{
+          this.displayStandardList(this.model.course)
+        }
       // }else{
       //   this.SpinnerService.hide();
       //   this.alert.error(response.error.message[0], 'Error')
@@ -149,9 +157,7 @@ export class EiAlumniListComponent implements OnInit {
 	try{
       this.SpinnerService.show(); 
         this.standardList=[]
-		 this.model.standard='';
-		//this.model.course_id='';
-    this.model.teaching_class='';
+		 
     let data:any={}
     
     data.course_id=courseId
@@ -160,7 +166,14 @@ export class EiAlumniListComponent implements OnInit {
         let response:any={};
         response=res;
         // if(response.status == true){
-		this.standardList=response.standarddata;
+    this.standardList=response.standarddata;
+    if(!this.model.standard){
+       
+      this.model.standard='';
+      this.model.teaching_class='';
+    }else{
+      this.displayClassList(this.model.standard)
+    }
         // }
         // else{
         //   this.SpinnerService.hide();
