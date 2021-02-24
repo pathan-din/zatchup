@@ -1,23 +1,34 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="Payment-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">ZatchUp Cart</h2>
+
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">ZatchUp Cart</h2>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-7 MobileCol6MB">
-                <h2 class="commonFontSize regularFont border-bottom border-gray mb-0 py-2">Order Details</h2>
+                <h3 class="commonFontSize regularFont border-bottom border-gray mb-0 py-2">Order Details</h3>
                 <mat-list role="list" class="p-0">
                     <mat-list-item role="listitem" class="mat-list-itemw-auto">
-                        <img src="assets/images/userWebsite/lecturer-icon.png" class="img-thumbnail">
-                        <div class="itemDiv mx-2">
-                            <h2 class="commonFontSize semiBoldFont mb-1">Benefits</h2>
-                            <p class="commonFontSize regularFont">In addition to our border-radius utilities, you can use .img-thumbnail to give an image a rounded 1px border</p>
-                            <div class="row commonFontSize regularFont">
-                                <div class="col-4">Price</div>
-                                <div class="col-8"><span class="mr-3">:</span>1,500/Year</div>
+                        <div class="py-2 d-flex justify-content-start px-0">
+                            <img src="assets/images/userWebsite/lecturer-icon.png" class="img-thumbnail h-100">
+                            <div class="itemDiv mx-2">
+                                <h3 class="commonFontSize semiBoldFont mb-1">Benefits</h3>
+                                <p class="commonFontSize regularFont" style="line-height: initial;">In addition to our border-radius utilities, you can use .img-thumbnail to give an image a rounded 1px border</p>
+                                <div class="row commonFontSize regularFont">
+                                    <div class="col-4">Price</div>
+                                    <div class="col-8"><span class="mr-3">:</span>1,500/Year</div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="itemIcon"><i class="fa fa-trash color-red cursorStyle" title="Delete order" aria-hidden="true"></i></div>
+                            <div class="itemIcon"><i class="fa fa-trash color-red cursorStyle" title="Delete order" aria-hidden="true"></i></div>
+                        </div>
                     </mat-list-item>
 
                     <mat-list-item role="listitem">Item 2</mat-list-item>
@@ -33,11 +44,11 @@
                             <div class="col-6 p-0">Course Name</div>
                             <div class="col-6 text-right">Subtotal</div>
                             <div class="col-12 ">
-                                <div class="row m-0 border-bottom border-gray py-2">
+                                <div class="row m-0 border-bottom border-gray py-2 small-text-2">
                                     <div class="col-6 p-0">Mathematics</div>
                                     <div class="col-6 text-right">Rs. 1000</div>
                                 </div>
-                                <div class="row m-0 py-2">
+                                <div class="row m-0 py-2 small-text-2">
                                     <div class="col-6 p-0">Mathematics</div>
                                     <div class="col-6 text-right">Rs. 1000</div>
                                 </div>
@@ -52,14 +63,14 @@
                             <div class="col-6 p-0">Tax 18%</div>
                             <div class="col-6 text-right">+Rs.100</div>
                         </div>
-                        <div class="payment-detail-list row border-bottom border-gray justify-content-between m-0 py-2">
+                        <div class="payment-detail-list row justify-content-between m-0 py-2">
                             <div class="col-6 p-0">Amount Payable</div>
                             <div class="col-6 text-right">Rs.2000</div>
                         </div>
 
                         <div class="payment-detail-list row border border-gray justify-content-between m-0 mt-2">
-                            <div class="col-8"> <input type="text" id="couponCode" placeholder="Coupon Code" class="border-0 py-1"></div>
-                            <button type="button" class="bg-light-secondary text-white border-0 col-4 ">Apply</button>
+                            <div class="col-8"> <input type="text" id="couponCode" placeholder="Coupon Code" class="border-0 py-2"></div>
+                            <button type="button" class="bg-purple text-white border-0 col-4 ">Apply</button>
                         </div>
                         <div class="row  mt-4">
                             <div class="col-12">

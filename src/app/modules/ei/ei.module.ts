@@ -152,7 +152,9 @@ import { AddMoreDocumentComponent } from './bank-information/add-more-document/a
 import { RequestPendingForCourseComponent } from './student/request-pending-for-course/request-pending-for-course.component';
 import { SubscriptionHistoryComponent } from './subscription/subscription-history/subscription-history.component';
 import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.component';
-import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
+import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourses/ei-starclass-mycourses.component';
+import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
+import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
 
 
 const config = {
@@ -323,7 +325,9 @@ const config = {
     RequestPendingForCourseComponent,
     SubscriptionHistoryComponent,
     AlumniSummaryComponent,
-    MyProfileComponent,
+    EiStarclassMycoursesComponent,
+    EiStarclassYourOrderComponent,
+    StarclassRequestsPendingComponent,
   ],
   imports: [
     CommonModule,

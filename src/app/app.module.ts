@@ -14,7 +14,7 @@ import { environment } from './../environments/environment'
 // app routing
 import { AppRoutingModule } from './app-routing.module';
 //modules
-import { UserwebModule } from './modules/user/userweb.module';
+import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -40,7 +40,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UserwebModule,
+    UserModule,
     AdminModule,
     PaginationModule.forRoot(),
     TabsModule.forRoot(),

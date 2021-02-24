@@ -7,7 +7,7 @@
             </span>
             <h2 class="commonFontSize semiBoldFont m-0">View Changes Request Status</h2>
         </div>
-        
+
         <div class="tableDiv mt-3">
             <div *ngIf="dataSource" class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource  | paginate: config">
@@ -35,27 +35,27 @@
                     <ng-container matColumnDef="viewAttachments">
                         <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            
-                            <img src="{{element.viewAttachments}}" alt="Attachments" style="height: 60px;"/>
+
+                            <img src="{{element.viewAttachments}}" alt="Attachments" style="height: 60px;" />
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-                        <mat-cell *matCellDef="let element">                            
-                            <button type="button" class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
-                            <button (click)="downloadImage(element.viewAttachments)" type="button" class="mr-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" > <i class="fa fa-download" aria-hidden="true" ></i></button>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button"
+                                class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
                         </mat-cell>
                     </ng-container>
 
-                    <!-- <ng-container matColumnDef="remarks">
-                        <mat-header-cell *matHeaderCellDef> Remarks </mat-header-cell>
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.remarks}}
+                            <button (click)="downloadImage(element.viewAttachments)" type="button"
+                                class="btn-success color-white border-0 rounded"> <i
+                                    class="fa fa-download" aria-hidden="true"></i></button>
                         </mat-cell>
-                    </ng-container> -->
-
-                   
+                    </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
@@ -69,51 +69,51 @@
             <pagination-controls *ngIf="dataSource" (pageChange)="getViewChangesRequestStatus($event)"
                 class="eiPaginationTag"></pagination-controls>
 
-                <div *ngIf="dataSource" class="mat-elevation-z1 table-responsive">
-                    <mat-table [dataSource]="dataSourceBank  | paginate: config">
-                        <ng-container matColumnDef="position">
-                            <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                            <mat-cell *matCellDef="let element;let i=index"> {{startIndex+i}} </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.bank_name}} </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="account">
-                            <mat-header-cell *matHeaderCellDef>Bank account no</mat-header-cell>
-                            <mat-cell *matCellDef="let element "> {{element.bank_account_no}} </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="ifsc">
-                            <mat-header-cell *matHeaderCellDef> IFSC </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.bank_ifsc_code}}
-                            </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="document">
-                            <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                
-                                <img src="{{element.cancel_cheque}}" alt="Attachments" style="height: 60px;"/>
-                            </mat-cell>
-                        </ng-container>
-    
-                        
-    
-                         
-                       
-    
-                        <mat-header-row *matHeaderRowDef="bankColumns "></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: bankColumns; "></mat-row>
-                    </mat-table>
+            <div *ngIf="dataSourceBank" class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSourceBank  | paginate: config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i=index"> {{startIndex+i}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.bank_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="account">
+                        <mat-header-cell *matHeaderCellDef>Bank account no</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.bank_account_no}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ifsc">
+                        <mat-header-cell *matHeaderCellDef> IFSC </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.bank_ifsc_code}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="document">
+                        <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+
+                            <img src="{{element.cancel_cheque}}" alt="Attachments" style="height: 60px;" />
+                        </mat-cell>
+                    </ng-container>
+
+
+
+
+
+
+                    <mat-header-row *matHeaderRowDef="bankColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: bankColumns; "></mat-row>
+                </mat-table>
+            </div>
+            <div class="row" *ngIf="!dataSourceBank">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Bank Details Not Found.</p>
                 </div>
-                <div class="row" *ngIf="!dataSourceBank">
-                    <div class="col-12 pt-2 pb-2">
-                        <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -11,14 +11,14 @@
                 
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input required (keyup)="isValid($event)" optional="email,phone" [(ngModel)]="model.username" name ="username" class="form-control-input form-control form-control-sm form-bgImg form-emailBgImg" type="text"
+                        <input required (keyup)="isValid()" optional="email,phone" [(ngModel)]="model.username" name ="username" class="form-control-input form-control form-control-sm form-bgImg form-emailBgImg" type="text"
                             placeholder="Enter Your Email Id / Mobile number *">
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.username"></div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input required (keyup)="isValid($event)" [(ngModel)]="model.password" name ="password" class="form-control-input form-control form-control-sm " type="{{passwordType}}"
+                        <input required (keyup)="isValid()" [(ngModel)]="model.password" name ="password" class="form-control-input form-control form-control-sm " type="{{passwordType}}"
                             placeholder="Enter Password *" style="position: relative;">
                             <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" (click)="viewPassword()" aria-hidden="true "></i>
                     </div>
