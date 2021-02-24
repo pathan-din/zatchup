@@ -3,15 +3,16 @@
     <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
             <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle ">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Subscription Fees Revenue</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">
+                    <span class="mr-2 cursorStyle ">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    Subscription Fees Revenue</h2>
             </div>
-            <div class="col-md-6 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-paret-green text-white px-3 h-100 border-0 mp0"
+            <div class="col-md-6 SearchDiv d-flex flex-wrap flex-row">
+                <button type="button" class="bg-paret-green text-white px-3 py-2 border-0 mp0 mt-2"
                     (click)="configureSubscription()">Configure Subscription Fees</button>
-                <button type="button" class="bg-blue text-white px-3 h-100 ml-2 border-0 mp0"
+                <button type="button" class="bg-blue text-white px-3 py-2 ml-2 border-0 mp0 mt-2"
                     (click)="subscriptionHistory()">Subscription Plan History</button>
             </div>
         </div>

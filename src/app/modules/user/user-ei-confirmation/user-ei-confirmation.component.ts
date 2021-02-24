@@ -106,11 +106,34 @@ params:any;
   /**Delete Course  */
 
   deleteCourse(id: any): any {
-    this.confirmDialogService.confirmThis('Are you sure to delete ?', () => {
+    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
       this.SpinnerService.show()
       let model: any = {};
       model.course_id = id;
       this.baseService.action('user/delete-course-standard-detail-by-student/', model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.getConfirmationDetails();
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.SpinnerService.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.SpinnerService.hide();
+      }
+    }, () => {
+    });
+  }
+
+  deleteEi(id: any): any {
+    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+      this.SpinnerService.show()
+      let model: any = {};
+      model.school_id = id;
+      this.baseService.action('user/delete-school-course-detail-by-student/', model).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.alert.success(res.message, "Success")

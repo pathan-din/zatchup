@@ -3,15 +3,16 @@
     <div class="eiMangPendingForApproval-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
             <div class="col-md-5 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle ">
+                <h2 class="commonFontSize semiBoldFont m-0">
+                <span class="mr-2 cursorStyle ">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0"> Onboarding Fees Revenue</h2>
+                Onboarding Fees Revenue</h2>
             </div>
-            <div class="col-md-7 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-paret-green text-white px-3 py-2 border-0 "
+            <div class="col-md-7 SearchDiv d-flex flex-wrap flex-row">
+                <button type="button" class="bg-paret-green text-white px-3 py-2 border-0 mt-2"
                     (click)="configureOnboardingFee()">Configure Onboarding Fees</button>
-                <button type="button" class="bg-blue text-white px-3 py-2 ml-2 border-0 "
+                <button type="button" class="bg-blue text-white px-3 py-2 ml-2 border-0 mt-2"
                     (click)="onboardingFeeAmountHistory()">Onboarding Fees Amount History</button>
             </div>
         </div>

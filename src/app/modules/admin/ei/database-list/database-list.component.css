@@ -15,3 +15,22 @@ a.pageLink {
     margin-right: 4px;
     border: 1px solid #463267;
 }
+
+.customWidth {
+    width: 55%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+    .customWidth {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px){
+    .customWidth{
+        width: 100%;
+    }
+    .SearchDiv {
+        margin-top: 0.5rem;
+    }
+}
