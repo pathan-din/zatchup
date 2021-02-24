@@ -170,7 +170,19 @@ export class UserLoginComponent implements OnInit {
           localStorage.setItem("approved", response.approved);
           
           $("#OTPModel").modal('hide');
-          this.router.navigate(['user/my-educational-profile']);
+          
+          if (response.steps == 1) {
+            this.router.navigate(['user/kyc-verification']);
+          } else if (response.steps >=  2 && response.steps < 5) {
+            this.router.navigate(['user/add-ei']);
+          }else if (response.steps == 5) {
+            this.router.navigate(['user/ei-confirmation']);
+          }else if (response.steps >= 6) {
+            this.router.navigate(['user/my-school']);
+          }else {
+            this.router.navigate(['user/my-educational-profile']);
+          }
+          //this.router.navigate(['user/my-educational-profile']);
           // if(response.approved==1)
           // {
           //   this.router.navigate(['user/my-educational-profile']);

@@ -104,17 +104,7 @@ export class UserHeaderComponent implements OnInit {
               }
             }
           } else {
-            if (res.reg_step == 1) {
-              this.router.navigate(['user/kyc-verification']);
-            } else if (res.reg_step >=  2 && res.reg_step < 5) {
-              this.router.navigate(['user/add-ei']);
-            }else if (res.reg_step == 6) {
-              this.router.navigate(['user/ei-confirmation']);
-            }else if (res.reg_step > 6) {
-              this.router.navigate(['user/my-school']);
-            }   else {
-
-            }
+            
           }
         }
       }, (error => {
