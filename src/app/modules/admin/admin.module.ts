@@ -154,7 +154,6 @@ import { UserEducationDetailsComponent } from './user/user-education-details/use
 import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
 import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
 import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
-import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
@@ -324,7 +323,6 @@ const config = {
     AdminKycPendingChangeRequestsComponent,
     AdminKycChangeRequestDetailsComponent,
     ContectAndStaticContentManagementComponent,
-    EditPocDetailsComponent,
     ChangePasswordComponent,
     ResolveTicketsComponent,
     TermsConditionsComponent,
