@@ -20,6 +20,14 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
   tcForSchoolId: any;
   tcForSchoolSubadminId: any;
 
+  privacyPolicyForUser: boolean = false;
+  privacyPolicyForSchool: boolean = false;
+  privacyPolicyForSchoolSubadmin: boolean = false;
+
+  privacyPolicyForUserId: any;
+  privacyPolicyForSchoolId: any;
+  privacyPolicyForSchoolSubadminId: any;
+
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
@@ -33,21 +41,19 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
   }
 
   getContents() {
-    let data = {
-      "page_name": 'Terms and Conditions'
-    }
 
-    this.baseService.getData('admin/view_static_content/', data).subscribe(
+
+    this.baseService.getData('admin/view_static_content/').subscribe(
       (res: any) => {
         if (res.status == true) {
           if (res.results.length > 0) {
             this.contentList = res.results;
             this.setTCInfo()
+            this.setPrivacyPolicyInfo()
           }
         } else {
           this.alert.error(res.error.message, "Error")
         }
-        console.log('content list is as ::', res)
         this.loader.hide()
       }
     ), err => {
@@ -77,27 +83,27 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
     this.router.navigate(['admin/edit-poc'])
   }
 
-  viewOrAddTermsAndConditions(type: any, action: any) {
-    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "returnUrl": "admin/contact-and-static-content-management" } })
+  viewOrAddTermsAndConditions(type: any, action: any, pageName: any) {
+    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "returnUrl": "admin/contact-and-static-content-management", pageName: pageName } })
   }
 
-  editTermsAndConditions(type: any, action: any,id: any) {
-    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "content-id": id , "returnUrl": "admin/contact-and-static-content-management" } })
+  editTermsAndConditions(type: any, action: any, id: any, pageName: any) {
+    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "content-id": id, "returnUrl": "admin/contact-and-static-content-management", pageName: pageName } })
   }
 
   setTCInfo() {
     let userInfo = this.contentList.find(val => {
-      return val.user_type == 'user'
+      return val.user_type == 'user' && val.page_name == 'Terms and Conditions'
     })
 
-    if (userInfo){
+    if (userInfo) {
       this.tcForUser = true;
       this.tcForUserId = userInfo.id;
     }
-      
+
 
     let schoolInfo = this.contentList.find(val => {
-      return val.user_type == 'school'
+      return val.user_type == 'school' && val.page_name == 'Terms and Conditions'
     })
 
     if (schoolInfo) {
@@ -107,13 +113,44 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
 
 
     let subadminInfo = this.contentList.find(val => {
-      return val.user_type == 'school_subadmin'
+      return val.user_type == 'school_subadmin' && val.page_name == 'Terms and Conditions'
     })
 
-    if (subadminInfo){
+    if (subadminInfo) {
       this.tcForSchoolSubadmin = true;
       this.tcForSchoolSubadminId = subadminInfo.id;
     }
-      
+  }
+
+  setPrivacyPolicyInfo() {
+    console.log('dssdsdsds', this.contentList)
+    let userInfo = this.contentList.find(val => {
+      return val.user_type == 'user' && val.page_name == 'Privacy Policy'
+    })
+
+    if (userInfo) {
+      this.privacyPolicyForUser = true;
+      this.privacyPolicyForUserId = userInfo.id;
+    }
+
+
+    let schoolInfo = this.contentList.find(val => {
+      return val.user_type == 'school' && val.page_name == 'Privacy Policy'
+    })
+
+    if (schoolInfo) {
+      this.privacyPolicyForSchoolId = schoolInfo.id;
+      this.privacyPolicyForSchool = true;
+    }
+
+
+    let subadminInfo = this.contentList.find(val => {
+      return val.user_type == 'school_subadmin' && val.page_name == 'Privacy Policy'
+    })
+
+    if (subadminInfo) {
+      this.privacyPolicyForSchoolSubadmin = true;
+      this.privacyPolicyForSchoolSubadminId = subadminInfo.id;
+    }
   }
 }

@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
-  selector: 'app-subadmin-terms-and-conditions',
-  templateUrl: './subadmin-terms-and-conditions.component.html',
-  styleUrls: ['./subadmin-terms-and-conditions.component.css']
+  selector: 'app-common-terms-conditions',
+  templateUrl: './common-terms-conditions.component.html',
+  styleUrls: ['./common-terms-conditions.component.css']
 })
-export class SubadminTermsAndConditionsComponent implements OnInit {
+export class CommonTermsConditionsComponent implements OnInit {
   htmlContent: any = '';
   type: any;
   action: any;
   content:any
+
   constructor(
-    private baseService: BaseService,
     private location: Location,
+    private baseService: BaseService,
     private route: ActivatedRoute,
     private alert: NotificationService,
-    private loader: NgxSpinnerService,
+    private loader: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -30,11 +31,12 @@ export class SubadminTermsAndConditionsComponent implements OnInit {
     this.getContent()
   }
 
+
   getContent(){
     this.loader.show()
      let data = {
-      // "user_type": '',
-      // "page_name": 'Terms and Conditions'
+      "user_type": 'user',
+      "page_name": 'Terms and Conditions'
        
      }
      this.baseService.getData('admin/view_static_content/', data).subscribe(

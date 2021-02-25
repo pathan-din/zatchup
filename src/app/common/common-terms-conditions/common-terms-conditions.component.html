@@ -1,13 +1,13 @@
-<app-admin-sidenav></app-admin-sidenav>
-<div class="container main-container p-3">
 
-    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
+<div class="container p-3">
+
+    <div class="col-9 subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border m-auto">
         <div class="row topDiv">
             <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
                 <span class="mr-3 cursorStyle ">
-                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()"  class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont mb-0"> {{pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy'}} </h2>
+                <h2 class="commonFontSize semiBoldFont mb-0"> Terms & Conditions </h2>
             </div>
         </div>
 
@@ -17,25 +17,12 @@
 
             <div *ngIf="!htmlContent" class="col-12">
                 <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">{{pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy'}} Not Available</p>
+                    <p class="text-center dataNotFound pt-4 pb-4">Terms and Conditions Not Available</p>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-3" *ngIf="action !== 'view' && (action == 'add' || action == 'edit')">
-            <div class="col-12">
-                <!-- <form autocapitalize="off" autocomplete="off"> -->
-                <!-- <textarea placeholder="Term & Conditions" class="w-100 rounded" cols="12" rows="20"
-                        name="TC_content" [(ngModel)]="content" required> </textarea> -->
-                <!-- <div class="required errorMsg" [innerHtml]="errorDisplay.TC_content">
-                    </div> -->
-                <angular-editor [(ngModel)]="htmlContent" #editor id="editor" [config]="editorConfig">
-                </angular-editor>
-                <button (click)="addContent()" type="button"
-                    class="p-2 bg-purple text-white border-0 px-4 mt-3 rounded">Submit</button>
-                <!-- </form> -->
-            </div>
-        </div>
+        
 
         <!-- <div class="row" *ngIf="action == 'view' && !contentList">
             <div class="col-12 pt-2 pb-2">
@@ -65,3 +52,4 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>
 </ngx-spinner>
+

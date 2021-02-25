@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
 import { EiAlumniHistoryComponent } from './alumni/ei-alumni-history/ei-alumni-history.component';
 import { EiAlumniListComponent } from './alumni/ei-alumni-list/ei-alumni-list.component';
 import { EiAlumniManagementComponent } from './alumni/ei-alumni-management/ei-alumni-management.component';
@@ -100,7 +99,6 @@ import { AboutUsComponent } from './setting/about-us/about-us.component';
 import { PersonalComponent } from './setting/personal/personal.component';
 import { PrivacyComponent } from './setting/privacy/privacy.component';
 import { SettingComponent } from './setting/setting/setting.component';
-import { TermsConditionsComponent } from './setting/terms-conditions/terms-conditions.component';
 import { EiPageNotFoundComponent } from './ei-page-not-found/ei-page-not-found.component';
 import { EiSubscriptionUpdateComponent } from './subscription/ei-subscription-update/ei-subscription-update.component';
 import { AddAdvertisementsComponent } from './advertisement/add-advertisements/add-advertisements.component';
@@ -116,7 +114,6 @@ import { ReminderAddComponent } from './reminder/reminder-add/reminder-add.compo
 import { ReminderListComponent } from './reminder/reminder-list/reminder-list.component';
 import { ReminderPastComponent } from './reminder/reminder-past/reminder-past.component';
 import { MyPocDetailsComponent } from './my-poc-details/my-poc-details.component';
-import { SearchComponent } from '../admin/ei/search/search.component';
 import { EiSearchComponent } from './ei-search/ei-search.component';
 import { AddEiComponent } from './registration/add-ei/add-ei.component';
 import { SubadminprofileComponent } from './registration/subadminprofile/subadminprofile.component';
@@ -141,6 +138,7 @@ import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-ord
 import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
+import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 
 
 const routes: Routes = [
@@ -149,6 +147,9 @@ const routes: Routes = [
   },
   {
     path: 'login', component: EiLoginComponent
+  },
+  {
+    path: 'terms-conditions/:type/:action', component: CommonTermsConditionsComponent
   },
   {
     path: 'forgot-password', component: EiForgetPasswordComponent
@@ -455,9 +456,6 @@ const routes: Routes = [
   },
   {
     path: 'setting', component: SettingComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'terms-conditions', component: TermsConditionsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'add-subscription', component: EiSubscriptionUpdateComponent, canActivate: [AuthGuard]
