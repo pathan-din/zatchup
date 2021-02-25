@@ -291,7 +291,7 @@ export class UserSignUpComponent implements OnInit {
       $nextInput.focus();
     } }
 
-    goToTermsAndConditions(type:any, action:any){
-      this.router.navigate(['user/terms-conditions', type, action ])
+    goToTermsAndConditions(type:any, action:any, pageName: any){
+      this.router.navigate(['user/terms-conditions', type, action ], {queryParams:{pageName: pageName}})
     }
 }

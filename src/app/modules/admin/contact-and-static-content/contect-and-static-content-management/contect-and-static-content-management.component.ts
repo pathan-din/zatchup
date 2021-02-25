@@ -43,7 +43,7 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
   getContents() {
 
 
-    this.baseService.getData('admin/view_static_content/').subscribe(
+    this.baseService.getData('admin/view_static_content/', { "page_size": 100 }).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (res.results.length > 0) {
@@ -120,6 +120,7 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
       this.tcForSchoolSubadmin = true;
       this.tcForSchoolSubadminId = subadminInfo.id;
     }
+    // debugger
   }
 
   setPrivacyPolicyInfo() {

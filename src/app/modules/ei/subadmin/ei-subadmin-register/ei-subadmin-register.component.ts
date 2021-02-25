@@ -204,7 +204,7 @@ export class EiSubadminRegisterComponent implements OnInit {
     }
   }
 
-  goToSubadminTermsAndConditions(type: any, action: any){
-    this.router.navigate(['ei/terms-conditions', type, action])
+  goToSubadminTermsAndConditions(type: any, action: any, pageName:any){
+    this.router.navigate(['ei/terms-conditions', type, action], {queryParams:{pageName:pageName}})
   }
 }

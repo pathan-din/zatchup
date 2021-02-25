@@ -16,6 +16,7 @@ export class CommonTermsConditionsComponent implements OnInit {
   type: any;
   action: any;
   content:any
+  pageName: any;
 
   constructor(
     private location: Location,
@@ -28,6 +29,7 @@ export class CommonTermsConditionsComponent implements OnInit {
   ngOnInit(): void {
     this.action = this.route.snapshot.params.action
     this.type = this.route.snapshot.params.type;
+    this.pageName = this.route.snapshot.queryParamMap.get("pageName")
     this.getContent()
   }
 
@@ -36,7 +38,7 @@ export class CommonTermsConditionsComponent implements OnInit {
     this.loader.show()
      let data = {
       "user_type": 'user',
-      "page_name": 'Terms and Conditions'
+      "page_name": this.pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy'
        
      }
      this.baseService.getData('admin/view_static_content/', data).subscribe(

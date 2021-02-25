@@ -157,7 +157,7 @@
                 <div class="form-group row  textSpace ml-0 mr-0">
                     <div class="col-sm-12 pl-0 d-flex align-items-center">
                         <input required type="checkbox" (change)="isValid($event)" id="term-condition" class="checkboxStyle cursorStyle" [(ngModel)]="model.is_term_cond" name ="term_condition">
-                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont" (click)="goToTermsAndConditions('user', 'view')">Terms & Conditions</span> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
+                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont" (click)="goToTermsAndConditions('user', 'view', 'tc')">Terms & Conditions</span> and <span class="color-purple semiBoldFont"  (click)="goToTermsAndConditions('user', 'view', 'privacy-policy')">Privacy Policy</span></label>
                     </div>
 
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.term_condition"></div>

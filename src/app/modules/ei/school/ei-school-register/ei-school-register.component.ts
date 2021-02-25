@@ -325,7 +325,7 @@ export class EiSchoolRegisterComponent implements OnInit {
       }
     } }
 
-    goToTermsAndConditions(type: any, action: any){
-      this.router.navigate(['ei/terms-conditions', type, action])
+    goToTermsAndConditions(type: any, action: any, pageName:any){
+      this.router.navigate(['ei/terms-conditions', type, action], {queryParams:{pageName: pageName}})
     }
 }
