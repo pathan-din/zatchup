@@ -116,7 +116,6 @@ import { SettingComponent } from './setting/setting/setting.component';
 import { ContactComponent } from './setting/contact/contact.component';
 import { PersonalComponent } from './setting/personal/personal.component';
 import { PrivacyComponent } from './setting/privacy/privacy.component';
-import { TermsConditionsComponent } from './setting/terms-conditions/terms-conditions.component';
 import { EiPageNotFoundComponent } from './ei-page-not-found/ei-page-not-found.component';
 import { AddAdvertisementsComponent } from './advertisement/add-advertisements/add-advertisements.component';
 import { PastAdvertisementsComponent } from './advertisement/past-advertisements/past-advertisements.component';
@@ -296,7 +295,6 @@ const config = {
     ContactComponent,
     PersonalComponent,
     PrivacyComponent,
-    TermsConditionsComponent,
     EiPageNotFoundComponent,
     AddAdvertisementsComponent,
     PastAdvertisementsComponent,
