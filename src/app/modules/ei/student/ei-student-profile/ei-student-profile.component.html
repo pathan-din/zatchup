@@ -46,6 +46,7 @@
                     <div class="col-6 commonFontSize regularFont">
                         <p *ngIf="studentData.gender=='M'"><span class="mr-3">:</span>Male</p>
                         <p *ngIf="studentData.gender=='F'"><span class="mr-3">:</span>Female</p>
+                        <p *ngIf="studentData.gender=='C'"><span class="mr-3">:</span>Custom {{studentData.pronoun}} {{studentData.custom_gender}}</p>
                         <!-- <p *ngIf="studentData.gender=='C'"><span class="mr-3">:</span>{{studentData.proun}}</p> -->
                     </div>
                 </div>
