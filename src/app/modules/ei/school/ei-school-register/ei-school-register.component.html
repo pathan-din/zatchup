@@ -314,7 +314,7 @@
                                 [(ngModel)]="model.is_term_cond" name="terms_condition" type="checkbox"
                                 id="term-condition">
                             <label for="term-condition" class="commonFontSize mediumFont ml-2">By continuing, you agree
-                                to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a
+                                to our <span class="color-purple semiBoldFont" (click)="goToTermsAndConditions('school', 'view')" >Terms & Conditions</span> and <a
                                     class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.terms_condition"></div>
                         </div>

@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class TermsConditionsComponent implements OnInit {
   action: any;
+  pageName: any
   type: any;
   content: any;
   contentList: any;
@@ -68,13 +69,15 @@ export class TermsConditionsComponent implements OnInit {
     this.action = this.route.snapshot.params.action
     this.type = this.route.snapshot.params.type;
     this.contentId = this.route.snapshot.queryParamMap.get("content-id")
+    this.pageName = this.route.snapshot.queryParamMap.get("pageName")
     if (this.action == 'view' || this.action == 'edit')
       this.getContents()
+      console.log('mi', this.route.snapshot.queryParamMap.get("pageName"))
   }
 
   getContents() {
     let data = {
-      "page_name": 'Terms and Conditions'
+      "page_name": this.pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy'
     }
 
     this.baseService.getData('admin/view_static_content/', data).subscribe(
@@ -107,7 +110,7 @@ export class TermsConditionsComponent implements OnInit {
     // }
 
     let data = {
-      "page_name": 'Terms and Conditions',
+      "page_name": this.pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy',
       "user_type": this.type,
       "page_content": this.htmlContent,
     }

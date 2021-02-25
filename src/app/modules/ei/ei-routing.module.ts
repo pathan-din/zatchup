@@ -141,6 +141,7 @@ import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-ord
 import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
+import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 
 
 const routes: Routes = [
@@ -149,6 +150,9 @@ const routes: Routes = [
   },
   {
     path: 'login', component: EiLoginComponent
+  },
+  {
+    path: 'user/terms-conditions/:type/:action', component: CommonTermsConditionsComponent
   },
   {
     path: 'forgot-password', component: EiForgetPasswordComponent

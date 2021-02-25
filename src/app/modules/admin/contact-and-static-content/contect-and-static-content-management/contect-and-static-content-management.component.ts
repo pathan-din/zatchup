@@ -77,12 +77,12 @@ export class ContectAndStaticContentManagementComponent implements OnInit {
     this.router.navigate(['admin/edit-poc'])
   }
 
-  viewOrAddTermsAndConditions(type: any, action: any) {
-    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "returnUrl": "admin/contact-and-static-content-management" } })
+  viewOrAddTermsAndConditions(type: any, action: any, pageName: any) {
+    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "returnUrl": "admin/contact-and-static-content-management", pageName: pageName } })
   }
 
-  editTermsAndConditions(type: any, action: any,id: any) {
-    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "content-id": id , "returnUrl": "admin/contact-and-static-content-management" } })
+  editTermsAndConditions(type: any, action: any,id: any, pageName: any) {
+    this.router.navigate(['admin/terms-conditions', type, action], { queryParams: { "content-id": id , "returnUrl": "admin/contact-and-static-content-management", pageName: pageName } })
   }
 
   setTCInfo() {

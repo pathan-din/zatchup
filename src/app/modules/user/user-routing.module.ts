@@ -56,6 +56,7 @@ import { ServiceComponent } from './user-info/service/service.component';
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,9 @@ const routes: Routes = [
   },
   {
     path: 'user', component: UserSignUpComponent
+  },
+  {
+    path: 'user/terms-conditions/:type/:action', component: CommonTermsConditionsComponent
   },
   {
     path: 'user/login', component: UserLoginComponent

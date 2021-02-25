@@ -323,7 +323,9 @@ export class EiSchoolRegisterComponent implements OnInit {
       } else {
         this.showHidecPassword = 'password';
       }
-    }
+    } }
 
-  }
+    goToTermsAndConditions(type: any, action: any){
+      this.router.navigate(['user/terms-conditions', type, action])
+    }
 }
