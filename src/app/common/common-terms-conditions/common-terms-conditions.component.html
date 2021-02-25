@@ -7,7 +7,7 @@
                 <span class="mr-3 cursorStyle ">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()"  class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont mb-0"> Terms & Conditions </h2>
+                <h2 class="commonFontSize semiBoldFont mb-0"> {{pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy'}} </h2>
             </div>
         </div>
 
@@ -17,7 +17,7 @@
 
             <div *ngIf="!htmlContent" class="col-12">
                 <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Terms and Conditions Not Available</p>
+                    <p class="text-center dataNotFound pt-4 pb-4">{{pageName == 'tc'? 'Terms and Conditions': 'Privacy Policy'}} Not Available</p>
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@
                 <h2 class="commonFontSize mediumFont mb-1">1. Personal Details</h2>
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
-                        <p>Name of user</p>
+                        <p>User Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
                         <p><span class="mr-3">:</span>{{studentData.name}}</p>
@@ -46,6 +46,7 @@
                     <div class="col-6 commonFontSize regularFont">
                         <p *ngIf="studentData.gender=='M'"><span class="mr-3">:</span>Male</p>
                         <p *ngIf="studentData.gender=='F'"><span class="mr-3">:</span>Female</p>
+                        <p *ngIf="studentData.gender=='C'"><span class="mr-3">:</span>Custom {{studentData.pronoun}} {{studentData.custom_gender}}</p>
                         <!-- <p *ngIf="studentData.gender=='C'"><span class="mr-3">:</span>{{studentData.proun}}</p> -->
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p class="m-0">Name of the El</p>
+                            <p class="m-0">School Name</p>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{eduDetail.name_of_school}} </p>
@@ -136,7 +137,7 @@
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p class="m-0">El ID Number/Admission number</p>
+                            <p class="m-0">School ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{eduDetail.admission_number}} </p>
@@ -144,7 +145,7 @@
                     </div>
 
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -153,7 +154,7 @@
                         <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{eduDetail.date_joining}} </p>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="row" *ngIf="!ischeckStudentOrAlumni">
@@ -178,11 +179,14 @@
             <div *ngIf="eduDetail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
                 <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.course_detail">
+                    <div class="row ">
+                        <h3 class="m-0 semiBoldFont commonFontSize">{{courseData.is_current_course == true? 'Student': 'Alumni'}}</h3>
+                    </div>
                     <div class="row">
                         <div
                             class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p class="m-0">Name of Course </p>
+                            <p class="m-0">Course Name </p>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{courseData.course_name}} </p>
@@ -239,8 +243,8 @@
                                 <th scope="col">Standard</th>
                                 <th scope="col">Class( sub-Section) </th>
                                 <!-- <th scope="col">Class Alias</th> -->
-                                <th scope="col">Year of Starting The Standard</th>
-                                <th scope="col">Year of Ending The Standard</th>
+                                <th scope="col">Standard Starting Year</th>
+                                <th scope="col">Standard Ending Year</th>
                                 <th scope="col">Duration of Completion</th>
                                 <!-- <th scope="col">Roll Number(If Available)</th> -->
                             </tr>
