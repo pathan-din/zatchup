@@ -130,7 +130,8 @@ export class EiSubscriptionComponent implements OnInit {
                   that.closePaymentModel.nativeElement.click()
                   that.getSubscriptionDetail()
                   that.getSubList();
-                  // window.location.href = '#/ei/subscription';
+                  window.location.reload();
+                  window.location.href = '#/ei/subscription';
                 }
               },
               "notes": {

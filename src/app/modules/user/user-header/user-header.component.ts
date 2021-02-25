@@ -83,7 +83,7 @@ export class UserHeaderComponent implements OnInit {
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
 
         } else {
-          if (res.reg_step <= 6 && !res.is_approved && res.is_kyc_rejected) {
+          if (res.reg_step <= 7 && !res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
               this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
               if(res.is_deleted){
@@ -99,7 +99,7 @@ export class UserHeaderComponent implements OnInit {
 
               }
             }
-          } else if (res.reg_step <= 6 && res.is_approved && res.is_kyc_rejected) {
+          } else if (res.reg_step <= 7 && res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
               this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
               if(res.is_deleted){
@@ -111,8 +111,8 @@ export class UserHeaderComponent implements OnInit {
               }
               
             } else {
-              if (res.reg_step == 6) {
-                this.router.navigate(['user/my-educational-profile']);
+              if (res.reg_step == 7) {
+                this.router.navigate(['user/my-school']);
 
               }
             }
