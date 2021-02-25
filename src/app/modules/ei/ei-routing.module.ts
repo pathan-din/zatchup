@@ -152,7 +152,7 @@ const routes: Routes = [
     path: 'login', component: EiLoginComponent
   },
   {
-    path: 'user/terms-conditions/:type/:action', component: CommonTermsConditionsComponent
+    path: 'terms-conditions/:type/:action', component: CommonTermsConditionsComponent
   },
   {
     path: 'forgot-password', component: EiForgetPasswordComponent
@@ -459,9 +459,6 @@ const routes: Routes = [
   },
   {
     path: 'setting', component: SettingComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'terms-conditions', component: TermsConditionsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'add-subscription', component: EiSubscriptionUpdateComponent, canActivate: [AuthGuard]

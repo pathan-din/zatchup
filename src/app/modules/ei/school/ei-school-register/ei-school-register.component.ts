@@ -326,6 +326,6 @@ export class EiSchoolRegisterComponent implements OnInit {
     } }
 
     goToTermsAndConditions(type: any, action: any){
-      this.router.navigate(['user/terms-conditions', type, action])
+      this.router.navigate(['ei/terms-conditions', type, action])
     }
 }
