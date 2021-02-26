@@ -1,3 +1,6 @@
+.loginInput input{
+    width: 18%!important;
+}
 @media only screen and (max-width: 414px) {
     .pl-5, .px-5 {
         padding-left: .5rem!important;

@@ -24,8 +24,17 @@
  
 .customDiv {
     width: 120px;
+    height: 120px;
     border-radius: 50%;
     overflow: hidden;
+    text-align: center;
+}
+
+.customDiv img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .chckImg {
@@ -51,6 +60,7 @@
     .editIcon{
         width: 10%;
     }
+    
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
