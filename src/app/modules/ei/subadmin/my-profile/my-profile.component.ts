@@ -358,9 +358,9 @@ export class MyProfileComponent implements OnInit {
     }
   }
 
-  getGender(data: any) {
+  getGender(data: any, type?: string) {
     if (data)
-      return this.baseService.getGender(data)
+      return this.baseService.getGender(data, type)
     return ''
   }
 
