@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
                         <div class="position-relative border customDiv" >                            
-                            <img  src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/profile-default.png'}}" class="img_profile img-fluid">                            
+                            <img  src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/share-my-profile-icon.png'}}" class="img_profile img-fluid">                            
                              <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">                              
                              <app-image-uploader (imageData)="getProfilePicUrl($event,objEpData)" [uploadInfo]="uploadInfo">
                              </app-image-uploader>
