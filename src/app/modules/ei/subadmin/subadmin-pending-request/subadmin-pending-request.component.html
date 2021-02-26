@@ -8,7 +8,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Pending Requests To Sub Admin</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">Unverified Sub Admin</h2>
             </div>
 
         </div>
@@ -19,9 +19,6 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <!-- <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option> -->
                         <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
@@ -32,11 +29,6 @@
             </div>
         </div>
         <!--End html for filter for No of alumni per page with export button-->
-
-        <!-- <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-            <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
-                    aria-hidden="true"></i>Export</button>
-        </div> -->
 
         <div class="tableDiv" *ngIf="dataSource && dataSource.length> 0">
             <div class="mat-elevation-z1 table-responsive">
@@ -57,15 +49,16 @@
                     <ng-container matColumnDef="zatchUpID">
                         <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.zatchupID}}
+                            {{element.zatchupid}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePicture">
                         <mat-header-cell *matHeaderCellDef> Profile Picture </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="text-center cursorStyle">
-                            {{element.profilePicture}}
-                            <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick"
+                            <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="profile pick"
+                                style="height: 50px;" />
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="profile pick"
                                 style="height: 50px;" />
                         </mat-cell>
                     </ng-container>

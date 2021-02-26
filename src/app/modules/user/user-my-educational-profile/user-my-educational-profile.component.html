@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
                         <div class="position-relative border customDiv" >                            
-                            <img  src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/profile-default.png'}}" class="img_profile img-fluid">                            
+                            <img  src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/share-my-profile-icon.png'}}" class="img_profile img-fluid">                            
                              <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">                              
                              <app-image-uploader (imageData)="getProfilePicUrl($event,objEpData)" [uploadInfo]="uploadInfo">
                              </app-image-uploader>
@@ -50,6 +50,8 @@
                                         <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
                                 <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{this.baseService.getGender(objEpData)}} </span></p>
+                                        <p *ngIf="objEpData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">pronoun : <span
+                                            class="regularFont">{{this.baseService.getGender(objEpData, 'pronoun')}} </span></p>
                                 <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
                                 <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span

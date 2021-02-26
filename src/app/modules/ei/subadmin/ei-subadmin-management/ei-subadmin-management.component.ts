@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
-import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -14,108 +13,24 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 
 export class EiSubadminManagementComponent implements OnInit {
-  pageSize: any = 1;
-  totalNumberOfPage: any = 10;
-  config: any;
-  subAdminList: any = [];
-  model: any = [];
-  collection = { count: 60, data: [] };
-  displayedColumns: string[] = ['SNo', 'ZatchUpID', 'EmployeeID',
-    'Name', 'EmailID', 'PhoneNumber',
-    'Designation', 'Action'];
-  dataSource: any;
   dasboardSummery: any
-  startIndex:any=1;
-  pageCounts: any;
+
   constructor(
-    private genericFormValidationService: GenericFormValidationService,
     private router: Router,
-    private SpinnerService: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public base: BaseService,
-    public formBuilder: FormBuilder,
-    private alert: NotificationService) { }
+    public baseService: BaseService,
+    private loader: NgxSpinnerService,
+    private alert: NotificationService
+  ) { }
 
   ngOnInit(): void {
-    this.config = {
-      itemsPerPage: 0,
-      currentPage: 1,
-      totalItems: 0
-    };
     this.getSubadminDashboardSummry()
-    this.sudAdminList('', '');
-  }
-  sudAdminList(page, id) {
-    try {
-      console.log(page);
-      
-
-      this.SpinnerService.show();
-      //base
-      if (id) {
-        this.model.user_id = id;
-      }
-      this.model.page=page;
-      //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
-      this.base.getData('ei/subadmin-lists-by-ei/', this.model).subscribe(res => {
-
-        let response: any = {};
-        response = res;
-        this.SpinnerService.hide();
-
-        this.subAdminList = response.results;
-        this.pageSize = response.page_size;
-       
-        this.model.page_size = this.pageSize
-        this.totalNumberOfPage = response.count;
-        this.config.itemsPerPage = this.pageSize
-        this.config.currentPage = page
-        this.config.totalItems = this.totalNumberOfPage;
-        this.pageCounts = this.base.getCountsOfPage();
-        let arrStudentList: any = [];
-        if (!page) { page = 1 }
-        var i = (this.pageSize * (page - 1)) + 1;
-        this.subAdminList.forEach(objData => {
-          let objStudentList: any = {};
-          objStudentList.checked = '';
-          objStudentList.SNo = i;
-          objStudentList.ZatchUpID = objData.zatchup_id;
-          objStudentList.EmployeeID = objData.employee_num;
-          objStudentList.Name = objData.first_name + ' ' + objData.last_name;
-          objStudentList.EmailID = objData.email;
-          objStudentList.PhoneNumber = objData.phone;
-          objStudentList.Designation = objData.designation;
-          objStudentList.user_id = objData.user_id;
-
-          objStudentList.Action = '';
-          arrStudentList.push(objStudentList);
-          i = i + 1;
-          
-        })
-
-        this.dataSource = arrStudentList;
-        if (response.status == false) {
-          this.alert.error(response.error.message[0], 'Error')
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        // console.log(error);
-        // this.alert.error(response.message[0], 'Error')
-      });
-    } catch (err) {
-      this.SpinnerService.hide();
-      console.log(err);
-      // this.alert.error(err, 'Error')
-    }
   }
 
 
   getSubadminDashboardSummry() {
     try {
-      this.SpinnerService.show();
-
-
-      this.base.getData('admin/ei_subadmin_dashboard_summary/').subscribe(
+      this.loader.show();
+      this.baseService.getData('admin/ei_subadmin_dashboard_summary/').subscribe(
         (res: any) => {
           if (res.status == true) {
             this.dasboardSummery = res.data;
@@ -123,13 +38,13 @@ export class EiSubadminManagementComponent implements OnInit {
           else {
             this.alert.error(res.error.message[0], 'Error')
           }
-          this.SpinnerService.hide()
+          this.loader.hide()
         }, (error) => {
           this.alert.error(error.message, 'Error');
-          this.SpinnerService.hide();
+          this.loader.hide();
         });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
       console.log(err);
     }
   }
@@ -137,9 +52,7 @@ export class EiSubadminManagementComponent implements OnInit {
   goToEiSubadminModuleWisePage() {
     this.router.navigate(['ei/subadmin-module-wise']);
   }
-  redirectToDetailPage(id) {
-    this.router.navigate(['ei/subadmin-details'], { queryParams: { id: id } });
-  }
+
   goToEiSubadminAccessHistoryPage() {
     this.router.navigate(['ei/subadmin-access-history']);
   }
@@ -149,14 +62,18 @@ export class EiSubadminManagementComponent implements OnInit {
   }
 
   goToEiSubadminViewStatusPage(status) {
-    
-    
     this.router.navigate(['ei/subadmin-view-status'], { queryParams: { 'status': status } });
   }
-  subadminPendingAccessRequest(){
+
+  subadminPendingAccessRequest() {
     this.router.navigate(['ei/subadmin-pending-access']);
   }
-  subadminPendingRequest(){
+
+  subadminPendingRequest() {
     this.router.navigate(['ei/subadmin-pending-request']);
+  }
+
+  subadminCompletedRequest() {
+    this.router.navigate(['ei/subadmin-completed-request']);
   }
 }
