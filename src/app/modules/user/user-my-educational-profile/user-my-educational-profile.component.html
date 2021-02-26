@@ -50,6 +50,8 @@
                                         <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
                                 <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{this.baseService.getGender(objEpData)}} </span></p>
+                                        <p *ngIf="objEpData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">pronoun : <span
+                                            class="regularFont">{{this.baseService.getGender(objEpData, 'pronoun')}} </span></p>
                                 <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
                                 <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span

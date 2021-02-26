@@ -84,7 +84,7 @@
                                     <p><span class="mr-3">: </span> {{getGender(userData)}}</p>
                                 </div>
                             </div>
-                            <div class="row mx-0">
+                            <div class="row mx-0" *ngIf="userData.pronoun">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
                                         Pronoun</p>
