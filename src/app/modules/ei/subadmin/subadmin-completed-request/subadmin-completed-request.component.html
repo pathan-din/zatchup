@@ -1,0 +1,123 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+
+
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Verified Sub Admin</h2>
+            </div>
+
+        </div>
+
+        <!--Start html for filter for No of alumni per page with export button-->
+        <div class="row my-3" *ngIf="dataSource && dataSource.length> 0">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Student Count Per Page </label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select (change)="getSubadminCompletedRequest('1')" [(ngModel)]="pageSize" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
+                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for filter for No of alumni per page with export button-->
+
+        <!-- <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+            <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
+                    aria-hidden="true"></i>Export</button>
+        </div> -->
+
+        <div class="tableDiv" *ngIf="dataSource && dataSource.length> 0">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && dataSource.length > 0">
+                <mat-table [dataSource]="dataSource |  paginate: config">
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{startIndex + i}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.first_name}} {{element.last_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchUpID">
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.zatchup_id}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profilePicture">
+                        <mat-header-cell *matHeaderCellDef> Profile Picture </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center cursorStyle">
+                            <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="profile pick"
+                                style="height: 50px;" />
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="profile pick"
+                                style="height: 50px;" />
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfBirth">
+                        <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.dob}}
+                        </mat-cell>
+                    </ng-container>                    
+
+                    <ng-container matColumnDef="emailId">
+                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.email}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="phone">
+                        <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.phone}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EmployeeID">
+                        <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.employee_num}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i (click)="redirectToDetailPage(element.user_id)"
+                                class="fa fa-eye mr-2 cursorStyle color-lightBlue fa-lg" title="View"
+                                aria-hidden="true "></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+            </div>
+        </div>
+        <pagination-controls *ngIf="dataSource && dataSource.length> 0"
+            (pageChange)="getSubadminCompletedRequest($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row" *ngIf="dataSource && dataSource.length== 0">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

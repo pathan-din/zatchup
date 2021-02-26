@@ -139,6 +139,7 @@ import { StarclassRequestsPendingComponent } from './starclass/starclass-request
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
+import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
 
 
 const routes: Routes = [
@@ -435,6 +436,9 @@ const routes: Routes = [
   },
   {
     path: 'subadmin-pending-request', component: SubadminPendingRequestComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'subadmin-completed-request', component: SubadminCompletedRequestComponent, canActivate: [AuthGuard]
   },
   {
     path: 'subadmin-request-changing', component: SubadminRequestChangingComponent, canActivate: [AuthGuard]
