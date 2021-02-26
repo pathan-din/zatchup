@@ -12,7 +12,6 @@ import { UserAddCourseComponent } from './user-add-course/user-add-course.compon
 import { UserAddEiComponent } from './user-add-ei/user-add-ei.component';
 import { UserEiConfirmationComponent } from './user-ei-confirmation/user-ei-confirmation.component';
 import { UserEiProfileComponent } from './user-ei-profile/user-ei-profile.component';
-import { UserEiProfileNotOnboardComponent } from './user-ei-profile-not-onboard/user-ei-profile-not-onboard.component';
 import { UserAddMoreEiComponent } from './user-add-more-ei/user-add-more-ei.component';
 import { UserAddMoreStandardComponent } from './user-add-more-standard/user-add-more-standard.component';
 import { UserProfileCreatedSuccessfullyComponent } from './user-profile-created-successfully/user-profile-created-successfully.component';
@@ -56,6 +55,7 @@ import { ServiceComponent } from './user-info/service/service.component';
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 
 
 const routes: Routes = [
@@ -64,6 +64,9 @@ const routes: Routes = [
   },
   {
     path: 'user', component: UserSignUpComponent
+  },
+  {
+    path: 'user/terms-conditions/:type/:action', component: CommonTermsConditionsComponent
   },
   {
     path: 'user/login', component: UserLoginComponent

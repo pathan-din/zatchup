@@ -116,7 +116,6 @@ import { SettingComponent } from './setting/setting/setting.component';
 import { ContactComponent } from './setting/contact/contact.component';
 import { PersonalComponent } from './setting/personal/personal.component';
 import { PrivacyComponent } from './setting/privacy/privacy.component';
-import { TermsConditionsComponent } from './setting/terms-conditions/terms-conditions.component';
 import { EiPageNotFoundComponent } from './ei-page-not-found/ei-page-not-found.component';
 import { AddAdvertisementsComponent } from './advertisement/add-advertisements/add-advertisements.component';
 import { PastAdvertisementsComponent } from './advertisement/past-advertisements/past-advertisements.component';
@@ -155,7 +154,8 @@ import { AlumniSummaryComponent } from './alumni/alumni-summary/alumni-summary.c
 import { EiStarclassMycoursesComponent } from './starclass/ei-starclass-mycourses/ei-starclass-mycourses.component';
 import { EiStarclassYourOrderComponent } from './starclass/ei-starclass-your-order/ei-starclass-your-order.component';
 import { StarclassRequestsPendingComponent } from './starclass/starclass-requests-pending/starclass-requests-pending.component';
-
+import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
+import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -295,7 +295,6 @@ const config = {
     ContactComponent,
     PersonalComponent,
     PrivacyComponent,
-    TermsConditionsComponent,
     EiPageNotFoundComponent,
     AddAdvertisementsComponent,
     PastAdvertisementsComponent,
@@ -328,6 +327,8 @@ const config = {
     EiStarclassMycoursesComponent,
     EiStarclassYourOrderComponent,
     StarclassRequestsPendingComponent,
+    MyProfileComponent,
+    SubadminTermsAndConditionsComponent,
   ],
   imports: [
     CommonModule,

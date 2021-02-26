@@ -38,12 +38,35 @@ export class EiKycVerificationComponent implements OnInit {
   ngOnInit(): void {
     this.model.kyc_type='';
     if(!localStorage.getItem("dob") && !localStorage.getItem("name")){
-
+      this.getKYC();
     }else{
      this.model.kyc_dob  = this.base.getDateReverseFormat(localStorage.getItem("dob"));
      this.model.kyc_name = localStorage.getItem("name");
     }
     
+  }
+  getKYC(){
+    //check-user-ekyc/
+    try {
+      this.base.action("user/check-user-ekyc/",{}).subscribe((res:any)=>{
+        if(res.status == true){
+          this.model.kyc_name=res.data.name
+          if(res.data.kyc_dob.length>10){
+            this.model.kyc_dob = res.data.kyc_dob.split('T')[0];
+            
+          }else{
+            this.model.kyc_dob = res.data.kyc_dob;
+          }
+          
+        
+        }
+      },(error)=>{
+        console.log(error);
+        
+      })
+    } catch (e) {
+    
+    }
   }
   /**Submit KYC of SUBADMIN */
   goToUserQualificationPage(){
@@ -53,10 +76,7 @@ export class EiKycVerificationComponent implements OnInit {
     }
     try {
       this.model.kyc_dob = this.datePipe.transform(this.model.kyc_dob, 'yyyy-MM-dd')
-      console.log(this.model);
-      
       this.SpinnerService.show();
-
       const formData = new FormData();
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
@@ -64,16 +84,7 @@ export class EiKycVerificationComponent implements OnInit {
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
-      
-      
-      // if(localStorage.getItem('user_id'))
-      // {
-      // this.model.user_id=localStorage.getItem('user_id')
-      // formData.append('user_id',this.model.user_id) ;
-      // }
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-
-      this.eiService.addKyc(formData).subscribe(res => {
+      this.userService.addKyc(formData).subscribe(res => {
         let response: any = {}
         response = res;
         this.SpinnerService.hide();
@@ -84,7 +95,12 @@ export class EiKycVerificationComponent implements OnInit {
           {
             this.router.navigate(['ei/subadmin-school-confirm']);
           }else{
+            if(response.reg_steps>=4){
+              this.router.navigate(['ei/my-profile']);
+            }else{
               this.router.navigate(['ei/add-ei']);
+            }
+              
           }
         } else {
           this.SpinnerService.hide();
@@ -134,6 +150,7 @@ export class EiKycVerificationComponent implements OnInit {
   }
   checkIdValidation(){
     this.pattran='';
+    this.model.kyc_id_no='';
     if(this.model.kyc_type=='Aadhar'){
       this.maxLength = 12;
       this.placeholder='Enter Id'

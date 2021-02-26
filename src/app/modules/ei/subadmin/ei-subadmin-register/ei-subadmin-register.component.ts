@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
@@ -27,20 +27,21 @@ export class EiSubadminRegisterComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay: any;
+  maxlength: any;
+  type: string;
   constructor(
     private base: BaseService,
     private genericFormValidationService: GenericFormValidationService,
     private router: Router,
     private loader: NgxSpinnerService,
     public formBuilder: FormBuilder,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private route: ActivatedRoute
   ) { }
   ngOnInit(): void {
     this.model.profile = {};
     this.model.profile.pronoun = '';
     this.model.profile.custom_gender = '';
-
-
   }
   submitSubAdminRegister() {
     this.error = [];
@@ -86,6 +87,31 @@ export class EiSubadminRegisterComponent implements OnInit {
       this.alert.error(err, "Error")
     }
   }
+  isCheckEmailOrPhone(event){
+    
+    this.maxlength = ''
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(event.target.value)){
+      
+      this.type='email';
+      this.maxlength = 50;
+      this.model.username =event.target.value;
+     
+      
+    }else{
+     const numbers = /^[0-9]+$/;
+     if(numbers.test(event.target.value))
+     {
+       console.log(numbers.test(event.target.value));
+       
+      this.type='tel'
+      this.maxlength = 10;
+      this.model.username = event.target.value;
+       
+     }
+     
+    }
+   }
   goToEiContactUsPage() {
     this.router.navigate(['ei/contact-us']);
   }
@@ -176,5 +202,9 @@ export class EiSubadminRegisterComponent implements OnInit {
       this.loader.hide();
       this.alert.error(err, 'Error')
     }
+  }
+
+  goToSubadminTermsAndConditions(type: any, action: any, pageName:any){
+    this.router.navigate(['ei/terms-conditions', type, action], {queryParams:{pageName:pageName}})
   }
 }

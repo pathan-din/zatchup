@@ -54,6 +54,10 @@ export class EiMobileVerificationComponent implements OnInit {
     }
      
   }
+  editRequest(){
+    this.router.navigate(['ei/school-registration']);
+  }
+
   resendOtp() {
     try {
       let data: any = {};

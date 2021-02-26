@@ -7,6 +7,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Action } from 'rxjs/internal/scheduler/Action';
 declare var $: any;
 
 @Component({
@@ -288,7 +289,9 @@ export class UserSignUpComponent implements OnInit {
     if ($ev.target.value.length == $ev.target.maxLength) {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
-    }
+    } }
 
-  }
+    goToTermsAndConditions(type:any, action:any, pageName: any){
+      this.router.navigate(['user/terms-conditions', type, action ], {queryParams:{pageName: pageName}})
+    }
 }

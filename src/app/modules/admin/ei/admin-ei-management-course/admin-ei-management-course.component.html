@@ -88,6 +88,15 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="Description">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center text-center"> Course Description
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+                            <i class="mr-2 color-lightBlue cursorStyle" aria-hidden="true "
+                            aria-hidden="true "  data-toggle="modal" data-target="#courseDescription" (click)="setDescription(element)">View</i>
+                        </mat-cell>
+                    </ng-container>
+
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
 
@@ -105,9 +114,44 @@
             </div>
         </div>
     </div>
+<!-- start of course description model--> 
+<div class="modal fade" id="courseDescription" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog " role="document">
+    <div class="modal-content unverified container-fluid">
+        <div class="modal-header align-items-center justify-content-center pb-0 ">
+            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Course Description</h2>
+            <button #courseDescription type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                data-dismiss="modal" aria-label="Close ">
+                <span aria-hidden="true ">
+                    &times;
+                </span>
+            </button>
+        </div>
+        <div class="modal-body px-0">
+            <form autocapitalize="off" autocomplete="off">
+                
+                <div class=" form-group row ">
+                    <div class="col-sm-12 ">
+                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                            <textarea id="course_description" name="course_description" required
+                                [(ngModel)]="description"  rows="4" placeholder=" Description "
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " readonly>
+                           </textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- end of course description model--> 
 
 </div>
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>
 </ngx-spinner>
+

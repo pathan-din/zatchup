@@ -14,11 +14,12 @@ export class AdminEiManagementCourseComponent implements OnInit {
 
   displayedColumns: string[] = ['SNo', 'courseName', 'startYera',
     'endYear', 'noOfStandards', 'noOfClass',
-    'noOfStudents', 'noOfAlumni', 'Action'];
+    'noOfStudents', 'noOfAlumni','Description', 'Action' ];
 
   dataSource: any;
   eiId: any;
   courseList: any;
+  description: any = '';
   config = {
     itemsPerPage: 0,
     currentPage: 1,
@@ -75,6 +76,10 @@ export class AdminEiManagementCourseComponent implements OnInit {
       this.alert.error(err, 'Error');
       this.loader.hide();
     }
+  }
+
+  setDescription(data: any){
+    this.description = data.description;
   }
 
   goBack(){

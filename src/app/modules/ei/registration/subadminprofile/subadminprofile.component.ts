@@ -25,6 +25,13 @@ export class SubadminprofileComponent implements OnInit {
   course_id: any = '';
   standard: any = '';
   imagePath:any="";
+  subadminProfile: any ={};
+  uploadInfo: any = {
+    "image_type": "file_name",
+    "url": "ei/uploaddocsfile/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
 
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -150,6 +157,10 @@ getEiNumber(){
       console.log("vaeryfy Otp Exception", err);
     }
   }
-  
+
+  getProfilePicUrl(data: any) {
+    this.model.profile_pic=data.filename;
+    this.imageUrl = this.imagePath + data.filename
+  }
 
 }

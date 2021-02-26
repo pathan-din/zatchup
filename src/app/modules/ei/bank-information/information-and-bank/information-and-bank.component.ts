@@ -5,8 +5,10 @@ import { ImageViewerConfig, CustomEvent } from 'src/app/common/image-viewer/imag
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
+
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { UsersServiceService } from 'src/app/services/user/users-service.service';
 
 declare var $: any;
 
@@ -37,6 +39,7 @@ export class InformationAndBankComponent implements OnInit {
   address_1: any;
   address_2: any;
   modelDocumentDetails: any = [];
+  modelForOtpModal: any={};
   constructor(
     private baseService: BaseService,
     private validationService: GenericFormValidationService,
@@ -44,6 +47,8 @@ export class InformationAndBankComponent implements OnInit {
     public eiService: EiServiceService,
     private alert: NotificationService,
     private router: Router,
+    public userService: UsersServiceService
+    
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +65,33 @@ export class InformationAndBankComponent implements OnInit {
       model.value = this.address_1 + ' ' + this.address_2;
     }
 
+  }
+  resendOtp() {
+    try {
+      let data: any = {};
+      this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+
+      /***********************Mobile Number OR Email Verification Via OTP**********************************/
+      this.loader.show();
+      this.baseService.action('ei/resend-otp-ei-request-for-detail-change/',this.model).subscribe(res => {
+        let response: any = {}
+        response = res;
+        this.loader.hide();
+        if (response.status == true) {
+          this.alert.success(response.message,"Success")
+        } else {
+          this.errorOtpModelDisplay = response.error;
+          //alert(response.error)
+        }
+      }, (error) => {
+        this.loader.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.loader.hide();
+      console.log("verify Otp Exception", err);
+    }
   }
   goForward() {
 
@@ -364,8 +396,9 @@ export class InformationAndBankComponent implements OnInit {
         if (response.status == true) {
 
           $("#OTPModel").modal('hide');
-          this.alert.success('Request has been send for approved', 'Success');
-          location.reload();
+          this.alert.success(data.key+' has been updated', 'Success');
+          localStorage.clear();
+          this.router.navigate(['ei/login']);
           //
 
         } else {

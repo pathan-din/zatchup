@@ -1,4 +1,6 @@
-import { Component, OnInit , ViewChild} from '@angular/core';
+
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit , ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -29,7 +31,8 @@ export class EiSubscriptionComponent implements OnInit {
     private router: Router,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    @Inject(DOCUMENT) private _document: Document
   ) { }
 
   ngOnInit(): void {
@@ -128,7 +131,12 @@ export class EiSubscriptionComponent implements OnInit {
               "handler": function (res) {
                 if (res.razorpay_payment_id) {
                   that.closePaymentModel.nativeElement.click()
-                  window.location.href = '#/ei/subscription';
+                  // that.getSubscriptionDetail();
+                  // document
+                  // that.getSubList();
+                  // that.is_activate_subscription = true
+                  // window.location.href = '#/ei/subscription';
+                  that._document.location.reload()
                 }
               },
               "notes": {

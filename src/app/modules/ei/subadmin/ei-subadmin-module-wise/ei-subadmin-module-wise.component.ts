@@ -82,19 +82,24 @@ export class EiSubadminModuleWiseComponent implements OnInit {
       totalItems: 0
     };
     this.getAllModuleList();
-    this.sudAdminList('', '');
+    this.sudAdminList('', '','');
   }
   redirectToDetailPage(id) {
     this.router.navigate(['ei/subadmin-details'], { queryParams: { id: id } });
   }
-  sudAdminList(page, id) {
+  sudAdminList(page, id,module_id) {
+    console.log(module_id);
+    
     try {
       this.SpinnerService.show();
       //base
       if (id) {
         this.model.user_id = id;
       }
-
+      if(module_id){
+        this.model.module_id = module_id;
+      }
+      
       //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
       this.baseService.getData('ei/subadmin-lists-by-ei/', this.model).subscribe(res => {
 
@@ -158,9 +163,10 @@ export class EiSubadminModuleWiseComponent implements OnInit {
   
   getAllModuleList() {
     try {
+      
       this.SpinnerService.show();
 
-      this.baseService.getData('ei/get-master-modules/').subscribe(res => {
+      this.baseService.getData('ei/get-master-modules/',this.model).subscribe(res => {
         this.SpinnerService.hide();
         let response: any = {};
         response = res;

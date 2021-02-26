@@ -410,4 +410,13 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   resetInputSearchValue() {
     this.communicationService.clearFieldValue();
   }
+
+  fileType(file: any) {
+    return file.split('.').pop();
+  }
+
+  download_file(fileURL) {
+    window.open(fileURL, '_blank');
+  }
+
 }

@@ -63,11 +63,11 @@ export class ImageUploaderComponent implements OnInit {
     this.croppedImage = event.base64;
   }
   imageLoaded() {
-    debugger
+    // debugger
     /* show cropper */
   }
   cropperReady() {
-    debugger
+    // debugger
     /* cropper ready */
   }
   loadImageFailed() {

@@ -39,6 +39,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   errorDisplay: any = {};
   title: any = '';
   pageCounts: any;
+ // params:any={};
   constructor(
     private router: Router,
     private location: Location,
@@ -62,29 +63,43 @@ export class EiStudentVerifiedListComponent implements OnInit {
     // this.model.age = '';
     this.model.approved = ""
     // this.model.kyc_approved=""
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params:any) => {
+       
+      //this.model = params;
       this.model.approved = params['approved'] ? params['approved'] : '';
       // this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
       this.model.is_rejected = params['is_rejected'] ? params['is_rejected'] : '';
       this.model.rejectedby = params['rejectedby'] ? params['rejectedby'] : '';
       this.title = params['title'];
+      this.model.course = params['course'];
+      this.model.standard = params['standard'];
+      this.model.teaching_class = params['teaching_class'];
+       
     });
     for (var i = 5; i < 70; i++) {
       this.arrAge.push(i);
     }
-    this.getGetVerifiedStudent('', '')
     this.displayCourseList();
+    this.getGetVerifiedStudent('', '')
+    
   }
   displayCourseList() {
     try {
       this.loader.show();
-      this.model.course = '';
-      this.model.standard = '';
-      this.model.teaching_class = '';
+      
       this.eiService.displayCourseList().subscribe(res => {
         let response: any = {};
         response = res;
         this.courseList = response.results;
+        if(this.model.course){
+          //this.model.course = this.model.course;
+          this.displayStandardList(this.model.course);
+        }else{
+          this.model.course = '';
+          this.model.standard = '';
+          this.model.teaching_class = '';
+        }
+        
       }, (error) => {
         this.loader.hide();
       });
@@ -96,13 +111,19 @@ export class EiStudentVerifiedListComponent implements OnInit {
     try {
       this.loader.show();
       this.standardList = []
-      this.model.standard = '';
-      this.model.teaching_class = '';
+    
       this.eiService.displayStandardList(courseId).subscribe(res => {
         this.loader.hide();
         let response: any = {};
         response = res;
         this.standardList = response.standarddata;
+        if(this.model.standard){
+         // this.model.standard = this.params.standard;
+          this.displayClassList(this.model.standard);
+        }else{
+          this.model.standard = '';
+          this.model.teaching_class = '';
+        }
       }, (error) => {
         this.loader.hide();
       });
@@ -117,6 +138,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.eiService.displayClassList(stId).subscribe(
         (res: any) => {
           this.classList = res.classdata;
+          
+          
           this.loader.hide();
         }, (error) => {
           this.loader.hide();
@@ -164,7 +187,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
     try {
       this.loader.show();
-      this.model.page = page
+      this.model.page = page;
+      
+      
+      
       this.baseService.getData('ei/student-list/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();
