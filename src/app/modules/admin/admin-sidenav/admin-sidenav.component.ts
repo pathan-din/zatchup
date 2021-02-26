@@ -8,6 +8,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AdminSidenavComponent implements OnInit {
   user_type: any;
   userData: any;
   notificationCount: any
+  message: any= {};
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -37,7 +39,9 @@ export class AdminSidenavComponent implements OnInit {
     private baseService: BaseService,
     private alert: NotificationService,
     private firebaseService: FirebaseService,
-    private SpinnerService : NgxSpinnerService
+    private SpinnerService : NgxSpinnerService,
+    private confirmDialogService: ConfirmDialogService,
+
   ) {
     this.breakpointObserver
       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
@@ -99,10 +103,14 @@ export class AdminSidenavComponent implements OnInit {
   }
 
   logout() {
-    this.SpinnerService.hide();
+    this.message = 'Are you sure you want to Logout?' 
+    this.confirmDialogService.confirmThis(this.message, () =>{
+      this.SpinnerService.hide();
     localStorage.clear();
     sessionStorage.clear();
     this.router.navigate(['admin/login']);
+    },() =>{}
+    );
   }
 
   subadminRoute() {
