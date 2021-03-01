@@ -59,7 +59,7 @@
                         <p><span class="mr-3">: </span> {{getGender(studentData)}}</p>
                     </div>
                 </div>
-                <div class="row ">
+                <div class="row " *ngIf="studentData.gender == 'C'">
                     <div class="col-6 commonFontSize mediumFont">
                         <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
                             Pronoun</p>
