@@ -61,6 +61,7 @@ export class UserKycVerificationComponent implements OnInit {
      private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+   
     this.route.queryParams.subscribe(params=>{
       this.params = params;
     })
@@ -69,12 +70,17 @@ export class UserKycVerificationComponent implements OnInit {
     this.monthModel = '';
     this.yearModel = '';
     if(!localStorage.getItem("year") && !localStorage.getItem("month") && !localStorage.getItem("day") && !localStorage.getItem("kyc_name")){
-
+      this.getKYC()
+      
     }else{
       this.yearModel = localStorage.getItem("year");
       this.monthModel = localStorage.getItem("month");
       this.dateModel = localStorage.getItem("day");
-      this.model.kyc_name= localStorage.getItem("kyc_name").replace("&", " ");;
+      if(localStorage.getItem("kyc_name")){
+        this.model.kyc_name= localStorage.getItem("kyc_name").replace("&", " ");;
+      }
+      this.getKYC()
+      
     }
     
     var dt = new Date();
@@ -86,6 +92,30 @@ export class UserKycVerificationComponent implements OnInit {
     /**init day for day Dropdown **/
     for (var d = 1; d <= 31; d++) {
       this.date.push(d);
+    }
+  }
+  getKYC(){
+    //check-user-ekyc/
+    try {
+      this.baseService.action("user/check-user-ekyc/",{}).subscribe((res:any)=>{
+        if(res.status == true){
+          this.model.kyc_name=res.data.name
+          
+          this.yearModel = res.data.kyc_dob.split('-')[0];
+          this.monthModel = res.data.kyc_dob.split('-')[1]
+          if(res.data.kyc_dob.split('-')[2].length>2){
+            this.dateModel = res.data.kyc_dob.split('-')[2].split('T')[0]
+          }else{
+            this.dateModel = res.data.kyc_dob.split('-')[2]
+          }
+          
+        }
+      },(error)=>{
+        console.log(error);
+        
+      })
+    } catch (e) {
+    
     }
   }
   checkIdValidation(){

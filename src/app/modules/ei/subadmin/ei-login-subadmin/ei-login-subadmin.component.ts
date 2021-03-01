@@ -96,7 +96,7 @@ export class EiLoginSubadminComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          alert("OTP Resend On Your Register Mobile Number Or Email-Id.")
+          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.","Success")
         } else {
           this.errorOtpModelDisplay = response.error;
           //alert(response.error)
@@ -154,7 +154,7 @@ export class EiLoginSubadminComponent implements OnInit {
           sessionStorage.setItem("permission", JSON.stringify(response.permission));
           
            $("#OTPModel").modal('hide');
-           this.router.navigate(['ei/dashboard']);
+           this.router.navigate(['ei/my-profile']);
           // if(response.steps>=3 && response.approved==1)
           // {
           //   this.router.navigate(['user/my-profile']);

@@ -11,9 +11,9 @@ import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dial
 export interface subAdminManagementElement {
 
   'SNo': number;
-  courseName : string;
-  startYear : number;
-  endYear : number;
+  courseName: string;
+  startYear: number;
+  endYear: number;
   noOfStandards: number;
   noOfClass: number;
   noOfStudents: number;
@@ -30,15 +30,15 @@ const ELEMENT_DATA: subAdminManagementElement[] = [];
   styleUrls: ['./ei-manage-courses.component.css']
 })
 export class EiManageCoursesComponent implements OnInit {
-  model:any={};
+  model: any = {};
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
-  courseList:any=[];
+  courseList: any = [];
   collection = { count: 60, data: [] };
-  displayedColumns: string[] = ['SNo', 'courseName','startYear', 
-  'endYear','noOfStandards','noOfClass',
-  'noOfStudents','noOfAlumni','Action'];
+  displayedColumns: string[] = ['SNo', 'courseName', 'startYear',
+    'endYear', 'noOfStandards', 'noOfClass',
+    'noOfStudents', 'noOfAlumni', 'Action'];
 
   dataSource = ELEMENT_DATA;
   //columnsToDisplay: string[] = this.displayedColumns.slice();
@@ -46,10 +46,10 @@ export class EiManageCoursesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private baseService:BaseService,
+    private baseService: BaseService,
     private SpinnerService: NgxSpinnerService,
-    private alert : NotificationService,
-    private confirmDialogService:ConfirmDialogService) { }
+    private alert: NotificationService,
+    private confirmDialogService: ConfirmDialogService) { }
 
 
   ngOnInit(): void {
@@ -58,19 +58,19 @@ export class EiManageCoursesComponent implements OnInit {
       currentPage: 1,
       totalItems: 0
     };
-    this.getCourseList('','');
+    this.getCourseList('', '');
   }
-  goToEiEditPage(id){
-    this.router.navigate(["ei/manage-courses-add"],{queryParams:{action:'edit',course_id:id}});
+  goToEiEditPage(id) {
+    this.router.navigate(["ei/manage-courses-add"], { queryParams: { action: 'edit', course_id: id } });
   }
   goToDelete(courseId: any): any {
     this.confirmDialogService.confirmThis('Are you sure you want to delete ?', () => {
       this.SpinnerService.show()
-      this.baseService.action("ei/get-course-by-id/"+courseId+"/",{}).subscribe(
+      this.baseService.action("ei/get-course-by-id/" + courseId + "/", {}).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.alert.success(res.message, "Success")
-            
+
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }
@@ -94,7 +94,7 @@ export class EiManageCoursesComponent implements OnInit {
   //           this.SpinnerService.hide();
   //           this.alert.error(res.error.message[0],"Error");
   //         }
-          
+
   //       },(error)=>{
   //         this.SpinnerService.hide();
 
@@ -114,9 +114,8 @@ export class EiManageCoursesComponent implements OnInit {
 
         let response: any = {};
         response = res;
-        if(response.status==false)
-        {
-          this.dataSource=[];
+        if (response.status == false) {
+          this.dataSource = [];
           return;
         }
         this.SpinnerService.hide();
@@ -124,8 +123,8 @@ export class EiManageCoursesComponent implements OnInit {
         this.pageSize = response.page_size;
         this.totalNumberOfPage = response.count;
         let arrCourseList: any = [];
-        if(arrCourseList)
-        if (!page) { page = 1 }
+        if (arrCourseList)
+          if (!page) { page = 1 }
         var i = (this.pageSize * (page - 1)) + 1;
         this.config.itemsPerPage = this.pageSize
         this.config.currentPage = page
@@ -147,7 +146,7 @@ export class EiManageCoursesComponent implements OnInit {
           i = i + 1;
         })
 
-        this.dataSource=arrCourseList;
+        this.dataSource = arrCourseList;
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
@@ -157,15 +156,19 @@ export class EiManageCoursesComponent implements OnInit {
       console.log(err);
     }
   }
-  goToCourseHistoryPage(){
+  goToCourseHistoryPage() {
     this.router.navigate(['ei/manage-coursesHistory']);
   }
-  
-  goToManageCourseAddPage(){
+
+  goToManageCourseAddPage() {
     this.router.navigate(['ei/manage-courses-add']);
   }
 
-  goToEiManageCoursesDetailsPage(id){
+  goToEiManageCoursesDetailsPage(id) {
     this.router.navigate(['ei/manage-courses-details', id]);
+  }
+
+  verifiedStudents(data: any) {
+
   }
 }

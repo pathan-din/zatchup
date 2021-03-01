@@ -30,7 +30,7 @@
                             <label for="email " class=" mediumFont commonFontSize letterspacing">Email ID / Mobile No*</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input id="email_id_or_mobile_no" (keyup)="isValid($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email ID / Mobile No">
+                                <input maxlength="{{maxlength}}" id="email_id_or_mobile_no" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="{{type}}" placeholder="Enter Email ID / Mobile No">
                             </div>
                         </div>
 						<div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_no"></div>
@@ -124,7 +124,8 @@
                     <div class="form-group row  ">
                         <div class="col-sm-12">
                             <input (click)="isValid($event)" (change)="isValid($event)" required [(ngModel)]="model.is_term_cond" name ="terms_and_condition" id="terms_and_condition" type="checkbox" id="term-condition">
-                            <label for="term-condition " class="commonFontSize mediumFont ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a> </label>
+                            <label for="term-condition " class="commonFontSize mediumFont ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'tc')">Terms & Conditions</span> and
+                                 <span class="color-purple semiBoldFont" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'privacy-policy')">Privacy Policy</span> </label>
                         </div>
 						<div class="required errorMsg" [innerHtml]="errorDisplay.terms_and_condition"></div>	
                     </div>
@@ -150,7 +151,7 @@
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
                 <p class="color-black regularFont commonFontSize">Enter OTP that received on your email id. </p>
                 <div class="form-group">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-between loginInput">
                         <input (keyup)="changeInput($event)" id="otp1" [(ngModel)]="otp1" name="otp1"
                             class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">

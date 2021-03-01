@@ -38,6 +38,12 @@ export class ChangeDetailRequestsPending extends Pagination {
     eId: any
 }
 
+export class ChangeInBankDetails extends Pagination {
+    params: any = {};
+    displayedColumns: string[] = ['position', 'bankName', 'ifscCode', 'accountNo', 'attachments', 'action']
+    pageCount: any;
+    Id: any;
+}
 export class ChangeDetailsView extends Pagination {
     approveOrReject: any = 'approve';
     errorDisplay: any = {};
@@ -46,4 +52,13 @@ export class ChangeDetailsView extends Pagination {
     rejectionReason: any;
     rejectionRemark: any;
     eiId: any;
+}
+export class ChangeInBankDetailView extends Pagination {
+    errorDisplay: any = {};
+    approveOrReject: string;
+    //   changeDetailsView: any;
+    rejectionReason: any;
+    rejectionRemark: any;
+    id: any;
+    cancel_cheque:any;
 }

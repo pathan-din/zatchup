@@ -7,7 +7,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: 'user', pathMatch: 'full',
-    loadChildren: () => import('./modules/user/userweb.module').then(m => m.UserwebModule)
+    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
   },
   {
     path: 'ei',

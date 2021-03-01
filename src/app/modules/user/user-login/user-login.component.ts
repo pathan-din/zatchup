@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsersServiceService } from '../../../services/user/users-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { EiServiceService } from 'src/app/services/EI/ei-service.service';
+import { BaseService } from 'src/app/services/base/base.service';
 
 
 //import * as $ from 'jquery';
@@ -21,36 +20,36 @@ export class UserLoginComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay = '';
-  modelForOtpModal:any={};
-  passwordType:any="password";
+  modelForOtpModal: any = {};
+  passwordType: any = "password";
   constructor(
-    private genericFormValidationService: GenericFormValidationService, 
-    private router: Router, 
-    private SpinnerService: NgxSpinnerService, 
-    public userService: UsersServiceService, 
+    private router: Router,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private eiService: EiServiceService
-    ) { }
+    private baseService: BaseService,
+    private loader: NgxSpinnerService,
+    private formValidationService: GenericFormValidationService,
+  ) { }
 
   ngOnInit(): void {
     localStorage.removeItem('token');
   }
-  isValid(event) {
-    console.log(this.errorDisplay);
+
+  isValid() {
     if (Object.keys(this.errorDisplay).length !== 0) {
-      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+      this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
-  goToSignUpPage() {
 
+  goToSignUpPage() {
     this.router.navigate(['user/signup']);
   }
+
   doLogin() {
     let data: any = {};
     this.error = [];
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
 
     if (this.errorDisplay.valid) {
       return false;
@@ -58,84 +57,67 @@ export class UserLoginComponent implements OnInit {
     data.username = this.model.username;
     data.password = this.model.password;
     try {
-      this.SpinnerService.show();
-      this.userService.login(data).subscribe(res => {
-        let response: any = {};
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == "True") {
-          $("#OTPModel").modal({
-            backdrop: 'static',
-            keyboard: false
-          });
-        } else {
-          this.SpinnerService.hide();
-          var error= this.eiService.getErrorResponse(this.SpinnerService,response.error)
+      this.loader.show();
+      this.baseService.action('user/login/', data).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == "True") {
+            $("#OTPModel").modal({
+              backdrop: 'static',
+              keyboard: false
+            });
+          } else {
+            this.loader.hide();
+            var error = this.baseService.getErrorResponse(this.loader, res.error)
+            this.alert.error(error, 'Error')
+          }
+        }, (error) => {
+          this.loader.hide();
           this.alert.error(error, 'Error')
-          // alert(response.error);
-          // this.errorDisplay = response.error;
-        }
 
-        //this.router.navigate(['user/signup']);
-      }, (error) => {
-        this.SpinnerService.hide();
-        // 
-        this.alert.error(error, 'Error')
-        console.log(error);
-
-      });
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      this.alert.error("Something went wrong please contact administrator!","Error");
-      console.log("exception", err)
+      this.loader.hide();
+      this.alert.error("Something went wrong please contact administrator!", "Error");
     }
 
 
   }
-  viewPassword(){
-    if(this.passwordType=='password'){
-      this.passwordType="text";
-    }else{
-      this.passwordType="password";
+  viewPassword() {
+    if (this.passwordType == 'password') {
+      this.passwordType = "text";
+    } else {
+      this.passwordType = "password";
     }
-    
   }
+
   resendOtp() {
     try {
-      let data: any = {};
-      this.modelForOtpModal.username =  this.model.username;//this.model.email ? this.model.email : this.model.phone;
-
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.SpinnerService.show();
-      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.", "Success")
-        } else {
-          this.errorOtpModelDisplay = response.error;
-          //alert(response.error)
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+      this.modelForOtpModal.username = this.model.username;
+      this.loader.show();
+      this.baseService.action('user/resend-otp/',this.modelForOtpModal).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.", "Success")
+          } else {
+            this.errorOtpModelDisplay = res.error;
+          }
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("verify Otp Exception", err);
+      this.loader.hide();
     }
   }
 
   changeInput($ev) {
-    console.log($ev);
     if ($ev.target.value.length == $ev.target.maxLength) {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
     }
-
   }
+
   goToDashboard() {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
@@ -162,38 +144,34 @@ export class UserLoginComponent implements OnInit {
       data.username = this.model.username;
       data.phone_otp = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
 
-      this.userService.verifyOtp(data).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == "True") {
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("approved", response.approved);
-          
-          $("#OTPModel").modal('hide');
-          this.router.navigate(['user/my-educational-profile']);
-          // if(response.approved==1)
-          // {
-          //   this.router.navigate(['user/my-educational-profile']);
-          // }else if(response.steps>=3 && response.approved==0 )
-          // {
-          //   this.router.navigate(['user/congratulation']);
-          // }else{
-          //   this.router.navigate(['user/kyc-verification']);
-          // }
-          
-          
-          
-        } else {
-          this.errorOtpModelDisplay = response.error;
-        }
-      }, (error) => {
-        console.log(error);
+      this.baseService.action('user/verify-otp/',data).subscribe(
+        (res: any) => {
+          if (res.status == "True") {
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("approved", res.approved);
+            $("#OTPModel").modal('hide');
+            if (res.steps == 1) {
+              this.router.navigate(['user/kyc-verification']);
+            } else if (res.steps >=  2 && res.steps < 5) {
+              this.router.navigate(['user/add-ei']);
+            }else if (res.steps == 5) {
+              this.router.navigate(['user/ei-confirmation']);
+            }else if (res.steps == 6) {
+              this.router.navigate(['user/add-personal-info']);
+            }else{
+              this.router.navigate(['user/my-school']);
+            }
+            
+          } else {
+            this.errorOtpModelDisplay = res.error;
+          }
+        }, (error) => {
+          console.log(error);
 
-      });
+        });
     } catch (err) {
       console.log("vaeryfy Otp Exception", err);
     }
-
   }
 
 

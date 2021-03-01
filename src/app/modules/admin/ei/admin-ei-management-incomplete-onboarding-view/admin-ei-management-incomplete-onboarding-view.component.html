@@ -174,7 +174,7 @@
                                         of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: </span> {{eiData.first_name}}</p>
+                                    <p><span class="mr-3">: </span> {{eiData.first_name}} {{eiData.last_name}}</p>
                                 </div>
                             </div>
                             <div class="row mx-0">
@@ -295,8 +295,11 @@
                             <span class="mr-3 text-dark">:</span>
                             <div class="card rounded-0 border-0 VerificationDocCard m-1"
                                 *ngFor="let document of eiData.verification_details">
-                                <img src="{{document.document}}" class="img-thumbnail card-img-top rounded-0"
+                                <img *ngIf="fileType(document.document) !== 'pdf'" src="{{document.document}}" class="img-thumbnail card-img-top rounded-0"
                                     alt="Verification Document">
+                                <img *ngIf="fileType(document.document) == 'pdf'" (click)="download_file(document.document)"
+                                    src="assets/images/userWebsite/pdf.png" alt="ei profile"
+                                    class="img-thumbnail card-img-top rounded-0">
                                 <div class="card-body bg-Gainsboro p-2">
                                     <h4 class="card-title mb-0 pl-1 commonFontSize semiBoldFont">{{document.name}}</h4>
                                 </div>
@@ -328,7 +331,7 @@
 
                         </div>
                     </div>
-
+                    <!--eiData = existing data and eiExData = new data and service key for new data = existing_data-->
                     <div class="row mt-3" *ngIf="eiExData">
                         <div class="col-12">
                             <h2 class="commonFontSize">Existing Data In School Database</h2>
@@ -345,44 +348,44 @@
                                         <tbody>
                                             <tr class="">
                                                 <td>Name Of The School</td>
-                                                <td>{{eiExData.name_of_school}}</td>
                                                 <td>{{eiData.name_of_school}}</td>
+                                                <td>{{eiExData.name_of_school}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>State</td>
-                                                <td>{{eiExData.state}}</td>
                                                 <td>{{eiData.state}}</td>
+                                                <td>{{eiExData.state}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>City</td>
-                                                <td>{{eiExData.city}}</td>
                                                 <td>{{eiData.city}}</td>
+                                                <td>{{eiExData.city}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Enter Complete Address</td>
-                                                <td>{{eiExData.address1}} {{eiExData.address2}}</td>
-                                                <td>{{eiData.address1}} {{eiData.address2}}
+                                                <td>{{eiData.address1}} {{eiExData.address2}}</td>
+                                                <td>{{eiExData.address1}} {{eiExData.address2}}
                                                 </td>
                                             </tr>
                                             <tr class="">
                                                 <td>Address Line One</td>
-                                                <td>{{eiExData.address1}}</td>
                                                 <td>{{eiData.address1}}</td>
+                                                <td>{{eiExData.address1}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Address Line Two</td>
-                                                <td>{{eiExData.address2}}</td>
                                                 <td>{{eiData.address2}}</td>
+                                                <td>{{eiExData.address2}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Pincode</td>
-                                                <td>{{eiExData.pincode}}</td>
                                                 <td>{{eiData.pincode}}</td>
+                                                <td>{{eiExData.pincode}}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Board / University</td>
-                                                <td>{{eiExData.university}}</td>
                                                 <td>{{eiData.university}}</td>
+                                                <td>{{eiExData.university}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -533,8 +536,9 @@
                                             MOU</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input #docInput type="file" (change)="fileUploadDocument($event.target.files)"
-                                                id="mou_doc" name="mou_document"
+                                            <input #docInput type="file"
+                                                (change)="fileUploadDocument($event.target.files)" id="mou_doc"
+                                                name="mou_document"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
@@ -715,7 +719,7 @@
                                             School ZatchUp ID</label>
                                         <input-search [config]="pendingApprovalProfile.searchConfigOne" [value]="''"
                                             (searchResult)="schoolZatchupId($event)"></input-search>
-                                            <div class="required errorMsg"
+                                        <div class="required errorMsg"
                                             [innerHTML]="pendingApprovalProfile.errorDisplay.zatchup_id">
                                         </div>
                                     </div>
@@ -731,7 +735,7 @@
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 readonly placeholder="School Name" required />
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">
@@ -740,7 +744,8 @@
                                             MOU</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input #docInputForNewZatchupId type="file" (change)="fileUploadDocument($event.target.files)"
+                                            <input #docInputForNewZatchupId type="file"
+                                                (change)="fileUploadDocument($event.target.files)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
@@ -802,7 +807,8 @@
                                             MOU</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input #docInputGenerateZatchupId type="file" (change)="fileUploadDocument($event.target.files)"
+                                            <input #docInputGenerateZatchupId type="file"
+                                                (change)="fileUploadDocument($event.target.files)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">

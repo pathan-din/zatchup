@@ -19,22 +19,19 @@
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
-                        <div class="position-relative border" >
-                            
-                            <img *ngIf="objEpData.profile_pic" src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/successfully_done.png'}}" class="img_profile img-fluid">
-                            <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
-                             <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">
-                              
+                        <div class="position-relative border customDiv" >                            
+                            <img  src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/share-my-profile-icon.png'}}" class="img_profile img-fluid">                            
+                             <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">                              
                              <app-image-uploader (imageData)="getProfilePicUrl($event,objEpData)" [uploadInfo]="uploadInfo">
                              </app-image-uploader>
-                            </div>
-
-                        <div class="pl-2 text-left">
-                            <p class="m-0 commonFontSize semiBoldFont" ><span *ngIf="objEpData.kyc_approved==0">{{objEpData.name}}</span><a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
+                        </div>
+                       <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
+                        <div class="pl-3 text-left">
+                            <p class="m-0 commonFontSize semiBoldFont" ><span *ngIf="objEpData.kyc_approved==0" class="text-capitalize">{{objEpData.name}}</span><a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
-                </div>
+                </div>  
 
                 <div class="row mt-3">
                     <div class="col-md-12">
@@ -46,13 +43,15 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12" >
+                            <div class="col-md-12" > 
                                 <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
                                         class="regularFont">
                                         <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
                                         <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
                                 <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
-                                        class="regularFont">{{objEpData.gender=='M'?'MALE':'FEMALE'}} </span></p>
+                                        class="regularFont">{{this.baseService.getGender(objEpData)}} </span></p>
+                                        <p *ngIf="objEpData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">pronoun : <span
+                                            class="regularFont">{{this.baseService.getGender(objEpData, 'pronoun')}} </span></p>
                                 <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
                                         class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
                                 <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span

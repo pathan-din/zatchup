@@ -12,7 +12,6 @@ import { UserAddCourseComponent } from './user-add-course/user-add-course.compon
 import { UserAddEiComponent } from './user-add-ei/user-add-ei.component';
 import { UserEiConfirmationComponent } from './user-ei-confirmation/user-ei-confirmation.component';
 import { UserEiProfileComponent } from './user-ei-profile/user-ei-profile.component';
-import { UserEiProfileNotOnboardComponent } from './user-ei-profile-not-onboard/user-ei-profile-not-onboard.component';
 import { UserAddMoreEiComponent } from './user-add-more-ei/user-add-more-ei.component';
 import { UserAddMoreStandardComponent } from './user-add-more-standard/user-add-more-standard.component';
 import { UserProfileCreatedSuccessfullyComponent } from './user-profile-created-successfully/user-profile-created-successfully.component';
@@ -56,67 +55,71 @@ import { ServiceComponent } from './user-info/service/service.component';
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 
 
 const routes: Routes = [
   {
     path: '', component: UserSignUpComponent
-  }, 
+  },
   {
     path: 'user', component: UserSignUpComponent
-  }, 
+  },
+  {
+    path: 'user/terms-conditions/:type/:action', component: CommonTermsConditionsComponent
+  },
   {
     path: 'user/login', component: UserLoginComponent
-  }, 
+  },
   {
     path: 'user/signup', component: UserSignUpComponent
-  }, 
+  },
   {
     path: 'user/forgot-password', component: UserForgotPasswordComponent
-  }, 
+  },
   {
     path: 'user/create-new-password', component: UserResetPasswordComponent
-  }, 
+  },
   {
     path: 'user/kyc-verification', component: UserKycVerificationComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/Kyc-successful-done', component: UserKycSuccessfulDoneComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/qualification', component: UserQualificationComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/work-detail', component: UserWorkDetailComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/school-confirmation', component: UserSchoolConfirmationComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/congratulation', component: UserCongratulationComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/add-ei', component: UserAddEiComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/ei-profile', component: UserEiProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/add-new-course', component: AddNewCourseComponent, canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'user/add-course', component: UserAddCourseComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/add-more-standard', component: UserAddMoreStandardComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/add-more-ei', component: UserAddMoreEiComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/ei-confirmation', component: UserEiConfirmationComponent, canActivate: [AuthGuard]
-  }, 
+  },
   {
     path: 'user/profile-created', component: UserProfileCreatedSuccessfullyComponent, canActivate: [AuthGuard]
   },
@@ -174,7 +177,7 @@ const routes: Routes = [
   {
     path: 'user/career', component: CareerComponent, canActivate: [AuthGuard]
   },
- 
+
   {
     path: 'user/about-us', component: AboutUsComponent
   },
@@ -200,27 +203,27 @@ const routes: Routes = [
   },
 
   {
-    path: 'user/chat', component: ChatComponent
+    path: 'user/chat', component: ChatComponent, canActivate: [AuthGuard]
   },
 
   {
-    path: 'user/new-chat', component: StartNewChatComponent
+    path: 'user/new-chat', component: StartNewChatComponent, canActivate: [AuthGuard]
   },
 
   {
-    path: 'user/group-chat', component: CreateGroupChatComponent
-  },
-  
-  {
-    path: 'user/create-group', component: CreateGroupComponent
+    path: 'user/group-chat', component: CreateGroupChatComponent, canActivate: [AuthGuard]
   },
 
   {
-    path: 'user/group-detail', component: GroupDetailComponent
+    path: 'user/create-group', component: CreateGroupComponent, canActivate: [AuthGuard]
   },
 
   {
-    path: 'user/messages', component: MessagesComponent
+    path: 'user/group-detail', component: GroupDetailComponent, canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'user/messages', component: MessagesComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/pending-request', component: PendingRequestForUserComponent, canActivate: [AuthGuard]
@@ -236,20 +239,20 @@ const routes: Routes = [
   {
     path: 'user/chat-privacy', component: ChatPrivacyComponent, canActivate: [AuthGuard]
   },
-  
-  
 
- {
-      path: '**', component: UserPageNotFoundComponent
+
+
+  {
+    path: '**', component: UserPageNotFoundComponent
   },
 
-  
-  
- 
+
+
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserwebRoutingModule { }
+export class UserRoutingModule { }

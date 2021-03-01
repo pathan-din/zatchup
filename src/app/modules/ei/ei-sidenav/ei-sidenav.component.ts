@@ -20,6 +20,7 @@ export class EiSidenavComponent {
   subscriptionActive: boolean = true;
   isApproved: boolean = false;
   params:any;
+  userRoleDetails:any={};
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -104,8 +105,6 @@ export class EiSidenavComponent {
       var data = moduleList.find(el => {
         return el.module_code == module_code
       })
-
-
       if (data) {
         return data.is_access;
       } else {
@@ -139,10 +138,10 @@ export class EiSidenavComponent {
       this.route.snapshot.url.map(url => {thisUrl = url.path; })
       thisUrl=this.route.routeConfig.path?this.route.routeConfig.path: thisUrl;
 
-      this.baseService.getData('user/reg-step-count/').subscribe(res => {
-        let response: any = {};
-        response = res;
-
+      this.baseService.getData('user/reg-step-count/').subscribe((response:any) => {
+        
+        
+        this.userRoleDetails = response;
         localStorage.setItem("getreject", JSON.stringify(response))
         this.notificationCount = response.unread_notification_count;
         if (response.status) {
@@ -211,7 +210,7 @@ export class EiSidenavComponent {
              if (nUrl) {
               if(this.route.snapshot.params.invoice=='onboarding'){
                    
-                console.log('dfdfdf'+this.route.snapshot.params.invoice,parameter);
+                
                 this.router.navigate(['ei/invoice-list/' +this.route.snapshot.params.invoice]);
               }else
                 this.router.navigate(['ei/' + thisUrl]);
@@ -222,7 +221,42 @@ export class EiSidenavComponent {
               this.alert.info(response.rejected_reason,"Information");
               this.router.navigate(['ei/login']);
             }
-          }
+          } else if(response.role == 'EISUBADMIN' ){
+            if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
+
+              // if (response.reg_step == 1) {
+              //   this.router.navigate(['ei/kyc-verification']);
+              // } else if (response.reg_step == 2) {
+              //   this.router.navigate(['ei/add-ei']);
+              // } else if (response.reg_step == 3) {
+              //   this.router.navigate(['ei/subadminprofile'], { queryParams: { reg_steps: '2' } });
+              // } else if (response.reg_step == 4) {
+               
+              // }else{} 
+               
+  
+              }else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {
+                if (response.ekyc_rejected_reason) {
+                  this.alert.info("Your Profile has been rejected reason by " + response.ekyc_rejected_reason + " Remark : " + response.ekyc_rejected_remark, "Rejected");
+                  this.router.navigate(['ei/kyc-verification']);
+                } else {
+                  if (response.reg_step == 4) {
+                    //this.router.navigate(['user/my-educational-profile']);
+    
+                  }
+                }
+              } 
+              else if ( response.rejected_reason && response.is_approved) {
+  
+                localStorage.clear();
+                this.alert.info(response.rejected_reason,"Information");
+                this.router.navigate(['ei/login-subadmin']);
+                 
+    
+                
+              }
+            } 
+          
          
 
 

@@ -121,7 +121,7 @@ export class BaseService {
     }
     return this.http.put(this.environment.baseUrl + url, data, { params })
   }
-  daysInMonth (month, year) {
+  daysInMonth(month, year) {
     return new Date(year, month, 0).getDate();
   }
   setActionData(data) {
@@ -134,9 +134,9 @@ export class BaseService {
   }
 
   actionForFormData(url: any, data: any) {
-   if(typeof(data)=='object'){
-    return this.http.post(this.environment.baseUrl + url, data)
-   }
+    if (typeof (data) == 'object') {
+      return this.http.post(this.environment.baseUrl + url, data)
+    }
     return this.http.post(this.environment.baseUrl + url, this.setFormData(data))
   }
 
@@ -179,11 +179,13 @@ export class BaseService {
     return !!localStorage.getItem("token");
   }
 
-  getGender(data: any) {
+  getGender(data: any, type?: string) {
     if (data && data.gender == 'C') {
-      let pronoun = data.pronoun ? data.pronoun : '';
-      let custom_gender = data.custom_gender ? data.custom_gender : ''
-      return "Custom " + pronoun + " " + custom_gender
+      if (type && type == 'pronoun') {
+        let pronoun = data.custom_gender ? data.pronoun + '(' + data.custom_gender + ')' : data.pronoun
+        return pronoun
+      }
+      return "Custom"
     }
     else {
       let gender = data.gender == 'M' ? 'Male' : 'Female'
@@ -194,7 +196,7 @@ export class BaseService {
   calculateAge(birthday) { // birthday is a date
     let currentDate = new Date().getTime()
     let birthDate = new Date(birthday).getTime()
-    var ageDifMs = currentDate - birthDate  ;
+    var ageDifMs = currentDate - birthDate;
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }

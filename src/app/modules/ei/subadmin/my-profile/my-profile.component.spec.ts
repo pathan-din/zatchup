@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPocDetailsComponent } from './edit-poc-details.component';
+import { MyProfileComponent } from './my-profile.component';
 
-describe('EditPocDetailsComponent', () => {
-  let component: EditPocDetailsComponent;
-  let fixture: ComponentFixture<EditPocDetailsComponent>;
+describe('MyProfileComponent', () => {
+  let component: MyProfileComponent;
+  let fixture: ComponentFixture<MyProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditPocDetailsComponent ]
+      declarations: [ MyProfileComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditPocDetailsComponent);
+    fixture = TestBed.createComponent(MyProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

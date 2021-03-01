@@ -104,7 +104,7 @@
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="filterData('1')" [(ngModel)]="onboardList.pageSize">
+                        (change)="getONBoardList('1')" [(ngModel)]="onboardList.page_size">
                         <option *ngFor="let count of onboardList.pageCounts" value="{{count}}">{{count}}</option>
                         <!-- <option value="10">10</option>
                         <option value="15">15</option> -->
@@ -180,7 +180,7 @@
                                 <i class="fa fa-envelope mr-2 color-green fa-lg cursorStyle" title="Send Email"></i>
                             </a> -->
                             <i class="fa fa-trash mr-2 color-red fa-lg cursorStyle" title="Remove" aria-hidden="true "
-                                (click)="deleteEI(element.ei_id)"></i>
+                                (click)="deleteEI(element.ei_id , element.is_payment , element.id)"></i>
                         </mat-cell>
                     </ng-container>
 

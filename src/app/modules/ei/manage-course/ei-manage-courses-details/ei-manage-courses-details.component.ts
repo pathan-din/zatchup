@@ -68,7 +68,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     public eiService: EiServiceService,
     private validationService: GenericFormValidationService,
     private location: Location,
-    private confirmDialogService:ConfirmDialogService,
+    private confirmDialogService: ConfirmDialogService,
     private alert: NotificationService,
   ) { }
 
@@ -95,6 +95,50 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     /*************************************************************/
 
   }
+  numberOfStudent(courseId:any,standard:any,classId:any) {
+    let objFilter:any={}
+    //approved=1&kyc_approved=1&title=Verified
+    objFilter.approved=1;
+    objFilter.kyc_approved=1;
+    objFilter.title='Verified';
+    if(courseId){
+      objFilter.course=courseId
+    }
+    if(standard){
+      objFilter.standard=standard
+       
+    }
+    if(classId){
+      objFilter.teaching_class=classId
+      
+    }
+     
+    this.router.navigate(["ei/student-verified-list"],{queryParams:objFilter});
+   
+  
+  }
+  numberOfAlumni(courseId:any,standard:any,classId:any) {
+    let objFilter:any={}
+    //approved=1&kyc_approved=1&title=Verified
+    objFilter.approved=1;
+    objFilter.kyc_approved=1;
+    objFilter.title='Verified';
+    if(courseId){
+      objFilter.course=courseId
+    }
+    if(standard){
+      objFilter.standard=standard
+       
+    }
+    if(classId){
+      objFilter.teaching_class=classId
+      
+    }
+     
+    this.router.navigate(["ei/alumni-list"],{queryParams:objFilter});
+   
+  
+  }
 
   getstandardList(standard) {
     this.standardList = standard;
@@ -109,6 +153,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     var st_name = '';
 
     classList.forEach(element => {
+      element.standard_id = standard.id
       if (standard.standard_name != st_name) {
         element.class_count = standard.num_of_class;
       } else {
@@ -179,7 +224,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
         let response: any = {};
         response = res;
         this.editClassModel = response.data;
-        console.log('class data is as ::',this.editClassModel)
+        console.log('class data is as ::', this.editClassModel)
         $("#editClassModel").modal({
           backdrop: 'static',
           keyboard: false
@@ -196,7 +241,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
 
   editClassById(id) {
     try {
-      console.log('edit class model data is as ::',this.editClassModel)
+      console.log('edit class model data is as ::', this.editClassModel)
       this.SpinnerService.show();
       this.baseService.actionForPutMethod('ei/get-class-by-id/' + id + '/', this.editClassModel).subscribe(res => {
 
@@ -335,7 +380,7 @@ export class EiManageCoursesDetailsComponent implements OnInit {
     }
   }
 
-  goBack(): void{
+  goBack(): void {
     this.location.back()
   }
 

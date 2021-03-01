@@ -154,12 +154,14 @@ import { UserEducationDetailsComponent } from './user/user-education-details/use
 import { AdminKycPendingChangeRequestsComponent } from './user/admin-pending-change-requests/admin-pending-change-requests.component';
 import { AdminKycChangeRequestDetailsComponent } from './user/admin-kyc-change-request-details/admin-kyc-change-request-details.component';
 import { ContectAndStaticContentManagementComponent } from './contact-and-static-content/contect-and-static-content-management/contect-and-static-content-management.component';
-import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ResolveTicketsComponent } from './support/resolve-tickets/resolve-tickets.component';
 import { TermsConditionsComponent } from './contact-and-static-content/terms-conditions/terms-conditions.component';
 import { OnboardedSchoolHistoryComponent } from './ei/onboarded-school-history/onboarded-school-history.component';
 import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-view/admin-ei-reject-details-view.component';
+import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details-pending/change-in-bank-details-pending.component';
+import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
+import { AdminStarClassCourseAddComponent } from './start-class/admin-star-class-course-add/admin-star-class-course-add.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -321,12 +323,14 @@ const config = {
     AdminKycPendingChangeRequestsComponent,
     AdminKycChangeRequestDetailsComponent,
     ContectAndStaticContentManagementComponent,
-    EditPocDetailsComponent,
     ChangePasswordComponent,
     ResolveTicketsComponent,
     TermsConditionsComponent,
     OnboardedSchoolHistoryComponent,
-    AdminEiRejectDetailsViewComponent
+    AdminEiRejectDetailsViewComponent,
+    ChangeInBankDetailsPendingComponent,
+    ChangeInBankDetailsViewComponent,
+    AdminStarClassCourseAddComponent
   ],
   imports: [
     CommonModule,

@@ -96,6 +96,7 @@ export class EiSubscriptionUpdateComponent implements OnInit {
                 if (res.razorpay_payment_id) {
                   that.closePaymentModel.nativeElement.click()
                   window.location.href = '#/ei/subscription';
+                  window.location.reload();
                 }
               },
               "notes": {

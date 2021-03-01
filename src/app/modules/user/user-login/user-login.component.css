@@ -13,6 +13,10 @@
     border-radius: 10px!important;
 }
 
+.loginInput input{
+    width: 21%!important;
+}
+
 @media only screen and (max-width: 414px) {
     .login-left-Image{
         width: auto;

@@ -9,6 +9,11 @@
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">Dashboard</span>
             </a>
+            <a *ngIf="userRoleDetails.role=='EISUBADMIN'" mat-list-item routerLink="/ei/my-profile" routerLinkActive="link-active">
+                <i class="fa fa-users mr-2"></i>
+                <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
+                <span class="commonFontSize">My Profile</span>
+            </a>
             <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile"
                 routerLinkActive="link-active">
                 <i class="fa fa-users mr-2" aria-hidden="true"></i>
@@ -20,7 +25,7 @@
                 <i class="material-icons mr-2 md-18">person</i>
                 <span class="commonFontSize">Alumni Management</span>
             </a>
-            <a *ngIf="isValidModule('MODULE004') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/student-management"
+            <a *ngIf="isValidModule('MODULE010') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/student-management"
                 routerLinkActive="link-active">
                 <i class="fa fa-graduation-cap mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> Student Management</span>
@@ -37,7 +42,7 @@
                 <i class="fa fa-certificate mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">E-Certificates & Report Cards</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" tooltip="Coming Soon..." mat-list-item>
+            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item tooltip="Coming Soon..." mat-list-item>
                 <i class="material-icons mr-2 md-18">people</i>
                 <span class="commonFontSize">Zatchup Star Class</span>
             </a>
@@ -54,7 +59,7 @@
                 <i class="fa fa-lock mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Sub Admin Management</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/manage-courses" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE017')" mat-list-item routerLink="/ei/manage-courses" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">Manage Courses Offered By School</span>
             </a>
@@ -124,6 +129,7 @@
                     </a>                      
                     <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
                         <div class="row p-2">
+                            <div *ngIf="userRoleDetails.role=='EISUBADMIN'" class="col-sm-12 cursorStyle" routerLink="/ei/my-profile"> My Profile </div>
                             <div class="col-sm-12 cursorStyle" routerLink="/ei/change-password"> Change Password </div>
                             <div class="col-sm-12 cursorStyle" (click)="logout()"> Logout </div>
                         </div>

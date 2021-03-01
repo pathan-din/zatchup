@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>Name of the School</p>
+                        <p>School Name </p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
                         <p><span class="mr-3">: {{bankDetails?.name_of_school}} </span>
@@ -113,7 +113,7 @@
                 <div class="row" *ngIf="userData?.school_email">
                     <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>School Email</p>
+                        <p>School Email ID</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
                         <p><span class="mr-3">: {{userData?.school_email}}</span></p>
@@ -143,7 +143,7 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                     <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                    <p>Email</p>
+                    <p>Email ID</p>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
                     <p><span class="mr-3">: {{bankDetails?.email}} </span>
@@ -196,7 +196,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>Bank Name</p>
+                        <p> Name</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
                         <p><span class="mr-3">: {{bankDetails?.bank_name}}</span></p>
@@ -384,6 +384,7 @@
                             type="text" maxlength="1">
                     </div>
                 </div>
+                <p class="text-right commonFontSize mediumFont textUnderlineStyle cursorStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
 
                 <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
@@ -452,7 +453,7 @@
                                     <input  id="bank_ifsc_code" name="bank_ifsc_code"
                                         [(ngModel)]="bankModel.bank_ifsc_code"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        type="text" maxlength="12"  placeholder="Enter IFSC Code " required>
+                                        type="text" maxlength="11"  placeholder="Enter IFSC Code " required>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.bank_ifsc_code"></div>
                             </div>
@@ -560,12 +561,12 @@
                         </div>
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">School email</label>
+                                <label for="" class=" commonFontSize mediumFont letterspacing">School Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
                                     <input id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        type="email" placeholder="Enter School email">
+                                        type="email" placeholder="Enter School Email">
                                 </div>
                             </div>
                         </div>

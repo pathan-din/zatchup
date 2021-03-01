@@ -285,6 +285,7 @@ export class EiSchoolRegisterComponent implements OnInit {
           {
 
             localStorage.setItem('num', btoa(this.model.phone));
+            localStorage.setItem('email', btoa(this.model.email));
             this.router.navigate(['ei/mobile-verification']);
           }else{
            
@@ -322,7 +323,9 @@ export class EiSchoolRegisterComponent implements OnInit {
       } else {
         this.showHidecPassword = 'password';
       }
-    }
+    } }
 
-  }
+    goToTermsAndConditions(type: any, action: any, pageName:any){
+      this.router.navigate(['ei/terms-conditions', type, action], {queryParams:{pageName: pageName}})
+    }
 }

@@ -157,7 +157,7 @@
                 <div class="form-group row  textSpace ml-0 mr-0">
                     <div class="col-sm-12 pl-0 d-flex align-items-center">
                         <input required type="checkbox" (change)="isValid($event)" id="term-condition" class="checkboxStyle cursorStyle" [(ngModel)]="model.is_term_cond" name ="term_condition">
-                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></label>
+                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont" (click)="goToTermsAndConditions('user', 'view', 'tc')">Terms & Conditions</span> and <span class="color-purple semiBoldFont"  (click)="goToTermsAndConditions('user', 'view', 'privacy-policy')">Privacy Policy</span></label>
                     </div>
 
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.term_condition"></div>
@@ -181,7 +181,7 @@
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id. </p>
+                <p class="color-black regularFont commonFontSize">Enter OTP that Received on your Registerd Email id / Phone Number.</p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between">
                         <input (keyup)="changeInput($event)" id="otp1" [(ngModel)]="otp1" name="otp1"

@@ -19,10 +19,12 @@
                 <div class="dpImgDiv" *ngIf="schoolProfile">
                     <img *ngIf="!schoolProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                     <img *ngIf="schoolProfile.profile_pic" src="{{schoolProfile.profile_pic}}" class="img-fluid dpImg">
+                    <img *ngIf="schoolProfile.approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
                 </div>
 
                 <div class="pl-2 text-left" *ngIf="schoolProfile">
                     <p class="m-0 commonFontSize mediumFont">{{schoolProfile.name_of_school}}</p>
+                    <p class="m-o commonFontSize mediumFont">{{schoolProfile.zatchupid}}</p>
                 </div>
             </div>
             <!-- <div class="col-md-7 text-right d-flex profileDivRight flex-row">

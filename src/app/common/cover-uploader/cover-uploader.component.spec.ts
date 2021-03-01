@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TermsConditionsComponent } from './terms-conditions.component';
+import { CoverUploaderComponent } from './cover-uploader.component';
 
-describe('TermsConditionsComponent', () => {
-  let component: TermsConditionsComponent;
-  let fixture: ComponentFixture<TermsConditionsComponent>;
+describe('CoverUploaderComponent', () => {
+  let component: CoverUploaderComponent;
+  let fixture: ComponentFixture<CoverUploaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TermsConditionsComponent ]
+      declarations: [ CoverUploaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TermsConditionsComponent);
+    fixture = TestBed.createComponent(CoverUploaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

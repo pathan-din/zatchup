@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class EiMobileVerificationComponent implements OnInit {
   model:any={};
+  email: any
   errorOtpModelDisplay:any;
   otp1:any;
   otp2:any;
@@ -40,8 +41,8 @@ export class EiMobileVerificationComponent implements OnInit {
     if(localStorage.getItem('num'))
     {
       this.model.phone = atob(localStorage.getItem('num'));
+      this.email = atob(localStorage.getItem('email'))
     }
-    
   }
   changeInput($ev)
   {
@@ -53,6 +54,10 @@ export class EiMobileVerificationComponent implements OnInit {
     }
      
   }
+  editRequest(){
+    this.router.navigate(['ei/school-registration']);
+  }
+
   resendOtp() {
     try {
       let data: any = {};
@@ -65,7 +70,7 @@ export class EiMobileVerificationComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          alert("OTP Resend On Your Register Mobile Number Or Email-Id.")
+          this.alert.success(response.message,"Success")
         } else {
           this.errorOtpModelDisplay = response.error;
           //alert(response.error)

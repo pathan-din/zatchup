@@ -89,4 +89,10 @@ export class EiStudentProfileComponent implements OnInit {
   goBack(): void{
     this.location.back()
   }
+
+  getGender(data: any, type?: any) {
+  if (data)
+  return this.base.getGender(data, type)
+  return ''
+}
 }
