@@ -2,6 +2,7 @@ const baseUrl='http://172.105.61.231:3000/api/';
 
 export const environment = {
   production: false,
+  environmentName: 'staging',
   baseUrl:baseUrl,
   apiUrl:baseUrl+"user/",
   apiEiUrl:baseUrl+"ei/",
