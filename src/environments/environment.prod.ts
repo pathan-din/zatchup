@@ -1,4 +1,4 @@
-const baseUrl='http://172.105.61.231:3000/api/';
+const baseUrl='https://apis.zatchup.com:3000/api/';
 export const environment = {
   production: true,
   baseUrl:baseUrl,
@@ -6,8 +6,8 @@ export const environment = {
   apiEiUrl:baseUrl+"ei/",
   apiEiSubadminUrl:baseUrl+"subadmin/",
   apiadminUrl:baseUrl+"admin/",
-  serverImagePath:"http://staging.zatchup.com/zatchupapi/zatchup/media/temp/",
-  serverVideoPath:"http://staging.zatchup.com/zatchupapi/zatchup/media/temp/",
+  serverImagePath:"https://apis.zatchup.com/media/temp/",
+  serverVideoPath:"https://apis.zatchup.com/media/temp/",
   razorPaymentApiKey:'rzp_test_i0NymYFNWzBGPK',
   debugMode:true,
   appVersion: require('../../package.json').version,

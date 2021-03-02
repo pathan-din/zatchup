@@ -12,7 +12,7 @@ export const environment = {
   serverVideoPath:"http://staging.zatchup.com/zatchupapi/zatchup/media/videos/about_us",
   razorPaymentApiKey:'rzp_test_i0NymYFNWzBGPK',
   debugMode:true,
-  appVersion: require('../../package.json').version + '-dev',
+  appVersion: require('../../package.json').version,
   firebase: {
     apiKey: "AIzaSyDJsZUk0pW_PR_KalCuzZciu3GeC0aVRks",
     authDomain: "angularchatmaheshtriazine.firebaseapp.com",

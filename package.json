@@ -1,6 +1,6 @@
 {
   "name": "zatch-up",
-  "version": "0.0.69",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
