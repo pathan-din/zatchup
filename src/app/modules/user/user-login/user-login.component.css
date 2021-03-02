@@ -12,6 +12,9 @@
 .otpStyle{
     border-radius: 10px!important;
 }
+.loginInput input{
+    width: 21%!important;
+}
 
 .loginInput input{
     width: 21%!important;
