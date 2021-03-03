@@ -162,6 +162,7 @@ import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-
 import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details-pending/change-in-bank-details-pending.component';
 import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
 import { AdminStarClassCourseAddComponent } from './start-class/admin-star-class-course-add/admin-star-class-course-add.component';
+import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -330,7 +331,8 @@ const config = {
     AdminEiRejectDetailsViewComponent,
     ChangeInBankDetailsPendingComponent,
     ChangeInBankDetailsViewComponent,
-    AdminStarClassCourseAddComponent
+    AdminStarClassCourseAddComponent,
+    EditPocDetailsComponent
   ],
   imports: [
     CommonModule,
