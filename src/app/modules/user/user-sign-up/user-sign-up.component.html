@@ -100,22 +100,22 @@
                 <div class="form-group row">
                     <div class="col-sm-12 ">
                         <h4 class="mb-2 textSpace">Date Of Birth</h4>
-                        <div class="row">
-                            <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
+                        <div class="row justify-content-between">
+                            <div class="col-3 border mx-1 p-0">
                                 <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select border-0">
                                     <option value="" [selected]='true'>Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
                                    
                                 </select>
                             </div>
-                            <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
+                            <div class="col-4 border mx-1 p-0">
                                 <select (change)="isValid($event);changeMOnth(monthModel,yearModel);" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                     
                                 </select>
                             </div>
-                            <div class="col-3 mr-1 ml-1 form-control-inputDiv p-0">
+                            <div class="col-4 border mx-1 p-0">
                                 <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select  border-0">
                                     <option value="" selected>Year</option>
                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
