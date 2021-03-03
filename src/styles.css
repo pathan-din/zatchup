@@ -775,3 +775,7 @@ a:hover {
     background: #e8f0fe !important;
 }
 
+
+.custom-alert {
+    margin: 30px auto;
+}
