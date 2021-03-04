@@ -133,6 +133,7 @@ import { AdminEiRejectDetailsViewComponent } from './ei/admin-ei-reject-details-
 import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details-pending/change-in-bank-details-pending.component';
 import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
 import { AdminStarClassCourseAddComponent } from './start-class/admin-star-class-course-add/admin-star-class-course-add.component';
+import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
 
 
 const routes: Routes = [
@@ -524,15 +525,19 @@ const routes: Routes = [
     path: "rejected-ei-view/:id", component: AdminEiRejectDetailsViewComponent, canActivate: [AuthGuard]
   },
   {
-    path:"change-in-bank-details-pending", component:ChangeInBankDetailsPendingComponent, canActivate: [AuthGuard]
+    path: "change-in-bank-details-pending", component: ChangeInBankDetailsPendingComponent, canActivate: [AuthGuard]
   },
   {
-    path:"change-in-bank-details-view/:id", component:ChangeInBankDetailsViewComponent, canActivate:[AuthGuard]
+    path: "change-in-bank-details-view/:id", component: ChangeInBankDetailsViewComponent, canActivate: [AuthGuard]
   },
   {
-    path:"starclass-course-add", component:AdminStarClassCourseAddComponent, canActivate:[AuthGuard]
+    path: "starclass-course-add", component: AdminStarClassCourseAddComponent, canActivate: [AuthGuard]
   },
-  
+  {
+    path: 'edit-poc', component: EditPocDetailsComponent, canActivate: [AuthGuard]
+  },
+
+
   {
     path: '**', component: AdminPageNotFoundComponent
   }
