@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 
 //import * as $ from 'jquery';
@@ -22,12 +23,15 @@ export class UserLoginComponent implements OnInit {
   errorOtpModelDisplay = '';
   modelForOtpModal: any = {};
   passwordType: any = "password";
+
+
   constructor(
     private router: Router,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
+    private firebaseService: FirebaseService,
     private formValidationService: GenericFormValidationService,
   ) { }
 
@@ -61,6 +65,7 @@ export class UserLoginComponent implements OnInit {
       this.baseService.action('user/login/', data).subscribe(
         (res: any) => {
           this.loader.hide();
+          // console.log('is phone....',this.is(this.model.username))
           if (res.status == "True") {
             $("#OTPModel").modal({
               backdrop: 'static',
@@ -73,7 +78,7 @@ export class UserLoginComponent implements OnInit {
           }
         }, (error) => {
           this.loader.hide();
-          this.alert.error(error, 'Error')
+          this.alert.error(error.statusText, 'Error')
 
         });
     } catch (err) {
@@ -95,7 +100,7 @@ export class UserLoginComponent implements OnInit {
     try {
       this.modelForOtpModal.username = this.model.username;
       this.loader.show();
-      this.baseService.action('user/resend-otp/',this.modelForOtpModal).subscribe(
+      this.baseService.action('user/resend-otp/', this.modelForOtpModal).subscribe(
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
@@ -144,24 +149,25 @@ export class UserLoginComponent implements OnInit {
       data.username = this.model.username;
       data.phone_otp = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
 
-      this.baseService.action('user/verify-otp/',data).subscribe(
+      this.baseService.action('user/verify-otp/', data).subscribe(
         (res: any) => {
           if (res.status == "True") {
+            this.registerUserToFirebaseDB();
             localStorage.setItem("token", res.token);
             localStorage.setItem("approved", res.approved);
             $("#OTPModel").modal('hide');
             if (res.steps == 1) {
               this.router.navigate(['user/kyc-verification']);
-            } else if (res.steps >=  2 && res.steps < 5) {
+            } else if (res.steps >= 2 && res.steps < 5) {
               this.router.navigate(['user/add-ei']);
-            }else if (res.steps == 5) {
+            } else if (res.steps == 5) {
               this.router.navigate(['user/ei-confirmation']);
-            }else if (res.steps == 6) {
+            } else if (res.steps == 6) {
               this.router.navigate(['user/add-personal-info']);
-            }else{
+            } else {
               this.router.navigate(['user/my-school']);
             }
-            
+
           } else {
             this.errorOtpModelDisplay = res.error;
           }
@@ -177,6 +183,40 @@ export class UserLoginComponent implements OnInit {
 
   goTouserForgotPasswordPage() {
     this.router.navigate(['user/forgot-password']);
+  }
+
+  isPhoneNumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  registerUserToFirebaseDB() {
+    let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    this.firebaseService.firebaseSignUp('Mahesh', 'chand', email, 'Mahesh@123', '').then(
+      (res: any) => {
+        console.log('firebase signup res is as ::', res.user.uid)
+        this.updateUserWithFirebaseID(res.user.uid)
+      },
+      err => {
+        console.log('firebase signup error....', err)
+      }
+    )
+  }
+
+  updateUserWithFirebaseID(id: any) {
+    let data = {
+      "firebase_userId": id
+    }
+    this.baseService.action('chat/register_user_firebase/', data).subscribe(
+      (res: any) => {
+        console.log('update user....', res)
+      }
+    )
   }
 }
 

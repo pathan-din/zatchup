@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -15,6 +16,9 @@ export class UserHeaderComponent implements OnInit {
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/"
   }
+  currentUser: any;
+
+
   constructor(
     private router: Router,
     private baseService: BaseService,
@@ -37,79 +41,68 @@ export class UserHeaderComponent implements OnInit {
 
     }
 
-
   }
   goToSetting() {
     this.router.navigate(["user/setting"]);
   }
   getDasboardDetails() {
     try {
-
-
-      this.baseService.getData("ei/auth-user-info").subscribe(res => {
-
-        let response: any = {};
-        response = res;
-        if (response.status == true) {
-
-          this.userProfile = response;
-        }
-
-
-      }, (error) => {
-
-        console.log(error);
-      });
+      this.baseService.getData("ei/auth-user-info").subscribe(
+        (res: any) => {
+          console.log('res is as ::', res)
+          if (res.status == true) {
+            this.userProfile = res;
+          }
+        }, (error) => {
+          console.log(error);
+        });
     } catch (err) {
-
       console.log(err);
     }
   }
+
   notificationList() {
     this.router.navigate(["user/notifications"]);
   }
-  logout() {
 
+  logout() {
     localStorage.clear();
     this.router.navigate(['user/login']);
   }
+
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
     try {
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
-
-
         this.regProfile = res;
-        if (this.route.snapshot.routeConfig.path == "user/notifications") {
-
-        } else {
+        if (this.route.snapshot.routeConfig.path == "user/notifications") { }
+        else {
           if (res.reg_step <= 7 && !res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
               this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
-              if(res.is_deleted){
+              if (res.is_deleted) {
                 localStorage.clear();
                 this.router.navigate(['user/login']);
 
-              }else{
+              } else {
                 this.router.navigate(['user/kyc-verification']);
               }
             } else {
               if (res.reg_step == 6) {
                 this.router.navigate(['user/my-educational-profile']);
-
               }
             }
           } else if (res.reg_step <= 7 && res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
               this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
-              if(res.is_deleted){
+              if (res.is_deleted) {
                 localStorage.clear();
                 this.router.navigate(['user/login']);
 
-              }else{
+              } else {
                 this.router.navigate(['user/kyc-verification']);
               }
-              
+
             } else {
               if (res.reg_step == 7) {
                 this.router.navigate(['user/my-school']);
@@ -117,7 +110,7 @@ export class UserHeaderComponent implements OnInit {
               }
             }
           } else {
-            
+
           }
         }
       }, (error => {
