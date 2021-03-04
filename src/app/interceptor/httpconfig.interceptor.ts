@@ -5,18 +5,18 @@ import {
     HttpResponse,
     HttpHandler,
     HttpEvent,
-    HttpErrorResponse,
-    HttpParams
+    HttpErrorResponse
 } from '@angular/common/http';
 
 import { Observable, of, throwError } from 'rxjs';
-import { map, catchError, filter } from 'rxjs/operators';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
     constructor(
-        private activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private loader: NgxSpinnerService
     ) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token: string = localStorage.getItem('token');
@@ -75,6 +75,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     }
 
     navigateToLogin() {
+        this.loader.hide();
         if (this.getParentComponentRoute(this.router.url) !== '')
             this.router.navigate([this.getParentComponentRoute(this.router.url) + '/login'])
     }
