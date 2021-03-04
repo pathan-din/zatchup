@@ -8,7 +8,7 @@
         <div class="col-md-5">
             <h2 class="mb-1 textSpace">Sign Up </h2>
 
-             <form  id="form1" class="pt-2"> 
+             <form  id="form1" class="pt-2" autocapitalize="off" autocomplete="off"> 
                 
                 <div class="form-group row">
                     <div class="col-6 pl-0">
@@ -103,21 +103,21 @@
                         <div class="row justify-content-between">
                             <div class="col-3 border mx-1 p-0">
                                 <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select border-0">
-                                    <option value="" [selected]='true'>Date</option>
+                                    <option value="">Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
                                    
                                 </select>
                             </div>
                             <div class="col-4 border mx-1 p-0">
                                 <select (change)="isValid($event);changeMOnth(monthModel,yearModel);" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0">
-                                    <option value="" selected>Month</option>
+                                    <option value="">Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
                                     
                                 </select>
                             </div>
                             <div class="col-4 border mx-1 p-0">
                                 <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select  border-0">
-                                    <option value="" selected>Year</option>
+                                    <option value="">Year</option>
                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                    
                                 </select>
@@ -157,7 +157,7 @@
                 <div class="form-group row  textSpace ml-0 mr-0">
                     <div class="col-sm-12 pl-0 d-flex align-items-center">
                         <input required type="checkbox" (change)="isValid($event)" id="term-condition" class="checkboxStyle cursorStyle" [(ngModel)]="model.is_term_cond" name ="term_condition">
-                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont" (click)="goToTermsAndConditions('user', 'view', 'tc')">Terms & Conditions</span> and <span class="color-purple semiBoldFont"  (click)="goToTermsAndConditions('user', 'view', 'privacy-policy')">Privacy Policy</span></label>
+                        <label for="term-condition " class=" checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont cursorStyle" (click)="goToTermsAndConditions('user', 'view', 'tc')">Terms & Conditions</span> and <span class="color-purple semiBoldFont cursorStyle"  (click)="goToTermsAndConditions('user', 'view', 'privacy-policy')">Privacy Policy</span></label>
                     </div>
 
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.term_condition"></div>
