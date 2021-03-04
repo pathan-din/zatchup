@@ -89,7 +89,15 @@ export class UserSignUpComponent implements OnInit {
     //var month = now.getMonth()+1;
     this.yearModel = now.getFullYear()
     
-    this.monthModel =  (now.getMonth()+1).toString();
+    var month;
+    if((now.getMonth()+1).toString().length>1){
+      month = (now.getMonth()+1).toString();
+    }else{
+      month = '0'+(now.getMonth()+1).toString();
+    }
+    console.log(month);
+    
+    this.monthModel =  month.toString();
     this.dateModel = this.baseService.daysInMonth(this.monthModel, this.yearModel).toString();
     localStorage.removeItem('token');
     localStorage.removeItem('role');

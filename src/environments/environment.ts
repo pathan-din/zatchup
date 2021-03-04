@@ -18,7 +18,10 @@ export const environment = {
     databaseURL: "https://angularchatmaheshtriazine-default-rtdb.firebaseio.com/",
     projectId: "angularchatmaheshtriazine",
     storageBucket: "angularchatmaheshtriazine.appspot.com",
-    messagingSenderId: "575727521539",
-    appId: "1:575727521539:web:b13bcda820943cc4b02336"
+    messagingSenderId: "932623041112",
+    appId: "1:932623041112:web:5e3881a4023c62adffc02d"
+
+    
+
   }
 };

@@ -8,7 +8,7 @@ export const environment = {
   apiadminUrl:baseUrl+"admin/",
   serverImagePath:"https://apis.zatchup.com/media/temp/",
   serverVideoPath:"https://apis.zatchup.com/media/temp/",
-  razorPaymentApiKey:'rzp_test_i0NymYFNWzBGPK',
+  razorPaymentApiKey:'rzp_live_nBvAkcHP18CnUT',
   debugMode:true,
   appVersion: require('../../package.json').version,
   firebase: {
