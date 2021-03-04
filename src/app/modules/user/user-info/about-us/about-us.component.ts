@@ -15,6 +15,7 @@ export class AboutUsComponent implements OnInit {
   date: any;
   model: any = {};
   errorDisplay: any = {};
+  origin: string;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -38,6 +39,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.origin = window.location.origin
   }
 
   scrollToTargetAdjusted(id) {

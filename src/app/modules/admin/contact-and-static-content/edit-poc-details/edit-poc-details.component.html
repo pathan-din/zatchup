@@ -1,0 +1,105 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="bg-white px-3 pt-2 pb-3 mt-3 border">
+        <h2 class="commonFontSize semiBoldFont mb-2 mt-2"> Edit POC Details </h2>
+        <div class="row mt-2">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <form autocapitalize="off" autocomplete="off">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="name" class=" commonFontSize mediumFont letterspacing">Name</label>
+                                <div
+                                    class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                                    <input (keyup)="isValid()"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Please enter name" name="name"
+                                        [(ngModel)]="pocDetails.name" required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="lastName" class=" commonFontSize mediumFont letterspacing">Phone
+                                    Number</label>
+                                <div
+                                    class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                                    <input maxlength="10" numberOnly (keyup)="isValid()"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Please enter phone number" name="phone_number"
+                                        [(ngModel)]="pocDetails.number" required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="emailid" class=" commonFontSize mediumFont letterspacing">Email</label>
+                                <div
+                                    class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                                    <input (keyup)="isValid()"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="email" placeholder="Please enter email address" name="email_id"
+                                        [(ngModel)]="pocDetails.email_id" required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.email_id"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="phoneNumber" class=" commonFontSize mediumFont letterspacing">GST
+                                    Number</label>
+                                <div
+                                    class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                                    <input (keyup)="isValid()"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Please enter gst number" name="gst_number"
+                                        [(ngModel)]="pocDetails.gst_details" required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.gst_number"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="phoneNumber" class=" commonFontSize mediumFont letterspacing">
+                                    Pan Number</label>
+                                <div
+                                    class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                                    <input (keyup)="isValid()"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Please enter pan number" name="pan_number"
+                                        [(ngModel)]="pocDetails.pan_number" required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.pan_number"></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="emailid" class=" commonFontSize mediumFont letterspacing">Address</label>
+                                <div
+                                    class="col-sm-12 form-control-inputDiv d-flex flex- rounded p-1 align-items-center shadow-none">
+                                    <input type="text" (keyup)="isValid()"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        placeholder="Please enter address" name="address"
+                                        [(ngModel)]="pocDetails.registered_office_address" required>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.address"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button " (click)="editPoc()"
+                        class="bg-purple border-0 text-white text-center px-4 py-2 mt-2 commonFontSize mediumFont letterspacing">
+                        Submit </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
