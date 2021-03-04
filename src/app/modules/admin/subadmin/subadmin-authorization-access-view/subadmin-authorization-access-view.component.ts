@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -12,12 +13,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class SubadminAuthorizationAccessViewComponent implements OnInit {
   moduleList: any;
   subadminData: any;
-  _selectAll: boolean = false;
-  // subModuleList: Array<any> = [];
-  // subModuleListData: any;
+  // _selectAll: boolean = false;
   historyArr: Array<any> = []
   arrayList: Array<any> = []
-  masterSelected: boolean
+  masterSelected: boolean;
   accessModel: any = {}
   idList: any
   subModuleEnable: any;
@@ -31,7 +30,8 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private confirmDialogService: ConfirmDialogService,
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
       (res: any) => {
         if (res.status == true && res.count != 0) {
           this.subadminData = res.results[0];
-          this.subModuleEnable = this.subadminData.status
+          this.subModuleEnable = !this.subadminData.status
         } else {
           this.subadminData = undefined
         }
@@ -65,8 +65,9 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
       (res: any) => {
         if (res[0].status == true) {
           this.moduleList = res[0].data;
-          this.makeAccessModal()
-          this.makeArr1()
+          this.makeAccessModal();
+          this.makeArr1();
+          this.checkAll();
         } else if (res[0].status == false) {
           this.alert.error(res.error, 'Error')
         }
@@ -77,13 +78,13 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     }
   }
 
-  selectAll(event) {
-    if (event.currentTarget.checked == true) {
-      this._selectAll = true
-    } else {
-      this._selectAll = false
-    }
-  }
+  // selectAll(event) {
+  //   if (event.currentTarget.checked == true) {
+  //     this._selectAll = true
+  //   } else {
+  //     this._selectAll = false
+  //   }
+  // }
 
   makeArr1() {
     this.accessModel['user_id'] = parseInt(this.activeRoute.snapshot.params.id)
@@ -91,7 +92,6 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     this.moduleList.forEach(ele => {
       if (ele.sub_module && ele.sub_module.length > 0) {
         ele.sub_module.forEach(child_ele => {
-          // child_ele['isSelected'] = false;
           let obj = {
             "id": child_ele.id,
             "status": child_ele.is_access
@@ -102,7 +102,6 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
       }
     })
     this.idArray1 = idList;
-    // this.accessModel['ids'] = idList
   }
 
   makeAccessModal() {
@@ -111,7 +110,6 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     this.moduleList.forEach(ele => {
       if (ele.sub_module && ele.sub_module.length > 0) {
         ele.sub_module.forEach(child_ele => {
-          // child_ele['isSelected'] = false;
           let obj = {
             "id": child_ele.id,
             "status": child_ele.is_access
@@ -120,8 +118,8 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
         })
       }
     })
-    // this.idArray1 = idList
-    this.accessModel['ids'] = idList
+    this.accessModel['ids'] = idList;
+
   }
 
   checkUncheckAll() {
@@ -223,25 +221,32 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     ), err => {
       this.loader.hide();
     }
-  }
+  } 
 
-  disableEnableEmployee(event) {
-    this.loader.show();
-    let data = {
-      "user_id": this.activeRoute.snapshot.params.id,
-      "disable_status": event.checked
-    }
-
-    this.baseService.action('admin/sub-admin/enable_disable_user/', data).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          this.alert.success(res.message, 'Success');
-        } else {
-          this.alert.error(res.error.message[0], 'Error');
-        }
-        this.loader.hide();
+  disableEnableEmployee(event): any {
+    let msg = 'Are you sure you want to disable this employee ?'
+    if (event.checked == true)
+      msg = 'Are you sure you want to enable this employee ?'
+    this.confirmDialogService.confirmThis(msg, () => {
+      this.loader.show()
+      let data = {
+        "user_id": this.activeRoute.snapshot.params.id,
+        "disable_status": event.checked
       }
-    )
+
+      this.baseService.action('admin/sub-admin/enable_disable_user/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, 'Success');
+          } else {
+            this.alert.error(res.error.message[0], 'Error');
+          }
+          this.loader.hide();
+        }
+      )
+    }, () => {
+      this.subModuleEnable = !this.subModuleEnable
+    });
   }
 
   makeModuleObj(data) {
@@ -292,5 +297,19 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     return obj2.filter(item => !obj1.some(other =>
       item.id == other.id && item.status == other.status
     ));
+  }
+
+  checkAll() {
+    for (let i = 0; i < this.moduleList.length; i++) {
+      let find = this.moduleList[i].sub_module.find(val => {
+        return val.is_access == false
+      })
+      if (find) {
+        this.masterSelected = false
+        break;
+      } else {
+        this.masterSelected = true;
+      }
+    }
   }
 }
