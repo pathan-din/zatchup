@@ -138,6 +138,8 @@ import { StarclassManagementComponent } from './start-class/starclass-management
 import { CourseEditComponent } from './start-class/course-edit/course-edit.component';
 import { PlanHistoryComponent } from './start-class/plan-history/plan-history.component';
 import { CurrentPlansComponent } from './start-class/current-plans/current-plans.component';
+import { PricePlanHistoryComponent } from './start-class/price-plan-history/price-plan-history.component';
+import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
 
 
 const routes: Routes = [
@@ -552,8 +554,12 @@ const routes: Routes = [
   {
     path: 'current-plans', component: CurrentPlansComponent, canActivate: [AuthGuard]
   },
-
-
+  {
+    path: 'price-plan-history', component: PricePlanHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'all-courses-uploaded-by-ei', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
+  },
   
   {
     path: '**', component: AdminPageNotFoundComponent

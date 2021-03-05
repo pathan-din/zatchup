@@ -167,6 +167,8 @@ import { StarclassManagementComponent } from './start-class/starclass-management
 import { CourseEditComponent } from './start-class/course-edit/course-edit.component';
 import { PlanHistoryComponent } from './start-class/plan-history/plan-history.component';
 import { CurrentPlansComponent } from './start-class/current-plans/current-plans.component';
+import { PricePlanHistoryComponent } from './start-class/price-plan-history/price-plan-history.component';
+import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -340,7 +342,9 @@ const config = {
     StarclassManagementComponent,
     CourseEditComponent,
     PlanHistoryComponent,
-    CurrentPlansComponent
+    CurrentPlansComponent,
+    PricePlanHistoryComponent,
+    AllCoursesUploadedByEiComponent
   ],
   imports: [
     CommonModule,
