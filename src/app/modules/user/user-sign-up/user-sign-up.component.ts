@@ -256,6 +256,9 @@ export class UserSignUpComponent implements OnInit {
   }
 
   goToTermsAndConditions(type: any, action: any, pageName: any) {
-    this.router.navigate(['user/terms-conditions', type, action], { queryParams: { pageName: pageName } })
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['user/terms-conditions', type, action], { queryParams: { pageName: pageName } })
+    );
+   window.open('#'+url, '_blank');
   }
 }

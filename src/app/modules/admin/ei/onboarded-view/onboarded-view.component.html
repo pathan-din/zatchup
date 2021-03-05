@@ -178,6 +178,11 @@
                 </div>
                 <div *ngIf="eiData.profile_pic" class="dpImgDiv rounded-circle bg-light-green border border-white">
                     <img src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">
+                    
+                </div>
+                <div class="img-fluid tick-img">
+                    <img *ngIf="eiData.is_onboarded==1" src="assets/images/userWebsite/checkicon.png"
+                    class="img-fluid verifiedTick">
                 </div>
 
                 <!-- <div class="userInfo">
