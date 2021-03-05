@@ -7,7 +7,7 @@
                 <h2 class="text-center my-3 semiBoldFont">Let's ZatchUp</h2>
 
                 <mat-horizontal-stepper [selectedIndex]="countIndex" #stepper [linear]="true" labelPosition="bottom">
-                    <mat-step   label="stage 1" state="circle">
+                    <mat-step  completed="false" label="stage 1" state="circle">
                         <form id="Form1" enctype="multipart/form-data">
                             <div class="process1 mt-4 {{countIndex}}">
                                 <div class="form-group row ">
@@ -237,7 +237,7 @@
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step  label="stage 2 " state="circle ">
+                    <mat-step completed="false" label="stage 2 " state="circle ">
                         <form id="Form2">
                             <div class="process2 mt-4 ">
                                 <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">
@@ -569,7 +569,7 @@
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step  label="stage 3 " state="circle ">
+                    <mat-step completed="false" label="stage 3 " state="circle ">
                         <form id="Form3" enctype="multipart/form-data">
                             <div class="process3 mt-4 ">
                                 <div class="form-group row ">
@@ -648,7 +648,7 @@
                             </div>
                         </form>
                     </mat-step>
-                    <mat-step label="stage 4 " state="circle ">
+                    <mat-step  label="stage 4 " state="circle ">
                         <form id="Form4" enctype="multipart/form-data">
                         <div class="process4 mt-4 " >
                             <div *ngFor="let document of modelDocumentDetails;let i=index;">
