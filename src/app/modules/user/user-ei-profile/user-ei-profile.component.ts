@@ -17,7 +17,7 @@ export class UserEiProfileComponent implements OnInit {
   model: any = {};
   errorDisplay: any = {};
   imageUrl: any;
-  courseList: any;
+  courseList: any=[];
   standardList: any;
   leftStandardList: any;
   objCourse: any = {};
@@ -51,12 +51,19 @@ export class UserEiProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.params = params
+     
+      
+    //  if(this.params.edit_course=='true') {
+    //   this.displayStandardList(this.model.course_id)
+    //  }
       if (params.school_id) {
         this.schoolId = params.school_id;
         this.getCourseBySchoolId(this.schoolId)
         // this.getSchollConfirmationData(); 
       }
+     
       if (params.course_id) {
+        
         this.model.course_id = params.course_id;
         this.displayStandardList(this.model.course_id)
         this.model.existing_course_id = params.course_id;
@@ -154,6 +161,7 @@ export class UserEiProfileComponent implements OnInit {
   getCourseBySchoolId(id) {
     // debugger
     try {
+      var that = this;
       this.loader.show();
       let data = {
         "school_id": id,
@@ -164,6 +172,7 @@ export class UserEiProfileComponent implements OnInit {
           this.loader.hide();
 
           this.courseList = res.results;
+          that.courseList= res.results;
           this.model.course_id = this.params.course_id
           // debugger
           if (this.courseList)
@@ -196,23 +205,31 @@ export class UserEiProfileComponent implements OnInit {
   displayStandardList(courseId) {
     // debugger
     try {
+      
       if (this.courseList)
       this.setCalDates(courseId)
       this.loader.show();
       this.standardList = []
+      
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
+      console.log(data);
       if(this.courseList.length>0){
         this.model.comment=this.courseList.find(element => element.id == courseId).description;
       }
+     
+      
       this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
         let response: any = {};
         response = res;
         this.loader.hide();
         this.standardList = response.results;
+        console.log(this.standardList);
         this.leftStandardList = response.results;
       }, (error) => {
+        console.log(error);
+        
         this.loader.hide();
       });
     } catch (err) {

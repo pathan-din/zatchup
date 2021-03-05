@@ -788,7 +788,7 @@ a:hover {
     margin: 30px auto;
 }
 
-.form-control:disabled, .form-control{
+.form-control:disabled{
     background-color: #fff !important;
 }
 .form-control:focus{
