@@ -794,3 +794,7 @@ a:hover {
 .form-control:focus{
     border-color: #c7cbd1 !important;
 }
+
+mat-header-row {
+    min-height: 42px;
+}

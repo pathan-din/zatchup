@@ -163,6 +163,10 @@ import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details
 import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
 import { AdminStarClassCourseAddComponent } from './start-class/admin-star-class-course-add/admin-star-class-course-add.component';
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
+import { StarclassManagementComponent } from './start-class/starclass-management/starclass-management.component';
+import { CourseEditComponent } from './start-class/course-edit/course-edit.component';
+import { PlanHistoryComponent } from './start-class/plan-history/plan-history.component';
+import { CurrentPlansComponent } from './start-class/current-plans/current-plans.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -332,7 +336,11 @@ const config = {
     ChangeInBankDetailsPendingComponent,
     ChangeInBankDetailsViewComponent,
     AdminStarClassCourseAddComponent,
-    EditPocDetailsComponent
+    EditPocDetailsComponent,
+    StarclassManagementComponent,
+    CourseEditComponent,
+    PlanHistoryComponent,
+    CurrentPlansComponent
   ],
   imports: [
     CommonModule,

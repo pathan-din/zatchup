@@ -1,0 +1,56 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+    <div class="KYC-HistoryView-div bg-white p-3">
+        <div class="row topDiv">
+            <div class="col-md-6 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Current Plans</h2>
+            </div>
+            <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0" (click)="searchRoute()">Plan History</button>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                 <!--Start html for table content Alimni information-->
+                <div class="tableDiv ">
+                    <div class="mat-elevation-z1 table-responsive">
+                        <mat-table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="pplan">
+                                <mat-header-cell *matHeaderCellDef>   </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.pplan}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="planOne">
+                                <mat-header-cell *matHeaderCellDef> Plan 1 </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.planOne}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="planTwo">
+                                <mat-header-cell *matHeaderCellDef> Plan 2 </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.planTwo}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="planThree">
+                                <mat-header-cell *matHeaderCellDef> Plan 3 </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    {{element.planThree}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+                <!--End html for table content Alimni information-->
+            </div>
+        </div>
+    </div>
+</div>
