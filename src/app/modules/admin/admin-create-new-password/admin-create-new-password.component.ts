@@ -48,7 +48,7 @@ export class AdminCreateNewPasswordComponent implements OnInit {
           if (res.status === true) {
             this.model.key = res.data.key;
             this.model.uid = res.data.uid;
-            this.alert.success('Email verified', 'Success')
+            // this.alert.success('Email verified', 'Success')
           } else {
             this.alert.error(res.error.message[0], "Error");
             this.router.navigate(['admin/login']);
