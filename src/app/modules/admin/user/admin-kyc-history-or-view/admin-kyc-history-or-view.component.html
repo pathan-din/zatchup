@@ -272,7 +272,7 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="emp_name">
+                    <!-- <ng-container matColumnDef="emp_name">
                         <mat-header-cell *matHeaderCellDef> Employee Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.byusername}}
@@ -284,7 +284,7 @@
                         <mat-cell *matCellDef="let element">
                             {{element.tousername}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <mat-header-row *matHeaderRowDef="kycHistoryModal.displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: kycHistoryModal.displayedColumns; "></mat-row>
@@ -313,12 +313,12 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="user_name">
+                    <!-- <ng-container matColumnDef="user_name">
                         <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.tousername}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <mat-header-row *matHeaderRowDef="kycHistoryModal.pendingDisplayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: kycHistoryModal.pendingDisplayedColumns; "></mat-row>
