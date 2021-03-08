@@ -126,7 +126,7 @@ export class UserForgotPasswordComponent implements OnInit {
           (res: any) => {
             if (res.status == true) {
               localStorage.setItem('otpVerifyData', JSON.stringify(res.data))
-              this.router.navigate(['ei/create-new-password']);
+              this.router.navigate(['user/create-new-password']);
             } else {
               this.alert.error(res.error.message[0], 'Error')
             }

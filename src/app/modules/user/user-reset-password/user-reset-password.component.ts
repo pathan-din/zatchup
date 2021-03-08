@@ -21,6 +21,7 @@ export class UserResetPasswordComponent implements OnInit {
     private alert: NotificationService) { }
 
   ngOnInit() {
+    if (location.hash.split('?token=')[1])
     this.verifyCode();
   }
   verifyCode() {
@@ -47,7 +48,7 @@ export class UserResetPasswordComponent implements OnInit {
           // var errorCollection = '';
           // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
           // alert(errorCollection);
-          this.router.navigate(['ei/login']);
+          this.router.navigate(['user/login']);
         }
       }, (error) => {
         this.SpinnerService.hide();
@@ -61,7 +62,7 @@ export class UserResetPasswordComponent implements OnInit {
   }
 
   changePassword() {
-    console.log(this.model);
+   
     this.error = [];
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
@@ -70,7 +71,14 @@ export class UserResetPasswordComponent implements OnInit {
     }
     try {
       /**Api For the password change */
-
+      if(localStorage.getItem('otpVerifyData'))
+      {
+        let otpVerifyData:any={};
+        otpVerifyData = JSON.parse(localStorage.getItem('otpVerifyData'));
+        this.model.key = otpVerifyData.key;
+        this.model.uid = otpVerifyData.uid;
+      }
+      console.log(this.model);
       this.SpinnerService.show();
 
       this.adminService.setAdminPassword(this.model).subscribe(res => {
