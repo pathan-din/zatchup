@@ -141,11 +141,11 @@ export class EiForgetPasswordComponent implements OnInit {
       
       
       let data: any = {};
-      this.modelForOtpModal.username = this.verificationMobileNo ;
+      this.modelForOtpModal.email_or_phone = this.verificationMobileNo ;
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.SpinnerService.show();
-      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
+      this.baseService.action('admin/forgot-password/',this.modelForOtpModal).subscribe(res => {
         let response: any = {}
         response = res;
         this.SpinnerService.hide();
