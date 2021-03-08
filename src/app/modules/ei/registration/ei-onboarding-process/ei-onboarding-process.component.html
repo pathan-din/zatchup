@@ -440,7 +440,7 @@
                                                         <div class="col-sm-12">
                                                             <div
                                                                 class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                                <select (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                                <select (change)="endYearCheckValidation(classD)" [disabled]="opening_date<classD.teaching_start_year" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
                                                                     required [(ngModel)]="classD.teaching_start_year"
                                                                     name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select  form-control-input form-control-sm "

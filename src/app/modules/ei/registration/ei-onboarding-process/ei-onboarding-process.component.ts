@@ -36,6 +36,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   documentForm2Elements: any;
   year: any = [];
   month: any = [];
+  opening_date:any='';
   months: any = [{ 'name': 'JAN' },
   { 'name': 'FEB' },
   { 'name': 'MAR' },
@@ -262,7 +263,10 @@ export class EiOnboardingProcessComponent implements OnInit {
 
           this.model = res;
           if (this.model.opening_date) {
+            var date = this.model.opening_date.split('-') ;
+            this.opening_date = date[0];
             this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
+            
           } else {
             this.model.opening_date = '';
           }
