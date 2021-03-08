@@ -6,6 +6,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { UsersServiceService } from 'src/app/services/user/users-service.service';
 declare var $: any;
 
 @Component({
@@ -24,6 +25,8 @@ export class EiForgetPasswordComponent implements OnInit {
   otp2: any;
   otp3: any;
   otp4: any;
+  modelForOtpModal: any={};
+  errorOtpModelDisplay: any;
    
   constructor(
     private genericFormValidationService: GenericFormValidationService, 
@@ -32,12 +35,19 @@ export class EiForgetPasswordComponent implements OnInit {
     public adminService: AdminService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private baseService:BaseService
+    private baseService:BaseService,
+    private userService:UsersServiceService
     ) { }
 
   ngOnInit() {
   }
+  changeInput($ev) {
+    if ($ev.target.value.length == $ev.target.maxLength) {
+      var $nextInput = $ev.target.nextSibling;
+      $nextInput.focus();
+    }
 
+  }
   submit() {
     this.error = [];
     this.errorDisplay = {};
@@ -124,6 +134,36 @@ export class EiForgetPasswordComponent implements OnInit {
     }
     else {
       this.alert.error('Please enter OTP!', 'Error')
+    }
+  }
+  resendOtp() {
+    try {
+      
+      
+      let data: any = {};
+      this.modelForOtpModal.username = this.verificationMobileNo ;
+
+      /***********************Mobile Number OR Email Verification Via OTP**********************************/
+      this.SpinnerService.show();
+      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
+        let response: any = {}
+        response = res;
+        this.SpinnerService.hide();
+        if (response.status == true) {
+          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.","Success")
+        } else {
+          this.errorOtpModelDisplay = response.error;
+          this.alert.success(this.errorOtpModelDisplay,"Error")
+          //alert(response.error)
+        }
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("verify Otp Exception", err);
     }
   }
  
