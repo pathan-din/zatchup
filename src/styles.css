@@ -376,7 +376,7 @@ body {
 .mat-header-cell:first-of-type,
 .mat-cell:first-of-type {
     flex: 0 0 5%;
-    min-width: 55px;
+    min-width: 60px;
 }
 
 .mat-column-position {
