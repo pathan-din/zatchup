@@ -11,34 +11,43 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="bankName" class="mediumFont commonFontSize letterspacing">Bank Name</label>
                             <div class="form-control-inputDiv rounded py-1 shadow-none">
-                                <select class="custom-select custom-select-2Col form-control-input" required>
-                                    <option value="">Select</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                <select id="bank_name" name="bank_name" [(ngModel)]="model.dd_bank_name"
+                                class="custom-select custom-select-2Col form-control-input form-control-sm "
+                                required>
+                                <option value="">Select Bank</option>
+                                <option value="{{bankNameObj.name}}"
+                                    *ngFor="let bankNameObj of bankNameList">{{bankNameObj.name}}
+                                </option>
+                            </select>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.bank_name"></div>
                         </div>
                         <div class="col-sm-6 ">
                             <label for="DOI" class=" mediumFont commonFontSize letterspacing">Date of Issue</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
+                                <input bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" id="dd_date_of_issue" required [(ngModel)]="model.dd_date_of_issue"
+                                name="date_of_issue" autocomplete="off" class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text" placeholder="MM/DD/YYYY">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_issue"></div>
                         </div>
                     </div>
 
                     <div class="form-group row  ml-0 mr-0">
                         <div class="col-sm-6 MobileCol6MB">
-                            <label for="AccountNumber" class="mediumFont commonFontSize letterspacing">Account Number</label>
+                            <label for="AccountNumber"  class="mediumFont commonFontSize letterspacing">Account Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Account Number">
+                                <input id="dd_account_no" required name="account_no"
+                                [(ngModel)]="model.dd_account_no"  required numberOnly class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Account Number">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.account_no"></div>
                         </div>
                         <div class="col-sm-6">
                             <label for="PayeeName" class=" mediumFont commonFontSize letterspacing">Payee Name</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Payee Name">
+                                <input required id="dd_payee_name" name="payee_name"
+                                [(ngModel)]="model.dd_payee_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Payee Name">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.payee_name"></div>
                         </div>
                     </div>
 
@@ -46,14 +55,18 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="Amount" class="mediumFont commonFontSize letterspacing">Amount</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="number" placeholder="Enter Amount">
+                                <input required id="dd_amount" name="amount"
+                                [(ngModel)]="model.dd_amount" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="number" placeholder="Enter Amount">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.amount"></div>
                         </div>
                         <div class="col-sm-6">
                             <label for="ChequeNumber" class=" mediumFont commonFontSize letterspacing">Cheque Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Cheque Number">
+                                <input  id="dd_cheque_no" name="cheque_no"
+                                [(ngModel)]="model.dd_cheque_no" numberOnly required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Cheque Number">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.cheque_no"></div>
                         </div>
                     </div>
 
@@ -61,22 +74,26 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="IFSCCode" class="mediumFont commonFontSize letterspacing">IFSC Code</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter IFSC Code">
+                                <input required id="dd_ifsc_code" name="ifsc_code"
+                                [(ngModel)]="model.dd_ifsc_code" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter IFSC Code">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.ifsc_code"></div>
                         </div>
                         <div class="col-sm-6">
                             <label for="MICRCode" class=" mediumFont commonFontSize letterspacing">MICR Code</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter MICR Code">
+                                <input required id="dd_micr_code" name="micr_code"
+                                [(ngModel)]="model.dd_micr_code" numberOnly class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter MICR Code">
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.micr_code"></div>
                         </div>
                     </div>
 
-                    <button type="button "
+                    <button type="button " (click) = "doDDCheque()"
                         class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">
                         Submit
                     </button>
-                    <p class="text-center commonFontSize mediumFont letterspacing mt-4">Contact us at <span class="textUnderlineStyle letterspacing">help@zatchup.com</span></p>
+                    <!-- <p class="text-center commonFontSize mediumFont letterspacing mt-4">Contact us at <span class="textUnderlineStyle letterspacing">help@zatchup.com</span></p> -->
                 </form>
             </div>
         </div>
