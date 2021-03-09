@@ -120,3 +120,9 @@ export class SubscriptionPlanHistory extends Pagination {
     displayedColumns: string[] = ['position', 'dateOfSubscription', 'planDetails', 'grossAmount',
         'couponCode', 'netAmount', 'dateOfSubscriptionExpiry', 'transactionId', 'action'];
 }
+
+export class PlanDetails extends Pagination{
+    displayedColumns: string[] = ['position','pplan','views', 'validity', 'action'];
+    modal: any;
+  id: any;
+}

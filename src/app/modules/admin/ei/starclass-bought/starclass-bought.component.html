@@ -1,8 +1,11 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
-        <div class="row topDiv">
-            <div class="col-md-6 ">
+        <div class="row topDiv">>
+            <div class="col-md-6 d-flex justify-content-start flex-wrap">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">ZatchUp Starclass Bought</h2>
             </div>
             <div class="col-md-6 SearchDiv d-flex flex-row">
@@ -84,7 +87,7 @@
                     <ng-container matColumnDef="viewInvoice">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="color-blue">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"></i>
+                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true" (click)="goToBoughtView()"></i>
                             <i class="fa fa-refresh mr-2 color-green fa-lg cursorStyle" aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>

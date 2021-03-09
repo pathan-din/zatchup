@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-starclass-management',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarclassManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  goToStarClassPlan(){
+    this.router.navigate(['admin/current-plans'])
+  }
+
+  goToPaymentRevenue(){
+    this.router.navigate(['admin/payment-starclass-revenue'])
+  }
+
+  goToStarclassBought(){
+    this.router.navigate(['admin/starclass-bought'])
+  }
 }
