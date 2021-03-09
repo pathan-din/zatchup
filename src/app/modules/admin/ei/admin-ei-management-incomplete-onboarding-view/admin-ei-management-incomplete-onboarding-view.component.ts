@@ -133,6 +133,8 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
     }
 
     this.loader.show()
+    console.log(this.pendingApprovalProfile.zatchupId);
+    
     let data = {
       'user_id': this.eiData.id,
       'mou_document': this.pendingApprovalProfile.existingZatchIDMOUDoc,
@@ -336,6 +338,7 @@ export class AdminEiManagementIncompleteOnboardingViewComponent implements OnIni
   schoolZatchupId(data) {
     // debugger
     this.pendingApprovalProfile.name_of_school = data.name_of_school
+    this.pendingApprovalProfile.zatchupId = data.school_code;
     // this.pendingApprovalProfile.school_code_required = true;
   }
 

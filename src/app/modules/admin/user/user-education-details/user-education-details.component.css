@@ -7,8 +7,8 @@
 }
 img.verifiedTick {
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: -12px;
+    top: 50px;
 }
 
 .RightimgDiv .Rightimg {

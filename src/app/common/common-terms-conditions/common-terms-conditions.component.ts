@@ -59,8 +59,4 @@ export class CommonTermsConditionsComponent implements OnInit {
       this.alert.error(err.message, "Error");
       this.loader.hide()
   }}
-
-  goBack(){
-    this.location.back()
-  }
 }

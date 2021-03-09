@@ -124,8 +124,9 @@
                     <div class="form-group row  ">
                         <div class="col-sm-12">
                             <input (click)="isValid($event)" (change)="isValid($event)" required [(ngModel)]="model.is_term_cond" name ="terms_and_condition" id="terms_and_condition" type="checkbox" id="term-condition">
-                            <label for="term-condition " class="commonFontSize mediumFont ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'tc')">Terms & Conditions</span> and
-                                 <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'privacy-policy')">Privacy Policy</span> </label>
+                            <label for="term-condition " class="commonFontSize mediumFont ml-2">By continuing, you agree to our 
+                                <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'tc')">Terms & Conditions</span> and
+                                <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'privacy-policy')">Privacy Policy</span> </label>
                         </div>
 						<div class="required errorMsg" [innerHtml]="errorDisplay.terms_and_condition"></div>	
                     </div>

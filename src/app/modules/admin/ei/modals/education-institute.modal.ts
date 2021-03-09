@@ -63,7 +63,7 @@ export class DocHistory extends Pagination {
 export class MessagesHistory extends Pagination {
     params: any;
     displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
-        'resolutionDate', 'resolveComment', 'attachment'];
+        'resolutionDate', 'resolveComment', 'issue'];
 }
 export class PastPocDetails extends Pagination {
     displayedColumns: string[] = ['position', 'fromDate', 'toDate', 'employeeId', 'name', 'mobileNumber',
