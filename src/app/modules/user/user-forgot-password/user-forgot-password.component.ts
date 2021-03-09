@@ -6,6 +6,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { UsersServiceService } from 'src/app/services/user/users-service.service';
 declare var $: any;
 
 @Component({
@@ -22,13 +23,18 @@ export class UserForgotPasswordComponent implements OnInit {
   otp2: any;
   otp3: any;
   otp4: any;
+  modelForOtpModal: any={};
+  errorOtpModelDisplay: any;
+
   constructor( private genericFormValidationService: GenericFormValidationService, 
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     public adminService: AdminService,
     public formBuilder: FormBuilder,
     private alert: NotificationService, 
-    private baseService: BaseService) { }
+    private baseService: BaseService,
+    private userService: UsersServiceService
+    ) { }
 
   ngOnInit() {
   }
@@ -120,7 +126,7 @@ export class UserForgotPasswordComponent implements OnInit {
           (res: any) => {
             if (res.status == true) {
               localStorage.setItem('otpVerifyData', JSON.stringify(res.data))
-              this.router.navigate(['ei/create-new-password']);
+              this.router.navigate(['user/create-new-password']);
             } else {
               this.alert.error(res.error.message[0], 'Error')
             }
@@ -136,6 +142,34 @@ export class UserForgotPasswordComponent implements OnInit {
     }
     else {
       this.alert.error('Please enter OTP!', 'Error')
+    }
+  }
+
+  resendOtp() {
+    try { let data: any = {};
+      this.modelForOtpModal.email_or_phone = this.verificationMobileNo ;
+
+      /***********************Mobile Number OR Email Verification Via OTP**********************************/
+      this.SpinnerService.show();
+      this.baseService.action('admin/forgot-password/',this.modelForOtpModal).subscribe(res => {
+        let response: any = {}
+        response = res;
+        this.SpinnerService.hide();
+        if (response.status == true) {
+          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.","Success")
+        } else {
+          this.errorOtpModelDisplay = response.error;
+          this.alert.success(this.errorOtpModelDisplay,"Error")
+          //alert(response.error)
+        }
+      }, (error) => {
+        this.SpinnerService.hide();
+        console.log(error);
+
+      });
+    } catch (err) {
+      this.SpinnerService.hide();
+      console.log("verify Otp Exception", err);
     }
   }
 }
