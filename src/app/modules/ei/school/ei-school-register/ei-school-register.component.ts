@@ -325,7 +325,10 @@ export class EiSchoolRegisterComponent implements OnInit {
       }
     } }
 
-    goToTermsAndConditions(type: any, action: any, pageName:any){
-      this.router.navigate(['ei/terms-conditions', type, action], {queryParams:{pageName: pageName}})
+    goToTermsAndConditions(type: any, action: any, pageName: any) {
+      const url = this.router.serializeUrl(
+        this.router.createUrlTree(['ei/terms-conditions', type, action], { queryParams: { pageName: pageName } })
+      );
+     window.open('#'+url, '_blank');
     }
 }

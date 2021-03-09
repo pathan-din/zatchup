@@ -7,6 +7,7 @@
             <img *ngIf="userProfile"
                 src="{{userProfile.cover_pic ? userProfile.cover_pic : 'assets/images/cover-pic-default.png'}}"
                 class="img-fluid w-100">
+                
             <!-- <app-cover-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadCoverInfo"></app-cover-uploader> -->
             <button type="button" (click)="fileInput.click()"
                 class=" btn_position-absolute border-0 bg-light-black text-white p-2">
