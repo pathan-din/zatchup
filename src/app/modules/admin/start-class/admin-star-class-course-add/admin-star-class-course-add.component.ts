@@ -110,7 +110,7 @@ export class AdminStarClassCourseAddComponent implements OnInit {
         (res : any) =>{
           if(res.status == true){
             this.alert.success(res.message, 'Success')
-            this.router.navigate(['admin/starclass-management'])
+            this.location.back()
           }
           else{
             this.alert.error(res.error.message, 'Error')

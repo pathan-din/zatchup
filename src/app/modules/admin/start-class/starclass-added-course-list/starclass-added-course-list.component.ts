@@ -58,6 +58,10 @@ export class StarclassAddedCourseListComponent implements OnInit {
     this.router.navigate(['admin/starclass-course-preview'])
   }
 
+  goToAddCourse(){
+    this.router.navigate(['admin/starclass-course-add'])
+  }
+
   getCourseList(page? : any){
     try {
       this.loader.show()
