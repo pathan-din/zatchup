@@ -26,4 +26,12 @@ export class StarclassManagementComponent implements OnInit {
   goToStarclassBought(){
     this.router.navigate(['admin/starclass-bought'])
   }
+
+  goToCreateCourse(){
+    this.router.navigate(['admin/starclass-course-add'])
+  }
+
+  goToCoursePreview(){
+    this.router.navigate(['admin/starclass-course-preview'])
+  }
 }

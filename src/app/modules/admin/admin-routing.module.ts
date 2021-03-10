@@ -140,6 +140,7 @@ import { PlanHistoryComponent } from './start-class/plan-history/plan-history.co
 import { CurrentPlansComponent } from './start-class/current-plans/current-plans.component';
 import { PricePlanHistoryComponent } from './start-class/price-plan-history/price-plan-history.component';
 import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
+import { StarclassCoursePreviewComponent } from './start-class/starclass-course-preview/starclass-course-preview.component';
 
 
 const routes: Routes = [
@@ -559,6 +560,9 @@ const routes: Routes = [
   },
   {
     path: 'all-courses-uploaded-by-ei', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'starclass-course-preview', component:StarclassCoursePreviewComponent, canActivate: [AuthGuard]
   },
   
   {

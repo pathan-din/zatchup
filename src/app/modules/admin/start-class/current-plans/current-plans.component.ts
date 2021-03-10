@@ -4,35 +4,9 @@ import { Location } from '@angular/common'
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ValidationErrors } from '@angular/forms';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { PlanDetails } from '../../ei/modals/education-institute.modal';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
-
-
-// export interface TotalAlumniListElement {
-//   pplan: string;
-//   planOne : string;
-//   planTwo : string;
-//   planThree : string;
-// }
-
-// const ELEMENT_DATA: TotalAlumniListElement[] = [
-//   {pplan: 'Plan 1', 
-//     planOne: '10,000' , 
-//     planTwo: '5', 
-//     planThree : '365 days'},
-
-//     {pplan: 'Plan 2', 
-//     planOne: '15,000' , 
-//     planTwo: '10', 
-//     planThree : '365 days'},
-
-//     {pplan: 'Plan 3', 
-//     planOne: '20,000' , 
-//     planTwo: '20 ', 
-//     planThree : '365 days'}
-// ];
 
 @Component({
   selector: 'app-current-plans',
@@ -72,8 +46,12 @@ export class CurrentPlansComponent implements OnInit {
   goToPlanHistory(){
     this.router.navigate(['admin/plan-history'])
   }
-
-  createPlan(){
+  editPlan(objModel){
+    console.log(objModel);
+    this.model=objModel;
+    
+  }
+  createAndUpdatePlan(){
     try {
       this.errorDisplay={};
       this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
@@ -83,8 +61,13 @@ export class CurrentPlansComponent implements OnInit {
       }
     
       this.loader.show()
-
-    this.baseService.action('starclass/plan/', this.model).subscribe(
+      var url='starclass/plan/';
+      
+      if(this.model.id){
+        url = 'starclass/edit-plan/';
+         
+      }
+    this.baseService.action(url, this.model).subscribe(
       (res:any) =>{
         if(res.status == true){
           this.closecreateNewPlan.nativeElement.click();
