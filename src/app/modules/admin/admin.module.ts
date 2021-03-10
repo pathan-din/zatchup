@@ -170,6 +170,7 @@ import { CurrentPlansComponent } from './start-class/current-plans/current-plans
 import { PricePlanHistoryComponent } from './start-class/price-plan-history/price-plan-history.component';
 import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
 import { StarclassCoursePreviewComponent } from './start-class/starclass-course-preview/starclass-course-preview.component';
+import { StarclassAddedCourseListComponent } from './start-class/starclass-added-course-list/starclass-added-course-list.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -346,7 +347,8 @@ const config = {
     CurrentPlansComponent,
     PricePlanHistoryComponent,
     AllCoursesUploadedByEiComponent,
-    StarclassCoursePreviewComponent
+    StarclassCoursePreviewComponent,
+    StarclassAddedCourseListComponent
   ],
   imports: [
     CommonModule,

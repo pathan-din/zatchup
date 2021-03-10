@@ -254,7 +254,7 @@ body {
 .errorMsg {
     color: red;
     font-size: .825rem;
-    margin-left: 0.9rem !important;
+    /* margin-left: 0.9rem !important; */
     /* margin-top:.5rem; */
     /* position: absolute; */
 }

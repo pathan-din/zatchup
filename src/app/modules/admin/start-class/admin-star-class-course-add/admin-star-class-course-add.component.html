@@ -18,79 +18,88 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Name </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Course Name">
+                                    <input required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Course Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_name"></div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Level Of Education </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Level Of Education">
+                                    <input required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Level Of Education">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.level_of_education"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input  [(ngModel)]="model.course_preview" name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
+                                    <input required  [(ngModel)]="model.course_preview" name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_preview"></div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input  [(ngModel)]="model.course_image" name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
+                                    <input required  [(ngModel)]="model.course_image" name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_image"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
+                                    <input required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.field"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Standard </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name">
+                                    <input required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Subject </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name">
+                                    <input required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.subject"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Faculty Details </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Faculty Name">
+                                    <input required [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Faculty Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.faculty_details"></div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Topic Cover </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Name">
+                                    <input required [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Name">
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.topic_cover"></div>
                         </div>
 
                         <!-- <div class="col-md-12" *ngIf="planDetails">
@@ -138,9 +147,10 @@
                             <div class="form-group row  ml-0 mr-2 mt-2">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Description </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100  border-top shadow-none">
-                                    <textarea [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" type="textarea"></textarea>
+                                    <textarea required [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" type="textarea"></textarea>
                                 </div>
                             </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
                         </div>
 
                     </div>

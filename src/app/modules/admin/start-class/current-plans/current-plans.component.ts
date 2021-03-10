@@ -33,7 +33,7 @@ export class CurrentPlansComponent implements OnInit {
     private validation: GenericFormValidationService,
     private confirmDialogService: ConfirmDialogService,
     ) { 
-      this.planDetails = new PlanDetails
+      this.planDetails = new PlanDetails()
     }
   ngOnInit(): void {
     this.getPlanDetails()
