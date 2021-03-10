@@ -19,6 +19,7 @@ export class AdminStarClassCourseAddComponent implements OnInit {
   filename: string;
   uploadedImage: File;
   uploadedContent_image: File;
+  errorDisplay : any = {};
 
   constructor(
     private baseService: BaseService,
@@ -87,6 +88,12 @@ export class AdminStarClassCourseAddComponent implements OnInit {
   
   createCourse(){
     try {
+      this.errorDisplay={};
+      this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
+      if(this.errorDisplay.valid)
+      {
+        return false;
+      }
       this.loader.show()
       const formData = new FormData();
       formData.append('course_name', this.model.course_name);

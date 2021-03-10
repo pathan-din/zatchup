@@ -126,3 +126,9 @@ export class PlanDetails extends Pagination{
     modal: any;
   id: any;
 }
+
+export class CourseList extends Pagination{
+    displayedColumns: string[] = ['SNo', 'dateOfAdding', 'courseId','titleOfCourse',
+    'levelOfEducation', 'field', 'standard', 'subject', 'action'];
+  modal: any;
+}
