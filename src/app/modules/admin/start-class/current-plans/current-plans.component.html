@@ -68,7 +68,7 @@
                             <ng-container matColumnDef="action">
                                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    <i class="fa fa-pencil ml-2 color-green cursorStyle" aria-hidden="true"></i>
+                                    <i data-toggle="modal" data-target="#createNewPlan" (click)="editPlan(element)"  class="fa fa-pencil ml-2 color-green cursorStyle" aria-hidden="true"></i>
                                     <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true"
                                     (click)="deleteEI(element.id)"></i>
                                 </mat-cell>
@@ -153,7 +153,7 @@
                                 </div>
 
                                 </div>
-                            <button type="button"  (click)="createPlan() && form1.reset()"
+                            <button type="button"  (click)="createAndUpdatePlan() && form1.reset()"
                                 class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                 Submit
                             </button>
