@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 declare var $: any;
 
 @Component({
@@ -37,13 +38,19 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
   imageUrl: any;
   imagePath: any;
+  dataStudent: any=[];
+  conversation:any=[];
+  recepintDetails: any={};
+  currentUser:any;
+
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private validationService: GenericFormValidationService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private firestore:AngularFirestore
   ) { }
 
   ngOnInit(): void {
@@ -57,8 +64,71 @@ export class UserMyEducationalProfileComponent implements OnInit {
     if(localStorage.getItem("editcourse")){
       localStorage.removeItem("editcourse")
     }
+    this.getDocumentsChat();
+    this.currentUser = localStorage.getItem('fbtoken');
   }
-
+ 
+  getDocumentsChat(){
+    this.getRecepintUserDetails('');
+    this.firestore.collection('chat_conversation')
+    .get().toPromise().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let newData:any={};
+         
+          newData = doc.data();
+          
+          this.dataStudent=newData.data;
+          
+      });
+  })
+  .catch((error) => {
+      console.log("Error getting documents: ", error);
+  });
+  this.firestore.collection('chat_conversation').valueChanges().subscribe((res:any)=>{
+    if(res.length>0){
+      this.conversation=res[0].data;
+      this.dataStudent=res[0].data;
+    }else{
+      this.conversation=[]
+      this.dataStudent=[];
+    }
+  })
+   }
+   getRecepintUserDetails(uuid){
+    this.firestore.collection('users').doc("8yO7WdCu6KSNt4kZFW2YZH7Sh8E2").ref.get().then(res=>{
+     this.recepintDetails = res.data();
+    });
+  }
+  sendChat(){
+    return new Promise<any>((resolve, reject) => { 
+     
+      let data:any={};
+      
+      let dataNew:any={};
+      var date =new Date();
+      data.user_friend_id = "wzSoHOpfSOTGdEZLxMUB";
+      data.user_send_by = localStorage.getItem('fbtoken');
+      data.msg = this.model.comment;
+      data.created_on = this.baseService.getDateFormat(date);
+     this.dataStudent.push(data)
+     console.log(this.dataStudent);
+     
+     
+     dataNew.data= this.dataStudent;
+      this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+      .set(dataNew)
+      .then(
+          res => {
+            
+          this.getDocumentsChat();
+            
+          this.model.comment='';
+          }, 
+          err => reject(err)
+      )
+     
+    })
+  }
   redirectWorkDetailesPage(id) {
     this.router.navigate(["user/work-detail"], { queryParams: { "id": id } });
   }

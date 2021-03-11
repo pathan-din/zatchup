@@ -5,6 +5,9 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UsersServiceService } from 'src/app/services/user/users-service.service';
+import { AngularFireAuth } from  "@angular/fire/auth";
+import { AngularFirestore } from '@angular/fire/firestore';
+import { BaseService } from 'src/app/services/base/base.service';
 
 @Component({
   selector: 'app-ei-otp-verification',
@@ -33,14 +36,21 @@ export class EiOtpVerificationComponent implements OnInit {
    public eiService:EiServiceService,
    public formBuilder: FormBuilder,
    private alert:NotificationService,
-   private userService:UsersServiceService) { }
+   private userService:UsersServiceService,
+   private afAuth: AngularFireAuth,
+   private firestore: AngularFirestore,
+   private baseService:BaseService) { }
 
 
   ngOnInit(): void {
-	  if(localStorage.getItem('num'))
-    {
-      this.model.username = atob(localStorage.getItem('num'));
+    if( this.baseService.username && this.baseService.password){
+      this.model.username = this.baseService.username;
+      this.model.password = this.baseService.password;
+    }else{
+      localStorage.clear();
+      this.router.navigate(['ei/login']);
     }
+	  
   }
 
   goToCreateNewPasswordPage(){
@@ -86,7 +96,7 @@ export class EiOtpVerificationComponent implements OnInit {
       console.log("verify Otp Exception", err);
     }
   }
-   goToOtpVerification(){
+  goToOtpVerification(){
 
     var flagRequired=true;
     this.errorOtpModelDisplay='';
@@ -132,16 +142,24 @@ export class EiOtpVerificationComponent implements OnInit {
      let data:any={};
      data.email=this.model.username;
      data.phone_otp=this.otp1+this.otp2+this.otp3+this.otp4;
+     if(localStorage.getItem("firebaseid")){
+      data.firebase_id=localStorage.getItem("firebaseid")
+     }
      this.SpinnerService.show();
-     this.eiService.verifyOtp(data).subscribe(res => {
-      let response:any={}
-      response=res;
+     this.eiService.verifyOtp(data).subscribe(async res => {
+     let response:any={}
+     response=res;
+      
+     
       if(response.status==true)
       {
         this.SpinnerService.hide();
        //$("#OTPModel").modal('hide');
 
+       var result =  await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
+       console.log(result.user.uid);
        
+       localStorage.setItem('fbtoken',result.user.uid);
       // localStorage.setItem("user_id",response.user_id)
        localStorage.setItem("token",response.token);
 	  //  if(response.reg_steps===null)

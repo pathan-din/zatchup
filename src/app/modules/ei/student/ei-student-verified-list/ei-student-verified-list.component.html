@@ -234,8 +234,8 @@
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
                                 (click)="goToEiStudentProfilePage(element.student_id)"></i>
-                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
-                            aria-hidden="true "></i> -->
+                            <i *ngIf="element.firebase_id" data-toggle="modal" data-target="#chatModel" (click)="goToChatScreen(element)" class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" 
+                            aria-hidden="true "></i>
                             <span *ngIf="element.kyc_approved==1">
                                 <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve"
                                     class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
@@ -388,3 +388,65 @@
             </div>
         </div>
     </div>
+
+
+    <!--chat Model-->
+
+    <div class="modal fade" id="chatModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">
+                    <span><img  src="{{recepintDetails.photoUrl}}" style="border-radius: 50%;
+                    max-width: 10%;
+                    float: left;"><p style="float: left;
+    position: absolute;
+    font-size: 12px;
+    left: 15%;">{{recepintDetails.firstName}} {{recepintDetails.firstName }}</p></span></h2>
+                <button type="button" #chatModel
+                    class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                    aria-label="Close ">
+                    <span aria-hidden="true ">
+                        &times;
+                        <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body px-0 py-0">
+                <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                <div style="max-height: 50%;overflow: scroll;">
+                    <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
+                        <span style="float: right;
+                        background: #0355b3;
+                        color: #202013;
+                        padding: 5px;
+                        border: #ddd;
+                        margin: 5px;
+                        border-radius: 4px;clear: both;" *ngIf="objCon.user_send_by==currentUser">{{objCon.msg}}<br /></span>
+                    </p>
+                    <p   class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
+                        <span style="float: left;
+                        background: #09a0e6;
+                        color: #141413;
+                        padding: 5px;
+                        margin: 5px;
+                        border: #ddd;
+                        border-radius: 4px;clear: both;" *ngIf="objCon.user_send_by!=currentUser">{{objCon.msg}}<br /></span>
+                    </p>
+                   </div>
+                <p class="commonFontSize regularFont letterspacing text-right">
+                    <!-- <span class="mx-3 color-blue">No</span>
+                  <span class="mx-2 color-blue">Yes</span> -->
+                    <input style="    width: 86%;
+                    float: left;
+                    padding: 6px;
+                    border-radius: 9px;" [(ngModel)]="model.comment" name="comment" />
+                    <button type="button" (click)="sendChat()"
+                        class="bg-purple py-2 px-3 color-white border-0 rounded modalAddStudentsBtn mediumFont">Send</button>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

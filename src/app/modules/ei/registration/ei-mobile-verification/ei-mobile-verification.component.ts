@@ -5,6 +5,8 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UsersServiceService } from 'src/app/services/user/users-service.service';
+import { BaseService } from 'src/app/services/base/base.service';
+
 declare var $: any;
 
 @Component({
@@ -34,15 +36,13 @@ export class EiMobileVerificationComponent implements OnInit {
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private userService:UsersServiceService) { }
+    private userService:UsersServiceService,
+    private baseService:BaseService) { }
 
 
   ngOnInit(): void {
-    if(localStorage.getItem('num'))
-    {
-      this.model.phone = atob(localStorage.getItem('num'));
-      this.email = atob(localStorage.getItem('email'))
-    }
+    this.model.phone = this.baseService.username;
+    this.email = this.baseService.username
   }
   changeInput($ev)
   {
@@ -60,7 +60,7 @@ export class EiMobileVerificationComponent implements OnInit {
 
   resendOtp() {
     try {
-      let data: any = {};
+     // let data: any = {};
       this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
@@ -122,6 +122,7 @@ export class EiMobileVerificationComponent implements OnInit {
      let data:any={};
      data.username=this.model.phone;
      data.verify_otp_no=this.otp1+this.otp2+this.otp3+this.otp4+this.otp5+this.otp6+this.otp7+this.otp8;
+    
      this.SpinnerService.show();
      this.eiService.verifyOtpWithMobile(data).subscribe(res => {
       let response:any={}
@@ -132,6 +133,7 @@ export class EiMobileVerificationComponent implements OnInit {
        //$("#OTPModel").modal('hide');
 
        this.schoolNumber=response.school_code;
+      
        localStorage.setItem("user_id",response.user_id)
        localStorage.setItem("token",response.token);
        $("#CongratulationModel").modal({
@@ -154,4 +156,5 @@ export class EiMobileVerificationComponent implements OnInit {
    }
  
   }
+ 
 }

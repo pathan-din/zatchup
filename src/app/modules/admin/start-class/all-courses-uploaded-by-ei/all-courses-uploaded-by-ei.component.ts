@@ -37,5 +37,7 @@ export class AllCoursesUploadedByEiComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {}
-
+  searchRoute(){
+    
+  }
 }
