@@ -65,7 +65,7 @@ export class ChangeInBankDetailsPendingComponent implements OnInit {
     }}
 
     goBack(){
-      this.location.back()
+      this.router.navigate(['admin/school-management'])
     }
 
     // goToChangeDetailView(){

@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
@@ -43,7 +44,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
     private loader: NgxSpinnerService,
     private validationService: GenericFormValidationService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private confirmDialogService: ConfirmDialogService,
   ) { }
 
   ngOnInit(): void {
@@ -354,5 +356,28 @@ export class UserMyEducationalProfileComponent implements OnInit {
       this.loader.hide();
       console.log("vaeryfy Otp Exception", err);
     }
+  }
+
+  deleteEi(school_id: any): any {
+    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+      this.loader.show()
+      let model: any = {};
+      this.model.school_id = school_id;
+      this.baseService.action('user/delete-school-course-detail-by-student/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.getEducationalProfile();
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
   }
 }
