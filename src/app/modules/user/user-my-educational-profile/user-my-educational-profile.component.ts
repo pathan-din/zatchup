@@ -95,7 +95,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   })
    }
    getRecepintUserDetails(uuid){
-    this.firestore.collection('users').doc("8yO7WdCu6KSNt4kZFW2YZH7Sh8E2").ref.get().then(res=>{
+    this.firestore.collection('users').doc("cBQ3QeeBG8fRrpTvFIPxshz68TG3").ref.get().then(res=>{
      this.recepintDetails = res.data();
     });
   }
