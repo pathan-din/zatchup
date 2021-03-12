@@ -5,12 +5,15 @@
             <span class="mr-3 cursorStyle">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
-            <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
+            <h2 class="commonFontSize semiBoldFont m-0">Course Details </h2>
         </div>
 
         <div class="row mt-3">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe>
+            <div class="col-md-12 customVideo" *ngFor="let details of starclassCourseDetails.courseDetails">
+                <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
+                <video autoplay="autoplay" preload="auto" ng-click="video($event)">
+                     <source src="{{details.course_preview}}" type="video/mp4" />
+                </video>
             </div>
         </div>
         <!--End Video image div of coursePReview-->
@@ -32,14 +35,14 @@
 
             <!--Start div for oView Course Details-->
             <div class="row m-0">
-                <div class="col-md-12">
+                <div class="col-md-12" *ngFor="let details of starclassCourseDetails.courseDetails">
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Level of Education</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{details.level_of_education}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -48,7 +51,7 @@
                             <p>Field</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{details.field}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -57,7 +60,7 @@
                             <p>Standard</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{details.standard}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -66,7 +69,7 @@
                             <p>Subject</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{details.subject}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -75,7 +78,7 @@
                             <p>Number Of Lectures</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">: </span> </p>
                         </div>
                     </div>
                     <div class="row">
@@ -84,7 +87,7 @@
                             <p>Teaching Faculty Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: {{details.faculty_details}}</span></p>
                         </div>
                     </div>
                     <div class="row">
@@ -93,7 +96,7 @@
                             <p>Duration of the Course(In Hours)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: </span></p>
                         </div>
                     </div>
 
@@ -103,7 +106,7 @@
                             <p>Topic Cover</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span></p>
+                            <p><span class="mr-3">: {{details.topic_cover}} </span></p>
                         </div>
                     </div>
 
@@ -113,17 +116,17 @@
                             <p>Description</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span></p>
+                            <p><span class="mr-3">: {{details.description}}</span></p>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Plan Detail</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">: </span></p>
                         </div>
 
                         <div class="col-12 ml-4">
@@ -164,7 +167,7 @@
                                 </div>
                             </div>
                         </div>   
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!--End div for oView Course Details-->
@@ -175,7 +178,7 @@
     <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
 
-        <!--Start html for "table Course Lecture" and Export Button-->
+       
         <div class="row my-3">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
 
@@ -197,7 +200,7 @@
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource">
 
-                    <!-- Position Column -->
+                    
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
@@ -208,7 +211,7 @@
                         <mat-cell *matCellDef="let element"> {{element.lectureTitle}} </mat-cell>
                     </ng-container>
 
-                    <!-- Name Column -->
+                   
                     <ng-container matColumnDef="topicsCoverd">
                         <mat-header-cell *matHeaderCellDef> Topics Covered </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -242,6 +245,6 @@
                 </mat-table>
             </div>
         </div>
-        <!--End html for " table Course Lecture" and Export Button-->
+        
     </div>
 </div>

@@ -44,7 +44,7 @@ export class CurrentPlansComponent implements OnInit {
   }
 
   goToPlanHistory(){
-    this.router.navigate(['admin/plan-history'])
+    this.router.navigate(['admin/starclass-plan-history'])
   }
   editPlan(objModel){
     console.log(objModel);
@@ -132,7 +132,7 @@ export class CurrentPlansComponent implements OnInit {
     }
   }
 
-  deleteEI(id: any ): any {
+  deletePlan(id: any ): any {
     this.model ={
       "id": id,
     }

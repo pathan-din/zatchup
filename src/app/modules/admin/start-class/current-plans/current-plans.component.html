@@ -61,7 +61,7 @@
                             <ng-container matColumnDef="validity">
                                 <mat-header-cell *matHeaderCellDef> Validity </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.validity}}
+                                    {{element.validity}} Days
                                 </mat-cell>
                             </ng-container>
 
@@ -70,7 +70,7 @@
                                 <mat-cell *matCellDef="let element ">
                                     <i data-toggle="modal" data-target="#createNewPlan" (click)="editPlan(element)"  class="fa fa-pencil ml-2 color-green cursorStyle" aria-hidden="true"></i>
                                     <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true"
-                                    (click)="deleteEI(element.id)"></i>
+                                    (click)="deletePlan(element.id)"></i>
                                 </mat-cell>
                             </ng-container>
 
