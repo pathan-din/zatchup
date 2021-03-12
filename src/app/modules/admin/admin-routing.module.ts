@@ -326,7 +326,7 @@ const routes: Routes = [
     path: 'lecture-complete-pending-status', component: LectureCompletePendingStatusComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'lecture-upload', component: LectureUploadComponent, canActivate: [AuthGuard]
+    path: 'lecture-upload/:id', component: LectureUploadComponent, canActivate: [AuthGuard]
   },
   {
     path: 'fund-active', component: FundActiveComponent, canActivate: [AuthGuard]

@@ -23,12 +23,12 @@
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
         <!---->
         <div class="row topDiv">
-            <div class="col-12 ">
+            <div class="col-6 ">
                 <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
             </div>
-            <!-- <div class="col-6 text-right">
-                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 ">History</button>
-            </div> -->
+            <div class="col-6 text-right" *ngFor="let details of starclassCourseDetails.courseDetails">
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 " (click)="goToUploadLecture(details)">Add Lecture</button>
+            </div>
         </div>
         <div class="mt-2 border-0 mx-0">
             <!-- start Div for banner-->
@@ -90,7 +90,7 @@
                             <p><span class="mr-3">: {{details.faculty_details}}</span></p>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Duration of the Course(In Hours)</p>
@@ -98,7 +98,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span></p>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
@@ -179,43 +179,42 @@
         <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
 
        
-        <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
-
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per Page</label>
+        <div class="row my-3 align-items-center" *ngIf="lectureList.dataSource" >
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getLectureList('1')" [(ngModel)]="lectureList.page_size">
+                        <option *ngFor="let count of lectureList.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
-            </div>
+            <!-- <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
+                        aria-hidden="true"></i>Export</button>
+            </div> -->
         </div>
 
-        <div class="tableDiv ">
+        <div class="tableDiv " *ngIf="lectureList.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="lectureList.dataSource">
 
                     
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + lectureList.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="lectureTitle">
                         <mat-header-cell *matHeaderCellDef>Lecture Title </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.lectureTitle}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.lecture_title}} </mat-cell>
                     </ng-container>
 
                    
                     <ng-container matColumnDef="topicsCoverd">
                         <mat-header-cell *matHeaderCellDef> Topics Covered </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.topicsCoverd}}
+                            {{element.topic_cover}}
                         </mat-cell>
                     </ng-container>
 
@@ -226,23 +225,28 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="durationOfLecture">
+                    <!-- <ng-container matColumnDef="durationOfLecture">
                         <mat-header-cell *matHeaderCellDef> Duration Of Lecture </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.durationOfLecture}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="play">
+                    <!-- <ng-container matColumnDef="play">
                         <mat-header-cell *matHeaderCellDef> Play </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.play}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="lectureList.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: lectureList.displayedColumns; "></mat-row>
                 </mat-table>
+            </div>
+        </div>
+        <div class="row" *ngIf="!lectureList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
         

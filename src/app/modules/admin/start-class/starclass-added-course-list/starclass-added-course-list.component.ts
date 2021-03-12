@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { CourseList } from '../../ei/modals/education-institute.modal';
 
@@ -37,12 +38,17 @@ import { CourseList } from '../../ei/modals/education-institute.modal';
   styleUrls: ['./starclass-added-course-list.component.css']
 })
 export class StarclassAddedCourseListComponent implements OnInit {
-
+  @ViewChild('closeaddPlan') closeaddPlan: any;
  courseList: CourseList
+ errorDisplay : any = {};
 
  dataSource : any;
   modal: { id: any; };
   message: any;
+  model: any ={};
+  id: any;
+  planDetails: any;
+  courseId: any;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -51,13 +57,15 @@ export class StarclassAddedCourseListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private confirmDialogService: ConfirmDialogService,
+    private validation: GenericFormValidationService
   ) {
     this.courseList = new CourseList()
    }
 
   ngOnInit(): void {
     this.courseList.id = this.route.snapshot.queryParamMap.get('id')
-    this.getCourseList()
+    this.getPlanDetails()
+    this.getCourseList();
   }
   
   goToCourseView(data){
@@ -76,7 +84,8 @@ export class StarclassAddedCourseListComponent implements OnInit {
       this.courseList.modal ={
         'page': page,
         'page_size': this.courseList.page_size,
-        'id': this.courseList.id
+        'id': this.courseList.id,
+        'course_id': this.courseId,
       }
       this.baseService.getData('starclass/star-class-course-admin-list/', this.courseList.modal).subscribe(
         (res: any) =>{
@@ -115,6 +124,8 @@ export class StarclassAddedCourseListComponent implements OnInit {
     this.modal ={
       "id": id,
     }
+    console.log(this.modal);
+    
    this.message = 'Are you sure you want to delete this Course ?'
     this.confirmDialogService.confirmThis(this.message, () => {
       this.loader.show()
@@ -135,6 +146,87 @@ export class StarclassAddedCourseListComponent implements OnInit {
     }, () => {
     });
   }
+
+  editPlan(obj){
+    console.log(obj.id);
+    
+    this.model.id=obj.id;
+
+    
+  }
+
+getPlanDetails(){
+    try {
+      this.loader.show()
+      this.model= {
+        'id': this.id,
+      }
+      this.baseService.getData('starclass/plan_list/', this.model).subscribe(
+        (res: any) =>{
+          if(res.status == true){
+            this.planDetails = res.results;
+          } else{
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        },
+        err =>{
+          this.alert.error(err, 'Error')
+          this.loader.hide()
+        }
+      )
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+    }
+  }
+  createAndUpdatePlan(id: any){
+    try {
+      this.errorDisplay={};
+      this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
+      if(this.errorDisplay.valid)
+      {
+        return false;
+      }
+    
+    
+      this.loader.show()
+      this.model = {
+        "course": id,
+        plan: this.planDetails
+      }
+      console.log(this.model);
+    this.baseService.action('starclass/course-price/', this.model).subscribe(
+      (res:any) =>{
+        if(res.status == true){
+          this.closeaddPlan.nativeElement.click();
+          
+          this.alert.success(res.message, 'Success');
+          this.getCourseList()
+          // console.log(this.model);
+          
+        }
+        else{
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide()
+      },
+      err => {
+        this.alert.error(err, 'Error')
+        this.loader.hide()
+      }
+    )
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+      this.loader.hide()
+    }
+  }
+
+  //   submitCourse(){
+  //    this.model.plan= this.planDetails
+  //    console.log(this.model);
+     
+  //  }
+
   goBack(){
     this.location.back()
   }

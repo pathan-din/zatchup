@@ -96,6 +96,7 @@ export class AdminStarClassCourseAddComponent implements OnInit {
       }
       this.loader.show()
       const formData = new FormData();
+      debugger
       formData.append('course_name', this.model.course_name);
       formData.append('level_of_education', this.model.level_of_education);
       formData.append('course_preview', this.uploadedContent);

@@ -125,6 +125,7 @@ export class PlanDetails extends Pagination{
     displayedColumns: string[] = ['position','pplan','views', 'validity', 'action'];
     modal: any;
   id: any;
+  model: { page: any; page_size: any; id: any; };
 }
 
 export class CourseList extends Pagination{
@@ -141,4 +142,12 @@ export class StarclassPlanHistory extends Pagination{
 }
 export class StarclassCourseDetails extends Pagination{
   courseDetails: any;
+}
+
+export class LectureList extends Pagination{
+    displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd',
+    'viewDetails'];   
+  model: any;
+  id: any;
+  
 }
