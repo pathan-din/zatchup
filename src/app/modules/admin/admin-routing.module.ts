@@ -551,7 +551,7 @@ const routes: Routes = [
     path: 'course-edit', component: CourseEditComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'plan-history', component: PlanHistoryComponent, canActivate: [AuthGuard]
+    path: 'starclass-plan-history', component: PlanHistoryComponent, canActivate: [AuthGuard]
   },
   {
     path: 'current-plans', component: CurrentPlansComponent, canActivate: [AuthGuard]
@@ -563,7 +563,7 @@ const routes: Routes = [
     path: 'all-courses-uploaded-by-ei', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'starclass-course-preview', component:StarclassCoursePreviewComponent, canActivate: [AuthGuard]
+    path: 'starclass-course-preview/:id', component:StarclassCoursePreviewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'course-added-list', component:StarclassAddedCourseListComponent, canActivate: [AuthGuard]

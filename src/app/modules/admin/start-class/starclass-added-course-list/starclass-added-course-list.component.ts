@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { CourseList } from '../../ei/modals/education-institute.modal';
@@ -40,22 +41,29 @@ export class StarclassAddedCourseListComponent implements OnInit {
  courseList: CourseList
 
  dataSource : any;
+  modal: { id: any; };
+  message: any;
   constructor(
     private location: Location,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private confirmDialogService: ConfirmDialogService,
   ) {
     this.courseList = new CourseList()
    }
 
   ngOnInit(): void {
+    this.courseList.id = this.route.snapshot.queryParamMap.get('id')
     this.getCourseList()
   }
   
-  goToCourseView(){
-    this.router.navigate(['admin/starclass-course-preview'])
+  goToCourseView(data){
+    this.router.navigate(['admin/starclass-course-preview', data.id])
+    console.log(data);
+    
   }
 
   goToAddCourse(){
@@ -67,7 +75,8 @@ export class StarclassAddedCourseListComponent implements OnInit {
       this.loader.show()
       this.courseList.modal ={
         'page': page,
-        'page_size': this.courseList.page_size
+        'page_size': this.courseList.page_size,
+        'id': this.courseList.id
       }
       this.baseService.getData('starclass/star-class-course-admin-list/', this.courseList.modal).subscribe(
         (res: any) =>{
@@ -100,6 +109,31 @@ export class StarclassAddedCourseListComponent implements OnInit {
     } catch (error) {
       this.alert.error(error.error, 'Error')
     }
+  }
+
+  deleteCourse(id: any ): any {
+    this.modal ={
+      "id": id,
+    }
+   this.message = 'Are you sure you want to delete this Course ?'
+    this.confirmDialogService.confirmThis(this.message, () => {
+      this.loader.show()
+      this.baseService.action('starclass/delete-course/', this.modal).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.getCourseList();
+          } else {
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
   }
   goBack(){
     this.location.back()

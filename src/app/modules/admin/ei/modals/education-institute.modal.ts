@@ -131,4 +131,14 @@ export class CourseList extends Pagination{
     displayedColumns: string[] = ['SNo', 'dateOfAdding', 'courseId','titleOfCourse',
     'levelOfEducation', 'field', 'standard', 'subject', 'action'];
   modal: any;
+  id: any;
+  Id: any;
+}
+
+export class StarclassPlanHistory extends Pagination{
+  modal: any;
+  history: any;
+}
+export class StarclassCourseDetails extends Pagination{
+  courseDetails: any;
 }
