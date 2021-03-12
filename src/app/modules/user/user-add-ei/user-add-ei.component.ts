@@ -51,10 +51,30 @@ export class UserAddEiComponent implements OnInit {
   }
 getEiDetailsBySchoolId(){
   try {
+    this.SpinnerService.show();
+
   this.baseService.action("user/get-school-detail-schoolid/",{school_id:this.params.school_id}).subscribe((res:any)=>{
     if(res.status==true){
-     this.modelZatchup.zatchup_id = res.data.school_code;
-     this.getDataByZatchupId();
+      this.SpinnerService.hide();
+     if(res.data.school_code){
+      this.modelZatchup.zatchup_id = res.data.school_code;
+      this.getDataByZatchupId();
+     }else{
+      let model:any={}
+      model=res.data;
+      this.getCityByState(model.state)
+        
+        
+      this.model.city=  model.city;
+      this.getSchoolListBycity(model.city_id)
+      this.name_of_school_first=model.name_of_school;
+      this.model.state = model.state;
+      this.model.address1 = model.address1;
+      this.model.full_address=model.address1+' '+model.address2;
+      this.model.university = model.university;
+      if(model.school_code){this.modelZatchup.zatchup_id = model.school_code;} 
+     }
+      
     }
   })
   } catch (e) {
@@ -201,7 +221,7 @@ getSchoolListBycityId(city){
   //getallstate
   //this.isValid(document.forms);
   let obj = this.cityList.find(o => o.city.toLowerCase() === city.toLowerCase());
-  console.log(this.cityList);
+  
   
   try{
     this.SpinnerService.show(); 
@@ -239,7 +259,7 @@ getSchoolListBycity(id){
      
       },(error) => {
         this.SpinnerService.hide(); 
-        console.log(error);
+        
         
       });
   }catch(err){
@@ -257,6 +277,7 @@ changeSchool(schoolData){
       this.model.university=obj.university;
       this.modelZatchup.zatchup_id=obj.school_code;
       this.model.address1=obj.address1;
+      this.model.full_address=obj.address1+' '+obj.address2;
     }
     
     
@@ -295,6 +316,7 @@ getDataByZatchupId() {
         this.name_of_school_first=model.name_of_school;
         this.model.state = model.state;
         this.model.address1 = model.address1;
+        this.model.full_address=model.address1+' '+model.address2;
         this.model.university = model.university;
         if(model.school_code){this.modelZatchup.zatchup_id = model.school_code;} 
        

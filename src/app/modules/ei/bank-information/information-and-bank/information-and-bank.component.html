@@ -20,15 +20,15 @@
             <img class="img-fluid tick-img infoBankImg" src="assets/images/userWebsite/share-my-profile-icon.png">
         </div> -->
 
-        <div class="row mt-4">
-            <div class="col-md-12">
+        <div class="row mt-4" *ngFor="let eiDetails of userProfile.ei_detail">
+            <div class="col-md-12" >
                 <div class="row">
                     <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>School Name </p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.name_of_school}} </span>
+                        <p><span class="mr-3">: {{eiDetails.name_of_school}} </span>
                             <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Name of the School','name_of_school',bankDetails.name_of_school)"></i>
                         </p>
                     </div>
@@ -39,7 +39,7 @@
                         <p>Full Address</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.full_address}} </span>
+                        <p><span class="mr-3">: {{eiDetails.address1}}  {{eiDetails.address2}}</span>
                             <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Full Address','full_address',bankDetails)"></i>
                         </p>
                     </div>
@@ -50,7 +50,7 @@
                         <p>Foundation Date/Opening Date</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.opening_date | date: 'yyyy-MM-dd'}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.opening_date | date: 'yyyy-MM-dd'}}</span></p>
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +59,7 @@
                         <p>Name of Principal/Dean</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.name_of_principle}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.name_of_principle}}</span></p>
                     </div>
                 </div>
                
@@ -69,7 +69,7 @@
                         <p>GST Number</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.gst_no}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.gst_no}}</span></p>
                     </div>
                 </div>
                 <div class="row">
@@ -78,7 +78,7 @@
                         <p>School Overview </p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.overview}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.overview}}</span></p>
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                         <p>School phone</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.school_phone}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.school_phone}}</span></p>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                         <p>Facebook URL</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.fb_url}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.fb_url}}</span></p>
                     </div>
                 </div>
                 <div class="row" *ngIf="userData?.twitter_url">
@@ -107,7 +107,7 @@
                         <p>Twitter URL</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.twitter_url}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.twitter_url}}</span></p>
                     </div>
                 </div>
                 <div class="row" *ngIf="userData?.school_email">
@@ -116,7 +116,7 @@
                         <p>School Email ID</p>
                     </div>
                     <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.school_email}}</span></p>
+                        <p><span class="mr-3">: {{eiDetails.school_email}}</span></p>
                     </div>
                 </div>
 
