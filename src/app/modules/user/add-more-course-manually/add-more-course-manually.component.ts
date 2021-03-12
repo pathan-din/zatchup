@@ -36,49 +36,10 @@ export class AddMoreCourseManuallyComponent implements OnInit {
         this.model.school_id=this.schoolId;
         this.getCourseDetails();
       });
-      this.model.school_id = this.schoolId;
-    this.getEiInfo(this.model);
     }
-
-
-  getEiInfo(model) {
-    try {
-       this.SpinnerService.show();
-      this.baseService.action("user/get-admission-number-detail-by-school/", model).subscribe((res: any) => {
-        if (res.status == true) {
-          this.SpinnerService.hide();
-          this.model = res.data;
-          // this.model.join_standard_id = res.data.join_standard_id
-          // this.model.current_standard_id = res.data.current_standard_id
-          // if (this.model.course_id) {
-          //   this.model.existing_course_id = this.model.course_id;
-
-          // }
-          // this.model.comment = res.data.description;
-          // this.model.school_id = this.schoolId;
-          // this.displayClassList(res.data.join_standard_id);
-          //this.displayClassList(res.data.current_standard_id);
-        } else {
-          this.SpinnerService.hide();
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-      })
-    } catch (e) {
-      this.SpinnerService.hide();
-    }
-  }
     /**
      * Get Course Details according to added student 
      */
-
-
-    editEi(schoolId){
-      this.router.navigate(["user/add-ei"],{queryParams:{
-        school_id:schoolId
-      }});
-    }
     getCourseDetails(){
       try {
         
@@ -113,8 +74,10 @@ export class AddMoreCourseManuallyComponent implements OnInit {
       if(this.title=='past'){
         this.router.navigate(['user/ei-confirmation'], {queryParams: {'school_id':this.schoolId }});
       }else{
-        
-        this.router.navigate(['user/add-personal-info'], {queryParams: {'school_id':this.schoolId }});
+        if( localStorage.getItem("res.reg_step")=='7'){
+          this.router.navigate(['user/my-school']);
+        }else
+        this.router.navigate(['user/profile-created'], {queryParams: {'school_id':this.schoolId }});
       }
       
     }

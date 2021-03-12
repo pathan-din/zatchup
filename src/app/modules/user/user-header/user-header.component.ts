@@ -80,6 +80,7 @@ export class UserHeaderComponent implements OnInit {
 
 
         this.regProfile = res;
+        localStorage.setItem("res.reg_step",res.reg_step);
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
 
         } else {
