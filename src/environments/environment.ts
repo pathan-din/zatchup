@@ -12,16 +12,21 @@ export const environment = {
   razorPaymentApiKey:'rzp_test_i0NymYFNWzBGPK',
   debugMode:true,
   appVersion: require('../../package.json').version + '-dev',
-  firebase: {
-    apiKey: "AIzaSyDJsZUk0pW_PR_KalCuzZciu3GeC0aVRks",
-    authDomain: "angularchatmaheshtriazine.firebaseapp.com",
-    databaseURL: "https://angularchatmaheshtriazine-default-rtdb.firebaseio.com/",
-    projectId: "angularchatmaheshtriazine",
-    storageBucket: "angularchatmaheshtriazine.appspot.com",
-    messagingSenderId: "932623041112",
-    appId: "1:932623041112:web:5e3881a4023c62adffc02d"
-
-    
-
+//   firebase: {
+//     apiKey: "AIzaSyDJsZUk0pW_PR_KalCuzZciu3GeC0aVRks",
+//     authDomain: "angularchatmaheshtriazine.firebaseapp.com",
+//     databaseURL: "https://angularchatmaheshtriazine-default-rtdb.firebaseio.com/",
+//     projectId: "angularchatmaheshtriazine",
+//     storageBucket: "angularchatmaheshtriazine.appspot.com",
+//     messagingSenderId: "932623041112",
+//     appId: "1:932623041112:web:5e3881a4023c62adffc02d"
+// },
+firebase: {
+  apiKey: "AIzaSyC9JseOBJAtlhsZs0Aqvd1esPrUZlxZzh0",
+  authDomain: "localhost",
+  databaseURL: "https://zatchup-37a1b-default-rtdb.firebaseio.com/",
+  projectId: "zatchup-37a1b",
+  storageBucket: "gs://zatchup-37a1b.appspot.com",
+  messagingSenderId: "932623041112"
   }
 };

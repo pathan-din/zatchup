@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
-import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
@@ -20,12 +19,10 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
   masterSelected: boolean;
   accessModel: any = {}
   idList: any
-  subModuleEnable: boolean;
+  subModuleEnable: any;
   idArray1: any = [];
   idArray2: any = []
   userdata: any;
-  errorDisplay: {};
-  isDisabled: any;
 
   constructor(
     private router: Router,
@@ -35,7 +32,6 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     private baseService: BaseService,
     private activeRoute: ActivatedRoute,
     private confirmDialogService: ConfirmDialogService,
-    private validation: GenericFormValidationService
   ) { }
 
   ngOnInit(): void {
@@ -227,68 +223,32 @@ export class SubadminAuthorizationAccessViewComponent implements OnInit {
     }
   } 
 
-  // disableEnableEmployee(event): any {
-  //   let msg = 'Are you sure you want to disable this employee ?'
-  //   if (event.checked == false)
-  //     msg = 'Are you sure you want to enable this employee ?'
-  //   this.confirmDialogService.confirmThis(msg, () => {
-  //     this.loader.show()
-  //     let data = {
-  //       "user_id": this.activeRoute.snapshot.params.id,
-  //       "disable_status": event.checked
-  //     }
-
-  //     this.baseService.action('admin/sub-admin/enable_disable_user/', data).subscribe(
-  //       (res: any) => {
-  //         if (res.status == true) {
-  //           this.alert.success(res.message, 'Success');
-  //         } else {
-  //           this.alert.error(res.error.message[0], 'Error');
-  //         }
-  //         this.loader.hide();
-  //       }
-  //     )
-  //   }, () => {
-  //     this.subModuleEnable = !this.subModuleEnable
-  //   });
-  // }
-  // setEnableDisableSchoolData(isDisabled: any) {
-  //   this.isDisabled = !isDisabled.checked
-  //   let msg = 'Are you sure you want to disable this employee ?'
-  //   if (this.isDisabled = !isDisabled.checked)
-  //     msg = 'Are you sure you want to enable this employee ?'
-  //   this.confirmDialogService.confirmThis(msg, () => {
-  //     this.enableDiableSchool()
-  //       }, () => {});
-  // }
-
-  enableDiableSchool(isDisabled: any): any {
-    let msg = 'Are you sure you want to enable this employee ?'
-    if (this.isDisabled = !isDisabled.checked)
-      msg = 'Are you sure you want to disable this employee ?'
-    this.confirmDialogService.confirmThis(msg, () =>{
-    this.loader.show()
-    let data = {
-      "user_id": this.activeRoute.snapshot.params.id,
-      "disable_status": this.isDisabled,
-    }
-    this.baseService.action('admin/sub-admin/enable_disable_user/', data).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          this.alert.success(res.message, "Success");
-  
-        } else {
-          this.alert.error(res.error.message, 'Error')
-        }
-        this.loader.hide();
+  disableEnableEmployee(event): any {
+    let msg = 'Are you sure you want to disable this employee ?'
+    if (event.checked == true)
+      msg = 'Are you sure you want to enable this employee ?'
+    this.confirmDialogService.confirmThis(msg, () => {
+      this.loader.show()
+      let data = {
+        "user_id": this.activeRoute.snapshot.params.id,
+        "disable_status": event.checked
       }
-    ), err => {
-      this.alert.error(err.error, 'Error')
-      this.loader.hide();
-    }}, () => {
-       this.subModuleEnable = !this.subModuleEnable
-    } );
+
+      this.baseService.action('admin/sub-admin/enable_disable_user/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, 'Success');
+          } else {
+            this.alert.error(res.error.message[0], 'Error');
+          }
+          this.loader.hide();
+        }
+      )
+    }, () => {
+      this.subModuleEnable = !this.subModuleEnable
+    });
   }
+
   makeModuleObj(data) {
     let module = [];
     let obj = {

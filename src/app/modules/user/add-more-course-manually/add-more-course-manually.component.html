@@ -9,12 +9,6 @@
             <h2 class="mb-4 textSpace pl-3">Course Details</h2>
             <div class="customUserForm">
                 <form>
-                    <h3 class="p-0 commonFontSize semiBoldFont m-0">
-                        {{model.name_of_school}}  
-                        <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
-                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">                             
-                        </span>
-                    </h3>      
                     <div *ngFor="let course of courseList;">
                         <div class="form-group row border-bottom border-top-custom bg-light-gray p-2">
                             <div class="col-sm-6 form-control-input color-fadded-black commonFontSize mediumFont">
@@ -67,8 +61,6 @@
     </div>
 
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
-</ngx-spinner>
+
 
 <!-- <app-user-footer></app-user-footer> -->

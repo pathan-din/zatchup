@@ -45,40 +45,7 @@ export class AddNewCourseComponent implements OnInit {
         this.title = params['title'];
       }
     });
-    this.model.school_id = this.schoolId;
-    this.getEiInfo(this.model);
   }
-
-
-  getEiInfo(model) {
-    try {
-       this.SpinnerService.show();
-      this.baseService.action("user/get-admission-number-detail-by-school/", model).subscribe((res: any) => {
-        if (res.status == true) {
-          this.SpinnerService.hide();
-          this.model = res.data;
-          // this.model.join_standard_id = res.data.join_standard_id
-          // this.model.current_standard_id = res.data.current_standard_id
-          // if (this.model.course_id) {
-          //   this.model.existing_course_id = this.model.course_id;
-
-          // }
-          // this.model.comment = res.data.description;
-          // this.model.school_id = this.schoolId;
-          // this.displayClassList(res.data.join_standard_id);
-          //this.displayClassList(res.data.current_standard_id);
-        } else {
-          this.SpinnerService.hide();
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-      })
-    } catch (e) {
-      this.SpinnerService.hide();
-    }
-  }
-
   /** 
    * Function Name : fileUploadDocument
   */
@@ -120,11 +87,6 @@ export class AddNewCourseComponent implements OnInit {
     this.SpinnerService.hide();
     this.alert.error(err, 'Error')
   }
-}
-editEi(schoolId){
-  this.router.navigate(["user/add-ei"],{queryParams:{
-    school_id:schoolId
-  }});
 }
   addCourseData(){
     this.errorDisplay = {};

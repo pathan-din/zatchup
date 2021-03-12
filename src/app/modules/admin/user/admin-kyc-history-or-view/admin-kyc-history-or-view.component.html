@@ -99,8 +99,9 @@
                                     <form id="approveOrRejectForm">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <div class="form-group row m-0 mr-0">
-                                                    <label for="" class="mediumFont commonFontSize letterspacing">Kyc Document</label>
+                                                <div class="form-group row  ml-0 mr-0">
+                                                    <label for="" class="mediumFont commonFontSize letterspacing">Kyc
+                                                        Document</label>
                                                 </div>
                                                 <!-- <div *ngIf="kycHistoryModal.kycDetails">
                                                     <img src="{{kycHistoryModal.kycDetails.kyc_document}}"
@@ -117,17 +118,17 @@
                                                 </div>
                                                 <div class="col-md-12 mt-2"
                                                     *ngIf="kycHistoryModal.kycDetails && kycHistoryModal.kycDetails.kyc_document && kycHistoryModal.kycDetails.kyc_document_back">
-                                                    <div class="row">
-                                                        <div class="col-12 col-md-6 p-1">
+                                                    <div class="row border-top pt-2">
+                                                        <div class="col-6">
                                                             <img (click)="viewImage(kycHistoryModal.kycDetails.kyc_document)"
                                                                 src="{{kycHistoryModal.kycDetails.kyc_document}}"
-                                                                class="img-fluid border p-2 rounded" aria-hidden="true "
+                                                                class="img-fluid border" aria-hidden="true "
                                                                 data-toggle="modal" data-target="#imageViewer">
                                                         </div>
-                                                        <div class="col-12 col-md-6 p-1">
+                                                        <div class="col-6">
                                                             <img (click)="viewImage(kycHistoryModal.kycDetails.kyc_document_back)"
                                                                 src="{{kycHistoryModal.kycDetails.kyc_document_back}}"
-                                                                class="img-fluid border p-2 rounded" aria-hidden="true "
+                                                                class="img-fluid border" aria-hidden="true "
                                                                 data-toggle="modal" data-target="#imageViewer">
                                                         </div>
                                                     </div>

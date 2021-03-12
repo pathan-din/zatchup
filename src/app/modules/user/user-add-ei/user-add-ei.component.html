@@ -78,7 +78,7 @@
 
                 <div *ngIf="name_of_school_first!='Others'" class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv ">
-                        <textarea [disabled]="model.address1" [(ngModel)]="model.full_address" name="address" required class="form-control form-control-textarea form-control-input" rows="3" placeholder="Address"></textarea>
+                        <textarea  [(ngModel)]="model.address1" name="address" required class="form-control form-control-textarea form-control-input" rows="3" placeholder="Address"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -100,7 +100,5 @@
     </div>
 
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
-</ngx-spinner>
+
 <!-- <app-user-footer></app-user-footer> -->
