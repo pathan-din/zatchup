@@ -60,8 +60,8 @@ export class FirebaseService {
    
 
 
-    getChatRooms(): Observable<any> {
-        let chatRooms = this.db.collection('chatrooms').valueChanges();
+    getChatRooms(collectionName): Observable<any> {
+        let chatRooms = this.db.collection(collectionName).valueChanges();
         // let chatRooms = this.firdb.object('/users').valueChanges();
         return chatRooms
     }

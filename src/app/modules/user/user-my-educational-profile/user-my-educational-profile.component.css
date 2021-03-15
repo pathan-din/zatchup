@@ -15,12 +15,13 @@
     border-radius: 25px;
 }
 
-.tickImg {    
+.tickImg {
     position: absolute;
     bottom: 20px;
     left: 95px;
     z-index: 1;
 }
+
 span.receiver {
     float: left !important;
     margin: auto !important;
@@ -33,6 +34,7 @@ span.receiver {
     width: 30%!important;
     color: #ffffff!important;
 }
+
 span.sender {
     float: right!important;
     margin: auto!important;
@@ -45,6 +47,7 @@ span.sender {
     width: 30%!important;
     color: #ffffff!important;
 }
+
 .customDiv {
     width: 120px;
     height: 120px;
@@ -57,7 +60,7 @@ span.sender {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 .chckImg {
@@ -73,17 +76,23 @@ span.sender {
     left: 5px;
 }
 
+.chatUserName {
+    float: left;
+    position: absolute;
+    font-size: 12px;
+    left: 15%;
+}
+
 @media only screen and (max-width: 414px) {
     .dpImgDiv {
         width: 26%;
     }
-    .Heading{
+    .Heading {
         font-size: 1.2rem;
     }
-    .editIcon{
+    .editIcon {
         width: 10%;
     }
-    
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -92,8 +101,8 @@ span.sender {
     }
 }
 
-@media (max-width: 320px){
-    .tickImg {  
+@media (max-width: 320px) {
+    .tickImg {
         left: 75px;
     }
 }

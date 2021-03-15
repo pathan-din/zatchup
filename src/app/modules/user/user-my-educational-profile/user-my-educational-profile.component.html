@@ -11,62 +11,85 @@
 <div class="container contentTopSpaceLanding landingPageWidth">
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <h2 class="mb-3 text-center" *ngFor="let objEpData of epData">My Education Profile 
-                <span  (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending</span>
-                
+            <h2 class="mb-3 text-center" *ngFor="let objEpData of epData">My Education Profile
+                <span (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1"
+                    class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request
+                    Pending</span>
+
             </h2>
-            
+
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
-                        <div class="position-relative border customDiv" >                            
-                            <img  src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/share-my-profile-icon.png'}}" class="img_profile img-fluid">                            
-                             <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file" #inputFile name="file" style="display:none">                              
-                             <app-image-uploader (imageData)="getProfilePicUrl($event,objEpData)" [uploadInfo]="uploadInfo">
-                             </app-image-uploader>
+                        <div class="position-relative border customDiv">
+                            <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/share-my-profile-icon.png'}}"
+                                class="img_profile img-fluid">
+                            <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file"
+                                #inputFile name="file" style="display:none">
+                            <app-image-uploader (imageData)="getProfilePicUrl($event,objEpData)"
+                                [uploadInfo]="uploadInfo">
+                            </app-image-uploader>
                         </div>
-                       <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
+                        <img *ngIf="objEpData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png"
+                            class="img-fluid ml-1 tickImg">
                         <div class="pl-3 text-left">
-                            <p class="m-0 commonFontSize semiBoldFont" ><span *ngIf="objEpData.kyc_approved==0" class="text-capitalize">{{objEpData.name}}</span><a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> </p>
-                            <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
+                            <p class="m-0 commonFontSize semiBoldFont"><span *ngIf="objEpData.kyc_approved==0"
+                                    class="text-capitalize">{{objEpData.name}}</span><a
+                                    *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel"
+                                    data-toggle="modal" class="cursorStyle"
+                                    (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a>
+                            </p>
+                            <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID
+                                :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
-                </div>  
+                </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv pt-2 pb-3">
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information </h3>
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information
+                                </h3>
                                 <!-- <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon">  -->
                             </div>
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12" > 
+                            <div class="col-md-12">
                                 <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
                                         class="regularFont">
                                         <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
-                                        <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span></p>
+                                        <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle"
+                                            data-target="#personalInfoModel" data-toggle="modal"
+                                            (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a></span>
+                                </p>
                                 <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{this.baseService.getGender(objEpData)}} </span></p>
-                                        <p *ngIf="objEpData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">pronoun : <span
-                                            class="regularFont">{{this.baseService.getGender(objEpData, 'pronoun')}} </span></p>
+                                <p *ngIf="objEpData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">pronoun :
+                                    <span class="regularFont">{{this.baseService.getGender(objEpData, 'pronoun')}}
+                                    </span></p>
                                 <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span></p>
-                                <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number : <span
-                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span></p>
-                                <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name : <span
-                                        class="regularFont">{{objEpData.father_name}}</span></p>
-                                <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name : <span
-                                        class="regularFont">{{objEpData.mother_name}}</span></p>
+                                        class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel"
+                                            data-toggle="modal"
+                                            (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a></span>
+                                </p>
+                                <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number :
+                                    <span class="regularFont"><a class="cursorStyle" data-target="#personalInfoModel"
+                                            data-toggle="modal"
+                                            (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a></span>
+                                </p>
+                                <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's
+                                    Name : <span class="regularFont">{{objEpData.father_name}}</span></p>
+                                <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's
+                                    Name : <span class="regularFont">{{objEpData.mother_name}}</span></p>
                                 <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Bio : <br> <span
                                         class="regularFont">{{objEpData.bio?objEpData.bio:''}}</span></p> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- <div class="row mt-3" *ngIf="objEpData.work_detail">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
@@ -104,24 +127,29 @@
                     </div>
                 </div> -->
                 <div class="row mt-3 form-control-inputDiv" *ngIf="objEpData.educationdetail.length==0">
-                <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
-                    <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>                                
-                    <div class="addWorkcourse">                                    
-                        <a (click)="redirectEiConfirmationPagePage('')" class="cursorStyle">
-                            <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid" style="height: 30px;">
-                         </a>
+                    <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
+                        <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>
+                        <div class="addWorkcourse">
+                            <a (click)="redirectEiConfirmationPagePage('')" class="cursorStyle">
+                                <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
+                                    style="height: 30px;">
+                            </a>
+                        </div>
                     </div>
-                </div></div>
+                </div>
                 <div class="row mt-3" *ngIf="objEpData.educationdetail.length>0">
                     <div class="col-md-12" *ngFor="let objEd of objEpData.educationdetail">
                         <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
                             <div class="col-md-12 d-flex justify-content-between align-items-center flex-wrap">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>
-                                <div class="addWorkcourse mt-2">  
-                                    <span  (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1" class="text-white mr-2 small-text px-2 py-2 rounded bg-paret-green cursorStyle">Request Pending Course</span>                                  
+                                <div class="addWorkcourse mt-2">
+                                    <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
+                                        class="text-white mr-2 small-text px-2 py-2 rounded bg-paret-green cursorStyle">Request
+                                        Pending Course</span>
                                     <a (click)="redirectEiConfirmationPagePage(objEd.school_id)">
-                                        <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid" style="height: 30px;">
-                                     </a>  
+                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
+                                            style="height: 30px;">
+                                    </a>
                                 </div>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                             </div>
@@ -130,26 +158,32 @@
                             </div>
                             <div class="col-md-12">
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">School Name: <span
-                                        class="regularFont">{{objEd.name_of_school}} 
-                                        <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> </span></p>
+                                        class="regularFont">{{objEd.name_of_school}}
+                                        <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png"
+                                            class="img-fluid ml-1 chckImg"> </span></p>
                                 <div class="row">
-                                    <div *ngIf="objEd.school_code" class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                    <div *ngIf="objEd.school_code"
+                                        class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         ZatchUp ID : <span class="regularFont">{{objEd.school_code}}</span>
                                     </div>
-                                    <div *ngIf="objEd.admission_number" class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                    <div *ngIf="objEd.admission_number"
+                                        class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                         School Admission Number : <span class="regularFont">
-                                            <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objEd,'admission_number',objEd.admission_number)">{{objEd.admission_number}}</a></span>
+                                            <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel"
+                                                data-toggle="modal"
+                                                (click)="openModel(objEd,'admission_number',objEd.admission_number)">{{objEd.admission_number}}</a></span>
                                     </div>
                                     <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
-                                        State : <span class="regularFont">{{objEd.state}}  </span>
+                                        State : <span class="regularFont">{{objEd.state}} </span>
                                     </div>
                                     <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                        City : <span class="regularFont">{{objEd.city}}  </span>
+                                        City : <span class="regularFont">{{objEd.city}} </span>
                                     </div>
                                     <div *ngIf="objEd.address1" class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         Address : <span class="regularFont">{{objEd.address1}} </span>
                                     </div>
-                                    <div (click)="getDocumentsChat()"  data-toggle="modal" data-target="#chatModel" class="cursorStyle col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                    <div (click)="getDocumentsChat(objEd.firebase_id)" data-toggle="modal" data-target="#chatModel"
+                                        class="cursorStyle col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         add chat
                                     </div>
                                     <!-- <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
@@ -160,29 +194,38 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            
-                            <div class="col-md-12" *ngFor="let objCd of objEd.course_detail" >
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details 
-                                    <img src="assets/images/userWebsite/edit.png" (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id)" class="img-fluid editIcon float-right cursorStyle ml-2"> 
-                                    <img src="assets/images/userWebsite/add-more.png" (click)="addMoreCourse(objCd, objEd.school_id)" class="img-fluid editIcon float-right cursorStyle ml-2">                                    
+
+                            <div class="col-md-12" *ngFor="let objCd of objEd.course_detail">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details
+                                    <img src="assets/images/userWebsite/edit.png"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">
+                                    <img src="assets/images/userWebsite/add-more.png"
+                                        (click)="addMoreCourse(objCd, objEd.school_id)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">
                                 </h3>
-                                
+
                                 <div class="pr-4 pl-0">
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{objCd.course_name}}</span></p>
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont"> Course Duration : <span
-                                            class="regularFont">{{objCd.start_year}}-{{objCd.is_current_course?'Current':objCd.end_year}}</span></p>
+                                            class="regularFont">{{objCd.start_year}}-{{objCd.is_current_course?'Current':objCd.end_year}}</span>
+                                    </p>
                                     <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Year of Ending : <span
                                             class="regularFont">{{objCd.end_year}} </span></p> -->
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Course Tenure : <span
                                             class="regularFont">{{objCd.duration}}</span></p>
 
-                                    <h3 *ngIf="objCd.standard_detail" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard Details </h3>
-                                    <div class="row pb-2 border-bottom mb-2" *ngFor="let objSd of objCd.standard_detail">
+                                    <h3 *ngIf="objCd.standard_detail"
+                                        class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard
+                                        Details </h3>
+                                    <div class="row pb-2 border-bottom mb-2"
+                                        *ngFor="let objSd of objCd.standard_detail">
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
                                         </div>
-                                        <div  *ngFor="let objCd of objSd.class_detail" class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        <div *ngFor="let objCd of objSd.class_detail"
+                                            class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                             Class (Sub-Section) : <span class="regularFont">{{objCd.class_name}} </span>
                                         </div>
 
@@ -198,11 +241,16 @@
                                         <!-- <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Duration of completion : <span class="regularFont">1 year </span>
                                         </div> -->
-                                        <div *ngIf="objCd.is_current_course" class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
-                                            Roll Number : <span class="regularFont"><a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objCd,'roll_no',objCd.roll_no)">{{objCd.roll_no}}</a> </span>
+                                        <div *ngIf="objCd.is_current_course"
+                                            class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            Roll Number : <span class="regularFont"><a
+                                                    class="textUnderlineStyle cursorStyle"
+                                                    data-target="#personalInfoModel" data-toggle="modal"
+                                                    (click)="openModel(objCd,'roll_no',objCd.roll_no)">{{objCd.roll_no}}</a>
+                                            </span>
                                         </div>
                                     </div>
-                                    
+
 
                                 </div>
                             </div>
@@ -228,96 +276,115 @@
                 <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
                     <div class="process3">
                         <div class="form-group row " *ngIf="editModel.key=='name'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                                    <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        name="first_name" [(ngModel)]="model.first_name" required id="first_name">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='name'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                                    <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        name="last_name" [(ngModel)]="model.last_name" required id="last_name">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='dob'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="dob" [(ngModel)]="model.dob" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"  required id="dob" bsDatepicker>
+                                    <input
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="dob" [(ngModel)]="model.dob"
+                                        [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" required id="dob" bsDatepicker>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='email'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input type="email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
+                                    <input type="email"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
-                               
+
                             </div>
-                            
+
                         </div>
 
                         <div class="form-group row " *ngIf="editModel.key=='phone'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input type="tel" [numberOnly] maxLength="10" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required id="phone_number">
+                                    <input type="tel" [numberOnly] maxLength="10"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
+                                        id="phone_number">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='roll_no'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Roll Number</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input type="text" [numberOnly] class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="roll_number" [(ngModel)]="model.roll_no" required id="roll_number">
+                                    <input type="text" [numberOnly]
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="roll_number" [(ngModel)]="model.roll_no" required
+                                        id="roll_number">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
-                               
+
                             </div>
-                            
+
                         </div>
                         <div class="form-group row " *ngIf="editModel.key=='admission_number'">
-                            <div  class="col-md-12 MobileCol6MB">
+                            <div class="col-md-12 MobileCol6MB">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Admission number</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                   <input type="text" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" autocomplete="off" name="admission_number" [(ngModel)]="model.admission_number" required id="admission_number">
+                                    <input type="text"
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                        autocomplete="off" name="admission_number" [(ngModel)]="model.admission_number"
+                                        required id="admission_number">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
-                               
+
                             </div>
-                            
+
                         </div>
-                       
+
                     </div>
                 </form>
-              
+
                 <div class="text-center">
-                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit </button>
+                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit
+                    </button>
                 </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
@@ -333,32 +400,35 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-           
+
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
-                    <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
-                    <i class="fa fa-book" aria-hidden="true" style="font-size: 105px; padding: 20px 0px; color: #463267;"></i>
+                <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
+                <i class="fa fa-book" aria-hidden="true"
+                    style="font-size: 105px; padding: 20px 0px; color: #463267;"></i>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addAnotherCourse()" id="current_and_past"  name="current_and_past" class="mr-1" type="radio" > Current education </label>
+                            <label> <input (change)="addAnotherCourse()" id="current_and_past" name="current_and_past"
+                                    class="mr-1" type="radio"> Current education </label>
                         </div>
                         <div class="col-6 align-items-center d-flex justify-content-center">
-                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" > Past education </label>
+                            <label> <input (change)="addPastEi()" id="current_and_past2" name="current_and_past"
+                                    class="mr-1" type="radio"> Past education </label>
                         </div>
                     </div>
                 </div>
-                 
-              
 
-                
+
+
+
                 <!-- </form> -->
 
             </div>
         </div>
     </div>
 </div>
- 
+
 <div class="modal fade" id="OTPpModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -394,23 +464,21 @@
     </div>
 </div>
 
-    <!--chat Model-->
+<!--chat Model-->
 
-    <div class="modal fade" id="chatModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div class="modal fade" id="chatModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
             <div class="modal-header align-items-center border-0 pb-0 pl-0">
                 <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">
-                    <span><img  src="{{recepintDetails.photoUrl}}" style="border-radius: 50%;
+                    <span><img *ngIf="recepintDetails" src="{{recepintDetails.photoUrl}}" style="border-radius: 50%;
                     max-width: 10%;
-                    float: left;"><p style="float: left;
-    position: absolute;
-    font-size: 12px;
-    left: 15%;">{{recepintDetails.firstName}} {{recepintDetails.firstName }}</p></span></h2>
-                <button type="button" #chatModel
-                    class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
-                    aria-label="Close ">
+                    float: left;">
+                        <p *ngIf="recepintDetails" class="chatUserName">{{recepintDetails.firstName}} {{recepintDetails.firstName }}</p>
+                    </span></h2>
+                <button type="button" #chatModel class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true ">
                         &times;
                         <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
@@ -419,26 +487,28 @@
             </div>
             <div class="modal-body px-0 py-0">
                 <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
-               <div style="max-height: 50%;overflow: scroll;">
-                <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
-                    <span style="float: right;
+                <div style="max-height: 50%;overflow: scroll;">
+                    <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
+                        <span style="float: right;
                     background: #0355b3;
                     color: #202013;
                     padding: 5px;
                     border: #ddd;
                     margin: 5px;
-                    border-radius: 4px;clear: both;" *ngIf="objCon.user_send_by==currentUser">{{objCon.msg}}<br /></span>
-                </p>
-                <p   class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
-                    <span style="float: left;
+                    border-radius: 4px;clear: both;"
+                            *ngIf="objCon.user_send_by==currentUser">{{objCon.msg}}<br /></span>
+                    </p>
+                    <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
+                        <span style="float: left;
                     background: #09a0e6;
                     color: #141413;
                     padding: 5px;
                     margin: 5px;
                     border: #ddd;
-                    border-radius: 4px;clear: both;" *ngIf="objCon.user_send_by!=currentUser">{{objCon.msg}}<br /></span>
-                </p>
-               </div>
+                    border-radius: 4px;clear: both;"
+                            *ngIf="objCon.user_send_by!=currentUser">{{objCon.msg}}<br /></span>
+                    </p>
+                </div>
                 <p class="commonFontSize regularFont letterspacing text-right">
                     <!-- <span class="mx-3 color-blue">No</span>
                   <span class="mx-2 color-blue">Yes</span> -->
@@ -454,7 +524,7 @@
         </div>
     </div>
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
 </ngx-spinner>
 <!-- <app-user-footer></app-user-footer> -->

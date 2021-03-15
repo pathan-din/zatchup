@@ -364,7 +364,8 @@ this.firestore.collection('chat_conversation').valueChanges().subscribe((res:any
       let data:any={};
       let dataNew:any={};
       var date =new Date();
-      data.user_friend_id = "wzSoHOpfSOTGdEZLxMUB";
+      
+      data.user_friend_id = localStorage.getItem("friendlidt_id");
       data.user_send_by = localStorage.getItem('fbtoken');
       data.msg = this.model.comment;
       data.created_on = this.baseService.getDateFormat(date);
