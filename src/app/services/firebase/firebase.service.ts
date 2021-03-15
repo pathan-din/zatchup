@@ -28,7 +28,8 @@ export class FirebaseService {
         )
     }
 
-    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string) {
+    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string,isActive:string) {
+        
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
                 (user) => {
@@ -39,7 +40,8 @@ export class FirebaseService {
                         email: user.user.email,
                         firstName: firstName,
                         lastName: lastName,
-                        photoUrl: photoUrl
+                        photoUrl: 'https://randomuser.me/api/portraits/lego/2.jpg',
+                        isActive:"1"
                     }
                     console.log('update user....', updateUser)
                     userRef.set(updateUser)
@@ -47,16 +49,15 @@ export class FirebaseService {
                 },
                 err => {
                     reject(err)
+                   
                 }
             )
         });
         return promise;
     }
 
-
-    subscribeQueryPostsByUsernameAndCategory(email: string, category: string) {
-
-    }
+  
+   
 
 
     getChatRooms(): Observable<any> {
@@ -69,12 +70,5 @@ export class FirebaseService {
         let users = this.db.collection(`users`).valueChanges();
         return users
     }
-
-    // getMessages(user) {
-    //     return this.db
-    //         .list('Chat/' + user + '/messages', ref => {
-    //             return ref.orderByChild('timeStamp');
-    //         })
-    //         .valueChanges();
-    // }
+  
 }

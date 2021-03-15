@@ -254,7 +254,7 @@ body {
 .errorMsg {
     color: red;
     font-size: .825rem;
-    margin-left: 0.9rem !important;
+    /* margin-left: 0.9rem !important; */
     /* margin-top:.5rem; */
     /* position: absolute; */
 }
@@ -376,7 +376,7 @@ body {
 .mat-header-cell:first-of-type,
 .mat-cell:first-of-type {
     flex: 0 0 5%;
-    min-width: 55px;
+    min-width: 60px;
 }
 
 .mat-column-position {
@@ -788,9 +788,13 @@ a:hover {
     margin: 30px auto;
 }
 
-.form-control:disabled, .form-control{
+.form-control:disabled{
     background-color: #fff !important;
 }
 .form-control:focus{
     border-color: #c7cbd1 !important;
+}
+
+mat-header-row {
+    min-height: 42px;
 }

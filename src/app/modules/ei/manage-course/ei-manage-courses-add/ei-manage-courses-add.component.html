@@ -16,10 +16,8 @@
             </div>
 
             <form id="Form2">
-                <div class="process2 mt-4 ">
+                <div class="process2">
                     <div *ngFor="let courseList of model2Step.coursedata;let cNo=index">
-
-
                         <!---------btns  Add another Standard , remove another Standard end-->
                         <div class="row justify-content-center mt-3" >
                             <div class="col-6">
@@ -30,16 +28,9 @@
                                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                 </button>
                             </div>
-
                         </div>
 
-
-
-
-
-
-
-                        <div class="form-group row mt-3">
+                        <div class="form-group row">
                             <div class="col-sm-12 ">
                                 <label for="course " class=" commonFontSize mediumFont letterspacing ">Course Name
                                 </label>
@@ -69,7 +60,6 @@
                                 <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_type_')"></div>
                             </div>
                         </div>
-
 
 
                         <!-- <div class="required errorMsg"

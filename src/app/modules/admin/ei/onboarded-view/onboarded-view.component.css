@@ -5,23 +5,25 @@
 }
 
 .dpImgDiv {
-    max-height: 15vh;
-    min-height: 15vh;
-    min-width: 7.5vw;
-    max-width: 7.5vw;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    border-width: 2px!important;
-    padding: 0.4rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .dpImgDiv img {
-    max-height: 14vh;
-    min-height: 14vh;
-    min-width: 6vw;
-    max-width: 6vw;
+    height: 100%;
+    border-radius: 50%;
 }
+
+.tick-img {
+    position: absolute;
+    bottom: 10px;
+    right: -10px;
+}
+
+/* .dpImg {
+    border: 1px solid #ccc;
+} */
 
 .subAdminPurpleBtn{
     width: inherit;
@@ -62,7 +64,7 @@ input.form-control-input.form-control.commonFontSize.regularFont.letterspacing {
     background-color: #37a713;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+/* @media (min-width: 768px) and (max-width: 1024px) {
     .dpImgDiv {
         max-height: 11vh;
         min-height: 11vh;
@@ -75,9 +77,9 @@ input.form-control-input.form-control.commonFontSize.regularFont.letterspacing {
         min-width: 10vw;
         max-width: 10vw;
     }
-}
+} */
 
-@media only screen and (max-width: 414px) {
+/* @media only screen and (max-width: 414px) {
     .dpImgDiv {
         max-height: 14vh;
         min-height: 14vh;
@@ -90,5 +92,5 @@ input.form-control-input.form-control.commonFontSize.regularFont.letterspacing {
         min-width: 19vw;
         max-width: 19vw;
     }
-}
+} */
 

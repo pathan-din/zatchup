@@ -63,7 +63,7 @@ export class DocHistory extends Pagination {
 export class MessagesHistory extends Pagination {
     params: any;
     displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
-        'resolutionDate', 'resolveComment', 'attachment'];
+        'resolutionDate', 'resolveComment', 'issue'];
 }
 export class PastPocDetails extends Pagination {
     displayedColumns: string[] = ['position', 'fromDate', 'toDate', 'employeeId', 'name', 'mobileNumber',
@@ -119,4 +119,35 @@ export class SubscriptionPlanHistory extends Pagination {
     modal: any;
     displayedColumns: string[] = ['position', 'dateOfSubscription', 'planDetails', 'grossAmount',
         'couponCode', 'netAmount', 'dateOfSubscriptionExpiry', 'transactionId', 'action'];
+}
+
+export class PlanDetails extends Pagination{
+    displayedColumns: string[] = ['position','pplan','views', 'validity', 'action'];
+    modal: any;
+  id: any;
+  model: { page: any; page_size: any; id: any; };
+}
+
+export class CourseList extends Pagination{
+    displayedColumns: string[] = ['SNo', 'dateOfAdding', 'courseId','titleOfCourse',
+    'levelOfEducation', 'field', 'standard', 'subject', 'action'];
+  modal: any;
+  id: any;
+  Id: any;
+}
+
+export class StarclassPlanHistory extends Pagination{
+  modal: any;
+  history: any;
+}
+export class StarclassCourseDetails extends Pagination{
+  courseDetails: any;
+}
+
+export class LectureList extends Pagination{
+    displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd',
+    'viewDetails'];   
+  model: any;
+  id: any;
+  
 }

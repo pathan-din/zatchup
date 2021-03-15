@@ -234,8 +234,8 @@
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
                                 (click)="goToEiStudentProfilePage(element.student_id)"></i>
-                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
-                            aria-hidden="true "></i> -->
+                            <i *ngIf="element.firebase_id" data-toggle="modal" data-target="#chatModel" (click)="goToChatScreen(element)" class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" 
+                            aria-hidden="true "></i>
                             <span *ngIf="element.kyc_approved==1">
                                 <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve"
                                     class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
@@ -290,10 +290,8 @@
                             <input type="radio" [(ngModel)]="model.class_id" name="class" name="class"
                                 value="{{class.id}}" />{{class.class_name}}
                         </div>
-                        <p class="commonFontSize regularFont letterspacing text-center">
-                            <button type="button" (click)="editBulkClass()"
-                                class="bg-Gainsboro px-3 py-1 border-0 mr-3 commonFontSize mediumFont letterspacing">Edit
-                                Class</button>
+                        <p class="commonFontSize regularFont letterspacing text-right">
+                            <button type="button" (click)="editBulkClass()" class="bg-Gainsboro px-3 py-1 border-0 commonFontSize mediumFont letterspacing">Edit Class</button>
 
                         </p>
                     </div>
@@ -388,3 +386,66 @@
             </div>
         </div>
     </div>
+
+
+    <!--chat Model-->
+
+    <div class="modal fade" id="chatModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" style="padding-right: 0px">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center border-0 pb-0 pl-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">
+                    <span> <img  src="{{recepintDetails.photoUrl}}" 
+                        style="border-radius: 50%; max-width: 10%; float: left; margin-right: 10px;">
+                        <p style="font-size: 12px; text-align: left;">{{recepintDetails.firstName}}</p>
+                    </span>
+                </h2>
+                <button type="button" #chatModel
+                    class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                    aria-label="Close ">
+                    <span aria-hidden="true ">
+                        &times;
+                        <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body px-0 py-0">
+                <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                <div style="max-height: 50%; overflow-y: scroll; height: 400px">
+                    <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
+                        <span style="float: right;
+                        background: #fff;
+                        color: #202013;
+                        padding: 5px 12px;
+                        border: 1px solid #ddd;
+                        margin: 5px;
+                        border-radius: 4px;clear: both;" *ngIf="objCon.user_send_by==currentUser">{{objCon.msg}}<br /></span>
+                    </p>
+                    <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
+                        <span style="float: left;
+                        background: #463267;
+                        color: #fff;
+                        padding: 5px 12px;
+                        margin: 5px;
+                        border: 1px solid #463267;
+                        border-radius: 4px;clear: both;" *ngIf="objCon.user_send_by!=currentUser">{{objCon.msg}}<br /></span>
+                    </p>
+                </div>
+                <p class="commonFontSize regularFont letterspacing text-right py-3 d-flex justify-content-center">
+                    <!-- <span class="mx-3 color-blue">No</span>
+                  <span class="mx-2 color-blue">Yes</span> -->
+                    <input style="margin-right: 5px;
+                    outline: none;
+                    float: left;
+                    border: 1px solid #ddd;
+                    padding: 6px;
+                    height: 37px;
+                    width: -webkit-fill-available;
+                    border-radius: 9px;" [(ngModel)]="model.comment" name="comment" />
+                    <button type="button" (click)="sendChat()" class="bg-purple py-2 px-3 color-white border-0 rounded modalAddStudentsBtn mediumFont" style="width: -webkit-fill-available; max-width: 75px; min-width: 75px;">Send</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

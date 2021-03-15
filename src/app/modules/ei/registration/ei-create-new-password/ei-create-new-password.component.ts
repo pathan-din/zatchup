@@ -24,7 +24,16 @@ export class EiCreateNewPasswordComponent implements OnInit {
   ngOnInit() {
     // this.model.key = "ffsd";
     // this.model.uid = "1";
-    this.verifyCode();
+    if(localStorage.getItem("otpVerifyData"))
+    {
+      let response:any={}
+      response = JSON.parse(localStorage.getItem("otpVerifyData"))
+      this.model.key = response.key;
+      this.model.uid = response.uid;
+    }else{
+      this.verifyCode();
+    }
+    
   }
 
 
@@ -85,6 +94,7 @@ export class EiCreateNewPasswordComponent implements OnInit {
         this.SpinnerService.hide();
         if (response.status === true) {
           this.alert.success(response.success, 'Success');
+          localStorage.removeItem("otpVerifyData")
           this.router.navigate(['ei/login']);
         } else {
           this.SpinnerService.hide();

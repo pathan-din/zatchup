@@ -49,20 +49,18 @@
                 </div> -->
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
-                        <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
-                            Gender</p>
+                        <p>Gender</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span> {{getGender(studentData)}}</p>
+                        <p><span class="mr-3">:</span>{{getGender(studentData)}}</p>
                     </div>
                 </div>
                 <div class="row " *ngIf="studentData.gender == 'C'">
                     <div class="col-6 commonFontSize mediumFont">
-                        <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
-                            Pronoun</p>
+                        <p>Pronoun</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span> {{getGender(studentData, 'pronoun')}}</p>
+                        <p><span class="mr-3">:</span>{{getGender(studentData,'pronoun')}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -94,7 +92,7 @@
                         <p>Mother Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span>{{studentData.mother_name}}</p>
+                        <p><span class="mr-3">:</span>{{studentData.mother_name}}</p>
                     </div>
                 </div>
                

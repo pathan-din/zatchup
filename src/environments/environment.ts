@@ -1,5 +1,5 @@
 const baseUrl='http://172.105.61.231:3000/api/';
-
+// const baseUrl='https://apis.zatchup.com:3000/api/';
 export const environment = {
   production: false,
   baseUrl:baseUrl,
@@ -13,12 +13,12 @@ export const environment = {
   debugMode:true,
   appVersion: require('../../package.json').version + '-dev',
   firebase: {
-    apiKey: "AIzaSyDJsZUk0pW_PR_KalCuzZciu3GeC0aVRks",
-    authDomain: "angularchatmaheshtriazine.firebaseapp.com",
-    databaseURL: "https://angularchatmaheshtriazine-default-rtdb.firebaseio.com/",
-    projectId: "angularchatmaheshtriazine",
-    storageBucket: "angularchatmaheshtriazine.appspot.com",
-    messagingSenderId: "575727521539",
-    appId: "1:575727521539:web:b13bcda820943cc4b02336"
-  }
+    apiKey: "AIzaSyC9JseOBJAtlhsZs0Aqvd1esPrUZlxZzh0",
+    authDomain: "localhost",
+    databaseURL: "https://zatchup-37a1b-default-rtdb.firebaseio.com/",
+    projectId: "zatchup-37a1b",
+    storageBucket: "gs://zatchup-37a1b.appspot.com",
+    messagingSenderId: "932623041112"
+    },
+
 };

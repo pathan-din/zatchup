@@ -6,7 +6,7 @@ import { GenericFormValidationService } from '../../../services/common/generic-f
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
-
+import { AngularFireAuth } from '@angular/fire/auth';
 
 //import * as $ from 'jquery';
 declare var $: any;
@@ -33,6 +33,8 @@ export class UserLoginComponent implements OnInit {
     private loader: NgxSpinnerService,
     private firebaseService: FirebaseService,
     private formValidationService: GenericFormValidationService,
+    private afAuth: AngularFireAuth,
+    
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +69,7 @@ export class UserLoginComponent implements OnInit {
           this.loader.hide();
           // console.log('is phone....',this.is(this.model.username))
           if (res.status == "True") {
+            this.registerUserToFirebaseDB(res.data)
             $("#OTPModel").modal({
               backdrop: 'static',
               keyboard: false
@@ -148,12 +151,14 @@ export class UserLoginComponent implements OnInit {
       let data: any = {};
       data.username = this.model.username;
       data.phone_otp = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
-
+      if(localStorage.getItem('fbtoken'))
+      {
+        data.firebase_id=localStorage.getItem('fbtoken');
+      }
       this.baseService.action('user/verify-otp/', data).subscribe(
         (res: any) => {
           if (res.status == "True") {
-            if (!res.firebaseid)
-              this.registerUserToFirebaseDB(res);
+            this.updateUserWithFirebaseID();
             localStorage.setItem("token", res.token);
             localStorage.setItem("approved", res.approved);
             $("#OTPModel").modal('hide');
@@ -198,25 +203,37 @@ export class UserLoginComponent implements OnInit {
 
   registerUserToFirebaseDB(data: any) {
     let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
-    this.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, this.model.password, data.profile_pic).then(
-      (res: any) => {
-        this.updateUserWithFirebaseID(res.user.uid)
-      },
-      err => {
-        console.log('firebase signup error....', err)
+    var that = this;
+    this.afAuth.fetchSignInMethodsForEmail(email)
+    .then(function(signInMethods) {
+      
+      if (signInMethods.length > 0) {
+         console.log("yes",signInMethods);
+     
       }
-    )
+      else{
+        that.firebaseService.firebaseSignUp(email, email, email, that.model.password, '',"1").then(
+          (res: any) => {
+            console.log('firebase signup res is as ::', res.user.uid)
+            localStorage.setItem('fbtoken',res.user.uid);
+           // localStorage.setItem('firebaseid',res.user.uid)
+            //this.updateUserWithFirebaseID(res.user.uid)
+          },
+          err => {
+           // console.log('firebase signup error....', err)
+          }
+        )
+      }
+    })
+   
+ 
   }
 
-  updateUserWithFirebaseID(id: any) {
-    let data = {
-      "firebase_userId": id
-    }
-    this.baseService.action('chat/register_user_firebase/', data).subscribe(
-      (res: any) => {
-        console.log('update user....', res)
-      }
-    )
+ async updateUserWithFirebaseID() {
+    var result =  await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
+    console.log(result.user.uid);
+    localStorage.setItem('fbtoken',result.user.uid);
+   // localStorage.setItem("fbtoken",result.user.uid);
   }
 }
 

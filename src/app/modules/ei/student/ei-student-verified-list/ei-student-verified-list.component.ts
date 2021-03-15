@@ -7,6 +7,8 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Location } from '@angular/common';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 declare var $: any;
 
 @Component({
@@ -39,6 +41,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
   errorDisplay: any = {};
   title: any = '';
   pageCounts: any;
+  objStudent:any={};
+  dataStudent:any=[];
+  conversation:any=[];
+  currentUser:any;
+  recepintDetails:any={};
  // params:any={};
   constructor(
     private router: Router,
@@ -50,6 +57,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     private alert: NotificationService,
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
+    private firestore:AngularFirestore
   ) { }
 
 
@@ -81,7 +89,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     }
     this.displayCourseList();
     this.getGetVerifiedStudent('', '')
-    
+    this.getDocumentsChat();
+    this.currentUser = localStorage.getItem('fbtoken');
   }
   displayCourseList() {
     try {
@@ -222,7 +231,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
             objStudentList.userID = objData.admission_no;
             objStudentList.class = objData.class_name;
             objStudentList.alias_class = objData.alias_class;
-            objStudentList.roll_no = objData.roll_no
+            objStudentList.roll_no = objData.roll_no;
+            objStudentList.firebase_id = objData.firebase_id;
             objStudentList.Action = '';
             i = i + 1;
             arrStudentList.push(objStudentList);
@@ -254,7 +264,131 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.getGetVerifiedStudent('', strFilter)
     }
   }
+  goToChatScreen(objStudent){
+    this.objStudent = objStudent;
+    this.getRecepintUserDetails(objStudent.firebase_id)
+      return new Promise<any>((resolve, reject) => { 
+        let data:any={};
+        var date =new Date();
 
+       
+        data.user_request_id = localStorage.getItem('fbtoken');
+        data.user_accept_id = objStudent.firebase_id;
+        data.is_block = 0
+        data.is_seen = 0
+        data.is_active = 1
+        data.is_read = 0
+        data.created_on = this.baseService.getDateFormat(date);
+        if(localStorage.getItem("friendlidt_id"))
+        {
+          var id = localStorage.getItem("friendlidt_id");
+          this.firestore.collection("user_friend_list/").doc(id)
+          .update(data)
+          .then(
+              res => {
+               
+                
+
+              }, 
+              err => reject(err)
+          )
+        }else{
+          this.firestore.collection("user_friend_list")
+          .add(data)
+          .then(
+              res => {
+                localStorage.setItem("friendlidt_id",res.id)
+                this.getDocumentsChat()
+
+              }, 
+              err => reject(err)
+          )
+        }
+       
+      })
+    
+    
+  }
+ getDocumentsChat(){
+   this.firestore.collection('chat_conversation')
+  .get().toPromise().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      let newData:any={};
+       
+        newData = doc.data();
+        
+        this.dataStudent=newData.data;
+        
+    });
+})
+.catch((error) => {
+    console.log("Error getting documents: ", error);
+});
+this.firestore.collection('chat_conversation').valueChanges().subscribe((res:any)=>{
+  if(res.length>0){
+    this.conversation=res[0].data;
+    this.dataStudent=res[0].data;
+  }else{
+    this.conversation=[];
+    this.dataStudent=[];
+  }
+  
+})
+ }
+
+ getRecepintUserDetails(uuid){
+ this.firestore.collection('users').doc(uuid).ref.get().then(res=>{
+  this.recepintDetails = res.data();
+  console.log(this.recepintDetails );
+  
+ });
+  
+  // .get().toPromise().then((querySnapshot) => {
+  //   querySnapshot.forEach((doc) => {
+  //     let newData:any={};
+       
+  //     this.recepintDetails = doc.data();
+  //       console.log(this.recepintDetails);
+        
+         
+        
+  //   });
+  //   })
+  //   .catch((error) => {
+  //       console.log("Error getting documents: ", error);
+  //   });
+ }
+  sendChat(){
+    return new Promise<any>((resolve, reject) => { 
+     
+      let data:any={};
+      let dataNew:any={};
+      var date =new Date();
+      data.user_friend_id = "wzSoHOpfSOTGdEZLxMUB";
+      data.user_send_by = localStorage.getItem('fbtoken');
+      data.msg = this.model.comment;
+      data.created_on = this.baseService.getDateFormat(date);
+       
+     this.dataStudent.push(data)
+     dataNew.data= this.dataStudent;
+     console.log(dataNew.data);
+     
+     
+      this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+      .set(dataNew)
+      .then(
+          res => {
+           
+            this.getDocumentsChat()
+            this.model.comment='';
+            
+
+          }, 
+          err => reject(err)
+      )
+     
+    })
+  }
   goToEiStudentEditPage(id, approve) {
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
   }

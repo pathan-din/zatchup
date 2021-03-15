@@ -1,15 +1,18 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
     <div class="coursePreview-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
-        <!--Video image div of coursePReview-->
+        <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap p-0">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
+        </div>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                 <iframe class="previewVideo w-100 border border-gray" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
             </div>
         </div>
-        <!--End Video image div of coursePReview-->
 
     </div>
 
@@ -215,7 +218,7 @@
                     <ng-container matColumnDef="viewDetails">
                         <mat-header-cell *matHeaderCellDef>View Details</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View"></i>
+                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View" (click)="goToLectureView()"></i>
                         </mat-cell>
                     </ng-container>
 

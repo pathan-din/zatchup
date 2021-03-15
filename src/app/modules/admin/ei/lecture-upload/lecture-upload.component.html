@@ -2,7 +2,12 @@
 <div class="container main-container p-3">
 
     <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Upload Lecture</h2>
+        <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap p-0">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Upload Lecture</h2>
+        </div>
         <div class="row bg-light-gray w-50 ml-1 mt-1">
             <div class="col-md-12 mt-2 border-bottom">
                 <h3 class="commonFontSize semiBoldFont m-0">Upload New Lecture</h3>
@@ -11,41 +16,45 @@
                 <div class="form-group row  ml-0 mr-0">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Add Title </label>
                     <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
+                        <input [(ngModel)]="model.lecture_title" name="lecture_title" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
                     </div>
                 </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.lecture_title"></div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group row  ml-0 mr-0">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Add Description </label>
                     <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                        <textarea class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
+                        <textarea [(ngModel)]="model.lecture_description" name="lecture_description" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
                     </div>
                 </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.lecture_description"></div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group row  ml-0 mr-0">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Enter of Teaching Faculty </label>
                     <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Teaching Faculty Name">
+                        <input [(ngModel)]="model.name_of_teaching_faculty" name="name_of_teaching_faculty" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Teaching Faculty Name">
                     </div>
                 </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.name_of_teaching_faculty"></div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group row  ml-0 mr-0">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Upload </label>
                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" >
+                    <input [(ngModel)]="model.lecture" name="lecture" required type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" >
                 </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.lecture"></div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group row ml-0 mr-0 d-flex justify-content-center">                
                     <button type="button " class="bg-danger border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"> Cancel </button>
-                    <button type="button " class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Upload </button>                    
+                    <button type="button " class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing " (click)="uploadLecture()"> Upload </button>                    
                 </div>
             </div>
 

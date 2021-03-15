@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -41,9 +42,19 @@ export class StarclassBoughtComponent implements OnInit {
  //columnsToDisplay: string[] = this.displayedColumns.slice();
  // dataSource: PeriodicElement[] = ELEMENT_DATA;
  
- constructor(private router: Router) { }
+ constructor(
+   private router: Router,
+   private location: Location
+   ) { }
 
  ngOnInit(): void {
  }
 
+ goToBoughtView(){
+   this.router.navigate(['admin/starclass-bought-view'])
+ }
+
+ goBack(){
+   this.location.back()
+ }
 }

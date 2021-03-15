@@ -10,6 +10,8 @@ import { DatePipe } from '@angular/common';
 export class BaseService {
   environment = environment
   dynamicJson: any
+  public username:any
+  public password:any
   public serverImagePath: any = this.environment.serverImagePath;
   constructor(
     private http: HttpClient,

@@ -21,7 +21,30 @@
     left: 95px;
     z-index: 1;
 }
- 
+span.receiver {
+    float: left !important;
+    margin: auto !important;
+    padding: 5px;
+    border: 1px solid #ccc !important;
+    margin-bottom: 10px!important;
+    margin-top: 10px!important;
+    clear: both!important;
+    background: steelblue!important;
+    width: 30%!important;
+    color: #ffffff!important;
+}
+span.sender {
+    float: right!important;
+    margin: auto!important;
+    padding: 5px!important;
+    border: 1px solid #ccc!important;
+    margin-bottom: 10px!important;
+    margin-top: 10px!important;
+    clear: both!important;
+    background: yellowgreen!important;
+    width: 30%!important;
+    color: #ffffff!important;
+}
 .customDiv {
     width: 120px;
     height: 120px;
