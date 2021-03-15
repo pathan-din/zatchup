@@ -33,7 +33,7 @@ export class FirebaseService {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
                 (user) => {
                     const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
-                    console.log(' user....',user)
+                    console.log(' user....', user)
                     const updateUser = {
                         id: user.user.uid,
                         email: user.user.email,
@@ -41,7 +41,7 @@ export class FirebaseService {
                         lastName: lastName,
                         photoUrl: photoUrl
                     }
-                    console.log('update user....',updateUser)
+                    console.log('update user....', updateUser)
                     userRef.set(updateUser)
                     resolve(user);
                 },
@@ -55,18 +55,26 @@ export class FirebaseService {
 
 
     subscribeQueryPostsByUsernameAndCategory(email: string, category: string) {
-        
+
     }
 
 
-    getChatRooms(): Observable<any>{
+    getChatRooms(): Observable<any> {
         let chatRooms = this.db.collection('chatrooms').valueChanges();
         // let chatRooms = this.firdb.object('/users').valueChanges();
         return chatRooms
     }
 
-    getUsers(): Observable<any>{
-       let users =  this.db.collection(`users`).valueChanges();
+    getUsers(): Observable<any> {
+        let users = this.db.collection(`users`).valueChanges();
         return users
     }
+
+    // getMessages(user) {
+    //     return this.db
+    //         .list('Chat/' + user + '/messages', ref => {
+    //             return ref.orderByChild('timeStamp');
+    //         })
+    //         .valueChanges();
+    // }
 }

@@ -152,7 +152,8 @@ export class UserLoginComponent implements OnInit {
       this.baseService.action('user/verify-otp/', data).subscribe(
         (res: any) => {
           if (res.status == "True") {
-            this.registerUserToFirebaseDB();
+            if (!res.firebaseid)
+              this.registerUserToFirebaseDB(res);
             localStorage.setItem("token", res.token);
             localStorage.setItem("approved", res.approved);
             $("#OTPModel").modal('hide');
@@ -195,11 +196,10 @@ export class UserLoginComponent implements OnInit {
     }
   }
 
-  registerUserToFirebaseDB() {
+  registerUserToFirebaseDB(data: any) {
     let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
-    this.firebaseService.firebaseSignUp('Mahesh', 'chand', email, 'Mahesh@123', '').then(
+    this.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, this.model.password, data.profile_pic).then(
       (res: any) => {
-        console.log('firebase signup res is as ::', res.user.uid)
         this.updateUserWithFirebaseID(res.user.uid)
       },
       err => {

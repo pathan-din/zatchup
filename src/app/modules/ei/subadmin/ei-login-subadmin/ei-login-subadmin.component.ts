@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
-import { BaseService } from '../../../../services/base/base.service';
-import { FormBuilder } from "@angular/forms";
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
+import { BaseService } from '../../../../services/base/base.service';
 import { NotificationService } from '../../../../services/notification/notification.service';
-import { UsersServiceService } from '../../../../services/user/users-service.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 
 declare var $: any;
@@ -18,108 +16,90 @@ declare var $: any;
   styleUrls: ['./ei-login-subadmin.component.css']
 })
 export class EiLoginSubadminComponent implements OnInit {
-  model:any={};
-  
+  model: any = {};
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay = '';
-  modelForOtpModal:any={};
-  constructor(private router: Router,
-    private SpinnerService: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public baseService: BaseService,
-    public alert: NotificationService
-    , private route: ActivatedRoute,
-    public formBuilder: FormBuilder,
-    public userService: UsersServiceService, 
-    private genericFormValidationService: GenericFormValidationService) { }
+  modelForOtpModal: any = {};
+
+  constructor(
+    private router: Router,
+    private baseService: BaseService,
+    private loader: NgxSpinnerService,
+    private alert: NotificationService,
+    private firebaseService: FirebaseService,
+    private formValidationService: GenericFormValidationService) { }
 
   ngOnInit(): void {
   }
 
 
   /**Login For SubAdmin */
-  doLogin(){
+  doLogin() {
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-      this.SpinnerService.show();
-      
-      
-      this.baseService.action('subadmin/login/', this.model).subscribe(res => {
-       
-        let response: any = {};
-        response = res;
-        if(response.status==true)
-        {
-          this.SpinnerService.hide();
-          $("#OTPModel").modal({
-            backdrop: 'static',
-            keyboard: false
-          });
-        }else{
-          this.SpinnerService.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
+      this.loader.show();
+      this.baseService.action('subadmin/login/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.loader.hide();
+            $("#OTPModel").modal({
+              backdrop: 'static',
+              keyboard: false
+            });
+          } else {
+            this.loader.hide();
+            var errorCollection = '';
+            for (var key in res.error) {
+              if (res.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + res.error[key][0] + '\n'
 
+              }
             }
+            this.alert.error(errorCollection, 'Error')
           }
-          // alert(errorCollection);
-          this.alert.error(errorCollection,'Error')
-        }
-
-      }, (error) => {
-        this.SpinnerService.hide();
-        //console.log(error);
-
-      });
+        }, (error) => {
+          this.loader.hide();
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      //console.log(err);
+      this.loader.hide();
+      this.alert.error('Something went wrong!', "Error")
     }
   }
   resendOtp() {
     try {
-      let data: any = {};
       this.modelForOtpModal.username = this.model.username ? this.model.username : this.model.phone;
-      //this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
+      this.loader.show();
+      this.baseService.action('user/resend-otp/', this.modelForOtpModal).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+          } else {
+            this.errorOtpModelDisplay = res.error;
+          }
+        }, (error) => {
+          this.loader.hide();
+          console.log(error);
 
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.SpinnerService.show();
-      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.","Success")
-        } else {
-          this.errorOtpModelDisplay = response.error;
-          //alert(response.error)
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("verify Otp Exception", err);
+      this.loader.hide();
+      this.alert.error('Something went wrong!', "Error")
     }
   }
 
   changeInput($ev) {
-    console.log($ev);
     if ($ev.target.value.length == $ev.target.maxLength) {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
     }
-
   }
+
   goToDashboard() {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
@@ -145,51 +125,73 @@ export class EiLoginSubadminComponent implements OnInit {
       let data: any = {};
       data.username = this.model.username;
       data.phone_otp = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
+      this.baseService.action('subadmin/otp-verify/', data).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.registerUserToFirebaseDB(res)
+            localStorage.setItem("token", res.token);
+            sessionStorage.setItem("permission", JSON.stringify(res.permission));
 
-      this.baseService.action('subadmin/otp-verify/',data).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
-          localStorage.setItem("token", response.token);
-          sessionStorage.setItem("permission", JSON.stringify(response.permission));
-          
-           $("#OTPModel").modal('hide');
-           this.router.navigate(['ei/my-profile']);
-          // if(response.steps>=3 && response.approved==1)
-          // {
-          //   this.router.navigate(['user/my-profile']);
-          // }else if(response.steps>=3 && response.approved==0)
-          // {
-          //   this.router.navigate(['user/congratulation']);
-          // }else{
-          //   this.router.navigate(['user/kyc-verification']);
-          // }
-          
-          //
-          
-        } else {
-          this.errorOtpModelDisplay = response.error;
-        }
-      }, (error) => {
-        console.log(error);
+            $("#OTPModel").modal('hide');
+            this.router.navigate(['ei/my-profile']);
+          } else {
+            this.errorOtpModelDisplay = res.error;
+          }
+        }, (error) => {
+          console.log(error);
 
-      });
+        });
     } catch (err) {
-      console.log("vaeryfy Otp Exception", err);
+      this.alert.error('Something went wrong!', "Error")
     }
 
   }
-  goToEiForgetPasswordPage(){
+  goToEiForgetPasswordPage() {
     this.router.navigate(['ei/forgot-password']);
   }
 
-  goToEiContactUsPage(){
+  goToEiContactUsPage() {
     this.router.navigate(['ei/contact-us']);
   }
 
-  goToEiSubadminRegisterPage(){
+  goToEiSubadminRegisterPage() {
     this.router.navigate(['ei/subadmin-registration']);
   }
 
- 
+
+  isPhoneNumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  registerUserToFirebaseDB(data: any) {
+    let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    this.firebaseService.firebaseSignUp(data.first_name, data.last_name, email.trim(), this.model.password, data.profile_pic).then(
+      (res: any) => {
+        console.log('firebase signup res is as ::', res.user.uid)
+        this.updateUserWithFirebaseID(res.user.uid)
+      },
+      err => {
+        console.log('firebase signup error....', err)
+      }
+    )
+  }
+
+  updateUserWithFirebaseID(id: any) {
+    let data = {
+      "firebase_userId": id
+    }
+    this.baseService.action('chat/register_user_firebase/', data).subscribe(
+      (res: any) => {
+        console.log('update user....', res)
+      }
+    )
+  }
+
+
 }
