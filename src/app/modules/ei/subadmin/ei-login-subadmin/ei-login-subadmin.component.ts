@@ -171,7 +171,7 @@ export class EiLoginSubadminComponent implements OnInit {
 
   registerUserToFirebaseDB(data: any) {
     let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
-    this.firebaseService.firebaseSignUp(data.first_name, data.last_name, email.trim(), this.model.password, data.profile_pic).then(
+    this.firebaseService.firebaseSignUp(data.first_name, data.last_name, email.trim(), this.model.password, data.profile_pic,"1").then(
       (res: any) => {
         console.log('firebase signup res is as ::', res.user.uid)
         this.updateUserWithFirebaseID(res.user.uid)
