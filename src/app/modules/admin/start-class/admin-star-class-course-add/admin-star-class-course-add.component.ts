@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
@@ -20,6 +20,7 @@ export class AdminStarClassCourseAddComponent implements OnInit {
   uploadedImage: File;
   uploadedContent_image: File;
   errorDisplay : any = {};
+  courseDetails: any;
 
   constructor(
     private baseService: BaseService,
@@ -27,11 +28,15 @@ export class AdminStarClassCourseAddComponent implements OnInit {
     private alert: NotificationService,
     private validation: GenericFormValidationService,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     // this.getPlanList()
+    if(this.activeRoute.snapshot.queryParamMap.get('id')){
+      this.getCourseDetails()
+    }
     
   }
 
@@ -86,6 +91,33 @@ export class AdminStarClassCourseAddComponent implements OnInit {
     console.log(this.uploadedContent_image);
   }
   
+  getCourseDetails(){
+    try {
+      this.loader.show()
+      let params = {
+        "id": this.activeRoute.snapshot.queryParamMap.get('id')
+      }
+      console.log(params);
+      
+      this.baseService.getData('starclass/course_preview/' , params).subscribe(
+        (res:any) => {
+          if(res.status == true){
+            this.model = res.results[0]
+            console.log(this.model);
+          }
+          else{
+            this.alert.error(res.error.message, 'Error')
+          } this.loader.hide()
+        }, err =>{
+          this.alert.error(err, 'Error')
+          this.loader.hide()
+        } )
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+      this.loader.hide()
+    }
+  }
+
   createCourse(){
     try {
       this.errorDisplay={};
@@ -95,8 +127,14 @@ export class AdminStarClassCourseAddComponent implements OnInit {
         return false;
       }
       this.loader.show()
+      var url='starclass/star-class-course-admin/';
+      
+      if(this.model.id){
+        url = 'starclass/edit-course/';
+         
+      }
       const formData = new FormData();
-      debugger
+      formData.append('id', this.activeRoute.snapshot.queryParamMap.get('id'));
       formData.append('course_name', this.model.course_name);
       formData.append('level_of_education', this.model.level_of_education);
       formData.append('course_preview', this.uploadedContent);
@@ -107,7 +145,7 @@ export class AdminStarClassCourseAddComponent implements OnInit {
       formData.append('faculty_details', this.model.faculty_details)
       formData.append('topic_cover', this.model.topic_cover)
       formData.append('description', this.model.description)
-      this.baseService.action('starclass/star-class-course-admin/', formData).subscribe(
+      this.baseService.action(url, formData).subscribe(
         (res : any) =>{
           if(res.status == true){
             this.alert.success(res.message, 'Success')

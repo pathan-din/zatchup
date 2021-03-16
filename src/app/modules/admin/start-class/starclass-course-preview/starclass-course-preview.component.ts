@@ -30,12 +30,15 @@ export interface PeriodicElement {
 export class StarclassCoursePreviewComponent implements OnInit {
   starclassCourseDetails : StarclassCourseDetails
   params: any;
-  displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd',
-  'durationOfLecture','play','viewDetails'];   
+  // displayedColumnsOne: string[] = ['position','lectureTitle', 'topicsCoverd',
+  // 'durationOfLecture','play','viewDetails'];   
+  // planDisplayedColumns: string[] = ['position', 'price','validity','views',];
  lectureList : LectureList
   dataSource :any;
   dataUrl: any;
   id: any;
+  courseData: any;
+  // planDetails: any
 
   constructor(
     private location: Location,
@@ -58,7 +61,9 @@ export class StarclassCoursePreviewComponent implements OnInit {
     this.id = this.activeRoute.snapshot.queryParamMap.get('id')
   }
 
-
+  goToEditCourse(id){
+    this.router.navigate(['admin/starclass-course-add'], {queryParams:{'id':id}})
+  }
   goToLectureView(){
     this.router.navigate(['admin/lecture-details'])
   }
@@ -77,6 +82,7 @@ export class StarclassCoursePreviewComponent implements OnInit {
         (res:any) => {
           if(res.status == true){
             this.starclassCourseDetails.courseDetails = res.results
+            this.courseData = res.results[0]
           }
           else{
             this.alert.error(res.error.message, 'Error')

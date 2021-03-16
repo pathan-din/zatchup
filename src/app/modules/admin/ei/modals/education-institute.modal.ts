@@ -142,12 +142,18 @@ export class StarclassPlanHistory extends Pagination{
 }
 export class StarclassCourseDetails extends Pagination{
   courseDetails: any;
+  
 }
 
 export class LectureList extends Pagination{
-    displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd',
-    'viewDetails'];   
+    displayedColumnsOne: string[] = ['position','lectureTitle', 'topicsCoverd',
+  'viewDetails'];   
+  planDisplayedColumns: string[] = ['position', 'name', 'price','validity','views',];
   model: any;
   id: any;
-  
+}
+
+export class LectureDetails extends Pagination{
+    model: any;
+  details: any;
 }
