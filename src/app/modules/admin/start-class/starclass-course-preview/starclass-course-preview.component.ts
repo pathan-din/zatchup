@@ -69,7 +69,7 @@ export class StarclassCoursePreviewComponent implements OnInit {
   }
 
   goToUploadLecture(data){
-    this.router.navigate(['admin/lecture-upload', data.id])
+    this.router.navigate(['admin/lecture-upload', data.id], {queryParams: { 'action': 'add'}})
   }
 
   getCourseDetails(){

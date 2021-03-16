@@ -37,8 +37,10 @@ export class LectureDetailsComponent implements OnInit {
     }
   }
 
-  goToEditLecture(){
-    this.router.navigate(['admin/lecture-upload'+this.route.snapshot.queryParamMap.get('id')])
+  goToEditLecture(data){
+    this.router.navigate(['admin/lecture-upload', data.id], { queryParams: { 'action': 'edit'}})
+   
+    
   }
   getLectureDetails(){
     try {

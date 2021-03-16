@@ -9,8 +9,8 @@
             <h2 class="commonFontSize semiBoldFont m-0">Lecture Details</h2>
 
         </div>
-        <div class="col-6 text-right" >
-            <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 " >Edit Lecture</button>
+        <div class="col-6 text-right" *ngIf="lectureDetails.details" >
+            <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 " (click)="goToEditLecture(lectureDetails.details)">Edit Lecture</button>
         </div>
         <div class="mt-2 border-0 mx-0">
             <!-- start Div for banner-->
@@ -90,7 +90,7 @@
                             <p><span class="mr-3">:</span>{{lectureDetails.details.lecture_description}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Total Number of Views On Lecture</p>
@@ -98,7 +98,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span></p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -125,9 +125,13 @@
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span></p>
-                            <video autoplay="autoplay" preload="auto" ng-click="video($event)">
-                                <source src="{{lectureDetails.details.lecture}}" type="video/mp4" />
-                           </video>
+                            <div class="col-md-12 customVideo" >
+                                <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
+                                <video autoplay="autoplay" preload="auto" ng-click="video($event)">
+                                    <source src="{{lectureDetails.details.lecture}}" type="video/mp4" />
+                               </video>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>
