@@ -157,3 +157,8 @@ export class LectureDetails extends Pagination{
     model: any;
   details: any;
 }
+
+export class LectureDetailsEdit extends Pagination{
+    model: any;
+  details: any;
+}
