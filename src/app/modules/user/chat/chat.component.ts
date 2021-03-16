@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit {
   }
 
   getChatRooms(){
-    this.firebaseService.getChatRooms().subscribe(
+    this.firebaseService.getChatRooms('').subscribe(
       (res: any) => {
         console.log('chat room res is as ::',res)
       }

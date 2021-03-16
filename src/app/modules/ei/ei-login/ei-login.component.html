@@ -12,7 +12,7 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-user text-white" aria-hidden="true"></i>
                                     </span>
-                            <input id="Email_ID" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" 
+                            <input id="Email_ID" required (keyup)="isValid()" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" 
                             type="text" optional="email,phone" placeholder="Enter Email ID / Mobile Number" [(ngModel)]="model.username" name ="Email_ID">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.username"></div>
@@ -24,7 +24,7 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
                                     </span>
-                            <input id="password" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password" [(ngModel)]="model.password" name ="password">
+                            <input id="password" required (keyup)="isValid()" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password" [(ngModel)]="model.password" name ="password">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                     </div>
