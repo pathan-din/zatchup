@@ -72,9 +72,10 @@ export class UserMyEducationalProfileComponent implements OnInit {
 
   getDocumentsChat(uuid) {
    
-    console.log(uuid);
+    
     let uid = uuid;
     this.conversation = [];
+    this.dataStudent = [];
     if(localStorage.getItem("friendlidt_id")){
      var uuid1= localStorage.getItem("friendlidt_id");
       var dataSet=this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
@@ -89,57 +90,53 @@ export class UserMyEducationalProfileComponent implements OnInit {
         
       })
     }
-    this.getRecepintUserDetails(uid)
-    return new Promise<any>((resolve, reject) => {
-      let data: any = {};
-      var date = new Date();
-       
-      var uuid =uid;
-      data.user_request_id = localStorage.getItem('fbtoken');
-      data.user_accept_id = uuid;
-      data.is_block = 0
-      data.is_seen = 0
-      data.is_active = 1
-      data.is_read = 0
-      data.created_on = this.baseService.getDateFormat(date);
-      
-      this.getFriendListBySender(localStorage.getItem('fbtoken'), uid, data)
-
-
-
-    })
-
-    
-    
-    
-  }
-
+    if(uid){
+      this.getRecepintUserDetails(uid)
+      return new Promise<any>((resolve, reject) => {
+        let data: any = {};
+        var date = new Date();
+         
+        var uuid =uid;
+        data.user_request_id = localStorage.getItem('fbtoken');
+        data.user_accept_id = uuid;
+        data.is_block = 0
+        data.is_seen = 0
+        data.is_active = 1
+        data.is_read = 0
+        data.created_on = this.baseService.getDateFormat(date);
+        
+        this.getFriendListBySender(localStorage.getItem('fbtoken'), uid, data)
+  
+  
+  
+      })
+    }
+   }
+  
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
-    let checkCounter:boolean=false;
+    this.conversation = [];
+    this.dataStudent = [];
     this.firestore.collection('user_friend_list').valueChanges().subscribe((res:any)=>{
-     
-      
-      let dataEle = res.findIndex(elem=>{
+      let dataEle = res.find(elem=>{
                       return ((elem.user_request_id===loginfirebase_id && elem.user_accept_id===user_accept_id) || (elem.user_request_id===user_accept_id && elem.user_accept_id===loginfirebase_id))  
                     })
-                    
+                    console.log(dataEle);
                     
       if(dataEle){
+        
         this.firestore.collection('user_friend_list').get()
+         
         .subscribe(querySnapshot => {
           if (querySnapshot.docs.length > 0) {
             querySnapshot.docs.map(doc => {
             
               let res:any=[]
               res=doc.data();
-              
-              if((res.user_request_id==loginfirebase_id && res.user_accept_id==user_accept_id) || (res.user_accept_id==loginfirebase_id && res.user_request_id==user_accept_id) )
-              {
-                checkCounter=true; 
-                this.firestore.collection("user_friend_list/").doc(doc.id).update(data).then(res => {localStorage.setItem("friendlidt_id",doc.id)})
-                
-                
-              } 
+             if(dataEle.user_request_id==res.user_request_id && dataEle.user_accept_id== res.user_accept_id)
+             {
+             
+              localStorage.setItem("friendlidt_id", doc.id)    
+             }
               
             });
           }
@@ -159,10 +156,13 @@ export class UserMyEducationalProfileComponent implements OnInit {
        
        }
   getRecepintUserDetails(uuid: any) {
-    this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-      this.recepintDetails = res.data();
-      console.log('recipants details is as ::',this.recepintDetails)
-    });
+    if(uuid){
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+        this.recepintDetails = res.data();
+        console.log('recipants details is as ::',this.recepintDetails)
+      });
+    }
+    
   }
 
   sendChat() {
@@ -178,7 +178,9 @@ export class UserMyEducationalProfileComponent implements OnInit {
       // console.log(this.dataStudent);
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
-        .set(dataNew).then(res => {this.model.comment = '';},
+        .set(dataNew).then(res => {this.model.comment = '';
+        this.getDocumentsChat('')
+      },
           err => reject(err)
         )
 

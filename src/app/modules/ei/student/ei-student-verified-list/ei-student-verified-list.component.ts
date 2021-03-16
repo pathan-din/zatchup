@@ -266,6 +266,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   }
   goToChatScreen(objStudent) {
     this.conversation = [];
+    this.dataStudent =[];
     this.objStudent = objStudent;
     this.getRecepintUserDetails(objStudent.firebase_id)
     return new Promise<any>((resolve, reject) => {
@@ -290,28 +291,30 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
   }
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
-    let checkCounter:boolean=false;
+    this.conversation = [];
+    this.dataStudent = [];
     this.firestore.collection('user_friend_list').valueChanges().subscribe((res:any)=>{
       let dataEle = res.find(elem=>{
                       return ((elem.user_request_id===loginfirebase_id && elem.user_accept_id===user_accept_id) || (elem.user_request_id===user_accept_id && elem.user_accept_id===loginfirebase_id))  
                     })
+            console.log(dataEle);
+                   
+                    
       if(dataEle){
+        this. getDocumentsChat();
         this.firestore.collection('user_friend_list').get()
+         
         .subscribe(querySnapshot => {
           if (querySnapshot.docs.length > 0) {
             querySnapshot.docs.map(doc => {
             
               let res:any=[]
               res=doc.data();
+             if(dataEle.user_request_id==res.user_request_id && dataEle.user_accept_id== res.user_accept_id)
+             {
+              localStorage.setItem("friendlidt_id", doc.id)
               
-              if((res.user_request_id==loginfirebase_id && res.user_accept_id==user_accept_id) || (res.user_accept_id==loginfirebase_id && res.user_request_id==user_accept_id) )
-              {
-                checkCounter=true; 
-                this.firestore.collection("user_friend_list/").doc(doc.id).update(data).then(res => {localStorage.setItem("friendlidt_id",doc.id)})
-                
-                
-                
-              } 
+             }
               
             });
           }
@@ -320,7 +323,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
       } else{
         this.firestore.collection("user_friend_list").add(data).then(res => {
           localStorage.setItem("friendlidt_id",res.id)
-           
+           this. getDocumentsChat();
           
          })
       }             
@@ -330,8 +333,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
      
        
        }
+
+       
   getDocumentsChat() {
     this.conversation = [];
+    this.dataStudent =[];
     var uuid= localStorage.getItem("friendlidt_id");
     var dataSet=this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
     dataSet.subscribe((res:any)=>{
