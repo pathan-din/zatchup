@@ -44,6 +44,16 @@
 
             <div class="col-md-12">
                 <div class="form-group row  ml-0 mr-0">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Topic Covered </label>
+                    <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                        <input [(ngModel)]="model.topic_cover" name="topic_cover" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Covered">
+                    </div>
+                </div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.topic_cover"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group row  ml-0 mr-0">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Upload </label>
                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                     <input [(ngModel)]="model.lecture" name="lecture" required type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" >
