@@ -112,11 +112,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
         this.firestore.collection("user_friend_list/").doc(id)
         .update(data)
         .then(
-            res => {
-             
-              
-
-            }, 
+            res => {}, 
             err => reject(err)
         )
       }else{
@@ -145,11 +141,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
   .subscribe(querySnapshot => {
     querySnapshot.docs.map(doc => {
       let res:any=[]
-      console.log(doc.id);
-      
-      res=doc.data()
-       
-          
+      res=doc.data();
+      console.log(res);
       return doc.data();
     });
   });
