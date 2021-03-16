@@ -86,18 +86,14 @@ export class UserAddEiComponent implements OnInit {
     //getallstate
     try {
       this.SpinnerService.show();
-
       this.eiService.getallstate(this.model).subscribe(res => {
-
         let response: any = {};
         response = res;
         this.stateList = response.results;
         this.SpinnerService.hide();
-
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
-
       });
     } catch (err) {
       this.SpinnerService.hide();
@@ -283,13 +279,11 @@ export class UserAddEiComponent implements OnInit {
   }
   /**Get data using zatchupId */
   getDataByZatchupId() {
-
     try {
-
       this.SpinnerService.show();
       if (!this.modelZatchup.zatchup_id) {
-        // alert("Enter Zatchup Id.");
-        this.alert.error("Enter Zatchup Id.", 'Warning')
+        this.alert.error("Enter Zatchup Id.", 'Error')
+        this.SpinnerService.hide();
         return false;
       }
       this.baseService.action('user/get-school-detail-zatchupid/', this.modelZatchup).subscribe(res => {
@@ -318,7 +312,6 @@ export class UserAddEiComponent implements OnInit {
           for (var key in response.error) {
             if (response.error.hasOwnProperty(key)) {
               errorCollection = errorCollection + response.error[key][0] + '\n'
-
             }
           }
           this.alert.error(errorCollection, 'Error');
@@ -330,7 +323,6 @@ export class UserAddEiComponent implements OnInit {
       });
     } catch (err) {
       this.SpinnerService.hide();
-
     }
 
   }

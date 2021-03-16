@@ -37,7 +37,8 @@ export class UserEiConfirmationComponent implements OnInit {
   getkeyCalander: any;
   standard: any = {};
   todate: any;
-params:any;
+  params: any;
+  regStep: any;
 
   constructor(
     private router: Router,
@@ -53,54 +54,58 @@ params:any;
   ) { }
 
   ngOnInit(): void {
+    this.regStep = localStorage.getItem('res.reg_step')
     this.todate = new Date();
     this.todate = this.baseService.getDateFormat(this.todate);
     this.editmodel.class_id = '';
     this.route.queryParams.subscribe(parrams => {
-      this.params=parrams;
+      this.params = parrams;
       if (parrams['school_id']) {
         this.school_id = parrams['school_id'];
         this.isalumini = parrams['isalumini'];
-       
-         
+
+
       }
     })
-    if(this.params.add_course){
+    if (this.params.add_course) {
       // setTimeout(() => {
       //   this.clickOtpModel.nativeElement.click();
       // }, 500);
-      
-        
+
+
     }
     this.getConfirmationDetails();
     this.currentDate = new Date();
   }
 
   editCourse(standard, school_id, courseid) {
-   
+
 
     if (standard[standard.length - 1].is_current_standard) {
-      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
+      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
     } else {
-      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
+      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
     }
 
   }
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');
     if (this.params.returnUrl)
-    this.router.navigate([this.params.returnUrl])
-    else if(localStorage.getItem("addcourse")){
+      this.router.navigate([this.params.returnUrl])
+    else if (localStorage.getItem("addcourse")) {
       this.router.navigate(['user/my-educational-profile']);
-    }else if(localStorage.getItem("editcourse")){
+    } else if (localStorage.getItem("editcourse")) {
       this.router.navigate(['user/my-educational-profile']);
     }
-    else{
+    else if(this.regStep == 7){
+      this.router.navigate(['user/my-educational-profile'])
+    }
+    else {
       this.router.navigate(['user/add-personal-info']);
     }
-    
 
-    
+
+
 
   }
   /**Delete Course  */
@@ -282,21 +287,21 @@ params:any;
   }
   addPastEi() {
     $("#OTPModel").modal('hide');
-    if(this.params.returnUrl){
+    if (this.params.returnUrl) {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "past", "returnUrl": "user/ei-confirmation" } });
-    }else{
+    } else {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "past" } });
     }
-    
+
   }
   addAnotherCourse() {
     $("#OTPModel").modal("hide");
-    if(this.params.returnUrl){
+    if (this.params.returnUrl) {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "current", "returnUrl": "user/ei-confirmation" } });
-    }else{
+    } else {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
     }
-    
+
   }
   getConfirmationDetails() {
     try {
@@ -305,38 +310,38 @@ params:any;
       this.baseService.getData('user/get-ei-course-confirmation-list/').subscribe(
         (res: any) => {
 
-        // let response: any = {};
-        // response = res;
-        if (res.status == true) {
-          this.SpinnerService.hide();
-          this.confirmationDetails = res.data;
-          localStorage.setItem("role", "0");
-          
-          if(this.confirmationDetails.length <= 0)
-            // this.clickOtpModel.nativeElement.click();
-          this.confirmationDetails.forEach(elementCourse => {
-            
+          // let response: any = {};
+          // response = res;
+          if (res.status == true) {
+            this.SpinnerService.hide();
+            this.confirmationDetails = res.data;
+            localStorage.setItem("role", "0");
 
-            elementCourse.ei_detail.course_detail.forEach(elementS => {
-              if (elementS.standard_detail) {
-                elementS.standard_detail.forEach(ele => {
-                  if (ele.is_current_standard) {
-                    localStorage.setItem("role", "1");
+            if (this.confirmationDetails.length <= 0)
+              // this.clickOtpModel.nativeElement.click();
+              this.confirmationDetails.forEach(elementCourse => {
+
+
+                elementCourse.ei_detail.course_detail.forEach(elementS => {
+                  if (elementS.standard_detail) {
+                    elementS.standard_detail.forEach(ele => {
+                      if (ele.is_current_standard) {
+                        localStorage.setItem("role", "1");
+                      }
+
+                    });
                   }
-
                 });
-              }
-            });
 
-          });
-        } else {
+              });
+          } else {
+            this.SpinnerService.hide();
+          }
+        }, (error) => {
           this.SpinnerService.hide();
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
+          console.log(error);
 
-      });
+        });
     } catch (err) {
       this.SpinnerService.hide();
       console.log(err);
