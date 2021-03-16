@@ -58,6 +58,7 @@ export class LectureUploadComponent implements OnInit {
       formData.append('lecture_title', this.model.lecture_title);
       formData.append('lecture_description', this.model.lecture_description);
       formData.append('name_of_teaching_faculty', this.model.name_of_teaching_faculty);
+      formData.append('topic_cover', this.model.topic_cover);
       formData.append('lecture', this.uploadedContent);
       formData.append('course', this.activeRoute.snapshot.params.id)
       this.baseService.action('starclass/lecture-upload/', formData).subscribe(
