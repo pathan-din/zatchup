@@ -105,46 +105,104 @@ export class UserMyEducationalProfileComponent implements OnInit {
       data.is_active = 1
       data.is_read = 0
       data.created_on = this.baseService.getDateFormat(date);
-      let getFriendListExistingData:any ={}
-      getFriendListExistingData = this.getFriendListBySender(localStorage.getItem('fbtoken'),uuid)
-      if(getFriendListExistingData){
-        var id = localStorage.getItem("friendlidt_id");
-        this.firestore.collection("user_friend_list/").doc(id)
-        .update(data)
-        .then(
-            res => {}, 
-            err => reject(err)
-        )
-      }else{
-        this.firestore.collection("user_friend_list")
-        .add(data)
-        .then(
-            res => {
-              localStorage.setItem("friendlidt_id",res.id)
-             // this.getDocumentsChat()
-
-            }, 
-            err => reject(err)
-        )
-      }
       
+      this.getFriendListBySender(localStorage.getItem('fbtoken'),uuid,data)
+      
+     
+    
      
     })
   }
 
-  getFriendListBySender(loginfirebase_id:any,user_accept_id:any){
+  getFriendListBySender(loginfirebase_id:any,user_accept_id:any,data){
   //  console.log(
   //   this.firestore.collection('user_friend_list',ref=>ref.where('user_accept_id','==' ,loginfirebase_id ))
   //  );
+  
    
   this.firestore.collection('user_friend_list').get()
   .subscribe(querySnapshot => {
-    querySnapshot.docs.map(doc => {
-      let res:any=[]
-      res=doc.data();
-      console.log(res);
-      return doc.data();
-    });
+    
+    if(querySnapshot.docs.length>0){
+      querySnapshot.docs.map(doc => {
+        console.log(doc);
+        let res:any=[]
+        res=doc.data();
+        
+        if((res.user_accept_id==user_accept_id && res.user_request_id==loginfirebase_id) )
+        {
+         
+           doc.id;
+           if(doc.id){
+            var id = doc.id;
+            localStorage.setItem("friendlidt_id",doc.id)
+            this.firestore.collection("user_friend_list/").doc(id)
+            .update(data)
+            .then(
+                res => {}, 
+                 
+            )
+          }else{
+            this.firestore.collection("user_friend_list")
+            .add(data)
+            .then(
+                res => {
+                  localStorage.setItem("friendlidt_id",res.id)
+                  }, 
+                
+            )
+          }
+          
+  
+        }else if((res.user_request_id==user_accept_id && res.user_accept_id==loginfirebase_id)){
+         
+          doc.id;
+          localStorage.setItem("friendlidt_id",doc.id)
+          if(doc.id){
+           var id = doc.id;
+         
+           this.firestore.collection("user_friend_list/").doc(id)
+           .update(data)
+           .then(
+               res => {}, 
+                
+           )
+         }else{
+           this.firestore.collection("user_friend_list")
+           .add(data)
+           .then(
+               res => {
+                 localStorage.setItem("friendlidt_id",res.id)
+                 }, 
+               
+           )
+         }
+        }else{
+          console.log("hhhhh");
+          
+          this.firestore.collection("user_friend_list")
+          .add(data)
+          .then(
+              res => {
+                localStorage.setItem("friendlidt_id",res.id)
+                }, 
+              
+          )
+        }
+        
+      });
+    }else{
+  
+      this.firestore.collection("user_friend_list")
+      .add(data)
+      .then(
+          res => {
+            localStorage.setItem("friendlidt_id",res.id)
+            }, 
+          
+      )
+    }
+    
   });
 
 
