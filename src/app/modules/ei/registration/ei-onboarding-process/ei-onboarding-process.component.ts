@@ -36,7 +36,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   documentForm2Elements: any;
   year: any = [];
   month: any = [];
-  opening_date:any='';
+  opening_date: any = '';
   months: any = [{ 'name': 'JAN' },
   { 'name': 'FEB' },
   { 'name': 'MAR' },
@@ -87,8 +87,8 @@ export class EiOnboardingProcessComponent implements OnInit {
     this.route.queryParams.subscribe(param => {
       this.countIndex = param.reg_steps - 1;
       this.params = param;
-      if(this.params.action && this.params.action == 'edit')
-      this.getBankDetails()
+      if (this.params.action && this.params.action == 'edit')
+        this.getBankDetails()
       console.log('params is as ::', this.params)
     })
     this.getAllState()
@@ -264,10 +264,10 @@ export class EiOnboardingProcessComponent implements OnInit {
 
           this.model = res;
           if (this.model.opening_date) {
-            var date = this.model.opening_date.split('-') ;
+            var date = this.model.opening_date.split('-');
             this.opening_date = date[0];
             this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
-            
+
           } else {
             this.model.opening_date = '';
           }
@@ -536,6 +536,10 @@ export class EiOnboardingProcessComponent implements OnInit {
             if (this.params.redirect_url) {
               this.router.navigate(["ei/" + this.params.redirect_url]);
             }
+            if (this.params.reg_steps){
+              let uri = 'ei/onboarding-process'
+              this.reloadWindow(uri, 3)
+            } 
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
@@ -594,10 +598,12 @@ export class EiOnboardingProcessComponent implements OnInit {
             if (this.params.redirect_url) {
               this.router.navigate(["ei/" + this.params.redirect_url]);
             }
+            if (this.params.reg_steps){
+              let uri = 'ei/onboarding-process'
+              this.reloadWindow(uri, 4)
+            }              
             this.myStepper.selected.completed = true;
             this.myStepper.next();
-
-
           } else {
             this.loader.hide();
             this.alert.error(res.error.message[0], 'Error')
@@ -726,6 +732,10 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.loader.hide();
       this.alert.error(err, 'Error')
     }
+  }
+  reloadWindow(uri, params){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri], { queryParams: { 'reg_steps': params}}));
   }
 }
 
