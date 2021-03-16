@@ -290,39 +290,45 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
   }
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
-    this.firestore.collection('user_friend_list').get()
-         .subscribe(querySnapshot => {
-           if (querySnapshot.docs.length > 0) {
-             querySnapshot.docs.map(doc => {
-             
-               let res:any=[]
-               res=doc.data();
-               console.log(res);
-               
-               if((res.user_accept_id==user_accept_id && res.user_request_id==loginfirebase_id) || (res.user_accept_id==loginfirebase_id && res.user_request_id==user_accept_id) )
-               {
-                 
-                 this.firestore.collection("user_friend_list/").doc(doc.id).update(data).then(res => {localStorage.setItem("friendlidt_id",doc.id)})
-                 setTimeout(() => {
-                  this.getDocumentsChat();
-                 }, 500);
-                 
-                 
-               }
-               
-             });
-           }else{
-             //this.firestore.collection("user_friend_list/").doc(id).update(data).then()
-             this.firestore.collection("user_friend_list").add(data).then(res => {
-             localStorage.setItem("friendlidt_id",res.id)
-             setTimeout(() => {
-              this.getDocumentsChat();
-             }, 500);
-             
-            })
-           }
-   
-         });
+    let checkCounter:boolean=false;
+    this.firestore.collection('user_friend_list').valueChanges().subscribe((res:any)=>{
+      let dataEle = res.find(elem=>{
+                      return ((elem.user_request_id===loginfirebase_id && elem.user_accept_id===user_accept_id) || (elem.user_request_id===user_accept_id && elem.user_accept_id===loginfirebase_id))  
+                    })
+      if(dataEle){
+        this.firestore.collection('user_friend_list').get()
+        .subscribe(querySnapshot => {
+          if (querySnapshot.docs.length > 0) {
+            querySnapshot.docs.map(doc => {
+            
+              let res:any=[]
+              res=doc.data();
+              
+              if((res.user_request_id==loginfirebase_id && res.user_accept_id==user_accept_id) || (res.user_accept_id==loginfirebase_id && res.user_request_id==user_accept_id) )
+              {
+                checkCounter=true; 
+                this.firestore.collection("user_friend_list/").doc(doc.id).update(data).then(res => {localStorage.setItem("friendlidt_id",doc.id)})
+                
+                
+                
+              } 
+              
+            });
+          }
+  
+        });
+      } else{
+        this.firestore.collection("user_friend_list").add(data).then(res => {
+          localStorage.setItem("friendlidt_id",res.id)
+           
+          
+         })
+      }             
+     
+      
+    })
+     
+       
        }
   getDocumentsChat() {
     this.conversation = [];
@@ -340,28 +346,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     })
     
     
-    // this.firestore.collection('chat_conversation')
-    //   .get().toPromise().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //       let newData: any = {};
-    //       newData = doc.data();
-    //       this.dataStudent = newData.data;
-
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting documents: ", error);
-    //   });
-    // this.firestore.collection('chat_conversation').valueChanges().subscribe((res: any) => {
-    //   if (res.length > 0) {
-    //     this.conversation = res[0].data;
-    //     this.dataStudent = res[0].data;
-    //   } else {
-    //     this.conversation = [];
-    //     this.dataStudent = [];
-    //   }
-
-    // })
+    
   }
 
   getRecepintUserDetails(uuid) {
