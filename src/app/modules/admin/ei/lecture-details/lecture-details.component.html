@@ -1,12 +1,16 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
 
-    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-        <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap p-0">
+    <div class="row coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="col-md-6 d-flex justify-content-start align-items-center flex-wrap p-0">
             <span class="mr-3 cursorStyle">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
             <h2 class="commonFontSize semiBoldFont m-0">Lecture Details</h2>
+
+        </div>
+        <div class="col-6 text-right" >
+            <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 " >Edit Lecture</button>
         </div>
         <div class="mt-2 border-0 mx-0">
             <!-- start Div for banner-->
@@ -20,16 +24,16 @@
                             <p>Lecture Title</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{details.lecture_title}}</p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.lecture_title}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>level of Education</p>
+                            <p>Level of Education</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.level_of_education}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -38,7 +42,7 @@
                             <p>Field</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.field}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -47,7 +51,7 @@
                             <p>Standard</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.standard}} </p>
                         </div>
                     </div>
                     <div class="row">
@@ -56,7 +60,7 @@
                             <p>Subject</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.subject}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -65,7 +69,7 @@
                             <p>Teaching Faculty Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.teaching_faculty_details}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -74,7 +78,7 @@
                             <p>Topic Cover</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.topic_cover}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -83,7 +87,7 @@
                             <p>Description</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{lectureDetails.details.lecture_description}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -101,7 +105,17 @@
                             <p>Upload Date</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span> {{lectureDetails.details.upload_date | date}}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Delete</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
+                            <p (click)="deleteCourse(lectureDetails.details.id)"><span class="mr-3">:</span> Delete</p>
                         </div>
                     </div>
                     <div class="row">
@@ -111,15 +125,9 @@
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Delete</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
-                            <p><span class="mr-3">:</span> Delete</p>
+                            <video autoplay="autoplay" preload="auto" ng-click="video($event)">
+                                <source src="{{lectureDetails.details.lecture}}" type="video/mp4" />
+                           </video>
                         </div>
                     </div>
                 </div>
