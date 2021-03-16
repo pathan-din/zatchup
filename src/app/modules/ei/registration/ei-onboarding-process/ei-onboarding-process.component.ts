@@ -62,7 +62,8 @@ export class EiOnboardingProcessComponent implements OnInit {
   countIndex: any;
   extentionCheck: any = '';
   params: any;
-  serverImageUrl: any
+  serverImageUrl: any;
+  openingYear: any;
   //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
   //     console.log("Processing beforeunload...", this.countIndex);
   //     this.getRegistrationStep();
@@ -378,6 +379,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.eiService.updateOnboardStepFirstData(this.model, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
+            this.openingYear = new Date(this.model.opening_date).getFullYear();
             this.loader.hide();
             this.getCourseDetailsByEiOnboard();
             if (this.params.redirect_url) {

@@ -10,9 +10,9 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="State" class="mediumFont commonFontSize letterspacing">Select State </label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <select (change)="getCityByState(model.school_data.state)" id="state_list" [(ngModel)]="model.school_data.state"
-                                    name="state_list" class="custom-select custom-select-2Col form-control-input"
-                                    required>
+                                <select (change)="getCityByState(model.school_data.state)" id="state_list"
+                                    [(ngModel)]="model.school_data.state" name="state_list"
+                                    class="custom-select custom-select-2Col form-control-input" required>
                                     <option value="">State</option>
                                     <option value="{{stateObj.state}}" *ngFor="let stateObj of stateList">
                                         {{stateObj.state}}</option>
@@ -23,9 +23,9 @@
                         <div class="col-sm-6 ">
                             <label for="City" class="mediumFont commonFontSize letterspacing">Select City </label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <select (change)="getSchoolListBycityId(model.school_data.city)" id="city_list" [(ngModel)]="model.school_data.city"
-                                    name="city_list" class="custom-select-2Col custom-select form-control-input"
-                                    required>
+                                <select (change)="getSchoolListBycityId(model.school_data.city)" id="city_list"
+                                    [(ngModel)]="model.school_data.city" name="city_list"
+                                    class="custom-select-2Col custom-select form-control-input" required>
                                     <option value="">City</option>
                                     <option value="{{city.city}}" *ngFor="let city of cityList">{{city.city}}</option>
 
@@ -45,14 +45,14 @@
                                 Name</label>
 
                             <div class="shadow-none">
-                                <ng-autocomplete [(ngModel)]="name_of_school" placeHolder="Enter School" name="school_name"
-                                     id="school_name" [data]="data"
-                                    [searchKeyword]="keyword" (selected)='suggestData($event)'
-                                    (inputChanged)='suggest($event)' (inputCleared)="clearSuggestData()"
-                                    (inputFocused)='suggest($event)' [itemTemplate]="itemTemplate">
+                                <ng-autocomplete [(ngModel)]="name_of_school" placeHolder="Enter School"
+                                    name="school_name" id="school_name" [data]="data" [searchKeyword]="keyword"
+                                    (selected)='suggestData($event)' (inputChanged)='suggest($event)'
+                                    (inputCleared)="clearSuggestData()" (inputFocused)='suggest($event)'
+                                    [itemTemplate]="itemTemplate">
                                 </ng-autocomplete>
-                                <input required name="school_name" [(ngModel)]="model.school_data.name_of_school" id="school_name"
-                                    type="hidden">
+                                <input required name="school_name" [(ngModel)]="model.school_data.name_of_school"
+                                    id="school_name" type="hidden">
                                 <ng-template #itemTemplate let-item>
                                     <a [innerHTML]="item.name_of_school"></a>
                                 </ng-template>
@@ -141,7 +141,7 @@
                         </div>
                     </div>
 
-                     
+
 
                     <div *ngIf="model.school_data.school_code" class="form-group row  ">
                         <div class="col-sm-12 ">
@@ -161,8 +161,8 @@
                             <label for="school_phone" class="mediumFont commonFontSize letterspacing">School Phone
                                 Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)" id="school_phone" [(ngModel)]="model.school_data.school_phone"
-                                    name="school_phone"
+                                <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)"
+                                    id="school_phone" [(ngModel)]="model.school_data.school_phone" name="school_phone"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="tel" placeholder="Enter School Phone Number">
                             </div>
@@ -174,8 +174,8 @@
                             <label for="twitter_url" class="mediumFont commonFontSize letterspacing">School Email
                                 address</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="school_email" [(ngModel)]="model.school_data.school_email"
-                                    name="school_email"
+                                <input (keyup)="isValid($event)" id="school_email"
+                                    [(ngModel)]="model.school_data.school_email" name="school_email"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="email" placeholder="School Email address">
                             </div>
@@ -186,7 +186,8 @@
                         <div class="col-sm-12 ">
                             <label for="fb_url" class="mediumFont commonFontSize letterspacing">Facebook url</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.school_data.fb_url" name="fb_url"
+                                <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.school_data.fb_url"
+                                    name="fb_url"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Facebook URL">
                             </div>
@@ -197,8 +198,8 @@
                         <div class="col-sm-12 ">
                             <label for="twitter_url" class="mediumFont commonFontSize letterspacing">Twitter url</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="twitter_url" [(ngModel)]="model.school_data.twitter_url"
-                                    name="twitter_url"
+                                <input (keyup)="isValid($event)" id="twitter_url"
+                                    [(ngModel)]="model.school_data.twitter_url" name="twitter_url"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Twitter URL">
                             </div>
@@ -208,7 +209,8 @@
                     <!--End Fb URL-->
 
 
-                    <h3 class="color-black commonFontSize semiBoldFont mt-3 mb-3 border-bottom">School Admin (For Signup and Login)</h3>                    
+                    <h3 class="color-black commonFontSize semiBoldFont mt-3 mb-3 border-bottom">School Admin (For Signup
+                        and Login)</h3>
 
                     <div class="form-group row  ">
                         <div class="col-sm-6 MobileCol6MB">
@@ -313,9 +315,14 @@
                             <input (click)="isValid($event)" (change)="isValid($event)" id="terms_condition" required
                                 [(ngModel)]="model.is_term_cond" name="terms_condition" type="checkbox"
                                 id="term-condition">
-                            <label for="term-condition" class="commonFontSize mediumFont ml-2">By continuing, you agree to our 
-                                <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToTermsAndConditions('school', 'view', 'tc')" >Terms & Conditions</span> and 
-                                <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToTermsAndConditions('school', 'view', 'privacy-policy')">Privacy Policy</span></label>
+                            <label for="term-condition" class="commonFontSize mediumFont ml-2">By continuing, you agree
+                                to our
+                                <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer"
+                                    (click)="goToTermsAndConditions('school', 'view', 'tc')">Terms & Conditions</span>
+                                and
+                                <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer"
+                                    (click)="goToTermsAndConditions('school', 'view', 'privacy-policy')">Privacy
+                                    Policy</span></label>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.terms_condition"></div>
                         </div>
 
@@ -328,6 +335,10 @@
                     </button>
                     <p class="text-center commonFontSize mediumFont my-4 ">Already have an account?<span
                             class="textUnderlineStyle " (click)="redirectToLogin()">Sign In</span></p>
+                    <p class="text-center commonFontSize mediumFont my-4 ">Sub-admin <span class="textUnderlineStyle "
+                            routerLink="/ei/login-subadmin">Login</span></p>
+                    <p class="text-center commonFontSize mediumFont my-4"> Sub-admin <span class="textUnderlineStyle "
+                        routerLink="/ei/subadmin-registration">SignUp</span></p>
                     <p class="text-center commonFontSize mediumFont m-0 ">Facing issue in registration?</p>
                     <p class="text-center commonFontSize mediumFont mb-0 textUnderlineStyle "
                         (click)="goToEiContactUsPage() ">Contact us</p>
