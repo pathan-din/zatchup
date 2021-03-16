@@ -119,8 +119,8 @@
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>
                                 <div class="addWorkcourse mt-2">  
                                     <span  (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1" class="text-white mr-2 small-text px-2 py-2 rounded bg-paret-green cursorStyle">Request Pending Course</span>                                  
-                                    <a (click)="redirectEiConfirmationPagePage(objEd.school_id)">
-                                        <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid" style="height: 30px; width: 30px; margin-right: 35px;">
+                                    <a (click)="redirectEiConfirmationPagePage('')">
+                                        <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid" style="height: 30px; width: 30px; margin-right: 35px;">
                                      </a>  
                                      <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)" src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid deleteImg" style="height: 30px; width: 30px; margin-right: 10px;">
                                 </div>
