@@ -92,11 +92,9 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="color-blue">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true" 
-                            (click)="goToCourseView(element)"></i>
-                            <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true"
-                                    (click)="deleteCourse(element.id)"></i>
-                            <i data-toggle="modal" data-target="#addPlan" (click)="editPlan(element)" class="fa fa-refresh mr-2 color-green fa-lg cursorStyle" aria-hidden="true"></i>
+                            <i class="fa fa-eye color-lightBlue fa-lg cursorStyle" aria-hidden="true" (click)="goToCourseView(element)"></i>
+                            <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id)"></i>
+                            <i data-toggle="modal" data-target="#addPlan" (click)="editPlan(element)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>
 
@@ -135,9 +133,9 @@
                     </div>
                     <div class="modal-body px-0" *ngIf="planDetails">
                         <form autocapitalize="off" autocomplete="off" #form1>
-                            <div class=" form-group row "  *ngFor="let details of planDetails ;let i=index;">
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
+                            <div class="form-group row border-bottom"  *ngFor="let details of planDetails ;let i=index;">
+                                <div class="col-md-6">
+                                    <div class="form-group row ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Plan Name
                                         </label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -150,8 +148,8 @@
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.plan_name"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
+                                <div class="col-md-6">
+                                    <div class="form-group row ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Views Per Lecture
                                         </label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -163,8 +161,8 @@
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.views_per_lecture"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
+                                <div class="col-md-6">
+                                    <div class="form-group row ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Validity
                                         </label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -176,8 +174,8 @@
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.validity"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group row  ml-0 mr-0">
+                                <div class="col-md-6">
+                                    <div class="form-group row ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing">Add Price 
                                         </label>
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -190,7 +188,7 @@
                                     </div>
                                 </div>
 
-                                </div>
+                            </div>
                             <button type="button"  (click)="createAndUpdatePlan(model.id) && form1.reset()"
                                 class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                 Submit
