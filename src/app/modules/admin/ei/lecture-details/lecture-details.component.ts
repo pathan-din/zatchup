@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,24 +17,28 @@ export class LectureDetailsComponent implements OnInit {
     private baseService: BaseService,
     private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {
     this.lectureDetails = new LectureDetails()
    }
 
   ngOnInit(): void {
+    if(this.route.snapshot.queryParamMap.get('id')){
+      this.getLectureDetails()
+    }
   }
 
   getLectureDetails(){
     try {
       this.loader.show()
       this.lectureDetails.model = {
-
+        "id": this.route.snapshot.queryParamMap.get('id')
       }
-      this.baseService.getData('', this.lectureDetails.model).subscribe(
+      this.baseService.getData('starclass/lecture-detail/', this.lectureDetails.model).subscribe(
         (res : any) =>{
           if(res.status == true){
-            this.lectureDetails.details = res.results
+            this.lectureDetails.details = res.results[0]
           }
           else{
             this.alert.error(res.error.message, 'Error')

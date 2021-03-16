@@ -295,7 +295,7 @@
                     <ng-container matColumnDef="viewDetails">
                         <mat-header-cell *matHeaderCellDef>View Details</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View" (click)="goToLectureView()"></i>
+                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View" (click)="goToLectureView(element.id)"></i>
                         </mat-cell>
                     </ng-container>
 
