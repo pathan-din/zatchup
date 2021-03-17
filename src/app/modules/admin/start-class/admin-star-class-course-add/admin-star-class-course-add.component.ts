@@ -137,7 +137,9 @@ export class AdminStarClassCourseAddComponent implements OnInit {
          
       }
       const formData = new FormData();
-      formData.append('id', this.activeRoute.snapshot.queryParamMap.get('id'));
+      if(this.action == 'edit'){
+        formData.append('id', this.activeRoute.snapshot.queryParamMap.get('id'));
+      }
       formData.append('course_name', this.model.course_name);
       formData.append('level_of_education', this.model.level_of_education);
       formData.append('course_preview', this.uploadedContent);
