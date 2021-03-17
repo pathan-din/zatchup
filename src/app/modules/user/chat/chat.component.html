@@ -50,9 +50,9 @@
                 
             </div>
 
-            <div class="addComment mt-2 d-flex justify-content-between align-items-center flex-wrap">
+            <div class="addComment mt-2 d-flex justify-content-between align-items-center flex-wrap position-relative">
                 <textarea [(ngModel)]="model.comment" name="comment" class="form-control chatMessage ml-2" id="" name="message" rows="1" placeholder="Write a Message.."  required></textarea>
-                <button (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" [disabled]="!model.comment">Send</button>
+                <button (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" [disabled]="!model.comment"> Send</button>
                 <!-- <i  (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" aria-hidden="true"></i> -->
                 <!-- <img [disabled]="!model.comment" (click)="sendChat()" src="assets/images/userWebsite/sent-message.png" class="img-fluid cursorStyle imgComment mr-3"> -->
             </div> 
