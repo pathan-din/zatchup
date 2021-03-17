@@ -1,26 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
+import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { LectureList, StarclassCourseDetails } from '../../ei/modals/education-institute.modal';
-
-export interface PeriodicElement {
-  position: number;
-    lectureTitle: string;
-    topicsCoverd: string;
-    durationOfLecture: string;
-    viewDetails: string;
-    play: number;
-  }
-  
-  
-  const ELEMENT_DATA: PeriodicElement[] = [
-    {'position': 1,'lectureTitle':'Information Technology', 'topicsCoverd': 'Cover',
-    'viewDetails': '', 'durationOfLecture': '2 Hours', 'play': 50} 
-  ];
-
 @Component({
   selector: 'app-starclass-course-preview',
   templateUrl: './starclass-course-preview.component.html',
@@ -28,16 +13,17 @@ export interface PeriodicElement {
 })
 
 export class StarclassCoursePreviewComponent implements OnInit {
+  @ViewChild('closeaddPlan') closeaddPlan: any;
   starclassCourseDetails : StarclassCourseDetails
   params: any;
-  // displayedColumnsOne: string[] = ['position','lectureTitle', 'topicsCoverd',
-  // 'durationOfLecture','play','viewDetails'];   
-  // planDisplayedColumns: string[] = ['position', 'price','validity','views',];
  lectureList : LectureList
   dataSource :any;
   dataUrl: any;
-  id: any;
-  courseData: any;
+  courseId: any;
+  courseData: any={};
+  model: any ={};
+  errorDisplay : any = {};
+
   // planDetails: any
 
   constructor(
@@ -47,6 +33,7 @@ export class StarclassCoursePreviewComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private router: Router,
+    private validation: GenericFormValidationService
   ) { 
     this.starclassCourseDetails = new StarclassCourseDetails();
     this.lectureList = new LectureList()
@@ -58,7 +45,11 @@ export class StarclassCoursePreviewComponent implements OnInit {
       this.getCourseDetails()
       this.getLectureList()
     });
-    this.id = this.activeRoute.snapshot.queryParamMap.get('id')
+    this.courseId = this.activeRoute.snapshot.queryParamMap.get('id')
+  }
+  editPlan(obj){
+    console.log(obj);
+    this.model.id=obj.id;
   }
 
   goToEditCourse(id){
@@ -82,17 +73,25 @@ export class StarclassCoursePreviewComponent implements OnInit {
         (res:any) => {
           if(res.status == true){
             this.starclassCourseDetails.courseDetails = res.results
-            this.courseData = res.results[0]
+            this.courseData = res.results[0];
+            
+            
+            // if(this.courseData.plan_data){
+
+            // }else{
+            //   this.courseData.plan_data = [];
+            // }
+            
           }
           else{
             this.alert.error(res.error.message, 'Error')
           } this.loader.hide()
         }, err =>{
-          this.alert.error(err, 'Error')
+          this.alert.error(err.statusText, 'Error')
           this.loader.hide()
         } )
     } catch (error) {
-      this.alert.error(error.error, 'Error')
+      this.alert.error(error.statusText, 'Error')
       this.loader.hide()
     }
   }
@@ -140,6 +139,47 @@ export class StarclassCoursePreviewComponent implements OnInit {
  
   goBack(){
     this.location.back()
+  }
+  addPlan(id: any){
+    try {
+      this.errorDisplay={};
+      this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
+      if(this.errorDisplay.valid)
+      {
+        return false;
+      }
+    
+    
+      this.loader.show()
+      this.model = {
+        "course": this.courseData.id,
+        plan: this.courseData.plan_data
+      }
+      console.log(this.model);
+    this.baseService.action('starclass/course-price/', this.model).subscribe(
+      (res:any) =>{
+        if(res.status == true){
+          this.closeaddPlan.nativeElement.click();
+          
+          this.alert.success(res.message, 'Success');
+          this.getCourseDetails()
+          // console.log(this.model);
+          
+        }
+        else{
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide()
+      },
+      err => {
+        this.alert.error(err, 'Error')
+        this.loader.hide()
+      }
+    )
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+      this.loader.hide()
+    }
   }
 
 //   $scope.video = function(e) {

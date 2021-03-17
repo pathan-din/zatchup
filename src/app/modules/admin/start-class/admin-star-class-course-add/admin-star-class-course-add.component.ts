@@ -21,7 +21,7 @@ export class AdminStarClassCourseAddComponent implements OnInit {
   uploadedContent_image: File;
   errorDisplay : any = {};
   courseDetails: any;
-
+  action: any;
   constructor(
     private baseService: BaseService,
     private loader: NgxSpinnerService,
@@ -34,9 +34,12 @@ export class AdminStarClassCourseAddComponent implements OnInit {
 
   ngOnInit() {
     // this.getPlanList()
-    if(this.activeRoute.snapshot.queryParamMap.get('id')){
-      this.getCourseDetails()
-    }
+    this.action = this.activeRoute.snapshot.queryParamMap.get('action');
+    if(this.action == 'edit')
+    this.getCourseDetails()
+    // if(this.activeRoute.snapshot.queryParamMap.get('id')){
+      
+    // }
     
   }
 

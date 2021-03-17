@@ -72,12 +72,14 @@ export class LectureUploadComponent implements OnInit {
 
   uploadLecture() {
     try {
-      // this.errorDisplay={};
-      // this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
-      // if(this.errorDisplay.valid)
-      // {
-      //   return false;
-      // }
+      this.errorDisplay={};
+      this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
+      
+      if(this.errorDisplay.valid)
+      {
+        return false;
+      }
+      
       this.loader.show()
       var url = 'starclass/lecture-upload/';
 

@@ -11,7 +11,7 @@
         <div class="row mt-3">
             <div class="col-md-12 customVideo" *ngFor="let details of starclassCourseDetails.courseDetails">
                 <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
-                <video autoplay="autoplay" preload="auto" ng-click="video($event)">
+                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
                      <source src="{{details.course_preview}}" type="video/mp4" />
                 </video>
             </div>
@@ -99,15 +99,7 @@
                             <p><span class="mr-3">: {{courseData.faculty_details}}</span></p>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Duration of the Course(In Hours)</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span></p>
-                        </div>
-                    </div> -->
+                   
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
@@ -139,60 +131,24 @@
                         </div>
                     </div>
 
-                    <!-- <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Plan Detail</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span></p>
-                        </div>
-
-                        <div class="col-12 ml-4">
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                                    <p>Date of Buying</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p><span class="mr-3">:</span></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                                    <p>Details of Plan</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p class="color-blue"><span class="mr-3 text-dark">:</span><span class="textUnderlineStyle color-blue cursorStyle">  </span></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                                    <p>Amount</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p class="color-blue"><span class="mr-3 text-dark">:</span><span class="textUnderlineStyle color-blue cursorStyle">  </span></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                                    <p>Date of Expiry</p>
-                                </div>
-                                <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                                    <p class="color-blue"><span class="mr-3 text-dark">:</span><span class="textUnderlineStyle color-blue cursorStyle">  </span></p>
-                                </div>
-                            </div>
-                        </div>   
-                    </div> -->
+                 
                 </div>
             </div>
+           
             <!--End div for oView Course Details-->
-            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">
-                <h2 class="commonFontSize semiBoldFont m-0">Added Plan</h2>
-         <div class="tableDiv " *ngIf="courseData">
+            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3" >
+               
+                <div  *ngIf="courseData.plan_data">
+                <div class="row topDiv">
+                    <div class="col-6 ">
+                        <h2 class="commonFontSize semiBoldFont m-0">Added Plan</h2>
+                    </div>
+                    <div class="col-6 text-right" >
+                        <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
+                        data-toggle="modal" data-target="#addPlan" (click)="editPlan(courseData)" >Edit Plan</button>
+                    </div>
+                </div>
+         <div class="tableDiv customTable">
                 <div class="mat-elevation-z1 table-responsive">
                     <mat-table [dataSource]="courseData.plan_data">
     
@@ -240,6 +196,7 @@
                 </div>
             </div>
             
+        </div>
         </div>
         </div>
 
@@ -323,5 +280,85 @@
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
-        
+
+
+        <div class="modal fade" id="addPlan" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center pb-0 ">
+                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Plan To Course</h2>
+                        <button #closeaddPlan type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0" *ngIf="courseData.plan_data">
+                        <form autocapitalize="off" autocomplete="off" #form1>
+                            <div class="form-group row border-bottom"  *ngFor="let details of courseData.plan_data ;let i=index;">
+                                <div class="col-6 col-md-4">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Plan Name
+                                        </label>
+                                        <div class="w-100 p-0">
+                                            <input [(ngModel)]="details.plan_name"
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="text" placeholder="Enter Plan Name" name="plan_name_{{i}}"
+                                                required readonly>
+                                        </div>
+                                        <!-- [(ngModel)]="couponModal.code" (keyup)="isValid()" -->
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.plan_name"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Views Per Lecture
+                                        </label>
+                                        <div class="w-100 p-0">
+                                            <input [(ngModel)]="details.views_per_lecture"
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="number" placeholder="Enter Views Per Lecture" name="views_per_lecture_{{i}}"
+                                                 required readonly>
+                                        </div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.views_per_lecture"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing"> Validity
+                                        </label>
+                                        <div class="w-100 p-0">
+                                            <input [(ngModel)]="details.validity"
+                                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                type="number" placeholder="Enter validity" name="validity_{{i}}"
+                                               required readonly>
+                                        </div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.validity"></div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-12">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <label for="" class="mediumFont commonFontSize letterspacing">Add Price 
+                                        </label>
+                                        <div class="w-100 p-0">
+                                            <input [(ngModel)]="details.price" class="border form-control-input form-control commonFontSize regularFont letterspacing"
+                                                type="number" placeholder="Enter Price " name="price_{{i}}" required>
+                                        </div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.price"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="button"  (click)="addPlan(model.id) && form1.reset()"
+                                class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
