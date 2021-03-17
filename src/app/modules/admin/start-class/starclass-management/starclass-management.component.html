@@ -1,5 +1,5 @@
 <app-admin-sidenav></app-admin-sidenav>
-<div class="container main-container p-3">
+<div class="container main-container p-3" *ngIf= "dashBoardCount">
     <div class="EI-management-div bg-white px-3 pt-2 pb-3">
         <div class="row topDiv mb-1">
             <div class="col-md-12 ">
@@ -11,10 +11,10 @@
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="goToStarClassPlan()">
                     <p class="p-2 mediumFont commonFontSize">ZatchUp Starclass Plans</p>
                     <h2 class="countFontSize text-center semiBoldFont">
-                        0
+                        {{dashBoardCount.plan_count}}
                     </h2>
                     <p class="p-2 mb-0 mediumFont commonFontSize bg-light-secondary Btn-lg-last">
-                       ZatchUp Starclass Plans: <span class="ml-2">0</span> </p>
+                       ZatchUp Starclass Plans: <span class="ml-2"> {{dashBoardCount.plan_count}}</span> </p>
                 </div>
             </div>
             <div class="col-md-6 MobileCol6MB">
@@ -39,9 +39,10 @@
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="goToCourseList()" >
                     <p class="p-2 mediumFont commonFontSize">Courses Available</p>
                     <h2 class="countFontSize text-center semiBoldFont">
-                        0
+                        {{dashBoardCount.course_available_count}}
                     </h2>                    
-                    <p class="Btn-lg-last mb-0 p-2 mb-0 mediumFont commonFontSize bg-light-secondary">Total Courses Available: <span class="ml-2">0</span></p>                   
+                    <p class="Btn-lg-last mb-0 p-2 mb-0 mediumFont commonFontSize bg-light-secondary">Total Courses Available: 
+                        <span class="ml-2"> {{dashBoardCount.course_available_count}}</span></p>                   
                 </div>
             </div>
             <div class="col-md-5 MobileCol6MB">

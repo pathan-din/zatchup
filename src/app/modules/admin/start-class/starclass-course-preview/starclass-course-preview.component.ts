@@ -62,7 +62,7 @@ export class StarclassCoursePreviewComponent implements OnInit {
   }
 
   goToEditCourse(id){
-    this.router.navigate(['admin/starclass-course-add'], {queryParams:{'id':id}})
+    this.router.navigate(['admin/starclass-course-add'], {queryParams:{'id':id, 'action': 'edit'}})
   }
   goToLectureView(id){
     this.router.navigate(['admin/lecture-details'], {queryParams:{'id':id}})

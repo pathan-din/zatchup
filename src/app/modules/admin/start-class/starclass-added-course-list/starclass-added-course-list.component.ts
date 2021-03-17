@@ -75,7 +75,7 @@ export class StarclassAddedCourseListComponent implements OnInit {
   }
 
   goToAddCourse(){
-    this.router.navigate(['admin/starclass-course-add'])
+    this.router.navigate(['admin/starclass-course-add'], {queryParams:{'action': 'add'}})
   }
 
   getCourseList(page? : any){
