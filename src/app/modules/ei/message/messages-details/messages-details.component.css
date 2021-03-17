@@ -37,8 +37,10 @@
     float: right;
 }
 .position-ppin{
-    top: 9px;
-    right: 8px;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 80px;
 }
 
 @media (max-width: 767px){
