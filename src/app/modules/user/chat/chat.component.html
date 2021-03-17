@@ -13,10 +13,10 @@
                 <div class="border-bottomCustom mb-3 pt-3 pb-3 d-flex justify-content-between flex-wrap align-items-center">
                     <div class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
                         <div class="profile_pick">
-                            <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
+                            <img src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'assets/images/userWebsite/share-my-profile-icon.png' }}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2">
-                            <p class="m-0">Mahesh Chand</p>
+                            <p class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}</p>
                             <span class="small-text-2">Online</span>
                         </div>
                     </div>                
@@ -32,15 +32,15 @@
                     </div>
                 </div>
 
-                <div class="chat_contentBox pt-3">
-                    <div class="chatIn">
-                        <p class="color-white m-0">Hi</p>
+                <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
+                    <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
+                        <p class="color-white m-0">{{objCon.msg}}</p>
                         <span class="text-right color-white small-text-2 ml-4">7:30 pm</span>
                     </div>
 
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
                         <div class="chatOut bg-white">
-                            <p class="m-0">Hi</p>
+                            <p class="m-0">{{objCon.msg}}</p>
                             <span class="text-right small-text-2 d-block color-gray ml-4">7:32 pm</span>                    
                             <img src="assets/images/userWebsite/message-delivered.png" class="img-fluid cursorStyle ml-5 text-right" style="width: 17px; float: right;">
                         </div>
@@ -51,8 +51,10 @@
             </div>
 
             <div class="addComment mt-2 d-flex justify-content-between align-items-center flex-wrap">
-                <textarea class="form-control chatMessage ml-2" id="" name="message" rows="1" placeholder="Write a Message.."  required></textarea>
-                <img src="assets/images/userWebsite/sent-message.png" class="img-fluid cursorStyle imgComment mr-3">
+                <textarea [(ngModel)]="model.comment" name="comment" class="form-control chatMessage ml-2" id="" name="message" rows="1" placeholder="Write a Message.."  required></textarea>
+                <button (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" [disabled]="!model.comment">Send</button>
+                <!-- <i  (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" aria-hidden="true"></i> -->
+                <!-- <img [disabled]="!model.comment" (click)="sendChat()" src="assets/images/userWebsite/sent-message.png" class="img-fluid cursorStyle imgComment mr-3"> -->
             </div> 
         </div>
                

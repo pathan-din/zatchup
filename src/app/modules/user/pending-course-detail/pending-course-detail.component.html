@@ -1,4 +1,4 @@
-<app-user-header></app-user-header>
+<!-- <app-user-header></app-user-header>
 
 <div class="container contentTopSpaceLanding containerScrolling landingPageWidth">
     <div class="landingDiv">       
@@ -58,20 +58,142 @@
                             {{element.class_name}}
                         </mat-cell>
                     </ng-container>
-
-                    <!-- <ng-container matColumnDef="new_value">
-                        <mat-header-cell *matHeaderCellDef> New Value </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            {{element.new_value}}
-                        </mat-cell>
-                    </ng-container> -->
-
-                  
-
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
             </div>
         </div>
     </div>
+</div> -->
+
+<app-user-header></app-user-header>
+
+<!-- <div class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5 mobPaddingLR">
+        <div class="col-12 pl-5 pr-5 mobPaddingLR">
+            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+        </div>
+    </div>
+</div> -->
+
+<div class="container contentTopSpaceLanding landingPageWidth">
+    <div class="landingDiv">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div *ngFor="let objEpData of dataSource" class="pt-3" style="clear: both;">
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
+                            <div class="col-md-12 d-flex justify-content-between align-items-center flex-wrap">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Pending Request
+                                    Details </h3>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="m-0 mb-1 commonFontSize semiBoldFont">School Name: <span
+                                        class="regularFont">{{objEpData.name_of_school}}
+                                        <!-- <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png"
+                                            class="img-fluid ml-1 chckImg">  -->
+                                    </span></p>
+                                <div class="row">
+                                    <div *ngIf="objEpData.school_code"
+                                        class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                        ZatchUp ID : <span class="regularFont">{{objEpData.school_code}}</span>
+                                    </div>
+                                    <div *ngIf="objEpData.admission_number"
+                                        class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        School Admission Number : <span class="regularFont">
+                                            <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel"
+                                                data-toggle="modal"
+                                                (click)="openModel(objEpData,'admission_number',objEpData.admission_number)">{{objEpData.admission_number}}</a></span>
+                                    </div>
+                                    <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                        State : <span class="regularFont">{{objEpData.state}} </span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        City : <span class="regularFont">{{objEpData.city}} </span>
+                                    </div>
+                                    <div *ngIf="objEpData.address1"
+                                        class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                        Address : <span class="regularFont">{{objEpData.address1}} </span>
+                                    </div>
+                                    <!-- <div (click)="getDocumentsChat(objEd.firebase_id)" data-toggle="modal" data-target="#chatModel"
+                                        class="cursorStyle col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                        add chat
+                                    </div> -->
+                                    <!-- <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                        Leaving Year : <span class="regularFont">2019 </span>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12" *ngFor="let objCd of objEpData.course_detail">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details
+                                </h3>
+
+                                <div class="pr-4 pl-0">
+                                    <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
+                                            class="regularFont">{{objCd.course_name}}</span></p>
+                                    <p class="m-0 mb-1 commonFontSize semiBoldFont"> Course Duration : <span
+                                            class="regularFont">{{objCd.start_year}}-{{objCd.is_current_course?'Current':objCd.end_year}}</span>
+                                    </p>
+                                    <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Year of Ending : <span
+                                            class="regularFont">{{objCd.end_year}} </span></p> -->
+                                    <p class="m-0 mb-1 commonFontSize semiBoldFont">Course Tenure : <span
+                                            class="regularFont">{{objCd.duration}}</span></p>
+
+                                    <h3 *ngIf="objCd.standard_detail"
+                                        class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 mt-2">Standard
+                                        Details </h3>
+                                    <div class="row pb-2 border-bottom mb-2"
+                                        *ngFor="let objSd of objCd.standard_detail">
+                                        <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                            Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
+                                        </div>
+                                        <div *ngFor="let objCd of objSd.class_detail"
+                                            class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                            Class (Sub-Section) : <span class="regularFont">{{objCd.class_name}} </span>
+                                        </div>
+
+                                        <!-- <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
+                                            Starting year : <span class="regularFont">{{objSd.standard_start_year}} </span>
+                                        </div>
+                                        <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                            Ending year : <span class="regularFont">{{objSd.standard_end_year}} </span>
+                                        </div> -->
+                                        <!-- <div class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
+                                            Standard Duration : <span class="regularFont">{{objSd.standard_start_year}}-{{objSd.is_current_standard?'Current':objSd.standard_end_year}} </span>
+                                        </div> -->
+                                        <!-- <div class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            Duration of completion : <span class="regularFont">1 year </span>
+                                        </div> -->
+                                        <div *ngIf="objCd.is_current_course"
+                                            class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            Roll Number : <span class="regularFont"><a
+                                                    class="textUnderlineStyle cursorStyle"
+                                                    data-target="#personalInfoModel" data-toggle="modal"
+                                                    (click)="openModel(objCd,'roll_no',objCd.roll_no)">{{objCd.roll_no}}</a>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
+<!-- <app-user-footer></app-user-footer> -->

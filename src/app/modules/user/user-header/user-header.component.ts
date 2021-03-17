@@ -42,10 +42,9 @@ export class UserHeaderComponent implements OnInit {
   goToSetting() {
     this.router.navigate(["user/setting"]);
   }
+  
   getDasboardDetails() {
     try {
-
-
       this.baseService.getData("ei/auth-user-info").subscribe(res => {
 
         let response: any = {};
@@ -77,12 +76,9 @@ export class UserHeaderComponent implements OnInit {
   getRegistrationStep() {
     try {
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
-
-
         this.regProfile = res;
         localStorage.setItem("res.reg_step",res.reg_step);
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
-
         } else {
           if (res.reg_step <= 7 && !res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
@@ -106,11 +102,9 @@ export class UserHeaderComponent implements OnInit {
               if(res.is_deleted){
                 localStorage.clear();
                 this.router.navigate(['user/login']);
-
               }else{
                 this.router.navigate(['user/kyc-verification']);
               }
-              
             } else {
               if (res.reg_step == 7) {
                 this.router.navigate(['user/my-school']);

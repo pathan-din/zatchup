@@ -152,15 +152,13 @@ export class UserAddMoreStandardComponent implements OnInit {
         let data: any = {};
         data.course_id = courseId;
         this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
-          console.log(res);
           let response: any = {};
           response = res;
           this.standardList = response.results;
           this.leftStandardList = response.results;
+          this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
-          //console.log(error);
-
         });
       }
 
@@ -185,10 +183,10 @@ export class UserAddMoreStandardComponent implements OnInit {
         let data: any = {};
         data.standard_id = stId;
         this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
-          console.log(res);
           let response: any = {};
           response = res;
           this.classList = response.results;
+          this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
         });
@@ -201,16 +199,13 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
 
   addCourseData() {
-
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-
       this.SpinnerService.show();
-
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.model.is_current_course = "0"
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
