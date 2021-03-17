@@ -27,6 +27,7 @@
     border-radius: 25px;
     border-bottom-left-radius: 0px;
     display: inline-block;
+    margin: 0px;
 }
 .chatTxt-2{
     background: #f3f3f3;
@@ -37,8 +38,10 @@
     float: right;
 }
 .position-ppin{
-    top: 9px;
-    right: 8px;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 80px;
 }
 
 @media (max-width: 767px){

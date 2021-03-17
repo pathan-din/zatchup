@@ -20,18 +20,8 @@
 
         <div class="teacherChatList border-bottom">
             <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
-                <!-- <div class="col-md-1 col-2">
-                    <img *ngIf="objCon.user_send_by!=currentUser"
-                        src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
-                        alt="profile pick" style="height: 50px;" />
-                </div> -->
-                <div class="col-md-11 col-10">
-                    <p class="chatTxt  {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}"> {{objCon.msg}} </p>
-                </div>
-                <div class="col-md-1 col-2">
-
-                </div>
-                <div class="col-md-11 col-10">
+                <div class="col-md-12 col-12">
+                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}} </p>
                 </div>
             </div>
         </div>
@@ -40,9 +30,6 @@
     <div class="row mt-3">
         <div class="col-12">
             <div class="form-control-inputDiv rounded p-0 shadow-none mt-0 position-relative">
-
-
-
                 <input [(ngModel)]="model.comment" name="comment"
                     class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                     type="search" placeholder="Type Something...">
