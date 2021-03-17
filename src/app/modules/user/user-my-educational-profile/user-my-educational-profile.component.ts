@@ -385,4 +385,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }, () => {
     });
   }
+
+  gotoChatWithTeachers(id: any){
+    this.router.navigate(['user/new-chat'], { queryParams: { "returnUrl": "user/my-educational-profile  ", "school_id": id}});
+  }
 }

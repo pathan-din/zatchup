@@ -165,6 +165,8 @@
                                         src="assets/images/userWebsite/delete.png"
                                         class="cursorStyle img-fluid deleteImg"
                                         style="height: 30px; width: 30px; margin-right: 10px;">
+                                        <i *ngIf="objEd.approved==1 && objEd.firebase_id" (click)="gotoChatWithTeachers(objEd.school_id)"
+                                        class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "></i>
                                 </div>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                             </div>
