@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -9,31 +9,9 @@ import { ChatService } from 'src/app/services/chat/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
+
 export class ChatComponent implements OnInit {
-  @ViewChild('closeModal') closeModal: any;
-  epData: any;
   model: any = {};
-  editModel: any = {};
-  error: any = [];
-  errorDisplay: any = {};
-  errorOtpModelDisplay: any = [];
-  requestChangeDetails: any;
-  params: any;
-  courseList: any;
-  filename: string;
-  uploadedContent: File;
-  postOption: string = "matrix";
-  postOptionActiveImage: string = 'dead';
-  postOptionActiveMatrix: string = 'active';
-  profile_pic: any = '';
-  uploadInfo: any = {
-    "image_type": "file_name",
-    "url": "ei/uploaddocsfile/",
-    "icon": "fa fa-camera",
-    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
-  }
-  imageUrl: any;
-  imagePath: any;
   dataStudent: any = [];
   conversation: any = [];
   recepintDetails: any = {};
@@ -54,7 +32,8 @@ export class ChatComponent implements OnInit {
     }
     this.currentUser = localStorage.getItem('fbtoken');
   }
-  getDocumentsChat(uuid) {
+
+  getDocumentsChat(uuid: any) {
     let uid = uuid;
     this.conversation = [];
     this.dataStudent = [];
@@ -69,7 +48,6 @@ export class ChatComponent implements OnInit {
           this.conversation = [];
           this.dataStudent = [];
         }
-
       })
     }
     if (uid) {
@@ -77,7 +55,6 @@ export class ChatComponent implements OnInit {
       return new Promise<any>((resolve, reject) => {
         let data: any = {};
         var date = new Date();
-
         var uuid = uid;
         data.user_request_id = localStorage.getItem('fbtoken');
         data.user_accept_id = uuid;
@@ -170,7 +147,7 @@ export class ChatComponent implements OnInit {
     return this.chatService.getTimeAgo(time)
   }
 
-  goBack(){
+  goBack() {
     this.location.back()
   }
 

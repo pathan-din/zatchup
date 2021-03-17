@@ -213,19 +213,8 @@ export class UserLoginComponent implements OnInit {
       })
   }
 
-  getUser() {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        console.log('user...',user)
-        // this.user = user;
-        // localStorage.setItem('user', JSON.stringify(this.user));
-      } else {
-        // localStorage.setItem('user', null);
-      }
-    })
-  }
-
   async updateUserWithFirebaseID() {
+    this.model.username = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
     localStorage.setItem('fbtoken', result.user.uid);
   }
