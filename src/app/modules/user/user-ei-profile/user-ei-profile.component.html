@@ -14,10 +14,10 @@
 
 
             <form>
-                <div class="form-group row">                    
+                <div class="form-group row" >                    
                     <h3 class="p-0 commonFontSize semiBoldFont m-0">
                         {{model.name_of_school}} ({{model.school_code}})
-                        <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
+                        <span *ngIf="model.name_of_school && !params.edit_course" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
                             <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">                             
                         </span>
                     </h3>                     
