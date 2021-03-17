@@ -301,7 +301,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
                    
                     
       if(dataEle){
-        this. getDocumentsChat();
+        
         this.firestore.collection('user_friend_list').get()
          
         .subscribe(querySnapshot => {
@@ -313,6 +313,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
              if(dataEle.user_request_id==res.user_request_id && dataEle.user_accept_id== res.user_accept_id)
              {
               localStorage.setItem("friendlidt_id", doc.id)
+              this. getDocumentsChat();
               
              }
               
@@ -348,7 +349,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
         this.conversation = [];
         this.dataStudent = [];
       }
-      
+      this.router.navigate(["ei/messages-details"]);
     })
     
     
@@ -356,6 +357,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   }
 
   getRecepintUserDetails(uuid) {
+    localStorage.setItem("receipent",uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
       this.recepintDetails = res.data();
       });
