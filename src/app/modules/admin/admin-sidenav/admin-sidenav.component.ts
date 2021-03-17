@@ -140,13 +140,13 @@ export class AdminSidenavComponent implements OnInit {
   //   )
   // }
 
-  firebaseSignup(){
-    this.firebaseService.firebaseSignUp(this.userData.first_name,this.userData.last_name,this.userData.email,'Asdf@321#').then(
-      res =>{
-        console.log('firebase signup res is as ::',res)
-      }
-    )
-  }
+  // firebaseSignup(){
+  //   this.firebaseService.firebaseSignUp(this.userData.first_name,this.userData.last_name,this.userData.email,'Asdf@321#').then(
+  //     res =>{
+  //       console.log('firebase signup res is as ::',res)
+  //     }
+  //   )
+  // }
 
   getNotificationCount() {
     this.baseService.getData('admin/get_notifications_count/').subscribe(

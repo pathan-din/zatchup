@@ -43,7 +43,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
   objStudent: any = {};
   dataStudent: any = [];
   conversation: any = [];
-  
+  currentUser: any;
+  recepintDetails: any = {};
+
   constructor(
     private router: Router,
     private location: Location,
@@ -227,7 +229,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
             objStudentList.userID = objData.admission_no;
             objStudentList.class = objData.class_name;
             objStudentList.alias_class = objData.alias_class;
-            objStudentList.roll_no = objData.roll_no
+            objStudentList.roll_no = objData.roll_no;
+            objStudentList.firebase_id = objData.firebase_id
+            
             objStudentList.Action = '';
             i = i + 1;
             arrStudentList.push(objStudentList);
@@ -259,11 +263,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.getGetVerifiedStudent('', strFilter)
     }
   }
-
   goToChatScreen(objStudent) {
     this.conversation = [];
-    this.dataStudent = [];
+    this.dataStudent =[];
     this.objStudent = objStudent;
+    this.getRecepintUserDetails(objStudent.firebase_id)
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       var date = new Date();
@@ -278,55 +282,85 @@ export class EiStudentVerifiedListComponent implements OnInit {
       data.created_on = this.baseService.getDateFormat(date);
       let getFriendListExistingData: any = {}
       this.getFriendListBySender(localStorage.getItem('fbtoken'), uuid, data)
-    })
-  }
 
+
+
+    })
+
+
+  }
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
     this.conversation = [];
     this.dataStudent = [];
-    this.firestore.collection('user_friend_list').valueChanges().subscribe((res: any) => {
-      let dataEle = res.find(elem => {
-        return ((elem.user_request_id === loginfirebase_id && elem.user_accept_id === user_accept_id) || (elem.user_request_id === user_accept_id && elem.user_accept_id === loginfirebase_id))
-      })
-      if (dataEle) {
+    this.firestore.collection('user_friend_list').valueChanges().subscribe((res:any)=>{
+      let dataEle = res.find(elem=>{
+                      return ((elem.user_request_id===loginfirebase_id && elem.user_accept_id===user_accept_id) || (elem.user_request_id===user_accept_id && elem.user_accept_id===loginfirebase_id))  
+                    })
+            console.log(dataEle);
+                   
+                    
+      if(dataEle){
+        
         this.firestore.collection('user_friend_list').get()
-          .subscribe(querySnapshot => {
-            if (querySnapshot.docs.length > 0) {
-              querySnapshot.docs.map(doc => {
-                let res: any = []
-                res = doc.data();
-                if (dataEle.user_request_id == res.user_request_id && dataEle.user_accept_id == res.user_accept_id) {
-                  localStorage.setItem("friendlidt_id", doc.id)
-                  this.getDocumentsChat();
-                }
-              });
-            }
-          });
-      } else {
+         
+        .subscribe(querySnapshot => {
+          if (querySnapshot.docs.length > 0) {
+            querySnapshot.docs.map(doc => {
+            
+              let res:any=[]
+              res=doc.data();
+             if(dataEle.user_request_id==res.user_request_id && dataEle.user_accept_id== res.user_accept_id)
+             {
+              localStorage.setItem("friendlidt_id", doc.id)
+              this. getDocumentsChat();
+              
+             }
+              
+            });
+          }
+  
+        });
+      } else{
         this.firestore.collection("user_friend_list").add(data).then(res => {
-          localStorage.setItem("friendlidt_id", res.id)
-          this.getDocumentsChat();
-        })
-      }
+          localStorage.setItem("friendlidt_id",res.id)
+           this. getDocumentsChat();
+          
+         })
+      }             
+     
+      
     })
-  }
+     
+       
+       }
 
-
+       
   getDocumentsChat() {
     this.conversation = [];
-    this.dataStudent = [];
-    var uuid = localStorage.getItem("friendlidt_id");
-    var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
-    dataSet.subscribe((res: any) => {
-      if (res) {
+    this.dataStudent =[];
+    var uuid= localStorage.getItem("friendlidt_id");
+    var dataSet=this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+    dataSet.subscribe((res:any)=>{
+      if(res){
         this.conversation = res.data;
         this.dataStudent = res.data;
-      } else {
+      }else{
         this.conversation = [];
         this.dataStudent = [];
       }
       this.router.navigate(["ei/messages-details"]);
     })
+    
+    
+    
+  }
+
+  getRecepintUserDetails(uuid) {
+    localStorage.setItem("receipent",uuid);
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+      this.recepintDetails = res.data();
+      });
+      
   }
 
   goToEiStudentEditPage(id, approve) {

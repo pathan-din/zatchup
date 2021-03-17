@@ -5,6 +5,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 //import * as $ from 'jquery';
@@ -28,6 +30,8 @@ export class UserLoginComponent implements OnInit {
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
+    private afAuth: AngularFireAuth,
+    private firebaseService: FirebaseService,
     private formValidationService: GenericFormValidationService,
   ) { }
 
@@ -62,6 +66,7 @@ export class UserLoginComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status == "True") {
+            this.registerUserToFirebaseDB(res.data)
             $("#OTPModel").modal({
               backdrop: 'static',
               keyboard: false
@@ -73,7 +78,7 @@ export class UserLoginComponent implements OnInit {
           }
         }, (error) => {
           this.loader.hide();
-          this.alert.error(error, 'Error')
+          this.alert.error(error.statusText, 'Error')
 
         });
     } catch (err) {
@@ -95,7 +100,7 @@ export class UserLoginComponent implements OnInit {
     try {
       this.modelForOtpModal.username = this.model.username;
       this.loader.show();
-      this.baseService.action('user/resend-otp/',this.modelForOtpModal).subscribe(
+      this.baseService.action('user/resend-otp/', this.modelForOtpModal).subscribe(
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
@@ -143,25 +148,29 @@ export class UserLoginComponent implements OnInit {
       let data: any = {};
       data.username = this.model.username;
       data.phone_otp = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
-
-      this.baseService.action('user/verify-otp/',data).subscribe(
+      if(localStorage.getItem('fbtoken'))
+      {
+        data.firebase_id=localStorage.getItem('fbtoken');
+      }
+      this.baseService.action('user/verify-otp/', data).subscribe(
         (res: any) => {
           if (res.status == "True") {
+            this.updateUserWithFirebaseID();
             localStorage.setItem("token", res.token);
             localStorage.setItem("approved", res.approved);
             $("#OTPModel").modal('hide');
             if (res.steps == 1) {
               this.router.navigate(['user/kyc-verification']);
-            } else if (res.steps >=  2 && res.steps < 5) {
+            } else if (res.steps >= 2 && res.steps < 5) {
               this.router.navigate(['user/add-ei']);
-            }else if (res.steps == 5) {
+            } else if (res.steps == 5) {
               this.router.navigate(['user/ei-confirmation']);
-            }else if (res.steps == 6) {
+            } else if (res.steps == 6) {
               this.router.navigate(['user/add-personal-info']);
-            }else{
+            } else {
               this.router.navigate(['user/my-school']);
             }
-            
+
           } else {
             this.errorOtpModelDisplay = res.error;
           }
@@ -177,6 +186,53 @@ export class UserLoginComponent implements OnInit {
 
   goTouserForgotPasswordPage() {
     this.router.navigate(['user/forgot-password']);
+  }
+
+  isPhoneNumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  registerUserToFirebaseDB(data: any) {
+    let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    var that = this;
+    this.afAuth.fetchSignInMethodsForEmail(email)
+      .then(function (signInMethods) {
+        if (signInMethods.length > 0) {
+          console.log("yes", signInMethods);
+        }
+        else {
+          that.firebaseService.firebaseSignUp(email, email, email, that.model.password, '', "1").then(
+            (res: any) => {
+              localStorage.setItem('fbtoken', res.user.uid);
+            },
+            err => {
+            }
+          )
+        }
+      })
+  }
+
+  getUser() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        console.log('user...',user)
+        // this.user = user;
+        // localStorage.setItem('user', JSON.stringify(this.user));
+      } else {
+        // localStorage.setItem('user', null);
+      }
+    })
+  }
+
+  async updateUserWithFirebaseID() {
+    var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
+    localStorage.setItem('fbtoken', result.user.uid);
   }
 }
 

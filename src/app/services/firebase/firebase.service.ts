@@ -28,23 +28,28 @@ export class FirebaseService {
         )
     }
 
-    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any) {
+    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string) {
+
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
                 (user) => {
                     const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
+                    console.log(' user....', user)
                     const updateUser = {
                         id: user.user.uid,
                         email: user.user.email,
-                        firstName,
-                        lastName,
-                        photoUrl: 'gs://angularchatmaheshtriazine.appspot.com/mahesh_profile.jpg'
+                        firstName: firstName,
+                        lastName: lastName,
+                        photoUrl: 'https://randomuser.me/api/portraits/lego/2.jpg',
+                        isActive: "1"
                     }
+                    console.log('update user....', updateUser)
                     userRef.set(updateUser)
                     resolve(user);
                 },
                 err => {
                     reject(err)
+
                 }
             )
         });
@@ -52,19 +57,18 @@ export class FirebaseService {
     }
 
 
-    subscribeQueryPostsByUsernameAndCategory(email: string, category: string) {
-        
-    }
 
 
-    getChatRooms(): Observable<any>{
-        let chatRooms = this.db.collection('chatrooms').valueChanges();
+
+    getChatRooms(collectionName): Observable<any> {
+        let chatRooms = this.db.collection(collectionName).valueChanges();
         // let chatRooms = this.firdb.object('/users').valueChanges();
         return chatRooms
     }
 
-    getUsers(): Observable<any>{
-       let users =  this.db.collection(`users`).valueChanges();
+    getUsers(): Observable<any> {
+        let users = this.db.collection(`users`).valueChanges();
         return users
     }
+
 }

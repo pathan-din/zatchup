@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
-import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-chat',
@@ -41,57 +36,21 @@ export class ChatComponent implements OnInit {
   conversation: any = [];
   recepintDetails: any = {};
   currentUser: any;
-  userFirebaseID: any;
 
   constructor(
-    private alert: NotificationService,
     private baseService: BaseService,
-    private loader: NgxSpinnerService,
-    private validationService: GenericFormValidationService,
-    private router: Router,
     private firestore: AngularFirestore,
-    private firebase: FirebaseService
   ) { }
 
 
   ngOnInit(): void {
-    //this.getChatRooms();
-    // this.getUsers()
-    // console.log('bbbbbb',this.firebaseService.getChatRooms())
     if(localStorage.getItem('uuid')){
       var uuid = localStorage.getItem('uuid');
       this.getDocumentsChat(uuid);
     }
     this.currentUser = localStorage.getItem('fbtoken');
-    
   }
-
-  // gotoChatPrivacy(){
-  //   this.router.navigate(['user/chat-privacy']);
-  // }
-
-  // goBack(){
-  //   this.location.back()
-  // }
-
-  // getChatRooms(){
-  //   this.firebaseService.getChatRooms('').subscribe(
-  //     (res: any) => {
-  //       console.log('chat room res is as ::',res)
-  //     }
-  //   )
-  // }
-
-  // getUsers(){
-  //   this.firebaseService.getUsers().subscribe(
-  //     (res: any) => {
-  //       console.log('users is as ::',res)
-  //     }
-  //   )
-  // }
   getDocumentsChat(uuid) {
-   
-    
     let uid = uuid;
     this.conversation = [];
     this.dataStudent = [];
