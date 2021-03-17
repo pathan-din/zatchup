@@ -155,7 +155,7 @@
                                         <div class="w-100 p-0">
                                             <input [(ngModel)]="details.views_per_lecture"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Views Per Lecture" name="views_per_lecture_{{i}}"
+                                                type="number" placeholder="Enter Views Per Lecture" name="views_per_lecture_{{i}}"
                                                  required readonly>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.views_per_lecture"></div>
@@ -168,7 +168,7 @@
                                         <div class="w-100 p-0">
                                             <input [(ngModel)]="details.validity"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter validity" name="validity_{{i}}"
+                                                type="number" placeholder="Enter validity" name="validity_{{i}}"
                                                required readonly>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.validity"></div>
@@ -180,14 +180,14 @@
                                         </label>
                                         <div class="w-100 p-0">
                                             <input [(ngModel)]="details.price" class="border form-control-input form-control commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Price " name="price_{{i}}" required>
+                                                type="number" placeholder="Enter Price " name="price_{{i}}" required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.price"></div>
                                     </div>
                                 </div>
 
                             </div>
-                            <button type="button"  (click)="createAndUpdatePlan(model.id) && form1.reset()"
+                            <button type="button"  (click)="addPlan(model.id) && form1.reset()"
                                 class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                 Submit
                             </button>

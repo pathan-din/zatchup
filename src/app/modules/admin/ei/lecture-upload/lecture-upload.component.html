@@ -8,10 +8,8 @@
             </span>
             <h2 class="commonFontSize semiBoldFont m-0">{{action == 'add' ? 'Upload Lecture' : 'Edit Lecture'}}</h2>
         </div>
-        <div class="row bg-light-gray w-50 ml-1 mt-1">
-            <div class="col-md-12 mt-2 border-bottom">
-                <h3 class="commonFontSize semiBoldFont m-0">{{action == 'add' ? 'Upload New' : 'Edit '}} Lecture</h3>
-            </div>      
+        <div class="row bg-light-gray w-50 ml-1 mt-3">   
+            <form id="lecture">
             <div class="col-md-12 mt-2">
                 <div class="form-group row  ml-0 mr-0">
                     <label for="" class="mediumFont commonFontSize letterspacing"> {{action == 'add' ? 'Add' : 'Edit '}} Title </label>
@@ -68,6 +66,7 @@
                 </div>
             </div>
 
-        </div>        
+        </div>    
+    </form>    
     </div>
 </div>

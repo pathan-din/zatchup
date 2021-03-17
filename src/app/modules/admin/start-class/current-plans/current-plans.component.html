@@ -132,7 +132,7 @@
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                                             <input [(ngModel)]="model.views_per_lecture"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter Views Per Lecture" name="views_per_lecture"
+                                                type="number" placeholder="Enter Views Per Lecture" name="views_per_lecture"
                                                  required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.views_per_lecture"></div>
@@ -145,7 +145,7 @@
                                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                                             <input [(ngModel)]="model.validity"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="text" placeholder="Enter validity" name="validity"
+                                                type="number" placeholder="Enter validity" name="validity"
                                                required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.validity"></div>
