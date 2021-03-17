@@ -7,6 +7,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Location } from '@angular/common';
+import { AngularFirestore } from '@angular/fire/firestore';
 declare var $: any;
 
 @Component({
@@ -39,7 +40,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
   errorDisplay: any = {};
   title: any = '';
   pageCounts: any;
- // params:any={};
+  objStudent: any = {};
+  dataStudent: any = [];
+  conversation: any = [];
+  
   constructor(
     private router: Router,
     private location: Location,
@@ -50,6 +54,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     private alert: NotificationService,
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
+    private firestore: AngularFirestore
   ) { }
 
 
@@ -63,8 +68,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     // this.model.age = '';
     this.model.approved = ""
     // this.model.kyc_approved=""
-    this.route.queryParams.subscribe((params:any) => {
-       
+    this.route.queryParams.subscribe((params: any) => {
+
       //this.model = params;
       this.model.approved = params['approved'] ? params['approved'] : '';
       // this.model.kyc_approved=params['kyc_approved']?params['kyc_approved']:'';
@@ -74,32 +79,32 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.model.course = params['course'];
       this.model.standard = params['standard'];
       this.model.teaching_class = params['teaching_class'];
-       
+
     });
     for (var i = 5; i < 70; i++) {
       this.arrAge.push(i);
     }
     this.displayCourseList();
     this.getGetVerifiedStudent('', '')
-    
+
   }
   displayCourseList() {
     try {
       this.loader.show();
-      
+
       this.eiService.displayCourseList().subscribe(res => {
         let response: any = {};
         response = res;
         this.courseList = response.results;
-        if(this.model.course){
+        if (this.model.course) {
           //this.model.course = this.model.course;
           this.displayStandardList(this.model.course);
-        }else{
+        } else {
           this.model.course = '';
           this.model.standard = '';
           this.model.teaching_class = '';
         }
-        
+
       }, (error) => {
         this.loader.hide();
       });
@@ -111,16 +116,16 @@ export class EiStudentVerifiedListComponent implements OnInit {
     try {
       this.loader.show();
       this.standardList = []
-    
+
       this.eiService.displayStandardList(courseId).subscribe(res => {
         this.loader.hide();
         let response: any = {};
         response = res;
         this.standardList = response.standarddata;
-        if(this.model.standard){
-         // this.model.standard = this.params.standard;
+        if (this.model.standard) {
+          // this.model.standard = this.params.standard;
           this.displayClassList(this.model.standard);
-        }else{
+        } else {
           this.model.standard = '';
           this.model.teaching_class = '';
         }
@@ -138,8 +143,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.eiService.displayClassList(stId).subscribe(
         (res: any) => {
           this.classList = res.classdata;
-          
-          
+
+
           this.loader.hide();
         }, (error) => {
           this.loader.hide();
@@ -188,9 +193,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
     try {
       this.loader.show();
       this.model.page = page;
-      
-      
-      
+
+
+
       this.baseService.getData('ei/student-list/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();
@@ -253,6 +258,75 @@ export class EiStudentVerifiedListComponent implements OnInit {
       var strFilter = arrFilter.join("&");
       this.getGetVerifiedStudent('', strFilter)
     }
+  }
+
+  goToChatScreen(objStudent) {
+    this.conversation = [];
+    this.dataStudent = [];
+    this.objStudent = objStudent;
+    return new Promise<any>((resolve, reject) => {
+      let data: any = {};
+      var date = new Date();
+
+      var uuid = objStudent.firebase_id;
+      data.user_request_id = localStorage.getItem('fbtoken');
+      data.user_accept_id = uuid;
+      data.is_block = 0
+      data.is_seen = 0
+      data.is_active = 1
+      data.is_read = 0
+      data.created_on = this.baseService.getDateFormat(date);
+      let getFriendListExistingData: any = {}
+      this.getFriendListBySender(localStorage.getItem('fbtoken'), uuid, data)
+    })
+  }
+
+  getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
+    this.conversation = [];
+    this.dataStudent = [];
+    this.firestore.collection('user_friend_list').valueChanges().subscribe((res: any) => {
+      let dataEle = res.find(elem => {
+        return ((elem.user_request_id === loginfirebase_id && elem.user_accept_id === user_accept_id) || (elem.user_request_id === user_accept_id && elem.user_accept_id === loginfirebase_id))
+      })
+      if (dataEle) {
+        this.firestore.collection('user_friend_list').get()
+          .subscribe(querySnapshot => {
+            if (querySnapshot.docs.length > 0) {
+              querySnapshot.docs.map(doc => {
+                let res: any = []
+                res = doc.data();
+                if (dataEle.user_request_id == res.user_request_id && dataEle.user_accept_id == res.user_accept_id) {
+                  localStorage.setItem("friendlidt_id", doc.id)
+                  this.getDocumentsChat();
+                }
+              });
+            }
+          });
+      } else {
+        this.firestore.collection("user_friend_list").add(data).then(res => {
+          localStorage.setItem("friendlidt_id", res.id)
+          this.getDocumentsChat();
+        })
+      }
+    })
+  }
+
+
+  getDocumentsChat() {
+    this.conversation = [];
+    this.dataStudent = [];
+    var uuid = localStorage.getItem("friendlidt_id");
+    var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+    dataSet.subscribe((res: any) => {
+      if (res) {
+        this.conversation = res.data;
+        this.dataStudent = res.data;
+      } else {
+        this.conversation = [];
+        this.dataStudent = [];
+      }
+      this.router.navigate(["ei/messages-details"]);
+    })
   }
 
   goToEiStudentEditPage(id, approve) {
@@ -357,7 +431,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     return ''
   }
 
-  closeModel(){
+  closeModel() {
     this.closeVerifiedModel.nativeElement.click()
   }
 

@@ -234,8 +234,8 @@
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
                                 (click)="goToEiStudentProfilePage(element.student_id)"></i>
-                            <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
-                            aria-hidden="true "></i> -->
+                            <i *ngIf="element.firebase_id" (click)="goToChatScreen(element)"
+                                class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "></i>
                             <span *ngIf="element.kyc_approved==1">
                                 <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve"
                                     class="fa fa-check mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "
@@ -290,9 +290,9 @@
                             <input type="radio" [(ngModel)]="model.class_id" name="class" name="class"
                                 value="{{class.id}}" />{{class.class_name}}
                         </div>
-                        <p class="commonFontSize regularFont letterspacing text-center">
+                        <p class="commonFontSize regularFont letterspacing text-right">
                             <button type="button" (click)="editBulkClass()"
-                                class="bg-Gainsboro px-3 py-1 border-0 mr-3 commonFontSize mediumFont letterspacing">Edit
+                                class="bg-Gainsboro px-3 py-1 border-0 commonFontSize mediumFont letterspacing">Edit
                                 Class</button>
 
                         </p>
