@@ -20,11 +20,11 @@
 
         <div class="teacherChatList border-bottom">
             <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
-                <div class="col-md-1 col-2">
+                <!-- <div class="col-md-1 col-2">
                     <img *ngIf="objCon.user_send_by!=currentUser"
                         src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
                         alt="profile pick" style="height: 50px;" />
-                </div>
+                </div> -->
                 <div class="col-md-11 col-10">
                     <p class="chatTxt  {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}"> {{objCon.msg}} </p>
                 </div>
