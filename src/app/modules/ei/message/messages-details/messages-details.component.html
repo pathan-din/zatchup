@@ -21,7 +21,7 @@
         <div class="teacherChatList border-bottom">
             <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                 <div class="col-md-12 col-12">
-                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}} </p>
+                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'':'chatTxt-2'}} mr-3"> {{objCon.msg}} </p>
                 </div>
             </div>
         </div>
