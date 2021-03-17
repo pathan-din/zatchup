@@ -12,7 +12,7 @@
         <div class="col-md-6 text-right" *ngIf="lectureDetails.details" >
             <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 " (click)="goToEditLecture(lectureDetails.details)">Edit Lecture</button>
         </div>
-        <div class="mt-2 border-0 mx-0">
+        <div class="mt-2 border-0 mx-0 col-md-12">
             <!-- start Div for banner-->
 
             <!--Start div for oView Course Details-->
@@ -127,7 +127,7 @@
                             <p><span class="mr-3">:</span></p>
                             <div class="col-md-12 customVideo" >
                                 <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
-                                <video autoplay="autoplay" preload="auto" ng-click="video($event)">
+                                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
                                     <source src="{{lectureDetails.details.lecture}}" type="video/mp4" />
                                </video>
                             </div>

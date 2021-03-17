@@ -149,10 +149,7 @@ export class StarclassAddedCourseListComponent implements OnInit {
 
   editPlan(obj){
     console.log(obj.id);
-    
-    this.model.id=obj.id;
-
-    
+   this.model.id=obj.id;
   }
 
 getPlanDetails(){
@@ -179,7 +176,7 @@ getPlanDetails(){
       this.alert.error(error.error, 'Error')
     }
   }
-  createAndUpdatePlan(id: any){
+  addPlan(id: any){
     try {
       this.errorDisplay={};
       this.errorDisplay=this.validation.checkValidationFormAllControls(document.forms[0].elements,false,[]);
