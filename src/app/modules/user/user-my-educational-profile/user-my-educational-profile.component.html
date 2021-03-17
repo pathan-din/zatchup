@@ -489,25 +489,10 @@
                 <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
                 <div style="max-height: 50%;overflow: scroll;">
                     <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
-                        <span style="float: right;
-                    background: #0355b3;
-                    color: #202013;
-                    padding: 5px;
-                    border: #ddd;
-                    margin: 5px;
-                    border-radius: 4px;clear: both;"
-                            *ngIf="objCon.user_send_by==currentUser">{{objCon.msg}}<br /></span>
+                        <span
+                            >{{objCon.msg}}<br /></span>
                     </p>
-                    <p class="commonFontSize regularFont letterspacing" *ngFor="let objCon of conversation">
-                        <span style="float: left;
-                    background: #09a0e6;
-                    color: #141413;
-                    padding: 5px;
-                    margin: 5px;
-                    border: #ddd;
-                    border-radius: 4px;clear: both;"
-                            *ngIf="objCon.user_send_by!=currentUser">{{objCon.msg}}<br /></span>
-                    </p>
+                    
                 </div>
                 <p class="commonFontSize regularFont letterspacing text-right">
                     <!-- <span class="mx-3 color-blue">No</span>
@@ -516,7 +501,7 @@
                     float: left;
                     padding: 6px;
                     border-radius: 9px;" [(ngModel)]="model.comment" name="comment" />
-                    <button type="button" (click)="sendChat()"
+                    <button type="button" [disabled]="!model.comment" (click)="sendChat()"
                         class="bg-purple py-2 px-3 color-white border-0 rounded modalAddStudentsBtn mediumFont">Send</button>
 
                 </p>

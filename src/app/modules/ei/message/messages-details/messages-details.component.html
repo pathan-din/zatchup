@@ -10,38 +10,38 @@
         <div class="row mt-2">
             <div class="col-12 text-center">
                 <div class="message-user">
-                    <img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="message-userImg" />
+                    <img src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick" class="message-userImg" />
                 </div>
-                <h3 class="commonFontSize semiBoldFont m-2 color-fadded-black">Rohin Gupta</h3>
+                <h3 class="commonFontSize semiBoldFont m-2 color-fadded-black">{{recepintDetails.firstName}} {{recepintDetails.lastName}}</h3>
             </div>
         </div> 
 
         <div class="teacherChatList border-bottom">
-            <div class="row pb-2 mt-2">
+            <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                 <div class="col-md-1 col-2">
-                    <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;" />
+                    <img *ngIf="objCon.user_send_by!=currentUser" src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}" alt="profile pick" style="height: 50px;" />
                 </div>
                 <div class="col-md-11 col-10">
-                    <p class="chatTxt"> Are we meeting today? </p>
-                    <span class="date-text pb-4 d-block"> 10:10 AM. Today </span>
+                    <p class="chatTxt  {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}"> {{objCon.msg}} </p>
+                    <!-- <span class="date-text pb-4 d-block"> 10:10 AM. Today </span>
                     <p class="chatTxt">sometimes known, is dummy text used in laying out print</p>
                     <p class="chatTxt">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </p>
-                    <p class="chatTxt"> Are we meeting today? </p>
+                    <p class="chatTxt"> Are we meeting today? </p> -->
                 </div>
 
-                <div class="col-md-1 col-2">
-                    <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;" />
-                </div>
-                <div class="col-md-11 col-10">
+                <!-- <div class="col-md-1 col-2">
+                    <img *ngIf="objCon.user_send_by!=currentUser" src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;" />
+                </div> -->
+                <!-- <div class="col-md-11 col-10">
                     <span class="date-text pb-4 d-block"> 10:15 AM. Today </span>
-                </div>
+                </div> -->
 
                 <div class="col-md-1 col-2">
                     
                 </div>
                 <div class="col-md-11 col-10">
-                    <p class="chatTxt chatTxt-2 mr-2">sometimes known, is dummy text used in laying out print</p>
-                    <span class="date-text pb-4 d-block text-right pr-2"> 10:20 AM. Today </span>
+                    <!-- <p class="chatTxt chatTxt-2 mr-2">sometimes known, is dummy text used in laying out print</p>
+                    <span class="date-text pb-4 d-block text-right pr-2"> 10:20 AM. Today </span> -->
                 </div>
             </div>
         </div>
@@ -50,8 +50,11 @@
     <div class="row mt-3">
         <div class="col-12">
             <div class="form-control-inputDiv rounded p-0 shadow-none mt-0 position-relative">
-                <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Type Something...">
-                <button type="button" class="bg-dark text-white px-2 border-0 position-absolute position-ppin">Post</button>
+               
+               
+               
+                <input  [(ngModel)]="model.comment" name="comment" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Type Something...">
+                <button type="button" [disabled]="!model.comment" (click)="sendChat()" class="bg-dark text-white px-2 border-0 position-absolute position-ppin">Post</button>
             </div>
         </div>
     </div>
