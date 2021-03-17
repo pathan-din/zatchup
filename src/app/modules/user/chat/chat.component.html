@@ -35,14 +35,13 @@
                 <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                     <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
                         <p class="color-white m-0">{{objCon.msg}}</p>
-                        <span class="text-right color-white small-text-2 ml-4">7:30 pm</span>
+                        <span class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
                     </div>
 
                     <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
                         <div class="chatOut bg-white">
                             <p class="m-0">{{objCon.msg}}</p>
-                            <span class="text-right small-text-2 d-block color-gray ml-4">7:32 pm</span>                    
-                            <!-- <img src="assets/images/userWebsite/message-delivered.png" class="img-fluid cursorStyle ml-5 text-right" style="width: 17px; float: right;"> -->
+                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>                    
                         </div>
                     </div>
                 </div>
