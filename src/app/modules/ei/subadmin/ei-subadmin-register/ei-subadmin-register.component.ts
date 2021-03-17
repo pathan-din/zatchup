@@ -211,4 +211,21 @@ export class EiSubadminRegisterComponent implements OnInit {
    );
    window.open('#'+url, '_blank');
   }
+
+  showHidePasswordFunction(type) {
+    if (type == 'p') {
+      if (this.showHidePassword == 'password') {
+        this.showHidePassword = 'text';
+      } else {
+        this.showHidePassword = 'password';
+      }
+    } else {
+      if (this.showHidecPassword == 'password') {
+        this.showHidecPassword = 'text';
+      } else {
+        this.showHidecPassword = 'password';
+      }
+    }
+
+  }
 }

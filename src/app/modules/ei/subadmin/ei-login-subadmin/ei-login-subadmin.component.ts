@@ -26,6 +26,8 @@ export class EiLoginSubadminComponent implements OnInit {
   errorDisplay: any = {};
   errorOtpModelDisplay = '';
   modelForOtpModal: any = {};
+  passwordType: any = "password";
+  
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
@@ -214,4 +216,11 @@ export class EiLoginSubadminComponent implements OnInit {
     localStorage.setItem('fbtoken', result.user.uid);
   }
 
+  viewPassword() {
+    if (this.passwordType == 'password') {
+      this.passwordType = "text";
+    } else {
+      this.passwordType = "password";
+    }
+  }
 }
