@@ -10,8 +10,8 @@ import { DatePipe } from '@angular/common';
 export class BaseService {
   environment = environment
   dynamicJson: any
-  public username:any
-  public password:any
+  public username: any
+  public password: any
   public serverImagePath: any = this.environment.serverImagePath;
   constructor(
     private http: HttpClient,
@@ -201,6 +201,16 @@ export class BaseService {
     var ageDifMs = currentDate - birthDate;
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  isPhoneNumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 
