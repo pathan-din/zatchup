@@ -19,7 +19,7 @@ export class LectureUploadComponent implements OnInit {
   filename: string;
   uploadedContent: File;
   params: any;
-
+  action: any
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -32,9 +32,9 @@ export class LectureUploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let action = this.activeRoute.snapshot.queryParamMap.get('action');
-    console.log('action is as ::', action)
-    if (action == 'edit')
+    this.action = this.activeRoute.snapshot.queryParamMap.get('action');
+    console.log('action is as ::', this.action)
+    if (this.action == 'edit')
       this.getLectureList()
   }
 
@@ -88,13 +88,13 @@ export class LectureUploadComponent implements OnInit {
       const formData = new FormData();
       // debugger
       console.log(formData);
-      let action = this.activeRoute.snapshot.queryParamMap.get('action');
+      //  this.action = this.activeRoute.snapshot.queryParamMap.get('action');
       formData.append('lecture_title', this.model.lecture_title);
       formData.append('lecture_description', this.model.lecture_description);
       formData.append('name_of_teaching_faculty', this.model.name_of_teaching_faculty);
       formData.append('topic_cover', this.model.topic_cover);
       formData.append('lecture', this.uploadedContent);
-      if (action == 'edit'){
+      if (this.action == 'edit'){
         formData.append('id', this.activeRoute.snapshot.params.id);
       }
       else{
