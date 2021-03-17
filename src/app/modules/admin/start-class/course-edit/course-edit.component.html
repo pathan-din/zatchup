@@ -1,0 +1,109 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Edit Course</h2>
+            </div>
+        </div>
+
+        <div class="col-md-6 bg-light-gray pt-3 mt-3 pb-3">
+            <form class="w-100" autocapitalize="off" autocomplete="off" #form1>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Level of Education</label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <select [(ngModel)]="model" class="custom-select form-control-input" required>
+                                    <option value=""> Select Education</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input [(ngModel)]="model" name="course-preview" 
+                                class="form-control-input form-control commonFontSize regularFont letterspacing" 
+                                type="file" placeholder="Enter Course Name" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input [(ngModel)]="model" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Standard </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input [(ngModel)]="model" name="standard" class="form-control-input form-control commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Subject </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input [(ngModel)]="model" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Faculty Details </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input [(ngModel)]="model" name="faculty-details" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Faculty Name" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-0">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Topic Cover </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                <input [(ngModel)]="model" name="topic-cover" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Name" required>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group row  ml-0 mr-2 mt-2">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Description </label>
+                            <div class="form-control-inputDiv rounded-0 p-0 w-100  border-top shadow-none">
+                                <textarea [(ngModel)]="model" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" type="textarea" required></textarea>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-center d-flex">
+                    <!-- <button type="button" (click)="() && form1.reset()" class="bg-paret-green border-0 px-4 text-white text-center p-2 commonFontSize mediumFont letterspacing">Create</button> -->
+                </div>                    
+            </form>
+        </div>
+
+    </div>
+</div>

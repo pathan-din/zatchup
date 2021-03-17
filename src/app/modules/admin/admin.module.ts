@@ -163,6 +163,14 @@ import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details
 import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
 import { AdminStarClassCourseAddComponent } from './start-class/admin-star-class-course-add/admin-star-class-course-add.component';
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
+import { StarclassAddedCourseListComponent } from './start-class/starclass-added-course-list/starclass-added-course-list.component';
+import { StarclassCoursePreviewComponent } from './start-class/starclass-course-preview/starclass-course-preview.component';
+import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
+import { PricePlanHistoryComponent } from './start-class/price-plan-history/price-plan-history.component';
+import { CurrentPlansComponent } from './start-class/current-plans/current-plans.component';
+import { PlanHistoryComponent } from './start-class/plan-history/plan-history.component';
+import { CourseEditComponent } from './start-class/course-edit/course-edit.component';
+import { StarclassManagementComponent } from './start-class/starclass-management/starclass-management.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -332,7 +340,15 @@ const config = {
     ChangeInBankDetailsPendingComponent,
     ChangeInBankDetailsViewComponent,
     AdminStarClassCourseAddComponent,
-    EditPocDetailsComponent
+    EditPocDetailsComponent,
+    StarclassManagementComponent,
+    CourseEditComponent,
+    PlanHistoryComponent,
+    CurrentPlansComponent,
+    PricePlanHistoryComponent,
+    AllCoursesUploadedByEiComponent,
+    StarclassCoursePreviewComponent,
+    StarclassAddedCourseListComponent
   ],
   imports: [
     CommonModule,
