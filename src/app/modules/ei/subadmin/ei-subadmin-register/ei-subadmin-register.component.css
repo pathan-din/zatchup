@@ -6,6 +6,12 @@
     border-radius: 0%!important;
 } */
 
+.eyeIcon{
+    position: absolute;
+    right: 7px;
+    top: 16px;
+}
+    
 .loginInput input{
     width: 18%!important;
 }

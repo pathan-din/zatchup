@@ -23,6 +23,7 @@ export class EiLoginSubadminComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay = '';
+  passwordType: any = "password";
   modelForOtpModal:any={};
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -191,5 +192,11 @@ export class EiLoginSubadminComponent implements OnInit {
     this.router.navigate(['ei/subadmin-registration']);
   }
 
- 
+  viewPassword() {
+    if (this.passwordType == 'password') {
+      this.passwordType = "text";
+    } else {
+      this.passwordType = "password";
+    }
+  }
 }
