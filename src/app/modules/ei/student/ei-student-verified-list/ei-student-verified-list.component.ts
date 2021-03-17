@@ -364,7 +364,13 @@ export class EiStudentVerifiedListComponent implements OnInit {
   }
 
   goToEiStudentEditPage(id, approve) {
-    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
+    let queryParams = {
+      "returnUrl": "ei/student-verified-list",
+      "approved": "1",
+      "kyc_approved": "1",
+      "title": "Verified"
+    }
+    this.router.navigate(['ei/student-edit'], { queryParams: { "returnUrl": JSON.stringify(queryParams) ,'stId': id, 'approve': approve } });
   }
 
   goToEiStudentProfilePage(id) {
