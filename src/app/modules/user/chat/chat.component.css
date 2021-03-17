@@ -25,7 +25,13 @@
     width: 92% !important;
 }
 .imgComment{
-    height: 35px;
+    height: 45px;
+    position: absolute;
+    right: -17px;
+    border: 0px;
+    background: #463267;
+    color: #fff;
+    width: 82px;
 }
 .border-bottomCustom{
     border-bottom: 1px solid #ccc;
