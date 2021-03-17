@@ -29,21 +29,18 @@ export class FirebaseService {
     }
 
     public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string) {
-
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
                 (user) => {
                     const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
-                    console.log(' user....', user)
                     const updateUser = {
                         id: user.user.uid,
                         email: user.user.email,
                         firstName: firstName,
                         lastName: lastName,
-                        photoUrl: 'https://randomuser.me/api/portraits/lego/2.jpg',
-                        isActive: "1"
+                        photoUrl: photoUrl,
+                        isActive: isActive
                     }
-                    console.log('update user....', updateUser)
                     userRef.set(updateUser)
                     resolve(user);
                 },

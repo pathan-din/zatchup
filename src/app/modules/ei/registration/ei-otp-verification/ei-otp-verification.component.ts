@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
-import { FormBuilder } from "@angular/forms";
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { UsersServiceService } from 'src/app/services/user/users-service.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-ei-otp-verification',
@@ -21,26 +17,17 @@ export class EiOtpVerificationComponent implements OnInit {
   otp2: any;
   otp3: any;
   otp4: any;
-  otp5: any;
-  otp6: any;
-  otp7: any;
-  otp8: any;
   error: any = [];
   errorDisplay: any = {};
   modelForOtpModal: any = {};
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private SpinnerService: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public formBuilder: FormBuilder,
+    private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private userService: UsersServiceService,
     private baseService: BaseService,
-    private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore,
-    ) { }
+    private afAuth: AngularFireAuth
+  ) { }
 
 
   ngOnInit(): void {
@@ -57,41 +44,30 @@ export class EiOtpVerificationComponent implements OnInit {
     this.router.navigate(['ei/create-new-password']);
   }
   changeInput($ev) {
-    console.log($ev);
     if ($ev.target.value.length == $ev.target.maxLength) {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
     }
-
   }
   resendOtp() {
     try {
-      console.log(this.model.username);
-
-      let data: any = {};
+      this.loader.show();
       this.modelForOtpModal.username = this.model.username;
+      this.baseService.action('user/resend-otp/', this.modelForOtpModal).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.", "Success")
+          } else {
+            this.errorOtpModelDisplay = res.error;
+            this.alert.success(this.errorOtpModelDisplay, "Error")
+          }
+        }, (error) => {
+          this.loader.hide();
 
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.SpinnerService.show();
-      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
-          this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.", "Success")
-        } else {
-          this.errorOtpModelDisplay = response.error;
-          this.alert.success(this.errorOtpModelDisplay, "Error")
-          //alert(response.error)
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
-
-      });
+        });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("verify Otp Exception", err);
+      this.loader.hide();
     }
   }
   goToOtpVerification() {
@@ -138,53 +114,27 @@ export class EiOtpVerificationComponent implements OnInit {
         data.firebase_id = localStorage.getItem("fbtoken")
       }
       data.phone_otp = this.otp1 + this.otp2 + this.otp3 + this.otp4;
-      this.SpinnerService.show();
-      this.eiService.verifyOtp(data).subscribe(async res => {
+      this.loader.show();
+      this.baseService.action('ei/verify-otp/', data).subscribe(async res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
+          this.loader.hide();
           var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
-          console.log(result.user.uid);
           localStorage.setItem('fbtoken', result.user.uid);
-          //$("#OTPModel").modal('hide');
-
-
-          // localStorage.setItem("user_id",response.user_id)
           localStorage.setItem("token", response.token);
-          //  if(response.reg_steps===null)
-          //  {
-          //     this.router.navigate(['ei/payment']);
-          //  }else if(response.reg_steps==="1")
-          //  {
-          //     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '1' } });
-          //  }else if(response.reg_steps==="2")
-          //  {
-          //     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '2' } });
-          //  }else if(response.reg_steps==="3")
-          //  {
-          //     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '3' } });
-          //  }else if(response.reg_steps==="4")
-          //  {
-          //     this.router.navigate(['ei/onboarding-process'],{ queryParams: { reg_steps: '4' } });
-          //  }else{
-          //     this.router.navigate(['ei/dashboard']);
-          //  }		   
           this.router.navigate(['ei/dashboard']);
         } else {
-          this.SpinnerService.hide();
-          //this.errorOtpModelDisplay=response.error;
+          this.loader.hide();
           this.alert.error(response.error.message[0], 'Error')
         }
       }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
+        this.loader.hide();
         this.alert.error(error, 'Error')
 
       });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("verify Otp Exception", err);
+      this.loader.hide();
       this.alert.error(err, 'Error')
     }
 

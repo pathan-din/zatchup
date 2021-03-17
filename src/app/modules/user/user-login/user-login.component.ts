@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-
-
-//import * as $ from 'jquery';
 declare var $: any;
 
 @Component({
@@ -26,7 +22,6 @@ export class UserLoginComponent implements OnInit {
   passwordType: any = "password";
   constructor(
     private router: Router,
-    public formBuilder: FormBuilder,
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
@@ -66,7 +61,7 @@ export class UserLoginComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status == "True") {
-            this.registerUserToFirebaseDB(res.data)
+            this.registerUserToFirebaseDB(res)
             $("#OTPModel").modal({
               backdrop: 'static',
               keyboard: false
@@ -207,7 +202,7 @@ export class UserLoginComponent implements OnInit {
           console.log("yes", signInMethods);
         }
         else {
-          that.firebaseService.firebaseSignUp(email, email, email, that.model.password, '', "1").then(
+          that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
             (res: any) => {
               localStorage.setItem('fbtoken', res.user.uid);
             },

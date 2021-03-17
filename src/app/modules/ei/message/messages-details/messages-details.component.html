@@ -21,7 +21,9 @@
         <div class="teacherChatList border-bottom">
             <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                 <div class="col-md-12 col-12">
-                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}} </p>
+                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}} 
+                        <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -34,7 +36,7 @@
                     class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                     type="search" placeholder="Type Something...">
                 <button type="button" [disabled]="!model.comment" (click)="sendChat()"
-                    class="bg-dark text-white px-2 border-0 position-absolute position-ppin cursorStyle">Post</button>
+                    class="bg-dark text-white px-2 border-0 position-absolute position-ppin cursorStyle">Send</button>
             </div>
         </div>
     </div>
