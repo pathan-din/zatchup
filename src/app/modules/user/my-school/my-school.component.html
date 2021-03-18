@@ -108,17 +108,19 @@
             <div class="modal-body">
                 <div class="py-3 bg-light-gray">
                     <h1 class="text-center mb-1">School List</h1>
-                    <div class="col-12 schoolChat chat_contentBox bg-light-gray d-flex py-2 border-bottom" *ngFor="let school of schoolList">
-                        <div class="profile_pick">
-                            <img *ngIf="school.profile_pic" [src]="school.profile_pic" class="img-fluid cursorStyle">
-                            <img *ngIf="!school.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png"
-                                class="img-fluid cursorStyle">
-                        </div>
-                        <div class="profile_name ml-3 border-bottomCustom w-100">
-                            <p class="m-0 pt-2">{{school.school_name}}
-                                <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
-                                    style="font-size: 22px" (click)="gotoChatWithTeachers(school.school_id)"></i>
-                            </p>
+                    <div class="schoolChat">
+                        <div class="col-12 chat_contentBox bg-light-gray d-flex py-2 border-bottom" *ngFor="let school of schoolList">
+                            <div class="profile_pick">
+                                <img *ngIf="school.profile_pic" [src]="school.profile_pic" class="img-fluid cursorStyle">
+                                <img *ngIf="!school.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png"
+                                    class="img-fluid cursorStyle">
+                            </div>
+                            <div class="profile_name ml-3 border-bottomCustom w-100">
+                                <p class="m-0 pt-2">{{school.school_name}}
+                                    <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
+                                        style="font-size: 22px" (click)="gotoChatWithTeachers(school.school_id)"></i>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
