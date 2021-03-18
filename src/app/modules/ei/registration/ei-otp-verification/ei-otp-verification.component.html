@@ -8,7 +8,7 @@
                 <h2 class="text-center my-3 semiBoldFont">OTP Verification</h2>
                 <form>
                     <div class="form-group">
-                        <label for="" class="commonFontSize letterspacing">Enter OTP that Received on your Registered Email id / Phone Number.</label>
+                        <label for="" class="commonFontSize letterspacing">Enter OTP that Received on your Registered {{model.username}}.</label>
                         <div class="d-flex justify-content-between">                            
                             <input (keyup)="changeInput($event)" [(ngModel)]="otp1" name="otp1" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
                             <input (keyup)="changeInput($event)" [(ngModel)]="otp2" name="otp2" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
