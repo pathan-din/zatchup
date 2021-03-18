@@ -416,7 +416,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.openingYear = new Date(this.model.opening_date).getFullYear();
-            console.log("88888"+this.openingYear);
+            
             
             this.loader.hide();
             this.getCourseDetailsByEiOnboard();
@@ -549,7 +549,12 @@ export class EiOnboardingProcessComponent implements OnInit {
   removeData(index, dataArray,document) {
    
     dataArray.splice(index, 1);
-    if(!document.id){
+    if(dataArray.length==1){
+      index=index-1;
+    }
+    
+    
+    if(!dataArray[index].id){
      
       
     }else{
@@ -600,7 +605,7 @@ export class EiOnboardingProcessComponent implements OnInit {
             if (this.params.redirect_url) {
               this.router.navigate(["ei/" + this.params.redirect_url]);
             }
-            if (this.params.reg_steps){
+            else if (this.params.reg_steps){
               let uri = 'ei/onboarding-process'
               this.reloadWindow(uri, 3)
             } 
