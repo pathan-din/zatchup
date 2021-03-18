@@ -45,6 +45,7 @@ export class EiManageCoursesAddComponent implements OnInit {
   uploadedCancelCheque: any = '';
   uploadedProfileContent: any = '';
   params:any={};
+  openingYear:any;
   constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
     , private router: Router,private base:BaseService, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
   public formBuilder: FormBuilder,
@@ -60,6 +61,10 @@ export class EiManageCoursesAddComponent implements OnInit {
       }
       
     })
+    if(localStorage.getItem("userprofile")){
+      var userProfileData = JSON.parse(localStorage.getItem("userprofile"));
+      this.openingYear = new Date(userProfileData.opening_date).getFullYear();
+    }
     this.model2Step.is_login=1;
     this.model2Step.coursedata = [{
       course_name: "",
