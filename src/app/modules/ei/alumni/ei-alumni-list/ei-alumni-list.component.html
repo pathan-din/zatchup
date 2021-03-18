@@ -58,53 +58,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Gender</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" [(ngModel)]="model.gender" name="gender"
-                            required>
-                            <option value=""> Select Gender</option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-
-                        </select>
-                    </div>
-                </div> -->
-                <!-- <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Profession</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" [(ngModel)]="model.profession"
-                            name="Profession" required>
-                            <option value=""> Select Profession</option>
-                            <option value="1">Profession1</option>
-                            <option value="2">Profession2</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div> -->
-                <!-- <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Verification Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select class="custom-select  form-control-input" required [(ngModel)]="model.approved"
-                            name="approved">
-                            <option value=""> Select Status</option>
-                            <option value="1">Verified</option>
-                            <option value="0">Unverified</option>
-
-                        </select>
-                    </div>
-                </div> -->
-                <!-- <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing">KYC Status</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
-                        <select [(ngModel)]="model.kyc_approved" name="kyc_approved"
-                            class="custom-select  form-control-input" required>
-                            <option value=""> Select Status</option>
-                            <option value="1">Complete</option>
-                            <option value="0">Incomplete</option>
-                        </select>
-                    </div>
-                </div> -->
+              
                 <button (click)="getAluminiList('','')" type="button"
                     class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
 
@@ -121,9 +75,7 @@
                         <!-- <option value="">select One</option> -->
                         <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
 
-                        <!-- <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option> -->
+                       
                     </select>
                 </div>
             </div>
@@ -176,11 +128,7 @@
                         </mat-cell>
                     </ng-container>
 
-                    <!-- <ng-container matColumnDef="Tenure">
-                        <mat-header-cell *matHeaderCellDef>Tenure</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.Tenure}} </mat-cell>
-                    </ng-container> -->
-
+                   
                     <ng-container matColumnDef="Duration">
                         <mat-header-cell *matHeaderCellDef> Duration </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
@@ -200,23 +148,7 @@
                                
                         </mat-cell>
                     </ng-container>
-<!-- 
-                    <ng-container matColumnDef="EKYCVerificationStatus">
-                        <mat-header-cell *matHeaderCellDef> EKYC Verification Status </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            <button class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
-                                {{element.EKYCVerificationStatus}}</button> </mat-cell>
-                    </ng-container> -->
 
-                    <!-- <ng-container matColumnDef="Action">
-                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-                        <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
-                                title="comment"></i>
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true " title="View"
-                                (click)="goToEiAlumniProfilePage()"></i>
-                        </mat-cell>
-                    </ng-container> -->
 
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
@@ -226,6 +158,8 @@
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true " (click)="goToEiStudentProfilePage(element.student_id)"></i>
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" data-count="2"
                             aria-hidden="true "></i> -->
+                            <i *ngIf="element.firebase_id" (click)="goToChatScreen(element)"
+                                class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "></i>
                         <span  *ngIf="element.kyc_approved==1">
                         <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve" class="fa fa-check mr-2 color-green fa-lg cursorStyle" aria-hidden="true "
                             data-toggle="modal"></i>

@@ -67,11 +67,11 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">My Authorisations</span>
             </a> -->
-            <a *ngIf="isValidModule('') && isApproved" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
+            <a *ngIf="isApproved" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">subscriptions</i>
                 <span class="commonFontSize">Subscription Management</span>
             </a>
-            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/invoices" routerLinkActive="link-active">
+            <a mat-list-item routerLink="/ei/invoices" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">receipt</i>
                 <span class="commonFontSize">Invoice</span>
             </a>

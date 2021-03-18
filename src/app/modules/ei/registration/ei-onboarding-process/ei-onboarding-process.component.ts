@@ -91,6 +91,7 @@ export class EiOnboardingProcessComponent implements OnInit {
         this.getBankDetails()
       console.log('params is as ::', this.params)
     })
+    
     this.getAllState()
     this.getStepFirstData();
     this.getCourseDetailsByEiOnboard();
@@ -102,6 +103,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     let document: any = {};
     document.name = '';
     document.document = '';
+    document.document_image='';
     this.modelDocumentDetails.push(document);
     this.getDocumentUploadedByEi()
     var i = 1;
@@ -116,7 +118,9 @@ export class EiOnboardingProcessComponent implements OnInit {
       course_name: "",
       course_type: "",
       description: "",
-
+      is_teaching_current: true,
+      start_year: "",
+      end_year: 0,
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -127,7 +131,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
-          is_teaching_current: false,
+          is_teaching_current: true,
           alias_class: ""
         }]
       }],
@@ -165,6 +169,11 @@ export class EiOnboardingProcessComponent implements OnInit {
         this.loader.hide();
         if (responce.results.length > 0) {
           this.model2Step.coursedata = responce.results;
+          this.model2Step.coursedata.forEach(element => {
+            element.is_teaching_current = element.end_year=='Present'?true:false
+          });
+          
+          
         }
 
       })
@@ -284,6 +293,9 @@ export class EiOnboardingProcessComponent implements OnInit {
             var date = this.model.opening_date.split('-');
             this.opening_date = date[0];
             this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
+            this.openingYear = new Date(this.model.opening_date).getFullYear();
+            
+            
 
           } else {
             this.model.opening_date = '';
@@ -302,6 +314,10 @@ export class EiOnboardingProcessComponent implements OnInit {
 
     }
 
+  }
+
+  resetCourseBothYear(courseList){
+    courseList.course_end_year = '';
   }
   /**
    * FUnction Name : getNumberOfStudentList
@@ -348,6 +364,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       course_name: "",
       course_type: "",
       description: "",
+      is_teaching_current: true,
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -359,12 +376,14 @@ export class EiOnboardingProcessComponent implements OnInit {
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
-          is_teaching_current: false,
+          is_teaching_current: true,
           alias_class: ""
         }]
       }],
     })
 
+
+    
 
   }
   goForward() {
@@ -397,6 +416,8 @@ export class EiOnboardingProcessComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.openingYear = new Date(this.model.opening_date).getFullYear();
+            console.log("88888"+this.openingYear);
+            
             this.loader.hide();
             this.getCourseDetailsByEiOnboard();
             if (this.params.redirect_url) {
@@ -490,12 +511,12 @@ export class EiOnboardingProcessComponent implements OnInit {
       duration: "",
       classdata: [{
         class_name: '',
-        teaching_start_year: 0,
+        teaching_start_year: courseList.start_year?courseList.start_year:0,
         teaching_start_month: 0,
         teaching_stopped: false,
-        teaching_end_year: 0,
+        teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
         teaching_end_month: 0,
-        is_teaching_current: false,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
         alias_class: ""
       }]
     })
@@ -515,7 +536,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,
-      is_teaching_current: false,
+      is_teaching_current: true,
       alias_class: ""
     })
   }
@@ -533,7 +554,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       
     }else{
       let data:any={};
-      data.document_id = document.id;
+      data.document_id = dataArray[index].id;
       try {
         this.loader.show()
         this.baseService.action("ei/document-delete-by-id/",data).subscribe((res:any)=>{
@@ -701,6 +722,9 @@ export class EiOnboardingProcessComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             document.document = res.filename;
+            document.document_image = this.serverImageUrl+'/'+res.filename;
+            console.log(this.modelDocumentDetails);
+            
             return res.filename;
           } else {
             this.loader.hide();

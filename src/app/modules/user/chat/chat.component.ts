@@ -63,11 +63,7 @@ export class ChatComponent implements OnInit {
         data.is_active = 1
         data.is_read = 0
         data.created_on = this.baseService.getDateFormat(date);
-
         this.getFriendListBySender(localStorage.getItem('fbtoken'), uid, data)
-
-
-
       })
     }
   }
@@ -94,20 +90,14 @@ export class ChatComponent implements OnInit {
 
                   localStorage.setItem("friendlidt_id", doc.id)
                 }
-
               });
             }
-
           });
       } else {
         this.firestore.collection("user_friend_list").add(data).then(res => {
           localStorage.setItem("friendlidt_id", res.id)
-
-
         })
       }
-
-
     })
 
 
@@ -125,12 +115,14 @@ export class ChatComponent implements OnInit {
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
-      data.user_friend_id = localStorage.getItem("friendlidt_id");;
+      let userData = JSON.parse(localStorage.getItem('userInfo'))
+      data.user_friend_id = localStorage.getItem("friendlidt_id")
       data.user_send_by = localStorage.getItem('fbtoken');
       data.msg = this.model.comment;
       data.timestamp = new Date().valueOf();
+      data.user_name = userData.first_name+ ' '+ userData.last_name;
+      data.profile_pic = userData.profile_pic
       this.dataStudent.push(data)
-      // console.log(this.dataStudent);
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
         .set(dataNew).then(res => {
@@ -139,7 +131,6 @@ export class ChatComponent implements OnInit {
         },
           err => reject(err)
         )
-
     })
   }
 
@@ -149,6 +140,10 @@ export class ChatComponent implements OnInit {
 
   goBack() {
     this.location.back()
+  }
+
+  gotoChatPrivacy(){
+    
   }
 
 }

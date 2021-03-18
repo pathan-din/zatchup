@@ -139,6 +139,7 @@ export class CourseList extends Pagination {
 export class StarclassPlanHistory extends Pagination {
     modal: any;
     history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
 }
 export class StarclassCourseDetails extends Pagination {
     courseDetails: any;

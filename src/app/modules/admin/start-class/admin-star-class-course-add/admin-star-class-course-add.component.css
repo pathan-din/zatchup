@@ -24,3 +24,7 @@
     }
     .p-t-2{padding: .5rem .5rem!important;}
 }
+
+.customVideo video{
+    width: 80%;
+}

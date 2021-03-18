@@ -54,15 +54,28 @@
                 <div class="form-group row  ml-0 mr-0">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Upload </label>
                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                    <input  name="lecture" required type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" >
+                    <input [required]="!model.lecture"  name="lecture"  type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" >
                 </div>
                 <div class="required errorMsg" [innerHtml]="errorDisplay.lecture"></div>
+            </div>
+
+            <div class="col-md-12" *ngIf="model.lecture">
+                <div class="form-group row ml-0 mr-0">
+                    <div class="col-md-12 customVideo" >
+                        <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
+                        <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                            <source *ngIf="model.lecture" src="{{model.lecture}}" type="video/mp4" />
+                       </video>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-12">
                 <div class="form-group row ml-0 mr-0 d-flex justify-content-center">                
                     <button type="button " class="bg-danger border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"> Cancel </button>
-                    <button type="button " class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing " (click)="uploadLecture()"> Upload </button>                    
+                    <button type="button " class="bg-paret-green border-0 text-white text-center px-4 py-2 
+                    commonFontSize mediumFont letterspacing " (click)="uploadLecture()"> 
+                    {{action == 'add' ? 'Upload ' : 'Edit '}} </button>                    
                 </div>
             </div>
 
