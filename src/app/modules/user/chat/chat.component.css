@@ -63,7 +63,7 @@
 .chatIn:before {
     position: absolute;
     content: url("../../../../assets/images/userWebsite/purple_beak.png");
-    left: -22px;
+    left: -21px;
     top: 4px;
     /* background: url("assets/images/userWebsite/purple_beak.png"); */
     background-repeat: no-repeat;
