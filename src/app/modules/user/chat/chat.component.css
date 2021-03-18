@@ -17,6 +17,10 @@
     width: 85%;
     margin: 0px auto;
 }
+.schoolChat {
+    height: 300px;
+    overflow-y: scroll;
+}
 .addComment{
     width: 65%;
     margin: 0px auto;
