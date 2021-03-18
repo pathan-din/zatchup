@@ -6,6 +6,8 @@
         <div class="collapse navbar-collapse">
             <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl" >
                 <li class="nav-item" *ngIf="authCheck">
+
+                   
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                     <sup class="color-white " style="background: #22c123;
@@ -18,7 +20,10 @@
                         text-align: center;
                         font-size: 11px;
                         position: absolute;
-                        left: 18px">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a></li>
+                        left: 18px">
+                        
+                        
+                        {{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a></li>
                 <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li>
                 <!-- <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li> -->
                 <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " target="_blank" routerLinkActive="active-link">About Us</a></li> 
@@ -79,7 +84,8 @@
                         routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link"
                         routerLinkActive="active-link">My School</a></li>
-                <li class="nav-item"><a class="nav-link" routerLinkActive="active-link">Messages</a></li>
+                <li class="nav-item" data-target="#msgModel"
+                data-toggle="modal"><a  class="nav-link cursorStyle" routerLinkActive="active-link">Messages</a></li>
 
                 <div class="dropdown mx-4">
                     <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -116,29 +122,33 @@
 
         </div>
     </div>
-    <!-- <div class="container-fluid">
-        <a href="" class="navbar-brand"><img class="img-fluid  headerLogoImg" src="assets/images/userWebsite/logo.png"></a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto userNavUl align-items-center" routerLinkActive="active">
-                <li class="nav-item"><a routerLink="/Home" class="nav-link nav-link-custom">Home</a></li>
-                <li class="nav-item"><a routerLink="/RegisterSchool" class="nav-link nav-link-custom">My School</a></li>
-                <li class="nav-item"><a routerLink="/Login" class="nav-link nav-link-custom">Messages</a></li>
-                <li class="nav-item">
-                    <a routerLink="/AboutUs" class="nav-link pl-5 nav-link-custom nav-link-custom-search">
-                        <img src="assets/images/userWebsite/search-icon.png" class="img-fluid w-75">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/ContactUs" class="nav-link d-flex flex-row ">
-                        <img src="assets/images/userWebsite/successfully_done.png" class="img-fluid headerDP mr-1">
-                        <p class="m-auto ">Hi Nitesh</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/Career" class="nav-link ">
-                        <img src="assets/images/userWebsite/search-icon.png" class="img-fluid w-75"></a>
-                </li>
-            </ul>
-        </div>
-    </div> -->
+    
+
+    
 </nav>
+
+<div class="modal fade" id="msgModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-body pl-5 pr-5 text-center">
+                 
+                <p class="color-black regularFont commonFontSize">Messages Details </p>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div style="width:100%" *ngFor="let msg of messageData">
+                            <p style="width:100%;text-align: left;" *ngFor="let msgObj of msg">
+                                <span *ngIf="currentUser!=msgObj.user_send_by" (click)="goToChat(msgObj.user_send_by)">{{msgObj.msg}} commented on your profile</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -78,7 +78,7 @@ export class ChatComponent implements OnInit {
       let dataEle = res.find(elem => {
         return ((elem.user_request_id === loginfirebase_id && elem.user_accept_id === user_accept_id) || (elem.user_request_id === user_accept_id && elem.user_accept_id === loginfirebase_id))
       })
-      console.log(dataEle);
+     
 
       if (dataEle) {
 

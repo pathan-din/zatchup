@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -15,11 +17,15 @@ export class UserHeaderComponent implements OnInit {
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/"
   }
+  messageData:any=[];
+  currentUser:any="";
   constructor(
     private router: Router,
     private baseService: BaseService,
     private alert: NotificationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notifypush:FirebaseService,
+    private firestore: AngularFirestore,
   ) { }
 
   ngOnInit(): void {
@@ -36,8 +42,46 @@ export class UserHeaderComponent implements OnInit {
       this.isCheck = localStorage.getItem('approved');
 
     }
+   
+   
+    
+    this.notifypush.receiveMessage()
+    
+    if(localStorage.getItem("fbtoken")){
+      this.currentUser = localStorage.getItem("fbtoken");
+      this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
+    }
 
+  }
+  goToChat(uuid){
+    localStorage.setItem('uuid', uuid);
+    this.router.navigate(["user/chat"]);
+  }
+  
+  getUsersWithModeratorRole(loginfirebase_id){
+    var that =this;
+    this.firestore.collection('user_friend_list').ref.where('user_accept_id','==',loginfirebase_id).get().then(res=>{
 
+      res.docChanges().map(doc=>{
+        that.messageData = [];
+        var msgData = this.firestore.collection('chat_conversation').doc(doc.doc.id).valueChanges();
+        msgData.subscribe((res:any)=>{
+          
+          if(res){
+            that.messageData.push(res.data);
+            console.log( that.messageData);
+          }
+          
+          
+          
+        })
+        
+        
+      })
+      
+    }
+      )
+     
   }
   goToSetting() {
     this.router.navigate(["user/setting"]);

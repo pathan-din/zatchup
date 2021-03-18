@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 declare var $: any;
 
 @Component({
@@ -28,6 +29,7 @@ export class UserLoginComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
     private formValidationService: GenericFormValidationService,
+    private angularFireMessaging: AngularFireMessaging
   ) { }
 
   ngOnInit(): void {
@@ -199,9 +201,11 @@ export class UserLoginComponent implements OnInit {
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
         if (signInMethods.length > 0) {
-          console.log("yes", signInMethods);
+       
         }
         else {
+         
+          
           that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
             (res: any) => {
               localStorage.setItem('fbtoken', res.user.uid);
