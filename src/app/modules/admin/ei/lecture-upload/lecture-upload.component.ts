@@ -19,7 +19,9 @@ export class LectureUploadComponent implements OnInit {
   filename: string;
   uploadedContent: File;
   params: any;
-  action: any
+  action: any;
+  lecture: any;
+  levelOfEducation: any;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -49,9 +51,9 @@ export class LectureUploadComponent implements OnInit {
   getLectureList() {
     try {
       this.loader.show()
-      this.model = {
-        'id': this.activeRoute.snapshot.params.id,
-      }
+      
+      console.log(this.model);
+      
       this.baseService.getData('starclass/lecture-detail/' + this.activeRoute.snapshot.params.id).subscribe(
         (res: any) => {
           if (res.status == true) {
@@ -95,7 +97,11 @@ export class LectureUploadComponent implements OnInit {
       formData.append('lecture_description', this.model.lecture_description);
       formData.append('name_of_teaching_faculty', this.model.name_of_teaching_faculty);
       formData.append('topic_cover', this.model.topic_cover);
-      formData.append('lecture', this.uploadedContent);
+      // let content = this.uploadedContent ? this.uploadedContent : this.model.lecture
+      // formData.append('lecture', content);
+      if(this.uploadedContent){
+        formData.append('lecture', this.uploadedContent);
+      }
       if (this.action == 'edit'){
         formData.append('id', this.activeRoute.snapshot.params.id);
       }

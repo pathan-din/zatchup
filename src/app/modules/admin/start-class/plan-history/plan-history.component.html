@@ -7,38 +7,71 @@
             <span class="mr-3 cursorStyle">
                 <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
             </span>
-            <h2 class="commonFontSize semiBoldFont m-0">Current Plans</h2>
+            <h2 class="commonFontSize semiBoldFont m-0">Plan History</h2>
         </div>
 
-        <div class="row mobile-col-reverse border-0 mt-3 mx-0">
-            <div class="col-md-12 col-left">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize semiBoldFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>20 March,2020 & 12:00 P.M</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 5000 to 6000 by Employee Name(Employee ID)</p>
+        <div class="row my-3 align-items-center" *ngIf="starclassPlanHistory.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getPlanHistory('1')" [(ngModel)]="getPlanHistory.page_size">
+                        <option *ngFor="let count of getPlanHistory.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+         <div class="row mt-3">
+            <div class="col-md-12">
+                 <!--Start html for table content Alimni information-->
+                <div class="tableDiv " *ngIf="starclassPlanHistory.dataSource">
+                    <div class="mat-elevation-z1 table-responsive" >
+                        <mat-table [dataSource]="starclassPlanHistory.dataSource | paginate:starclassPlanHistory.config">
+
+                            <ng-container matColumnDef="position">
+                                <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                <mat-cell *matCellDef="let element; let i = index;"> {{i + starclassPlanHistory.startIndex}} </mat-cell>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef> Action  </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.action}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actionDate">
+                                <mat-header-cell *matHeaderCellDef> Action Date </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.action_date}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="message">
+                                <mat-header-cell *matHeaderCellDef> Message </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    {{element.message}} 
+                                </mat-cell>
+                            </ng-container>
+
+                            <!-- <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    <i data-toggle="modal" data-target="#createNewPlan" (click)="editPlan(element)"  class="fa fa-pencil ml-2 color-green cursorStyle" aria-hidden="true"></i>
+                                    <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true"
+                                    (click)="deletePlan(element.id)"></i>
+                                </mat-cell>
+                            </ng-container> -->
+
+                            <mat-header-row *matHeaderRowDef="starclassPlanHistory.displayedColumns "></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: starclassPlanHistory.displayedColumns; "></mat-row>
+                        </mat-table>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize semiBoldFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>20 March,2020 & 1:00 P.M</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7  commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 6000 to 7000 by Employee Name(Employee ID)</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-5 commonFontSize semiBoldFont d-flex flex-row align-items-start">
-                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>20 March,2020 & 4:25 P.M</p>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-7  commonFontSize mediumFont">
-                        <p><span class="mr-3">:</span>Onboarding Fees Changes from 7000 to 8000 by Employee Name(Employee ID)</p>
+                <pagination-controls *ngIf="starclassPlanHistory.dataSource" (pageChange)="getPlanHistory($event)" class="eiPaginationTag">
+                </pagination-controls>
+                <div class="row" *ngIf="!starclassPlanHistory.dataSource">
+                    <div class="col-12 pt-2 pb-2">
+                        <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                     </div>
                 </div>
             </div>
