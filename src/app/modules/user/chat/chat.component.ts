@@ -115,10 +115,13 @@ export class ChatComponent implements OnInit {
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
-      data.user_friend_id = localStorage.getItem("friendlidt_id");;
+      let userData = JSON.parse(localStorage.getItem('userInfo'))
+      data.user_friend_id = localStorage.getItem("friendlidt_id")
       data.user_send_by = localStorage.getItem('fbtoken');
       data.msg = this.model.comment;
       data.timestamp = new Date().valueOf();
+      data.user_name = userData.first_name+ ' '+ userData.last_name;
+      data.profile_pic = userData.profile_pic
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
@@ -137,6 +140,10 @@ export class ChatComponent implements OnInit {
 
   goBack() {
     this.location.back()
+  }
+
+  gotoChatPrivacy(){
+    
   }
 
 }
