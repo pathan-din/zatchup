@@ -35,7 +35,7 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl align-items-center" >
+            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl align-items-center flex-wrap">
                 <li *ngIf="authCheck" class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl align-items-center">
+            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl align-items-center flex-wrap">
 
                 <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()"
@@ -90,9 +90,14 @@
 
                 <div class="dropdown-menu customDropDown2 pl-0" aria-labelledby="dropdownMenuButton2" *ngIf="messageData.length>0">
                     <div style="width:100%" *ngFor="let msg of messageData">
-                        <p style="width:100%;text-align: left;" *ngFor="let msgObj of msg">
-                            <span *ngIf="currentUser!=msgObj.user_send_by" #closebutton  (click)="goToChat(msgObj.user_send_by)">{{msgObj.msg}} commented on your profile</span>
-                        </p>
+                        <div style="width:100%;text-align: left;" *ngFor="let msgObj of msg">
+                            <div *ngIf="currentUser!=msgObj.user_send_by" #closebutton  (click)="goToChat(msgObj.user_send_by)" class="d-flex justify-content-start border-bottom py-2">
+                                <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                                <p class="ml-2 mb-0">{{msgObj.msg}}
+                                    <span class="d-block" style="font-size: 13px; line-height: 1;">Commented on your profile</span>
+                                </p>                                 
+                            </div>
+                        </div>
                     </div>
                 </div>
 
