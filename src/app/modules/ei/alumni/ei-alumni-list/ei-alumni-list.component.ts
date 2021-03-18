@@ -386,6 +386,7 @@ getAluminiList(page,strFilter){
         objAlumniList.is_rejected = objData.is_rejected;
         objAlumniList.student_id = objData.user_id;
         objAlumniList.reason_reject = objData.reason_reject;
+        objAlumniList.firebase_id = objData.firebase_id;
         objAlumniList.Action='';
 			
       arrAlumniList.push(objAlumniList);
