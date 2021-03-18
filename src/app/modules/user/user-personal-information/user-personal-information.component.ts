@@ -20,6 +20,7 @@ export class UserPersonalInformationComponent implements OnInit {
   course_id: any = '';
   imagePath: any = "";
   role:any;
+  params:any={};
   uploadInfo: any = {
     "image_type": "file_name",
     "url": "ei/uploaddocsfile/",
@@ -44,7 +45,7 @@ export class UserPersonalInformationComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
       this.model.school_id = this.schoolId;
-      
+      this.params=params;
 
     });
     
@@ -80,7 +81,12 @@ export class UserPersonalInformationComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
-            this.router.navigate(['user/profile-created'], { queryParams: { school_id: this.schoolId } });
+            if(this.params.returnUrl){
+              this.router.navigate(['user/my-educational-profile']);
+            }else{
+              this.router.navigate(['user/profile-created'], { queryParams: { school_id: this.schoolId } });
+            }
+            
             //this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
           } else {
             this.loader.hide();

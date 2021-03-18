@@ -65,7 +65,9 @@ export class UserMyEducationalProfileComponent implements OnInit {
     localStorage.setItem('uuid', uuid);
     this.router.navigate(["user/chat"]);
   }
-
+  redirectPersonalInfo(){
+    this.router.navigate(["user/add-personal-info"], { queryParams: { "returnUrl": 'my-educational-profile' } });
+  }
   redirectWorkDetailesPage(id) {
     this.router.navigate(["user/work-detail"], { queryParams: { "id": id } });
   }
