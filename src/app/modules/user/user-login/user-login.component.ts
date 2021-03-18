@@ -6,6 +6,10 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+<<<<<<< HEAD
+=======
+import { AngularFireMessaging } from '@angular/fire/messaging';
+>>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
 declare var $: any;
 
 @Component({
@@ -28,6 +32,7 @@ export class UserLoginComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
     private formValidationService: GenericFormValidationService,
+    private angularFireMessaging: AngularFireMessaging
   ) { }
 
   ngOnInit(): void {
@@ -199,9 +204,14 @@ export class UserLoginComponent implements OnInit {
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
         if (signInMethods.length > 0) {
-          console.log("yes", signInMethods);
+       
         }
         else {
+<<<<<<< HEAD
+=======
+         
+          
+>>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
           that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
             (res: any) => {
               localStorage.setItem('fbtoken', res.user.uid);
@@ -213,19 +223,8 @@ export class UserLoginComponent implements OnInit {
       })
   }
 
-  getUser() {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        console.log('user...',user)
-        // this.user = user;
-        // localStorage.setItem('user', JSON.stringify(this.user));
-      } else {
-        // localStorage.setItem('user', null);
-      }
-    })
-  }
-
   async updateUserWithFirebaseID() {
+    this.model.username = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
     localStorage.setItem('fbtoken', result.user.uid);
   }

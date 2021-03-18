@@ -51,6 +51,7 @@ export class UserEiProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.params = params
+      
       if (params.school_id) {
         this.schoolId = params.school_id;
         this.getCourseBySchoolId(this.schoolId)

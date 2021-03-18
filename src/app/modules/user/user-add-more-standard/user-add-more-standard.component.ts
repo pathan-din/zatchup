@@ -96,7 +96,9 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.baseService.action("user/get-admission-number-detail-by-school/", model).subscribe((res: any) => {
         if (res.status == true) {
           this.SpinnerService.hide();
-          this.model = res.data;
+          //this.model = res.data;
+          this.model.name_of_school = res.data.name_of_school;
+          this.model.school_code = res.data.school_code;
           this.model.join_standard_id = res.data.join_standard_id
           this.model.current_standard_id = res.data.current_standard_id
           if (this.model.course_id) {
@@ -143,7 +145,7 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
   displayStandardList(courseId) {
     try {
-      if (courseId != 'others') {
+      if (courseId != 'others' && courseId != '') {
         if (this.courseList)
           this.setCalDates(courseId)
         this.SpinnerService.show();
@@ -160,6 +162,8 @@ export class UserAddMoreStandardComponent implements OnInit {
         }, (error) => {
           this.SpinnerService.hide();
         });
+      }else{
+        this.model.course_id = 'others';
       }
 
     } catch (err) {
@@ -249,7 +253,7 @@ export class UserAddMoreStandardComponent implements OnInit {
   addCourseNewData() {
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    console.log(this.errorDisplay)
+    
     if (this.errorDisplay.valid) {
       return false;
     }

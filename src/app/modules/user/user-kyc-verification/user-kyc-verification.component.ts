@@ -50,7 +50,7 @@ export class UserKycVerificationComponent implements OnInit {
   errorDisplay: any = {};
   errorOtpModelDisplay: any;
   uploadedContentForBackPhoto: any;
-  params:any;
+  params:any={};
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
      private router: Router, 

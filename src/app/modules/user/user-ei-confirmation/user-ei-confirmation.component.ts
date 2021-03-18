@@ -303,6 +303,7 @@ export class UserEiConfirmationComponent implements OnInit {
     }
 
   }
+ 
   getConfirmationDetails() {
     try {
       this.SpinnerService.show();

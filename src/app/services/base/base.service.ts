@@ -35,6 +35,14 @@ export class BaseService {
   getDateReverseFormat(date) {
     return new Date(date);
   }
+
+  setCalanderDate(courseDate){
+    
+    var date = courseDate.split(" ");
+    console.log(date[1]+"-"+"1"+"-"+"1");
+    var cdate = new Date(date[1]+"-"+"01"+"-"+"01");
+    return cdate;
+  }
   setParams(params) {
     let httpParams = new HttpParams();
     Object.keys(params).forEach(function (key) {

@@ -26,6 +26,8 @@ export class AddEiComponent implements OnInit {
   name_of_school_others:any='';
   name_of_school_first:any='';
   params:any;
+  isDisabled: boolean = true
+
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
@@ -235,10 +237,12 @@ changeSchool(schoolData){
     var ev =event;
     let obj = this.schoolList.find(o => o.name_of_school === schoolData);
     this.model.university=obj.university;
-    this.model.address1=obj.address1;
+    this.model.address1=obj.address1+ ' ' + obj.address2;
     this.modelZatchup.zatchup_id=obj.school_code;
+    this.isDisabled = true
     }else{
     this.model.school_data={};
+    this.isDisabled = false
   }
 }
 /**Get data using zatchupId */
@@ -265,7 +269,7 @@ getDataByZatchupId() {
         this.name_of_school_first=model.name_of_school;  
         
         this.model.state = model.state;
-        this.model.address1 = model.address1;
+        this.model.address1 = model.address1+ ' ' + model.address2;
         this.model.university = model.university;
         if(model.school_code){this.modelZatchup.zatchup_id = model.school_code;}
        

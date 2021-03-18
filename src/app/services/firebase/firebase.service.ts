@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-// import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from './User.model';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { mergeMapTo } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs'
+
 
 @Injectable({
     providedIn: 'root'
@@ -13,10 +18,12 @@ import { User } from './User.model';
 export class FirebaseService {
     environment = environment
     public currentUser: Observable<User | null>
+    currentMessage = new BehaviorSubject(null);
+
     constructor(
         private afAuth: AngularFireAuth,
         private db: AngularFirestore,
-        // private firdb: AngularFireDatabase
+        private angularFireMessaging: AngularFireMessaging
     ) {
         this.currentUser = this.afAuth.authState.pipe(
             switchMap((user) => {
@@ -26,8 +33,38 @@ export class FirebaseService {
                     return of(null)
             })
         )
-    }
+        this.angularFireMessaging.messages.subscribe((msg:any)=>{
+            msg.onMessage = msg.onMessage.bind(msg);
 
+            msg.onTokenRefresh = msg.onTokenRefresh.bind(msg);
+            console.log(msg);
+            
+        })
+        // this.angularFireMessaging.messaging.subscribe(
+        //     (_messaging) => {
+        //     _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+        //     _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+        //     }
+        //     )
+    }
+    requestPermission() {
+        this.angularFireMessaging.requestToken.subscribe(
+        (token) => {
+            
+        console.log(token);
+        },
+        (err) => {
+        console.error('Unable to get permission to notify.', err);
+        }
+        );
+        }
+        receiveMessage() {
+        this.angularFireMessaging.messages.subscribe(
+        (payload) => {
+        console.log("new message received. ", payload);
+        this.currentMessage.next(payload);
+        })
+        }
     public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string) {
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
@@ -67,5 +104,5 @@ export class FirebaseService {
         let users = this.db.collection(`users`).valueChanges();
         return users
     }
-
+    
 }

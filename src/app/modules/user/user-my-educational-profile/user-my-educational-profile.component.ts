@@ -255,7 +255,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
       localStorage.setItem("month", data[1]);
       localStorage.setItem("day", data[2]);
     }
-    this.router.navigate(['user/kyc-verification'], { queryParams: { "action": "sendrequest", "returnUrl": "user/my-educational-profile" } });
+    this.router.navigate(['user/kyc-verification'], { queryParams: { "action": "sendrequest" ,"text":text, "returnUrl": "user/my-educational-profile" } });
   }
   getEducationalProfile() {
     try {
@@ -384,5 +384,9 @@ export class UserMyEducationalProfileComponent implements OnInit {
       }
     }, () => {
     });
+  }
+
+  gotoChatWithTeachers(id: any){
+    this.router.navigate(['user/new-chat'], { queryParams: { "returnUrl": "user/my-educational-profile  ", "school_id": id}});
   }
 }
