@@ -267,13 +267,13 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let standardData of eduDetail.course_detail[0].standard_detail">
-                                <td>{{standardData.standard_name}}</td>
+                                <td>{{standardData.standard_name ? standardData.standard_name : ''}}</td>
                                 <td>{{standardData.class_detail.length>0?standardData.class_detail[0].class_name:""}}
                                 </td>
-                                <td>{{standardData.class_detail[0].roll_no}}</td>
-                                <td>{{standardData.standard_start_year}}</td>
+                                <td>{{standardData.class_detail.length > 0 ? standardData.class_detail[0].roll_no : ''}}</td>
+                                <td>{{standardData.standard_start_year ? standardData.standard_start_year : ''}}</td>
                                 <td>{{standardData.is_current_standard ? 'Current' : standardData.standard_end_year}}</td>
-                                <td>{{standardData.duration}}</td>
+                                <td>{{standardData.duration ? standardData.duration : ''}}</td>
                             </tr>
                         </tbody>
 
