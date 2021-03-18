@@ -63,6 +63,12 @@ export class UserLoginComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status == "True") {
+            let userInfo = {
+              "first_name": res.first_name,
+              "last_name": res.last_name,
+              "profile_pic": res.profile_pic
+            }
+            localStorage.setItem('userInfo', JSON.stringify(userInfo))
             this.registerUserToFirebaseDB(res)
             $("#OTPModel").modal({
               backdrop: 'static',
