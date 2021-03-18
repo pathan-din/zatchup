@@ -40,7 +40,10 @@ export class StartNewChatComponent implements OnInit {
     this.loader.hide()
     this.baseService.getData('chat/teachers_list_based_on_school/', { 'ei_id': this.schoolId }).subscribe(
       (res: any) => {
-        this.teachersList = res.results
+        if (res.count == 0)
+          this.teachersList = undefined
+        else
+          this.teachersList = res.results
         this.loader.hide()
       },
       error => {
@@ -50,7 +53,7 @@ export class StartNewChatComponent implements OnInit {
   }
 
   getDocumentsChat(uuid) {
-    console.log('uid ...',uuid)
+    console.log('uid ...', uuid)
     localStorage.setItem('uuid', uuid);
     this.router.navigate(["user/chat"]);
   }
