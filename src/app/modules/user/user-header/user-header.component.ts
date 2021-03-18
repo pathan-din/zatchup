@@ -84,16 +84,13 @@ export class UserHeaderComponent implements OnInit {
     this.ids[0].then((res:any)=>{
       res.forEach(element => {
         this.firestore.collection('chat_conversation').valueChanges().subscribe((res:any)=>{
-          
+
         })
        var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res:any)=>{
        if (res.data())
-         console.log(res.data());
-         
-          return res.data()
-          
-        });
-        console.log('data outside ....',data)
+        return res.data()
+       });
+        
         data.then(res =>{
           if(res)
           this.messageData.push(res.data);
