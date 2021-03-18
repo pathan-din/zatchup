@@ -122,7 +122,7 @@ export class RequestPendingForCourseComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.alert.success(res.message, "Success")
-             
+            this.router.navigate(['ei/student-management']); 
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }

@@ -114,15 +114,7 @@ export class EiStudentEditComponent implements OnInit {
           this.model = response.data;
 
         } else {
-          //this.loader.hide(); 
-          // if(response.error)
-          // {
-          // this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
-          // this.alert.error(this.errorDisplay.message,'Error')
-          // }else{
-          //   this.alert.error(response.message[0],'Error')
-          // }
-          
+         
         }
 
       }, (error) => {
@@ -156,29 +148,9 @@ export class EiStudentEditComponent implements OnInit {
       this.loader.show();
       this.eiService.editStudent(formData, this.modelEdit.studentId).subscribe(
         (res: any) => {
-        // let response: any = {};
-        // response = res;
-        this.location.back()
-        // this.router.navigate([JSON.parse(this.route.snapshot.queryParamMap.get('returnUrl'))]);
-        // if(response.status===true)// Condition True Success 
-        // {
-        // //alert(response.message)
-
-        // }else{ // Condition False Validation failure
-        // this.loader.hide(); 
-        // var errorCollection='';
-        // for (var key in response.error) {
-        // if (response.error.hasOwnProperty(key)) {
-        // errorCollection = errorCollection+response.error[key][0]+'\n'
-
-        // }
-        // }
-        // alert(errorCollection);
-
-        // }
-
-        /*End else*/
-        //this.router.navigate(['userWeb/userSignUp']);
+       
+        this.router.navigate(['ei/student-management']);
+       
       }, (error) => {
         this.loader.hide();
         //console.log(error);

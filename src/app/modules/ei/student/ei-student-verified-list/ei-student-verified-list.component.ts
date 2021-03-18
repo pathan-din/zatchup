@@ -145,8 +145,6 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.eiService.displayClassList(stId).subscribe(
         (res: any) => {
           this.classList = res.classdata;
-
-
           this.loader.hide();
         }, (error) => {
           this.loader.hide();
@@ -260,7 +258,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
       arrFilter.push(teaching_class)
       arrFilter.push(gender)
       var strFilter = arrFilter.join("&");
+      
       this.getGetVerifiedStudent('', strFilter)
+    }else{
+      this.getGetVerifiedStudent('', '')
     }
   }
   goToChatScreen(objStudent) {
@@ -370,7 +371,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
       "kyc_approved": "1",
       "title": "Verified"
     }
-    this.router.navigate(['ei/student-edit'], { queryParams: { "returnUrl": JSON.stringify(queryParams) ,'stId': id, 'approve': approve } });
+    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
   }
 
   goToEiStudentProfilePage(id) {
