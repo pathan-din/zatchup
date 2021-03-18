@@ -13,32 +13,37 @@
                 <div class="row" *ngIf="!roleCheck">
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">Project Funding</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/lecturer-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/lecturer-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">Lecture/Career Counselling</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/e-certificate-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/e-certificate-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">E-Certificates & E-report</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3 cursorStyle">
                         <div (click)="gotToProfilePage()" class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">View My Education Profile</p>
                         </div>
                     </div>
 
-                    <div *ngIf="verified == '1'" (click)="gotoChatWithTeachers()" class="col-md-12 mb-3 cursorStyle">
+                    <div *ngIf="verified == '1'" (click)="checkSchoolList()" class="col-md-12 mb-3 cursorStyle">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/chat-teacher.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/chat-teacher.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">Chat with Teachers</p>
                         </div>
                     </div>
@@ -53,25 +58,29 @@
                 <div class="row" *ngIf="roleCheck">
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/project-funding-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">Project Funding</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/lecturer-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/lecturer-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">Lecture/Career Counselling</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/e-certificate-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/e-certificate-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">E-Certificates & E-report</p>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3 cursorStyle">
                         <div (click)="gotToProfilePage()" class="bg-white mySchoolDiv p-3 shadow text-center">
-                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding" class="myProfileImg"/>
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="project funding"
+                                class="myProfileImg" />
                             <p class="pt-2">View My Education Profile</p>
                         </div>
                     </div>
@@ -85,5 +94,41 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body pl-5 pr-5">
+                <div class="py-3 bg-light-gray">
+                    <h1 class="text-center py-3 m-0">School List</h1>
+                    <div class="col-12 chat_contentBox bg-light-gray d-flex mb-4" *ngFor="let school of schoolList">
+                        <div class="profile_pick">
+                            <img *ngIf="school.profile_pic" [src]="school.profile_pic" class="img-fluid cursorStyle">
+                            <img *ngIf="!school.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png"
+                                class="img-fluid cursorStyle">
+                        </div>
+                        <div class="profile_name ml-3 border-bottomCustom w-100">
+                            <p class="m-0 pt-2">{{school.school_name}}
+                                <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
+                                    style="font-size: 22px" (click)="gotoChatWithTeachers(school.school_id)"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
 
 <!-- <app-user-footer></app-user-footer> -->

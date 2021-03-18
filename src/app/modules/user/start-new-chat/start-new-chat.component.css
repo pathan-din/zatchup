@@ -7,9 +7,14 @@
 }
 .profile_pick{
     border-radius: 50%;
-    width: 55px;
+    max-width: 55px;
     overflow: hidden;
-    height: 55px;
+    max-height: 55px;
+    min-height: 55px;
+    width: 100%;
+    min-width: 55px;
+    height: 100%;
+    border: 1px solid #ddd;
 }
 
 .chat_contentBox{
