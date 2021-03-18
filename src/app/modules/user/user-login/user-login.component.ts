@@ -6,10 +6,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-<<<<<<< HEAD
-=======
 import { AngularFireMessaging } from '@angular/fire/messaging';
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
 declare var $: any;
 
 @Component({
@@ -207,11 +204,8 @@ export class UserLoginComponent implements OnInit {
        
         }
         else {
-<<<<<<< HEAD
-=======
          
           
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
           that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
             (res: any) => {
               localStorage.setItem('fbtoken', res.user.uid);

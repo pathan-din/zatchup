@@ -1,9 +1,5 @@
 import { Location } from '@angular/common';
-<<<<<<< HEAD
-import { Component, OnInit, ViewChild } from '@angular/core';
-=======
 import { Component, OnInit } from '@angular/core';
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -52,10 +48,6 @@ export class ChatComponent implements OnInit {
           this.conversation = [];
           this.dataStudent = [];
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
       })
     }
     if (uid) {
@@ -63,10 +55,6 @@ export class ChatComponent implements OnInit {
       return new Promise<any>((resolve, reject) => {
         let data: any = {};
         var date = new Date();
-<<<<<<< HEAD
-
-=======
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
         var uuid = uid;
         data.user_request_id = localStorage.getItem('fbtoken');
         data.user_accept_id = uuid;
@@ -90,11 +78,7 @@ export class ChatComponent implements OnInit {
       let dataEle = res.find(elem => {
         return ((elem.user_request_id === loginfirebase_id && elem.user_accept_id === user_accept_id) || (elem.user_request_id === user_accept_id && elem.user_accept_id === loginfirebase_id))
       })
-<<<<<<< HEAD
-      console.log(dataEle);
-=======
      
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
 
       if (dataEle) {
 
@@ -163,11 +147,7 @@ export class ChatComponent implements OnInit {
     return this.chatService.getTimeAgo(time)
   }
 
-<<<<<<< HEAD
-  goBack(){
-=======
   goBack() {
->>>>>>> f1657b0b5bb8e88039096ba40e9a7979a6491159
     this.location.back()
   }
 
