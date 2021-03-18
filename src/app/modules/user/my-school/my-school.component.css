@@ -1,3 +1,18 @@
 @media (max-width: 414px){
     .w-75{width: 100% !important;}
 }
+.schoolChat {
+    height: 300px;
+    overflow-y: scroll;
+}
+.profile_pick{
+    border-radius: 50%;
+    max-width: 55px;
+    overflow: hidden;
+    max-height: 55px;
+    min-height: 55px;
+    width: 100%;
+    min-width: 55px;
+    height: 100%;
+    border: 1px solid #ddd;
+}

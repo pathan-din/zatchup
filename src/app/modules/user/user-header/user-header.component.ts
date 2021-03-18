@@ -4,6 +4,8 @@ import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -78,31 +80,35 @@ export class UserHeaderComponent implements OnInit {
   }
 
   getMessageList() {
+    this.messageData=[];
     this.ids[0].then((res:any)=>{
       res.forEach(element => {
-        this.firestore.collection('chat_conversation').doc(element).valueChanges().subscribe((resD:any)=>{
-          if(resD)
-          this.messageData.push(resD.data);
-          
-          
-        });
+        this.firestore.collection('chat_conversation').valueChanges().subscribe((res:any)=>{
+
+        })
+       var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res:any)=>{
+       if (res.data())
+        return res.data()
+       });
+        
+        data.then(res =>{
+          if(res)
+          this.messageData.push(res.data);
+        })
+        // this.messageData.push(data);
+        
       });
      
       
     })
     
-    // console.log('datatatwdawdkuawldesfkdrs', friendPostsList)
-    // this.getListOfFriends().then(data => {
-    // this.ids.forEach(id => {
-    //   let friendPostsList = this.firestore.collection('chat_conversation').doc(id).valueChanges();
-    //   // this.listOfAllPosts.push(this.friendPostsList);
-    //   console.log('datatatwdawdkuawldesfkdrs',friendPostsList)
-    // });
-    // }).catch(err =>{
-    //   console.log(err);
-    // });
+    // console.log(this.messageData);
+    
+   
   }
+getForkData(){
 
+    }
   goToSetting() {
     this.router.navigate(["user/setting"]);
   }
