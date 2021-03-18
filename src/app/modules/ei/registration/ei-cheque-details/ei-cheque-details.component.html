@@ -37,7 +37,7 @@
                             <label for="AccountNumber"  class="mediumFont commonFontSize letterspacing">Account Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input id="dd_account_no" required name="account_no"
-                                [(ngModel)]="model.dd_account_no"  required numberOnly class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Account Number">
+                                [(ngModel)]="model.dd_account_no" maxlength="30" required numberOnly class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Account Number">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.account_no"></div>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="col-sm-6">
                             <label for="ChequeNumber" class=" mediumFont commonFontSize letterspacing">Cheque Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input  id="dd_cheque_no" name="cheque_no"
+                                <input  id="dd_cheque_no" name="cheque_no" maxlength="10"
                                 [(ngModel)]="model.dd_cheque_no" numberOnly required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Cheque Number">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.cheque_no"></div>
@@ -75,14 +75,14 @@
                             <label for="IFSCCode" class="mediumFont commonFontSize letterspacing">IFSC Code</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input required id="dd_ifsc_code" name="ifsc_code"
-                                [(ngModel)]="model.dd_ifsc_code" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter IFSC Code">
+                                [(ngModel)]="model.dd_ifsc_code" maxlength="11" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter IFSC Code">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.ifsc_code"></div>
                         </div>
                         <div class="col-sm-6">
                             <label for="MICRCode" class=" mediumFont commonFontSize letterspacing">MICR Code</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input required id="dd_micr_code" name="micr_code"
+                                <input maxlength="14" required id="dd_micr_code" name="micr_code"
                                 [(ngModel)]="model.dd_micr_code" numberOnly class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter MICR Code">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.micr_code"></div>
