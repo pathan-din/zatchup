@@ -35,12 +35,17 @@ export class MessagesDetailsComponent implements OnInit {
     
 }
   sendChat() {
+
     return new Promise<any>((resolve, reject) => {
 
       let data: any = {};
       let dataNew: any = {};
+      let userData = JSON.parse(localStorage.getItem('userprofile'))
+      console.log('userData   ',userData)
       data.user_friend_id = localStorage.getItem("friendlidt_id");
       data.user_send_by = localStorage.getItem('fbtoken');
+      data.user_name = userData.user_first_name + ' '+ userData.user_last_name;
+      data.profile_pic = userData.profile_pic
       data.msg = this.model.comment;
       data.timestamp = new Date().valueOf();
 

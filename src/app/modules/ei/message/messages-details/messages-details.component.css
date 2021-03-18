@@ -11,7 +11,7 @@
 }
 
 .teacherChatList {
-    height: 220px;
+    height: 255px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
