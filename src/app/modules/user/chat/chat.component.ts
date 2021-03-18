@@ -142,4 +142,8 @@ export class ChatComponent implements OnInit {
     this.location.back()
   }
 
+  gotoChatPrivacy(){
+    
+  }
+
 }

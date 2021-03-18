@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-edit.component.css']
 })
 export class CourseEditComponent implements OnInit {
+  model: any
+  errorDisplay: any
 
   constructor() { }
 
