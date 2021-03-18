@@ -481,10 +481,6 @@
                 <div class="text-center">
                     <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="submitBankDetail();">Submit </button>
                 </div>
-
-                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
-                </p> -->
-
             </div>
         </div>
     </div>
@@ -526,7 +522,7 @@
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
                                     <input id="opening_date" required [(ngModel)]="editModel.opening_date"
-                                        name="opening_date" autocomplete="off"
+                                        name="opening_date" autocomplete="off" [disabled]="true"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" bsDatepicker placeholder="Enter Foundation Date">
                                 </div>
