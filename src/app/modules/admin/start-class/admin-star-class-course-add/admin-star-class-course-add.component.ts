@@ -142,8 +142,10 @@ export class AdminStarClassCourseAddComponent implements OnInit {
       }
       formData.append('course_name', this.model.course_name);
       formData.append('level_of_education', this.model.level_of_education);
-      formData.append('course_preview', this.uploadedContent);
-      formData.append('course_image', this.uploadedContent_image);
+      if(this.uploadedContent, this.uploadedContent_image){
+        formData.append('course_preview', this.uploadedContent);
+        formData.append('course_image', this.uploadedContent_image);
+      }
       formData.append('field', this.model.field);
       formData.append('standard', this.model.standard);
       formData.append('subject', this.model.subject);

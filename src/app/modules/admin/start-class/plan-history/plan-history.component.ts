@@ -32,7 +32,7 @@ export class PlanHistoryComponent implements OnInit {
         'page' : page,
         'page_size': this.starclassPlanHistory.page_size
       }
-      this.baseService.getData('', this.starclassPlanHistory.modal).subscribe(
+      this.baseService.getData('starclass/plan-history/', this.starclassPlanHistory.modal).subscribe(
         (res: any) =>{
           if(res.status == true){
             if (!page)
@@ -43,11 +43,11 @@ export class PlanHistoryComponent implements OnInit {
             this.starclassPlanHistory.config.currentPage = page
             this.starclassPlanHistory.config.totalItems = res.count;
             if (res.count > 0 ){
-              this.starclassPlanHistory.history = res.results;
+              this.starclassPlanHistory.dataSource = res.results;
               this.starclassPlanHistory.pageCounts = this.baseService.getCountsOfPage()
             }
             else{
-              this.starclassPlanHistory.history = undefined;
+              this.starclassPlanHistory.dataSource = undefined;
               this.starclassPlanHistory.pageCounts = undefined
             }
           }

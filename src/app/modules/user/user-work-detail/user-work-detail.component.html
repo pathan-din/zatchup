@@ -236,9 +236,9 @@
                                     </div>
                                     
                                     <div class="col-6 pr-0">
-                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="start_year" class="custom-select form-month-col border">
+                                        <select (change)="isValid($event)"  id="year" required [(ngModel)]="yearModel" name ="start_year" class="custom-select form-month-col border">
                                             <option value="" selected>Year</option>
-                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                            <option value="{{y}}"  *ngFor="let y of year">{{y}}</option>
                                             
                                         </select>
                                     </div>
@@ -253,7 +253,7 @@
                             <div class="col-md-6">
                                 <div class="col-md-12 pl-0"> <label> End Date </label></div>
                                 <div class="row" *ngIf="!model.is_currently_work">     
-                                        <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
+                                        <input [(ngModel)]="model.end_date"  name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
                                     <!-- <div class="col-2 mr-1 p-0">
                                         <input [(ngModel)]="model.end_date" name="end_date" value="{{dateEndModel}}-{{monthEndModel}}-{{yearEndModel}}" class="form-control-input form-control form-control-sm" type="hidden"
                                         >
@@ -277,7 +277,7 @@
                                     <div class="col-6 pr-0">
                                         <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="year" class="custom-select  form-month-col border">
                                             <option value="" selected>Year</option>
-                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                            <option value="{{y}}" [disabled]="y<yearModel" *ngFor="let y of year">{{y}}</option>
                                             
                                         </select>
                                     </div>
