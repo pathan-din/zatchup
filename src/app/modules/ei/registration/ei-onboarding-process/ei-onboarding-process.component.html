@@ -252,7 +252,7 @@
                                         </div>
                                         <div class="col-6">
                                             <button *ngIf="cNo>0" type="button "
-                                                (click)="removeData(cNo,model2Step.coursedata)"
+                                                (click)="removeData(cNo,model2Step.coursedata,'')"
                                                 class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                             </button>
@@ -330,7 +330,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <button *ngIf="s>0" type="button "
-                                                    (click)="removeData(s,courseList.standarddata)"
+                                                    (click)="removeData(s,courseList.standarddata,'')"
                                                     class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                                 </button>
@@ -393,7 +393,7 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <button *ngIf="c>0" type="button "
-                                                        (click)="removeData(c,standardL.classdata)"
+                                                        (click)="removeData(c,standardL.classdata,'')"
                                                         class="bg-red color-white border-0 rounded text-center p-2 mt-2 px-3 commonFontSize mediumFont letterspacing float-right">
                                                         <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                                     </button>
@@ -689,7 +689,7 @@
                                                 <input #inputFile
                                                     (change)="fileUploadDocument($event.target.files,document)"
                                                     validFileExtention="png,jpeg,jpg" id="document_{{i}}"
-                                                    name="document_{{i}}" required
+                                                    name="document_{{i}}" [required]="!document.document"
                                                     class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                     type="file">
                                                 <input [(ngModel)]="document.document" id="document_hid_{{i}}"
@@ -708,7 +708,7 @@
                                             <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
                                         </div>
                                         <div *ngIf="modelDocumentDetails.length!=(i+1)" class="col-sm-1 centerImgDiv">
-                                            <i (click)="removeData(i+1,modelDocumentDetails)"
+                                            <i (click)="removeData(i+1,modelDocumentDetails,document)"
                                                 class="fa fa-minus-square fafaAddDeleteIcon color-purple cursorStyle"
                                                 aria-hidden="true"></i>
                                         </div>
@@ -717,11 +717,12 @@
                                 <div class="form-group row " *ngIf="modelDocumentDetails.length>0">
                                     <div class="col-12 ">
                                         <div class="row form-control-inputDiv ml-0 mr-0 ">
-                                            <div></div>
-                                            <div *ngFor="let doc of modelDocumentDetails" class="col-4 p-1 ID-img-div ">
-                                                <img *ngIf="doc.document!='' &&  doc.extention==''"
+                                            <!-- <div></div> -->
+                                            <div *ngFor="let doc of modelDocumentDetails; let i = index" class="col-4 p-1 ID-img-div ">
+                                                <img *ngIf="doc.document!=''&& doc.extention=='' "
                                                     class="img-fluid w-100 h-100"
-                                                    src="{{serverImageUrl}}/{{doc.document}}">
+                                                    src="{{!doc.document_image? serverImageUrl/doc.document : doc.document_image}}">
+                                                    
                                                 <a *ngIf="doc.document!='' && doc.extention=='pdf'"
                                                     href="{{serverImageUrl}}/{{doc.document}}"> <img
                                                         class="img-fluid w-100 h-100"
