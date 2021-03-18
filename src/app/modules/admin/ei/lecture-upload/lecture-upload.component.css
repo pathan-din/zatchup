@@ -7,3 +7,7 @@ input.form-control-input.form-control.commonFontSize.regularFont.letterspacing {
         width: 100%!important;
     }
 }
+
+.customVideo video{
+    width: 80%;
+}
