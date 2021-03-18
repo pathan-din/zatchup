@@ -209,11 +209,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
 
         else {
           this.editModel.value = this.model[this.editModel.key];
-
-
         }
-
-
         this.loader.show();
         this.baseService.action(url, this.editModel).subscribe(res => {
           let response: any = {};
