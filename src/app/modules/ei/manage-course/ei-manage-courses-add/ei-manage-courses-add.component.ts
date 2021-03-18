@@ -63,9 +63,11 @@ export class EiManageCoursesAddComponent implements OnInit {
     this.model2Step.is_login=1;
     this.model2Step.coursedata = [{
       course_name: "",
-      course_type:"",
+      course_type: "",
       description: "",
-      
+      is_teaching_current: true,
+      start_year: "",
+      end_year: 0,
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -76,7 +78,7 @@ export class EiManageCoursesAddComponent implements OnInit {
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
-          is_teaching_current: false,
+          is_teaching_current: true,
           alias_class: ""
         }]
       }],
@@ -104,6 +106,9 @@ export class EiManageCoursesAddComponent implements OnInit {
         if(id){
           this.model2Step.coursedata=[];
           this.model2Step.coursedata.push(res.data);
+          this.model2Step.coursedata.forEach(element => {
+            element.is_teaching_current = element.end_year=='Present'?true:false
+          });
         }
       }else{
         this.SpinnerService.hide();
@@ -161,23 +166,20 @@ export class EiManageCoursesAddComponent implements OnInit {
    */
 
   addAnotherStandard(courseList) {
-
     courseList.standarddata.push({
       standard_name: "",
-      duration:"",
-       
+      duration: "",
       classdata: [{
         class_name: '',
-        teaching_start_year: "",
+        teaching_start_year: courseList.start_year?courseList.start_year:0,
         teaching_start_month: 0,
         teaching_stopped: false,
-        teaching_end_year: 0,
+        teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
         teaching_end_month: 0,
-        is_teaching_current: false,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
         alias_class: ""
       }]
     })
-
   }
 
   /**
@@ -190,12 +192,12 @@ export class EiManageCoursesAddComponent implements OnInit {
     }
     standardList.classdata.push({
       class_name: '',
-      teaching_start_year: "",
+      teaching_start_year: 0,
       teaching_start_month: 0,
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,
-      is_teaching_current: false,
+      is_teaching_current: true,
       alias_class: ""
     })
   }
@@ -346,7 +348,12 @@ export class EiManageCoursesAddComponent implements OnInit {
     }
     
   }
-
+  resetCourseBothYear(courseList){
+    courseList.course_end_year = '';
+  }
+  endYearCheckValidation(classD) {
+    classD.teaching_end_year = 0;
+  }
   goBack(): void{
     this.location.back()
   }

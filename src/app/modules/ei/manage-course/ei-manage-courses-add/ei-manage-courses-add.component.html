@@ -70,7 +70,89 @@
                             </div>
                         </div>
 
+                        <div class="form-group row ">
+                            <div class="col-12">
+                                <div class="row mt-3">
+                                    <div
+                                        class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
 
+                                        <div 
+                                            class="d-flex flex-xs-column flex-row justify-content-between w-100">
+                                            <mat-checkbox
+                                                id="is_teaching_current_{{cNo}}"
+                                                [(ngModel)]="courseList.is_teaching_current"
+                                                name="is_teaching_current_{{cNo}}"
+                                                class="purple-checkbox">Currently
+                                                Teaching
+                                            </mat-checkbox>
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div></div>
+                        <div class="form-group row ">
+                        <div class="col-sm-6">
+                            <label for=" "
+                                class=" mediumFont commonFontSize letterspacing text-nowrap ">Course Start
+                                year </label>
+                            <div class="row ">
+                                <div class="col-sm-12">
+                                    <div
+                                        class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                        <select 
+                                            id="course_start_year_{{cNo}}"
+                                             (change)="resetCourseBothYear(courseList)" [(ngModel)]="courseList.start_year"
+                                            name="course_start_year_{{cNo}}"
+                                            class="custom-select  form-control-input form-control-sm "
+                                            required>
+                                            <option value="">Year</option>
+                                            <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;"
+                                                >{{y}}</option>
+
+
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for=" "
+                                class=" mediumFont commonFontSize letterspacing text-nowrap ">Course End
+                                year </label>
+                            <div class="row " *ngIf="!courseList.is_teaching_current">
+                                <div class="col-sm-12">
+                                    <div
+                                        class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                        <select  
+                                            id="course_end_year_{{cNo}}"
+                                             [(ngModel)]="courseList.end_year"
+                                            name="course_end_year_{{cNo}}"
+                                            class="custom-select  form-control-input form-control-sm "
+                                            required>
+                                            <option value="">Year</option>
+                                            <option [disabled]="y < courseList.start_year" value="{{y}}" *ngFor="let y of year;"
+                                                >{{y}}</option>
+
+
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                            
+                            <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
+                                <label>Present</label>
+                            </div>
+
+                        </div>
+                        </div>
 
                         <!-- <div class="required errorMsg"
                             [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')"></div> -->
@@ -163,20 +245,15 @@
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'class_name_')">
                                         </div>
-                                        <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap pt-3">Start year of this class</label>
+                                        <!-- <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap pt-3">Start year of this class</label>
                                         <div class="d-flex flex-xs-column flex-row justify-content-between ">
                                             <mat-checkbox id="is_teaching_current_{{cNo}}_{{s}}_{{c}}" [(ngModel)]="classD.is_teaching_current" name="is_teaching_current_{{cNo}}_{{s}}_{{c}}"
                                                 class="purple-checkbox">Current Teaching
                                             </mat-checkbox>
 
-                                            <!-- <mat-checkbox [disabled]="classD.is_teaching_current"
-                                            id="teaching_stopped_{{cNo}}_{{s}}_{{c}}" [required]="!classD.is_teaching_current"
-                                            [(ngModel)]="classD.teaching_stopped"
-                                            name="teaching_stopped_{{cNo}}_{{s}}_{{c}}"
-                                            class="purple-checkbox">Stopped Date
-                                        </mat-checkbox> -->
+                                          
 
-                                        </div>
+                                        </div> -->
                                     </div>
                                      
 
@@ -184,65 +261,64 @@
 
                                 
                                 <div class="form-group row ">
-                                    <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
-                                        <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Start year of this class</label>
+                                  
+
+                                    <div class="col-xl-6 col-lg-6 margin-top-col-6">
+                                        <label for=" "
+                                            class=" mediumFont commonFontSize letterspacing text-nowrap ">Start
+                                            year of this class</label>
                                         <div class="row ">
-                                            <div class=" col-sm-12 MobileCol6MB">
-                                                <div class=" form-control-inputDiv  rounded shadow-none ">
-                                                    <select id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year" name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
-                                                        class="custom-select  form-control-input form-control-sm " required>
+                                            <div class="col-sm-12">
+                                                <div
+                                                    class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                                    <select (change)="endYearCheckValidation(classD)"
+                                                        id="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                        required [(ngModel)]="classD.teaching_start_year"
+                                                        name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select  form-control-input form-control-sm "
+                                                        required>
                                                         <option value="">Year</option>
-                                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                                        <option value="{{y}}" *ngFor="let y of year;"
+                                                            [disabled]=" y!=courseList.start_year">{{y}}</option>
+
+
                                                     </select>
                                                 </div>
-                                                <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
                                                 </div>
                                             </div>
-                                           <!-- <div class=" col-sm-6 MobileCol6MB">
-                                                <div class=" form-control-inputDiv rounded shadow-none ">
-                                                     <select id="teaching_start_month_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_month" name="teaching_start_month_{{cNo}}_{{s}}_{{c}}"
-                                                        class="custom-select form-control-input form-control-sm " required>
-                                                        <option value="">Month</option>
-                                                        <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
-                                                    </select> 
-                                                </div>-->
-                                                <!-- <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_month_')">
-                                                </div> 
-                                            </div>-->
+
                                         </div>
 
                                     </div>
-
                                     <div class="col-xl-6 col-lg-6 margin-top-col-6">
-                                        <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">End year of this class</label>
+                                        <label for=" "
+                                            class=" mediumFont commonFontSize letterspacing text-nowrap ">End
+                                            year of this class</label>
                                         <div class="row ">
-                                            <div class=" col-12 " *ngIf="!classD.is_teaching_current">
-                                                <div class=" form-control-inputDiv  rounded shadow-none ">
-                                                    <select [disabled]="classD.is_teaching_current" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}" [required]="classD.teaching_stopped"
-                                                        [(ngModel)]="classD.teaching_end_year" name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                            <div class="col-sm-12" *ngIf="!courseList.is_teaching_current ">
+                                                <div
+                                                    class=" form-control-inputDiv py-1 rounded shadow-none ">
+                                                    <select [disabled]="courseList.is_teaching_current"
+                                                        id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                                        [required]="classD.teaching_stopped"
+                                                        [(ngModel)]="classD.teaching_end_year"
+                                                        name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                         class="custom-select  form-control-input form-control-sm ">
                                                         <option value="0">Year</option>
-                                                        <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                                        <option [disabled]="y!=courseList.end_year"
+                                                            value="{{y}}"  *ngFor="let y of year">{{y}}
+                                                        </option>
                                                     </select>
                                                 </div>
-                                                <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
                                                 </div>
                                             </div>
-                                             <!--<div class=" col-6 " *ngIf="!classD.is_teaching_current">
-                                                <div class=" form-control-inputDiv rounded shadow-none ">
-                                                      <select [disabled]="classD.is_teaching_current" id="teaching_end_month_{{cNo}}_{{s}}_{{c}}" [required]="classD.teaching_stopped"
-                                                        [(ngModel)]="classD.teaching_end_month" name="teaching_end_month_{{cNo}}_{{s}}_{{c}}"
-                                                        class="custom-select form-control-input form-control-sm ">
-                                                        <option value="0">Month</option>
-                                                        <option value="{{i+1}}" *ngFor="let m of months;let i=index;">{{m.name}}</option>
 
-                                                    </select> 
-                                                </div> -->
-                                                <!-- <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_month_')">
-                                                </div> 
-                                            </div>-->
                                         </div>
-                                        <div *ngIf="classD.is_teaching_current" class=" col-6 ">
+                                        <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
                                             <label>Present</label>
                                         </div>
 
