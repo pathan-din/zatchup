@@ -103,6 +103,7 @@ body {
   overflow-y: scroll;
   background: #fff;
   height: min-content;
+  padding: 0px 10px;
 }
 
 .notFound {
