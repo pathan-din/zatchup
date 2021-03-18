@@ -16,7 +16,7 @@ export class AdminUserProfileHistoryComponent implements OnInit {
   params: any = {};
   userId: any;
   displayedColumns: string[] = [
-    'index', 'date_time', 'message', 'old_value', 'new_value'
+    'index', 'date_time', 'message', 'old_value', 'new_value','status'
   ]
 
   constructor(
@@ -42,7 +42,7 @@ export class AdminUserProfileHistoryComponent implements OnInit {
     this.loader.show()
     this.params = {
       "user_id": this.userId,
-      "module_name": "STUDENTS",
+      "module_name": "STUDENT",
       "page_size": this.pagination.page_size,
       "page": page
     }
