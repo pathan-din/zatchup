@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
-import { environment } from '../../../environments/environment'
+  import { environment } from '../../../environments/environment'
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel'
@@ -139,14 +139,18 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     CommonModule,
     MaterialDesignModule,
     UserRoutingModule,
-    PaginationModule,
+    
     TabsModule,
-    FormsModule, NgxSpinnerModule, ReactiveFormsModule,
+    FormsModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
     BsDatepickerModule,
     DirectiveModule,
     SharedModule,
     CarouselModule.forRoot(),
+    PaginationModule,
     // AngularFireModule.initializeApp(environment.firebase),
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserModule { }

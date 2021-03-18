@@ -99,26 +99,28 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+            <div class="modal-header align-items-center justify-content-center p-0 border-0">
                 <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
-            <div class="modal-body pl-5 pr-5">
+            <div class="modal-body">
                 <div class="py-3 bg-light-gray">
-                    <h1 class="text-center py-3 m-0">School List</h1>
-                    <div class="col-12 chat_contentBox bg-light-gray d-flex mb-4" *ngFor="let school of schoolList">
-                        <div class="profile_pick">
-                            <img *ngIf="school.profile_pic" [src]="school.profile_pic" class="img-fluid cursorStyle">
-                            <img *ngIf="!school.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png"
-                                class="img-fluid cursorStyle">
-                        </div>
-                        <div class="profile_name ml-3 border-bottomCustom w-100">
-                            <p class="m-0 pt-2">{{school.school_name}}
-                                <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
-                                    style="font-size: 22px" (click)="gotoChatWithTeachers(school.school_id)"></i>
-                            </p>
+                    <h1 class="text-center mb-1">School List</h1>
+                    <div class="schoolChat">
+                        <div class="col-12 chat_contentBox bg-light-gray d-flex py-2 border-bottom" *ngFor="let school of schoolList">
+                            <div class="profile_pick">
+                                <img *ngIf="school.profile_pic" [src]="school.profile_pic" class="img-fluid cursorStyle">
+                                <img *ngIf="!school.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png"
+                                    class="img-fluid cursorStyle">
+                            </div>
+                            <div class="profile_name ml-3 border-bottomCustom w-100">
+                                <p class="m-0 pt-2">{{school.school_name}}
+                                    <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
+                                        style="font-size: 22px" (click)="gotoChatWithTeachers(school.school_id)"></i>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

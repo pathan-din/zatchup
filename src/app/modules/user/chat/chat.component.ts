@@ -63,11 +63,7 @@ export class ChatComponent implements OnInit {
         data.is_active = 1
         data.is_read = 0
         data.created_on = this.baseService.getDateFormat(date);
-
         this.getFriendListBySender(localStorage.getItem('fbtoken'), uid, data)
-
-
-
       })
     }
   }
@@ -94,20 +90,14 @@ export class ChatComponent implements OnInit {
 
                   localStorage.setItem("friendlidt_id", doc.id)
                 }
-
               });
             }
-
           });
       } else {
         this.firestore.collection("user_friend_list").add(data).then(res => {
           localStorage.setItem("friendlidt_id", res.id)
-
-
         })
       }
-
-
     })
 
 
@@ -130,7 +120,6 @@ export class ChatComponent implements OnInit {
       data.msg = this.model.comment;
       data.timestamp = new Date().valueOf();
       this.dataStudent.push(data)
-      // console.log(this.dataStudent);
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
         .set(dataNew).then(res => {
@@ -139,7 +128,6 @@ export class ChatComponent implements OnInit {
         },
           err => reject(err)
         )
-
     })
   }
 

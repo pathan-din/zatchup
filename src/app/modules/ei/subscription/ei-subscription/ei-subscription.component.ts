@@ -1,6 +1,6 @@
 
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit , ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -23,8 +23,8 @@ export class EiSubscriptionComponent implements OnInit {
   applyCouponData: any;
   paymentHtml: any;
   public env: any = environment;
-  subscriptionDetails: any={};
-  is_activate_subscription:boolean=false;
+  subscriptionDetails: any = {};
+  is_activate_subscription: boolean = false;
 
   constructor(
     private location: Location,
@@ -38,6 +38,7 @@ export class EiSubscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.getSubscriptionDetail()
     this.getSubList();
+    // debugger
   }
 
   renewSubscription() {
@@ -51,10 +52,7 @@ export class EiSubscriptionComponent implements OnInit {
       (res: any) => {
         if (res.status == true)
           this.subscriptionDetails = res.data;
-          this.is_activate_subscription = this.subscriptionDetails.is_activate_subscription
-       // if (!this.subscriptionDetails.is_activate_subscription)
-        //this.router.navigate(['ei/add-subscription']);
-         // this.renewSubscription()
+        this.is_activate_subscription = this.subscriptionDetails.is_activate_subscription
         this.loader.hide();
       }
     ), err => {
@@ -62,16 +60,6 @@ export class EiSubscriptionComponent implements OnInit {
       this.alert.error(err.error, 'Error')
     }
   }
- 
-
-  //this.getSubList();
-
-  // subscriptionAmount: any;
-
-
- 
-
- 
 
   makePayment() {
     this.paymentHtml = '';

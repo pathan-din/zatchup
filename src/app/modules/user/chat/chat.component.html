@@ -9,7 +9,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="chat_content bg-light-gray pb-5">
+            <div class="chat_content bg-light-gray pb-3">
                 <div class="border-bottomCustom mb-3 pt-3 pb-3 d-flex justify-content-between flex-wrap align-items-center">
                     <div class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
                         <div class="profile_pick">
@@ -32,16 +32,18 @@
                     </div>
                 </div>
 
-                <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
-                    <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
-                        <p class="color-white m-0">{{objCon.msg}}</p>
-                        <span class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
-                    </div>
+                <div class="schoolChat">
+                    <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
+                        <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
+                            <p class="color-white m-0">{{objCon.msg}}</p>
+                            <span class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                        </div>
 
-                    <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
-                        <div class="chatOut bg-white">
-                            <p class="m-0">{{objCon.msg}}</p>
-                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>                    
+                        <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
+                            <div class="chatOut bg-white">
+                                <p class="m-0">{{objCon.msg}}</p>
+                                <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>                    
+                            </div>
                         </div>
                     </div>
                 </div>
