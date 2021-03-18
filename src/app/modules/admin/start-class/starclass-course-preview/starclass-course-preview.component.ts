@@ -156,7 +156,7 @@ export class StarclassCoursePreviewComponent implements OnInit {
         plan: this.courseData.plan_data
       }
       console.log(this.model);
-    this.baseService.action('starclass/course-price/', this.model).subscribe(
+    this.baseService.action('starclass/edit-course-price/', this.model).subscribe(
       (res:any) =>{
         if(res.status == true){
           this.closeaddPlan.nativeElement.click();
