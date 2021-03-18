@@ -14,19 +14,23 @@ export class UserHeaderComponent implements OnInit {
   userProfile: any = {};
   regProfile: any = {};
   authCheck: boolean = false;
+  ids: Array<any> = [];
+
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/"
   }
-  messageData:any=[];
-  currentUser:any="";
+  messageData: any = [];
+  currentUser: any = "";
   constructor(
     private router: Router,
     private baseService: BaseService,
     private alert: NotificationService,
     private route: ActivatedRoute,
-    private notifypush:FirebaseService,
+    private notifypush: FirebaseService,
     private firestore: AngularFirestore,
-  ) { }
+  ) {
+    this.ids = new Array<any>();
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem("token")) {
@@ -42,51 +46,67 @@ export class UserHeaderComponent implements OnInit {
       this.isCheck = localStorage.getItem('approved');
 
     }
-   
-   
-    
+
+
+
     this.notifypush.receiveMessage()
-    
-    if(localStorage.getItem("fbtoken")){
+
+    if (localStorage.getItem("fbtoken")) {
       this.currentUser = localStorage.getItem("fbtoken");
       this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
     }
 
   }
-  goToChat(uuid){
+  goToChat(uuid) {
     localStorage.setItem('uuid', uuid);
     this.router.navigate(["user/chat"]);
   }
-  
-  getUsersWithModeratorRole(loginfirebase_id){
-    var that =this;
-    this.firestore.collection('user_friend_list').ref.where('user_accept_id','==',loginfirebase_id).get().then(res=>{
 
-      res.docChanges().map(doc=>{
-        that.messageData = [];
-        var msgData = this.firestore.collection('chat_conversation').doc(doc.doc.id).valueChanges();
-        msgData.subscribe((res:any)=>{
-          
-          if(res){
-            that.messageData.push(res.data);
-            console.log( that.messageData);
-          }
-          
-          
-          
-        })
+  getUsersWithModeratorRole(loginfirebase_id) {
+    var that = this;
+    that.ids.push(this.firestore.collection('user_friend_list').ref.where('user_accept_id', '==', loginfirebase_id).get().then(res => {
+       
+      return res.docChanges().map(doc => {
+        // console.log('ids...', doc.doc.id)
         
+        return doc.doc.id;
         
       })
-      
-    }
-      )
+    }))
      
+    this.getMessageList()
   }
+
+  getMessageList() {
+    this.ids[0].then((res:any)=>{
+      res.forEach(element => {
+        this.firestore.collection('chat_conversation').doc(element).valueChanges().subscribe((resD:any)=>{
+          if(resD)
+          this.messageData.push(resD.data);
+          
+          
+        });
+      });
+     
+      
+    })
+    
+    // console.log('datatatwdawdkuawldesfkdrs', friendPostsList)
+    // this.getListOfFriends().then(data => {
+    // this.ids.forEach(id => {
+    //   let friendPostsList = this.firestore.collection('chat_conversation').doc(id).valueChanges();
+    //   // this.listOfAllPosts.push(this.friendPostsList);
+    //   console.log('datatatwdawdkuawldesfkdrs',friendPostsList)
+    // });
+    // }).catch(err =>{
+    //   console.log(err);
+    // });
+  }
+
   goToSetting() {
     this.router.navigate(["user/setting"]);
   }
-  
+
   getDasboardDetails() {
     try {
       this.baseService.getData("ei/auth-user-info").subscribe(res => {
@@ -121,17 +141,17 @@ export class UserHeaderComponent implements OnInit {
     try {
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
         this.regProfile = res;
-        localStorage.setItem("res.reg_step",res.reg_step);
+        localStorage.setItem("res.reg_step", res.reg_step);
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
         } else {
           if (res.reg_step <= 7 && !res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
               this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
-              if(res.is_deleted){
+              if (res.is_deleted) {
                 localStorage.clear();
                 this.router.navigate(['user/login']);
 
-              }else{
+              } else {
                 this.router.navigate(['user/kyc-verification']);
               }
             } else {
@@ -143,10 +163,10 @@ export class UserHeaderComponent implements OnInit {
           } else if (res.reg_step <= 7 && res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
               this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
-              if(res.is_deleted){
+              if (res.is_deleted) {
                 localStorage.clear();
                 this.router.navigate(['user/login']);
-              }else{
+              } else {
                 this.router.navigate(['user/kyc-verification']);
               }
             } else {
@@ -156,7 +176,7 @@ export class UserHeaderComponent implements OnInit {
               }
             }
           } else {
-            
+
           }
         }
       }, (error => {

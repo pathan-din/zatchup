@@ -98,7 +98,7 @@
                                 <div class="addWorkcourse">
                                     <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
-                                            style="height: 30px;">
+                                            style="height: 26px;">
                                     </a>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                 <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
                                     <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
-                                            style="width: 30px;">
+                                            style="width: 26px;">
                                     </a>
                                 </div>
                             </div>
@@ -138,12 +138,12 @@
                     </div>
                 </div>
                 <div class="row mt-3 form-control-inputDiv" >
-                    <div class="col-md-12 p-4 d-flex justify-content-between align-items-center">
+                    <div class="col-md-12 p-3 d-flex justify-content-between align-items-center">
                         <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Add School </h3>
                         <div class="addWorkcourse">
                             <a (click)="redirectEiConfirmationPagePage('')" class="cursorStyle">
                                 <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
-                                    style="height: 30px;">
+                                    style="height: 26px;">
                             </a>
                         </div>
                     </div>
@@ -151,23 +151,23 @@
                 <div class="row mt-3" *ngIf="objEpData.educationdetail.length>0">
 
                     <div class="col-md-12" *ngFor="let objEd of objEpData.educationdetail">
-                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3" *ngIf="objEd.course_detail.length>0">
+                        <div class="row form-control-inputDiv pt-3 mb-3 pb-3" *ngIf="objEd.course_detail.length>0">
                             <div class="col-md-12 d-flex justify-content-between align-items-center flex-wrap">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>
-                                <div class="addWorkcourse mt-2">
+                                <div class="addWorkcourse">
                                     <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
                                         class="text-white mr-2 small-text px-2 py-2 rounded bg-paret-green cursorStyle">Request
                                         Pending Course</span>
                                     <!-- <a (click)="redirectEiConfirmationPagePage('')">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
-                                            style="height: 30px; width: 30px; margin-right: 35px;">
+                                            style="height: 26px; width: 26px; margin-right: 35px;">
                                     </a> -->
                                     <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)"
                                         src="assets/images/userWebsite/delete.png"
-                                        class="cursorStyle img-fluid deleteImg"
-                                        style="height: 30px; width: 30px; margin-right: 10px;">
+                                        class="cursorStyle img-fluid"
+                                        style="height: 26px; width: 26px;">
                                         <i *ngIf="objEd.approved==1 && objEd.firebase_id" (click)="gotoChatWithTeachers(objEd.school_id)"
-                                        class="fa fa-comment mr-2 color-green fa-lg mr-3 cursorStyle" aria-hidden="true "></i>
+                                        class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true " style="font-size: 26px;"></i>
                                 </div>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                             </div>

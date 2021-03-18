@@ -20,6 +20,15 @@
 .customDropDown {
     right: 0px !important;
     left: auto;
+    top: 30px;
+}
+
+.customDropDown2 {
+    left: auto;
+    top: 70px;
+    padding: 10px !important;
+    height: 300px;
+    overflow-y: scroll;
 }
 
 .userNavUl a.nav-link:hover {
