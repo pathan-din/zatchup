@@ -64,28 +64,33 @@ export class UserHeaderComponent implements OnInit {
 
   getUsersWithModeratorRole(loginfirebase_id) {
     var that = this;
-    this.firestore.collection('user_friend_list').ref.where('user_accept_id', '==', loginfirebase_id).get().then( async res => {
-      await res.docChanges().map(doc => {
+    that.ids.push(this.firestore.collection('user_friend_list').ref.where('user_accept_id', '==', loginfirebase_id).get().then(res => {
+       
+      return res.docChanges().map(doc => {
         // console.log('ids...', doc.doc.id)
-        that.ids.push(doc.doc.id)
-        // that.messageData = [];
-        // var msgData = this.firestore.collection('chat_conversation').doc(doc.doc.id).valueChanges();
-        // msgData.subscribe((res: any) => {
-        //   if (res) {
-        //     that.messageData.push(res.data);
-        //     console.log(that.messageData);
-        //   }
-        // })
-        // await that.getMessageList(doc.doc.id)
+        
+        return doc.doc.id;
+        
       })
-    })
-    console.log('id arr...', this.ids)
-
-    // this.getMessageList()
+    }))
+     
+    this.getMessageList()
   }
 
-  getMessageList(id) {
-  
+  getMessageList() {
+    this.ids[0].then((res:any)=>{
+      res.forEach(element => {
+        this.firestore.collection('chat_conversation').doc(element).valueChanges().subscribe((resD:any)=>{
+          if(resD)
+          this.messageData.push(resD.data);
+          
+          
+        });
+      });
+     
+      
+    })
+    
     // console.log('datatatwdawdkuawldesfkdrs', friendPostsList)
     // this.getListOfFriends().then(data => {
     // this.ids.forEach(id => {
