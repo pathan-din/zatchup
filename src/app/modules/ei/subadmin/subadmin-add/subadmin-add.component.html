@@ -44,7 +44,7 @@
                         <label for="" class=" mediumFont commonFontSize letterspacing">Email ID / Phone Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
                             <input
-                            maxlength="{{maxlength}}" id="username" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="username"
+                            maxlength="{{maxlength}}" id="username" (keyup)="isValid()" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="username"
                             
                               [required]="!model.zatchup_id"  
                                  
