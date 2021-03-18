@@ -17,12 +17,12 @@ export class UserHeaderComponent implements OnInit {
   regProfile: any = {};
   authCheck: boolean = false;
   ids: Array<any> = [];
-
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/"
   }
   messageData: any = [];
   currentUser: any = "";
+
   constructor(
     private router: Router,
     private baseService: BaseService,
@@ -48,11 +48,7 @@ export class UserHeaderComponent implements OnInit {
       this.isCheck = localStorage.getItem('approved');
 
     }
-
-
-
     this.notifypush.receiveMessage()
-
     if (localStorage.getItem("fbtoken")) {
       this.currentUser = localStorage.getItem("fbtoken");
       this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
@@ -67,48 +63,44 @@ export class UserHeaderComponent implements OnInit {
   getUsersWithModeratorRole(loginfirebase_id) {
     var that = this;
     that.ids.push(this.firestore.collection('user_friend_list').ref.where('user_accept_id', '==', loginfirebase_id).get().then(res => {
-       
       return res.docChanges().map(doc => {
-        // console.log('ids...', doc.doc.id)
-        
         return doc.doc.id;
-        
       })
     }))
-     
+
     this.getMessageList()
   }
 
   getMessageList() {
-    this.messageData=[];
-    this.ids[0].then((res:any)=>{
+    this.messageData = [];
+    this.ids[0].then((res: any) => {
       res.forEach(element => {
-        this.firestore.collection('chat_conversation').valueChanges().subscribe((res:any)=>{
-
+        console.log('sdsd....', element)
+        this.firestore.collection('chat_conversation').valueChanges().subscribe((res: any) => {
         })
-       var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res:any)=>{
-       if (res.data())
-        return res.data()
-       });
-        
-        data.then(res =>{
-          if(res)
-          this.messageData.push(res.data);
+        var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res: any) => {
+          if (res.data())
+            return res.data()
+        });
+        data.then(res => {
+          if (res)
+            this.messageData.push(res.data);
+          console.log('message data is as ::', this.messageData)
         })
-        // this.messageData.push(data);
-        
       });
-     
-      
     })
-    
-    // console.log(this.messageData);
-    
-   
   }
-getForkData(){
 
+  getRecepintUserDetails(uuid: any) {
+    if (uuid) {
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+        // this.recepintDetails = res.data();
+        console.log('recipants details is as ::', res.data())
+      });
     }
+    return ''
+  }
+
   goToSetting() {
     this.router.navigate(["user/setting"]);
   }
