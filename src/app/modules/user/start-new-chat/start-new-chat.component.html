@@ -19,72 +19,12 @@
                     </div>
                     <div class="profile_name ml-3 border-bottomCustom w-100">
                         <p class="m-0 pt-2">{{teacher.name_of_teacher}}
-                            <!-- <span class="small-text-2">(Student)</span> -->
-                            <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
+                            <i *ngIf="teacher.firebase_id" class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
                                 style="font-size: 22px" (click)="getDocumentsChat(teacher.firebase_id)"></i>
                         </p>
                     </div>
                 </div>
 
-                <!-- <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2">Rahul singh <span class="small-text-2">(Teacher)</span>
-                            <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
-                                style="font-size: 22px"></i>
-                        </p>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2">Jayant Gupta <span class="small-text-2">(Student)</span>
-                            <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
-                                style="font-size: 22px"></i>
-                        </p>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2">Mahesh Chand <span class="small-text-2">(Student)</span>
-                            <i class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
-                                style="font-size: 22px"></i>
-                        </p>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2">Rahul singh <span class="small-text-2">(Teacher)</span>
-                            <i class="fa fa-angle-right color-gray cursorStyle cursorStyle float-right"
-                                aria-hidden="true" style="font-size: 22px"></i>
-                        </p>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2">Jayant Gupta <span class="small-text-2">(Student)</span>
-                            <i class="fa fa-angle-right color-gray cursorStyle cursorStyle cursorStyle float-right"
-                                aria-hidden="true" style="font-size: 22px"></i>
-                        </p>
-                    </div>
-                </div> -->
             </div>
 
             <div class="bg-white" *ngIf="!teachersList">

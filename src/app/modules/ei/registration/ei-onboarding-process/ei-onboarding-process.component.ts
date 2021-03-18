@@ -103,6 +103,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     document.name = '';
     document.document = '';
     this.modelDocumentDetails.push(document);
+    this.getDocumentUploadedByEi()
     var i = 1;
     for (i = 1; i <= 60; i++) {
       this.month.push(i);
@@ -134,9 +135,25 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   }
-  ngAfterViewInit() {
-    // this.getRegistrationStep()
-  }
+ getDocumentUploadedByEi(){
+   try {
+    
+     this.baseService.getData('ei/document-list-of-school/').subscribe(
+       (res: any) =>
+       {
+         if(res.data.length>0){
+          this.modelDocumentDetails = [];
+          this.modelDocumentDetails = res.data
+         }
+        
+        
+       }
+       
+     )
+   } catch (error) {
+     
+   }
+ }
   /**getBankNameList */
 
   getCourseDetailsByEiOnboard() {
@@ -508,8 +525,34 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Parameter : index of array , dataArray(array)
    *
    */
-  removeData(index, dataArray) {
+  removeData(index, dataArray,document) {
+   
     dataArray.splice(index, 1);
+    if(!document.id){
+     
+      
+    }else{
+      let data:any={};
+      data.document_id = document.id;
+      try {
+        this.loader.show()
+        this.baseService.action("ei/document-delete-by-id/",data).subscribe((res:any)=>{
+          if(res.status == true){
+            this.loader.hide()
+            this.alert.success(res.message,"Success");
+          }
+          
+        },(error=>{
+          this.loader.hide();
+          this.alert.success(error.error,"Error");
+        })
+        )  
+      } catch (error) {
+        this.loader.hide()
+        this.alert.success(error.error,"Error");
+      }
+    }
+    
   }
 
   endYearCheckValidation(classD) {

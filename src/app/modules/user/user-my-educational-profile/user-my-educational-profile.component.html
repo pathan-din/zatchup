@@ -166,7 +166,7 @@
                                         src="assets/images/userWebsite/delete.png"
                                         class="cursorStyle img-fluid"
                                         style="height: 26px; width: 26px;">
-                                        <i *ngIf="objEd.approved==1 && objEd.firebase_id" (click)="gotoChatWithTeachers(objEd.school_id)"
+                                        <i *ngIf="objEd.approved==1 && objEd.firebase_id" (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true " style="font-size: 26px;"></i>
                                 </div>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
@@ -200,10 +200,10 @@
                                     <div *ngIf="objEd.address1" class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         Address : <span class="regularFont">{{objEd.address1}} </span>
                                     </div>
-                                    <div (click)="getDocumentsChat(objEd.firebase_id)"
+                                    <!-- <div (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="cursorStyle col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                         add chat
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-md-12">
