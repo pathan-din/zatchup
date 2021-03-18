@@ -48,7 +48,8 @@ export class UserHeaderComponent implements OnInit {
       this.isCheck = localStorage.getItem('approved');
 
     }
-    this.notifypush.receiveMessage()
+    this.notifypush.receiveMessage();
+    this.notifypush.requestPermission();
     if (localStorage.getItem("fbtoken")) {
       this.currentUser = localStorage.getItem("fbtoken");
       this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));

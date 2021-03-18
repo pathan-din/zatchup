@@ -776,23 +776,20 @@
                                         <div class="row form-control-inputDiv ml-0 mr-0 ">
                                             <!-- <div></div> -->
                                             <div *ngFor="let doc of modelDocumentDetails; let i = index" class="col-4 p-1 ID-img-div ">
-                                                <img *ngIf="doc.document!=''&& doc.extention=='' "
+                                                <!-- <img *ngIf="doc.document_image!='' && doc.extention=='' "
                                                     class="img-fluid w-100 h-100"
-                                                    src="{{!doc.document_image? serverImageUrl/doc.document : doc.document_image}}">
+                                                    src="{{doc.document_image}}"> -->
+                                                
+                                                    <img *ngIf="doc.document!='' && doc.document_image && doc.extention=='' "
+                                                    class="img-fluid w-100 h-100"
+                                                    src="{{doc.document_image}}">    
                                                     
                                                 <a *ngIf="doc.document!='' && doc.extention=='pdf'"
                                                     href="{{serverImageUrl}}/{{doc.document}}"> <img
                                                         class="img-fluid w-100 h-100"
                                                         src="assets/images/userWebsite/pdf.png"></a>
                                             </div>
-                                            <!-- <div class="col-4 p-1 ID-img-div "> -->
-                                            <!-- <img class="img-fluid w-100 h-100 " -->
-                                            <!-- src="assets/images/userWebsite/share-my-profile-icon.png "> -->
-                                            <!-- </div> -->
-                                            <!-- <div class="col-4 p-1 ID-img-div "> -->
-                                            <!-- <img class="img-fluid w-100 h-100 " -->
-                                            <!-- src="assets/images/userWebsite/share-my-profile-icon.png "> -->
-                                            <!-- </div> -->
+                                            
                                         </div>
                                     </div>
 

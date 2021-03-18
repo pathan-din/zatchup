@@ -103,6 +103,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     let document: any = {};
     document.name = '';
     document.document = '';
+    document.document_image='';
     this.modelDocumentDetails.push(document);
     this.getDocumentUploadedByEi()
     var i = 1;
@@ -553,7 +554,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       
     }else{
       let data:any={};
-      data.document_id = document.id;
+      data.document_id = dataArray[index].id;
       try {
         this.loader.show()
         this.baseService.action("ei/document-delete-by-id/",data).subscribe((res:any)=>{
@@ -721,6 +722,9 @@ export class EiOnboardingProcessComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             document.document = res.filename;
+            document.document_image = this.serverImageUrl+'/'+res.filename;
+            console.log(this.modelDocumentDetails);
+            
             return res.filename;
           } else {
             this.loader.hide();
