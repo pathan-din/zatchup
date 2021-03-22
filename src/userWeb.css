@@ -294,9 +294,15 @@ body {
   background-image: url("./assets/images/userWebsite/name_icon.png");
 }
 
+.form-emailBgImgPhone {
+  background-image: url("./assets/images/userWebsite/email_mobile_icon.png");
+  background-size: 30px;
+  background-position: 98% center;
+}
+
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
-  background-size: 5%;
+  background-size: 6%;
   background-position: 98% center;
 }
 
