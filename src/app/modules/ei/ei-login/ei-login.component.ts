@@ -117,6 +117,9 @@ export class EiLoginComponent implements OnInit {
             }
           )
         }
-      })  
+      })
+      .catch((error) =>{
+        console.log('error dzasdasdasda....',error)
+      })
   }
 }

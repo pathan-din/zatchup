@@ -7,6 +7,7 @@ import { EiServiceService } from '../../../services/EI/ei-service.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-ei-sidenav',
@@ -36,7 +37,8 @@ export class EiSidenavComponent {
     public eiService: EiServiceService,
     private baseService: BaseService,
     private alert: NotificationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private firebaseService: FirebaseService
   ) {
 
     this.breakpointObserver
@@ -84,10 +86,11 @@ export class EiSidenavComponent {
     }
   }
 
-  logout() {
+  async logout() {
     this.loader.hide();
     localStorage.clear();
     sessionStorage.clear();
+    await this.firebaseService.setPresence('offline')
     this.router.navigate(['ei/login']);
   }
 

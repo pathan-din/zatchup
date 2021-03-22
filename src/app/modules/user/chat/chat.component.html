@@ -13,11 +13,12 @@
                 <div class="border-bottomCustom mb-3 pt-3 pb-3 d-flex justify-content-between flex-wrap align-items-center">
                     <div class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
                         <div class="profile_pick">
-                            <img src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'assets/images/userWebsite/share-my-profile-icon.png' }}" class="img-fluid cursorStyle">
+                            <img *ngIf="!recepintDetails" src="{{'assets/images/userWebsite/share-my-profile-icon.png'}}" class="img-fluid cursorStyle">
+                            <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2">
-                            <p class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}</p>
-                            <span class="small-text-2">Online</span>
+                            <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}</p>
+                            <span class="small-text-2" *ngIf="presence$ | async as presence">{{presence.status}}</span>
                         </div>
                     </div>                
                     <div class="setting_info text-right pr-3 dropdown">    

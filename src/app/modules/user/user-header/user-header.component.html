@@ -1,10 +1,17 @@
-<nav class="navbar navbar-expand-sm fixed-top userHeaderBgColor">
+<nav class="navbar navbar-expand-lg fixed-top userHeaderBgColor">
     <div class="container-fluid">
         <div class="navbar-brand cursorDefault">
-            <img class="img-fluid headerLogoImg" src="assets/images/userWebsite/logo.png">
+            <img class="img-fluid headerLogoImg" src="assets/images/userWebsite/logo.png">            
         </div>
-        <div class="collapse navbar-collapse">
-            <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl" >
+        <button class="navbar-toggler cs_btn cursorStyle" type="button" data-toggle="collapse" 
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="menuStrip"> </span>
+            <span class="menuStrip"> </span>
+            <span class="menuStrip"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap" >
                 <li class="nav-item" *ngIf="authCheck">
 
                    
@@ -35,7 +42,7 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl align-items-center flex-wrap">
+            <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap">
                 <li *ngIf="authCheck" class="nav-item">
                     <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
@@ -61,7 +68,7 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
-            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl align-items-center flex-wrap">
+            <ul *ngIf="isCheck=='1'" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
 
                 <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()"
@@ -106,7 +113,7 @@
 
             </li>
 
-                <div class="dropdown mx-4">
+                <div class="dropdown nav-item">
                     <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-search cursorStyle" aria-hidden="true"></i>
                     </span> -->
@@ -119,23 +126,27 @@
                     </div>
                 </div>
 
-                <a *ngIf="authCheck" class="text-white px-0 commonFontSize semiBoldFont">
-                    <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}"
-                        class="rounded-circle bg-light-green header-dp img-small">
-                    <span class="ml-3 text-white text-capitalize">{{userProfile.user_first_name}}
-                        {{userProfile.user_last_name}}</span></a>
+                <div class="nav-item d-flex flex-wrap">
+                    <div *ngIf="authCheck" class="text-white px-0 ml-2 commonFontSize semiBoldFont d-flex align-items-center nav-item">
+                        <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}"
+                            class="rounded-circle bg-light-green header-dp img-small">
+                        <span class="ml-3 text-white text-capitalize">{{userProfile.user_first_name}}
+                            {{userProfile.user_last_name}}</span>
+                        
+                            <div *ngIf="authCheck" class="dropdown px-0 d-flex flex-wrap align-self-center">
+                                <span class="color-white px-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
+                                </span>
+        
+                                <div class="dropdown-menu customDropDown pl-0" aria-labelledby="dropdownMenuButton">
+                                    <!-- <a class="dropdown-item pl-3 cursorStyle" (click)="goToSetting()">Setting</a> -->
+                                    <a class="dropdown-item pl-3 cursorStyle" (click)="logout()">Logout</a>
+                                
+                                </div>
+                            </div>
 
-                <div *ngIf="authCheck" class="dropdown px-0">
-                    <span class="color-white p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
-                    </span>
-
-                    <div class="dropdown-menu customDropDown pl-0" aria-labelledby="dropdownMenuButton">
-                        <!-- <a class="dropdown-item pl-3 cursorStyle" (click)="goToSetting()">Setting</a> -->
-                        <a class="dropdown-item pl-3 cursorStyle" (click)="logout()">Logout</a>
-                       
-                    </div>
+                        </div>                    
                 </div>
 
             </ul>

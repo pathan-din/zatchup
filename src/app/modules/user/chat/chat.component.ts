@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -16,21 +18,25 @@ export class ChatComponent implements OnInit {
   conversation: any = [];
   recepintDetails: any = {};
   currentUser: any;
+  presence$: any
+  uuid: any
 
   constructor(
     private location: Location,
     private baseService: BaseService,
     private firestore: AngularFirestore,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private firebaseService: FirebaseService
   ) { }
 
 
   ngOnInit(): void {
     if (localStorage.getItem('uuid')) {
-      var uuid = localStorage.getItem('uuid');
-      this.getDocumentsChat(uuid);
+      this.uuid = localStorage.getItem('uuid');
+      this.getDocumentsChat(this.uuid);
     }
     this.currentUser = localStorage.getItem('fbtoken');
+    this.presence$ = this.firebaseService.getPresence(this.uuid);
   }
 
   getDocumentsChat(uuid: any) {
@@ -74,7 +80,7 @@ export class ChatComponent implements OnInit {
       let dataEle = res.find(elem => {
         return ((elem.user_request_id === loginfirebase_id && elem.user_accept_id === user_accept_id) || (elem.user_request_id === user_accept_id && elem.user_accept_id === loginfirebase_id))
       })
-     
+
 
       if (dataEle) {
 
@@ -120,7 +126,7 @@ export class ChatComponent implements OnInit {
       data.user_send_by = localStorage.getItem('fbtoken');
       data.msg = this.model.comment;
       data.timestamp = new Date().valueOf();
-      data.user_name = userData.first_name+ ' '+ userData.last_name;
+      data.user_name = userData.first_name + ' ' + userData.last_name;
       data.profile_pic = userData.profile_pic
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
@@ -142,8 +148,8 @@ export class ChatComponent implements OnInit {
     this.location.back()
   }
 
-  gotoChatPrivacy(){
-    
+  gotoChatPrivacy() {
+
   }
 
 }

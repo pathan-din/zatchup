@@ -206,8 +206,9 @@ export class UserLoginComponent implements OnInit {
     var that = this;
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
+        console.log('signInMethods.....',signInMethods)
         if (signInMethods.length > 0) {
-       
+          // console.log('signInMethods.....',signInMethods)
         }
         else {
          
@@ -221,12 +222,16 @@ export class UserLoginComponent implements OnInit {
           )
         }
       })
+      .catch((error) =>{
+        console.log('error dzasdasdasda....',error)
+      })
   }
 
   async updateUserWithFirebaseID() {
     this.model.username = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
     localStorage.setItem('fbtoken', result.user.uid);
+    this.firebaseService.setPresence('online')
   }
 }
 
