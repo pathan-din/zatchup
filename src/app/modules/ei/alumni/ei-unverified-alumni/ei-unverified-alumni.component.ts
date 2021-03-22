@@ -211,7 +211,13 @@ export class EiUnverifiedAlumniComponent implements OnInit {
           objAlumniList.SNo=i;
           objAlumniList.ZatchUpID=objData.zatchup_id;
           objAlumniList.Name=objData.first_name+ ' '+objData.last_name;
-          objAlumniList.Gender=objData.gender;
+          if(objData.gender=='C'){
+            objAlumniList.Gender=objData.pronoun;
+          }else if(objData.gender=='F'){
+            objAlumniList.Gender='Female';
+          }else if(objData.gender=='M'){
+            objAlumniList.Gender='Male';
+          }
           objAlumniList.Age=objData.age?objData.age:'';
           objAlumniList.Profession=objData.profession?objData.profession:'';
           objAlumniList.Tenure=objData.tenure?objData.tenure:'';

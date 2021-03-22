@@ -52,11 +52,14 @@ export class EiStudentProfileComponent implements OnInit {
           if (res.status == true) {
             this.studentDetails = res.data;
             this.studentDetails[0].educationdetail.forEach(element => {
-              element.course_detail.forEach(elementCourse => {
-                if (elementCourse.is_current_course) {
-                  this.ischeckStudentOrAlumni = true;
-                }
-              });
+              if(this.userprofile.user_education_instituite_id == element.school_id){
+                element.course_detail.forEach(elementCourse => {
+                  if (elementCourse.is_current_course) {
+                    this.ischeckStudentOrAlumni = true;
+                  }
+                });
+              }
+            
             });
           } else {
             this.loader.hide();

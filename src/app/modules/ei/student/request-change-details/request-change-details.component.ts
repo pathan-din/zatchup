@@ -7,10 +7,14 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Location } from '@angular/common';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 declare var $: any;
 export interface PeriodicElement {
   position: number;
+  name: string;
+  zatchupid: string;
+  classalias: string;
   fieldChange: string;
   oldDetails: string;
   newDetails: string;
@@ -28,8 +32,8 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class RequestChangeDetailsComponent implements OnInit {
   startIndex:any;
   requestStatusList:any;//,'action'
-  displayedColumns: string[] = ['position', 'fieldChange', 'oldDetails', 'newDetails',
-  'status'];   
+  displayedColumns: string[] = ['position','name','zatchupid','classalias', 'fieldChange', 'oldDetails', 'newDetails',
+  'status','action'];   
 
   dataSource = ELEMENT_DATA;
   pageSize:any=1;
@@ -37,13 +41,17 @@ export class RequestChangeDetailsComponent implements OnInit {
   config: any;
   collection = { count: 60, data: [] };
   model:any={};
+  modelReason: any={};
+  error: any[];
+  errorDisplay: any={};
   constructor( private baseService: BaseService,
     private validationService: GenericFormValidationService,
     private loader: NgxSpinnerService,
     public eiService: EiServiceService,
     private alert: NotificationService,
     private router: Router,
-    private location : Location) { }
+    private location : Location,
+    private confirmBox:ConfirmDialogService) { }
 
   ngOnInit(): void {
     this.config = {
@@ -86,13 +94,17 @@ export class RequestChangeDetailsComponent implements OnInit {
          let objList:any={};
        
          objList.position=i;
+         objList.name=objData.first_name + ' '+objData.last_name;
+         objList.zatchupid=objData.zatchup_id;
+         objList.class_alias=objData.class_alias;
+         objList.request_id=objData.id;
          objList.fieldChange=objData.field_name.replace(/_/g, ' ').charAt(0).toUpperCase()+objData.field_name.replace(/_/g, ' ').slice(1);
          objList.oldDetails=objData.old_value;
          objList.newDetails=objData.new_value;
           
          objList.status=objData.approved?'Accepted':'Pending';
          
-       //  objList.action='';
+         objList.action='';
          arrDataList.push(objList);
         })
         this.dataSource = arrDataList;
@@ -107,9 +119,90 @@ export class RequestChangeDetailsComponent implements OnInit {
       this.alert.error(e,'Error');
      }
   }
-
+  approveRequest(courseId){
+    this.confirmBox.confirmThis('Are you sure you want to approve this request ?', () => {
+      this.loader.show()
+      this.baseService.action('ei/approved-request-by-ei/', { "request_id": courseId}).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.router.navigate(['ei/student-management']); 
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
+  }
+  
   goBack(): void{
     this.location.back()
+  }
+
+  openRejectModel(course){
+    console.log(course);
+    
+    this.modelReason.request_id = course;
+    
+    
+    
+  }
+  closeRejectModel(){
+    $("#rejectModel").modal('hide');
+  }
+  rejectCourse() {
+    this.error = [];
+    this.errorDisplay = {};
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+    try {
+      this.loader.show();
+      
+      /***************Merge dob after all selected dropdown *****************/
+      //this.model.profile.dob=this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
+      /**********************************************************************/
+      //ei/reject-course-by-ei/
+      this.baseService.action('ei/rejected-request-by-ei/',this.modelReason).subscribe(res => {
+
+        let response: any = {};
+        response = res;
+
+        if (response.status === true)// Condition True Success 
+        {
+          this.closeRejectModel();
+          this.alert.success(response.message, 'Success')
+          this.router.navigate(['ei/student-management']); 
+        } else { // Condition False Validation failure
+          this.loader.hide();
+          var errorCollection = '';
+          for (var key in response.error) {
+            if (response.error.hasOwnProperty(key)) {
+              errorCollection = errorCollection + response.error[key][0] + '\n'
+
+            }
+          }
+          this.alert.error(errorCollection,"Error");
+
+        }
+
+        /*End else*/
+        //this.router.navigate(['user/signup']);
+      }, (error) => {
+        this.loader.hide();
+        //console.log(error);
+
+      });
+    } catch (err) {
+      this.loader.hide();
+      //console.log(err);
+    }
   }
 
 }

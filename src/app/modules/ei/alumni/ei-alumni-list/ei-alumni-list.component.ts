@@ -31,7 +31,7 @@ export interface TotalAlumniListElement {
   Tenure : number;
   Duration: string;
   LastClassTaken: string;
-  VerificationStatusByEI: string;
+  // VerificationStatusByEI: string;
   EKYCVerificationStatus: string;
   Action: string;
 
@@ -48,7 +48,7 @@ const ELEMENT_DATA: TotalAlumniListElement[] = [
     Tenure : 2017-18, 
     Duration: '3 Year', 
     LastClassTaken: 'B.com 2A',
-    VerificationStatusByEI: 'verified', 
+    // VerificationStatusByEI: 'verified', 
     EKYCVerificationStatus :'complete',
     Action: ''
 }
@@ -72,8 +72,9 @@ export class EiAlumniListComponent implements OnInit {
   courseList:any=[];
   standardList:any=[];
   classList:any=[];
+  //,'VerificationStatusByEI'
   displayedColumns: string[] = ['SNo', 'ZatchUpID','Name', 'Gender', 'Age',
-  'Profession','Duration','LastClassTaken','VerificationStatusByEI','Action'];
+  'Profession','Duration','LastClassTaken','Action'];
 
   dataSource = ELEMENT_DATA;
   modelUserId: any;
@@ -373,13 +374,20 @@ getAluminiList(page,strFilter){
         objAlumniList.SNo=i;
         objAlumniList.ZatchUpID=objData.zatchup_id;
         objAlumniList.Name=objData.first_name+ ' '+objData.last_name;
-        objAlumniList.Gender=objData.gender=='C'?objData.gender+'('+objData.pronoun+')':objData.gender;
+        if(objData.gender=='C'){
+          objAlumniList.Gender=objData.pronoun;
+        }else if(objData.gender=='F'){
+          objAlumniList.Gender='Female';
+        }else if(objData.gender=='M'){
+          objAlumniList.Gender='Male';
+        }
+        
         objAlumniList.Age=objData.age?objData.age:'0';
         objAlumniList.Profession=objData.profession?objData.profession:'';
         objAlumniList.Tenure=objData.work_tenure?objData.work_tenure:'';
         objAlumniList.Duration=objData.workduration?objData.workduration:'0';
         objAlumniList.LastClassTaken=objData.class_name?objData.class_name:'';
-        objAlumniList.VerificationStatusByEI=objData.approved=="1"?'Approved':'Unapproved';
+       // objAlumniList.VerificationStatusByEI=objData.approved=="1"?'Approved':'Unapproved';
         objAlumniList.EKYCVerificationStatus=objData.kyc_approved=='1'?'Complete':'Incomplete';
         objAlumniList.kyc_approved = objData.kyc_approved;
         objAlumniList.approved = objData.approved;
