@@ -85,6 +85,7 @@
                                     [(ngModel)]="model.school_data.address1" name="address_Line1"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Address Line 1">
+                                    <i class="fa fa-address-book-o color-gray fa-lg SocialIcon cursorStyle" aria-hidden="true"></i>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.address_Line1"></div>
                         </div>
@@ -98,6 +99,7 @@
                                     [(ngModel)]="model.school_data.address2"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Address Line 2">
+                                    <i class="fa fa-address-book-o color-gray fa-lg SocialIcon cursorStyle" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
@@ -136,6 +138,7 @@
                                     [(ngModel)]="model.school_data.university" name="university"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Board/University">
+                                    <i class="fa fa-university color-gray fa-lg SocialIcon cursorStyle" aria-hidden="true"></i>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.university"></div>
                         </div>
@@ -163,7 +166,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input numberOnly maxlength="10" minlength="10" (keyup)="isValid($event)"
                                     id="school_phone" [(ngModel)]="model.school_data.school_phone" name="school_phone"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-phoneBgImg"
                                     type="tel" placeholder="Enter School Phone Number">
                             </div>
 
@@ -176,7 +179,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="school_email"
                                     [(ngModel)]="model.school_data.school_email" name="school_email"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-emailBgImg"
                                     type="email" placeholder="School Email address">
                             </div>
 
@@ -190,6 +193,7 @@
                                     name="fb_url"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Facebook URL">
+                                    <i class="fa fa-facebook color-gray fa-lg SocialIcon cursorStyle"></i>
                             </div>
 
                         </div>
@@ -202,6 +206,7 @@
                                     [(ngModel)]="model.school_data.twitter_url" name="twitter_url"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Twitter URL">
+                                    <i class="fa fa-twitter color-gray fa-lg SocialIcon cursorStyle"></i>
                             </div>
 
                         </div>
@@ -218,7 +223,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="first_name" required [(ngModel)]="model.first_name"
                                     name="first_name"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-NameBgImg"
                                     type="text" placeholder="Enter First Name">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
@@ -228,7 +233,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="last_name" required [(ngModel)]="model.last_name"
                                     name="last_name"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-NameBgImg"
                                     type="text" placeholder="Enter Last Name">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
@@ -259,7 +264,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="phone" required [(ngModel)]="model.phone"
                                     name="phone" maxlength="10"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control commonFontSize regularFont letterspacing form-bgImg form-phoneBgImg"
                                     type="tel" numberOnly placeholder="Enter Mobile Number">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.phone"></div>
@@ -269,7 +274,7 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input (keyup)="isValid($event)" id="email" required [(ngModel)]="model.email"
                                     name="email"
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    class="form-control-input form-control commonFontSize regularFont letterspacing form-bgImg form-emailBgImg"
                                     type="email" placeholder="Enter Email ID">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>

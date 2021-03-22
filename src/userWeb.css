@@ -244,7 +244,7 @@ body {
   color: #333333;
   font-family: "SFUIDisplay-Regular";
   cursor: pointer;
-  background-position: 95%;
+  background-position: 98%;
 }
 
 .custom-select:focus {
@@ -294,16 +294,22 @@ body {
   background-image: url("./assets/images/userWebsite/name_icon.png");
 }
 
+.form-emailBgImgPhone {
+  background-image: url("./assets/images/userWebsite/email_mobile_icon.png");
+  background-size: 30px;
+  background-position: 98% center;
+}
+
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
-  background-size: 5%;
+  background-size: 24px;
   background-position: 98% center;
 }
 
 .form-phoneBgImg {
   background-image: url("./assets/images/userWebsite/phone_icon.png");
-  background-size: 4.5%;
-  background-position: 100% center;
+  background-size: 16px;
+  background-position: 98% center;
 }
 
 .form-calenderBgImg {
@@ -404,7 +410,7 @@ button:focus {
 
 @media only screen and (max-width: 414px) {
   .contentSpaceTop {
-    padding-top: 105px;
+    padding-top: 90px;
   }
   /* .contentTopSpaceLanding {
     margin-top: 35%;

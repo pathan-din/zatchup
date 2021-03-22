@@ -30,7 +30,7 @@
                             <label for="email " class=" mediumFont commonFontSize letterspacing">Email ID / Mobile No*</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input maxlength="{{maxlength}}" id="email_id_or_mobile_no" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="{{type}}" placeholder="Enter Email ID / Mobile No">
+                                <input maxlength="{{maxlength}}" id="email_id_or_mobile_no" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="{{type}}" placeholder="Email ID / Mobile No">
                             </div>
                         </div>
 						<div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_no"></div>
@@ -156,7 +156,7 @@
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that Received on your Registered Email id / Phone Number.</p>
+                <p class="color-black regularFont commonFontSize">Enter OTP Send On Your Email id / Phone Number.</p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between loginInput">
                         <input (keyup)="changeInput($event)" id="otp1" [(ngModel)]="otp1" name="otp1"

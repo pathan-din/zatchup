@@ -2,11 +2,6 @@
     background-color: #463267;
 }
 
-.headerLogoImg {
-    width: 70%;
-    padding: 4%;
-}
-
 .userNavUl a.nav-link {
     color: #ffffff;
     letter-spacing: 0.2px;
@@ -59,4 +54,38 @@
     border-radius: 5px;
     color: #463267 !important;
      
+}
+
+.cs_btn {
+    background: #fff;
+    margin-right: 10px;
+}
+.menuStrip {
+    width: 25px;
+    height: 3px;
+    background: #463267;
+    margin: 4px 0px;
+    display: block;
+}
+
+.nav-item {
+    margin: 5px 10px;
+}
+
+.headerLogoImg {
+    width: 70%;
+    padding: 4%;
+}
+
+@media (max-width: 991px){
+    .navbar-brand img {
+        width: 170px;
+    }
+    .navbar-nav .nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .navbar-nav .dropdown-menu{
+        position: absolute;
+    }
 }

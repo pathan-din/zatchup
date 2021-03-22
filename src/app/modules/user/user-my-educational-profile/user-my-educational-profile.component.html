@@ -158,8 +158,8 @@
 
                     <div class="col-md-12" *ngFor="let objEd of objEpData.educationdetail">
                         <div class="row form-control-inputDiv pt-3 mb-3 pb-3" *ngIf="objEd.course_detail.length>0">
-                            <div class="col-md-12 d-flex justify-content-between align-items-center flex-wrap">
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h3>
+                            <div class="col-md-12 d-flex justify-content-between align-items-center align-self-center flex-wrap">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading">School Details </h3>
                                 <div class="addWorkcourse">
                                     <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
                                         class="text-white mr-2 small-text px-2 py-2 rounded bg-paret-green cursorStyle">Request
@@ -450,7 +450,7 @@
             </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that Received on your Registered {{editModel.value}}. </p>
+                <p class="color-black regularFont commonFontSize">Enter OTP Send On Your {{editModel.value}}. </p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between">
                         <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"

@@ -351,7 +351,7 @@ const routes: Routes = [
     path: 'star-class-course-history', component: EiStarclassCourseHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-courses-preview', component: EiStarclassCoursesPreviewComponent, canActivate: [AuthGuard]
+    path: 'star-class-courses-preview/:id', component: EiStarclassCoursesPreviewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'star-class-audience-student-list', component: EiStarclassAudienceStudentListComponent, canActivate: [AuthGuard]

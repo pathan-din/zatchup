@@ -4,6 +4,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFireAuth } from "@angular/fire/auth";
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-ei-otp-verification',
@@ -26,7 +27,8 @@ export class EiOtpVerificationComponent implements OnInit {
     private loader: NgxSpinnerService,
     private alert: NotificationService,
     private baseService: BaseService,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private firebaseService: FirebaseService
   ) { }
 
 
@@ -123,6 +125,7 @@ export class EiOtpVerificationComponent implements OnInit {
           var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
           localStorage.setItem('fbtoken', result.user.uid);
           localStorage.setItem("token", response.token);
+          this.firebaseService.setPresence('online')
           this.router.navigate(['ei/dashboard']);
         } else {
           this.loader.hide();

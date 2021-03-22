@@ -11,6 +11,10 @@
     right: 7px;
     top: 16px;
 }
+
+.custom-label{
+    padding-left: 10px;
+}
     
 .loginInput input{
     width: 18%!important;
