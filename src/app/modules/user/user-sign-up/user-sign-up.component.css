@@ -94,7 +94,7 @@
 .custom-control{padding-left: 0px !important;}
 
 
-@media (max-width: 414px){
+@media (max-width: 575px){
     .pl-0 {
         padding-left: 0px !important;
     }
@@ -105,4 +105,11 @@
     .pr-5, .px-5 {
         padding-right: .5rem!important;
     } 
+    .ptop {
+        padding-top: 0px;
+    }
+    .contentSpaceTop {
+        padding-top: 90px;
+      }
+      
 }

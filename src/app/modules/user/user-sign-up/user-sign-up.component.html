@@ -2,10 +2,10 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-7 ptop">
+        <div class="col-md-6 col-lg-7 ptop order-sm-6 order-2">
             <img class="img-fluid left-Image mt-3" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6 col-lg-5 order-1 order-sm-6">
             <h2 class="mb-1 textSpace">Sign Up </h2>
 
              <form  id="form1" class="pt-2" autocapitalize="off" autocomplete="off"> 
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv p-0">
-                        <input maxlength="{{maxlength}}" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" required class="form-control-input form-control form-control-sm form-bgImg form-emailBgImg"  type="text" pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5})$|^\d+$"  [(ngModel)]="model.username" name ="email_or_phone" placeholder="Enter Your Email Id or Phone Number">
+                        <input maxlength="{{maxlength}}" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" required class="form-control-input form-control form-control-sm"  type="text" pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5})$|^\d+$"  [(ngModel)]="model.username" name ="email_or_phone" placeholder="Email Id / Phone Number">
                     </div> 
                     <div class="required errorMsg" [innerHtml]="errorDisplay.email_or_phone"></div>
                 </div>
@@ -164,7 +164,9 @@
                 </div>
 
                 <!-- <p class="color-black mediumFont textSpace">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></p> -->
-                <button class="btn common-btn regularFont textSpace" (click)="goForRegister();">Submit</button>
+                <div class="justify-content-sm-center">
+                    <button class="btn common-btn regularFont textSpace" (click)="goForRegister();">Submit</button>
+                </div>
                 <!-- <button type="submit" class="btn common-btn regularFont textSpace" data-toggle="modal"
                     data-target="#currentStatusModel">Submit</button> data-toggle="modal" data-target="#OTPModel" -->
              </form> 
@@ -187,7 +189,7 @@
             <div class="modal-body pl-5 pr-5 text-center">
                 <!-- <form class="pl-5 pr-5"> -->
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that Received on your Registered {{model.username}}.</p>
+                <p class="color-black regularFont commonFontSize">Enter OTP Send On Your {{model.username}}.</p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between">
                         <input (keyup)="changeInput($event)" id="otp1" [(ngModel)]="otp1" name="otp1"
@@ -205,7 +207,7 @@
                     </div>
                 </div>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
-                <button type="button" class="btn common-model-Btn mt-4" (click)="verifyOtp();">Submit </button>
+                <div class="justify-content-sm-center"><button type="button" class="btn common-model-Btn mt-4" (click)="verifyOtp();">Submit </button></div>
 
                 <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p>
