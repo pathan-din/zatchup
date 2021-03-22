@@ -56,7 +56,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     private alert: NotificationService,
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
   ) { }
 
 
@@ -155,7 +155,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
   }
   editBulkClass() {
     if (!this.model.teaching_class && this.studentListSendForBulk.length == 0) {
-      alert("Please select student list of particular class.")
+      this.alert.error(this.error, 'Please select student list of particular class')
+      // alert("Please select student list of particular class.")
       return;
     } else {
       try {

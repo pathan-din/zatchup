@@ -134,6 +134,10 @@
 
                             <div class="col-md-12" *ngFor="let objCd of objEpData.course_detail">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details
+
+                                    <img  src="assets/images/userWebsite/delete.png" (click)="deleteEi(objCd.course_id)"
+                                    class="cursorStyle img-fluid"
+                                    style="height: 26px; width: 26px; float:right">
                                 </h3>
 
                                 <div class="pr-4 pl-0">

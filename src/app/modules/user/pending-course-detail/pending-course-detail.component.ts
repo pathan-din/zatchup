@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 export class PendingCourseDetailComponent implements OnInit {
   displayedColumns: string[] = ['name_of_school', 'state', 'city', 'course_name', 'joining_standard_name', 'last_standard_name', 'class_name'];
   dataSource = [];
+  model: any = {};
   constructor(private location: Location,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
@@ -45,5 +46,27 @@ export class PendingCourseDetailComponent implements OnInit {
     }
   }
 
+  deleteEi(course_id: any): any {
+    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+      this.loader.show()
+      let model: any = {};
+      this.model.course_id = course_id;
+      this.baseService.action('user/delete-pending-course-detail/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.alert.success(res.message, "Success")
+            this.getSubadminPendingRequest();
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error(err.error, 'Error')
+        this.loader.hide();
+      }
+    }, () => {
+    });
+  }
 
 }
