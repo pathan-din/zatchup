@@ -82,9 +82,9 @@
                     </div> 
                     <div class="col-6 pb-1">
                         Starting Year : <span  class="text-dark mediumFont cursorStyle" id="start_year" (click)="openEditModel($event,standardData)">{{standardData.standard_start_year}}</span>
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.start_year)"  *ngIf="standardData.check && i==0" required bsDatepicker autocomplete="off"  placeholder="YYYY-MM-DD"  [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.start_year)"  *ngIf="standardData.check && i > 0 && i < courseData.standard_detail.length" required bsDatepicker  autocomplete="off"  placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
-                        <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.start_year)"  *ngIf="standardData.check && i==courseData.standard_detail.length" required bsDatepicker autocomplete="off"  placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.org_start_year)"  *ngIf="standardData.check && i==0" required bsDatepicker autocomplete="off"  placeholder="YYYY-MM-DD"  [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.org_start_year)"  *ngIf="standardData.check && i > 0 && i < courseData.standard_detail.length" required bsDatepicker  autocomplete="off"  placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
+                        <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.org_start_year)"  *ngIf="standardData.check && i==courseData.standard_detail.length" required bsDatepicker autocomplete="off"  placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_start_year_{{i}}"  [(ngModel)]="standardData.org_start_date"  class="border pl-2 mt-2 form-control-input form-control form-control-sm" type="text" >
                         
                         <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid small-size cursorStyle" (click)="goToUserAddMoreStandardPage()"> -->
                     </div>
@@ -114,7 +114,7 @@
 
             </form>
 
-            <div class="mt-3">
+            <div class="mt-3" *ngIf="!params.add_course && !params.edit_course">
                 <!-- <div class="img-small mr-2">
                     <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
                 </div> -->

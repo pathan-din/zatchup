@@ -76,14 +76,14 @@ export class UserSignUpComponent implements OnInit {
 
       this.type = 'email';
       this.maxlength = 50;
-      this.model.email = event.target.value;
+      this.model.email = this.model.username;
       this.model.phone = '';
     } else {
       const numbers = /^[0-9]+$/;
       if (numbers.test(event.target.value)) {
         this.type = 'tel'
         this.maxlength = 10;
-        this.model.phone = event.target.value;
+        this.model.phone = this.model.username;
         this.model.email = '';
       }
 

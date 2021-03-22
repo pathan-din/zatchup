@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { EiServiceService } from 'src/app/services/EI/ei-service.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-ei-profile-preview',
@@ -18,7 +19,9 @@ export class EiProfilePreviewComponent implements OnInit {
     private loader: NgxSpinnerService,
     private alert: NotificationService,
     private baseService: BaseService,
-    private eiService: EiServiceService) { }
+    private eiService: EiServiceService,
+    private firebaseService: FirebaseService
+  ) { }
 
   ngOnInit(): void {
     this.getEiProfileData();
@@ -63,7 +66,8 @@ export class EiProfilePreviewComponent implements OnInit {
       this.baseService.action("ei/send-for-approval-for-admin/", {}).subscribe((res: any) => {
         if (res.status == true) {
           this.loader.hide();
-          this.router.navigate(['ei/dashboard']);
+          // this.router.navigate(['ei/dashboard']);
+          this.logout()
         } else {
           this.loader.hide();
         }
@@ -87,5 +91,13 @@ export class EiProfilePreviewComponent implements OnInit {
 
   download_file(fileURL) {
     window.open(fileURL, '_blank');
+  }
+
+  async logout() {
+    this.loader.hide();
+    localStorage.clear();
+    sessionStorage.clear();
+    await this.firebaseService.setPresence('offline')
+    this.router.navigate(['ei/login']);
   }
 }

@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input [(ngModel)]="model.roll_no" name="roll_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
+                            <input [(ngModel)]="model.roll_no" name="roll_number" [required]="!model.mark_as_alumni" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
                         </div>
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
