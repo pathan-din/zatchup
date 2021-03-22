@@ -13,7 +13,7 @@
                                     <i class="fa fa-user text-white" aria-hidden="true"></i>
                                     </span>
                             <input id="Email_ID" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" 
-                            type="text" optional="email,phone" placeholder="Enter Email ID / Mobile Number" [(ngModel)]="model.username" name ="Email_ID">
+                            type="text" optional="email,phone" placeholder="Email ID / Mobile Number" [(ngModel)]="model.username" name ="Email_ID">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.username"></div>
                     </div>
