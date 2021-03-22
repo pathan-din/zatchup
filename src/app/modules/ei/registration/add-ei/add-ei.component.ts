@@ -101,8 +101,6 @@ getCityByState(state){
   //this.isValid(event);
   let obj:any={};
   obj = this.stateList.find(o => o.state.toLowerCase() === state.toLowerCase());
-  console.log(obj);
-  
   
   try{
     this.SpinnerService.show(); 
@@ -171,7 +169,7 @@ goToUserQualificationPage() {
     }, (error) => {
       this.SpinnerService.hide();
       this.alert.error(error,'Error');
-      console.log(error);
+       
 
     });
   } catch (err) {
@@ -198,12 +196,12 @@ getSchoolListBycityId(city){
      
       },(error) => {
         this.SpinnerService.hide(); 
-        console.log(error);
+        
         
       });
   }catch(err){
     this.SpinnerService.hide(); 
-    console.log(err);
+    
   }
 }
 getSchoolListBycity(id){
@@ -222,12 +220,12 @@ getSchoolListBycity(id){
      
       },(error) => {
         this.SpinnerService.hide(); 
-        console.log(error);
+         
         
       });
   }catch(err){
     this.SpinnerService.hide(); 
-    console.log(err);
+    
   }
 }
 changeSchool(schoolData){
@@ -237,7 +235,8 @@ changeSchool(schoolData){
     var ev =event;
     let obj = this.schoolList.find(o => o.name_of_school === schoolData);
     this.model.university=obj.university;
-    this.model.address1=obj.address1+ ' ' + obj.address2;
+    this.model.full_address=obj.address1+ ' ' + obj.address2;
+    this.model.address1=obj.address1;
     this.modelZatchup.zatchup_id=obj.school_code;
     this.isDisabled = true
     }else{
@@ -269,7 +268,8 @@ getDataByZatchupId() {
         this.name_of_school_first=model.name_of_school;  
         
         this.model.state = model.state;
-        this.model.address1 = model.address1+ ' ' + model.address2;
+        this.model.full_address=model.address1+ ' ' + model.address2;
+         this.model.address1=model.address1;
         this.model.university = model.university;
         if(model.school_code){this.modelZatchup.zatchup_id = model.school_code;}
        

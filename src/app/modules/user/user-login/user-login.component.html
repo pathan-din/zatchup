@@ -2,17 +2,17 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid login-left-Image mt-4" src="assets/images/userWebsite/left_images.png">
         </div>
-        <div class="col-md-4 pl-0">
+        <div class="col-md-4 pl-0 order-1 order-sm-6">
             <h2 class="mb-3 textSpace">Login</h2>
             <form class="pt-2" id="login"> 
                 
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input required (keyup)="isValid()" optional="email,phone" [(ngModel)]="model.username" name ="username" class="form-control-input form-control form-control-sm form-bgImg form-emailBgImg" type="text"
-                            placeholder="Enter Your Email Id / Mobile number *">
+                        <input required (keyup)="isValid()" optional="email,phone" [(ngModel)]="model.username" name ="username" class="form-control-input form-control form-control-sm form-bgImg form-emailBgImgPhone" type="text"
+                            placeholder="Email Id / Mobile number *">
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.username"></div>
                 </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that Received on your Registered {{model.username}}.</p>
+                <p class="color-black regularFont commonFontSize">Enter OTP Send On Your Registered {{model.username}}.</p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between loginInput">
                         <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
