@@ -38,9 +38,9 @@ export class BaseService {
 
   setCalanderDate(courseDate){
     
-    var date = courseDate.split(" ");
-    console.log(date[1]+"-"+"1"+"-"+"1");
-    var cdate = new Date(date[1]+"-"+"01"+"-"+"01");
+   // var date = courseDate.split(" ");
+   // console.log(date[1]+"-"+"1"+"-"+"1");
+    var cdate = new Date(courseDate+"-"+"01"+"-"+"01");
     return cdate;
   }
   setParams(params) {
