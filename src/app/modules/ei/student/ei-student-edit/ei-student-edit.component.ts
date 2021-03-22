@@ -175,6 +175,8 @@ export class EiStudentEditComponent implements OnInit {
     console.log(this.uploaded);
 
   }
-
+  goBack(){
+    this.location.back()
+  }
 
 }

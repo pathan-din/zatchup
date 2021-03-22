@@ -36,7 +36,7 @@ export class AlumniSummaryComponent implements OnInit {
     this.loader.show();
     let data = {}
 
-    this.baseService.action('ei/coursewisestudentcount/', data).subscribe(
+    this.baseService.action('ei/coursewisealumnicount/', data).subscribe(
       (res:any) => {
         if (res.status == true) {
         this.courseWiseAlumniCount = res.countdata;
@@ -58,7 +58,7 @@ export class AlumniSummaryComponent implements OnInit {
      let data = {
       'course_id': courseId
      }
-    this.baseService.action('ei/standardwisestudentcount/', data).subscribe(
+    this.baseService.action('ei/standardwisealumnicount/', data).subscribe(
       (res: any) => {
         if(res.status == true){
           this.standardWiseAlumniCountCourse['st'+courseId] = res.standarddata;
@@ -78,7 +78,7 @@ export class AlumniSummaryComponent implements OnInit {
     let data = {
       'standard_id': standardId
      }
-     this.baseService.action('ei/classwisestudentcount/', data).subscribe(
+     this.baseService.action('ei/classwisealumnicount/', data).subscribe(
        (res: any) =>{
          if(res.status == true){
           this.classWiseAlumniCountCourse['cs'+standardId] = res.standarddata;

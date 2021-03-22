@@ -1,26 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common'
-
-export interface PeriodicElement {
-  position: number;
-  lectureTitle: string;
-  topicsCoverd: string;
-  durationOfLecture: string;
-  uploadedBy: string;
-  uploadDate: string;
-  viewDetails: string;
-  deleteLecture:string;
-  play: number;
-}
-
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {'position': 1,'lectureTitle':'Information Technology', 'topicsCoverd': 'Cover','viewDetails': '',
-  'durationOfLecture': '2 Hours','uploadedBy':'Admin','uploadDate': '05 May 2020','deleteLecture':'delete', 'play': 50}
-  
-  
-];
+import { EiCourseDetails } from '../../registration/modal/contact-us.mdal';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-ei-starclass-courses-preview',
@@ -28,17 +12,55 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./ei-starclass-courses-preview.component.css']
 })
 export class EiStarclassCoursesPreviewComponent implements OnInit {
-
-  displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd','viewDetails','durationOfLecture','uploadedBy', 'uploadDate','deleteLecture','play'];   
-
-  dataSource = ELEMENT_DATA;
+  eiCourseDetails : EiCourseDetails
+  dataSource : any;
+  params: any;
+  courseData: any = {};
   constructor(
     private router: Router,
-    private location: Location
-    ) { }
+    private location: Location,
+    private activeRoute: ActivatedRoute,
+    private baseService: BaseService,
+    private alert: NotificationService,
+    private loader: NgxSpinnerService
+    ) {
+      this.eiCourseDetails = new EiCourseDetails()
+     }
 
 
   ngOnInit(): void {
+    this.activeRoute.queryParams.subscribe(params => {
+      this.params = params;
+      this.getCourseDetails()
+    })
+  }
+
+  getCourseDetails(){
+    try {
+      this.loader.show()
+      let params = {
+        "id": this.activeRoute.snapshot.params.id
+      }
+      this.baseService.getData('starclass/course_preview/', params).subscribe(
+        (res : any) =>{
+          if(res.status == true){
+            this.eiCourseDetails.courseDetails = res.results
+            this.courseData = res.results[0]
+          }
+          else{
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        }
+      ), 
+      err =>{
+        this.loader.hide()
+        this.alert.error(err, 'Error')
+      }
+    } catch (error) {
+      this.loader.hide()
+      this.alert.error(error.error, 'Error')
+    }
   }
 
   goBack(){
