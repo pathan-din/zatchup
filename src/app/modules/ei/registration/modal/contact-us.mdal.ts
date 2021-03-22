@@ -1,3 +1,15 @@
+export class Pagination {
+    dataSource: any;
+    page_size: any;
+    startIndex: any;
+    config = {
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalItems: 0
+    };
+    pageCounts: any;
+}
+
 export class ContactUs {
     errorDisplay: any = {};
     model: any = {};
@@ -14,4 +26,15 @@ export class ContactUs {
     type: any;
     zatchupId: any;
     schoolName: any
+}
+
+export class DashBoardData extends Pagination {
+  model: any =[];
+  data: any = [];
+  id: any;
+}
+
+export class EiCourseDetails extends Pagination{
+  courseDetails: any;
+  DisplayedColumns: string[] = ['position', 'name', 'price', 'validity', 'views',];
 }

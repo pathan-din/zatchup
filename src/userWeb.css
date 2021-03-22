@@ -244,7 +244,7 @@ body {
   color: #333333;
   font-family: "SFUIDisplay-Regular";
   cursor: pointer;
-  background-position: 95%;
+  background-position: 98%;
 }
 
 .custom-select:focus {
@@ -302,14 +302,14 @@ body {
 
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
-  background-size: 6%;
+  background-size: 24px;
   background-position: 98% center;
 }
 
 .form-phoneBgImg {
   background-image: url("./assets/images/userWebsite/phone_icon.png");
-  background-size: 4.5%;
-  background-position: 100% center;
+  background-size: 16px;
+  background-position: 98% center;
 }
 
 .form-calenderBgImg {

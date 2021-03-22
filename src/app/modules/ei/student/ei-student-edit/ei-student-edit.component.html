@@ -1,7 +1,15 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="StudentEdit-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">Student</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">Student</h2>
+            </div>
+
+        </div>
         <div class="row m-0">
             <div class="col-md-8 bg-offwhite">
 			<form id="editStudent">
@@ -15,7 +23,7 @@
                     <div class="col-md-12">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input [(ngModel)]="model.roll_no" name="roll_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
+                            <input [(ngModel)]="model.roll_no" name="roll_number" [required]="!model.mark_as_alumni" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
                         </div>
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>

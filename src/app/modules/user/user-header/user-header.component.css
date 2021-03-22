@@ -58,6 +58,7 @@
 
 .cs_btn {
     background: #fff;
+    margin-right: 10px;
 }
 .menuStrip {
     width: 25px;
@@ -68,7 +69,7 @@
 }
 
 .nav-item {
-    margin: 5px 0px;
+    margin: 5px 10px;
 }
 
 .headerLogoImg {

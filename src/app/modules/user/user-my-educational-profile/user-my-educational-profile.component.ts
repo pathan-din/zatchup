@@ -285,9 +285,9 @@ export class UserMyEducationalProfileComponent implements OnInit {
   addMoreCourse(data: any, school_id: any) {
     localStorage.setItem("addcourse", "yes");
     if (data.is_current_course == true) {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "add_course": "true", "returnUrl": "user/my-educational-profile" } });
+      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true", "returnUrl": "user/my-educational-profile" } });
     } else {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "add_course": "true", "returnUrl": "user/my-educational-profile" } });
+      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true", "returnUrl": "user/my-educational-profile" } });
     }
   }
 
