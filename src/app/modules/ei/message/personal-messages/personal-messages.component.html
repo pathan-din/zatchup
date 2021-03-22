@@ -5,17 +5,39 @@
             <div class="col-md-5 col-12">
                 <h2 class="commonFontSize semiBoldFont m-0">Personal Messages</h2>
             </div>
-            <div class="col-md-7 col-12 d-flex justify-content-end"> 
-                <!-- <div class="form-control-inputDiv rounded p-0 shadow-none">
-                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Search Teacher">
-                </div> -->
+            <!-- <div class="col-md-7 col-12 d-flex justify-content-end"> 
+                
                 <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 " data-toggle="modal" data-target="#PersonalModal">New Messages</button>
                 <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Create Group</button>
                 <button type="button" class="bg-yellow text-white px-3  h-100 ml-2 border-0"><i class="fa fa-cog" aria-hidden="true"></i></button>
-            </div>
+            </div> -->
         </div>
 
-        <div class="row border-bottom pb-2 mt-3">
+        <div *ngFor="let msgObj of messageData">
+            <div *ngFor="let msg of msgObj">
+                <div class="row border-bottom pb-2 mt-3" *ngIf="currentUser!=msg.user_send_by">
+                    <div class="col-md-1 col-2" >
+                        <img *ngIf="msg.profile_pic" src="{{msg.profile_pic}}" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                        <img *ngIf="!msg.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                    </div>
+                    <div class="col-md-10 col-8" (click)="messageDetails(msg.user_send_by)" *ngIf="currentUser!=msg.user_send_by">
+                        <h3 class="m-0 semiBoldFont color-black">{{msg.user_name}} 
+                            <!-- - <span class="small-text">Sent By Alumni</span> -->
+                        </h3>
+                        <p> {{msg.msg}} </p>
+                    </div>
+                    <!-- <div class="col-md-1 col-2">
+                        <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
+                    </div> -->
+                </div>
+
+            </div>
+            
+            
+            
+        </div>
+
+        <!-- <div class="row pt-3">
             <div class="col-md-1 col-2">
                 <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
             </div>
@@ -26,20 +48,7 @@
             <div class="col-md-1 col-2">
                 <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
             </div>
-        </div>
-
-        <div class="row pt-3">
-            <div class="col-md-1 col-2">
-                <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
-            </div>
-            <div class="col-md-10 col-8">
-                <h3 class="m-0 semiBoldFont color-black">Prashant Sharma - <span class="small-text">Sent By Alumni</span></h3>
-                <p>Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. </p>
-            </div>
-            <div class="col-md-1 col-2">
-                <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
-            </div>
-        </div>
+        </div> -->
     </div>
 
     <!-- PersonalModal  -->

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -95,7 +94,6 @@ export class UserHeaderComponent implements OnInit {
   getRecepintUserDetails(uuid: any) {
     if (uuid) {
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-        // this.recepintDetails = res.data();
         console.log('recipants details is as ::', res.data())
       });
     }
