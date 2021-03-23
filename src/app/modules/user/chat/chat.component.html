@@ -52,12 +52,24 @@
                 
             </div>
 
-            <div class="addComment my-2 d-flex justify-content-between align-items-center flex-wrap position-relative">
+            <!-- <div class="addComment my-2 d-flex justify-content-between align-items-center flex-wrap position-relative">
                 <textarea [(ngModel)]="model.comment" name="comment" class="form-control chatMessage ml-2" id="" name="message" rows="1" placeholder="Write a Message.."  required></textarea>
-                <button (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" [disabled]="!model.comment"> Send</button>
-                <!-- <i  (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" aria-hidden="true"></i> -->
-                <!-- <img [disabled]="!model.comment" (click)="sendChat()" src="assets/images/userWebsite/sent-message.png" class="img-fluid cursorStyle imgComment mr-3"> -->
-            </div> 
+                <button (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" [disabled]="!model.comment"> Send</button>                
+            </div>  -->
+
+            <div class="row addComment">
+                <div class="col-12 p-0">
+                    <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
+                        <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i>
+                        <i class="fa fa-paperclip cursorStyle" aria-hidden="true"></i>
+                        <input [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
+                            type="search" placeholder="Type Something...">
+                        <span [disabled]="!model.comment" (click)="sendChat()" class="">
+                            <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
                
     </div>
