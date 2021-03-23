@@ -213,7 +213,7 @@
                   
                     <div class="form-group row">
                         <div class="col-sm-12 p-0 form-control-inputDiv">
-                            <textarea [(ngModel)]="model.comment" name="comment"
+                            <textarea [(ngModel)]="model.comment" name="comment" [disabled]="model.comment" 
                                 class="form-control-input form-control form-control-textarea" rows="3"
                                 placeholder="Add Description of Study..."></textarea>
                         </div>
