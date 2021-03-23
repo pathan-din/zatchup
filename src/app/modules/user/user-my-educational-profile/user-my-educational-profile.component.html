@@ -432,8 +432,7 @@
                 <!-- <i class="fa fa-book" aria-hidden="true"
                     style="font-size: 105px; padding: 20px 0px; color: #463267;"></i> -->
                 <div class="form-group">
-                    <h2>Personal Information
-                    </h2>
+                    <h2 class="text-center">Personal Information</h2>
                    <form>
                         <div class="form-group row">
                             <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
@@ -522,7 +521,7 @@
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
-            <div class="modal-body pl-5 pr-5">
+            <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
                 <p class="color-black regularFont commonFontSize">Enter OTP Send On Your {{editModel.value}}. </p>
                 <div class="form-group">
@@ -542,7 +541,7 @@
                     </div>
                 </div>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
-                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                <p class="text-right"><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p>
                 <button type="button" class="btn common-model-Btn mt-3" (click)="goToDashboard();">Submit </button>
               
