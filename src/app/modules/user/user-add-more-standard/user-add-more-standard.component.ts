@@ -99,14 +99,20 @@ export class UserAddMoreStandardComponent implements OnInit {
           //this.model = res.data;
           this.model.name_of_school = res.data.name_of_school;
           this.model.school_code = res.data.school_code;
-          this.model.join_standard_id = res.data.join_standard_id
-          this.model.current_standard_id = res.data.current_standard_id
+           
+          this.model.left_standard_id = res.data.left_standard_id;
+          this.model.join_standard_id = res.data.join_standard_id;
+          this.model.current_standard_id = res.data.current_standard_id;
+          this.model.course_start_year = res.data.course_start_year;
+          this.model.course_end_year = res.data.course_end_year;
+          this.model.admission_no = res.data.admission_no;
           if (this.model.course_id) {
             this.model.existing_course_id = this.courseId;
             this.model.comment = res.data.description;
           }
           this.model.school_id = this.schoolId;
           // this.displayClassList(res.data.join_standard_id);
+          
           this.displayClassList(res.data.current_standard_id);
         } else {
           this.SpinnerService.hide();

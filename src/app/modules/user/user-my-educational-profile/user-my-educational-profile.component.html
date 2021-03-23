@@ -117,11 +117,11 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 pt-3 d-flex justify-content-between align-items-center border-bottom pb-3"
+                            <div class="col-md-12 pt-3 d-flex justify-content-between align-items-center"
                                 *ngFor="let objWorkDetail of objEpData.work_detail">
                                 <h3 class="Heading m-0 d-flex justify-content-start flex-wrap">
                                     <img src="assets/images/userWebsite/study_student.png"
-                                        class="cursorStyle img-fluid mr-2 mb-2" style="height: 80px;">
+                                        class="cursorStyle img-fluid mr-2" style="height: 80px;">
                                     <div class="experiencedetails">
                                         <span
                                             class="d-block regularFont mediumFont">{{objWorkDetail.work_department}}</span>
@@ -144,9 +144,9 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="col-md-12">
+                            <div class="col-md-12">
                                 <hr>
-                            </div> -->
+                            </div>
 
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                         src="assets/images/userWebsite/delete.png"
                                         class="cursorStyle img-fluid"
                                         style="height: 26px; width: 26px;">
-                                        <i *ngIf="objEd.approved==1 && objEd.firebase_id" (click)="getDocumentsChat(objEd.firebase_id)"
+                                        <i *ngIf="objEpData.kyc_approved==1 && objEd.firebase_id" (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true " style="font-size: 26px;"></i>
                                 </div>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
@@ -253,19 +253,21 @@
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Standard : <span class="regularFont"> {{objSd.standard_name}}</span>
                                         </div>
-                                        <div *ngFor="let objCd of objSd.class_detail"
+                                        <div *ngFor="let objCCd of objSd.class_detail"
                                             class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
-                                            Class (Sub-Section) : <span class="regularFont">{{objCd.class_name}} </span>
-                                        </div>
-
-                                        <div *ngIf="objCd.is_current_course && objSd.roll_no"
+                                            Class (Sub-Section) : <span class="regularFont">{{objCCd.class_name}} </span>
+                                        
+                                            <div *ngIf="objCCd.roll_no"
                                             class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Roll Number : <span class="regularFont"><a
                                                     class="textUnderlineStyle cursorStyle"
                                                     data-target="#personalInfoModel" data-toggle="modal"
-                                                    (click)="openModel(objCd,'roll_no',objSd.roll_no)">{{objSd.roll_no}}</a>
+                                                    (click)="openModel(objCd,'roll_no',objCCd.roll_no,objCCd.class_id)">{{objCCd.roll_no}}</a>
                                             </span>
                                         </div>
+                                        </div>
+
+                                       
                                     </div>
 
 
@@ -430,6 +432,8 @@
                 <!-- <i class="fa fa-book" aria-hidden="true"
                     style="font-size: 105px; padding: 20px 0px; color: #463267;"></i> -->
                 <div class="form-group">
+                    <h2>Personal Information
+                    </h2>
                    <form>
                         <div class="form-group row">
                             <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
