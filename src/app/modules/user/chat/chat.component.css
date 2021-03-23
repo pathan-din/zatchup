@@ -1,11 +1,11 @@
 .profile_pick{
     border-radius: 50%;
-    max-width: 55px;
+    max-width: 40px;
     overflow: hidden;
-    max-height: 55px;
-    min-height: 55px;
+    max-height: 40px;
+    min-height: 40px;
     width: 100%;
-    min-width: 55px;
+    min-width: 40px;
     height: 100%;
     border: 1px solid #ddd;
 }
