@@ -39,3 +39,9 @@ export class EiCourseDetails extends Pagination{
   courseDetails: any;
   DisplayedColumns: string[] = ['radioButton','position', 'name', 'price', 'validity', 'views',];
 }
+
+export class CartList extends Pagination{
+  data: any;
+  
+
+}

@@ -2,6 +2,19 @@
     height: auto!important;
 }
 
+.cart-image {
+    width: 50%;
+}
+.itemIcon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.mat-list-item-content{
+    padding: 0px !important;
+}
+
 /* ::ng-deep .mat-list-item-content {
     padding: 1rem 0!important;
     align-items: flex-start!important;

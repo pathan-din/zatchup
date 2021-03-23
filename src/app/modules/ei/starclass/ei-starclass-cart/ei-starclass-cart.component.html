@@ -12,27 +12,25 @@
         </div>
 
         <div class="row">
-            <div class="col-md-7 MobileCol6MB">
+            <div class="col-md-7 MobileCol6MB" *ngIf="cartList.data">
                 <h3 class="commonFontSize regularFont border-bottom border-gray mb-0 py-2">Order Details</h3>
                 <mat-list role="list" class="p-0">
-                    <mat-list-item role="listitem" class="mat-list-itemw-auto">
+                    <mat-list-item role="listitem" class="mat-list-itemw-auto" *ngFor="let listData of cartList.data">
                         <div class="py-2 d-flex justify-content-start px-0">
-                            <img src="assets/images/userWebsite/lecturer-icon.png" class="img-thumbnail h-100">
+                            <img *ngIf="listData.course_image" src="{{listData.course_image}}" class="img-thumbnail cart-image">
                             <div class="itemDiv mx-2">
                                 <h3 class="commonFontSize semiBoldFont mb-1">Benefits</h3>
-                                <p class="commonFontSize regularFont" style="line-height: initial;">In addition to our border-radius utilities, you can use .img-thumbnail to give an image a rounded 1px border</p>
+                                <p class="commonFontSize regularFont" style="line-height: initial;">{{listData.course_description}}</p>
                                 <div class="row commonFontSize regularFont">
                                     <div class="col-4">Price</div>
-                                    <div class="col-8"><span class="mr-3">:</span>1,500/Year</div>
+                                    <div class="col-8"><span class="mr-3">:</span>{{listData.price}}/Year</div>
                                 </div>
                             </div>
 
-                            <div class="itemIcon"><i class="fa fa-trash color-red cursorStyle" title="Delete order" aria-hidden="true"></i></div>
+                            <div (click)="deleteCartItem(listData.id)" class="itemIcon"><i class="fa fa-trash color-red cursorStyle" title="Delete order" aria-hidden="true"></i></div>
                         </div>
                     </mat-list-item>
 
-                    <mat-list-item role="listitem">Item 2</mat-list-item>
-                    <mat-list-item role="listitem">Item 3</mat-list-item>
                 </mat-list>
             </div>
             <div class="col-md-5 ">
