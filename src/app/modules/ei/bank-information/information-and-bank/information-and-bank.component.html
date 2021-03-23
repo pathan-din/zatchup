@@ -316,6 +316,12 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 border-0">                
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                            data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <form id="updateForm">
                 <div class="courseLecture-div bg-white border mt-0 px-3 py-3">
@@ -348,7 +354,7 @@
             
                         <div class="col-md-12">
                             <div class="form-group row ml-0 mr-0 d-flex justify-content-center"> 
-                                <button (click)="editDetails()" type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Send for approval </button>                    
+                                <button (click)="editDetails()" type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Edit </button>                   
                             </div>
                         </div>
             
@@ -365,9 +371,15 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">                
+                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id/phone. </p>
+                <p class="color-black regularFont commonFontSize mb-2">Enter OTP Send On Your {{model.value}} </p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between">
                         <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
@@ -384,10 +396,12 @@
                             type="text" maxlength="1">
                     </div>
                 </div>
-                <p class="text-right commonFontSize mediumFont textUnderlineStyle cursorStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
+                <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="resendOtp()">Resend OTP</span>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
 
-                <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
+                <div class="col-12" style="clear: both;">
+                        <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
+                </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p> -->

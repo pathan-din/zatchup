@@ -15,8 +15,8 @@
 
         <div *ngFor="let msgObj of messageData">
             <div *ngFor="let msg of msgObj">
-                <div class="row border-bottom pb-2 mt-3" *ngIf="currentUser!=msg.user_send_by">
-                    <div class="col-md-1 col-2" >
+                <div class="row border-bottom pb-2 mt-3 align-items-center" *ngIf="currentUser!=msg.user_send_by">
+                    <div class="col-md-1 col-2 text-center">
                         <img *ngIf="msg.profile_pic" src="{{msg.profile_pic}}" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
                         <img *ngIf="!msg.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
                     </div>
@@ -24,7 +24,7 @@
                         <h3 class="m-0 semiBoldFont color-black">{{msg.user_name}} 
                             <!-- - <span class="small-text">Sent By Alumni</span> -->
                         </h3>
-                        <p> {{msg.msg}} </p>
+                        <p class="mb-0"> {{msg.msg}} </p>
                     </div>
                     <!-- <div class="col-md-1 col-2">
                         <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
