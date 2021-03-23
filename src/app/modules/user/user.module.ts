@@ -139,7 +139,6 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     CommonModule,
     MaterialDesignModule,
     UserRoutingModule,
-    
     TabsModule,
     FormsModule,
     NgxSpinnerModule,
@@ -148,8 +147,7 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     DirectiveModule,
     SharedModule,
     CarouselModule.forRoot(),
-    PaginationModule,
-    // AngularFireModule.initializeApp(environment.firebase),
+    PaginationModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

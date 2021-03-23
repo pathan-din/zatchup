@@ -30,15 +30,28 @@ export class EiStarclassComponent implements OnInit {
   getDashBoardData(page? : any){
     try {
       this.loader.show()
-      // this.dashBoardData.model ={
-      //   'page' : page,
-      //   'page_size': this.dashBoardData.page_size
-      // }
-      this.baseService.getData('starclass/star-class-course-admin-list/').subscribe(
+      this.dashBoardData.model ={
+        'page' : page,
+        'page_size': this.dashBoardData.page_size
+      }
+      this.baseService.getData('starclass/ei-dashboard-course-list/', this.dashBoardData.model).subscribe(
         (res: any)=>{
           if(res.status == true){
-           this.dashBoardData.model = res.results
-           
+            if(!page)
+            page = this.dashBoardData.config.currentPage
+            this.dashBoardData.startIndex = res.page_size * (page - 1) + 1;
+            this.dashBoardData.page_size = res.page_size
+            this.dashBoardData.config.itemsPerPage = this.dashBoardData.page_size
+            this.dashBoardData.config.currentPage = page
+            this.dashBoardData.config.totalItems = res.count;
+           if(res.count >0){
+            this.dashBoardData.dataSource = res.results
+            this.dashBoardData.pageCounts = this.baseService.getCountsOfPage()
+           }
+           else{
+            this.dashBoardData.dataSource = undefined
+            this.dashBoardData.pageCounts = undefined
+          }
           }
           else{
             this.alert.error(res.error.message, 'Error')

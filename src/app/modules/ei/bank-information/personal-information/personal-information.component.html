@@ -161,7 +161,7 @@
                             address</label>
                         <div class="form-control-inputDiv rounded p-1 shadow-none">
                             <input (keyup)="isValid($event)" id="school_email"
-                                [(ngModel)]="model.school_email" name="school_email"
+                                [(ngModel)]="model.school_email" name="school_email" maxlength="50"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="email" placeholder="School Email address">
                         </div>
@@ -172,7 +172,7 @@
                     <div class="col-sm-12 ">
                         <label for="fb_url" class="mediumFont commonFontSize letterspacing">Facebook url</label>
                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                            <input (keyup)="isValid($event)" id="fb_url" [(ngModel)]="model.fb_url"
+                            <input (keyup)="isValid($event)" id="fb_url" maxlength="50" [(ngModel)]="model.fb_url"
                                 name="fb_url"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" placeholder="Facebook URL">
@@ -185,7 +185,7 @@
                         <label for="twitter_url" class="mediumFont commonFontSize letterspacing">Twitter url</label>
                         <div class="form-control-inputDiv rounded p-1 shadow-none">
                             <input (keyup)="isValid($event)" id="twitter_url"
-                                [(ngModel)]="model.twitter_url" name="twitter_url"
+                                [(ngModel)]="model.twitter_url" maxlength="50" name="twitter_url"
                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" placeholder="Twitter URL">
                         </div>
@@ -264,7 +264,7 @@
                             Number(Optional)</label>
 
                         <div class="form-control-inputDiv rounded p-1 shadow-none">
-                            <input id="gst_no" [(ngModel)]="model.gst_no" name="model.gst_no"
+                            <input id="gst_no" [(ngModel)]="model.gst_no" name="model.gst_no" maxlength="15"
                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                 type="text" placeholder="Enter GST Number">
                         </div>

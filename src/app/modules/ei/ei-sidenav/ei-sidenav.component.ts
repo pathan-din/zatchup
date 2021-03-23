@@ -196,6 +196,8 @@ export class EiSidenavComponent {
               localStorage.clear();
               this.alert.info(response.rejected_reason, "Information");
               this.router.navigate(['ei/login']);
+            }else{
+              
             }
           } else if (response.role == 'EISUBADMIN') {
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {

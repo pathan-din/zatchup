@@ -90,24 +90,19 @@
 
         <!--ZatchUp StarClass Package-->
         <div class="row" >
-            <div *ngFor="let data of dashBoardData.model">
-            <div class="col-md-4 col-sm-4 mb-3" *ngIf="data.plan_data.length != 0">
-                <div class="card p-2 rounded-0 cursorStyle" (click)="goToCoursePreview(data)">
-                    <img class="card-img-top starclass-card-img border border-gray rounded-0" *ngIf="data.course_image" src="{{data.course_image}}" alt="Card image cap">
-                    <img class="card-img-top starclass-card-img border border-gray rounded-0" *ngIf="!data.course_image" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
-                    <div class="card-body p-0">
-                       <h3 class="card-title commonFontSize semiBoldFont mb-1">{{data.course_name}}</h3>
-                        <p class="card-text commonFontSize regularFont mb-2">{{data.description}}</p>
-
+                <div class="col-4" *ngFor="let data of dashBoardData.dataSource">
+                    <div class="col-md-12 col-sm-12 mb-3" >
+                        <div class="card p-2 rounded-0 cursorStyle" (click)="goToCoursePreview(data)">
+                            <img class="card-img-top starclass-card-img border border-gray rounded-0" *ngIf="data.course_image" src="{{data.course_image}}" alt="Card image cap">
+                            <img class="card-img-top starclass-card-img border border-gray rounded-0" *ngIf="!data.course_image" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
+                            <div class="card-body p-0">
+                            <h3 class="card-title commonFontSize semiBoldFont mb-1">{{data.course_name}}</h3>
+                                <p class="card-text commonFontSize regularFont mb-2">{{data.description}}</p>
+    
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="row" *ngIf="data.plan_data.length == 0">
-                <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
-                </div>
-            </div> -->
-        </div>
         </div>
         <!--End ZatchUp StarClass Package-->
         

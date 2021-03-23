@@ -14,7 +14,7 @@ declare var $: any;
   styleUrls: ['./user-my-educational-profile.component.css']
 })
 export class UserMyEducationalProfileComponent implements OnInit {
-  @ViewChild('closeModal') closeModal: any;
+  @ViewChild('closebutton') closeModal: any;
   epData: any;
   model: any = {};
   editModel: any = {};
@@ -38,6 +38,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
   imageUrl: any;
   imagePath: any;
+  personalInfo:any={};
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
@@ -59,17 +60,87 @@ export class UserMyEducationalProfileComponent implements OnInit {
     if (localStorage.getItem("editcourse")) {
       localStorage.removeItem("editcourse")
     }
+    this.getPersonalInfo();
   }
+  getPersonalInfo(){
+      try {
+        this.loader.show();
+       this.baseService.getData("user/get-update-personal-info/").subscribe((res:any)=>{
+         if(res.status){
+          this.loader.hide();
+           this.personalInfo = res.data;
+         }else{
+          this.loader.hide();
+         }
+       },(error)=>{
+        this.loader.hide();
+       })
+      } catch (e) {
+        this.loader.hide();
+      }  
+  }
+  isValid(event) {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+    if(this.personalInfo.gender=='C'){
 
+    }else{
+      this.personalInfo.custom_gender = '';
+      this.personalInfo.pronoun = '';
+    }
+  }
+  goToUpdatePersonalnfo(){
+    // this.errorDisplay = {};
+    // this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+
+    // if (this.errorDisplay.valid) {
+    //   return false;
+    // }
+    try {
+      this.loader.show();
+     this.baseService.action("user/get-update-personal-info/",this.personalInfo).subscribe((res:any)=>{
+       if(res.status){
+        this.loader.hide();
+         this.personalInfo = res.data;
+         this.closeModal.nativeElement.click();
+         this.getEducationalProfile()
+       }else{
+        this.loader.hide();
+       }
+     },(error)=>{
+      this.loader.hide();
+     })
+    } catch (e) {
+      this.loader.hide();
+    }
+  }
   getDocumentsChat(uuid) {
     localStorage.setItem('uuid', uuid);
     this.router.navigate(["user/chat"]);
   }
-  redirectPersonalInfo(){
-    this.router.navigate(["user/add-personal-info"], { queryParams: { "returnUrl": 'my-educational-profile' } });
-  }
+  // redirectPersonalInfo(){
+  //   this.router.navigate(["user/add-personal-info"], { queryParams: { "returnUrl": 'my-educational-profile' } });
+  // }
   redirectWorkDetailesPage(id) {
     this.router.navigate(["user/work-detail"], { queryParams: { "id": id } });
+  }
+  resendOtp(){
+    // /
+    try {
+      this.loader.show()
+    this.baseService.action("user/resend-otp-ei-request-for-detail-change/", this.editModel).subscribe((res:any)=>{
+      if(res.status){
+        this.loader.hide()
+      }else{
+        this.loader.hide()
+      }
+    },(error)=>{
+      this.loader.hide()
+    })
+    } catch (e) {
+    
+    }
   }
   addPastEi() {
     $("#OTPModel").modal('hide');
@@ -366,6 +437,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
       this.loader.show()
       let model: any = {};
       this.model.school_id = school_id;
+
       this.baseService.action('user/delete-school-course-detail-by-student/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {

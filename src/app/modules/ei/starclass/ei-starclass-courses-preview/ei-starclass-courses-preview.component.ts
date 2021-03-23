@@ -16,6 +16,7 @@ export class EiStarclassCoursesPreviewComponent implements OnInit {
   dataSource : any;
   params: any;
   courseData: any = {};
+  cartData : any = {};
   constructor(
     private router: Router,
     private location: Location,
@@ -65,5 +66,40 @@ export class EiStarclassCoursesPreviewComponent implements OnInit {
 
   goBack(){
     this.location.back()
+  }
+
+  getCartData(data:any){
+    this.cartData = {}
+    this.cartData = data
+    console.log('cartdata', this.cartData);
+    
+  }
+
+  addToCart(){
+    try {
+      this.loader.show()
+      this.params = {
+        "course": parseInt(this.activeRoute.snapshot.params.id) ,
+        "plan": this.cartData.id
+      }
+      this.baseService.action('starclass/cart-item/', this.params).subscribe(
+        (res : any) =>{
+          if(res.status == true){
+            this.alert.success(res.message, 'Success')
+          }
+          else{
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        }
+      ),
+      err => {
+        this.alert.error(err, 'Error')
+        this.loader.hide()
+      }
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+      this.loader.hide()
+    }
   }
 }

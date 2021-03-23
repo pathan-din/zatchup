@@ -140,6 +140,7 @@ import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
+import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
 
 
 const routes: Routes = [
@@ -554,7 +555,9 @@ const routes: Routes = [
   {
     path: 'subadmin-terms-and-conditions/:type/:action', component: SubadminTermsAndConditionsComponent
   },
-  
+   {
+    path: 'request-for-course-list-view', component:RequestForCourseListViewComponent, canActivate:[AuthGuard]
+   },
   
   
   
