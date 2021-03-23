@@ -143,6 +143,28 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                     <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p>First Name</p>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
+                    <p><span class="mr-3">: {{bankDetails?.first_name}} </span>
+                        
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p>Last Name</p>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
+                    <p><span class="mr-3">: {{bankDetails?.last_name}} </span>
+                        
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                     <p>Email ID</p>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
@@ -438,7 +460,7 @@
                                     <input id="bank_account_no" name="bank_account_no"
                                         [(ngModel)]="bankModel.bank_account_no" numberOnly
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        type="text " placeholder="Enter Account Number " required>
+                                        type="text " maxlength="30" placeholder="Enter Account Number " required>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.bank_account_no"></div>
                             </div>
@@ -468,7 +490,7 @@
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing h-100"
                                         type="file" validFileExtention="png,jpeg,jpg" required>                                                                                
                                 </div>
-                                <p class="pt-1">* only support pdf and image</p>
+                                <p class="pt-1">* only support image</p>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                             </div>
                         </div>
@@ -537,7 +559,7 @@
                                     Number(Optional)</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no"
+                                    <input maxlength="15" id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter GST Number">
                                 </div>
@@ -560,7 +582,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">School Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email"
+                                    <input maxlength="50" id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="email" placeholder="Enter School Email">
                                 </div>
@@ -571,7 +593,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Twitter URL</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="twitter_url" [(ngModel)]="editModel.twitter_url" name="editModel.twitter_url"
+                                    <input id="twitter_url" maxlength="50" [(ngModel)]="editModel.twitter_url" name="editModel.twitter_url"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter twitter url">
                                 </div>
@@ -582,7 +604,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Facebook URL</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="fb_url" [(ngModel)]="editModel.fb_url" name="editModel.fb_url"
+                                    <input maxlength="50" id="fb_url" [(ngModel)]="editModel.fb_url" name="editModel.fb_url"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter fb url">
                                 </div>
@@ -602,7 +624,7 @@
 
                             </div>
                         </div>
-                        <h2 class="commonFontSize semiBoldFont m-0">School Admin Information</h2>
+                        <!-- <h2 class="commonFontSize semiBoldFont m-0">School Admin Information</h2>
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">First name</label>
@@ -624,7 +646,7 @@
                                         type="text" placeholder="Enter last name">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
               

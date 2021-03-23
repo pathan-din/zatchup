@@ -68,7 +68,10 @@ export class UserSignUpComponent implements OnInit {
     this.model.profile = {};
     this.model.profile.pronoun = "";
     this.model.is_term_cond = false;
+    this.baseService.getCurrentMonth();
+    this.baseService.getCurrentYear();
   }
+  
   isCheckEmailOrPhone(event) {
     this.maxlength = ''
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -134,6 +137,9 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("kyc_name", this.model.first_name + ' ' + this.model.last_name);
       if (this.model.email) {
         this.model.email = this.model.username;
+      }
+      if (this.model.phone) {
+        this.model.phone = this.model.username;
       }
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;

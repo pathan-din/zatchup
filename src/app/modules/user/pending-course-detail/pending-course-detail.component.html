@@ -81,7 +81,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div *ngFor="let objEpData of dataSource" class="pt-3" style="clear: both;">
 
-                <div class="row mt-3">
+                <div class="row mt-3" *ngIf="objEpData.course_detail.length>0">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
                             <div class="col-md-12 d-flex justify-content-between align-items-center flex-wrap">
@@ -91,7 +91,7 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12" *ngIf="objEpData.course_detail.length>0">
+                            <div class="col-md-12" >
                                 <p class="m-0 mb-1 commonFontSize semiBoldFont">School Name: <span
                                         class="regularFont">{{objEpData.name_of_school}}
                                         <!-- <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png"

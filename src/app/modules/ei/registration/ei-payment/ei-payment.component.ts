@@ -155,7 +155,7 @@ export class EiPaymentComponent implements OnInit {
         let res: any = response;
         //Get Payment Price From Api Object
         this.paymentHtml = '';
-        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + response.original_price + '</del></div></div>';
+        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + response.original_price + '</div></div>';
         this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + response.discount_amount + '</div></div>';
         this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + response.price + '</div></div>';
 

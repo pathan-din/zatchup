@@ -142,7 +142,21 @@ export class BaseService {
     });
     return obj
   }
-
+  getCurrentMonth(){
+   var month = new Date().getMonth();
+   monthNew = month.toString();
+   if(month<10){
+    var monthNew="0"+month.toString()
+   }
+   console.log(monthNew);
+   
+   return  monthNew;
+  }
+  getCurrentYear(){
+    var year = new Date().getFullYear();
+    console.log(year);
+    return  year;
+   }
   actionForFormData(url: any, data: any) {
     if (typeof (data) == 'object') {
       return this.http.post(this.environment.baseUrl + url, data)
