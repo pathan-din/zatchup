@@ -147,7 +147,10 @@ export class UserAddMoreStandardComponent implements OnInit {
     try {
       if (courseId != 'others' && courseId != '') {
         if (this.courseList)
-          this.setCalDates(courseId)
+        if (this.courseList.length > 0) {
+          this.model.comment = this.courseList.find(element => element.id == courseId).description;
+        }
+        this.setCalDates(courseId)
         this.SpinnerService.show();
         this.standardList = []
         this.model.class_id = '';

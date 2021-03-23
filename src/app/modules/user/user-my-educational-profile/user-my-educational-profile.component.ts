@@ -152,11 +152,12 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
   openModel(label, key, value) {
     console.log(label);
-
-
+    
     this.editModel = {};
+    this.editModel.class_id = '';
     if (key == 'roll_no') {
       this.editModel.course_id = label.course_id
+      this.editModel.class_id = label.class_id;
     }
     if (key == 'admission_number') {
       this.editModel.school_id = label.school_id

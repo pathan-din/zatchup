@@ -210,18 +210,14 @@ export class UserEiProfileComponent implements OnInit {
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
-      console.log(data);
       if (this.courseList.length > 0) {
         this.model.comment = this.courseList.find(element => element.id == courseId).description;
       }
-
-
       this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
         let response: any = {};
         response = res;
         this.loader.hide();
         this.standardList = response.results;
-        console.log(this.standardList);
         this.leftStandardList = response.results;
       }, (error) => {
         console.log(error);

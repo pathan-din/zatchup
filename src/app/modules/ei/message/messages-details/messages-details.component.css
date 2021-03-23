@@ -45,6 +45,10 @@
     width: 80px;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .send-message-icon{
     height: 40px;
 }

@@ -36,7 +36,7 @@
                 <i class="fa fa-paperclip cursorStyle" aria-hidden="true"></i>
                 <input [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
                     type="search" placeholder="Type Something...">
-                <span [disabled]="!model.comment" (click)="sendChat()" class="">
+                <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
                     <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
                 </span>
             </div>

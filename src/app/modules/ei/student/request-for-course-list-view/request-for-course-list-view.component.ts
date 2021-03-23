@@ -63,4 +63,8 @@ export class RequestForCourseListViewComponent implements OnInit {
     }
   }
 
+  goBack(){
+    this.location.back();
+  }
+
 }
