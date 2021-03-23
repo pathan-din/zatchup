@@ -286,7 +286,7 @@ body {
 
 .form-bgImg {
   background-repeat: no-repeat;
-  background-size: 7%;
+  background-size: 6%;
   background-position: 98% center;
 }
 
@@ -302,7 +302,7 @@ body {
 
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
-  background-size: 24px;
+  background-size: 20px;
   background-position: 98% center;
 }
 
@@ -431,18 +431,12 @@ button:focus {
     width: auto;
     margin-bottom: 7%;
   }
-  .form-bgImg {
-    background-size: 10%;
-  }
-  .form-emailBgImg,
+  /* .form-emailBgImg,
   .form-calenderBgImg,
   .form-genderBgImg,
   .form-passwordBgImg {
     background-size: 6%;
-  }
-  .form-phoneBgImg {
-    background-size: 7.5%;
-  }
+  } */
   .modal-body {
     padding-right: 3% !important;
     padding-left: 3% !important;
@@ -477,6 +471,10 @@ button:focus {
 
 .landingDiv{
   padding: 2%;
+}
+
+.modal-dialog {
+  margin: 1rem !important;
 }
 
 }

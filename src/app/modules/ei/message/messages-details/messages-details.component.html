@@ -10,18 +10,18 @@
         <div class="row mt-2">
             <div class="col-12 text-center">
                 <div class="message-user">
-                    <img src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
-                        alt="profile-pick" class="message-userImg" />
+                    <img src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
+                        class="message-userImg" />
                 </div>
-                <h3 class="commonFontSize semiBoldFont m-2 color-fadded-black text-capitalize">{{recepintDetails.firstName}}
-                    {{recepintDetails.lastName}}</h3>
+                <h3 class="commonFontSize semiBoldFont m-2 color-fadded-black text-capitalize">{{recepintDetails.firstName}} {{recepintDetails.lastName}}
+                </h3>
             </div>
         </div>
 
-        <div class="teacherChatList border-bottom">
+        <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                 <div class="col-md-12 col-12">
-                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}} 
+                    <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}}
                         <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
                     </p>
                 </div>
@@ -29,14 +29,16 @@
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row">
         <div class="col-12">
-            <div class="form-control-inputDiv rounded p-0 shadow-none mt-0 position-relative">
-                <input [(ngModel)]="model.comment" name="comment"
-                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+            <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
+                <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i>
+                <i class="fa fa-paperclip cursorStyle" aria-hidden="true"></i>
+                <input [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
                     type="search" placeholder="Type Something...">
-                <button type="button" [disabled]="!model.comment" (click)="sendChat()"
-                    class="bg-dark text-white px-2 border-0 position-absolute position-ppin cursorStyle">Send</button>
+                <span [disabled]="!model.comment" (click)="sendChat()" class="">
+                    <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
+                </span>
             </div>
         </div>
     </div>

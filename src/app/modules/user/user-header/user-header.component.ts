@@ -21,6 +21,7 @@ export class UserHeaderComponent implements OnInit {
   }
   messageData: any = [];
   currentUser: any = "";
+  isLoggedIn: boolean;
 
   constructor(
     private router: Router,
@@ -34,6 +35,7 @@ export class UserHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.baseService.isLoggedIn();
     if (localStorage.getItem("token")) {
       this.authCheck = true;
       this.getRegistrationStep();
@@ -47,13 +49,15 @@ export class UserHeaderComponent implements OnInit {
       this.isCheck = localStorage.getItem('approved');
 
     }
-    this.notifypush.receiveMessage();
-    this.notifypush.requestPermission();
-    if (localStorage.getItem("fbtoken")) {
-      this.currentUser = localStorage.getItem("fbtoken");
-      this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
-    }
 
+    if (this.isLoggedIn) {
+      this.notifypush.receiveMessage();
+      this.notifypush.requestPermission();
+      if (localStorage.getItem("fbtoken")) {
+        this.currentUser = localStorage.getItem("fbtoken");
+        this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
+      }
+    }
   }
   goToChat(uuid) {
     localStorage.setItem('uuid', uuid);

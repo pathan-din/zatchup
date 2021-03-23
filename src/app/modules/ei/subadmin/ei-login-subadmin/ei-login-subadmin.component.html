@@ -31,13 +31,13 @@
                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                     </div>
 
-                    <p class="text-right textUnderlineStyle commonFontSize mediumFont " (click)="goToEiForgetPasswordPage() ">Forgot Password?</p>
+                    <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="goToEiForgetPasswordPage() ">Forgot Password?</span>
                     <button (click)="doLogin()" type="button " class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">Log In
                         <span class="">
                             <i class="fa fa-sign-in text-white" aria-hidden="true"></i>
                             </span>
                     </button>
-                    <p class="text-center commonFontSize mediumFont my-4 ">Don't have an account?<span class="textUnderlineStyle " (click)="goToEiSubadminRegisterPage() ">Sign Up</span></p>
+                    <p class="text-center commonFontSize mediumFont my-2">Don't have an account?<span class="textUnderlineStyle " (click)="goToEiSubadminRegisterPage() ">Sign Up</span></p>
                     <p class="text-center commonFontSize mediumFont m-0 ">Facing issue in registration?</p>
                     <p class="text-center commonFontSize mediumFont mb-0 textUnderlineStyle " (click)="goToEiContactUsPage() ">Contact us</p>
                 </form>

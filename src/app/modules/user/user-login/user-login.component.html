@@ -5,7 +5,7 @@
         <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid login-left-Image mt-4" src="assets/images/userWebsite/left_images.png">
         </div>
-        <div class="col-md-4 pl-0 order-1 order-sm-6">
+        <div class="col-md-4 pl-0 order-1 order-sm-6 MobileCol6MB">
             <h2 class="mb-1 textSpace">Login</h2>
             <form class="pt-2" id="login"> 
                 
@@ -24,8 +24,10 @@
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.password"></div>
                 </div>
-                <p class="color-black mediumFont text-right forgetFontStyle cursorStyle" (click)="goTouserForgotPasswordPage()">Forgot Password? </p>
-                <button type="submit" class="btn common-btn regularFont textSpace" (click)="doLogin();">Login </button>
+                <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="goTouserForgotPasswordPage()">Forgot Password? </span>
+                <div class="col-12 text-center" style="clear: both;">
+                    <button type="submit" class="btn common-btn regularFont textSpace" (click)="doLogin();">Login </button>
+                </div>
                 <div class="color-black mediumFont textSpace">Don't have an account? <span (click)="goToSignUpPage();" class="color-purple semiBoldFont textUnderlineStyle"> Sign Up </span></div>
             </form>
 
