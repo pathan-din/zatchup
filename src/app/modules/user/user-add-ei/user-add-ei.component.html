@@ -2,10 +2,10 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 order-1 order-sm-6 MobileCol6MB">
             <h2 class="mb-4 textSpace" *ngIf="!title">Please Add your School </h2>
             <h2 class="mb-4 textSpace" *ngIf="title=='past'">Please Add your School </h2>
             <h2 class="mb-4 textSpace" *ngIf="title=='current'">Please Add your School </h2>
@@ -93,7 +93,9 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.university"></div>
                 </div>
-                <button type="submit" class="btn common-btn regularFont textSpace" (click)="goToUserQualificationPage()">Submit</button>
+                <div class="text-center">
+                        <button type="submit" class="btn common-btn regularFont textSpace" (click)="goToUserQualificationPage()">Submit</button>
+                </div>
                 <!-- <button type="submit" class="btn common-btn regularFont textSpace" (click)="goToUserEiProfileNotOnboardPage()">Submit</button> -->
             </form>
         </div>

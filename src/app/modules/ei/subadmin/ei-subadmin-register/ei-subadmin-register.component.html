@@ -10,7 +10,7 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="fname " class=" mediumFont commonFontSize letterspacing">First Name*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input id="first_name" (keyup)="isValid($event)" [(ngModel)]="model.first_name" name="first_name" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter First Name">
+                                <input id="first_name" (keyup)="isValid($event)" [(ngModel)]="model.first_name" name="first_name" required class="form-control-input form-control form-bgImg form-NameBgImg commonFontSize regularFont letterspacing" type="text" placeholder="Enter First Name">
 
                             </div>
 							<div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
@@ -18,7 +18,7 @@
                         <div class="col-sm-6 ">
                             <label for="lname " class=" mediumFont commonFontSize letterspacing">Last Name*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input id="last_name" (keyup)="isValid($event)"  [(ngModel)]="model.last_name" name="last_name" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Last Name">
+                                <input id="last_name" (keyup)="isValid($event)"  [(ngModel)]="model.last_name" name="last_name" required class="form-control-input form-control form-bgImg form-NameBgImg commonFontSize regularFont letterspacing" type="text" placeholder="Enter Last Name">
 
                             </div>
 							<div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
@@ -30,7 +30,7 @@
                             <label for="email " class=" mediumFont commonFontSize letterspacing">Email ID / Mobile No*</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input maxlength="{{maxlength}}" id="email_id_or_mobile_no" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="{{type}}" placeholder="Email ID / Mobile No">
+                                <input maxlength="{{maxlength}}" id="email_id_or_mobile_no" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="email_id_or_mobile_no" required class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-emailBgImgPhone" type="{{type}}" placeholder="Email ID / Mobile No">
                             </div>
                         </div>
 						<div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_no"></div>
@@ -95,7 +95,7 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="dob " class=" mediumFont commonFontSize letterspacing">Date of Birth*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input  autocomplete="off" bsDatepicker [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" (change)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" placeholder="MM/DD/YYYY">
+                                <input  autocomplete="off" bsDatepicker [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" (change)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-calenderBgImg" type="text" placeholder="MM/DD/YYYY">
                                  
                                 
                             </div>
@@ -122,9 +122,9 @@
 
                     </div>
                     <div class="form-group row  ">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 d-flex align-items-center">
                             <input (click)="isValid($event)" (change)="isValid($event)" required [(ngModel)]="model.is_term_cond" name ="terms_and_condition" id="terms_and_condition" type="checkbox" id="term-condition">
-                            <label for="term-condition " class="commonFontSize mediumFont ml-2">By continuing, you agree to our 
+                            <label for="term-condition " class="commonFontSize mediumFont ml-2 mb-0">By continuing, you agree to our 
                                 <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'tc')">Terms & Conditions</span> and
                                 <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" (click)="goToSubadminTermsAndConditions('school_subadmin', 'view', 'privacy-policy')">Privacy Policy</span> </label>
                         </div>
