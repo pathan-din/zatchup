@@ -150,14 +150,14 @@ export class UserMyEducationalProfileComponent implements OnInit {
     $("#OTPModel").modal("hide");
     this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
   }
-  openModel(label, key, value) {
+  openModel(label, key, value,classId:any='') {
     console.log(label);
     
     this.editModel = {};
     this.editModel.class_id = '';
     if (key == 'roll_no') {
       this.editModel.course_id = label.course_id
-      this.editModel.class_id = label.class_id;
+      this.editModel.class_id = classId;
     }
     if (key == 'admission_number') {
       this.editModel.school_id = label.school_id

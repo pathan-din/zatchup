@@ -123,6 +123,8 @@ export class EiSidenavComponent {
 
       if (Object.keys(this.route.snapshot.queryParams).length !== 0) {
         parameter = this.route.snapshot.queryParams;
+        console.log(parameter);
+        
       } else {
         parameter = this.route.snapshot.params;
       }
@@ -134,11 +136,16 @@ export class EiSidenavComponent {
         this.notificationCount = response.unread_notification_count;
         if (response.status) {
           localStorage.setItem("is_subscription_active", response.is_subscription_active);
-          if (!response.is_approved)
+          if (!response.is_approved){
             localStorage.setItem("is_ei_approved", "0");
-          else
+            this.subscriptionActive = response.is_subscription_active;
+          }
+           
+          else{
             localStorage.setItem("is_ei_approved", "1");
-          this.subscriptionActive = response.is_subscription_active;
+            this.subscriptionActive = response.is_subscription_active;
+          }
+            
           this.isApproved = !response.is_approved ? false : true;
           if (response.role == 'EIREPRESENTATIVE') {
             if (!response.rejected_reason && !response.is_approved) {
@@ -190,14 +197,26 @@ export class EiSidenavComponent {
                 if (this.route.snapshot.params.invoice == 'onboarding') {
                   this.router.navigate(['ei/invoice-list/' + this.route.snapshot.params.invoice]);
                 } else
+                if (typeof (parameter) == 'object') {
+                  var arrUrl = thisUrl.split(":");
+                  if (Object.keys(parameter).length === 1) {
+
+                    this.router.navigate(['ei/' + arrUrl[0] + '/' + parameter[Object.keys(parameter)[0]]]);
+
+                  } else {
+                    this.router.navigate(['ei/' + thisUrl], { queryParams: parameter });
+                  }
+                }
+                else {
                   this.router.navigate(['ei/' + thisUrl]);
+                }
               }
             } else if (response.rejected_reason && !response.is_approved && !this.subscriptionActive) {
               localStorage.clear();
               this.alert.info(response.rejected_reason, "Information");
               this.router.navigate(['ei/login']);
             }else{
-              
+
             }
           } else if (response.role == 'EISUBADMIN') {
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {

@@ -15,20 +15,20 @@
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="field_name">
-                        <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Field Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.field_name}}
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="old_value">
-                        <mat-header-cell *matHeaderCellDef> Old Value </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Field Value </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.old_value}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="new_value">
-                        <mat-header-cell *matHeaderCellDef> New Value </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Field New Value </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.new_value}}
                         </mat-cell>
