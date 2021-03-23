@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Observable } from 'rxjs';
+import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 
 @Component({
   selector: 'app-chat',
@@ -13,6 +14,9 @@ import { Observable } from 'rxjs';
 })
 
 export class ChatComponent implements OnInit {
+  @ViewChild(ScrollToBottomDirective)
+  scroll: ScrollToBottomDirective;
+  
   model: any = {};
   dataStudent: any = [];
   conversation: any = [];
@@ -37,6 +41,7 @@ export class ChatComponent implements OnInit {
     }
     this.currentUser = localStorage.getItem('fbtoken');
     this.presence$ = this.firebaseService.getPresence(this.uuid);
+    this.scrollToBottom()
   }
 
   getDocumentsChat(uuid: any) {
@@ -50,6 +55,9 @@ export class ChatComponent implements OnInit {
         if (res) {
           this.conversation = res.data;
           this.dataStudent = res.data;
+          // console.log('conversation data is as ::',this.conversation);
+          // console.log('dataStudent is as ::',this.dataStudent);
+
         } else {
           this.conversation = [];
           this.dataStudent = [];
@@ -150,6 +158,11 @@ export class ChatComponent implements OnInit {
 
   gotoChatPrivacy() {
 
+  }
+
+  scrollToBottom() {
+    let objDiv = document.getElementById("chat-body");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
 }

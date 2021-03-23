@@ -86,6 +86,10 @@
     /* background: url("assets/images/userWebsite/white_beak.png"); */
     background-repeat: no-repeat;
 }
+.disabled {
+    pointer-events: none;
+}
+
 .chat-rouded {
     border-radius: 50px;
     height: 40px;
