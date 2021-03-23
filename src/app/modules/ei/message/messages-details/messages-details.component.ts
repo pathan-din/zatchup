@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseService } from '../../../../services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
+import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
   styleUrls: ['./messages-details.component.css']
 })
 export class MessagesDetailsComponent implements OnInit {
+  @ViewChild(ScrollToBottomDirective)
+  scroll: ScrollToBottomDirective;
   model: any = {};
   dataStudent: any = [];
   conversation: any = [];
