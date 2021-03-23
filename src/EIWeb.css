@@ -219,6 +219,10 @@ app-ei-sidenav+.container.main-container {
         margin-top: 0.5rem;
         /* justify-content: flex-start; */
     }
+
+    .ei-bg-img{
+        background: none;
+    }
 }
 
 @media (max-width: 767px){
