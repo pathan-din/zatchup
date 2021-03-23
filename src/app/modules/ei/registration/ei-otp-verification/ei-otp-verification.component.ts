@@ -87,20 +87,6 @@ export class EiOtpVerificationComponent implements OnInit {
     else if (!this.otp4) {
       flagRequired = false;
     }
-    //  if(!this.otp5)
-    //  {
-    //    flagRequired=false;
-    //  }else if(!this.otp6)
-    //  {
-    //    flagRequired=false;
-    //  }else if(!this.otp7)
-    //  {
-    //    flagRequired=false;
-    //  }
-    //  else if(!this.otp8)
-    //  {
-    //    flagRequired=false;
-    //  }
     if (flagRequired == false) {
       this.error.push("Please enter OTP!");
     }
@@ -122,7 +108,8 @@ export class EiOtpVerificationComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.loader.hide();
-          var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
+          let email = this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username;
+          var result = await this.afAuth.signInWithEmailAndPassword(email, this.model.password);
           localStorage.setItem('fbtoken', result.user.uid);
           localStorage.setItem("token", response.token);
           this.firebaseService.setPresence('online')

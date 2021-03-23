@@ -180,7 +180,7 @@
                                         src="assets/images/userWebsite/delete.png"
                                         class="cursorStyle img-fluid"
                                         style="height: 26px; width: 26px;">
-                                        <i *ngIf="objEd.kyc_approved==1 && objEd.firebase_id" (click)="getDocumentsChat(objEd.firebase_id)"
+                                        <i *ngIf="objEd.approved==1 && objEd.firebase_id" (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true " style="font-size: 26px;"></i>
                                 </div>
                                 <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
@@ -441,7 +441,7 @@
                         <div class="form-group row">
                             <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
                             <div class="col-sm-12 p-0">
-                                <input [required]="role=='1'" name="father_name" [(ngModel)]="personalInfo.father_name" class="border form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
+                                <input name="father_name" [(ngModel)]="personalInfo.father_name" class="border form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
                         </div>
