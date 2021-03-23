@@ -143,6 +143,28 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
                     <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p>First Name</p>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
+                    <p><span class="mr-3">: {{bankDetails?.first_name}} </span>
+                        
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                    <p>Last Name</p>
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
+                    <p><span class="mr-3">: {{bankDetails?.last_name}} </span>
+                        
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                     <p>Email ID</p>
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
@@ -316,6 +338,12 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 border-0">                
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                            data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true "> &times; </span>
+                        </button>
+                    </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <form id="updateForm">
                 <div class="courseLecture-div bg-white border mt-0 px-3 py-3">
@@ -348,7 +376,7 @@
             
                         <div class="col-md-12">
                             <div class="form-group row ml-0 mr-0 d-flex justify-content-center"> 
-                                <button (click)="editDetails()" type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Send for approval </button>                    
+                                <button (click)="editDetails()" type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Edit </button>                   
                             </div>
                         </div>
             
@@ -365,9 +393,15 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">                
+                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id/phone. </p>
+                <p class="color-black regularFont commonFontSize mb-2">Enter OTP Send On Your {{model.value}} </p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between">
                         <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
@@ -384,10 +418,12 @@
                             type="text" maxlength="1">
                     </div>
                 </div>
-                <p class="text-right commonFontSize mediumFont textUnderlineStyle cursorStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
+                <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="resendOtp()">Resend OTP</span>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
 
-                <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
+                <div class="col-12" style="clear: both;">
+                        <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
+                </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p> -->
@@ -438,7 +474,7 @@
                                     <input id="bank_account_no" name="bank_account_no"
                                         [(ngModel)]="bankModel.bank_account_no" numberOnly
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        type="text " placeholder="Enter Account Number " required>
+                                        type="text " maxlength="30" placeholder="Enter Account Number " required>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.bank_account_no"></div>
                             </div>
@@ -468,7 +504,7 @@
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing h-100"
                                         type="file" validFileExtention="png,jpeg,jpg" required>                                                                                
                                 </div>
-                                <p class="pt-1">* only support pdf and image</p>
+                                <p class="pt-1">* only support image</p>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                             </div>
                         </div>
@@ -537,7 +573,7 @@
                                     Number(Optional)</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no"
+                                    <input maxlength="15" id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter GST Number">
                                 </div>
@@ -560,7 +596,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">School Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email"
+                                    <input maxlength="50" id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="email" placeholder="Enter School Email">
                                 </div>
@@ -571,7 +607,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Twitter URL</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="twitter_url" [(ngModel)]="editModel.twitter_url" name="editModel.twitter_url"
+                                    <input id="twitter_url" maxlength="50" [(ngModel)]="editModel.twitter_url" name="editModel.twitter_url"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter twitter url">
                                 </div>
@@ -582,7 +618,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Facebook URL</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="fb_url" [(ngModel)]="editModel.fb_url" name="editModel.fb_url"
+                                    <input maxlength="50" id="fb_url" [(ngModel)]="editModel.fb_url" name="editModel.fb_url"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter fb url">
                                 </div>
@@ -602,7 +638,7 @@
 
                             </div>
                         </div>
-                        <h2 class="commonFontSize semiBoldFont m-0">School Admin Information</h2>
+                        <!-- <h2 class="commonFontSize semiBoldFont m-0">School Admin Information</h2>
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">First name</label>
@@ -624,7 +660,7 @@
                                         type="text" placeholder="Enter last name">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
               

@@ -1,23 +1,22 @@
 <nav class="navbar navbar-expand-lg fixed-top userHeaderBgColor">
     <div class="container-fluid">
         <div class="navbar-brand cursorDefault">
-            <img class="img-fluid headerLogoImg" src="assets/images/userWebsite/logo.png">            
+            <img class="img-fluid headerLogoImg" src="assets/images/userWebsite/logo.png">
         </div>
-        <button class="navbar-toggler cs_btn cursorStyle" type="button" data-toggle="collapse" 
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler cs_btn cursorStyle" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="menuStrip"> </span>
             <span class="menuStrip"> </span>
             <span class="menuStrip"> </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap" >
+            <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap">
                 <li class="nav-item" *ngIf="authCheck">
-
-                   
-                    <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="notificationList()"
+                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
-                    <sup class="color-white " style="background: #22c123;
+                        <sup class="color-white " style="background: #22c123;
                         padding: 4px;
                         border-radius: 50px;
                         width: 20px;
@@ -28,25 +27,28 @@
                         font-size: 11px;
                         position: absolute;
                         left: 18px">
-                        
-                        
-                        {{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a></li>
-                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li>
+                            {{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a>
+                </li>
+                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
+                        routerLinkActive="active-link">Home</a></li>
                 <!-- <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">Login/Register Your School</a></li> -->
-                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " target="_blank" routerLinkActive="active-link">About Us</a></li> 
+                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " target="_blank"
+                        routerLinkActive="active-link">About Us</a></li>
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
-                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"
+                <li *ngIf="authCheck" class="nav-item cursorStyle"><a (click)="logout()" class="nav-link"
                         routerLinkActive="active-link">Logout</a></li>
-                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "
+                <li *ngIf="!authCheck" class="nav-item"><a routerLink="/user/login" class="nav-link "
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
             <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap">
                 <li *ngIf="authCheck" class="nav-item">
-                    <a (click)="notificationList()" class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="notificationList()"
+                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
-                    <sup class="color-white " style="background: #22c123;
+                        <sup class="color-white "
+                            style="background: #22c123;
                         padding: 4px;
                         border-radius: 50px;
                         width: 20px;
@@ -58,13 +60,15 @@
                         position: absolute;
                         left: 18px">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a></li>
                 <!-- <li class="nav-item"><a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a></li> -->
-                <li class="nav-item"><a routerLink="/ei/login" class="nav-link "  routerLinkActive="active-link">School Login</a></li>
-                <li class="nav-item"><a routerLink="/user/about-us" target="_blank" class="nav-link " routerLinkActive="active-link">About Us</a></li>
+                <li class="nav-item"><a routerLink="/ei/login" class="nav-link " routerLinkActive="active-link">School
+                        Login</a></li>
+                <li class="nav-item"><a routerLink="/user/about-us" target="_blank" class="nav-link "
+                        routerLinkActive="active-link">About Us</a></li>
                 <!-- <li class="nav-item"><a routerLink="/user/contact-us" class="nav-link " routerLinkActive="active-link">Contact Us</a></li>
                 <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
-                <li class="nav-item cursorStyle"><a (click)="logout()" *ngIf="authCheck" class="nav-link"
+                <li *ngIf="authCheck" class="nav-item cursorStyle"><a (click)="logout()" class="nav-link"
                         routerLinkActive="active-link">Logout</a></li>
-                <li class="nav-item"><a routerLink="/user/login" *ngIf="!authCheck" class="nav-link "
+                <li *ngIf="!authCheck" class="nav-item"><a routerLink="/user/login" class="nav-link "
                         routerLinkActive="active-link">Login</a></li>
             </ul>
 
@@ -92,26 +96,33 @@
                 <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link"
                         routerLinkActive="active-link">My School</a></li>
                 <li class="nav-item">
-                <a  class="nav-link cursorStyle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">Messages</a>
+                    <a class="nav-link cursorStyle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Messages</a>
 
-                <div class="dropdown-menu customDropDown2 pl-0" aria-labelledby="dropdownMenuButton2" *ngIf="messageData.length>0">
-                    <div style="width:100%" *ngFor="let msg of messageData">
-                        <div style="width:100%;text-align: left;" *ngFor="let msgObj of msg">
-                            <div *ngIf="currentUser!=msgObj.user_send_by" #closebutton  (click)="goToChat(msgObj.user_send_by)" class="d-flex justify-content-start border-bottom py-2">
-                                <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
-                                <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
-                                <p class="ml-2 mb-0">{{msgObj.user_name}}
-                                    <span class="d-block" style="font-size: 13px; line-height: 1;">{{msgObj.msg}}</span>
-                                </p> 
-                                <!-- <p>{{getRecepintUserDetails(msgObj.user_send_by)}}</p>                                 -->
+                    <div class="dropdown-menu customDropDown2 pl-0" aria-labelledby="dropdownMenuButton2"
+                        *ngIf="messageData.length>0">
+                        <div style="width:100%" *ngFor="let msg of messageData">
+                            <div style="width:100%;text-align: left;" *ngFor="let msgObj of msg">
+                                <div *ngIf="currentUser!=msgObj.user_send_by" #closebutton
+                                    (click)="goToChat(msgObj.user_send_by)"
+                                    class="d-flex justify-content-start border-bottom py-2">
+                                    <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="user-profile"
+                                        class="rounded-circle bg-light-green header-dp img-small" />
+                                    <img *ngIf="!msgObj.profile_pic"
+                                        src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile"
+                                        class="rounded-circle bg-light-green header-dp img-small" />
+                                    <p class="ml-2 mb-0">{{msgObj.user_name}}
+                                        <span class="d-block"
+                                            style="font-size: 13px; line-height: 1;">{{msgObj.msg}}</span>
+                                    </p>
+                                    <!-- <p>{{getRecepintUserDetails(msgObj.user_send_by)}}</p>                                 -->
+                                </div>
+
                             </div>
-                            
                         </div>
                     </div>
-                </div>
 
-            </li>
+                </li>
 
                 <div class="dropdown nav-item">
                     <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -122,40 +133,35 @@
                             class="form-control-input form-control pl-2 h-100" />
                     </div> -->
                     <div>
-                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)" class="h-100"></input-search>
+                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
+                            class="h-100"></input-search>
                     </div>
                 </div>
 
                 <div class="nav-item d-flex flex-wrap">
-                    <div *ngIf="authCheck" class="text-white px-0 ml-2 commonFontSize semiBoldFont d-flex align-items-center nav-item">
+                    <div *ngIf="authCheck"
+                        class="text-white px-0 ml-2 commonFontSize semiBoldFont d-flex align-items-center nav-item">
                         <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}"
                             class="rounded-circle bg-light-green header-dp img-small">
                         <span class="ml-3 text-white text-capitalize">{{userProfile.user_first_name}}
                             {{userProfile.user_last_name}}</span>
-                        
-                            <div *ngIf="authCheck" class="dropdown px-0 d-flex flex-wrap align-self-center">
-                                <span class="color-white px-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
-                                </span>
-        
-                                <div class="dropdown-menu customDropDown pl-0" aria-labelledby="dropdownMenuButton">
-                                    <!-- <a class="dropdown-item pl-3 cursorStyle" (click)="goToSetting()">Setting</a> -->
-                                    <a class="dropdown-item pl-3 cursorStyle" (click)="logout()">Logout</a>
-                                
-                                </div>
+
+                        <div *ngIf="authCheck" class="dropdown px-0 d-flex flex-wrap align-self-center">
+                            <span class="color-white px-2" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
+                            </span>
+
+                            <div class="dropdown-menu customDropDown pl-0" aria-labelledby="dropdownMenuButton">
+                                <!-- <a class="dropdown-item pl-3 cursorStyle" (click)="goToSetting()">Setting</a> -->
+                                <a class="dropdown-item pl-3 cursorStyle" (click)="logout()">Logout</a>
                             </div>
-
-                        </div>                    
+                        </div>
+                    </div>
                 </div>
-
             </ul>
-
         </div>
     </div>
-    
-
-    
 </nav>
 
 <!-- <div class="modal fade" id="msgModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

@@ -45,6 +45,20 @@
     width: 80px;
 }
 
+.send-message-icon{
+    height: 40px;
+}
+
+.chat-rouded {
+    border-radius: 50px;
+    height: 40px;
+}
+.message-icon i {
+    font-size: 26px;
+    color: #919191;
+    margin: 0px 10px 0px 2px;
+}
+
 @media (max-width: 767px){
   .teacherChatList {
       height: 300px;

@@ -110,7 +110,7 @@
 
     <div *ngFor="let eduDetail of studentData.educationdetail">
 <!--*ngIf="userprofile.user_education_instituite_id == eduDetail.school_id"-->
-        <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" >
+        <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngIf="eduDetail.course_detail.length>0">
             <h2 class="commonFontSize semiBoldFont m-0">Education Details</h2>
             <h3 class="commonFontSize border-bottom mediumFont pb-2">{{eduDetail.name_of_school}} </h3>
             <div class="row mt-3  border-0 mx-0">
