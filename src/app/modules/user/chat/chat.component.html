@@ -24,7 +24,9 @@
                         <div class="profile_name ml-2">
                             <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }}
                                 {{recepintDetails.lastName }}</p>
-                            <span class="small-text-2" *ngIf="presence$ | async as presence">{{presence.status}}</span>
+                            <span class="small-text-2" *ngIf="presence$ | async as presence">
+                                <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
+                            </span>
                         </div>
                     </div>
                     <div class="setting_info text-right pr-3 dropdown">

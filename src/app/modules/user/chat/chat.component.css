@@ -1,4 +1,4 @@
-.profile_pick{
+.profile_pick {
     border-radius: 50%;
     max-width: 40px;
     overflow: hidden;
@@ -9,31 +9,38 @@
     height: 100%;
     border: 1px solid #ddd;
 }
-.chat_content{
+
+.chat_content {
     width: 65%;
     margin: 0px auto;
 }
-.chat_contentBox{
+
+.chat_contentBox {
     width: 85%;
     margin: 0px auto;
 }
+
 .schoolChat {
     height: 300px;
     overflow-y: scroll;
 }
-.addComment{
+
+.addComment {
     width: 65%;
     margin: 0px auto;
 }
-.img-small{
+
+.img-small {
     height: 24px;
 }
-.chatMessage{
+
+.chatMessage {
     border-radius: 20px;
     height: 45px;
     width: 92% !important;
 }
-.imgComment{
+
+.imgComment {
     height: 45px;
     position: absolute;
     right: -17px;
@@ -42,9 +49,11 @@
     color: #fff;
     width: 82px;
 }
-.border-bottomCustom{
+
+.border-bottomCustom {
     border-bottom: 1px solid #ccc;
 }
+
 .chatIn {
     padding: 8px 15px;
     background: #463267;
@@ -86,27 +95,38 @@
     /* background: url("assets/images/userWebsite/white_beak.png"); */
     background-repeat: no-repeat;
 }
+
 .disabled {
     pointer-events: none;
+}
+
+/* .online {
+    color: ;
+} */
+
+.offline {
+    color: #888;
 }
 
 .chat-rouded {
     border-radius: 50px;
     height: 40px;
 }
+
 .message-icon i {
     font-size: 26px;
     color: #919191;
     margin: 0px 10px 0px 2px;
 }
-@media (max-width: 767px){
-    .chat_content{
+
+@media (max-width: 767px) {
+    .chat_content {
         width: 100%;
     }
     .addComment {
         width: 100%;
     }
-    .chatMessage{
+    .chatMessage {
         width: 75% !important;
     }
 }
