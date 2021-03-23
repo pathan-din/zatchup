@@ -14,7 +14,7 @@
             <ul *ngIf="isCheck=='0' && authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap">
                 <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()"
-                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                        class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white " style="background: #22c123;
                         padding: 4px;
@@ -45,7 +45,7 @@
             <ul *ngIf="!authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap">
                 <li *ngIf="authCheck" class="nav-item">
                     <a (click)="notificationList()"
-                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                        class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white "
                             style="background: #22c123;
@@ -76,7 +76,7 @@
 
                 <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()"
-                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                        class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white "
                             style="background: #22c123;
