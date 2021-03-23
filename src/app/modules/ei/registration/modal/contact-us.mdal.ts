@@ -29,12 +29,13 @@ export class ContactUs {
 }
 
 export class DashBoardData extends Pagination {
-  model: any =[];
+  model: any;
   data: any = [];
   id: any;
+  page_size = 10
 }
 
 export class EiCourseDetails extends Pagination{
   courseDetails: any;
-  DisplayedColumns: string[] = ['position', 'name', 'price', 'validity', 'views',];
+  DisplayedColumns: string[] = ['radioButton','position', 'name', 'price', 'validity', 'views',];
 }

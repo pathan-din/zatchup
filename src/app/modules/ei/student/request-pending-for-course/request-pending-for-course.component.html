@@ -53,6 +53,7 @@
                         <mat-cell *matCellDef="let element"> 
                             <i class="fa fa-check text-green color-green fa-lg mr-3 cursorStyle" (click)="approveRequest(element.course_id,element.user_id)" title="Approve"></i>
                             <i data-target="#rejectModel"  data-toggle="modal" class="fa fa-ban text-red color-red fa-lg mr-3 cursorStyle"  (click)="openRejectModel(element.course_id,element.user_id)" title="Reject"></i>
+                            <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true " (click)="goToRequestPendingView(element.course_id,element.user_id)"></i>
                         </mat-cell>
                     </ng-container>
 

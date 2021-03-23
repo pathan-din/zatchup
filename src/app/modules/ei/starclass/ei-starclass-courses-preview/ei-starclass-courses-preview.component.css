@@ -12,6 +12,10 @@
     padding-top: 2%;
 }
 
+.customButton {
+    margin-left: 16%;
+    margin-bottom: 6%;
+}
 .picImg img {
     position: absolute;
     top: 50%;

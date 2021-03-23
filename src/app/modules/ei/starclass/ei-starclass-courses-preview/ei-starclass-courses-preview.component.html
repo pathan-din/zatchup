@@ -146,7 +146,7 @@
                         <h2 class="commonFontSize semiBoldFont m-0"> Plan Details</h2>
                     </div>
                     <div class="col-6 text-right" >
-                        <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
+                        <button (click)="addToCart()" type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
                           >Add To Cart</button>
                     </div>
                 </div>
@@ -154,7 +154,11 @@
                 <div class="mat-elevation-z1 table-responsive">
                     <mat-table [dataSource]="courseData.plan_data">
     
-                        
+                        <ng-container matColumnDef="radioButton">
+                            <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+                            <mat-radio-button class="customButton"*matCellDef="let element" (click)="getCartData(element, courseData.id)">  </mat-radio-button>
+                        </ng-container>
+
                         <ng-container matColumnDef="position">
                             <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                             <mat-cell *matCellDef="let element; let i = index;"> {{i + 1 }} </mat-cell>

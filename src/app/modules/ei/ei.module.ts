@@ -157,6 +157,7 @@ import { StarclassRequestsPendingComponent } from './starclass/starclass-request
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
+import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -331,6 +332,7 @@ const config = {
     MyProfileComponent,
     SubadminTermsAndConditionsComponent,
     SubadminCompletedRequestComponent,
+    RequestForCourseListViewComponent,
   ],
   imports: [
     CommonModule,

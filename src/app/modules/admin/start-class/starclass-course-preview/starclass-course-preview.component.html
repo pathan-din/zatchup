@@ -12,7 +12,7 @@
             <div class="col-md-12 customVideo" *ngFor="let details of starclassCourseDetails.courseDetails">
                 <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
                 <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
-                     <source src="{{details.course_preview}}" type="video/mp4" />
+                    <source src="{{details.course_preview}}" type="video/mp4" />
                 </video>
             </div>
         </div>
@@ -27,7 +27,8 @@
                 <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
             </div>
             <div class="col-6 text-right" *ngFor="let details of starclassCourseDetails.courseDetails">
-                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 " (click)="goToUploadLecture(details)">Add Lecture</button>
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
+                    (click)="goToUploadLecture(details)">Add Lecture</button>
             </div>
         </div>
         <div class="mt-2 border-0 mx-0">
@@ -35,9 +36,10 @@
 
             <!--Start div for oView Course Details-->
             <div class="row m-0" *ngIf="courseData">
-                <div class="col-md-12" >
+                <div class="col-md-12">
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Course Name</p>
                         </div>
@@ -46,7 +48,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Level of Education</p>
                         </div>
@@ -55,7 +58,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Field</p>
                         </div>
@@ -64,7 +68,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Standard</p>
                         </div>
@@ -73,7 +78,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Subject</p>
                         </div>
@@ -82,7 +88,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Number Of Lectures</p>
                         </div>
@@ -91,7 +98,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Teaching Faculty Details</p>
                         </div>
@@ -99,10 +107,11 @@
                             <p><span class="mr-3">: {{courseData.faculty_details}}</span></p>
                         </div>
                     </div>
-                   
+
 
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Topic Cover</p>
                         </div>
@@ -112,7 +121,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Description</p>
                         </div>
@@ -122,95 +132,99 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <div
+                            class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p >Edit</p>
+                            <p>Edit</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
-                            <p class="cursorStyle" (click)="goToEditCourse(courseData.id)"><span class="mr-3">:</span> Edit</p>
+                            <p class="cursorStyle" (click)="goToEditCourse(courseData.id)"><span class="mr-3">:</span>
+                                Edit</p>
                         </div>
                     </div>
 
-                 
+
                 </div>
             </div>
-           
+
             <!--End div for oView Course Details-->
-            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3" >
-               
-                <div  *ngIf="courseData.plan_data">
-                <div class="row topDiv">
-                    <div class="col-6 ">
-                        <h2 class="commonFontSize semiBoldFont m-0">Added Plan</h2>
+            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3"
+                *ngIf="courseData.plan_data && courseData.plan_data.length != 0">
+
+                <div>
+                    <div class="row topDiv">
+                        <div class="col-6 ">
+                            <h2 class="commonFontSize semiBoldFont m-0">Added Plan</h2>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
+                                data-toggle="modal" data-target="#addPlan" (click)="editPlan(courseData)">Edit
+                                Plan</button>
+                        </div>
                     </div>
-                    <div class="col-6 text-right" >
-                        <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
-                        data-toggle="modal" data-target="#addPlan" (click)="editPlan(courseData)" >Edit Plan</button>
+                    <div class="tableDiv customTable">
+                        <div class="mat-elevation-z1 table-responsive">
+                            <mat-table [dataSource]="courseData.plan_data">
+
+
+                                <ng-container matColumnDef="position">
+                                    <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                    <mat-cell *matCellDef="let element; let i = index;"> {{i + 1 }} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="name">
+                                    <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.plan_name}} </mat-cell>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="price">
+                                    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.price}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="validity">
+                                    <mat-header-cell *matHeaderCellDef>Validity</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.validity}} Days
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="views">
+                                    <mat-header-cell *matHeaderCellDef>Views Per Lecture</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.views_per_lecture}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="lectureList.planDisplayedColumns "></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: lectureList.planDisplayedColumns; "></mat-row>
+                            </mat-table>
+                        </div>
                     </div>
-                </div>
-         <div class="tableDiv customTable">
-                <div class="mat-elevation-z1 table-responsive">
-                    <mat-table [dataSource]="courseData.plan_data">
-    
-                        
-                        <ng-container matColumnDef="position">
-                            <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                            <mat-cell *matCellDef="let element; let i = index;"> {{i + 1 }} </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.plan_name}} </mat-cell>
-                        </ng-container>
-    
-                       
-                        <ng-container matColumnDef="price">
-                            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                {{element.price}}
-                            </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="validity">
-                            <mat-header-cell *matHeaderCellDef>Validity</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                {{element.validity}} Days                     
-                            </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="views">
-                            <mat-header-cell *matHeaderCellDef>Views Per Lecture</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                {{element.views_per_lecture}}                       
-                             </mat-cell>
-                        </ng-container>
-    
-                        <mat-header-row *matHeaderRowDef="lectureList.planDisplayedColumns "></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: lectureList.planDisplayedColumns; "></mat-row>
-                    </mat-table>
+                    <div class="row" *ngIf="!courseData.plan_data">
+                        <div class="col-12 pt-2 pb-2">
+                            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="row" *ngIf="!courseData.plan_data">
-                <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
-                </div>
-            </div>
-            
-        </div>
-        </div>
         </div>
 
     </div>
 
-   
 
-        
+
+
 
     <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
 
-       
-        <div class="row my-3 align-items-center" *ngIf="lectureList.dataSource" >
+
+        <div class="row my-3 align-items-center" *ngIf="lectureList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
@@ -230,7 +244,7 @@
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="lectureList.dataSource">
 
-                    
+
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i = index;"> {{i + lectureList.startIndex}} </mat-cell>
@@ -241,7 +255,7 @@
                         <mat-cell *matCellDef="let element"> {{element.lecture_title}} </mat-cell>
                     </ng-container>
 
-                   
+
                     <ng-container matColumnDef="topicsCoverd">
                         <mat-header-cell *matHeaderCellDef> Topics Covered </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -252,7 +266,8 @@
                     <ng-container matColumnDef="viewDetails">
                         <mat-header-cell *matHeaderCellDef>View Details</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View" (click)="goToLectureView(element.id)"></i>
+                            <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View"
+                                (click)="goToLectureView(element.id)"></i>
                         </mat-cell>
                     </ng-container>
 
@@ -282,8 +297,8 @@
         </div>
 
 
-        <div class="modal fade" id="addPlan" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="addPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0 ">
@@ -298,7 +313,8 @@
                     </div>
                     <div class="modal-body px-0" *ngIf="courseData.plan_data">
                         <form autocapitalize="off" autocomplete="off" #form1>
-                            <div class="form-group row border-bottom"  *ngFor="let details of courseData.plan_data ;let i=index;">
+                            <div class="form-group row border-bottom"
+                                *ngFor="let details of courseData.plan_data ;let i=index;">
                                 <div class="col-6 col-md-4">
                                     <div class="form-group row ml-0 mr-0">
                                         <label for="" class="mediumFont commonFontSize letterspacing"> Plan Name
@@ -320,10 +336,11 @@
                                         <div class="w-100 p-0">
                                             <input [(ngModel)]="details.views_per_lecture"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                type="number" placeholder="Enter Views Per Lecture" name="views_per_lecture_{{i}}"
-                                                 required readonly>
+                                                type="number" placeholder="Enter Views Per Lecture"
+                                                name="views_per_lecture_{{i}}" required readonly>
                                         </div>
-                                        <div class="required errorMsg" [innerHtml]="errorDisplay.views_per_lecture"></div>
+                                        <div class="required errorMsg" [innerHtml]="errorDisplay.views_per_lecture">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4">
@@ -334,17 +351,18 @@
                                             <input [(ngModel)]="details.validity"
                                                 class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                                 type="number" placeholder="Enter validity" name="validity_{{i}}"
-                                               required readonly>
+                                                required readonly>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.validity"></div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-12">
                                     <div class="form-group row ml-0 mr-0">
-                                        <label for="" class="mediumFont commonFontSize letterspacing">Add Price 
+                                        <label for="" class="mediumFont commonFontSize letterspacing">Add Price
                                         </label>
                                         <div class="w-100 p-0">
-                                            <input [(ngModel)]="details.price" class="border form-control-input form-control commonFontSize regularFont letterspacing"
+                                            <input [(ngModel)]="details.price"
+                                                class="border form-control-input form-control commonFontSize regularFont letterspacing"
                                                 type="number" placeholder="Enter Price " name="price_{{i}}" required>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.price"></div>
@@ -352,7 +370,7 @@
                                 </div>
 
                             </div>
-                            <button type="button"  (click)="addPlan(model.id) && form1.reset()"
+                            <button type="button" (click)="addPlan(model.id) && form1.reset()"
                                 class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                 Submit
                             </button>
@@ -362,6 +380,6 @@
             </div>
         </div>
     </div>
-    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-        <p style="color: white">Please Wait. </p>  
-    </ngx-spinner> 
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>
