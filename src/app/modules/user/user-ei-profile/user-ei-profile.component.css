@@ -41,4 +41,7 @@ input[type=radio]{
     .pr-5, .px-5 {
         padding-right: .5rem!important;
     } 
+    .left-Image {
+        width: 100%;
+    }
 }
