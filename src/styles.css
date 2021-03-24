@@ -783,6 +783,15 @@ a:hover {
     .custumInputWidth {
         width: 42%;
     }
+
+    bs-datepicker-container {
+        top: 50%!important;
+        left: 50% !important;
+        position: fixed!important;
+        transform: translate(-50%, -50%) !important;
+        margin: auto;
+        background: #fff;
+    }
     
 }
 
@@ -815,11 +824,4 @@ a:hover {
     border-color: #c7cbd1 !important;
 }
 
-bs-datepicker-container {
-    top: 50%!important;
-    left: 50% !important;
-    position: fixed!important;
-    transform: translate(-50%, -50%) !important;
-    margin: auto;
-    background: #fff;
-}
+
