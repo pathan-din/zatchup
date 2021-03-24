@@ -824,4 +824,9 @@ a:hover {
     border-color: #c7cbd1 !important;
 }
 
+.img-big {
+    max-width: 150px;
+    width: auto;
+}
+
 
