@@ -16,12 +16,15 @@ import { GenericFormValidationService } from 'src/app/services/common/generic-fo
 export class AdminPaymentCouponComponent implements OnInit {
   @ViewChild('closebutton') closebutton: any;
   coupons: any;
-  couponTypes: any;
+  couponTypes: any = [];
+  couponSlug: any = '';
   couponModal = new Coupon();
   minDate: Date;
   discountValue: boolean = false;
   maxDisValidation: boolean = false
   errorDisplay: any = {}
+
+
   constructor(
     private router: Router,
     private datePipe: DatePipe,
@@ -36,6 +39,7 @@ export class AdminPaymentCouponComponent implements OnInit {
 
   ngOnInit() {
     this.getCouponCount();
+    this.getCouponTypes();
   }
 
   couponStatus(type) {
@@ -49,6 +53,15 @@ export class AdminPaymentCouponComponent implements OnInit {
           this.coupons = res.data
         else
           this.coupons = undefined
+      }
+    )
+  }
+
+  getCouponTypes() {
+    this.baseService.getData('admin/coupon/get_all_coupon_types/').subscribe(
+      (res: any) => {
+        if (res.status == true)
+          this.couponTypes = res.results
       }
     )
   }
