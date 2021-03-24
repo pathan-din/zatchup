@@ -30,8 +30,8 @@
                         <div class="pl-3 text-left">
                             <p class="m-0 commonFontSize semiBoldFont">
                                 <span *ngIf="objEpData.kyc_approved==0" class="text-capitalize">{{objEpData.name}}</span>
-                                <a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel"
-                                    data-toggle="modal" class="cursorStyle text-capitalize" (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a>
+                                <a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel" data-toggle="modal" class="cursorStyle text-capitalize"
+                                    (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a>
                             </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
@@ -237,11 +237,10 @@
                                             Class (Sub-Section) :
                                             <span class="regularFont">{{objCCd.class_name}} </span>
 
-                                            <div *ngIf="objCCd.roll_no" class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            <div *ngIf="objCCd.roll_no" class="col-lg-12 col-md-12 p-0 semiBoldFont commonFontSize">
                                                 Roll Number :
                                                 <span class="regularFont">
-                                                    <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel"
-                                                        data-toggle="modal" (click)="openModel(objCd,'roll_no',objCCd.roll_no,objCCd.class_id)">{{objCCd.roll_no}}</a>
+                                                    <a class="textUnderlineStyle cursorStyle" data-target="#personalInfoModel" data-toggle="modal" (click)="openModel(objCd,'roll_no',objCCd.roll_no,objCCd.class_id)">{{objCCd.roll_no}}</a>
                                                 </span>
                                             </div>
                                         </div>
