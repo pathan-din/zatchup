@@ -24,7 +24,8 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
                                     </span>
-                            <input id="password" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password" [(ngModel)]="model.password" name ="password">
+                            <input id="password" required (keyup)="isValid($event)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="{{passwordType}}" placeholder="Enter Password" [(ngModel)]="model.password" name ="password">
+                            <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" (click)="viewPassword()" aria-hidden="true "></i>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                     </div>
