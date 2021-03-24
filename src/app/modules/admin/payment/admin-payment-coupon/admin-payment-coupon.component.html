@@ -81,7 +81,7 @@
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <form (ngSubmit)="addCoupon()" autocapitalize="off" autocomplete="off">
+                        <form #addCouponForm="ngForm" autocapitalize="off" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row  ml-0 mr-0">
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
 
-                            <button type="button "
+                            <button type="button" (click)="addCoupon(addCouponForm); sumbitDisable = true" [disabled]="sumbitDisable"
                                 class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                 Submit </button>
                         </form>

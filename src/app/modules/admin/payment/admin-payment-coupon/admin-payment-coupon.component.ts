@@ -7,6 +7,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { DatePipe } from '@angular/common';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-payment-coupon',
@@ -23,6 +24,7 @@ export class AdminPaymentCouponComponent implements OnInit {
   discountValue: boolean = false;
   maxDisValidation: boolean = false
   errorDisplay: any = {}
+  sumbitDisable: boolean
 
 
   constructor(
@@ -70,30 +72,38 @@ export class AdminPaymentCouponComponent implements OnInit {
     this.location.back();
   }
 
-  addCoupon() {
+  addCoupon(form: NgForm) {
+    
     this.errorDisplay = {};
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
-
+    
     if (!this.discountValue) {
       this.spinnerService.show()
+      // this.sumbitDisable = true;
       let data = this.couponModal
       this.couponModal.coupon_type = this.couponModal.purpose
       data.enddate = this.datePipe.transform(data.enddate, 'yyyy-MM-dd');
       this.baseService.action('admin/coupon/add_coupon/', data).subscribe(
         (res: any) => {
+          console.log('submit disable....',this.sumbitDisable);
+          
           this.spinnerService.hide()
           if (res.status == true) {
             this.alert.success(res.message, 'Success')
             this.getCouponCount();
+            // form.resetForm()
             this.closeModel();
+            
           } else {
             var errorCollection = '';
             errorCollection = this.baseService.getErrorResponse(this.spinnerService, res.error);
             this.alert.error(errorCollection, 'Error')
+            this.sumbitDisable = false
           }
+          
         }
       ), err => {
         this.spinnerService.hide()
@@ -117,6 +127,7 @@ export class AdminPaymentCouponComponent implements OnInit {
 
   closeModel() {
     this.closebutton.nativeElement.click()
+    this.sumbitDisable = false
   }
 
   match(event) {
