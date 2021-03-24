@@ -42,6 +42,7 @@ export class EiCourseDetails extends Pagination{
 
 export class CartList extends Pagination{
   data: any;
+  paymentDetails: any;
   
 
 }
