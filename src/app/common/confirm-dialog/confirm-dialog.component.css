@@ -38,3 +38,9 @@
     background-color: #463267;
     color: white;
 }
+
+@media (max-width:300px){
+    .custom-alert {
+        width: 290px;
+    }
+}

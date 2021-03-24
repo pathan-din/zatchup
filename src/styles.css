@@ -764,6 +764,12 @@ a:hover {
     width: 65px;
 }
 
+.work-user-profile{
+    height: 80px;
+}
+.experiencedetails {
+    margin-left: 10px;
+}
 @media (max-width: 767px){
     .backimg{
         width: 30px;
@@ -776,6 +782,16 @@ a:hover {
 
     .custumInputWidth {
         width: 42%;
+    }
+    
+}
+
+@media (max-width: 375px){
+    .work-user-profile{
+        height: 50px;
+    }
+    .experiencedetails {
+        margin-left: 0px;
     }
 }
 
@@ -797,4 +813,13 @@ a:hover {
 }
 .form-control:focus{
     border-color: #c7cbd1 !important;
+}
+
+bs-datepicker-container {
+    top: 50%!important;
+    left: 50% !important;
+    position: fixed!important;
+    transform: translate(-50%, -50%) !important;
+    margin: auto;
+    background: #fff;
 }
