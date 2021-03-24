@@ -25,7 +25,8 @@
                             <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }}
                                 {{recepintDetails.lastName }}</p>
                             <span class="small-text-2" *ngIf="presence$ | async as presence">
-                                <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
+                                <label
+                                    [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
                             </span>
                         </div>
                     </div>
@@ -39,37 +40,45 @@
                     </div>
                 </div>
 
-                <div class="schoolChat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                <div class="schoolChat">
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
-                            <p class="color-white m-0">{{objCon.msg}}</p>
+                            <img *ngIf="objCon.document" src="assets/images/userWebsite/blue-menu.png"
+                                class="img-fluid img-small cursorStyle">
+                            <p *ngIf="!objCon.document" class="color-white m-0">{{objCon.msg}}</p>
                             <span
                                 class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
-                            <div class="chatOut bg-white">
+                            <div *ngIf="!objCon.document" class="chatOut bg-white">
+                                <!-- {{objCon | json}} -->
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span
-                                    class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                                    class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                </span>
+                            </div>
+                            <div *ngIf="objCon.document">
+                                <img src="{{objCon.msg}}"
+                                    class="img-fluid img-small cursorStyle">
+                                <span
+                                    class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- <div class="addComment my-2 d-flex justify-content-between align-items-center flex-wrap position-relative">
-                <textarea [(ngModel)]="model.comment" name="comment" class="form-control chatMessage ml-2" id="" name="message" rows="1" placeholder="Write a Message.."  required></textarea>
-                <button (click)="sendChat()" class="fa fa-paper-plane img-fluid cursorStyle imgComment mr-3" [disabled]="!model.comment"> Send</button>                
-            </div>  -->
-
 
             <div class="row addComment">
                 <div class="col-12 p-0">
                     <div
                         class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
-                        <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->
-                        <i class="fa fa-paperclip cursorStyle" aria-hidden="true"></i>
+                        <div>
+                            <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
+                            <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
+                        </div>
                         <input [(ngModel)]="model.comment" name="comment"
                             class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
                             type="search" placeholder="Type Something...">
@@ -80,6 +89,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
