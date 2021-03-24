@@ -401,7 +401,8 @@ button:focus {
 
 
 .subHeaderImg {
-  width: 3%;
+  width: 40px;
+  margin: 15px 0px;
 }
 /*********************/
 .labelTextLandingPage {
@@ -410,7 +411,7 @@ button:focus {
 
 @media only screen and (max-width: 414px) {
   .contentSpaceTop {
-    padding-top: 90px;
+    padding-top: 75px;
   }
   /* .contentTopSpaceLanding {
     margin-top: 35%;
@@ -451,7 +452,6 @@ button:focus {
  
   .subHeaderImg {
     width: 12%;
-    margin: 3%;
   }
 
   /* .pl-5, .px-5 {
