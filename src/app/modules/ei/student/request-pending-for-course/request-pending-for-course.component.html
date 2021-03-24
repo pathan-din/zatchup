@@ -26,9 +26,9 @@
                         <mat-cell *matCellDef="let element "> {{element.joining_standard_name}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="class_name">
-                        <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.class_name}}
+                    <ng-container matColumnDef="date_of_change">
+                        <mat-header-cell *matHeaderCellDef> Date Of Change </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_of_change | date}}
                         </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="student_name">

@@ -43,8 +43,8 @@ export class RequestPendingForCourseComponent implements OnInit {
 
   startIndex: any;
   requestStatusList: any;//,'action'
-  displayedColumns: string[] = ['position', 'course_name', 'joining_standard_name', 'class_name',
-    'student_name', 'student_zatchup_id', 'last_standard_name', 'action'];
+  displayedColumns: string[] = ['position', 'course_name', 'joining_standard_name', 
+    'student_name', 'student_zatchup_id', 'last_standard_name','date_of_change', 'action'];
 
   dataSource = [];
   pageSize: any = 1;

@@ -3,15 +3,15 @@
     <div class="Payment-div bg-white border border-gray mt-3 px-3 py-3">
 
         <div class="row">
-            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
+            <div class="col-md-12 d-flex justify-content-between flex-wrap align-items-center">                
+                <h2 class="commonFontSize semiBoldFont mb-1"><span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont mb-1">ZatchUp Cart</h2>
+                </span>ZatchUp Cart</h2>
+                <button (click)="goToStarClassDashboard()" type="button" class="bg-paret-green text-white border-0 py-2 px-3">Add To Cart</button>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-3 align-items-center">
             <div class="col-md-7 MobileCol6MB" *ngIf="cartList.data">
                 <h3 class="commonFontSize regularFont border-bottom border-gray mb-0 py-2">Order Details</h3>
                 <mat-list role="list" class="p-0">
@@ -19,7 +19,7 @@
                         <div class="py-2 d-flex justify-content-start px-0">
                             <img *ngIf="listData.course_image" src="{{listData.course_image}}" class="img-thumbnail cart-image">
                             <div class="itemDiv mx-2">
-                                <h3 class="commonFontSize semiBoldFont mb-1">Benefits</h3>
+                                <h3 class="commonFontSize semiBoldFont mb-1">{{listData.course_name}}</h3>
                                 <p class="commonFontSize regularFont" style="line-height: initial;">{{listData.course_description}}</p>
                                 <div class="row commonFontSize regularFont">
                                     <div class="col-4">Price</div>
@@ -33,46 +33,61 @@
 
                 </mat-list>
             </div>
-            <div class="col-md-5 ">
+                <div class="col-md-7 MobileCol6MB" *ngIf="!cartList.data">
+                    <p class="text-center dataNotFound pt-4 pb-4">No Item Available</p>
+                </div>
+
+            <div class="col-md-5 " >
                 <div class="bg-light-gray p-3">
-                    <div class="p-3 bg-white">
-                        <h2 class="commonFontSize semiBoldFont">Pyment Details</h2>
+                    <div class="p-3 bg-white" *ngIf="paymentDetails">
+                        <h2 class="commonFontSize semiBoldFont">Payment Details</h2>
 
                         <div class="payment-detail-list row border-bottom border-gray justify-content-between m-0">
                             <div class="col-6 p-0">Course Name</div>
-                            <div class="col-6 text-right">Subtotal</div>
-                            <div class="col-12 ">
+                            <div class="col-6 text-right">Price</div>
+                            <div class="col-12 " *ngFor="let data of paymentDetails">
                                 <div class="row m-0 border-bottom border-gray py-2 small-text-2">
+                                    <div class="col-6 p-0">{{data.course_name}}</div>
+                                    <div class="col-6 text-right">{{data.price}}</div>
+                                </div>
+                                <!-- <div class="row m-0 py-2 small-text-2">
                                     <div class="col-6 p-0">Mathematics</div>
                                     <div class="col-6 text-right">Rs. 1000</div>
-                                </div>
-                                <div class="row m-0 py-2 small-text-2">
-                                    <div class="col-6 p-0">Mathematics</div>
-                                    <div class="col-6 text-right">Rs. 1000</div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
 
-                        <div class="payment-detail-list row border-bottom border-gray justify-content-between m-0 py-2">
-                            <div class="col-6 p-0">Discount 20%</div>
-                            <div class="col-6 text-right">-Rs.100</div>
-                        </div>
-                        <div class="payment-detail-list row border-bottom border-gray justify-content-between m-0 py-2">
+                       
+                        <!-- <div class="payment-detail-list row border-bottom border-gray justify-content-between m-0 py-2">
                             <div class="col-6 p-0">Tax 18%</div>
                             <div class="col-6 text-right">+Rs.100</div>
-                        </div>
+                        </div> -->
                         <div class="payment-detail-list row justify-content-between m-0 py-2">
-                            <div class="col-6 p-0">Amount Payable</div>
-                            <div class="col-6 text-right">Rs.2000</div>
+                            <div class="col-6 p-0">Total Amount :</div>
+                            <div class="col-6 text-right">{{payableAmount.totalAmount}}</div>
+                        </div>
+
+                        <div class="payment-detail-list row  justify-content-between m-0 py-2">
+                            <div class="col-6 p-0">Discount :</div>
+                            <div class="col-6 text-right">{{payableAmount.discountAmount}}</div>
+                        </div>
+
+                       
+
+                        <div class="payment-detail-list row justify-content-between m-0 py-2" *ngIf="payableAmount.finalAmount">
+                            <div class="col-6 p-0">Total Amount After Discount :</div>
+                            <div class="col-6 text-right">{{payableAmount.finalAmount}}</div>
                         </div>
 
                         <div class="payment-detail-list row border border-gray justify-content-between m-0 mt-2">
-                            <div class="col-8"> <input type="text" id="couponCode" placeholder="Coupon Code" class="border-0 py-2"></div>
-                            <button type="button" class="bg-purple text-white border-0 col-4 ">Apply</button>
+                            <div class="form-control-inputDiv col-8"> <input type="text" [(ngModel)]="coupon" name="couponCode" placeholder="Coupon Code" class="form-control form-control-input border-0 py-2"></div>
+                            <button (click)="applyCoupon()" type="button" class="bg-purple text-white border-0 col-4 ">Apply</button>
                         </div>
+
                         <div class="row  mt-4">
                             <div class="col-12">
-                                <button type="button" class="bg-paret-green text-white border-0 py-2 w-100">PROCEED TO PAY</button>
+                                <button type="button" class="bg-paret-green text-white border-0 py-2 w-100"
+                                data-toggle="modal" data-target="#paymentModel" >PROCEED TO PAY</button>
                             </div>
                         </div>
                     </div>
@@ -80,5 +95,79 @@
             </div>
         </div>
 
+         
     </div>
+</div>
+
+<!-- Payment Model -->
+<div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog " role="document">
+    <div class="modal-content unverified container-fluid">
+        <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+            <button #closePaymentModel type="button "
+                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                aria-label="Close ">
+                <span aria-hidden="true "> &times; </span>
+            </button>
+        </div>
+        <div class="modal-body px-0">
+            <div class="bg-white px-5 py-4">
+                <div class="text-center"> <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid">
+                </div>
+                <h2 class="text-center my-3 semiBoldFont">Payment Methods</h2>
+
+                <form>
+                    <div class="form-group row" (click)="requestForTheRazorPayment(couponCode, true)">
+                        <div
+                            class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                            <p class="m-0"> RazorPay</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group row ">
+                        <div
+                            class="col-sm-12 form-control-inputDiv p-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+
+                            <p class="m-0"> Paytm</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group row" (click)="goToEiChequeDetailsPage()">
+                        <div
+                            class="col-sm-12 form-control-inputDiv  p-2 py-2 rounded-0 shadow-none commonFontSize regularFont letterspacing d-flex align-items-center justify-content-between paymant-method">
+                            <p class="m-0"> Cheque / DD</p>
+                            <span class="double-right-spn">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group row ">
+                        <div class="col-7 form-control-inputDiv  p-1 rounded-0 shadow-none">
+                            <input [(ngModel)]="couponCode" name="coupon_code"
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing img-bg-div"
+                                type="text" placeholder="Enter Coupon Code">
+
+                        </div>
+                        <div class="col-5   p-0 rounded-0 shadow-none">
+                            <button type="button "
+                                class="bg-purple border-0 text-white w-100 h-100 text-center p-2 commonFontSize mediumFont letterspacing"
+                                (click)="applyCoupon()">Apply
+                            </button>
+                        </div>
+                    </div> -->
+                </form>
+                <!-- <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class=" col-md-6 letterspacing text-black text-right" [innerHtml]="paymentHtml">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
 </div>
