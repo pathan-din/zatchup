@@ -187,11 +187,18 @@ export class UserKycVerificationComponent implements OnInit {
       formData.append('kyc_document_back', this.uploadedContentForBackPhoto);
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
-      formData.append('kyc_dob', this.model.kyc_dob);
+        formData.append('kyc_dob', this.model.kyc_dob);
 
       this.SpinnerService.show();
 
-      if(this.params.action == 'sendrequest'){
+       if(this.params.action == 'sendrequest'){
+      //   if(localStorage.getItem("kyc_name")){
+      //     formData.append('kyc_name', this.model.kyc_name);
+      //   }else{
+      //     formData.append('kyc_dob', this.model.kyc_dob);
+      //   }
+        
+        
         this.userService.addRequestSendKyc(formData).subscribe((response:any) => {
          
           this.SpinnerService.hide();
@@ -217,6 +224,9 @@ export class UserKycVerificationComponent implements OnInit {
        
         
       }else{
+
+        
+       
         this.userService.addKyc(formData).subscribe(res => {
           let response: any = {}
           response = res;

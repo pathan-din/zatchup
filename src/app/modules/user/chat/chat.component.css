@@ -10,6 +10,11 @@
     border: 1px solid #ddd;
 }
 
+.left-sideChat {
+    height: 470px;
+    overflow-y: auto;
+}
+
 .chat_content {
     width: 65%;
     margin: 0px auto;

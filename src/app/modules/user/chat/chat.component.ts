@@ -25,7 +25,8 @@ export class ChatComponent implements OnInit {
   currentUser: any;
   presence$: any
   uuid: any
-
+  lastMessageData:any=[];
+  ids:any=[];
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -44,6 +45,10 @@ export class ChatComponent implements OnInit {
     this.currentUser = localStorage.getItem('fbtoken');
     this.presence$ = this.firebaseService.getPresence(this.uuid);
   }
+
+
+
+
 
   getDocumentsChat(uuid: any) {
     let uid = uuid;

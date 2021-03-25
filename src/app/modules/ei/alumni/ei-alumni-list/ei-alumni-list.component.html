@@ -105,7 +105,7 @@
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.Name}}
+                           <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">{{element.Name}}</p>
                         </mat-cell>
                     </ng-container>
 
@@ -165,7 +165,7 @@
                             data-toggle="modal"></i>
                         <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
                         </span>
-                        <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" title="Reject" aria-hidden="true "
+                        <i *ngIf="element.approved==1" class="fa fa-ban mr-2 color-red fa-lg cursorStyle" title="Reject" aria-hidden="true "
                             data-toggle="modal" (click)="openRejectModel(element.student_id)" data-target="#rejectModel"></i>
                         </mat-cell>
                     </ng-container>

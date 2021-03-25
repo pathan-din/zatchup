@@ -10,48 +10,25 @@
     <div class="row">
         <div class="col-12">
             <div class="chat_content bg-light-gray pt-3 pb-5">
-                <h1 class="col-12 text-center pt-3 pb-3 chat_contentBox">Create Group Chat
-                    <img src="assets/images/userWebsite/add-message-icon.png" class="img-fluid cursorStyle float-right" style="height: 32px;">
+                <h1 class="col-12 text-center pt-3 pb-3 chat_contentBox">Messages
+                    <!-- <img src="assets/images/userWebsite/add-message-icon.png" class="img-fluid cursorStyle float-right" style="height: 32px;"> -->
                 </h1>
                 
-                <div class="col-12 chat_contentBox d-flex mb-4">
+                <div (click)="goToChat(msgObj.uuid)" class="col-12 chat_contentBox d-flex mb-4" *ngFor="let msgObj of lastMessageData">
                     <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
+                        <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" class="img-fluid cursorStyle">
+                        <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
                     </div>
                     <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize">Mahesh Chand 
-                            <span class="small-text-2">(Student)</span>
-                            <span class="float-right">2:26 PM</span>
+                        <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize">{{msgObj.user_name}}
+                            <!-- <span class="small-text-2">(Student)</span> -->
+                            <!-- <span class="float-right">2:26 PM</span> -->
                         </p> 
-                        <p class="color-fadded-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>                                                   
+                        <p class="color-fadded-black">{{msgObj.msg}}</p>                                                   
                     </div>
                 </div> 
 
-                <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2 mediumFont commonFontSize">Jayant 
-                            <span class="small-text-2">(Student)</span>
-                            <span class="float-right color-fadded-black">Yesterday</span>
-                        </p> 
-                        <p class="color-fadded-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>                                                   
-                    </div>
-                </div> 
-
-                <div class="col-12 chat_contentBox d-flex mb-4">
-                    <div class="profile_pick">
-                        <img src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
-                    </div>
-                    <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2 mediumFont commonFontSize">Prashant Chaudhary 
-                            <span class="small-text-2">(Teacher)</span>
-                            <span class="float-right color-fadded-black">Yesterday</span>
-                        </p> 
-                        <p class="color-fadded-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>                                                   
-                    </div>
-                </div> 
+               
 
             </div>
         </div>            

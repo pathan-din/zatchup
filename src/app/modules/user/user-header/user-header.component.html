@@ -95,32 +95,11 @@
                         routerLinkActive="active-link">Home</a></li>
                 <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link"
                         routerLinkActive="active-link">My School</a></li>
-                <li class="nav-item">
-                    <a class="nav-link cursorStyle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"
+                <li  class="nav-item">
+                    <a routerLink="/user/messages" routerLinkActive="active-link" class="nav-link cursorStyle" 
                         aria-expanded="false">Messages</a>
 
-                    <div class="dropdown-menu customDropDown2 pl-0" aria-labelledby="dropdownMenuButton2"
-                        *ngIf="messageData.length>0">
-                        <div style="width:100%" *ngFor="let msg of messageData">
-                            <div style="width:100%;text-align: left;" *ngFor="let msgObj of msg">
-                                <div *ngIf="currentUser!=msgObj.user_send_by" #closebutton
-                                    (click)="goToChat(msgObj.user_send_by)"
-                                    class="d-flex justify-content-start border-bottom py-2">
-                                    <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="user-profile"
-                                        class="rounded-circle bg-light-green header-dp img-small" />
-                                    <img *ngIf="!msgObj.profile_pic"
-                                        src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile"
-                                        class="rounded-circle bg-light-green header-dp img-small" />
-                                    <p class="ml-2 mb-0">{{msgObj.user_name}}
-                                        <span class="d-block"
-                                            style="font-size: 13px; line-height: 1;">{{msgObj.msg}}</span>
-                                    </p>
-                                    <!-- <p>{{getRecepintUserDetails(msgObj.user_send_by)}}</p>                                 -->
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                  
 
                 </li>
 

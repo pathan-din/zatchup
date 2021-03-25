@@ -55,52 +55,13 @@ export class UserHeaderComponent implements OnInit {
       this.notifypush.requestPermission();
       if (localStorage.getItem("fbtoken")) {
         this.currentUser = localStorage.getItem("fbtoken");
-        this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
+        //this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
       }
     }
   }
-  goToChat(uuid) {
-    localStorage.setItem('uuid', uuid);
-    this.router.navigate(["user/chat"]);
-  }
 
-  getUsersWithModeratorRole(loginfirebase_id) {
-    var that = this;
-    that.ids.push(this.firestore.collection('user_friend_list').ref.where('user_accept_id', '==', loginfirebase_id).get().then(res => {
-      return res.docChanges().map(doc => {
-        return doc.doc.id;
-      })
-    }))
 
-    this.getMessageList()
-  }
-
-  getMessageList() {
-    this.messageData = [];
-    this.ids[0].then((res: any) => {
-      res.forEach(element => {
-        
-        
-        this.firestore.collection('chat_conversation').doc(element).valueChanges().subscribe((res:any)=>{
-          
-          if(res){
-            console.log(res);
-          }
-        })
-        var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res: any) => {
-          if (res.data())
-            return res.data()
-        });
-        data.then(res => {
-          if (res)
-            this.messageData.push(res.data);
-          
-        })
-      });
-    })
-     
-  }
-
+ 
   getRecepintUserDetails(uuid: any) {
     if (uuid) {
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
@@ -124,8 +85,6 @@ export class UserHeaderComponent implements OnInit {
 
           this.userProfile = response;
         }
-
-
       }, (error) => {
 
         console.log(error);
@@ -135,6 +94,7 @@ export class UserHeaderComponent implements OnInit {
       console.log(err);
     }
   }
+ 
   notificationList() {
     this.router.navigate(["user/notifications"]);
   }
