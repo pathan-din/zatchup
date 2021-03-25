@@ -2,19 +2,19 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4 pl-0">
+        <div class="col-md-4 pl-0 order-1 order-sm-6 MobileCol6MB">
             <h2 class="mb-4 textSpace pl-3">Course Details</h2>
             <div class="customUserForm">
                 <form>
                     <h3 class="p-0 commonFontSize semiBoldFont m-0">
-                        {{model.name_of_school}}  
+                        {{model.name_of_school}}
                         <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
-                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">                             
+                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">
                         </span>
-                    </h3>      
+                    </h3>
                     <div *ngFor="let course of courseList;">
                         <div class="form-group row border-bottom border-top-custom bg-light-gray p-2">
                             <div class="col-sm-6 form-control-input color-fadded-black commonFontSize mediumFont">
@@ -48,27 +48,25 @@
 
                 </form>
             </div>
-            <div class="form-group row align-items-center pl-3 mt-3">
-                <div class="col-xl-1 col-lg-1  col-md-2 col-2 form-control-fileDiv p-0">
-                    <button (click)="addMoreCourse()" class="background-purple border-0">
-                        <img src="assets/images/userWebsite/add.png" class="img-fluid">
+            <div class="form-group row align-items-center pl-3 mt-3 cursorStyle" (click)="addMoreCourse()">
+                <div class="p-0">
+                    <button class="background-purple border-0">
+                        <img src="assets/images/userWebsite/add.png" class="img-fluid" style="height: 26px;">
                     </button>
                 </div>
-                <div (click)="addMoreCourse()"
-                    class="col-xl-10 col-md-8 col-10 text-left cursorStyle commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
+                <div class="commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
                     Add More Course
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn common-btn regularFont textSpace ml-3"
-                    (click)="goToUserAddMoreEiPage()">Submit</button>
+                <button type="submit" class="btn common-btn regularFont textSpace ml-3" (click)="goToUserAddMoreEiPage()">Submit</button>
             </div>
         </div>
     </div>
 
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
 </ngx-spinner>
 
 <!-- <app-user-footer></app-user-footer> -->
