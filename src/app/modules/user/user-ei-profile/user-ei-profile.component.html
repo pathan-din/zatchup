@@ -48,7 +48,7 @@
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 pr-0 ">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Joining Date</label>
-                        <div class="form-control-inputDiv mobile-input-6">
+                        <div class="form-control-inputDiv">
                             <input required bsDatepicker autocomplete="off" [minDate]="maxDate" [maxDate]="minDate" placeholder="YYYY-MM-DD"
                                 [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="date_of_joining"
                                 [(ngModel)]="model.date_joining" class="form-control-input form-control form-control-sm"
@@ -109,13 +109,13 @@
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 pl-0">
                         <label for="" class="mediumFont commonFontSize letterspacing">Roll Number</label>
-                        <div class="form-control-inputDiv mobile-input-6 mobForm-name">
+                        <div class="form-control-inputDiv">
                             <input required name="roll_no" [(ngModel)]="model.roll_no"
                                 class="form-control-input form-control form-control-sm" type="number"
                                 placeholder="Enter Roll Number">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
-                    </div>
+                    </div>  
 
                 </div>
                 <div class="form-group row">
