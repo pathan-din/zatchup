@@ -7,6 +7,7 @@ import { BaseService } from 'src/app/services/base/base.service';
 import { DatePipe } from '@angular/common';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-payment-coupon',
@@ -16,12 +17,16 @@ import { GenericFormValidationService } from 'src/app/services/common/generic-fo
 export class AdminPaymentCouponComponent implements OnInit {
   @ViewChild('closebutton') closebutton: any;
   coupons: any;
-  couponTypes: any;
+  couponTypes: any = [];
+  couponSlug: any = '';
   couponModal = new Coupon();
   minDate: Date;
   discountValue: boolean = false;
   maxDisValidation: boolean = false
   errorDisplay: any = {}
+  sumbitDisable: boolean
+
+
   constructor(
     private router: Router,
     private datePipe: DatePipe,
@@ -36,6 +41,7 @@ export class AdminPaymentCouponComponent implements OnInit {
 
   ngOnInit() {
     this.getCouponCount();
+    this.getCouponTypes();
   }
 
   couponStatus(type) {
@@ -53,34 +59,51 @@ export class AdminPaymentCouponComponent implements OnInit {
     )
   }
 
+  getCouponTypes() {
+    this.baseService.getData('admin/coupon/get_all_coupon_types/').subscribe(
+      (res: any) => {
+        if (res.status == true)
+          this.couponTypes = res.results
+      }
+    )
+  }
+
   goBack() {
     this.location.back();
   }
 
-  addCoupon() {
+  addCoupon(form: NgForm) {
+    
     this.errorDisplay = {};
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
-
+    
     if (!this.discountValue) {
       this.spinnerService.show()
+      // this.sumbitDisable = true;
       let data = this.couponModal
       this.couponModal.coupon_type = this.couponModal.purpose
       data.enddate = this.datePipe.transform(data.enddate, 'yyyy-MM-dd');
       this.baseService.action('admin/coupon/add_coupon/', data).subscribe(
         (res: any) => {
+          console.log('submit disable....',this.sumbitDisable);
+          
           this.spinnerService.hide()
           if (res.status == true) {
             this.alert.success(res.message, 'Success')
             this.getCouponCount();
+            // form.resetForm()
             this.closeModel();
+            
           } else {
             var errorCollection = '';
             errorCollection = this.baseService.getErrorResponse(this.spinnerService, res.error);
             this.alert.error(errorCollection, 'Error')
+            this.sumbitDisable = false
           }
+          
         }
       ), err => {
         this.spinnerService.hide()
@@ -104,6 +127,7 @@ export class AdminPaymentCouponComponent implements OnInit {
 
   closeModel() {
     this.closebutton.nativeElement.click()
+    this.sumbitDisable = false
   }
 
   match(event) {

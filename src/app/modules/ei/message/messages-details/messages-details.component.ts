@@ -2,54 +2,55 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseService } from '../../../../services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
-import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
+// import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
   styleUrls: ['./messages-details.component.css']
 })
 export class MessagesDetailsComponent implements OnInit {
-  @ViewChild(ScrollToBottomDirective)
-  scroll: ScrollToBottomDirective;
+  // @ViewChild(ScrollToBottomDirective)
+  // scroll: ScrollToBottomDirective;
   model: any = {};
   dataStudent: any = [];
   conversation: any = [];
   currentUser: any;
   recepintDetails: any = {};
-  
+
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private alert: NotificationService,
   ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("receipent")){
+    if (localStorage.getItem("receipent")) {
       this.getRecepintUserDetails(localStorage.getItem("receipent"));
-      this.currentUser = localStorage.getItem('fbtoken');    
+      this.currentUser = localStorage.getItem('fbtoken');
     }
     this.getDocumentsChat()
   }
+
   getRecepintUserDetails(uuid) {
-    
     this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-    this.recepintDetails = res.data();
+      this.recepintDetails = res.data();
     });
-    
-}
-  sendChat() {
+  }
 
+  sendChat(document?: any) {
     return new Promise<any>((resolve, reject) => {
-
       let data: any = {};
       let dataNew: any = {};
       let userData = JSON.parse(localStorage.getItem('userprofile'))
-      console.log('userData   ',userData)
+      console.log('userData   ', userData)
       data.user_friend_id = localStorage.getItem("friendlidt_id");
       data.user_send_by = localStorage.getItem('fbtoken');
-      data.user_name = userData.user_first_name + ' '+ userData.user_last_name;
+      data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
       data.profile_pic = userData.profile_pic
-      data.msg = this.model.comment;
+      data.document = document ? true : false;
+      data.msg = document ? document : this.model.comment;
       data.timestamp = new Date().valueOf();
 
       this.dataStudent.push(data)
@@ -72,22 +73,49 @@ export class MessagesDetailsComponent implements OnInit {
   }
   getDocumentsChat() {
     this.conversation = [];
-    this.dataStudent =[];
-    var uuid= localStorage.getItem("friendlidt_id");
-    var dataSet=this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
-    dataSet.subscribe((res:any)=>{
-      if(res){
+    this.dataStudent = [];
+    var uuid = localStorage.getItem("friendlidt_id");
+    var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+    dataSet.subscribe((res: any) => {
+      if (res) {
         this.conversation = res.data;
         this.dataStudent = res.data;
-      }else{
+      } else {
         this.conversation = [];
         this.dataStudent = [];
       }
-      
+
     })
   }
 
   getTimeAgo(time: any) {
     return this.chatService.getTimeAgo(time)
+  }
+
+
+  uploadDoc(file: any) {
+    try {
+      // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
+      let fileList: FileList = file.target.files;
+      let fileData = fileList[0];
+      const formData = new FormData();
+      formData.append('file_name', fileData);
+      this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.sendChat(res.file_url)
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          // this.loader.hide();
+        }, (error) => {
+          // this.loader.hide();
+          console.log(error);
+
+        });
+    } catch (err) {
+      // this.loader.hide();
+      console.log("exception", err);
+    }
   }
 }

@@ -15,6 +15,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class EiLoginComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
+  passwordType: any = "password";
   model: any = {};
 
   constructor(
@@ -123,5 +124,12 @@ export class EiLoginComponent implements OnInit {
       .catch((error) =>{
         console.log('error dzasdasdasda....',error)
       })
+  }
+  viewPassword() {
+    if (this.passwordType == 'password') {
+      this.passwordType = "text";
+    } else {
+      this.passwordType = "password";
+    }
   }
 }

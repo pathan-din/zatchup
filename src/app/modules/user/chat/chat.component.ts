@@ -1,11 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Observable } from 'rxjs';
-import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
+// import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,9 +15,9 @@ import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.dir
 })
 
 export class ChatComponent implements OnInit {
-  @ViewChild(ScrollToBottomDirective)
-  scroll: ScrollToBottomDirective;
-  
+  // @ViewChild(ScrollToBottomDirective)
+  // scroll: ScrollToBottomDirective;
+
   model: any = {};
   dataStudent: any = [];
   conversation: any = [];
@@ -30,6 +31,7 @@ export class ChatComponent implements OnInit {
     private baseService: BaseService,
     private firestore: AngularFirestore,
     private chatService: ChatService,
+    private alert: NotificationService,
     private firebaseService: FirebaseService
   ) { }
 
@@ -41,7 +43,6 @@ export class ChatComponent implements OnInit {
     }
     this.currentUser = localStorage.getItem('fbtoken');
     this.presence$ = this.firebaseService.getPresence(this.uuid);
-    this.scrollToBottom()
   }
 
   getDocumentsChat(uuid: any) {
@@ -125,17 +126,19 @@ export class ChatComponent implements OnInit {
     }
 
   }
-  sendChat() {
+  sendChat(document?: any) {
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
       let userData = JSON.parse(localStorage.getItem('userInfo'))
       data.user_friend_id = localStorage.getItem("friendlidt_id")
       data.user_send_by = localStorage.getItem('fbtoken');
-      data.msg = this.model.comment;
       data.timestamp = new Date().valueOf();
       data.user_name = userData.first_name + ' ' + userData.last_name;
       data.profile_pic = userData.profile_pic
+      data.document = document ? true : false;
+      data.msg = document ? document : this.model.comment;
+      console.log('send chat data is as ::',data)
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
@@ -160,9 +163,31 @@ export class ChatComponent implements OnInit {
 
   }
 
-  scrollToBottom() {
-    let objDiv = document.getElementById("chat-body");
-    objDiv.scrollTop = objDiv.scrollHeight;
+
+  uploadDoc(file: any) {
+    try {
+      // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
+      let fileList: FileList = file.target.files;
+      let fileData = fileList[0];
+      const formData = new FormData();
+      formData.append('file_name', fileData);
+      this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.sendChat(res.file_url)
+          } else {
+            this.alert.error(res.error.message[0], 'Error')
+          }
+          // this.loader.hide();
+        }, (error) => {
+          // this.loader.hide();
+          console.log(error);
+
+        });
+    } catch (err) {
+      // this.loader.hide();
+      console.log("exception", err);
+    }
   }
 
 }

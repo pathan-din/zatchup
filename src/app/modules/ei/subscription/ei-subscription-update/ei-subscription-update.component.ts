@@ -70,6 +70,8 @@ export class EiSubscriptionUpdateComponent implements OnInit {
       "coupon_type": "subscription_fees",
       "subscription_id": this.subscription.id
     }
+    console.log(code, 'code' );
+    
     this.baseService.action('ei/payment-process/', data).subscribe(
       (res: any) => {
         this.loader.hide();
