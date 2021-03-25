@@ -2,10 +2,10 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8 order-sm-6 order-2">
+ v        <div class="col-md-8 ">
             <img class="img-fluid left-Image mt-4" src="assets/images/userWebsite/kyc_verification_leftimage.png">
         </div>
-        <div class="col-md-4 order-1 order-sm-6 MobileCol6MB">
+        <div class="col-md-4">
             <div class="skipbtndiv">
                 <h2 class="mb-3 textSpace">KYC Verification</h2>                
             </div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}" id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
+                        <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}" id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="{{text}}" placeholder="{{placeholder}}">
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_id_no"></div>
                 </div>
@@ -68,11 +68,11 @@
                 <div class="form-group row">
                     <div class="col-sm-12 ">
                         <div (click)="fileInput.click()" class="row form-control-file">
-                            <div class="form-control-fileDiv p-0">
+                            <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-xs-2 form-control-fileDiv p-0">
                                 <button class="fileBtn"><img src="assets/images/userWebsite/upload_icons.png" class="img-fluid"></button>
                                 <input accept="image/*" #fileInput required (change)="handleFileInput($event.target.files)"  [(ngModel)]="model.kyc_document" name ="kyc_document" type="file" name="kyc_document" />
                             </div>
-                            <div class="text-left pl-1">
+                            <div class="col-xl-10 col-md-8 col-sm-10 col-xs-10 text-left pl-1">
                                 <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload photo</p>
                                 <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above</p>
 								<p *ngIf="filename" class="text-secondary regularFont commonMaterialFontSize m-0">{{filename}}</p>
@@ -86,11 +86,11 @@
                 <div class="form-group row">
                     <div class="col-sm-12 ">
                         <div (click)="fileInput1.click()" class="row form-control-file">
-                            <div class="form-control-fileDiv p-0">
+                            <div class="col-xl-2 col-lg-3  col-md-4 col-sm-2 col-xs-2 form-control-fileDiv p-0">
                                 <button class="fileBtn"><img src="assets/images/userWebsite/upload_icons.png" class="img-fluid"></button>
                                 <input  #fileInput1 [required]="model.kyc_type=='Aadhar'" accept="image/*" (change)="handleFileInputForBackPhoto($event.target.files)"  [(ngModel)]="model.kyc_document_back" name ="kyc_document_back" type="file" />
                             </div>
-                            <div class="text-left pl-2">
+                            <div class="col-xl-10 col-md-8 col-sm-10 col-xs-10 text-left pl-1">
                                 <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</p>
                                 <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above</p>
 								<p *ngIf="filename1" class="text-secondary regularFont commonMaterialFontSize m-0">{{filename1}}</p>
@@ -101,9 +101,8 @@
                     </div>
                     <div class="required errorMsg"  [innerHtml]="errorDisplay.kyc_document_back"></div>
                 </div>
-                <div class="text-center">
-                        <button type="submit" class="btn common-btn regularFont textSpace mt-1" (click)="goToUserQualificationPage()">Submit</button>
-                </div>
+                <button type="submit" class="btn common-btn regularFont textSpace mt-1" (click)="goToUserQualificationPage()">Submit</button>
+
             </form>
         </div>
     </div>
