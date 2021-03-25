@@ -4,7 +4,7 @@
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
-            <a *ngIf="subscriptionActive && isApproved" mat-list-item routerLink="/ei/dashboard"
+            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/dashboard"
                 routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
@@ -53,7 +53,7 @@
                 <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Reminder</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" routerLink="/ei/messages"
+            <a *ngIf="isValidModule('MODULE013') && subscriptionActive && isApproved" routerLink="/ei/messages"
                 routerLinkActive="link-active" mat-list-item>
                 <i class="fa fa-comments mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Messages</span>
@@ -72,11 +72,11 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">My Authorisations</span>
             </a> -->
-            <a *ngIf="isApproved" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('') && isApproved" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">subscriptions</i>
                 <span class="commonFontSize">Subscription Management</span>
             </a>
-            <a mat-list-item routerLink="/ei/invoices" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('')" mat-list-item routerLink="/ei/invoices" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">receipt</i>
                 <span class="commonFontSize">Invoice</span>
             </a>
