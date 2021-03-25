@@ -50,6 +50,8 @@ export class EiKycVerificationComponent implements OnInit {
     try {
       this.base.action("user/check-user-ekyc/",{}).subscribe((res:any)=>{
         if(res.status == true){
+          //this.model.kyc_type=res.data.kyc_type;
+         // this.model.kyc_id_no=res.data.kyc_id_no;
           this.model.kyc_name=res.data.name
           if(res.data.kyc_dob.length>10){
             this.model.kyc_dob = res.data.kyc_dob.split('T')[0];

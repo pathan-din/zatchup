@@ -20,8 +20,12 @@ export class EiStudentEditComponent implements OnInit {
   errorDisplay: any = {};
   uploaded: any = '';
   classList: any = [];
+  courseList: any = [];
+  standardList: any = []
+
   is_approve:any;
   class_edit:boolean=false;
+  promote_class_edit:boolean=false;
   constructor(
     private alert:NotificationService,
     private router: Router, 
@@ -40,6 +44,7 @@ export class EiStudentEditComponent implements OnInit {
       this.modelEdit.admission_no = this.model.userID;
       this.is_approve=params['approve']
       this.getStudent()
+      this.displayCourseList();
     });
     console.log('returnUrl....',JSON.parse(this.route.snapshot.queryParamMap.get('returnUrl')))
   }
@@ -48,14 +53,56 @@ export class EiStudentEditComponent implements OnInit {
    if(event.checked){
     this.class_edit = false;
     this.model.mark_as_alumni=true;
+    this.model.promote_class_edit=false;
    }
   }
+  showOptionsPromote(event:MatCheckboxChange): void {
+    if(event.checked){
+     this.class_edit = false;
+     this.model.mark_as_alumni=false;
+     this.model.promote_class_edit=true;
+    }
+   }
   showOptions(event:MatCheckboxChange): void {
     if(event.checked){
      this.class_edit = true;
      this.model.mark_as_alumni=false;
+     this.model.promote_class_edit=false;
     }
    }
+   displayCourseList() {
+    try {
+      this.loader.show();
+
+      this.eiService.displayCourseList().subscribe(res => {
+        let response: any = {};
+        response = res;
+        this.courseList = response.results;
+      }, (error) => {
+        this.loader.hide();
+      });
+    } catch (err) {
+      this.loader.hide();
+    }
+  }
+  displayStandardList(courseId) {
+    try {
+      this.loader.show();
+      this.standardList = []
+
+      this.eiService.displayStandardList(courseId).subscribe(res => {
+        this.loader.hide();
+        let response: any = {};
+        response = res;
+        this.standardList = response.standarddata;
+        
+      }, (error) => {
+        this.loader.hide();
+      });
+    } catch (err) {
+      this.loader.hide();
+    }
+  }
 
   displayClassList(stId, check) {
     try {

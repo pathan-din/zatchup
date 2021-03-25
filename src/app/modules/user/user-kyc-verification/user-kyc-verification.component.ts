@@ -100,7 +100,8 @@ export class UserKycVerificationComponent implements OnInit {
       this.baseService.action("user/check-user-ekyc/",{}).subscribe((res:any)=>{
         if(res.status == true){
           this.model.kyc_name=res.data.name
-          
+          //this.model.kyc_type=res.data.kyc_type;
+         // this.model.kyc_id_no=res.data.kyc_id_no;
           this.yearModel = res.data.kyc_dob.split('-')[0];
           this.monthModel = res.data.kyc_dob.split('-')[1]
           if(res.data.kyc_dob.split('-')[2].length>2){

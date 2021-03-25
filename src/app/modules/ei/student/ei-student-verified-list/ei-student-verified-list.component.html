@@ -13,7 +13,7 @@
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
             <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
             <div class="d-flex flex-wrap align-items-end">
-                
+
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
@@ -50,7 +50,7 @@
                         </select>
                     </div>
                 </div>
-               
+
 
                 <button (click)="applyFilter()" type="button"
                     class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
@@ -65,14 +65,14 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select (change)="getGetVerifiedStudent('','')" [(ngModel)]="model.page_size" name="page_size"
                         class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                       
+
                         <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
 
                     </select>
                 </div>
             </div>
             <div class="col-md-7 justify-content-end d-flex flex-row flex-wrap">
-               
+
                 <button type='button' (click)="getExportData()"
                     class="bg-paret-green text-white border-0 px-3 py-1 mr-2 mt-2"><i class="fa fa-file-excel-o mr-2"
                         aria-hidden="true"></i>Export</button>
@@ -148,6 +148,14 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="promote">
+                        <mat-header-cell *matHeaderCellDef> Promote </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button [disabled]="element.approved!=1"  class="color-white bg-purple border-0 py-1 px-2" data-toggle="modal" data-target="#promoteModel"
+                                (click)="promoteResetPopup(element)">Promote</button>
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
@@ -166,8 +174,8 @@
                                 <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
                             </span>
                             <i *ngIf="element.approved!=0" class="fa fa-ban mr-2 color-red fa-lg cursorStyle"
-                                title="Reject" aria-hidden="true " data-toggle="modal"
-                                (click)="openRejectModel(element.student_id)" data-target="#rejectModel"></i>
+                                title="Reject" aria-hidden="true " data-toggle="modal" data-target="#rejectModel"
+                                (click)="openRejectModel(element.student_id)"></i>
                         </mat-cell>
                     </ng-container>
 
@@ -220,6 +228,90 @@
 
                         </p>
                     </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--Promote Model-->
+    <div class="modal fade" id="promoteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Promote</h2>
+
+                    <button type="button " #closePromoteModel
+                        class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                        aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+
+
+                <div class="modal-body px-0">
+                    <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                    <form id="promote">
+                        <div class="row">
+                            <div class="widthFull col-md-4 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                                <div class="widthFull">
+                                    <select (change)="displayStudentStandardList(modelPromote.course)" id="course_id"
+                                        [(ngModel)]="modelPromote.course" name="course1" required
+                                        class="custom-select border form-control-input" required>
+                                        <option value=""> Select Course</option>
+                                        <option value="{{course.id}}" *ngFor="let course of studentCourseList">
+                                            {{course.course_name}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="widthFull col-md-4 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                                <div class="widthFull">
+                                    <select (change)="displayClassList(modelPromote.standard,true)" id="standard_id"
+                                        [(ngModel)]="modelPromote.standard" name="standard1" required
+                                        class="custom-select border form-control-input" required>
+                                        <option value=""> Select Standard</option>
+                                        <option value="{{standard.id}}" *ngFor="let standard of studentStandardList">
+                                            {{standard.standard_name}}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="widthFull col-md-4 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
+                                <div class="widthFull">
+                                    <select id="class_id" [(ngModel)]="modelPromote.teaching_class" name="class1" required
+                                        class="custom-select border form-control-input" required>
+                                        <option value=""> Select Class</option>
+                                        <option value="{{class.id}}" *ngFor="let class of classList">
+                                            {{class.class_name}}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
+                                <div class="form-control-inputDiv rounded p-0 shadow-none">
+                                    <input [(ngModel)]="modelPromote.roll_no" name="roll_number"
+                                         
+                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Enter Roll Number">
+                                </div>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
+                        </div>
+                       <div class="text-center mt-3">
+                            <button (click)="promoteStudent()" type="button "
+                            class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                            Submit
+                        </button>
+                       </div>
+                    </form>
                 </div>
             </div>
         </div>

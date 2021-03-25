@@ -249,7 +249,7 @@ export class SubadminAddComponent implements OnInit {
     if(re.test(event.target.value)){
       
       this.type='email';
-      this.maxlength = 25;
+      this.maxlength = 50;
       this.model.username =event.target.value;
      
       
@@ -265,7 +265,7 @@ export class SubadminAddComponent implements OnInit {
        
      }else{
       this.type='email'
-      this.maxlength = 25;
+      this.maxlength = 50;
     }
      
     }

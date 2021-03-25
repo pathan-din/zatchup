@@ -18,7 +18,9 @@ declare var $: any;
 export class EiStudentVerifiedListComponent implements OnInit {
   @ViewChild("verifiedModel") closeVerifiedModel: any;
   @ViewChild("closeRejectModel") closeRejectModel: any;
+  @ViewChild("closePromoteModel") closePromoteModel: any;
   model: any = {};
+  modelPromote: any = {};
   modelReason: any = {};
   studentList: any = [];
   studentDetails: any = [];
@@ -26,13 +28,14 @@ export class EiStudentVerifiedListComponent implements OnInit {
   studentArr: any = [];
   modelUserId: any = '';
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
-    'class', 'Action'];
+    'class','promote', 'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
   collection = { count: 60, data: [] };
   dataSource: any;
   courseList: any = [];
+  studentCourseList: any = [];
   standardList: any = [];
   classList: any = [];
   studentListSendForBulk: any = [];
@@ -45,7 +48,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
   conversation: any = [];
   currentUser: any;
   recepintDetails: any = {};
-
+  studentStandardList:any=[];
+  user_id:any="";
   constructor(
     private router: Router,
     private location: Location,
@@ -86,9 +90,84 @@ export class EiStudentVerifiedListComponent implements OnInit {
     for (var i = 5; i < 70; i++) {
       this.arrAge.push(i);
     }
-    this.displayCourseList();
+    
     this.getGetVerifiedStudent('', '')
 
+  }
+  promoteResetPopup(objData){
+    this.modelPromote.roll_no = objData.roll_no;
+    this.user_id=objData.student_id;
+    this.getStudentCourseList(objData.student_id);
+  }
+  getStudentCourseList(userId){
+    try {
+      this.loader.show();
+      this.baseService.getData("user/course-list-by-userid/",{user_id:userId}).subscribe((res:any)=>{
+        this.loader.hide()
+        this.studentCourseList = res.results;
+        // if(res.status){
+        //   this.loader.hide()
+        //   this.studentCourseList = res.results;
+        // }else{
+        //   this.loader.hide()
+        //   this.alert.error(res.error.message[0],"Error");
+        // }
+      },(error)=>{
+        this.loader.hide()
+        this.alert.error(error.error,"Error");
+      })
+      } catch (e) {
+      this.loader.hide()
+      this.alert.error(e.error,"Error");
+      }
+  }
+  promoteStudent(){
+    try {
+      if(this.user_id)
+      {
+        this.modelPromote.user_id = this.user_id;
+      }
+    this.loader.show();
+    this.baseService.action("ei/promote-class-by-ei/",this.modelPromote).subscribe((res:any)=>{
+      if(res.status){
+        this.loader.hide()
+        this.alert.success(res.message[0],"Success");
+        this.closePromoteModel.nativeElement.click();
+        this.getGetVerifiedStudent('', '')
+      }else{
+        this.loader.hide()
+        this.alert.error(res.error.message[0],"Error");
+      }
+    },(error)=>{
+      this.loader.hide()
+      this.alert.error(error.error,"Error");
+    })
+    } catch (e) {
+    this.loader.hide()
+    this.alert.error(e.error,"Error");
+    }
+  }
+  displayStudentStandardList(courseId) {
+    try {
+      this.loader.show();
+      this.baseService.getData("user/standard-list-by-userid/",{user_id:this.user_id,course_id:courseId}).subscribe((res:any)=>{
+        this.loader.hide()
+        this.studentStandardList = res.results;
+        // if(res.status){
+        //   this.loader.hide()
+        //   this.studentCourseList = res.results;
+        // }else{
+        //   this.loader.hide()
+        //   this.alert.error(res.error.message[0],"Error");
+        // }
+      },(error)=>{
+        this.loader.hide()
+        this.alert.error(error.error,"Error");
+      })
+      } catch (e) {
+      this.loader.hide()
+      this.alert.error(e.error,"Error");
+      }
   }
   displayCourseList() {
     try {
@@ -396,7 +475,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   rejectStudent() {
     this.error = [];
     this.errorDisplay = {};
-    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }

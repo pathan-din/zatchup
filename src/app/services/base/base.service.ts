@@ -38,10 +38,12 @@ export class BaseService {
 
   setCalanderDate(courseDate){
     
-   // var date = courseDate.split(" ");
-   // console.log(date[1]+"-"+"1"+"-"+"1");
-    var cdate = new Date(courseDate+"-"+"01"+"-"+"01");
-    return cdate;
+  //  var date = courseDate.split(" ");
+  //  console.log(date[1]+"-"+"1"+"-"+"1");
+   var day = new Date().getDay().toString();
+   var Month = new Date().getMonth().toString();
+   var cdate = new Date(courseDate+"-"+Month+"-"+day);
+   return cdate;
   }
   setParams(params) {
     let httpParams = new HttpParams();
