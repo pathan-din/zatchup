@@ -51,6 +51,7 @@ export class UserKycVerificationComponent implements OnInit {
   errorOtpModelDisplay: any;
   uploadedContentForBackPhoto: any;
   params:any={};
+  text:any = 'text';
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
      private router: Router, 
@@ -125,12 +126,14 @@ export class UserKycVerificationComponent implements OnInit {
       this.maxLength = 12;
       this.placeholder='Enter id'
       this.model.kyc_id_no='';
+      this.text = 'number';
       //this.pattran = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
       this.pattran = "";
     }else if(this.model.kyc_type=='Dl'){
       this.maxLength = 16;
       this.placeholder='Enter id'
       this.model.kyc_id_no='';
+      this.text = 'text';
      // this.pattran = "^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$";
       this.pattran = "";
     }else if(this.model.kyc_type=='Passport'){
@@ -139,6 +142,7 @@ export class UserKycVerificationComponent implements OnInit {
       this.pattran = "";
       this.model.kyc_id_no='';
       this.placeholder='Enter id'
+      this.text = 'text';
     }
   } 
   isValid(event) {

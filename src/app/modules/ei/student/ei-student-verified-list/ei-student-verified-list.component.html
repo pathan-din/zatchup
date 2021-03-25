@@ -148,10 +148,10 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="promote">
+                    <ng-container matColumnDef="promote" >
                         <mat-header-cell *matHeaderCellDef> Promote </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button [disabled]="element.approved!=1"  class="color-white bg-purple border-0 py-1 px-2" data-toggle="modal" data-target="#promoteModel"
+                            <button *ngIf="element.approved==1" [disabled]="element.approved!=1"  class="color-white bg-purple border-0 py-1 px-2" data-toggle="modal" data-target="#promoteModel"
                                 (click)="promoteResetPopup(element)">Promote</button>
                         </mat-cell>
                     </ng-container>
@@ -160,7 +160,7 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
-                            <i *ngIf="element.approved==1" class="fa fa-pencil mr-2 color-green fa-lg cursorStyle"
+                            <i  class="fa fa-pencil mr-2 color-green fa-lg cursorStyle"
                                 title="Edit" aria-hidden="true "
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
@@ -270,7 +270,7 @@
                             <div class="widthFull col-md-4 custumInputWidth">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
                                 <div class="widthFull">
-                                    <select (change)="displayClassList(modelPromote.standard,true)" id="standard_id"
+                                    <select (change)="displayClassList(modelPromote.standard)" id="standard_id"
                                         [(ngModel)]="modelPromote.standard" name="standard1" required
                                         class="custom-select border form-control-input" required>
                                         <option value=""> Select Standard</option>

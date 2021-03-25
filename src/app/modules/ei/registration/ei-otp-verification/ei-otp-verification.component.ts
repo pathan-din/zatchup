@@ -108,7 +108,7 @@ export class EiOtpVerificationComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.loader.hide();
-          let email = this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username;
+          let email = this.baseService.firebase_username;//this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username;
           var result = await this.afAuth.signInWithEmailAndPassword(email, this.model.password);
           localStorage.setItem('fbtoken', result.user.uid);
           localStorage.setItem("token", response.token);
