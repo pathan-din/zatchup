@@ -25,7 +25,7 @@
 
 @media only screen and (max-width: 414px) {
     .kycVerificationleftImage{
-        display: none;
+        width: 100%;
     }
     .mobilePTB{
         padding-top: 0!important;
