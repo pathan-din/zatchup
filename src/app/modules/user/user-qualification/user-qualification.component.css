@@ -19,3 +19,16 @@
 .form-control-inputDiv:active{
     border: 1px solid #463267;
 }
+
+@media only screen and (max-width: 414px) {
+    .login-left-Image{
+        width: auto;
+        margin-bottom: 7%;
+    }
+    .pl-5, .px-5 {
+        padding-left: 1.5rem!important;
+    }
+    .pr-5, .px-5 {
+        padding-right: .5rem!important;
+    } 
+}

@@ -2,10 +2,10 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid left-Image mt-4 mb-5" src="assets/images/userWebsite/highest_level_education_image.png">
         </div>
-        <div class="col-md-4 pl-0">
+        <div class="col-md-4 pl-0 order-1 order-sm-6 MobileCol6MB">
             <h2 class="mb-3 textSpace">{{title}} </h2>
 
             <form class="pt-2">
@@ -14,17 +14,17 @@
                         <div class="form-control-radioDiv-padding p-1">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <label class="custom-label mb-0 qualificationCustomLabel" for="inlineRadio{{qualifi.id}}">
-                                    <input class="custom-control-input" [(ngModel)]="model.qualification_type" type="radio"  name="model.qualification_type"
-                                        id="inlineRadio{{qualifi.id}}" value="{{qualifi.id}}">
+                                    <input class="custom-control-input" [(ngModel)]="model.qualification_type" type="radio" name="model.qualification_type" id="inlineRadio{{qualifi.id}}"
+                                        value="{{qualifi.id}}">
                                     <span class="checkmark qualificationCheckmark"></span>
                                     <span class="radioValuetext">{{qualifi.name}} </span>
                                 </label>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-                <div class="required errorMsg"  [innerHtml]="errorDisplay.qualification_type"></div>
+                <div class="required errorMsg" [innerHtml]="errorDisplay.qualification_type"></div>
                 <!-- <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv">
                         <div class="form-control-radioDiv-padding">
@@ -70,7 +70,9 @@
                     </div>
                 </div> -->
 
-                <button type="submit" class="btn common-btn regularFont textSpace mt-5" (click)="goToUserWorkDetail();">Submit </button>
+                <div class="text-center">
+                    <button type="submit" class="btn common-btn regularFont textSpace mt-5" (click)="goToUserWorkDetail();">Submit </button>
+                </div>
             </form>
         </div>
     </div>
