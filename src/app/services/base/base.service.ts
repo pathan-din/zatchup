@@ -10,7 +10,9 @@ import { DatePipe } from '@angular/common';
 export class BaseService {
   environment = environment
   dynamicJson: any
-  public username: any
+  public username: any;
+  public firebase_username: any
+  
   public password: any
   public serverImagePath: any = this.environment.serverImagePath;
   constructor(
@@ -38,10 +40,12 @@ export class BaseService {
 
   setCalanderDate(courseDate){
     
-   // var date = courseDate.split(" ");
-   // console.log(date[1]+"-"+"1"+"-"+"1");
-    var cdate = new Date(courseDate+"-"+"01"+"-"+"01");
-    return cdate;
+  //  var date = courseDate.split(" ");
+  //  console.log(date[1]+"-"+"1"+"-"+"1");
+   var day = new Date().getDay().toString();
+   var Month = new Date().getMonth().toString();
+   var cdate = new Date(courseDate+"-"+Month+"-"+day);
+   return cdate;
   }
   setParams(params) {
     let httpParams = new HttpParams();

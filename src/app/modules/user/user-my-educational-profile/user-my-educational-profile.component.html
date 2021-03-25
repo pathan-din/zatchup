@@ -231,7 +231,7 @@
                                     <div class="row pb-2 border-bottom mb-2" *ngFor="let objSd of objCd.standard_detail">
                                         <div class="col-lg-7 col-md-12 semiBoldFont commonFontSize">
                                             Standard :
-                                            <span class="regularFont"> {{objSd.standard_name}}</span>
+                                            <span class="regularFont"> {{objSd.standard_name}} ({{objSd.is_current_standard?objSd.standard_start_year+'-'+'To Current':objSd.standard_start_year+'-'+objSd.standard_end_year}})</span>
                                         </div>
                                         <div *ngFor="let objCCd of objSd.class_detail" class="col-lg-5 col-md-12 semiBoldFont commonFontSize">
                                             Class (Sub-Section) :

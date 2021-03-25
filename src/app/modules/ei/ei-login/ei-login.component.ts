@@ -64,6 +64,7 @@ export class EiLoginComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status === true) {
+            this.baseService.firebase_username = res.data.firebase_username+'@zatchup.com';
             this.baseService.username = this.model.username;
             this.baseService.password = this.model.password;
             this.registerUserToFirebaseDB(res.data);
@@ -100,7 +101,7 @@ export class EiLoginComponent implements OnInit {
   }
 
   registerUserToFirebaseDB(data: any) {
-    let email = this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    let email = data.firebase_username+'@zatchup.com';// this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
    
    
     var that = this;
@@ -108,7 +109,12 @@ export class EiLoginComponent implements OnInit {
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          console.log("yes", signInMethods);
+          var result =  that.afAuth.signInWithEmailAndPassword(email, that.model.password);
+          result.then((res:any)=>{
+            localStorage.setItem('fbtoken', res.user.uid);
+          })
+           console.log('signInMethodsRadhey.....',result)
+          //localStorage.setItem('fbtoken', result.user.uid);
         }
         else {
           firebase.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(

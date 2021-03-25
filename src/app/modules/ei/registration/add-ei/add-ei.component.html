@@ -75,7 +75,7 @@
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </select> -->
-                        <input [(ngModel)] ="model.university" name ="university" required class="border form-control-input form-control form-control-sm" type="text" placeholder="Enter your Board/University">
+                        <input [(ngModel)] ="model.university" [disabled]="name_of_school_first!='Others'" name ="university" required class="border form-control-input form-control form-control-sm" type="text" placeholder="Enter your Board/University">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.university"></div>
                 </div>

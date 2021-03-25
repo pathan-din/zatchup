@@ -179,7 +179,7 @@
                 Course Details</h2>
             <div *ngIf="eduDetail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
-                <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.course_detail">
+                <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.course_detail;let i=index;">
                     <!-- <div class="row ">
                         <h3 class="m-0 semiBoldFont commonFontSize">{{courseData.is_current_course == true? 'Student': 'Alumni'}}</h3>
                     </div> -->
@@ -219,40 +219,40 @@
                                 <span class="mr-3">:</span>{{courseData.duration}}</p>
                         </div>
                     </div>
-
+                    <div *ngIf="eduDetail.course_detail.length>0 && userprofile.user_education_instituite_id == eduDetail.school_id">
+                        <div *ngIf="eduDetail.course_detail[i].standard_detail" class="mt-2 table-responsive">
+                            <table class="table table-striped border">
+                                <thead>
+                                    <tr class="bg-Gainsboro">
+                                        <th scope="col">Standard</th>
+                                        <th scope="col">Class( sub-Section) </th>
+                                        <th scope="col">Roll Number</th>
+                                        <th scope="col">Standard Starting Year</th>
+                                        <th scope="col">Standard Ending Year</th>
+                                        <th scope="col">Duration of Completion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let standardData of eduDetail.course_detail[i].standard_detail">
+                                        <td>{{standardData.standard_name ? standardData.standard_name : ''}}</td>
+                                        <td>{{standardData.class_detail.length>0?standardData.class_detail[0].class_name:""}}
+                                        </td>
+                                        <td>{{standardData.class_detail.length > 0 ? standardData.class_detail[0].roll_no : ''}}</td>
+                                        <td>{{standardData.standard_start_year ? standardData.standard_start_year : ''}}</td>
+                                        <td>{{standardData.is_current_standard ? 'Current' : standardData.standard_end_year}}</td>
+                                        <td>{{standardData.duration ? standardData.duration : ''}}</td>
+                                    </tr>
+                                </tbody>
+        
+                            </table>
+                        </div>
+                    </div>
 
                 </div>
 
 
             </div>
-            <div *ngIf="eduDetail.course_detail.length>0 && userprofile.user_education_instituite_id == eduDetail.school_id">
-                <div *ngIf="eduDetail.course_detail[0].standard_detail" class="mt-2 table-responsive">
-                    <table class="table table-striped border">
-                        <thead>
-                            <tr class="bg-Gainsboro">
-                                <th scope="col">Standard</th>
-                                <th scope="col">Class( sub-Section) </th>
-                                <th scope="col">Roll Number</th>
-                                <th scope="col">Standard Starting Year</th>
-                                <th scope="col">Standard Ending Year</th>
-                                <th scope="col">Duration of Completion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let standardData of eduDetail.course_detail[0].standard_detail">
-                                <td>{{standardData.standard_name ? standardData.standard_name : ''}}</td>
-                                <td>{{standardData.class_detail.length>0?standardData.class_detail[0].class_name:""}}
-                                </td>
-                                <td>{{standardData.class_detail.length > 0 ? standardData.class_detail[0].roll_no : ''}}</td>
-                                <td>{{standardData.standard_start_year ? standardData.standard_start_year : ''}}</td>
-                                <td>{{standardData.is_current_standard ? 'Current' : standardData.standard_end_year}}</td>
-                                <td>{{standardData.duration ? standardData.duration : ''}}</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
+          
         </div>
     </div>
 

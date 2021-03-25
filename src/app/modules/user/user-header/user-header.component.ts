@@ -79,8 +79,13 @@ export class UserHeaderComponent implements OnInit {
     this.messageData = [];
     this.ids[0].then((res: any) => {
       res.forEach(element => {
-        console.log('sdsd....', element)
-        this.firestore.collection('chat_conversation').valueChanges().subscribe((res: any) => {
+        
+        
+        this.firestore.collection('chat_conversation').doc(element).valueChanges().subscribe((res:any)=>{
+          
+          if(res){
+            console.log(res);
+          }
         })
         var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res: any) => {
           if (res.data())
@@ -89,10 +94,11 @@ export class UserHeaderComponent implements OnInit {
         data.then(res => {
           if (res)
             this.messageData.push(res.data);
-          console.log('message data is as ::', this.messageData)
+          
         })
       });
     })
+     
   }
 
   getRecepintUserDetails(uuid: any) {

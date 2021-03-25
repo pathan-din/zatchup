@@ -65,7 +65,7 @@ export class FirebaseService {
                 this.currentMessage.next(payload);
             })
     }
-    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string) {
+    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string,class_name:any='',roll_no:any='') {
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
                 (user) => {
@@ -76,6 +76,8 @@ export class FirebaseService {
                         firstName: firstName,
                         lastName: lastName,
                         photoUrl: photoUrl,
+                        class_name:class_name,
+                        roll_no:roll_no,
                         isActive: isActive
                     }
                     userRef.set(updateUser)

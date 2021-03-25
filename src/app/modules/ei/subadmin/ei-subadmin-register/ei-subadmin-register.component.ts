@@ -102,12 +102,9 @@ export class EiSubadminRegisterComponent implements OnInit {
      const numbers = /^[0-9]+$/;
      if(numbers.test(event.target.value))
      {
-       console.log(numbers.test(event.target.value));
-       
       this.type='tel'
       this.maxlength = 10;
       this.model.username = event.target.value;
-       
      }
      
     }

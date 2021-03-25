@@ -21,6 +21,7 @@ export class UserLoginComponent implements OnInit {
   errorOtpModelDisplay = '';
   modelForOtpModal: any = {};
   passwordType: any = "password";
+  firebaseemail:any='';
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -158,7 +159,7 @@ export class UserLoginComponent implements OnInit {
       this.baseService.action('user/verify-otp/', data).subscribe(
         (res: any) => {
           if (res.status == "True") {
-            this.updateUserWithFirebaseID();
+            this.updateUserWithFirebaseID(this.firebaseemail);
             localStorage.setItem("token", res.token);
             localStorage.setItem("approved", res.approved);
             $("#OTPModel").modal('hide');
@@ -202,18 +203,22 @@ export class UserLoginComponent implements OnInit {
   }
 
   registerUserToFirebaseDB(data: any) {
-    let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+   // let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    let email = data.firebase_username+ '@zatchup.com';//this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    this.firebaseemail = email;
     var that = this;
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
         console.log('signInMethods.....',signInMethods)
         if (signInMethods.length > 0) {
+          var result =  this.afAuth.signInWithEmailAndPassword(email, this.model.password);
           // console.log('signInMethods.....',signInMethods)
+          localStorage.setItem('fbtoken', result.user.uid);
         }
         else {
          
           
-          that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
+          that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1",data.class_alias,data.roll_no).then(
             (res: any) => {
               localStorage.setItem('fbtoken', res.user.uid);
             },
@@ -227,9 +232,9 @@ export class UserLoginComponent implements OnInit {
       })
   }
 
-  async updateUserWithFirebaseID() {
-    this.model.username = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
-    var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);
+  async updateUserWithFirebaseID(email) {
+    //this.model.username = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    var result = await this.afAuth.signInWithEmailAndPassword(email, this.model.password);
     localStorage.setItem('fbtoken', result.user.uid);
     this.firebaseService.setPresence('online')
   }

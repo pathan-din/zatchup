@@ -182,8 +182,6 @@ getSchoolListBycityId(city){
   //getallstate
   //this.isValid(document.forms);
   let obj = this.cityList.find(o => o.city.toLowerCase() === city.toLowerCase());
-  console.log(obj);
-  
   try{
     this.SpinnerService.show(); 
    
