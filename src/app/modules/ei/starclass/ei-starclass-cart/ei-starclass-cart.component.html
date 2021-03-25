@@ -7,7 +7,7 @@
                 <h2 class="commonFontSize semiBoldFont mb-1"><span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>ZatchUp Cart</h2>
-                <button (click)="goToStarClassDashboard()" type="button" class="bg-paret-green text-white border-0 py-2 px-3">Add To Cart</button>
+                <button (click)="goToStarClassDashboard()" type="button" class="bg-paret-green text-white border-0 py-2 px-2">Add To Cart</button>
             </div>
         </div>
 
@@ -19,8 +19,8 @@
                         <div class="py-2 d-flex justify-content-start px-0">
                             <img *ngIf="listData.course_image" src="{{listData.course_image}}" class="img-thumbnail cart-image">
                             <div class="itemDiv mx-2">
-                                <h3 class="commonFontSize semiBoldFont mb-1">{{listData.course_name}}</h3>
-                                <p class="commonFontSize regularFont" style="line-height: initial;">{{listData.course_description}}</p>
+                                <h3 class="commonFontSize semiBoldFont mb-1" style="line-height: 1">{{listData.course_name}}</h3>
+                                <p class="commonFontSize regularFont my-1" style="line-height: initial;">{{listData.course_description}}</p>
                                 <div class="row commonFontSize regularFont">
                                     <div class="col-4">Price</div>
                                     <div class="col-8"><span class="mr-3">:</span>{{listData.price}}/Year</div>
@@ -42,7 +42,7 @@
                     <div class="p-3 bg-white" *ngIf="paymentDetails">
                         <h2 class="commonFontSize semiBoldFont">Payment Details</h2>
 
-                        <div class="payment-detail-list row border-bottom border-gray justify-content-between m-0">
+                        <div class="payment-detail-list row border-gray justify-content-between m-0">
                             <div class="col-6 p-0">Course Name</div>
                             <div class="col-6 text-right">Price</div>
                             <div class="col-12 " *ngFor="let data of paymentDetails">
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="payment-detail-list row border border-gray justify-content-between m-0 mt-2">
-                            <div class="form-control-inputDiv col-8"> <input type="text" [(ngModel)]="coupon" name="couponCode" placeholder="Coupon Code" class="form-control form-control-input border-0 py-2"></div>
+                            <div class="col-8 p-0"> <input type="text" [(ngModel)]="coupon" name="couponCode" placeholder="Coupon Code" class="form-control form-control-input border-0 py-2"></div>
                             <button (click)="applyCoupon()" type="button" class="bg-purple text-white border-0 col-4 ">Apply</button>
                         </div>
 

@@ -612,6 +612,10 @@ mat-row, mat-footer-row {
 button.fileBtn {
     background: none;
 }
+button.fileBtn img {
+    min-width: 40px;
+    width: 40px;
+}
 .subAdminPurpleBtn{height: 100px;}
 
 ul{list-style: none; padding-left: 15px;}
@@ -777,9 +781,8 @@ a:hover {
         float: left;
     }
     h2 {
-        font-size: 1.1rem !important;
+        text-align: center;
     }
-
     .custumInputWidth {
         width: 42%;
     }

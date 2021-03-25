@@ -3,7 +3,9 @@
 }
 
 .cart-image {
-    width: 50%;
+    width: 80px;
+    min-width: 80px;
+    height: auto;
 }
 .itemIcon {
     position: absolute;

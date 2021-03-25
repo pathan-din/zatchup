@@ -25,10 +25,7 @@
     padding-left: 35px;
 }
 
-@media only screen and (max-width: 414px) {
-    .form-control-fileDiv {
-        width: 45%;
-    }
+@media only screen and (max-width: 414px) {    
     .pl-5, .px-5 {
         padding-left: .5rem!important;
     }
