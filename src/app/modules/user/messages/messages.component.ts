@@ -57,8 +57,9 @@ export class MessagesComponent implements OnInit {
 
     this.getMessageList()
   }
-  goToChat(uuid) {
+  goToChat(uuid, userFriendId) {
     localStorage.setItem('uuid', uuid);
+    localStorage.setItem('friendlidt_id', userFriendId)
     this.router.navigate(["user/chat"]);
   }
   getMessageList() {
