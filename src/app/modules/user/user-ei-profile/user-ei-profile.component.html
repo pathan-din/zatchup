@@ -27,7 +27,7 @@
                     <div class="col-6 px-0">
                         <label class="cursorStyle d-flex"> <input checked=true id="current_and_past"  name="current_and_past" class="mr-1" type="radio" >Student</label>
                     </div>
-                    <div class="col-6 px-0">
+                    <div class="col-6 px-0" *ngIf="!params.edit_course">
                         <label class="cursorStyle d-flex"> <input  (change)="addPastEi(schoolId)" id="current_and_past2" name="current_and_past" class="mr-1" type="radio" >Alumni </label>
                     </div>
                 </div>

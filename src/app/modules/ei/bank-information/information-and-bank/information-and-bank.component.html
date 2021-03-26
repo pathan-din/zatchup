@@ -352,8 +352,11 @@
                         <div class="col-md-12 mt-2">
                             <div class="form-group row ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> {{title}} </label>
-                                <div  *ngIf="model.key!='full_address'" class="{{model.key}} w-100 shadow-none">
+                                <div  *ngIf="model.key!='full_address' && model.key!='phone'" class="{{model.key}} w-100 shadow-none">
                                     <input required  name="model.key" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
+                                </div>
+                                <div  *ngIf="model.key!='full_address' && model.key=='phone'" class="{{model.key}} w-100 shadow-none">
+                                    <input required  name="model.key" numberOnly maxlength="10" minlength="10" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
                                 </div>
                                 <div  *ngIf="model.key=='full_address'" class="w-100 shadow-none">
                                     <textarea disabled name="full_address" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing border-bottom"  placeholder="Enter New {{title}}" required></textarea>
