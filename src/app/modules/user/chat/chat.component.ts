@@ -38,6 +38,7 @@ export class ChatComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.uuid='';
     if (localStorage.getItem('uuid')) {
       this.uuid = localStorage.getItem('uuid');
       this.getDocumentsChat(this.uuid);
@@ -107,8 +108,7 @@ export class ChatComponent implements OnInit {
                 let res: any = []
                 res = doc.data();
                 if (dataEle.user_request_id == res.user_request_id && dataEle.user_accept_id == res.user_accept_id) {
-
-                  localStorage.setItem("friendlidt_id", doc.id)
+                    localStorage.setItem("friendlidt_id", doc.id)
                 }
               });
             }
