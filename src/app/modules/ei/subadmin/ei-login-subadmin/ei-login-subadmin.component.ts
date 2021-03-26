@@ -195,7 +195,11 @@ export class EiLoginSubadminComponent implements OnInit {
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          console.log("yes", signInMethods);
+          var result =  that.afAuth.signInWithEmailAndPassword(email, that.model.password);
+          result.then((res:any)=>{
+            localStorage.setItem('fbtoken', res.user.uid);
+          })
+           console.log('signInMethodsRadhey.....',result)
         }
         else {
           firebase.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
