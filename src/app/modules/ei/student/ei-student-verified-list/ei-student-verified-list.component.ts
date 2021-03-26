@@ -92,6 +92,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     }
     
     this.getGetVerifiedStudent('', '')
+    this.displayCourseList();
 
   }
   promoteResetPopup(objData){
@@ -122,7 +123,14 @@ export class EiStudentVerifiedListComponent implements OnInit {
       }
   }
   promoteStudent(){
+    this.error = [];
+    this.errorDisplay = {};
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
     try {
+     
       if(this.user_id)
       {
         this.modelPromote.user_id = this.user_id;

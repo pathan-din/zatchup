@@ -45,8 +45,9 @@ export class UserAddMoreStandardComponent implements OnInit {
     private genericFormValidationService: GenericFormValidationService,
     private alert: NotificationService
   ) {
-    // this.startYearMaxDate = new Date();
-    // this.startYearMinDate = new Date();
+     this.startYearMaxDate = new Date();
+     this.startYearMinDate = new Date();
+     this.baseService.getDateReverseFormat( this.startYearMinDate)
   }
 
   ngOnInit(): void {
@@ -311,7 +312,10 @@ export class UserAddMoreStandardComponent implements OnInit {
       let course = this.courseList.find(val => {
         return val.id == courseId
       })
+      
+      
       if (course) {
+        console.log(course);
         this.startYearMaxDate = new Date(course.start_date)
         this.startYearMinDate = new Date(course.end_date)
       }

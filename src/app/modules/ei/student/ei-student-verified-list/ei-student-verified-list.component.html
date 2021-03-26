@@ -233,90 +233,7 @@
         </div>
 
     </div>
-    <!--Promote Model-->
-    <div class="modal fade" id="promoteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content unverified container-fluid">
-                <div class="modal-header align-items-center justify-content-center pb-0 ">
-                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Promote</h2>
 
-                    <button type="button " #closePromoteModel
-                        class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
-                        aria-label="Close ">
-                        <span aria-hidden="true "> &times; </span>
-                    </button>
-                </div>
-
-
-                <div class="modal-body px-0">
-                    <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
-                    <form id="promote">
-                        <div class="row">
-                            <div class="widthFull col-md-4 custumInputWidth">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
-                                <div class="widthFull">
-                                    <select (change)="displayStudentStandardList(modelPromote.course)" id="course_id"
-                                        [(ngModel)]="modelPromote.course" name="course1" required
-                                        class="custom-select border form-control-input" required>
-                                        <option value=""> Select Course</option>
-                                        <option value="{{course.id}}" *ngFor="let course of studentCourseList">
-                                            {{course.course_name}}
-                                        </option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="widthFull col-md-4 custumInputWidth">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
-                                <div class="widthFull">
-                                    <select (change)="displayClassList(modelPromote.standard)" id="standard_id"
-                                        [(ngModel)]="modelPromote.standard" name="standard1" required
-                                        class="custom-select border form-control-input" required>
-                                        <option value=""> Select Standard</option>
-                                        <option value="{{standard.id}}" *ngFor="let standard of studentStandardList">
-                                            {{standard.standard_name}}</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="widthFull col-md-4 custumInputWidth">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
-                                <div class="widthFull">
-                                    <select id="class_id" [(ngModel)]="modelPromote.teaching_class" name="class1" required
-                                        class="custom-select border form-control-input" required>
-                                        <option value=""> Select Class</option>
-                                        <option value="{{class.id}}" *ngFor="let class of classList">
-                                            {{class.class_name}}</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
-                                <div class="form-control-inputDiv rounded p-0 shadow-none">
-                                    <input [(ngModel)]="modelPromote.roll_no" name="roll_number"
-                                         
-                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                        type="text" placeholder="Enter Roll Number">
-                                </div>
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
-                        </div>
-                       <div class="text-center mt-3">
-                            <button (click)="promoteStudent()" type="button "
-                            class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
-                            Submit
-                        </button>
-                       </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <!-- rejectModel  -->
     <div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -402,4 +319,92 @@
                 </div>
             </div>
         </div>
+    </div>
+
+        <!--Promote Model-->
+        <div class="modal fade" id="promoteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 ">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Promote</h2>
+
+                    <button type="button " #closePromoteModel
+                        class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                        aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+
+
+                <div class="modal-body px-0">
+                    <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                    <form id="promote">
+                        <div class="row">
+                            <div class="widthFull col-md-4 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                                <div class="widthFull">
+                                    <select (change)="displayStudentStandardList(modelPromote.course)" id="course_id"
+                                        [(ngModel)]="modelPromote.course" name="course" required
+                                        class="custom-select border form-control-input" required>
+                                        <option value=""> Select Course</option>
+                                        <option value="{{course.id}}" *ngFor="let course of studentCourseList">
+                                            {{course.course_name}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
+                            </div>
+                            <div class="widthFull col-md-4 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                                <div class="widthFull">
+                                    <select (change)="displayClassList(modelPromote.standard)" id="standard_id"
+                                        [(ngModel)]="modelPromote.standard" name="standard" required
+                                        class="custom-select border form-control-input" required>
+                                        <option value=""> Select Standard</option>
+                                        <option value="{{standard.id}}" *ngFor="let standard of studentStandardList">
+                                            {{standard.standard_name}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
+                            </div>
+                            <div class="widthFull col-md-4 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
+                                <div class="widthFull">
+                                    <select id="class_id" [(ngModel)]="modelPromote.teaching_class" name="class" required
+                                        class="custom-select border form-control-input">
+                                        <option value=""> Select Class</option>
+                                        <option value="{{class.id}}" *ngFor="let class of classList">
+                                            {{class.class_name}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
+                                <div class="form-control-inputDiv rounded p-0 shadow-none">
+                                    <input required [(ngModel)]="modelPromote.roll_no" name="roll_number"
+                                         
+                                        class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                        type="text" placeholder="Enter Roll Number">
+                                </div>
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
+                        </div>
+                       <div class="text-center mt-3">
+                            <button (click)="promoteStudent()" type="button "
+                            class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                            Submit
+                        </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>

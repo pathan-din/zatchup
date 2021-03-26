@@ -202,6 +202,7 @@ export class InformationAndBankComponent implements OnInit {
       this.model.image = '';
     }
     this.title = label;
+   
     $("#editModel").modal({
       keyboard: false
     });
@@ -247,6 +248,10 @@ export class InformationAndBankComponent implements OnInit {
       return false;
     } else {
       try {
+        if(this.model.old_value == this.model.value){
+          this.alert.error("Existing can not be updated","Error");
+          return 
+        }
         this.loader.show();
         this.baseService.action('ei/ei-request-for-detail-change/', this.model).subscribe(res => {
           let response: any = {};
