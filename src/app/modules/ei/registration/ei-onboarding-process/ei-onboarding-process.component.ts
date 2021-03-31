@@ -64,6 +64,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   params: any;
   serverImageUrl: any;
   openingYear: any;
+  images: any = [];
   //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
   //     console.log("Processing beforeunload...", this.countIndex);
   //     this.getRegistrationStep();
@@ -727,7 +728,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             document.document = res.filename;
-            document.document_image = this.serverImageUrl+'/'+res.filename;
+            document.document_image = this.serverImageUrl+res.filename;
             console.log(this.modelDocumentDetails);
             
             return res.filename;
@@ -808,6 +809,16 @@ export class EiOnboardingProcessComponent implements OnInit {
   reloadWindow(uri, params){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate([uri], { queryParams: { 'reg_steps': params}}));
+  }
+  download_file(fileURL) {
+    let url = this.serverImageUrl+'/'+fileURL
+    window.open(url, '_blank');
+  }
+
+  viewImage(src) {
+    console.log('sdsddd',src)
+    this.images = []
+    this.images.push(src);
   }
 }
 
