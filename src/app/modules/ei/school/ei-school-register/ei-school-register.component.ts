@@ -72,7 +72,7 @@ export class EiSchoolRegisterComponent implements OnInit {
    /*****************************************/ 
   }
   suggest(event) {
-    console.log("school name"+event);
+     
     if(typeof(event)=='string'){
       this.data = this.schoolList.filter(c => String(c.name_of_school.toLowerCase()).startsWith(event.toLowerCase()));
       if(this.data.length==0){
@@ -82,7 +82,7 @@ export class EiSchoolRegisterComponent implements OnInit {
    
   }
   suggestData(event) {
-    console.log("school name"+event);
+    
     // this.data=[];
    this.changeSchool(event.name_of_school);
    this.model.school_data.name_of_school=event.name_of_school; 
@@ -130,7 +130,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   getCityByState(state){
    // this.model.school_data = {};
     //getallstate
-    this.isValid(event);
+    this.isValid('');
     let obj = this.stateList.find(o => o.state === state);
    
     
@@ -224,7 +224,7 @@ export class EiSchoolRegisterComponent implements OnInit {
        
     let obj = this.schoolList.find(o => o.name_of_school === schoolData);
     this.model.school_data.name_of_school=obj.name_of_school;
-    console.log(this.model.school_data);
+     
     
     this.model.school_data.state=obj.state;
     this.model.school_data.city=obj.city;
@@ -277,7 +277,7 @@ export class EiSchoolRegisterComponent implements OnInit {
           this.model.phone='';
         }
         this.eiService.register(this.model).subscribe(res => {
-          console.log(res);
+          
           let response:any={};
           response=res;
           this.SpinnerService.hide(); 

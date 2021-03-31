@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -17,7 +17,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class ChatComponent implements OnInit {
   // @ViewChild(ScrollToBottomDirective)
   // scroll: ScrollToBottomDirective;
-
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   model: any = {};
   dataStudent: any = [];
   conversation: any = [];
@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
   uuid: any
   lastMessageData:any=[];
   ids:any=[];
+  scrollHeight:any=300;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -49,7 +50,17 @@ export class ChatComponent implements OnInit {
 
 
 
+  ngDoCheck() {        
+    this.scrollToBottom();        
+} 
 
+scrollToBottom(): void {
+    try {
+
+        
+       this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
+}
 
   getDocumentsChat(uuid: any) {
     let uid = uuid;

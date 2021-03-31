@@ -112,6 +112,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           this.model2Step.coursedata=[];
           this.model2Step.coursedata.push(res.data);
           this.model2Step.coursedata.forEach(element => {
+            console.log(element.end_year);
+            
             element.is_teaching_current = element.end_year=='Present'?true:false
           });
         }

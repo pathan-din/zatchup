@@ -95,7 +95,9 @@ export class UserHeaderComponent implements OnInit {
       console.log(err);
     }
   }
- 
+  reminderList() {
+    this.router.navigate(["user/remainders"]);
+  }
   notificationList() {
     this.router.navigate(["user/notifications"]);
   }

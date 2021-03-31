@@ -195,11 +195,8 @@ export class EiLoginSubadminComponent implements OnInit {
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          var result =  that.afAuth.signInWithEmailAndPassword(email, that.model.password);
-          result.then((res:any)=>{
-            localStorage.setItem('fbtoken', res.user.uid);
-          })
-           console.log('signInMethodsRadhey.....',result)
+          that.updatePassword(email,that.model.password)
+           
         }
         else {
           firebase.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
@@ -213,7 +210,21 @@ export class EiLoginSubadminComponent implements OnInit {
         }
       })
   }
-
+  updatePassword(email,newPassword){
+    this.afAuth.currentUser.then((res)=>{
+      res.updatePassword(newPassword).then(update=>{
+        console.log(update);
+        var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
+        result.then((res:any)=>{
+          localStorage.setItem('fbtoken', res.user.uid);
+        })
+         console.log('signInMethodsRadhey.....',result)
+      })
+      
+      
+    })
+     
+  }
   async updateUserWithFirebaseID() {
     this.model.username = this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);

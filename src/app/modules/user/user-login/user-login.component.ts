@@ -201,6 +201,21 @@ export class UserLoginComponent implements OnInit {
       return false;
     }
   }
+  updatePassword(email,newPassword){
+    this.afAuth.currentUser.then((res)=>{
+      res.updatePassword(newPassword).then(update=>{
+        console.log(update);
+        var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
+        result.then((res:any)=>{
+          localStorage.setItem('fbtoken', res.user.uid);
+        })
+         console.log('signInMethodsRadhey.....',result)
+      })
+      
+      
+    })
+     
+  }
 
   registerUserToFirebaseDB(data: any) {
    // let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
@@ -211,9 +226,13 @@ export class UserLoginComponent implements OnInit {
       .then(function (signInMethods) {
         console.log('signInMethods.....',signInMethods)
         if (signInMethods.length > 0) {
-          var result =  this.afAuth.signInWithEmailAndPassword(email, this.model.password);
-          // console.log('signInMethods.....',signInMethods)
-          localStorage.setItem('fbtoken', result.user.uid);
+          // var result =  that.afAuth.signInWithEmailAndPassword(email, that.model.password);
+          // // console.log('signInMethods.....',signInMethods)
+          // result.then((resLogin)=>{
+          //   localStorage.setItem('fbtoken', resLogin.user.uid);
+          // })
+          that.updatePassword(email,that.model.password)
+          
         }
         else {
          
