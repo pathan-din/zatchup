@@ -13,7 +13,9 @@ import { StarclassOrderList } from '../../registration/modal/contact-us.mdal';
 })
 export class EiStarclassYourOrderComponent implements OnInit {
   starclassOrderList : StarclassOrderList
-  dataSource : any
+  dataSource : any;
+  maxDate: any;
+
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -22,6 +24,7 @@ export class EiStarclassYourOrderComponent implements OnInit {
     private datePipe: DatePipe,
 
   ) {
+    this.maxDate = new Date();
     this.starclassOrderList = new StarclassOrderList()
    }
 

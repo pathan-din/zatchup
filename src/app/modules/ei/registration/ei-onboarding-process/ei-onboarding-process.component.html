@@ -781,13 +781,15 @@
                                                     src="{{doc.document_image}}"> -->
                                                 
                                                     <img *ngIf="doc.document!='' && doc.document_image && doc.extention=='' "
-                                                    class="img-fluid w-100 h-100"
-                                                    src="{{doc.document_image}}">    
+                                                    class="img-fluid w-100 h-100" (click)="viewImage(doc.document_image)"
+                                                    src="{{doc.document_image}}" aria-hidden="true " data-toggle="modal" data-target="#imageViewer">    
                                                     
-                                                <a *ngIf="doc.document!='' && doc.extention=='pdf'"
-                                                    href="{{serverImageUrl}}/{{doc.document}}"> <img
-                                                        class="img-fluid w-100 h-100"
-                                                        src="assets/images/userWebsite/pdf.png"></a>
+                                                <!-- <a 
+                                                    href="{{serverImageUrl}}/{{doc.document}}">  -->
+                                                    <img *ngIf="doc.document!='' && doc.extention=='pdf'"
+                                                        class="img-fluid w-100 h-100" (click)="download_file(doc.document)"
+                                                        src="assets/images/userWebsite/pdf.png">
+                                                    <!-- </a> -->
                                             </div>
                                             
                                         </div>
@@ -834,3 +836,23 @@
         <p style="color: white">Please Wait. </p>
     </ngx-spinner>
 </div>
+
+<div class="modal fade" id="imageViewer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content unverified container-fluid">
+                    <div class="modal-header align-items-center justify-content-center p-0 border-0">
+                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                            data-dismiss="modal" aria-label="Close ">
+                            <span aria-hidden="true ">
+                                &times;
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body px-0">
+                        <ngx-image-viewer [src]="images" [(index)]="imageIndexOne" (customEvent)="handleEvent($event)">
+                        </ngx-image-viewer>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -9,6 +9,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { MatStepper } from '@angular/material/stepper';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { CustomEvent } from 'src/app/common/image-viewer/image-viewer-config.model';
 
 
 
@@ -64,6 +65,8 @@ export class EiOnboardingProcessComponent implements OnInit {
   params: any;
   serverImageUrl: any;
   openingYear: any;
+  images: any = [];
+  imageIndexOne = 0;
   //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
   //     console.log("Processing beforeunload...", this.countIndex);
   //     this.getRegistrationStep();
@@ -727,7 +730,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             document.document = res.filename;
-            document.document_image = this.serverImageUrl+'/'+res.filename;
+            document.document_image = this.serverImageUrl+res.filename;
             console.log(this.modelDocumentDetails);
             
             return res.filename;
@@ -808,6 +811,26 @@ export class EiOnboardingProcessComponent implements OnInit {
   reloadWindow(uri, params){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
     this.router.navigate([uri], { queryParams: { 'reg_steps': params}}));
+  }
+  download_file(fileURL) {
+    let url = this.serverImageUrl+'/'+fileURL
+    window.open(url, '_blank');
+  }
+
+  viewImage(src) {
+    console.log('sdsddd',src)
+    this.images = []
+    this.images.push(src);
+  }
+
+  handleEvent(event: CustomEvent) {
+    console.log(`${event.name} has been click on img ${event.imageIndex + 1}`);
+
+    switch (event.name) {
+      case 'print':
+        console.log('run print logic');
+        break;
+    }
   }
 }
 
