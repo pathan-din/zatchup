@@ -82,7 +82,7 @@ export class PersonalMessagesComponent implements OnInit {
                       res1.data[res1.data.length-1].uuid = uuid;
                       res1.data[res1.data.length-1].class_name = this.recepintDetails.class_name;
                       res1.data[res1.data.length-1].roll_no = this.recepintDetails.roll_no;
-                      res1.data[res1.data.length-1].profile_pic = this.recepintDetails.profile_pic;
+                      res1.data[res1.data.length-1].profile_pic = this.recepintDetails.photoUrl;
                       res1.data[res1.data.length-1].user_name = this.recepintDetails.firstName+' '+(!this.recepintDetails.lastName?'':this.recepintDetails.lastName);
                       this.lastMessageData.push(res1.data[res1.data.length-1]); 
                     });

@@ -483,7 +483,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   rejectStudent() {
     this.error = [];
     this.errorDisplay = {};
-    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }

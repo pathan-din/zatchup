@@ -5,6 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { EiServiceService } from 'src/app/services/EI/ei-service.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-ei-profile-preview',
@@ -20,7 +21,8 @@ export class EiProfilePreviewComponent implements OnInit {
     private alert: NotificationService,
     private baseService: BaseService,
     private eiService: EiServiceService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private confirmDialogService: ConfirmDialogService
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +61,13 @@ export class EiProfilePreviewComponent implements OnInit {
     } catch (e) {
 
     }
+  }
+  goToUserLandingPage(data: any, message: any): any {
+    this.confirmDialogService.confirmThis('You will be logout before continue ...', () => {
+      this.redirectToLoginPage()
+    
+    }, () => {
+    });
   }
   redirectToLoginPage() {
     try {

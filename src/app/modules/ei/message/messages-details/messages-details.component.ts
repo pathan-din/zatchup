@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BaseService } from '../../../../services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
@@ -12,12 +12,13 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class MessagesDetailsComponent implements OnInit {
   // @ViewChild(ScrollToBottomDirective)
   // scroll: ScrollToBottomDirective;
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   model: any = {};
   dataStudent: any = [];
   conversation: any = [];
   currentUser: any;
   recepintDetails: any = {};
-
+  scrollHeight:any=300;
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
@@ -32,7 +33,17 @@ export class MessagesDetailsComponent implements OnInit {
     }
     this.getDocumentsChat()
   }
+  ngDoCheck() {        
+    this.scrollToBottom();        
+} 
 
+scrollToBottom(): void {
+    try {
+
+        
+       this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
+}
   getRecepintUserDetails(uuid) {
     this.firestore.collection('users').doc(uuid).ref.get().then(res => {
       this.recepintDetails = res.data();

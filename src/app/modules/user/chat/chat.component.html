@@ -41,7 +41,7 @@
                     </div> -->
                 </div>
 
-                <div class="schoolChat">
+                <div #scrollMe [scrollTop]="scrollHeight" class="schoolChat">
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
                             <img *ngIf="objCon.document" src="assets/images/userWebsite/blue-menu.png"
@@ -80,10 +80,10 @@
                             <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
                             <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
                         </div>
-                        <input [(ngModel)]="model.comment" name="comment"
+                        <input (keyup.enter)="sendChat()" [(ngModel)]="model.comment" name="comment"
                             class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
                             type="search" placeholder="Type Something...">
-                        <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
+                        <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'"  (click)="sendChat()" class="">
                             <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
                         </span>
                     </div>

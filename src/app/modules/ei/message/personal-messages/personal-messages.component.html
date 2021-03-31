@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md-10 col-8" (click)="goToChatScreen(msgObj.uuid)" >
                         <h3 class="m-0 semiBoldFont color-black">{{msgObj.user_name}} 
-                            <span class="small-text">{{msgObj.roll_no}} {{msgObj.class_name}}</span>
+                            <span class="small-text">({{msgObj.class_name}} {{msgObj.roll_no}})</span>
                             <!-- <span class="small-text">{{msgObj.roll_no}}</span> -->
                         </h3>
                         <p class="mb-0"> {{msgObj.msg}} </p>

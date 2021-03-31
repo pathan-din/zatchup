@@ -109,11 +109,8 @@ export class EiLoginComponent implements OnInit {
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          var result =  that.afAuth.signInWithEmailAndPassword(email, that.model.password);
-          result.then((res:any)=>{
-            localStorage.setItem('fbtoken', res.user.uid);
-          })
-           console.log('signInMethodsRadhey.....',result)
+          that.updatePassword(email,that.model.password)
+         
           //localStorage.setItem('fbtoken', result.user.uid);
         }
         else {
@@ -130,6 +127,28 @@ export class EiLoginComponent implements OnInit {
       .catch((error) =>{
         console.log('error dzasdasdasda....',error)
       })
+  }
+  updatePassword(email,newPassword){
+    this.afAuth.currentUser.then((res)=>{
+      res.updatePassword(newPassword).then(update=>{
+        console.log(update);
+        var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
+        result.then((res:any)=>{
+          localStorage.setItem('fbtoken', res.user.uid);
+        })
+         console.log('signInMethodsRadhey.....',result)
+      })
+      
+      
+    })
+    //updateCurrentUser(newPassword)
+    
+     
+    // this.afAuth.confirmPasswordReset(newPassword).then(function() {
+    //   // Update successful.
+    // }).catch(function(error) {
+    //   // An error happened.
+    // });
   }
   viewPassword() {
     if (this.passwordType == 'password') {
