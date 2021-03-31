@@ -9,6 +9,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { MatStepper } from '@angular/material/stepper';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { CustomEvent } from 'src/app/common/image-viewer/image-viewer-config.model';
 
 
 
@@ -65,6 +66,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   serverImageUrl: any;
   openingYear: any;
   images: any = [];
+  imageIndexOne = 0;
   //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
   //     console.log("Processing beforeunload...", this.countIndex);
   //     this.getRegistrationStep();
@@ -819,6 +821,16 @@ export class EiOnboardingProcessComponent implements OnInit {
     console.log('sdsddd',src)
     this.images = []
     this.images.push(src);
+  }
+
+  handleEvent(event: CustomEvent) {
+    console.log(`${event.name} has been click on img ${event.imageIndex + 1}`);
+
+    switch (event.name) {
+      case 'print':
+        console.log('run print logic');
+        break;
+    }
   }
 }
 
