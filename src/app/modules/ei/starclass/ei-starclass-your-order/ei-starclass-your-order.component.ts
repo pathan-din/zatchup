@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common'
+import { DatePipe, Location } from '@angular/common'
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -8,17 +8,19 @@ import { StarclassOrderList } from '../../registration/modal/contact-us.mdal';
 @Component({
   selector: 'app-ei-starclass-your-order',
   templateUrl: './ei-starclass-your-order.component.html',
-  styleUrls: ['./ei-starclass-your-order.component.css']
+  styleUrls: ['./ei-starclass-your-order.component.css'],
+  providers: [DatePipe]
 })
 export class EiStarclassYourOrderComponent implements OnInit {
   starclassOrderList : StarclassOrderList
-  displayedColumns: string[] = ['SNo','courseTitle', 'dateBought','boughtBy','downloadInvoice'];
   dataSource : any
   constructor(
     private location: Location,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private datePipe: DatePipe,
+
   ) {
     this.starclassOrderList = new StarclassOrderList()
    }
@@ -31,8 +33,10 @@ export class EiStarclassYourOrderComponent implements OnInit {
     try {
       this.loader.hide()
       this.starclassOrderList.params ={
+        'start_date': this.starclassOrderList.filterFromDate !== undefined ? this.datePipe.transform(this.starclassOrderList.filterFromDate, 'yyyy-MM-dd') : '',
+        'end_date': this.starclassOrderList.filterToDate !== undefined ? this.datePipe.transform(this.starclassOrderList.filterToDate, 'yyyy-MM-dd') : '',  
         'page': page,
-        'page_size': this.starclassOrderList.page_size
+        'page_size': this.starclassOrderList.page_size,
       }
       this.baseService.getData('starclass/payment/starclass_payment_details_list/', this.starclassOrderList.params).subscribe(
         (res: any ) => {
@@ -67,6 +71,20 @@ export class EiStarclassYourOrderComponent implements OnInit {
       this.alert.error(error.error, 'Error')
       this.loader.hide()
     }
+  }
+
+  generatePdf(transactionId: any){
+    let data ={
+      'payment_id' : transactionId
+    }
+    this.baseService.generatePdf('starclass/payment-invoice/' , 'my_order_'+ transactionId,   data)
+  }
+
+  generateExcel() {
+    delete this.starclassOrderList.params.page_size;
+    delete this.starclassOrderList.params.page;
+    this.starclassOrderList.params['export_csv'] = true
+    this.baseService.generateExcel('starclass/export-csv/', 'my_order_list', this.starclassOrderList.params);
   }
 
   goBack(){

@@ -47,4 +47,7 @@ export class CartList extends Pagination{
 
 export class StarclassOrderList extends Pagination{
   params : any = {}
+  displayedColumns: string[] = ['SNo','orderId', 'amount', 'couponCode', 'dateBought','boughtBy','downloadInvoice'];
+  filterFromDate: any;
+  filterToDate: any;
 }
