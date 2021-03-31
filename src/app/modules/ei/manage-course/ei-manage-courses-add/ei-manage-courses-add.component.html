@@ -301,6 +301,7 @@
                                                 <div
                                                     class=" form-control-inputDiv py-1 rounded shadow-none ">
                                                     <select [disabled]="courseList.is_teaching_current"
+                                                    (change)="updateSection(classD, courseList.is_teaching_current)"
                                                         id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                         [required]="classD.teaching_stopped"
                                                         [(ngModel)]="classD.teaching_end_year"

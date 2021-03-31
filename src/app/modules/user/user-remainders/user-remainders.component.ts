@@ -27,7 +27,7 @@ export class UserRemaindersComponent implements OnInit {
   getReminders(){
   try {
     this.loader.show();
-    this.baseService.getData("ei/get-all-reminder-by-ei/").subscribe(res=>{
+    this.baseService.getData("user/get-all-reminders/").subscribe(res=>{
       let response:any={};
       response=res;
       if(response.status==true)
