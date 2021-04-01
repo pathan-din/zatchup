@@ -179,6 +179,13 @@ export class StarclassCoursePreviewComponent implements OnInit {
     }
   }
 
+  generateExcel() {
+    delete this.lectureList.model.page_size;
+    delete this.lectureList.model.page;
+    this.lectureList.model['export_csv'] = true
+    this.baseService.generateExcel('starclass/export-csv-lecture/', 'lecture_list', this.lectureList.model);
+  }
+
   //   $scope.video = function(e) {
   //     var videoElements = angular.element(e.srcElement);
   //     videoElements[0].pause();

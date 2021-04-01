@@ -156,4 +156,11 @@ export class CurrentPlansComponent implements OnInit {
     }, () => {
     });
   }
+
+  generateExcel() {
+    delete this.planDetails.modal.page_size;
+    delete this.planDetails.modal.page;
+    this.planDetails.modal['export_csv'] = true
+    this.baseService.generateExcel('starclass/export-csv/', 'my_order_list', this.planDetails.modal);
+  }
 }
