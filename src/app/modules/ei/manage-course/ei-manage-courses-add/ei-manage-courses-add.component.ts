@@ -111,9 +111,7 @@ export class EiManageCoursesAddComponent implements OnInit {
         if(id){
           this.model2Step.coursedata=[];
           this.model2Step.coursedata.push(res.data);
-          this.model2Step.coursedata.forEach(element => {
-            console.log(element.end_year);
-            
+          this.model2Step.coursedata.forEach(element => {            
             element.is_teaching_current = element.end_year=='Present'?true:false
           });
         }
@@ -197,6 +195,7 @@ export class EiManageCoursesAddComponent implements OnInit {
     if(!standardList.classdata){
       standardList.classdata=[];
     }
+    console.log('is teaching current....', this.model2Step)
     standardList.classdata.push({
       class_name: '',
       teaching_start_year: 0,
@@ -261,15 +260,13 @@ export class EiManageCoursesAddComponent implements OnInit {
    */
 
   addCourseDataStep2(){
-   
-     
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,this.model2Step.coursedata);
-    
     if(this.errorDisplay.valid)
     {
       return false;
     } try {
       this.SpinnerService.show();
+      console.log('')
       if(this.params.action){
         var editUrl = "ei/course-data-by-course-id/"+this.params.course_id+"/";
         this.base.actionForPutMethod(editUrl,this.model2Step).subscribe(res => {
@@ -363,6 +360,10 @@ export class EiManageCoursesAddComponent implements OnInit {
   }
   goBack(): void{
     this.location.back()
+  }
+
+  updateSection(data: any, isCurrentTeaching: any){
+    data.is_teaching_current = isCurrentTeaching
   }
   
 }

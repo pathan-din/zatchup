@@ -2,11 +2,11 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4">
-            <h2 class="mb-4 ">Please Enter Your School</h2>
+        <div class="col-md-4 order-1 order-sm-6 MobileCol6MB">
+            <h2 class="mb-4 text-center">Please Enter Your School</h2>
 
             <form>
 
@@ -79,8 +79,8 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.university"></div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 ">
+                <div class="form-group row mt-4">
+                    <div class="col-sm-12 text-center">
                         <button type="submit" class="btn common-btn regularFont " (click)="goToUserQualificationPage()">Submit</button>
                         <!-- <button type="submit" class="btn common-btn regularFont " (click)="goToUserEiProfileNotOnboardPage()">Submit</button> -->
                     </div>
