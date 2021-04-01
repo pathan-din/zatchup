@@ -8,6 +8,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-ei-sidenav',
@@ -38,7 +39,8 @@ export class EiSidenavComponent {
     private baseService: BaseService,
     private alert: NotificationService,
     private route: ActivatedRoute,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private confirmDialogService: ConfirmDialogService
   ) {
 
     this.breakpointObserver
@@ -88,10 +90,13 @@ export class EiSidenavComponent {
 
   async logout() {
     this.loader.hide();
-    localStorage.clear();
-    sessionStorage.clear();
-    await this.firebaseService.setPresence('offline')
-    this.router.navigate(['ei/login']);
+    await this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () =>{
+      localStorage.clear();
+      sessionStorage.clear();
+      this.firebaseService.setPresence('offline')
+      this.router.navigate(['ei/login']);
+    },() =>{}
+    );
   }
 
   isValidModule(module_code) {

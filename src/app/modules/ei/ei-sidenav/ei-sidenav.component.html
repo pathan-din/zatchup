@@ -49,11 +49,12 @@
                 <span class="commonFontSize">E-Certificates & Report Cards</span>
             </a>
             <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/star-class"
-             routerLinkActive="link-active" mat-list-item>
+                routerLinkActive="link-active" mat-list-item>
                 <i class="material-icons mr-2 md-18">people</i>
                 <span class="commonFontSize">Zatchup Star Class</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" tooltip="Coming Soon..." mat-list-item>
+            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/reminder-add"
+                routerLinkActive="link-active">
                 <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Reminder</span>
             </a>
@@ -76,7 +77,8 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize">My Authorisations</span>
             </a> -->
-            <a *ngIf="isValidModule('') && isApproved" mat-list-item routerLink="/ei/subscription" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('') && isApproved" mat-list-item routerLink="/ei/subscription"
+                routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">subscriptions</i>
                 <span class="commonFontSize">Subscription Management</span>
             </a>
