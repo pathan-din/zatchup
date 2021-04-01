@@ -3,6 +3,10 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
+            <span class=""><a class="navbar-brand">
+                <img class="img-fluid mobileLogoImg" src="assets/images/EiWebsite/kyc_logo.png"
+                routerLink="/ei/dashboard"></a></span>
+            <span class="spacer"></span>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
             <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/dashboard"
                 routerLinkActive="link-active">
