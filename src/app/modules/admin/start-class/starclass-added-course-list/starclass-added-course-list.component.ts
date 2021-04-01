@@ -224,6 +224,13 @@ getPlanDetails(){
      
   //  }
 
+  generateExcel() {
+    delete this.courseList.modal.page_size;
+    delete this.courseList.modal.page;
+    this.courseList.modal['export_csv'] = true
+    this.baseService.generateExcel('starclass/export-csv-course/', 'course_list', this.courseList.modal);
+  }
+
   goBack(){
     this.location.back()
   }
