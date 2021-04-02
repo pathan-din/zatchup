@@ -51,3 +51,33 @@ export class StarclassOrderList extends Pagination{
   filterFromDate: any;
   filterToDate: any;
 }
+
+export class EiCourseList extends Pagination{
+  displayedColumns: string[] = ['position', 'courseName','levelOfEducation', 
+  'field','noOfStandards','subject',
+  'noOfCourse','Action'];
+  params: any = {}
+  id: any;
+}
+
+export class StudentAuidence extends Pagination{
+  displayedColumns: string[] = ['select','position', 'profilePic','nameOfStudent','classDetails','class','rollNo'];
+  id: any;
+  params: any ={};
+}
+
+export class EiStarclassCourseView extends Pagination{
+  courseDetails: any;
+}
+
+export class EiStarclassLectureList extends Pagination{
+  displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd',
+        'viewDetails'];
+        model: any;
+        id: any;
+}
+
+export class EiLectureDetails extends Pagination{
+  model:any;
+  details: any;
+}
