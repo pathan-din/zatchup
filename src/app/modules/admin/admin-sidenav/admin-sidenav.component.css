@@ -89,3 +89,16 @@
 /* :host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
     border-top-color: #ffffff;
 } */
+
+
+
+.mobileLogoImg{display: none;}
+
+@media (max-width: 960px){
+    
+    .headerLogoImg {
+        display: none;
+    }
+    .mobileLogoImg{display: block; padding: 10px;}
+    
+}

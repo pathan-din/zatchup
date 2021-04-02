@@ -4,6 +4,7 @@ import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-user-header',
@@ -30,6 +31,7 @@ export class UserHeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private notifypush: FirebaseService,
     private firestore: AngularFirestore,
+    private confirmDialogService: ConfirmDialogService
   ) {
     this.ids = new Array<any>();
   }
@@ -103,8 +105,16 @@ export class UserHeaderComponent implements OnInit {
   }
   logout() {
 
-    localStorage.clear();
-    this.router.navigate(['user/login']);
+    // localStorage.clear();
+    // this.router.navigate(['user/login']);
+
+    this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () =>{
+      localStorage.clear();
+      sessionStorage.clear();
+      // this.firebaseService.setPresence('offline')
+      this.router.navigate(['user/login']);
+    },() =>{}
+    );
   }
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
