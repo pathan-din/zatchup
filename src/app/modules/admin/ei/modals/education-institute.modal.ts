@@ -163,3 +163,14 @@ export class LectureDetailsEdit extends Pagination {
     model: any;
     details: any;
 }
+
+export class CoursesUploadedByEi extends Pagination{
+  modal: any;
+  id: any;
+  displayedColumns: string[] = ['SNo', 'dateOfCreate','courseID', 'titleOfCourse', 'levelofEducation',
+  'Field','Standard','Subject','numberOfLectures',
+  'TotalActivePlans', 'totalViewsOncourse', 'Action'];
+  filterFromDate: any;
+  filterToDate: any;
+
+}

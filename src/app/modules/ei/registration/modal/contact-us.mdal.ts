@@ -58,6 +58,7 @@ export class EiCourseList extends Pagination{
   'noOfCourse','Action'];
   params: any = {}
   id: any;
+  modal: any;
 }
 
 export class StudentAuidence extends Pagination{
@@ -75,6 +76,7 @@ export class EiStarclassLectureList extends Pagination{
         'viewDetails'];
         model: any;
         id: any;
+  modal: any;
 }
 
 export class EiLectureDetails extends Pagination{

@@ -154,7 +154,7 @@
         </div>
     </div> -->
 
-    <!-- <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv mb-1">
             <div class="col-md-12 ">
                 <h2 class="commonFontSize semiBoldFont m-0">Courses</h2>
@@ -165,9 +165,9 @@
                 <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0" (click)="goToCreateCourse()">Add New Course </button>
             </div>
         </div>
-    </div> -->
+    </div>
 
-    <!-- <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv mb-1">
             <div class="col-md-12 ">
                 <h2 class="commonFontSize semiBoldFont m-0">Courses Uploaded By EI Summary</h2>
@@ -177,13 +177,13 @@
             <div class="col-md-4 MobileCol6MB">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 mediumFont commonFontSize">Courses Available</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <h2 (click)="goToCourseUploadedByEi()" class="countFontSize text-center semiBoldFont">{{dashBoardCount.ei_courses_count}}</h2>
                     <p class="p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
-                        Total Courses Available:<span class="ml-2">0</span></p>
+                        Total Courses Available:<span class="ml-2">{{dashBoardCount.ei_courses_count}}</span></p>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- <div class="Fee-dashboard-div bg-white px-2 py-2 mt-3">
         <div class="row">

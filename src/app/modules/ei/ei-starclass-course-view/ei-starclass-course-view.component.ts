@@ -124,4 +124,11 @@ goBack(){
   this.location.back()
 }
 
+generateExcel() {
+  delete  this.eiStarclassLectueList.model.page_size;
+  delete  this.eiStarclassLectueList.model.page;
+  this.eiStarclassLectueList.model['export_csv'] = true
+  this.baseService.generateExcel('starclass/export-csv-ei-lecture/', 'ei-lecture-list',  this.eiStarclassLectueList.model);
+}
+
 }

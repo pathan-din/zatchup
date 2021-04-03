@@ -43,6 +43,10 @@ export class StarclassManagementComponent implements OnInit {
     this.router.navigate(['admin/course-added-list'])
   }
 
+  goToCourseUploadedByEi(){
+    this.router.navigate(['admin/starclass-course-upload-by-ei'])
+  }
+
   getDashBoardCount(){
   this.loader.show()
   try {

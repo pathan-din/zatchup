@@ -120,4 +120,12 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
     this.router.navigate(['ei/star-class-audience-student-list', id])
     console.log(id);
   }
+
+  generateExcel() {
+    delete this.eiCourseList.params.page_size;
+    delete this.eiCourseList.params.page;
+    this.eiCourseList.params['export_csv'] = true
+    this.baseService.generateExcel('starclass/export-csv-ei-course/', 'ei-course-list', this.eiCourseList.params);
+  }
+
 }
