@@ -174,3 +174,9 @@ export class CoursesUploadedByEi extends Pagination{
   filterToDate: any;
 
 }
+
+export class ActiveBoughtCourses extends Pagination{
+    displayedColumns: string[] = ['position','dateOfBuying', 'courseId','titleOfCourse', 'levelOfEducation',
+    'field', 'standard','subject','buyingEiZatchupId','buyingEiName','dateOfExpiry'];
+  params: { page: any; page_size: any; };
+}

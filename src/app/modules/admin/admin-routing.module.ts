@@ -561,7 +561,7 @@ const routes: Routes = [
     path: 'price-plan-history', component: PricePlanHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'all-courses-uploaded-by-ei', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
+    path: 'all-active-courses', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
   },
   {
     path: 'starclass-course-preview/:id', component:StarclassCoursePreviewComponent, canActivate: [AuthGuard]

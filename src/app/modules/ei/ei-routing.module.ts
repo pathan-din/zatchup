@@ -142,6 +142,7 @@ import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-cond
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
 import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
 import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
+import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
 
 
 const routes: Routes = [
@@ -356,7 +357,7 @@ const routes: Routes = [
     path: 'star-class-courses-preview/:id', component: EiStarclassCoursesPreviewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-audience-student-list/:id', component: EiStarclassAudienceStudentListComponent, canActivate: [AuthGuard]
+    path: 'star-class-audience-student-list', component: EiStarclassAudienceStudentListComponent, canActivate: [AuthGuard]
   },
   {
     path: 'star-class-cart', component: EiStarclassCartComponent, canActivate: [AuthGuard]
@@ -561,6 +562,9 @@ const routes: Routes = [
    },
    {
      path: 'ei-starclass-course-view/:id', component:EiStarclassCourseViewComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'zatchup-starclass-courses', component:ZatchupStarclassComponent, canActivate:[AuthGuard]
    },
   
   

@@ -61,6 +61,14 @@ export class EiCourseList extends Pagination{
   modal: any;
 }
 
+export class ZatchupStarclassCourses extends Pagination{
+  displayedColumns: string[] = ['position', 'courseName','boughtDate', 
+  'expiryDate','totalViews','noOfViews']; 
+  params: any = {}
+  id: any;
+  modal: any;
+}
+
 export class StudentAuidence extends Pagination{
   displayedColumns: string[] = ['select','position', 'profilePic','nameOfStudent','classDetails','class','rollNo'];
   id: any;

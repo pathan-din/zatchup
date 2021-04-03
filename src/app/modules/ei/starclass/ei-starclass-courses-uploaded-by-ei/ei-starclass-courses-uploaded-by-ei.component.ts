@@ -117,7 +117,7 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
   }
 
   goToStudentAudienceAdd(id){
-    this.router.navigate(['ei/star-class-audience-student-list', id])
+    this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{'approved':1}})
     console.log(id);
   }
 

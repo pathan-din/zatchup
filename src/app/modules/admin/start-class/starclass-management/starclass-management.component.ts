@@ -47,6 +47,10 @@ export class StarclassManagementComponent implements OnInit {
     this.router.navigate(['admin/starclass-course-upload-by-ei'])
   }
 
+  goToAllActiveCourses(){
+    this.router.navigate(['admin/all-active-courses'])
+  }
+
   getDashBoardCount(){
   this.loader.show()
   try {

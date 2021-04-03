@@ -45,14 +45,14 @@
                         <span class="ml-2"> {{dashBoardCount.course_available_count}}</span></p>                   
                 </div>
             </div>
-            <!-- <div class="col-md-5 MobileCol6MB">
-                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+            <div class="col-md-5 MobileCol6MB">
+                <div (click)="goToAllActiveCourses()" class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
                     <p class="p-2 mediumFont commonFontSize">Number Of Active Bought Courses</p>
-                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashBoardCount.active_bought_courses_count}}</h2>
                     <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
-                        Total Number of Active Bought Courses:<span class="ml-2">0</span></p>
+                        Total Number of Active Bought Courses:<span class="ml-2">{{dashBoardCount.active_bought_courses_count}}</span></p>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
 
