@@ -141,6 +141,20 @@ export class StarclassPlanHistory extends Pagination {
     history: any;
     displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
 }
+
+export class StarclassCourseHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
+
+}
+
+export class EIStarclassCourseHistory extends Pagination {
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message'] 
+}
+
 export class StarclassCourseDetails extends Pagination {
     courseDetails: any;
 

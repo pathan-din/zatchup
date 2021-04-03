@@ -1,0 +1,83 @@
+<app-admin-sidenav></app-admin-sidenav>
+
+<div class="container main-container p-3">
+
+    <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3">
+        <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap p-0">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Ei Course History</h2>
+        </div>
+
+        <div class="row my-3 align-items-center" *ngIf="eiStarclassCourseHistory.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getCourseHistory('1')" [(ngModel)]="eiStarclassCourseHistory.page_size">
+                        <option *ngFor="let count of eiStarclassCourseHistory.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+         <div class="row mt-3">
+            <div class="col-md-12">
+                 <!--Start html for table content Alimni information-->
+                <div class="tableDiv " *ngIf="eiStarclassCourseHistory.dataSource">
+                    <div class="mat-elevation-z1 table-responsive" >
+                        <mat-table [dataSource]="eiStarclassCourseHistory.dataSource | paginate:eiStarclassCourseHistory.config">
+
+                            <ng-container matColumnDef="position">
+                                <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                <mat-cell *matCellDef="let element; let i = index;"> {{i + eiStarclassCourseHistory.startIndex}} </mat-cell>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef> Action  </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.action}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actionDate">
+                                <mat-header-cell *matHeaderCellDef> Action Date </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.created_on | date}}
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="message">
+                                <mat-header-cell *matHeaderCellDef> Message </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    {{element.message}} 
+                                </mat-cell>
+                            </ng-container>
+
+                            <!-- <ng-container matColumnDef="action">
+                                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    <i data-toggle="modal" data-target="#createNewPlan" (click)="editPlan(element)"  class="fa fa-pencil ml-2 color-green cursorStyle" aria-hidden="true"></i>
+                                    <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true"
+                                    (click)="deletePlan(element.id)"></i>
+                                </mat-cell>
+                            </ng-container> -->
+
+                            <mat-header-row *matHeaderRowDef="eiStarclassCourseHistory.displayedColumns "></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: eiStarclassCourseHistory.displayedColumns; "></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+                <pagination-controls *ngIf="eiStarclassCourseHistory.dataSource" (pageChange)="getCourseHistory($event)" class="eiPaginationTag">
+                </pagination-controls>
+                <div class="row" *ngIf="!eiStarclassCourseHistory.dataSource">
+                    <div class="col-12 pt-2 pb-2">
+                        <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 

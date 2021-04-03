@@ -78,4 +78,8 @@ export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
     this.location.back()
   }
 
+  goToEiCourseHistory(){
+    this.router.navigate(['admin/ei-starclass-course-history'])
+  }
+
 }
