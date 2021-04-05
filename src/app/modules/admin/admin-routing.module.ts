@@ -145,6 +145,8 @@ import { StarclassAddedCourseListComponent } from './start-class/starclass-added
 import { AdminStarClassCourseUploadedByEiComponent } from './start-class/admin-star-class-course-uploaded-by-ei/admin-star-class-course-uploaded-by-ei.component';
 import { AdminCourseHistoryComponent } from './admin-course-history/admin-course-history.component';
 import { EiStarclassCourseHistoryComponent } from './ei-starclass-course-history/ei-starclass-course-history.component';
+import { StarclassCoursesDetailsViewComponent } from './start-class/starclass-courses-details-view/starclass-courses-details-view.component';
+import { StarclassLectureDetailsViewComponent } from './start-class/starclass-lecture-details-view/starclass-lecture-details-view.component';
 
 
 const routes: Routes = [
@@ -579,6 +581,12 @@ const routes: Routes = [
   },
   {
     path: 'ei-starclass-course-history', component:EiStarclassCourseHistoryComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-courses-details-view', component:StarclassCoursesDetailsViewComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-lecture-details-view', component:StarclassLectureDetailsViewComponent, canActivate:[AuthGuard]
   },
 
 
