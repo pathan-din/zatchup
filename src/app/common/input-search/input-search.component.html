@@ -67,7 +67,7 @@
             <ul class="searchDropdown shadow rounded">
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
                     <div class="searh_result cursorStyle">
-                        <div class="searchUserProfile">
+                        <div class="searchUserProfile" *ngIf="displayImage">
                             <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User"
                                 class="img-small" />
                         </div>

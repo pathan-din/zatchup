@@ -19,7 +19,8 @@ export class UserHeaderComponent implements OnInit {
   ids: Array<any> = [];
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/",
-    "display": ['first_name', 'last_name']
+    "display": ['first_name', 'last_name'],
+    "displayImage": true
   }
   messageData: any = [];
   currentUser: any = "";
