@@ -15,7 +15,7 @@
             <div class="col-md-12 customVideo" *ngFor="let details of eiCourseDetails.courseDetails">
                 <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
                 <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
-                     <source src="{{details.course_preview}}" type="video/mp4" />
+                    <source src="{{details.course_preview}}" type="video/mp4" />
                 </video>
             </div>
             <!-- <div class="col-4">
@@ -30,7 +30,7 @@
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
         <!---->
         <div class="row topDiv">
-            <div class="col-6 ">
+            <div class="col-12">
                 <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
             </div>
             <!-- <div class="col-6 text-right">
@@ -49,7 +49,8 @@
                             <p>Course Name</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> {{courseData.course_name}}</p>
+                            <p>
+                                <span class="mr-3">:</span> {{courseData.course_name}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -58,7 +59,8 @@
                             <p>Level of Education</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.level_of_education}}</p>
+                            <p>
+                                <span class="mr-3">:</span>{{courseData.level_of_education}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -67,7 +69,8 @@
                             <p>Field</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.field}}</p>
+                            <p>
+                                <span class="mr-3">:</span>{{courseData.field}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -76,7 +79,8 @@
                             <p>Standard</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.standard}}</p>
+                            <p>
+                                <span class="mr-3">:</span>{{courseData.standard}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -85,7 +89,8 @@
                             <p>Subject</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.subject}}</p>
+                            <p>
+                                <span class="mr-3">:</span>{{courseData.subject}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -94,7 +99,8 @@
                             <p>Number Of Lectures</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> {{courseData.number_of_lectures}}</p>
+                            <p>
+                                <span class="mr-3">:</span> {{courseData.number_of_lectures}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -103,7 +109,8 @@
                             <p>Teaching Faculty Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.faculty_details}}</p>
+                            <p>
+                                <span class="mr-3">:</span>{{courseData.faculty_details}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -112,7 +119,8 @@
                             <p>Topic Cover</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>{{courseData.topic_cover}}</p>
+                            <p>
+                                <span class="mr-3">:</span>{{courseData.topic_cover}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -121,7 +129,8 @@
                             <p>Description</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{courseData.description}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{courseData.description}}</p>
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -138,72 +147,71 @@
             </div>
             <!--End div for oView Course Details-->
 
-            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3" >
-               
-                <div  *ngIf="courseData.plan_data">
-                <div class="row topDiv">
-                    <div class="col-6 ">
-                        <h2 class="commonFontSize semiBoldFont m-0"> Plan Details</h2>
-                    </div>
-                    <div class="col-6 text-right" >
-                        <button (click)="addToCart()" type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 "
-                          >Add To Cart</button>
-                    </div>
-                </div>
-         <div class="tableDiv customTable">
-                <div class="mat-elevation-z1 table-responsive">
-                    <mat-table [dataSource]="courseData.plan_data">
-    
-                        <ng-container matColumnDef="radioButton">
-                            <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-                            <mat-radio-button class="customButton"*matCellDef="let element" (click)="getCartData(element, courseData.id)">  </mat-radio-button>
-                        </ng-container>
+            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">
 
-                        <ng-container matColumnDef="position">
-                            <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                            <mat-cell *matCellDef="let element; let i = index;"> {{i + 1 }} </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.plan_name}} </mat-cell>
-                        </ng-container>
-    
-                       
-                        <ng-container matColumnDef="price">
-                            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                {{element.price}}
-                            </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="validity">
-                            <mat-header-cell *matHeaderCellDef>Validity</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                {{element.validity}} Days                     
-                            </mat-cell>
-                        </ng-container>
-    
-                        <ng-container matColumnDef="views">
-                            <mat-header-cell *matHeaderCellDef>Views Per Lecture</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                {{element.views_per_lecture}}                       
-                             </mat-cell>
-                        </ng-container>
-    
-                        <mat-header-row *matHeaderRowDef="eiCourseDetails.DisplayedColumns "></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: eiCourseDetails.DisplayedColumns; "></mat-row>
-                    </mat-table>
+                <div *ngIf="courseData.plan_data">
+                    <div class="row topDiv">
+                        <div class="col-6 pr-0">
+                            <h2 class="commonFontSize semiBoldFont m-0"> Plan Details</h2>
+                        </div>
+                        <div class="col-6 text-right pl-0">
+                            <button (click)="addToCart()" type="button" class="bg-dark text-white px-3 py-2 border-0 ">Add To Cart</button>
+                        </div>
+                    </div>
+                    <div class="tableDiv customTable">
+                        <div class="mat-elevation-z1 table-responsive">
+                            <mat-table [dataSource]="courseData.plan_data">
+
+                                <ng-container matColumnDef="radioButton">
+                                    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                    <mat-radio-button class="customButton" *matCellDef="let element" (click)="getCartData(element, courseData.id)"> </mat-radio-button>
+                                </ng-container>
+
+                                <ng-container matColumnDef="position">
+                                    <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                    <mat-cell *matCellDef="let element; let i = index;"> {{i + 1 }} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="name">
+                                    <mat-header-cell *matHeaderCellDef>Name </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.plan_name}} </mat-cell>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="price">
+                                    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.price}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="validity">
+                                    <mat-header-cell *matHeaderCellDef>Validity</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.validity}} Days
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="views">
+                                    <mat-header-cell *matHeaderCellDef>Views Per Lecture</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.views_per_lecture}}
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="eiCourseDetails.DisplayedColumns "></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: eiCourseDetails.DisplayedColumns; "></mat-row>
+                            </mat-table>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="!courseData.plan_data">
+                        <div class="col-12 pt-2 pb-2">
+                            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="row" *ngIf="!courseData.plan_data">
-                <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
-                </div>
-            </div>
-            
-        </div>
-        </div>
 
         </div>
 

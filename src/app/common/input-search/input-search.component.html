@@ -50,20 +50,20 @@
         </div>
     </div>
     <div class="row" *ngIf="isSearching">
-        <div class="text-center notFound rounded">
+        <div class="text-center notFound">
             <h4>Searching ... </h4>
         </div>
     </div>
     <div class="row">
         <ng-container *ngIf="apiResponse['count'] == 0; else elseTemplate">
-            <ul class="notFound rounded text-center">
+            <ul class="notFound text-center">
                 <li>Data Not found</li>
             </ul>
 
         </ng-container>
 
         <ng-template #elseTemplate>
-            <ul class="searchDropdown shadow rounded">
+            <ul class="searchDropdown shadow">
                 <div></div>
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
                     <div class="searh_result cursorStyle">

@@ -583,7 +583,7 @@ const routes: Routes = [
     path: 'ei-starclass-course-history', component:EiStarclassCourseHistoryComponent, canActivate:[AuthGuard]
   },
   {
-    path: 'starclass-courses-details-view', component:StarclassCoursesDetailsViewComponent, canActivate:[AuthGuard]
+    path: 'starclass-courses-details-view/:id', component:StarclassCoursesDetailsViewComponent, canActivate:[AuthGuard]
   },
   {
     path: 'starclass-lecture-details-view', component:StarclassLectureDetailsViewComponent, canActivate:[AuthGuard]

@@ -194,3 +194,9 @@ export class ActiveBoughtCourses extends Pagination{
     'field', 'standard','subject','buyingEiZatchupId','buyingEiName','dateOfExpiry'];
   params: { page: any; page_size: any; };
 }
+
+export class EiStarclassLectureList extends Pagination{
+    displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd', 'uploadDate', 'viewDetails'];   
+  model: any;
+
+}
