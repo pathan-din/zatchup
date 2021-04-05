@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
 import { first, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from './User.model';
 import { AngularFireMessaging } from '@angular/fire/messaging';
-import { mergeMapTo } from 'rxjs/operators';
-import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs'
 
 
@@ -40,12 +37,6 @@ export class FirebaseService {
             console.log(msg);
 
         })
-        // this.angularFireMessaging.messaging.subscribe(
-        //     (_messaging) => {
-        //     _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-        //     _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-        //     }
-        //     )
     }
     requestPermission() {
         this.angularFireMessaging.requestToken.subscribe(
@@ -65,7 +56,7 @@ export class FirebaseService {
                 this.currentMessage.next(payload);
             })
     }
-    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string,class_name:any='',roll_no:any='') {
+    public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string, class_name: any = '', roll_no: any = '') {
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
                 (user) => {
@@ -76,8 +67,8 @@ export class FirebaseService {
                         firstName: firstName,
                         lastName: lastName,
                         photoUrl: photoUrl,
-                        class_name:class_name,
-                        roll_no:roll_no,
+                        class_name: class_name,
+                        roll_no: roll_no,
                         isActive: isActive
                     }
                     userRef.set(updateUser)
@@ -98,7 +89,6 @@ export class FirebaseService {
 
     getChatRooms(collectionName): Observable<any> {
         let chatRooms = this.db.collection(collectionName).valueChanges();
-        // let chatRooms = this.firdb.object('/users').valueChanges();
         return chatRooms
     }
 
@@ -112,7 +102,6 @@ export class FirebaseService {
     }
 
     getPresence(uid: string) {
-        // return this.db.collection('status').doc(uid).valueChanges();
         return this.db.collection('status').doc(uid).valueChanges();
     }
 
@@ -124,5 +113,60 @@ export class FirebaseService {
                 timestamp: new Date().valueOf()
             })
         }
+    }
+
+    updatePhotoOnChatUser(photoUrl) {
+        var uuid = localStorage.getItem('fbtoken');
+        const userRef1 = this.db.doc(`users/${uuid}`);
+        this.db.collection('users').doc(uuid).get().toPromise().then((resp: any) => {
+            console.log();
+            let res = resp.data();
+            const userRef = this.db.doc(`users/${uuid}`);
+            const updateUser = {
+                id: uuid,
+                email: res.email,
+                firstName: res.firstName,
+                lastName: res.lastName,
+                photoUrl: photoUrl.profile_pic,
+                class_name: res.class_name,
+                roll_no: res.roll_no,
+                isActive: res.isActive
+
+            }
+            userRef.set(updateUser)
+        });
+
+    }
+    updateFirebasePassword(email, oldP, password) {
+        console.log(oldP, email);
+        var result = this.afAuth.signInWithEmailAndPassword(email, oldP);
+        result.then((res: any) => {
+            localStorage.setItem('fbtoken', res.user.uid);
+            this.updatePassword(email, password)
+        }, (error) => {
+            console.log(error);
+            //this.updatePassword(email,password)
+
+        })
+
+
+    }
+
+    updatePassword(email, newPassword) {
+        this.afAuth.currentUser.then((res) => {
+            console.log(res);
+
+            res.updatePassword(newPassword).then(update => {
+                console.log(update);
+                localStorage.removeItem('hash');
+
+            }, (error) => {
+                console.log(error);
+
+
+            })
+
+
+        })
     }
 }

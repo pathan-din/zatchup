@@ -107,10 +107,10 @@ export class PersonalMessagesComponent implements OnInit {
     })
     
   }
-  goToChatScreen(fbid) {
+  goToChatScreen(fbid,frndListId) {
     this.conversation = [];
     this.dataStudent =[];
-    
+    localStorage.setItem('friendlidt_id',frndListId);
     this.getRecepintUserDetails(fbid)
     return new Promise<any>((resolve, reject) => {
       let data: any = {};

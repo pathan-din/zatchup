@@ -5,6 +5,7 @@ import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../../../../services/notification/notification.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 @Component({
   selector: 'app-ei-school-profile',
   templateUrl: './ei-school-profile.component.html',
@@ -36,7 +37,8 @@ export class EiSchoolProfileComponent implements OnInit {
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
     public alert: NotificationService,
-    private genericFormValidationService: GenericFormValidationService) { }
+    private genericFormValidationService: GenericFormValidationService,
+    private firebase:FirebaseService) { }
 
   ngOnInit(): void {
     this.getProfile();
@@ -71,6 +73,9 @@ export class EiSchoolProfileComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         this.userProfile = response;
+        //console.log(this.userProfile );
+        
+       this.firebase.updatePhotoOnChatUser(this.userProfile);
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
@@ -99,6 +104,7 @@ export class EiSchoolProfileComponent implements OnInit {
         if (response.status == true) {
           this.SpinnerService.hide();
           this.userProfile.profile_pic = response.data[0].profile_pic_url;
+          
         } else {
           this.SpinnerService.hide();
           console.log("Error:Data not update");

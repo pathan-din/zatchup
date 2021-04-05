@@ -21,7 +21,7 @@ export class UserLoginComponent implements OnInit {
   errorOtpModelDisplay = '';
   modelForOtpModal: any = {};
   passwordType: any = "password";
-  firebaseemail:any='';
+  firebaseemail: any = '';
   constructor(
     private router: Router,
     private alert: NotificationService,
@@ -89,8 +89,6 @@ export class UserLoginComponent implements OnInit {
       this.loader.hide();
       this.alert.error("Something went wrong please contact administrator!", "Error");
     }
-
-
   }
   viewPassword() {
     if (this.passwordType == 'password') {
@@ -152,9 +150,8 @@ export class UserLoginComponent implements OnInit {
       let data: any = {};
       data.username = this.model.username;
       data.phone_otp = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
-      if(localStorage.getItem('fbtoken'))
-      {
-        data.firebase_id=localStorage.getItem('fbtoken');
+      if (localStorage.getItem('fbtoken')) {
+        data.firebase_id = localStorage.getItem('fbtoken');
       }
       this.baseService.action('user/verify-otp/', data).subscribe(
         (res: any) => {
@@ -201,43 +198,53 @@ export class UserLoginComponent implements OnInit {
       return false;
     }
   }
-  updatePassword(email,newPassword){
-    this.afAuth.currentUser.then((res)=>{
-      res.updatePassword(newPassword).then(update=>{
+  updatePassword(email, newPassword) {
+    this.afAuth.currentUser.then((res) => {
+      res.updatePassword(newPassword).then(update => {
         console.log(update);
-        var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
-        result.then((res:any)=>{
+        var result = this.afAuth.signInWithEmailAndPassword(email, newPassword);
+        result.then((res: any) => {
           localStorage.setItem('fbtoken', res.user.uid);
         })
-         console.log('signInMethodsRadhey.....',result)
+        console.log('signInMethodsRadhey.....', result)
       })
-      
-      
+
+
     })
-     
+
   }
 
   registerUserToFirebaseDB(data: any) {
-   // let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
-    let email = data.firebase_username+ '@zatchup.com';//this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    // let email = this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
+    let email = data.firebase_username + '@zatchup.com';//this.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     this.firebaseemail = email;
     var that = this;
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
-        console.log('signInMethods.....',signInMethods)
+        // console.log('signInMethods.....', signInMethods)
         if (signInMethods.length > 0) {
-          // var result =  that.afAuth.signInWithEmailAndPassword(email, that.model.password);
-          // // console.log('signInMethods.....',signInMethods)
-          // result.then((resLogin)=>{
-          //   localStorage.setItem('fbtoken', resLogin.user.uid);
-          // })
-          that.updatePassword(email,that.model.password)
-          
+          var password = '';
+          if (localStorage.getItem('hash')) {
+            password = atob(localStorage.getItem('hash'));
+            that.firebaseService.updateFirebasePassword(that.firebaseemail, password, that.model.password)
+          } else {
+            password = that.model.password
+          }
+
+          var result = that.afAuth.signInWithEmailAndPassword(that.firebaseemail, password);
+          result.then((res: any) => {
+            localStorage.setItem('fbtoken', res.user.uid);
+            // this.updatePassword(email,password)
+          }, (error) => {
+            console.log(error);
+            that.firebaseService.updateFirebasePassword(that.firebaseemail, password, that.model.password)
+
+          })
         }
         else {
-         
-          
-          that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1",data.class_alias,data.roll_no).then(
+
+
+          that.firebaseService.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1", data.class_alias, data.roll_no).then(
             (res: any) => {
               localStorage.setItem('fbtoken', res.user.uid);
             },
@@ -246,8 +253,8 @@ export class UserLoginComponent implements OnInit {
           )
         }
       })
-      .catch((error) =>{
-        console.log('error dzasdasdasda....',error)
+      .catch((error) => {
+        console.log('error dzasdasdasda....', error)
       })
   }
 
