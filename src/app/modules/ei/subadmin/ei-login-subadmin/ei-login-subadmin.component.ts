@@ -81,12 +81,10 @@ export class EiLoginSubadminComponent implements OnInit {
 
       }, (error) => {
         this.SpinnerService.hide();
-        //console.log(error);
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      //console.log(err);
     }
   }
   resendOtp() {
@@ -109,17 +107,14 @@ export class EiLoginSubadminComponent implements OnInit {
         }
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
-
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("verify Otp Exception", err);
+      console.log("Error", err);
     }
   }
 
   changeInput($ev) {
-    console.log($ev);
     if ($ev.target.value.length == $ev.target.maxLength) {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
@@ -161,7 +156,6 @@ export class EiLoginSubadminComponent implements OnInit {
           this.updateUserWithFirebaseID();
           localStorage.setItem("token", response.token);
           sessionStorage.setItem("permission", JSON.stringify(response.permission));
-
           $("#OTPModel").modal('hide');
           this.router.navigate(['ei/my-profile']);
         } else {
@@ -172,7 +166,7 @@ export class EiLoginSubadminComponent implements OnInit {
 
       });
     } catch (err) {
-      console.log("vaeryfy Otp Exception", err);
+      console.log("Error", err);
     }
 
   }
@@ -195,7 +189,20 @@ export class EiLoginSubadminComponent implements OnInit {
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          that.updatePassword(email,that.model.password)
+          var password='';
+          if(localStorage.getItem('hash')){
+              password=atob(localStorage.getItem('hash'));
+              that.firebaseService.updateFirebasePassword(email,password,that.model.password)
+          }else{
+              password=that.model.password
+          }
+          var result =  that.afAuth.signInWithEmailAndPassword(email,password);
+            result.then((res:any)=>{
+              localStorage.setItem('fbtoken', res.user.uid);
+            },(error)=>{
+              that.firebaseService.updateFirebasePassword(email,password,that.model.password)
+              
+            })
            
         }
         else {
@@ -213,12 +220,10 @@ export class EiLoginSubadminComponent implements OnInit {
   updatePassword(email,newPassword){
     this.afAuth.currentUser.then((res)=>{
       res.updatePassword(newPassword).then(update=>{
-        console.log(update);
         var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
         result.then((res:any)=>{
           localStorage.setItem('fbtoken', res.user.uid);
         })
-         console.log('signInMethodsRadhey.....',result)
       })
       
       

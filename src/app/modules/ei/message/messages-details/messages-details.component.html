@@ -14,7 +14,7 @@
                         alt="profile-pick" class="message-userImg" />
                 </div>
                 <h3 class="commonFontSize semiBoldFont m-2 color-fadded-black text-capitalize">
-                    {{recepintDetails.firstName}} {{recepintDetails.lastName}}
+                    {{recepintDetails.firstName}} {{recepintDetails.lastName}}({{recepintDetails.class_name}} {{recepintDetails.roll_no}})
                 </h3>
             </div>
         </div>
@@ -28,7 +28,7 @@
                                 class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
                         </p>
                     </div>
-                    <div *ngIf="objCon.document">
+                    <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
                         <img src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                         <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                         </span>

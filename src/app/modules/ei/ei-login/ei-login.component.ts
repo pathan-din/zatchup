@@ -64,7 +64,7 @@ export class EiLoginComponent implements OnInit {
         (res: any) => {
           this.loader.hide();
           if (res.status === true) {
-            this.baseService.firebase_username = res.data.firebase_username+'@zatchup.com';
+            this.baseService.firebase_username = res.data.firebase_username + '@zatchup.com';
             this.baseService.username = this.model.username;
             this.baseService.password = this.model.password;
             this.registerUserToFirebaseDB(res.data);
@@ -101,17 +101,27 @@ export class EiLoginComponent implements OnInit {
   }
 
   registerUserToFirebaseDB(data: any) {
-    let email = data.firebase_username+'@zatchup.com';// this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
-   
-   
+    let email = data.firebase_username + '@zatchup.com';// this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var that = this;
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          that.updatePassword(email,that.model.password)
-         
-          //localStorage.setItem('fbtoken', result.user.uid);
+          var password = '';
+          if (localStorage.getItem('hash')) {
+            password = atob(localStorage.getItem('hash'));
+            that.firebaseService.updateFirebasePassword(email, password, that.model.password)
+          } else {
+            password = that.model.password
+          }
+          var result = that.afAuth.signInWithEmailAndPassword(email, password);
+          result.then((res: any) => {
+            localStorage.setItem('fbtoken', res.user.uid);
+          }, (error) => {
+            console.log(error);
+            that.firebaseService.updateFirebasePassword(email, password, that.model.password)
+
+          })
         }
         else {
           firebase.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
@@ -124,32 +134,26 @@ export class EiLoginComponent implements OnInit {
           )
         }
       })
-      .catch((error) =>{
-        console.log('error dzasdasdasda....',error)
+      .catch((error) => {
+        console.log('error....', error)
       })
   }
-  updatePassword(email,newPassword){
-    this.afAuth.currentUser.then((res)=>{
-      res.updatePassword(newPassword).then(update=>{
+
+  updatePassword(email, newPassword) {
+    this.afAuth.currentUser.then((res) => {
+      res.updatePassword(newPassword).then(update => {
         console.log(update);
-        var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
-        result.then((res:any)=>{
+        var result = this.afAuth.signInWithEmailAndPassword(email, newPassword);
+        result.then((res: any) => {
           localStorage.setItem('fbtoken', res.user.uid);
         })
-         console.log('signInMethodsRadhey.....',result)
+        console.log('signInMethodsRadhey.....', result)
       })
-      
-      
+
+
     })
-    //updateCurrentUser(newPassword)
-    
-     
-    // this.afAuth.confirmPasswordReset(newPassword).then(function() {
-    //   // Update successful.
-    // }).catch(function(error) {
-    //   // An error happened.
-    // });
   }
+
   viewPassword() {
     if (this.passwordType == 'password') {
       this.passwordType = "text";

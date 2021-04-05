@@ -1,7 +1,8 @@
-<div class="position-relative">
+<!-- <div class="position-relative">
     <div class="row">
-        <div class="col-12 text-center">
-            <input type="text" #searchText class="form-control" value="{{value}}" placeholder="Search....." />
+        <div class="col-12 text-center position-relative">
+             <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
+            <input type="text" #searchText class="form-control pl-5" value="{{value}}" placeholder="Search....." />
         </div>
     </div>
     <div class="row position-absolute" *ngIf="isSearching">
@@ -21,7 +22,62 @@
         <ng-template #elseTemplate>
             <ul class="searchDropdown shadow rounded">
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
-                    <p class="pt-2 pb-2 mb-0 border-bottom"> {{data['display']}}</p>
+                     <p class="pt-2 pb-2 mb-0 border-bottom"> {{data['display']}}</p>
+
+                    <div class="searh_result cursorStyle">
+                        <div class="searchUserProfile">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User" class="img-small"/>
+                        </div>
+                        <div class="SearchUserName">
+                            Mahesh Chand
+                        </div>
+                        <div class="searchUserDesignation">
+                            Software Developer at Triazine
+                        </div>
+                    </div>
+
+
+            </ul>
+        </ng-template>
+    </div>
+</div> -->
+
+<div class="position-relative">
+    <div class="row">
+        <div class="col-12 text-center position-relative">
+            <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
+            <input type="text" #searchText class="form-control pl-5" value="{{value}}" placeholder="Search....." />
+        </div>
+    </div>
+    <div class="row position-absolute" *ngIf="isSearching">
+        <div class="col-12 text-center">
+            <h4>Searching ... </h4>
+        </div>
+    </div>
+    <div class="row">
+        <ng-container *ngIf="apiResponse['count'] == 0; else elseTemplate">
+            <ul class="notFound rounded">
+                <div>
+                    Data Not found
+                </div>
+            </ul>
+        </ng-container>
+
+        <ng-template #elseTemplate>
+            <ul class="searchDropdown shadow rounded">
+                <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
+                    <div class="searh_result cursorStyle">
+                        <div class="searchUserProfile">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User"
+                                class="img-small" />
+                        </div>
+                        <div class="SearchUserName">
+                            {{data['display']}}
+                        </div>
+                        <div class="searchUserDesignation">
+                            Software Developer at Triazine
+                        </div>
+                    </div>
             </ul>
         </ng-template>
     </div>

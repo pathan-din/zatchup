@@ -44,7 +44,7 @@
                 <div #scrollMe [scrollTop]="scrollHeight" class="schoolChat">
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
-                            <img *ngIf="objCon.document" src="assets/images/userWebsite/blue-menu.png"
+                            <img *ngIf="objCon.document" src="{{objCon.msg}}"
                                 class="img-fluid img-small cursorStyle">
                             <p *ngIf="!objCon.document" class="color-white m-0">{{objCon.msg}}</p>
                             <span

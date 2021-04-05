@@ -11,11 +11,10 @@
 <div class="container contentTopSpaceLanding landingPageWidth">
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <h2 class="mb-3 text-center" *ngFor="let objEpData of epData">My Education Profile
-                <span (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1" class="text-white float-right small-text px-2 py-0 rounded bg-paret-green cursorStyle">Request Pending
-                </span>
-
-            </h2>
+            <h2 class="mb-3 text-center pt-2">My Education Profile</h2>
+            <div class="mb-3" *ngFor="let objEpData of epData">
+                <span (click)="getRequestChangeDetails()" *ngIf="objEpData.kyc_approved==1" class="text-white float-right small-text px-4 py-2 rounded bg-paret-green cursorStyle">Request Pending</span>
+            </div>
 
             <div *ngFor="let objEpData of epData" class="pt-3" style="clear: both;">
                 <div class="row">
