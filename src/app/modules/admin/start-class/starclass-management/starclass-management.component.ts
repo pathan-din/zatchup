@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -16,12 +17,15 @@ export class StarclassManagementComponent implements OnInit {
   filterToDate: any;
   fromMaxDate: any;
   toMaxDate: any;
+  model: { from_date: any; to_date: any; };
 
   constructor(
     private router: Router,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private datePipe: DatePipe
+
   ) { 
     this.fromMaxDate = new Date();
     this.toMaxDate = new Date();
@@ -31,7 +35,9 @@ export class StarclassManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDashBoardCount()
+    this.getDashBoardCount();
+    this.filterRecords();
+
   }
 
   goToStarClassPlan(){
@@ -83,5 +89,31 @@ export class StarclassManagementComponent implements OnInit {
     this.alert.error(error.error, 'Error')
     this.loader.hide()
   }
+  }
+
+  filterRecords() {
+    this.model = {
+      "from_date": this.filterFromDate ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd') : this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
+      "to_date": this.filterToDate ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd') : this.datePipe.transform(new Date(), 'yyyy-MM-dd')
+    }
+    try {
+      /**Api For the record filter */
+      this.loader.show();
+      this.baseService.action('starclass/filter_dashboard/', this.model).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          if (res.status === true) {
+            this.filteredResponse = res.data.dashboard;
+          } else {
+            this.loader.hide();
+            this.alert.error(res.error.message[0], 'Error');
+          }
+        }, (error) => {
+          this.loader.hide();
+        });
+    }
+    catch (e) {
+      console.log("Something Went Wrong!")
+    }
   }
 }
