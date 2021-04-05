@@ -84,7 +84,6 @@
                         class="h-100"></input-search>
                 </div>
             </div>
-
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
                 <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
                         routerLinkActive="active-link">Home</a></li>
@@ -119,11 +118,11 @@
 
 
                 <li class="nav-item" *ngIf="authCheck">
-                    <a (click)="reminderList()"
-                        class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
-                        <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
-                        <sup class="color-white "
-                            style="background: #22c123;
+                        <a (click)="reminderList()"
+                            class="mr-4 my-2 d-inline-block text-black cursorStyle position-relative">
+                            <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
+                            <sup class="color-white "
+                                style="background: #22c123;
                             padding: 4px;
                             border-radius: 50px;
                             width: 20px;
