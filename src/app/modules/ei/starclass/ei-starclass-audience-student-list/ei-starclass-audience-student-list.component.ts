@@ -40,6 +40,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   studentAuidence : StudentAuidence
   cartData : any = {};
   selection = new SelectionModel<editRightTeacheristElement>(true, []);
+  approved: any;
   constructor(
     private router: Router,
     private location: Location,
@@ -52,6 +53,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.approved =  this.route.snapshot.queryParamMap.get('approved')
     this.getStudentAuidenceList()
   }
 /** Whether the number of selected elements matches the total number of rows. */
@@ -80,6 +82,7 @@ getStudentAuidenceList(page? : any){
     this.studentAuidence.params = {
       'page' :page,
       'page_size':this.studentAuidence.page_size,
+      'approved': this.route.snapshot.queryParamMap.get('approved')
       // 'id': this.route.snapshot.params.id
     }
     this.baseService.getData('ei/student-list/', this.studentAuidence.params).subscribe(
