@@ -54,7 +54,7 @@
 .header-dp {
     width: 40px;
     height: 40px;
-    border: 1px solid #d6e6d6;
+    border: 1px solid #463267;
     overflow: hidden;
 }
 
@@ -86,7 +86,19 @@
 /* :host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
     border-top-color: #ffffff;
 } */
-
+.bellAlert{
+    background: #22c123;
+    padding: 4px;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: initial;
+    text-align: center;
+    font-size: 11px;
+    position: absolute;
+    left: 18px
+}
 .mobileLogoImg{display: none;}
 
 @media (max-width: 960px){
