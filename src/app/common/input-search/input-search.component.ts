@@ -35,40 +35,6 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // fromEvent(this.searchText.nativeElement, 'keyup').pipe(
-    //   // get value
-    //   map((event: any) => {
-    //     return event.target.value;
-    //   })
-    //   // if character length greater then 2
-    //   , filter(res => res.length > 2)
-
-    //   // Time in milliseconds between key events
-    //   , debounceTime(1000)
-
-    //   // If previous query is diffent from current   
-    //   // , distinctUntilChanged()
-
-    //   // subscription for response
-    // ).subscribe((text: string) => {
-
-    //   this.isSearching = true;
-
-    //   this.searchGetCall(text).subscribe((res: any) => {
-    //     this.isSearching = false;
-    //     if (this.config.display) {
-    //       res.results = this.setData(res.results)
-    //       this.apiResponse = res
-    //     }
-    //     else
-    //       this.apiResponse = res;
-    //   }, (err) => {
-    //     this.isSearching = false;
-    //     console.log('error', err);
-    //   });
-
-    // });
-
     const example = fromEvent(this.searchText.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value

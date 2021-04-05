@@ -78,6 +78,13 @@
                         routerLinkActive="active-link">Login</a></li>
             </ul> -->
 
+            <div class="dropdown nav-item position-relative">
+                <div>
+                    <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
+                        class="h-100"></input-search>
+                </div>
+            </div>
+
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
                 
 
@@ -93,19 +100,13 @@
 
                 </li>
 
-                <div class="dropdown nav-item">
-                    <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-search cursorStyle" aria-hidden="true"></i>
-                    </span> -->
-                    <!-- <div>
-                        <input type="search" placeholder="Search"
-                            class="form-control-input form-control pl-2 h-100" />
-                    </div> -->
+                <!-- <div class="dropdown nav-item">
+                    
                     <div>
                         <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
                             class="h-100"></input-search>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-item d-flex flex-wrap">
                     <div *ngIf="authCheck"
