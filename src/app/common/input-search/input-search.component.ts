@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { debounceTime, map, filter } from "rxjs/operators";
+import { debounceTime, map } from "rxjs/operators";
 import { fromEvent, of, Subscription } from 'rxjs';
 import { BaseService } from 'src/app/services/base/base.service';
 import { CommunicationService } from 'src/app/services/communication/communication.service';
@@ -35,6 +35,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('config data is as ::',this.config)
     const example = fromEvent(this.searchText.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value
