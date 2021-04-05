@@ -11,12 +11,22 @@ import { CommunicationService } from 'src/app/services/communication/communicati
 })
 export class InputSearchComponent implements OnInit, OnDestroy {
   @ViewChild('searchText', { static: true }) searchText: ElementRef;
-  @Input() config: any;
+  @Input() get config(): any {
+    return this._config
+  };
+
+  set config(value: any) {
+    console.log('value is as ::',value)
+    this._config = value;
+    this.displayImage = value.displayImage ? value.displayImage : false
+  }
   @Input() value: any;
   @Output() searchResult = new EventEmitter<any>();
   subscription: Subscription
   apiResponse: any;
   isSearching: boolean;
+  _config: any;
+  displayImage: boolean;
 
   constructor(
     private baseService: BaseService,
@@ -35,7 +45,6 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('config data is as ::',this.config)
     const example = fromEvent(this.searchText.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value
@@ -49,7 +58,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
         this.isSearching = true;
         this.searchGetCall(text).subscribe((res: any) => {
           this.isSearching = false;
-          if (this.config.display) {
+          if (this._config.display) {
             res.results = this.setData(res.results)
             this.apiResponse = res
           }
@@ -57,7 +66,6 @@ export class InputSearchComponent implements OnInit, OnDestroy {
             this.apiResponse = res;
         }, (err) => {
           this.isSearching = false;
-          console.log('error', err);
         });
       }
       // if character length less then 2
@@ -76,12 +84,12 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     if (term === '') {
       return of([]);
     }
-    return this.baseService.getData(this.config.api_endpoint, { 'search': term })
+    return this.baseService.getData(this._config.api_endpoint, { 'search': term })
   }
 
   selectData(data: any) {
-    if (this.config.display_value)
-      this.value = data[this.config.display_value]
+    if (this._config.display_value)
+      this.value = data[this._config.display_value]
     else
       this.value = data.display
     this.searchResult.emit(data)
@@ -91,12 +99,10 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   setData(res: any) {
     res.forEach(res => {
       let display = ''
-      for (let i = 0; i < this.config.display.length; i++) {
-        display = display + res[this.config.display[i]] + ' '
-        // console.log('val is as ::',res[this.view[i]])
+      for (let i = 0; i < this._config.display.length; i++) {
+        display = display + res[this._config.display[i]] + ' '
       }
       res['display'] = display;
-      console.log('set data res is as ....', res)
     })
     return res;
   }

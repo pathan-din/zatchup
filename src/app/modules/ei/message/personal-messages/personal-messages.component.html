@@ -1,29 +1,37 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <div class="row topDiv">
-            <div class="col-md-5 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Personal Messages</h2>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <h2 class="commonFontSize semiBoldFont mb-3 m-0">Personal Messages</h2>
             </div>
-           
+            <div class="col-md-6">
+                <div class="button-div d-flex justify-content-end flex-wrap">
+                    <!-- <button type="button" class="bg-dark text-white py-2 px-3 mx-1 border-0">New Messages</button> -->
+                    <button type="button" class="bg-dark text-white py-2 px-3 mx-1 border-0">Create Group</button>
+                    <!-- <button type="button" class="bg-yellow text-white py-2 px-3 mx-1 border-0">
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                    </button> -->
+                </div>
+            </div>
         </div>
         <div *ngFor="let msgObj of lastMessageData">
-                <div class="row border-bottom pb-2 mt-3 align-items-center">
-                    <div class="col-md-1 col-2 text-center">
-                        <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
-                        <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="user-profile" class="rounded-circle bg-light-green header-dp img-small"/>
-                    </div>
-                    <div class="col-md-10 col-8" (click)="goToChatScreen(msgObj.uuid,msgObj.friendlidt_id)" >
-                        <h3 class="m-0 semiBoldFont color-black">{{msgObj.user_name}} 
-                            <span class="small-text">({{msgObj.class_name}} {{msgObj.roll_no}})</span>
-                            <!-- <span class="small-text">{{msgObj.roll_no}}</span> -->
-                        </h3>
-                        <p class="mb-0" > {{msgObj.document?'Attachment':msgObj.msg}} </p>
-                    </div>
-                    <!-- <div class="col-md-1 col-2">
+            <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle">
+                <div class="col-md-1 col-2 text-center">
+                    <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                    <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                </div>
+                <div class="col-md-10 col-8" (click)="goToChatScreen(msgObj.uuid,msgObj.friendlidt_id)">
+                    <h3 class="m-0 semiBoldFont color-black">{{msgObj.user_name}}
+                        <span class="small-text">({{msgObj.class_name}} {{msgObj.roll_no}})</span>
+                        <!-- <span class="small-text">{{msgObj.roll_no}}</span> -->
+                    </h3>
+                    <p class="mb-0"> {{msgObj.document?'Attachment':msgObj.msg}} </p>
+                </div>
+                <!-- <div class="col-md-1 col-2">
                         <div class="bg-paret-green rounded-5 messageCount text-white p-2">05</div>
                     </div> -->
-                </div>
+            </div>
 
         </div>
     </div>
@@ -41,7 +49,7 @@
                 <div class="modal-body px-0 pt-0">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>Select a member who chat as</p>         
+                            <p>Select a member who chat as</p>
                             <button type="button" class="bg-light-gray m-1 p-1 border-0">Chat with Students</button>
                             <button type="button" class="bg-light-gray m-1 p-1 border-0">Chat with Teachers</button>
                         </div>

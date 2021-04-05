@@ -49,36 +49,40 @@
             <input type="text" #searchText class="form-control pl-5" value="{{value}}" placeholder="Search....." />
         </div>
     </div>
-    <div class="row position-absolute" *ngIf="isSearching">
-        <div class="col-12 text-center">
+    <div class="row" *ngIf="isSearching">
+        <div class="text-center notFound">
             <h4>Searching ... </h4>
         </div>
     </div>
     <div class="row">
         <ng-container *ngIf="apiResponse['count'] == 0; else elseTemplate">
-            <ul class="notFound rounded">
-                <div>
-                    Data Not found
-                </div>
+            <ul class="notFound text-center">
+                <li>Data Not found</li>
             </ul>
+
         </ng-container>
 
         <ng-template #elseTemplate>
-            <ul class="searchDropdown shadow rounded">
+            <ul class="searchDropdown shadow">
+                <div></div>
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
                     <div class="searh_result cursorStyle">
-                        <div class="searchUserProfile">
-                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User"
-                                class="img-small" />
+                        <div class="searchUserProfile" *ngIf="displayImage">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User" class="img-small" />
                         </div>
                         <div class="SearchUserName">
                             {{data['display']}}
                         </div>
-                        <div class="searchUserDesignation">
+                        <!-- <div class="searchUserDesignation">
                             Software Developer at Triazine
-                        </div>
+                        </div> -->
+                    </div>
+                    </li>
+                    <div *ngIf="apiResponse['count'] > 5" class="">
+                        <button type="button" class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple">See All Results</button>
                     </div>
             </ul>
+
         </ng-template>
     </div>
 </div>
