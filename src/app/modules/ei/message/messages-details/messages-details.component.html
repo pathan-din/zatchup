@@ -32,7 +32,8 @@
                             </p>
                         </div>
                         <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
-                            <img src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank"><img src="./assets/images/userWebsite/pdf.png"/></a>
+                            <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank"><img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle"></a>
                             <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                             </span>
                         </div>

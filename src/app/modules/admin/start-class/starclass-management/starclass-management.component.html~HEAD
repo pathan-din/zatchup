@@ -1,0 +1,244 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3" *ngIf= "dashBoardCount">
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">ZatchUp Star Class Management</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 MobileCol6MB cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="goToStarClassPlan()">
+                    <p class="p-2 mediumFont commonFontSize">ZatchUp Starclass Plans</p>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{dashBoardCount.plan_count}}
+                    </h2>
+                    <p class="p-2 mb-0 mediumFont commonFontSize bg-light-secondary Btn-lg-last">
+                       ZatchUp Starclass Plans: <span class="ml-2"> {{dashBoardCount.plan_count}}</span> </p>
+                </div>
+            </div>
+            <!-- <div class="col-md-6 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">Configure Student's View</p>
+                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Configure Student's View Time And Number of Plays:<span class="ml-2">0</span></p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">ZatchUp Star Class Summary</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 MobileCol6MB cursorStyle">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none " (click)="goToCourseList()" >
+                    <p class="p-2 mediumFont commonFontSize">Courses Available</p>
+                    <h2 class="countFontSize text-center semiBoldFont">
+                        {{dashBoardCount.course_available_count}}
+                    </h2>                    
+                    <p class="Btn-lg-last mb-0 p-2 mb-0 mediumFont commonFontSize bg-light-secondary">Total Courses Available: 
+                        <span class="ml-2"> {{dashBoardCount.course_available_count}}</span></p>                   
+                </div>
+            </div>
+            <div class="col-md-5 MobileCol6MB">
+                <div (click)="goToAllActiveCourses()" class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">Number Of Active Bought Courses</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashBoardCount.active_bought_courses_count}}</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Total Number of Active Bought Courses:<span class="ml-2">{{dashBoardCount.active_bought_courses_count}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Fee-dashboard-div bg-white px-2 py-2 mt-3">
+        <div class="row">
+            <div class="col-12 d-flex flex-wrap align-items-end">
+                <div class="MobileCol6MB">
+                    <label for="" class=" commonFontSize mediumFont letterspacing">Date From</label>
+                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="MobileCol6MB">
+                    <label for="" class=" commonFontSize mediumFont letterspacing">Date To</label>
+                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="MobileCol6MB form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <button type="button" class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">New Courses Added</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashBoardCount.new_course_added}}</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Total New Courses Added:<span class="ml-2">{{dashBoardCount.new_course_added}}</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">New Lectures Added</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashBoardCount.new_lecture_added}}</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Total New Courses Added:<span class="ml-2">{{dashBoardCount.new_lecture_added}}</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">New View on Lectures</p>
+                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Total New View on Lectures:<span class="ml-2">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-xl-6 col-lg-6 col-md-6 MobileCol6MB">
+                <div class="form-control-inputDiv col-flex rounded-0 bg-extra-light-gray shadow-none p-2">
+                    <p class="commonFontSize semiBoldFont">Total Number of Courses Bought</p>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-8 commonMaterialFontSize regularFont cursorStyle" >
+                            <p>Total Number of Courses Bought First Time by any EI</p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 commonMaterialFontSize regularFont">
+                            <p><span class="mr-2">:</span>{{dashBoardCount.firsttime_bought_courses_count}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-8 commonMaterialFontSize regularFont cursorStyle" >
+                            <p>Total Number of Courses renewed by EI</p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 commonMaterialFontSize regularFont">
+                            <p><span class="mr-2">:</span>{{dashBoardCount.renewal_bought_courses_count}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 MobileCol6MB">
+                <div class="form-control-inputDiv col-flex rounded-0 bg-extra-light-gray shadow-none p-2">
+                    <p class="commonFontSize semiBoldFont">Total Revenue ZatchUp StarClass</p>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-8 commonMaterialFontSize regularFont cursorStyle" >
+                            <p>Total Revenue Generated from first time subscription of a course</p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 commonMaterialFontSize regularFont">
+                            <p><span class="mr-2">:</span>0</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-8 commonMaterialFontSize regularFont cursorStyle" >
+                            <p>Total Revenue from renewal of course</p>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-4 commonMaterialFontSize regularFont">
+                            <p><span class="mr-2">:</span>0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Courses</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 MobileCol6MB">
+                <button type="button" class="bg-light-gray px-3 commonFontSize mediumFont py-2 border-0" (click)="goToCreateCourse()">Add New Course </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="EI-management-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv mb-1">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">Courses Uploaded By EI Summary</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">Courses Available</p>
+                    <h2 (click)="goToCourseUploadedByEi()" class="countFontSize text-center semiBoldFont">{{dashBoardCount.ei_courses_count}}</h2>
+                    <p class="p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Total Courses Available:<span class="ml-2">{{dashBoardCount.ei_courses_count}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Fee-dashboard-div bg-white px-2 py-2 mt-3">
+        <div class="row">
+            <div class="col-12 d-flex flex-wrap align-items-end">
+                <div class="MobileCol6MB">
+                    <label for="" class=" commonFontSize mediumFont letterspacing">Date From</label>
+                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing" type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="MobileCol6MB">
+                    <label for="" class=" commonFontSize mediumFont letterspacing">Date To</label>
+                    <div class="form-control-inputDiv rounded p-1 shadow-none mx-1">
+                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="date" placeholder="MM/DD/YYYY">
+                    </div>
+                </div>
+                <div class="MobileCol6MB form-control-inputDiv border-0 p-0 shadow-none mx-1">
+                    <button type="button" class="bg-purple border-0 col-flex school-Dashboard-btn text-white px-5 filter-apply-button commonFontSize mediumFont letterspacing justify-content-center align-items-center">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">New Courses Uploaded By EI</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashBoardCount.new_course_uploaded_by_ei}}</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Number of New Courses Uploaded:<span class="ml-2">{{dashBoardCount.new_course_uploaded_by_ei}}</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">New Lectures Uploaded by EI</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashBoardCount.new_lecture_uploaded_by_ei}}</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Number of New Courses Uploaded:<span class="ml-2">{{dashBoardCount.new_lecture_uploaded_by_ei}}</span></p>
+                </div>
+            </div>
+
+            <div class="col-md-4 MobileCol6MB">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none">
+                    <p class="p-2 mediumFont commonFontSize">New View on Lectures</p>
+                    <h2 class="countFontSize text-center semiBoldFont">0</h2>
+                    <p class="Btn-lg-last p-2 mb-0 mediumFont commonFontSize bg-light-secondary">
+                        Total New View on Lectures:<span class="ml-2">0</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 
