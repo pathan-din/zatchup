@@ -121,6 +121,10 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
     console.log(id);
   }
 
+  goToCourseHistory(){
+    this.router.navigate(['ei/starclass-course-history'])
+  }
+
   generateExcel() {
     delete this.eiCourseList.params.page_size;
     delete this.eiCourseList.params.page;
