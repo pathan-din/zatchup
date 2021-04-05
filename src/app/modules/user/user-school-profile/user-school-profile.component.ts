@@ -26,13 +26,12 @@ export class UserSchoolProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.schoolId = this.route.snapshot.queryParamMap.get('school_id')
-   
     this.getProfile();
   }
 
-   
+
   postTabFunction(event) {
     this.postOption = event;
     if (event === 'matrix') {
@@ -51,18 +50,18 @@ export class UserSchoolProfileComponent implements OnInit {
 
   getProfile() {
     try {
-     this.loader.show();
-     this.baseService.getData('user/profile-detail-of-school/', {"school_id": this.schoolId}).subscribe(
-       (res:any) =>{
-         if(res.status == true)
-         this.schoolProfile = res.data[0];
-         else{
-           this.alert.error(res.error, 'Error')
-         }
-       }, (error) =>  {
-         this.loader.hide();
-         console.log(error)
-       });
+      this.loader.show();
+      this.baseService.getData('user/profile-detail-of-school/', { "school_id": this.schoolId }).subscribe(
+        (res: any) => {
+          if (res.status == true)
+            this.schoolProfile = res.data[0];
+          else {
+            this.alert.error(res.error, 'Error')
+          }
+        }, (error) => {
+          this.loader.hide();
+          console.log(error)
+        });
     } catch (err) {
       this.loader.hide();
       console.log(err);

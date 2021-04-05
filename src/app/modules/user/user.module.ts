@@ -70,6 +70,7 @@ import { PendingRequestForUserComponent } from './pending-request-for-user/pendi
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 // import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
@@ -147,7 +148,8 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     DirectiveModule,
     SharedModule,
     CarouselModule.forRoot(),
-    PaginationModule
+    PaginationModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,8 +1,10 @@
 import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { debounceTime, map } from "rxjs/operators";
 import { fromEvent, of, Subscription } from 'rxjs';
 import { BaseService } from 'src/app/services/base/base.service';
 import { CommunicationService } from 'src/app/services/communication/communication.service';
+
 
 @Component({
   selector: 'input-search',
@@ -16,7 +18,6 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   };
 
   set config(value: any) {
-    console.log('value is as ::',value)
     this._config = value;
     this.displayImage = value.displayImage ? value.displayImage : false
   }
@@ -27,8 +28,10 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   isSearching: boolean;
   _config: any;
   displayImage: boolean;
+  search: any;
 
   constructor(
+    private router: Router,
     private baseService: BaseService,
     private communicationService: CommunicationService
   ) {
@@ -54,9 +57,10 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     )
     const subscribe = example.subscribe(text => {
       // if character length greater then 2
-      if (text.length > 2) {
+      this.search = text;
+      if (this.search.length > 2) {
         this.isSearching = true;
-        this.searchGetCall(text).subscribe((res: any) => {
+        this.searchGetCall(this.search).subscribe((res: any) => {
           this.isSearching = false;
           if (this._config.display) {
             res.results = this.setData(res.results)
@@ -105,6 +109,11 @@ export class InputSearchComponent implements OnInit, OnDestroy {
       res['display'] = display;
     })
     return res;
+  }
+
+  moreResults(){
+    if(this._config.route)
+      this.router.navigate([this._config.route], { queryParams: { 'searchText': this.search}})
   }
 
 }

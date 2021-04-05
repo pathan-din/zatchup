@@ -19,8 +19,8 @@ export class UserHeaderComponent implements OnInit {
   ids: Array<any> = [];
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/",
-    "display": ['first_name', 'last_name'],
-    "displayImage": true
+    "displayImage": true,
+    "route": "user/search"
   }
   messageData: any = [];
   currentUser: any = "";
@@ -106,16 +106,11 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigate(["user/notifications"]);
   }
   logout() {
-
-    // localStorage.clear();
-    // this.router.navigate(['user/login']);
-
-    this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () =>{
+    this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () => {
       localStorage.clear();
       sessionStorage.clear();
-      // this.firebaseService.setPresence('offline')
       this.router.navigate(['user/login']);
-    },() =>{}
+    }, () => { }
     );
   }
   /**Find the step of the register process for all Users */

@@ -68,7 +68,8 @@
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
                     <div class="searh_result cursorStyle">
                         <div class="searchUserProfile" *ngIf="displayImage">
-                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User" class="img-small" />
+                            <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User" class="img-small" />
+                            <img *ngIf="data.profile_pic" src="{{data.profile_pic}}" alt="User" class="img-small" />
                         </div>
                         <div class="SearchUserName">
                             {{data['display']}}
@@ -78,8 +79,8 @@
                         </div> -->
                     </div>
                     </li>
-                    <div *ngIf="apiResponse['count'] > 5" class="">
-                        <button type="button" class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple">See All Results</button>
+                    <div *ngIf="apiResponse['count'] > 5">
+                        <button type="button" class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple" (click)="moreResults()">See All Results</button>
                     </div>
             </ul>
 
