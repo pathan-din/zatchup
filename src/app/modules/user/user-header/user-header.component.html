@@ -77,7 +77,12 @@
                 <li *ngIf="!authCheck" class="nav-item"><a routerLink="/user/login" class="nav-link "
                         routerLinkActive="active-link">Login</a></li>
             </ul> -->
-
+            <div class="dropdown nav-item position-relative">
+                <div>
+                    <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
+                        class="h-100"></input-search>
+                </div>
+            </div>
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
                 
 
@@ -93,19 +98,16 @@
 
                 </li>
 
-                <div class="dropdown nav-item">
-                    <!-- <span class="color-white p-2" id="dropdownSearchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-search cursorStyle" aria-hidden="true"></i>
-                    </span> -->
-                    <!-- <div>
-                        <input type="search" placeholder="Search"
-                            class="form-control-input form-control pl-2 h-100" />
-                    </div> -->
-                    <div>
-                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
-                            class="h-100"></input-search>
-                    </div>
-                </div>
+                
+
+                <!-- <form class="form-inline my-2 my-lg-0 position-relative">
+                    <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
+                    <input class="form-control mr-sm-2 pl-5" type="search" placeholder="Search">
+                </form> -->
+
+                
+
+
 
                 <div class="nav-item d-flex flex-wrap">
                     <div *ngIf="authCheck"
@@ -132,7 +134,7 @@
 
                 <li class="nav-item" *ngIf="authCheck">
                         <a (click)="reminderList()"
-                            class="mr-5 my-2 d-inline-block text-black cursorStyle position-relative">
+                            class="mr-4 my-2 d-inline-block text-black cursorStyle position-relative">
                             <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
                             <sup class="color-white "
                                 style="background: #22c123;

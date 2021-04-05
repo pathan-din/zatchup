@@ -780,9 +780,7 @@ a:hover {
         height: 30px;
         float: left;
     }
-    h2 {
-        text-align: center;
-    }
+    
     .custumInputWidth {
         width: 42%;
     }
@@ -798,12 +796,16 @@ a:hover {
     
 }
 
+
 @media (max-width: 375px){
     .work-user-profile{
         height: 50px;
     }
     .experiencedetails {
         margin-left: 0px;
+    }
+    h2 {
+        text-align: center;
     }
 }
 
@@ -831,5 +833,6 @@ a:hover {
     max-width: 150px;
     width: auto;
 }
+.form-control{border-radius: .4rem !important;}
 
 
