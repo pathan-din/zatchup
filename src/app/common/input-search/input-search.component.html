@@ -22,7 +22,7 @@
         <ng-template #elseTemplate>
             <ul class="searchDropdown shadow rounded">
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
-                    <!-- <p class="pt-2 pb-2 mb-0 border-bottom"> {{data['display']}}</p> -->
+                     <p class="pt-2 pb-2 mb-0 border-bottom"> {{data['display']}}</p>
 
                     <div class="searh_result cursorStyle">
                         <div class="searchUserProfile">
