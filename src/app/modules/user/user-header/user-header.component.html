@@ -3,9 +3,8 @@
         <div class="navbar-brand cursorDefault">
             <img class="img-fluid headerLogoImg" src="assets/images/userWebsite/logo.png">
         </div>
-        <button class="navbar-toggler cs_btn cursorStyle" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button class="navbar-toggler cs_btn cursorStyle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="menuStrip"> </span>
             <span class="menuStrip"> </span>
             <span class="menuStrip"> </span>
@@ -13,66 +12,58 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul *ngIf="isCheck=='0' && !authCheck" class="navbar-nav ml-auto userNavUl justify-content-end flex-wrap">
                 <li class="nav-item" *ngIf="authCheck">
-                    <a (click)="notificationList()"
-                        class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="notificationList()" class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
-                        <sup class="color-white " style="background: #22c123;
-                        padding: 4px;
-                        border-radius: 50px;
-                        width: 20px;
-                        height: 20px;
-                        display: inline-block;
-                        line-height: initial;
-                        text-align: center;
-                        font-size: 11px;
-                        position: absolute;
-                        left: 10px">
-                            {{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a>
+                        <sup class="color-white bellAlert">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup>
+                    </a>
                 </li>
-                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
-                        routerLinkActive="active-link">Home</a></li>
+                <li class="nav-item">
+                    <a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a>
+                </li>
 
-                <li *ngIf="!authCheck" class="nav-item"><a routerLink="/ei/login" class="nav-link "
-                        routerLinkActive="active-link">School Login</a></li>
-                <li *ngIf="!authCheck" class="nav-item"><a routerLink="/ei/login-subadmin" class="nav-link "
-                        routerLinkActive="active-link">Teacher Login</a></li>
-                <li *ngIf="!authCheck" class="nav-item"><a routerLink="/user/login" class="nav-link "
-                        routerLinkActive="active-link">Login</a></li>
-                <li class="nav-item"><a routerLink="/user/about-us" class="nav-link " target="_blank"
-                        routerLinkActive="active-link">About Us</a></li>
-                <li class="nav-item"><a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a></li> -->
-                <li *ngIf="authCheck" class="nav-item cursorStyle"><a (click)="logout()" class="nav-link"
-                        routerLinkActive="active-link">Logout</a></li>
-
+                <li *ngIf="!authCheck" class="nav-item">
+                    <a routerLink="/ei/login" class="nav-link " routerLinkActive="active-link">School Login</a>
+                </li>
+                <li *ngIf="!authCheck" class="nav-item">
+                    <a routerLink="/ei/login-subadmin" class="nav-link " routerLinkActive="active-link">Teacher Login</a>
+                </li>
+                <li *ngIf="!authCheck" class="nav-item">
+                    <a routerLink="/user/login" class="nav-link " routerLinkActive="active-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/user/about-us" class="nav-link " target="_blank" routerLinkActive="active-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a>
+                </li> -->
+                <li *ngIf="authCheck" class="nav-item cursorStyle">
+                    <a (click)="logout()" class="nav-link" routerLinkActive="active-link">Logout</a>
+                </li>
             </ul>
 
             <div *ngIf="authCheck" class="dropdown nav-item position-relative">
                 <div>
-                    <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
-                        class="h-100"></input-search>
+                    <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)" class="h-100"></input-search>
                 </div>
             </div>
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
-                <li class="nav-item"><a routerLink="/user/my-school" class="nav-link"
-                        routerLinkActive="active-link">Home</a></li>
-                <li class="nav-item"><a routerLink="/user/my-educational-profile" class="nav-link"
-                        routerLinkActive="active-link">My School</a></li>
                 <li class="nav-item">
-                    <a routerLink="/user/messages" routerLinkActive="active-link" class="nav-link cursorStyle"
-                        aria-expanded="false">Messages</a>
+                    <a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/user/my-educational-profile" class="nav-link" routerLinkActive="active-link">My School</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/user/messages" routerLinkActive="active-link" class="nav-link cursorStyle" aria-expanded="false">Messages</a>
                 </li>
 
                 <div class="nav-item d-flex flex-wrap">
-                    <div *ngIf="authCheck"
-                        class="text-white px-0 ml-2 commonFontSize semiBoldFont d-flex align-items-center nav-item">
-                        <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}"
-                            class="rounded-circle bg-light-green header-dp img-small">
-                        <span class="ml-3 text-white text-capitalize">{{userProfile.user_first_name}}
-                            {{userProfile.user_last_name}}</span>
+                    <div *ngIf="authCheck" class="text-white px-0 ml-2 commonFontSize semiBoldFont d-flex align-items-center nav-item">
+                        <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp img-small">
+                        <span class="ml-3 text-white text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
 
                         <div *ngIf="authCheck" class="dropdown px-0 d-flex flex-wrap align-self-center">
-                            <span class="color-white px-2" id="dropdownMenuButton" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                            <span class="color-white px-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-angle-down cursorStyle" aria-hidden="true"></i>
                             </span>
 
@@ -83,40 +74,19 @@
                     </div>
                 </div>
 
+                <li class="nav-item" *ngIf="authCheck">
+                    <a (click)="reminderList()" class="mr-4 my-2 d-inline-block text-black cursorStyle position-relative">
+                        <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
+                        <sup class="color-white clockAlert">{{regProfile.unread_reminder_count? regProfile.unread_reminder_count : 0}}</sup>
+                    </a>
+                </li>
 
                 <li class="nav-item" *ngIf="authCheck">
-                        <a (click)="reminderList()"
-                            class="mr-4 my-2 d-inline-block text-black cursorStyle position-relative">
-                            <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
-                            <sup class="color-white "
-                                style="background: #22c123;
-                            padding: 4px;
-                            border-radius: 50px;
-                            width: 20px;
-                            height: 20px;
-                            display: inline-block;
-                            line-height: initial;
-                            text-align: center;
-                            font-size: 11px;
-                            position: absolute;
-                            left: 18px">{{regProfile.unread_reminder_count? regProfile.unread_reminder_count : 0}}</sup></a></li>
-
-                <li class="nav-item" *ngIf="authCheck">
-                    <a (click)="notificationList()"
-                        class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="notificationList()" class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
-                        <sup class="color-white "
-                            style="background: #22c123;
-                            padding: 4px;
-                            border-radius: 50px;
-                            width: 20px;
-                            height: 20px;
-                            display: inline-block;
-                            line-height: initial;
-                            text-align: center;
-                            font-size: 11px;
-                            position: absolute;
-                            left: 10px">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup></a></li>
+                        <sup class="color-white notification_icon">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
