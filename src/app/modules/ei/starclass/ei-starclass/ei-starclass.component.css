@@ -1,6 +1,18 @@
-
+.button-div button {
+    text-decoration: underline;
+}
+.button-div button:hover {
+    text-decoration: none;
+}
 @media only screen and (min-width: 1200px) {
     .button-div {
         text-align: right;
+    }
+}
+
+@media(max-width: 360px){
+    .button-div button {
+        font-size: 14.4px !important;
+        padding: 4px 5px !important;
     }
 }
