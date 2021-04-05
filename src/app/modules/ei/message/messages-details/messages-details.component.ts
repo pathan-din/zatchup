@@ -129,4 +129,10 @@ scrollToBottom(): void {
       console.log("exception", err);
     }
   }
+  getFileExtention(url){
+    var exArr = url.split("/");
+    console.log(exArr[(exArr.length-1)].split(".")[1]);
+    
+    return exArr[(exArr.length-1)].split(".")[1];
+  }
 }
