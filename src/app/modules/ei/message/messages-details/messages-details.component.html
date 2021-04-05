@@ -2,57 +2,59 @@
 <div class="container main-container p-3">
     <div class="bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
-            <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Messages Details</h2>
+            <div class="col-md-12 col-12 text-center">
+                <h2 class="commonFontSize semiBoldFont m-0 py-3">Messages Details</h2>
             </div>
         </div>
 
-        <div class="row mt-2">
-            <div class="col-12 text-center">
-                <div class="message-user">
-                    <img src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
-                        alt="profile-pick" class="message-userImg" />
+        <div class="bg-light-gray p-3">
+            <div class="profile_detail d-flex align-items-center justify-content-start mb-3">
+                <div class="profile_pick">
+                    <img *ngIf="!recepintDetails" src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
+                        class="img-fluid cursorStyle">
+                    <!-- <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}"
+                        class="img-fluid cursorStyle"> -->
                 </div>
-                <h3 class="commonFontSize semiBoldFont m-2 color-fadded-black text-capitalize">
-                    {{recepintDetails.firstName}} {{recepintDetails.lastName}}({{recepintDetails.class_name}} {{recepintDetails.roll_no}})
-                </h3>
+                <div class="profile_name ml-2 text-capitalize">
+                    <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}} <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span></p>
+                    <span class="small-text-2" *ngIf="presence$ | async as presence">
+                        <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
+                    </span>
+                </div>
             </div>
-        </div>
-
-        <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
-            <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
-                <div class="col-md-12 col-12">
-                    <div *ngIf="!objCon.document">
-                        <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}}
-                            <span
-                                class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
-                        </p>
+    
+            <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
+                <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
+                    <div class="col-md-12 col-12">
+                        <div *ngIf="!objCon.document">
+                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}}
+                                <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                            </p>
+                        </div>
+                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
+                            <img src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                            </span>
+                        </div>
                     </div>
-                    <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
-                        <img src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
-                        <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
-                        </span>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div
-                class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
-                <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->
-                <div>
-                    <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
-                    <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
+        <div class="row">
+            <div class="col-12">
+                <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
+                    <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->
+                    <div>
+                        <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
+                        <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
+                    </div>
+                    <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
+                        type="search" placeholder="Type Something...">
+                    <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
+                        <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
+                    </span>
                 </div>
-                <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment"
-                    class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
-                    type="search" placeholder="Type Something...">
-                <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'"  (click)="sendChat()" class="">
-                    <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
-                </span>
             </div>
         </div>
     </div>
