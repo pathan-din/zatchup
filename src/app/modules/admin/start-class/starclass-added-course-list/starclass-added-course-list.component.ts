@@ -49,7 +49,7 @@ export class StarclassAddedCourseListComponent implements OnInit {
   id: any;
   planDetails: any;
   courseId: any;
-  constructor(
+  constructor(  
     private location: Location,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
