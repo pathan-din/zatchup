@@ -82,4 +82,8 @@ export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
     this.router.navigate(['admin/ei-starclass-course-history'])
   }
 
+  goToEiCourseView(data){
+    this.router.navigate(['admin/ei-starclass-course-view', data.id])
+  }
+
 }

@@ -11,13 +11,24 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class StarclassManagementComponent implements OnInit {
   dashBoardCount: any;
+  filteredResponse: any;
+  filterFromDate: any;
+  filterToDate: any;
+  fromMaxDate: any;
+  toMaxDate: any;
 
   constructor(
     private router: Router,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService
-  ) { }
+  ) { 
+    this.fromMaxDate = new Date();
+    this.toMaxDate = new Date();
+    this.filterFromDate = this.fromMaxDate;
+    this.filterToDate = this.toMaxDate;
+    this.filterFromDate = new Date(this.filterFromDate.setDate(this.filterFromDate.getDate() - 7))
+  }
 
   ngOnInit(): void {
     this.getDashBoardCount()

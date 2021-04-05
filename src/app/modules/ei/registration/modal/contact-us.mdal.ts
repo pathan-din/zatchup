@@ -91,3 +91,9 @@ export class EiLectureDetails extends Pagination{
   model:any;
   details: any;
 }
+
+export class StarclassCourseHistory extends Pagination {
+  modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message'] 
+}
