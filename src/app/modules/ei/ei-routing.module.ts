@@ -143,6 +143,7 @@ import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed
 import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
 import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
 import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
+import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
 
 
 const routes: Routes = [
@@ -565,6 +566,9 @@ const routes: Routes = [
    },
    {
      path: 'zatchup-starclass-courses', component:ZatchupStarclassComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'starclass-course-history', component:EiStarClassCourseHistoryComponent, canActivate:[AuthGuard]
    },
   
   

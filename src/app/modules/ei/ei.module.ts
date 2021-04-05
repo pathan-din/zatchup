@@ -160,6 +160,7 @@ import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed
 import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
 import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
 import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
+import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -337,6 +338,7 @@ const config = {
     RequestForCourseListViewComponent,
     EiStarclassCourseViewComponent,
     ZatchupStarclassComponent,
+    EiStarClassCourseHistoryComponent,
   ],
   imports: [
     CommonModule,
