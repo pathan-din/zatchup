@@ -27,6 +27,16 @@ export interface Task {
 export class ReminderAddComponent implements OnInit {
   
   model: any = {};
+  
+  studentList: any = [];
+  
+  displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
+    'class' ];
+  pageSize: any = 1;
+  totalNumberOfPage: any = 10;
+  config: any={};
+  collection = { count: 60, data: [] };
+  dataSource: any;
   errorDisplay: any = {};
   isTeacher: boolean = false;
   classListArrayAccess: any = [];
@@ -41,7 +51,9 @@ export class ReminderAddComponent implements OnInit {
 
   userId: any;
   sectionIds:any=[];
-
+  pageCounts: number[];
+  studentListSendForBulk: any=[];
+  attachment:any='';
   constructor(
     private router: Router,
     private location: Location,
@@ -72,10 +84,9 @@ export class ReminderAddComponent implements OnInit {
       this.loader.hide();
     }
   }
-  displayStandardListModuleAccess(courseId,ev) {
+  displayStandardListModuleAccess(courseId) {
     try {
-      if(ev.checked){
-        this.loader.show();
+      this.loader.show();
         this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
           (res: any) => {
             this.loader.hide();
@@ -83,20 +94,15 @@ export class ReminderAddComponent implements OnInit {
           }, (error) => {
             this.loader.hide();
           });
-      }else{
-        this.standardListModuleAccess=[]
-        this.classListModuleAccess=[]
-      }
      
     } catch (err) {
       this.loader.hide();
     }
   }
 
-  displayClassListModuleAccess(stId,ev) {
+  displayClassListModuleAccess(stId) {
     try {
-      if(ev.checked){
-        this.loader.show();
+      this.loader.show();
       this.classList = [];
       this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
         (res: any) => {
@@ -105,9 +111,6 @@ export class ReminderAddComponent implements OnInit {
         }, (error) => {
           this.loader.hide();
         });
-      }else{
-        this.classListModuleAccess=[]
-      }
       
     } catch (err) {
       this.loader.hide();
@@ -140,6 +143,89 @@ getSectionIds(secId){
   console.log(this.sectionIds.join());
   
 }
+getGender(data: any) {
+  if (data)
+    return this.baseService.getGender(data)
+  return ''
+}
+getGetVerifiedStudent(page, strFilter) {
+
+  try {
+    this.loader.show();
+    this.model.page = page;
+
+
+if(this.model.teaching_class){
+  this.model.approved=1;
+  this.baseService.getData('ei/student-list/', this.model).subscribe(
+    (res: any) => {
+      this.loader.hide();
+      this.studentList = res.results;
+      this.model.page = page
+      this.pageSize = res.page_size;
+      this.model.page_size = this.pageSize
+      this.totalNumberOfPage = res.count;
+      this.config.itemsPerPage = this.pageSize
+      this.config.currentPage = page
+      this.config.totalItems = this.totalNumberOfPage;
+      this.pageCounts = this.baseService.getCountsOfPage();
+      let arrStudentList: any = [];
+      if (!page) { page = 1 }
+      var i = (this.pageSize * (page - 1)) + 1;
+      this.studentList.forEach(objData => {
+        let objStudentList: any = {};
+        objStudentList.checked = '';
+        objStudentList.SNo = i;
+        objStudentList.zatchupID = objData.zatchup_id;
+        objStudentList.student_id = objData.user_id;
+        objStudentList.kyc_approved = objData.kyc_approved;
+        objStudentList.approved = objData.approved;
+        objStudentList.is_rejected = objData.is_rejected;
+        objStudentList.reason_reject = objData.reason_reject;
+        objStudentList.name = objData.first_name + ' ' + objData.last_name;
+        objStudentList.gender = objData.gender;
+        objStudentList.age = objData.age;
+        objStudentList.userID = objData.admission_no;
+        objStudentList.class = objData.class_name;
+        objStudentList.alias_class = objData.alias_class;
+        objStudentList.roll_no = objData.roll_no;
+        objStudentList.firebase_id = objData.firebase_id
+        
+        objStudentList.Action = '';
+        i = i + 1;
+        arrStudentList.push(objStudentList);
+      })
+
+      this.dataSource = arrStudentList;
+      if (res.status == false) {
+        this.alert.error(res.error.message[0], 'Error')
+      }
+    }, (error) => {
+      this.loader.hide();
+    });
+}
+   
+  } catch (err) {
+    this.loader.hide();
+  }
+}
+
+getStudentBycheckboxClickForStudentBulkAction(stId, event) {
+
+  if (event.checked) {
+    if (this.studentListSendForBulk.indexOf(stId) === -1) {
+      this.studentListSendForBulk.push(stId)
+    }
+  } else {
+    if (this.studentListSendForBulk.indexOf(stId) === -1) {
+
+    } else {
+      var index = this.studentListSendForBulk.indexOf(stId)
+      this.studentListSendForBulk.splice(index, 1);
+    }
+  }
+  this.model.studentlists_id=this.studentListSendForBulk.join();
+}
 submitReminder(){
   try {
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,true,[]);
@@ -150,7 +236,12 @@ submitReminder(){
       return false;
     }
     
-    
+    if(this.model.ismoduleaccessclass){
+      if(this.studentListSendForBulk.length<=0){
+        this.alert.error("Please select any one section student list","Error")
+        return 
+      }
+    }
     this.baseService.action("ei/send-reminder-by-ei/",this.model).subscribe((res:any)=>{
 
       if(res.status==true){
@@ -219,6 +310,7 @@ submitReminder(){
         if (response.status == true) {
           this.loader.hide();
           this.model.reminderimage = response.filename;
+          this.attachment=this.baseService.serverImagePath+'/'+this.model.reminderimage
         } else {
           this.loader.hide();
           console.log("Error:Data not update");

@@ -63,24 +63,6 @@
     margin: 0px 10px 0px 2px;
 }
 
-.profile_pick {
-    border-radius: 50%;
-    max-width: 40px;
-    overflow: hidden;
-    max-height: 40px;
-    min-height: 40px;
-    width: 100%;
-    min-width: 40px;
-    height: 100%;
-    border: 1px solid #ddd;
-}
-.offline {
-    color: #888;
-}
-.border-bottomCustom {
-    border-bottom: 1px solid #ccc;
-}
-
 @media (max-width: 767px){
   .teacherChatList {
       height: 300px;

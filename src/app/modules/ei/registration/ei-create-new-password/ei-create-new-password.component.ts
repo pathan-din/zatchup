@@ -15,6 +15,8 @@ export class EiCreateNewPasswordComponent implements OnInit {
   error: any = [];
   errorDisplay: any = {};
   model: any = {};
+  password: string;
+
   constructor(private genericFormValidationService: GenericFormValidationService, private router: Router,
     private SpinnerService: NgxSpinnerService,
     public adminService: AdminService,
@@ -22,33 +24,33 @@ export class EiCreateNewPasswordComponent implements OnInit {
     private alert: NotificationService) { }
 
   ngOnInit() {
-    // this.model.key = "ffsd";
-    // this.model.uid = "1";
-    if(localStorage.getItem("otpVerifyData"))
-    {
-      let response:any={}
+    if (localStorage.getItem("otpVerifyData")) {
+      let response: any = {}
       response = JSON.parse(localStorage.getItem("otpVerifyData"))
       this.model.key = response.key;
       this.model.uid = response.uid;
-    }else{
+    } else {
       this.verifyCode();
     }
-    
+
   }
 
 
   verifyCode() {
-    let code = location.hash.split('?token=')[1];
+    let codeOld = location.hash.split('?token=')[1];
+    let code = codeOld.split('~b')[0];
+    if (codeOld.split('~b')[1].indexOf("%") > -1) {
+      this.password = atob(codeOld.split('~b')[1].split('%')[0].substring(1));
+    } else {
+      this.password = atob(codeOld.split('~b')[1].slice(1, -1));
+    }
+    localStorage.setItem("hash", btoa(this.password))
     var json = {
       "code": code
     }
     try {
-      /**Api For the verify code */
-
       this.SpinnerService.show();
-
       this.adminService.verifyResetCode(json).subscribe(res => {
-        console.log(res);
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
@@ -56,17 +58,12 @@ export class EiCreateNewPasswordComponent implements OnInit {
           this.model.key = response.data.key;
           this.model.uid = response.data.uid;
         } else {
-           this.SpinnerService.hide();
-           this.alert.error(response.error.message[0], 'Error')
-          // var errorCollection = '';
-          // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
-          // alert(errorCollection);
+          this.SpinnerService.hide();
+          this.alert.error(response.error.message[0], 'Error')
           this.router.navigate(['ei/login']);
         }
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
-
       });
     }
     catch (e) {
@@ -75,7 +72,6 @@ export class EiCreateNewPasswordComponent implements OnInit {
   }
 
   changePassword() {
-    console.log(this.model);
     this.error = [];
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
@@ -88,7 +84,6 @@ export class EiCreateNewPasswordComponent implements OnInit {
       this.SpinnerService.show();
 
       this.adminService.setAdminPassword(this.model).subscribe(res => {
-        console.log(res);
         let response: any = {};
         response = res;
         this.SpinnerService.hide();
@@ -99,14 +94,9 @@ export class EiCreateNewPasswordComponent implements OnInit {
         } else {
           this.SpinnerService.hide();
           this.alert.error(response.error.message[0], 'Error')
-          // var errorCollection = '';
-          // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
-          // alert(errorCollection);
         }
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
-
       });
     }
     catch (e) {
