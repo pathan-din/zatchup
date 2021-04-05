@@ -171,6 +171,9 @@ import { CurrentPlansComponent } from './start-class/current-plans/current-plans
 import { PlanHistoryComponent } from './start-class/plan-history/plan-history.component';
 import { CourseEditComponent } from './start-class/course-edit/course-edit.component';
 import { StarclassManagementComponent } from './start-class/starclass-management/starclass-management.component';
+import { AdminStarClassCourseUploadedByEiComponent } from './start-class/admin-star-class-course-uploaded-by-ei/admin-star-class-course-uploaded-by-ei.component';
+import { AdminCourseHistoryComponent } from './admin-course-history/admin-course-history.component';
+import { EiStarclassCourseHistoryComponent } from './ei-starclass-course-history/ei-starclass-course-history.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -348,7 +351,10 @@ const config = {
     PricePlanHistoryComponent,
     AllCoursesUploadedByEiComponent,
     StarclassCoursePreviewComponent,
-    StarclassAddedCourseListComponent
+    StarclassAddedCourseListComponent,
+    AdminStarClassCourseUploadedByEiComponent,
+    AdminCourseHistoryComponent,
+    EiStarclassCourseHistoryComponent
   ],
   imports: [
     CommonModule,

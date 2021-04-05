@@ -18,7 +18,8 @@ export class UserHeaderComponent implements OnInit {
   authCheck: boolean = false;
   ids: Array<any> = [];
   searchConfig: any = {
-    "api_endpoint": "user/search-list-for-school-student/"
+    "api_endpoint": "user/search-list-for-school-student/",
+    "display": ['first_name', 'last_name']
   }
   messageData: any = [];
   currentUser: any = "";

@@ -37,7 +37,7 @@ export class LectureUploadComponent implements OnInit {
     this.action = this.activeRoute.snapshot.queryParamMap.get('action');
     console.log('action is as ::', this.action)
     if (this.action == 'edit')
-      this.getLectureList()
+      this.getLectureDetails()
   }
 
   handleFileInput(file) {
@@ -48,7 +48,7 @@ export class LectureUploadComponent implements OnInit {
     console.log(this.uploadedContent);
   }
 
-  getLectureList() {
+  getLectureDetails() {
     try {
       this.loader.show()
       

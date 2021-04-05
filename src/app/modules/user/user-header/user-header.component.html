@@ -98,16 +98,13 @@
 
                 </li>
 
-                
-
-                <!-- <form class="form-inline my-2 my-lg-0 position-relative">
-                    <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
-                    <input class="form-control mr-sm-2 pl-5" type="search" placeholder="Search">
-                </form> -->
-
-                
-
-
+                <!-- <div class="dropdown nav-item">
+                    
+                    <div>
+                        <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)"
+                            class="h-100"></input-search>
+                    </div>
+                </div> -->
 
                 <div class="nav-item d-flex flex-wrap">
                     <div *ngIf="authCheck"

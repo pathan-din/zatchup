@@ -84,8 +84,8 @@ export class EiStarclassComponent implements OnInit {
     this.router.navigate(['ei/star-class-cart'])
   }
 
-  goToUploadLecture(){
-    this.router.navigate(['ei/star-class-lecture-upload'])
+  goToCreateCourse(){
+    this.router.navigate(['ei/star-class-course-add'], {queryParams:{'action': 'add'}})
   }
   goToPendingRequest(){
     this.router.navigate(['ei/starclass-requests-pending'])

@@ -69,7 +69,7 @@ export class LectureDetailsComponent implements OnInit {
     }
   }
 
-  deleteCourse(id: any ): any {
+  deleteLecture(id: any ): any {
     this.modal ={
       "id": id,
     }

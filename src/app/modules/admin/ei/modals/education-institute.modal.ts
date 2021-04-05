@@ -141,6 +141,20 @@ export class StarclassPlanHistory extends Pagination {
     history: any;
     displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
 }
+
+export class StarclassCourseHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
+
+}
+
+export class EIStarclassCourseHistory extends Pagination {
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message'] 
+}
+
 export class StarclassCourseDetails extends Pagination {
     courseDetails: any;
 
@@ -162,4 +176,21 @@ export class LectureDetails extends Pagination {
 export class LectureDetailsEdit extends Pagination {
     model: any;
     details: any;
+}
+
+export class CoursesUploadedByEi extends Pagination{
+  modal: any;
+  id: any;
+  displayedColumns: string[] = ['SNo', 'dateOfCreate','courseID', 'titleOfCourse', 'levelofEducation',
+  'Field','Standard','Subject','numberOfLectures',
+  'TotalActivePlans', 'totalViewsOncourse', 'Action'];
+  filterFromDate: any;
+  filterToDate: any;
+
+}
+
+export class ActiveBoughtCourses extends Pagination{
+    displayedColumns: string[] = ['position','dateOfBuying', 'courseId','titleOfCourse', 'levelOfEducation',
+    'field', 'standard','subject','buyingEiZatchupId','buyingEiName','dateOfExpiry'];
+  params: { page: any; page_size: any; };
 }

@@ -158,6 +158,8 @@ import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
 import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
+import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
+import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -333,6 +335,8 @@ const config = {
     SubadminTermsAndConditionsComponent,
     SubadminCompletedRequestComponent,
     RequestForCourseListViewComponent,
+    EiStarclassCourseViewComponent,
+    ZatchupStarclassComponent,
   ],
   imports: [
     CommonModule,

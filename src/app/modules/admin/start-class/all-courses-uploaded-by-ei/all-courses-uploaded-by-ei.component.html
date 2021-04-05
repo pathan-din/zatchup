@@ -1,103 +1,126 @@
 <app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
-    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
-        <div class="row align-items-center">
-            <div class="col-md-6 ">
-                <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>
-            </div>
-            <div class="col-md-6 SearchDiv d-flex flex-row">
-                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0" (click)="searchRoute()">Create Course</button>
+
+    <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
+        
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center mb-2">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Active Bought Courses</h2>            
             </div>
         </div>
 
-        <div class="tableDiv mt-3">
+        <div class="row my-3 align-items-center" *ngIf="activeBoughtCourses.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getActiveBoughtCourseList('1')" [(ngModel)]="activeBoughtCourses.page_size">
+                        <option *ngFor="let count of activeBoughtCourses.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-3" *ngIf="activeBoughtCourses.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="activeBoughtCourses.dataSource | paginate: activeBoughtCourses.config">
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + activeBoughtCourses.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateOfBuying">
-                        <mat-header-cell *matHeaderCellDef> Date of Buying </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.dateOfBuying}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef>Date Of Buying</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_of_buying | date}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="courseId">
                         <mat-header-cell *matHeaderCellDef> Course ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.courseId}}
+                            {{element.course_id }}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="titleOfCourse">
-                        <mat-header-cell *matHeaderCellDef> Title of Course </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Course Name </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.titleOfCourse}}
+                            {{element.course_name}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="levelOfEducation">
-                        <mat-header-cell *matHeaderCellDef> Level of Education </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.levelOfEducation}}
+                        <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.level_of_education}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="field">
-                        <mat-header-cell *matHeaderCellDef> Field </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.field}}
-                        </mat-cell>
+                        <mat-header-cell *matHeaderCellDef>Field </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.field}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="standard">
-                        <mat-header-cell *matHeaderCellDef> Standard </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.standard}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef>Standard</mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.standard}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="subject">
-                        <mat-header-cell *matHeaderCellDef> Subject </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.subject}}
+                        <mat-header-cell *matHeaderCellDef>Subject </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.subject}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="buyingEiZatchupId">
+                        <mat-header-cell *matHeaderCellDef>Buying Zatchup ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.totalViews}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="buyingEiName">
+                        <mat-header-cell *matHeaderCellDef>Buying School Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.ei_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dateOfExpiry">
+                        <mat-header-cell *matHeaderCellDef>Date Of Expiry </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.course_expiry_date | date}} </mat-cell>
+                    </ng-container>
+
+
+
+                    <!-- <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i  (click)="goToCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id)"></i>
+                            <i (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Student Audience" aria-hidden="true"></i>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="numberOfLectureInTheCourse">
-                        <mat-header-cell *matHeaderCellDef> Number of Lectures In The Course </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.numberOfLectureInTheCourse}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="totalNumberOfTimesCourseBought">
-                        <mat-header-cell *matHeaderCellDef> Total Number Of Times Course Bought </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.totalNumberOfTimesCourseBought}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="totalActivePlans">
-                        <mat-header-cell *matHeaderCellDef> Total Active Plans </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.totalActivePlans}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="totalViewsOnCourse">
-                        <mat-header-cell *matHeaderCellDef> Total Views On Course </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.totalViewsOnCourse}} </mat-cell>
-                    </ng-container>
-                    
-                    <ng-container matColumnDef="action">
-                        <mat-header-cell *matHeaderCellDef class="text-center">Action </mat-header-cell>
-                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue cursorStyle" aria-hidden="true "></i>
-                        </mat-cell>
-                    </ng-container>
-
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="activeBoughtCourses.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: activeBoughtCourses.displayedColumns; "></mat-row>
 
                 </mat-table>
 
             </div>
         </div>
-
+        <pagination-controls *ngIf="activeBoughtCourses.dataSource" (pageChange)="getActiveBoughtCourseList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
+        <div class="row" *ngIf="!activeBoughtCourses.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
     </div>
+
 </div>

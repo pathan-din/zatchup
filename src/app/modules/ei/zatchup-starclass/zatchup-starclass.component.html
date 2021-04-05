@@ -4,24 +4,21 @@
     <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
         
         <div class="row">
-            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center mb-2">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center mb-2">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>            
-            </div>
-            <div class="col-md-6 text-right">
-                <button type="button" class="bg-dark text-white py-2 px-3 border-0" (click)="goToCreateCourse()">Create Course</button>
+                <h2 class="commonFontSize semiBoldFont m-0">Zatchup Starclass</h2>            
             </div>
         </div>
 
-        <div class="row my-3 align-items-center" *ngIf="eiCourseList.dataSource">
+        <div class="row my-3 align-items-center" *ngIf="zatchupStarclassCourses.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getEiCourseList('1')" [(ngModel)]="eiCourseList.page_size">
-                        <option *ngFor="let count of eiCourseList.pageCounts" value="{{count}}">{{count}}</option>
+                        (change)="getZatchupStarclassCourseList('1')" [(ngModel)]="zatchupStarclassCourses.page_size">
+                        <option *ngFor="let count of zatchupStarclassCourses.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
@@ -31,13 +28,13 @@
             </div>
         </div>
 
-        <div class="tableDiv mt-3" *ngIf="eiCourseList.dataSource">
+        <div class="tableDiv mt-3" *ngIf="zatchupStarclassCourses.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="eiCourseList.dataSource | paginate: eiCourseList.config">
+                <mat-table [dataSource]="zatchupStarclassCourses.dataSource | paginate: zatchupStarclassCourses.config">
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index;"> {{i + eiCourseList.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + zatchupStarclassCourses.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="courseName">
@@ -45,60 +42,55 @@
                         <mat-cell *matCellDef="let element"> {{element.course_name}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="levelOfEducation">
-                        <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
+                    <ng-container matColumnDef="boughtDate">
+                        <mat-header-cell *matHeaderCellDef> Bought Date </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.level_of_education}}
+                            {{element.date_of_buying | date}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="field">
-                        <mat-header-cell *matHeaderCellDef> Field </mat-header-cell>
+                    <ng-container matColumnDef="expiryDate">
+                        <mat-header-cell *matHeaderCellDef> Expiry Date </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.field}}
+                            {{element.course_expiry_date | date}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="noOfStandards">
-                        <mat-header-cell *matHeaderCellDef> Standards </mat-header-cell>
+                    <ng-container matColumnDef="totalViews">
+                        <mat-header-cell *matHeaderCellDef> Total Views </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.standard}}
+                            {{element.totalViews}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="subject">
-                        <mat-header-cell *matHeaderCellDef>Subject </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.subject}} </mat-cell>
+                    <ng-container matColumnDef="noOfViews">
+                        <mat-header-cell *matHeaderCellDef>No. Of Views </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.totalViews}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="noOfCourse">
-                        <mat-header-cell *matHeaderCellDef>Number Of Lecture In The Course</mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.number_of_lectures}}</mat-cell>
-                    </ng-container>
 
-                    <ng-container matColumnDef="Action">
+                    <!-- <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i  (click)="goToCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
                             <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id)"></i>
                             <i (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Student Audience" aria-hidden="true"></i>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <mat-header-row *matHeaderRowDef="eiCourseList.displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: eiCourseList.displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="zatchupStarclassCourses.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: zatchupStarclassCourses.displayedColumns; "></mat-row>
 
                 </mat-table>
 
             </div>
         </div>
-        <pagination-controls *ngIf="eiCourseList.dataSource" (pageChange)="getEiCourseList($event)" class="eiPaginationTag">
+        <pagination-controls *ngIf="zatchupStarclassCourses.dataSource" (pageChange)="getZatchupStarclassCourseList($event)" class="eiPaginationTag">
         </pagination-controls>
         <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
             <p style="color: white">Please Wait. </p>
         </ngx-spinner>
-        <div class="row" *ngIf="!eiCourseList.dataSource">
+        <div class="row" *ngIf="!zatchupStarclassCourses.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>

@@ -27,73 +27,91 @@
             </div>
         </div>
 
-        <div class="tableDiv ">
+        <div class="tableDiv" *ngIf="studentAuidence.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="studentAuidence.dataSource | paginate: studentAuidence.config">
                     <ng-container matColumnDef="select" class="ml-2">
                         <mat-header-cell *matHeaderCellDef>
                             <mat-checkbox class="ml-2" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
                             </mat-checkbox>
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
+                        <!-- <mat-cell *matCellDef="let element">
                             <mat-checkbox class="ml-2" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)">
+                            </mat-checkbox>
+                        </mat-cell> -->
+                        <mat-cell *matCellDef="let element">
+                            <mat-checkbox 
+                            (change)="getCartData(element, studentAuidence.id)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + studentAuidence.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePic">
                         <mat-header-cell *matHeaderCellDef> Profile Pic</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <img mat-card-avatar [src]="element.profilePic" class="mat-img-proPic" /></mat-cell>
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="School profile"
+                                    class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="School profile"
+                                    class="img-fluid cerImg rounded">
+                            </div></mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="nameOfStudent">
                         <mat-header-cell *matHeaderCellDef> Name of Student </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.nameOfStudent}}
+                            {{element.first_name}} {{element.last_name}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="relationship">
+                    <!-- <ng-container matColumnDef="relationship">
                         <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.relationship}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="classDetails">
-                        <mat-header-cell *matHeaderCellDef>Class Details
+                        <mat-header-cell *matHeaderCellDef>Class Name
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.classDetails}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.class_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="class">
                         <mat-header-cell *matHeaderCellDef> Class(Alias) </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.class}}
+                            {{element.alias_class}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="rollNo">
                         <mat-header-cell *matHeaderCellDef> Roll Number </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.rollNo}}
+                            {{element.roll_no}}
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="studentAuidence.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: studentAuidence.displayedColumns; "></mat-row>
 
                 </mat-table>
 
             </div>
         </div>
-        <button type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0">Submit</button>
+        <pagination-controls *ngIf="studentAuidence.dataSource" (pageChange)="getStudentAuidenceList($event)"
+        class="eiPaginationTag">
+    </pagination-controls>
+    <div class="row" *ngIf="!studentAuidence.dataSource">
+        <div class="col-12 pt-2 pb-2">
+            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+        </div>
+    </div>
+        <button *ngIf="studentAuidence.dataSource" type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0">Submit</button>
 
     </div>
 

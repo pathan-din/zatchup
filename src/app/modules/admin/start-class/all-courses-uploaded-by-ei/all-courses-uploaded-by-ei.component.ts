@@ -1,26 +1,11 @@
+import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-export interface PeriodicElement {
-  position: number;
-  dateOfBuying: string;
-  courseId: string;
-  titleOfCourse: string;
-  levelOfEducation: string;
-  field: string;
-  standard: string;
-  subject: string;
-  numberOfLectureInTheCourse: string;
-  totalNumberOfTimesCourseBought: string;
-  totalActivePlans: string;
-  totalViewsOnCourse: string;
-  action: string;
-}
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
+import { ActiveBoughtCourses } from '../../ei/modals/education-institute.modal';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {'position': 1,'dateOfBuying': '01 June 2020', 'courseId': 'COURSE8567', 'titleOfCourse': 'Income Tax', 
-  'levelOfEducation': 'B.Com','field': '', 'standard' : 'B.Com', 'subject': 'Accontant', 'numberOfLectureInTheCourse': '5 Lectures', 
-  'totalNumberOfTimesCourseBought': '2 Times', 'totalActivePlans': '', 'totalViewsOnCourse': '50', 'action': ''}
-];
 
 @Component({
   selector: 'app-all-courses-uploaded-by-ei',
@@ -28,16 +13,73 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./all-courses-uploaded-by-ei.component.css']
 })
 export class AllCoursesUploadedByEiComponent implements OnInit {
+  activeBoughtCourses : ActiveBoughtCourses
+   
 
-  displayedColumns: string[] = ['position','dateOfBuying', 'courseId','titleOfCourse', 'levelOfEducation',
-  'field', 'standard','subject','numberOfLectureInTheCourse','totalNumberOfTimesCourseBought','totalActivePlans',
-  'totalViewsOnCourse', 'action'];   
+  constructor(
+    private router: Router,
+    private alert :NotificationService,
+    private loader : NgxSpinnerService,
+    private baseService: BaseService,
+    private location : Location,
+    private datePipe: DatePipe,) {
+      this.activeBoughtCourses = new ActiveBoughtCourses()
+     }
 
-  dataSource = ELEMENT_DATA;
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {}
-  searchRoute(){
-    
+  ngOnInit(): void {
+    this.getActiveBoughtCourseList()
   }
+
+  getActiveBoughtCourseList(page? : any){
+    try {
+      this.loader.show()
+      this.activeBoughtCourses.params = {
+        'page' :page,
+        'page_size':this.activeBoughtCourses.page_size
+      }
+      this.baseService.getData('starclass/active_bought_courses_list/', this.activeBoughtCourses.params).subscribe(
+        (res: any) =>{
+          if(res.status == true){
+            if (!page)
+            page = this.activeBoughtCourses.config.currentPage
+            this.activeBoughtCourses.startIndex = res.page_size * (page- 1) + 1;
+            this.activeBoughtCourses.page_size = res.page_size
+            this.activeBoughtCourses.config.itemsPerPage = this.activeBoughtCourses.page_size
+            this.activeBoughtCourses.config.currentPage = page
+            this.activeBoughtCourses.config.totalItems = res.count
+            if(res.count > 0) {
+              this.activeBoughtCourses.dataSource = res.results;
+              this.activeBoughtCourses.pageCounts = this.baseService.getCountsOfPage()
+            }
+            else {
+              this.activeBoughtCourses.dataSource = undefined
+              this.activeBoughtCourses.pageCounts = undefined
+            }
+          }
+          else{
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        }
+      ), 
+      err => {
+        console.log(err);
+      }
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+      this.loader.hide()
+    }
+  }
+
+  goBack(){
+    this.location.back()
+  }
+
+  generateExcel() {
+    delete this.activeBoughtCourses.params.page_size;
+    delete this.activeBoughtCourses.params.page;
+    this.activeBoughtCourses.params['export_csv'] = true
+    this.baseService.generateExcel('starclass/export_active_bought_courses_list/', 'active-course-list', this.activeBoughtCourses.params);
+  }
+
 }

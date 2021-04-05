@@ -142,6 +142,9 @@ import { PricePlanHistoryComponent } from './start-class/price-plan-history/pric
 import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
 import { StarclassCoursePreviewComponent } from './start-class/starclass-course-preview/starclass-course-preview.component';
 import { StarclassAddedCourseListComponent } from './start-class/starclass-added-course-list/starclass-added-course-list.component';
+import { AdminStarClassCourseUploadedByEiComponent } from './start-class/admin-star-class-course-uploaded-by-ei/admin-star-class-course-uploaded-by-ei.component';
+import { AdminCourseHistoryComponent } from './admin-course-history/admin-course-history.component';
+import { EiStarclassCourseHistoryComponent } from './ei-starclass-course-history/ei-starclass-course-history.component';
 
 
 const routes: Routes = [
@@ -560,13 +563,22 @@ const routes: Routes = [
     path: 'price-plan-history', component: PricePlanHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'all-courses-uploaded-by-ei', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
+    path: 'all-active-courses', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
   },
   {
     path: 'starclass-course-preview/:id', component:StarclassCoursePreviewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'course-added-list', component:StarclassAddedCourseListComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'starclass-course-upload-by-ei', component:AdminStarClassCourseUploadedByEiComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-course-history', component:AdminCourseHistoryComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'ei-starclass-course-history', component:EiStarclassCourseHistoryComponent, canActivate:[AuthGuard]
   },
 
 

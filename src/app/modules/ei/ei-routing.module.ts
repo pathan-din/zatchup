@@ -141,6 +141,8 @@ import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-a
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
 import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
+import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
+import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
 
 
 const routes: Routes = [
@@ -343,7 +345,7 @@ const routes: Routes = [
     path: 'star-class-lecture-history', component: EiStarclassLectureHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-lecture-upload', component: EiStarclassLectureUploadComponent, canActivate: [AuthGuard]
+    path: 'star-class-lecture-upload/:id', component: EiStarclassLectureUploadComponent, canActivate: [AuthGuard]
   },
   {
     path: 'star-class-lecture-details', component: EiStarclassLectureDetailsComponent, canActivate: [AuthGuard]
@@ -557,6 +559,12 @@ const routes: Routes = [
   },
    {
     path: 'request-for-course-list-view', component:RequestForCourseListViewComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'ei-starclass-course-view/:id', component:EiStarclassCourseViewComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'zatchup-starclass-courses', component:ZatchupStarclassComponent, canActivate:[AuthGuard]
    },
   
   
