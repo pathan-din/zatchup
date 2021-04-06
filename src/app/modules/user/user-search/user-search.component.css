@@ -9,3 +9,13 @@
     line-height: normal;
     margin-bottom: 0;
 }
+.multiselect-dropdown {
+    margin-top: 10px;
+}
+
+@media (max-width: 767px){
+    .pl-0, .pr-0 {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+}

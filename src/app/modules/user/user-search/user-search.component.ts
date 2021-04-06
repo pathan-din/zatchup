@@ -11,17 +11,28 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class UserSearchComponent implements OnInit {
   searchText: any;
   dataSource: any;
+  pastSchools: any;
 
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {
     singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
+    idField: 'item_id',
+    textField: 'item_text',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+
+  pastSchoolsSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'name_of_school',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 4,
+    allowSearchFilter: true
   };
 
   countries: Array<any> = [];
@@ -58,6 +69,8 @@ export class UserSearchComponent implements OnInit {
     this.searchText = this.route.snapshot.queryParamMap.get('searchText');
     if (this.searchText)
       this.getSearchData()
+    // this.getCurrentSchools();
+    this.getPastSchools()
   }
 
   getSearchData() {
@@ -95,5 +108,43 @@ export class UserSearchComponent implements OnInit {
   }
   onSelectAll(items: any) {
     console.log("onSelectAll", items);
+  }
+
+  getCurrentSchools() {
+    let params = {
+      "search": this.searchText
+    }
+    this.baseService.getData('user/current-school-list-of-user/').subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (res.count == 0)
+            this.dataSource = undefined
+          else
+            this.dataSource = res.results;
+        }
+        else {
+
+        }
+      }
+    )
+  }
+
+  getPastSchools() {
+    let params = {
+      "search": this.searchText
+    }
+    this.baseService.getData('user/past-school-list-of-user/').subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          if (res.count == 0)
+            this.pastSchools = undefined
+          else
+            this.pastSchools = res.results;
+        }
+        else {
+
+        }
+      }
+    )
   }
 }

@@ -120,13 +120,13 @@
                 <a class="text-white mr-4 commonFontSize semiBoldFont" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <img *ngIf="userData && userData.profile_pic" src="{{userData.profile_pic}}" class="rounded-circle bg-light-green header-dp">
-                    <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile-default.png" class="rounded-circle bg-light-green header-dp">
+                    <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile_pic_transparent.png" class="rounded-circle bg-light-green header-dp">
                 </a>
                 <div class="dropdown-menu mt-4" aria-labelledby="dropdownMenuLink">
                     <div class="row p-2">
                         <div class="col-sm-12 text-center">
                             <img *ngIf="userData && userData.profile_pic" src="{{userData.profile_pic}}" class="rounded-circle bg-light-green header-dp">
-                            <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile-default.png" class="rounded-circle bg-light-green header-dp">
+                            <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile_pic_transparent.png" class="rounded-circle bg-light-green header-dp">
                             <span class="my-1 d-block">{{userData ? userData.first_name + ' '+ userData.last_name : ''}}</span>
                         </div>
                         <div class="col-sm-12 cursorStyle commonFontSize regularFont" routerLink="/admin/change-password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>

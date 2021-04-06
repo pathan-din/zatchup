@@ -63,7 +63,7 @@ export class EiProfilePreviewComponent implements OnInit {
     }
   }
   goToUserLandingPage(): any {
-    this.confirmDialogService.confirmThis('You will be logout before continue ...', () => {
+    this.confirmDialogService.confirmThis('Your School is Sent for approval !! Please login again to continue.', () => {
       this.redirectToLoginPage()
     
     }, () => {
