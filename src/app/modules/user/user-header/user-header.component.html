@@ -41,7 +41,7 @@
                 </li>
             </ul>
 
-            <div *ngIf="authCheck" class="dropdown nav-item position-relative">
+            <div *ngIf="authCheck" class="dropdown nav-item position-relative customUserSearch">
                 <div>
                     <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)" class="h-100"></input-search>
                 </div>
