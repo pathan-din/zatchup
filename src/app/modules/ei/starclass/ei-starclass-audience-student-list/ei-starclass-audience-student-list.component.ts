@@ -38,7 +38,8 @@ export interface editRightTeacheristElement {
 })
 export class EiStarclassAudienceStudentListComponent implements OnInit {
   studentAuidence : StudentAuidence
-  cartData : any = {};
+  cartData : any ;
+  studentId: Array<string> = [];
   selection = new SelectionModel<editRightTeacheristElement>(true, []);
   approved: any;
   constructor(
@@ -71,9 +72,13 @@ masterToggle() {
 }
 
 getCartData(data:any){
-  this.cartData = {}
+  this.cartData = ''
   this.cartData = data.user_id
+  this.studentId.push(this.cartData)
+  
   console.log('cartdata', this.cartData);
+  console.log('student id', this.studentId);
+  
 }
 
 getStudentAuidenceList(page? : any){

@@ -14,6 +14,7 @@ import { CourseList } from '../../ei/modals/education-institute.modal';
   styleUrls: ['./starclass-lecture-details-view.component.css']
 })
 export class StarclassLectureDetailsViewComponent implements OnInit {
+  eiLectureDetailsView: any;
 
   constructor(
     private location: Location,
@@ -24,13 +25,37 @@ export class StarclassLectureDetailsViewComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmDialogService: ConfirmDialogService,
     private validation: GenericFormValidationService
-  ) { 
-  
-  }
+  ) { }
 
   ngOnInit(): void {
+    if(this.route.snapshot.queryParamMap.get('id')){
+      this.getLectureDetails()
+    }
   }
 
+  getLectureDetails(){
+    try {
+      this.loader.show()
+      this.baseService.getData('starclass/ei_lecture_detail/'+this.route.snapshot.queryParamMap.get('id')).subscribe(
+        (res : any) =>{
+          if(res.status == true){
+            this.eiLectureDetailsView = res.data
+          }
+          else{
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        }
+      ),
+      err => {
+        this.loader.hide()
+        this.alert.error(err, 'Error')
+      }
+    } catch (error) {
+      this.loader.hide()
+      this.alert.error(error.error, 'Error')
+    }
+  }
   goBack(){
     this.location.back()
   }
