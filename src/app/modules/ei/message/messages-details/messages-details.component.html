@@ -17,9 +17,9 @@
                 </div>
                 <div class="profile_name ml-2 text-capitalize">
                     <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}} <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span></p>
-                    <span class="small-text-2" *ngIf="presence$ | async as presence">
+                    <!-- <span class="small-text-2" *ngIf="presence$ | async as presence">
                         <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
-                    </span>
+                    </span> -->
                 </div>
             </div>
     

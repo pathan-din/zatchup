@@ -14,7 +14,8 @@ import { CoursesUploadedByEi } from '../../ei/modals/education-institute.modal';
   providers: [DatePipe]
 })
 export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
-  courseUploadedByEi: CoursesUploadedByEi
+  courseUploadedByEi: CoursesUploadedByEi;
+  maxDate: any;
 
   
   constructor(
@@ -25,7 +26,8 @@ export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
     private location : Location,
     private datePipe: DatePipe,
     ) { 
-      this.courseUploadedByEi = new CoursesUploadedByEi()
+      this.courseUploadedByEi = new CoursesUploadedByEi();
+      this.maxDate = new Date()
     }
 
   ngOnInit(): void {
