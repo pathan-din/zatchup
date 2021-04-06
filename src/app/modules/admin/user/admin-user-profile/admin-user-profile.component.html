@@ -24,7 +24,7 @@
             <div *ngIf="userData" class="Onboard-viewbanner-div p-2 d-flex align-items-end position-relative"
                 [ngStyle]="userData.cover_pic ? {'background-image': 'url(' + userData.cover_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
                 <div class="dpImgCircle rounded-circle bg-light-green border border-white">
-                    <img *ngIf="!userData.profile_pic" src="assets/images/profile-default.png"
+                    <img *ngIf="!userData.profile_pic" src="assets/images/profile_pic_transparent.png"
                         class="img-fluid dpImg cursorStyle">
                     <img *ngIf="userData.profile_pic" src="{{userData.profile_pic}}"
                         class="img-fluid dpImg cursorStyle">
