@@ -78,7 +78,7 @@ export class GenericFormValidationService {
             if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){
               
             }else{
-              this.errorMessageObject[controls[i].name] = 'Format Supprted ( '+controls[i].getAttribute('validFileExtention')+' )';
+              this.errorMessageObject[controls[i].name] = 'Format Supported ( '+controls[i].getAttribute('validFileExtention')+' )';
             }
           //return filename.split('.').pop();
           //this.errorMessageObject[controls[i].name] = 

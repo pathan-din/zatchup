@@ -17,14 +17,14 @@
 
             <!--Start div for oView Course Details-->
             <div class="row m-0">
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="eiLectureDetailsView">
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Lecture Title</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span>{{eiLectureDetailsView.lecture_title}} </p>
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +33,7 @@
                             <p>Level of Education</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.level_of_education}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -42,7 +42,7 @@
                             <p>Field</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.field}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -51,7 +51,7 @@
                             <p>Standard</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>  </p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.standard}} </p>
                         </div>
                     </div>
                     <div class="row">
@@ -60,7 +60,7 @@
                             <p>Subject</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.subject}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -69,7 +69,7 @@
                             <p>Teaching Faculty Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.name_of_teaching_faculty}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -78,7 +78,7 @@
                             <p>Topic Cover</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span>{{eiLectureDetailsView.topic_cover}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -87,7 +87,7 @@
                             <p>Description</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.lecture_description}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -96,7 +96,7 @@
                             <p>Uploaded By</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span> </p>
+                            <p><span class="mr-3">:</span>{{eiLectureDetailsView.upload_by_id}} </p>
                         </div>
                     </div>
                     <div class="row">
@@ -105,11 +105,11 @@
                             <p>Uploaded Date</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span>  </p>
+                            <p><span class="mr-3">:</span>  {{eiLectureDetailsView.upload_date | date}}</p>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Total Number Of Views On Lecture</p>
@@ -117,19 +117,26 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
                             <p class="cursorStyle"><span class="mr-3">:</span>  </p>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Play</p>
                         </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
-                            <p class="cursorStyle"><span class="mr-3">:</span>  </p>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span></p>
+                            <div class="col-md-12 customVideo" >
+                                <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
+                                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                                    <source src="{{eiLectureDetailsView.lecture}}" type="video/mp4" />
+                               </video>
+                            </div>
+                           
                         </div>
                     </div>
                     
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Delete</p>
@@ -137,7 +144,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
                             <p class="cursorStyle"><span class="mr-3">:</span> Delete</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!--End div for oView Course Details-->
