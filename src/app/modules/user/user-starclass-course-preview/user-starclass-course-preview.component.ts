@@ -39,7 +39,7 @@ export class UserStarclassCoursePreviewComponent implements OnInit {
   }
 
   goToLectureView(id) {
-    this.router.navigate(['admin/starclass-lecture-details-view'], { queryParams: { 'id': id } })
+    this.router.navigate(['user/user-lecture-details'], { queryParams: { 'id': id } })
   }
 
   getCourseDetails() {
