@@ -68,20 +68,29 @@
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
                     <div class="searh_result cursorStyle">
                         <div class="searchUserProfile" *ngIf="displayImage">
-                            <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User" class="img-small" />
+                            <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User"
+                                class="img-small" />
                             <img *ngIf="data.profile_pic" src="{{data.profile_pic}}" alt="User" class="img-small" />
                         </div>
-                        <div class="SearchUserName">
-                            {{data['display']}}
+                        <div>
+                            <div>
+                                <span class="SearchUserName">{{data['display']}}</span>
+                                <span class="small-text-2">Software Developer at Triazine</span>
+                            </div>
+                            <div *ngIf="viewZatchupId" class="searchUserDesignation">
+                                {{data['school_code']}}
+                            </div>
+                            <div>
+                                <i class="far fa-school"></i>
+                            </div>
                         </div>
-                        <!-- <div class="searchUserDesignation">
-                            Software Developer at Triazine
-                        </div> -->
                     </div>
-                    </li>
-                    <div *ngIf="apiResponse['count'] > 5">
-                        <button type="button" class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple" (click)="moreResults()">See All Results</button>
-                    </div>
+                </li>
+                <div *ngIf="apiResponse['count'] > 5">
+                    <button type="button"
+                        class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple"
+                        (click)="moreResults()">See All Results</button>
+                </div>
             </ul>
 
         </ng-template>
