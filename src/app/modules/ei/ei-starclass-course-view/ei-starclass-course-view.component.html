@@ -128,35 +128,35 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Auidence For The Course</p>
+                            <p>Date Of Creating Course</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="cursorStyle  textUnderlineStyle " ><span class="mr-3">:</span>
-                                View</p>
+                            <p><span class="mr-3">: </span>{{courseData.created_on | date}}</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Add Auidence</p>
+                            <p> Student Auidence</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
-                                Add</p>
+                            <p (click)="goToStudentAudienceAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                                Add/Edit</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Current Edit Rights For The Course</p>
+                            <p> Teacher Auidence</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
-                                View</p>
+                            <p (click)="goToTeacherAudienceAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                                Add/Edit</p>
                         </div>
                     </div>
+
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
@@ -164,18 +164,8 @@
                             <p>Edit Access Right For The Course</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
-                                Add</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Date Of Creating Course</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{courseData.created_on | date}}</p>
+                            <p (click)="goToEditTeacherAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                                Add/Edit</p>
                         </div>
                     </div>
 

@@ -4,16 +4,14 @@ import { Location } from '@angular/common';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { EditTeacherAuidence } from '../../registration/modal/contact-us.mdal';
-
-
+import { TeacherAuidence } from '../../registration/modal/contact-us.mdal';
 @Component({
-  selector: 'app-ei-starclass-edit-right-teacher',
-  templateUrl: './ei-starclass-edit-right-teacher.component.html',
-  styleUrls: ['./ei-starclass-edit-right-teacher.component.css']
+  selector: 'app-ei-starclass-audience-teacher',
+  templateUrl: './ei-starclass-audience-teacher.component.html',
+  styleUrls: ['./ei-starclass-audience-teacher.component.css']
 })
-export class EiStarclassEditRightTeacherComponent implements OnInit {
-  editTeacherAudience : EditTeacherAuidence;
+export class EiStarclassAudienceTeacherComponent implements OnInit {
+  teacherAudience : TeacherAuidence;
   cartData : any ;
   studentId: Array<string> = [];
   approved: any;
@@ -28,7 +26,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     private loader: NgxSpinnerService,
     private route : ActivatedRoute
   ) {
-    this.editTeacherAudience = new EditTeacherAuidence()
+    this.teacherAudience = new TeacherAuidence()
    }
 
   ngOnInit(): void {
@@ -38,31 +36,31 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   getTeacherAuidenceList(page? : any){
     try {
       this.loader.show()
-      this.editTeacherAudience.params = {
+      this.teacherAudience.params = {
         'page' :page,
-        'page_size':this.editTeacherAudience.page_size,
+        'page_size':this.teacherAudience.page_size,
         'approved': this.route.snapshot.queryParamMap.get('approved'),
         'course_id': this.route.snapshot.queryParamMap.get('course_id')
         // 'id': this.route.snapshot.params.id
       }
-      this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/', this.editTeacherAudience.params).subscribe(
+      this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/', this.teacherAudience.params).subscribe(
         (res: any) =>{
           if(res.status == true){
             if (!page)
-            page = this.editTeacherAudience.config.currentPage
-            this.editTeacherAudience.startIndex = res.page_size * (page- 1) + 1;
-            this.editTeacherAudience.page_size = res.page_size
-            this.editTeacherAudience.config.itemsPerPage = this.editTeacherAudience.page_size
-            this.editTeacherAudience.config.currentPage = page
-            this.editTeacherAudience.config.totalItems = res.count
+            page = this.teacherAudience.config.currentPage
+            this.teacherAudience.startIndex = res.page_size * (page- 1) + 1;
+            this.teacherAudience.page_size = res.page_size
+            this.teacherAudience.config.itemsPerPage = this.teacherAudience.page_size
+            this.teacherAudience.config.currentPage = page
+            this.teacherAudience.config.totalItems = res.count
             if(res.count > 0) {
-              this.editTeacherAudience.dataSource = res.results;
-              this.editTeacherAudience.pageCounts = this.baseService.getCountsOfPage()
+              this.teacherAudience.dataSource = res.results;
+              this.teacherAudience.pageCounts = this.baseService.getCountsOfPage()
               this.setData()
             }
             else {
-              this.editTeacherAudience.dataSource = undefined
-              this.editTeacherAudience.pageCounts = undefined
+              this.teacherAudience.dataSource = undefined
+              this.teacherAudience.pageCounts = undefined
             }
           }
           else{
@@ -81,7 +79,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   }
 
   setData() {
-    let filtered = this.editTeacherAudience.dataSource.filter(elen => {
+    let filtered = this.teacherAudience.dataSource.filter(elen => {
       if (this.isValid(elen) == true)
         return elen.user_id
     })
@@ -91,7 +89,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   }
 
   isValid(value) {
-    return value.element.is_edit_right == true
+    return value.is_access_for_star_class == true
   }
   
   getTeacherAudienceBycheckbox(stId, event) {
@@ -119,7 +117,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     } else {
       
         this.loader.show();
-        this.baseService.action('starclass/ei-course-access-permission-to-teacher/', { 'teacher_id': this.teacherAudienceList.join(','), 'course_id': this.route.snapshot.queryParamMap.get('course_id') }).subscribe(
+        this.baseService.action('starclass/ei-course-assign-to-user/', { 'student_id': this.teacherAudienceList.join(','), 'course_id': this.route.snapshot.queryParamMap.get('course_id') }).subscribe(
           (res: any) => {
             if(res.status == true){
             this.loader.hide();
@@ -141,5 +139,5 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   goBack(){
     this.location.back()
   }
-
+  
 }

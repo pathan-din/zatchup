@@ -102,6 +102,42 @@
                     </div>
                 </div>
 
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="row form-control-inputDiv pb-3">
+                            <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
+                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Add Your Location </h3>                                
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="mb-2 semiBoldFont">State</label>
+                                        <select class="custom-select form-control-input border" required>
+                                            <option value="">Select State</option>
+                                            <!-- <option value="1">Trignometry </option>
+                                            <option value="2">Algebra </option>
+                                            <option value="3">Dimensional Concepts</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="mb-2 semiBoldFont">City</label>
+                                       <select class="custom-select form-control-input border" required>
+                                            <option value="">Select City</option>
+                                            <!-- <option value="1">Trignometry </option>
+                                            <option value="2">Algebra </option>
+                                            <option value="3">Dimensional Concepts</option> -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row mt-3" *ngIf="objEpData.work_detail">
                     <div class="col-md-12">
                         <div class="row form-control-inputDiv">
@@ -113,8 +149,10 @@
                                     </a>
                                 </div>
                             </div>
-
-                            <div class="col-md-12 pt-3 d-flex justify-content-between align-items-center" *ngFor="let objWorkDetail of objEpData.work_detail">
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                            <div class="col-md-12 mb-3 d-flex justify-content-between align-items-center" *ngFor="let objWorkDetail of objEpData.work_detail">
                                 <h3 class="Heading m-0 d-flex justify-content-start">
                                     <img src="assets/images/work-user-profile.png" class="cursorStyle img-fluid mr-2 work-user-profile">
                                     <div class="experiencedetails">
@@ -130,10 +168,6 @@
                                         <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid" style="width: 26px;">
                                     </a>
                                 </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <hr>
                             </div>
 
                         </div>
@@ -157,7 +191,7 @@
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading mb-0">School Details </h3>
                                 <div class="addWorkcourse">
                                     <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1" class="mr-2 cursorStyle">
-                                        <img src="assets/images/pending.png" tooltip="Pending Request">
+                                        <img src="assets/images/pending.png" tooltip="Pending Course Details">
                                     </span>
                                     <!-- <a (click)="redirectEiConfirmationPagePage('')">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"

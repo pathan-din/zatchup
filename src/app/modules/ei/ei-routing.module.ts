@@ -144,6 +144,7 @@ import { RequestForCourseListViewComponent } from './student/request-for-course-
 import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
 import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
 import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
+import { EiStarclassAudienceTeacherComponent } from './starclass/ei-starclass-audience-teacher/ei-starclass-audience-teacher.component';
 
 
 const routes: Routes = [
@@ -569,6 +570,9 @@ const routes: Routes = [
    },
    {
     path: 'starclass-course-history', component:EiStarClassCourseHistoryComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'ei-starclass-audience-teacher', component: EiStarclassAudienceTeacherComponent, canActivate:[AuthGuard]
    },
   
   

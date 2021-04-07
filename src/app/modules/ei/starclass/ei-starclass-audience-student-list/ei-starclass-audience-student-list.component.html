@@ -2,7 +2,14 @@
 <div class="container main-container p-3">
 
     <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Audience Students List</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Audience Students List</h2>
+            </div>
+        </div>
         <!-- <div class="row mb-2">
             <div class="col-md-6 d-flex align-items-end">
                 <div class=" mr-2">
@@ -30,21 +37,29 @@
         <div class="tableDiv" *ngIf="studentAuidence.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="studentAuidence.dataSource | paginate: studentAuidence.config">
-                    <ng-container matColumnDef="select" class="ml-2">
+                    <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef>
+
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-checkbox  
+                            [(ngModel)]="element.is_access_for_star_class"
+                                (change)="getStudentAudienceBycheckbox(element.user_id,$event)">
+                            </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="select" class="ml-2">
                         <mat-header-cell *matHeaderCellDef>
                             <mat-checkbox class="ml-2" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
                             </mat-checkbox>
                         </mat-header-cell>
-                        <!-- <mat-cell *matCellDef="let element">
-                            <mat-checkbox class="ml-2" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)">
-                            </mat-checkbox>
-                        </mat-cell> -->
+                       
                         <mat-cell *matCellDef="let element">
                             <mat-checkbox 
                             (change)="getCartData(element, studentAuidence.id)">
                             </mat-checkbox>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
@@ -111,7 +126,7 @@
             <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
         </div>
     </div>
-        <button *ngIf="studentAuidence.dataSource" type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0">Submit</button>
+        <button  type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0" (click)="addStudentAudience()">Submit</button>
 
     </div>
 

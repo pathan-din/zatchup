@@ -7,20 +7,20 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Edit Right Teacher List</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">Audience Teacher List</h2>
             </div>
         </div>
 
-        <div class="tableDiv" *ngIf="editTeacherAudience.dataSource">
+        <div class="tableDiv" *ngIf="teacherAudience.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="editTeacherAudience.dataSource | paginate: editTeacherAudience.config">
+                <mat-table [dataSource]="teacherAudience.dataSource | paginate: teacherAudience.config">
                     <ng-container matColumnDef="select">
                         <mat-header-cell *matHeaderCellDef>
 
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <mat-checkbox 
-                            [(ngModel)]="element.is_edit_right"
+                            [(ngModel)]="element.is_access_for_star_class"
                                 (change)="getTeacherAudienceBycheckbox(element.user_id,$event)">
                             </mat-checkbox>
                         </mat-cell>
@@ -28,7 +28,7 @@
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index;"> {{i + editTeacherAudience.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + teacherAudience.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePic">
@@ -62,17 +62,17 @@
                         <mat-cell *matCellDef="let element "> {{element.employee_num}} </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="editTeacherAudience.displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: editTeacherAudience.displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="teacherAudience.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: teacherAudience.displayedColumns; "></mat-row>
 
                 </mat-table>
 
             </div>
         </div>
-        <pagination-controls *ngIf="editTeacherAudience.dataSource" (pageChange)="getTeacherAuidenceList($event)"
+        <pagination-controls *ngIf="teacherAudience.dataSource" (pageChange)="getStudentAuidenceList($event)"
         class="eiPaginationTag">
     </pagination-controls>
-    <div class="row" *ngIf="!editTeacherAudience.dataSource">
+    <div class="row" *ngIf="!teacherAudience.dataSource">
         <div class="col-12 pt-2 pb-2">
             <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
         </div>

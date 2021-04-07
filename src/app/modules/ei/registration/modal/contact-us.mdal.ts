@@ -75,6 +75,17 @@ export class StudentAuidence extends Pagination{
   params: any ={};
 }
 
+export class TeacherAuidence extends Pagination{
+  displayedColumns: string[] = ['select','position', 'profilePic','nameOfTeacher','empId'];
+  id: any;
+  params: any ={};
+}
+export class EditTeacherAuidence extends Pagination{
+  displayedColumns: string[] = ['select','position', 'profilePic','nameOfTeacher','empId'];
+  id: any;
+  params: any ={};
+}
+
 export class EiStarclassCourseView extends Pagination{
   courseDetails: any;
 }
