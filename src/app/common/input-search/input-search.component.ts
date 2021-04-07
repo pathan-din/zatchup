@@ -25,6 +25,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.resultsLength = value.resultsLength ? value.resultsLength : undefined;
     this.seeMoreResults = value.seeMoreResults == false ? value.seeMoreResults : true;
     this.placeholder = value.placeholder ? value.placeholder : 'Search.....'
+    this.viewCity = value.viewCity ? value.viewCity : false;
+    this.rightIcon = value.rightIcon ? value.rightIcon : false;
+    this.viewSubMenu = value.viewSubMenu ? value.viewSubMenu : false
   }
   @Input() value: any;
   @Output() searchResult = new EventEmitter<any>();
@@ -39,6 +42,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   seeMoreResults: boolean = true;
   resultsLength: any;
   placeholder: string;
+  viewCity: boolean;
+  rightIcon: boolean;
+  viewSubMenu: boolean;
 
   constructor(
     private router: Router,
