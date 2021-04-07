@@ -7,45 +7,31 @@
         </div>
     </div>
 </div>
-<div class="container containerScrolling mt-4 landingPageWidth ">
+<div class="container containerScrolling landingPageWidth ">
     <div class="bannerDiv position-relative" *ngIf="userProfile">
-        <img src="assets/images/cover-pic-default.png" class="img-fluid">
-        <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
+        <img src="assets/images/cover-pic-default.png" class="img-fluid">        
+    </div>
 
-        <div class="col-md-5 text-right d-flex profileDivLeft  p-0 align-items-center customProfile">
+    <div class="row px-3">
+        <div class="col-md-5 text-right d-flex profileDivLeft align-items-center customProfile">
             <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
                 <img *ngIf="!userProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                 <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="img-fluid dpImg">
+                <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
             </div>
 
             <div class="pl-2 text-left" *ngIf="userProfile">
-                <p class="m-0 commonFontSize mediumFont pt-4">{{userProfile.name}}</p>
+                <p class="m-0 commonFontSize mediumFont pt-4 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
-                <!-- <p class="m-0 commonFontSize regularFont">You were in same clas in 2019</p> -->
-            </div>
+            </div>            
         </div>
-        <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
 
+        <div class="col-md-7 text-right mt-2">
+            <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
+        </div>
     </div>
-    <div class="landingDiv pt-5 mt-2">
-        <div class="row pt-2">
-
-            <!-- <div class="col-md-7 text-right d-flex profileDivRight flex-row">
-                <div class="col-2 padding-0">
-                    <p class="m-0 commonFontSize mediumFont text-center">20K</p>
-                    <p class="m-0 commonFontSize regularFont">Followers</p>
-                </div>
-                <div class="col-2 padding-0">
-                    <p class="m-0 commonFontSize mediumFont text-center">205</p>
-                    <p class="m-0 commonFontSize regularFont">Buddies</p>
-                </div>
-                <div class="col-4"><button type="button" class="common-btn w-75">Follow</button></div>
-                <div class="col-4  padding-0">
-                    <button type="button" class=" common-btn  bg-white color-purple addBuddyBtn w-75 ">Add
-                        Buddy</button></div>
-
-            </div> -->
-        </div>
+    
+    <div class="landingDiv pt-2 mt-2">
         <div class="row mt-3">
             <div class="col-md-12">
                 <div class="informationDiv row form-control-inputDiv mt-2 py-2">
@@ -56,19 +42,24 @@
                         <hr>
                     </div>
                     <div class="col-md-12" *ngIf="userProfile">
-                        <p class="m-0 commonFontSize semiBoldFont">DOB : <span
-                                class="regularFont">{{userProfile.dob}}</span>
+                        <p class="m-0 commonFontSize semiBoldFont">DOB :
+                            <span class="regularFont">{{userProfile.dob}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender">Gender : <span
-                                class="regularFont">{{userProfile.gender}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email">Email : <span
-                                class="regularFont">{{userProfile.email}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone">Phone : <span
-                                class="regularFont">{{userProfile.phone}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name : <span
-                                class="regularFont">{{userProfile.mother_name}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.father_name">Father Name : <span
-                                class="regularFont">{{userProfile.father_name}}</span></p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender">Gender :
+                            <span class="regularFont">{{userProfile.gender}}</span>
+                        </p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email">Email :
+                            <span class="regularFont">{{userProfile.email}}</span>
+                        </p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone">Phone :
+                            <span class="regularFont">{{userProfile.phone}}</span>
+                        </p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name :
+                            <span class="regularFont">{{userProfile.mother_name}}</span>
+                        </p>
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.father_name">Father Name :
+                            <span class="regularFont">{{userProfile.father_name}}</span>
+                        </p>
                         <!-- <p class="m-0 commonFontSize semiBoldFont">Profession : <span class="regularFont">Student</span> -->
                         <!-- </p> -->
                     </div>
@@ -85,15 +76,15 @@
                         <div class="col-md-12" *ngFor="let eduDetails of userProfile.educationdetail">
                             <h4 class="m-0 commonFontSize semiBoldFont position-relative">{{eduDetails.name_of_school}}
                                 <span class="ml-2" *ngIf="eduDetails.approved">
-                                    <img src="assets/images/userWebsite/checkicon.png"
-                                        class="img-fluid  check_absolute-image">
+                                    <img src="assets/images/userWebsite/checkicon.png" class="img-fluid  check_absolute-image">
                                 </span>
                             </h4>
                             <ng-container>
                                 <div *ngFor="let courseDetails of eduDetails.course_detail">
                                     <div class="mb-3">
-                                        <p class="m-0 commonFontSize semiBoldFont">{{courseDetails.course_name}} <span
-                                                class="regularFont">( {{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span></p>
+                                        <p class="m-0 commonFontSize text-capitalize">{{courseDetails.course_name}}
+                                            <span class="regularFont small-text-2">( {{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span>
+                                        </p>
                                     </div>
 
                                     <!-- <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
