@@ -60,4 +60,8 @@ export class MySchoolComponent implements OnInit {
     this.router.navigate(['user/new-chat'], { queryParams: { "returnUrl": "user/my-school", "school_id": id}});
   }
 
+  goToStarclassCourseList(){
+    this.router.navigate(['user/starclass-course-list'])
+  }
+
 }

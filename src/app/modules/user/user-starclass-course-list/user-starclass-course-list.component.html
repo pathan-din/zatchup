@@ -1,0 +1,109 @@
+<app-user-header></app-user-header>
+
+<div  class="container-fluid contentSpaceTop">
+    <div class="row pl-5 pr-5 mobPaddingLR">
+        <!-- <div class="col-12 pl-5 pr-5 mobPaddingLR">
+            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+        </div> -->
+    </div>
+</div>
+<div class="container">
+    <div class="bg-white border pt-3">
+        <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Course List</h2>
+        </div>
+
+        <div class="container p-3">
+            <div class="row my-3 align-items-center" *ngIf="starclassCourseList.dataSource">
+                <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                    <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                    <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                        <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                            (change)="getStarclassCourseList('1')" [(ngModel)]="starclassCourseList.page_size">
+                            <option *ngFor="let count of starclassCourseList.pageCounts" value="{{count}}">{{count}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                    <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
+                        <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+                </div>
+            </div>
+            <div class="tableDiv mt-3" *ngIf="starclassCourseList.dataSource">
+                <div class="mat-elevation-z1 table-responsive">
+                    <mat-table [dataSource]="starclassCourseList.dataSource ">
+    
+                        <ng-container matColumnDef="position">
+                            <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                            <mat-cell *matCellDef="let element; let i = index;"> {{i + starclassCourseList.startIndex}} </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="courseName">
+                            <mat-header-cell *matHeaderCellDef> Title Of Course</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.course_name}} </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="levelOfEducation">
+                            <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                {{element.level_of_education}}
+                            </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="field">
+                            <mat-header-cell *matHeaderCellDef> Field </mat-header-cell>
+                            <mat-cell *matCellDef="let element ">
+                                {{element.field}}
+                            </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="noOfStandards">
+                            <mat-header-cell *matHeaderCellDef> Standards </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                {{element.standard}}
+                            </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="subject">
+                            <mat-header-cell *matHeaderCellDef>Subject </mat-header-cell>
+                            <mat-cell *matCellDef="let element "> {{element.subject}} </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="noOfCourse">
+                            <mat-header-cell *matHeaderCellDef>Number Of Lecture In The Course</mat-header-cell>
+                            <mat-cell *matCellDef="let element ">
+                                {{element.number_of_lectures}}</mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="Action">
+                            <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let element " class="justify-content-center">
+                                <i  (click)="goToCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
+                            </mat-cell>
+                        </ng-container>
+    
+                        <mat-header-row *matHeaderRowDef="starclassCourseList.displayedColumns "></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: starclassCourseList.displayedColumns; "></mat-row>
+    
+                    </mat-table>
+    
+                </div>
+            </div>
+        </div>
+
+        <pagination-controls *ngIf="starclassCourseList.dataSource" (pageChange)="getStarclassCourseList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
+        <div class="row mt-3" *ngIf="!starclassCourseList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+    </div>
+</div>
+
+<!-- <app-user-footer></app-user-footer> -->
