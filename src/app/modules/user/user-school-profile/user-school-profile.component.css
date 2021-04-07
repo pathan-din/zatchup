@@ -10,8 +10,8 @@
     width: 40px;
 }
 
-.bannerDiv .userSchoolProfileCover {
-    width: 100%;
+.bannerDiv {
+    overflow: hidden;
     height: 180px;
 }
 
@@ -35,12 +35,21 @@
     color: #463267;
 }
 
-.dpImgDiv {
-    width: 35%;
-}
 
+.dpImgDiv {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+}
 .dpImg {
-    margin-top: -50%
+    margin-top: -50%;    
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
 }
 
 .editIcon {
@@ -70,16 +79,14 @@
 }
 .tickImg {
     position: absolute;
-    left: 27%;
-    z-index: 1;
+    top: -37px;
+    right: -8px;
+  
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
         width: 100%!important;
-    }
-    .tickImg{
-        left: 24%;
     }
 }
 
@@ -112,8 +119,5 @@
     }
     .dotted_img {
         width: 25%!important;
-    }
-    .tickImg{
-        left: 60%;
     }
 }
