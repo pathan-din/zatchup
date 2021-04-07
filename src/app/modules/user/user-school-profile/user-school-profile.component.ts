@@ -72,5 +72,4 @@ export class UserSchoolProfileComponent implements OnInit {
     localStorage.setItem('uuid', uuid);
     this.router.navigate(["user/chat"]);
   }
-
 }
