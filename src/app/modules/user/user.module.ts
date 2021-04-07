@@ -73,6 +73,7 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { UserStarclassCourseListComponent } from './user-starclass-course-list/user-starclass-course-list.component';
 import { UserStarclassCoursePreviewComponent } from './user-starclass-course-preview/user-starclass-course-preview.component';
+import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
 
 // import { AngularFireModule } from '@angular/fire';
 
@@ -138,7 +139,8 @@ import { UserStarclassCoursePreviewComponent } from './user-starclass-course-pre
     PendingCourseDetailComponent,
     ChatPrivacyComponent,
     UserStarclassCourseListComponent,
-    UserStarclassCoursePreviewComponent
+    UserStarclassCoursePreviewComponent,
+    UserLectureDetailsComponent
   ],
 
   imports: [

@@ -58,6 +58,7 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 import { UserStarclassCourseListComponent } from './user-starclass-course-list/user-starclass-course-list.component';
 import { UserStarclassCoursePreviewComponent } from './user-starclass-course-preview/user-starclass-course-preview.component';
+import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
 
 
 const routes: Routes = [
@@ -247,7 +248,9 @@ const routes: Routes = [
   {
     path: 'user/starclass-course-view/:id', component:UserStarclassCoursePreviewComponent, canActivate:[AuthGuard]
   },
-
+  {
+    path: 'user/user-lecture-details', component: UserLectureDetailsComponent, canActivate: [AuthGuard]
+  },
 
 
   {
