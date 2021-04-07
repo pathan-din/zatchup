@@ -11,46 +11,27 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 export class UserSearchComponent implements OnInit {
   searchText: any;
   dataSource: any;
-  pastSchools: any;
-  currentSchools: any;
   filterBy: any = 'user'
-  dropdownList = [];
-  selectedItems = [];
-  selectedCurrentSchools = [];
-  selectedPastSchools = []
-  dropdownSettings = {
-    singleSelection: true,
-    idField: 'item_id',
-    textField: 'item_text',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 3,
-    allowSearchFilter: true
-  };
+  currentSchoolSearchConfig: any = {
+    "api_endpoint": "user/all-school-list-of-user/",
+    "displayImage": true,
+    "placeholder": "Current School",
+    "display": ["name_of_school"]
+  }
 
-  schoolDropdownSettings = {
-    singleSelection: true,
-    idField: 'id',
-    textField: 'name_of_school',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 4,
-    allowSearchFilter: true
-  };
-
-  countries: Array<any> = [];
-  selCountries = [
-    {
-      item_id: 1,
-      item_text: "India",
-      image: "http://www.sciencekids.co.nz/images/pictures/flags96/India.jpg"
-    },
-    {
-      item_id: 5,
-      item_text: "Israel",
-      image: "http://www.sciencekids.co.nz/images/pictures/flags96/Israel.jpg"
-    }
-  ];
+  pastSchoolSearchConfig: any = {
+    "api_endpoint": "user/all-school-list-of-user/",
+    "displayImage": true,
+    "placeholder": "Past School",
+    "display": ["name_of_school"]
+  }
+  schoolSearchId: any;
+  allStates: any;
+  stateId: any = '';
+  cityId: any = '';
+  allCities: any;
+  peopleStateId: any = '';
+  peopleCityId: any = '';
 
   constructor(
     private router: Router,
@@ -59,29 +40,17 @@ export class UserSearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-
     this.searchText = this.route.snapshot.queryParamMap.get('searchText');
     if (this.searchText)
       this.getSearchData()
-    
-
-    this.getCurrentSchools();
-    this.getPastSchools();
+    this.getAllState()
   }
 
   getSearchData() {
     let params = {
       "search": this.searchText,
-      "filter_by": this.filterBy
+      "filter_by": this.filterBy,
+      "school_id": this.schoolSearchId
     }
     this.baseService.getData('user/search-list-for-school-student', params).subscribe(
       (res: any) => {
@@ -102,73 +71,41 @@ export class UserSearchComponent implements OnInit {
     this.router.navigate(['user/my-buddies']);
   }
 
-  get getItems() {
-    return this.countries.reduce((acc, curr) => {
-      acc[curr.item_id] = curr;
-      return acc;
-    }, {});
-  }
-
-  onItemSelect(item: any) {
-    console.log("onItemSelect", item);
-  }
-
-  onItemSelectCurrentSchool(item: any) {
-    console.log("onItemSelectCurrentSchool", item);
-  }
-
-  onItemSelectPastSchool(item: any) {
-    console.log("onItemSelectPastSchool", item);
-  }
-  onSelectAll(items: any) {
-    console.log("onSelectAll", items);
-  }
-
-  onSelectAllCurrentSchool(items: any) {
-    console.log("onSelectAllCurrentSchool", items);
-  }
-
-  onSelectAllPastSchoo(items: any) {
-    console.log("onSelectAllPastSchoo", items);
-  }
-
-  getCurrentSchools() {
-    this.baseService.getData('user/all-school-list-of-user/').subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          if (res.count == 0)
-            this.currentSchools = undefined
-          else
-            this.currentSchools = res.results;
-        }
-        else {
-
-        }
-      }
-    )
-  }
-
-  getPastSchools() {
-    this.baseService.getData('user/all-school-list-of-user/').subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          if (res.count == 0)
-            this.pastSchools = undefined
-          else
-            this.pastSchools = res.results;
-        }
-        else {
-
-        }
-      }
-    )
-  }
-
   getfilteredData(data: TabDirective): void {
     if (data.heading == 'People')
       this.filterBy = 'user';
     else
       this.filterBy = 'school';
     this.getSearchData()
+  }
+
+  getCurrentSchoolSearchResult(data: any) {
+    this.filterBy = "current";
+    this.schoolSearchId = data.id
+    this.getSearchData()
+  }
+
+  getPastSchoolSearchResult(data: any) {
+    this.filterBy = "past";
+    this.schoolSearchId = data.id
+    this.getSearchData()
+  }
+
+  getAllState() {
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.allStates = res.results
+      }
+    )
+  }
+
+  getCities() {
+    this.baseService.getData('user/getcitybystateid/' + this.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.allCities = res.results
+      }
+    )
   }
 }
