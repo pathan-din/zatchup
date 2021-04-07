@@ -23,7 +23,8 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.viewZatchupId = value.viewZatchupId ? value.viewZatchupId : false;
     this.viewIconCondition = value.viewIconCondition;
     this.resultsLength = value.resultsLength ? value.resultsLength : undefined;
-    this.seeMoreResults = value.seeMoreResults == false ? value.seeMoreResults : true
+    this.seeMoreResults = value.seeMoreResults == false ? value.seeMoreResults : true;
+    this.placeholder = value.placeholder ? value.placeholder : 'Search.....'
   }
   @Input() value: any;
   @Output() searchResult = new EventEmitter<any>();
@@ -37,6 +38,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   viewIconCondition: any;
   seeMoreResults: boolean = true;
   resultsLength: any;
+  placeholder: string;
 
   constructor(
     private router: Router,
