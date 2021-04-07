@@ -68,4 +68,9 @@ export class UserSchoolProfileComponent implements OnInit {
     }
   }
 
+  getDocumentsChat(uuid) {
+    localStorage.setItem('uuid', uuid);
+    this.router.navigate(["user/chat"]);
+  }
+
 }
