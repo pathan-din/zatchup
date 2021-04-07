@@ -171,7 +171,7 @@
         <!--Start html for fees information table-->
         <div class="tableDiv " *ngIf="starclassLectureList.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="starclassLectureList.dataSource | paginate : starclassLectureList.config">
+                <mat-table [dataSource]="starclassLectureList.dataSource">
 
                     <!-- Position Column -->
                     <ng-container matColumnDef="position">
@@ -220,8 +220,8 @@
                         </mat-cell>
                     </ng-container> -->
 
-                    <mat-header-row *matHeaderRowDef="starclassLectureList.displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: starclassLectureList.displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="starclassLectureList.displayedColumnsOne "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: starclassLectureList.displayedColumnsOne; "></mat-row>
                 </mat-table>
             </div>
         </div>

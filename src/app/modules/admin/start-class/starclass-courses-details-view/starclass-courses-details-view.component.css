@@ -16,6 +16,10 @@
     padding-left: 5px !important;
     padding-right: 5px !important;
 }
+.customVideo video{
+    width: 100%;
+    max-height: 400px;
+}
 
 @media (max-width: 575px){
     

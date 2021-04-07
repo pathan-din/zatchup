@@ -134,6 +134,24 @@
 
                     </div>
 
+                    <div class="row" *ngIf="userData.location.city_name">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>City</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{userData.location.city_name}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row" *ngIf="userData.location.state_name">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>State</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{userData.location.state_name}}</p>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Mother Name</p>

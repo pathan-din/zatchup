@@ -16,6 +16,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class UserLectureDetailsComponent implements OnInit {
 
   eiLectureDetailsView: any;
+  model: any;
 
   constructor(
     private location: Location,
@@ -26,7 +27,8 @@ export class UserLectureDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmDialogService: ConfirmDialogService,
     private validation: GenericFormValidationService
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
     if(this.route.snapshot.queryParamMap.get('id')){
@@ -37,7 +39,10 @@ export class UserLectureDetailsComponent implements OnInit {
   getLectureDetails(){
     try {
       this.loader.show()
-      this.baseService.getData('starclass/ei_lecture_detail/'+this.route.snapshot.queryParamMap.get('id')).subscribe(
+      this.model = {
+        'id' : this.route.snapshot.queryParamMap.get('id')
+      }
+      this.baseService.getData('starclass/starclass-lecture-detail-by-courseid/'+this.route.snapshot.queryParamMap.get('id')).subscribe(
         (res : any) =>{
           if(res.status == true){
             this.eiLectureDetailsView = res.data
