@@ -70,6 +70,24 @@
                             <span class="mr-3">:</span>{{studentData.email}}</p>
                     </div>
                 </div>
+                <div class="row" *ngIf="studentData.location.city_name">
+                    <div class="col-6 commonFontSize mediumFont">
+                        <p>city</p>
+                    </div>
+                    <div class="col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.location.city_name}}</p>
+                    </div>
+                </div>
+                <div class="row" *ngIf="studentData.location.state_name">
+                    <div class="col-6 commonFontSize mediumFont">
+                        <p>state</p>
+                    </div>
+                    <div class="col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.location.state_name}}</p>
+                    </div>
+                </div>
                 <div class="row" *ngIf="studentData.phone">
                     <div class="col-6 commonFontSize mediumFont">
                         <p>Phone Number</p>

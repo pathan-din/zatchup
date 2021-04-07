@@ -32,6 +32,8 @@ export class UserSearchComponent implements OnInit {
   allCities: any;
   peopleStateId: any = '';
   peopleCityId: any = '';
+  currentSchoolName = '';
+  pastSchoolName = '';
 
   constructor(
     private router: Router,
@@ -40,6 +42,7 @@ export class UserSearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.searchText = this.route.snapshot.queryParamMap.get('searchText');
     if (this.searchText)
       this.getSearchData()
@@ -50,7 +53,8 @@ export class UserSearchComponent implements OnInit {
     let params = {
       "search": this.searchText,
       "filter_by": this.filterBy,
-      "school_id": this.schoolSearchId
+      "school_id": this.schoolSearchId,
+      "city_id": this.cityId
     }
     this.baseService.getData('user/search-list-for-school-student', params).subscribe(
       (res: any) => {
@@ -76,18 +80,26 @@ export class UserSearchComponent implements OnInit {
       this.filterBy = 'user';
     else
       this.filterBy = 'school';
+    this.stateId = '';
+    this.cityId = '';
     this.getSearchData()
   }
 
   getCurrentSchoolSearchResult(data: any) {
     this.filterBy = "current";
-    this.schoolSearchId = data.id
+    this.schoolSearchId = data.id;
+    this.stateId = '';
+    this.cityId = '';
+    this.pastSchoolName = ''
     this.getSearchData()
   }
 
   getPastSchoolSearchResult(data: any) {
     this.filterBy = "past";
-    this.schoolSearchId = data.id
+    this.schoolSearchId = data.id;
+    this.stateId = '';
+    this.cityId = '';
+    this.currentSchoolName = '';
     this.getSearchData()
   }
 
@@ -108,4 +120,8 @@ export class UserSearchComponent implements OnInit {
       }
     )
   }
+
+  // getPeopleSearchData(){
+  //   this.
+  // }
 }
