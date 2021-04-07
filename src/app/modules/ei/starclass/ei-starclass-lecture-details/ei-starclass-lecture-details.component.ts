@@ -38,7 +38,6 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
 
   goToEditLecture(data){
     this.router.navigate(['ei/star-class-lecture-upload', data.id], { queryParams: { 'action': 'edit'}}) 
-    console.log(data.id, 'jhdhfjdh');
     
   }
   getLectureDetails(){

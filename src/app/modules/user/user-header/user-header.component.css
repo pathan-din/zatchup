@@ -74,8 +74,11 @@
 }
 
 .headerLogoImg {
-    width: 70%;
-    padding: 4%;
+    margin: 5px;
+    width: 80%;
+}
+.customUserSearch {
+    width: 42%;
 }
 
 .notification_icon{background: #22c123;
@@ -118,6 +121,18 @@ left: 10px}
     left: 10px
 }
 
+.navbar-brand {
+    width: max-content;
+}
+
+@media (min-width: 992px) and (max-width: 1200px){
+    .customUserSearch {
+        width: 33%;
+    }
+    .nav-item {
+        margin: 5px 0px;
+    }
+}
 @media (max-width: 991px){
     .navbar-brand img {
         width: 170px;
@@ -129,4 +144,9 @@ left: 10px}
     .navbar-nav .dropdown-menu{
         position: absolute;
     }
+    .customUserSearch {
+        width: 97%;
+    }
 }
+
+
