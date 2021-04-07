@@ -71,6 +71,7 @@ import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
 
 // import { AngularFireModule } from '@angular/fire';
 
@@ -134,7 +135,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     PendingRequestForUserComponent,
     SettingComponent,
     PendingCourseDetailComponent,
-    ChatPrivacyComponent
+    ChatPrivacyComponent,
+    UserLectureDetailsComponent
   ],
 
   imports: [

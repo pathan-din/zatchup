@@ -56,6 +56,7 @@ import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
+import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
 
 
 const routes: Routes = [
@@ -239,7 +240,9 @@ const routes: Routes = [
   {
     path: 'user/chat-privacy', component: ChatPrivacyComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'user/user-lecture-details', component: UserLectureDetailsComponent, canActivate: [AuthGuard]
+  },
 
 
   {
