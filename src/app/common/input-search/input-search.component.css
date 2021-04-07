@@ -104,7 +104,7 @@ body {
   background: #fff;
   height: min-content;
   padding: 0px;
-  width: 100%;
+  width: 150%;
   border-radius: 10px;
 }
 
@@ -184,12 +184,17 @@ body {
   left: 30px;
   top: 12px;
 }  
+.searchIcon {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
 .searchUserDesignation{font-size: 13px; color: #666;}
 
 
 
-/* @media (max-width: 767px){
+@media (max-width: 767px){
   .searchDropdown {
     width: 100%;
   }
-} */
+}
