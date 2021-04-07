@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
+import { TabDirective } from 'ngx-bootstrap/tabs';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -12,11 +13,15 @@ export class UserSearchComponent implements OnInit {
   searchText: any;
   dataSource: any;
   pastSchools: any;
+  currentSchools: any;
+  filterBy: any = 'user'
 
   dropdownList = [];
   selectedItems = [];
+  selectedCurrentSchools = [];
+  selectedPastSchools = []
   dropdownSettings = {
-    singleSelection: false,
+    singleSelection: true,
     idField: 'item_id',
     textField: 'item_text',
     selectAllText: 'Select All',
@@ -25,8 +30,8 @@ export class UserSearchComponent implements OnInit {
     allowSearchFilter: true
   };
 
-  pastSchoolsSettings = {
-    singleSelection: false,
+  schoolDropdownSettings = {
+    singleSelection: true,
     idField: 'id',
     textField: 'name_of_school',
     selectAllText: 'Select All',
@@ -69,13 +74,16 @@ export class UserSearchComponent implements OnInit {
     this.searchText = this.route.snapshot.queryParamMap.get('searchText');
     if (this.searchText)
       this.getSearchData()
-    // this.getCurrentSchools();
-    this.getPastSchools()
+    
+
+    this.getCurrentSchools();
+    this.getPastSchools();
   }
 
   getSearchData() {
     let params = {
-      "search": this.searchText
+      "search": this.searchText,
+      "filter_by": this.filterBy
     }
     this.baseService.getData('user/search-list-for-school-student', params).subscribe(
       (res: any) => {
@@ -106,21 +114,34 @@ export class UserSearchComponent implements OnInit {
   onItemSelect(item: any) {
     console.log("onItemSelect", item);
   }
+
+  onItemSelectCurrentSchool(item: any) {
+    console.log("onItemSelectCurrentSchool", item);
+  }
+
+  onItemSelectPastSchool(item: any) {
+    console.log("onItemSelectPastSchool", item);
+  }
   onSelectAll(items: any) {
     console.log("onSelectAll", items);
   }
 
+  onSelectAllCurrentSchool(items: any) {
+    console.log("onSelectAllCurrentSchool", items);
+  }
+
+  onSelectAllPastSchoo(items: any) {
+    console.log("onSelectAllPastSchoo", items);
+  }
+
   getCurrentSchools() {
-    let params = {
-      "search": this.searchText
-    }
-    this.baseService.getData('user/current-school-list-of-user/').subscribe(
+    this.baseService.getData('user/all-school-list-of-user/').subscribe(
       (res: any) => {
         if (res.status == true) {
           if (res.count == 0)
-            this.dataSource = undefined
+            this.currentSchools = undefined
           else
-            this.dataSource = res.results;
+            this.currentSchools = res.results;
         }
         else {
 
@@ -130,10 +151,7 @@ export class UserSearchComponent implements OnInit {
   }
 
   getPastSchools() {
-    let params = {
-      "search": this.searchText
-    }
-    this.baseService.getData('user/past-school-list-of-user/').subscribe(
+    this.baseService.getData('user/all-school-list-of-user/').subscribe(
       (res: any) => {
         if (res.status == true) {
           if (res.count == 0)
@@ -146,5 +164,13 @@ export class UserSearchComponent implements OnInit {
         }
       }
     )
+  }
+
+  getfilteredData(data: TabDirective): void {
+    if (data.heading == 'People')
+      this.filterBy = 'user';
+    else
+      this.filterBy = 'school';
+    this.getSearchData()
   }
 }
