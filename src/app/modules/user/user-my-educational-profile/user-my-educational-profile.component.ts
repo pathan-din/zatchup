@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
@@ -14,7 +14,8 @@ declare var $: any;
   styleUrls: ['./user-my-educational-profile.component.css']
 })
 export class UserMyEducationalProfileComponent implements OnInit {
-  @ViewChild('closebutton') closeModal: any;
+  @ViewChild('closebutton') closeModal: ElementRef;
+  @ViewChild('closeAddLocationModel') closeAddLocationModel: ElementRef
   epData: any;
   model: any = {};
   editModel: any = {};
@@ -38,7 +39,12 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
   imageUrl: any;
   imagePath: any;
-  personalInfo:any={};
+  personalInfo: any = {};
+  allStates: any;
+  allCities: any;
+  stateId: any = '';
+  cityId: any = '';
+
   constructor(
     private alert: NotificationService,
     private baseService: BaseService,
@@ -61,56 +67,51 @@ export class UserMyEducationalProfileComponent implements OnInit {
       localStorage.removeItem("editcourse")
     }
     this.getPersonalInfo();
+    this.getAllState();
   }
-  getPersonalInfo(){
-      try {
-        this.loader.show();
-       this.baseService.getData("user/get-update-personal-info/").subscribe((res:any)=>{
-         if(res.status){
+  getPersonalInfo() {
+    try {
+      this.loader.show();
+      this.baseService.getData("user/get-update-personal-info/").subscribe((res: any) => {
+        if (res.status) {
           this.loader.hide();
-           this.personalInfo = res.data;
-         }else{
+          this.personalInfo = res.data;
+        } else {
           this.loader.hide();
-         }
-       },(error)=>{
+        }
+      }, (error) => {
         this.loader.hide();
-       })
-      } catch (e) {
-        this.loader.hide();
-      }  
+      })
+    } catch (e) {
+      this.loader.hide();
+    }
   }
   isValid(event) {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
-    if(this.personalInfo.gender=='C'){
+    if (this.personalInfo.gender == 'C') {
 
-    }else{
+    } else {
       this.personalInfo.custom_gender = '';
       this.personalInfo.pronoun = '';
     }
   }
-  goToUpdatePersonalnfo(){
-    // this.errorDisplay = {};
-    // this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-
-    // if (this.errorDisplay.valid) {
-    //   return false;
-    // }
+  goToUpdatePersonalnfo() {
     try {
       this.loader.show();
-     this.baseService.action("user/get-update-personal-info/",this.personalInfo).subscribe((res:any)=>{
-       if(res.status){
+      this.baseService.action("user/get-update-personal-info/", this.personalInfo).subscribe((res: any) => {
+        if (res.status) {
+          this.loader.hide();
+          this.personalInfo = res.data;
+          this.closeModal.nativeElement.click();
+          this.getEducationalProfile()
+        } else {
+          this.loader.hide();
+        }
+      }, (error) => {
         this.loader.hide();
-         this.personalInfo = res.data;
-         this.closeModal.nativeElement.click();
-         this.getEducationalProfile()
-       }else{
-        this.loader.hide();
-       }
-     },(error)=>{
-      this.loader.hide();
-     })
+      })
     } catch (e) {
       this.loader.hide();
     }
@@ -119,27 +120,24 @@ export class UserMyEducationalProfileComponent implements OnInit {
     localStorage.setItem('uuid', uuid);
     this.router.navigate(["user/chat"]);
   }
-  // redirectPersonalInfo(){
-  //   this.router.navigate(["user/add-personal-info"], { queryParams: { "returnUrl": 'my-educational-profile' } });
-  // }
+
   redirectWorkDetailesPage(id) {
     this.router.navigate(["user/work-detail"], { queryParams: { "id": id } });
   }
-  resendOtp(){
-    // /
+  resendOtp() {
     try {
       this.loader.show()
-    this.baseService.action("user/resend-otp-ei-request-for-detail-change/", this.editModel).subscribe((res:any)=>{
-      if(res.status){
+      this.baseService.action("user/resend-otp-ei-request-for-detail-change/", this.editModel).subscribe((res: any) => {
+        if (res.status) {
+          this.loader.hide()
+        } else {
+          this.loader.hide()
+        }
+      }, (error) => {
         this.loader.hide()
-      }else{
-        this.loader.hide()
-      }
-    },(error)=>{
-      this.loader.hide()
-    })
+      })
     } catch (e) {
-    
+
     }
   }
   addPastEi() {
@@ -150,9 +148,9 @@ export class UserMyEducationalProfileComponent implements OnInit {
     $("#OTPModel").modal("hide");
     this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
   }
-  openModel(label, key, value,classId:any='') {
+  openModel(label, key, value, classId: any = '') {
     console.log(label);
-    
+
     this.editModel = {};
     this.editModel.class_id = '';
     if (key == 'roll_no') {
@@ -325,7 +323,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
       localStorage.setItem("month", data[1]);
       localStorage.setItem("day", data[2]);
     }
-    this.router.navigate(['user/kyc-verification'], { queryParams: { "action": "sendrequest" ,"text":text, "returnUrl": "user/my-educational-profile" } });
+    this.router.navigate(['user/kyc-verification'], { queryParams: { "action": "sendrequest", "text": text, "returnUrl": "user/my-educational-profile" } });
   }
   getEducationalProfile() {
     try {
@@ -359,7 +357,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     if (data.is_current_course == true) {
       this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true" } });
     } else {
-      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true"} });
+      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true" } });
     }
   }
 
@@ -455,5 +453,64 @@ export class UserMyEducationalProfileComponent implements OnInit {
       }
     }, () => {
     });
+  }
+
+  getAllState() {
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.allStates = res.results
+      }
+    )
+  }
+
+  getCities() {
+    this.baseService.getData('user/getcitybystateid/' + this.stateId).subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.allCities = res.results
+      }
+    )
+  }
+
+  addLocation() {
+    this.errorDisplay = {}
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+    this.loader.show()
+    let data = {
+      "state_id": this.stateId,
+      "city_id": this.cityId
+    }
+
+    this.baseService.action('user/add-city-state-of-user/', data).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.closeAddLocationModel.nativeElement.click()
+          this.alert.success(res.message, 'Success')
+          this.getEducationalProfile()
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error');
+          this.loader.hide()
+        }
+      }
+    )
+  }
+
+  isValidAddLocationForm() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
+    }
+  }
+
+  addLocationModelOpen(location: any) {
+    this.cityId = location.city_id;
+    this.stateId = location.state_id
+    if (this.stateId)
+      this.getCities()
+    $("#addLocationModel").modal('show');
   }
 }
