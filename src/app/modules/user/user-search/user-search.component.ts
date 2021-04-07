@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { TabDirective } from 'ngx-bootstrap/tabs';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-user-search',
@@ -15,7 +14,6 @@ export class UserSearchComponent implements OnInit {
   pastSchools: any;
   currentSchools: any;
   filterBy: any = 'user'
-
   dropdownList = [];
   selectedItems = [];
   selectedCurrentSchools = [];
