@@ -251,7 +251,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
         this.baseService.actionForPutMethod('ei/bulk-editclass-by-ei/', { 'student_ids': this.studentListSendForBulk.join(','), 'class_id': this.model.class_id }).subscribe(
           (res: any) => {
             this.loader.hide();
-            this.alert.error(res.message, 'Error');
+            this.alert.success(res.message, 'Success');
           }, (error) => {
             this.loader.hide();
           });
