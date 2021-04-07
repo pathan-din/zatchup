@@ -120,4 +120,15 @@
     .dotted_img {
         width: 25%!important;
     }
+    .bannerDiv{
+        height: auto;
+    }
+    .pl-4.text-left {
+        padding-left: 0px !important;
+    }
+    .email_position-absolute {
+        position: static;
+        float: right;
+        width: auto;
+    }
 }
