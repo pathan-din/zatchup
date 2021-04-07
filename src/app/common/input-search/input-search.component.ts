@@ -21,7 +21,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this._config = value;
     this.displayImage = value.displayImage ? value.displayImage : false;
     this.viewZatchupId = value.viewZatchupId ? value.viewZatchupId : false;
-    this.viewIconCondition = value.viewIconCondition
+    this.viewIconCondition = value.viewIconCondition;
+    this.resultsLength = value.resultsLength ? value.resultsLength : undefined;
+    this.seeMoreResults = value.seeMoreResults == false ? value.seeMoreResults : true
   }
   @Input() value: any;
   @Output() searchResult = new EventEmitter<any>();
@@ -32,7 +34,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   displayImage: boolean;
   search: any;
   viewZatchupId: boolean;
-  viewIconCondition: any
+  viewIconCondition: any;
+  seeMoreResults: boolean = true;
+  resultsLength: any;
 
   constructor(
     private router: Router,
@@ -72,6 +76,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
           }
           else
             this.apiResponse = res;
+          if (!this.resultsLength) {
+            this.resultsLength = this.apiResponse.count;
+          }
         }, (err) => {
           this.isSearching = false;
         });
@@ -119,17 +126,4 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     if (this._config.route)
       this.router.navigate([this._config.route], { queryParams: { 'searchText': this.search } })
   }
-
-  isValid(data: any, condition: any) {
-      // console.log('data is as ::',data)
-      // console.log('condition..',condition)
-      if(data[condition]){
-        console.log('true....')
-      }
-      else{
-        // console.log('else....')
-      }
-    return false
-  }
-
 }

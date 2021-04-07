@@ -22,7 +22,8 @@ export class UserHeaderComponent implements OnInit {
     "displayImage": true,
     "route": "user/search",
     "viewZatchupId": true,
-    "viewIconCondition": "user_type === 'SCHOOL'"
+    "resultsLength": 5,
+    "seeMoreResults": true
   } 
   messageData: any = [];
   currentUser: any = "";
