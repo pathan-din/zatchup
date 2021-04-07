@@ -7,8 +7,8 @@
                 <tab heading="People" class="mt-3" (selectTab)="getfilteredData($event)">
                     <div class="row">
                         <div class="col-md-3 p-0 my-1">
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select  form-control-input" name="state" required
+                            <div class="shadow-none">
+                                <select class="custom-select border rounded" name="state" required
                                     [(ngModel)]="stateId" (change)="getCities()">
                                     <option value="">Select State</option>
                                     <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
@@ -17,9 +17,9 @@
                             </div>
                         </div>
                         <div class="col-md-3 my-1">
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select  form-control-input" name="city" required
-                                    [(ngModel)]="cityId" (change)="getSearchData()">
+                            <div class="shadow-none">
+                                <select class="custom-select border rounded" name="city" required
+                                    [(ngModel)]="cityId">
                                     <option value=""> Select City</option>
                                     <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
                                 </select>
@@ -65,8 +65,8 @@
                 <tab heading="School" class="mt-3" (selectTab)="getfilteredData($event)">
                     <div class="row">
                         <div class="col-md-6 p-0 my-1">
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select  form-control-input" name="state" required
+                            <div class="shadow-none">
+                                <select class="custom-select border rounded" name="state" required
                                     [(ngModel)]="stateId" (change)="getCities()">
                                     <option value="">Select State</option>
                                     <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
@@ -74,10 +74,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 my-1">
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select  form-control-input" name="city" required
-                                    [(ngModel)]="cityId" (change)="getSearchData()">
+                        <div class="col-md-6 my-1 pr-0">
+                            <div class="shadow-none">
+                                <select class="custom-select border rounded" name="city" required
+                                    [(ngModel)]="cityId">
                                     <option value=""> Select City</option>
                                     <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
                                 </select>

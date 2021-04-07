@@ -507,8 +507,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
 
   addLocationModelOpen(location: any) {
-    this.cityId = location.city_id;
-    this.stateId = location.state_id
+    this.cityId = location.city_id ? location.city_id : '';
+    this.stateId = location.state_id ? location.state_id : ''
     if (this.stateId)
       this.getCities()
     $("#addLocationModel").modal('show');
