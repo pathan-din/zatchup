@@ -4,37 +4,46 @@
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
             <tabset class="searchTab">
-                <tab heading="People" class="mt-3">
+                <tab heading="People" class="mt-3" (selectTab)="getfilteredData($event)">
                     <div class="row">
-                        <div class="col-md-4 pl-0 my-1">
+                        <!-- <div class="col-md-4 pl-0 my-1">
                             <tab-heading>
-                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings"
+                                    [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)">
+                                </ng-multiselect-dropdown>
+                            </tab-heading>
+                        </div> -->
+                        <div class="col-md-6 p-0 my-1">
+                            <tab-heading>
+                                <ng-multiselect-dropdown [placeholder]="'Select Current School'"
+                                    [settings]="schoolDropdownSettings" [data]="currentSchools"
+                                    [(ngModel)]="selectedCurrentSchools" (onSelect)="onItemSelectCurrentSchool($event)"
+                                    (onSelectAll)="onSelectAllCurrentSchool($event)">
                                 </ng-multiselect-dropdown>
                             </tab-heading>
                         </div>
-                        <div class="col-md-4 p-0 my-1">
+                        <div class="col-md-6 pr-0 my-1">
                             <tab-heading>
-                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                                </ng-multiselect-dropdown>
-                            </tab-heading>
-                        </div>
-                        <div class="col-md-4 pr-0 my-1">
-                            <tab-heading>
-                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                <ng-multiselect-dropdown [placeholder]="'Select Past School'"
+                                    [settings]="schoolDropdownSettings" [data]="pastSchools"
+                                    [(ngModel)]="selectedPastSchools" (onSelect)="onItemSelectPastSchool($event)"
+                                    (onSelectAll)="onSelectAllPastSchoo($event)">
                                 </ng-multiselect-dropdown>
                             </tab-heading>
                         </div>
                     </div>
                     <div class="pt-3">
                         <div class="row paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png" class="img-fluid border-0 rounded-circle ">
-                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}" class="img-fluid border-0 rounded-circle ">
+                            <div
+                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
+                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
+                                    class="img-fluid border-0 rounded-circle ">
+                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
+                                    class="img-fluid border-0 rounded-circle ">
                             </div>
-                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
+                            <div
+                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
                                 <div class="commonFontSize semiBoldFont">{{people.display}}</div>
                                 <!-- <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p> -->
                             </div>
@@ -47,117 +56,43 @@
                     </div>
                 </tab>
 
-                <tab heading="School" class="mt-3">
+                <tab heading="School" class="mt-3" (selectTab)="getfilteredData($event)">
                     <div class="row">
                         <div class="col-md-12 p-0 my-1">
                             <tab-heading>
-                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings"
+                                    [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)">
                                 </ng-multiselect-dropdown>
                             </tab-heading>
                         </div>
-                        <!-- <div class="col-md-4">
-                            <tab-heading>
-                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                                </ng-multiselect-dropdown>
-                            </tab-heading>
-                        </div> -->
-                        <!-- <div class="col-md-4">
-                            <tab-heading>
-                                <ng-multiselect-dropdown [placeholder]="'Select City'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
-                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                                </ng-multiselect-dropdown>
-                            </tab-heading>
-                        </div> -->
                     </div>
 
                     <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png" class="img-fluid border-0 rounded-circle ">
+                        <div class="row paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
+                            <div
+                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
+                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
+                                    class="img-fluid border-0 rounded-circle ">
+                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
+                                    class="img-fluid border-0 rounded-circle ">
                             </div>
-                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row paddingStyle bg-white mt-3">
-                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                            <img src="assets/images/userWebsite/study_student.png" class="img-fluid border-0 rounded-circle ">
-                        </div>
-                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                            <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                            <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                            <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy
-                            </button>
-                        </div>
-                    </div>
-                </tab>
-
-                <!-- <tab heading="Current School">
-                    <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png" class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row paddingStyle bg-white mt-3">
-                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                            <img src="assets/images/userWebsite/study_student.png" class="img-fluid border-0 rounded-circle ">
-                        </div>
-                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                            <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                            <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                            <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy
-                            </button>
-                        </div>
-                    </div>
-                </tab> -->
-
-                <!-- <tab heading="Past School ">
-                    <tab-heading>
-                        <ng-multiselect-dropdown [placeholder]="'Select Past School'" [settings]="pastSchoolsSettings" [data]="pastSchools" [(ngModel)]="selectedItems"
-                            (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                        </ng-multiselect-dropdown>
-                    </tab-heading>
-                    <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3" *ngFor="let pastSchool of pastSchools">
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img *ngIf="!pastSchool.profile_pic" src="assets/images/profile-default.png" class="img-fluid border-0 rounded-circle ">
-                                <img *ngIf="pastSchool.profile_pic" src="{{pastSchool.profile_pic}}" class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">{{pastSchool.name_of_school}}</div>
+                            <div
+                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
+                                <div class="commonFontSize semiBoldFont">{{people.display}}</div>
                                 <!-- <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p> -->
-                <!-- </div> -->
-                <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
+                            </div>
+                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto"
+                                (click)="goToMyBuddiesPage()">
                                 <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
                                     Buddy</button>
                             </div> -->
-                <!-- </div> -->
-        <!-- </div> -->
-        <!-- </tab> -->
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
 
-        </tabset>
+
+        </div>
     </div>
-</div>
 </div>

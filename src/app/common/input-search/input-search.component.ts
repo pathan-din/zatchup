@@ -19,7 +19,11 @@ export class InputSearchComponent implements OnInit, OnDestroy {
 
   set config(value: any) {
     this._config = value;
-    this.displayImage = value.displayImage ? value.displayImage : false
+    this.displayImage = value.displayImage ? value.displayImage : false;
+    this.viewZatchupId = value.viewZatchupId ? value.viewZatchupId : false;
+    this.viewIconCondition = value.viewIconCondition;
+    this.resultsLength = value.resultsLength ? value.resultsLength : undefined;
+    this.seeMoreResults = value.seeMoreResults == false ? value.seeMoreResults : true
   }
   @Input() value: any;
   @Output() searchResult = new EventEmitter<any>();
@@ -29,6 +33,10 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   _config: any;
   displayImage: boolean;
   search: any;
+  viewZatchupId: boolean;
+  viewIconCondition: any;
+  seeMoreResults: boolean = true;
+  resultsLength: any;
 
   constructor(
     private router: Router,
@@ -68,6 +76,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
           }
           else
             this.apiResponse = res;
+          if (!this.resultsLength) {
+            this.resultsLength = this.apiResponse.count;
+          }
         }, (err) => {
           this.isSearching = false;
         });
@@ -111,9 +122,8 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     return res;
   }
 
-  moreResults(){
-    if(this._config.route)
-      this.router.navigate([this._config.route], { queryParams: { 'searchText': this.search}})
+  moreResults() {
+    if (this._config.route)
+      this.router.navigate([this._config.route], { queryParams: { 'searchText': this.search } })
   }
-
 }

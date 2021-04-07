@@ -20,8 +20,11 @@ export class UserHeaderComponent implements OnInit {
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/",
     "displayImage": true,
-    "route": "user/search"
-  }
+    "route": "user/search",
+    "viewZatchupId": true,
+    "resultsLength": 5,
+    "seeMoreResults": true
+  } 
   messageData: any = [];
   currentUser: any = "";
   isLoggedIn: boolean;
