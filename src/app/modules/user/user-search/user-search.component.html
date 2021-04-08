@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-3 my-1">
                             <div class="shadow-none">
-                                <select class="custom-select border rounded" name="city" required [(ngModel)]="cityId">
+                                <select class="custom-select border rounded" name="city" required [(ngModel)]="cityId" (change)="getSearchData()">
                                     <option value=""> Select City</option>
                                     <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
                                 </select>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-md-6 my-1 pr-0">
                             <div class="shadow-none">
-                                <select class="custom-select border rounded" name="city" required [(ngModel)]="cityId">
+                                <select class="custom-select border rounded" name="city" required [(ngModel)]="cityId" (change)="getSearchData()">
                                     <option value=""> Select City</option>
                                     <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
                                 </select>
