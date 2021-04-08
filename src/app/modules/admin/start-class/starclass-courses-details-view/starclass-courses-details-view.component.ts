@@ -40,6 +40,10 @@ export class StarclassCoursesDetailsViewComponent implements OnInit {
     this.router.navigate(['admin/starclass-lecture-details-view'], { queryParams: { 'id': id } })
   }
 
+  goToLectureHistory(){
+    this.router.navigate(['admin/ei-starclass-lecture-history'])
+  }
+
   getCourseDetails() {
     try {
       this.loader.show()

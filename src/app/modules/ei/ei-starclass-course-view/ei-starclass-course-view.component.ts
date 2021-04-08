@@ -70,6 +70,10 @@ goToEditTeacherAdd(id){
   console.log(id);
 }
 
+goToLectureHistory(){
+  this.router.navigate(['ei/star-class-lecture-history'])
+}
+
 
 getCourseDetails() {
   try {
