@@ -148,7 +148,7 @@ export class EiSubadminAccessComponent implements OnInit {
           this.makeHistoryObject(this.addPermissionList, true)
           this.loader.hide();
           this.addHistory()
-          this.alert.success('Success', response.message);
+          this.alert.success(response.message, 'Success');
           this.goBack()
         } else {
           this.loader.hide();

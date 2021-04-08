@@ -33,37 +33,10 @@
                 
                 <div class="form-group row">
                     <div class="col-sm-12 p-1 form-control-inputDiv">
-                        <input required name="employee_num" [(ngModel)]="model.employee_num" maxlength="10" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Employee ID Number">
+                        <input required (keyup)="isValid()" name="employee_id" [(ngModel)]="model.employee_num" maxlength="10" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Employee ID Number">
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.employee_num"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>
                 </div>
-                <!-- <div class="form-group row">
-                    <div class="col-sm-6 pl-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6 mobForm-name">
-                            <input required name="roll_no" [(ngModel)]="model.roll_no" class="form-control-input form-control form-control-sm" type="number" placeholder="Roll Number ">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
-                    </div>
-                    <div class="col-sm-6 pr-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
-                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="date_of_joining" [(ngModel)]="model.date_joining"  class="form-control-input form-control form-control-sm" type="text" >
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_joining"></div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name ">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="mother_name" [(ngModel)]="model.mother_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Mother's Name">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
-                </div> -->
                 <div class="form-group row">
                     <div class="col-sm-12 p-1 form-control-inputDiv ">
                         <textarea  name="comments" [(ngModel)]="model.comment" class="form-control form-control-textarea form-control-input" rows="2" placeholder="Write Comments (Optional)"></textarea>

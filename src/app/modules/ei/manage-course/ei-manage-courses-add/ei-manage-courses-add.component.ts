@@ -274,16 +274,13 @@ export class EiManageCoursesAddComponent implements OnInit {
           response = res;
           if (response.status == true) {
               this.SpinnerService.hide();
-              var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
-              this.alert.success(error, 'Success')
+              // var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+              this.alert.success("Course edit successfully", 'Success')
               this.router.navigate(["ei/manage-courses"]);
-              
-             
           } else {
             this.SpinnerService.hide();
             var error = this.eiService.getErrorResponse(this.SpinnerService, response.error)
             this.alert.error(error, 'Error')
-           
           }
   
         }, (error) => {
@@ -298,8 +295,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           response = res;
           if (response.status == true) {
               this.SpinnerService.hide();
-              var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
-              this.alert.success(error, 'Success')
+              // var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+              this.alert.success("Course added successfully", 'Success')
               this.router.navigate(["ei/manage-courses"]);
               
              

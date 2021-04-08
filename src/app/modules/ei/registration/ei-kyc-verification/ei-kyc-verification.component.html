@@ -14,70 +14,102 @@
                             <label for="idProof" class="mediumFont commonFontSize letterspacing">
                                 ID Proof</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name ="kyc_type" class="custom-select form-control-input" required>
+                                <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name="kyc_type"
+                                    class="custom-select form-control-input" required>
                                     <option value="">Select your ID</option>
                                     <option value="Aadhar">Aadhaar Card</option>
                                     <option value="Dl">Driving License</option>
                                     <option value="Passport">Passport Number</option>
                                 </select>
                             </div>
-                            <div class="required errorMsg"  [innerHtml]="errorDisplay.type"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.type"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" *ngIf="model.kyc_type == 'Aadhar'">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="idNo" class="mediumFont commonFontSize letterspacing">
+                                ID Number</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()"
+                                    [(ngModel)]="model.kyc_id_no" name="kyc_id_no" numberOnly
+                                    class="form-control-input form-control form-control-sm" type="text"
+                                    placeholder="{{placeholder}}">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.id_no"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" *ngIf="model.kyc_type != 'Aadhar'">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="idNo" class="mediumFont commonFontSize letterspacing">
+                                ID Number</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()"
+                                    [(ngModel)]="model.kyc_id_no" name="kyc_id_no"
+                                    class="form-control-input form-control form-control-sm" type="text"
+                                    placeholder="{{placeholder}}">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.id_no"></div>
                         </div>
                     </div>
 
                     <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
-                            <label for="idNo" class="mediumFont commonFontSize letterspacing">
-                                ID Number</label>
-                            <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()" [(ngModel)]="model.kyc_id_no" name ="kyc_id_no" class="form-control-input form-control form-control-sm" type="text" placeholder="{{placeholder}}">
-                            </div>
-                            <div class="required errorMsg"  [innerHtml]="errorDisplay.id_no"></div>
-                        </div>
-                    </div>
-                    <div class="form-group row  ">
-                        <div class="col-sm-12 mobilePaddingLR">
                             <label for="name" class="mediumFont commonFontSize letterspacing">Name</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input required (keyup)="isValid()" [(ngModel)]="model.kyc_name" name ="name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Your Name">
+                                <input required (keyup)="isValid()" [(ngModel)]="model.kyc_name" name="name"
+                                    class="form-control-input form-control form-control-sm" type="text"
+                                    placeholder="Enter Your Name">
                             </div>
-                            <div class="required errorMsg"  [innerHtml]="errorDisplay.name"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>
                         </div>
                     </div>
                     <div class="form-group row  ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="dob " class=" mediumFont commonFontSize letterspacing">DOB</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input autocomplete="off" [bsConfig]="{dateInputFormat: 'YYYY/MM/DD'}" required (change)="isValid()" class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img" type="text"  placeholder="YYYY/MM/DD" [(ngModel)]="model.kyc_dob" name="dob"
-                                bsDatepicker>
+                                <input autocomplete="off" [bsConfig]="{dateInputFormat: 'YYYY/MM/DD'}" required
+                                    (change)="isValid()"
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
+                                    type="text" placeholder="YYYY/MM/DD" [(ngModel)]="model.kyc_dob" name="dob"
+                                    bsDatepicker>
 
                             </div>
-                            <div class="required errorMsg"  [innerHtml]="errorDisplay.dob"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
                         </div>
-                    </div>
-                    <div class="form-group row ">
-                        <div class="col-sm-12 mobilePaddingLR"> 
-                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Photo</label>
-
-                            <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing" type="file" (change)="handleFileInput($event.target.files)"   name ="document">
-                            </div>
-                        </div>
-                        <div class="required errorMsg"  [innerHtml]="errorDisplay.document"></div>
                     </div>
                     <div class="form-group row ">
                         <div class="col-sm-12 mobilePaddingLR">
-                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</label>
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload
+                                Photo</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing" type="file" (change)="handleFileInputBack($event.target.files)"   name ="document_back">
+                                <input
+                                    class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing"
+                                    type="file" (change)="handleFileInput($event.target.files)" name="document">
                             </div>
                         </div>
-                        <div class="required errorMsg"  [innerHtml]="errorDisplay.document_back"></div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
                     </div>
-                   
-                    <button type="button " (click)="goToUserQualificationPage()" class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">
-                       Verify Your KYC
+                    <div class="form-group row ">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back
+                                photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input
+                                    class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
+                                    type="file" (change)="handleFileInputBack($event.target.files)"
+                                    name="document_back">
+                            </div>
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.document_back"></div>
+                    </div>
+
+                    <button type="button " (click)="goToUserQualificationPage()"
+                        class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">
+                        Verify Your KYC
                     </button>
 
                 </form>
