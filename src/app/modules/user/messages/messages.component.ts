@@ -22,8 +22,8 @@ export class MessagesComponent implements OnInit {
   currentUser: any;
   presence$: any
   uuid: any
-  lastMessageData:any=[];
-  ids:any=[];
+  lastMessageData: any = [];
+  ids: any = [];
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -36,11 +36,11 @@ export class MessagesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(localStorage.getItem('fbtoken')){
+    if (localStorage.getItem('fbtoken')) {
       this.currentUser = localStorage.getItem('fbtoken');
-      this.getUsersWithModeratorRole(this.currentUser )
+      this.getUsersWithModeratorRole(this.currentUser)
     }
-    
+
   }
   getUsersWithModeratorRole(loginfirebase_id) {
     var that = this;
@@ -63,44 +63,42 @@ export class MessagesComponent implements OnInit {
     this.router.navigate(["user/chat"]);
   }
   getMessageList() {
-    
     this.lastMessageData = [];
-    
     this.ids.forEach(element => {
       element.then((res: any) => {
         res.forEach(element1 => {
           var user_friend = "";
-          this.firestore.collection('chat_conversation').doc(element1).valueChanges().subscribe((res1:any)=>{
-            
-            if(res1){
-              if(user_friend!=element1){
-                  this.firestore.collection('user_friend_list').doc(element1).get().toPromise().then((resRecepent:any)=>{
-                    var uuid = ''
-                    if(resRecepent.data().user_request_id==this.currentUser && resRecepent.data().user_accept_id!=this.currentUser){
-                      uuid = resRecepent.data().user_accept_id;
-                    }
-                    if(resRecepent.data().user_accept_id==this.currentUser && resRecepent.data().user_request_id!=this.currentUser){
-                      uuid = resRecepent.data().user_request_id;
-                    }
-                    this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-                      this.recepintDetails = res.data();
-                      res1.data[res1.data.length-1].uuid = uuid;
-                      res1.data[res1.data.length-1].profile_pic = this.recepintDetails.photoUrl;
-                      res1.data[res1.data.length-1].user_name = this.recepintDetails.firstName+' '+(!this.recepintDetails.lastName?'':this.recepintDetails.lastName);
-                      this.lastMessageData.push(res1.data[res1.data.length-1]); 
-                    });
-                 })
-                  user_friend=element1;
-                }
-                
+          this.firestore.collection('chat_conversation').doc(element1).valueChanges().subscribe((res1: any) => {
+
+            if (res1) {
+              if (user_friend != element1) {
+                this.firestore.collection('user_friend_list').doc(element1).get().toPromise().then((resRecepent: any) => {
+                  var uuid = ''
+                  if (resRecepent.data().user_request_id == this.currentUser && resRecepent.data().user_accept_id != this.currentUser) {
+                    uuid = resRecepent.data().user_accept_id;
+                  }
+                  if (resRecepent.data().user_accept_id == this.currentUser && resRecepent.data().user_request_id != this.currentUser) {
+                    uuid = resRecepent.data().user_request_id;
+                  }
+                  this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+                    this.recepintDetails = res.data();
+                    res1.data[res1.data.length - 1].uuid = uuid;
+                    res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
+                    res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
+                    this.lastMessageData.push(res1.data[res1.data.length - 1]);
+                  });
+                })
+                user_friend = element1;
               }
+            }
           })
-          
         });
       })
     });
-   
-     
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

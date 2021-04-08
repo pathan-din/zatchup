@@ -149,18 +149,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
   }
   openModel(label, key, value, classId: any = '') {
-    console.log(label);
-
     this.editModel = {};
     this.editModel.class_id = '';
-    if (key == 'roll_no') {
-      this.editModel.course_id = label.course_id
-      this.editModel.class_id = classId;
-    }
-    if (key == 'admission_number') {
-      this.editModel.school_id = label.school_id
-    }
-    //this.model=label;
     this.model.dob = label.dob;//this.baseService.getDateReverseFormat()
     this.model.email = label.email;
     this.model.first_name = label.first_name;
@@ -171,6 +161,14 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.editModel.key = key;
     this.editModel.old_value = value ? value : 0;
     this.editModel.value = value ? value : 0;
+    if (key == 'roll_no') {
+      this.editModel.course_id = label.course_id
+      this.editModel.class_id = classId;
+      this.model.roll_no = value;
+    }
+    if (key == 'admission_number') {
+      this.editModel.school_id = label.school_id
+    }
 
   }
   setModelValue(key) {

@@ -3,7 +3,7 @@
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5 mobPaddingLR">
         <div class="col-12 pl-5 pr-5 mobPaddingLR">
-            <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="img-fluid subHeaderImg">
+            <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="img-fluid subHeaderImg cursorStyle">
         </div>
     </div>
 </div>
@@ -12,32 +12,12 @@
         <div class="row mt-1 mb-5">
             <div class="col">
                 <h2 class="mb-4 text-center">Reminders </h2>
-                <div class="row" *ngIf="notificationList.length>0">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngFor="let reminder of notificationList;">
+                <div class="row" *ngIf="remaindersList">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngFor="let reminder of remaindersList;">
                         <div class="row form-control-inputDiv mb-4 remainderDivStyle">
                             <div
                                 class="col-11 remainderDivPaddingStyle justify-content-between align-items-center align-self-center mediumFont">
-                                Lorem Ipsum is simply dummy text of the printing and type setting industry.
-                            </div>
-                            <div class="col-1 bg-purple arrowDivRadiusStyle">
-                                <img src="assets/images/userWebsite/rightArrow_white.png" class="img-fluid"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="row form-control-inputDiv mb-4 remainderDivStyle">
-                            <div
-                                class="col-11 remainderDivPaddingStyle justify-content-between align-items-center align-self-center mediumFont">
-                                Lorem Ipsum is simply dummy text of the printing and type setting industry.
-                            </div>
-                            <div class="col-1 bg-purple arrowDivRadiusStyle">
-                                <img src="assets/images/userWebsite/rightArrow_white.png" class="img-fluid"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class="row form-control-inputDiv mb-4 remainderDivStyle">
-                            <div
-                                class="col-11 remainderDivPaddingStyle justify-content-between align-items-center align-self-center mediumFont">
-                                Lorem Ipsum is simply dummy text of the printing and type setting industry.
+                                {{reminder.message}}
                             </div>
                             <div class="col-1 bg-purple arrowDivRadiusStyle">
                                 <img src="assets/images/userWebsite/rightArrow_white.png" class="img-fluid"></div>
@@ -49,9 +29,9 @@
                         <pagination [totalItems]="30"></pagination>
                     </div>
                 </div> -->
-                <div class="row m-0" *ngIf="notificationList.length==0">
+                <div class="row m-0" *ngIf="!remaindersList">
                     <div class="col-12 pt-2 pb-2">
-                        <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                        <p class="text-center dataNotFound pt-4 pb-4">Records not available.</p>
                     </div>
                 </div>
             </div>

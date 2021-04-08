@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class UserRemaindersComponent implements OnInit {
 
-  notificationList:any=[];
+  remaindersList: any = [];
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
@@ -24,30 +24,29 @@ export class UserRemaindersComponent implements OnInit {
   ngOnInit() {
     this.getReminders()
   }
-  getReminders(){
-  try {
-    this.loader.show();
-    this.baseService.getData("user/get-all-reminders/").subscribe(res=>{
-      let response:any={};
-      response=res;
-      if(response.status==true)
-      {
+  getReminders() {
+    try {
+      this.loader.show();
+      this.baseService.getData("user/get-all-reminders/").subscribe((res: any) => {
+        if (res.status == true) {
+          if (res.count <= 0)
+            this.remaindersList = undefined
+          else
+            this.remaindersList = res.results
+        } else {
+          // this.notificationList = [];
+        }
         this.loader.hide();
-        this.notificationList = response.results
-      }else{
-        this.loader.hide();
-        this.notificationList=[];
-      }
-    })
-  } catch (e) {
-    this.loader.hide();
+      })
+    } catch (e) {
+      this.loader.hide();
+    }
+
+
   }
 
-  
-}
+  goBack(): void {
+    this.location.back()
+  }
 
-goBack(): void{
-  this.location.back()
-}
- 
 }
