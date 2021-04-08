@@ -10,15 +10,26 @@
 }
 .arrowDivRadiusStyle{
     border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding: 2%;
+    border-bottom-right-radius: 20px;  
+    right: 0px;
+    width: 35px;  
+    overflow: hidden;
 }
-
+.reminderImg {
+    height: 60px;
+    width: 60px;
+    background: #fff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-right: 10px;
+    overflow: hidden;
+    border-right: 1px solid #ddd;
+}
+.arrowDivRadiusStyle img {
+    margin-top: 12px;
+}
 @media only screen and (max-width: 414px){
     .remainderDivPaddingStyle{
         padding: 4% 5%;
-    }
-    .arrowDivRadiusStyle{
-        padding-top: 5%;
     }
 }

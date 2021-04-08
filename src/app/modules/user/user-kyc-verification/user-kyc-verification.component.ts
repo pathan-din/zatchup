@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../../services/user/users-service.service';
 import { BaseService } from '../../../services/base/base.service';
@@ -16,6 +16,9 @@ declare var $: any;
   styleUrls: ['./user-kyc-verification.component.css']
 })
 export class UserKycVerificationComponent implements OnInit {
+  @ViewChild('fileInput') frontImage: ElementRef;
+  @ViewChild('fileInput1') backImage: ElementRef;
+  @ViewChild('form') form;
   model: any = {}
   uploadedContent: any;
   filename: any = "";
@@ -144,6 +147,8 @@ export class UserKycVerificationComponent implements OnInit {
       this.placeholder='Enter id'
       this.text = 'text';
     }
+
+    this.resetDocument();
   } 
   isValid(event) {
     
@@ -308,9 +313,7 @@ export class UserKycVerificationComponent implements OnInit {
   addRole(isStudent)
   {
        try {
-
       this.SpinnerService.show();
-
       let data:any={};
       data.is_currently_student= isStudent?1:0;
 
@@ -348,5 +351,14 @@ export class UserKycVerificationComponent implements OnInit {
       this.SpinnerService.hide();
 
     }
+  }
+
+  resetDocument(){
+    this.frontImage.nativeElement.value = "";
+    this.backImage.nativeElement.value = "";
+    this.model.kyc_document = '';
+    this.model.kyc_document_back = '';
+    this.filename = '';
+    this.filename1 = '';
   }
 }

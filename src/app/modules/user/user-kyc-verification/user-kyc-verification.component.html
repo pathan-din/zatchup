@@ -10,7 +10,7 @@
                 <h2 class="mb-3 textSpace">KYC Verification</h2>
             </div>
 
-            <form id="form1" enctype="multipart/form-data">
+            <form id="form1" #form enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name="kyc_type" class="custom-select form-control-input"
@@ -79,7 +79,7 @@
                                 <button class="fileBtn">
                                     <img src="assets/images/userWebsite/upload_icons.png" class="img-fluid">
                                 </button>
-                                <input accept="image/*" #fileInput required (change)="handleFileInput($event.target.files)" [(ngModel)]="model.kyc_document"
+                                <input accept="image/*" #fileInput required (change)="handleFileInput($event.target.files); isValid($event)" [(ngModel)]="model.kyc_document"
                                     name="kyc_document" type="file" name="kyc_document" />
                             </div>
                             <div class="text-left pl-1">
@@ -100,7 +100,7 @@
                                 <button class="fileBtn">
                                     <img src="assets/images/userWebsite/upload_icons.png" class="img-fluid">
                                 </button>
-                                <input #fileInput1 [required]="model.kyc_type=='Aadhar'" accept="image/*" (change)="handleFileInputForBackPhoto($event.target.files)"
+                                <input #fileInput1 [required]="model.kyc_type=='Aadhar'" accept="image/*" (change)="handleFileInputForBackPhoto($event.target.files); isValid($event)"
                                     [(ngModel)]="model.kyc_document_back" name="kyc_document_back" type="file" />
                             </div>
                             <div class="text-left pl-1">

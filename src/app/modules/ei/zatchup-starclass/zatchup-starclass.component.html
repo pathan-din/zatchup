@@ -71,14 +71,14 @@
                     <ng-container matColumnDef="student">
                         <mat-header-cell *matHeaderCellDef>Student Audience </mat-header-cell>
                         <mat-cell *matCellDef="let element "> 
-                            <button (click)="goToStudentAudienceAdd(element.id)" type="button" class="bg-paret-green text-white h-100 border-0 rounded cursorDefault"
+                            <button (click)="goToStudentAudienceAdd(element.id)" type="button" class="bg-paret-green text-white h-100 border-0 rounded"
                                 >Add/Edit</button> </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="teacher">
                         <mat-header-cell *matHeaderCellDef>Teacher Audience </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button (click)="goToTeacherAudienceAdd(element.id)" type="button" class="bg-red text-white h-100 border-0 rounded cursorDefault"
+                            <button (click)="goToTeacherAudienceAdd(element.id)" type="button" class="bg-red text-white h-100 border-0 rounded"
                             >Add/Edit</button> 
                         </mat-cell>
                     </ng-container>
@@ -86,7 +86,7 @@
                     <ng-container matColumnDef="editRights">
                         <mat-header-cell *matHeaderCellDef>Edit Rights</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button (click)="goToEditTeacherAdd(element.id)" type="button" class="bg-dark text-white h-100 border-0 rounded cursorDefault"
+                            <button (click)="goToEditTeacherAdd(element.id)" type="button" class="bg-dark text-white h-100 border-0 rounded"
                             >Add/Edit</button>    
                         </mat-cell>
                     </ng-container>

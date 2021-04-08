@@ -3,7 +3,7 @@
 <div class="container contentSpaceTop">
     <div class="row">
         <div class="col-12">
-            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
+            <img (click)="goBack()" src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg cursorStyle">
         </div>
     </div>
 
@@ -14,7 +14,7 @@
                     <!-- <img src="assets/images/userWebsite/add-message-icon.png" class="img-fluid cursorStyle float-right" style="height: 32px;"> -->
                 </h1>
                 
-                <div (click)="goToChat(msgObj.uuid, msgObj.user_friend_id)" class="col-12 chat_contentBox d-flex mb-4" *ngFor="let msgObj of lastMessageData">
+                <div (click)="goToChat(msgObj.uuid, msgObj.user_friend_id)" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle" *ngFor="let msgObj of lastMessageData">
                     <div class="profile_pick">
                         <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" class="img-fluid cursorStyle">
                         <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
@@ -28,8 +28,11 @@
                     </div>
                 </div> 
 
-               
-
+                <div class="row m-0" *ngIf="lastMessageData.length <= 0">   
+                    <div class="col-12 pt-2 pb-2">
+                        <p class="text-center dataNotFound pt-4 pb-4">Records not available.</p>
+                    </div>
+                </div>
             </div>
         </div>            
     </div>
