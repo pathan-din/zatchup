@@ -774,6 +774,7 @@ a:hover {
 .experiencedetails {
     margin-left: 10px;
 }
+.img-thumbnail{padding: 0px !important; border: 0px!important;}
 @media (max-width: 767px){
     .backimg{
         width: 30px;

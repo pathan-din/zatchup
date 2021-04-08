@@ -15,6 +15,20 @@
             </span>
             <h2 class="commonFontSize semiBoldFont m-0">Course List</h2>
         </div>
+        <div class="filterDiv  px-3 pt-3">
+        <div class="mr-3 mt-3 widthFull medium-filter-box custumInputWidth">
+            <label for="" class="largeFont commonFontSize letterspacing">School</label>
+            <div class="form-control-inputDiv rounded shadow-none">
+                <select class="custom-select form-control-input" id="pastEI" name="school" required
+                    [(ngModel)]="starclassCourseList.schoolId" (change)="getStarclassCourseList()">
+                    <option value=""> Select School</option>
+                    <option *ngFor="let school of starclassCourseList.allSchool" [value]="school.id"> {{school.name_of_school}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        </div>
 
         <div class="container p-3">
             <div class="row my-3 align-items-center" *ngIf="starclassCourseList.dataSource">

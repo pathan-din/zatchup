@@ -40,7 +40,8 @@ export class UserLectureDetailsComponent implements OnInit {
     try {
       this.loader.show()
       this.model = {
-        'id' : this.route.snapshot.queryParamMap.get('id')
+        'id' : this.route.snapshot.queryParamMap.get('id'),
+        'school_id': this.route.snapshot.queryParamMap.get('school_id')
       }
       this.baseService.getData('starclass/starclass-lecture-detail-by-courseid/'+this.route.snapshot.queryParamMap.get('id')).subscribe(
         (res : any) =>{
