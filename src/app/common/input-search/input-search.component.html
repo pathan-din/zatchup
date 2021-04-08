@@ -85,7 +85,7 @@
                             <!-- <span>jaipur</span> -->
                             <span>{{data['city']}}</span>
                         </div>
-                        <div class="searchIcon" *ngIf="rightIcon">
+                        <div class="searchIcon" *ngIf="rightIcon && data.user_type == 'SCHOOL'">
                             <img src="assets/images/school.png" alt="school"/>
                         </div>
                     </div>
