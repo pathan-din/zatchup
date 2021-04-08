@@ -326,4 +326,10 @@ export class UserEiProfileComponent implements OnInit {
     }
   }
 
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
 }

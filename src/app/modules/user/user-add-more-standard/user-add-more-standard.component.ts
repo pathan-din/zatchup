@@ -45,9 +45,9 @@ export class UserAddMoreStandardComponent implements OnInit {
     private genericFormValidationService: GenericFormValidationService,
     private alert: NotificationService
   ) {
-     this.startYearMaxDate = new Date();
-     this.startYearMinDate = new Date();
-     this.baseService.getDateReverseFormat( this.startYearMinDate)
+    this.startYearMaxDate = new Date();
+    this.startYearMinDate = new Date();
+    this.baseService.getDateReverseFormat(this.startYearMinDate)
   }
 
   ngOnInit(): void {
@@ -79,16 +79,20 @@ export class UserAddMoreStandardComponent implements OnInit {
     this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
   }
-  editEi(schoolId){
-    this.router.navigate(["user/add-ei"],{queryParams:{
-      school_id:schoolId
-    }});
+  editEi(schoolId) {
+    this.router.navigate(["user/add-ei"], {
+      queryParams: {
+        school_id: schoolId
+      }
+    });
   }
-  addAnotherCourse(schoolId){
-    this.router.navigate(["user/ei-profile"],{queryParams:{
-      school_id:schoolId
-      
-    }});
+  addAnotherCourse(schoolId) {
+    this.router.navigate(["user/ei-profile"], {
+      queryParams: {
+        school_id: schoolId
+
+      }
+    });
   }
   getEiInfo(model) {
     try {
@@ -100,7 +104,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           //this.model = res.data;
           this.model.name_of_school = res.data.name_of_school;
           this.model.school_code = res.data.school_code;
-           
+
           this.model.left_standard_id = res.data.left_standard_id;
           this.model.join_standard_id = res.data.join_standard_id;
           this.model.current_standard_id = res.data.current_standard_id;
@@ -113,7 +117,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           }
           this.model.school_id = this.schoolId;
           // this.displayClassList(res.data.join_standard_id);
-          
+
           this.displayClassList(res.data.current_standard_id);
         } else {
           this.SpinnerService.hide();
@@ -154,9 +158,9 @@ export class UserAddMoreStandardComponent implements OnInit {
     try {
       if (courseId != 'others' && courseId != '') {
         if (this.courseList)
-        if (this.courseList.length > 0) {
-          this.model.comment = this.courseList.find(element => element.id == courseId).description;
-        }
+          if (this.courseList.length > 0) {
+            this.model.comment = this.courseList.find(element => element.id == courseId).description;
+          }
         this.setCalDates(courseId)
         this.SpinnerService.show();
         this.standardList = []
@@ -172,7 +176,7 @@ export class UserAddMoreStandardComponent implements OnInit {
         }, (error) => {
           this.SpinnerService.hide();
         });
-      }else{
+      } else {
         this.model.course_id = 'others';
       }
 
@@ -232,7 +236,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           this.SpinnerService.hide();
           if (res.status == true) {
             if (this.params.returnUrl)
-              this.router.navigate([this.params.returnUrl],{ queryParams: {  "returnUrl": "user/my-educational-profile" } })
+              this.router.navigate([this.params.returnUrl], { queryParams: { "returnUrl": "user/my-educational-profile" } })
             else {
               if (this.isalumini) {
                 this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId, 'isalumini': 1 } });
@@ -263,7 +267,7 @@ export class UserAddMoreStandardComponent implements OnInit {
   addCourseNewData() {
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    
+
     if (this.errorDisplay.valid) {
       return false;
     }
@@ -306,21 +310,22 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
 
   setCalDates(courseId) {
-    // this.model.course_id
     if (this.courseList) {
-      // debugger
       let course = this.courseList.find(val => {
         return val.id == courseId
       })
-      
-      
       if (course) {
-        console.log(course);
         this.startYearMaxDate = new Date(course.start_date)
         this.startYearMinDate = new Date(course.end_date)
       }
-
     }
   }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
 
 }

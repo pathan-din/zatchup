@@ -17,19 +17,10 @@ export class GenericFormValidationService {
    * return error object with true and false;
    */
   checkValidationFormAllControls(controls, check, arrayData = []) {
-
-    
-    
     if (arrayData.length > 0) {
-
       this.errorMessageObject = {};
-      
-       
-
         for (var i = 0; i < controls.length; i++) {
           //var ngReflectName=controls.attributes.indexOf("ng-reflect-name");
-          
-          
             //Check All Required filled based on the all controlles required property 
             if (controls[i].required && !controls[i].value) {
               this.errorMessageObject[controls[i].id] = controls[i].id.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].id.replace(/_\d+/g, ' ').slice(1).replace(/[^a-zA-Z ]/g, " ").replace(/  +/g, ' ')+'is required.';
@@ -44,39 +35,23 @@ export class GenericFormValidationService {
 
               this.errorMessageObject[controls[i].id] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1).replace(/[^a-zA-Z ]/g, " ").replace(/  +/g, ' ')+'is required.';
             }
-          
-         
         }
-        
-      
     } else {
       this.errorMessageObject = {};
-     
-      
       for (var i = 0; i < controls.length; i++) {
-        
         //Check All Required filled based on the all controlles required property 
         if (controls[i].required && !controls[i].value) {
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
         }
         //Check All required filled based on type=radio input box
         else if (controls[i].type == 'radio' && !controls[i].validity.valid) {
-
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
         }
 		    else if (controls[i].type == 'file' && !controls[i].validity.valid) {
-         
-          
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
-         
-         
-        } else if (controls[i].type == 'file' && controls[i].validity.valid) {
-          console.log(controls[i].getAttribute('validFileExtention'));
-          
+        } else if (controls[i].type == 'file' && controls[i].validity.valid) {          
           if(controls[i].getAttribute('validFileExtention')){
-             
-            if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){
-              
+            if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){  
             }else{
               this.errorMessageObject[controls[i].name] = 'Format Supported ( '+controls[i].getAttribute('validFileExtention')+' )';
             }

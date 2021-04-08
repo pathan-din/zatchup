@@ -32,30 +32,28 @@ export class FirebaseService {
         )
         this.angularFireMessaging.messages.subscribe((msg: any) => {
             msg.onMessage = msg.onMessage.bind(msg);
-
             msg.onTokenRefresh = msg.onTokenRefresh.bind(msg);
-            console.log(msg);
-
         })
     }
+
     requestPermission() {
         this.angularFireMessaging.requestToken.subscribe(
             (token) => {
-
-                console.log(token);
+                // console.log(token);
             },
             (err) => {
                 console.error('Unable to get permission to notify.', err);
             }
         );
     }
+
     receiveMessage() {
         this.angularFireMessaging.messages.subscribe(
             (payload) => {
-                console.log("new message received. ", payload);
                 this.currentMessage.next(payload);
             })
     }
+
     public firebaseSignUp(firstName: string, lastName: string, email: string, password: any, photoUrl: string, isActive: string, class_name: any = '', roll_no: any = '') {
         let promise = new Promise((resolve, reject) => {
             this.afAuth.createUserWithEmailAndPassword(email, password).then(
@@ -76,16 +74,11 @@ export class FirebaseService {
                 },
                 err => {
                     reject(err)
-
                 }
             )
         });
         return promise;
     }
-
-
-
-
 
     getChatRooms(collectionName): Observable<any> {
         let chatRooms = this.db.collection(collectionName).valueChanges();
@@ -119,7 +112,6 @@ export class FirebaseService {
         var uuid = localStorage.getItem('fbtoken');
         const userRef1 = this.db.doc(`users/${uuid}`);
         this.db.collection('users').doc(uuid).get().toPromise().then((resp: any) => {
-            console.log();
             let res = resp.data();
             const userRef = this.db.doc(`users/${uuid}`);
             const updateUser = {
@@ -131,14 +123,12 @@ export class FirebaseService {
                 class_name: res.class_name,
                 roll_no: res.roll_no,
                 isActive: res.isActive
-
             }
             userRef.set(updateUser)
         });
 
     }
     updateFirebasePassword(email, oldP, password) {
-        console.log(oldP, email);
         var result = this.afAuth.signInWithEmailAndPassword(email, oldP);
         result.then((res: any) => {
             localStorage.setItem('fbtoken', res.user.uid);
@@ -146,7 +136,6 @@ export class FirebaseService {
         }, (error) => {
             console.log(error);
             //this.updatePassword(email,password)
-
         })
 
 
@@ -154,19 +143,11 @@ export class FirebaseService {
 
     updatePassword(email, newPassword) {
         this.afAuth.currentUser.then((res) => {
-            console.log(res);
-
             res.updatePassword(newPassword).then(update => {
-                console.log(update);
                 localStorage.removeItem('hash');
-
             }, (error) => {
                 console.log(error);
-
-
             })
-
-
         })
     }
 }
