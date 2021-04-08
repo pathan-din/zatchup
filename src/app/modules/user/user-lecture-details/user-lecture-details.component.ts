@@ -68,7 +68,26 @@ export class UserLectureDetailsComponent implements OnInit {
   }
 
   playClick(event: any){
+    this.model ={
+      'course_id' : this.eiLectureDetailsView.course_id,
+      'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+      'lecture_id':  this.eiLectureDetailsView.id
+    }
+    console.log(this.model);
+    this.loader.show()
+    this.baseService.action('starclass/lecture_view_count/', this.model).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.alert.success(res.message, "Success")
+        } else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide();
+      }
+    ), err => {
+      this.alert.error(err.error, 'Error')
+      this.loader.hide();
+    }
     console.log('sdsads ....',event)
   }
-
 }

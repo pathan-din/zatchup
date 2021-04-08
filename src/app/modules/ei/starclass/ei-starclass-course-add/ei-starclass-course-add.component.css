@@ -2,3 +2,6 @@
     appearance: auto;
     background: none;
 }
+.customVideo video{
+    width: 80%;
+}

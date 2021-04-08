@@ -14,8 +14,8 @@
                     <div class="form-group row  ml-0 mr-0">
                         <label for="" class="mediumFont commonFontSize letterspacing"> {{action == 'add' ? 'Add' : 'Edit '}} Title </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                            <input [(ngModel)]="model.lecture_title" name="lecture_title" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" placeholder="Enter Field Name">
+                            <input (keyup)="isValid($event)"  maxlength="30" [(ngModel)]="model.lecture_title" name="lecture_title" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Title">
                         </div>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.lecture_title"></div>
@@ -25,8 +25,8 @@
                     <div class="form-group row  ml-0 mr-0">
                         <label for="" class="mediumFont commonFontSize letterspacing"> {{action == 'add' ? 'Add' : 'Edit '}} Description </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                            <textarea [(ngModel)]="model.lecture_description" name="lecture_description" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" cols="4" rows="5" placeholder="Enter Message"></textarea>
+                            <textarea (keyup)="isValid($event)"  maxlength="200" [(ngModel)]="model.lecture_description" name="lecture_description" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" cols="4" rows="5" placeholder="Enter Description"></textarea>
                         </div>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.lecture_description"></div>
@@ -34,10 +34,10 @@
 
                 <div class="col-md-12">
                     <div class="form-group row  ml-0 mr-0">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> Enter of Teaching Faculty </label>
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Teaching Faculty Details </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                            <input [(ngModel)]="model.name_of_teaching_faculty" name="name_of_teaching_faculty" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="text" placeholder="Enter Teaching Faculty Name">
+                            <input (keyup)="isValid($event)"  maxlength="150" [(ngModel)]="model.name_of_teaching_faculty" name="name_of_teaching_faculty" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Teaching Faculty Details">
                         </div>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.name_of_teaching_faculty"></div>
@@ -47,7 +47,7 @@
                     <div class="form-group row  ml-0 mr-0">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Topic Covered </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                            <input [(ngModel)]="model.topic_cover" name="topic_cover" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                            <input (keyup)="isValid($event)"  maxlength="150" [(ngModel)]="model.topic_cover" name="topic_cover" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                 type="text" placeholder="Enter Topic Covered">
                         </div>
                     </div>
@@ -60,6 +60,7 @@
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                             <input [required]="!model.lecture" name="lecture" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"type="file">
                         </div>
+                        <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4/Avi/Mkv</p>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.lecture"></div>
                     </div>
 
@@ -71,7 +72,6 @@
                     </div>
 
                     <div class="d-flex justify-content-center mt-2">
-                        <button type="button " class="bg-danger border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing mr-2"> Cancel </button>
                         <button type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing" (click)="uploadLecture()"> {{action == 'add' ? 'Upload ' : 'Edit '}} </button>                    
                     </div>
 
