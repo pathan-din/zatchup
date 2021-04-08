@@ -474,11 +474,11 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
 
   addLocation() {
-    this.errorDisplay = {}
-    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
-    if (this.errorDisplay.valid) {
-      return false;
-    }
+    // this.errorDisplay = {}
+    // this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
+    // if (this.errorDisplay.valid) {
+    //   return false;
+    // }
     this.loader.show()
     let data = {
       "state_id": this.stateId,

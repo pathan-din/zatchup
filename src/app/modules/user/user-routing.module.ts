@@ -175,9 +175,6 @@ const routes: Routes = [
     path: 'user/school-profile', component: UserSchoolProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/profile', component: UserMyProfileComponent, canActivate: [AuthGuard]
-  },
-  {
     path: 'user/career', component: CareerComponent, canActivate: [AuthGuard]
   },
 

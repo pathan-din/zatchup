@@ -7,11 +7,10 @@
         </div>
     </div>
 </div>
-<div class="container containerScrolling mt-4 landingPageWidth ">
+<div class="container containerScrolling landingPageWidth ">
     <div class="bannerDiv Onboard-viewbanner-div p-2 d-flex align-items-end position-relative" *ngIf="schoolProfile">
         <img *ngIf="!schoolProfile.cover_pic" src="assets/images/cover-pic-default.png" class="img-fluid userSchoolProfileCover">
-        <img *ngIf="schoolProfile.cover_pic" src="{{schoolProfile.cover_pic}}" class="img-fluid userSchoolProfileCover">
-        <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
+        <img *ngIf="schoolProfile.cover_pic" src="{{schoolProfile.cover_pic}}" class="img-fluid userSchoolProfileCover">        
     </div>
     <div class="landingDiv">
         <div class="row pt-2">
@@ -22,13 +21,15 @@
                     <img *ngIf="schoolProfile.approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
                 </div>
 
-                <div class="pl-2 text-left" *ngIf="schoolProfile">
-                    <p class="m-0 commonFontSize mediumFont">{{schoolProfile.name_of_school}}</p>
+                <div class="pl-4 text-left" *ngIf="schoolProfile">
+                    <p class="m-0 commonFontSize mediumFont text-capitalize">{{schoolProfile.name_of_school}}</p>
                     <p class="m-o commonFontSize mediumFont">{{schoolProfile.zatchupid}}</p>
                 </div>
+                
             </div>
-            <!-- <div class="col-md-7 text-right d-flex profileDivRight flex-row">
-                <div class="col-4">
+            <div class="col-md-7 text-right d-flex profileDivRight flex-row" *ngIf="schoolProfile && schoolProfile.firebase_id">
+                <img (click)="getDocumentsChat(schoolProfile.firebase_id)" src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
+                <!-- <div class="col-4">
                     <p class="m-0 commonFontSize mediumFont text-center">20K</p>
                     <p class="m-0 commonFontSize regularFont text-center">Followers</p>
                 </div>
@@ -37,8 +38,8 @@
                 </div>
                 <div class="col-4 p-0">
                     <button type="button" class="common-btn bg-white color-purple py-1 w-auto px-2 regularFont">Add Post</button>
-                </div>
-            </div> -->
+                </div> -->
+            </div>
         </div>
         <div class="row mt-3" *ngIf="schoolProfile">
             <div class="col-md-5">

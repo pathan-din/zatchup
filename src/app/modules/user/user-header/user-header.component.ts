@@ -23,8 +23,12 @@ export class UserHeaderComponent implements OnInit {
     "route": "user/search",
     "viewZatchupId": true,
     "resultsLength": 5,
-    "seeMoreResults": true
-  } 
+    "seeMoreResults": true,
+    "viewSubMenu": true,
+    "rightIcon": true,
+    "viewCity": true
+
+  }
   messageData: any = [];
   currentUser: any = "";
   isLoggedIn: boolean;
@@ -68,7 +72,7 @@ export class UserHeaderComponent implements OnInit {
   }
 
 
- 
+
   getRecepintUserDetails(uuid: any) {
     if (uuid) {
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {

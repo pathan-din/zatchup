@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.userId = this.route.snapshot.queryParamMap.get('id')
     this.getProfile();
   }

@@ -1,13 +1,4 @@
-/* .containerScrolling {
-    height: 100vh;
-    overflow-y: scroll;
-} */
 
-.email_position-absolute {
-    position: absolute;
-    top: 6%;
-    right: 2%;
-}
 
 .landingDiv {
     padding-top: 0;
@@ -40,6 +31,7 @@
 
 .dpImg {
     height: 100%;
+    border-radius: 50%;
 }
 
 .img-container {
@@ -59,19 +51,25 @@
 .dpImgCircle {
     width: 100px;
     height: 100px;
+
+    position: relative;
+}
+.bannerDiv {
+    height: 180px;
     overflow: hidden;
 }
-.customProfile{
-    position: absolute;
-    z-index: 1;
-    bottom: -70px;
-    left: 15px;
+.customProfile {
+    margin-top: -25px;
 }
 .tickImg {
     position: absolute;
-    bottom: 0px;
-    left: 8%;
+    bottom: 60px;
+    left: 72px;
     z-index: 1;
+}
+h4 {
+    font-size: 16px !important;
+    text-transform: capitalize;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
@@ -108,8 +106,7 @@
         padding: 0;
         margin-top: 2%;
     }
-    .tickImg{
-        bottom: 20px;
-        left: 60%;
+    .bannerDiv{
+        height: auto;
     }
 }

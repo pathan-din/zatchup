@@ -75,13 +75,17 @@
                         <div>
                             <div>
                                 <span class="SearchUserName">{{data['display']}}</span>
-                                <span class="small-text-2">Software Developer at Triazine</span>
+                                <span *ngIf="viewSubMenu" class="small-text-2"> <span *ngIf="data.is_school_mate">You were in same school</span></span>
                             </div>
                             <div *ngIf="viewZatchupId" class="searchUserDesignation">
                                 {{data['school_code']}}
                             </div>
                         </div>
-                        <div class="searchIcon">
+                        <div class="searchCity" *ngIf="viewCity">
+                            <!-- <span>jaipur</span> -->
+                            <span>{{data['city']}}</span>
+                        </div>
+                        <div class="searchIcon" *ngIf="rightIcon">
                             <img src="assets/images/school.png" alt="school"/>
                         </div>
                     </div>
