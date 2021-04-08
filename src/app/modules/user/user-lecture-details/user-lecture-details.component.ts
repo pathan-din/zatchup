@@ -66,4 +66,8 @@ export class UserLectureDetailsComponent implements OnInit {
     this.location.back()
   }
 
+  playClick(event: any){
+    console.log('sdsads ....',event)
+  }
+
 }
