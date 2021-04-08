@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()"><i
-                        class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+                <button type='button' class="bg-purple text-white border-0 px-3 py-1" (click)="generateExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
         <!--End html for filter for No of alumni per page with export button-->
@@ -56,10 +56,8 @@
                     <ng-container matColumnDef="profilePicture">
                         <mat-header-cell *matHeaderCellDef> Profile Picture </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="text-center cursorStyle">
-                            <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="profile pick"
-                                style="height: 50px;" />
-                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="profile pick"
-                                style="height: 50px;" />
+                            <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="profile pick" style="height: 50px;" />
+                            <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="profile pick" style="height: 50px;" />
                         </mat-cell>
                     </ng-container>
 
@@ -94,11 +92,11 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-check mr-2 color-green fa-lg cursorStyle" title="Approve" aria-hidden="true "
-                                (click)="approveUser(element.user_id)"></i>
-                            <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" title="Reject" aria-hidden="true "
-                                (click)="rejectUserModal(element.user_id)" aria-hidden="true "
-                                data-toggle="modal" data-target="#rejectModel"></i>
+                            <i class="fa fa-check mr-2 color-green fa-lg cursorStyle" title="Approve" aria-hidden="true " (click)="approveUser(element.user_id)"></i>
+                            <i class="fa fa-ban mr-2 color-red fa-lg cursorStyle" title="Reject" aria-hidden="true " (click)="rejectUserModal(element.user_id)"
+                                aria-hidden="true " data-toggle="modal" data-target="#rejectModel"></i>
+                            <i class="fa fa-edit mr-2 color-blue fa-lg cursorStyle" title="edit" aria-hidden="true" aria-hidden="true" data-toggle="modal"
+                                data-target="#edit"></i>
                         </mat-cell>
                     </ng-container>
 
@@ -107,8 +105,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="dataSource && dataSource.length> 0"
-            (pageChange)="getSubadminPendingRequest($event)" class="eiPaginationTag">
+        <pagination-controls *ngIf="dataSource && dataSource.length> 0" (pageChange)="getSubadminPendingRequest($event)" class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="dataSource && dataSource.length== 0">
             <div class="col-12 pt-2 pb-2">
@@ -118,14 +115,13 @@
     </div>
 </div>
 
-<div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content unverified container-fluid">
             <div class="modal-header align-items-center justify-content-center pb-0 ">
                 <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
-                <button #closeRejectModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
+                <button #closeRejectModal type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                    aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
@@ -136,9 +132,7 @@
                         <div class="col-md-12 ">
                             <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
                             <div class="form-control-inputDiv rounded p-0 shadow-none">
-                                <input id="remark" (keyup)="isValid()" [(ngModel)]="modelReason.remark" name="rejection_reason"
-                                    required
-                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                <input id="remark" (keyup)="isValid()" [(ngModel)]="modelReason.remark" name="rejection_reason" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter Reason">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.rejection_reason"></div>
@@ -149,15 +143,46 @@
                             <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                <textarea [(ngModel)]="modelReason.rejected_reason" name="description" required
-                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                <textarea [(ngModel)]="modelReason.rejected_reason" name="description" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                     rows="3 " placeholder="Enter Description" (keyup)="isValid()"></textarea>
                             </div>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
                     </div>
-                    <button (click)="rejectUser()" type="button "
-                        class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                    <button (click)="rejectUser()" type="button " class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 ">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Edit</h2>
+                <button #closeRejectModal type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                    aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+
+            <div class="modal-body px-0">
+                <form id="rejectReason" autocomplete="off" autocapitalize="off">
+                    <div class=" form-group row ">
+                        <div class="col-md-12 ">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Employee ID</label>
+                            <div class="form-control-inputDiv rounded p-0 shadow-none">
+                                <input id="remark" (keyup)="isValid()" [(ngModel)]="modelReason.remark" name="rejection_reason" required class="form-control-input form-control commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Employee ID">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.rejection_reason"></div>
+                        </div>
+                    </div>
+
+                    <button type="button " class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
                         Submit
                     </button>
                 </form>
