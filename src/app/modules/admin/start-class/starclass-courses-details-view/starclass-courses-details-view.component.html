@@ -149,7 +149,14 @@
     </div>
 
     <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <button (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
+            </div>
+        </div>
 
         <!--Start html for "select no of Rows per page" and Export Button-->
         <div class="row my-3 align-items-center" *ngIf="eiStarclassLectueList.dataSource">

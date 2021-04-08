@@ -3,27 +3,28 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { StarclassLectureHistory } from '../../registration/modal/contact-us.mdal';
+import { StarclassLectureHistory } from '../../ei/modals/education-institute.modal';
 
 @Component({
-  selector: 'app-ei-starclass-lecture-history',
-  templateUrl: './ei-starclass-lecture-history.component.html',
-  styleUrls: ['./ei-starclass-lecture-history.component.css']
+  selector: 'app-starclass-lecture-history',
+  templateUrl: './starclass-lecture-history.component.html',
+  styleUrls: ['./starclass-lecture-history.component.css']
 })
-export class EiStarclassLectureHistoryComponent implements OnInit {
-  starclassLectureHistory: StarclassLectureHistory
+export class StarclassLectureHistoryComponent implements OnInit {
+  starclassLectureHistory : StarclassLectureHistory
   constructor(
     private location: Location,
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService
   ) {
-    this.starclassLectureHistory = new StarclassLectureHistory()
+    this.starclassLectureHistory = new StarclassLectureHistory
    }
 
   ngOnInit(): void {
     this.getLectureHistory()
   }
+
 
   getLectureHistory(page? : any){
     try {
@@ -32,7 +33,7 @@ export class EiStarclassLectureHistoryComponent implements OnInit {
         'page' : page,
         'page_size': this.starclassLectureHistory.page_size
       }
-      this.baseService.getData('starclass/ei_lecture_history/', this.starclassLectureHistory.modal).subscribe(
+      this.baseService.getData('starclass/lecture-history', this.starclassLectureHistory.modal).subscribe(
         (res: any) =>{
           if(res.status == true){
             if (!page)

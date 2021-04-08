@@ -1,4 +1,4 @@
-<app-ei-sidenav></app-ei-sidenav>
+<app-admin-sidenav></app-admin-sidenav>
 <div class="container main-container p-3">
 
     <div class="KYC-HistoryView-div bg-white px-3 pt-2 pb-3">
@@ -9,13 +9,13 @@
             <h2 class="commonFontSize semiBoldFont m-0">Lecture History</h2>
         </div>
 
-        <div class="row my-3 align-items-center" *ngIf="starclassLectureHistory.dataSource">
+        <div class="row my-3 align-items-center" *ngIf="eiStarclassLectureHistory.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getLectureHistory('1')" [(ngModel)]="starclassLectureHistory.page_size">
-                        <option *ngFor="let count of starclassLectureHistory.pageCounts" value="{{count}}">{{count}}</option>
+                        (change)="getLectureHistory('1')" [(ngModel)]="eiStarclassLectureHistory.page_size">
+                        <option *ngFor="let count of eiStarclassLectureHistory.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
@@ -24,13 +24,13 @@
          <div class="row mt-3">
             <div class="col-md-12">
                  <!--Start html for table content Alimni information-->
-                <div class="tableDiv " *ngIf="starclassLectureHistory.dataSource">
+                <div class="tableDiv " *ngIf="eiStarclassLectureHistory.dataSource">
                     <div class="mat-elevation-z1 table-responsive" >
-                        <mat-table [dataSource]="starclassLectureHistory.dataSource | paginate:starclassLectureHistory.config">
+                        <mat-table [dataSource]="eiStarclassLectureHistory.dataSource | paginate:eiStarclassLectureHistory.config">
 
                             <ng-container matColumnDef="position">
                                 <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                                <mat-cell *matCellDef="let element; let i = index;"> {{i + starclassLectureHistory.startIndex}} </mat-cell>
+                                <mat-cell *matCellDef="let element; let i = index;"> {{i + eiStarclassLectureHistory.startIndex}} </mat-cell>
                             </ng-container>
                             
                             <ng-container matColumnDef="action">
@@ -61,14 +61,14 @@
                                 </mat-cell>
                             </ng-container> -->
 
-                            <mat-header-row *matHeaderRowDef="starclassLectureHistory.displayedColumns "></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: starclassLectureHistory.displayedColumns; "></mat-row>
+                            <mat-header-row *matHeaderRowDef="eiStarclassLectureHistory.displayedColumns "></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: eiStarclassLectureHistory.displayedColumns; "></mat-row>
                         </mat-table>
                     </div>
                 </div>
-                <pagination-controls *ngIf="starclassLectureHistory.dataSource" (pageChange)="getLectureHistory($event)" class="eiPaginationTag">
+                <pagination-controls *ngIf="eiStarclassLectureHistory.dataSource" (pageChange)="getLectureHistory($event)" class="eiPaginationTag">
                 </pagination-controls>
-                <div class="row" *ngIf="!starclassLectureHistory.dataSource">
+                <div class="row" *ngIf="!eiStarclassLectureHistory.dataSource">
                     <div class="col-12 pt-2 pb-2">
                         <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                     </div>

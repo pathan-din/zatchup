@@ -39,6 +39,7 @@ export class UserEiConfirmationComponent implements OnInit {
   todate: any;
   params: any;
   regStep: any;
+  successMsg: any;
 
   constructor(
     private router: Router,
@@ -111,7 +112,7 @@ export class UserEiConfirmationComponent implements OnInit {
   /**Delete Course  */
 
   deleteCourse(id: any): any {
-    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+    this.confirmDialogService.confirmThis('Are you sure you want delete this course.', () => {
       this.SpinnerService.show()
       let model: any = {};
       model.course_id = id;
@@ -134,7 +135,7 @@ export class UserEiConfirmationComponent implements OnInit {
   }
 
   deleteEi(id: any): any {
-    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+    this.confirmDialogService.confirmThis('Are you sure you want delete this School.', () => {
       this.SpinnerService.show()
       let model: any = {};
       model.school_id = id;
@@ -222,14 +223,6 @@ export class UserEiConfirmationComponent implements OnInit {
 
   }
   editStandardDetails(text, event) {
-
-
-
-    // this.errorDisplay = {};
-    // this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
-    // if (this.errorDisplay.valid) {
-    //   return false;
-    // }
     try {
 
       this.SpinnerService.show();
@@ -237,9 +230,12 @@ export class UserEiConfirmationComponent implements OnInit {
       this.editmodel.standard_end_year = this.baseService.getDateFormat(this.editmodel.standard_end_year)
       if (text == 'start_year') {
         this.editmodel.standard_start_year = event ? this.baseService.getDateFormat(event) : this.baseService.getDateFormat(this.editmodel.standard_start_year)
+        this.successMsg = "Start year edit successfully"
       } else if (text == 'end_year') {
         this.editmodel.standard_end_year = event ? this.baseService.getDateFormat(event) : this.baseService.getDateFormat(this.editmodel.standard_end_year)
-
+        this.successMsg = "End year edit successfully"
+      }else{
+        this.successMsg = "Section edit successfully"
       }
 
 
@@ -248,7 +244,7 @@ export class UserEiConfirmationComponent implements OnInit {
         if (response.status == true) {
           this.SpinnerService.hide();
           $("#personalInfoModel").modal("hide");
-          this.alert.success("Data edit successfully", "Success");
+          this.alert.success(this.successMsg, "Success");
           this.getConfirmationDetails();
         } else {
           this.SpinnerService.hide();
