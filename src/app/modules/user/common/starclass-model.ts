@@ -16,6 +16,8 @@ export class StarclassCourseList extends Pagination {
     params: any = {}
     id: any;
     modal: any;
+  allSchool: any;
+  schoolId: any = '';
 
 }
 
