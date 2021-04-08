@@ -26,14 +26,17 @@ export class UserAddEiComponent implements OnInit {
   name_of_school_first: any = '';
   title: any;
   params: any;
-  constructor(private router: Router,
+
+  constructor(
+    private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     public baseService: BaseService,
     private alert: NotificationService,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private genericFormValidationService: GenericFormValidationService) { }
+    private genericFormValidationService: GenericFormValidationService
+  ) { }
 
   ngOnInit(): void {
     this.getAllState();
@@ -272,8 +275,8 @@ export class UserAddEiComponent implements OnInit {
     } else {
       this.model.school_data = {};
       this.model.university = "";
-      console.log("university",this.model.university);
-      
+      console.log("university", this.model.university);
+
       this.model.address1 = "";
       this.modelZatchup.zatchup_id = "";
       this.name_of_school_others = '';
@@ -328,7 +331,7 @@ export class UserAddEiComponent implements OnInit {
     }
 
   }
-  /**End */
+
   goToUserEiProfileNotOnboardPage() {
     this.router.navigate(['user/ei-profileNotOnboard']);
   }
