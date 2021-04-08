@@ -122,7 +122,7 @@ export class GenericFormValidationService {
         }
         //check All pattern based on type = text filed
         else if (controls[i].type == 'text' && controls[i].value) {
-          var msg=" is not valid format.";
+          var msg="Invalid";
           if(controls[i].getAttribute('message'))
           {
             msg=controls[i].getAttribute('message');
@@ -131,7 +131,7 @@ export class GenericFormValidationService {
           if (pattern.test(controls[i].value)) {
 
           } else {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + msg;
+            this.errorMessageObject[controls[i].name] = msg+ ' ' +controls[i].name.replace(/_/g, ' ').charAt(0) + controls[i].name.replace(/_/g, ' ').slice(1) + '.';
           }
 
         }

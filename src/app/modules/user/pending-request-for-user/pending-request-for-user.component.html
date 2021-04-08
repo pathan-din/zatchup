@@ -41,7 +41,7 @@
         <!-- <pagination-controls *ngIf="userPendingRequest.dataSource" (pageChange)="filterData($event)" class="eiPaginationTag">
         </pagination-controls> -->
 
-        <div class="bg-white" *ngIf="!dataSource">
+        <div class="bg-white mt-3" *ngIf="!dataSource">
             <div class="col-12 py-3">
                 <p class="text-center dataNotFound py-4">Records Not Available</p>
             </div>
@@ -60,7 +60,7 @@
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="kycReqDataSource">
                     <ng-container matColumnDef="field_name">
-                        <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Field Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.field_name}}
                         </mat-cell>
