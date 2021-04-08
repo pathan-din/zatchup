@@ -200,3 +200,15 @@ export class EiStarclassLectureList extends Pagination{
   model: any;
 
 }
+
+export class EiStarclassLectureHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']  
+}
+
+export class StarclassLectureHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']  
+}

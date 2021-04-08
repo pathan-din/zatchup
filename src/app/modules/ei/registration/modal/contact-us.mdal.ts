@@ -63,7 +63,7 @@ export class EiCourseList extends Pagination{
 
 export class ZatchupStarclassCourses extends Pagination{
   displayedColumns: string[] = ['position', 'courseName','boughtDate', 
-  'expiryDate','totalViews','noOfViews']; 
+  'expiryDate','totalViews','noOfViews' ,'student' ,'teacher' ,'editRights']; 
   params: any = {}
   id: any;
   modal: any;
@@ -107,4 +107,10 @@ export class StarclassCourseHistory extends Pagination {
   modal: any;
     history: any;
     displayedColumns: string[]= ['position', 'action', 'actionDate', 'message'] 
+}
+
+export class StarclassLectureHistory extends Pagination{
+  modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']  
 }
