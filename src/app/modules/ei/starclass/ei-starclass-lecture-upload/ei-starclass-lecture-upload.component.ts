@@ -45,6 +45,12 @@ export class EiStarclassLectureUploadComponent implements OnInit {
     console.log(this.uploadedContent);
   }
 
+  isValid(event) {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
   getLectureDetails() {
     try {
       this.loader.show()

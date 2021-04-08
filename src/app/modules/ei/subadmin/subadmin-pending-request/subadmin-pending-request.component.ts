@@ -15,6 +15,7 @@ export class SubadminPendingRequestComponent implements OnInit {
   @ViewChild('closeRejectModal') closeRejectModal: any;
   displayedColumns: string[] = ['SNo', 'Name', 'zatchUpID', 'profilePicture', 'dateOfBirth', 'emailId',
     'phoneNumber', 'employeelID', 'Action'];
+  @ViewChild('closecreateNewPlan') closecreateNewPlan: any;
 
   config = {
     itemsPerPage: 0,
@@ -29,6 +30,10 @@ export class SubadminPendingRequestComponent implements OnInit {
   errorDisplay: any = {};
   userId: any;
   pageCounts: any;
+  model: {};
+  sabadminId: any;
+  empNumber: any;
+  subadminId: any;
 
   constructor(
     private location: Location,
@@ -51,6 +56,16 @@ export class SubadminPendingRequestComponent implements OnInit {
     this.location.back()
   }
 
+  editUser(element: any) {
+    this.empNumber = element.employee_no;
+    this.subadminId = element.user_id
+  }
+  
+  approveUsers(element : any){
+    this.empNumber = element.employee_no;
+    this.subadminId = element.user_id
+  }
+
   getSubadminPendingRequest(page?: any) {
     this.loader.show();
     this.listParams = {
@@ -67,28 +82,32 @@ export class SubadminPendingRequestComponent implements OnInit {
           this.pageSize = res.page_size
           this.config.currentPage = page
           this.config.totalItems = res.count;
-          if (res.count > 0){
+          if (res.count > 0) {
             this.dataSource = res.results;
             this.pageCounts = this.baseService.getCountsOfPage()
-          }else {
+          } else {
             this.dataSource = []
-        }}
-        else{
+          }
+        }
+        else {
           this.alert.error(res.error.message[0], 'Error')
-        this.loader.hide();
-      }}
+          this.loader.hide();
+        }
+      }
     ), (err: any) => {
       this.alert.error(err, 'Error')
       this.loader.hide();
     }
   }
 
-  approveUser(id: any): any {
+  approveUser(element : any): any {
     this.confirmDialogService.confirmThis('Are you sure you want to approve this user?', () => {
       let data = {
-        "subadmin_id": id,
-        "approve_subadmin": 1
+        "subadmin_id": element.user_id,
+        "approve_subadmin": 1,
+        'employee_num': element.employee_no,
       }
+      
       this.loader.show()
       this.baseService.action('ei/subadmin-approve-by-ei/', data).subscribe(
         (res: any) => {
@@ -144,6 +163,37 @@ export class SubadminPendingRequestComponent implements OnInit {
   isValid() {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.ValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  updateEmployeeNo() {
+    try {
+      this.loader.show()
+      this.model = {
+        'employee_num': this.empNumber,
+        'subadmin_id': this.subadminId,
+      }
+      this.baseService.action('subadmin/get-employe-num-of-subadmin/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.closecreateNewPlan.nativeElement.click();
+            this.model = {};
+            this.alert.success(res.message, 'Success');
+            this.getSubadminPendingRequest()
+          }
+          else {
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        },
+        err => {
+          this.alert.error(err, 'Error')
+          this.loader.hide()
+        }
+      )
+    } catch (error) {
+      this.alert.error(error.error, 'Error')
+      this.loader.hide()
     }
   }
 }

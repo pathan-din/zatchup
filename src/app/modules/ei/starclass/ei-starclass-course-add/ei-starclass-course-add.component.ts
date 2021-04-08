@@ -54,6 +54,11 @@ export class EiStarclassCourseAddComponent implements OnInit {
     console.log(this.uploadedContent_image);
   }
 
+  isValid(event) {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
   getCourseDetails(){
     try {
       this.loader.show()
@@ -119,7 +124,12 @@ export class EiStarclassCourseAddComponent implements OnInit {
         (res : any) =>{
           if(res.status == true){
             this.alert.success(res.message, 'Success')
-            this.location.back()
+            if(this.action == 'add'){
+              this.router.navigate(['ei/star-class-courses-uploaded-by-ei'])
+            }else{
+              this.location.back()
+            }
+            
           }
           else{
             this.alert.error(res.error.message, 'Error')
