@@ -8,8 +8,7 @@
                     <div class="row">
                         <div class="col-md-3 p-0 my-1">
                             <div class="shadow-none">
-                                <select class="custom-select border rounded" name="state" required [(ngModel)]="stateId"
-                                    (change)="getCities()">
+                                <select class="custom-select border rounded" name="state" required [(ngModel)]="stateId" (change)="getCities()">
                                     <option value="">Select State</option>
                                     <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
                                     </option>
@@ -25,30 +24,28 @@
                             </div>
                         </div>
                         <div class="col-md-3 p-0 my-1">
-                            <input-search [config]="currentSchoolSearchConfig" [value]="currentSchoolName"
-                                (searchResult)="getCurrentSchoolSearchResult($event)" class="h-100"></input-search>
+                            <input-search [config]="currentSchoolSearchConfig" [value]="currentSchoolName" (searchResult)="getCurrentSchoolSearchResult($event)"
+                                class="h-100"></input-search>
                         </div>
                         <div class="col-md-3 pr-0 my-1">
-                            <input-search [config]="pastSchoolSearchConfig" [value]="pastSchoolName"
-                                (searchResult)="getPastSchoolSearchResult($event)" class="h-100"></input-search>
+                            <input-search [config]="pastSchoolSearchConfig" [value]="pastSchoolName" (searchResult)="getPastSchoolSearchResult($event)"
+                                class="h-100"></input-search>
                         </div>
                     </div>
                     <div class="pt-3" *ngIf="dataSource">
                         <div class="row paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
                             <!-- <div> -->
-                                <div (click)="userProfile(people.id)"
-                                    class="cursorStyle col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                    <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
-                                        class="img-fluid border-0 rounded-circle ">
-                                    <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
-                                        class="img-fluid border-0 rounded-circle ">
+                            <div (click)="userProfile(people.id)" class="cursorStyle col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
+                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png" class="img-fluid border-0 rounded-circle ">
+                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}" class="img-fluid border-0 rounded-circle ">
+                            </div>
+                            <div (click)="userProfile(people.id)" class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
+                                <div class="commonFontSize semiBoldFont">{{people.display}}
+                                    <span class="small-text-2 regularFont">Student</span>
                                 </div>
-                                <div (click)="userProfile(people.id)"
-                                    class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
-                                    <div class="commonFontSize semiBoldFont">{{people.display}}</div>
-                                    <!-- <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p> -->
-                                </div>
-                                <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto"
+                                <!-- <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p> -->
+                            </div>
+                            <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto"
                                 (click)="goToMyBuddiesPage()">
                                 <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
                                     Buddy</button>
@@ -68,8 +65,7 @@
                     <div class="row">
                         <div class="col-md-6 p-0 my-1">
                             <div class="shadow-none">
-                                <select class="custom-select border rounded" name="state" required [(ngModel)]="stateId"
-                                    (change)="getCities()">
+                                <select class="custom-select border rounded" name="state" required [(ngModel)]="stateId" (change)="getCities()">
                                     <option value="">Select State</option>
                                     <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
                                     </option>
@@ -88,15 +84,11 @@
 
                     <div class="pt-3" *ngIf="dataSource">
                         <div class="row paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
-                            <div (click)="schoolProfile(people.school_id)"
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center cursorStyle">
-                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
-                                    class="img-fluid border-0 rounded-circle ">
-                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
-                                    class="img-fluid border-0 rounded-circle ">
+                            <div (click)="schoolProfile(people.school_id)" class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center cursorStyle">
+                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png" class="img-fluid border-0 rounded-circle ">
+                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}" class="img-fluid border-0 rounded-circle ">
                             </div>
-                            <div (click)="schoolProfile(people.school_id)"
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
+                            <div (click)="schoolProfile(people.school_id)" class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
                                 <div class="commonFontSize semiBoldFont">{{people.display}}</div>
                                 <!-- <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p> -->
                             </div>
