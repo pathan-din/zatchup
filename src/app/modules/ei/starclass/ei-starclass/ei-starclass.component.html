@@ -1,6 +1,5 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
-
     <div class="starClass-div bg-white px-3 pt-3 pb-3 mt-3">
         <!--ZatchUp StarClass Sorting-->
         <div class="row mb-2 align-items-center">
@@ -11,101 +10,25 @@
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToCreateCourse()">Create Course</button>
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToMyCourse()">My Courses</button>
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToYourOrder()">Your Orders</button>
-
-                <!-- <select class="border-0 px-2">
-                    <option value="">My Courses</option>
-                    <option value="1">ZatchUp StarClass </option>
-                    <option value="2">Uploaded by EI
-                    </option>
-                </select>
-                <select class="border-0 px-2">
-                    <option value="">Your Orders</option>
-                    <option value="1">Download Invoice</option>
-                </select> -->
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToPendingRequest()">Pending ZatchUp StarClass</button>
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToMyCart()">My Cart</button>
-             </div>
-        </div>
-        <!--ZatchUp StarClass Filter-->
-        <!-- <div class="filterDiv pb-4 mt-3">
-            <div class="d-flex flex-wrap align-items-end">
-
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Search</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none ">
-                        <input type="text" class=" form-control-input form-control   commonFontSize regularFont letterspacing " placeholder="Search...">
-                    </div>
-                </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Level Of Education</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input" id="educationLevel" required>
-                            <option value=""> Select Education</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="3">D</option>
-                            <option value="3">E</option>
-                            <option value="3">Unspecified</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Field</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input " id="field" required>
-                            <option value=""> Select Field</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-
-                        </select>
-                    </div>
-                </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Standard</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input" id="standard" required>
-                            <option value=""> Select Standard</option>
-                            <option value="1">Profession1</option>
-                            <option value="2">Profession2</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Subject</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input" id="subject">
-                            <option value=""> Select Subject</option>
-                            <option value="1">Verified</option>
-                            <option value="2">Inverified</option>
-
-                        </select>
-                    </div>
-                </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
             </div>
-        </div> -->
-        <!--End ZatchUp StarClass Filter-->
-
+        </div>
         <!--ZatchUp StarClass Package-->
-        <div class="row" >
-            <div class="col-md-4 col-sm-12" *ngFor="let data of dashBoardData.dataSource">
-                <div class="col-md-12 col-sm-12 mb-3" >
+        <div class="row">
+            <div class="col-md-4 col-sm-12 px-0" *ngFor="let data of dashBoardData.dataSource">
+                <div class="col-md-12 col-sm-12 mb-3">
                     <div class="card p-2 rounded-0 cursorStyle" (click)="goToCoursePreview(data)">
-                        <img class="card-img-top starclass-card-img border border-gray rounded-0" *ngIf="data.course_image" src="{{data.course_image}}" alt="Card image cap">
-                        <img class="card-img-top starclass-card-img border border-gray rounded-0" *ngIf="!data.course_image" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
-                        <div class="card-body p-0">
-                        <h3 class="card-title commonFontSize semiBoldFont mb-1">{{data.course_name}}</h3>
-                            <p class="card-text commonFontSize regularFont mb-2">{{data.description}}</p>
-
+                        <img class="border rounded" *ngIf="data.course_image" src="{{data.course_image}}" alt="Course">
+                        <img class="border rounded" *ngIf="!data.course_image" src="assets/images/userWebsite/add-course-images.png" alt="Course">
+                        <div class="card-body px-0">
+                            <h3 class="card-title commonFontSize semiBoldFont mb-0">{{data.course_name}}</h3>
+                            <p class="card-text commonFontSize regularFont">{{data.description}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--End ZatchUp StarClass Package-->
-        
     </div>
-
 </div>

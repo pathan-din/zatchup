@@ -34,7 +34,7 @@
             </div>
         </div> -->
 
-        <div class="tableDiv" *ngIf="studentAuidence.dataSource">
+        <div class="tableDiv mt-3" *ngIf="studentAuidence.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="studentAuidence.dataSource | paginate: studentAuidence.config">
                     <ng-container matColumnDef="select">
@@ -42,9 +42,7 @@
 
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <mat-checkbox  
-                            [(ngModel)]="element.is_access_for_star_class"
-                                (change)="getStudentAudienceBycheckbox(element.user_id,$event)">
+                            <mat-checkbox [(ngModel)]="element.is_access_for_star_class" (change)="getStudentAudienceBycheckbox(element.user_id,$event)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>
@@ -70,11 +68,10 @@
                         <mat-header-cell *matHeaderCellDef> Profile Pic</mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <div class="imgCircle">
-                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="School profile"
-                                    class="img-fluid cerImg rounded">
-                                <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="School profile"
-                                    class="img-fluid cerImg rounded">
-                            </div></mat-cell>
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="School profile" class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="School profile" class="img-fluid cerImg rounded">
+                            </div>
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="nameOfStudent">
@@ -118,15 +115,14 @@
 
             </div>
         </div>
-        <pagination-controls *ngIf="studentAuidence.dataSource" (pageChange)="getStudentAuidenceList($event)"
-        class="eiPaginationTag">
-    </pagination-controls>
-    <div class="row" *ngIf="!studentAuidence.dataSource">
-        <div class="col-12 pt-2 pb-2">
-            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+        <pagination-controls *ngIf="studentAuidence.dataSource" (pageChange)="getStudentAuidenceList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row mt-3" *ngIf="!studentAuidence.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
         </div>
-    </div>
-        <button  type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0" (click)="addStudentAudience()">Submit</button>
+        <button type="button" class="bg-paret-green text-white py-2 px-4 commonFontSize mediumFont border-0" (click)="addStudentAudience()">Submit</button>
 
     </div>
 

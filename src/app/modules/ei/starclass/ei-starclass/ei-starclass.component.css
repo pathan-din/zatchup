@@ -3,6 +3,8 @@
 }
 .button-div button:hover {
     text-decoration: none;
+}.card img {
+    height: 250px;
 }
 @media only screen and (min-width: 1200px) {
     .button-div {
