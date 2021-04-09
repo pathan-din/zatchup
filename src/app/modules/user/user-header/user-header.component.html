@@ -43,7 +43,7 @@
 
             <div *ngIf="authCheck" class="dropdown nav-item position-relative customUserSearch">
                 <div>
-                    <input-search [config]="searchConfig" [value]="''" (searchResult)="getSearchResult($event)" class="h-100"></input-search>
+                    <input-search [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
                 </div>
             </div>
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">

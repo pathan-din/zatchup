@@ -17,7 +17,7 @@ export class UserProfileCreatedSuccessfullyComponent implements OnInit {
 
  
  goToUserLandingPage(): any {
-  this.confirmDialogService.confirmThis('You will be logout before continue ...', () => {
+  this.confirmDialogService.confirmThis('Your Profile is Sent for approval !! Please login again to continue.', () => {
     this.logout()
   
   }, () => {
