@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-header',
@@ -32,6 +33,7 @@ export class UserHeaderComponent implements OnInit {
   messageData: any = [];
   currentUser: any = "";
   isLoggedIn: boolean;
+  searchItem: any = '';
 
   constructor(
     private router: Router,
@@ -40,6 +42,7 @@ export class UserHeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private notifypush: FirebaseService,
     private firestore: AngularFirestore,
+    private loader: NgxSpinnerService,
     private confirmDialogService: ConfirmDialogService
   ) {
     this.ids = new Array<any>();
@@ -88,8 +91,9 @@ export class UserHeaderComponent implements OnInit {
 
   getDasboardDetails() {
     try {
+      this.loader.show();
       this.baseService.getData("ei/auth-user-info").subscribe(res => {
-
+        this.loader.hide();
         let response: any = {};
         response = res;
         if (response.status == true) {
@@ -98,16 +102,16 @@ export class UserHeaderComponent implements OnInit {
           localStorage.setItem('userId', this.userProfile.user_id)
         }
       }, (error) => {
-
+        this.loader.hide();
         console.log(error);
       });
     } catch (err) {
-
+      this.loader.hide();
       console.log(err);
     }
   }
   reminderList() {
-    this.router.navigate(["user/remainders"]);
+    this.router.navigate(["user/reminders"]);
   }
   notificationList() {
     this.router.navigate(["user/notifications"]);
@@ -123,7 +127,9 @@ export class UserHeaderComponent implements OnInit {
   /**Find the step of the register process for all Users */
   getRegistrationStep() {
     try {
+      this.loader.show()
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
+        this.loader.hide()
         this.regProfile = res;
         localStorage.setItem("res.reg_step", res.reg_step);
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
@@ -164,17 +170,24 @@ export class UserHeaderComponent implements OnInit {
           }
         }
       }, (error => {
-        this.alert.warning("Data not Fetched", "Warning");
+        this.alert.error("Data not Fetched", "Error");
+        this.loader.hide();
       }))
     } catch (e) {
       this.alert.error("Something went wrong, Please contact administrator.", "Error");
+      this.loader.hide();
     }
   }
 
   getSearchResult(data: any) {
+    
     if (data.user_type == 'SCHOOL')
       this.router.navigate(['user/school-profile'], { queryParams: { "school_id": data.school_id } })
     else
       this.router.navigate(['user/profile'], { queryParams: { "id": data.id } })
+  }
+
+  setValue(data: any){
+    this.searchItem = data.display
   }
 }

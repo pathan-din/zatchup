@@ -51,11 +51,15 @@ scrollToBottom(): void {
   }
 
   sendChat(document?: any) {
+    if(!this.model.comment){
+      
+      return;
+    }
+    
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
       let userData = JSON.parse(localStorage.getItem('userprofile'))
-      console.log('userData   ', userData)
       data.user_friend_id = localStorage.getItem("friendlidt_id");
       data.user_send_by = localStorage.getItem('fbtoken');
       data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
@@ -63,7 +67,6 @@ scrollToBottom(): void {
       data.document = document ? true : false;
       data.msg = document ? document : this.model.comment;
       data.timestamp = new Date().valueOf();
-
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
       // console.log(dataNew.data);
@@ -131,7 +134,7 @@ scrollToBottom(): void {
   }
   getFileExtention(url){
     var exArr = url.split("/");
-    console.log(exArr[(exArr.length-1)].split(".")[1]);
+   // console.log(exArr[(exArr.length-1)].split(".")[1]);
     
     return exArr[(exArr.length-1)].split(".")[1];
   }

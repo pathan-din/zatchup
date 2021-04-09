@@ -6,6 +6,7 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../../../../services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 @Component({
   selector: 'app-ei-school-profile',
   templateUrl: './ei-school-profile.component.html',
@@ -32,13 +33,15 @@ export class EiSchoolProfileComponent implements OnInit {
   userProfile: any = {};
   cover_pic: any = '';
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
     public alert: NotificationService,
-    private genericFormValidationService: GenericFormValidationService,
-    private firebase:FirebaseService) { }
+    private firebase: FirebaseService,
+    private communicationService: CommunicationService
+  ) { }
 
   ngOnInit(): void {
     this.getProfile();
@@ -54,11 +57,11 @@ export class EiSchoolProfileComponent implements OnInit {
       this.postOptionActiveImage = 'active';
     }
   }
-  goToEiVerifiedAlumniPage(){
-    this.router.navigate(['ei/alumni-list'], {queryParams: {approved : 1}});
+  goToEiVerifiedAlumniPage() {
+    this.router.navigate(['ei/alumni-list'], { queryParams: { approved: 1 } });
   }
-  goToEiVerifiedStudentPage(){
-    this.router.navigate(['ei/student-verified-list'], {queryParams: {approved : 1}});
+  goToEiVerifiedStudentPage() {
+    this.router.navigate(['ei/student-verified-list'], { queryParams: { approved: 1 } });
   }
   goToEISchoolPostPage() {
     this.router.navigate(['ei/school-post']);
@@ -74,8 +77,8 @@ export class EiSchoolProfileComponent implements OnInit {
         this.SpinnerService.hide();
         this.userProfile = response;
         //console.log(this.userProfile );
-        
-       this.firebase.updatePhotoOnChatUser(this.userProfile);
+
+        this.firebase.updatePhotoOnChatUser(this.userProfile);
       }, (error) => {
         this.SpinnerService.hide();
         console.log(error);
@@ -104,7 +107,7 @@ export class EiSchoolProfileComponent implements OnInit {
         if (response.status == true) {
           this.SpinnerService.hide();
           this.userProfile.profile_pic = response.data[0].profile_pic_url;
-          
+
         } else {
           this.SpinnerService.hide();
           console.log("Error:Data not update");
@@ -163,7 +166,8 @@ export class EiSchoolProfileComponent implements OnInit {
   }
 
   getProfilePicUrl(file: any) {
-    this.userProfile.profile_pic = file.data[0].profile_pic_url
+    this.userProfile.profile_pic = file.data[0].profile_pic_url;
+    this.communicationService.setImageUrl(this.userProfile.profile_pic)
   }
 
   getCoverPicUrl(file: any) {

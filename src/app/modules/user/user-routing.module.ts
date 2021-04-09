@@ -157,7 +157,7 @@ const routes: Routes = [
     path: 'user/notifications', component: UserNotificationsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/remainders', component: UserRemaindersComponent, canActivate: [AuthGuard]
+    path: 'user/reminders', component: UserRemaindersComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/search', component: UserSearchComponent, canActivate: [AuthGuard]

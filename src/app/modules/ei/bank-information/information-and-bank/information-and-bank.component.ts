@@ -111,7 +111,7 @@ export class InformationAndBankComponent implements OnInit {
           });
       } else {
         this.loader.hide();
-        this.alert.error("Please edit any information before click", "");
+        this.alert.error("Please edit your information to send for verification", "Error");
       }
     } catch (err) {
       this.loader.hide();

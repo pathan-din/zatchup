@@ -68,7 +68,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="50" required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Course Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_name"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_name"></div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
@@ -77,7 +77,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Level Of Education">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.level_of_education"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
                         </div>
 
                         <div class="col-md-6">
@@ -88,7 +88,7 @@
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_preview"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
@@ -98,7 +98,7 @@
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Jpg/Jpeg/Png </p>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_image"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_image"></div>
                         </div>
                         <div class="col-md-6" *ngIf="model.course_preview">
                             <div class="form-group row ml-0 mr-0">
@@ -124,7 +124,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.field"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.field"></div>
                         </div>
 
                         <div class="col-md-6">
@@ -134,7 +134,7 @@
                                     <input (keyup)="isValid($event)"   maxlength="50" required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.standard"></div>
                         </div>
 
                         <div class="col-md-6">
@@ -144,7 +144,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.subject"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.subject"></div>
                         </div>
 
                         <div class="col-md-6">
@@ -154,7 +154,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="150" required [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Faculty Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.faculty_details"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.faculty_details"></div>
                         </div>
 
                         <div class="col-md-12">
@@ -164,7 +164,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="150"  required [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.topic_cover"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.topic_cover"></div>
                         </div>
 
                        <div class="col-md-12">
@@ -174,7 +174,7 @@
                                     <textarea (keyup)="isValid($event)"  maxlength="200"  required [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" type="textarea"></textarea>
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.description"></div>
                         </div>
 
                     </div>
