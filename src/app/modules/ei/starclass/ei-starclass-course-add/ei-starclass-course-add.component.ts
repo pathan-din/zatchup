@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { JsonpClientBackend } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./ei-starclass-course-add.component.css']
 })
 export class EiStarclassCourseAddComponent implements OnInit {
+  @ViewChild('inputFile') myInputVariable: ElementRef;
   planDetails: any = [];
   model: any = {};
   uploadedContent: File;
@@ -41,6 +42,12 @@ export class EiStarclassCourseAddComponent implements OnInit {
   handleFileInput(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
+    if (fileData.type !== 'video/mp4' ) {
+      this.loader.hide();
+      this.alert.error("File format not supported", 'Error');
+      this.myInputVariable.nativeElement.value = '';
+      return
+    }
     this.filename = fileData.name;
     this.uploadedContent = fileData;
     console.log(this.uploadedContent);

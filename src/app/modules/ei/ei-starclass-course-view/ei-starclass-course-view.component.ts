@@ -19,6 +19,7 @@ export class EiStarclassCourseViewComponent implements OnInit {
   params: any;
   courseData: any;
   courseId: string;
+  roleOfSubadmin: any;
   constructor(
     private location: Location,
     private activeRoute: ActivatedRoute,
@@ -33,6 +34,7 @@ export class EiStarclassCourseViewComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
     this.activeRoute.queryParams.subscribe(params => {
       this.params = params;
       this.getCourseDetails()

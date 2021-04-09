@@ -5,14 +5,14 @@
         
         <div class="row">
             <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
-                <span class="mr-3 cursorStyle">
+                <!-- <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
+                </span> -->
                 <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>            
             </div>
             <div class="col-md-6 d-flex flex-row SearchDiv">
-                <button type="button" class="bg-purple text-white py-2 px-2 border-0" (click)="goToCreateCourse()">Create Course</button>
-                <button type="button" class="bg-dark text-white py-2 px-2 border-0 ml-2" (click)="goToCourseHistory()"> Course History</button>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'"  type="button" class="bg-purple text-white py-2 px-2 border-0" (click)="goToCreateCourse()">Create Course</button>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" type="button" class="bg-dark text-white py-2 px-2 border-0 ml-2" (click)="goToCourseHistory()"> Course History</button>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+            <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
                 <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
                     <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
@@ -82,8 +82,8 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i  (click)="goToCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id)"></i>
-                            <i (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Student Audience" aria-hidden="true"></i>
+                            <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id)"></i>
+                            <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Student Audience" aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>
 

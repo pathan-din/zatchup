@@ -91,10 +91,22 @@ export class EiSidenavComponent {
   async logout() {
     this.loader.hide();
     await this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () =>{
-      localStorage.clear();
-      sessionStorage.clear();
+     
       this.firebaseService.setPresence('offline')
-      this.router.navigate(['ei/login']);
+      if(localStorage.getItem('getreject')){
+        var getUserDetails=JSON.parse(localStorage.getItem('getreject'));
+        if(getUserDetails.role == 'EISUBADMIN') {
+          localStorage.clear();
+          sessionStorage.clear();
+          this.router.navigate(['ei/login-subadmin'])
+        }
+        else {
+          localStorage.clear();
+          sessionStorage.clear();
+          this.router.navigate(['ei/login']);
+        }
+      }
+     
     },() =>{}
     );
   }
@@ -122,7 +134,7 @@ export class EiSidenavComponent {
 
   getRegistrationStep() {
     try {
-      var arrMenuList = ['poc-details', 'manage-courses', 'notification', 'manage-courses-add', 'personal-information', 'add-more-document', 'information-and-bank-details', 'invoice-list/:invoice', 'invoices', 'manage-courses-details/:id', 'manage-courses-details', 'school-profile', 'add-subscription', 'onboarding', 'subscription'];
+      var arrMenuList = ['poc-details', 'manage-courses', 'notification', 'manage-courses-add', 'personal-information', 'add-more-document', 'information-and-bank-details', 'invoice-list/:invoice', 'invoices', 'manage-courses-details/:id', 'manage-courses-details', 'school-profile', 'add-subscription', 'onboarding', 'subscription', 'change-password'];
       let thisUrl: any = '';
       let parameter: any = {};
 
