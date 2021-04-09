@@ -42,9 +42,10 @@ export class BaseService {
     
   //  var date = courseDate.split(" ");
   //  console.log(date[1]+"-"+"1"+"-"+"1");
-   var day = new Date().getDay().toString();
-   var Month = new Date().getMonth().toString();
-   var cdate = new Date(courseDate+"-"+Month+"-"+day);
+  var today = new Date();
+   var day = new String(today.getDate()).padStart(2, '0');;
+   var Month =String(today.getMonth() + 1).padStart(2, '0');
+   var cdate = new Date(courseDate+"-"+day+"-"+Month);
    return cdate;
   }
   setParams(params) {
