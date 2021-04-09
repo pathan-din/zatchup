@@ -50,7 +50,7 @@
                         <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
                         <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
                     </div>
-                    <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
+                    <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment"  class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
                         type="search" placeholder="Type Something...">
                     <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
                         <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>

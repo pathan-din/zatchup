@@ -39,6 +39,7 @@ export class ChatComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.uuid='';
     if (localStorage.getItem('uuid')) {
       this.uuid = localStorage.getItem('uuid');
@@ -47,10 +48,12 @@ export class ChatComponent implements OnInit {
     this.currentUser = localStorage.getItem('fbtoken');
     this.presence$ = this.firebaseService.getPresence(this.uuid);
   }
+ 
 
 
 
-  ngDoCheck() {        
+  ngDoCheck() {  
+    this.uuid = localStorage.getItem('uuid');      
     this.scrollToBottom();        
 } 
 
@@ -66,11 +69,16 @@ scrollToBottom(): void {
     let uid = uuid;
     this.conversation = [];
     this.dataStudent = [];
+    var uuid1 = '';
     if (localStorage.getItem("friendlidt_id")) {
-      var uuid1 = localStorage.getItem("friendlidt_id");
+      uuid1 = localStorage.getItem("friendlidt_id");
+      console.log(uuid1);
+      
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
+          console.log( res.data);
+          
           this.conversation = res.data;
           this.dataStudent = res.data;
           // console.log('conversation data is as ::',this.conversation);
