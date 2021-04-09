@@ -2,6 +2,16 @@
     appearance: auto;
     background: none;
 }
-.customVideo video{
+
+.customVideo video {
     width: 80%;
+}
+
+.validationError {
+    color: red;
+    font-size: .825rem;
+    margin-left: 0.9rem !important;
+    position: relative;
+    bottom: 10px;
+    left: 0px;
 }
