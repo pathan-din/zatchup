@@ -45,6 +45,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   viewCity: boolean;
   rightIcon: boolean;
   viewSubMenu: boolean;
+  currentUser: any;
 
   constructor(
     private router: Router,
@@ -64,6 +65,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.currentUser = localStorage.getItem('userId')
     const example = fromEvent(this.searchText.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value

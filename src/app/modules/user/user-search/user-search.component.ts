@@ -132,4 +132,10 @@ export class UserSearchComponent implements OnInit {
   schoolProfile(id: any) {
     this.router.navigate(['user/school-profile'], { queryParams: { "school_id": id } })
   }
+
+  getUserSearchData(){
+    this.filterBy = 'user';
+    this.schoolSearchId = '';
+    this.getSearchData();
+  }
 }
