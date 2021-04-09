@@ -75,7 +75,8 @@
                             <div>
                                 <span class="SearchUserName">{{data['display']}}</span>
                                 <span *ngIf="viewSubMenu" class="small-text-2">
-                                    <span *ngIf="data.is_school_mate">You were in same school</span>
+                                    <span *ngIf="data.id == currentUser">You</span>
+                                    <span *ngIf="data.is_school_mate && data.id != currentUser">You were in same school</span>
                                 </span>
                             </div>
                             <div *ngIf="viewZatchupId" class="searchUserDesignation">
