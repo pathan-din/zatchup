@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EiServiceService } from '../../../services/EI/ei-service.service';
@@ -9,13 +9,14 @@ import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 @Component({
   selector: 'app-ei-sidenav',
   templateUrl: './ei-sidenav.component.html',
   styleUrls: ['./ei-sidenav.component.css']
 })
-export class EiSidenavComponent {
+export class EiSidenavComponent implements OnDestroy {
   permission: any;
   notificationCount: any;
   subscriptionActive: boolean = true;
@@ -29,7 +30,8 @@ export class EiSidenavComponent {
     );
   small = false;
   userProfile: any = {};
-  isLogin: any
+  isLogin: any;
+  subscription: Subscription
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -40,7 +42,8 @@ export class EiSidenavComponent {
     private alert: NotificationService,
     private route: ActivatedRoute,
     private firebaseService: FirebaseService,
-    private confirmDialogService: ConfirmDialogService
+    private confirmDialogService: ConfirmDialogService,
+    private communicationService: CommunicationService
   ) {
 
     this.breakpointObserver
@@ -56,6 +59,15 @@ export class EiSidenavComponent {
         }
       });
 
+      this.subscription = this.communicationService.getImageUrl().subscribe(url => {
+        
+        if (!url) {
+          this.userProfile.profile_pic = '';
+        } else {
+          this.userProfile.profile_pic = url
+        }
+      });
+
   }
 
   ngOnInit(): void {
@@ -67,6 +79,10 @@ export class EiSidenavComponent {
       this.permission = JSON.parse(sessionStorage.getItem("permission"));
     }
     this.getRegistrationStep();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getDasboardDetails() {
