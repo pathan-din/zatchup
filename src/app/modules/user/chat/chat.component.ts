@@ -25,9 +25,9 @@ export class ChatComponent implements OnInit {
   currentUser: any;
   presence$: any
   uuid: any
-  lastMessageData:any=[];
-  ids:any=[];
-  scrollHeight:any=300;
+  lastMessageData: any = [];
+  ids: any = [];
+  scrollHeight: any = 300;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -39,31 +39,37 @@ export class ChatComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
-    this.uuid='';
+
+    this.uuid = '';
     if (localStorage.getItem('uuid')) {
+      
       this.uuid = localStorage.getItem('uuid');
       this.getDocumentsChat(this.uuid);
     }
     this.currentUser = localStorage.getItem('fbtoken');
     this.presence$ = this.firebaseService.getPresence(this.uuid);
+    setTimeout(() => {
+      this.uuid = localStorage.getItem('uuid');
+      this.getDocumentsChat(this.uuid);
+    }, 500);
   }
+
  
 
+  
+  ngDoCheck() {
+    this.uuid = localStorage.getItem('uuid');
+    this.scrollToBottom();
+   
+  }
 
-
-  ngDoCheck() {  
-    this.uuid = localStorage.getItem('uuid');      
-    this.scrollToBottom();        
-} 
-
-scrollToBottom(): void {
+  scrollToBottom(): void {
     try {
 
-        
-       this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }                 
-}
+
+      this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
 
   getDocumentsChat(uuid: any) {
     let uid = uuid;
@@ -72,13 +78,13 @@ scrollToBottom(): void {
     var uuid1 = '';
     if (localStorage.getItem("friendlidt_id")) {
       uuid1 = localStorage.getItem("friendlidt_id");
-      console.log(uuid1);
       
+
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
-          console.log( res.data);
-          
+          console.log(res.data);
+
           this.conversation = res.data;
           this.dataStudent = res.data;
           // console.log('conversation data is as ::',this.conversation);
@@ -127,7 +133,7 @@ scrollToBottom(): void {
                 let res: any = []
                 res = doc.data();
                 if (dataEle.user_request_id == res.user_request_id && dataEle.user_accept_id == res.user_accept_id) {
-                    localStorage.setItem("friendlidt_id", doc.id)
+                  localStorage.setItem("friendlidt_id", doc.id)
                 }
               });
             }
@@ -162,7 +168,7 @@ scrollToBottom(): void {
       data.profile_pic = userData.profile_pic
       data.document = document ? true : false;
       data.msg = document ? document : this.model.comment;
-      console.log('send chat data is as ::',data)
+      console.log('send chat data is as ::', data)
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
