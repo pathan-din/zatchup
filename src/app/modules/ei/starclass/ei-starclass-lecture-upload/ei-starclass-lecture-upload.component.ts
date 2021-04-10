@@ -112,7 +112,7 @@ export class EiStarclassLectureUploadComponent implements OnInit {
             this.location.back()
           }
           else {
-            this.alert.error(res.error.message, 'Error')
+            this.alert.error("File format not supported", 'Error')
           }
           this.loader.hide()
         }, err => {
