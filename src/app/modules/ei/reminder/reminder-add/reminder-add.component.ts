@@ -246,6 +246,7 @@ submitReminder(){
 
       if(res.status==true){
         this.alert.success(res.message,"Success");
+        this.router.navigate(['ei/reminder'])
       }else{
         this.alert.error(res.error.message[0],"Error");
       }

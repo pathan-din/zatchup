@@ -73,7 +73,8 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
         }
       ),
         err => {
-          console.log(err);
+          this.alert.error("Please try again",'Error');
+          this.loader.hide();
         }
     } catch (error) {
       this.alert.error(error.error, 'Error')

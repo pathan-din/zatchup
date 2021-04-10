@@ -33,7 +33,6 @@ export class EiStarclassLectureUploadComponent implements OnInit {
 
   ngOnInit(): void {
     this.action = this.activeRoute.snapshot.queryParamMap.get('action');
-    console.log('action is as ::', this.action)
     if (this.action == 'edit')
       this.getLectureDetails()
   }
@@ -49,7 +48,6 @@ export class EiStarclassLectureUploadComponent implements OnInit {
     }
     this.filename = fileData.name;
     this.uploadedContent = fileData;
-    console.log(this.uploadedContent);
   }
 
   isValid(event) {
@@ -60,10 +58,7 @@ export class EiStarclassLectureUploadComponent implements OnInit {
 
   getLectureDetails() {
     try {
-      this.loader.show()
-      
-      console.log(this.model);
-   
+      this.loader.show()   
       this.baseService.getData('starclass/ei_lecture_detail/' + this.activeRoute.snapshot.params.id).subscribe(
         (res: any) => {
           if (res.status == true) {
@@ -73,7 +68,7 @@ export class EiStarclassLectureUploadComponent implements OnInit {
             this.alert.error(res.error.message, 'Error')
           } this.loader.hide()
         }, err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again.", 'Error')
           this.loader.hide()
         })
     } catch (error) {
@@ -91,24 +86,16 @@ export class EiStarclassLectureUploadComponent implements OnInit {
       {
         return false;
       }
-      
       this.loader.show()
       var url = 'starclass/ei_lecture_upload/';
-
       if (this.model.id) {
         url = 'starclass/ei_lecture_edit/';
-
       }
       const formData = new FormData();
-      // debugger
-      console.log(formData);
-      //  this.action = this.activeRoute.snapshot.queryParamMap.get('action');
       formData.append('lecture_title', this.model.lecture_title);
       formData.append('lecture_description', this.model.lecture_description);
       formData.append('name_of_teaching_faculty', this.model.name_of_teaching_faculty);
       formData.append('topic_cover', this.model.topic_cover);
-      // let content = this.uploadedContent ? this.uploadedContent : this.model.lecture
-      // formData.append('lecture', content);
       if(this.uploadedContent){
         formData.append('lecture', this.uploadedContent);
       }
@@ -129,7 +116,7 @@ export class EiStarclassLectureUploadComponent implements OnInit {
           }
           this.loader.hide()
         }, err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again.", 'Error')
           this.loader.hide()
         }
       )

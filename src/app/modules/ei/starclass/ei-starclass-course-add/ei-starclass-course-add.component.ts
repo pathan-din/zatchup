@@ -37,7 +37,6 @@ export class EiStarclassCourseAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.action = this.activeRoute.snapshot.queryParamMap.get('action');
-    console.log('action is as ::', this.action)
     if (this.action == 'edit')
       this.getCourseDetails()
   }
@@ -94,7 +93,7 @@ export class EiStarclassCourseAddComponent implements OnInit {
             this.alert.error(res.error.message, 'Error')
           } this.loader.hide()
         }, err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again.", 'Error')
           this.loader.hide()
         })
     } catch (error) {
@@ -104,22 +103,16 @@ export class EiStarclassCourseAddComponent implements OnInit {
   }
 
   createCourse() {
-    console.log('call..........');
-
     try {
       this.errorDisplay = {};
       this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, false, []);
       if (this.errorDisplay.valid) {
-        console.log('error display .....', this.errorDisplay)
         return false;
       }
-      console.log('call down..........');
       this.loader.show()
       var url = 'starclass/ei-course-create/';
-
       if (this.model.id) {
         url = 'starclass/ei-course-edit/';
-
       }
       const formData = new FormData();
       if (this.action == 'edit') {
@@ -129,11 +122,9 @@ export class EiStarclassCourseAddComponent implements OnInit {
       formData.append('level_of_education', this.model.level_of_education);
       if (this.uploadedContent) {
         formData.append('course_preview', this.uploadedContent);
-        // formData.append('course_image', this.uploadedContent_image);
       }
 
       if (this.uploadedContent_image) {
-        // formData.append('course_preview', this.uploadedContent);
         formData.append('course_image', this.uploadedContent_image);
       }
 
@@ -155,7 +146,6 @@ export class EiStarclassCourseAddComponent implements OnInit {
             } else {
               this.location.back()
             }
-
           }
           else {
             this.alert.error(res.error.message, 'Error')
@@ -163,14 +153,10 @@ export class EiStarclassCourseAddComponent implements OnInit {
           this.loader.hide()
         },
         err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again.", 'Error')
           this.loader.hide()
         }
       )
-      console.log(this.model);
-      console.log(formData);
-
-
     } catch (error) {
       this.alert.error(error.error, 'Error')
     }

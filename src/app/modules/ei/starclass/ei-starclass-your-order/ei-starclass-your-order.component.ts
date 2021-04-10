@@ -67,7 +67,7 @@ export class EiStarclassYourOrderComponent implements OnInit {
         }
       ),
       err => {
-        this.alert.error(err,'Error')
+        this.alert.error("Please try again",'Error')
         this.loader.hide()
       }
     } catch (error) {
