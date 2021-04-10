@@ -80,16 +80,29 @@
                             <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" *ngIf="action != 'edit'">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input validFileExtention="mp4,mkv,avi" [required]="!model.course_preview"   name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                    <input #inputFile validFileExtention="mp4,mkv,avi" required  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
                         </div>
+
+                        <div class="col-md-6" *ngIf="action == 'edit'">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input #inputFile  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                </div>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
+                        </div>
+
+
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
