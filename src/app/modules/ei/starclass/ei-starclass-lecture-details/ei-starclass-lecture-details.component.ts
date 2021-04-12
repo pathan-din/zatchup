@@ -18,6 +18,8 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
   modal: { id: any; };
   message: any;
   eiLectureDetailsView: any;
+  roleOfSubadmin: any;
+  model: any;
   constructor(
     private baseService: BaseService,
     private router: Router,
@@ -31,6 +33,7 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
     if(this.route.snapshot.queryParamMap.get('id')){
       this.getLectureDetails()
     }
@@ -87,7 +90,7 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
           this.loader.hide();
         }
       ), err => {
-        this.alert.error(err.error, 'Error')
+        this.alert.error("Please try again.", 'Error')
         this.loader.hide();
       }
     }, () => {
@@ -96,6 +99,30 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
 
   goBack(){
     this.location.back()
+  }
+
+  playClick(event: any){
+    this.model ={
+      'course_id' : this.eiLectureDetailsView.course_id,
+      'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+      'lecture_id':  this.eiLectureDetailsView.id
+    }
+    console.log(this.model);
+    this.loader.show()
+    this.baseService.action('starclass/lecture_view_count/', this.model).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.alert.success(res.message, "Success")
+        } else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide();
+      }
+    ), err => {
+      this.alert.error(err.error, 'Error')
+      this.loader.hide();
+    }
+    console.log('sdsads ....',event)
   }
 
 }

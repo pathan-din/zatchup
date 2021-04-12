@@ -16,14 +16,16 @@ export class UserSearchComponent implements OnInit {
     "api_endpoint": "user/all-school-list-of-user/",
     "displayImage": true,
     "placeholder": "Current School",
-    "display": ["name_of_school"]
+    "display": ["name_of_school"],
+    "seeMoreResults": false
   }
 
   pastSchoolSearchConfig: any = {
     "api_endpoint": "user/all-school-list-of-user/",
     "displayImage": true,
     "placeholder": "Past School",
-    "display": ["name_of_school"]
+    "display": ["name_of_school"],
+    "seeMoreResults": false
   }
   schoolSearchId: any;
   allStates: any;

@@ -18,7 +18,7 @@ export class MessagesDetailsComponent implements OnInit {
   conversation: any = [];
   currentUser: any;
   recepintDetails: any = {};
-  scrollHeight:any=300;
+  scrollHeight: any = 300;
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
@@ -33,17 +33,17 @@ export class MessagesDetailsComponent implements OnInit {
     }
     this.getDocumentsChat()
   }
-  ngDoCheck() {        
-    this.scrollToBottom();        
-} 
+  ngDoCheck() {
+    this.scrollToBottom();
+  }
 
-scrollToBottom(): void {
+  scrollToBottom(): void {
     try {
 
-        
-       this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }                 
-}
+
+      this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
   getRecepintUserDetails(uuid) {
     this.firestore.collection('users').doc(uuid).ref.get().then(res => {
       this.recepintDetails = res.data();
@@ -51,11 +51,12 @@ scrollToBottom(): void {
   }
 
   sendChat(document?: any) {
-    if(!this.model.comment){
-      
+    if (this.model.comment)
+      this.model.comment = this.model.comment.trim()
+    if (!this.model.comment && !document) {
       return;
     }
-    
+
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
@@ -132,10 +133,10 @@ scrollToBottom(): void {
       console.log("exception", err);
     }
   }
-  getFileExtention(url){
+  getFileExtention(url) {
     var exArr = url.split("/");
-   // console.log(exArr[(exArr.length-1)].split(".")[1]);
-    
-    return exArr[(exArr.length-1)].split(".")[1];
+    // console.log(exArr[(exArr.length-1)].split(".")[1]);
+
+    return exArr[(exArr.length - 1)].split(".")[1];
   }
 }

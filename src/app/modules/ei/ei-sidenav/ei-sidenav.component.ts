@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EiServiceService } from '../../../services/EI/ei-service.service';
@@ -9,13 +9,14 @@ import { BaseService } from '../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 @Component({
   selector: 'app-ei-sidenav',
   templateUrl: './ei-sidenav.component.html',
   styleUrls: ['./ei-sidenav.component.css']
 })
-export class EiSidenavComponent {
+export class EiSidenavComponent implements OnDestroy {
   permission: any;
   notificationCount: any;
   subscriptionActive: boolean = true;
@@ -29,7 +30,8 @@ export class EiSidenavComponent {
     );
   small = false;
   userProfile: any = {};
-  isLogin: any
+  isLogin: any;
+  subscription: Subscription
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -40,7 +42,8 @@ export class EiSidenavComponent {
     private alert: NotificationService,
     private route: ActivatedRoute,
     private firebaseService: FirebaseService,
-    private confirmDialogService: ConfirmDialogService
+    private confirmDialogService: ConfirmDialogService,
+    private communicationService: CommunicationService
   ) {
 
     this.breakpointObserver
@@ -56,6 +59,12 @@ export class EiSidenavComponent {
         }
       });
 
+      this.subscription = this.communicationService.getImageUrl().subscribe(res => {
+        if (res) {
+          this.userProfile.profile_pic = res.url;
+        } 
+      });
+
   }
 
   ngOnInit(): void {
@@ -67,6 +76,10 @@ export class EiSidenavComponent {
       this.permission = JSON.parse(sessionStorage.getItem("permission"));
     }
     this.getRegistrationStep();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getDasboardDetails() {
@@ -91,10 +104,22 @@ export class EiSidenavComponent {
   async logout() {
     this.loader.hide();
     await this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () =>{
-      localStorage.clear();
-      sessionStorage.clear();
+     
       this.firebaseService.setPresence('offline')
-      this.router.navigate(['ei/login']);
+      if(localStorage.getItem('getreject')){
+        var getUserDetails=JSON.parse(localStorage.getItem('getreject'));
+        if(getUserDetails.role == 'EISUBADMIN') {
+          localStorage.clear();
+          sessionStorage.clear();
+          this.router.navigate(['ei/login-subadmin'])
+        }
+        else {
+          localStorage.clear();
+          sessionStorage.clear();
+          this.router.navigate(['ei/login']);
+        }
+      }
+     
     },() =>{}
     );
   }
@@ -122,7 +147,7 @@ export class EiSidenavComponent {
 
   getRegistrationStep() {
     try {
-      var arrMenuList = ['poc-details', 'manage-courses', 'notification', 'manage-courses-add', 'personal-information', 'add-more-document', 'information-and-bank-details', 'invoice-list/:invoice', 'invoices', 'manage-courses-details/:id', 'manage-courses-details', 'school-profile', 'add-subscription', 'onboarding', 'subscription'];
+      var arrMenuList = ['poc-details', 'manage-courses', 'notification', 'manage-courses-add', 'personal-information', 'add-more-document', 'information-and-bank-details', 'invoice-list/:invoice', 'invoices', 'manage-courses-details/:id', 'manage-courses-details', 'school-profile', 'add-subscription', 'onboarding', 'subscription', 'change-password'];
       let thisUrl: any = '';
       let parameter: any = {};
 

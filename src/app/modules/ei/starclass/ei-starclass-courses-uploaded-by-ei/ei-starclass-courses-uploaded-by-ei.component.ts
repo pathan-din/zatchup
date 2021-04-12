@@ -16,6 +16,7 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
  eiCourseList : EiCourseList
  modal: { id: any; };
  message: any;
+  roleOfSubadmin: any;
 
   constructor(
     private router: Router,
@@ -31,6 +32,10 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    console.log('ttttttttttt.......',JSON.parse(localStorage.getItem('getreject')))
+    this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
+    console.log(this.roleOfSubadmin.role, 'fjdsngjng....');
+    
     this.eiCourseList.id = this.route.snapshot.queryParamMap.get('id')
     this.getEiCourseList()
   }
@@ -39,6 +44,7 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
     this.location.back()
   }
 
+  
   goToCourseView(data){
     this.router.navigate(['ei/ei-starclass-course-view', data.id])
     console.log(data);
@@ -117,7 +123,7 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
   }
 
   goToStudentAudienceAdd(id){
-    this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{'approved':1, 'course_id': id}})
+    this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': id}})
     console.log(id);
   }
 

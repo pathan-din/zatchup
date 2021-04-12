@@ -135,7 +135,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p> Student Auidence</p>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p> Teacher Auidence</p>
@@ -158,7 +158,7 @@
                     </div>
 
 
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Edit Access Right For The Course</p>
@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Play  History</p>
@@ -178,9 +178,9 @@
                             <p class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
                                 History</p>
                         </div>
-                    </div>
-
-                    <div class="row">
+                    </div> -->
+                    <!-- *ngIf="courseData.is_edit == 'true'" -->
+                    <div class="row" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Upload Lecture</p>
@@ -202,7 +202,7 @@
                         </div>
                     </div> -->
 
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Edit Course Details</p>
@@ -224,7 +224,7 @@
                         <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
                     </div>
                     <div class="col-md-6 text-right">
-                        <button (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
+                        <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
                     </div>
                 </div>
         
@@ -239,7 +239,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                    <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
                         <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
                             <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
                     </div>

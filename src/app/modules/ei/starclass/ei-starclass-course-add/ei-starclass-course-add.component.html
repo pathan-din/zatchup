@@ -65,40 +65,53 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Name </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="20" required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Course Name">
+                                    <input (keyup)="isValid($event)"  maxlength="50" required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Course Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_name"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_name"></div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Level Of Education </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="30"  required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Level Of Education">
+                                    <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Level Of Education">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.level_of_education"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" *ngIf="action != 'edit'">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [required]="!model.course_preview"   name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                    <input #inputFile validFileExtention="mp4,mkv,avi" required  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
                                 </div>
-                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4/Avi/Mkv</p>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_preview"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
                         </div>
+
+                        <div class="col-md-6" *ngIf="action == 'edit'">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input #inputFile  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                </div>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
+                        </div>
+
+
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input [required]="!model.course_image"   name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
+                                    <input accept="image/*" [required]="!model.course_image"   name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Jpg/Jpeg/Png </p>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.course_image"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_image"></div>
                         </div>
                         <div class="col-md-6" *ngIf="model.course_preview">
                             <div class="form-group row ml-0 mr-0">
@@ -121,30 +134,30 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="30"  required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
+                                    <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.field"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.field"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Standard </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"   maxlength="30" required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name">
+                                    <input (keyup)="isValid($event)"   maxlength="50" required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.standard"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.standard"></div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Subject </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="30"  required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name">
+                                    <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.subject"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.subject"></div>
                         </div>
 
                         <div class="col-md-6">
@@ -154,7 +167,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="150" required [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Faculty Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.faculty_details"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.faculty_details"></div>
                         </div>
 
                         <div class="col-md-12">
@@ -164,7 +177,7 @@
                                     <input (keyup)="isValid($event)"  maxlength="150"  required [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Name">
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.topic_cover"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.topic_cover"></div>
                         </div>
 
                        <div class="col-md-12">
@@ -174,7 +187,7 @@
                                     <textarea (keyup)="isValid($event)"  maxlength="200"  required [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" type="textarea"></textarea>
                                 </div>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.description"></div>
                         </div>
 
                     </div>

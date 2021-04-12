@@ -29,8 +29,15 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.rightIcon = value.rightIcon ? value.rightIcon : false;
     this.viewSubMenu = value.viewSubMenu ? value.viewSubMenu : false
   }
-  @Input() value: any;
+  @Input() get value(){
+    return this._value
+  };
+
+  set value(value: any){
+    this._value = value
+  }
   @Output() searchResult = new EventEmitter<any>();
+  @Output() setValue = new EventEmitter<any>();
   subscription: Subscription
   apiResponse: any;
   isSearching: boolean;
@@ -46,6 +53,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   rightIcon: boolean;
   viewSubMenu: boolean;
   currentUser: any;
+  _value: any
 
   constructor(
     private router: Router,
@@ -56,10 +64,11 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.apiResponse = [];
 
     this.subscription = this.communicationService.getFieldValue().subscribe(value => {
+      console.log('value is as ::', value)
       if (!value) {
-        this.value = '';
+        this._value = '';
       } else {
-        this.value = value
+        this._value = value
       }
     });
   }
@@ -114,9 +123,9 @@ export class InputSearchComponent implements OnInit, OnDestroy {
 
   selectData(data: any) {
     if (this._config.display_value)
-      this.value = data[this._config.display_value]
+      this._value = data[this._config.display_value]
     else
-      this.value = data.display
+      this._value = data.display
     this.searchResult.emit(data)
     this.apiResponse = []
   }
@@ -133,6 +142,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   moreResults() {
+    this.setValue.emit(this.search)
     if (this._config.route)
       this.router.navigate([this._config.route], { queryParams: { 'searchText': this.search } })
   }

@@ -13,8 +13,8 @@
             <form id="form1" #form enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name="kyc_type" class="custom-select form-control-input"
-                            required>
+                        <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name="kyc_type"
+                            class="custom-select form-control-input" required>
                             <option value="">Select your ID</option>
                             <option value="Aadhar">Aadhaar Card</option>
                             <option value="Dl">Driving License</option>
@@ -25,19 +25,23 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input *ngIf="model.kyc_type=='Aadhar'" autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}"
-                            id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name="kyc_id_no" class="form-control-input form-control form-control-sm"
-                            type="text" numberOnly placeholder="{{placeholder}}">
+                        <input *ngIf="model.kyc_type=='Aadhar'" autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)"
+                            pattern="{{pattran}}" id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name="kyc_id_no"
+                            class="form-control-input form-control form-control-sm" type="text" numberOnly
+                            placeholder="{{placeholder}}">
                         <input *ngIf="model.kyc_type!='Aadhar'" autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid($event)" pattern="{{pattran}}"
                             id="kyc_id_no" [(ngModel)]="model.kyc_id_no" name="kyc_id_no" class="form-control-input form-control form-control-sm"
-                            type="text" numberOnly placeholder="{{placeholder}}">
+                            type="text" placeholder="{{placeholder}}">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_id_no"></div>
                 </div>
+
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
-                        <input required (keyup)="isValid($event)" [disabled]="params.text=='dob'" [(ngModel)]="model.kyc_name" name="kyc_name" class="form-control-input form-control form-control-sm"
-                            type="text" placeholder="Enter Your Name">
+                        <input required (keyup)="isValid($event)" [disabled]="params.text=='dob'"
+                            [(ngModel)]="model.kyc_name" name="kyc_name"
+                            class="form-control-input form-control form-control-sm" type="text"
+                            placeholder="Enter Your Name">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_name"></div>
                 </div>
@@ -46,21 +50,27 @@
                         <h4 class="mb-2 textSpace color-gray">Date Of Birth</h4>
                         <div class="row">
                             <div class="col-3 px-0 mr-1 form-control-inputDiv">
-                                <select [disabled]="params.text=='name'" required (change)="isValid($event)" [(ngModel)]="dateModel" name="dateModel" class="custom-select form-date-col  border-0 pr-2">
+                                <select [disabled]="params.text=='name'" required (change)="isValid($event)"
+                                    [(ngModel)]="dateModel" name="dateModel"
+                                    class="custom-select form-date-col  border-0 pr-2">
                                     <option value="" [selected]='true'>Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
 
                                 </select>
                             </div>
                             <div class="col-4 mx-1 px-0 form-control-inputDiv">
-                                <select [disabled]="params.text=='name'" required (change)="isValid($event)" [(ngModel)]="monthModel" name="monthModel" class="custom-select border-0 form-month-col">
+                                <select [disabled]="params.text=='name'" required (change)="isValid($event)"
+                                    [(ngModel)]="monthModel" name="monthModel"
+                                    class="custom-select border-0 form-month-col">
                                     <option value="" selected>Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
 
                                 </select>
                             </div>
                             <div class="col-4 mx-1 px-0 form-control-inputDiv">
-                                <select [disabled]="params.text=='name'" required [(ngModel)]="yearModel" (change)="isValid($event)" name="yearModel" class="custom-select  border-0 form-month-col">
+                                <select [disabled]="params.text=='name'" required [(ngModel)]="yearModel"
+                                    (change)="isValid($event)" name="yearModel"
+                                    class="custom-select  border-0 form-month-col">
                                     <option value="" selected>Year</option>
                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
 
@@ -69,7 +79,8 @@
 
                         </div>
                     </div>
-                    <input type="hidden" required name="kyc_dob" [(ngModel)]="model.kyc_dob" value="{{model.kyc_dob}}" />
+                    <input type="hidden" required name="kyc_dob" [(ngModel)]="model.kyc_dob"
+                        value="{{model.kyc_dob}}" />
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_dob"></div>
                 </div>
                 <div class="form-group row">
@@ -79,13 +90,17 @@
                                 <button class="fileBtn">
                                     <img src="assets/images/userWebsite/upload_icons.png" class="img-fluid">
                                 </button>
-                                <input accept="image/*" #fileInput required (change)="handleFileInput($event.target.files); isValid($event)" [(ngModel)]="model.kyc_document"
-                                    name="kyc_document" type="file" name="kyc_document" />
+                                <input accept="image/*" #fileInput required
+                                    (change)="handleFileInput($event.target.files); isValid($event)"
+                                    [(ngModel)]="model.kyc_document" name="kyc_document" type="file"
+                                    name="kyc_document" />
                             </div>
                             <div class="text-left pl-1">
                                 <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload photo</p>
-                                <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above</p>
-                                <p *ngIf="filename" class="text-secondary regularFont commonMaterialFontSize m-0">{{filename}}</p>
+                                <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above
+                                </p>
+                                <p *ngIf="filename" class="text-secondary regularFont commonMaterialFontSize m-0">
+                                    {{filename}}</p>
 
                             </div>
                         </div>
@@ -100,13 +115,17 @@
                                 <button class="fileBtn">
                                     <img src="assets/images/userWebsite/upload_icons.png" class="img-fluid">
                                 </button>
-                                <input #fileInput1 [required]="model.kyc_type=='Aadhar'" accept="image/*" (change)="handleFileInputForBackPhoto($event.target.files); isValid($event)"
+                                <input #fileInput1 [required]="model.kyc_type=='Aadhar'" accept="image/*"
+                                    (change)="handleFileInputForBackPhoto($event.target.files); isValid($event)"
                                     [(ngModel)]="model.kyc_document_back" name="kyc_document_back" type="file" />
                             </div>
                             <div class="text-left pl-1">
-                                <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</p>
-                                <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above</p>
-                                <p *ngIf="filename1" class="text-secondary regularFont commonMaterialFontSize m-0">{{filename1}}</p>
+                                <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back
+                                    photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</p>
+                                <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above
+                                </p>
+                                <p *ngIf="filename1" class="text-secondary regularFont commonMaterialFontSize m-0">
+                                    {{filename1}}</p>
 
                             </div>
                         </div>
@@ -115,7 +134,8 @@
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_document_back"></div>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn common-btn regularFont textSpace mt-1" (click)="goToUserQualificationPage()">Submit</button>
+                    <button type="submit" class="btn common-btn regularFont textSpace mt-1"
+                        (click)="goToUserQualificationPage()">Submit</button>
                 </div>
 
             </form>
@@ -124,7 +144,8 @@
 
 </div>
 <!-- currentStatusModel -->
-<div class="modal fade" id="currentStatusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="currentStatusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-body pl-5 pr-5 text-center">
@@ -136,7 +157,8 @@
                         <div class="col-sm-6 form-control-inputDiv  border-danger mr-1 p-0 text-left">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <label class="custom-label commonFontSize " for="studentRadio1">
-                                    <input class="custom-control-input" [(ngModel)]="isStudent" (change)="areYouCurrentlyStudentFunction(0)" type="radio" name="student"
+                                    <input class="custom-control-input" [(ngModel)]="isStudent"
+                                        (change)="areYouCurrentlyStudentFunction(0)" type="radio" name="student"
                                         id="studentRadio1" value="no">
                                     <span class="checkmark checkmarkRed"></span>
                                     <span class="commonFontSize text-danger radioValuetext font-weight-normal">No</span>
@@ -147,10 +169,12 @@
                         <div class="col-sm-6 form-control-inputDiv ml-1 p-0 text-left">
                             <div class="custom-control custom-radio custom-control-inline ">
                                 <label class="custom-label" for="studentRadio2">
-                                    <input class="custom-control-input" [(ngModel)]="isStudent" type="radio" (change)="areYouCurrentlyStudentFunction(1)" name="student"
-                                        id="studentRadio2" value="yes">
+                                    <input class="custom-control-input" [(ngModel)]="isStudent" type="radio"
+                                        (change)="areYouCurrentlyStudentFunction(1)" name="student" id="studentRadio2"
+                                        value="yes">
                                     <span class="checkmark checkmarkGreen"></span>
-                                    <span class="commonFontSize text-success radioValueText2 font-weight-normal">Yes</span>
+                                    <span
+                                        class="commonFontSize text-success radioValueText2 font-weight-normal">Yes</span>
                                 </label>
                             </div>
                         </div>

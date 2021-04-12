@@ -33,6 +33,7 @@ export class UserHeaderComponent implements OnInit {
   messageData: any = [];
   currentUser: any = "";
   isLoggedIn: boolean;
+  searchItem: any = '';
 
   constructor(
     private router: Router,
@@ -110,7 +111,7 @@ export class UserHeaderComponent implements OnInit {
     }
   }
   reminderList() {
-    this.router.navigate(["user/remainders"]);
+    this.router.navigate(["user/reminders"]);
   }
   notificationList() {
     this.router.navigate(["user/notifications"]);
@@ -179,9 +180,14 @@ export class UserHeaderComponent implements OnInit {
   }
 
   getSearchResult(data: any) {
+    
     if (data.user_type == 'SCHOOL')
       this.router.navigate(['user/school-profile'], { queryParams: { "school_id": data.school_id } })
     else
       this.router.navigate(['user/profile'], { queryParams: { "id": data.id } })
+  }
+
+  setValue(data: any){
+    this.searchItem = data.display
   }
 }

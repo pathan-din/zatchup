@@ -101,4 +101,24 @@ export class MessagesComponent implements OnInit {
     this.location.back();
   }
 
+  getExtenion(fileName: any) {
+    if (this.isValidHttpUrl(fileName)) {
+      let extension = fileName.split('.').pop();
+      if (extension == 'pdf')
+        return 'Attachment'
+      return 'Image'
+    }
+    return fileName
+  }
+
+  isValidHttpUrl(string) {
+    let url;
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
 }

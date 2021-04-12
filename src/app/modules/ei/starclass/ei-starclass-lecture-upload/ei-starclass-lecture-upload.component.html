@@ -58,9 +58,9 @@
                     <div class="form-group">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Upload </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                            <input [required]="!model.lecture" name="lecture" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"type="file">
+                            <input #inputFile [required]="!model.lecture" name="lecture" type="file" (change)="handleFileInput($event.target.files); isValid($event)" class="form-control-input form-control  commonFontSize regularFont letterspacing"type="file">
                         </div>
-                        <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4/Avi/Mkv</p>
+                        <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.lecture"></div>
                     </div>
 
