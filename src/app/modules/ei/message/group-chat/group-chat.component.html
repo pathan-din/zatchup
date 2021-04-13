@@ -74,48 +74,20 @@
 
                             <div class="widthFull mr-3 mt-3 custumInputWidth">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
-                                <mat-checkbox *ngFor="let course of courseListModuleAccess" (change)="displayStandardListModuleAccess(course.id);" required value="{{course.id}}" [(ngModel)]="model.course"  name="course" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
-                                <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                                    <!-- <select (change)="displayStandardListModuleAccess(model.course);getGetVerifiedStudent('', '');" id="course_id" [(ngModel)]="model.course"
-                                        name="course" required class="custom-select  form-control-input" required>
-                                        <option value=""> Select Course</option>
-                                        <option value="{{course.id}}" *ngFor="let course of courseListModuleAccess">{{course.course_name}}
-                                        </option>
-
-                                    </select> -->
-                                    
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.course">
-                                </div>
+                                <mat-checkbox *ngFor="let course of courseListModuleAccess" (change)="displayStandardListModuleAccess(course.id);" required  [(ngModel)]="model.course"  name="course" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
+                                 
+                                 
                             </div>
                             <div class="widthFull mr-3 mt-3 custumInputWidth">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
-                                <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                                    <mat-checkbox *ngFor="let standard of standardListModuleAccess[course.id]" (change)="displayClassListModuleAccess(model.standard);" required value="{{standard.id}}" [(ngModel)]="model.standard"  name="standard" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
-                                    <!-- <select (change)="displayClassListModuleAccess(model.standard);getGetVerifiedStudent('', '');" id="standard_id" [(ngModel)]="model.standard"
-                                        name="standard" required class="custom-select  form-control-input" required>
-                                        <option value=""> Select Standard</option>
-                                        <option value="{{standard.id}}" *ngFor="let standard of standardListModuleAccess[model.course]">
-                                            {{standard.standard_name}}</option>
-
-                                    </select> -->
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.standard">
-                                </div>
+                                <mat-checkbox (change)="displayClassListModuleAccess(standard.id);" *ngFor="let standard of standardListModuleAccess ;let i=index;"  required [(ngModel)]="model.standard"  name="standard_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                
+                              
                             </div>
                             <div class="widthFull mr-3 mt-3 custumInputWidth">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
-                                <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                                    <mat-checkbox *ngFor="let class of classListModuleAccess[standard.id]" (change)="displayClassListModuleAccess(standard.id);"  id="class_id" [(ngModel)]="model.teaching_class" name="class" required class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
-                                    <!-- <select (change)=" getGetVerifiedStudent('', '');" id="class_id" [(ngModel)]="model.teaching_class" name="class" required
-                                        class="custom-select  form-control-input" required>
-                                        <option value=""> Select Class</option>
-                                        <option value="{{class.id}}" *ngFor="let class of classListModuleAccess[model.standard]">{{class.class_name}}</option>
-
-                                    </select> -->
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.class">
-                                </div>
+                                <mat-checkbox *ngFor="let class of classListModuleAccess"   id="class_id" [(ngModel)]="model.teaching_class" name="class" required class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
+                               
                             </div>
 
 
@@ -128,91 +100,7 @@
                      
 
                         
-                        <!-- <div class="tableDiv mt-3">
-                            <div class="mat-elevation-z1 table-responsive" *ngIf="studentList.length>0">
-                                <mat-table #table [dataSource]="dataSource | paginate: config">
-
-                                    
-                                    <ng-container matColumnDef="checked">
-                                        <mat-header-cell *matHeaderCellDef>
-
-                                        </mat-header-cell>
-                                        <mat-cell *matCellDef="let element">
-                                            <mat-checkbox [disabled]="!model.teaching_class" (change)="getStudentBycheckboxClickForStudentBulkAction(element.student_id,$event)">
-                                            </mat-checkbox>
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="SNo">
-                                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="ZatchUpID">
-                                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
-                                        <mat-cell *matCellDef="let element">
-                                            {{element.zatchupID}}
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="Name">
-                                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                                        <mat-cell *matCellDef="let element" class="color-lightBlue">
-                                            {{element.name}}
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="userID">
-                                        <mat-header-cell *matHeaderCellDef> School ID </mat-header-cell>
-                                        <mat-cell *matCellDef="let element">
-                                            {{element.userID}}
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="roll_no">
-                                        <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
-                                        <mat-cell *matCellDef="let element">
-                                            {{element.roll_no}}
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="Gender">
-                                        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
-                                        <mat-cell *matCellDef="let element ">
-                                            {{getGender(element)}}
-                                        </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="Age">
-                                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-                                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
-                                    </ng-container>
-
-                                    <ng-container matColumnDef="class">
-                                        <mat-header-cell *matHeaderCellDef> Class Alias </mat-header-cell>
-                                        <mat-cell *matCellDef="let element">
-                                            {{element.alias_class}}
-                                        </mat-cell>
-                                    </ng-container>
-
-
-
-                                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
-
-                                </mat-table>
-
-                            </div>
-                            <div class="row" *ngIf="studentList.length==0 && model.teaching_class">
-                                <div class="col-12 pt-2 pb-2">
-                                    <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
-                                </div>
-                            </div>
-                            <pagination-controls *ngIf="studentList.length>0" (pageChange)="getGetVerifiedStudent($event,'')" class="eiPaginationTag"></pagination-controls>
-                            <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-                                <p style="color: white">Please Wait. </p>
-                            </ngx-spinner>
-                        </div> -->
+                        
                     </div>
 
                 </div>
