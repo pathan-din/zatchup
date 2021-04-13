@@ -78,7 +78,7 @@ export class UserLectureDetailsComponent implements OnInit {
     this.baseService.action('starclass/lecture_view_count/', this.model).subscribe(
       (res: any) => {
         if (res.status == true) {
-          this.alert.success(res.message, "Success")
+          // this.alert.success(res.message, "Success")
         } else {
           this.alert.error(res.error.message, 'Error')
         }
@@ -88,6 +88,5 @@ export class UserLectureDetailsComponent implements OnInit {
       this.alert.error(err.error, 'Error')
       this.loader.hide();
     }
-    console.log('sdsads ....',event)
   }
 }

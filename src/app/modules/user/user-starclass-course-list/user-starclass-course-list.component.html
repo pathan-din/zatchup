@@ -48,7 +48,7 @@
             </div>
             <div class="tableDiv mt-3" *ngIf="starclassCourseList.dataSource">
                 <div class="mat-elevation-z1 table-responsive">
-                    <mat-table [dataSource]="starclassCourseList.dataSource ">
+                    <mat-table [dataSource]="starclassCourseList.dataSource | paginate:starclassCourseList.config">
 
                         <ng-container matColumnDef="position">
                             <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
