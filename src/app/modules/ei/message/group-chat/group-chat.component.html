@@ -85,19 +85,20 @@
                                         Course
                                     </td>
                                 </tr>
-                                <tr *ngFor="let course of courseListModuleAccess">
+                                <tr *ngFor="let course of courseListModuleAccess;let i=index;">
                                     <td>
                                         <mat-checkbox (change)="displayStandardListModuleAccess(course.id);" required
-                                        [(ngModel)]="model.course" name="course" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
+                                        name="course_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
                                         <tr>Standard</tr>
-                                        <tr *ngFor="let standard of standardListModuleAccess ;let i=index;">
+                                        <tr *ngFor="let standard of standardListModuleAccess[course.id] ;let j=index;">
                                             <td>
                                                 <mat-checkbox (change)="displayClassListModuleAccess(standard.id);" 
-                                                required [(ngModel)]="model.standard" name="standard_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                                required name="standard_{{i}}_{{j}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
                                                 <tr>Subsection</tr>
-                                                <tr *ngFor="let class of classListModuleAccess">
+                                                <tr *ngFor="let class of classListModuleAccess[standard.id];let k=index;">
                                                     <td>
-                                                        <mat-checkbox id="class_id" [(ngModel)]="model.teaching_class" name="class" required
+                                                        <!-- {{class_id}} -->
+                                                        <mat-checkbox  name="class_{{i}}_{{j}}_{{k}}" required
                                                         class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
                                                     </td>
                                                 </tr>
