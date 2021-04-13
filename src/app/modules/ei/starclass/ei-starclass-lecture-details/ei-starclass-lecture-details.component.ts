@@ -33,10 +33,11 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
     if(this.route.snapshot.queryParamMap.get('id')){
       this.getLectureDetails()
     }
+    this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
+    
   }
 
   goToEditLecture(data){
@@ -112,9 +113,9 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
     this.baseService.action('starclass/lecture_view_count/', this.model).subscribe(
       (res: any) => {
         if (res.status == true) {
-          this.alert.success(res.message, "Success")
+         
         } else {
-          this.alert.error(res.error.message, 'Error')
+          
         }
         this.loader.hide();
       }

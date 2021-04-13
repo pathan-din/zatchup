@@ -32,12 +32,16 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    console.log('ttttttttttt.......',JSON.parse(localStorage.getItem('getreject')))
+    // console.log('ttttttttttt.......',JSON.parse(localStorage.getItem('getreject')))
     this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
     console.log(this.roleOfSubadmin.role, 'fjdsngjng....');
     
     this.eiCourseList.id = this.route.snapshot.queryParamMap.get('id')
-    this.getEiCourseList()
+    this.getEiCourseList('');
+    this.getLevelOfEducation();
+    this.getField();
+    this.getStandardFilter();
+    this.getSubject();
   }
 
   goBack(){
@@ -80,11 +84,17 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
   getEiCourseList(page? : any){
     try {
       this.loader.show()
-      this.eiCourseList.params = {
+      
+      let params = {
         'page' :page,
-        'page_size':this.eiCourseList.page_size
+        'page_size':this.eiCourseList.page_size,
+        'level_of_education': this.eiCourseList.levelOfEducationName,
+        'field': this.eiCourseList.fieldName,
+        'standard': this.eiCourseList.standardName,
+        'subject': this.eiCourseList.subjectName
       }
-      this.baseService.getData('starclass/star-class-course-ei-list/', this.eiCourseList.params).subscribe(
+      
+      this.baseService.getData('starclass/star-class-course-ei-list/', params).subscribe(
         (res: any) =>{
           if(res.status == true){
             if (!page)
@@ -136,6 +146,42 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
     delete this.eiCourseList.params.page;
     this.eiCourseList.params['export_csv'] = true
     this.baseService.generateExcel('starclass/export-csv-ei-course/', 'ei-course-list', this.eiCourseList.params);
+  }
+
+  getLevelOfEducation() {
+    this.baseService.getData('starclass/common_get_level_of_education/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.eiCourseList.levelOfEducation= res.results
+      }
+    )
+  }
+
+  getField() {
+    this.baseService.getData('starclass/common_get_field/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.eiCourseList.field= res.results
+      }
+    )
+  }
+
+  getStandardFilter() {
+    this.baseService.getData('starclass/common_get_class_standard/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.eiCourseList.standard= res.results
+      }
+    )
+  }
+
+  getSubject() {
+    this.baseService.getData('starclass/common_get_subject/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.eiCourseList.subject= res.results
+      }
+    )
   }
 
 }
