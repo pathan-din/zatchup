@@ -80,16 +80,40 @@
                             <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" *ngIf="action != 'edit'">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input validFileExtention="mp4,mkv,avi" [required]="!model.course_preview"   name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                    <input #inputFile validFileExtention="mp4,mkv,avi" required  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
                         </div>
+
+                        <div class="col-md-6" *ngIf="action == 'edit'">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input #inputFile  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                </div>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="model.course_preview">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <div class="col-md-12 customVideo p-0" >
+                                            <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                                                <source *ngIf="model.course_preview" src="{{model.course_preview}}" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
@@ -99,24 +123,18 @@
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Jpg/Jpeg/Png </p>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.course_image"></div>
-                        </div>
-                        <div class="col-md-6" *ngIf="model.course_preview">
-                            <div class="form-group row ml-0 mr-0">
-                                <div class="col-md-12 customVideo" >
-                                    <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
-                                        <source *ngIf="model.course_preview" src="{{model.course_preview}}" type="video/mp4" />
-                                   </video>
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="model.course_image">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <div class="col-md-12 customVideo p-0">
+                                            <img *ngIf="model.course_image" class="img-fluid w-100 h-100 p-1 border rounded"
+                                            src="{{model.course_image}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" *ngIf="model.course_image">
-                            <div class="form-group row ml-0 mr-0">
-                                <div class="col-md-12 customVideo" >
-                                   <img *ngIf="model.course_image" class="img-fluid w-100 h-100 p-1 border rounded"
-                                    src="{{model.course_image}}">
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>
@@ -180,7 +198,7 @@
                     </div>
     
                     <div class="row justify-content-center d-flex">
-                        <button type="button" class="bg-paret-green border-0 w-90 text-white 
+                        <button type="button" class="bg-paret-green border-0 w-90 px-3 text-white 
                         text-center p-2 commonFontSize mediumFont letterspacing" (click)="createCourse()">
                         {{action == 'add' ? 'Create ' : 'Edit '}}</button>
                     </div>                    

@@ -13,6 +13,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class UserProfileComponent implements OnInit {
   userId: any;
   userProfile: any;
+  currentUser: any;
+  profession: any;
 
   constructor(
     private router: Router,
@@ -26,6 +28,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.userId = this.route.snapshot.queryParamMap.get('id')
+    this.currentUser = localStorage.getItem('userId')
     this.getProfile();
   }
 
@@ -39,11 +42,19 @@ export class UserProfileComponent implements OnInit {
       this.baseService.getData('user/profile-detail-of-users/', { "user_id": this.userId }).subscribe(
         (res: any) => {
           this.loader.hide();
-          if (res.status == true)
+          if (res.status == true) {
             this.userProfile = res.data[0];
-            else{
-              this.alert.error(res.error.message, 'Error')
+            if (this.userProfile.work_detail.length > 0){
+              // let lastIndex = console.log()
+              
+              this.profession = this.userProfile.work_detail[this.userProfile.work_detail.length -1].work_department;
+              console.log('work professsion.....', this.profession)
             }
+              
+          }
+          else {
+            this.alert.error(res.error.message, 'Error')
+          }
         }, (error) => {
           this.loader.hide();
           console.log(error)
@@ -52,5 +63,17 @@ export class UserProfileComponent implements OnInit {
       this.loader.hide();
       console.log(err);
     }
+  }
+
+  getDocumentsChat(uuid) {
+    localStorage.setItem('uuid', uuid);
+    this.router.navigate(["user/chat"]);
+  }
+
+  getGender(data: any) {
+    let custom = data.custom_gender.trim() ? 'pronoun' : ''
+    if (data)
+      return this.baseService.getGender(data, custom)
+    return ''
   }
 }

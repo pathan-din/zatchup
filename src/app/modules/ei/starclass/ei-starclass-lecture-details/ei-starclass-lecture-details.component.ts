@@ -90,7 +90,7 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
           this.loader.hide();
         }
       ), err => {
-        this.alert.error(err.error, 'Error')
+        this.alert.error("Please try again.", 'Error')
         this.loader.hide();
       }
     }, () => {

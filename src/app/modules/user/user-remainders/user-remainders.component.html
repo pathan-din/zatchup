@@ -14,6 +14,7 @@
             <div class="col-md-12" *ngFor="let reminder of remaindersList;">
                 <div class="form-control-inputDiv mb-4 remainderDivStyle d-flex justify-content-between">
                     <div class="emainderDivPaddingStyle justify-content-between align-items-center align-self-center mediumFont">
+                        <!-- <img *ngIf="reminder.attachment" src="{{reminder.attachment}}" class="img-fluid reminderImg"> -->
                         <img src="assets/images/profile_pic.png" class="img-fluid reminderImg">
                         {{reminder.message}}
                     </div>

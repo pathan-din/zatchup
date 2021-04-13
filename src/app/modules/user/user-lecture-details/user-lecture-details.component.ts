@@ -56,7 +56,7 @@ export class UserLectureDetailsComponent implements OnInit {
       ),
       err => {
         this.loader.hide()
-        this.alert.error(err, 'Error')
+        this.alert.error("Please try again.", 'Error')
       }
     } catch (error) {
       this.loader.hide()
@@ -73,19 +73,18 @@ export class UserLectureDetailsComponent implements OnInit {
       'school_id': this.route.snapshot.queryParamMap.get('school_id'),
       'lecture_id':  this.eiLectureDetailsView.id
     }
-    console.log(this.model);
     this.loader.show()
     this.baseService.action('starclass/lecture_view_count/', this.model).subscribe(
       (res: any) => {
         if (res.status == true) {
           // this.alert.success(res.message, "Success")
         } else {
-          this.alert.error(res.error.message, 'Error')
+          this.alert.error("Try again", 'Error')
         }
         this.loader.hide();
       }
     ), err => {
-      this.alert.error(err.error, 'Error')
+      this.alert.error("Please try again", 'Error')
       this.loader.hide();
     }
   }

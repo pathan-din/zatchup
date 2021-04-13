@@ -59,13 +59,10 @@ export class EiSidenavComponent implements OnDestroy {
         }
       });
 
-      this.subscription = this.communicationService.getImageUrl().subscribe(url => {
-        
-        if (!url) {
-          this.userProfile.profile_pic = '';
-        } else {
-          this.userProfile.profile_pic = url
-        }
+      this.subscription = this.communicationService.getImageUrl().subscribe(res => {
+        if (res) {
+          this.userProfile.profile_pic = res.url;
+        } 
       });
 
   }

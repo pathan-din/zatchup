@@ -41,7 +41,19 @@
                                 </div>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.course_preview"></div>
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="model.course_preview">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <div class="col-md-12 customVideo p-0">
+                                            <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                                                <source *ngIf="model.course_preview" src="{{model.course_preview}}" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
@@ -50,24 +62,18 @@
                                 </div>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.course_image"></div>
-                        </div>
-                        <div class="col-md-6" *ngIf="model.course_preview">
-                            <div class="form-group row ml-0 mr-0">
-                                <div class="col-md-12 customVideo" >
-                                    <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
-                                        <source *ngIf="model.course_preview" src="{{model.course_preview}}" type="video/mp4" />
-                                   </video>
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="model.course_image">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <div class="col-md-12 p-0 customVideo" >
+                                            <img *ngIf="model.course_image" class="img-fluid w-100 h-100 p-1 border rounded"
+                                            src="{{model.course_image}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" *ngIf="model.course_image">
-                            <div class="form-group row ml-0 mr-0">
-                                <div class="col-md-12 customVideo" >
-                                   <img *ngIf="model.course_image" class="img-fluid w-100 h-100 p-1 border rounded"
-                                    src="{{model.course_image}}">
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>

@@ -63,7 +63,7 @@ export class EiStarclassCartComponent implements OnInit {
           this.loader.hide()
         }
       ), err => {
-        this.alert.error(err, 'Error')
+        this.alert.error("Please try again",'Error')
         this.loader.hide()
       }
     } catch (error) {
@@ -94,7 +94,7 @@ export class EiStarclassCartComponent implements OnInit {
             this.loader.hide()
           }
         ), err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again",'Error')
           this.loader.hide()
         }
       }, () => {
@@ -126,7 +126,7 @@ export class EiStarclassCartComponent implements OnInit {
           this.loader.hide()
         }), 
         err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again",'Error')
           this.loader.hide()
         }
     } catch (error) {
@@ -163,7 +163,7 @@ export class EiStarclassCartComponent implements OnInit {
           this.loader.hide()
         }
       ), err => {
-        this.alert.error(err, 'Error')
+        this.alert.error("Please try again",'Error')
         this.loader.hide()
       }
     } catch (error) {
@@ -220,6 +220,7 @@ export class EiStarclassCartComponent implements OnInit {
         }
         this.loader.hide();
       }, (error) => {
+        this.alert.error("Please try again",'Error')
         this.loader.hide();
       });
   }

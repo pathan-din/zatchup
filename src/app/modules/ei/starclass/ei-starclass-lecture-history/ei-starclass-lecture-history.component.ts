@@ -57,7 +57,7 @@ export class EiStarclassLectureHistoryComponent implements OnInit {
           this.loader.hide()
         }, 
         err => {
-          this.alert.error(err, 'Error')
+          this.alert.error("Please try again", 'Error')
           this.loader.hide()
         }
       )

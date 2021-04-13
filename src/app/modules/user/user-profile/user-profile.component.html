@@ -9,7 +9,7 @@
 </div>
 <div class="container containerScrolling landingPageWidth ">
     <div class="bannerDiv position-relative" *ngIf="userProfile">
-        <img src="assets/images/cover-pic-default.png" class="img-fluid">        
+        <img src="assets/images/cover-pic-default.png" class="img-fluid">
     </div>
 
     <div class="row px-3">
@@ -17,20 +17,22 @@
             <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
                 <img *ngIf="!userProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                 <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="img-fluid dpImg">
-                <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
+                <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
+                    class="img-fluid ml-1 tickImg">
             </div>
 
             <div class="pl-2 text-left" *ngIf="userProfile">
                 <p class="m-0 commonFontSize mediumFont pt-4 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
-            </div>            
+            </div>
         </div>
-
-        <!-- <div class="col-md-7 text-right mt-2">
-            <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
-        </div> -->
+        <div *ngIf="userProfile && userProfile.firebase_id && userProfile.kyc_approved == 1 && currentUser != userId"
+            class="col-md-7 text-right mt-2">
+            <img (click)="getDocumentsChat(userProfile.firebase_id)" src="assets/images/userWebsite/email.png"
+                class="img-fluid email_position-absolute cursorStyle">
+        </div>
     </div>
-    
+
     <div class="landingDiv pt-2 mt-2">
         <div class="row mt-3">
             <div class="col-md-12">
@@ -46,7 +48,7 @@
                             <span class="regularFont">{{userProfile.dob}}</span>
                         </p>
                         <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender">Gender :
-                            <span class="regularFont">{{userProfile.gender}}</span>
+                            <span class="regularFont">{{getGender(userProfile)}}</span>
                         </p>
                         <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email">Email :
                             <span class="regularFont">{{userProfile.email}}</span>
@@ -54,14 +56,15 @@
                         <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone">Phone :
                             <span class="regularFont">{{userProfile.phone}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name :
+                        <!-- <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name :
                             <span class="regularFont">{{userProfile.mother_name}}</span>
                         </p>
                         <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.father_name">Father Name :
                             <span class="regularFont">{{userProfile.father_name}}</span>
+                        </p> -->
+                        <p *ngIf="profession" class="m-0 commonFontSize semiBoldFont">Profession : <span
+                                class="regularFont">{{profession}}</span>
                         </p>
-                        <!-- <p class="m-0 commonFontSize semiBoldFont">Profession : <span class="regularFont">Student</span> -->
-                        <!-- </p> -->
                     </div>
                 </div>
                 <div class="educationDiv row form-control-inputDiv py-2 mt-2">
@@ -76,14 +79,16 @@
                         <div class="col-md-12" *ngFor="let eduDetails of userProfile.educationdetail">
                             <h4 class="m-0 commonFontSize semiBoldFont position-relative">{{eduDetails.name_of_school}}
                                 <span class="ml-2" *ngIf="eduDetails.approved">
-                                    <img src="assets/images/userWebsite/checkicon.png" class="img-fluid  check_absolute-image">
+                                    <img src="assets/images/userWebsite/checkicon.png"
+                                        class="img-fluid  check_absolute-image">
                                 </span>
                             </h4>
                             <ng-container>
                                 <div *ngFor="let courseDetails of eduDetails.course_detail">
                                     <div class="mb-3">
                                         <p class="m-0 commonFontSize text-capitalize">{{courseDetails.course_name}}
-                                            <span class="regularFont small-text-2">( {{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span>
+                                            <span class="regularFont small-text-2">(
+                                                {{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span>
                                         </p>
                                     </div>
 

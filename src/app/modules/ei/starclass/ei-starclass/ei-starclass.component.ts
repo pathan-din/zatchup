@@ -61,7 +61,7 @@ export class EiStarclassComponent implements OnInit {
       ),
       err => {
         this.loader.hide()
-        this.alert.error(err, 'Error')
+        this.alert.error("Please try again",'Error')
       }
     } catch (error) {
       this.alert.error(error.error, 'Error')
