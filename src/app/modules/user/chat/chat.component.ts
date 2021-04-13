@@ -157,6 +157,11 @@ export class ChatComponent implements OnInit {
 
   }
   sendChat(document?: any) {
+    if (this.model.comment)
+    this.model.comment = this.model.comment.trim()
+  if (!this.model.comment && !document) {
+    return;
+  }
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
@@ -218,6 +223,13 @@ export class ChatComponent implements OnInit {
       // this.loader.hide();
       console.log("exception", err);
     }
+  }
+
+  getFileExtention(url) {
+    var exArr = url.split("/");
+    // console.log(exArr[(exArr.length-1)].split(".")[1]);
+
+    return exArr[(exArr.length - 1)].split(".")[1];
   }
 
 }

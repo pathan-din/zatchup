@@ -372,7 +372,7 @@
                                         </div>
                                         
                                         <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
-                                            <label>Present</label>
+                                            <label>Current</label>
                                         </div>
 
                                     </div>
@@ -417,8 +417,7 @@
                                         
                                         <div class="form-group row ">
                                             <div class="col-xl-6 col-lg-6 ">
-                                                <label for=" " class=" commonFontSize mediumFont letterspacing ">Name of
-                                                    Standard</label>
+                                                <label for=" " class=" commonFontSize mediumFont letterspacing ">Standard Name</label>
                                                 <div class="form-control-inputDiv rounded p-1 shadow-none ">
                                                     <input required id="standard_name_{{cNo}}_{{s}}"
                                                         [(ngModel)]="standardL.standard_name"
@@ -433,7 +432,7 @@
                                             <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
                                                 <label for="pronouce "
                                                     class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard
-                                                    Duration (in months)</label>
+                                                    Duration (Months)</label>
                                                 <div class="row ">
 
                                                     <div class=" col-sm-12 ">
@@ -494,8 +493,7 @@
                                                
                                                 <div class="col-sm-6 mt-3">
                                                     <label for=" "
-                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">Start
-                                                        year of this class</label>
+                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">Start Year</label>
                                                     <div class="row ">
                                                         <div class="col-sm-12">
                                                             <div
@@ -523,8 +521,7 @@
                                                 </div>
                                                 <div class="col-sm-6 mt-3">
                                                     <label for=" "
-                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">End
-                                                        year of this class</label>
+                                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">End Year</label>
                                                     <div class="row ">
                                                         <div class="col-sm-12" *ngIf="!courseList.is_teaching_current ">
                                                             <div
@@ -548,7 +545,7 @@
 
                                                     </div>
                                                     <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
-                                                        <label>Present</label>
+                                                        <label>Current</label>
                                                     </div>
 
                                                 </div>
