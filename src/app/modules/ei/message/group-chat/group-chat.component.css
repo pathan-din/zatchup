@@ -23,7 +23,10 @@
     font-size: 18px;
     color: #666;
 }
-
+.groupChatList {
+  height: 200px;
+  overflow-y: scroll;
+}
   @media (max-width: 767px){
     .teacherChatList {
         height: 300px;

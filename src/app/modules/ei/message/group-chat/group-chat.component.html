@@ -19,15 +19,19 @@
                 <div class="col-lg-6 col-md-6 col-12">
                     <h3 class="commonFontSize semiBoldFont m-0">Add Teacher</h3>
                     <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
-                        <input [(ngModel)]="modelteacher.search" (keyup)="getTeacherList('')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5" type="search" placeholder="Search Teacher">
-                        <span class="position-absolute position-ppin"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        <input [(ngModel)]="modelteacher.search" (keyup)="getTeacherList('')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                            type="search" placeholder="Search Teacher">
+                        <span class="position-absolute position-ppin">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
                     </div>
                     <h3 class="commonFontSize semiBoldFont mt-2">Add Teacher List</h3>
 
                     <div class="teacherChatList bg-white border rounded">
                         <div class="row align-items-center border-bottom" *ngFor="let teacher of teacherList; ">
                             <div class="col-lg-2 col-md-2 col-2 text-center">
-                                <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick" class="pickSize"/>
+                                <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
+                                    class="pickSize" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-8 pt-1 pb-1">
                                 <h4 class="m-0 semiBoldFont color-black">{{teacher.first_name}} {{teacher.last_name}}</h4>
@@ -38,25 +42,28 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
 
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
-                 
-                  
-                   
+
+
+
                     <h3 class="commonFontSize semiBoldFont m-0">Add Student List</h3>
 
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
-                            <input (keyup)="getGetVerifiedStudent('','')" [(ngModel)]="model.search" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5" type="search" placeholder="Search Student">
-                            <span class="position-absolute position-ppin"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input (keyup)="getGetVerifiedStudent('','')" [(ngModel)]="model.search" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                                type="search" placeholder="Search Student">
+                            <span class="position-absolute position-ppin">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
                         </div>
                         <h4 class="commonFontSize semiBoldFont mt-2">Select Class</h4>
 
 
-                        <div class="form-group row mb-1 ">
+                        <div class="form-group row mb-1">
                             <!-- <div class="col-md-6 ">
                                 <mat-checkbox [required]="!model.ismoduleaccessclass" [disabled]="model.ismoduleaccessclass" (change)="changeAddClass($event,'allstudent')"
                                     name="Student" [(ngModel)]="model.ismoduleaccessstudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
@@ -70,37 +77,38 @@
 
 
                         </div>
-                        <div *ngIf="model.ismoduleaccessclass" class="d-flex flex-wrap align-items-end">
+                        <div *ngIf="model.ismoduleaccessclass" class="d-flex flex-wrap align-items-end groupChatList">
 
-                            <div class="widthFull mr-3 mt-3 custumInputWidth">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
-                                <mat-checkbox *ngFor="let course of courseListModuleAccess" (change)="displayStandardListModuleAccess(course.id);" required  [(ngModel)]="model.course"  name="course" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
-                                 
-                                 
-                            </div>
-                            <div class="widthFull mr-3 mt-3 custumInputWidth">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
-                                <mat-checkbox (change)="displayClassListModuleAccess(standard.id);" *ngFor="let standard of standardListModuleAccess ;let i=index;"  required [(ngModel)]="model.standard"  name="standard_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
-                                
-                              
-                            </div>
-                            <div class="widthFull mr-3 mt-3 custumInputWidth">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
-                                <mat-checkbox *ngFor="let class of classListModuleAccess"   id="class_id" [(ngModel)]="model.teaching_class" name="class" required class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
-                               
-                            </div>
-
-
-
-
+                            <table>
+                                <tr>
+                                    <td>
+                                        Course
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let course of courseListModuleAccess">
+                                    <td>
+                                        <mat-checkbox (change)="displayStandardListModuleAccess(course.id);" required
+                                        [(ngModel)]="model.course" name="course" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
+                                        <tr>Standard</tr>
+                                        <tr *ngFor="let standard of standardListModuleAccess ;let i=index;">
+                                            <td>
+                                                <mat-checkbox (change)="displayClassListModuleAccess(standard.id);" 
+                                                required [(ngModel)]="model.standard" name="standard_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                                <tr>Subsection</tr>
+                                                <tr *ngFor="let class of classListModuleAccess">
+                                                    <td>
+                                                        <mat-checkbox id="class_id" [(ngModel)]="model.teaching_class" name="class" required
+                                                        class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
+                                                    </td>
+                                                </tr>
+                                            </td>
+                                        </tr>
+                                    </td>    
+                                </tr>
+                            </table>
 
                         </div>
-                   
-                      
-                     
 
-                        
-                        
                     </div>
 
                 </div>
