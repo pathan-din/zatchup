@@ -97,7 +97,7 @@ export class GroupChatComponent implements OnInit {
         this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
           (res: any) => {
             this.loader.hide();
-            this.standardListModuleAccess = res.standarddata;
+            this.standardListModuleAccess[courseId] = res.standarddata;
           }, (error) => {
             this.loader.hide();
           });
@@ -114,7 +114,7 @@ export class GroupChatComponent implements OnInit {
       this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
         (res: any) => {
           this.loader.hide();
-          this.classListModuleAccess = res.classdata;
+          this.classListModuleAccess[stId] = res.classdata;
         }, (error) => {
           this.loader.hide();
         });
