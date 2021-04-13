@@ -116,31 +116,21 @@ export class ReminderAddComponent implements OnInit {
       this.loader.hide();
     }
   }
-  task: Task = {
-    name: 'M.Com',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      {name: '1st Year', completed: false, color: 'primary'},
-      {name: '2nd Year', completed: false, color: 'primary'},
-      {name: '3rd Year', completed: false, color: 'primary'},
-      {name: '4th Year', completed: false, color: 'primary'}
-    ]
-  };
+ 
 getSectionIds(secId){
   
   
   var index=this.sectionIds.findIndex((e)=>{
     return e==secId;
   })
-  console.log(index);
+  
   if(index > -1){
     this.sectionIds.splice(index);
   }else{
     this.sectionIds.push(secId)
   }
   this.model.sections = this.sectionIds.join();
-  console.log(this.sectionIds.join());
+  
   
 }
 getGender(data: any) {
@@ -260,8 +250,7 @@ submitReminder(){
 }
   allComplete: boolean = false;
   changeAddClass($event,text) {
-    console.log($event);
-    
+     
     if (text=='addclass' && $event.checked==true) {
       this.displayCourseListModuleAccess();
     } else if (text=='allstudent' && $event.checked==true){
@@ -271,26 +260,13 @@ submitReminder(){
       this.standardListModuleAccess=[];
       this.classListModuleAccess=[]
       this.model.sections="";
+      this.dataSource =[];
+      this.studentList = [];
+      this.model.ismoduleaccessclass=false;
+      this.model.course = "";
     }
   }
-  updateAllComplete() {
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
-  }
-
-  someComplete(): boolean {
-    if (this.task.subtasks == null) {
-      return false;
-    }
-    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
-  }
-
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.task.subtasks == null) {
-      return;
-    }
-    this.task.subtasks.forEach(t => t.completed = completed);
-  }
+ 
 
    
   uploadProfilePic(file) {

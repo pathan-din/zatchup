@@ -656,8 +656,8 @@
                 <form>
                     <div class="row">
                         <div class="col-md-6 my-1">
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select  form-control-input" name="state" required
+                            <div class="shadow-none">
+                                <select class="custom-select border rounded form-control-input" name="state" required
                                     [(ngModel)]="stateId" (change)="getCities(); isValidAddLocationForm()">
                                     <option value="">Select State</option>
                                     <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
@@ -667,8 +667,8 @@
                             <div class="required errorMsg" [innerHtml]="errorDisplay.state"></div>
                         </div>
                         <div class="col-md-6 my-1">
-                            <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                                <select class="custom-select  form-control-input" name="city" required
+                            <div class="shadow-none">
+                                <select class="custom-select border rounded form-control-input" name="city" required
                                     [(ngModel)]="cityId" (change)="isValidAddLocationForm()">
                                     <option value=""> Select City</option>
                                     <option *ngFor="let city of allCities" [value]="city.id">{{city.city}}</option>
