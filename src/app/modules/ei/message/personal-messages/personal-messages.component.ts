@@ -57,7 +57,9 @@ export class PersonalMessagesComponent implements OnInit {
     }))
     this.getMessageList()
   }
-
+  createChatGroup(){
+    this.router.navigate(["ei/group-chat"]);
+  }
   getMessageList() {
     
     //this.messageData = [];
