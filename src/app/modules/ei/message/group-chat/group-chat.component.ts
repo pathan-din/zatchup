@@ -76,7 +76,10 @@ export class GroupChatComponent implements OnInit {
     this.getTeacherList(100)
     this.getGetVerifiedStudent("","");
   }
-
+  getSectionList(ev){
+    console.log(ev);
+    
+  }
   displayCourseListModuleAccess() {
     try {
       this.loader.show();
@@ -91,9 +94,10 @@ export class GroupChatComponent implements OnInit {
       this.loader.hide();
     }
   }
-  displayStandardListModuleAccess(courseId) {
+  displayStandardListModuleAccess(courseId,ev) {
     try {
-      this.loader.show();
+      if(ev.checked){
+        this.loader.show();
         this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
           (res: any) => {
             this.loader.hide();
@@ -102,22 +106,31 @@ export class GroupChatComponent implements OnInit {
             this.loader.hide();
           });
      
+      }else{
+        this.standardListModuleAccess=[];
+      }
+     
     } catch (err) {
       this.loader.hide();
     }
   }
 
-  displayClassListModuleAccess(stId) {
+  displayClassListModuleAccess(stId,ev) {
     try {
-      this.loader.show();
-      this.classList = [];
-      this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
-        (res: any) => {
-          this.loader.hide();
-          this.classListModuleAccess[stId] = res.classdata;
-        }, (error) => {
-          this.loader.hide();
-        });
+      if(ev.checked){
+        this.loader.show();
+        this.classList = [];
+        this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
+          (res: any) => {
+            this.loader.hide();
+            this.classListModuleAccess[stId] = res.classdata;
+          }, (error) => {
+            this.loader.hide();
+          });
+      }else{
+        this.classListModuleAccess=[]
+      }
+     
       
     } catch (err) {
       this.loader.hide();
@@ -131,15 +144,25 @@ getSectionIds(secId){
     return e==secId;
   })
   
-  if(index > -1){
-    this.sectionIds.splice(index);
-  }else{
-    this.sectionIds.push(secId)
-  }
-  this.model.sections = this.sectionIds.join();
   
+  if(index == -1){
+    this.sectionIds.push(secId)
+  }else{
+    this.sectionIds.splice(index, 1);
+    
+  }
+  // this.model.sections = this.sectionIds.join();
+  
+  // console.log( this.model.sections);
   
 }
+createGroupConfirmationList(){
+   
+  this.model.sections = this.sectionIds.join();
+  console.log( this.model.sections);
+  
+}
+
 getGender(data: any) {
   if (data)
     return this.baseService.getGender(data)
