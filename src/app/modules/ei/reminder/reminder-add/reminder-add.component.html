@@ -110,7 +110,7 @@
                         <input (change)="uploadProfilePic($event.target.files)" name="reminderimage" style="display: none;" #file type="file" name="file">
                         <img *ngIf="attachment" src="{{attachment}}" style="width:100px;height: 100px;" />
 
-                        
+
                         <div class="tableDiv mt-3">
                             <div class="mat-elevation-z1 table-responsive" *ngIf="studentList.length>0">
                                 <mat-table #table [dataSource]="dataSource | paginate: config">

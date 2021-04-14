@@ -20,3 +20,12 @@
     bottom: 10px;
     left: 0px;
 }
+
+@media (max-width: 414px){
+    .customVideo video {
+        height: auto;
+    }
+    .customVideo {
+        height: auto;
+    }
+}
