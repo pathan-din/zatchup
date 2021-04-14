@@ -7,7 +7,7 @@
                 <tab heading="People" class="mt-3" (selectTab)="getfilteredData($event)">
                     <div class="row">
                         <div class="col-md-4 p-0 my-1">
-                            <input-search [config]="currentCitySearchConfig" [value]="currentCity"
+                            <input-search [config]="currentCitySearchConfig" [value]="''"
                                 (searchResult)="getCurrentCitySearchResult($event, 'user')" class="h-100">
                             </input-search>
                         </div>
@@ -59,7 +59,7 @@
                 <tab heading="School" class="mt-3" (selectTab)="getfilteredData($event)">
                     <div class="row">
                         <div class="col-md-12 p-0 my-1">
-                            <input-search [config]="currentCitySearchConfig" [value]="currentCity"
+                            <input-search [config]="currentCitySearchConfig" [value]="''"
                                 (searchResult)="getCurrentCitySearchResult($event, 'school')" class="h-100">
                             </input-search>
                         </div>
