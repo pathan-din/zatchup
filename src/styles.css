@@ -836,5 +836,6 @@ a:hover {
     width: auto;
 }
 .form-control{border-radius: .4rem !important;}
+.approveModelBtn .form-control:focus{background-color: #3fa83f !important;}
 
 
