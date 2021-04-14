@@ -162,6 +162,7 @@ import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-st
 import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
 import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
 import { EiStarclassAudienceTeacherComponent } from './starclass/ei-starclass-audience-teacher/ei-starclass-audience-teacher.component';
+import { ZatchupStarclassCoursePreviewComponent } from './starclass/zatchup-starclass-course-preview/zatchup-starclass-course-preview.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -341,6 +342,7 @@ const config = {
     ZatchupStarclassComponent,
     EiStarClassCourseHistoryComponent,
     EiStarclassAudienceTeacherComponent,
+    ZatchupStarclassCoursePreviewComponent,
   ],
   imports: [
     CommonModule,

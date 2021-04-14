@@ -1,0 +1,199 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="coursePreview-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
+            </div>
+        </div>
+        <!--Video image div of coursePReview-->
+
+        <div class="row mt-3">
+            <div class="col-md-12 customVideo" *ngFor="let details of courseData">
+                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                     <source src="{{details.course_preview}}" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+        <!--End Video image div of coursePReview-->
+
+    </div>
+
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <!---->
+        <div class="row topDiv">
+            <div class="col-12">
+                <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
+            </div>
+        </div>
+        <div class="mt-2 border-0 mx-0">
+            <!-- start Div for banner-->
+
+            <!--Start div for oView Course Details-->
+            <div class="row m-0" *ngIf="courseData">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Course Name</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{courseData.course_name}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Level of Education</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.level_of_education}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Field</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.field}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Standard</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.standard}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Subject</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.subject}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Number Of Lectures</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{courseData.number_of_lectures}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Teaching Faculty Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.faculty_details}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Topic Cover</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.topic_cover}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Description</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{courseData.description}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Date Of Creating Course</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{courseData.created_on | date}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--End div for oView Course Details-->
+
+            <div class="row mt-3">
+                <div class="col-8">
+                    <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
+                </div>
+            </div>
+    
+            <div class="row my-3 align-items-center" *ngIf="zatchupStarclassCourseView.dataSource">
+                <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                    <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                    <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                        <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                            (change)="getLectureList('1')" [(ngModel)]="zatchupStarclassCourseView.page_size">
+                            <option *ngFor="let count of zatchupStarclassCourseView.pageCounts" value="{{count}}">{{count}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="courseLecture-div bg-white border border-gray mt-3 px-3 py-3">                        
+                <div class="tableDiv " *ngIf="zatchupStarclassCourseView.dataSource">
+                    <div class="mat-elevation-z1 table-responsive">
+                        <mat-table [dataSource]="zatchupStarclassCourseView.dataSource">
+        
+        
+                            <ng-container matColumnDef="position">
+                                <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                <mat-cell *matCellDef="let element; let i = index;"> {{i + zatchupStarclassCourseView.startIndex}} </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="lectureTitle">
+                                <mat-header-cell *matHeaderCellDef>Lecture Title </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.lecture_title}} </mat-cell>
+                            </ng-container>
+        
+        
+                            <ng-container matColumnDef="topicsCoverd">
+                                <mat-header-cell *matHeaderCellDef> Topics Covered </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.topic_cover}}
+                                </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="viewDetails">
+                                <mat-header-cell *matHeaderCellDef>View Details</mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View"
+                                        (click)="goToLectureView(element.id)"></i>
+                                </mat-cell>
+                            </ng-container>
+        
+                            <mat-header-row *matHeaderRowDef="zatchupStarclassCourseView.displayedColumnsOne "></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: zatchupStarclassCourseView.displayedColumnsOne; "></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!zatchupStarclassCourseView.dataSource">
+                    <div class="col-12 pt-2 pb-2">
+                        <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

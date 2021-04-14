@@ -24,7 +24,11 @@ export class EiStarclassComponent implements OnInit {
 
   ngOnInit(): void {
     this.dashBoardData.id = this.route.snapshot.queryParamMap.get('id')
-    this.getDashBoardData()
+    this.getDashBoardData();
+    this.getLevelOfEducation();
+    this.getField();
+    this.getStandardFilter();
+    this.getSubject();
   }
 
   getDashBoardData(page? : any){
@@ -32,7 +36,11 @@ export class EiStarclassComponent implements OnInit {
       this.loader.show()
       this.dashBoardData.model ={
         'page' : page,
-        'page_size': this.dashBoardData.page_size
+        'page_size': this.dashBoardData.page_size,
+        'level_of_education': this.dashBoardData.levelOfEducationName,
+        'field': this.dashBoardData.fieldName,
+        'standard': this.dashBoardData.standardName,
+        'subject': this.dashBoardData.subjectName
       }
       this.baseService.getData('starclass/ei-dashboard-course-list/', this.dashBoardData.model).subscribe(
         (res: any)=>{
@@ -89,5 +97,41 @@ export class EiStarclassComponent implements OnInit {
   }
   goToPendingRequest(){
     this.router.navigate(['ei/starclass-requests-pending'])
+  }
+
+  getLevelOfEducation() {
+    this.baseService.getData('starclass/common_get_level_of_education/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.dashBoardData.levelOfEducation= res.results
+      }
+    )
+  }
+
+  getField() {
+    this.baseService.getData('starclass/common_get_field/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.dashBoardData.field= res.results
+      }
+    )
+  }
+
+  getStandardFilter() {
+    this.baseService.getData('starclass/common_get_class_standard/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.dashBoardData.standard= res.results
+      }
+    )
+  }
+
+  getSubject() {
+    this.baseService.getData('starclass/common_get_subject/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.dashBoardData.subject= res.results
+      }
+    )
   }
 }

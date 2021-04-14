@@ -68,6 +68,12 @@
                         <mat-cell *matCellDef="let element "> {{element.totalViews}} </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="Action">
+                        <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center">
+                            <i  (click)="goToCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>                        </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="student">
                         <mat-header-cell *matHeaderCellDef>Student Audience </mat-header-cell>
                         <mat-cell *matCellDef="let element "> 
