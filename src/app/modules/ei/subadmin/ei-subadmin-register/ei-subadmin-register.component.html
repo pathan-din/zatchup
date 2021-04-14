@@ -95,7 +95,7 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="dob " class=" mediumFont commonFontSize letterspacing">Date of Birth*</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input  autocomplete="off" bsDatepicker [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" (change)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-calenderBgImg" type="text" placeholder="MM/DD/YYYY">
+                                <input  autocomplete="off" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" (change)="isValid($event)" id="dob" required [(ngModel)]="model.profile.dob" name ="birth_date" id="birth_date" class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-calenderBgImg" type="text" placeholder="MM/DD/YYYY">
                                  
                                 
                             </div>

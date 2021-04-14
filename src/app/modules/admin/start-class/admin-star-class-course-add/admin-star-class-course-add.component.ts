@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./admin-star-class-course-add.component.css']
 })
 export class AdminStarClassCourseAddComponent implements OnInit {
+  @ViewChild('inputFile') myInputVariable: ElementRef;
   planDetails: any = [];
   model: any = {};
   uploadedContent: File;
@@ -81,9 +82,14 @@ export class AdminStarClassCourseAddComponent implements OnInit {
    handleFileInput(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
+    if (fileData.type !== 'video/mp4') {
+      this.loader.hide();
+      this.alert.error("File format not supported", 'Error');
+      this.myInputVariable.nativeElement.value = '';
+      return
+    }
     this.filename = fileData.name;
     this.uploadedContent = fileData;
-    console.log(this.uploadedContent);
   }
 
   handleFileImage(file) {
@@ -94,6 +100,12 @@ export class AdminStarClassCourseAddComponent implements OnInit {
     console.log(this.uploadedContent_image);
   }
   
+  isValid(event) {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
   getCourseDetails(){
     try {
       this.loader.show()
