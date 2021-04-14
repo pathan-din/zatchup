@@ -91,7 +91,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   }
 
   isValid(value) {
-    return value.element.is_edit_right == true
+    return value.is_edit_right == true
   }
 
   getTeacherAudienceBycheckbox(stId, event) {

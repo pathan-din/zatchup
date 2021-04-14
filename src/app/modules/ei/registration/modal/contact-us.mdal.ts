@@ -56,9 +56,18 @@ export class EiCourseList extends Pagination{
   displayedColumns: string[] = ['position', 'courseName','levelOfEducation', 
   'field','noOfStandards','subject',
   'noOfCourse','Action'];
-  params: any = {}
+  params: any;
   id: any;
   modal: any;
+  page_size: any = 10;
+  levelOfEducation: any;
+  subject: any;
+  standard: any;
+  field: any;
+  subjectName: any = '';
+  standardName: any = '';
+  fieldName: any = '';
+  levelOfEducationName: any = '';
 }
 
 export class ZatchupStarclassCourses extends Pagination{

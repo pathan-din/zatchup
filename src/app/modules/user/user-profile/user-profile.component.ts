@@ -44,24 +44,19 @@ export class UserProfileComponent implements OnInit {
           this.loader.hide();
           if (res.status == true) {
             this.userProfile = res.data[0];
-            if (this.userProfile.work_detail.length > 0){
-              // let lastIndex = console.log()
-              
-              this.profession = this.userProfile.work_detail[this.userProfile.work_detail.length -1].work_department;
-              console.log('work professsion.....', this.profession)
+            if (this.userProfile.work_detail.length > 0) {
+              this.profession = this.userProfile.work_detail[this.userProfile.work_detail.length - 1].work_department;
             }
-              
+
           }
           else {
             this.alert.error(res.error.message, 'Error')
           }
         }, (error) => {
           this.loader.hide();
-          console.log(error)
         });
     } catch (err) {
       this.loader.hide();
-      console.log(err);
     }
   }
 
@@ -71,7 +66,9 @@ export class UserProfileComponent implements OnInit {
   }
 
   getGender(data: any) {
-    let custom = data.custom_gender.trim() ? 'pronoun' : ''
+    let custom: any
+    if (data.custom_gender)
+      custom = data.custom_gender.trim() ? 'pronoun' : ''
     if (data)
       return this.baseService.getGender(data, custom)
     return ''

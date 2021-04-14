@@ -64,7 +64,6 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.apiResponse = [];
 
     this.subscription = this.communicationService.getFieldValue().subscribe(value => {
-      console.log('value is as ::', value)
       if (!value) {
         this._value = '';
       } else {
