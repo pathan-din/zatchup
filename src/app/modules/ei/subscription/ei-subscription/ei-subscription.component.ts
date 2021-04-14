@@ -63,7 +63,7 @@ export class EiSubscriptionComponent implements OnInit {
 
   makePayment() {
     this.paymentHtml = '';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Price:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple text-right">&#8377; ' + this.subscription.current_amount + '</div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Price:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple ">&#8377; ' + this.subscription.current_amount + '</div></div>';
     this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Discount:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple text-right">&#8377; ' + 0 + '</div></div>';
     this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Net Price:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple text-right">&#8377; ' + this.subscription.current_amount + '</div></div>';
   }
