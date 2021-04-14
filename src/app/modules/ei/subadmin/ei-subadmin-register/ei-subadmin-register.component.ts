@@ -53,7 +53,8 @@ export class EiSubadminRegisterComponent implements OnInit {
     try {
       this.loader.show();
      // this.model.username = this.model.email?this.model.email:this.model.phone;
-      this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
+      // this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
+     this.model.profile.dob = this.model.profile.dob;
       localStorage.setItem("dob",this.model.profile.dob );
       localStorage.setItem("name",this.model.first_name+' '+this.model.last_name );
       

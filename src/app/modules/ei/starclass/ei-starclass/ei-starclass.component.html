@@ -77,7 +77,7 @@
         </div>
 
         <!--ZatchUp StarClass Package-->
-        <div class="row" *ngIf="dashBoardData.dataSource">
+        <div class="row" *ngIf="dashBoardData.dataSource | paginate: dashBoardData.config">
             <div class="col-md-4 col-sm-12 px-0" *ngFor="let data of dashBoardData.dataSource">
                 <div class="col-md-12 col-sm-12 mb-3">
                     <div class="card p-2 rounded-0 cursorStyle" (click)="goToCoursePreview(data)">
@@ -91,6 +91,9 @@
                 </div>
             </div>
         </div>
+
+        <pagination-controls *ngIf="dashBoardData.dataSource" (pageChange)="getDashBoardData($event)" class="eiPaginationTag">
+        </pagination-controls>
 
         <div class="row mt-3" *ngIf="!dashBoardData.dataSource">
             <div class="col-12 pt-2 pb-2">

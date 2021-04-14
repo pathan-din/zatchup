@@ -32,7 +32,7 @@ export class DashBoardData extends Pagination {
   model: any;
   data: any = [];
   id: any;
-  page_size = 10
+  page_size = 12
   subject: any;
   standard: any;
   field: any;

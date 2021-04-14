@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -13,6 +13,7 @@ import { LectureDetailsEdit } from '../modals/education-institute.modal';
   styleUrls: ['./lecture-upload.component.css']
 })
 export class LectureUploadComponent implements OnInit {
+  @ViewChild('inputFile') myInputVariable: ElementRef;
   lectureDetailsEdit: LectureDetailsEdit
   errorDisplay: any = {};
   model: any = {};
@@ -43,9 +44,20 @@ export class LectureUploadComponent implements OnInit {
   handleFileInput(file) {
     let fileList: FileList = file;
     let fileData: File = fileList[0];
+    if (fileData.type !== 'video/mp4' ) {
+      this.loader.hide();
+      this.alert.error("File format not supported", 'Error');
+      this.myInputVariable.nativeElement.value = '';
+      return
+    }
     this.filename = fileData.name;
     this.uploadedContent = fileData;
-    console.log(this.uploadedContent);
+  }
+
+  isValid(event) {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
   }
 
   getLectureDetails() {
