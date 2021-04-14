@@ -35,6 +35,11 @@ export class ZatchupStarclassComponent implements OnInit {
     this.location.back()
   }
 
+  goToCourseView(data){
+    this.router.navigate(['ei/zatchup-starclass-preview', data.id])
+    console.log(data);
+  }
+
   goToStudentAudienceAdd(id){
     this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': id}})
     console.log(id);
