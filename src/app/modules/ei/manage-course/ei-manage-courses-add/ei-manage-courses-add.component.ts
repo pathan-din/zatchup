@@ -72,7 +72,7 @@ export class EiManageCoursesAddComponent implements OnInit {
       description: "",
       is_teaching_current: true,
       start_year: "",
-      end_year: 0,
+      end_year: "",
       standarddata: [{
         standard_name: "",
         duration: "",
