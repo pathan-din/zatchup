@@ -50,27 +50,29 @@
                     </ng-container>
 
                     <ng-container matColumnDef="noOfStandards">
-                        <mat-header-cell *matHeaderCellDef> Number Of Standards </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Standard Count </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                           {{element.noOfStandards}}
+                            {{element.noOfStandards}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfClass">
-                        <mat-header-cell *matHeaderCellDef>Number Of Class </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Class Count</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.noOfClass}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfStudents">
-                        <mat-header-cell *matHeaderCellDef>Number Of Students </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Student Count </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <p class="cursorStyle" (click)="numberOfStudent(courseId)">{{element.noOfStudents}}</p></mat-cell>
+                            <p class="cursorStyle" (click)="numberOfStudent(courseId)">{{element.noOfStudents}}</p>
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="noOfAlumni">
-                        <mat-header-cell *matHeaderCellDef> Number Of Alumni </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Alumni Count</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <p class="cursorStyle" (click)="numberOfAlumni(courseId)">{{element.noOfAlumni}}</p> </mat-cell>
+                            <p class="cursorStyle" (click)="numberOfAlumni(courseId)">{{element.noOfAlumni}}</p>
+                        </mat-cell>
                     </ng-container>
 
                     <!-- <ng-container matColumnDef="action">
@@ -89,18 +91,18 @@
         </div>
 
 
-        <div class="tableDiv mt-4 AssignRoll">
-            <table class="table table-bordered table-responsive">
+        <div class="tableDiv mt-4 AssignRoll table-responsive">
+            <table class="table table-bordered ">
                 <thead>
                     <tr class="bg-Gainsboro align-middle">
                         <th scope="col">S.No</th>
                         <th scope="col">Course Name </th>
-                        <th scope="col">Standards</th>
+                        <th scope="col">Standard Name</th>
                         <th scope="col">Standard Duration</th>
-                        <th scope="col">Number of Class</th>
+                        <th scope="col">Class Count</th>
                         <th scope="col">Start Year</th>
                         <th scope="col">End Year</th>
-                        <th scope="col">Number of Students</th>
+                        <th scope="col">Student Count</th>
                         <!-- <th scope="col">Number of Alumni</th> -->
                         <!-- <th scope="col">Action</th> -->
                     </tr>
@@ -116,7 +118,9 @@
                         <td>{{standard.num_of_class}}</td>
                         <td>{{standard.start_year}}</td>
                         <td class="w-15">{{standard.end_year}}</td>
-                        <td><p class="cursorStyle" (click)="numberOfStudent(courseList[0].id,standard.id)">{{standard.num_of_student}}</p></td>
+                        <td>
+                            <p class="cursorStyle" (click)="numberOfStudent(courseList[0].id,standard.id)">{{standard.num_of_student}}</p>
+                        </td>
                         <!-- <td><p class="cursorStyle" (click)="numberOfAlumni(courseList[0].id,standard.id)">{{standard.num_of_alumni}}</p></td> -->
                         <!-- <td><i (click)="getStandardById(standard.id)"
                                 class="fa fa-edit text-green cursorStyle fa-lg color-green mr-1"></i>
@@ -131,13 +135,13 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="bg-Gainsboro align-middle">
-                        <th scope="col">Standards</th>
+                        <th scope="col">Standard Name</th>
                         <th scope="col">Standard Duration</th>
                         <th scope="col">Sub-Section</th>
-                        <th scope="col">Class Alias</th>
+                        <th scope="col">Alias</th>
                         <th scope="col">Start Year</th>
                         <th scope="col">End Year</th>
-                        <th scope="col">Number of Students</th>
+                        <th scope="col">Student Count</th>
                         <!-- <th scope="col">Number of Alumni</th> -->
                         <!-- <th scope="col">Action</th> -->
 
@@ -158,7 +162,9 @@
                         <td>{{classes.alias_class}}</td>
                         <td>{{classes.start_year}}</td>
                         <td>{{classes.end_year}}</td>
-                        <td><p class="cursorStyle" (click)="numberOfStudent(courseList[0].id,classes.standard_id,classes.id)">{{classes.num_of_student}}</p></td>
+                        <td>
+                            <p class="cursorStyle" (click)="numberOfStudent(courseList[0].id,classes.standard_id,classes.id)">{{classes.num_of_student}}</p>
+                        </td>
                         <!-- <td><p class="cursorStyle" (click)="numberOfAlumni(courseList[0].id,classes.standard_id,classes.id)">{{classes.num_of_alumni}}</p></td> -->
                         <!-- <td><i (click)="getClassById(classes.id)"
                                 class="fa fa-edit text-green fa-lg color-green mr-1 cursorStyle"></i>
@@ -175,13 +181,11 @@
     </div>
 </div>
 <!--Edit Course-->
-<div class="modal fade" id="editCourseModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="editCourseModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-header align-items-center justify-content-center pb-0">
-                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
                 <h2>Update Course</h2>
@@ -192,17 +196,14 @@
                         <div class="row">
                             <div class="col-12 w-100">
                                 <label for="course_name">Course Name</label>
-                                <input [(ngModel)]="editModel.course_name" name="course_name"
-                                    class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                <input [(ngModel)]="editModel.course_name" name="course_name" class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                                     type="text" (keyup)="isValid(0)" required>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.course_name">
                             </div>
                             <div class="col-12 mt-2 w-100">
                                 <label for="course_type">Course Type</label>
-                                <select required [(ngModel)]="editModel.course_type" name="course_type"
-                                    (change)="isValid(0)"
-                                    class="custom-select border form-control-input form-control-sm ">
+                                <select required [(ngModel)]="editModel.course_type" name="course_type" (change)="isValid(0)" class="custom-select border form-control-input form-control-sm ">
                                     <option value="">Select type</option>
                                     <option value="Regular">Regular</option>
                                     <option value="Distance">Distance</option>
@@ -212,9 +213,8 @@
                             </div>
                             <div class="col-12 mt-2">
                                 <label for="description">Course Description</label>
-                                <textarea [(ngModel)]="editModel.description" required name="course_description"
-                                    (keyup)="isValid(0)" class="w-100 rounded p-1 border pl-2 form-control" rows="5"
-                                    style="resize: none;">
+                                <textarea [(ngModel)]="editModel.description" required name="course_description" (keyup)="isValid(0)" class="w-100 rounded p-1 border pl-2 form-control"
+                                    rows="5" style="resize: none;">
                                 </textarea>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.course_description">
@@ -230,13 +230,11 @@
     </div>
 </div>
 <!--Edit Standard-->
-<div class="modal fade" id="editStandardModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="editStandardModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-header align-items-center justify-content-center pb-0">
-                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
                 <h2>Update Standard</h2>
@@ -247,18 +245,14 @@
                         <div class="row">
                             <div class="col-12 w-100 mb-2">
                                 <label for="standard_name">Standard Name</label>
-                                <input [(ngModel)]="editStModel.standard_name" name="standard_name" required
-                                    (keyup)="isValid(1)"
-                                    class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                <input [(ngModel)]="editStModel.standard_name" name="standard_name" required (keyup)="isValid(1)" class=" form-control ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                                     type="text">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.standard_name">
                             </div>
                             <div class="col-12 mt-20 w-100">
                                 <label for="standard_name">Standard Duration (In Months)</label>
-                                <input [(ngModel)]="editStModel.duration" name="standard_duration" required
-                                    (keyup)="isValid(1)" numberOnly
-                                    class=" form-control custom-select ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                                <input [(ngModel)]="editStModel.duration" name="standard_duration" required (keyup)="isValid(1)" numberOnly class=" form-control custom-select ei-form-control color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                                     type="text">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.standard_duration">
@@ -276,15 +270,13 @@
 </div>
 
 <!--Edit Class-->
-<div class="modal fade" id="editClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="editClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content container-fluid">
             <div class="modal-header align-items-center justify-content-center pb-0">
-                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
                 <h2>Update Class</h2>
@@ -295,24 +287,19 @@
                         <div class="col-xl-6 col-lg-6">
                             <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section</label>
                             <div class="form-control-inputDiv rounded p-0 shadow-none ">
-                                <input required id="class_name" required [(ngModel)]="editClassModel.class_name"
-                                    name="class_name"
-                                    class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
+                                <input required id="class_name" required [(ngModel)]="editClassModel.class_name" name="class_name" class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
                                     type="text " placeholder="Enter Sub Section ">
                             </div>
 
 
                         </div>
                         <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
-                            <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">School
-                                Start
-                                teaching this class</label>
+                            <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">School Start teaching this class</label>
                             <div class="row ">
                                 <div class=" col-12">
                                     <div class=" form-control-inputDiv rounded shadow-none ">
-                                        <select id="teaching_start_year" required
-                                            [(ngModel)]="editClassModel.teaching_start_year" name="teaching_start_year"
-                                            class="custom-select  form-control-input form-control-sm " required>
+                                        <select id="teaching_start_year" required [(ngModel)]="editClassModel.teaching_start_year" name="teaching_start_year" class="custom-select  form-control-input form-control-sm "
+                                            required>
                                             <option value="">Year</option>
                                             <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                         </select>
@@ -333,15 +320,11 @@
 
                         </div>
                         <div class="col-xl-6 col-lg-6 margin-top-col-6 mt-3">
-                            <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">School
-                                End
-                                teaching this class</label>
+                            <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">School End teaching this class</label>
                             <div class="row ">
                                 <div class=" col-12">
                                     <div class=" form-control-inputDiv rounded shadow-none ">
-                                        <select id="teaching_end_year" [(ngModel)]="editClassModel.teaching_end_year"
-                                            name="teaching_end_year"
-                                            class="custom-select  form-control-input form-control-sm ">
+                                        <select id="teaching_end_year" [(ngModel)]="editClassModel.teaching_end_year" name="teaching_end_year" class="custom-select  form-control-input form-control-sm ">
                                             <option value="">Year</option>
                                             <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
                                         </select>
@@ -372,9 +355,7 @@
                                 teaching
                                 this class</label> -->
                             <div class="d-flex flex-xs-column flex-row justify-content-between ">
-                                <mat-checkbox id="is_teaching_current" [(ngModel)]="editClassModel.is_teaching_current"
-                                    name="is_teaching_current" class="purple-checkbox">Currently
-                                    Teaching
+                                <mat-checkbox id="is_teaching_current" [(ngModel)]="editClassModel.is_teaching_current" name="is_teaching_current" class="purple-checkbox">Currently Teaching
                                 </mat-checkbox>
 
                                 <!-- <mat-checkbox id="teaching_stopped" [(ngModel)]="editClassModel.teaching_stopped"

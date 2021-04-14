@@ -9,7 +9,7 @@
             <h2 class="commonFontSize semiBoldFont m-0">Lecture Details</h2>
 
         </div>
-        <div class="col-4 text-right" >
+        <div class="col-4 text-right" *ngIf="eiLectureDetailsView && eiLectureDetailsView.is_edit == true" >
             <button type="button" class="bg-dark text-white px-2 py-2 border-0 " (click)="goToEditLecture(eiLectureDetailsView)" tooltip="Edit Lecture"> <i class="fa fa-edit fa-lg"></i></button>
         </div>
 
@@ -64,7 +64,7 @@
                             <p><span class="mr-3">:</span>{{eiLectureDetailsView.subject}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Teaching Faculty </p>
@@ -72,7 +72,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{eiLectureDetailsView.name_of_teaching_faculty}}</p>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <!-- *ngIf="eiLectureDetailsView.is_edit == true" -->
-                    <div class="row mb-3" >
+                    <div class="row mb-3"  *ngIf="roleOfSubadmin.role == 'EIREPRESENTATIVE'">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Delete</p>

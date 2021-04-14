@@ -131,4 +131,7 @@
         float: right;
         width: auto;
     }
+    .tickImg{
+        top: 10px;
+    }
 }

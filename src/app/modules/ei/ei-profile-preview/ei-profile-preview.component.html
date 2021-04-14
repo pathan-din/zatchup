@@ -73,7 +73,7 @@
                   </div>
 
                   <div class="col-md-4">
-                    <h3 class="commonFontSize semiBoldFont mb-0">Overview</h3>
+                    <h3 class="commonFontSize semiBoldFont mb-0">About School</h3>
                     <p>{{userData.overview}}</p>
 
                   </div>
@@ -141,12 +141,12 @@
                         <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">Standard</h3>
                         <div class="row">
                           <div class="col-md-12">
-                            <h4 class="commonFontSize semiBoldFont mb-0">Name of Standard</h4>
+                            <h4 class="commonFontSize semiBoldFont mb-0">Standard Name</h4>
                             <p>{{standarddata.standard_name}}</p>
                           </div>
                           <div class="col-md-12">
-                            <h4 class="commonFontSize semiBoldFont mb-0">Standard Duration</h4>
-                            <p>{{standarddata.duration}} in months </p>
+                            <h4 class="commonFontSize semiBoldFont mb-0">Standard Duration <span class="small-text-2">(Months)</span></h4>
+                            <p>{{standarddata.duration}} </p>
                           </div>
                         </div>
 
@@ -180,7 +180,7 @@
                                                   <p>{{classdata.teaching_end_month}} </p>
                                                 </div> -->
                               <div class="col-md-4">
-                                <h4 class="commonFontSize semiBoldFont mb-0">Alias Class</h4>
+                                <h4 class="commonFontSize semiBoldFont mb-0">Alias</h4>
                                 <p>{{classdata.alias_class}} </p>
                               </div>
 
@@ -228,7 +228,7 @@
                   </div>
 
                   <div class="col-md-4" *ngIf="bankData.cancel_cheque">
-                    <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
+                    <h3 class="commonFontSize semiBoldFont mb-0">Upload Cancelled Cheque</h3>
                     <div class="border mt-2">
                       <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->

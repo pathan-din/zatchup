@@ -135,7 +135,7 @@
                         </div>
                     </div>
 
-                    <div class="row" >
+                    <div class="row" *ngIf="courseData.is_edit == true" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p> Student Auidence</p>
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    <div class="row" >
+                    <!-- <div class="row" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p> Teacher Auidence</p>
@@ -155,10 +155,10 @@
                             <p (click)="goToTeacherAudienceAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
                                 Add/Edit</p>
                         </div>
-                    </div>
+                    </div> -->
 
 
-                    <div class="row" >
+                    <div class="row" *ngIf="courseData.is_edit == true" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Edit Access Right For The Course</p>
@@ -179,8 +179,7 @@
                                 History</p>
                         </div>
                     </div> -->
-                    <!-- *ngIf="courseData.is_edit == 'true'" -->
-                    <div class="row" >
+                    <div class="row" *ngIf="courseData.is_edit == true" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Upload Lecture</p>
@@ -202,7 +201,7 @@
                         </div>
                     </div> -->
 
-                    <div class="row" >
+                    <div class="row" *ngIf="courseData.is_edit == true" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Edit Course Details</p>

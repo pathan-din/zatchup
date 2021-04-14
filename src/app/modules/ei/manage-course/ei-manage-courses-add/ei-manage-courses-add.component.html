@@ -24,7 +24,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row mt-2">
                             <div class="col-sm-12 ">
                                 <label for="course " class=" commonFontSize mediumFont letterspacing ">Course Name
                                 </label>
@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
-                                    <label>Present</label>
+                                    <label>Current</label>
                                 </div>
                             </div>
                         </div>
@@ -120,17 +120,17 @@
                             </div>
                             <div class="form-group row pt-3">
                                 <div class="col-xl-6 col-lg-6 MobileCol6MB">
-                                    <label for=" " class=" commonFontSize mediumFont letterspacing ">Name of Standard
+                                    <label for=" " class=" commonFontSize mediumFont letterspacing ">Standard Name
                                     </label>
                                     <div class="form-control-inputDiv rounded  shadow-none ">
                                         <input required id="standard_name_{{cNo}}_{{s}}" [(ngModel)]="standardL.standard_name" name="standard_name_{{cNo}}_{{s}}"
                                             class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
-                                            type="text " placeholder="Enter Name of Standard ">
+                                            type="text " placeholder="Enter Standard Name">
                                     </div>
                                     <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s,'standard_name_')"></div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
-                                    <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard Duration (In Months)
+                                    <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard Duration (Months)
                                     </label>
                                     <div class="row ">
 
@@ -209,11 +209,11 @@
                                             </div>
                                         </div>
                                         <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
-                                            <label>Present {{updateSection(classD, courseList.is_teaching_current)}}</label>
+                                            <label>Current {{updateSection(classD, courseList.is_teaching_current)}}</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 pt-3">
-                                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Class Alias
+                                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Alias
                                         </label>
 
                                         <div class="form-control-inputDiv rounded  shadow-none ">

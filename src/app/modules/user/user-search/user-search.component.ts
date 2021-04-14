@@ -11,7 +11,15 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 export class UserSearchComponent implements OnInit {
   searchText: any;
   dataSource: any;
-  filterBy: any = 'user'
+  filterBy: any = 'user';
+
+  currentCitySearchConfig: any = {
+    "api_endpoint": "user/city-list/",
+    "displayImage": false,
+    "placeholder": "Current City",
+    "seeMoreResults": false
+  }
+
   currentSchoolSearchConfig: any = {
     "api_endpoint": "user/all-school-list-of-user/",
     "displayImage": true,
@@ -28,14 +36,10 @@ export class UserSearchComponent implements OnInit {
     "seeMoreResults": false
   }
   schoolSearchId: any;
-  allStates: any;
-  stateId: any = '';
   cityId: any = '';
-  allCities: any;
-  peopleStateId: any = '';
-  peopleCityId: any = '';
   currentSchoolName = '';
   pastSchoolName = '';
+  currentUser: any;
 
   constructor(
     private router: Router,
@@ -46,9 +50,9 @@ export class UserSearchComponent implements OnInit {
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.searchText = this.route.snapshot.queryParamMap.get('searchText');
+    this.currentUser = localStorage.getItem('userId')
     if (this.searchText)
       this.getSearchData()
-    this.getAllState()
   }
 
   getSearchData() {
@@ -82,7 +86,6 @@ export class UserSearchComponent implements OnInit {
       this.filterBy = 'user';
     else
       this.filterBy = 'school';
-    this.stateId = '';
     this.cityId = '';
     this.getSearchData()
   }
@@ -90,7 +93,6 @@ export class UserSearchComponent implements OnInit {
   getCurrentSchoolSearchResult(data: any) {
     this.filterBy = "current";
     this.schoolSearchId = data.id;
-    this.stateId = '';
     this.cityId = '';
     this.pastSchoolName = ''
     this.getSearchData()
@@ -99,33 +101,17 @@ export class UserSearchComponent implements OnInit {
   getPastSchoolSearchResult(data: any) {
     this.filterBy = "past";
     this.schoolSearchId = data.id;
-    this.stateId = '';
     this.cityId = '';
     this.currentSchoolName = '';
     this.getSearchData()
   }
 
-  getAllState() {
-    this.baseService.getData('user/getallstate/').subscribe(
-      (res: any) => {
-        if (res.count > 0)
-          this.allStates = res.results
-      }
-    )
+  getCurrentCitySearchResult(data: any, filterBy: any) {
+    this.filterBy = filterBy;
+    this.schoolSearchId = '';
+    this.cityId = data.id
+    this.getSearchData();
   }
-
-  getCities() {
-    this.baseService.getData('user/getcitybystateid/' + this.stateId).subscribe(
-      (res: any) => {
-        if (res.count > 0)
-          this.allCities = res.results
-      }
-    )
-  }
-
-  // getPeopleSearchData(){
-  //   this.
-  // }
 
   userProfile(id: any) {
     this.router.navigate(['user/profile'], { queryParams: { "id": id } })
@@ -135,7 +121,7 @@ export class UserSearchComponent implements OnInit {
     this.router.navigate(['user/school-profile'], { queryParams: { "school_id": id } })
   }
 
-  getUserSearchData(){
+  getUserSearchData() {
     this.filterBy = 'user';
     this.schoolSearchId = '';
     this.getSearchData();

@@ -16,12 +16,73 @@
             </div>
         </div>
 
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Level Of Education</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select  id="education_name" [(ngModel)]="eiCourseList.levelOfEducationName"
+                            name="course" required class="custom-select  form-control-input" >
+                            <option value=""> Select Level Of Education</option>
+                            <option value="{{level.education_name}}" *ngFor="let level of eiCourseList.levelOfEducation">{{level.education_name}}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Field</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select  id="standard_id"
+                            [(ngModel)]="eiCourseList.fieldName" name="field" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Field</option>
+                            <option value="{{field.field_name}}" *ngFor="let field of eiCourseList.field">
+                                {{field.field_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="eiCourseList.standardName" name="class" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Standard</option>
+                            <option value="{{standard.standard_name}}" *ngFor="let standard of eiCourseList.standard">{{standard.standard_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Subject</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="eiCourseList.subjectName" name="subject" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Subject</option>
+                            <option value="{{subject.subject_name}}" *ngFor="let subject of eiCourseList.subject">{{subject.subject_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <button (click)="getEiCourseList()" type="button"
+                    class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+
+
+            </div>
+        </div>
+
         <div class="row my-3 align-items-center" *ngIf="eiCourseList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                        (change)="getEiCourseList('1')" [(ngModel)]="eiCourseList.page_size">
+                        (change)="getEiCourseList('')" [(ngModel)]="eiCourseList.page_size">
                         <option *ngFor="let count of eiCourseList.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
