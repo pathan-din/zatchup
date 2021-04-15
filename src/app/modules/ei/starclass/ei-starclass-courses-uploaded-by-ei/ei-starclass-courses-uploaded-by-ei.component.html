@@ -21,11 +21,11 @@
             <div class="d-flex flex-wrap align-items-end">
 
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Level Of Education</label>
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Education Level</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
                         <select  id="education_name" [(ngModel)]="eiCourseList.levelOfEducationName"
                             name="course" required class="custom-select  form-control-input" >
-                            <option value=""> Select Level Of Education</option>
+                            <option value=""> Select Education Level</option>
                             <option value="{{level.education_name}}" *ngFor="let level of eiCourseList.levelOfEducation">{{level.education_name}}
                             </option>
 
@@ -71,7 +71,7 @@
 
 
                 <button (click)="getEiCourseList()" type="button"
-                    class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+                    class="bg-purple text-white px-5 py-2 h-100 mt-3 border-0 ">Apply</button>
 
 
             </div>
@@ -103,12 +103,12 @@
                     </ng-container>
 
                     <ng-container matColumnDef="courseName">
-                        <mat-header-cell *matHeaderCellDef> Title Of Course</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Course Title</mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.course_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="levelOfEducation">
-                        <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Education Level </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.level_of_education}}
                         </mat-cell>
@@ -142,7 +142,7 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i  (click)="goToCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i  (click)="goToCourseView(element)" class="fa fa-eye color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
                             <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id)"></i>
                             <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Student Audience" aria-hidden="true"></i>
                         </mat-cell>

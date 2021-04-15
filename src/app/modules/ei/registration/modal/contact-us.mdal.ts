@@ -32,7 +32,15 @@ export class DashBoardData extends Pagination {
   model: any;
   data: any = [];
   id: any;
-  page_size = 10
+  page_size = 12
+  subject: any;
+  standard: any;
+  field: any;
+  levelOfEducation: any;
+  subjectName: any = '';
+  standardName: any = '';
+  fieldName: any = '';
+  levelOfEducationName: any = '';
 }
 
 export class EiCourseDetails extends Pagination{
@@ -72,7 +80,7 @@ export class EiCourseList extends Pagination{
 
 export class ZatchupStarclassCourses extends Pagination{
   displayedColumns: string[] = ['position', 'courseName','boughtDate', 
-  'expiryDate','totalViews','noOfViews' ,'student' ,'teacher' ,'editRights']; 
+  'expiryDate','totalViews','noOfViews', 'Action' ,'student' ,'teacher' ,'editRights']; 
   params: any = {}
   id: any;
   modal: any;
@@ -100,6 +108,14 @@ export class EiStarclassCourseView extends Pagination{
 }
 
 export class EiStarclassLectureList extends Pagination{
+  displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd',
+        'viewDetails'];
+        model: any;
+        id: any;
+  modal: any;
+}
+
+export class ZatchupStarclassCourseView extends Pagination {
   displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd',
         'viewDetails'];
         model: any;

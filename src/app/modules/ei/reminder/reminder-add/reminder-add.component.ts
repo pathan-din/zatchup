@@ -54,6 +54,7 @@ export class ReminderAddComponent implements OnInit {
   pageCounts: number[];
   studentListSendForBulk: any=[];
   attachment:any='';
+  course : any = ''
   constructor(
     private router: Router,
     private location: Location,
@@ -250,11 +251,16 @@ submitReminder(){
 }
   allComplete: boolean = false;
   changeAddClass($event,text) {
-     
+    this.model.course = '';
+    this.model.standard ='';
+    this.model.teaching_class = ''
     if (text=='addclass' && $event.checked==true) {
+      
       this.displayCourseListModuleAccess();
+     
     } else if (text=='allstudent' && $event.checked==true){
       this.model.sections="";
+      
     }else{
       this.courseListModuleAccess=[];
       this.standardListModuleAccess=[];
@@ -262,8 +268,10 @@ submitReminder(){
       this.model.sections="";
       this.dataSource =[];
       this.studentList = [];
+       
       this.model.ismoduleaccessclass=false;
-      this.model.course = "";
+      
+     
     }
   }
  
