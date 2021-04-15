@@ -65,6 +65,7 @@
     border-radius: 20px;
     display: inline-block;
     position: relative;
+    min-height: 55px;
 }
 
 .customButton {
@@ -81,6 +82,7 @@
     display: inline-block;
     position: relative;
     border: 1px solid rgba(70, 50, 103, 0.34);
+    min-height: 55px;
 }
 
 .chatIn:before {
@@ -122,6 +124,13 @@
     font-size: 26px;
     color: #919191;
     margin: 0px 10px 0px 2px;
+}
+.chat_contentBox img {
+    width: 100px;
+}
+.chatIn span {
+    display: block;
+    margin-top: 4px;
 }
 
 @media (max-width: 767px) {
