@@ -12,15 +12,14 @@
             <div class="py-3 bg-light-gray" *ngIf="teachersList">
                 <h1 class="text-center py-3 m-0">Start New Chat</h1>
 
-                <div class="col-12 chat_contentBox bg-light-gray d-flex mb-4" *ngFor="let teacher of teachersList">
+                <div class="col-12 chat_contentBox bg-light-gray d-flex mb-4 cursorStyle" *ngFor="let teacher of teachersList" (click)="getDocumentsChat(teacher.firebase_id)">
                     <div class="profile_pick">
                         <img *ngIf="teacher.profile_pic" [src]="teacher.profile_pic" class="img-fluid cursorStyle">
                         <img *ngIf="!teacher.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
                     </div>
                     <div class="profile_name ml-3 border-bottomCustom w-100">
                         <p class="m-0 pt-2">{{teacher.name_of_teacher}}
-                            <i *ngIf="teacher.firebase_id" class="fa fa-angle-right color-gray cursorStyle float-right" aria-hidden="true"
-                                style="font-size: 22px" (click)="getDocumentsChat(teacher.firebase_id)"></i>
+                            <i *ngIf="teacher.firebase_id" class="fa fa-angle-right color-gray float-right" aria-hidden="true" style="font-size: 22px"></i>
                         </p>
                     </div>
                 </div>
