@@ -74,7 +74,9 @@
     height: 100%;
     border: 1px solid #ddd;
 }
-
+.chatTxt img {
+    width: 100px;
+}
 @media (max-width: 767px){
   .teacherChatList {
       height: 300px;

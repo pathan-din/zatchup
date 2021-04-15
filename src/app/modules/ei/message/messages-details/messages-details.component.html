@@ -16,13 +16,15 @@
                         class="img-fluid cursorStyle"> -->
                 </div>
                 <div class="profile_name ml-2 text-capitalize">
-                    <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}} <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span></p>
+                    <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
+                        <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span>
+                    </p>
                     <!-- <span class="small-text-2" *ngIf="presence$ | async as presence">
                         <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
                     </span> -->
                 </div>
             </div>
-    
+
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
@@ -32,8 +34,12 @@
                             </p>
                         </div>
                         <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
-                            <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank"><img src="./assets/images/userWebsite/pdf.png"/></a>
-                            <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank"><img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle"></a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank">
+                                <img src="./assets/images/userWebsite/pdf.png" />
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
+                                <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            </a>
                             <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                             </span>
                         </div>
@@ -50,7 +56,7 @@
                         <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
                         <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
                     </div>
-                    <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment"  class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
+                    <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
                         type="search" placeholder="Type Something...">
                     <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
                         <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>

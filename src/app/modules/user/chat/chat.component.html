@@ -38,9 +38,13 @@
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
-                            <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank"><img src="./assets/images/userWebsite/pdf.png"/></a>
-                            <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank"><img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle"></a>
-                            
+                            <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img src="./assets/images/userWebsite/pdf.png" />
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            </a>
+
                             <p *ngIf="!objCon.document" class="color-white m-0">{{objCon.msg}}</p>
                             <span class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
                         </div>
@@ -53,7 +57,12 @@
                                 </span>
                             </div>
                             <div *ngIf="objCon.document">
-                                <img src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img src="./assets/images/userWebsite/pdf.png" />
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                </a>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                                 </span>
                             </div>
