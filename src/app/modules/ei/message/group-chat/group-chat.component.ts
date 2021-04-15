@@ -36,6 +36,8 @@ export class GroupChatComponent implements OnInit {
   userId: any;
   pageCounts: any;
   studentList: any=[];
+  standardIds:any=[];
+  courseIds:any=[];
 
 
    
@@ -58,6 +60,8 @@ export class GroupChatComponent implements OnInit {
   studentListSendForBulk: any=[];
   attachment:any='';
   teacherList:any=[];
+  addTeacherList:any=[];
+  isaccess:boolean=false;
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
   'class' ];
   constructor(
@@ -73,13 +77,80 @@ export class GroupChatComponent implements OnInit {
 
   
   ngOnInit(): void {
+    if(localStorage.getItem("groupclasscheck")=='true'){
+      this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
+      this. displayCourseListModuleAccess();
+      this.sectionIds=JSON.parse(localStorage.getItem("sections"));
+      if(JSON.parse(localStorage.getItem("courseIds")).length>0){
+        
+        this.courseIds=JSON.parse(localStorage.getItem("courseIds"))
+        JSON.parse(localStorage.getItem("courseIds")).forEach(element => {
+          this.displayStandardListModuleAccess(element,true);
+        });
+      }
+      if(JSON.parse(localStorage.getItem("standardIds")).length>0){
+        this.standardIds=JSON.parse(localStorage.getItem("standardIds"))
+        JSON.parse(localStorage.getItem("standardIds")).forEach(element => {
+          this.displayClassListModuleAccess(element,true);
+        });
+        
+      }
+    }
+  
     this.getTeacherList(100)
     this.getGetVerifiedStudent("","");
   }
-  getSectionList(ev){
-    console.log(ev);
+  isAccess(id,action){
+    if(action=='course'){
+      if(localStorage.getItem("courseIds")){
+        if(JSON.parse(localStorage.getItem("courseIds")).length>0){
+          var index = JSON.parse(localStorage.getItem("courseIds")).findIndex(e=>{
+            return e == id
+          })
+          if(index>-1){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }
+      
+    }else if(action=='standard'){
+      
+      if(localStorage.getItem("standardIds")){
+        if(JSON.parse(localStorage.getItem("standardIds")).length>0){
+          var index = JSON.parse(localStorage.getItem("standardIds")).findIndex(e=>{
+            return e == id
+          })
+          if(index>-1){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }
+    }else{
+      
+
+      if(localStorage.getItem("sections")){
+        if(JSON.parse(localStorage.getItem("sections")).length>0){
+          var index = JSON.parse(localStorage.getItem("sections")).findIndex(e=>{
+            return e == id
+          })
+          if(index>-1){
+            return true;
+          }else{
+            return false;
+          }
+        }
+      }
+    }
+   
     
-  }
+    
+   
+    return false;
+  } 
   displayCourseListModuleAccess() {
     try {
       this.loader.show();
@@ -96,7 +167,14 @@ export class GroupChatComponent implements OnInit {
   }
   displayStandardListModuleAccess(courseId,ev) {
     try {
-      if(ev.checked){
+      var eve = false;
+      if(ev == true){
+        eve =true
+      }else{
+        eve =ev.checked
+      }
+      
+      if(eve){
         this.loader.show();
         this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
           (res: any) => {
@@ -117,7 +195,13 @@ export class GroupChatComponent implements OnInit {
 
   displayClassListModuleAccess(stId,ev) {
     try {
-      if(ev.checked){
+      var eve = false;
+      if(ev == true){
+        eve =true
+      }else{
+        eve =ev.checked
+      }
+      if(eve){
         this.loader.show();
         this.classList = [];
         this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
@@ -151,16 +235,71 @@ getSectionIds(secId){
     this.sectionIds.splice(index, 1);
     
   }
-  // this.model.sections = this.sectionIds.join();
+ 
   
-  // console.log( this.model.sections);
+}
+getStandardIds(stId){
+  
+  
+  var index=this.standardIds.findIndex((e)=>{
+    return e==stId;
+  })
+  
+  
+  if(index == -1){
+    this.standardIds.push(stId)
+  }else{
+    this.standardIds.splice(index, 1);
+    
+  }
+ 
+  
+}
+getCourseIds(courseId){
+  
+  
+  var index=this.courseIds.findIndex((e)=>{
+    return e==courseId;
+  })
+  
+  
+  if(index == -1){
+    this.courseIds.push(courseId)
+  }else{
+    this.courseIds.splice(index, 1);
+    
+  }
+ 
+  
+}
+
+addTeacherInGroup(obj,i,action){
+  var index=this.addTeacherList.findIndex((e)=>{
+    return e.id==obj.id;
+  })
+  if(index == -1){
+    this.addTeacherList.push(obj)
+  }else{
+    this.addTeacherList.splice(index, 1);
+    
+  }
+  if(action == 'del'){
+    this.teacherList[i].isadded  = false;
+  }else{
+    this.teacherList[i].isadded  = true;
+  }
+  
+  
   
 }
 createGroupConfirmationList(){
-   
-  this.model.sections = this.sectionIds.join();
-  console.log( this.model.sections);
+ // this.model.sections = this.sectionIds.join();
   
+  localStorage.setItem("teachers",JSON.stringify(this.teacherList));
+  localStorage.setItem("sections",JSON.stringify(this.sectionIds));
+  localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
+  localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
+  this.router.navigate(["ei/students-list"]);
 }
 
 getGender(data: any) {
@@ -257,6 +396,34 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       (res: any) => {
         if (res.status == true) {
           this.teacherList =res.results;
+          var tList =[];
+          if(localStorage.getItem("teachers")){
+            tList = JSON.parse(localStorage.getItem("teachers"));
+            
+            
+          }
+          this.teacherList.forEach(element => {
+            if(tList.length>0){
+
+              var index = tList.findIndex(e=>{
+                console.log(e.user_id);
+                return e.user_id == element.user_id
+              })
+             
+              if(index>-1){
+                element.isadded = tList[index].isadded
+              }else{
+                element.isadded = false;
+              }
+              
+            }else{
+              element.isadded = false;
+            }
+            
+          });
+          
+          
+          
         }
         else {
           this.alert.error(res.error.message[0], 'Error')
@@ -271,7 +438,7 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
  
   changeAddClass($event,text) {
-     
+     localStorage.setItem("groupclasscheck",$event.checked);
     if (text=='addclass' && $event.checked==true) {
       this.displayCourseListModuleAccess();
     } else if (text=='allstudent' && $event.checked==true){

@@ -28,7 +28,7 @@
                     <h3 class="commonFontSize semiBoldFont mt-2">Add Teacher List</h3>
 
                     <div class="teacherChatList bg-white border rounded">
-                        <div class="row align-items-center border-bottom" *ngFor="let teacher of teacherList; ">
+                        <div class="row align-items-center border-bottom" *ngFor="let teacher of teacherList;let i=index; ">
                             <div class="col-lg-2 col-md-2 col-2 text-center">
                                 <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
                                     class="pickSize" />
@@ -38,7 +38,8 @@
                                 <p class="small-text-2 m-0">Employee ID: {{teacher.employee_num}}</p>
                             </div>
                             <div class="col-lg-2 col-md-2 col-2 text-center">
-                                <button  type="button" class="btn bg-paret-green color-white px-1 py-0 rounded small-text-2">Add</button><i class="fa fa-cross"></i>
+                                <button *ngIf="!teacher.isadded" (click)="addTeacherInGroup(teacher,i,'add')" type="button" class="btn bg-paret-green color-white px-1 py-0 rounded small-text-2">Add</button> 
+                                <button *ngIf="teacher.isadded" (click)="addTeacherInGroup(teacher,i,'del')" type="button" class="btn bg-red color-white px-1 py-0 rounded small-text-2">Delete</button> 
                             </div>
                         </div>
 
@@ -87,18 +88,18 @@
                                 </tr>
                                 <tr *ngFor="let course of courseListModuleAccess;let i=index;">
                                     <td>
-                                        <mat-checkbox (change)="displayStandardListModuleAccess(course.id,$event);" required
+                                        <mat-checkbox  [checked]="isAccess(course.id,'course')" (change)="displayStandardListModuleAccess(course.id,$event);getCourseIds(course.id)" required
                                         name="course_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
                                         
                                         <tr *ngFor="let standard of standardListModuleAccess[course.id] ;let j=index;">
                                             <td>
-                                                <mat-checkbox (change)="displayClassListModuleAccess(standard.id,$event);" 
+                                                <mat-checkbox [checked]="isAccess(standard.id,'standard')" (change)="displayClassListModuleAccess(standard.id,$event);getStandardIds(standard.id)" 
                                                 required name="standard_{{i}}_{{j}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
                                                 
                                                 <tr *ngFor="let class of classListModuleAccess[standard.id];let k=index;">
                                                     <td>
                                                         <!-- {{class_id}} -->
-                                                        <mat-checkbox (change)="getSectionIds(class.id)"  name="class_{{i}}_{{j}}_{{k}}" required
+                                                        <mat-checkbox [checked]="isAccess(class.id,'')" (change)="getSectionIds(class.id)"  name="class_{{i}}_{{j}}_{{k}}" required
                                                         class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
                                                     </td>
                                                 </tr>

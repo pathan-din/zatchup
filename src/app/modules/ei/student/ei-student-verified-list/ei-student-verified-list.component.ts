@@ -281,7 +281,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     try {
       this.loader.show();
       this.model.page = page;
-
+      
 
 
       this.baseService.getData('ei/student-list/', this.model).subscribe(
