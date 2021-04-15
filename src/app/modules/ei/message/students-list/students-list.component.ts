@@ -14,23 +14,7 @@ export interface PeriodicElement {
   rollNumber: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {'selectCheckbox':'','position': 1,'profilePick' : '','nameOfStudents':'Wilma Mumduya', 
-  'relationship': 'Student', 'classDetails': ['B.Com', 'First Year', 'A'], 'classAlias':'A',
-   'rollNumber': 53541},
-   {'selectCheckbox':'','position': 2,'profilePick' : '','nameOfStudents':'Wilma Mumduya', 
-  'relationship': 'Student', 'classDetails': ['BA', 'Second Year', 'A'], 'classAlias':'A',
-   'rollNumber': 78555},
-   {'selectCheckbox':'','position': 3,'profilePick' : '','nameOfStudents':'Wilma Mumduya', 
-  'relationship': 'Student', 'classDetails': ['MCA', 'Third Year', 'A'], 'classAlias':'A',
-   'rollNumber': 13972},
-   {'selectCheckbox':'','position': 4,'profilePick' : '','nameOfStudents':'Wilma Mumduya', 
-  'relationship': 'Student', 'classDetails': ['BCA', 'First Year', 'A'], 'classAlias':'A',
-   'rollNumber': 53541},
-   {'selectCheckbox':'','position': 5,'profilePick' : '','nameOfStudents':'Wilma Mumduya', 
-  'relationship': 'Student', 'classDetails': ['B.Com', 'First Year', 'A'], 'classAlias':'A',
-   'rollNumber': 17582},
-];
+const ELEMENT_DATA: PeriodicElement[] = [];
 export interface PeriodicElement1 {
   selectCheckbox: string;
   position: number;
@@ -148,7 +132,7 @@ export class StudentsListComponent implements OnInit {
         var i = (this.pageSize * (page - 1)) + 1;
         this.studentList.forEach(objData => {
           let objStudentList: any = {};
-          objStudentList.checked = '';
+          
           objStudentList.SNo = i;
           objStudentList.zatchupID = objData.zatchup_id;
           objStudentList.student_id = objData.user_id;
@@ -164,12 +148,15 @@ export class StudentsListComponent implements OnInit {
           objStudentList.alias_class = objData.alias_class;
           objStudentList.roll_no = objData.roll_no;
           objStudentList.firebase_id = objData.firebase_id
-          
+          objStudentList.checkedAll = true;
+          objStudentList.checked = true;
           objStudentList.Action = '';
+          
           i = i + 1;
           arrStudentList.push(objStudentList);
         })
-  
+        console.log(arrStudentList);
+        
         this.dataSource = arrStudentList;
         if (res.status == false) {
           this.alert.error(res.error.message[0], 'Error')
@@ -184,7 +171,30 @@ export class StudentsListComponent implements OnInit {
     }
   }
  
- 
+  selectAll(ev,type){
+    if(type=='student')
+    {
+     console.log(ev);
+     var i=0;
+      this.studentList.forEach(objData => {
+        this.studentList[i].checked = ev.checked;
+        i=i+1;
+      })
+      this.dataSource = this.studentList;
+    }
+   
+  }
+   
+  selectOne(ev,type){
+    if(type=='student')
+    {
+     this.studentList.forEach(objData => {
+        objData.checked = ev;
+      })
+      
+    }
+   
+  }
 
  
 }
