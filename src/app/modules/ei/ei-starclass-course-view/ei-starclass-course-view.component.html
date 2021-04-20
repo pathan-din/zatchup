@@ -158,7 +158,7 @@
                     </div> -->
 
 
-                    <div class="row" *ngIf="courseData.is_edit == true" >
+                    <div class="row" *ngIf="courseData.is_edit == true && roleOfSubadmin.role != 'EISUBADMIN'" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Edit Access Right For The Course</p>
