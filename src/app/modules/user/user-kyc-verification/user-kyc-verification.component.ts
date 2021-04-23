@@ -294,6 +294,8 @@ export class UserKycVerificationComponent implements OnInit {
   /**************Upload File Function****************/
   handleFileInput(file) {
     let fileList: FileList = file;
+    console.log(fileList);
+    
     let fileData: File = fileList[0];
     this.filename = fileData.name;
     this.uploadedContent = fileData;
