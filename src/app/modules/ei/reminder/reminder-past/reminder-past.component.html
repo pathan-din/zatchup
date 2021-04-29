@@ -12,23 +12,21 @@
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                        <mat-cell *matCellDef="let element;let i=index;"> {{i+1}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="reminder">
+                    <ng-container matColumnDef="message">
                         <mat-header-cell *matHeaderCellDef> Reminder Message </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.reminder}}
-                            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et <br/> 
-                            quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est <br/>
-                            laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+                            {{element.message}}
+                            
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="time">
+                    <ng-container matColumnDef="recieved_date">
                         <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.time}}
+                            {{element.recieved_date}}
                         </mat-cell>
                     </ng-container>                  
 

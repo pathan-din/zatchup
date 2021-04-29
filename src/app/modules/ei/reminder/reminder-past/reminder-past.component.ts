@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ThemePalette} from '@angular/material/core';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 export interface subAdminManagementElement {
   SNo: number;
@@ -8,12 +11,7 @@ export interface subAdminManagementElement {
   time: string;
 }
 
-const ELEMENT_DATA: subAdminManagementElement[] = [
-  {SNo: 1, reminder: '', time: '10 min ago'},
-  {SNo: 2, reminder: '', time: '17 min ago'},
-  {SNo: 3, reminder: '', time: '23 min ago'},
-  {SNo: 4, reminder: '', time: '25 min ago'}
-];
+const ELEMENT_DATA: subAdminManagementElement[] = [];
 
 @Component({
   selector: 'app-reminder-past',
@@ -22,14 +20,32 @@ const ELEMENT_DATA: subAdminManagementElement[] = [
 })
 export class ReminderPastComponent implements OnInit {
 
-  displayedColumns: string[] = ['SNo', 'reminder', 'time'];
+  displayedColumns: string[] = ['SNo', 'message', 'recieved_date'];
 
   dataSource = ELEMENT_DATA;
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private baseService : BaseService,
+    private loader:NgxSpinnerService,
+    private alert:NotificationService) { }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.getPastReminder();
+  }
+  getPastReminder(){
+    try {
+      this.baseService.getData("chat/chat_reminder_notification_past/").subscribe((res:any)=>{
+        if(res.status==true){
+          this.alert.success("Data get successfully","Success");
+          this.dataSource=res.results
+        }
+      },error=>{
+        this.loader.hide()
+      })
+    } catch (error) {
+      this.loader.hide()
+    }
+  }  
 }
