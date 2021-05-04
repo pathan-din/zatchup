@@ -43,15 +43,26 @@
 .editIcon {
     width: 7%;
 }
+.upload-dp {
+    top: 65%;
+    bottom: 0;
+    left: 0%;
+    right: 0;
+    background: rgb(133, 132, 127, 0.5);
+}
 
 .form-control-inputDiv {
     border-radius: 25px;
 }
-
+.btn_position-absolute {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
 .dpImgCircle {
     width: 100px;
     height: 100px;
-
+    overflow: hidden;
     position: relative;
 }
 .bannerDiv {
@@ -64,7 +75,7 @@
 .tickImg {
     position: absolute;
     bottom: 60px;
-    left: 72px;
+    left: 88px;
     z-index: 1;
 }
 h4 {
@@ -74,9 +85,6 @@ h4 {
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
         width: 100%!important;
-    }
-    .tickImg{
-        left: 12%;
     }
 }
 
@@ -110,6 +118,7 @@ h4 {
         height: auto;
     }
     .tickImg {
-        bottom: 10px;
+        bottom: 132px;
+    left: 200px;
     }
 }
