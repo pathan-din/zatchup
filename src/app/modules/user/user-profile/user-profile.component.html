@@ -11,11 +11,11 @@
     <div class="bannerDiv position-relative" *ngIf="userProfile">
         <img src="assets/images/cover-pic-default.png" class="img-fluid">
 
-        <button type="button" (click)="fileInput.click()"
+        <!-- <button type="button" (click)="fileInput.click()"
             class=" btn_position-absolute border-0 bg-light-black text-white p-2">
             <i class="fa fa-camera" title="Upload" aria-hidden="true"></i>
             <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
-        </button>
+        </button> -->
     </div>
 
     <div class="row px-3">
@@ -24,10 +24,10 @@
                 <img *ngIf="!userProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                 <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="img-fluid dpImg">
                 
-                <div class="upload-dp position-absolute">
+                <!-- <div class="upload-dp position-absolute">
                     <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
                     </app-image-uploader>
-                </div>
+                </div> -->
             </div>
 
             <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
