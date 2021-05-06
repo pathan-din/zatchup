@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,7 +23,8 @@ export class UserProfileComponent implements OnInit {
     private location: Location,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private communicationService: CommunicationService
   ) { }
 
   ngOnInit(): void {
@@ -73,4 +75,14 @@ export class UserProfileComponent implements OnInit {
       return this.baseService.getGender(data, custom)
     return ''
   }
+
+  getProfilePicUrl(file: any) {
+    this.userProfile.profile_pic = file.data[0].profile_pic_url;
+    this.communicationService.setImageUrl(this.userProfile.profile_pic)
+  }
+
+  getCoverPicUrl(file: any) {
+    this.userProfile.cover_pic = file.data[0].cover_pic_url;
+  }
+  
 }

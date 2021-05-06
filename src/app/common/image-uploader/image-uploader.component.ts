@@ -21,7 +21,8 @@ export class ImageUploaderComponent implements OnInit {
     this.image = upload.image ? upload.image : undefined;
     this.url = upload.url ? upload.url : undefined;
     this.image_type = upload.image_type ? upload.image_type : 'image';
-    this.class_div = upload.url ? upload.class : undefined
+    this.class_div = upload.url ? upload.class : undefined;
+    this.params = upload.params ? upload.params : undefined;
   }
 
 
@@ -35,6 +36,7 @@ export class ImageUploaderComponent implements OnInit {
   icon: any;
   image: any;
   class_div: any;
+  params: any = {};
 
   constructor(
     private loader: NgxSpinnerService,
@@ -79,6 +81,11 @@ export class ImageUploaderComponent implements OnInit {
       var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       const formData = new FormData();
       formData.append(this.image_type, file);
+      if (this.params) {
+        for (var key in this.params) {
+          formData.append(key, this.params[key])
+        }
+      }
       this.baseService.action(this.url, formData).subscribe(
         (res: any) => {
           if (res.status == true) {
