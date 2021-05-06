@@ -96,9 +96,9 @@ export class UserhomeComponent implements OnInit {
       this.loader.show();
       this.baseService.getData('user/socia_media_profile_and_cover_pic/', { "user_id": this.userId }).subscribe(
         (res: any) => {
-          if (res.cover_pic.socialmedia_coverpic)
+          if (res.cover_pic)
             this.coverPic = res.cover_pic.socialmedia_coverpic
-          if (res.profile_pic.socialmedia_profilepic)
+          if (res.profile_pic)
             this.profilePic = res.profile_pic.socialmedia_profilepic
           this.loader.hide()
         },
