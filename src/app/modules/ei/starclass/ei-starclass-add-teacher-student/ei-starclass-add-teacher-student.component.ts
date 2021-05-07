@@ -1,10 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { SubadminCompleteRequest } from '../../registration/modal/contact-us.mdal';
 import {ThemePalette} from '@angular/material/core';
 
 export interface Task {
@@ -15,13 +14,12 @@ export interface Task {
 }
 
 @Component({
-  selector: 'app-group-chat',
-  templateUrl: './group-chat.component.html',
-  styleUrls: ['./group-chat.component.css']
+  selector: 'app-ei-starclass-add-teacher-student',
+  templateUrl: './ei-starclass-add-teacher-student.component.html',
+  styleUrls: ['./ei-starclass-add-teacher-student.component.css']
 })
-export class GroupChatComponent implements OnInit {
-  subadminCompleteRequest : SubadminCompleteRequest
-  config = {
+export class EiStarclassAddTeacherStudentComponent implements OnInit {
+ config = {
     itemsPerPage: 0,
     currentPage: 1,
     totalItems: 0
@@ -38,14 +36,9 @@ export class GroupChatComponent implements OnInit {
   studentList: any=[];
   standardIds:any=[];
   courseIds:any=[];
-
-
-   
   totalNumberOfPage: any = 10;
- 
   isTeacher: boolean = false;
   classListArrayAccess: any = [];
-  
   courseList: any = [];
   courseListModuleAccess: any = [];
   standardList: any = [];
@@ -53,29 +46,22 @@ export class GroupChatComponent implements OnInit {
   isModuleAccessStudent: any
   standardListModuleAccess: any = [];
   classListModuleAccess: any = [];
-
-  
   sectionIds:any=[];
-   
   studentListSendForBulk: any=[];
   attachment:any='';
   teacherList:any=[];
   addTeacherList:any=[];
   isaccess:boolean=false;
-  displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
-  'class' ];
+  
   constructor(
     private location: Location,
     private router: Router,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private alert: NotificationService
-  ) {
-     
-   }
- 
+    private alert: NotificationService,
+    private route : ActivatedRoute
+  ) { }
 
-  
   ngOnInit(): void {
     if(localStorage.getItem("groupclasscheck")=='true'){
       this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
@@ -102,132 +88,127 @@ export class GroupChatComponent implements OnInit {
           
         }
       }
-    }
-  
-    this.getTeacherList(100)
-    this.getGetVerifiedStudent("","");
+      
   }
-  isAccess(id,action){
-    if(action=='course'){
-      if(localStorage.getItem("courseIds")){
-        if(JSON.parse(localStorage.getItem("courseIds")).length>0){
-          var index = JSON.parse(localStorage.getItem("courseIds")).findIndex(e=>{
-            return e == id
-          })
-          if(index>-1){
-            return true;
-          }else{
-            return false;
-          }
-        }
-      }
-      
-    }else if(action=='standard'){
-      
-      if(localStorage.getItem("standardIds")){
-        if(JSON.parse(localStorage.getItem("standardIds")).length>0){
-          var index = JSON.parse(localStorage.getItem("standardIds")).findIndex(e=>{
-            return e == id
-          })
-          if(index>-1){
-            return true;
-          }else{
-            return false;
-          }
-        }
-      }
-    }else{
-      
-
-      if(localStorage.getItem("sections")){
-        if(JSON.parse(localStorage.getItem("sections")).length>0){
-          var index = JSON.parse(localStorage.getItem("sections")).findIndex(e=>{
-            return e == id
-          })
-          if(index>-1){
-            return true;
-          }else{
-            return false;
-          }
+  this.getTeacherList(100)
+    this.getGetVerifiedStudent("","");
+}
+isAccess(id,action){
+  if(action=='course'){
+    if(localStorage.getItem("courseIds")){
+      if(JSON.parse(localStorage.getItem("courseIds")).length>0){
+        var index = JSON.parse(localStorage.getItem("courseIds")).findIndex(e=>{
+          return e == id
+        })
+        if(index>-1){
+          return true;
+        }else{
+          return false;
         }
       }
     }
-   
     
+  }else if(action=='standard'){
     
-   
-    return false;
-  } 
-  displayCourseListModuleAccess() {
-    try {
+    if(localStorage.getItem("standardIds")){
+      if(JSON.parse(localStorage.getItem("standardIds")).length>0){
+        var index = JSON.parse(localStorage.getItem("standardIds")).findIndex(e=>{
+          return e == id
+        })
+        if(index>-1){
+          return true;
+        }else{
+          return false;
+        }
+      }
+    }
+  }else{
+    
+
+    if(localStorage.getItem("sections")){
+      if(JSON.parse(localStorage.getItem("sections")).length>0){
+        var index = JSON.parse(localStorage.getItem("sections")).findIndex(e=>{
+          return e == id
+        })
+        if(index>-1){
+          return true;
+        }else{
+          return false;
+        }
+      }
+    }
+  }
+   return false;
+}   
+displayCourseListModuleAccess() {
+  try {
+    this.loader.show();
+    this.baseService.getData('ei/course-list/').subscribe(
+      (res: any) => {
+        this.loader.hide();
+        this.courseListModuleAccess = res.results;
+      }, (error) => {
+        this.loader.hide();
+      });
+  } catch (err) {
+    this.loader.hide();
+  }
+}
+displayStandardListModuleAccess(courseId,ev) {
+  try {
+    var eve = false;
+    if(ev == true){
+      eve =true
+    }else{
+      eve =ev.checked
+    }
+    
+    if(eve){
       this.loader.show();
-      this.baseService.getData('ei/course-list/').subscribe(
+      this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
         (res: any) => {
           this.loader.hide();
-          this.courseListModuleAccess = res.results;
+          this.standardListModuleAccess[courseId] = res.standarddata;
         }, (error) => {
           this.loader.hide();
         });
-    } catch (err) {
-      this.loader.hide();
+   
+    }else{
+      this.standardListModuleAccess=[];
     }
+   
+  } catch (err) {
+    this.loader.hide();
   }
-  displayStandardListModuleAccess(courseId,ev) {
-    try {
-      var eve = false;
-      if(ev == true){
-        eve =true
-      }else{
-        eve =ev.checked
-      }
-      
-      if(eve){
-        this.loader.show();
-        this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
-          (res: any) => {
-            this.loader.hide();
-            this.standardListModuleAccess[courseId] = res.standarddata;
-          }, (error) => {
-            this.loader.hide();
-          });
-     
-      }else{
-        this.standardListModuleAccess=[];
-      }
-     
-    } catch (err) {
-      this.loader.hide();
-    }
-  }
+}
 
-  displayClassListModuleAccess(stId,ev) {
-    try {
-      var eve = false;
-      if(ev == true){
-        eve =true
-      }else{
-        eve =ev.checked
-      }
-      if(eve){
-        this.loader.show();
-        this.classList = [];
-        this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
-          (res: any) => {
-            this.loader.hide();
-            this.classListModuleAccess[stId] = res.classdata;
-          }, (error) => {
-            this.loader.hide();
-          });
-      }else{
-        this.classListModuleAccess=[]
-      }
-     
-      
-    } catch (err) {
-      this.loader.hide();
+displayClassListModuleAccess(stId,ev) {
+  try {
+    var eve = false;
+    if(ev == true){
+      eve =true
+    }else{
+      eve =ev.checked
     }
+    if(eve){
+      this.loader.show();
+      this.classList = [];
+      this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.classListModuleAccess[stId] = res.classdata;
+        }, (error) => {
+          this.loader.hide();
+        });
+    }else{
+      this.classListModuleAccess=[]
+    }
+   
+    
+  } catch (err) {
+    this.loader.hide();
   }
- 
+}
 getSectionIds(secId){
   
   
@@ -279,7 +260,6 @@ getCourseIds(courseId){
  
   
 }
-
 addTeacherInGroup(obj,i,action){
   var index=this.addTeacherList.findIndex((e)=>{
     return e.id==obj.id;
@@ -291,30 +271,25 @@ addTeacherInGroup(obj,i,action){
     
   }
   if(action == 'del'){
-    this.teacherList[i].isadded  = false;
+    this.teacherList[i].is_edit_right  = false;
   }else{
-    this.teacherList[i].isadded  = true;
+    this.teacherList[i].is_edit_right  = true;
   }
   
   
   
 }
-createGroupConfirmationList(){
- // this.model.sections = this.sectionIds.join();
-  
-  localStorage.setItem("teachers",JSON.stringify(this.teacherList));
-  localStorage.setItem("sections",JSON.stringify(this.sectionIds));
-  localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
-  localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
-  this.router.navigate(["ei/students-list"]);
-}
+createGroupConfirmationList(id){
+  // this.model.sections = this.sectionIds.join();
+   
+   localStorage.setItem("teachers",JSON.stringify(this.teacherList));
+   localStorage.setItem("sections",JSON.stringify(this.sectionIds));
+   localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
+   localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
+   this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+  }
 
-getGender(data: any) {
-  if (data)
-    return this.baseService.getGender(data)
-  return ''
-}
-getGetVerifiedStudent(page, strFilter) {
+ getGetVerifiedStudent(page, strFilter) {
 
   try {
 
@@ -399,7 +374,7 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   getTeacherList(page){
     this.loader.show();
      
-    this.baseService.getData('ei/subadmin-lists-by-ei/',this.modelteacher).subscribe(
+    this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/',this.modelteacher).subscribe(
       (res: any) => {
         if (res.status == true) {
           this.teacherList =res.results;
@@ -418,13 +393,13 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
               })
              
               if(index>-1){
-                element.isadded = tList[index].isadded
+                element.is_edit_right = tList[index].is_edit_right
               }else{
-                element.isadded = false;
+                element.is_edit_right = false;
               }
               
             }else{
-              element.isadded = false;
+              element.is_edit_right = false;
             }
             
           });
@@ -461,5 +436,4 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       this.model.course = "";
     }
   }
- 
 }
