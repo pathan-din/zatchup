@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a>
+                    <a routerLink="/user/home" class="nav-link" routerLinkActive="active-link">Home</a>
                 </li>
 
                 <li *ngIf="!authCheck" class="nav-item">
@@ -48,10 +48,13 @@
             </div>
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
                 <li class="nav-item">
-                    <a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">Home</a>
+                    <a routerLink="/user/home" [queryParams]="{id: userProfile.user_id}" class="nav-link" routerLinkActive="active-link">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a routerLink="/user/my-educational-profile" class="nav-link" routerLinkActive="active-link">My School</a>
+                </li> -->
+                <li class="nav-item">
+                    <a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">My School</a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/user/messages" routerLinkActive="active-link" class="nav-link cursorStyle" aria-expanded="false">Messages</a>

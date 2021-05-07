@@ -16,4 +16,8 @@ export class ReminderComponent implements OnInit {
   goToReminder(){
     this.router.navigate(["ei/reminder-add"]);
   }
+  goToPastReminder(){
+    this.router.navigate(["ei/reminder-past"]);
+  }
 }
+

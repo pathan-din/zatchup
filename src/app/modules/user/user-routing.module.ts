@@ -59,6 +59,7 @@ import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-cond
 import { UserStarclassCourseListComponent } from './user-starclass-course-list/user-starclass-course-list.component';
 import { UserStarclassCoursePreviewComponent } from './user-starclass-course-preview/user-starclass-course-preview.component';
 import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
+import { UserhomeComponent } from './userhome/userhome.component';
 
 
 const routes: Routes = [
@@ -152,6 +153,9 @@ const routes: Routes = [
   },
   {
     path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/home', component: UserhomeComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/notifications', component: UserNotificationsComponent, canActivate: [AuthGuard]
