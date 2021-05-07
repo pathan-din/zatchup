@@ -146,6 +146,7 @@ import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass
 import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
 import { EiStarclassAudienceTeacherComponent } from './starclass/ei-starclass-audience-teacher/ei-starclass-audience-teacher.component';
 import { ZatchupStarclassCoursePreviewComponent } from './starclass/zatchup-starclass-course-preview/zatchup-starclass-course-preview.component';
+import { EiStarclassAddTeacherStudentComponent } from './starclass/ei-starclass-add-teacher-student/ei-starclass-add-teacher-student.component';
 
 
 const routes: Routes = [
@@ -577,6 +578,9 @@ const routes: Routes = [
    },
    {
      path: 'zatchup-starclass-preview/:id', component:ZatchupStarclassCoursePreviewComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'starclass-add-student-teacher', component: EiStarclassAddTeacherStudentComponent, canActivate:[AuthGuard]
    },
   
   

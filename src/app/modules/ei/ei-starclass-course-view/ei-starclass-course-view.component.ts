@@ -58,17 +58,17 @@ goToLectureView(id) {
 }
 
 goToStudentAudienceAdd(id){
-  this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': id}})
+  this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': id, 'edit': 'edit'}})
   console.log(id);
 }
 
-goToTeacherAudienceAdd(id){
-  this.router.navigate(['ei/ei-starclass-audience-teacher'],{queryParams:{'course_id': id}})
-  console.log(id);
-}
+// goToTeacherAudienceAdd(id){
+//   this.router.navigate(['ei/ei-starclass-audience-teacher'],{queryParams:{'course_id': id}})
+//   console.log(id);
+// }
 
 goToEditTeacherAdd(id){
-  this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id': id}})
+  this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id': id, 'edit': 'edit'}})
   console.log(id);
 }
 

@@ -14,7 +14,9 @@ export class UserhomeComponent implements OnInit {
   userProfile: any;
   currentUser: any;
   profession: any;
-  uploadInfo: any = {}
+  uploadInfo: any = {};
+  coverPic: any;
+  profilePic: any;
 
   constructor(
     private router: Router,
@@ -32,10 +34,11 @@ export class UserhomeComponent implements OnInit {
       "image_type": "socialmedia_profilepic",
       "url": "user/socia_media_image_uplode/",
       "icon": "fa fa-camera",
-      "params": { "user": this.userId},
+      "params": { "user": this.userId, "socialmedia_coverpic": null },
       "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
     }
     this.getProfile();
+    this.getSocialMediaProfiles();
   }
 
   goToLoginPage() {
@@ -80,11 +83,32 @@ export class UserhomeComponent implements OnInit {
   }
 
   getProfilePicUrl(file: any) {
-    this.getProfile();
+    // this.getProfile();
+    this.getSocialMediaProfiles();
   }
 
   getCoverPicUrl(file: any) {
     this.userProfile.cover_pic = file.data[0].cover_pic_url;
+  }
+
+  getSocialMediaProfiles() {
+    try {
+      this.loader.show();
+      this.baseService.getData('user/socia_media_profile_and_cover_pic/', { "user_id": this.userId }).subscribe(
+        (res: any) => {
+          if (res.cover_pic)
+            this.coverPic = res.cover_pic.socialmedia_coverpic
+          if (res.profile_pic)
+            this.profilePic = res.profile_pic.socialmedia_profilepic
+          this.loader.hide()
+        },
+        err => {
+          this.loader.hide()
+        }
+      )
+    } catch (error) {
+      this.loader.hide()
+    }
   }
 
   uploadCoverPic(file) {
@@ -99,13 +123,15 @@ export class UserhomeComponent implements OnInit {
       }
       const formData = new FormData();
       formData.append('socialmedia_coverpic', fileData);
+      formData.append('socialmedia_profilepic', null);
       formData.append('user', this.userId)
       this.baseService.action('user/socia_media_image_uplode/', formData).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
             this.alert.success(res.message[0], 'Success')
-            this.getProfile()
+            // this.getProfile()
+            this.getSocialMediaProfiles();
           } else {
             this.loader.hide();
             console.log("Error:Data not update");

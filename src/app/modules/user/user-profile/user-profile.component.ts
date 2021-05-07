@@ -16,6 +16,8 @@ export class UserProfileComponent implements OnInit {
   userProfile: any;
   currentUser: any;
   profession: any;
+  coverPic: any;
+  profilePic: any;
 
   constructor(
     private router: Router,
@@ -32,6 +34,7 @@ export class UserProfileComponent implements OnInit {
     this.userId = this.route.snapshot.queryParamMap.get('id')
     this.currentUser = localStorage.getItem('userId')
     this.getProfile();
+    this.getSocialMediaProfiles();
   }
 
   goBack() {
@@ -84,5 +87,25 @@ export class UserProfileComponent implements OnInit {
   getCoverPicUrl(file: any) {
     this.userProfile.cover_pic = file.data[0].cover_pic_url;
   }
-  
+
+  getSocialMediaProfiles() {
+    try {
+      this.loader.show();
+      this.baseService.getData('user/socia_media_profile_and_cover_pic/', { "user_id": this.userId }).subscribe(
+        (res: any) => {
+          if (res.cover_pic.socialmedia_coverpic)
+            this.coverPic = res.cover_pic.socialmedia_coverpic
+          if (res.profile_pic.socialmedia_profilepic)
+            this.profilePic = res.profile_pic.socialmedia_profilepic
+          this.loader.hide()
+        },
+        err => {
+          this.loader.hide()
+        }
+      )
+    } catch (error) {
+      this.loader.hide()
+    }
+  }
+
 }

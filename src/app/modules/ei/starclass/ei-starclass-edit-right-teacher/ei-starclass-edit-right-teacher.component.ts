@@ -32,7 +32,17 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTeacherAuidenceList()
+    console.log(JSON.parse(localStorage.getItem("teachers")));
+    var add = this.route.snapshot.queryParamMap.get('add')
+    if(add){
+      if(localStorage.getItem("teachers")){
+        this.editTeacherAudience.dataSource = JSON.parse(localStorage.getItem("teachers"))
+      }
+      this.setData()
+    }
+    else{
+        this.getTeacherAuidenceList()
+    }
   }
 
   getTeacherAuidenceList(page?: any) {
@@ -81,13 +91,28 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   }
 
   setData() {
-    let filtered = this.editTeacherAudience.dataSource.filter(elen => {
-      if (this.isValid(elen) == true)
+    var add = this.route.snapshot.queryParamMap.get('add')
+    if(add){
+      let filtered = JSON.parse(localStorage.getItem("teachers")).filter(elen => {
+        if (this.isValid(elen) == true)
+          return elen.user_id
+      })
+      filtered.forEach(elen => {
+        this.teacherAudienceList.push(elen.user_id)
+        console.log(this.teacherAudienceList);
+        
+      }) 
+    }
+    else{
+      let filtered = this.editTeacherAudience.dataSource.filter(elen => {
+        if(this.isValid(elen) ==  true)
         return elen.user_id
-    })
-    filtered.forEach(elem => {
-      this.teacherAudienceList.push(elem.user_id)
-    })
+      })
+      filtered.forEach(elen => {
+        this.teacherAudienceList.push(elen.user_id)
+      })
+    }
+    
   }
 
   isValid(value) {
@@ -119,12 +144,24 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     } else {
 
       this.loader.show();
-      this.baseService.action('starclass/ei-course-access-permission-to-teacher/', { 'teacher_id': this.teacherAudienceList.join(','), 'course_id': this.route.snapshot.queryParamMap.get('course_id') }).subscribe(
+
+      this.model = {
+        'teacher_id': this.teacherAudienceList.join(','),
+        'course_id': this.route.snapshot.queryParamMap.get('course_id')
+      }
+      this.baseService.action('starclass/ei-course-access-permission-to-teacher/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
             this.alert.success(res.message, 'Success');
-            this.location.back()
+            localStorage.setItem("teachers", JSON.stringify( this.editTeacherAudience.dataSource  ))
+            var add = this.route.snapshot.queryParamMap.get('add')
+            if(add) {
+              this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+            }
+            else {
+              this.location.back()
+            }
           }
           else {
             this.alert.error(res.error.message, 'Error')

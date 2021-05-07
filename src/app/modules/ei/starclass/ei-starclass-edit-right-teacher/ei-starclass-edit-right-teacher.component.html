@@ -26,7 +26,7 @@
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index;"> {{i + editTeacherAudience.startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + 1}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePic">
@@ -66,8 +66,8 @@
 
             </div>
         </div>
-        <pagination-controls *ngIf="editTeacherAudience.dataSource" (pageChange)="getTeacherAuidenceList($event)" class="eiPaginationTag">
-        </pagination-controls>
+        <!-- <pagination-controls *ngIf="editTeacherAudience.dataSource" (pageChange)="getTeacherAuidenceList($event)" class="eiPaginationTag">
+        </pagination-controls> -->
         <div class="row pt-3" *ngIf="!editTeacherAudience.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>

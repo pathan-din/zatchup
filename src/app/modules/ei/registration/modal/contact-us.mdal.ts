@@ -90,6 +90,7 @@ export class StudentAuidence extends Pagination{
   displayedColumns: string[] = ['select','position', 'profilePic','nameOfStudent','classDetails','class','rollNo'];
   id: any;
   params: any ={};
+  // page_size: any = 100;
 }
 
 export class TeacherAuidence extends Pagination{

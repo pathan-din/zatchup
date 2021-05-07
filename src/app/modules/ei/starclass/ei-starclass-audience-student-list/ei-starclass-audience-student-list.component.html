@@ -10,6 +10,19 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Audience Students List</h2>
             </div>
         </div>
+
+        <!-- <div class="row my-3 align-items-center" *ngIf="studentAuidence.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getStudentAuidenceList('')" [(ngModel)]="studentAuidence.page_size">
+                        <option *ngFor="let count of studentAuidence.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+           
+        </div> -->
         <!-- <div class="row mb-2">
             <div class="col-md-6 d-flex align-items-end">
                 <div class=" mr-2">
@@ -41,8 +54,8 @@
                         <mat-header-cell *matHeaderCellDef>
 
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            <mat-checkbox [(ngModel)]="element.is_access_for_star_class" (change)="getStudentAudienceBycheckbox(element.user_id,$event)">
+                        <mat-cell *matCellDef="let element;let i=index">
+                            <mat-checkbox [(ngModel)]="element.is_access_for_star_class" (change)="getStudentAudienceBycheckbox(element.user_id,$event,i)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>

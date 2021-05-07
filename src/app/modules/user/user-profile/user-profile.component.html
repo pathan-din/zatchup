@@ -9,7 +9,8 @@
 </div>
 <div class="container containerScrolling landingPageWidth ">
     <div class="bannerDiv position-relative" *ngIf="userProfile">
-        <img src="assets/images/cover-pic-default.png" class="img-fluid">
+        <img *ngIf="!coverPic" src="assets/images/cover-pic-default.png" class="img-fluid">
+        <img *ngIf="coverPic" src="{{coverPic}}" class="img-fluid">
 
         <!-- <button type="button" (click)="fileInput.click()"
             class=" btn_position-absolute border-0 bg-light-black text-white p-2">
@@ -21,8 +22,8 @@
     <div class="row px-3">
         <div class="col-md-5 text-right d-flex profileDivLeft align-items-center customProfile">
             <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
-                <img *ngIf="!userProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
-                <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="img-fluid dpImg">
+                <img *ngIf="!profilePic" src="assets/images/profile-default.png" class="img-fluid dpImg">
+                <img *ngIf="profilePic" src="{{profilePic}}" class="img-fluid dpImg">
                 
                 <!-- <div class="upload-dp position-absolute">
                     <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
