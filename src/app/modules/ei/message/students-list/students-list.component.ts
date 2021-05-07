@@ -181,6 +181,14 @@ export class StudentsListComponent implements OnInit {
         i=i+1;
       })
       this.dataSource = this.studentList;
+    }else{
+       
+     var i=0;
+      this.teacherList.forEach(objData => {
+        this.teacherList[i].checked = ev.checked;
+        i=i+1;
+      })
+      this.dataSource1 = this.teacherList;
     }
    
   }

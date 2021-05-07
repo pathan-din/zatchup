@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -62,6 +62,7 @@ export class GroupChatComponent implements OnInit {
   teacherList:any=[];
   addTeacherList:any=[];
   isaccess:boolean=false;
+  params:any={};
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
   'class' ];
   constructor(
@@ -69,7 +70,8 @@ export class GroupChatComponent implements OnInit {
     private router: Router,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private route:ActivatedRoute
   ) {
      
    }
@@ -77,25 +79,38 @@ export class GroupChatComponent implements OnInit {
 
   
   ngOnInit(): void {
-    if(localStorage.getItem("groupclasscheck")=='true'){
-      this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
-      this. displayCourseListModuleAccess();
-      this.sectionIds=JSON.parse(localStorage.getItem("sections"));
-      if(JSON.parse(localStorage.getItem("courseIds")).length>0){
-        
-        this.courseIds=JSON.parse(localStorage.getItem("courseIds"))
-        JSON.parse(localStorage.getItem("courseIds")).forEach(element => {
-          this.displayStandardListModuleAccess(element,true);
-        });
+    this.route.queryParams.subscribe(params=>{
+      this.params = params;
+    })
+    if( this.params.newgrp=='c'){
+      if(localStorage.getItem("groupclasscheck")=='true'){
+        this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
+        this. displayCourseListModuleAccess();
+        this.sectionIds=JSON.parse(localStorage.getItem("sections"));
+        if(JSON.parse(localStorage.getItem("courseIds")).length>0){
+          
+          this.courseIds=JSON.parse(localStorage.getItem("courseIds"))
+          JSON.parse(localStorage.getItem("courseIds")).forEach(element => {
+            this.displayStandardListModuleAccess(element,true);
+          });
+        }
+        if(JSON.parse(localStorage.getItem("standardIds")).length>0){
+          this.standardIds=JSON.parse(localStorage.getItem("standardIds"))
+          JSON.parse(localStorage.getItem("standardIds")).forEach(element => {
+            this.displayClassListModuleAccess(element,true);
+          });
+          
+        }
       }
-      if(JSON.parse(localStorage.getItem("standardIds")).length>0){
-        this.standardIds=JSON.parse(localStorage.getItem("standardIds"))
-        JSON.parse(localStorage.getItem("standardIds")).forEach(element => {
-          this.displayClassListModuleAccess(element,true);
-        });
-        
-      }
+    }else{
+      localStorage.removeItem("groupclasscheck")
+      localStorage.removeItem("sections")
+      localStorage.removeItem("standardIds")
+      localStorage.removeItem("courseIds")
+      localStorage.removeItem("teachers")
+      
     }
+   
   
     this.getTeacherList(100)
     this.getGetVerifiedStudent("","");
