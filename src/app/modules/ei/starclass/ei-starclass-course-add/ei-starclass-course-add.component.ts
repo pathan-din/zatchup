@@ -148,7 +148,7 @@ export class EiStarclassCourseAddComponent implements OnInit {
             }
           }
           else {
-            this.alert.error(res.error.message, 'Error')
+            this.alert.error(res.message, 'Error')
           }
           this.loader.hide()
         },

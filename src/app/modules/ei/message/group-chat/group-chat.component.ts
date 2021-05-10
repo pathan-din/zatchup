@@ -82,7 +82,7 @@ export class GroupChatComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       this.params = params;
     })
-    if( this.params.newgrp=='c'){
+     
       if(localStorage.getItem("groupclasscheck")=='true'){
         this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
         this. displayCourseListModuleAccess();
@@ -102,14 +102,7 @@ export class GroupChatComponent implements OnInit {
           
         }
       }
-    }else{
-      localStorage.removeItem("groupclasscheck")
-      localStorage.removeItem("sections")
-      localStorage.removeItem("standardIds")
-      localStorage.removeItem("courseIds")
-      localStorage.removeItem("teachers")
-      
-    }
+    
    
   
     this.getTeacherList(100)
@@ -309,7 +302,12 @@ addTeacherInGroup(obj,i,action){
 }
 createGroupConfirmationList(){
  // this.model.sections = this.sectionIds.join();
-  
+  if(this.teacherList.length==0){
+    return this.alert.error("Atleast one teacher in this group","Error")
+  }
+  if(this.sectionIds.length==0){
+    return this.alert.error("Select one section","Error")
+  }
   localStorage.setItem("teachers",JSON.stringify(this.teacherList));
   localStorage.setItem("sections",JSON.stringify(this.sectionIds));
   localStorage.setItem("courseIds",JSON.stringify(this.courseIds));

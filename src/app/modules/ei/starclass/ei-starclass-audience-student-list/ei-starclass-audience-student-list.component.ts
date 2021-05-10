@@ -100,6 +100,8 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
                       
                     }
                   )
+                  console.log(res.results);
+                  
                   this.studentAuidence.dataSource = res.results;
                 }
               }
@@ -148,20 +150,34 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
         this.studentAudienceList.push(elem.user_id)
       }
       //studentAudienceListLocalstorage
-      console.log(this.studentAudienceListLocalstorage[elem.user_id]);
+      console.log(this.studentAudienceListLocalstorage);
       
-      if(this.studentAudienceListLocalstorage[elem.user_id] == false){
-        var index = this.studentAudienceList.findIndex(ele=>{
-          return ele == elem.user_id
-        })
-        if(index == -1){
-          this.studentAudienceList.push(elem.user_id)
+      for(var index1 in  this.studentAudienceListLocalstorage){
+        console.log(this.studentAudienceListLocalstorage[index1]);
+        if(this.studentAudienceListLocalstorage[index1] == false){
+          var newindex = this.studentAudienceList.findIndex(ele=>{
+            return ele == index1
+          })
+          if(newindex == -1){
+            this.studentAudienceList.push(parseInt(index1))
+          }
+          else{
+            this.studentAudienceList.splice(newindex, 1);
+          }
+        
+        } else{
+          var newindex = this.studentAudienceList.findIndex(ele=>{
+            return ele == index1
+          })
+          if(newindex == -1){
+            this.studentAudienceList.push(parseInt(index1))
+          }
+          else{
+            this.studentAudienceList.splice(newindex, 1);
+          }
         }
-        else{
-          this.studentAudienceList.splice(index, 1);
-        }
-      
       }
+      
       console.log('set data', this.studentAudienceList);
       
     })
@@ -178,7 +194,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     }else{
       this.studentAudienceListLocalstorage[stId]=event.checked
     }
-   // console.log(this.studentAudienceListLocalstorage.join().replace(',',''), 'get student by checkbox');
+    console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
     return;
     if (event.checked) {
       if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
