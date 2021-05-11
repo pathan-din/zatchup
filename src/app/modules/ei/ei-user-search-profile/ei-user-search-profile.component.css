@@ -1,0 +1,124 @@
+
+
+.landingDiv {
+    padding-top: 0;
+}
+
+.w-like-comment {
+    width: 18%;
+}
+
+.check_absolute-image {
+    position: absolute;
+    width: 16px;
+}
+
+.w-12 {
+    width: 12%;
+}
+
+.border-radius-25 {
+    border-radius: 25px;
+}
+
+.color-purple {
+    color: #463267;
+}
+
+.dpImgDiv {
+    width: 35%;
+}
+
+.dpImg {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.img-container {
+    min-height: 25vh;
+    max-height: 25vh;
+    height: 25vh;
+}
+
+.editIcon {
+    width: 7%;
+}
+.upload-dp {
+    top: 65%;
+    bottom: 0;
+    left: 0%;
+    right: 0;
+    background: rgb(133, 132, 127, 0.5);
+}
+
+.form-control-inputDiv {
+    border-radius: 25px;
+}
+.btn_position-absolute {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.dpImgCircle {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+.bannerDiv {
+    height: 180px;
+    overflow: hidden;
+}
+.customProfile {
+    margin-top: -25px;
+}
+.tickImg {
+    position: absolute;
+    bottom: 60px;
+    left: 88px;
+    z-index: 1;
+}
+h4 {
+    font-size: 16px !important;
+    /* text-transform: capitalize; */
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .addBuddyBtn {
+        width: 100%!important;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .profileDivLeft {
+        flex-direction: column;
+        padding-left: 0!important;
+    }
+    .profileDivLeft p {
+        text-align: center!important;
+    }
+    .profileDivRight {
+        padding-left: 0!important;
+        margin-top: 5%;
+    }
+    .profileDivRight p {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    .padding-0 {
+        padding: 0;
+    }
+    .addBuddyBtn {
+        width: 100%!important;
+    }
+    .colLeftPost {
+        padding: 0;
+        margin-top: 2%;
+    }
+    .bannerDiv{
+        height: auto;
+    }
+    .tickImg {
+        bottom: 132px;
+    left: 200px;
+    }
+}
