@@ -91,7 +91,6 @@ h4 {
 @media only screen and (max-width: 414px) {
     .profileDivLeft {
         flex-direction: column;
-        padding-left: 0!important;
     }
     .profileDivLeft p {
         text-align: center!important;
@@ -119,6 +118,6 @@ h4 {
     }
     .tickImg {
         bottom: 132px;
-    left: 200px;
+        left: 59%;
     }
 }
