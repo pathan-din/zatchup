@@ -112,9 +112,17 @@
                 </a>
             </span>
             <span class="spacer"></span>
+
+
+            <form class="d-flex">
+                <input class="form-control me-2 ei-profile-search" type="search" placeholder="Search" aria-label="Search">
+            </form>
            
-            <!-- <a class="ml-4"><i class="fa fa-cog fa-lg color-gray" aria-hidden="true"></i></a> -->
-           
+            <i class="fa fa-search ei-profile-search-mobile ei-profile-search" aria-hidden="true" id="search-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            
+            <div class="search-dropdown">
+                <input class="form-control me-2 dropdown-menu" aria-labelledby="search-dropdown" type="search" placeholder="Search" aria-label="Search">
+            </div> 
 
             <div class="dropdown" *ngIf="isLogin">
                 <!-- <a class="" href="#" role="button" >

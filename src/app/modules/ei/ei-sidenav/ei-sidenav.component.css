@@ -39,6 +39,8 @@
     color: white !important;
 }
 
+.ei-profile-search{width: 400px; margin-right: 30px;}
+
 @media only screen and (min-width: 961px) {
     .logo_span {
         width: 250px;
@@ -100,6 +102,7 @@
     left: 18px
 }
 .mobileLogoImg{display: none;}
+.ei-profile-search-mobile{display: none;}
 
 @media (max-width: 960px){
     
@@ -108,4 +111,13 @@
     }
     .mobileLogoImg{display: block; padding: 10px;}
     
+}
+
+@media (max-width: 767px){
+    .ei-profile-search{display: none;}
+    .ei-profile-search-mobile {display: block; width: auto;}
+    .search-dropdown{width: 92%; position: absolute; left: -10px; top: 15px;}
+    .search-dropdown input {
+        padding-left: 15px;
+    }
 }
