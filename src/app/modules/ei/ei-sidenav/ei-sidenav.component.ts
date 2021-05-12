@@ -35,7 +35,7 @@ export class EiSidenavComponent implements OnDestroy {
   searchConfig: any = {
     "api_endpoint": "user/search-list-for-school-student/",
     "displayImage": true,
-    "route": "user/search",
+    "route": "ei/ei-search",
     "viewZatchupId": true,
     "resultsLength": 5,
     "seeMoreResults": true,
