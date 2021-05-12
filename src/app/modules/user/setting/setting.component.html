@@ -2,9 +2,9 @@
 
 <div class="container contentSpaceTop">
     <div class="row">
-        <div class="col-12">
+        <!-- <div class="col-12">
             <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
-        </div>
+        </div> -->
     </div>
 
     <!-- <div class="row settingRow bg-light-gray mt-3">
@@ -32,12 +32,11 @@
         </div>
     </div> -->
 
-    <div class="row settingRow bg-light-gray mt-3" *ngFor="let objEpData of epData ">
+    <div class="row settingRow bg-white mt-3" *ngFor="let objEpData of epData ">
         <div class="col-md-12">
             <div class="row form-control-inputDiv pt-2 pb-3">
                 <div class="col-md-12 d-flex justify-content-between align-items-center">
-                    <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Setting
-                    </h3>
+                    <h1 class="pt-3 m-0">Personal Setting </h1>
                     <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
                         <a data-target="#personalInfo" data-toggle="modal" class="cursorStyle">
                             <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
@@ -89,11 +88,11 @@
                             </a>
                         </span>
                     </p>
-                    <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's
+                    <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont text-capitalize">Father's
                         Name :
                         <span class="regularFont">{{objEpData.father_name}}</span>
                     </p>
-                    <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's
+                    <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont text-capitalize">Mother's
                         Name :
                         <span class="regularFont">{{objEpData.mother_name}}</span>
                     </p>
@@ -104,8 +103,11 @@
         </div>
     </div>
 
-    <div class="row settingRow bg-light-gray mt-3">
-        <h1 class="col-12 pt-3 pb-3 chat_contentBox">Privacy Setting </h1>
+    <div class="row settingRow bg-white mt-3 form-control-inputDiv">
+        <h1 class="col-12 pt-3 chat_contentBox m-0">Privacy Setting </h1>
+        <div class="col-md-12">
+            <hr>
+        </div>
         <div class="col-12">            
             <div class="row py-2">
 
@@ -139,7 +141,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 border-bottom mb-3"> 
+                <div class="col-12"> 
                     <div class="row mb-3">
                         <div class="col-4"><span class="commonFontSize semiBoldFont">Gender</span></div>
                         <div class="col-4"><span>Male</span></div>

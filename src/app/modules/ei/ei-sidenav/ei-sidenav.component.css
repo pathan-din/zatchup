@@ -102,7 +102,9 @@
     left: 18px
 }
 .mobileLogoImg{display: none;}
-.ei-profile-search-mobile{display: none;}
+.searchforMobile{display: none;}
+.ei-profile-search-mobile {display: none;}
+.search-dropdown{display: none;}
 
 @media (max-width: 960px){
     
@@ -114,10 +116,14 @@
 }
 
 @media (max-width: 767px){
-    .ei-profile-search{display: none;}
+    .searchforMobile{display: block;}
     .ei-profile-search-mobile {display: block; width: auto;}
-    .search-dropdown{width: 92%; position: absolute; left: -10px; top: 15px;}
+    .search-dropdown{width: 95%;
+        position: absolute;
+        left: 10px;
+        top: 55px; display: block;}
     .search-dropdown input {
         padding-left: 15px;
     }
+    .mobile-d-none{display: none !important;}
 }

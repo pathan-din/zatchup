@@ -838,4 +838,8 @@ a:hover {
 .form-control{border-radius: .4rem !important;}
 .approveModelBtn .form-control:focus{background-color: #3fa83f !important;}
 
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #3fa83f !important;
+}
+
 
