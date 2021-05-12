@@ -1,7 +1,5 @@
 .settingRow{width: 80%; margin: 0px auto;}
-.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-    background-color: rgba(56, 167, 19, 0.50) !important;
-}
+
 @media (max-width: 575px){
     .settingRow{
         width: 100%;
