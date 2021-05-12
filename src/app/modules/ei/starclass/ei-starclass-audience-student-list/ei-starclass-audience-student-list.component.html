@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <!-- <div class="row my-3 align-items-center" *ngIf="studentAuidence.dataSource">
+        <div class="row my-3 align-items-center" *ngIf="studentAuidence.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
@@ -22,7 +22,7 @@
                 </div>
             </div>
            
-        </div> -->
+        </div>
         <!-- <div class="row mb-2">
             <div class="col-md-6 d-flex align-items-end">
                 <div class=" mr-2">
@@ -128,8 +128,8 @@
 
             </div>
         </div>
-        <pagination-controls *ngIf="studentAuidence.dataSource" (pageChange)="getStudentAuidenceList($event)" class="eiPaginationTag">
-        </pagination-controls>
+        <!-- <pagination-controls *ngIf="studentAuidence.dataSource" (pageChange)="getStudentAuidenceList($event)" class="eiPaginationTag">
+        </pagination-controls> -->
         <div class="row mt-3" *ngIf="!studentAuidence.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>

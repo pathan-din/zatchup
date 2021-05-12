@@ -32,6 +32,19 @@ export class EiSidenavComponent implements OnDestroy {
   userProfile: any = {};
   isLogin: any;
   subscription: Subscription
+  searchConfig: any = {
+    "api_endpoint": "user/search-list-for-school-student/",
+    "displayImage": true,
+    "route": "user/search",
+    "viewZatchupId": true,
+    "resultsLength": 5,
+    "seeMoreResults": true,
+    "viewSubMenu": true,
+    "rightIcon": true,
+    "viewCity": true
+
+  }
+  searchItem: any = '';
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -272,5 +285,14 @@ export class EiSidenavComponent implements OnDestroy {
     } catch (e) {
       this.alert.error("Something went wrong, Please contact administrator.", "Error");
     }
+  }
+
+  getSearchResult(data: any) {
+    this.router.navigate(['ei/ei-user-search-profile'], { queryParams: { "id": data.id } })
+     
+  }
+
+  setValue(data: any){
+    this.searchItem = data.display
   }
 }

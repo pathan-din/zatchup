@@ -1,0 +1,36 @@
+.example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+
+  .teacherChatList {
+      height: 220px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+  }
+
+  .position-ppin{
+    top: 9px;
+    left: 10px;
+    font-size: 18px;
+    color: #666;
+}
+.groupChatList {
+  height: 200px;
+  overflow-y: scroll;
+}
+  @media (max-width: 767px){
+    .teacherChatList {
+        height: 300px;
+        overflow-x: auto;
+        overflow-y: scroll;
+    }
+  }

@@ -134,87 +134,113 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     }
   }
 
-
   setData() {
-  
     let filtered = this.studentAuidence.dataSource.filter(elen => {
-      if (this.isValid(elen) == true)
-        return elen.user_id
+      if(this.isValid(elen) ==  true)
+      return elen.user_id
     })
-    filtered.forEach(elem =>{
-     var index = this.studentAudienceList.findIndex(ele=>{
-        return ele == elem.user_id
-      })
-      if(index==-1){
-       
-        this.studentAudienceList.push(elem.user_id)
-      }
-      //studentAudienceListLocalstorage
-      console.log(this.studentAudienceListLocalstorage);
-      
-      for(var index1 in  this.studentAudienceListLocalstorage){
-        console.log(this.studentAudienceListLocalstorage[index1]);
-        if(this.studentAudienceListLocalstorage[index1] == false){
-          var newindex = this.studentAudienceList.findIndex(ele=>{
-            return ele == index1
-          })
-          if(newindex == -1){
-            this.studentAudienceList.push(parseInt(index1))
-          }
-          else{
-            this.studentAudienceList.splice(newindex, 1);
-          }
-        
-        } else{
-          var newindex = this.studentAudienceList.findIndex(ele=>{
-            return ele == index1
-          })
-          if(newindex == -1){
-            this.studentAudienceList.push(parseInt(index1))
-          }
-          else{
-            this.studentAudienceList.splice(newindex, 1);
-          }
-        }
-      }
-      
-      console.log('set data', this.studentAudienceList);
-      
+    filtered.forEach(elen => {
+      this.studentAudienceList.push(elen.user_id)
     })
     
   }
+
+  getStudentAudienceBycheckbox(stId, event) {
+
+    if (event.checked) {
+      if (this.studentAudienceList.indexOf(stId) === -1) {
+        this.studentAudienceList.push(stId)
+      }
+    } else {
+      if (this.studentAudienceList.indexOf(stId) === -1) {
+
+      } else {
+        var index = this.studentAudienceList.indexOf(stId)
+        this.studentAudienceList.splice(index, 1);
+      }
+    }
+  }
+
+  // setData() {
+  
+  //   let filtered = this.studentAuidence.dataSource.filter(elen => {
+  //     if (this.isValid(elen) == true)
+  //       return elen.user_id
+  //   })
+  //   filtered.forEach(elem =>{
+  //    var index = this.studentAudienceList.findIndex(ele=>{
+  //       return ele == elem.user_id
+  //     })
+  //     if(index==-1){
+       
+  //       this.studentAudienceList.push(elem.user_id)
+  //     }
+  //     //studentAudienceListLocalstorage
+  //     console.log(this.studentAudienceListLocalstorage);
+      
+  //     for(var index1 in  this.studentAudienceListLocalstorage){
+  //       console.log(this.studentAudienceListLocalstorage[index1]);
+  //       if(this.studentAudienceListLocalstorage[index1] == false){
+  //         var newindex = this.studentAudienceList.findIndex(ele=>{
+  //           return ele == index1
+  //         })
+  //         if(newindex == -1){
+  //           this.studentAudienceList.push(parseInt(index1))
+  //         }
+  //         else{
+  //           this.studentAudienceList.splice(newindex, 1);
+  //         }
+        
+  //       } else{
+  //         var newindex = this.studentAudienceList.findIndex(ele=>{
+  //           return ele == index1
+  //         })
+  //         if(newindex == -1){
+  //           this.studentAudienceList.push(parseInt(index1))
+  //         }
+  //         else{
+  //           this.studentAudienceList.splice(newindex, 1);
+  //         }
+  //       }
+  //     }
+      
+  //     console.log('set data', this.studentAudienceList);
+      
+  //   })
+    
+  // }
 
   isValid(value) {
     return value.is_access_for_star_class == true
   }
 
-  getStudentAudienceBycheckbox(stId, event) {
-    if (event.checked) {
-      this.studentAudienceListLocalstorage[stId]=event.checked
-    }else{
-      this.studentAudienceListLocalstorage[stId]=event.checked
-    }
-    console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
-    return;
-    if (event.checked) {
-      if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
-        this.studentAudienceListLocalstorage.push(stId)
-      }
-    } else {
-      if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
+  // getStudentAudienceBycheckbox(stId, event) {
+  //   if (event.checked) {
+  //     this.studentAudienceListLocalstorage[stId]=event.checked
+  //   }else{
+  //     this.studentAudienceListLocalstorage[stId]=event.checked
+  //   }
+  //   console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
+  //   return;
+  //   if (event.checked) {
+  //     if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
+  //       this.studentAudienceListLocalstorage.push(stId)
+  //     }
+  //   } else {
+  //     if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
 
-      } else {
-        var index = this.studentAudienceListLocalstorage.indexOf(stId)
-        this.studentAudienceListLocalstorage.splice(index, 1);
-      }
-    }
-    var add = this.route.snapshot.queryParamMap.get('add')
-    if(add){
-      localStorage.setItem("studentList", JSON.stringify(this.studentAudienceListLocalstorage))
-    }
-    console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
+  //     } else {
+  //       var index = this.studentAudienceListLocalstorage.indexOf(stId)
+  //       this.studentAudienceListLocalstorage.splice(index, 1);
+  //     }
+  //   }
+  //   var add = this.route.snapshot.queryParamMap.get('add')
+  //   if(add){
+  //     localStorage.setItem("studentList", JSON.stringify(this.studentAudienceListLocalstorage))
+  //   }
+  //   console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
     
-  }
+  // }
 
   addStudentAudience() {
     // debugger

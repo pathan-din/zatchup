@@ -115,7 +115,9 @@
 
 
             <form class="d-flex">
-                <input class="form-control me-2 ei-profile-search" type="search" placeholder="Search" aria-label="Search">
+                <!-- <input class="form-control me-2 ei-profile-search" type="search" placeholder="Search" aria-label="Search"> -->
+                <input-search class="form-control me-2 ei-profile-search" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
+
             </form>
            
             <i class="fa fa-search ei-profile-search-mobile ei-profile-search" aria-hidden="true" id="search-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
