@@ -63,6 +63,7 @@ export class GroupChatComponent implements OnInit {
   addTeacherList:any=[];
   isaccess:boolean=false;
   params:any={};
+  isAddedTeacher:boolean=false;
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
   'class' ];
   constructor(
@@ -302,7 +303,13 @@ addTeacherInGroup(obj,i,action){
 }
 createGroupConfirmationList(){
  // this.model.sections = this.sectionIds.join();
-  if(this.teacherList.length==0){
+ this.teacherList.forEach(element => {
+   if(element.isadded)
+   {
+    this.isAddedTeacher=true;
+   } 
+ });
+  if(!this.isAddedTeacher){
     return this.alert.error("Atleast one teacher in this group","Error")
   }
   if(this.sectionIds.length==0){
