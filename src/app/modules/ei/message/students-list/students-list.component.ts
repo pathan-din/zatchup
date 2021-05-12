@@ -56,6 +56,7 @@ export class StudentsListComponent implements OnInit {
   userId: any;
   pageCounts: any;
   studentList: any=[];
+  studentLists: any=[];
   standardIds:any=[];
   courseIds:any=[];
   totalNumberOfPage: any = 10;
@@ -80,6 +81,7 @@ export class StudentsListComponent implements OnInit {
 
   dataSource1 = []
   sectionsList: any;
+  groupCollectionPerson:any=[];
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
@@ -155,8 +157,8 @@ export class StudentsListComponent implements OnInit {
           i = i + 1;
           arrStudentList.push(objStudentList);
         })
-        console.log(arrStudentList);
-        
+         
+        this.studentLists=arrStudentList;
         this.dataSource = arrStudentList;
         if (res.status == false) {
           this.alert.error(res.error.message[0], 'Error')
@@ -174,18 +176,18 @@ export class StudentsListComponent implements OnInit {
   selectAll(ev,type){
     if(type=='student')
     {
-     console.log(ev);
+     
      var i=0;
-      this.studentList.forEach(objData => {
-        this.studentList[i].checked = ev.checked;
+      this.studentLists.forEach(objData => {
+        objData.checked = ev.checked;
         i=i+1;
       })
-      this.dataSource = this.studentList;
+      this.dataSource = this.studentLists;
     }else{
        
      var i=0;
       this.teacherList.forEach(objData => {
-        this.teacherList[i].checked = ev.checked;
+        objData.isadded = ev.checked;
         i=i+1;
       })
       this.dataSource1 = this.teacherList;
@@ -196,13 +198,47 @@ export class StudentsListComponent implements OnInit {
   selectOne(ev,type){
     if(type=='student')
     {
-     this.studentList.forEach(objData => {
-        objData.checked = ev;
+     this.studentLists.forEach(objData => {
+        objData.checked = ev.checked;
       })
       
+    }else{
+      this.teacherList.forEach(objData => {
+        objData.isadded = ev.checked;
+        
+      })
     }
    
   }
-
+  createGroup(){
+    let atLeastOneStudent:any=false;
+    let atLeastOneTeacher:any=false;
+    let groupReceipentUser:any=[];
+    this.studentLists.forEach(objDataStu => {
+      console.log(objDataStu.checked);
+      
+      if(objDataStu.checked){
+        groupReceipentUser.push(objDataStu)
+        atLeastOneStudent=true;
+      } 
+    })
+    this.teacherList.forEach(objData => {
+      
+      if(objData.isadded ){
+        groupReceipentUser.push(objData)
+        atLeastOneTeacher=true;
+      } 
+      
+    })
+    if(!atLeastOneStudent){
+      return this.alert.error("Please atleast one student in this group","Error");
+    }
+    if(!atLeastOneTeacher){
+      return this.alert.error("Please atleast one teacher in this group","Error");
+    }
+    localStorage.removeItem("groupUsers");
+    localStorage.setItem("groupUsers",JSON.stringify(groupReceipentUser));
+    this.router.navigate(["ei/create-group-chat"]);
+  }
  
 }
