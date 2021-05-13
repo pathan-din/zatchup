@@ -81,10 +81,10 @@ export class EiSearchComponent implements OnInit {
   }
 
   getfilteredData(data: TabDirective): void {
-    if (data.heading == 'People')
-      this.filterBy = 'user';
+    if (data.heading == 'Student')
+      this.filterBy = 'student';
     else
-      this.filterBy = 'school';
+      this.filterBy = 'alumni';
     this.cityId = '';
     this.getSearchData()
   }
@@ -113,7 +113,7 @@ export class EiSearchComponent implements OnInit {
   }
 
   userProfile(id: any) {
-    this.router.navigate(['ei/ei-user-search-profile'], { queryParams: { "id": id } })
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
   }
 
   getUserSearchData() {

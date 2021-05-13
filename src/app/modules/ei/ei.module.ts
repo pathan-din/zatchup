@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { EIWebRoutingModule } from './ei-routing.module';
 import { EiLoginComponent } from './ei-login/ei-login.component';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
@@ -353,6 +354,7 @@ const config = {
     EIWebRoutingModule,
     MaterialDesignModule,
     FormsModule,
+    TabsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxPaginationModule,
@@ -363,6 +365,7 @@ const config = {
     SharedModule,
     ImageViewerModule.forRoot(config),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     EiLoginComponent
   ]

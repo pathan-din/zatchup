@@ -288,7 +288,7 @@ export class EiSidenavComponent implements OnDestroy {
   }
 
   getSearchResult(data: any) {
-    this.router.navigate(['ei/ei-user-search-profile'], { queryParams: { "id": data.id } })
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': data.id } });
      
   }
 
