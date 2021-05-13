@@ -842,4 +842,7 @@ a:hover {
     background-color: #3fa83f !important;
 }
 
-
+.searchTab .nav-tabs .nav-link {
+    padding: 12px 35px !important;
+    font-size: 20px !important;
+}

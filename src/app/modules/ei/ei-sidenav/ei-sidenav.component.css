@@ -106,6 +106,9 @@
 .ei-profile-search-mobile {display: none;}
 .search-dropdown{display: none;}
 
+[type=search]{width: 500px;
+    margin-left: 150px;}
+
 @media (max-width: 960px){
     
     .headerLogoImg {
@@ -126,4 +129,6 @@
         padding-left: 15px;
     }
     .mobile-d-none{display: none !important;}
+    [type=search]{width: 500px;
+        margin-left: 0px;}
 }

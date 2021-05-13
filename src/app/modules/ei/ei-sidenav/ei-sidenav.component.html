@@ -111,12 +111,10 @@
                     <img class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png" routerLink="/ei/dashboard">
                 </a>
             </span>
-            <span class="spacer"></span>
-
-
             <form class="d-flex mr-4 mobile-d-none">
                 <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
             </form>
+            <span class="spacer"></span>
            
             <i class="fa fa-search searchforMobile mr-4" style="color: #888;" aria-hidden="true" id="searchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
             

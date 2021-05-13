@@ -19,6 +19,8 @@
     border: 1px solid #ced4da !important;
 }
 
+
+
 @media (max-width: 767px){
     .pl-0, .pr-0 {
         padding-left: 0!important;
