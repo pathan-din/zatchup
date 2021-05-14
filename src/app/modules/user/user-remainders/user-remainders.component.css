@@ -33,3 +33,9 @@
         padding: 4% 5%;
     }
 }
+
+.btn-link{
+    color: #333;
+    padding: 0px;
+}
+.card-header{padding: 0px;}
