@@ -168,7 +168,7 @@
         <!--Start html for fees information table-->
         <div class="tableDiv " *ngIf="starclassLectureList.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="starclassLectureList.dataSource">
+                <mat-table [dataSource]="starclassLectureList.dataSource | paginate:starclassLectureList.config">
 
                     <!-- Position Column -->
                     <ng-container matColumnDef="position">
@@ -222,6 +222,10 @@
                 </mat-table>
             </div>
         </div>
+
+        <pagination-controls *ngIf="starclassLectureList.dataSource" (pageChange)="getLectureList($event)" class="eiPaginationTag">
+        </pagination-controls>
+
         <div class="row" *ngIf="!starclassLectureList.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>

@@ -20,24 +20,24 @@
                         </div>
                     </div> -->
                     <div class="pt-3" *ngIf="dataSource">
-                        <div class="row paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
-                            <div (click)="userProfile(people.id)"
+                        <div class="row paddingStyle bg-white mt-3" *ngFor="let student of dataSource">
+                            <div (click)="userProfile(student.id)"
                                 class="cursorStyle col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
+                                <img *ngIf="!student.profile_pic" src="assets/images/profile-default.png"
                                     class="img-fluid border-0 rounded-circle ">
-                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
+                                <img *ngIf="student.profile_pic" src="{{student.profile_pic}}"
                                     class="img-fluid border-0 rounded-circle ">
                             </div>
-                            <div (click)="userProfile(people.id)"
+                            <div (click)="userProfile(student.id)"
                                 class="col-xl-11 col-lg-11 col-md-11 col-sm-11  col-10 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
-                                <div class="commonFontSize semiBoldFont">{{people.display}}
+                                <div class="commonFontSize semiBoldFont">{{student.display}}
                                     <!-- <span class="small-text-2 regularFont">Student</span> -->
                                 </div>
                                 <p class="regularFont issueDateFontSize color-gray batchDetail"
-                                    *ngIf="people.is_school_mate && currentUser != people.id">You were in same school
+                                    *ngIf="student.is_school_mate && currentUser != student.id">{{student.display}}
                                 </p>
                                 <p class="regularFont issueDateFontSize color-gray batchDetail"
-                                    *ngIf="people.is_school_mate && currentUser == people.id">You</p>
+                                    *ngIf="student.is_school_mate && currentUser == student.id">{{student.display}}</p>
                             </div>
                             <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto"
                                 (click)="goToMyBuddiesPage()">
@@ -67,20 +67,22 @@
                     </div> -->
 
                     <div class="pt-3" *ngIf="dataSource">
-                        <div class="row paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
-                            <div (click)="userProfile(people.id)"
+                        <div class="row paddingStyle bg-white mt-3" *ngFor="let alumni of dataSource">
+                            <div (click)="userProfile(alumni.id)"
                                 class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center cursorStyle">
-                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
+                                <img *ngIf="!alumni.profile_pic" src="assets/images/profile-default.png"
                                     class="img-fluid border-0 rounded-circle ">
-                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
+                                <img *ngIf="alumni.profile_pic" src="{{alumni.profile_pic}}"
                                     class="img-fluid border-0 rounded-circle ">
                             </div>
-                            <div (click)="userProfile(people.id)"
+                            <div (click)="userProfile(alumni.id)"
                                 class="col-xl-11 col-lg-11 col-md-11 col-sm-11  col-10 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
                                 <div class="commonFontSize semiBoldFont d-flex justify-content-between">
-                                    {{people.display}}
+                                    {{alumni.display}}
                                     <span
-                                        class="regularFont issueDateFontSize small-text-2 text-right">{{people.city}}</span>
+                                        class="regularFont issueDateFontSize small-text-2 text-right">{{alumni.display}}</span>
+                                    <span
+                                        class="regularFont issueDateFontSize small-text-2 text-right">{{alumni.display}}</span>
                                 </div>
                             </div>
                            
