@@ -20,9 +20,10 @@ const ELEMENT_DATA: subAdminManagementElement[] = [];
 })
 export class ReminderPastComponent implements OnInit {
 
-  displayedColumns: string[] = ['SNo', 'message', 'recieved_date'];
+  displayedColumns: string[] = ['SNo', 'message','attachment', 'recieved_date'];
 
   dataSource = ELEMENT_DATA;
+  images: any=[];
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
 
@@ -47,5 +48,13 @@ export class ReminderPastComponent implements OnInit {
     } catch (error) {
       this.loader.hide()
     }
-  }  
+  } 
+  fileType(file: any) {
+    return file.split('.').pop();
+  }
+  viewImage(src) {
+    this.images = []
+    this.images.push(src);
+  }
+ 
 }

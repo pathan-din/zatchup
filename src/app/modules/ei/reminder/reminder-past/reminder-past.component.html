@@ -23,6 +23,27 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="attachment">
+                        <mat-header-cell *matHeaderCellDef> Attachment </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <div class="imgCircle cursorStyle">
+                                <img (click)="viewImage(element.attachment)" *ngIf="element.attachment && fileType(element.attachment) != 'pdf'"
+                                    src="{{element.attachment}}" alt="ei profile" class="img-fluid cerImg rounded"
+                                    aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
+        
+                                <img (click)="download_file(element.attachment)" *ngIf="element.attachment && fileType(element.attachment) == 'pdf'"
+                                    src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.attachment" src="assets/images/no-image-icon.jpg" alt="ei profile" class="img-fluid cerImg rounded">
+                            </div>
+                            
+                        </mat-cell>
+                    </ng-container>
+
+
+
+
+                    
+
                     <ng-container matColumnDef="recieved_date">
                         <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -33,6 +54,23 @@
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imageViewer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 ">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true ">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <ngx-image-viewer [src]="images" [(index)]="imageIndexOne">
+                </ngx-image-viewer>
             </div>
         </div>
     </div>
