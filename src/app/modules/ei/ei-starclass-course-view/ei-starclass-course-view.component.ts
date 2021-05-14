@@ -81,8 +81,11 @@ getCourseDetails() {
   try {
     this.loader.show()
     let params = {
-      "id": this.activeRoute.snapshot.params.id
+      "id": this.activeRoute.snapshot.params.id,
+      "is_all_access": this.activeRoute.snapshot.queryParamMap.get('is_all_access')
     }
+    console.log('thhfd', this.params);
+    
     this.baseService.getData('starclass/ei_course_preview/', params).subscribe(
       (res: any) => {
         if (res.status == true) {

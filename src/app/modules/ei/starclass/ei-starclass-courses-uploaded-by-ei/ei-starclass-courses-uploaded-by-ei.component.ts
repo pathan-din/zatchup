@@ -49,8 +49,8 @@ export class EiStarclassCoursesUploadedByEiComponent implements OnInit {
   }
 
   
-  goToCourseView(data){
-    this.router.navigate(['ei/ei-starclass-course-view', data.id])
+  goToCourseView(data , is_all_access){
+    this.router.navigate(['ei/ei-starclass-course-view', data.id], { queryParams : { 'is_all_access' : is_all_access}})
     console.log(data);
   }
 
