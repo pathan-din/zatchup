@@ -109,6 +109,14 @@
 [type=search]{width: 500px;
     margin-left: 150px;}
 
+    .dropdown-menu.customEiSearch.show {
+        background: none;
+        border: 0px;
+        width: 310px !important;
+    left: inherit !important;
+    top: 4px !important;
+    }
+
 @media (max-width: 960px){
     
     .headerLogoImg {

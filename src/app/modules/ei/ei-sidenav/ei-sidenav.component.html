@@ -116,12 +116,14 @@
             </form>
             <span class="spacer"></span>
            
-            <i class="fa fa-search searchforMobile mr-4" style="color: #888;" aria-hidden="true" id="searchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <div class="dropdown">
+                <i class="fa fa-search searchforMobile mr-4" style="color: #888;" aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
             
-            <div class="search-dropdown" aria-labelledby="searchDropdown">
-                <!-- <input class="form-control me-2 dropdown-menu" aria-labelledby="search-dropdown" type="search" placeholder="Search" aria-label="Search"> -->
-                <input-search class="form-control me-2 dropdown-menu" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
-            </div> 
+                <div class="dropdown-menu customEiSearch" aria-labelledby="dropdownMenuButton">
+                    <!-- <input class="form-control me-2 dropdown-menu" aria-labelledby="search-dropdown" type="search" placeholder="Search" aria-label="Search"> -->
+                    <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
+                </div> 
+            </div>
 
             <div class="dropdown" *ngIf="isLogin">
                 <!-- <a class="" href="#" role="button" >
