@@ -44,7 +44,7 @@ export class UserRemaindersComponent implements OnInit {
 
 
   }
-
+  
   goBack(): void {
     this.location.back()
   }
