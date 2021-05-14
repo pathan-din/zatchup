@@ -13,6 +13,12 @@ import { Location } from '@angular/common';
 export class UserRemaindersComponent implements OnInit {
 
   remaindersList: any = [];
+  pageSize: any = 1;
+  totalNumberOfPage: any = 10;
+  config: any;
+  collection = { count: 60, data: [] };
+  model:any={}
+  totalItems:any;
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
@@ -22,17 +28,32 @@ export class UserRemaindersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getReminders()
+    this.config = {
+      itemsPerPage: 0,
+      currentPage: 1,
+      totalItems: 0
+    };
+    this.getReminders("")
   }
-  getReminders() {
+  getReminders(page) {
     try {
       this.loader.show();
-      this.baseService.getData("user/get-all-reminders/").subscribe((res: any) => {
+      this.model.page_size=20;
+      this.model.page=page
+      this.baseService.getData("user/get-all-reminders/",this.model).subscribe((res: any) => {
         if (res.status == true) {
           if (res.count <= 0)
             this.remaindersList = undefined
           else
             this.remaindersList = res.results
+            this.pageSize = res.page_size;
+            this.model.page_size=this.pageSize
+            this.totalNumberOfPage = res.count;
+            if (!page) { page = 1 }
+            var i = (this.pageSize * (page - 1)) + 1;
+            this.config.itemsPerPage = this.pageSize
+            this.config.currentPage = page
+            this.config.totalItems = this.totalNumberOfPage
         } else {
           // this.notificationList = [];
         }
@@ -44,7 +65,10 @@ export class UserRemaindersComponent implements OnInit {
 
 
   }
-  
+  openAccordian($event){
+    console.log($event);
+    
+  }
   goBack(): void {
     this.location.back()
   }

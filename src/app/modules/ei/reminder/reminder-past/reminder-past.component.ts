@@ -21,9 +21,13 @@ const ELEMENT_DATA: subAdminManagementElement[] = [];
 export class ReminderPastComponent implements OnInit {
 
   displayedColumns: string[] = ['SNo', 'message','attachment', 'recieved_date'];
-
+  pageSize: any = 1;
+  totalNumberOfPage: any = 10;
+  config: any;
+  collection = { count: 60, data: [] };
   dataSource = ELEMENT_DATA;
   images: any=[];
+  model:any={}
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
 
@@ -33,14 +37,28 @@ export class ReminderPastComponent implements OnInit {
     private alert:NotificationService) { }
 
   ngOnInit(): void {
-    this.getPastReminder();
+    this.config = {
+      itemsPerPage: 0,
+      currentPage: 1,
+      totalItems: 0
+    };
+    this.getPastReminder("");
   }
-  getPastReminder(){
+  getPastReminder(page){
     try {
-      this.baseService.getData("chat/chat_reminder_notification_past/").subscribe((res:any)=>{
+      this.model.page=page;
+      this.baseService.getData("chat/chat_reminder_notification_past/",this.model).subscribe((res:any)=>{
         if(res.status==true){
           this.alert.success("Data get successfully","Success");
           this.dataSource=res.results
+          this.pageSize = res.page_size;
+          this.model.page_size=this.pageSize
+          this.totalNumberOfPage = res.count;
+          if (!page) { page = 1 }
+          var i = (this.pageSize * (page - 1)) + 1;
+          this.config.itemsPerPage = this.pageSize
+          this.config.currentPage = page
+          this.config.totalItems = this.totalNumberOfPage
         }
       },error=>{
         this.loader.hide()

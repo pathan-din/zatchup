@@ -8,7 +8,7 @@
         </div>
         <div class="tableDiv mt-2">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="dataSource | paginate: config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
@@ -54,6 +54,7 @@
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
+                <pagination-controls *ngIf="dataSource"  (pageChange)="getPastReminder($event)" class="eiPaginationTag"></pagination-controls>
             </div>
         </div>
     </div>

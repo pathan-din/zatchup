@@ -12,18 +12,18 @@
         <h1 class="mb-4 text-center">Reminders </h1>
 
 
-    <div class="accordion mb-4" id="accordionExample" *ngIf="remaindersList">
-        <div class="card mb-3" *ngFor="let reminder of remaindersList;">
+    <div class="accordion mb-4" id="accordionExample" *ngIf="remaindersList ">
+        <div class="card mb-3" *ngFor="let reminder of remaindersList | paginate: config;let i=index; ">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <a name="test{{i}}" class="btn btn-link btn-block text-left" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="false" aria-controls="collapseOne">
                         <img src="assets/images/profile_pic.png" class="img-fluid reminderImg">
                         <span class="p-2 d-inline-block">{{reminder.message}}</span>
-                    </button>
+                    </a>
                 </h2>
             </div>
         
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <img *ngIf="reminder.attachment" src="{{reminder.attachment}}" class="img-fluid">
 
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-
+<pagination-controls *ngIf="remaindersList.length>0"  (pageChange)="getReminders($event)" class="eiPaginationTag"></pagination-controls>
         <!-- <div class="card">
             <div class="card-header" id="headingTwo">
                 <h2 class="mb-0">
