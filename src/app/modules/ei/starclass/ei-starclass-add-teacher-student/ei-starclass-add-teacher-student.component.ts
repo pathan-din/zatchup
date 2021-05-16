@@ -279,7 +279,7 @@ addTeacherInGroup(obj,i,action){
   
   
 }
-createGroupConfirmationList(id){
+createGroupConfirmationList(){
   // this.model.sections = this.sectionIds.join();
    
    localStorage.setItem("teachers",JSON.stringify(this.teacherList));
