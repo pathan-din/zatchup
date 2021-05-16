@@ -33,7 +33,7 @@ export class EiSidenavComponent implements OnDestroy {
   isLogin: any;
   subscription: Subscription
   searchConfig: any = {
-    "api_endpoint": "user/search-list-for-school-student/",
+    "api_endpoint": "user/search-list/",
     "displayImage": true,
     "route": "ei/ei-search",
     "viewZatchupId": true,

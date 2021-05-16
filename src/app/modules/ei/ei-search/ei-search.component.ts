@@ -11,7 +11,7 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 export class EiSearchComponent implements OnInit {
   searchText: any;
   dataSource: any;
-  filterBy: any = 'user';
+  filterBy: any = 'STUDENTS' ;
 
   currentCitySearchConfig: any = {
     "api_endpoint": "user/city-list/",
@@ -65,7 +65,7 @@ export class EiSearchComponent implements OnInit {
       "school_id": this.schoolSearchId,
       "city_id": this.cityId
     }
-    this.baseService.getData('user/search-list-for-school-student', params).subscribe(
+    this.baseService.getData('user/search-list/', params).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (res.count == 0)
@@ -82,9 +82,9 @@ export class EiSearchComponent implements OnInit {
 
   getfilteredData(data: TabDirective): void {
     if (data.heading == 'Student')
-      this.filterBy = 'student';
+      this.filterBy = 'STUDENTS';
     else
-      this.filterBy = 'alumni';
+      this.filterBy = 'ALUMINI';
     this.cityId = '';
     this.getSearchData()
   }
