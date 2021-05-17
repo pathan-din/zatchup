@@ -95,7 +95,7 @@ body {
     align-items: center;
     overflow-x: scroll;
     flex-wrap: nowrap;
-    /* justify-content: unset; */
+    justify-content: unset;
   }
 }
 
