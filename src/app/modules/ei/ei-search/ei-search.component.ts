@@ -12,6 +12,14 @@ export class EiSearchComponent implements OnInit {
   searchText: any;
   dataSource: any;
   filterBy: any = 'STUDENTS' ;
+  page_size: any = 5;
+  startIndex: any;
+  config = {
+      itemsPerPage: 0,
+      currentPage: 1,
+      totalItems: 0
+  };
+  pageCounts: any;
 
   currentCitySearchConfig: any = {
     "api_endpoint": "user/city-list/",
@@ -58,7 +66,7 @@ export class EiSearchComponent implements OnInit {
   }
 
 
-  getSearchData() {
+  getSearchData(page? : any) {
     let params = {
       "search": this.searchText,
       "filter_by": this.filterBy,
@@ -68,10 +76,22 @@ export class EiSearchComponent implements OnInit {
     this.baseService.getData('user/search-list/', params).subscribe(
       (res: any) => {
         if (res.status == true) {
-          if (res.count == 0)
-            this.dataSource = undefined
-          else
-            this.dataSource = res.results;
+
+          if (!page)
+            page = this.config.currentPage
+            this.startIndex = res.page_size * (page- 1) + 1;
+            this.page_size = res.page_size
+            this.config.itemsPerPage = this.page_size
+            this.config.currentPage = page
+            this.config.totalItems = res.count
+            if(res.count > 0) {
+              this.dataSource = res.results;
+              this.pageCounts = this.baseService.getCountsOfPage()
+            }
+            else {
+              this.dataSource = undefined
+              this.pageCounts = undefined
+            }
         }
         else {
 
