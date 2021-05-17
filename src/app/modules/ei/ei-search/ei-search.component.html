@@ -7,18 +7,18 @@
                     <div class="pt-3" *ngIf="dataSource">
                         <div class="row paddingStyle bg-white mt-3" *ngFor="let student of dataSource">
                             <div (click)="userProfile(student.id)"
-                                class="cursorStyle col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
+                                class="cursorStyle col-xl-1 col-lg-1 col-md-1 col-sm-1 col-3 p-0 justify-content-between align-items-center align-self-center">
                                 <img *ngIf="!student.profile_pic" src="assets/images/profile-default.png"
-                                    class="img-fluid border-0 rounded-circle ">
+                                    class="img-fluid border rounded-circle ">
                                 <img *ngIf="student.profile_pic" src="{{student.profile_pic}}"
-                                    class="img-fluid border-0 rounded-circle ">
+                                    class="img-fluid border rounded-circle ">
                             </div>
                             <div (click)="userProfile(student.id)"
-                                class="col-xl-11 col-lg-11 col-md-11 col-sm-11  col-10 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
+                                class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-9 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
                                 <div class="row"> 
-                                    <div class="col-sm-4 commonFontSize semiBoldFont text-capitalize">{{student.display}}</div>
-                                    <div class="col-sm-4 regularFont issueDateFontSize small-text-2">Roll Number: {{student.roll_no}}</div>
-                                    <div class="col-sm-4 regularFont issueDateFontSize small-text-2 text-right text-capitalize">School Id: {{student.school_id}}</div>
+                                    <div class="col-sm-12 commonFontSize semiBoldFont text-capitalize">{{student.display}}</div>
+                                    <div class="col-sm-12 regularFont issueDateFontSize small-text-2"><span class="semiBoldFont">Roll Number:</span>{{student.roll_no}}</div>
+                                    <div class="col-sm-12 regularFont issueDateFontSize small-text-2 text-capitalize"><span class="semiBoldFont">School Id:</span>{{student.school_id}}</div>
                                 </div>
                              </div>
                         </div>
@@ -34,17 +34,17 @@
                   <div class="pt-3" *ngIf="dataSource">
                         <div class="row paddingStyle bg-white mt-3" *ngFor="let alumni of dataSource">
                             <div (click)="userProfile(alumni.id)"
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center cursorStyle">
+                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-3 p-0 justify-content-between align-items-center align-self-center cursorStyle">
                                 <img *ngIf="!alumni.profile_pic" src="assets/images/profile-default.png"
-                                    class="img-fluid border-0 rounded-circle ">
+                                    class="img-fluid border rounded-circle ">
                                 <img *ngIf="alumni.profile_pic" src="{{alumni.profile_pic}}"
-                                    class="img-fluid border-0 rounded-circle ">
+                                    class="img-fluid border rounded-circle ">
                             </div>
                             <div (click)="userProfile(alumni.id)"
-                                class="col-xl-11 col-lg-11 col-md-11 col-sm-11  col-10 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
+                                class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-9 justify-content-between align-items-center align-self-center mediumFont cursorStyle">
                                 <div class="row"> 
-                                    <div class="col-sm-4 commonFontSize semiBoldFont text-capitalize">{{alumni.display}}</div>
-                                    <div class="col-sm-4 regularFont issueDateFontSize small-text-2">School Id: {{alumni.school_id}}</div>
+                                    <div class="col-sm-12 commonFontSize semiBoldFont text-capitalize">{{alumni.display}}</div>
+                                    <div class="col-sm-12 regularFont issueDateFontSize small-text-2">School Id: {{alumni.school_id}}</div>
                                 </div>
                             </div>
                         </div>
