@@ -20,7 +20,6 @@ export class SettingComponent implements OnInit {
   errorDisplay: any = {};
   personalInfo: any = {};
   privacySettings: any = [];
-  settingTypes: ['MOB_NUM', 'EMAIL_ID', 'DOB', 'GENDER'];
   userId: any;
   dobStatus: boolean = false;
   genderStatus: boolean = false;

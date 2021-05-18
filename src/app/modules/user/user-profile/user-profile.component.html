@@ -57,16 +57,16 @@
                         <hr>
                     </div>
                     <div class="col-md-12" *ngIf="userProfile">
-                        <p class="m-0 commonFontSize semiBoldFont">DOB :
+                        <p *ngIf="settingValue('DOB')" class="m-0 commonFontSize semiBoldFont">DOB :
                             <span class="regularFont">{{userProfile.dob}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender">Gender :
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender && settingValue('GENDER')">Gender :
                             <span class="regularFont">{{getGender(userProfile)}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email">Email :
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email && settingValue('EMAIL_ID')">Email :
                             <span class="regularFont">{{userProfile.email}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone">Phone :
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone && settingValue('MOB_NUM')">Phone :
                             <span class="regularFont">{{userProfile.phone}}</span>
                         </p>
                         <!-- <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name :

@@ -18,6 +18,7 @@ export class UserProfileComponent implements OnInit {
   profession: any;
   coverPic: any;
   profilePic: any;
+  privacySettings: any = []
 
   constructor(
     private router: Router,
@@ -35,6 +36,7 @@ export class UserProfileComponent implements OnInit {
     this.currentUser = localStorage.getItem('userId')
     this.getProfile();
     this.getSocialMediaProfiles();
+    this.getSettings()
   }
 
   goBack() {
@@ -105,6 +107,34 @@ export class UserProfileComponent implements OnInit {
       )
     } catch (error) {
       this.loader.hide()
+    }
+  }
+
+  getSettings() {
+    this.loader.show();
+    this.baseService.getData('user/setting_status/' + this.userId).subscribe(
+      (res: any) => {
+        if (res.status) {
+          this.privacySettings = res.data;
+        }
+        this.loader.hide()
+      },
+      err => {
+        this.loader.hide()
+      }
+    )
+  }
+
+  settingValue(type: any) {
+    if (this.privacySettings.length == 0)
+      return true
+    else {
+      let find = this.privacySettings.find(ele => {
+        return ele.status_type == type
+      })
+      if (find)
+        return find.is_disabled
+      return true
     }
   }
 
