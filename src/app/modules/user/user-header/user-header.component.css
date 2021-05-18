@@ -11,6 +11,12 @@
     width: 30px;
     height: 30px;
 }
+.header-dp {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #463267;
+    overflow: hidden;
+}
 
 .customDropDown {
     right: 0px !important;
