@@ -17,6 +17,7 @@ export class SettingComponent implements OnInit {
   epData: any;
   editModel: any = {};
   model: any = {};
+  error: any = [];
   errorDisplay: any = {};
   personalInfo: any = {};
   privacySettings: any = [];
@@ -25,6 +26,8 @@ export class SettingComponent implements OnInit {
   genderStatus: boolean = false;
   mobStatus: boolean = false;
   emailStatus: boolean = false;
+  errorOtpModelDisplay: any = [];
+
 
   constructor(
     private alert: NotificationService,
@@ -238,5 +241,106 @@ export class SettingComponent implements OnInit {
         this.loader.hide()
       }
     )
+  }
+  openModel(label, key, value, classId: any = '') {
+    this.editModel = {};
+    this.editModel.class_id = '';
+    this.model.dob = label.dob;//this.baseService.getDateReverseFormat()
+    this.model.email = label.email;
+    this.model.first_name = label.first_name;
+    this.model.last_name = label.last_name;
+    this.model.phone = label.phone;
+    this.model.roll_no = label.roll_no;
+    this.model.admission_number = label.admission_number;
+    this.editModel.key = key;
+    this.editModel.old_value = value ? value : 0;
+    this.editModel.value = value ? value : 0;
+    if (key == 'roll_no') {
+      this.editModel.course_id = label.course_id
+      this.editModel.class_id = classId;
+      this.model.roll_no = value;
+    }
+    if (key == 'admission_number') {
+      this.editModel.school_id = label.school_id
+    }
+
+  }
+
+  goToDashboard() {
+    var flagRequired = true;
+    this.errorOtpModelDisplay = '';
+    this.error = [];
+    if (!this.model.otp1) {
+      flagRequired = false;
+    } else if (!this.model.otp2) {
+      flagRequired = false;
+    } else if (!this.model.otp3) {
+      flagRequired = false;
+    }
+    else if (!this.model.otp4) {
+      flagRequired = false;
+    }
+    if (flagRequired == false) {
+      this.error.push("Please enter OTP!");
+    }
+    if (this.error.length > 0) {
+      this.errorOtpModelDisplay = this.error.join('\n');
+      return;
+    }
+    try {
+      let data: any = {};
+      data.key = this.editModel.key;
+      data.value = this.editModel.value;
+      data.verify_otp_no = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
+
+      this.baseService.action('user/user-request-verify-otp-detail-change/', data).subscribe(res => {
+        let response: any = {}
+        response = res;
+        if (response.status == true) {
+
+          $("#OTPModel").modal('hide');
+          this.alert.success('Request has been sent for approved', 'Success');
+          location.reload();
+          //
+
+        } else {
+          this.errorOtpModelDisplay = response.error.message;
+          this.alert.error(this.errorOtpModelDisplay, 'Error');
+        }
+      }, (error) => {
+        console.log(error);
+
+      });
+    } catch (err) {
+      console.log("vaeryfy Otp Exception", err);
+    }
+
+  }
+
+  resendOtp() {
+    try {
+      this.loader.show()
+      this.baseService.action("user/resend-otp-ei-request-for-detail-change/", this.editModel).subscribe((res: any) => {
+        if (res.status) {
+          this.loader.hide()
+          this.alert.success(res.message, 'Success')
+        } else {
+          this.loader.hide()
+        }
+      }, (error) => {
+        this.loader.hide()
+      })
+    } catch (e) {
+
+    }
+  }
+
+  changeInput($ev) {
+    console.log($ev);
+    if ($ev.target.value.length == $ev.target.maxLength) {
+      var $nextInput = $ev.target.nextSibling;
+      $nextInput.focus();
+    }
+
   }
 }

@@ -63,7 +63,7 @@
                         <span class="regularFont">{{this.baseService.getGender(objEpData, 'pronoun')}}
                         </span>
                     </p>
-                    <!-- <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email :
+                    <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email :
                         <span class="regularFont">
                             <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
                                 (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a>
@@ -74,7 +74,7 @@
                                 <i style="font-size:20px" class="fa fa-mobile ml-2 color-green"></i>
                             </a>
                         </span>
-                    </p> -->
+                    </p>
                     <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number :
                         <span class="regularFont">
                             <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
@@ -272,6 +272,50 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="OTPpModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body pl-5 pr-5 text-center">
+                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
+                <p class="color-black regularFont commonFontSize">Enter OTP Send On Your {{editModel.value}}. </p>
+                <div class="form-group">
+                    <div class="d-flex flex-row justify-content-between">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                            type="text" maxlength="1">
+                        <input [(ngModel)]="model.otp4" name="otp4"
+                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                            type="text" maxlength="1">
+                    </div>
+                </div>
+                <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
+                <p class="text-right">
+                    <a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend
+                        Code </a>
+                </p>
+                <button type="button" class="btn common-model-Btn mt-3" (click)="goToDashboard();">Submit </button>
+
+                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- personal information model -->
     <div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
