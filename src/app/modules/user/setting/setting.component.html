@@ -52,9 +52,8 @@
                     <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB :
                         <span class="regularFont">
                             <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
-                            <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle"
-                                data-target="#personalInfoModel" data-toggle="modal"
-                                (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a>
+                            <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel"
+                                data-toggle="modal" (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a>
                         </span>
                     </p>
                     <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender :
@@ -88,11 +87,13 @@
                             </a>
                         </span>
                     </p>
-                    <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont text-capitalize">Father's
+                    <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont text-capitalize">
+                        Father's
                         Name :
                         <span class="regularFont">{{objEpData.father_name}}</span>
                     </p>
-                    <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont text-capitalize">Mother's
+                    <p *ngIf="objEpData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont text-capitalize">
+                        Mother's
                         Name :
                         <span class="regularFont">{{objEpData.mother_name}}</span>
                     </p>
@@ -108,45 +109,46 @@
         <div class="col-md-12">
             <hr>
         </div>
-        <div class="col-12">            
+        <div class="col-12">
             <div class="row py-2">
 
-                <div class="col-12 border-bottom mb-3"> 
+                <div class="col-12 border-bottom mb-3" *ngIf="epData && epData[0].phone">
                     <div class="row mb-3">
                         <div class="col-4"><span class="commonFontSize semiBoldFont">Mobile Number</span></div>
-                        <div class="col-4"><span>91+ 8394847464</span></div>
+                        <div class="col-4"><span>{{epData[0].phone}}</span></div>
                         <div class="col-4 text-right">
-                            <mat-slide-toggle></mat-slide-toggle>
+                            <mat-slide-toggle (change)="enableDiablePermission($event, 'MOB_NUM')" [(ngModel)]="mobStatus"></mat-slide-toggle>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12 border-bottom mb-3"> 
+                <div class="col-12 border-bottom mb-3" *ngIf="epData && epData[0].email">
                     <div class="row mb-3">
                         <div class="col-4"><span class="commonFontSize semiBoldFont">Email ID</span></div>
-                        <div class="col-4"><span>ajju@gmail.com</span></div>
+                        <div class="col-4"><span>{{epData[0].email}}</span></div>
                         <div class="col-4 text-right">
-                            <mat-slide-toggle></mat-slide-toggle>
+                            <mat-slide-toggle (change)="enableDiablePermission($event, 'EMAIL_ID')" [(ngModel)]="emailStatus"></mat-slide-toggle>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12 border-bottom mb-3"> 
+                <div class="col-12 border-bottom mb-3">
                     <div class="row mb-3">
                         <div class="col-4"><span class="commonFontSize semiBoldFont">Date of Birth</span></div>
-                        <div class="col-4"><span>dd/mm/yyyy</span></div>
+                        <div class="col-4" *ngIf="epData"><span>{{epData[0].dob}}</span></div>
                         <div class="col-4 text-right">
-                            <mat-slide-toggle></mat-slide-toggle>
+                            <mat-slide-toggle (change)="enableDiablePermission($event, 'DOB')" [(ngModel)]="dobStatus"></mat-slide-toggle>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12"> 
+                <div class="col-12">
                     <div class="row mb-3">
                         <div class="col-4"><span class="commonFontSize semiBoldFont">Gender</span></div>
-                        <div class="col-4"><span>Male</span></div>
+                        <div class="col-4" *ngIf="epData && epData[0].gender"><span>{{this.baseService.getGender(epData[0])}}</span></div>
+                        <div class="col-4" *ngIf="epData && epData[0].pronoun"><span>{{this.baseService.getGender(epData[0], 'pronoun')}}</span></div>
                         <div class="col-4 text-right">
-                            <mat-slide-toggle></mat-slide-toggle>
+                            <mat-slide-toggle (change)="enableDiablePermission($event, 'GENDER')" [(ngModel)]="genderStatus"></mat-slide-toggle>
                         </div>
                     </div>
                 </div>
@@ -156,254 +158,253 @@
     </div>
 
     <!--Edit Education Details-->
-<div class="modal fade" id="personalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content container-fluid">
-        <div class="modal-header align-items-center justify-content-center pb-0 border-0">
-            <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                data-dismiss="modal" aria-label="Close ">
-                <span aria-hidden="true "> &times; </span>
-            </button>
-        </div>
-        <div class="modal-body pl-5 pr-5">
-
-            <!-- <form class="pl-5 pr-5"> -->
-            <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
-            <!-- <i class="fa fa-book" aria-hidden="true"
-                style="font-size: 105px; padding: 20px 0px; color: #463267;"></i> -->
-            <div class="form-group">
-                <h2 class="text-center">Personal Information</h2>
-                <form>
-                    <div class="form-group row">
-                        <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
-                        <div class="col-sm-12 p-0">
-                            <input required name="mother_name" [(ngModel)]="personalInfo.mother_name"
-                                class="border form-control-input form-control form-control-sm" type="text"
-                                placeholder="Enter your Mother's Name">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
-                        <div class="col-sm-12 p-0">
-                            <input name="father_name" [(ngModel)]="personalInfo.father_name"
-                                class="border form-control-input form-control form-control-sm" type="text"
-                                placeholder="Enter your Father's Name">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <h4 class="mb-0 textSpace">Gender</h4>
-                            <div class="form-control-radioDiv-padding">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <label class="custom-label mb-0" style="color: #333" for="inlineRadio1">
-                                        <input (change)="isValid($event)" required
-                                            class="custom-control-input ng-dirty ng-valid ng-touched" type="radio"
-                                            name="inlineRadioOptions" id="inlineRadio1" value="F"
-                                            [(ngModel)]="personalInfo.gender" name="gender">
-                                        <span class="checkmark"></span>
-                                        <span class="radioValuetext">Female</span>
-                                    </label>
-
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <label class="custom-label mb-0" style="color: #333" for="inlineRadio2">
-                                        <input required (change)="isValid($event)" class="custom-control-input"
-                                            type="radio" name="inlineRadioOptions" id="inlineRadio2" value="M"
-                                            [(ngModel)]="personalInfo.gender" name="gender">
-                                        <span class="checkmark"></span>
-                                        <span class="radioValuetext">Male</span>
-                                    </label>
-                                </div>
-                                <div (change)="isValid($event)"
-                                    class="custom-control custom-radio custom-control-inline">
-                                    <label class="custom-label mb-0" style="color: #333" for="inlineRadio3">
-                                        <input required class="custom-control-input" type="radio"
-                                            [(ngModel)]="personalInfo.gender" name="gender" id="inlineRadio3"
-                                            value="C">
-                                        <span class="checkmark"></span>
-                                        <span class="radioValuetext">Custom</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.gender"></div>
-                    </div>
-                    <div class="form-group row" *ngIf="personalInfo.gender=='C'">
-                        <div class="col-sm-12 selectPadding p-0">
-                            <select (change)="isValid($event)" required id="pronoun"
-                                [(ngModel)]="personalInfo.pronoun" name="pronoun"
-                                class="custom-select form-control-input border">
-                                <option selected value="">Select your pronoun</option>
-                                <option value="He">He</option>
-                                <option value="She">She</option>
-                                <option value="They">They</option>
-
-                            </select>
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.pronoun"></div>
-                    </div>
-                    <div class="form-group row" *ngIf="personalInfo.gender=='C'">
-                        <div class="col-sm-12 p-0">
-                            <input (keyup)="isValid($event)"
-                                class="form-control-input form-control form-control-sm border" type="text"
-                                id="custom_gender" [(ngModel)]="personalInfo.custom_gender"
-                                name="personalInfo.custom_gender" placeholder="Gender (optional)">
-                        </div>
-
-                    </div>
-                    <div class="text-center">
-                        <button type="button" class="btn common-model-Btn mt-3"
-                            (click)="goToUpdatePersonalnfo();">Submit </button>
-                    </div>
-                </form>
-            </div>
-
-
-
-
-            <!-- </form> -->
-
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- personal information model -->
-<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content container-fluid">
-            <div class="modal-header border-0 align-items-center justify-content-center pb-0">
-                <button #closeModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
-                    <span aria-hidden="true "> &times; </span>
-                </button>
-            </div>
-            <div class="modal-body p-1">
-                <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
-                    <div class="process3">
-                        <div class="form-group row " *ngIf="editModel.key=='name'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        name="first_name" [(ngModel)]="model.first_name" required id="first_name">
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group row " *ngIf="editModel.key=='name'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        name="last_name" [(ngModel)]="model.last_name" required id="last_name">
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group row " *ngIf="editModel.key=='dob'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        autocomplete="off" name="dob" [(ngModel)]="model.dob"
-                                        [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" required id="dob" bsDatepicker>
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group row " *ngIf="editModel.key=='email'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input type="email"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        autocomplete="off" name="email" [(ngModel)]="model.email" required id="email">
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group row " *ngIf="editModel.key=='phone'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input type="tel" [numberOnly] maxLength="10"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
-                                        id="phone_number">
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group row " *ngIf="editModel.key=='roll_no'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Roll Number</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input type="text" [numberOnly]
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        autocomplete="off" name="roll_number" [(ngModel)]="model.roll_no" required
-                                        id="roll_number">
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
-
-                            </div>
-
-                        </div>
-                        <div class="form-group row " *ngIf="editModel.key=='admission_number'">
-                            <div class="col-md-12 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Admission number</label>
-
-                                <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input type="text"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                        autocomplete="off" name="admission_number" [(ngModel)]="model.admission_number"
-                                        required id="admission_number">
-                                </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </form>
-
-                <div class="text-center">
-                    <button type="button" class="btn common-model-Btn mt-3" (click)="submitPersonalDetails();">Submit
+    <div class="modal fade" id="personalInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                    <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
                     </button>
                 </div>
+                <div class="modal-body pl-5 pr-5">
 
-                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
-                </p> -->
+                    <!-- <form class="pl-5 pr-5"> -->
+                    <!-- <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/open-book.png" style="height:145px"> -->
+                    <!-- <i class="fa fa-book" aria-hidden="true"
+                style="font-size: 105px; padding: 20px 0px; color: #463267;"></i> -->
+                    <div class="form-group">
+                        <h2 class="text-center">Personal Information</h2>
+                        <form>
+                            <div class="form-group row">
+                                <label for="" class="mediumFont commonFontSize letterspacing">Mother's Name</label>
+                                <div class="col-sm-12 p-0">
+                                    <input required name="mother_name" [(ngModel)]="personalInfo.mother_name"
+                                        class="border form-control-input form-control form-control-sm" type="text"
+                                        placeholder="Enter your Mother's Name">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="mediumFont commonFontSize letterspacing">Father's Name</label>
+                                <div class="col-sm-12 p-0">
+                                    <input name="father_name" [(ngModel)]="personalInfo.father_name"
+                                        class="border form-control-input form-control form-control-sm" type="text"
+                                        placeholder="Enter your Father's Name">
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <h4 class="mb-0 textSpace">Gender</h4>
+                                    <div class="form-control-radioDiv-padding">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <label class="custom-label mb-0" style="color: #333" for="inlineRadio1">
+                                                <input (change)="isValid($event)" required
+                                                    class="custom-control-input ng-dirty ng-valid ng-touched"
+                                                    type="radio" name="inlineRadioOptions" id="inlineRadio1" value="F"
+                                                    [(ngModel)]="personalInfo.gender" name="gender">
+                                                <span class="checkmark"></span>
+                                                <span class="radioValuetext">Female</span>
+                                            </label>
 
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <label class="custom-label mb-0" style="color: #333" for="inlineRadio2">
+                                                <input required (change)="isValid($event)" class="custom-control-input"
+                                                    type="radio" name="inlineRadioOptions" id="inlineRadio2" value="M"
+                                                    [(ngModel)]="personalInfo.gender" name="gender">
+                                                <span class="checkmark"></span>
+                                                <span class="radioValuetext">Male</span>
+                                            </label>
+                                        </div>
+                                        <div (change)="isValid($event)"
+                                            class="custom-control custom-radio custom-control-inline">
+                                            <label class="custom-label mb-0" style="color: #333" for="inlineRadio3">
+                                                <input required class="custom-control-input" type="radio"
+                                                    [(ngModel)]="personalInfo.gender" name="gender" id="inlineRadio3"
+                                                    value="C">
+                                                <span class="checkmark"></span>
+                                                <span class="radioValuetext">Custom</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.gender"></div>
+                            </div>
+                            <div class="form-group row" *ngIf="personalInfo.gender=='C'">
+                                <div class="col-sm-12 selectPadding p-0">
+                                    <select (change)="isValid($event)" required id="pronoun"
+                                        [(ngModel)]="personalInfo.pronoun" name="pronoun"
+                                        class="custom-select form-control-input border">
+                                        <option selected value="">Select your pronoun</option>
+                                        <option value="He">He</option>
+                                        <option value="She">She</option>
+                                        <option value="They">They</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.pronoun"></div>
+                            </div>
+                            <div class="form-group row" *ngIf="personalInfo.gender=='C'">
+                                <div class="col-sm-12 p-0">
+                                    <input (keyup)="isValid($event)"
+                                        class="form-control-input form-control form-control-sm border" type="text"
+                                        id="custom_gender" [(ngModel)]="personalInfo.custom_gender"
+                                        name="personalInfo.custom_gender" placeholder="Gender (optional)">
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn common-model-Btn mt-3"
+                                    (click)="goToUpdatePersonalnfo();">Submit </button>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+                    <!-- </form> -->
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- personal information model -->
+    <div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content container-fluid">
+                <div class="modal-header border-0 align-items-center justify-content-center pb-0">
+                    <button #closeModal type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                        data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body p-1">
+                    <form #changeRequestForm="ngForm" id="Form4" enctype="multipart/form-data">
+                        <div class="process3">
+                            <div class="form-group row " *ngIf="editModel.key=='name'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">First Name</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            name="first_name" [(ngModel)]="model.first_name" required id="first_name">
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row " *ngIf="editModel.key=='name'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Last Name</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input (keyup)="setModelValue(model.first_name+'&'+model.last_name)"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            name="last_name" [(ngModel)]="model.last_name" required id="last_name">
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row " *ngIf="editModel.key=='dob'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Date of birth</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            autocomplete="off" name="dob" [(ngModel)]="model.dob"
+                                            [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" required id="dob" bsDatepicker>
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row " *ngIf="editModel.key=='email'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input type="email"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            autocomplete="off" name="email" [(ngModel)]="model.email" required
+                                            id="email">
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.email"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row " *ngIf="editModel.key=='phone'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input type="tel" [numberOnly] maxLength="10"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
+                                            id="phone_number">
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row " *ngIf="editModel.key=='roll_no'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Roll Number</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input type="text" [numberOnly]
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            autocomplete="off" name="roll_number" [(ngModel)]="model.roll_no" required
+                                            id="roll_number">
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row " *ngIf="editModel.key=='admission_number'">
+                                <div class="col-md-12 MobileCol6MB">
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Admission
+                                        number</label>
+
+                                    <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                        <input type="text"
+                                            class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            autocomplete="off" name="admission_number"
+                                            [(ngModel)]="model.admission_number" required id="admission_number">
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <div class="text-center">
+                        <button type="button" class="btn common-model-Btn mt-3"
+                            (click)="submitPersonalDetails();">Submit
+                        </button>
+                    </div>
+
+                    <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                </p> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

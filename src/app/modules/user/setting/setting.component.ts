@@ -1,4 +1,4 @@
-import { Component,  ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -19,20 +19,30 @@ export class SettingComponent implements OnInit {
   model: any = {};
   errorDisplay: any = {};
   personalInfo: any = {};
+  privacySettings: any = [];
+  settingTypes: ['MOB_NUM', 'EMAIL_ID', 'DOB', 'GENDER'];
+  userId: any;
+  dobStatus: boolean = false;
+  genderStatus: boolean = false;
+  mobStatus: boolean = false;
+  emailStatus: boolean = false;
+
   constructor(
-    private alert : NotificationService,
-    private loader : NgxSpinnerService,
-    private router : Router,
-    private baseService : BaseService,
+    private alert: NotificationService,
+    private loader: NgxSpinnerService,
+    private router: Router,
+    private baseService: BaseService,
     private validationService: GenericFormValidationService,
   ) { }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('userId');
     this.model = {};
     $("#OTPModel").modal("hide");
     this.getEducationalProfile()
     this.getPersonalInfo();
-    
+    this.getSettings()
+
   }
 
   getPersonalInfo() {
@@ -113,13 +123,10 @@ export class SettingComponent implements OnInit {
   }
 
   submitPersonalDetails() {
-
-
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     if (this.errorDisplay.valid) {
       return false;
     } else {
-
       try {
         var url = 'user/request-change-user-detail-by-ei/';
         if (this.editModel.key == 'dob') {
@@ -134,7 +141,6 @@ export class SettingComponent implements OnInit {
 
           this.editModel.value = this.model.first_name + '&' + this.model.last_name
         }
-
         else {
           this.editModel.value = this.model[this.editModel.key];
         }
@@ -156,7 +162,6 @@ export class SettingComponent implements OnInit {
               this.closeModal.nativeElement.click()
             }
 
-            //location.reload();
           } else {
             this.loader.hide();
             var error = this.baseService.getErrorResponse(this.loader, response.error)
@@ -182,6 +187,71 @@ export class SettingComponent implements OnInit {
     }
     this.router.navigate(['user/kyc-verification'], { queryParams: { "action": "sendrequest", "text": text, "returnUrl": "user/my-educational-profile" } });
   }
-  
 
+  enableDiablePermission(event: any, type: any) {
+    this.loader.show();
+    let data = {
+      "user": this.userId,
+      "status_type": type,
+      "is_disabled": event.checked
+    }
+    this.baseService.action('user/setting_status/', data).subscribe(
+      (res: any) => {
+        if (res.status)
+          this.alert.success(res.message[0], 'Success')
+        this.loader.hide()
+      },
+      err => {
+        this.loader.hide()
+      }
+    )
+  }
+
+  getSettings() {
+    this.loader.show();
+    this.baseService.getData('user/setting_status/' + this.userId).subscribe(
+      (res: any) => {
+        if (res.status) {
+          this.privacySettings = res.data;
+          if (this.privacySettings.length > 0) {
+            this.privacySettings.forEach(elem => {
+              if (elem.status_type == 'MOB_NUM') {
+                this.mobStatus = elem.is_disabled
+              }
+              else if (elem.status_type == 'EMAIL_ID') {
+                this.emailStatus = elem.is_disabled
+              }
+              else if (elem.status_type == 'DOB') {
+                this.dobStatus = elem.is_disabled
+              }
+              else if (elem.status_type == 'GENDER') {
+                this.genderStatus = elem.is_disabled
+              }
+              else {
+
+              }
+            })
+          }
+        }
+        this.loader.hide()
+      },
+      err => {
+        this.loader.hide()
+      }
+    )
+  }
+
+  settingValue(type: any) {
+    if (this.privacySettings.length == 0)
+      return true
+    else {
+      let find = this.privacySettings.find(ele => {
+        ele.status_type == type
+      })
+      if (find)
+        return find.is_disabled
+      return true
+    }
+
+  }
 }
