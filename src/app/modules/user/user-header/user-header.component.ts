@@ -116,6 +116,9 @@ export class UserHeaderComponent implements OnInit {
   notificationList() {
     this.router.navigate(["user/notifications"]);
   }
+  settingList() {
+    this.router.navigate(["user/setting"]);
+  }
   logout() {
     this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () => {
       localStorage.clear();
