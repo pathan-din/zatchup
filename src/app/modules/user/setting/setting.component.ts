@@ -240,18 +240,4 @@ export class SettingComponent implements OnInit {
       }
     )
   }
-
-  settingValue(type: any) {
-    if (this.privacySettings.length == 0)
-      return true
-    else {
-      let find = this.privacySettings.find(ele => {
-        ele.status_type == type
-      })
-      if (find)
-        return find.is_disabled
-      return true
-    }
-
-  }
 }
