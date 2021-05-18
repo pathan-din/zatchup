@@ -89,6 +89,10 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigate(["user/setting"]);
   }
 
+  goToChangePassword(){
+    this.router.navigate(['user/change-password'])
+  }
+
   getDasboardDetails() {
     try {
       this.loader.show();
