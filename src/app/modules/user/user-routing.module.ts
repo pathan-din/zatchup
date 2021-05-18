@@ -60,6 +60,7 @@ import { UserStarclassCourseListComponent } from './user-starclass-course-list/u
 import { UserStarclassCoursePreviewComponent } from './user-starclass-course-preview/user-starclass-course-preview.component';
 import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
 import { UserhomeComponent } from './userhome/userhome.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -251,6 +252,9 @@ const routes: Routes = [
   },
   {
     path: 'user/user-lecture-details', component: UserLectureDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
   },
 
 
