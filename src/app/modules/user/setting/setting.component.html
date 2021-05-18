@@ -49,6 +49,13 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
+                    <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">Name :
+                        <span class="regularFont">
+                            <span *ngIf="objEpData.kyc_approved==0">{{objEpData.name}}</span>
+                            <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle" data-target="#personalInfoModel"
+                                data-toggle="modal" (click)="redirectKYCPage('name',objEpData.name)">{{objEpData.name}}</a>
+                        </span>
+                    </p>
                     <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB :
                         <span class="regularFont">
                             <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
@@ -97,8 +104,6 @@
                         Name :
                         <span class="regularFont">{{objEpData.mother_name}}</span>
                     </p>
-                    <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Bio : <br> <span
-                            class="regularFont">{{objEpData.bio?objEpData.bio:''}}</span></p> -->
                 </div>
             </div>
         </div>
