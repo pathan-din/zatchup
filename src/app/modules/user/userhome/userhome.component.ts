@@ -123,8 +123,8 @@ export class UserhomeComponent implements OnInit {
       }
       const formData = new FormData();
       formData.append('socialmedia_coverpic', fileData);
-      formData.append('socialmedia_profilepic', null);
       formData.append('user', this.userId)
+      formData.append('socialmedia_profilepic', '');
       this.baseService.action('user/socia_media_image_uplode/', formData).subscribe(
         (res: any) => {
           if (res.status == true) {
