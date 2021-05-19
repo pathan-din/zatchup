@@ -20,10 +20,10 @@
     </div>
 
     <div class="row px-3" *ngIf="userProfile">
-        <div class="col-md-5 text-right d-flex profileDivLeft align-items-center customProfile">
+        <div class="col-md-10 text-right d-flex profileDivLeft align-items-center customProfile">
             <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
-                <img *ngIf="!profilePic" src="assets/images/profile-default.png" class="img-fluid dpImg">
-                <img *ngIf="profilePic" src="{{profilePic}}" class="img-fluid dpImg">
+                <img *ngIf="!profilePic" src="assets/images/profile-default.png" class="img-fluid dpImg border">
+                <img *ngIf="profilePic" src="{{profilePic}}" class="img-fluid dpImg border">
 
                 <!-- <div class="upload-dp position-absolute">
                     <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
@@ -34,18 +34,18 @@
             <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
                 class="img-fluid ml-1 tickImg">
 
-            <div class="pl-2 text-left" *ngIf="userProfile">
-                <p class="m-0 commonFontSize mediumFont pt-4 text-capitalize">{{userProfile.name}}</p>
+            <div class="pl-5 text-left" *ngIf="userProfile">
+                <p class="m-0 commonFontSize mediumFont pt-5 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
                 <span *ngFor="let batchmate of batchmatesList">
-                    <p class="m-o commonFontSize mediumFont">You both studied in {{batchmate.school_name}}
-                        {{batchmate.course_start_year | date: 'yyyy'}} - {{batchmate.course_end_year | date: 'yyyy'}}
+                    <p class="m-o commonFontSize mediumFont text-capitalize">You both studied in {{batchmate.school_name}}
+                        <span class="small-text-2"> : {{batchmate.course_start_year | date: 'yyyy'}} - {{batchmate.course_end_year | date: 'yyyy'}}</span>
                     </p>
                 </span>
             </div>
         </div>
         <div *ngIf="userProfile && userProfile.firebase_id && userProfile.kyc_approved == 1 && currentUser != userId"
-            class="col-md-7 text-right mt-2">
+            class="col-md-2 text-right mt-2">
             <img (click)="getDocumentsChat(userProfile.firebase_id)" src="assets/images/userWebsite/email.png"
                 class="img-fluid email_position-absolute cursorStyle">
         </div>
