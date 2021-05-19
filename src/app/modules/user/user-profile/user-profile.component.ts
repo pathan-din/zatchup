@@ -18,7 +18,8 @@ export class UserProfileComponent implements OnInit {
   profession: any;
   coverPic: any;
   profilePic: any;
-  privacySettings: any = []
+  privacySettings: any = [];
+  batchmatesList: any = [];
 
   constructor(
     private router: Router,
@@ -37,6 +38,7 @@ export class UserProfileComponent implements OnInit {
     this.getProfile();
     this.getSocialMediaProfiles();
     this.getSettings()
+    this.getBatchmateslist()
   }
 
   goBack() {
@@ -136,6 +138,21 @@ export class UserProfileComponent implements OnInit {
         return find.is_disabled
       return true
     }
+  }
+
+  getBatchmateslist() {
+    this.loader.show();
+    this.baseService.getData('user/batchmates_search/', { 'user_id': this.userId }).subscribe(
+      (res: any) => {
+        if (res.status) {
+          this.batchmatesList = res.data;
+        }
+        this.loader.hide()
+      },
+      err => {
+        this.loader.hide()
+      }
+    )
   }
 
 }

@@ -24,7 +24,7 @@
             <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
                 <img *ngIf="!profilePic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                 <img *ngIf="profilePic" src="{{profilePic}}" class="img-fluid dpImg">
-                
+
                 <!-- <div class="upload-dp position-absolute">
                     <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
                     </app-image-uploader>
@@ -32,11 +32,16 @@
             </div>
 
             <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
-                    class="img-fluid ml-1 tickImg">
+                class="img-fluid ml-1 tickImg">
 
             <div class="pl-2 text-left" *ngIf="userProfile">
                 <p class="m-0 commonFontSize mediumFont pt-4 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
+                <span *ngFor="let batchmate of batchmatesList">
+                    <p class="m-o commonFontSize mediumFont">You both studied in {{batchmate.school_name}}
+                        {{batchmate.course_start_year | date: 'yyyy'}} - {{batchmate.course_end_year | date: 'yyyy'}}
+                    </p>
+                </span>
             </div>
         </div>
         <div *ngIf="userProfile && userProfile.firebase_id && userProfile.kyc_approved == 1 && currentUser != userId"
@@ -60,13 +65,16 @@
                         <p *ngIf="settingValue('DOB')" class="m-0 commonFontSize semiBoldFont">DOB :
                             <span class="regularFont">{{userProfile.dob}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender && settingValue('GENDER')">Gender :
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender && settingValue('GENDER')">
+                            Gender :
                             <span class="regularFont">{{getGender(userProfile)}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email && settingValue('EMAIL_ID')">Email :
+                        <p class="m-0 commonFontSize semiBoldFont"
+                            *ngIf="userProfile.email && settingValue('EMAIL_ID')">Email :
                             <span class="regularFont">{{userProfile.email}}</span>
                         </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone && settingValue('MOB_NUM')">Phone :
+                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone && settingValue('MOB_NUM')">
+                            Phone :
                             <span class="regularFont">{{userProfile.phone}}</span>
                         </p>
                         <!-- <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name :
@@ -90,7 +98,8 @@
                     </div>
                     <ng-container *ngIf="userProfile">
                         <div class="col-md-12" *ngFor="let eduDetails of userProfile.educationdetail">
-                            <h4 class="m-0 commonFontSize semiBoldFont position-relative text-capitalize">{{eduDetails.name_of_school}}
+                            <h4 class="m-0 commonFontSize semiBoldFont position-relative text-capitalize">
+                                {{eduDetails.name_of_school}}
                                 <span class="ml-2" *ngIf="eduDetails.approved">
                                     <img src="assets/images/userWebsite/checkicon.png"
                                         class="img-fluid  check_absolute-image">
