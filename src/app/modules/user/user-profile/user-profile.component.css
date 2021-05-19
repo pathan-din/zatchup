@@ -64,18 +64,20 @@
     height: 100px;
     overflow: hidden;
     position: relative;
+    min-width: 100px;
+    max-height: 100px;
 }
 .bannerDiv {
     height: 180px;
     overflow: hidden;
 }
 .customProfile {
-    margin-top: -25px;
+    margin-top: -40px;
 }
 .tickImg {
     position: absolute;
     bottom: 60px;
-    left: 88px;
+    left: 95px;
     z-index: 1;
 }
 h4 {
@@ -91,7 +93,6 @@ h4 {
 @media only screen and (max-width: 414px) {
     .profileDivLeft {
         flex-direction: column;
-        padding-left: 0!important;
     }
     .profileDivLeft p {
         text-align: center!important;
@@ -118,7 +119,15 @@ h4 {
         height: auto;
     }
     .tickImg {
-        bottom: 132px;
-    left: 200px;
+        top: 50px;
+        left: 198px;
+    }
+    .profileDivLeft .pl-5 {padding-left: 0rem!important;}
+}
+
+@media only screen and (max-width: 320px) {
+    .tickImg {
+        top: 50px;
+        left: 170px;
     }
 }
