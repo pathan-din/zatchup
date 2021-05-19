@@ -5,7 +5,7 @@
     </div>
 </div>
 <div class="container containerScrolling landingPageWidth ">
-    <div class="bannerDiv position-relative" *ngIf="userProfile">
+    <div class="bannerDiv position-relative border bg-white" *ngIf="userProfile">
         <img *ngIf="!coverPic" src="assets/images/cover-pic-default.png" class="img-fluid">
         <img *ngIf="coverPic" src="{{coverPic}}" class="img-fluid">
     </div>
@@ -20,7 +20,7 @@
             <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
                 class="img-fluid ml-1 tickImg">
 
-            <div class="pl-5 text-left" *ngIf="userProfile">
+            <div class="pl-4 text-left" *ngIf="userProfile">
                 <p class="m-0 commonFontSize mediumFont pt-5 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
                 <span *ngFor="let batchmate of batchmatesList">

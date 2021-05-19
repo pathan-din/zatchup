@@ -84,7 +84,7 @@
 </div>
 
 <div class="container containerScrolling landingPageWidth ">
-    <div class="bannerDiv position-relative">
+    <div class="bannerDiv position-relative border bg-white">
         <img *ngIf="!coverPic" src="assets/images/cover-pic-default.png" class="img-fluid">
         <img *ngIf="coverPic" src="{{coverPic}}" class="img-fluid">
         <button type="button" (click)="fileInput.click()"
@@ -109,7 +109,7 @@
             <img *ngIf="userProfile && userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
                 class="img-fluid ml-1 tickImg">
 
-            <div class="pl-2 text-left" *ngIf="userProfile">
+            <div class="pl-4 text-left" *ngIf="userProfile">
                 <p class="m-0 commonFontSize mediumFont pt-4 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
             </div>
