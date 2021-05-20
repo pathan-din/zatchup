@@ -384,7 +384,7 @@
                                     <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                        <input type="email"
+                                        <input type="email" placeholder="Add Email"
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                             autocomplete="off" name="email" [(ngModel)]="model.email" required
                                             id="email">
@@ -395,10 +395,10 @@
 
                             <div class="form-group row " *ngIf="editModel.key=='phone'">
                                 <div class="col-md-12 MobileCol6MB">
-                                    <label for="" class=" commonFontSize mediumFont letterspacing">Phone</label>
+                                    <label for="" class=" commonFontSize mediumFont letterspacing">Mobile Number</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                        <input type="tel" [numberOnly] maxLength="10"
+                                        <input type="tel" [numberOnly] maxLength="10" placeholder="Add Mobile Number"
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                             autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
                                             id="phone_number">
