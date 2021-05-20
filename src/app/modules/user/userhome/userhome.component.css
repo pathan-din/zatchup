@@ -65,16 +65,19 @@
     overflow: hidden;
     position: relative;
 }
-.bannerDiv {
-    height: 180px;
-    overflow: hidden;
+.bannerDiv{height: 180px; overflow: hidden;}
+.bannerDiv img {
+    max-height: 180px;
+    margin: 0px auto;
+    max-width: 100%;
+    display: block;
 }
 .customProfile {
     margin-top: -25px;
 }
 .tickImg {
     position: absolute;
-    bottom: 60px;
+    bottom: 20px;
     left: 88px;
     z-index: 1;
 }
@@ -117,7 +120,8 @@ h4 {
         height: auto;
     }
     .tickImg {
-        bottom: 132px;
-        left: 59%;
+        top: 47px;
+        left: 58%;
     }
+    .profileDivLeft .pl-4 {padding-left: 0rem!important;}
 }
