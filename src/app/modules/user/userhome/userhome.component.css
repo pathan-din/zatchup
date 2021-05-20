@@ -67,7 +67,7 @@
 }
 .bannerDiv{height: 180px; overflow: hidden;}
 .bannerDiv img {
-    max-height: 180px;
+    /* max-height: 180px; */
     margin: 0px auto;
     max-width: 100%;
     display: block;
