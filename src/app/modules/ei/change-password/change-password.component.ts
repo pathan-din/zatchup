@@ -13,6 +13,9 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class ChangePasswordComponent implements OnInit {
   errorDisplay: any = {};
   model: any = {};
+  oldPassType: string = 'password';
+  newPassType: string = 'password';
+  confPassType: string = 'password';
 
   constructor(
     private location: Location,
@@ -44,8 +47,8 @@ export class ChangePasswordComponent implements OnInit {
           else {
             if (res.error)
               this.alert.error(res.error.message, "Error")
-            else{
-              let error =  this.baseService.getErrorResponse(this.loader, res)
+            else {
+              let error = this.baseService.getErrorResponse(this.loader, res)
               this.alert.error(error, "Error")
             }
           }
@@ -64,6 +67,28 @@ export class ChangePasswordComponent implements OnInit {
   isValid() {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  showHidePasswordFunction(type) {
+    if (type == 'op') {
+      if (this.oldPassType == 'password') {
+        this.oldPassType = 'text';
+      } else {
+        this.oldPassType = 'password';
+      }
+    } else if (type == 'np') {
+      if (this.newPassType == 'password') {
+        this.newPassType = 'text';
+      } else {
+        this.newPassType = 'password';
+      }
+    } else {
+      if (this.confPassType == 'password') {
+        this.confPassType = 'text';
+      } else {
+        this.confPassType = 'password';
+      }
     }
   }
 
