@@ -19,6 +19,7 @@ export class PersonalMessagesComponent implements OnInit {
   dataStudent:any=[];
   objStudent:any={};
   lastMessageData:any=[];
+  groupList:any=[];
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -30,6 +31,7 @@ export class PersonalMessagesComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.baseService.isLoggedIn();
     this.currentUser = localStorage.getItem("fbtoken");
+    this. getGroupDetails(this.currentUser)
     if (this.isLoggedIn) {
       this.notifypush.receiveMessage();
       this.notifypush.requestPermission();
@@ -114,7 +116,7 @@ export class PersonalMessagesComponent implements OnInit {
     })
     
   }
-  goToChatScreen(fbid,frndListId) {
+  goToChatScreen(fbid,frndListId,chatConversion:any) {
     this.conversation = [];
     this.dataStudent =[];
     localStorage.setItem('friendlidt_id',frndListId);
@@ -131,12 +133,12 @@ export class PersonalMessagesComponent implements OnInit {
       data.is_active = 1
       data.is_read = 0
       data.created_on = this.baseService.getDateFormat(date);
-      this.getFriendListBySender(localStorage.getItem('fbtoken'), uuid, data)
+      this.getFriendListBySender(localStorage.getItem('fbtoken'), uuid, data,chatConversion)
     })
 
 
   }
-  getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
+  getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data,chatConversion:any) {
     this.conversation = [];
     this.dataStudent = [];
     this.firestore.collection('user_friend_list').valueChanges().subscribe((res:any)=>{
@@ -157,7 +159,7 @@ export class PersonalMessagesComponent implements OnInit {
              if(dataEle.user_request_id==res.user_request_id && dataEle.user_accept_id== res.user_accept_id)
              {
               localStorage.setItem("friendlidt_id", doc.id)
-              this. getDocumentsChat();
+              this. getDocumentsChat(chatConversion);
               
              }
               
@@ -168,7 +170,7 @@ export class PersonalMessagesComponent implements OnInit {
       } else{
         this.firestore.collection("user_friend_list").add(data).then(res => {
           localStorage.setItem("friendlidt_id",res.id)
-           this. getDocumentsChat();
+           this. getDocumentsChat(chatConversion);
           
          })
       }             
@@ -180,7 +182,9 @@ export class PersonalMessagesComponent implements OnInit {
        }
 
        
-  getDocumentsChat() {
+  getDocumentsChat(chatConversion) {
+    console.log(chatConversion);
+    
     this.conversation = [];
     this.dataStudent =[];
     var uuid= localStorage.getItem("friendlidt_id");
@@ -193,13 +197,39 @@ export class PersonalMessagesComponent implements OnInit {
         this.conversation = [];
         this.dataStudent = [];
       }
-      this.router.navigate(["ei/messages-details"]);
+      this.router.navigate(["ei/messages-details"],{queryParams:{"chat":chatConversion}});
     })
     
     
     
   }
-
+  getGroupDetails(uuid){
+    this.groupList=[];
+    this.firestore.collection('group').snapshotChanges().subscribe((res:any)=>{
+      res.forEach(element => {
+         
+        this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res:any)=>{
+          console.log(res);
+          res.uuid=element.payload.doc.id;
+            res.reciepent.forEach(ele => {
+              if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
+                var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
+                if(!index){
+                  this.groupList.push(res)
+                }
+              }
+              
+            });
+            
+          
+          
+        })
+      });
+      
+    })
+    
+    
+  }
   getRecepintUserDetails(uuid) {
     localStorage.setItem("receipent",uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
@@ -207,9 +237,9 @@ export class PersonalMessagesComponent implements OnInit {
       });
       
   }
-  messageDetails(uid){
-    localStorage.setItem('uuid', uid);
-    this.router.navigate(["ei/messages-details"]);
+  messageDetails(uid,chatConversion){
+    localStorage.setItem('guuid', uid);
+    this.router.navigate(["ei/messages-details"],{queryParams:{"chat":chatConversion}});
   }
 
 }

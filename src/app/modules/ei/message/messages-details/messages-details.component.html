@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="bg-light-gray p-3">
+        <div *ngIf="!params.chat" class="bg-light-gray p-3">
             <div class="profile_detail d-flex align-items-center justify-content-start mb-3">
                 <div class="profile_pick">
                     <img *ngIf="!recepintDetails" src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
@@ -19,6 +19,47 @@
                     <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
                         <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span>
                     </p>
+                    <!-- <span class="small-text-2" *ngIf="presence$ | async as presence">
+                        <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
+                    </span> -->
+                </div>
+            </div>
+
+            <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
+                <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
+                    <div class="col-md-12 col-12">
+                        <div *ngIf="!objCon.document">
+                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}}
+                                <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                            </p>
+                        </div>
+                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
+                            <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank">
+                                <img src="./assets/images/userWebsite/pdf.png" />
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
+                                <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="params.chat" class="bg-light-gray p-3">
+            <div class="profile_detail d-flex align-items-center justify-content-start mb-3">
+                <div class="profile_pick">
+                    <!-- <img *ngIf="!recepintDetails" src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
+                        class="img-fluid cursorStyle"> -->
+                    <!-- <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}"
+                        class="img-fluid cursorStyle"> -->
+                </div>
+                <div class="profile_name ml-2 text-capitalize">
+                    <!-- <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
+                        <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span>
+                    </p> -->
                     <!-- <span class="small-text-2" *ngIf="presence$ | async as presence">
                         <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
                     </span> -->

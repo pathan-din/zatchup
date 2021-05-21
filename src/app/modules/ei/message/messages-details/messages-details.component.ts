@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
 // import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Router,ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
@@ -19,19 +20,29 @@ export class MessagesDetailsComponent implements OnInit {
   currentUser: any;
   recepintDetails: any = {};
   scrollHeight: any = 300;
+  params:any={};
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
     private chatService: ChatService,
     private alert: NotificationService,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem("receipent")) {
-      this.getRecepintUserDetails(localStorage.getItem("receipent"));
-      this.currentUser = localStorage.getItem('fbtoken');
+    this.route.queryParams.subscribe((params:any)=>{
+      this.params=params;
+    })
+    if(this.params.chat){
+
+    }else{
+      if (localStorage.getItem("receipent")) {
+        this.getRecepintUserDetails(localStorage.getItem("receipent"));
+        this.currentUser = localStorage.getItem('fbtoken');
+      }
+      this.getDocumentsChat()
     }
-    this.getDocumentsChat()
+    
   }
   ngDoCheck() {
     this.scrollToBottom();
@@ -56,51 +67,119 @@ export class MessagesDetailsComponent implements OnInit {
     if (!this.model.comment && !document) {
       return;
     }
+    if(this.params.chat){
+      return new Promise<any>((resolve, reject) => {
+       
+         this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
+          console.log(res);
+          res.uuid=localStorage.getItem("guuid");
+            res.reciepent.forEach(ele => {
+              if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
+                let data: any = {};
+                let dataNew: any = {};
+                let userData = JSON.parse(localStorage.getItem('userprofile'))
+                data.user_friend_id = localStorage.getItem("guuid");
+                data.user_send_by = localStorage.getItem('fbtoken');
+                data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
+                data.profile_pic = userData.profile_pic
+                data.document = document ? true : false;
+                data.msg = document ? document : this.model.comment;
+                data.timestamp = new Date().valueOf();
+                data.receipentList =res.reciepent
+                this.dataStudent.push(data)
+                dataNew.data = this.dataStudent;
+                 // console.log(dataNew.data);
+                this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+                .set(dataNew)
+                .then(
+                  res => {
 
-    return new Promise<any>((resolve, reject) => {
-      let data: any = {};
-      let dataNew: any = {};
-      let userData = JSON.parse(localStorage.getItem('userprofile'))
-      data.user_friend_id = localStorage.getItem("friendlidt_id");
-      data.user_send_by = localStorage.getItem('fbtoken');
-      data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
-      data.profile_pic = userData.profile_pic
-      data.document = document ? true : false;
-      data.msg = document ? document : this.model.comment;
-      data.timestamp = new Date().valueOf();
-      this.dataStudent.push(data)
-      dataNew.data = this.dataStudent;
-      // console.log(dataNew.data);
-      this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
-        .set(dataNew)
-        .then(
-          res => {
-
-            this.getDocumentsChat()
-            this.model.comment = '';
+                    this.getDocumentsChat()
+                    this.model.comment = '';
 
 
-          },
-          err => reject(err)
-        )
+                  },
+                  err => reject(err)
+                )
+                
+              }
+              
+            });
+            
+          
+          
+        })
+        
+       
+       
+  
+      })
+    }else{
+      return new Promise<any>((resolve, reject) => {
+        let data: any = {};
+        let dataNew: any = {};
+        let userData = JSON.parse(localStorage.getItem('userprofile'))
+        data.user_friend_id = localStorage.getItem("friendlidt_id");
+        data.user_send_by = localStorage.getItem('fbtoken');
+        data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
+        data.profile_pic = userData.profile_pic
+        data.document = document ? true : false;
+        data.msg = document ? document : this.model.comment;
+        data.timestamp = new Date().valueOf();
+        this.dataStudent.push(data)
+        dataNew.data = this.dataStudent;
+        // console.log(dataNew.data);
+        this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+          .set(dataNew)
+          .then(
+            res => {
+  
+              this.getDocumentsChat()
+              this.model.comment = '';
+  
+  
+            },
+            err => reject(err)
+          )
+  
+      })
+    }
 
-    })
+   
   }
   getDocumentsChat() {
     this.conversation = [];
     this.dataStudent = [];
-    var uuid = localStorage.getItem("friendlidt_id");
-    var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
-    dataSet.subscribe((res: any) => {
-      if (res) {
-        this.conversation = res.data;
-        this.dataStudent = res.data;
-      } else {
-        this.conversation = [];
-        this.dataStudent = [];
-      }
+    if(this.params.chat){
+      var uuid = localStorage.getItem("guuid");
+      var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+      dataSet.subscribe((res: any) => {
+        if (res) {
+          this.conversation = res.data;
+          this.dataStudent = res.data;
+        } else {
+          this.conversation = [];
+          this.dataStudent = [];
+        }
+  
+      })
+    }else{
+      var uuid = localStorage.getItem("friendlidt_id");
+      var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+      dataSet.subscribe((res: any) => {
+        if (res) {
+          this.conversation = res.data;
+          this.dataStudent = res.data;
+        } else {
+          this.conversation = [];
+          this.dataStudent = [];
+        }
+  
+      })
+    }
 
-    })
+    
+   
   }
 
   getTimeAgo(time: any) {

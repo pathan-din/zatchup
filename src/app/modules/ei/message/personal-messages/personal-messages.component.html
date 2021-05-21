@@ -30,6 +30,21 @@
             </div>
 
         </div>
+        <div *ngFor="let msgObjG of groupList">
+            <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle" (click)="messageDetails(msgObjG.uuid,'group')">
+                <div class="col-md-1 col-2 text-center">
+                    <img *ngIf="msgObjG.group_icon" src="{{msgObj.group_icon}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                    <img *ngIf="!msgObjG.group_icon" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                </div>
+                <div class="col-md-11 col-10">
+                    <h3 class="m-0 semiBoldFont color-black text-capitalize">{{msgObjG.group_title}}
+                         
+                    </h3>
+                     
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- PersonalModal  -->

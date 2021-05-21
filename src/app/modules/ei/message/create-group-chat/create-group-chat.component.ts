@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { environment } from '../../../../../environments/environment'
-
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { EiServiceService } from 'src/app/services/EI/ei-service.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder } from "@angular/forms";
+import { Location } from '@angular/common';
+import { AngularFirestore } from '@angular/fire/firestore';
 @Component({
   selector: 'app-create-group-chat',
   templateUrl: './create-group-chat.component.html',
@@ -17,8 +19,16 @@ export class CreateGroupChatComponent implements OnInit {
   noOfUsers:any=0;
   serverImageUrl: any;
   
-  constructor(private router:Router,private baseService :BaseService,private loader:NgxSpinnerService
-    ,private alert : NotificationService,private eiService : EiServiceService) { }
+  constructor( private router: Router,
+    private location: Location,
+    private loader: NgxSpinnerService,
+    public eiService: EiServiceService,
+    public baseService: BaseService,
+    public formBuilder: FormBuilder,
+    private alert: NotificationService,
+    private route: ActivatedRoute,
+     
+    private firestore: AngularFirestore,) { }
 
   ngOnInit(): void {
     this.serverImageUrl = environment.serverImagePath
@@ -26,7 +36,38 @@ export class CreateGroupChatComponent implements OnInit {
     if(localStorage.getItem("groupUsers")){
       this.groupUserLists=JSON.parse(localStorage.getItem("groupUsers"));
       this.noOfUsers=this.groupUserLists.length;
-      this.model.reciepent=this.groupUserLists
+      var recepient = [];
+      var date = new Date();
+     var fbtoken = localStorage.getItem("fbtoken");
+     if(fbtoken){
+      let user_recepient:any={};
+      let objGroupData : any={};
+      objGroupData.is_read=0;
+      objGroupData.is_admin=1;
+      objGroupData.is_remove=0;
+      objGroupData.is_remove_date="";
+      objGroupData.is_exit=0;
+      objGroupData.is_exit_date="";
+      user_recepient[fbtoken] = objGroupData;
+      recepient.push(user_recepient)
+     }
+     
+      this.groupUserLists.forEach(element => {
+        let user_recepient:any={};
+        let objGroupData : any={};
+        objGroupData.is_read=0;
+        objGroupData.is_admin=0;
+        objGroupData.is_remove=0;
+        objGroupData.is_remove_date="";
+        objGroupData.is_exit=0;
+        objGroupData.is_exit_date="";
+        if(element.firebase_id){
+          user_recepient[element.firebase_id] = objGroupData;
+          recepient.push(user_recepient)
+        }
+        
+      });
+      this.model.reciepent=recepient
     }
   }
   addMoreRecepient(){
@@ -72,6 +113,14 @@ export class CreateGroupChatComponent implements OnInit {
     }
     createGroup(){
       console.log(this.model);
+      if(!this.model.group_title){
+        this.alert.error("Please enter group title","Error")
+        return false
+      }
+      this.firestore.collection("group").add(this.model).then(res => {
+        localStorage.setItem("group_id",res.id);
+        this.router.navigate(["ei/personal-messages"])
+      })
       
     }
 }
