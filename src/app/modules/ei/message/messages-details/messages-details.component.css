@@ -11,7 +11,7 @@
 }
 
 .teacherChatList {
-    height: 295px;
+    height: 365px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -75,7 +75,7 @@
     border: 1px solid #ddd;
 }
 .chatTxt img {
-    width: 100px;
+    max-width: 300px;
 }
 @media (max-width: 767px){
   .teacherChatList {

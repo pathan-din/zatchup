@@ -1,5 +1,4 @@
 <app-user-header></app-user-header>
-
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5 mobPaddingLR">
         <div class="col-12 pl-5 pr-5 mobPaddingLR">
@@ -10,77 +9,27 @@
 <div class="container mt-4 landingPageWidth">
     <div class="landingDiv">
         <h1 class="mb-4 text-center">Reminders </h1>
-
-
-    <div class="accordion mb-4" id="accordionExample" *ngIf="remaindersList ">
-        <div class="card mb-3" *ngFor="let reminder of remaindersList | paginate: config;let i=index; ">
-            <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                    <a name="test{{i}}" class="btn btn-link btn-block text-left" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="false" aria-controls="collapseOne">
-                        <img src="assets/images/profile_pic.png" class="img-fluid reminderImg">
-                        <span class="p-2 d-inline-block">{{reminder.message}}</span>
-                    </a>
-                </h2>
-            </div>
-        
-            <div id="collapseOne{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    <img *ngIf="reminder.attachment" src="{{reminder.attachment}}" class="img-fluid">
-
-                    <div class="reminder_date mt-2">{{reminder.recived_time}}</div>
+        <div class="accordion mb-4" id="accordionExample" *ngIf="remaindersList ">
+            <div class="card mb-3 cursorStyle" *ngFor="let reminder of remaindersList | paginate: config;let i=index; ">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <a name="test{{i}}" class="btn btn-link btn-block text-left" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="false" aria-controls="collapseOne">
+                            <img src="assets/images/profile_pic.png" class="img-fluid reminderImg">
+                            <span class="p-2 d-inline-block">{{reminder.message}}</span>
+                        </a>
+                    </h2>
                 </div>
-            </div>
-        </div>
-<pagination-controls *ngIf="remaindersList.length>0"  (pageChange)="getReminders($event)" class="eiPaginationTag"></pagination-controls>
-        <!-- <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Collapsible Group Item #2
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                    Some placeholder content for the second accordion panel. This panel is hidden by default.
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Collapsible Group Item #3
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
-                    And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
-                </div>
-            </div>
-        </div> -->
-    </div>
+            
+                <div id="collapseOne{{i}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <img *ngIf="reminder.attachment" src="{{reminder.attachment}}" class="img-fluid">
 
-
-
-
-
-        <!-- <div class="row" *ngIf="remaindersList">
-            <div class="col-md-12" *ngFor="let reminder of remaindersList;">
-                <div class="form-control-inputDiv mb-4 remainderDivStyle d-flex justify-content-between">
-                    <div class="emainderDivPaddingStyle justify-content-between align-items-center align-self-center mediumFont">
-                         <img *ngIf="reminder.attachment" src="{{reminder.attachment}}" class="img-fluid reminderImg">
-                        <img src="assets/images/profile_pic.png" class="img-fluid reminderImg">
-                        {{reminder.message}}
-                    </div>
-                    <div class="bg-purple arrowDivRadiusStyle">
-                        <img src="assets/images/userWebsite/rightArrow_white.png" class="img-fluid cursorStyle">
+                        <div class="reminder_date mt-2">{{reminder.recived_time}}</div>
                     </div>
                 </div>
             </div>
-        </div> -->
-
+            <pagination-controls *ngIf="remaindersList.length>0"  (pageChange)="getReminders($event)" class="eiPaginationTag"></pagination-controls>
+        </div>
         <div class="row m-0" *ngIf="!remaindersList">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records not available.</p>

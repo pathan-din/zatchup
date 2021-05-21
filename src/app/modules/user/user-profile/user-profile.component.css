@@ -64,18 +64,23 @@
     height: 100px;
     overflow: hidden;
     position: relative;
+    min-width: 100px;
+    max-height: 100px;
 }
-.bannerDiv {
-    height: 180px;
-    overflow: hidden;
+.bannerDiv{height: 180px; overflow: hidden;}
+.bannerDiv img {
+    /* max-height: 180px; */
+    margin: 0px auto;
+    max-width: 100%;
+    display: block;
 }
 .customProfile {
-    margin-top: -25px;
+    margin-top: -40px;
 }
 .tickImg {
     position: absolute;
-    bottom: 60px;
-    left: 88px;
+    top: 60px;
+    left: 90px;
     z-index: 1;
 }
 h4 {
@@ -91,7 +96,6 @@ h4 {
 @media only screen and (max-width: 414px) {
     .profileDivLeft {
         flex-direction: column;
-        padding-left: 0!important;
     }
     .profileDivLeft p {
         text-align: center!important;
@@ -118,7 +122,15 @@ h4 {
         height: auto;
     }
     .tickImg {
-        bottom: 132px;
-    left: 200px;
+        top: 47px;
+        left: 198px;
+    }
+    .profileDivLeft .pl-4 {padding-left: 0rem!important;}
+    .pt-5{padding-top: 1rem!important;}
+}
+
+@media only screen and (max-width: 320px) {
+    .tickImg {
+        left: 170px;
     }
 }

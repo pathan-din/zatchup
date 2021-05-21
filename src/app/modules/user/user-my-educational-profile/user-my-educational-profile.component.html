@@ -35,11 +35,10 @@
                             class="img-fluid ml-1 tickImg">
                         <div class="pl-3 text-left">
                             <p class="m-0 commonFontSize semiBoldFont">
-                                <span *ngIf="objEpData.kyc_approved==0"
-                                    class="text-capitalize">{{objEpData.name}}</span>
-                                <a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel"
+                                <span class="text-capitalize">{{objEpData.name}}</span>
+                                <!-- <a *ngIf="objEpData.kyc_approved==1" data-target="#personalInfoModel"
                                     data-toggle="modal" class="cursorStyle text-capitalize"
-                                    (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a>
+                                    (click)="redirectKYCPage('name',objEpData.first_name+'&'+objEpData.last_name)">{{objEpData.name}}</a> -->
                             </p>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID
                                 :{{objEpData.zatchup_id?objEpData.zatchup_id:'xxxxxxxx'}} </p>
@@ -53,12 +52,12 @@
                             <div class="col-md-12 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information
                                 </h3>
-                                <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
+                                <!-- <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
                                     <a data-target="#personalInfo" data-toggle="modal" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
                                             style="width: 26px;">
                                     </a>
-                                </div>
+                                </div> -->
                                 <!-- <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon">  -->
                             </div>
                             <div class="col-md-12">
@@ -67,10 +66,10 @@
                             <div class="col-md-12">
                                 <p *ngIf="objEpData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB :
                                     <span class="regularFont">
-                                        <span *ngIf="objEpData.kyc_approved==0">{{objEpData.dob}}</span>
-                                        <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle"
+                                        <span>{{objEpData.dob}}</span>
+                                        <!-- <a *ngIf="objEpData.kyc_approved==1" class="cursorStyle"
                                             data-target="#personalInfoModel" data-toggle="modal"
-                                            (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a>
+                                            (click)="redirectKYCPage('dob',objEpData.dob)">{{objEpData.dob}}</a> -->
                                     </span>
                                 </p>
                                 <p *ngIf="objEpData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender :
@@ -82,27 +81,25 @@
                                 </p>
                                 <p *ngIf="objEpData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email :
                                     <span class="regularFont">
-                                        <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
-                                            (click)="openModel(objEpData,'email',objEpData.email)">{{objEpData.email}}</a>
+                                        {{objEpData.email}}
                                     </span>
-                                    <span *ngIf="!objEpData.phone" class="regularFont">
+                                    <!-- <span *ngIf="!objEpData.phone" class="regularFont">
                                         <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
                                             (click)="openModel(objEpData,'phone',objEpData.phone)">
                                             <i style="font-size:20px" class="fa fa-mobile ml-2 color-green"></i>
                                         </a>
-                                    </span>
+                                    </span> -->
                                 </p>
                                 <p *ngIf="objEpData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number :
                                     <span class="regularFont">
-                                        <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
-                                            (click)="openModel(objEpData,'phone',objEpData.phone)">{{objEpData.phone}}</a>
+                                        {{objEpData.phone}}
                                     </span>
-                                    <span *ngIf="!objEpData.email" class="regularFont">
+                                    <!-- <span *ngIf="!objEpData.email" class="regularFont">
                                         <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
                                             (click)="openModel(objEpData,'email',objEpData.email)">
                                             <i style="font-size:20px" class="fa fa-envelope ml-2 color-green"></i>
                                         </a>
-                                    </span>
+                                    </span> -->
                                 </p>
                                 <p *ngIf="objEpData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's
                                     Name :
@@ -124,14 +121,16 @@
                         <div class="row form-control-inputDiv pb-3">
                             <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Add Your Location </h3>
-                                <div class="addWorkcourse" *ngIf="!objEpData.location.city_name || !objEpData.location.state_name">
+                                <div class="addWorkcourse"
+                                    *ngIf="!objEpData.location.city_name || !objEpData.location.state_name">
                                     <a class="cursorStyle" (click)="addLocationModelOpen(objEpData.location)">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
                                             style="height: 26px;">
                                     </a>
                                 </div>
-                                <div class="addWorkcourse" *ngIf="objEpData.location.city_name && objEpData.location.state_name">
-                                    <a  (click)="addLocationModelOpen(objEpData.location)" class="cursorStyle">
+                                <div class="addWorkcourse"
+                                    *ngIf="objEpData.location.city_name && objEpData.location.state_name">
+                                    <a (click)="addLocationModelOpen(objEpData.location)" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
                                             style="width: 26px;">
                                     </a>

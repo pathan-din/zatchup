@@ -1,5 +1,5 @@
-import { Location } from "@angular/common";
 import { Component, OnInit } from '@angular/core';
+import { Location } from "@angular/common";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
@@ -90,6 +90,7 @@ export class ChangePasswordComponent implements OnInit {
         this.confPassType = 'password';
       }
     }
+
   }
 
   goBack() {

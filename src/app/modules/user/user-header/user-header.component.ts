@@ -89,6 +89,10 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigate(["user/setting"]);
   }
 
+  goToChangePassword(){
+    this.router.navigate(['user/change-password'])
+  }
+
   getDasboardDetails() {
     try {
       this.loader.show();
@@ -115,6 +119,9 @@ export class UserHeaderComponent implements OnInit {
   }
   notificationList() {
     this.router.navigate(["user/notifications"]);
+  }
+  settingList() {
+    this.router.navigate(["user/setting"]);
   }
   logout() {
     this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () => {

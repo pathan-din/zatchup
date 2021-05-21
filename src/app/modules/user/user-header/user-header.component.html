@@ -60,7 +60,7 @@
                     <a routerLink="/user/messages" routerLinkActive="active-link" class="nav-link cursorStyle" aria-expanded="false">Messages</a>
                 </li>
 
-                <div class="nav-item d-flex flex-wrap">
+                <!-- <div class="nav-item d-flex flex-wrap">
                     <div *ngIf="authCheck" class="text-white px-0 ml-2 commonFontSize semiBoldFont d-flex align-items-center nav-item">
                         <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp img-small">
                         <span class="ml-3 text-white text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
@@ -75,19 +75,42 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+
+                <div class="dropdown my-1" *ngIf="authCheck">
+                    <a class="mx-2 cursorStyle commonFontSize semiBoldFont" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp">                    
+                    </a>
+                    <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" >
+                        <div class="row p-2">
+                            <div class="col-sm-12 text-center">
+                                <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp">
+                                <span class="my-3 semiBoldFont color-black d-block text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
+                            </div>
+                            <div class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="goToChangePassword()"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
+                            <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true mr-1"></i> Logout </div>
+                        </div>
+                    </div>
                 </div>
 
                 <li class="nav-item" *ngIf="authCheck">
-                    <a (click)="reminderList()" class="mr-4 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="reminderList()" class="mx-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white clockAlert">{{regProfile.unread_reminder_count? regProfile.unread_reminder_count : 0}}</sup>
                     </a>
                 </li>
 
                 <li class="nav-item" *ngIf="authCheck">
-                    <a (click)="notificationList()" class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
+                    <a (click)="notificationList()" class="mx-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white notification_icon">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup>
+                    </a>
+                </li>
+
+                <li class="nav-item" *ngIf="authCheck">
+                    <a (click)="settingList()" class="mr-2 my-2 d-inline-block text-black cursorStyle position-relative">
+                        <i class="fa fa-cog fa-lg color-white ml-2" aria-hidden="true"></i>
+                        <!-- <sup class="color-white notification_icon"></sup> -->
                     </a>
                 </li>
             </ul>
