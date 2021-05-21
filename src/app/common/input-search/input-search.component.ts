@@ -1,9 +1,9 @@
 import { Component, ViewChild, ElementRef, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, map } from "rxjs/operators";
 import { fromEvent, of, Subscription } from 'rxjs';
 import { BaseService } from 'src/app/services/base/base.service';
-import { CommunicationService } from 'src/app/services/communication/communication.service';
+// import { CommunicationService } from 'src/app/services/communication/communication.service';
 
 
 @Component({
@@ -27,15 +27,17 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.placeholder = value.placeholder ? value.placeholder : 'Search.....'
     this.viewCity = value.viewCity ? value.viewCity : false;
     this.rightIcon = value.rightIcon ? value.rightIcon : false;
-    this.viewSubMenu = value.viewSubMenu ? value.viewSubMenu : false
+    this.viewSubMenu = value.viewSubMenu ? value.viewSubMenu : false;
+    this.showValue = value.showValue ? value.showValue : false;
   }
-  @Input() get value(){
+  @Input() get value() {
     return this._value
   };
 
-  set value(value: any){
+  set value(value: any) {
     this._value = value
   }
+
   @Output() searchResult = new EventEmitter<any>();
   @Output() setValue = new EventEmitter<any>();
   subscription: Subscription
@@ -53,27 +55,31 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   rightIcon: boolean;
   viewSubMenu: boolean;
   currentUser: any;
-  _value: any
+  _value: any;
+  showValue: boolean;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private baseService: BaseService,
-    private communicationService: CommunicationService
+    // private communicationService: CommunicationService
   ) {
     this.isSearching = false;
     this.apiResponse = [];
 
-    this.subscription = this.communicationService.getFieldValue().subscribe(value => {
-      if (!value) {
-        this._value = '';
-      } else {
-        this._value = value
-      }
-    });
+    // this.subscription = this.communicationService.getFieldValue().subscribe(value => {
+    //   if (!value) {
+    //     this._value = '';
+    //   } else {
+    //     this._value = value
+    //   }
+    // });
   }
 
   ngOnInit(): void {
     this.currentUser = localStorage.getItem('userId')
+    if (this.showValue)
+      this._value = this.route.snapshot.queryParamMap.get('searchText')
     const example = fromEvent(this.searchText.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value
@@ -110,7 +116,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   searchGetCall(term: string) {
