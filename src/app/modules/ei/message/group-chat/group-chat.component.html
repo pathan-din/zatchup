@@ -29,7 +29,7 @@
 
                     <div class="teacherChatList bg-white border rounded">
                         <div class="row align-items-center border-bottom" *ngFor="let teacher of teacherList;let i=index; ">
-                            <div class="col-lg-2 col-md-2 col-2 text-center">
+                            <div class="col-lg-2 col-md-2 col-3 text-center">
                                 <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
                                     class="pickSize" />
                             </div>
@@ -37,7 +37,7 @@
                                 <h4 class="m-0 semiBoldFont color-black">{{teacher.first_name}} {{teacher.last_name}}</h4>
                                 <p class="small-text-2 m-0">Employee ID: {{teacher.employee_num}}</p>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-2 text-center">
+                            <div class="col-lg-2 col-md-2 col-12 text-right my-1">
                                 <button *ngIf="!teacher.isadded" (click)="addTeacherInGroup(teacher,i,'add')" type="button" class="btn bg-paret-green color-white px-1 py-0 rounded small-text-2">Add</button> 
                                 <button *ngIf="teacher.isadded" (click)="addTeacherInGroup(teacher,i,'del')" type="button" class="btn bg-red color-white px-1 py-0 rounded small-text-2">Delete</button> 
                             </div>
