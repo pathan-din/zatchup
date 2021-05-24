@@ -26,7 +26,7 @@
 }
 
 .schoolChat {
-    height: 365px;
+    height: 300px;
     overflow-y: scroll;
 }
 
@@ -126,7 +126,7 @@
     margin: 0px 10px 0px 2px;
 }
 .chat_contentBox img {
-    max-width: 300px;
+    max-width: 245px;
 }
 .chatIn span {
     display: block;

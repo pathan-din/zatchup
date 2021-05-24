@@ -27,7 +27,8 @@ export class UserHeaderComponent implements OnInit {
     "seeMoreResults": true,
     "viewSubMenu": true,
     "rightIcon": true,
-    "viewCity": true
+    "viewCity": true,
+    "showValue": true
 
   }
   messageData: any = [];

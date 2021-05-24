@@ -22,10 +22,10 @@ export class SettingComponent implements OnInit {
   personalInfo: any = {};
   privacySettings: any = [];
   userId: any;
-  dobStatus: boolean = false;
-  genderStatus: boolean = false;
-  mobStatus: boolean = false;
-  emailStatus: boolean = false;
+  dobStatus: boolean = true;
+  genderStatus: boolean = true;
+  mobStatus: boolean = true;
+  emailStatus: boolean = true;
   errorOtpModelDisplay: any = [];
 
 

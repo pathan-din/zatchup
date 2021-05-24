@@ -46,7 +46,8 @@
     <div class="row">
         <div class="col-12 text-center position-relative">
             <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
-            <input type="text" #searchText class="form-control pl-5" value="{{_value}}" placeholder="{{placeholder}}" autocapitalize="off" autocomplete="off" />
+            <input type="text" #searchText class="form-control pl-5" value="{{_value}}" placeholder="{{placeholder}}"
+                autocapitalize="off" autocomplete="off" />
         </div>
     </div>
     <div class="row" *ngIf="isSearching">
@@ -68,15 +69,22 @@
                 <li *ngFor="let data of apiResponse['results']; let i = index" (click)="selectData(data)">
                     <div *ngIf="i < resultsLength" class="searh_result cursorStyle position-relative">
                         <div class="searchUserProfile" *ngIf="displayImage">
-                            <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User" class="img-small" />
+                            <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User"
+                                class="img-small" />
                             <img *ngIf="data.profile_pic" src="{{data.profile_pic}}" alt="User" class="img-small" />
                         </div>
                         <div>
                             <div>
                                 <span class="SearchUserName">{{data['display']}}</span>
-                                <span *ngIf="viewSubMenu" class="small-text-2">
+                                <!-- <span *ngIf="viewSubMenu" class="small-text-2">
                                     <span *ngIf="data.id == currentUser">You</span>
-                                    <span *ngIf="data.is_school_mate && data.id != currentUser">School Mate</span>
+                                </span> -->
+                            </div>
+                            <div>
+                                <span class="regularFont issueDateFontSize color-gray batchDetail"
+                                    *ngIf="data.is_school_mate && data.id != currentUser">School Mate</span>
+                                <span *ngIf="viewSubMenu" class="regularFont issueDateFontSize color-gray batchDetail">
+                                    <span *ngIf="data.id == currentUser">You</span>
                                 </span>
                             </div>
                             <div *ngIf="viewZatchupId" class="searchUserDesignation">
@@ -93,7 +101,8 @@
                     </div>
                 </li>
                 <div *ngIf="seeMoreResults && apiResponse['count'] > 5">
-                    <button type="button" class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple"
+                    <button type="button"
+                        class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple"
                         (click)="moreResults()">See All Results</button>
                 </div>
             </ul>

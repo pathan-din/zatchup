@@ -15,6 +15,7 @@ export class UserhomeComponent implements OnInit {
   currentUser: any;
   profession: any;
   uploadInfo: any = {};
+  coverPicuploadInfo: any = {};
   coverPic: any;
   profilePic: any;
 
@@ -35,6 +36,14 @@ export class UserhomeComponent implements OnInit {
       "url": "user/socia_media_image_uplode/",
       "icon": "fa fa-camera",
       "params": { "user": this.userId, "socialmedia_coverpic": null },
+      "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+    }
+
+    this.coverPicuploadInfo = {
+      "image_type": "socialmedia_coverpic",
+      "url": "user/socia_media_image_uplode/",
+      "icon": "fa fa-camera",
+      "params": { "user": this.userId, "socialmedia_profilepic": '' },
       "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
     }
     this.getProfile();

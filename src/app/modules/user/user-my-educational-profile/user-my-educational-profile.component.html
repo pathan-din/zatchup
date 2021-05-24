@@ -123,14 +123,14 @@
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Add Your Location </h3>
                                 <div class="addWorkcourse"
                                     *ngIf="!objEpData.location.city_name || !objEpData.location.state_name">
-                                    <a class="cursorStyle" (click)="addLocationModelOpen(objEpData.location)">
+                                    <a class="cursorStyle" (click)="getCurrentCitySearchResult(objEpData.location.city_name)">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
                                             style="height: 26px;">
                                     </a>
                                 </div>
                                 <div class="addWorkcourse"
                                     *ngIf="objEpData.location.city_name && objEpData.location.state_name">
-                                    <a (click)="addLocationModelOpen(objEpData.location)" class="cursorStyle">
+                                    <a (click)="getCurrentCitySearchResult(objEpData.location.city_name)" class="cursorStyle">
                                         <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
                                             style="width: 26px;">
                                     </a>
@@ -654,18 +654,24 @@
             <div class="modal-body pl-5 pr-5 text-center">
                 <form>
                     <div class="row">
-                        <div class="col-md-6 my-1">
+                        <div class="col-md-12 my-1">
+                            <input-search [config]="currentCitySearchConfig"   (searchResult)="getCurrentCitySearchResult($event)"
+                            [value]="''" class="h-100">
+                            </input-search>
+                        </div>
+                        <!-- <div class="col-md-6 my-1">
                             <div class="shadow-none">
                                 <select class="custom-select border rounded form-control-input" name="state" required
                                     [(ngModel)]="stateId" (change)="getCities(); isValidAddLocationForm()">
                                     <option value="">Select State</option>
                                     <option *ngFor="let state of allStates" [value]="state.id">{{state.state}}
                                     </option>
+                                    
                                 </select>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.state"></div>
-                        </div>
-                        <div class="col-md-6 my-1">
+                        </div> -->
+                        <!-- <div class="col-md-6 my-1">
                             <div class="shadow-none">
                                 <select class="custom-select border rounded form-control-input" name="city" required
                                     [(ngModel)]="cityId" (change)="isValidAddLocationForm()">
@@ -674,7 +680,8 @@
                                 </select>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.city"></div>
-                        </div>
+
+                              </div> -->
                     </div>
                     <button type="button" class="btn common-model-Btn mt-3" (click)="addLocation();">Submit </button>
                 </form>

@@ -37,6 +37,13 @@ export class UserMyEducationalProfileComponent implements OnInit {
     "icon": "fa fa-camera",
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
+
+  currentCitySearchConfig: any = {
+    "api_endpoint": "user/city-list/",
+    "displayImage": false,
+    "placeholder": "Search City",
+    "seeMoreResults": false
+  }
   imageUrl: any;
   imagePath: any;
   personalInfo: any = {};
@@ -509,6 +516,12 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.stateId = location.state_id ? location.state_id : ''
     if (this.stateId)
       this.getCities()
+    $("#addLocationModel").modal('show');
+  }
+
+  getCurrentCitySearchResult(data: any) {
+    this.cityId = data.id
+    this.stateId = data.state_id
     $("#addLocationModel").modal('show');
   }
 }

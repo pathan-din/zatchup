@@ -128,7 +128,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   settingValue(type: any) {
-    if (this.privacySettings.length == 0)
+    if (this.privacySettings.length == 0 || this.userId == this.currentUser)
       return true
     else {
       let find = this.privacySettings.find(ele => {
