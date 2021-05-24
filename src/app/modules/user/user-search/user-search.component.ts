@@ -22,7 +22,7 @@ export class UserSearchComponent implements OnInit {
 
   currentSchoolSearchConfig: any = {
     "api_endpoint": "user/all-school-list-of-user/",
-    "displayImage": true,
+    "displayImage": false,
     "placeholder": "Current School",
     "display": ["name_of_school"],
     "seeMoreResults": false
@@ -30,7 +30,7 @@ export class UserSearchComponent implements OnInit {
 
   pastSchoolSearchConfig: any = {
     "api_endpoint": "user/all-school-list-of-user/",
-    "displayImage": true,
+    "displayImage": false,
     "placeholder": "Past School",
     "display": ["name_of_school"],
     "seeMoreResults": false
