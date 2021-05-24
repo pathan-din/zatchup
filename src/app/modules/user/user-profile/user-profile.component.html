@@ -23,11 +23,22 @@
             <div class="pl-4 text-left" *ngIf="userProfile">
                 <p class="m-0 commonFontSize mediumFont pt-5 text-capitalize">{{userProfile.name}}</p>
                 <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
-                <span *ngFor="let batchmate of batchmatesList">
+                <!-- <span *ngFor="let batchmate of batchmatesList">
                     <p class="m-o commonFontSize mediumFont text-capitalize">You both studied in {{batchmate.school_name}}
                         <span class="small-text-2"> </span>
                     </p>
+                </span> -->
+                <span *ngIf="batchmatesList.length > 0 && currentUser != userId">
+                    <p class="m-o commonFontSize mediumFont text-capitalize">School Mate
+                        <span class="small-text-2"> </span>
+                    </p>
                 </span>
+                <!-- <span *ngIf="currentUser == userId ">
+                    <p class="m-o commonFontSize mediumFont text-capitalize">You
+                        <span class="small-text-2"> </span>
+                    </p>
+                </span> -->
+
             </div>
         </div>
         <div *ngIf="userProfile && userProfile.firebase_id && userProfile.kyc_approved == 1 && currentUser != userId"

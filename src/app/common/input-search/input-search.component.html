@@ -76,14 +76,16 @@
                         <div>
                             <div>
                                 <span class="SearchUserName">{{data['display']}}</span>
-                                <span *ngIf="viewSubMenu" class="small-text-2">
+                                <!-- <span *ngIf="viewSubMenu" class="small-text-2">
                                     <span *ngIf="data.id == currentUser">You</span>
-                                    <!-- <span *ngIf="data.is_school_mate && data.id != currentUser">School Mate</span> -->
-                                </span>
+                                </span> -->
                             </div>
                             <div>
                                 <span class="regularFont issueDateFontSize color-gray batchDetail"
                                     *ngIf="data.is_school_mate && data.id != currentUser">School Mate</span>
+                                <span *ngIf="viewSubMenu" class="regularFont issueDateFontSize color-gray batchDetail">
+                                    <span *ngIf="data.id == currentUser">You</span>
+                                </span>
                             </div>
                             <div *ngIf="viewZatchupId" class="searchUserDesignation">
                                 {{data['school_code']}}
