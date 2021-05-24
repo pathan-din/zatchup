@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class EiSubadminRegisterComponent implements OnInit {
   model: any = {};
+  maxDate: any;
   modelForOtpModal: any = {};
   showHidePassword: string = 'password';
   showHidecPassword: string = 'password';
@@ -36,8 +37,10 @@ export class EiSubadminRegisterComponent implements OnInit {
     private loader: NgxSpinnerService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+  ) { 
+    this.maxDate = new Date();
+  }
   ngOnInit(): void {
     this.model.profile = {};
     this.model.profile.pronoun = '';
@@ -54,7 +57,7 @@ export class EiSubadminRegisterComponent implements OnInit {
       this.loader.show();
      // this.model.username = this.model.email?this.model.email:this.model.phone;
       // this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
-     this.model.profile.dob = this.model.profile.dob;
+     this.model.profile.dob =this.base.getDateFormat(this.model.profile.dob);
       localStorage.setItem("dob",this.model.profile.dob );
       localStorage.setItem("name",this.model.first_name+' '+this.model.last_name );
       

@@ -78,7 +78,7 @@
                         <span *ngIf="!objEpData.phone" class="regularFont">
                             <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
                                 (click)="openModel(objEpData,'phone',objEpData.phone)">
-                                <i style="font-size:20px" class="fa fa-mobile ml-2 color-green"></i>
+                                <i style="font-size:20px" class="fa fa-mobile ml-2 color-green" tooltip="Add Mobile Number"></i>
                             </a>
                         </span>
                     </p>
@@ -90,7 +90,7 @@
                         <span *ngIf="!objEpData.email" class="regularFont">
                             <a class="cursorStyle" data-target="#personalInfoModel" data-toggle="modal"
                                 (click)="openModel(objEpData,'email',objEpData.email)">
-                                <i style="font-size:20px" class="fa fa-envelope ml-2 color-green"></i>
+                                <i style="font-size:20px" class="fa fa-envelope ml-2 color-green" tooltip="Add Email"></i>
                             </a>
                         </span>
                     </p>
@@ -398,7 +398,7 @@
                                     <label for="" class=" commonFontSize mediumFont letterspacing">Mobile Number</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                        <input type="tel" [numberOnly] maxLength="10" placeholder="Add Mobile Number"
+                                        <input type="tel" [numberOnly] maxLength="10" placeholder="Enter Mobile Number"
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                             autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
                                             id="phone_number">
