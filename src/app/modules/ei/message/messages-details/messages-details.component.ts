@@ -21,6 +21,8 @@ export class MessagesDetailsComponent implements OnInit {
   recepintDetails: any = {};
   scrollHeight: any = 300;
   params:any={};
+  chatRecepient:any=[]
+  recepientGroup={};
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
@@ -34,7 +36,13 @@ export class MessagesDetailsComponent implements OnInit {
       this.params=params;
     })
     if(this.params.chat){
-
+      this.currentUser = localStorage.getItem('fbtoken');
+      this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
+        this.recepientGroup=res
+        console.log(this.recepientGroup);
+        
+      })
+      this. getDocumentsChat()
     }else{
       if (localStorage.getItem("receipent")) {
         this.getRecepintUserDetails(localStorage.getItem("receipent"));
@@ -71,7 +79,7 @@ export class MessagesDetailsComponent implements OnInit {
       return new Promise<any>((resolve, reject) => {
        
          this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
-          console.log(res);
+          
           res.uuid=localStorage.getItem("guuid");
             res.reciepent.forEach(ele => {
               if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
@@ -150,13 +158,32 @@ export class MessagesDetailsComponent implements OnInit {
   getDocumentsChat() {
     this.conversation = [];
     this.dataStudent = [];
+    let chatData:any=[]
     if(this.params.chat){
       var uuid = localStorage.getItem("guuid");
+      var that =this;
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
-          this.conversation = res.data;
-          this.dataStudent = res.data;
+          res.data.forEach(element1 => {
+            element1.receipentList.forEach(element => {
+              console.log(element);
+              if(element[localStorage.getItem('fbtoken')]){
+                if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
+                  
+                  var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
+                  if(!obj)
+                  chatData.push(element1)
+                }
+              }
+              
+            });
+          });
+          
+          
+          //
+          this.conversation = chatData;
+          this.dataStudent = chatData;
         } else {
           this.conversation = [];
           this.dataStudent = [];

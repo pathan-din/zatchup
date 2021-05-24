@@ -27,7 +27,33 @@
                         <p class="color-fadded-black">{{getExtenion(msgObj.msg)}}</p>                                                   
                     </div>
                 </div> 
-
+                <div (click)="messageDetails(msgObjG.uuid,'group')" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle" *ngFor="let msgObjG of groupList">
+                    <div class="profile_pick">
+                        <!-- <img *ngIf="msgObjG.group_icon" src="{{msgObj.group_icon}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                            <img *ngIf="!msgObjG.group_icon" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/> -->
+                    </div>
+                    <div class="profile_name ml-3 border-bottomCustom w-100">
+                        <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize">{{msgObjG.group_title}}
+                            <!-- <span class="small-text-2">(Student)</span> -->
+                            <!-- <span class="float-right">2:26 PM</span> -->
+                        </p> 
+                        <!-- <p class="color-fadded-black">{{lastGroupmsg[msgObjG.uuid]['document']?'Attachment':lastGroupmsg[msgObjG.uuid].msg}}</p>                                                    -->
+                    </div>
+                </div> 
+                <!-- <div *ngFor="let msgObjG of groupList" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle">
+                    <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle" (click)="messageDetails(msgObjG.uuid,'group')">
+                        <div class="col-md-1 col-2 text-center">
+                           
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <h3 class="m-0 semiBoldFont color-black text-capitalize">{{msgObjG.group_title}}
+                                 
+                            </h3>
+                            <p class="mb-0"> {{msgObjG.document?'Attachment':msgObjG.msg}} </p>
+                        </div>
+                    </div>
+        
+                </div> -->
                 <div class="row m-0" *ngIf="lastMessageData.length <= 0">   
                     <div class="col-12 pt-2 pb-2">
                         <p class="text-center dataNotFound pt-4 pb-4">Records not available.</p>
