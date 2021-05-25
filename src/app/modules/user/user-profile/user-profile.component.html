@@ -28,7 +28,7 @@
                         <span class=""> </span>
                     </p>
                 </span> -->
-                <span *ngIf="batchmatesList.length > 0 && currentUser != userId">
+                <span *ngIf="userProfile.approved == 1 && userProfile.is_school_mate && currentUser != userId">
                     <p class="m-o commonFontSize mediumFont">School mate
                         <span class=""> </span>
                     </p>

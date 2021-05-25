@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit {
     this.getProfile();
     this.getSocialMediaProfiles();
     this.getSettings()
-    this.getBatchmateslist()
+    // this.getBatchmateslist()
   }
 
   goBack() {
@@ -140,19 +140,19 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  getBatchmateslist() {
-    this.loader.show();
-    this.baseService.getData('user/batchmates_search/', { 'user_id': this.userId }).subscribe(
-      (res: any) => {
-        if (res.status) {
-          this.batchmatesList = res.data;
-        }
-        this.loader.hide()
-      },
-      err => {
-        this.loader.hide()
-      }
-    )
-  }
+  // getBatchmateslist() {
+  //   this.loader.show();
+  //   this.baseService.getData('user/batchmates_search/', { 'user_id': this.userId }).subscribe(
+  //     (res: any) => {
+  //       if (res.status) {
+  //         this.batchmatesList = res.data;
+  //       }
+  //       this.loader.hide()
+  //     },
+  //     err => {
+  //       this.loader.hide()
+  //     }
+  //   )
+  // }
 
 }
