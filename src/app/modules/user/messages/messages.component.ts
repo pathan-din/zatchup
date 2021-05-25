@@ -24,6 +24,8 @@ export class MessagesComponent implements OnInit {
   uuid: any
   lastMessageData: any = [];
   ids: any = [];
+  groupList: any;
+  lastGroupmsg: any;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -39,6 +41,7 @@ export class MessagesComponent implements OnInit {
     if (localStorage.getItem('fbtoken')) {
       this.currentUser = localStorage.getItem('fbtoken');
       this.getUsersWithModeratorRole(this.currentUser)
+      this.getGroupDetails(localStorage.getItem('fbtoken'))
     }
 
   }
@@ -57,10 +60,48 @@ export class MessagesComponent implements OnInit {
 
     this.getMessageList()
   }
+  getGroupDetails(uuid){
+    this.groupList=[];
+    this.lastGroupmsg=[]
+    this.firestore.collection('group').snapshotChanges().subscribe((res:any)=>{
+      res.forEach(element => {
+         
+        this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res:any)=>{
+          console.log(res);
+          res.uuid=element.payload.doc.id;
+            res.reciepent.forEach(ele => {
+              if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
+                var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
+                if(!index){
+                  this.groupList.push(res)
+                  this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
+                    console.log(res1.data[res1.data.length-1]);
+                    this.lastGroupmsg[element.payload.doc.id]=res1.data[res1.data.length-1]
+                    console.log(this.lastGroupmsg);
+                    
+                  })
+                }
+              }
+              
+            });
+            
+          
+          
+        })
+      });
+      
+    })
+    
+    
+  }
   goToChat(uuid, userFriendId) {
     localStorage.setItem('uuid', uuid);
     localStorage.setItem('friendlidt_id', userFriendId)
     this.router.navigate(["user/chat"]);
+  }
+  messageDetails(uid,chatConversion){
+    localStorage.setItem('guuid', uid);
+    this.router.navigate(["user/chat"],{queryParams:{"chat":chatConversion}});
   }
   getMessageList() {
     this.lastMessageData = [];
@@ -83,8 +124,14 @@ export class MessagesComponent implements OnInit {
                   this.firestore.collection('users').doc(uuid).ref.get().then(res => {
                     this.recepintDetails = res.data();
                     res1.data[res1.data.length - 1].uuid = uuid;
-                    res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
-                    res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
+                    if(!this.recepintDetails){
+
+                    }else{
+                      res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
+                      res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
+                    }
+                    
+                    
                     this.lastMessageData.push(res1.data[res1.data.length - 1]);
                   });
                 })
