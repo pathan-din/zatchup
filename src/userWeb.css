@@ -5,7 +5,7 @@ body {
 }
 
 .contentSpaceTop {
-  padding-top: 7%;
+  padding-top: 100px;
 }
 
 .textSpace {
@@ -409,10 +409,14 @@ button:focus {
   font-size: 0.9rem !important;
 }
 
-@media only screen and (max-width: 414px) {
+@media (max-width: 991px){
   .contentSpaceTop {
     padding-top: 75px;
   }
+}
+
+@media only screen and (max-width: 414px) {
+
   /* .contentTopSpaceLanding {
     margin-top: 35%;
   } */
@@ -480,9 +484,7 @@ button:focus {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .contentSpaceTop {
-    padding-top: 15%;
-  }
+
   .form-bgImg {
     background-size: 12.5%;
   }
@@ -501,8 +503,8 @@ button:focus {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   /******************************/
-  
  
   .subHeaderImg {
     width: 6%;
