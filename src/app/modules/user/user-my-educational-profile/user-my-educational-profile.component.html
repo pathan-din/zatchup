@@ -85,14 +85,14 @@
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Add Your Location </h2>
                                 <div class="addWorkcourse"
                                     *ngIf="!objEpData.location.city_name || !objEpData.location.state_name">
-                                    <a class="cursorStyle" (click)="getCurrentCitySearchResult(objEpData)">
+                                    <a class="cursorStyle" data-target="#addLocationModel" data-toggle="modal">
                                         <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid"
                                             style="height: 26px;">
                                     </a>
                                 </div>
                                 <div class="addWorkcourse"
                                     *ngIf="objEpData.location.city_name && objEpData.location.state_name">
-                                    <a (click)="getCurrentCitySearchResult(objEpData.location.city_name)" class="cursorStyle">
+                                    <a class="cursorStyle" data-target="#addLocationModel" data-toggle="modal">
                                         <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid mr-2"
                                             style="width: 26px;">
                                     </a>
@@ -583,7 +583,7 @@
                 <form>
                     <div class="row">
                         <div class="col-md-12 my-1">
-                            <input-search [config]="currentCitySearchConfig"   (searchResult)="getCurrentCitySearchResult($event)"
+                            <input-search [config]="currentCitySearchConfig"   (searchResult)="citySearchResult($event)"
                             [value]="''" class="h-100">
                             </input-search>
                         </div>
