@@ -64,7 +64,7 @@ export class EiCourseList extends Pagination{
   displayedColumns: string[] = ['position', 'courseName','levelOfEducation', 
   'field','noOfStandards','subject',
   'noOfCourse','Action'];
-  params: any;
+  params: any = {};
   id: any;
   modal: any;
   page_size: any = 10;
