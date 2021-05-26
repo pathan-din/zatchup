@@ -71,32 +71,7 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
     }
   }
 
-  deleteEiLecture(id: any ): any {
-    this.modal ={
-      "id": id,
-    }
-    console.log(this.modal);
-    
-   this.message = 'Are you sure you want to delete this Lecture ?'
-    this.confirmDialogService.confirmThis(this.message, () => {
-      this.loader.show()
-      this.baseService.action('starclass/ei_lecture_delete/', this.modal).subscribe(
-        (res: any) => {
-          if (res.status == true) {
-            this.alert.success(res.message, "Success")
-           this.location.back()
-          } else {
-            this.alert.error(res.error.message, 'Error')
-          }
-          this.loader.hide();
-        }
-      ), err => {
-        this.alert.error("Please try again.", 'Error')
-        this.loader.hide();
-      }
-    }, () => {
-    });
-  }
+ 
 
   goBack(){
     this.location.back()

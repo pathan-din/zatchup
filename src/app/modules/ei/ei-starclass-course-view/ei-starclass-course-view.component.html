@@ -31,7 +31,7 @@
         <!---->
         <div class="row topDiv">
             <div class="col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">Course Details</h2>
             </div>
             <!-- <div class="col-6 text-right">
                 <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0 ">History</button>
@@ -100,7 +100,7 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Teaching Faculty Details</p>
+                            <p>Teaching Faculty </p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span>{{courseData.faculty_details}}</p>
@@ -128,7 +128,7 @@
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Date Of Creating Course</p>
+                            <p>Created On</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">: </span>{{courseData.created_on | date}}</p>
@@ -141,7 +141,7 @@
                             <p> Student Auidence</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToStudentAudienceAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                            <p (click)="goToStudentAudienceAdd(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
                                 Edit</p>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                             <p> Teacher Auidence</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToTeacherAudienceAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                            <p (click)="goToTeacherAudienceAdd(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
                                 Add/Edit</p>
                         </div>
                     </div> -->
@@ -164,7 +164,7 @@
                             <p>Edit Access Right For The Course</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToEditTeacherAdd(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                            <p (click)="goToEditTeacherAdd(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
                                 Edit</p>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                             <p>Play  History</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                            <p class="cursorStyle " ><span class="mr-3">:</span>
                                 History</p>
                         </div>
                     </div> -->
@@ -185,7 +185,7 @@
                             <p>Upload Lecture</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToUploadLecture(courseData)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                            <p (click)="goToUploadLecture(courseData)" class="cursorStyle " ><span class="mr-3">:</span>
                                 Upload</p>
                         </div>
                     </div>
@@ -207,7 +207,7 @@
                             <p>Edit Course Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToEditCourse(courseData.id)" class="cursorStyle textUnderlineStyle" ><span class="mr-3">:</span>
+                            <p (click)="goToEditCourse(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
                                 Edit</p>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
                     <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
                 </div>
                 <div class="col-4 text-right">
-                    <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0" tooltip="Lecture History"><i class="fa fa-history" aria-hidden="true"></i></button>
+                    <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
                 </div>
             </div>
     
@@ -267,11 +267,13 @@
                             </ng-container>
         
                             <ng-container matColumnDef="viewDetails">
-                                <mat-header-cell *matHeaderCellDef>View Details</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
                                 <mat-cell *matCellDef="let element">
                                     <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View"
                                         (click)="goToLectureView(element.id)"></i>
-                                </mat-cell>
+                                        <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" title="Delete" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteEiLecture(element.id )"></i>
+                                        <i *ngIf="courseData.is_edit == true  && courseData.is_all_access == true" title="Edit" class="fa fa-pencil ml-2 color-green  cursorStyle" aria-hidden="true" (click)="goToEditLecture(element.id )"></i>
+                                    </mat-cell>
                             </ng-container>
         
                             <!-- <ng-container matColumnDef="durationOfLecture">
