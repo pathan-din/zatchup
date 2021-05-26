@@ -8,13 +8,13 @@
     </div>
 </div>
 <div class="container containerScrolling landingPageWidth ">
-    <div class="bannerDiv Onboard-viewbanner-div p-2 d-flex align-items-end position-relative" *ngIf="schoolProfile">
+    <div class="bannerDiv position-relative border bg-white" *ngIf="schoolProfile">
         <img *ngIf="!schoolProfile.cover_pic" src="assets/images/cover-pic-default.png" class="img-fluid userSchoolProfileCover">
         <img *ngIf="schoolProfile.cover_pic" src="{{schoolProfile.cover_pic}}" class="img-fluid userSchoolProfileCover">        
     </div>
     <div class="landingDiv">
         <div class="row pt-2">
-            <div class="col-md-5 text-right d-flex profileDivLeft  p-0 ">
+            <div class="col-md-10 text-right d-flex profileDivLeft  p-0 ">
                 <div class="dpImgDiv" *ngIf="schoolProfile">
                     <img *ngIf="!schoolProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                     <img *ngIf="schoolProfile.profile_pic" src="{{schoolProfile.profile_pic}}" class="img-fluid dpImg">
@@ -22,12 +22,12 @@
                 </div>
 
                 <div class="pl-4 text-left" *ngIf="schoolProfile">
-                    <p class="m-0 commonFontSize mediumFont text-capitalize">{{schoolProfile.name_of_school}}</p>
+                    <h2 class="m-0 commonFontSize mediumFont text-capitalize fontSize-20">{{schoolProfile.name_of_school}}</h2>
                     <p class="m-o commonFontSize mediumFont">{{schoolProfile.zatchupid}}</p>
                 </div>
                 
             </div>
-            <div class="col-md-7 text-right d-flex profileDivRight flex-row" *ngIf="schoolProfile && schoolProfile.firebase_id">
+            <div class="col-md-2 text-right d-flex profileDivRight flex-row" *ngIf="schoolProfile && schoolProfile.firebase_id">
                 <img (click)="getDocumentsChat(schoolProfile.firebase_id)" src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
                 <!-- <div class="col-4">
                     <p class="m-0 commonFontSize mediumFont text-center">20K</p>

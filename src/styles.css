@@ -806,9 +806,6 @@ a:hover {
     .experiencedetails {
         margin-left: 0px;
     }
-    h2 {
-        text-align: center;
-    }
 }
 
 .mat-slide-toggle-thumb {
@@ -849,5 +846,5 @@ a:hover {
 
 hr {
     margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
 }

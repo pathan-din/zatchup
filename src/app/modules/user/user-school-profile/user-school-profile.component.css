@@ -5,16 +5,26 @@
 
 .email_position-absolute {
     position: absolute;
-    top: 6%;
-    right: 2%;
+    right: 15px;
     width: 40px;
+    bottom: 0px;
 }
 
 .bannerDiv {
     overflow: hidden;
     height: 180px;
 }
-
+.bannerDiv img {
+    /* max-height: 180px; */
+    margin: 0px auto;
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .landingDiv {
     padding-top: 0;
 }
@@ -120,18 +130,14 @@
     .dotted_img {
         width: 25%!important;
     }
-    .bannerDiv{
-        height: auto;
-    }
     .pl-4.text-left {
         padding-left: 0px !important;
-    }
-    .email_position-absolute {
-        position: static;
-        float: right;
-        width: auto;
     }
     .tickImg{
         top: 10px;
     }
 }
+
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}

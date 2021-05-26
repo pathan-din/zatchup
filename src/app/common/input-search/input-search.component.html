@@ -82,7 +82,7 @@
                             </div>
                             <div>
                                 <span class="regularFont issueDateFontSize color-gray batchDetail"
-                                    *ngIf="data.is_school_mate && data.id != currentUser">School Mate</span>
+                                    *ngIf="data.is_school_mate && data.approved == 1 && data.id != currentUser">School Mate</span>
                                 <span *ngIf="viewSubMenu" class="regularFont issueDateFontSize color-gray batchDetail">
                                     <span *ngIf="data.id == currentUser">You</span>
                                 </span>

@@ -73,6 +73,11 @@
     margin: 0px auto;
     max-width: 100%;
     display: block;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .customProfile {
     margin-top: -40px;
@@ -118,9 +123,6 @@ h4 {
         padding: 0;
         margin-top: 2%;
     }
-    .bannerDiv{
-        height: auto;
-    }
     .tickImg {
         top: 47px;
         left: 198px;
@@ -134,3 +136,8 @@ h4 {
         left: 170px;
     }
 }
+
+
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}
