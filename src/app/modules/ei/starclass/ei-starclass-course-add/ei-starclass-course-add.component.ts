@@ -105,7 +105,10 @@ export class EiStarclassCourseAddComponent implements OnInit {
   createCourse() {
     try {
       this.errorDisplay = {};
-      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, false, []);
+      
+      
+      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, true, []);
+      console.log( this.errorDisplay);
       if (this.errorDisplay.valid) {
         return false;
       }
