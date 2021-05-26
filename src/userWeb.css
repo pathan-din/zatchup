@@ -481,6 +481,10 @@ button:focus {
   margin: 1rem !important;
 }
 
+.bannerDiv{
+  height: 100px !important;
+}
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
