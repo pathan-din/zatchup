@@ -11,8 +11,8 @@
                 <h2 class="commonFontSize semiBoldFont m-0">All Libraries Uploaded By EI</h2>            
             </div>
             <div class="col-md-6 d-flex flex-row SearchDiv">
-                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'"  type="button" class="bg-purple text-white py-2 px-2 border-0" (click)="goToCreateCourse()">Create Library</button>
-                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" type="button" class="bg-dark text-white py-2 px-2 border-0 ml-2" (click)="goToCourseHistory()"> Library History</button>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'"  type="button" class="bg-purple text-white py-2 px-2 border-0" (click)="goToCreateCourse()">Create Course</button>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" type="button" class="bg-dark text-white py-2 px-2 border-0 ml-2" (click)="goToCourseHistory()"> Course History</button>
             </div>
         </div>
 
@@ -134,7 +134,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="noOfCourse">
-                        <mat-header-cell *matHeaderCellDef>Course Count</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Lecture Count</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.number_of_lectures}}</mat-cell>
                     </ng-container>

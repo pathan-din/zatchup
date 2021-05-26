@@ -14,7 +14,7 @@
     </div>
     <div class="landingDiv">
         <div class="row pt-2">
-            <div class="col-md-10 text-right d-flex profileDivLeft  p-0 ">
+            <div class="col-md-10 text-right d-flex profileDivLeft">
                 <div class="dpImgDiv" *ngIf="schoolProfile">
                     <img *ngIf="!schoolProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
                     <img *ngIf="schoolProfile.profile_pic" src="{{schoolProfile.profile_pic}}" class="img-fluid dpImg">
@@ -43,8 +43,10 @@
         </div>
         <div class="row mt-3" *ngIf="schoolProfile">
             <div class="col-md-5">
-                <p class="commonFontSize regularFont"><span class="semiBoldFont">Address : </span>{{schoolProfile.address1}} {{schoolProfile.address2}}</p>
-                <p class="commonFontSize regularFont"><span class="semiBoldFont">Overview of School : </span>{{schoolProfile.overview}} </p>
+                <p class="commonFontSize regularFont fontSize-16">
+                    <span class="semiBoldFont fontSize-16">School Address : </span>{{schoolProfile.address1}} {{schoolProfile.address2}}</p>
+                <p class="commonFontSize regularFont fontSize-16">
+                    <span class="semiBoldFont fontSize-16">School Overview : </span>{{schoolProfile.overview}} </p>
 
                 <!-- <div class="row mt-3">
                     <div class="col-6">
@@ -58,14 +60,15 @@
 
             <div class=" col-md-7 ">
                 <div class="form-control-inputDiv border-0 bg-light-green py-2">
-                    <p class="text-center m-0">Number of Students</p>
+                    <p class="text-center m-0 fontSize-16">Number of Students</p>
                     <p class="text-center text-green m-0 mediumFont">{{schoolProfile.total_student}}</p>
                 </div>
                 <div class=" form-control-inputDiv border-0 bg-gary mt-3 py-2">
-                    <p class="text-center m-0">Number of alumni on ZatchUp
+                    <p class="text-center m-0 fontSize-16">Number of alumni on ZatchUp
                     </p>
                     <p class="m-0 text-center color-purple mediumFont"> {{schoolProfile.total_alumni}}</p>
                 </div>
+
                 <!-- <div class="row ">
                     <div class="col-12 colLeftPost ">
                         <div class="form-control-inputDiv py-2">
