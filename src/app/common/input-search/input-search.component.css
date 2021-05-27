@@ -168,15 +168,15 @@ body {
 }
 
 .img-small {
-  width: 30px;
-  height: 30px;
+  max-width: 100%;
+    display: block;
 }
 
 .searh_result {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   padding: 5px;
 }
 
@@ -190,6 +190,10 @@ body {
   overflow: hidden;
   background: #fff;
   margin-right: 10px;
+  max-width: 30px;
+  min-width: 30px;
+  max-height: 30px;
+  min-height: 30px;
 }
 
 .SearchUserName {
