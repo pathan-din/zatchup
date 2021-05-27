@@ -15,10 +15,16 @@
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    <select *ngIf="!add" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getTeacherAuidenceList('')" [(ngModel)]="editTeacherAudience.page_size">
                         <option *ngFor="let count of editTeacherAudience.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
+
+                    <select *ngIf="add" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="perPage()" [(ngModel)]="editTeacherAudience.page_size">
+                        <option *ngFor="let count of editTeacherAudience.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+
                 </div>
             </div>
            
@@ -79,8 +85,12 @@
 
             </div>
         </div>
-        <!-- <pagination-controls *ngIf="editTeacherAudience.dataSource" (pageChange)="getTeacherAuidenceList($event)" class="eiPaginationTag">
-        </pagination-controls> -->
+        <pagination-controls *ngIf="editTeacherAudience.dataSource && !add" (pageChange)="getTeacherAuidenceList($event)" class="eiPaginationTag">
+        </pagination-controls> 
+        
+        <pagination-controls *ngIf="editTeacherAudience.dataSource && add" (pageChange)="changePage($event)" class="eiPaginationTag">
+        </pagination-controls> 
+
         <div class="row pt-3" *ngIf="!editTeacherAudience.dataSource">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>

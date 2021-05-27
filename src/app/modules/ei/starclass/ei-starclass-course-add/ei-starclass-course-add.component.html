@@ -59,13 +59,13 @@
         <div class="row p-3">
             <div class="col-md-12 bg-light-gray pt-2 pb-3">
                 <!-- <h3 class="mediumFont semiBoldFont newCourseTitle">Create New Course</h3> -->
-                <form class="w-100">
+                <form class="w-100" id="form1">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Name </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="50" required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Course Name">
+                                    <input  type="text"  (keyup)="isValid($event)"  maxlength="50" required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing"placeholder="Enter Course Name">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.course_name"></div>
@@ -74,7 +74,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Education Level </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Level Of Education">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Level Of Education">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
@@ -84,7 +84,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input #inputFile validFileExtention="mp4,mkv,avi" required  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                    <input #inputFile type="file" validFileExtention="mp4,mkv,avi" required  name="course_preview"  (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Course Name">                                    
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                             </div>
@@ -95,7 +95,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input #inputFile  name="course_preview" type="file" (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">                                    
+                                    <input #inputFile  type="file" name="course_preview"  (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Course Name">                                    
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
                             </div>
@@ -118,7 +118,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input accept="image/*" [required]="!model.course_image"   name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file" placeholder="Enter Course Name">
+                                    <input type="file" accept="image/*" [required]="!model.course_image"   name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Course Name">
                                 </div>
                                 <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Jpg/Jpeg/Png </p>
                             </div>
@@ -139,7 +139,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Field Name">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Field Name">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.field"></div>
@@ -149,7 +149,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Standard </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"   maxlength="50" required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Standard Name">
+                                    <input type="text" (keyup)="isValid($event)"   maxlength="50" required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Standard Name">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.standard"></div>
@@ -159,7 +159,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Subject </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Subject Name">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Subject Name">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.subject"></div>
@@ -169,7 +169,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Faculty Details </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="150" required [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Faculty Name">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="150" required [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Faculty Name">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.faculty_details"></div>
@@ -179,7 +179,7 @@
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Topic Cover </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                    <input (keyup)="isValid($event)"  maxlength="150"  required [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Topic Name">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="150"  required [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Topic Name">
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.topic_cover"></div>
@@ -189,7 +189,7 @@
                             <div class="form-group row  ml-0 mr-2 mt-2">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Description </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100  border-top shadow-none">
-                                    <textarea (keyup)="isValid($event)"  maxlength="200"  required [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" type="textarea"></textarea>
+                                    <textarea type="textarea" (keyup)="isValid($event)"  maxlength="200"  required [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" ></textarea>
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.description"></div>
@@ -198,7 +198,7 @@
                     </div>
     
                     <div class="row justify-content-center d-flex">
-                        <button type="button" class="bg-paret-green border-0 w-90 px-3 text-white 
+                        <button type="submit" class="bg-paret-green border-0 w-90 px-3 text-white 
                         text-center p-2 commonFontSize mediumFont letterspacing" (click)="createCourse()">
                         {{action == 'add' ? 'Create ' : 'Edit '}}</button>
                     </div>                    

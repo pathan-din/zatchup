@@ -55,7 +55,7 @@
 
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element;let i=index">
-                            <mat-checkbox [(ngModel)]="element.is_access_for_star_class" (change)="getStudentAudienceBycheckbox(element.user_id,$event,i)">
+                            <mat-checkbox name="ch{{i}}" [(ngModel)]="element.is_access_for_star_class" (change)=" getStudentAudienceBycheckbox(element.user_id,$event,i)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>
