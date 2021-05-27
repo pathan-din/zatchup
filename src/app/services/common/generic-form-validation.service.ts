@@ -42,7 +42,7 @@ export class GenericFormValidationService {
       
       this.errorMessageObject = {};
       for (var i = 0; i < controls.length; i++) {
-        console.log(controls[i]);
+        //console.log(controls[i]);
         //Check All Required filled based on the all controlles required property 
         if (controls[i].required && !controls[i].value) {
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';

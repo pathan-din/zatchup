@@ -80,10 +80,12 @@
                             <img *ngIf="recepientGroup && recepientGroup.group_icon" src="{{recepientGroup.group_icon}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepientGroup" class="m-0">{{recepientGroup.group_title?recepientGroup.group_title:"" }} </p>
-                            <!-- <span class="small-text-2" *ngIf="presence$ | async as presence">
-                                <label [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
-                            </span> -->
+                            <p *ngIf="recepientGroup" class="m-0"> {{recepientGroup.group_title}} 
+                                <span class="small-text-2"></span>
+                            </p>
+                             <span class="small-text-2" *ngFor="let user of receipentUsers">
+                                <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}}{{','}}</label>
+                            </span>
                         </div>
                     </div>
                     <!-- <div class="setting_info text-right pr-3 dropdown">
