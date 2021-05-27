@@ -189,9 +189,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
   background: #fff;
-  padding: 1px;
   margin-right: 10px;
-  margin-top: 5px;
 }
 
 .SearchUserName {
@@ -206,6 +204,10 @@ body {
   left: 30px;
   top: 12px;
 }
+
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}
 
 .searchIcon {
   position: absolute;

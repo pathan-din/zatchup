@@ -68,14 +68,14 @@
                 <div></div>
                 <li *ngFor="let data of apiResponse['results']; let i = index" (click)="selectData(data)">
                     <div *ngIf="i < resultsLength" class="searh_result cursorStyle position-relative">
-                        <div class="searchUserProfile" *ngIf="displayImage">
+                        <div class="searchUserProfile border" *ngIf="displayImage">
                             <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User"
                                 class="img-small" />
                             <img *ngIf="data.profile_pic" src="{{data.profile_pic}}" alt="User" class="img-small" />
                         </div>
                         <div>
                             <div>
-                                <span class="SearchUserName">{{data['display']}}</span>
+                                <span class="SearchUserName text-capitalize fontSize-16">{{data['display']}}</span>
                                 <!-- <span *ngIf="viewSubMenu" class="small-text-2">
                                     <span *ngIf="data.id == currentUser">You</span>
                                 </span> -->
