@@ -6,8 +6,6 @@
 .email_position-absolute {
     position: absolute;
     right: 15px;
-    width: 40px;
-    bottom: 0px;
 }
 
 .bannerDiv {
@@ -27,6 +25,10 @@
 }
 .landingDiv {
     padding-top: 0;
+}
+
+.landingDiv {
+    padding: 0px 2% 2% 2%;
 }
 
 .w-like-comment {
@@ -89,8 +91,8 @@
 }
 .tickImg {
     position: absolute;
-    top: -37px;
-    right: -8px;
+    top: 15px;
+    right: -3px;
   
 }
 
@@ -135,6 +137,9 @@
     }
     .tickImg{
         top: 10px;
+    }
+    .email_position-absolute {
+        top: -50px;
     }
 }
 

@@ -119,15 +119,7 @@
                         </div>
                     </div>
                     <!-- *ngIf="eiLectureDetailsView.is_edit == true" -->
-                    <div class="row mb-3"  *ngIf="roleOfSubadmin.role == 'EIREPRESENTATIVE'">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Delete</p>
-                        </div>
-                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
-                            <p class="cursorStyle" (click)="deleteEiLecture(eiLectureDetailsView.id)"><span class="mr-3">:</span> Delete</p>
-                        </div>
-                    </div>
+                    
                     <div class="row" *ngIf="roleOfSubadmin.role == 'EIREPRESENTATIVE'">
                         <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>

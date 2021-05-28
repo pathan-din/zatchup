@@ -33,6 +33,8 @@ export class ChatComponent implements OnInit {
   recepientGroup: any;
   recepientUsers:any;
   recepientIcon:any;
+  receipentUsers: any=[];
+  lastGroupChatData:any=[];
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -53,12 +55,14 @@ export class ChatComponent implements OnInit {
       this.recepientUsers=[]
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         res.reciepent.forEach(element => {
-          Object.keys(element).forEach(ele=>{
-            if(!this.recepientUsers.find(keys=>{return keys==ele})){
-              this.getRecepintUserDetails(ele)
-              this.recepientUsers.push(this.recepintDetails.firstName+' '+this.recepintDetails.lastName,ele)
-            }
+          //console.log(element);
+          Object.keys(element).forEach(el=>{
+            if(element[el].is_remove==0 && element[el].is_exit==0){
             
+              this.getRecepintUserDetails(el,'group');
+             // console.log(el);
+            }
+           
           })
           
         });
@@ -111,6 +115,7 @@ export class ChatComponent implements OnInit {
    
     let chatData:any=[]
     if(this.params.chat){
+      this.lastGroupChatData=[];
       var uuid1 = localStorage.getItem("guuid");
       var that =this;
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
@@ -125,6 +130,7 @@ export class ChatComponent implements OnInit {
                   var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
                   if(!obj)
                   chatData.push(element1)
+                  this.lastGroupChatData.push(res.data[res.data.length-1]);
                 }
               }
               
@@ -217,13 +223,28 @@ export class ChatComponent implements OnInit {
 
 
   }
-  getRecepintUserDetails(uuid: any) {
-    if (uuid) {
+  getRecepintUserDetails(uuid: any,text:any='') {
+    if(text=='group'){
+      //this.receipentUsers.push(k)
+      localStorage.setItem("receipent",uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-        this.recepintDetails = res.data();
-        console.log('recipants details is as ::', this.recepintDetails)
+     // this.recepintDetails = res.data();
+     let resp:any={}
+     resp = res.data()
+     if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
+      this.receipentUsers.push(resp )
       });
+      //console.log(this.receipentUsers);
+      
+    }else{
+      if (uuid) {
+        this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+          this.recepintDetails = res.data();
+          console.log('recipants details is as ::', this.recepintDetails)
+        });
+      }
     }
+    
 
   }
   sendChat(document?: any) {

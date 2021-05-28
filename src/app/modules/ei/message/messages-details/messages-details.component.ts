@@ -23,6 +23,7 @@ export class MessagesDetailsComponent implements OnInit {
   params:any={};
   chatRecepient:any=[]
   recepientGroup={};
+  receipentUsers: any=[];
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
@@ -39,7 +40,19 @@ export class MessagesDetailsComponent implements OnInit {
       this.currentUser = localStorage.getItem('fbtoken');
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         this.recepientGroup=res
-        console.log(this.recepientGroup);
+        res.reciepent.forEach(element => {
+          //console.log(element);
+          Object.keys(element).forEach(el=>{
+            if(element[el].is_remove==0 && element[el].is_exit==0){
+            
+              this.getRecepintUserDetails(el,'group');
+             // console.log(el);
+            }
+           
+          })
+          
+        });
+       // console.log(this.recepientGroup);
         
       })
       this. getDocumentsChat()
@@ -63,10 +76,26 @@ export class MessagesDetailsComponent implements OnInit {
       this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
   }
-  getRecepintUserDetails(uuid) {
-    this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-      this.recepintDetails = res.data();
-    });
+  getRecepintUserDetails(uuid,text:any='') {
+    if(text=='group'){
+      //this.receipentUsers.push(k)
+      localStorage.setItem("receipent",uuid);
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+     // this.recepintDetails = res.data();
+     let resp:any={}
+     resp = res.data()
+     if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
+      this.receipentUsers.push(resp )
+      });
+      //console.log(this.receipentUsers);
+      
+    }else{
+     // localStorage.setItem("receipent",uuid);
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+        this.recepintDetails = res.data();
+      });
+    }
+   
   }
 
   sendChat(document?: any) {
@@ -167,7 +196,7 @@ export class MessagesDetailsComponent implements OnInit {
         if (res) {
           res.data.forEach(element1 => {
             element1.receipentList.forEach(element => {
-              console.log(element);
+             // console.log(element);
               if(element[localStorage.getItem('fbtoken')]){
                 if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
                   

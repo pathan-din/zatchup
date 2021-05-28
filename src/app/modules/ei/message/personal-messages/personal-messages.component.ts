@@ -20,6 +20,7 @@ export class PersonalMessagesComponent implements OnInit {
   objStudent:any={};
   lastMessageData:any=[];
   groupList:any=[];
+  lastGroupmsg: any=[];
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -211,11 +212,22 @@ export class PersonalMessagesComponent implements OnInit {
         this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res:any)=>{
           console.log(res);
           res.uuid=element.payload.doc.id;
+          if(!res.group_icon){
+            res.group_icon="assets/images/userWebsite/share-my-profile-icon.png";
+          }
             res.reciepent.forEach(ele => {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
                 var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
                 if(!index){
                   this.groupList.push(res)
+                  this.lastGroupmsg[element.payload.doc.id]=[]
+                  this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
+                    //console.log(res1.data[res1.data.length-1]);
+                    if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp}))
+                    this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                    //console.log(this.lastGroupmsg);
+                    
+                  })
                 }
               }
               

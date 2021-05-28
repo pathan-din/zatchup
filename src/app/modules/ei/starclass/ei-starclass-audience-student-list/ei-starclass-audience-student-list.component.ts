@@ -86,16 +86,16 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
                 if (this.classId) {
                   console.log('fjkdbf', this.classId);
                   
+                  console.log(this.studentAudienceList);
+                  
                   res.results.forEach(
                     element => {
-                      console.log(
-                        this.studentAudienceListLocalstorage[element.user_id]
-                      );
                       
-                      if(this.studentAudienceListLocalstorage[element.user_id]==true || this.studentAudienceListLocalstorage[element.user_id]==false){
-                        element.is_access_for_star_class =this.studentAudienceListLocalstorage[element.user_id]
+                    
+                      if (this.studentAudienceList.indexOf(element.user_id) === -1) {
+                        element.is_access_for_star_class = true;
                       }else{
-                        element.is_access_for_star_class = true
+                        element.is_access_for_star_class = false;
                       }
                       
                     }
@@ -111,7 +111,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
               }
             
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
-              this.setData()
+              // this.setData()
             }
             else {
               this.studentAuidence.dataSource = undefined
@@ -135,30 +135,64 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   }
 
   setData() {
-    let filtered = this.studentAuidence.dataSource.filter(elen => {
-      if(this.isValid(elen) ==  true)
-      return elen.user_id
-    })
-    filtered.forEach(elen => {
-      this.studentAudienceList.push(elen.user_id)
-    })
+    // let filtered = this.studentAuidence.dataSource.filter(elen => {
+    //   if(this.isValid(elen) ==  true)
+    //   return elen.user_id
+    // })
+    // filtered.forEach(elen => {
+    //   this.studentAudienceList.push(elen.user_id)
+    // })
+
+    // console.log( this.studentAudienceList );
+    
     
   }
 
+  arrayRemove(arr, value) { 
+    
+    return arr.filter(function(ele){ 
+        return ele != value; 
+    });
+}
+
+
   getStudentAudienceBycheckbox(stId, event) {
+console.log( event);
+console.log(stId);
 
-    if (event.checked) {
-      if (this.studentAudienceList.indexOf(stId) === -1) {
-        this.studentAudienceList.push(stId)
-      }
-    } else {
-      if (this.studentAudienceList.indexOf(stId) === -1) {
 
-      } else {
-        var index = this.studentAudienceList.indexOf(stId)
-        this.studentAudienceList.splice(index, 1);
-      }
-    }
+
+    // if (event.checked ) {
+    console.log('inn1');
+    
+        // var index = this.studentAudienceList.indexOf(stId)
+        // if(index != -1){
+
+          if (event.checked ) 
+          this.studentAudienceList = this.arrayRemove(this.studentAudienceList, stId);
+          else
+          this.studentAudienceList.push(stId)
+          // this.studentAudienceList.splice(index, 1);
+        // }else{
+        // }
+
+
+    //   if (this.studentAudienceList.indexOf(stId) === -1) {
+
+    //   } else {
+    //     var index = this.studentAudienceList.indexOf(stId)
+    //     this.studentAudienceList.splice(index, 1);
+    //   }
+    // } else {
+    //   if (this.studentAudienceList.indexOf(stId) === -1) {
+     
+    //   }
+
+    
+    // }
+
+    console.log( this.studentAudienceList);
+    
   }
 
   // setData() {
@@ -251,8 +285,16 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     } else {
 
       this.loader.show();
+      var temp = [];
+      this.studentAuidence.dataSource.forEach( e => {
+
+        if (this.studentAudienceList.indexOf( e.user_id) === -1) 
+            temp.push( e.user_id );
+      });
+
+
       this.model = {
-        'student_id': this.studentAudienceList.join(','),
+        'student_id': temp.join(','),
         'course_id': this.route.snapshot.queryParamMap.get('course_id')
       }
       this.baseService.action('starclass/ei-course-assign-to-user/', this.model).subscribe(

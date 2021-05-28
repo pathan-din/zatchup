@@ -130,6 +130,17 @@ export class StudentsListComponent implements OnInit {
         this.config.totalItems = this.totalNumberOfPage;
         this.pageCounts = this.baseService.getCountsOfPage();
         let arrStudentList: any = [];
+        let arrGroupUserList:any=[]
+        if(localStorage.getItem("groupUsers")){
+         
+          JSON.parse(localStorage.getItem("groupUsers")).forEach(element => {
+            if(element.student_id){
+              arrGroupUserList[element.student_id]=element
+            }
+            
+          });
+          
+        }
         if (!page) { page = 1 }
         var i = (this.pageSize * (page - 1)) + 1;
         this.studentList.forEach(objData => {
@@ -151,7 +162,14 @@ export class StudentsListComponent implements OnInit {
           objStudentList.roll_no = objData.roll_no;
           objStudentList.firebase_id = objData.firebase_id
           objStudentList.checkedAll = true;
-          objStudentList.checked = true;
+          if(localStorage.getItem("groupUsers")){
+             if(arrGroupUserList[objData.user_id]){
+              objStudentList.checked = arrGroupUserList[objData.user_id].checked;
+             }
+          }else{
+            objStudentList.checked =true;
+          }
+          
           objStudentList.Action = '';
           
           i = i + 1;
@@ -195,15 +213,17 @@ export class StudentsListComponent implements OnInit {
    
   }
    
-  selectOne(ev,type){
+  selectOne(ev,type,user){
     if(type=='student')
     {
      this.studentLists.forEach(objData => {
+       if(user==objData.student_id)
         objData.checked = ev.checked;
       })
       
     }else{
       this.teacherList.forEach(objData => {
+        if(user==objData.user_id)
         objData.isadded = ev.checked;
         
       })

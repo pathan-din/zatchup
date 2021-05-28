@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -20,6 +21,8 @@ export class EiStarclassCourseViewComponent implements OnInit {
   courseData: any;
   courseId: string;
   roleOfSubadmin: any;
+  modal: any;
+  message: any;
   constructor(
     private location: Location,
     private activeRoute: ActivatedRoute,
@@ -27,7 +30,9 @@ export class EiStarclassCourseViewComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private router: Router,
-    private validation: GenericFormValidationService
+    private validation: GenericFormValidationService,
+    private confirmDialogService: ConfirmDialogService,
+
   ) {
     this.eiStarclassCourseView = new EiStarclassCourseView(),
     this.eiStarclassLectueList = new EiStarclassLectureList()
@@ -154,6 +159,38 @@ generateExcel() {
   delete  this.eiStarclassLectueList.model.page;
   this.eiStarclassLectueList.model['export_csv'] = true
   this.baseService.generateExcel('starclass/export-csv-ei-lecture/', 'ei-lecture-list',  this.eiStarclassLectueList.model);
+}
+
+goToEditLecture(id){
+  this.router.navigate(['ei/star-class-lecture-upload', id], { queryParams: { 'action': 'edit'}}) 
+  
+}
+
+deleteEiLecture(id: any ): any {
+  this.modal ={
+    "id": id,
+  }
+  console.log(this.modal);
+  
+ this.message = 'Are you sure you want to delete this Lecture ?'
+  this.confirmDialogService.confirmThis(this.message, () => {
+    this.loader.show()
+    this.baseService.action('starclass/ei_lecture_delete/', this.modal).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          this.alert.success(res.message, "Success")
+          this.getLectureList()
+        } else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide();
+      }
+    ), err => {
+      this.alert.error("Please try again.", 'Error')
+      this.loader.hide();
+    }
+  }, () => {
+  });
 }
 
 }

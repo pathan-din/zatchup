@@ -8,7 +8,7 @@
                 <mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="selectCheckbox">
                         <mat-header-cell *matHeaderCellDef class="text-center"> <mat-checkbox (change)="selectAll($event,'student')"  [checked]="true" class="example-margin"> </mat-checkbox> </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox (change)="selectOne($event,'student')" [checked]="element.checked"  class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
+                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox (change)="selectOne($event,'student',element.student_id)" [checked]="element.checked"  class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="position">
@@ -71,7 +71,7 @@
                 <mat-table [dataSource]="dataSource1">
                     <ng-container matColumnDef="selectCheckbox">
                         <mat-header-cell *matHeaderCellDef class="text-center"> <mat-checkbox [checked]="true" (change)="selectAll($event,'')" class="example-margin"> </mat-checkbox> </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox (change)="selectOne($event,'')" [checked]="element.isadded" class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
+                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox (change)="selectOne($event,'',element.user_id)" [checked]="element.isadded" class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="position">

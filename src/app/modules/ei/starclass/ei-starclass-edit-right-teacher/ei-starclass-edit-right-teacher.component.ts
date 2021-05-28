@@ -31,13 +31,22 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     this.editTeacherAudience = new EditTeacherAuidence()
   }
 
+  add:any = '';
   ngOnInit(): void {
     console.log(JSON.parse(localStorage.getItem("teachers")));
     var add = this.route.snapshot.queryParamMap.get('add')
+    this.add = add;
     if(add){
       if(localStorage.getItem("teachers")){
         this.editTeacherAudience.dataSource = JSON.parse(localStorage.getItem("teachers"))
       }
+
+      this.editTeacherAudience.page_size = 3;
+      this.editTeacherAudience.config.itemsPerPage = 3;
+      this.editTeacherAudience.config.currentPage = 1;
+      this.editTeacherAudience.config.totalItems = this.editTeacherAudience.dataSource.length;
+      this.editTeacherAudience.startIndex =  this.editTeacherAudience.page_size * ( this.editTeacherAudience.config.currentPage - 1) + 1;
+      this.editTeacherAudience.pageCounts = this.baseService.getCountsOfPage();
       this.setData()
     }
     else{
@@ -45,7 +54,20 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     }
   }
 
+
+  perPage(){
+    
+    this.editTeacherAudience.config.itemsPerPage = this.editTeacherAudience.page_size;
+  }
+
+  changePage(e){
+    console.log(e);
+    
+    this.editTeacherAudience.config.currentPage = e;
+
+  }
   getTeacherAuidenceList(page?: any) {
+    
     try {
       this.loader.show()
       this.editTeacherAudience.params = {

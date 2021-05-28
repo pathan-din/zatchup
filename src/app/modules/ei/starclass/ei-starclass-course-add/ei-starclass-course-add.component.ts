@@ -103,12 +103,26 @@ export class EiStarclassCourseAddComponent implements OnInit {
   }
 
   createCourse() {
+
+    this.errorDisplay = {};
+    this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    console.log( this.errorDisplay );
+    
+    if (this.errorDisplay.valid) {
+      return false;
+    }
+
     try {
+
       this.errorDisplay = {};
-      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, false, []);
+      
+      
+      this.errorDisplay = this.validation.checkValidationFormAllControls(document.forms[0].elements, true, []);
+      console.log( this.errorDisplay);
       if (this.errorDisplay.valid) {
         return false;
       }
+
       this.loader.show()
       var url = 'starclass/ei-course-create/';
       if (this.model.id) {
