@@ -1,54 +1,57 @@
-<app-user-header></app-user-header>
+<app-ei-sidenav></app-ei-sidenav>
 
-<div class="container contentSpaceTop">
+<div class="container main-container">
     <div class="row">
         <div class="col-12">
             <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="exitGroupMember==0">
         <div class="col-12">
-            <div class="chat_content bg-light-gray pt-3 pb-5">
+            <div class=" bg-light-gray pt-3 pb-5">
                 <h1 class="text-center pt-3">Group Detail</h1>
                 <div class="row mt-3 pb-3 align-items-center pl-2 border-bottomCustom ml-0 mr-0">
                     <div class="col-md-12 d-flex align-items-center justify-content-start flex-wrap">
                         <div class="addChatProfile shadow mr-5 position-relative">
-                            <img src="assets/images/userWebsite/profile-image.png" alt=""/>
+                            <img *ngIf="!model.group_icon" src="assets/images/userWebsite/profile-image.png" alt=""/>
+                             
+                            <img src="{{model.group_icon}}" *ngIf="model.group_icon">
                             <div class="profileCamara">
-                                <i class="fa fa-camera cursorStyle" aria-hidden="true"></i>
-                            </div>                            
+                                <i class="fa fa-camera cursorStyle" (click)="file.click()" aria-hidden="true"></i>
+                            </div>
+                            
+                            <input #file type="file" style="display:none;" (change)="fileUploadDocument($event.target.files)"/>                         
                         </div>
-                        <input class="commentCustom form-control-input pl-3 w-75 form-control form-control-sm commonFontSize regularFont letterspacing shadow" type="text" placeholder="ABC Group">                       
+                        <input class="commentCustom form-control-input pl-3 w-75 form-control form-control-sm commonFontSize regularFont letterspacing shadow" type="text" placeholder="ABC Group" name="group_title" required [(ngModel)]="model.group_title" >                       
                     </div>
                 </div>
             
                 <div class="row mt-3 pl-4">
-                    <div class="col-md-6">
+                    <div class="col-md-6" (click)="addMoreRecepient()" *ngIf="is_check_student==1">
                         <div class="mr-4">
                             <img src="assets/images/userWebsite/add-more.png" class="img-fluid mr-3 img-small">
-                            <span class="commonFontSize">Add Participants</span>
+                            <span  class="commonFontSize">Add Participants</span>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h3 class="commonFontSize text-right mr-4">Number of Participants: 03</h3>
+                        <h3 class="commonFontSize text-right mr-4">Number of Participants: {{receipentUsers.length}}</h3>
                     </div>
                     <div class="col-12 mt-3">                        
                         <ul class="participantsList">
-                            <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Aashish</span> <span class="color-red small-text-2 m-0">Remove</span></li>
-                            <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Aaditya</span> <span class="color-red small-text-2 m-0">Remove</span></li>                            
-                            <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Ajay</span> <span class="color-red small-text-2 m-0">Remove</span></li>                            
+                           <li *ngFor="let user of receipentUsers"><img src="{{user.profile_pic}}" alt="profile-pick" class="pickSize"/> <span>{{user.firstName}} {{user.lastName?user.lastName:""}}</span> </li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <button class="shadow border-0 py-3 rounded bg-red color-white px-5 ml-4 mt-4">Delete Group</button>
-                        <button class="shadow py-3 rounded bg-white color-red border-red px-5 ml-4 mt-4">Exit Group</button>
+                    <div class="col-md-12" >
+                        <button (click)="updateDetails()" class="shadow border-0 py-3 rounded bg-red color-white px-5 ml-4 mt-4">Update</button>
+                        <button  class="shadow py-3 rounded bg-white color-red border-red px-5 ml-4 mt-4" (click)="exitGroup(currentUser,'exit')">Exit Group</button>
                     </div>
                 </div>
             </div>
         </div>            
     </div>
+    <div *ngIf="exitGroupMember==1">No Avialabe any details</div>
 </div>

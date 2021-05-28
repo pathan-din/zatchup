@@ -21,6 +21,7 @@ export class PersonalMessagesComponent implements OnInit {
   lastMessageData:any=[];
   groupList:any=[];
   lastGroupmsg: any=[];
+  groupexit: number=0;
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -229,6 +230,8 @@ export class PersonalMessagesComponent implements OnInit {
                     
                   })
                 }
+              }else{
+                this.groupexit=1;
               }
               
             });

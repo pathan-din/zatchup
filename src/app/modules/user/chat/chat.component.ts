@@ -7,7 +7,7 @@ import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Observable } from 'rxjs';
 // import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -42,7 +42,8 @@ export class ChatComponent implements OnInit {
     private chatService: ChatService,
     private alert: NotificationService,
     private firebaseService: FirebaseService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
   ) { }
 
 
@@ -91,7 +92,11 @@ export class ChatComponent implements OnInit {
     
   }
 
- 
+  gotToGroupDetailsPage(uuid,chat){
+    console.log(uuid);
+    
+    this.router.navigate(['user/group-detail'],{queryParams:{chat:chat,groupId:localStorage.getItem("guuid")}})
+  }
 
   
   ngDoCheck() {

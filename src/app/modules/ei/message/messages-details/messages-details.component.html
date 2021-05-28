@@ -19,9 +19,9 @@
                     <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
                         <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span>
                     </p>
-                    <!-- <span class="small-text-2" *ngIf="presence$ | async as presence">
+                    <span class="small-text-2" *ngIf="presence$ | async as presence">
                         <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
-                    </span> -->
+                    </span>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
         </div>
 
         <div *ngIf="params.chat" class="bg-light-gray p-3">
-            <div class="profile_detail d-flex align-items-center justify-content-start mb-3">
+            <div class="profile_detail d-flex align-items-center justify-content-start mb-3" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
                 <div class="profile_pick">
                     <img *ngIf="!recepientGroup" src="{{recepientGroup.group_icon?recepientGroup.group_icon:'./assets/images/userWebsite/profile-image.png'}}"
                         class="img-fluid cursorStyle"> 
@@ -57,7 +57,7 @@
                         class="img-fluid cursorStyle">
                 </div>
                 <div class="profile_name ml-2 text-capitalize">
-                    <p *ngIf="recepintDetails" class="m-0"> {{recepientGroup.group_title}} 
+                    <p *ngIf="recepientGroup" class="m-0"> {{recepientGroup.group_title}} 
                         <span class="small-text-2"></span>
                     </p>
                      <span class="small-text-2" *ngFor="let user of receipentUsers">
@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row"  *ngIf="params.chat && groupexit==0">
             <div class="col-12">
                 <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
                     <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->
@@ -104,6 +104,28 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div class="row"  *ngIf="params.chat && groupexit==1">
+            <div class="col-12">
+                hide
+            </div>
+        </div>
+        <div class="row" *ngIf="!params.chat ">
+            <div class="col-12">
+                <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
+                    <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->
+                    <div>
+                        <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
+                        <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
+                    </div>
+                    <input (keydown.enter)="sendChat()" [(ngModel)]="model.comment" name="comment" class="chat-rouded border form-control-input form-control form-control-sm commonFontSize regularFont letterspacing mx-2"
+                        type="search" placeholder="Type Something...">
+                    <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
+                        <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+           
         </div>
     </div>
 </div>

@@ -5,6 +5,8 @@ import { ChatService } from 'src/app/services/chat/chat.service';
 // import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Router,ActivatedRoute } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
@@ -24,12 +26,17 @@ export class MessagesDetailsComponent implements OnInit {
   chatRecepient:any=[]
   recepientGroup={};
   receipentUsers: any=[];
+  groupexit: number=0;
+  presence$: any;
+  uuid: string;
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
     private chatService: ChatService,
     private alert: NotificationService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private firebaseService: FirebaseService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +47,8 @@ export class MessagesDetailsComponent implements OnInit {
       this.currentUser = localStorage.getItem('fbtoken');
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         this.recepientGroup=res
+        console.log(res);
+        
         res.reciepent.forEach(element => {
           //console.log(element);
           Object.keys(element).forEach(el=>{
@@ -47,6 +56,8 @@ export class MessagesDetailsComponent implements OnInit {
             
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
+            }else{
+              this.groupexit=1;
             }
            
           })
@@ -57,9 +68,18 @@ export class MessagesDetailsComponent implements OnInit {
       })
       this. getDocumentsChat()
     }else{
+      this.uuid = '';
+      if (localStorage.getItem('receipent')) {
+        
+        this.uuid = localStorage.getItem('receipent');
+        this.presence$ = this.firebaseService.getPresence(this.uuid);
+        console.log(this.presence$);
+        
+      }
       if (localStorage.getItem("receipent")) {
         this.getRecepintUserDetails(localStorage.getItem("receipent"));
         this.currentUser = localStorage.getItem('fbtoken');
+       
       }
       this.getDocumentsChat()
     }
@@ -68,7 +88,11 @@ export class MessagesDetailsComponent implements OnInit {
   ngDoCheck() {
     this.scrollToBottom();
   }
-
+  gotToGroupDetailsPage(uuid,chat){
+    console.log(uuid);
+    
+    this.router.navigate(['ei/ei-group-detail'],{queryParams:{chat:chat,groupId:localStorage.getItem("guuid")}})
+  }
   scrollToBottom(): void {
     try {
 
@@ -99,6 +123,8 @@ export class MessagesDetailsComponent implements OnInit {
   }
 
   sendChat(document?: any) {
+    console.log("dfffdf");
+    
     if (this.model.comment)
       this.model.comment = this.model.comment.trim()
     if (!this.model.comment && !document) {
@@ -110,7 +136,10 @@ export class MessagesDetailsComponent implements OnInit {
          this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
           
           res.uuid=localStorage.getItem("guuid");
+          console.log(res.reciepent);
+          
             res.reciepent.forEach(ele => {
+              console.log(this.dataStudent);
               if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
                 let data: any = {};
                 let dataNew: any = {};
@@ -123,9 +152,10 @@ export class MessagesDetailsComponent implements OnInit {
                 data.msg = document ? document : this.model.comment;
                 data.timestamp = new Date().valueOf();
                 data.receipentList =res.reciepent
+                
                 this.dataStudent.push(data)
                 dataNew.data = this.dataStudent;
-                 // console.log(dataNew.data);
+                  
                 this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
                 .set(dataNew)
                 .then(

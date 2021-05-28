@@ -48,6 +48,7 @@ export class CreateGroupChatComponent implements OnInit {
       objGroupData.is_remove_date="";
       objGroupData.is_exit=0;
       objGroupData.is_exit_date="";
+      objGroupData.is_student=1;
       user_recepient[fbtoken] = objGroupData;
       recepient.push(user_recepient)
      }
@@ -61,6 +62,7 @@ export class CreateGroupChatComponent implements OnInit {
         objGroupData.is_remove_date="";
         objGroupData.is_exit=0;
         objGroupData.is_exit_date="";
+        objGroupData.is_student=element.student_id?0:1;
         if(element.firebase_id){
           user_recepient[element.firebase_id] = objGroupData;
           recepient.push(user_recepient)

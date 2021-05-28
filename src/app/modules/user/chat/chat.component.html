@@ -74,7 +74,7 @@
 
             <div *ngIf="params.chat" class="bg-light-gray pb-3">
                 <div class="border-bottomCustom mb-3 pt-3 pb-3 d-flex justify-content-between flex-wrap align-items-center">
-                    <div class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
+                    <div (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')" class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
                         <div class="profile_pick">
                             <img *ngIf="!recepientIcon" src="{{'assets/images/userWebsite/many-people-outline.png'}}" class="img-fluid cursorStyle">
                             <img *ngIf="recepientGroup && recepientGroup.group_icon" src="{{recepientGroup.group_icon}}" class="img-fluid cursorStyle">
