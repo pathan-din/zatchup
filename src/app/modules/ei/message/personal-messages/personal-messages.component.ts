@@ -231,7 +231,7 @@ export class PersonalMessagesComponent implements OnInit {
                   })
                 }
               }else{
-                this.groupexit=1;
+                this.groupexit=1; 
               }
               
             });
