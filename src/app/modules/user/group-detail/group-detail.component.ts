@@ -46,7 +46,7 @@ export class GroupDetailComponent implements OnInit {
     if(this.params.groupId && this.params.chat)
     {
       this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-        console.log(res);
+       // console.log(res);
         this.model=res;
         
         res.reciepent.forEach(element => {
@@ -54,12 +54,12 @@ export class GroupDetailComponent implements OnInit {
           if(element[this.currentUser]){
             if(element[this.currentUser].is_exit==1){
               this.exitGroupMember=1;
-              console.log(this.exitGroupMember);
+             // console.log(this.exitGroupMember);
               
             }
             if(element[this.currentUser].is_student){
               this.is_check_student=element[this.currentUser].is_student;
-              console.log(this.exitGroupMember);
+             // console.log(this.exitGroupMember);
               
             }
             
@@ -102,7 +102,7 @@ export class GroupDetailComponent implements OnInit {
   }
   updateDetails(){
     this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
-      console.log(responce);
+      //console.log(responce);
       this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
       
       },(error)=>{
@@ -136,17 +136,11 @@ export class GroupDetailComponent implements OnInit {
               console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               console.log(responce);
-              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+              this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
               
             },(error)=>{
       
-            }) 
-            }
-          
-            
-            
-            
-          });
+            })}});
         }
 
       });
@@ -169,9 +163,9 @@ export class GroupDetailComponent implements OnInit {
                 }
                 
               });
-              console.log((res));
+             // console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-              console.log(responce);
+              //console.log(responce);
               this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
               
             },(error)=>{

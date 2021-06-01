@@ -49,7 +49,7 @@
         </div>
 
         <div *ngIf="params.chat" class="bg-light-gray p-3">
-            <div class="profile_detail d-flex align-items-center justify-content-start mb-3" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
+            <div class="profile_detail d-flex align-items-center justify-content-start mb-3 cursorStyle" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
                 <div class="profile_pick">
                     <img *ngIf="!recepientGroup" src="{{recepientGroup.group_icon?recepientGroup.group_icon:'./assets/images/userWebsite/profile-image.png'}}"
                         class="img-fluid cursorStyle"> 
@@ -107,7 +107,7 @@
         </div>
         <div class="row"  *ngIf="params.chat && groupexit==1">
             <div class="col-12">
-                hide
+                You can't send messages to this group because you are no longer a participent
             </div>
         </div>
         <div class="row" *ngIf="!params.chat ">

@@ -47,7 +47,19 @@ export class MessagesDetailsComponent implements OnInit {
       this.currentUser = localStorage.getItem('fbtoken');
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         this.recepientGroup=res
-        console.log(res);
+        
+        res.reciepent.forEach(element => {
+          if(element[localStorage.getItem('fbtoken')]){
+            if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
+              this.groupexit=0;
+            }else{
+              this.groupexit=1;
+            }
+              
+            
+          }
+          
+        })
         
         res.reciepent.forEach(element => {
           //console.log(element);
@@ -56,8 +68,6 @@ export class MessagesDetailsComponent implements OnInit {
             
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
-            }else{
-              this.groupexit=1;
             }
            
           })
