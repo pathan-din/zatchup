@@ -149,6 +149,7 @@ import { ZatchupStarclassCoursePreviewComponent } from './starclass/zatchup-star
 import { EiStarclassAddTeacherStudentComponent } from './starclass/ei-starclass-add-teacher-student/ei-starclass-add-teacher-student.component';
 import { EiUserSearchProfileComponent } from './ei-user-search-profile/ei-user-search-profile.component';
 import { GroupDetailComponent } from './message/group-detail/group-detail.component';
+import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
 
 
 const routes: Routes = [
@@ -590,7 +591,9 @@ const routes: Routes = [
    {
     path: 'ei-group-detail', component:GroupDetailComponent, canActivate:[AuthGuard]
    },
-  
+   {
+    path: 'edit-group-participent', component:EditGroupParticipentComponent, canActivate:[AuthGuard]
+   },
    
   
   //
