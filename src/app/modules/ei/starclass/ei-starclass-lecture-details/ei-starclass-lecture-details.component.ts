@@ -79,13 +79,13 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
 
   playClick(event: any){
     this.model ={
-      'course_id' : this.eiLectureDetailsView.course_id,
-      'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+      // 'course_id' : this.eiLectureDetailsView.course_id,
+      // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
       'lecture_id':  this.eiLectureDetailsView.id
     }
     console.log(this.model);
     this.loader.show()
-    this.baseService.action('starclass/lecture_view_count/', this.model).subscribe(
+    this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
       (res: any) => {
         if (res.status == true) {
          

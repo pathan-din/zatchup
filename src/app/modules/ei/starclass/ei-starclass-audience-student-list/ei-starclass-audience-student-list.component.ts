@@ -35,24 +35,22 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('sadkjsjhd',this.route.snapshot.queryParamMap.get('edit'));
-    
-    console.log(JSON.parse(localStorage.getItem("sections")));
     this.classId = JSON.parse(localStorage.getItem("sections"))
     this.approved = this.route.snapshot.queryParamMap.get('approved')
     this.getStudentAuidenceList()
     // this.setData()
   }
 
-  getStudentAuidenceList(page?: any,ev?:any,index?:any) {
+  getStudentAuidenceList(page?: any) {
     try {
       this.loader.show()
-      var edit = this.route.snapshot.queryParamMap.get('edit')
-      if(edit){
+      var section = JSON.parse(localStorage.getItem("sections"))
+      if(section.length > 0){
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+          'class_ids' : JSON.parse(localStorage.getItem("sections")),
           'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class
           // 'id': this.route.snapshot.params.id
         }
@@ -61,7 +59,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
-          'class_ids' : JSON.parse(localStorage.getItem("sections")),
+          // 'class_ids' : JSON.parse(localStorage.getItem("sections")),
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class
           // 'id': this.route.snapshot.params.id
@@ -81,37 +79,35 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             this.studentAuidence.config.currentPage = page
             this.studentAuidence.config.totalItems = res.count
             if (res.count > 0) {
-              var add = this.route.snapshot.queryParamMap.get('add')
-              if(add){
-                if (this.classId) {
-                  console.log('fjkdbf', this.classId);
+              // var add = this.route.snapshot.queryParamMap.get('add')
+              // if(add){
+              //   if (this.classId) {
+              //     console.log('fjkdbf', this.classId);
                   
-                  console.log(this.studentAudienceList);
+              //     console.log(this.studentAudienceList);
                   
-                  res.results.forEach(
-                    element => {
+              //     res.results.forEach(
+              //       element => {
                       
                     
-                      if (this.studentAudienceList.indexOf(element.user_id) === -1) {
-                        element.is_access_for_star_class = true;
-                      }else{
-                        element.is_access_for_star_class = false;
-                      }
+              //         if (this.studentAudienceList.indexOf(element.user_id) === -1) {
+              //           element.is_access_for_star_class = true;
+              //         }else{
+              //           element.is_access_for_star_class = false;
+              //         }
                       
-                    }
-                  )
-                  console.log(res.results);
-                  
-                  this.studentAuidence.dataSource = res.results;
-                }
-              }
+              //       }
+              //     )
+              //    this.studentAuidence.dataSource = res.results;
+              //   }
+              // }
               
-              else {
-                this.studentAuidence.dataSource = res.results;
-              }
-            
+              // else {
+               
+              // }
+              this.studentAuidence.dataSource = res.results;
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
-              // this.setData()
+              this.setData()
             }
             else {
               this.studentAuidence.dataSource = undefined
@@ -135,65 +131,81 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   }
 
   setData() {
-    // let filtered = this.studentAuidence.dataSource.filter(elen => {
-    //   if(this.isValid(elen) ==  true)
-    //   return elen.user_id
-    // })
-    // filtered.forEach(elen => {
-    //   this.studentAudienceList.push(elen.user_id)
-    // })
+    let filtered = this.studentAuidence.dataSource.filter(elen => {
+      if(this.isValid(elen) ==  true)
+      return elen.user_id
+    })
+    filtered.forEach(elen => {
+      this.studentAudienceList.push(elen.user_id)
+    })
 
-    // console.log( this.studentAudienceList );
+    console.log( this.studentAudienceList );
     
     
   }
-
-  arrayRemove(arr, value) { 
-    
-    return arr.filter(function(ele){ 
-        return ele != value; 
-    });
-}
-
 
   getStudentAudienceBycheckbox(stId, event) {
-console.log( event);
-console.log(stId);
 
+    if (event.checked) {
+      if (this.studentAudienceList.indexOf(stId) === -1) {
+        this.studentAudienceList.push(stId)
+      }
+    } else {
+      if (this.studentAudienceList.indexOf(stId) === -1) {
 
-
-    // if (event.checked ) {
-    console.log('inn1');
-    
-        // var index = this.studentAudienceList.indexOf(stId)
-        // if(index != -1){
-
-          if (event.checked ) 
-          this.studentAudienceList = this.arrayRemove(this.studentAudienceList, stId);
-          else
-          this.studentAudienceList.push(stId)
-          // this.studentAudienceList.splice(index, 1);
-        // }else{
-        // }
-
-
-    //   if (this.studentAudienceList.indexOf(stId) === -1) {
-
-    //   } else {
-    //     var index = this.studentAudienceList.indexOf(stId)
-    //     this.studentAudienceList.splice(index, 1);
-    //   }
-    // } else {
-    //   if (this.studentAudienceList.indexOf(stId) === -1) {
-     
-    //   }
-
-    
-    // }
-
-    console.log( this.studentAudienceList);
-    
+      } else {
+        var index = this.studentAudienceList.indexOf(stId)
+        this.studentAudienceList.splice(index, 1);
+      }
+    }
   }
+
+//   arrayRemove(arr, value) { 
+    
+//     return arr.filter(function(ele){ 
+//         return ele != value; 
+//     });
+// }
+
+
+//   getStudentAudienceBycheckbox(stId, event) {
+// console.log( event);
+// console.log(stId);
+
+
+
+//     // if (event.checked ) {
+//     console.log('inn1');
+    
+//         // var index = this.studentAudienceList.indexOf(stId)
+//         // if(index != -1){
+
+//           if (event.checked ) 
+//           this.studentAudienceList = this.arrayRemove(this.studentAudienceList, stId);
+//           else
+//           this.studentAudienceList.push(stId)
+//           // this.studentAudienceList.splice(index, 1);
+//         // }else{
+//         // }
+
+
+//     //   if (this.studentAudienceList.indexOf(stId) === -1) {
+
+//     //   } else {
+//     //     var index = this.studentAudienceList.indexOf(stId)
+//     //     this.studentAudienceList.splice(index, 1);
+//     //   }
+//     // } else {
+//     //   if (this.studentAudienceList.indexOf(stId) === -1) {
+     
+//     //   }
+
+    
+//     // }
+
+//     console.log( this.studentAudienceList);
+    
+//   }
 
   // setData() {
   
@@ -248,33 +260,6 @@ console.log(stId);
     return value.is_access_for_star_class == true
   }
 
-  // getStudentAudienceBycheckbox(stId, event) {
-  //   if (event.checked) {
-  //     this.studentAudienceListLocalstorage[stId]=event.checked
-  //   }else{
-  //     this.studentAudienceListLocalstorage[stId]=event.checked
-  //   }
-  //   console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
-  //   return;
-  //   if (event.checked) {
-  //     if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
-  //       this.studentAudienceListLocalstorage.push(stId)
-  //     }
-  //   } else {
-  //     if (this.studentAudienceListLocalstorage.indexOf(stId) === -1) {
-
-  //     } else {
-  //       var index = this.studentAudienceListLocalstorage.indexOf(stId)
-  //       this.studentAudienceListLocalstorage.splice(index, 1);
-  //     }
-  //   }
-  //   var add = this.route.snapshot.queryParamMap.get('add')
-  //   if(add){
-  //     localStorage.setItem("studentList", JSON.stringify(this.studentAudienceListLocalstorage))
-  //   }
-  //   console.log(this.studentAudienceListLocalstorage, 'get student by checkbox');
-    
-  // }
 
   addStudentAudience() {
     // debugger
@@ -285,16 +270,16 @@ console.log(stId);
     } else {
 
       this.loader.show();
-      var temp = [];
-      this.studentAuidence.dataSource.forEach( e => {
+      // var temp = [];
+      // this.studentAuidence.dataSource.forEach( e => {
 
-        if (this.studentAudienceList.indexOf( e.user_id) === -1) 
-            temp.push( e.user_id );
-      });
+      //   if (this.studentAudienceList.indexOf( e.user_id) === -1) 
+      //       temp.push( e.user_id );
+      // });
 
 
       this.model = {
-        'student_id': temp.join(','),
+        'student_id':  this.studentAudienceList.join(','),
         'course_id': this.route.snapshot.queryParamMap.get('course_id')
       }
       this.baseService.action('starclass/ei-course-assign-to-user/', this.model).subscribe(

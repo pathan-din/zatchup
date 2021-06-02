@@ -169,16 +169,16 @@
                         </div>
                     </div>
 
-                    <!-- <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="row">
+                    <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Play  History</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p class="cursorStyle " ><span class="mr-3">:</span>
+                            <p (click)="goToPlayHistory()" class="cursorStyle " ><span class="mr-3">:</span>
                                 History</p>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row" *ngIf="courseData.is_edit == true" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>

@@ -100,15 +100,24 @@
                             <p><span class="mr-3">:</span>{{eiLectureDetailsView.lecture_description}}</p>
                         </div>
                     </div>
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Total Number of Views On Lecture</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">:</span></p>
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.total_view_count}}</p>
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Uploaded By</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.upload_by_name}}</p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
@@ -120,23 +129,8 @@
                     </div>
                     <!-- *ngIf="eiLectureDetailsView.is_edit == true" -->
                     
-                    <div class="row" *ngIf="roleOfSubadmin.role == 'EIREPRESENTATIVE'">
-                        <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Play</p>
-                        </div> -->
-                        
-                            <!-- <p><span class="mr-3">:</span></p> -->
-                        <div class="col-md-12 customVideo" >
-                            <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
-                            <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
-                                <source src="{{eiLectureDetailsView.lecture}}" type="video/mp4" />
-                            </video>
-                        </div>
-                            
-                    </div>
 
-                    <div class="row" *ngIf="roleOfSubadmin.role == 'EISUBADMIN'">
+                    <div class="row" >
                         <!-- <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Play</p>
