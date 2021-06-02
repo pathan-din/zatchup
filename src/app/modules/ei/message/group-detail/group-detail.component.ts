@@ -45,7 +45,7 @@ export class GroupDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       this.params=params;
     })
-    if(this.params.groupId && this.params.chat)
+    if(this.params.groupId && this.params.chat && !this.params.editgroup)
     {
       this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
         console.log(res);
@@ -84,30 +84,77 @@ export class GroupDetailComponent implements OnInit {
           
         });
       })
+    }else{
+      if(localStorage.getItem("groupUsers"))
+      {
+        var groupListMember=[];
+        groupListMember=JSON.parse(localStorage.getItem("groupUsers"));
+        var recepient=[];
+        groupListMember.forEach(element => {
+          let user_recepient: any = {};
+          let objGroupData: any = {};
+          objGroupData.is_read = 0;
+          objGroupData.is_admin = 0;
+          objGroupData.is_remove = 0;
+          objGroupData.is_remove_date = "";
+          objGroupData.is_exit = 0;
+          objGroupData.is_exit_date = "";
+          objGroupData.is_student = element.student_id ? 0 : 1;
+          if (element.firebase_id) {
+            user_recepient[element.firebase_id] = objGroupData;
+            recepient.push(user_recepient)
+          }
+
+        });
+        this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
+          this.model=res;
+          //console.log(res.reciepent);
+          //console.log(recepient);
+          var recipant=[]
+          recepient.forEach(ele => {
+            
+            Object.keys(ele).forEach(e=>{
+             
+             
+              res.reciepent.forEach(element => {
+               
+                
+                if(element[e]){
+                  if(element[e].is_remove==1 && element[e].is_exit==1){
+                    if(!recipant.find(item=>{return item[e]==element[e]})){
+                      element[e].is_remove=0
+                      element[e].is_exit=0
+                      recipant.push(element)
+                    }
+                    
+                  }
+                  //console.log("already",element[e]);
+                  
+                }else{
+                 // console.log(ele);
+                  if(!recipant.find(item=>{return item[e]==ele[e]})){
+                    recipant.push(ele)
+                   // console.log("new",element);
+                  }
+                  //console.log("new",element);
+                  //recipant.push(element)
+                }
+              })
+            })
+            
+          })
+          recipant.forEach(elem=>{
+           // if(!res.reciepent.find(eleme=>{return eleme}))
+           // res.reciepent.push(elem)
+          })
+          
+          console.log(res.reciepent);
+          
+        })
+      }
     }
   }
-getIsAdmin(userId){
-  this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-    res.reciepent.forEach(element => {
-      // console.log(localStorage.getItem("fbtoken"));
-       if(element[userId]){
-          
-         if(element[userId].is_admin==1){
-           this.is_check_admin=element[userId].is_admin;
-           //console.log(this.exitGroupMember);
-           
-         }else{
-          this.is_check_admin=element[userId].is_admin;
-         }
-         
-       }
-       
-       
-       
-     });
-  })
-return  this.is_check_admin;
-}
+ 
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
       //this.receipentUsers.push(k)
@@ -118,8 +165,9 @@ return  this.is_check_admin;
      resp = res.data()
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
+      localStorage.setItem("alreadyGroupMember",JSON.stringify(this.receipentUsers));
       });
-      console.log(this.receipentUsers);
+     
       this.noOfUsers=this.receipentUsers.length;
     }else{
      // localStorage.setItem("receipent",uuid);
@@ -341,5 +389,8 @@ return  this.is_check_admin;
         this.alert.error(err, 'Error')
       }
     }
-
+addMoreRecipant(){
+  this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
+  //group-chat?newgrp=C
+}
 }

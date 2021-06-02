@@ -90,6 +90,7 @@ export class GroupDetailComponent implements OnInit {
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       });
+     
       //console.log(this.receipentUsers);
       this.noOfUsers=this.receipentUsers.length;
     }else{
