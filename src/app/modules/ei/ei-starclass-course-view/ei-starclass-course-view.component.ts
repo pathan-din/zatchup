@@ -67,6 +67,10 @@ goToStudentAudienceAdd(id){
   console.log(id);
 }
 
+goToPlayHistory(){
+  this.router.navigate(['ei/ei-play-history'])
+}
+
 // goToTeacherAudienceAdd(id){
 //   this.router.navigate(['ei/ei-starclass-audience-teacher'],{queryParams:{'course_id': id}})
 //   console.log(id);

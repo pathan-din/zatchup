@@ -26,7 +26,9 @@ export class UserStarclassCourseListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getAllSchool()
+    this.getStarclassCourseList()
+    console.log('schoolId',this.route.snapshot.queryParamMap.get('school_id'));
+    
   }
 
   getStarclassCourseList(page? : any){
@@ -42,7 +44,7 @@ export class UserStarclassCourseListComponent implements OnInit {
       this.starclassCourseList.params = {
         'page' :page,
         'page_size':this.starclassCourseList.page_size,
-        "school_id": this.starclassCourseList.schoolId 
+        "school_id": this.route.snapshot.queryParamMap.get('school_id') 
       }
       this.baseService.getData('starclass/starclass-course-list-by-user/', this.starclassCourseList.params).subscribe(
         (res: any) =>{
@@ -92,8 +94,12 @@ export class UserStarclassCourseListComponent implements OnInit {
   }
 
   goToCourseView(data){
-    this.router.navigate(['user/starclass-course-view', data.id], {queryParams: {'school_id': this.starclassCourseList.schoolId }})
+    this.router.navigate(['user/starclass-course-view', data.id])
     console.log(data);
+  }
+
+  goToPlayHistory(){
+    this.router.navigate(['user/playHistory'])
   }
 
 }

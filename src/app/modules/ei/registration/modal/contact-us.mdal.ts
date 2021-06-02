@@ -61,7 +61,7 @@ export class StarclassOrderList extends Pagination{
 }
 
 export class EiCourseList extends Pagination{
-  displayedColumns: string[] = ['position', 'courseName','levelOfEducation', 
+  displayedColumns: string[] = ['position', 'courseName', 'courseId','levelOfEducation', 
   'field','noOfStandards','subject',
   'noOfCourse','Action'];
   params: any = {};
@@ -90,7 +90,7 @@ export class StudentAuidence extends Pagination{
   displayedColumns: string[] = ['select','position', 'profilePic','nameOfStudent','classDetails','class','rollNo'];
   id: any;
   params: any ={};
-  page_size: any 
+  page_size: any = 100;
 }
 
 export class TeacherAuidence extends Pagination{
@@ -134,6 +134,11 @@ export class StarclassCourseHistory extends Pagination {
   modal: any;
     history: any;
     displayedColumns: string[]= ['position', 'action', 'actionDate', 'message'] 
+}
+
+export class EiPlayHistory extends Pagination {
+  modal : any;
+  displayedColumns: string[]= ['position', 'lectureTitle', 'playedBy', 'playTime']
 }
 
 export class StarclassLectureHistory extends Pagination{

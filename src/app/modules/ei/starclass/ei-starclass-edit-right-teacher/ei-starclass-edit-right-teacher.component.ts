@@ -41,8 +41,8 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
         this.editTeacherAudience.dataSource = JSON.parse(localStorage.getItem("teachers"))
       }
 
-      this.editTeacherAudience.page_size = 3;
-      this.editTeacherAudience.config.itemsPerPage = 3;
+      this.editTeacherAudience.page_size = 5;
+      this.editTeacherAudience.config.itemsPerPage = 5;
       this.editTeacherAudience.config.currentPage = 1;
       this.editTeacherAudience.config.totalItems = this.editTeacherAudience.dataSource.length;
       this.editTeacherAudience.startIndex =  this.editTeacherAudience.page_size * ( this.editTeacherAudience.config.currentPage - 1) + 1;
