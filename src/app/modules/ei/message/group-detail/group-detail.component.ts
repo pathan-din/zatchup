@@ -106,55 +106,71 @@ export class GroupDetailComponent implements OnInit {
           }
 
         });
-        this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-          this.model=res;
-          //console.log(res.reciepent);
-          //console.log(recepient);
-          var recipant=[]
-          recepient.forEach(ele => {
+        console.log("list of group",recepient);
+        this.firestore.collection('group').get().subscribe(querySnapshot => {
+          if (querySnapshot.docs.length > 0) {
+            querySnapshot.docs.map(doc => {
             
-            Object.keys(ele).forEach(e=>{
-             
-             
-              res.reciepent.forEach(element => {
-               
-                
-                if(element[e]){
-                  if(element[e].is_remove==1 && element[e].is_exit==1){
-                    if(!recipant.find(item=>{return item[e]==element[e]})){
-                      element[e].is_remove=0
-                      element[e].is_exit=0
-                      recipant.push(element)
+              let res:any=[]
+              res=doc.data();
+              if(doc.id==this.params.groupId){
+                //this.model=res;
+                var aG=[]
+                res.reciepent.forEach(element => {
+                  Object.keys(element).forEach(eOld=>{
+                    aG[eOld]=element[eOld];
+                    
+                  })
+                 
+              
+                });
+                console.log("sdsdsd",aG);
+                var newGroupList=[];
+                recepient.forEach(el=>{
+                  Object.keys(el).forEach(e=>{
+                    if(aG[e]){
+                      //aG[e].is_remove=0;
+                     // aG[e].is_exit=0;
+                      newGroupList.push(el)
+                      delete aG[e] 
+                      
+                    }else{
+                      newGroupList.push(el)
+                     
                     }
                     
-                  }
-                  //console.log("already",element[e]);
+                    
+                  })
+                })
+                Object.keys(aG).forEach(item=>{
+                  var data={}
+                  data[item]=aG[item]
+                  newGroupList.push(data)
+                })
+                this.model=res;
+                this.model.reciepent=newGroupList;
+               // console.log(newGroupList);
+                
+                this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
+                  console.log("sdfghjk",responce);
+                  this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
                   
-                }else{
-                 // console.log(ele);
-                  if(!recipant.find(item=>{return item[e]==ele[e]})){
-                    recipant.push(ele)
-                   // console.log("new",element);
-                  }
-                  //console.log("new",element);
-                  //recipant.push(element)
-                }
-              })
-            })
+                  },(error)=>{
             
-          })
-          recipant.forEach(elem=>{
-           // if(!res.reciepent.find(eleme=>{return eleme}))
-           // res.reciepent.push(elem)
-          })
+                  })
+              
+                
+              }});}});
+         
+      
           
-          console.log(res.reciepent);
-          
-        })
+        
       }
     }
   }
- 
+  goBack() {
+    this.location.back()
+  }
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
       //this.receipentUsers.push(k)
@@ -192,9 +208,6 @@ export class GroupDetailComponent implements OnInit {
   }
   isAdmin(user_uuid,type){
     if(type=='add'){
-      console.log(this.firestore.collection('group').get());
-      
-      
       this.firestore.collection('group').get().subscribe(querySnapshot => {
         console.log("hjjh",querySnapshot.docs);
         if (querySnapshot.docs.length > 0) {
@@ -206,7 +219,7 @@ export class GroupDetailComponent implements OnInit {
             if(doc.id==this.params.groupId){
               this.model=res;
               res.reciepent.forEach(element => {
-                console.log(element);
+                
                 if(element[user_uuid]){
                   element[user_uuid].is_admin=1;
                 }
@@ -260,9 +273,7 @@ export class GroupDetailComponent implements OnInit {
   exitGroup(user_uuid,type){
     console.log(user_uuid);
     if(type=='exit'){
-      this.firestore.collection('group').get()
-         
-      .subscribe(querySnapshot => {
+      this.firestore.collection('group').get().subscribe(querySnapshot => {
         if (querySnapshot.docs.length > 0) {
           querySnapshot.docs.map(doc => {
           
@@ -277,23 +288,12 @@ export class GroupDetailComponent implements OnInit {
                 }
                 
               });
-              console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-              console.log(responce);
               this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
               
             },(error)=>{
       
-            }) 
-            }
-          
-            
-            
-            
-          });
-        }
-
-      });
+            })}});}});
       
     }else{
       this.firestore.collection('group').get()

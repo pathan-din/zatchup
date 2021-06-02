@@ -26,6 +26,7 @@ export class MessagesComponent implements OnInit {
   ids: any = [];
   groupList: any;
   lastGroupmsg: any;
+  setting_user:any={'online':true,'is_seen':true,'is_read':true}
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -40,11 +41,46 @@ export class MessagesComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('fbtoken')) {
       this.currentUser = localStorage.getItem('fbtoken');
+      if(this.currentUser){
+        this.firestore.collection('setting').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
+          if(res){
+            console.log(res.setting);
+            
+            this.setting_user=res.setting;
+          }
+        })
+      }
       this.getUsersWithModeratorRole(this.currentUser)
       this.getGroupDetails(localStorage.getItem('fbtoken'))
     }
 
   }
+  setUserSettingOnFirebase(event,type){
+    console.log(event,this.currentUser,type );
+    if(event){
+     if(type=='online'){
+       this.setting_user.online=event;
+     }else if(type=='last_seen'){
+       this.setting_user.is_seen=event;
+     }else if(type=='is_read'){
+       this.setting_user.is_read=event;
+     }
+    }else{
+     if(type=='online'){
+       this.setting_user.online=event;
+     }else if(type=='last_seen'){
+       this.setting_user.is_seen=event;
+     }else if(type=='is_read'){
+       this.setting_user.is_read=event;
+     }
+    }
+    console.log( this.setting_user);
+    
+    
+     this.firestore.collection('setting').doc(this.currentUser).set({
+       setting: this.setting_user 
+      })
+   } 
   getUsersWithModeratorRole(loginfirebase_id) {
     var that = this;
     that.ids.push(this.firestore.collection('user_friend_list').ref.where('user_accept_id', '==', loginfirebase_id).get().then(res => {

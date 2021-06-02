@@ -22,6 +22,7 @@ export class PersonalMessagesComponent implements OnInit {
   groupList:any=[];
   lastGroupmsg: any=[];
   groupexit: number=0;
+  setting_user:any={'online':true,'is_seen':true,'is_read':true}
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -33,6 +34,15 @@ export class PersonalMessagesComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.baseService.isLoggedIn();
     this.currentUser = localStorage.getItem("fbtoken");
+    if(this.currentUser){
+      this.firestore.collection('setting').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
+        if(res){
+          console.log(res.setting);
+          
+          this.setting_user=res.setting;
+        }
+      })
+    }
     this. getGroupDetails(this.currentUser)
     if (this.isLoggedIn) {
       this.notifypush.receiveMessage();
@@ -183,7 +193,32 @@ export class PersonalMessagesComponent implements OnInit {
        
        }
 
-       
+  setUserSettingOnFirebase(event,type){
+   console.log(event,this.currentUser,type );
+   if(event){
+    if(type=='online'){
+      this.setting_user.online=event;
+    }else if(type=='last_seen'){
+      this.setting_user.is_seen=event;
+    }else if(type=='is_read'){
+      this.setting_user.is_read=event;
+    }
+   }else{
+    if(type=='online'){
+      this.setting_user.online=event;
+    }else if(type=='last_seen'){
+      this.setting_user.is_seen=event;
+    }else if(type=='is_read'){
+      this.setting_user.is_read=event;
+    }
+   }
+   console.log( this.setting_user);
+   
+   
+    this.firestore.collection('setting').doc(this.currentUser).set({
+      setting: this.setting_user 
+     })
+  }     
   getDocumentsChat(chatConversion) {
     console.log(chatConversion);
     

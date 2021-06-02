@@ -29,6 +29,7 @@ export class MessagesDetailsComponent implements OnInit {
   groupexit: number=0;
   presence$: any;
   uuid: string;
+  online: any;
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
@@ -82,6 +83,13 @@ export class MessagesDetailsComponent implements OnInit {
       if (localStorage.getItem('receipent')) {
         
         this.uuid = localStorage.getItem('receipent');
+        this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
+          if(res){
+             
+            
+            this.online=res.setting.online;
+          }
+        })
         this.presence$ = this.firebaseService.getPresence(this.uuid);
         console.log(this.presence$);
         

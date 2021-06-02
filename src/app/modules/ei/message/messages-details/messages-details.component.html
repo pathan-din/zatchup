@@ -19,8 +19,8 @@
                     <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
                         <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span>
                     </p>
-                    <span class="small-text-2" *ngIf="presence$ | async as presence">
-                        <label [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
+                    <span class="small-text-2" *ngIf="presence$ | async as presence ">
+                        <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
                     </span>
                 </div>
             </div>
