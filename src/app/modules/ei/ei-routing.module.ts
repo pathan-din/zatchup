@@ -150,6 +150,7 @@ import { EiStarclassAddTeacherStudentComponent } from './starclass/ei-starclass-
 import { EiUserSearchProfileComponent } from './ei-user-search-profile/ei-user-search-profile.component';
 import { GroupDetailComponent } from './message/group-detail/group-detail.component';
 import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
+import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
 
 
 const routes: Routes = [
@@ -594,7 +595,9 @@ const routes: Routes = [
    {
      path : 'ei-play-history', component: EiPlayHistoryComponent, canActivate:[AuthGuard]
    },
-  
+  {
+    path: 'edit-group-participent', component:EditGroupParticipentComponent, canActivate:[AuthGuard]
+   },
    
   
   //

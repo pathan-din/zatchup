@@ -35,6 +35,9 @@ export class ChatComponent implements OnInit {
   recepientIcon:any;
   receipentUsers: any=[];
   lastGroupChatData:any=[];
+  is_admin_in_group=0;
+  is_teacher_in_group=0
+  groupexit: number=0;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -54,18 +57,43 @@ export class ChatComponent implements OnInit {
     if(this.params.chat){
       this.currentUser = localStorage.getItem('fbtoken');
       this.recepientUsers=[]
+      let group_admin:any=[]
+      let group_student:any=[]
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         res.reciepent.forEach(element => {
+          if(element[localStorage.getItem('fbtoken')]){
+            if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
+              this.groupexit=0;
+            }else{
+              this.groupexit=1;
+            }
+              
+            
+          }
+           
           //console.log(element);
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
-            
+              if(element[el].is_admin==1){
+                group_admin.push(element[el].is_admin)
+              }
+              if(element[el].is_student==1){
+                group_student.push(element[el].is_student)
+              }
+              
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
             }
            
           })
-          
+          if(group_student.length>0)
+              {
+                this.is_teacher_in_group=1
+              }
+              //
+              if(group_admin.length>0){
+                this.is_admin_in_group=1;
+              }
         });
         if(!res.group_icon){
           this.recepientIcon=undefined;
@@ -265,10 +293,14 @@ export class ChatComponent implements OnInit {
         
         res.uuid=localStorage.getItem("guuid");
           res.reciepent.forEach(ele => {
+            console.log(ele)
+           // console.log(ele[localStorage.getItem('fbtoken')].is_exit)
             if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
+             console.log("fdfdfd");
+             
               let data: any = {};
               let dataNew: any = {};
-              let userData = JSON.parse(localStorage.getItem('userprofile'))
+              let userData = JSON.parse(localStorage.getItem('userInfo'))
               data.user_friend_id = localStorage.getItem("guuid");
               data.user_send_by = localStorage.getItem('fbtoken');
               data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
@@ -293,7 +325,7 @@ export class ChatComponent implements OnInit {
                 err => reject(err)
               )
               
-            }
+            } 
             
           });
           

@@ -39,7 +39,9 @@
                     </div>
                     <div class="col-12 mt-3">                        
                         <ul class="participantsList">
-                           <li *ngFor="let user of receipentUsers"><img src="{{user.profile_pic}}" alt="profile-pick" class="pickSize"/> <span>{{user.firstName}} {{user.lastName?user.lastName:""}}</span> </li>
+                           <li *ngFor="let user of receipentUsers"><img src="{{user.profile_pic}}" alt="profile-pick" class="pickSize"/> <span>{{user.firstName}} {{user.lastName?user.lastName:""}}</span><span class="color-red cursorStyle" *ngIf="user.id!=currentUser" (click)="exitGroup(user.id,'remove')">Remove</span> <span class="color-red cursorStyle" (click)="isAdmin(user.id,'add')" *ngIf="user.id!=currentUser && is_check_student==1 && groupMember[user.id].is_admin==0">Admin</span>
+                            <span class="color-green cursorStyle" *ngIf="user.id!=currentUser && is_check_student==1 && groupMember[user.id].is_admin==1" (click)="isAdmin(user.id,'remove')">Admin</span>
+                        </li>
                         </ul>
                     </div>
                 </div>

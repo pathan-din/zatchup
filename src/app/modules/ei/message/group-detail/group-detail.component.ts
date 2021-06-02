@@ -26,6 +26,8 @@ export class GroupDetailComponent implements OnInit {
   exitGroupMember: number=0;
   is_check_student:any;
   is_admin:any;
+  is_check_admin: any=0;
+  groupMember:any=[];
   constructor( private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
@@ -50,21 +52,21 @@ export class GroupDetailComponent implements OnInit {
         this.model=res;
         
         res.reciepent.forEach(element => {
-          console.log(element[this.currentUser]);
+         // console.log(localStorage.getItem("fbtoken"));
           if(element[this.currentUser]){
             if(element[this.currentUser].is_exit==1){
               this.exitGroupMember=1;
-              console.log(this.exitGroupMember);
+              //console.log(this.exitGroupMember);
               
             }
             if(element[this.currentUser].is_student){
               this.is_check_student=element[this.currentUser].is_student;
-              console.log(this.exitGroupMember);
+              //console.log(this.exitGroupMember);
               
             }
             if(element[this.currentUser].is_admin==1){
               this.is_admin=element[this.currentUser].is_admin;
-              console.log(this.exitGroupMember);
+              //console.log(this.exitGroupMember);
               
             }
             
@@ -72,10 +74,11 @@ export class GroupDetailComponent implements OnInit {
           
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
-            
+              this.groupMember[el]=element[el];
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
             }
+           console.log(this.groupMember);
            
           })
           
@@ -83,7 +86,28 @@ export class GroupDetailComponent implements OnInit {
       })
     }
   }
-
+getIsAdmin(userId){
+  this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
+    res.reciepent.forEach(element => {
+      // console.log(localStorage.getItem("fbtoken"));
+       if(element[userId]){
+          
+         if(element[userId].is_admin==1){
+           this.is_check_admin=element[userId].is_admin;
+           //console.log(this.exitGroupMember);
+           
+         }else{
+          this.is_check_admin=element[userId].is_admin;
+         }
+         
+       }
+       
+       
+       
+     });
+  })
+return  this.is_check_admin;
+}
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
       //this.receipentUsers.push(k)
@@ -117,6 +141,73 @@ export class GroupDetailComponent implements OnInit {
       
       
     
+  }
+  isAdmin(user_uuid,type){
+    if(type=='add'){
+      console.log(this.firestore.collection('group').get());
+      
+      
+      this.firestore.collection('group').get().subscribe(querySnapshot => {
+        console.log("hjjh",querySnapshot.docs);
+        if (querySnapshot.docs.length > 0) {
+          querySnapshot.docs.map(doc => {
+          
+            let res:any=[]
+            res=doc.data();
+           
+            if(doc.id==this.params.groupId){
+              this.model=res;
+              res.reciepent.forEach(element => {
+                console.log(element);
+                if(element[user_uuid]){
+                  element[user_uuid].is_admin=1;
+                }
+                
+              });
+               
+              this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
+            
+              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+              
+            },(error)=>{
+      
+            }) 
+            } });
+        }
+
+      });
+      
+    }else{
+      this.firestore.collection('group').get()
+         
+      .subscribe(querySnapshot => {
+        if (querySnapshot.docs.length > 0) {
+          querySnapshot.docs.map(doc => {
+          
+            let res:any=[]
+            res=doc.data();
+            if(doc.id==this.params.groupId){
+              this.model=res;
+              res.reciepent.forEach(element => {
+                //console.log(element);
+                if(element[user_uuid]){
+                  element[user_uuid].is_admin=0;
+                }
+                
+              });
+               
+              this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
+               
+              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+              
+            },(error)=>{
+      
+            }) 
+            }});
+        }
+
+      });
+     }
   }
   exitGroup(user_uuid,type){
     console.log(user_uuid);
@@ -177,7 +268,7 @@ export class GroupDetailComponent implements OnInit {
               console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               console.log(responce);
-              this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
+              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
               
             },(error)=>{
       
