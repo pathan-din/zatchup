@@ -1,0 +1,18 @@
+.btn_search {
+    position: absolute;
+    right: 12px;
+    z-index: 2;
+    height: 100%;
+    border: 0px;
+    color: #888;
+    background: none;
+}
+input.searchCourse {
+    width: 315px;
+}
+
+@media (max-width: 360px){
+    input.searchCourse {
+        width: 260px;
+    }
+}
