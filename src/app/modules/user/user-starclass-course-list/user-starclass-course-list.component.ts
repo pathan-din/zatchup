@@ -98,4 +98,8 @@ export class UserStarclassCourseListComponent implements OnInit {
     console.log(data);
   }
 
+  goToPlayHistory(){
+    this.router.navigate(['user/playHistory'])
+  }
+
 }

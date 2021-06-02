@@ -62,6 +62,7 @@ import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture
 import { UserhomeComponent } from './userhome/userhome.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { StarclassMultipleEiComponent } from './starclass-multiple-ei/starclass-multiple-ei.component';
+import { PlayHistoryComponent } from './play-history/play-history.component';
 
 
 const routes: Routes = [
@@ -259,6 +260,9 @@ const routes: Routes = [
   },
   {
     path: 'user/multiple-ei', component:StarclassMultipleEiComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/playHistory', component:PlayHistoryComponent, canActivate: [AuthGuard]
   },
 
 
