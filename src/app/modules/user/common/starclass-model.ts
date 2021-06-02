@@ -28,3 +28,8 @@ export class StarclassLectureList extends Pagination{
           id: any;
     modal: any;
   }
+
+  export class StarclassSchoolList extends Pagination {
+    displayedColumns : string[] = ['position', 'zatchupId', 'schoolName', 'view']
+    model: any = {};
+  }

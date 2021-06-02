@@ -1,0 +1,72 @@
+<app-user-header></app-user-header>
+<div  class="container-fluid contentSpaceTop">
+<div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+    <div class="col-md-6 d-flex justify-content-start align-items-center flex-wrap p-0">
+        <span class="mr-3 cursorStyle">
+            <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+        </span>
+        <h2 class="commonFontSize semiBoldFont m-0">School List</h2>
+
+    </div>
+
+    <!--Start html for "select no of Rows per page" and Export Button-->
+    <div class="row my-3 align-items-center" *ngIf="schoolList.dataSource">
+        <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+            <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+            <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="getSchoolList('')" [(ngModel)]="schoolList.page_size">
+                    <option *ngFor="let count of schoolList.pageCounts" value="{{count}}">{{count}}</option>
+                </select>
+            </div>
+        </div>
+       
+    </div>
+    <!--End html for "select no of fees info per page" and Export Button-->
+    <!--Start html for fees information table-->
+    <div class="tableDiv " *ngIf="schoolList.dataSource">
+        <div class="mat-elevation-z1 table-responsive">
+            <mat-table [dataSource]="schoolList.dataSource | paginate:schoolList.config">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                    <mat-cell *matCellDef="let element; let i = index;"> {{i + schoolList.startIndex}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="zatchupId">
+                    <mat-header-cell *matHeaderCellDef>Zatchup ID </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.school_code}} </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="schoolName">
+                    <mat-header-cell *matHeaderCellDef>School Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        {{element.name_of_school}} 
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="view">
+                    <mat-header-cell *matHeaderCellDef class="text-center">View Courses </mat-header-cell>
+                    <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+                        <i (click)="goToCourseList(element.id)" class="fa fa-eye mr-2 color-lightBlue cursorStyle "  aria-hidden="true "></i>
+                    </mat-cell>
+                </ng-container>
+                
+
+                <mat-header-row *matHeaderRowDef="schoolList.displayedColumns "></mat-header-row>
+                <mat-row *matRowDef="let row; columns: schoolList.displayedColumns; "></mat-row>
+            </mat-table>
+        </div>
+    </div>
+    <pagination-controls *ngIf="schoolList.dataSource" (pageChange)="getSchoolList($event)" class="eiPaginationTag">
+    </pagination-controls>
+
+    <div class="row" *ngIf="!schoolList.dataSource">
+        <div class="col-12 pt-2 pb-2">
+            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+        </div>
+    </div>
+    </div>
+</div>

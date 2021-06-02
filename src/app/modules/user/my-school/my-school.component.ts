@@ -16,6 +16,7 @@ export class MySchoolComponent implements OnInit {
   roleCheck: boolean = true;
   verified: any;
   schoolList: any
+  starclassSchool: any;
 
   constructor(
     private router: Router,
@@ -53,6 +54,26 @@ export class MySchoolComponent implements OnInit {
 
       }
     )
+  }
+
+  starclassSchoolList(){
+    this.baseService.getData('user/school-list-for-student-startclass').subscribe(
+     (res : any) => {
+       if(res.status == true){
+         if (res.count > 1){
+           this.starclassSchool = res.results
+           this.router.navigate(['user/multiple-ei'])
+         }
+         else {
+           this.goToStarclassCourses(res.results[0].id)
+         }
+       }
+     }
+    )
+  }
+
+  goToStarclassCourses(id: any){
+    this.router.navigate(['user/starclass-course-list'], {queryParams : {'returnUrl': "user/my-school", "school_id": id}})
   }
 
   gotoChatWithTeachers(id: any){

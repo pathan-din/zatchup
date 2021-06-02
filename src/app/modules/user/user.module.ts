@@ -76,6 +76,7 @@ import { UserStarclassCoursePreviewComponent } from './user-starclass-course-pre
 import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { StarclassMultipleEiComponent } from './starclass-multiple-ei/starclass-multiple-ei.component';
 
 // import { AngularFireModule } from '@angular/fire';
 
@@ -143,7 +144,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     UserStarclassCourseListComponent,
     UserStarclassCoursePreviewComponent,
     UserLectureDetailsComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    StarclassMultipleEiComponent
   ],
 
   imports: [
