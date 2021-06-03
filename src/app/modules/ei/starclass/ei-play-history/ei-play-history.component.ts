@@ -33,9 +33,10 @@ export class EiPlayHistoryComponent implements OnInit {
       this.eiPlayHistory.modal = {
         'page' : page,
         'page_size': this.eiPlayHistory.page_size,
+        'course_id': this.route.snapshot.queryParamMap.get('course_id')
         
       }
-      this.baseService.getData('starclass/starclass_lecture_play_history/' +this.route.snapshot.queryParamMap.get('course_id') , this.eiPlayHistory.modal).subscribe(
+      this.baseService.getData('starclass/starclass_lecture_play_history/'  , this.eiPlayHistory.modal).subscribe(
         (res:any) => {
           if(res.status == true){
             page = this.eiPlayHistory.config.currentPage

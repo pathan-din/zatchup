@@ -11,6 +11,52 @@
             </div>
         </div>
 
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3" >
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select (change)="displayStandardList(studentAudienceList.course)" id="course_id" [(ngModel)]="studentAudienceList.course" name="course" required class="custom-select  form-control-input"
+                            required>
+                            <option value=""> Select Course</option>
+                            <option value="{{course.id}}" *ngFor="let course of courseList">{{course.course_name}}
+                            </option>
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select (change)="displayClassList(studentAudienceList.standard)" id="standard_id" [(ngModel)]="studentAudienceList.standard" name="standard" required
+                            class="custom-select  form-control-input" required>
+                            <option value=""> Select Standard</option>
+                            <option value="{{standard.id}}" *ngFor="let standard of standardList">
+                                {{standard.standard_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
+                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="studentAudienceList.teaching_class" name="class" class="custom-select  form-control-input">
+                            <option value=""> Select Class</option>
+                            <option value="{{class.id}}" *ngFor="let class of classList">{{class.class_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <button (click)="getStudentAuidenceList('','')" type="button" class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+
+
+            </div>
+        </div>
+
         <div class="row my-3 align-items-center" *ngIf="studentAuidence.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
