@@ -44,8 +44,8 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   getStudentAuidenceList(page?: any) {
     try {
       this.loader.show()
-      var section = JSON.parse(localStorage.getItem("sections"))
-      if(section.length > 0){
+      var action = this.route.snapshot.queryParamMap.get('action')
+      if(action == 'add'){
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
@@ -79,32 +79,32 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             this.studentAuidence.config.currentPage = page
             this.studentAuidence.config.totalItems = res.count
             if (res.count > 0) {
-              // var add = this.route.snapshot.queryParamMap.get('add')
-              // if(add){
-              //   if (this.classId) {
-              //     console.log('fjkdbf', this.classId);
+              var add = this.route.snapshot.queryParamMap.get('add')
+              if(add){
+                if (this.classId) {
+                  console.log('fjkdbf', this.classId);
                   
-              //     console.log(this.studentAudienceList);
+                  console.log(this.studentAudienceList);
                   
-              //     res.results.forEach(
-              //       element => {
+                  res.results.forEach(
+                    element => {
                       
                     
-              //         if (this.studentAudienceList.indexOf(element.user_id) === -1) {
-              //           element.is_access_for_star_class = true;
-              //         }else{
-              //           element.is_access_for_star_class = false;
-              //         }
+                      if (this.studentAudienceList.indexOf(element.user_id) === -1) {
+                        element.is_access_for_star_class = true;
+                      }else{
+                        element.is_access_for_star_class = false;
+                      }
                       
-              //       }
-              //     )
-              //    this.studentAuidence.dataSource = res.results;
-              //   }
-              // }
+                    }
+                  )
+                 this.studentAuidence.dataSource = res.results;
+                }
+              }
               
-              // else {
+              else {
                
-              // }
+              }
               this.studentAuidence.dataSource = res.results;
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
               this.setData()
