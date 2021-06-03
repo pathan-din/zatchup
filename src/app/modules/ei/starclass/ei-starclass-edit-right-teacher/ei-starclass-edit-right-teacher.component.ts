@@ -20,6 +20,8 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   teacherAudienceList: any = [];
   error: any = [];
   model: any;
+  action: any = ''
+
   constructor(
     private router: Router,
     private location: Location,
