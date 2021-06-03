@@ -21,7 +21,10 @@
                         <div class="profile_name ml-2 text-capitalize">
                             <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}</p>
                             <span class="small-text-2" *ngIf="presence$ | async as presence">
-                                <label [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
+                                <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
+                                <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimeAgo(presence.timestamp)}}</label>
+                                
+                                
                             </span>
                         </div>
                     </div>
@@ -30,7 +33,8 @@
                             <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle">
                         </a>
                         <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
-                            <span class="dropdown-item cursorStyle">Block User</span>
+                            <span *ngIf="!isblock" (click)="blockPaticipant(recepintDetails.id)" class="dropdown-item cursorStyle">Block User</span>
+                            <span *ngIf="isblock" (click)="unblockPaticipant(recepintDetails.id)" class="dropdown-item cursorStyle">Unblock User</span>
                         </div>
                     </div>
                 </div>
@@ -165,7 +169,7 @@
                 </div>
             </div>
             <div class="row" *ngIf="!params.chat">
-                <div class="col-12">
+                <div class="col-12" *ngIf="!blockRecipant">
                     <div   class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
                         <div>
                             <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
@@ -176,6 +180,11 @@
                         <span [ngClass]="!model.comment ? 'disabled': 'cursorStyle'" (click)="sendChat()" class="">
                             <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
                         </span>
+                    </div>
+                </div>
+                <div class="row"  *ngIf="blockRecipant">
+                    <div class="col-12">
+                        You can't send messages to this group because you are no longer a participent
                     </div>
                 </div>
             </div>

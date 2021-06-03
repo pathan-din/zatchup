@@ -30,6 +30,12 @@ export class MessagesDetailsComponent implements OnInit {
   presence$: any;
   uuid: string;
   online: any;
+  blockUserList:any=[];
+  isblock:any=false;
+  objBlock:any={};
+  blockRecipant:any=false;
+  blockRecipant1:any=false;
+  is_last_seen:any;
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
@@ -44,8 +50,9 @@ export class MessagesDetailsComponent implements OnInit {
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
+    this.currentUser = localStorage.getItem('fbtoken');
     if(this.params.chat){
-      this.currentUser = localStorage.getItem('fbtoken');
+      
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         this.recepientGroup=res
         
@@ -88,10 +95,44 @@ export class MessagesDetailsComponent implements OnInit {
              
             
             this.online=res.setting.online;
+            this.is_last_seen=res.setting.is_seen;
+
+            
           }
         })
+        //console.log(this.currentUser);
+        
+        this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
+         // console.log("bbb",res);
+          
+          if(res){
+            //console.log("uuuu",this.uuid);
+            
+             this.blockUserList=res.data;
+             console.log(this.blockUserList);
+             
+             var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
+             console.log(objList);
+             if(objList){
+              this.objBlock=objList;
+              this.isblock=objList.isblock;
+              this.blockRecipant1=objList.isblock;
+              console.log("block user",this.isblock);
+             }
+            
+             
+          }
+        })
+        this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res:any)=>{
+          // console.log("bbb",res);
+          if(res) {
+           var objB = res.data.find(e=>{return e.uuid==this.currentUser})
+            this.blockRecipant=objB.isblock;
+          }
+        })
+        //this.blockRecipant
         this.presence$ = this.firebaseService.getPresence(this.uuid);
-        console.log(this.presence$);
+       // console.log(this.presence$);
         
       }
       if (localStorage.getItem("receipent")) {
@@ -103,6 +144,49 @@ export class MessagesDetailsComponent implements OnInit {
     }
     
   }
+  blockPaticipant(particepantid){
+   console.log(particepantid,this.currentUser);
+    
+    var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
+    console.log(index);
+    
+    if(index>-1){
+      this.blockUserList.slice(index,1)
+      
+    }else{
+      this.blockUserList.push({isblock:true,uuid:particepantid});
+    }
+    var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
+    if(objList){
+     objList.isblock=true;
+     this.objBlock=objList;
+     this.isblock=objList.isblock;
+    // this.blockUserList.push(objList)
+     console.log( this.blockUserList);
+    }
+    this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+    this.router.navigate(['ei/personal-messages'])
+    //this.blockUserList
+    
+
+  }
+  unblockPaticipant(particepantid){
+    var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
+    console.log(index);
+    if(index>-1){
+      this.blockUserList.slice(index,1)
+    }
+    var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
+    if(objList){
+     objList.isblock=false;
+     this.objBlock=objList;
+     this.isblock=objList.isblock;
+    // this.blockUserList.push(objList)
+     console.log( this.blockUserList);
+    }
+    this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+    this.router.navigate(['ei/personal-messages'])
+      }
   ngDoCheck() {
     this.scrollToBottom();
   }
@@ -141,7 +225,7 @@ export class MessagesDetailsComponent implements OnInit {
   }
 
   sendChat(document?: any) {
-    console.log("dfffdf");
+  
     
     if (this.model.comment)
       this.model.comment = this.model.comment.trim()
@@ -200,6 +284,10 @@ export class MessagesDetailsComponent implements OnInit {
   
       })
     }else{
+      if(this.blockRecipant1){
+        this.alert.error("Please Unblock this receipant","Error");
+        return false;
+      }
       return new Promise<any>((resolve, reject) => {
         let data: any = {};
         let dataNew: any = {};

@@ -38,6 +38,13 @@ export class ChatComponent implements OnInit {
   is_admin_in_group=0;
   is_teacher_in_group=0
   groupexit: number=0;
+  blockUserList:any=[];
+  isblock:any=false;
+  objBlock:any={};
+  blockRecipant:any=false;
+  blockRecipant1:any=false;
+  online: any;
+  is_last_seen:any
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -111,6 +118,44 @@ export class ChatComponent implements OnInit {
         this.getDocumentsChat(this.uuid);
       }
       this.currentUser = localStorage.getItem('fbtoken');
+      this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
+        if(res){
+           
+          
+          this.online=res.setting.online;
+          this.is_last_seen=res.setting.is_seen;
+
+          
+        }
+      })
+      this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
+        // console.log("bbb",res);
+         
+         if(res){
+           //console.log("uuuu",this.uuid);
+           
+            this.blockUserList=res.data;
+            console.log(this.blockUserList);
+            
+            var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
+            console.log(objList);
+            if(objList){
+             this.objBlock=objList;
+             this.isblock=objList.isblock;
+             this.blockRecipant1=objList.isblock;
+             console.log("block user",this.isblock);
+            }
+           
+            
+         }
+       })
+       this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res:any)=>{
+         // console.log("bbb",res);
+         if(res) {
+          var objB = res.data.find(e=>{return e.uuid==this.currentUser})
+           this.blockRecipant=objB.isblock;
+         }
+       })
       this.presence$ = this.firebaseService.getPresence(this.uuid);
       setTimeout(() => {
         this.uuid = localStorage.getItem('uuid');
@@ -281,7 +326,8 @@ export class ChatComponent implements OnInit {
 
   }
   sendChat(document?: any) {
-    if (this.model.comment)
+  
+  if (this.model.comment)
     this.model.comment = this.model.comment.trim()
   if (!this.model.comment && !document) {
     return;
@@ -339,7 +385,10 @@ export class ChatComponent implements OnInit {
     })
   }else{
 
- 
+    if(this.blockRecipant1){
+      this.alert.error("Please Unblock this receipant","Error");
+      return false;
+    }
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       let dataNew: any = {};
@@ -376,7 +425,49 @@ export class ChatComponent implements OnInit {
   gotoChatPrivacy() {
 
   }
-
+  blockPaticipant(particepantid){
+    console.log(particepantid,this.currentUser);
+     
+     var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
+     console.log(index);
+     
+     if(index>-1){
+       this.blockUserList.slice(index,1)
+       
+     }else{
+       this.blockUserList.push({isblock:true,uuid:particepantid});
+     }
+     var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
+     if(objList){
+      objList.isblock=true;
+      this.objBlock=objList;
+      this.isblock=objList.isblock;
+     // this.blockUserList.push(objList)
+      console.log( this.blockUserList);
+     }
+     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+    // this.router.navigate(['ei/personal-messages'])
+     //this.blockUserList
+     
+ 
+   }
+   unblockPaticipant(particepantid){
+     var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
+     console.log(index);
+     if(index>-1){
+       this.blockUserList.slice(index,1)
+     }
+     var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
+     if(objList){
+      objList.isblock=false;
+      this.objBlock=objList;
+      this.isblock=objList.isblock;
+     // this.blockUserList.push(objList)
+      console.log( this.blockUserList);
+     }
+     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+     //this.router.navigate(['ei/personal-messages'])
+       }
 
   uploadDoc(file: any) {
     try {
