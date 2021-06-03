@@ -77,6 +77,19 @@
 .chatTxt img {
     max-width: 245px;
 }
+.setting_info {
+    position: absolute;
+    right: -15px;
+    top: 0px;
+}
+.setting_info img {
+    height: 30px;
+}
+.customButton {
+    left: inherit !important;
+    top: 15px !important;
+    right: -60px !important;
+}
 @media (max-width: 767px){
   .teacherChatList {
       height: 300px;
