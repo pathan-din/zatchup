@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,12 +17,14 @@ export class EiPlayHistoryComponent implements OnInit {
     private baseService : BaseService,
     private alert : NotificationService,
     private loader: NgxSpinnerService,
-    private location : Location
+    private location : Location,
+    private route : ActivatedRoute
   ) {
     this.eiPlayHistory = new EiPlayHistory()
    }
 
   ngOnInit(): void {
+    this.getPlayHistory()
   }
 
   getPlayHistory(page? : any){
@@ -29,9 +32,10 @@ export class EiPlayHistoryComponent implements OnInit {
       this.loader.show()
       this.eiPlayHistory.modal = {
         'page' : page,
-        'page_size': this.eiPlayHistory.page_size
+        'page_size': this.eiPlayHistory.page_size,
+        
       }
-      this.baseService.getData('', this.eiPlayHistory.modal).subscribe(
+      this.baseService.getData('starclass/starclass_lecture_play_history/' +this.route.snapshot.queryParamMap.get('course_id') , this.eiPlayHistory.modal).subscribe(
         (res:any) => {
           if(res.status == true){
             page = this.eiPlayHistory.config.currentPage
@@ -41,7 +45,9 @@ export class EiPlayHistoryComponent implements OnInit {
             this.eiPlayHistory.config.currentPage = page
             this.eiPlayHistory.config.totalItems = res.count;
             if(res.count > 0) {
-              this.eiPlayHistory.dataSource = res.results;
+              this.eiPlayHistory.dataSource = res.data;
+              console.log('history', this.eiPlayHistory.dataSource);
+              
               this.eiPlayHistory.pageCounts = this.baseService.getCountsOfPage()
             }
             else {
