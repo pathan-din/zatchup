@@ -14,7 +14,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./user-lecture-details.component.css']
 })
 export class UserLectureDetailsComponent implements OnInit {
-  @HostListener('window:unload', [ '$event' ])
+  @HostListener('window:beforeunload', [ '$event' ])
   eiLectureDetailsView: any;
   model: any;
   currentTime: number;
@@ -37,9 +37,63 @@ export class UserLectureDetailsComponent implements OnInit {
       this.getLectureDetails()
     }
   }
+  ngAfterViewInit() {
+  if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
+    this.model ={
+      'start_time': localStorage.getItem('start_time'),
+      'end_time' : localStorage.getItem('end_time'),
+      'lecture_id':  this.route.snapshot.queryParamMap.get('id')
+    }
+    this.loader.show()
+    this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+      (res: any) => {
+        if (res.status == true) {
+          localStorage.removeItem('end_time')
+          localStorage.removeItem('start_time')
+        } else {
+          this.alert.error("Try again", 'Error')
+        }
+        this.loader.hide();
+      }
+    ), err => {
+      this.alert.error("Please try again", 'Error')
+      this.loader.hide();
+    }
+  }
+  }
+  ngOnDestroy(){
+    this.setCurrentTime()
+    if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
+      this.model ={
+        'start_time': localStorage.getItem('start_time'),
+        'end_time' : localStorage.getItem('end_time'),
+        'lecture_id':  this.eiLectureDetailsView.id
+      }
+      this.loader.show()
+      this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            localStorage.removeItem('end_time')
+            localStorage.removeItem('start_time')
+          } else {
+            this.alert.error("Try again", 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error("Please try again", 'Error')
+        this.loader.hide();
+      }
+    }
+  }
+  
 
-  setCurrentTime(data) {
-    this.currentTime = data.target.currentTime;
+  setCurrentTime() {
+    this.currentTime = Date.now();
+    if(localStorage.getItem('start_time') ) {
+      var endTime = this.currentTime
+      localStorage.setItem('end_time', endTime.toString())
+    }
     console.log(this.currentTime);
     
  }
@@ -47,6 +101,7 @@ export class UserLectureDetailsComponent implements OnInit {
  unloadHandler(event) {
   console.log(event
     );
+    alert(event)
   
 }
 
@@ -84,24 +139,38 @@ export class UserLectureDetailsComponent implements OnInit {
   }
 
   playClick(event: any){
-    this.model ={
-      // 'course_id' : this.eiLectureDetailsView.course_id,
-      // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
-      'lecture_id':  this.eiLectureDetailsView.id
-    }
-    this.loader.show()
-    this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          // this.alert.success(res.message, "Success")
-        } else {
-          this.alert.error("Try again", 'Error')
+    console.log(event);
+    
+    if(!localStorage.getItem('first_time_play_video')){
+      var getStartTime = new Date(event.timeStamp * 1000)
+      var getStartTimeOne = new Date( Date.now())
+      localStorage.setItem('start_time', Date.now().toString())
+console.log(getStartTimeOne);
+
+
+      this.model ={
+        // 'course_id' : this.eiLectureDetailsView.course_id,
+        // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+        'lecture_id':  this.eiLectureDetailsView.id
+      }
+      this.loader.show()
+      this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+           localStorage.setItem('first_time_play_video', 'true')
+          } else {
+            this.alert.error("Try again", 'Error')
+          }
+          this.loader.hide();
         }
+      ), err => {
+        this.alert.error("Please try again", 'Error')
         this.loader.hide();
       }
-    ), err => {
-      this.alert.error("Please try again", 'Error')
-      this.loader.hide();
     }
-  }
+    else {
+     
+    }
+    }
+    
 }
