@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,10 +14,11 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./user-lecture-details.component.css']
 })
 export class UserLectureDetailsComponent implements OnInit {
-
+  @HostListener('window:unload', [ '$event' ])
   eiLectureDetailsView: any;
   model: any;
   currentTime: number;
+  startTime: any;
 
   constructor(
     private location: Location,
@@ -42,6 +43,14 @@ export class UserLectureDetailsComponent implements OnInit {
     console.log(this.currentTime);
     
  }
+
+ unloadHandler(event) {
+  console.log(event
+    );
+  
+}
+
+ 
 
   getLectureDetails(){
     try {

@@ -175,7 +175,7 @@
                             <p>Play  History</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToPlayHistory()" class="cursorStyle " ><span class="mr-3">:</span>
+                            <p (click)="goToPlayHistory(courseData.course_id)" class="cursorStyle " ><span class="mr-3">:</span>
                                 History</p>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                         </div>
                     </div> -->
 
-                    <div class="row" *ngIf="courseData.is_edit == true" >
+                    <div class="row" *ngIf=" roleOfSubadmin.role != 'EISUBADMIN'" >
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p>Edit Course Details</p>
@@ -271,24 +271,26 @@
                                 <mat-cell *matCellDef="let element">
                                     <i class="fa fa-eye color-lightBlue cursorStyle" aria-hidden="true" title="View"
                                         (click)="goToLectureView(element.id)"></i>
+                                        <i *ngIf="roleOfSubadmin.role == 'EISUBADMIN' && element.upload_by_id == userId " title="Delete" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteEiLecture(element.id )"></i>
                                         <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" title="Delete" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteEiLecture(element.id )"></i>
-                                        <i *ngIf="courseData.is_edit == true  && courseData.is_all_access == true" title="Edit" class="fa fa-pencil ml-2 color-green  cursorStyle" aria-hidden="true" (click)="goToEditLecture(element.id )"></i>
+                                        <i *ngIf="roleOfSubadmin.role == 'EISUBADMIN' && element.upload_by_id == userId " title="Edit" class="fa fa-pencil ml-2 color-green  cursorStyle" aria-hidden="true" (click)="goToEditLecture(element.id )"></i>
+                                        <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" title="Edit" class="fa fa-pencil ml-2 color-green  cursorStyle" aria-hidden="true" (click)="goToEditLecture(element.id )"></i>
                                     </mat-cell>
                             </ng-container>
         
-                            <!-- <ng-container matColumnDef="durationOfLecture">
-                                <mat-header-cell *matHeaderCellDef> Duration Of Lecture </mat-header-cell>
+                            <ng-container matColumnDef="uploadedBy">
+                                <mat-header-cell *matHeaderCellDef> Uploaded By </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.durationOfLecture}}
+                                    {{element.upload_by_name}}
                                 </mat-cell>
-                            </ng-container> -->
+                            </ng-container>
         
-                            <!-- <ng-container matColumnDef="play">
-                                <mat-header-cell *matHeaderCellDef> Play </mat-header-cell>
+                            <ng-container matColumnDef="totalView">
+                                <mat-header-cell *matHeaderCellDef> View Count </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.play}}
+                                    {{element.total_view_count}}
                                 </mat-cell>
-                            </ng-container> -->
+                            </ng-container>
         
                             <mat-header-row *matHeaderRowDef="eiStarclassLectueList.displayedColumnsOne "></mat-header-row>
                             <mat-row *matRowDef="let row; columns: eiStarclassLectueList.displayedColumnsOne; "></mat-row>

@@ -3,7 +3,7 @@
     <div class="bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
             <div class="col-md-12 col-12 text-center">
-                <h2 class="commonFontSize semiBoldFont m-0 py-3">Messages Details</h2>
+                <h1 class="commonFontSize semiBoldFont m-0 py-3">Messages Details</h1>
             </div>
         </div>
 
@@ -38,18 +38,23 @@
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
                         <div *ngIf="!objCon.document">
-                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{getTimeAgo(objCon.timestamp)}}
+                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                                </span>
                             </p>
                         </div>
-                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
+                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left" *ngIf="objCon.document">
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img src="./assets/images/userWebsite/pdf.png" />
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                             </a>
-                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                            <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{getTimeAgo(objCon.timestamp)}}
+                                <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                             </span>
                         </div>
                     </div>
@@ -58,7 +63,7 @@
         </div>
 
         <div *ngIf="params.chat" class="bg-light-gray p-3">
-            <div class="profile_detail d-flex align-items-center justify-content-start mb-3 cursorStyle" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
+            <div class="profile_detail d-flex align-items-center justify-content-start mb-3 cursorStyle position-relative" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
                 <div class="profile_pick">
                     <img *ngIf="!recepientGroup" src="{{recepientGroup.group_icon?recepientGroup.group_icon:'./assets/images/userWebsite/profile-image.png'}}"
                         class="img-fluid cursorStyle"> 
@@ -73,24 +78,37 @@
                         <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}}{{','}}</label>
                     </span>
                 </div>
+                <div class="setting_info text-right pr-3 dropdown">
+                    <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle">
+                    </a>
+                    <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
+                        <span class="dropdown-item cursorStyle">Block User</span>
+                    </div>
+                </div>
             </div>
 
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
                         <div *ngIf="!objCon.document">
-                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{getTimeAgo(objCon.timestamp)}}
+                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                                </span>
                             </p>
                         </div>
-                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3" *ngIf="objCon.document">
+                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left" *ngIf="objCon.document">
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img src="./assets/images/userWebsite/pdf.png" />
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                             </a>
-                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                            <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{getTimeAgo(objCon.timestamp)}}
+                                <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                             </span>
                         </div>
                     </div>

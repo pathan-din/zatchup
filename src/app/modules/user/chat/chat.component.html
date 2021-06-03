@@ -46,8 +46,11 @@
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                             </a>
 
-                            <p *ngIf="!objCon.document" class="color-white m-0">{{objCon.msg}}</p>
-                            <span class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                            <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
+                            <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                            </span>
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
@@ -55,6 +58,8 @@
                                 <!-- {{objCon | json}} -->
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
                             </div>
                             <div *ngIf="objCon.document">
@@ -65,6 +70,8 @@
                                     <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                                 </a>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
                             </div>
                         </div>
@@ -109,8 +116,11 @@
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                             </a>
 
-                            <p *ngIf="!objCon.document" class="color-white m-0">{{objCon.msg}}</p>
-                            <span class="text-right color-white small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+                            <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
+                            <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                            </span>
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
@@ -128,6 +138,8 @@
                                     <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                                 </a>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
+                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
                             </div>
                         </div>
