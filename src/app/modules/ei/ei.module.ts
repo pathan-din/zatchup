@@ -169,6 +169,7 @@ import { EiUserSearchProfileComponent } from './ei-user-search-profile/ei-user-s
 import { GroupDetailComponent } from './message/group-detail/group-detail.component';
 import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
 import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
+import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -354,6 +355,7 @@ const config = {
     GroupDetailComponent,
     EiPlayHistoryComponent,
     EditGroupParticipentComponent,
+    BulkPromoteComponent,
   ],
   imports: [
     CommonModule,

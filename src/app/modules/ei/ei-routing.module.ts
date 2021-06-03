@@ -151,6 +151,7 @@ import { EiUserSearchProfileComponent } from './ei-user-search-profile/ei-user-s
 import { GroupDetailComponent } from './message/group-detail/group-detail.component';
 import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
 import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
+import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
 
 
 const routes: Routes = [
@@ -597,6 +598,9 @@ const routes: Routes = [
    },
   {
     path: 'edit-group-participent', component:EditGroupParticipentComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'bulk-promote', component: BulkPromoteComponent, canActivate: [AuthGuard]
    },
    
   

@@ -87,11 +87,13 @@
                     <!-- Checkbox Column -->
                     <ng-container matColumnDef="checked">
                         <mat-header-cell *matHeaderCellDef>
-
+                            <mat-checkbox [(ngModel)] ="selectAll" [disabled]="!model.teaching_class"
+                                (change)="all($event)">
+                            </mat-checkbox>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <mat-checkbox [disabled]="!model.teaching_class"
-                                (change)="getStudentBycheckboxClickForStudentBulkAction(element.student_id,$event)">
+                            <mat-checkbox [disabled]="!model.teaching_class" [(ngModel)]="element.status"
+                                (change)="getStudentBycheckboxClickForStudentBulkAction(element.student_id,$event, element)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>
@@ -111,7 +113,8 @@
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="color-lightBlue">
-                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">{{element.name}}</p>
+                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">
+                                {{element.name}}</p>
                         </mat-cell>
                     </ng-container>
 
@@ -148,11 +151,12 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="promote" >
+                    <ng-container matColumnDef="promote">
                         <mat-header-cell *matHeaderCellDef> Promote </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button *ngIf="element.approved==1" [disabled]="element.approved!=1"  class="color-white bg-purple border-0 py-1 px-2" data-toggle="modal" data-target="#promoteModel"
-                                (click)="promoteResetPopup(element)">Promote</button>
+                            <button *ngIf="element.approved==1" [disabled]="element.approved!=1"
+                                class="color-white bg-purple border-0 py-1 px-2" data-toggle="modal"
+                                data-target="#promoteModel" (click)="promoteResetPopup(element)">Promote</button>
                         </mat-cell>
                     </ng-container>
 
@@ -160,8 +164,7 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
                             <!-- <i class="fa fa-comment mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i> -->
-                            <i  class="fa fa-pencil mr-2 color-green fa-lg cursorStyle"
-                                title="Edit" aria-hidden="true "
+                            <i class="fa fa-pencil mr-2 color-green fa-lg cursorStyle" title="Edit" aria-hidden="true "
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-2 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
                                 (click)="goToEiStudentProfilePage(element.student_id)"></i>
@@ -205,8 +208,9 @@
                     <div class="modal-header align-items-center border-0 pb-0 pl-0">
                         <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Change class for Students
                         </h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                            data-dismiss="modal" aria-label="Close ">
+                        <button #closeChangeClassModel type="button "
+                            class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            aria-label="Close ">
                             <span aria-hidden="true ">
                                 &times;
                                 <!-- <i class="fa fa-times text-dark" aria-hidden="true"></i> -->
@@ -223,8 +227,11 @@
                         </div>
                         <p class="commonFontSize regularFont letterspacing text-right">
                             <button type="button" (click)="editBulkClass()"
-                                class="bg-Gainsboro px-3 py-1 border-0 commonFontSize mediumFont letterspacing">Edit
+                                class="bg-Gainsboro px-3 py-1 border-0 commonFontSize mediumFont letterspacing mr-1">Edit
                                 Class</button>
+                            <button type="button" (click)="bulkPromote()"
+                                class="bg-Gainsboro px-3 py-1 border-0 commonFontSize mediumFont letterspacing">
+                                Promote Students</button>
 
                         </p>
                     </div>
@@ -321,8 +328,8 @@
         </div>
     </div>
 
-        <!--Promote Model-->
-        <div class="modal fade" id="promoteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <!--Promote Model-->
+    <div class="modal fade" id="promoteModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content unverified container-fluid">
@@ -373,8 +380,8 @@
                             <div class="widthFull col-md-4 custumInputWidth">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
                                 <div class="widthFull">
-                                    <select id="class_id" [(ngModel)]="modelPromote.teaching_class" name="class" required
-                                        class="custom-select border form-control-input">
+                                    <select id="class_id" [(ngModel)]="modelPromote.teaching_class" name="class"
+                                        required class="custom-select border form-control-input">
                                         <option value=""> Select Class</option>
                                         <option value="{{class.id}}" *ngFor="let class of classList">
                                             {{class.class_name}}</option>
@@ -389,19 +396,18 @@
                                 <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
                                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                                     <input required [(ngModel)]="modelPromote.roll_no" name="roll_number"
-                                         
                                         class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter Roll Number">
                                 </div>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
                         </div>
-                       <div class="text-center mt-3">
+                        <div class="text-center mt-3">
                             <button (click)="promoteStudent()" type="button "
-                            class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
-                            Submit
-                        </button>
-                       </div>
+                                class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                                Submit
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
