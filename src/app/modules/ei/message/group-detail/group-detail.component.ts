@@ -45,7 +45,7 @@ export class GroupDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       this.params=params;
     })
-    if(this.params.groupId && this.params.chat)
+    if(this.params.groupId && this.params.chat && !this.params.editgroup)
     {
       this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
         console.log(res);
@@ -84,30 +84,93 @@ export class GroupDetailComponent implements OnInit {
           
         });
       })
+    }else{
+      if(localStorage.getItem("groupUsers"))
+      {
+        var groupListMember=[];
+        groupListMember=JSON.parse(localStorage.getItem("groupUsers"));
+        var recepient=[];
+        groupListMember.forEach(element => {
+          let user_recepient: any = {};
+          let objGroupData: any = {};
+          objGroupData.is_read = 0;
+          objGroupData.is_admin = 0;
+          objGroupData.is_remove = 0;
+          objGroupData.is_remove_date = "";
+          objGroupData.is_exit = 0;
+          objGroupData.is_exit_date = "";
+          objGroupData.is_student = element.student_id ? 0 : 1;
+          if (element.firebase_id) {
+            user_recepient[element.firebase_id] = objGroupData;
+            recepient.push(user_recepient)
+          }
+
+        });
+        console.log("list of group",recepient);
+        this.firestore.collection('group').get().subscribe(querySnapshot => {
+          if (querySnapshot.docs.length > 0) {
+            querySnapshot.docs.map(doc => {
+            
+              let res:any=[]
+              res=doc.data();
+              if(doc.id==this.params.groupId){
+                //this.model=res;
+                var aG=[]
+                res.reciepent.forEach(element => {
+                  Object.keys(element).forEach(eOld=>{
+                    aG[eOld]=element[eOld];
+                    
+                  })
+                 
+              
+                });
+                console.log("sdsdsd",aG);
+                var newGroupList=[];
+                recepient.forEach(el=>{
+                  Object.keys(el).forEach(e=>{
+                    if(aG[e]){
+                      //aG[e].is_remove=0;
+                     // aG[e].is_exit=0;
+                      newGroupList.push(el)
+                      delete aG[e] 
+                      
+                    }else{
+                      newGroupList.push(el)
+                     
+                    }
+                    
+                    
+                  })
+                })
+                Object.keys(aG).forEach(item=>{
+                  var data={}
+                  data[item]=aG[item]
+                  newGroupList.push(data)
+                })
+                this.model=res;
+                this.model.reciepent=newGroupList;
+               // console.log(newGroupList);
+                
+                this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
+                  console.log("sdfghjk",responce);
+                  this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+                  
+                  },(error)=>{
+            
+                  })
+              
+                
+              }});}});
+         
+      
+          
+        
+      }
     }
   }
-getIsAdmin(userId){
-  this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-    res.reciepent.forEach(element => {
-      // console.log(localStorage.getItem("fbtoken"));
-       if(element[userId]){
-          
-         if(element[userId].is_admin==1){
-           this.is_check_admin=element[userId].is_admin;
-           //console.log(this.exitGroupMember);
-           
-         }else{
-          this.is_check_admin=element[userId].is_admin;
-         }
-         
-       }
-       
-       
-       
-     });
-  })
-return  this.is_check_admin;
-}
+  goBack() {
+    this.location.back()
+  }
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
       //this.receipentUsers.push(k)
@@ -118,8 +181,9 @@ return  this.is_check_admin;
      resp = res.data()
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
+      localStorage.setItem("alreadyGroupMember",JSON.stringify(this.receipentUsers));
       });
-      console.log(this.receipentUsers);
+     
       this.noOfUsers=this.receipentUsers.length;
     }else{
      // localStorage.setItem("receipent",uuid);
@@ -144,9 +208,6 @@ return  this.is_check_admin;
   }
   isAdmin(user_uuid,type){
     if(type=='add'){
-      console.log(this.firestore.collection('group').get());
-      
-      
       this.firestore.collection('group').get().subscribe(querySnapshot => {
         console.log("hjjh",querySnapshot.docs);
         if (querySnapshot.docs.length > 0) {
@@ -158,7 +219,7 @@ return  this.is_check_admin;
             if(doc.id==this.params.groupId){
               this.model=res;
               res.reciepent.forEach(element => {
-                console.log(element);
+                
                 if(element[user_uuid]){
                   element[user_uuid].is_admin=1;
                 }
@@ -212,9 +273,7 @@ return  this.is_check_admin;
   exitGroup(user_uuid,type){
     console.log(user_uuid);
     if(type=='exit'){
-      this.firestore.collection('group').get()
-         
-      .subscribe(querySnapshot => {
+      this.firestore.collection('group').get().subscribe(querySnapshot => {
         if (querySnapshot.docs.length > 0) {
           querySnapshot.docs.map(doc => {
           
@@ -229,23 +288,12 @@ return  this.is_check_admin;
                 }
                 
               });
-              console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-              console.log(responce);
               this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
               
             },(error)=>{
       
-            }) 
-            }
-          
-            
-            
-            
-          });
-        }
-
-      });
+            })}});}});
       
     }else{
       this.firestore.collection('group').get()
@@ -341,5 +389,8 @@ return  this.is_check_admin;
         this.alert.error(err, 'Error')
       }
     }
-
+addMoreRecipant(){
+  this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
+  //group-chat?newgrp=C
+}
 }

@@ -17,6 +17,7 @@ export class UserLectureDetailsComponent implements OnInit {
 
   eiLectureDetailsView: any;
   model: any;
+  currentTime: number;
 
   constructor(
     private location: Location,
@@ -35,6 +36,12 @@ export class UserLectureDetailsComponent implements OnInit {
       this.getLectureDetails()
     }
   }
+
+  setCurrentTime(data) {
+    this.currentTime = data.target.currentTime;
+    console.log(this.currentTime);
+    
+ }
 
   getLectureDetails(){
     try {

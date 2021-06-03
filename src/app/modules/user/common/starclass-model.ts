@@ -33,3 +33,8 @@ export class StarclassLectureList extends Pagination{
     displayedColumns : string[] = ['position', 'zatchupId', 'schoolName', 'view']
     model: any = {};
   }
+
+  export class PlayHistory extends Pagination {
+    displayedColumns : string [] = ['position', 'courseName', 'lectureTitle', 'playTime',]
+    model: any = {}
+  }

@@ -319,7 +319,13 @@ createGroupConfirmationList(){
   localStorage.setItem("sections",JSON.stringify(this.sectionIds));
   localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
   localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
-  this.router.navigate(["ei/students-list"]);
+  if(this.params.editgroup){
+     
+    this.router.navigate(["ei/students-list"],{queryParams:{"editgroup":this.params.editgroup,"groupId":this.params.groupId}});
+  }else{
+    this.router.navigate(["ei/students-list"]);
+  }
+  
 }
 
 getGender(data: any) {

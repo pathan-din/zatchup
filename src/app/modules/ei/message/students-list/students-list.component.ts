@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -82,20 +82,49 @@ export class StudentsListComponent implements OnInit {
   dataSource1 = []
   sectionsList: any;
   groupCollectionPerson:any=[];
+  params: any;
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private alert: NotificationService) { }
+    private alert: NotificationService,
+    private route:ActivatedRoute) { }
   sectionIds:any;
   teacherList:any=[];
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      this.params = params;
+    })
     if(localStorage.getItem("sections")){
       this.getGetVerifiedStudent('','')
     }
     if(localStorage.getItem("teachers")){
-      this.teacherList = JSON.parse(localStorage.getItem("teachers"));
-      this.dataSource1 = this.teacherList;
+      if(this.params.editgroup){
+        if(localStorage.getItem("alreadyGroupMember")){
+          var alreadyGroupMember = [];
+          alreadyGroupMember = JSON.parse(localStorage.getItem("alreadyGroupMember"));
+          var groupList=[];
+
+          groupList=JSON.parse(localStorage.getItem("teachers"))
+          
+          alreadyGroupMember.forEach((item:any)=>{
+           var index= groupList.findIndex(el=>{return el.firebase_id==item.id});
+           //console.log(index);
+           if(index>-1){
+            groupList.splice(index,1);
+           }
+          
+          })
+          this.dataSource1 = groupList;
+          this.teacherList= groupList;
+        }
+       
+        
+      }else{
+        this.teacherList = JSON.parse(localStorage.getItem("teachers"));
+        this.dataSource1 = this.teacherList;
+      }
+      
     }
   }
 
@@ -177,7 +206,33 @@ export class StudentsListComponent implements OnInit {
         })
          
         this.studentLists=arrStudentList;
-        this.dataSource = arrStudentList;
+        if(this.params.editgroup){
+          if(localStorage.getItem("alreadyGroupMember")){
+            var alreadyGroupMember = [];
+            alreadyGroupMember = JSON.parse(localStorage.getItem("alreadyGroupMember"));
+            var groupList=[];
+  
+            groupList=this.studentLists;
+            
+            alreadyGroupMember.forEach((item:any)=>{
+             var index= groupList.findIndex(el=>{
+              //console.log(el.firebase_id+"=="+item.firebase_id);
+               
+              return el.firebase_id==item.id});
+              if(index>-1){
+                groupList.splice(index,1);
+               }
+              //groupList.splice(index,1);
+            })
+            this.dataSource = groupList;
+            this.studentLists = groupList;
+          }
+         
+          
+        }else{
+          this.dataSource = arrStudentList;
+        }
+       
         if (res.status == false) {
           this.alert.error(res.error.message[0], 'Error')
         }
@@ -258,7 +313,13 @@ export class StudentsListComponent implements OnInit {
     }
     localStorage.removeItem("groupUsers");
     localStorage.setItem("groupUsers",JSON.stringify(groupReceipentUser));
-    this.router.navigate(["ei/create-group-chat"]);
+    if(this.params.editgroup){
+      //ei-group-detail?chat=group
+      this.router.navigate(["ei/ei-group-detail"],{queryParams:{"chat":"group","editgroup":this.params.editgroup,"groupId":this.params.groupId}});
+    }else{
+      this.router.navigate(["ei/create-group-chat"]);
+    }
+    
   }
  
 }
