@@ -21,22 +21,21 @@
     clear: both;
 }
 .chatTxt {
-    background: #f0f5f9;
-    padding: 7px 15px;
-    color: #569d9e;
-    border-radius: 25px;
-    border-bottom-left-radius: 0px;
+    padding: 6px 10px;
+    border-radius: 8px;
     display: inline-block;
     margin: 0px;
+    background: #dcf8c6;
+    box-shadow: 0px 1px 2px #ccc;
 }
+
 .chatTxt-2{
-    background: #f3f3f3;
-    color: #666666;
-    border-radius: 25px;
-    border-bottom-right-radius: 0px;
+    background: #fff;
+    border-radius: 8px;
     text-align: right;
     float: right;
     margin: 0px;
+    box-shadow: 0px 1px 2px #ccc;
 }
 .position-ppin{
     top: 0px;
@@ -83,13 +82,16 @@
     top: 0px;
 }
 .setting_info img {
-    height: 30px;
+    height: 22px;
 }
 .customButton {
     left: inherit !important;
     top: 15px !important;
     right: -65px !important;
 }
+.message-delivered-icon{display: inline-block; width: 20px;}
+.message-pending-icon{display: none; width: 20px;}
+
 @media (max-width: 767px){
   .teacherChatList {
       height: 300px;
