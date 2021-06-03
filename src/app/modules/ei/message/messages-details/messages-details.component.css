@@ -88,7 +88,7 @@
 .customButton {
     left: inherit !important;
     top: 15px !important;
-    right: -60px !important;
+    right: -65px !important;
 }
 @media (max-width: 767px){
   .teacherChatList {
