@@ -23,6 +23,11 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   error: any = [];
   model: any;
   classId: any;
+  classList:any=[];
+  standardList:any=[];
+  courseList:any=[];
+
+
   constructor(
     private router: Router,
     private location: Location,
@@ -37,7 +42,9 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   ngOnInit(): void {
     this.classId = JSON.parse(localStorage.getItem("sections"))
     this.approved = this.route.snapshot.queryParamMap.get('approved')
-    this.getStudentAuidenceList()
+    this.getStudentAuidenceList();
+    this.displayCourseList();
+
     // this.setData()
   }
 
@@ -51,7 +58,10 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           'page_size': this.studentAuidence.page_size,
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'class_ids' : JSON.parse(localStorage.getItem("sections")),
-          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class
+          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
+          'course': this.studentAudienceList.course,
+          'standard': this.studentAudienceList.standard,
+          'teaching_class': this.studentAudienceList.teaching_class
           // 'id': this.route.snapshot.params.id
         }
       }
@@ -61,7 +71,10 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           'page_size': this.studentAuidence.page_size,
           // 'class_ids' : JSON.parse(localStorage.getItem("sections")),
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class
+          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
+          'course': this.studentAudienceList.course,
+          'standard': this.studentAudienceList.standard,
+          'teaching_class': this.studentAudienceList.teaching_class
           // 'id': this.route.snapshot.params.id
         }
       }
@@ -315,5 +328,106 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   goBack() {
     this.location.back()
   }
+
+  displayCourseList(){
+    try{
+        this.loader.show(); 
+      
+        
+        this.baseService.getData('ei/course-list/').subscribe(res => {
+          let response:any={};
+          response=res;
+          // if(response.status == true){
+          this.courseList=response.results;
+          if(!this.studentAudienceList.course){
+            this.studentAudienceList.course='';
+            this.studentAudienceList.standard='';
+            this.studentAudienceList.teaching_class='';
+          }else{
+            this.displayStandardList(this.studentAudienceList.course)
+          }
+        // }else{
+        //   this.SpinnerService.hide();
+        //   this.alert.error(response.error.message[0], 'Error')
+        // }
+          },(error) => {
+            this.loader.hide(); 
+            //console.log(error);
+            
+          });
+      }catch(err){
+        this.loader.hide(); 
+        //this.alert.error(err, 'Error')
+        //console.log(err);
+      } 
+   }
+   /** Function Name : displayStandardList
+     * Data bind in Standard list dropdown filter
+     * Standard List By course Id
+     */
+    displayStandardList(courseId){
+    try{
+        this.loader.show(); 
+          this.standardList=[]
+       
+      let data:any={}
+      
+      data.course_id=courseId
+      this.baseService.getData('ei/standard-list/',data).subscribe(res => {
+          this.loader.hide(); 
+          let response:any={};
+          response=res;
+          // if(response.status == true){
+      this.standardList=response.standarddata;
+      if(!this.studentAudienceList.standard){
+         
+        this.studentAudienceList.standard='';
+        this.studentAudienceList.teaching_class='';
+      }else{
+        this.displayClassList(this.studentAudienceList.standard)
+      }
+          // }
+          // else{
+          //   this.SpinnerService.hide();
+          //   this.alert.error(response.error.message[0], 'Error')
+          // }
+          },(error) => {
+            this.loader.hide(); 
+            //console.log(error);
+            
+          });
+      }catch(err){
+        this.loader.hide(); 
+        //this.alert.error(err, 'Error')
+        //console.log(err);
+      } 
+   }
+   /** Function Name : displayClassList
+     * Data bind in Class list dropdown filter
+     * Class List By standard Id
+     */
+    displayClassList(stId){
+    try{
+        this.loader.show(); 
+          this.classList=[];
+          let data:any={}
+      
+          data.standard_id=stId
+          this.baseService.getData('ei/class-list/',data).subscribe(res => {
+          this.loader.hide();
+          let response:any={};
+          response=res;
+          this.classList=response.classdata;
+          
+          },(error) => {
+            this.loader.hide(); 
+            //console.log(error);
+            
+          });
+      }catch(err){
+        this.loader.hide(); 
+        //console.log(err);
+      } 
+   }
 
 }

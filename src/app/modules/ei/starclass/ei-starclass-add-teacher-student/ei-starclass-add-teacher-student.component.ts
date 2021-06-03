@@ -286,8 +286,12 @@ createGroupConfirmationList(){
    localStorage.setItem("sections",JSON.stringify(this.sectionIds));
    localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
    localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
+   if(this.teacherList.length > 0 && this.courseIds.length > 0){
    this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+  } else {
+    this.alert.error('Select Atleast One Teacher and Class for the course', 'Error')
   }
+ }
 
  getGetVerifiedStudent(page, strFilter) {
 
