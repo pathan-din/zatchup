@@ -32,7 +32,7 @@
                     <div class="required validationError errorMsg" [innerHtml]="errorDisplay.lecture_description"></div>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="action == 'add'">
                     <div class="form-group row  ml-0 mr-0">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Teaching Faculty Details </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -43,8 +43,19 @@
                     <div class="required validationError errorMsg" [innerHtml]="errorDisplay.name_of_teaching_faculty"></div>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" *ngIf="action == 'edit'">
                     <div class="form-group row  ml-0 mr-0">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Teaching Faculty Details </label>
+                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                            <input readonly (keyup)="isValid($event)"  maxlength="150" [(ngModel)]="model.name_of_teaching_faculty" name="name_of_teaching_faculty" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Teaching Faculty Details">
+                        </div>
+                    </div>
+                    <div class="required validationError errorMsg" [innerHtml]="errorDisplay.name_of_teaching_faculty"></div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group row  ml-0 mr-0" *ngIf="action == 'add'">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Topic Covered </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                             <input (keyup)="isValid($event)"  maxlength="150" [(ngModel)]="model.topic_cover" name="topic_cover" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
@@ -54,8 +65,19 @@
                     <div class="required validationError errorMsg" [innerHtml]="errorDisplay.topic_cover"></div>
                 </div>
 
+                <div class="col-md-12" *ngIf= "action == 'edit'">
+                    <div class="form-group row  ml-0 mr-0">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Topic Covered </label>
+                        <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                            <input (keyup)="isValid($event)"  maxlength="150" [(ngModel)]="model.topic_cover" name="topic_cover" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                type="text" placeholder="Enter Topic Covered" readonly>
+                        </div>
+                    </div>
+                    <div class="required validationError errorMsg" [innerHtml]="errorDisplay.topic_cover"></div>
+                </div>
+
                 <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group" *ngIf= "action == 'add'">
                         <label for="" class="mediumFont commonFontSize letterspacing"> Upload </label>
                         <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
                             <input #inputFile [required]="!model.lecture" name="lecture" type="file" (change)="handleFileInput($event.target.files); isValid($event)" class="form-control-input form-control  commonFontSize regularFont letterspacing"type="file">

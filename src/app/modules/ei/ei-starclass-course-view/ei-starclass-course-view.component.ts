@@ -23,6 +23,7 @@ export class EiStarclassCourseViewComponent implements OnInit {
   roleOfSubadmin: any;
   modal: any;
   message: any;
+  userId: any;
   constructor(
     private location: Location,
     private activeRoute: ActivatedRoute,
@@ -40,7 +41,10 @@ export class EiStarclassCourseViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.roleOfSubadmin = JSON.parse(localStorage.getItem('getreject'))
-    this.activeRoute.queryParams.subscribe(params => {
+    console.log(this.roleOfSubadmin);
+    
+    this.userId = JSON.parse(localStorage.getItem("userprofile")).user_id;
+     this.activeRoute.queryParams.subscribe(params => {
       this.params = params;
       this.getCourseDetails()
       this.getLectureList()
@@ -67,8 +71,8 @@ goToStudentAudienceAdd(id){
   console.log(id);
 }
 
-goToPlayHistory(){
-  this.router.navigate(['ei/ei-play-history'])
+goToPlayHistory(course_id){
+  this.router.navigate(['ei/ei-play-history'], {queryParams: {'course_id':course_id }})
 }
 
 // goToTeacherAudienceAdd(id){

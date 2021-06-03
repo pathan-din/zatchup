@@ -35,20 +35,20 @@
                             
                             <ng-container matColumnDef="lectureTitle">
                                 <mat-header-cell *matHeaderCellDef> Lecture Title  </mat-header-cell>
-                                <mat-cell *matCellDef="let element"> {{element.action}} </mat-cell>
+                                <mat-cell *matCellDef="let element"> {{element.lecture_title}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="playedBy">
                                 <mat-header-cell *matHeaderCellDef> Played By </mat-header-cell>
                                 <mat-cell *matCellDef="let element">
-                                    {{element.created_on | date}}
+                                    {{element.user}}
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="playTime">
                                 <mat-header-cell *matHeaderCellDef> Play Timing </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.message}} 
+                                    {{element.start_time | date:'shortTime'}} - {{element.end_time |  date:'shortTime'}}
                                 </mat-cell>
                             </ng-container>
 
@@ -59,11 +59,11 @@
                 </div>
                 <pagination-controls *ngIf="eiPlayHistory.dataSource" (pageChange)="getPlayHistory($event)" class="eiPaginationTag">
                 </pagination-controls>
-                <div class="row" *ngIf="!eiPlayHistory.dataSource">
+                <!-- <div class="row" *ngIf="!eiPlayHistory.dataSource">
                     <div class="col-12 pt-2 pb-2">
                         <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

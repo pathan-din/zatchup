@@ -110,7 +110,7 @@ export class EiStarclassCourseView extends Pagination{
 }
 
 export class EiStarclassLectureList extends Pagination{
-  displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd',
+  displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd', 'uploadedBy', 'totalView',
         'viewDetails'];
         model: any;
         id: any;
