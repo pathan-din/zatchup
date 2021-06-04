@@ -14,7 +14,7 @@
             <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
             <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                 <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                    (change)="getSchoolList('')" [(ngModel)]="schoolList.page_size">
+                    (change)="getSchoolList()" [(ngModel)]="schoolList.page_size">
                     <option *ngFor="let count of schoolList.pageCounts" value="{{count}}">{{count}}</option>
                 </select>
             </div>

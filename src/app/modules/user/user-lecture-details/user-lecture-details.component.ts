@@ -65,12 +65,12 @@ export class UserLectureDetailsComponent implements OnInit {
     this.setCurrentTime()
     if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
       this.model ={
-        'start_time': localStorage.getItem('start_time'),
-        'end_time' : localStorage.getItem('end_time'),
+        'start_time': JSON.parse(localStorage.getItem('start_time')),
+        'end_time' :  JSON.parse(localStorage.getItem('end_time')),
         'lecture_id':  this.eiLectureDetailsView.id
       }
       this.loader.show()
-      this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+      this.baseService.action('starclass/lecture_play_history/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {
             localStorage.removeItem('end_time')
@@ -153,7 +153,7 @@ console.log(getStartTimeOne);
         // 'course_id' : this.eiLectureDetailsView.course_id,
         // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
         'lecture_id':  this.eiLectureDetailsView.id,
-        'start_time': localStorage.getItem('start_time'),
+        
       }
       this.loader.show()
       this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
