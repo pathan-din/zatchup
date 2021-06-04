@@ -263,6 +263,20 @@ export class EiSidenavComponent implements OnDestroy {
             }
           } else if (response.role == 'EISUBADMIN') {
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
+              if(response.reg_step==1){
+                this.router.navigate(['ei/kyc-verification']);
+              }else if(response.reg_step==2){
+                this.router.navigate(['ei/add-ei']);
+                //ei/add-ei
+                //ei/subadminprofile
+              }
+              else if(response.reg_step==3){
+                this.router.navigate(['ei/subadminprofile']);
+                //ei/add-ei
+                //ei/subadminprofile
+                //ei/thankyou
+              }
+
             } else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {
               if (response.ekyc_rejected_reason) {
                 this.alert.info("Your Profile has been rejected reason by " + response.ekyc_rejected_reason + " Remark : " + response.ekyc_rejected_remark, "Rejected");
