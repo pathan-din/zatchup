@@ -17,12 +17,21 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Course List</h2>
             </div>
             <div class="col-md-8 d-flex justify-content-end flex-wrap align-items-center">
-                <form class="form-inline my-2 justify-content-end align-items-center flex-wrap position-relative">
+                <!-- <form class="form-inline my-2 justify-content-end align-items-center flex-wrap position-relative">
                     <input class="form-control mr-sm-2 searchCourse" type="search" placeholder="Search" aria-label="Search">
                     <button class="my-2 btn_search" type="submit">
                         <i class="fa fa-search fa-lg cursorStyle" aria-hidden="true "></i>
                     </button>
-                </form>
+                </form> -->
+                <div class="form-inline my-2 justify-content-end align-items-center flex-wrap position-relative">
+                    <div class="form-control-inputDiv rounded p-0 shadow-none mb-2 customWidth">
+                        <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                            type="text" placeholder="Search..." name="search" [(ngModel)]="starclassCourseList.courseName">
+                    </div>
+    
+                    <button type="button" class="bg-purple text-white px-4 py-2 ml-2 border-0 mb-2"
+                    (click)="getStarclassCourseList()" >Apply</button>
+                </div>
                 <button (click)="goToPlayHistory()" class="btn my-2 bg-purple text-white" type="button">Play History</button>
             </div>
         </div>

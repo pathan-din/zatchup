@@ -13,6 +13,7 @@ import { StarclassCourseList } from '../common/starclass-model';
 })
 export class UserStarclassCourseListComponent implements OnInit {
   starclassCourseList : StarclassCourseList
+  courseName: any;
   constructor(
     private router: Router,
     private location: Location,
@@ -44,7 +45,8 @@ export class UserStarclassCourseListComponent implements OnInit {
       this.starclassCourseList.params = {
         'page' :page,
         'page_size':this.starclassCourseList.page_size,
-        "school_id": this.route.snapshot.queryParamMap.get('school_id') 
+        "school_id": this.route.snapshot.queryParamMap.get('school_id') ,
+        "course_name": this.starclassCourseList.courseName
       }
       this.baseService.getData('starclass/starclass-course-list-by-user/', this.starclassCourseList.params).subscribe(
         (res: any) =>{

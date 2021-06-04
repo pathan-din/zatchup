@@ -18,6 +18,7 @@ export class StarclassCourseList extends Pagination {
     modal: any;
   allSchool: any;
   schoolId: any = '';
+  courseName: any;
 
 }
 

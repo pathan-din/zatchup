@@ -20,6 +20,8 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
   eiLectureDetailsView: any;
   roleOfSubadmin: any;
   model: any;
+  currentTime: number;
+
   constructor(
     private baseService: BaseService,
     private router: Router,
@@ -77,28 +79,77 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
     this.location.back()
   }
 
-  playClick(event: any){
-    this.model ={
-      // 'course_id' : this.eiLectureDetailsView.course_id,
-      // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
-      'lecture_id':  this.eiLectureDetailsView.id
-    }
-    console.log(this.model);
-    this.loader.show()
-    this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-         
-        } else {
-          
+  ngOnDestroy(){
+    this.setCurrentTime()
+    if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
+      this.model ={
+        'start_time': localStorage.getItem('start_time'),
+        'end_time' : localStorage.getItem('end_time'),
+        'lecture_id':  this.eiLectureDetailsView.id
+      }
+      this.loader.show()
+      this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            localStorage.removeItem('end_time')
+            localStorage.removeItem('start_time')
+            localStorage.removeItem('first_time_play_video')
+          } else {
+            this.alert.error("Try again", 'Error')
+          }
+          this.loader.hide();
         }
+      ), err => {
+        this.alert.error("Please try again", 'Error')
         this.loader.hide();
       }
-    ), err => {
-      this.alert.error(err.error, 'Error')
-      this.loader.hide();
     }
-    console.log('sdsads ....',event)
   }
+
+  setCurrentTime() {
+    this.currentTime = Date.now();
+    if(localStorage.getItem('start_time') ) {
+      var endTime = this.currentTime
+      localStorage.setItem('end_time', endTime.toString())
+    }
+    console.log(this.currentTime);
+    
+ }
+
+  playClick(event: any){
+    console.log(event);
+   
+    if(!localStorage.getItem('first_time_play_video')){
+      var getStartTime = new Date(event.timeStamp * 1000)
+      var getStartTimeOne = new Date( Date.now())
+      localStorage.setItem('start_time', Date.now().toString())
+console.log(getStartTimeOne);
+
+
+      // this.model ={
+      //   // 'course_id' : this.eiLectureDetailsView.course_id,
+      //   // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+      //   'lecture_id':  this.eiLectureDetailsView.id,
+      //   'start_time': localStorage.getItem('start_time'),
+      // }
+      // this.loader.show()
+      // this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+      //   (res: any) => {
+      //     if (res.status == true) {
+      //      localStorage.setItem('first_time_play_video', 'true')
+      //     } else {
+      //       this.alert.error("Try again", 'Error')
+      //     }
+      //     this.loader.hide();
+      //   }
+      // ), err => {
+      //   this.alert.error("Please try again", 'Error')
+      //   this.loader.hide();
+      // }
+    }
+    else {
+     
+    }
+    }
 
 }

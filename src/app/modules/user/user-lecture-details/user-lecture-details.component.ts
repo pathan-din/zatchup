@@ -14,7 +14,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./user-lecture-details.component.css']
 })
 export class UserLectureDetailsComponent implements OnInit {
-  @HostListener('window:beforeunload', [ '$event' ])
+  // @HostListener('window:beforeunload', [ '$event' ])
   eiLectureDetailsView: any;
   model: any;
   currentTime: number;
@@ -37,30 +37,30 @@ export class UserLectureDetailsComponent implements OnInit {
       this.getLectureDetails()
     }
   }
-  ngAfterViewInit() {
-  if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
-    this.model ={
-      'start_time': localStorage.getItem('start_time'),
-      'end_time' : localStorage.getItem('end_time'),
-      'lecture_id':  this.route.snapshot.queryParamMap.get('id')
-    }
-    this.loader.show()
-    this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
-      (res: any) => {
-        if (res.status == true) {
-          localStorage.removeItem('end_time')
-          localStorage.removeItem('start_time')
-        } else {
-          this.alert.error("Try again", 'Error')
-        }
-        this.loader.hide();
-      }
-    ), err => {
-      this.alert.error("Please try again", 'Error')
-      this.loader.hide();
-    }
-  }
-  }
+  // ngAfterViewInit() {
+  // if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
+  //   this.model ={
+  //     'start_time': localStorage.getItem('start_time'),
+  //     'end_time' : localStorage.getItem('end_time'),
+  //     'lecture_id':  this.route.snapshot.queryParamMap.get('id')
+  //   }
+  //   this.loader.show()
+  //   this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+  //     (res: any) => {
+  //       if (res.status == true) {
+  //         localStorage.removeItem('end_time')
+  //         localStorage.removeItem('start_time')
+  //       } else {
+  //         this.alert.error("Try again", 'Error')
+  //       }
+  //       this.loader.hide();
+  //     }
+  //   ), err => {
+  //     this.alert.error("Please try again", 'Error')
+  //     this.loader.hide();
+  //   }
+  // }
+  // }
   ngOnDestroy(){
     this.setCurrentTime()
     if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
@@ -75,6 +75,7 @@ export class UserLectureDetailsComponent implements OnInit {
           if (res.status == true) {
             localStorage.removeItem('end_time')
             localStorage.removeItem('start_time')
+            localStorage.removeItem('first_time_play_video')
           } else {
             this.alert.error("Try again", 'Error')
           }
@@ -98,12 +99,12 @@ export class UserLectureDetailsComponent implements OnInit {
     
  }
 
- unloadHandler(event) {
-  console.log(event
-    );
-    alert(event)
+//  unloadHandler(event) {
+//   console.log(event
+//     );
+//     alert(event)
   
-}
+// }
 
  
 
@@ -151,7 +152,8 @@ console.log(getStartTimeOne);
       this.model ={
         // 'course_id' : this.eiLectureDetailsView.course_id,
         // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
-        'lecture_id':  this.eiLectureDetailsView.id
+        'lecture_id':  this.eiLectureDetailsView.id,
+        'start_time': localStorage.getItem('start_time'),
       }
       this.loader.show()
       this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
