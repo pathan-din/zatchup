@@ -6,12 +6,11 @@
             <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
         </span>
         <h2 class="commonFontSize semiBoldFont m-0">School List</h2>
-
     </div>
 
     <!--Start html for "select no of Rows per page" and Export Button-->
     <div class="row my-3 align-items-center" *ngIf="schoolList.dataSource">
-        <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+        <div class="col-md-12 d-flex flex-row align-items-center">
             <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
             <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                 <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
