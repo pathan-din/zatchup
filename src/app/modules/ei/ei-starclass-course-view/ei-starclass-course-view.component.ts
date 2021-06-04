@@ -85,8 +85,8 @@ goToEditTeacherAdd(id){
   console.log(id);
 }
 
-goToLectureHistory(){
-  this.router.navigate(['ei/star-class-lecture-history'])
+goToLectureHistory(id){
+  this.router.navigate(['ei/star-class-lecture-history'], {queryParams: {'course_id': id}})
 }
 
 

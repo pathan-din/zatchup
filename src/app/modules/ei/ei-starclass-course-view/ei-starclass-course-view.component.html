@@ -231,7 +231,7 @@
                     <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
                 </div>
                 <div class="col-4 text-right">
-                    <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
+                    <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory(courseData.id)" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
                 </div>
             </div>
     

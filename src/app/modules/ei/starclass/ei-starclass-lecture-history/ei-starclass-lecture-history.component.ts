@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,7 +17,8 @@ export class EiStarclassLectureHistoryComponent implements OnInit {
     private location: Location,
     private baseService: BaseService,
     private alert: NotificationService,
-    private loader: NgxSpinnerService
+    private loader: NgxSpinnerService,
+    private route : ActivatedRoute
   ) {
     this.starclassLectureHistory = new StarclassLectureHistory()
    }
@@ -30,7 +32,8 @@ export class EiStarclassLectureHistoryComponent implements OnInit {
       this.loader.show()
       this.starclassLectureHistory.modal = {
         'page' : page,
-        'page_size': this.starclassLectureHistory.page_size
+        'page_size': this.starclassLectureHistory.page_size,
+        'course_id': this.route.snapshot.queryParamMap.get('course_id')
       }
       this.baseService.getData('starclass/ei_lecture_history/', this.starclassLectureHistory.modal).subscribe(
         (res: any) =>{
