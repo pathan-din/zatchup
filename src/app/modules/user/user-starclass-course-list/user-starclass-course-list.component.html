@@ -10,29 +10,19 @@
 <div class="container">
     <div class="bg-white border pt-3">
         <div class="row m-0">
-            <div class="col-md-4 d-flex justify-content-start align-items-center flex-wrap">
+            <div class="col-md-4 d-flex justify-content-start align-items-center flex-wrap my-1">
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
                 <h2 class="commonFontSize semiBoldFont m-0">Course List</h2>
             </div>
             <div class="col-md-8 d-flex justify-content-end flex-wrap align-items-center">
-                <!-- <form class="form-inline my-2 justify-content-end align-items-center flex-wrap position-relative">
-                    <input class="form-control mr-sm-2 searchCourse" type="search" placeholder="Search" aria-label="Search">
-                    <button class="my-2 btn_search" type="submit">
-                        <i class="fa fa-search fa-lg cursorStyle" aria-hidden="true "></i>
-                    </button>
-                </form> -->
-                <div class="form-inline my-2 justify-content-end align-items-center flex-wrap position-relative">
-                    <div class="form-control-inputDiv rounded p-0 shadow-none mb-2 customWidth">
-                        <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                            type="text" placeholder="Search..." name="search" [(ngModel)]="starclassCourseList.courseName">
-                    </div>
-    
-                    <button type="button" class="bg-purple text-white px-4 py-2 ml-2 border-0 mb-2"
-                    (click)="getStarclassCourseList()" >Apply</button>
+                <div class="position-relative border rounded my-1">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing searchCourse"
+                        type="text" placeholder="Search..." name="search" [(ngModel)]="starclassCourseList.courseName">
+                    <button type="button" class="btn bg-purple btn_search text-white" type="submit" (click)="getStarclassCourseList()">Apply</button>
                 </div>
-                <button (click)="goToPlayHistory()" class="btn my-2 bg-purple text-white" type="button">Play History</button>
+                <button (click)="goToPlayHistory()" class="btn bg-dark text-white ml-3 my-1" type="button">Play History</button>
             </div>
         </div>
         <!-- <div class="filterDiv  px-3 pt-3">
@@ -52,7 +42,7 @@
 
         <div class="container p-3">
             <div class="row my-3 align-items-center" *ngIf="starclassCourseList.dataSource">
-                <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <div class="col-md-12 d-flex flex-row align-items-center ">
                     <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                     <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                         <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0" (change)="getStarclassCourseList('1')"

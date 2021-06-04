@@ -1,11 +1,9 @@
 .btn_search {
     position: absolute;
-    right: 12px;
+    right: 0px;
     z-index: 2;
     height: 100%;
-    border: 0px;
-    color: #888;
-    background: none;
+    top: 0px;
 }
 input.searchCourse {
     width: 315px;
