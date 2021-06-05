@@ -22,7 +22,7 @@ export class PlayHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPlayHistory()
+    // this.getPlayHistory()
   }
 
   getPlayHistory(page? : any) {
@@ -35,6 +35,7 @@ export class PlayHistoryComponent implements OnInit {
       this.baseService.getData('', this.playHistory.model).subscribe(
         (res: any) => {
           if(res.status == true){
+            (!page)
             page = this.playHistory.config.currentPage
             this.playHistory.startIndex = res.page_size * (page - 1) + 1;
             this.playHistory.page_size = res.page_size 

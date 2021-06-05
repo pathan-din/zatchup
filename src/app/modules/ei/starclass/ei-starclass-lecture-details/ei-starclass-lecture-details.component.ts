@@ -83,8 +83,8 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
     this.setCurrentTime()
     if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
       this.model ={
-        'start_time': JSON.parse(localStorage.getItem('start_time')),
-        'end_time' :  JSON.parse(localStorage.getItem('end_time')),
+        'start_time': localStorage.getItem('start_time'),
+        'end_time' :  localStorage.getItem('end_time'),
         'lecture_id':  this.eiLectureDetailsView.id
       }
       this.loader.show()
@@ -107,10 +107,18 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
   }
 
   setCurrentTime() {
+   
     this.currentTime = Date.now();
     if(localStorage.getItem('start_time') ) {
+      var d =new Date()
+      var dformat = [d.getFullYear(),d.getMonth()+1,
+        d.getDate(),
+        ].join('-')+' '+
+       [d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()].join(':');
       var endTime = this.currentTime
-      localStorage.setItem('end_time', endTime.toString())
+      localStorage.setItem('end_time', dformat)
     }
     console.log(this.currentTime);
     
@@ -122,8 +130,18 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
     if(!localStorage.getItem('first_time_play_video')){
       var getStartTime = new Date(event.timeStamp * 1000)
       var getStartTimeOne = new Date( Date.now())
-      localStorage.setItem('start_time', Date.now().toString())
+      var d =new Date()
+      var dformat = [d.getFullYear(),d.getMonth()+1,
+        d.getDate(),
+        ].join('-')+' '+
+       [d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()].join(':');
+        console.log("Date",dformat);
+        
+     localStorage.setItem('start_time', dformat)
 console.log(getStartTimeOne);
+
 
 
       this.model ={

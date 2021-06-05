@@ -52,14 +52,14 @@
                         <ng-container matColumnDef="lectureTitle">
                             <mat-header-cell *matHeaderCellDef> Lecture Title </mat-header-cell>
                             <mat-cell *matCellDef="let element">
-                                {{element.level_of_education}}
+                                {{element.lecture_title}}
                             </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="playTime">
                             <mat-header-cell *matHeaderCellDef> Play Timing </mat-header-cell>
                             <mat-cell *matCellDef="let element ">
-                                {{element.field}}
+                                {{element.start_time | date:'shortTime'}} - {{element.end_time |  date:'shortTime'}}
                             </mat-cell>
                         </ng-container>
 
