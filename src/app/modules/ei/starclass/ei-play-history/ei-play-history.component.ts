@@ -39,6 +39,7 @@ export class EiPlayHistoryComponent implements OnInit {
       this.baseService.getData('starclass/starclass_lecture_play_history/'  , this.eiPlayHistory.modal).subscribe(
         (res:any) => {
           if(res.status == true){
+            if(!page)
             page = this.eiPlayHistory.config.currentPage
             this.eiPlayHistory.startIndex = res.page_size * (page - 1) + 1;
             this.eiPlayHistory.page_size = res.page_size
@@ -46,7 +47,7 @@ export class EiPlayHistoryComponent implements OnInit {
             this.eiPlayHistory.config.currentPage = page
             this.eiPlayHistory.config.totalItems = res.count;
             if(res.count > 0) {
-              this.eiPlayHistory.dataSource = res.data;
+              this.eiPlayHistory.dataSource = res.results;
               console.log('history', this.eiPlayHistory.dataSource);
               
               this.eiPlayHistory.pageCounts = this.baseService.getCountsOfPage()

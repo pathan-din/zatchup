@@ -37,36 +37,13 @@ export class UserLectureDetailsComponent implements OnInit {
       this.getLectureDetails()
     }
   }
-  // ngAfterViewInit() {
-  // if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
-  //   this.model ={
-  //     'start_time': localStorage.getItem('start_time'),
-  //     'end_time' : localStorage.getItem('end_time'),
-  //     'lecture_id':  this.route.snapshot.queryParamMap.get('id')
-  //   }
-  //   this.loader.show()
-  //   this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
-  //     (res: any) => {
-  //       if (res.status == true) {
-  //         localStorage.removeItem('end_time')
-  //         localStorage.removeItem('start_time')
-  //       } else {
-  //         this.alert.error("Try again", 'Error')
-  //       }
-  //       this.loader.hide();
-  //     }
-  //   ), err => {
-  //     this.alert.error("Please try again", 'Error')
-  //     this.loader.hide();
-  //   }
-  // }
-  // }
+ 
   ngOnDestroy(){
     this.setCurrentTime()
     if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
       this.model ={
-        'start_time': JSON.parse(localStorage.getItem('start_time')),
-        'end_time' :  JSON.parse(localStorage.getItem('end_time')),
+        'start_time': localStorage.getItem('start_time'),
+        'end_time' :  localStorage.getItem('end_time'),
         'lecture_id':  this.eiLectureDetailsView.id
       }
       this.loader.show()
@@ -90,32 +67,23 @@ export class UserLectureDetailsComponent implements OnInit {
   
 
   setCurrentTime() {
-    var d =new Date("")
-    var dformat = [d.getFullYear(),d.getMonth()+1,
-      d.getDate(),
-      ].join('-')+' '+
-     [d.getHours(),
-      d.getMinutes(),
-      d.getSeconds()].join(':');
+   
     this.currentTime = Date.now();
     if(localStorage.getItem('start_time') ) {
+      var d =new Date()
+      var dformat = [d.getFullYear(),d.getMonth()+1,
+        d.getDate(),
+        ].join('-')+' '+
+       [d.getHours(),
+        d.getMinutes(),
+        d.getSeconds()].join(':');
       var endTime = this.currentTime
       localStorage.setItem('end_time', dformat)
     }
     console.log(this.currentTime);
     
  }
-
-//  unloadHandler(event) {
-//   console.log(event
-//     );
-//     alert(event)
-  
-// }
-
- 
-
-  getLectureDetails(){
+ getLectureDetails(){
     try {
       this.loader.show()
       this.model = {
@@ -161,7 +129,7 @@ export class UserLectureDetailsComponent implements OnInit {
         d.getSeconds()].join(':');
         console.log("Date",dformat);
         
-     // localStorage.setItem('start_time', dformat)
+     localStorage.setItem('start_time', dformat)
 console.log(getStartTimeOne);
 
 
