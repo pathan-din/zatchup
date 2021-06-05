@@ -9,26 +9,17 @@
                 <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
             </div>
         </div>
-        <!--Video image div of coursePReview-->
 
         <div class="row mt-3">
             <div class="col-md-12 customVideo" *ngFor="let details of eiStarclassCourseView.courseDetails">
-                <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
                 <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
                      <source src="{{details.course_preview}}" type="video/mp4" />
                 </video>
             </div>
-            <!-- <div class="col-4">
-                <img src="assets/images/userWebsite/kyc_successfully_done.png" class="img-fluid previewImg border border-gray">
-
-            </div> -->
         </div>
-        <!--End Video image div of coursePReview-->
-
     </div>
 
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-        <!---->
         <div class="row topDiv">
             <div class="col-12">
                 <h2 class="commonFontSize semiBoldFont m-0">Course Details</h2>
@@ -38,9 +29,6 @@
             </div> -->
         </div>
         <div class="mt-2 border-0 mx-0">
-            <!-- start Div for banner-->
-
-            <!--Start div for oView Course Details-->
             <div class="row m-0" *ngIf="courseData">
                 <div class="col-md-12">
                     <div class="row">
@@ -150,7 +138,7 @@
                             <p> Student Auidence</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToStudentAudienceAdd(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
+                            <p (click)="goToStudentAudienceAdd(courseData.id)" class="cursorStyle color-lightBlue" ><span class="mr-3">:</span>
                                 Edit</p>
                         </div>
                     </div>
@@ -173,7 +161,7 @@
                             <p>Edit Access Right For The Course</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToEditTeacherAdd(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
+                            <p (click)="goToEditTeacherAdd(courseData.id)" class="cursorStyle color-lightBlue" ><span class="mr-3">:</span>
                                 Edit</p>
                         </div>
                     </div>
@@ -216,7 +204,7 @@
                             <p>Edit Course Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToEditCourse(courseData.id)" class="cursorStyle " ><span class="mr-3">:</span>
+                            <p (click)="goToEditCourse(courseData.id)" class="cursorStyle color-lightBlue" ><span class="mr-3">:</span>
                                 Edit</p>
                         </div>
                     </div>
