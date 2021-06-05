@@ -83,12 +83,12 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
     this.setCurrentTime()
     if(localStorage.getItem('start_time') && localStorage.getItem('end_time')){
       this.model ={
-        'start_time': localStorage.getItem('start_time'),
-        'end_time' : localStorage.getItem('end_time'),
+        'start_time': JSON.parse(localStorage.getItem('start_time')),
+        'end_time' :  JSON.parse(localStorage.getItem('end_time')),
         'lecture_id':  this.eiLectureDetailsView.id
       }
       this.loader.show()
-      this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+      this.baseService.action('starclass/lecture_play_history/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {
             localStorage.removeItem('end_time')
@@ -126,26 +126,26 @@ export class EiStarclassLectureDetailsComponent implements OnInit {
 console.log(getStartTimeOne);
 
 
-      // this.model ={
-      //   // 'course_id' : this.eiLectureDetailsView.course_id,
-      //   // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
-      //   'lecture_id':  this.eiLectureDetailsView.id,
-      //   'start_time': localStorage.getItem('start_time'),
-      // }
-      // this.loader.show()
-      // this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
-      //   (res: any) => {
-      //     if (res.status == true) {
-      //      localStorage.setItem('first_time_play_video', 'true')
-      //     } else {
-      //       this.alert.error("Try again", 'Error')
-      //     }
-      //     this.loader.hide();
-      //   }
-      // ), err => {
-      //   this.alert.error("Please try again", 'Error')
-      //   this.loader.hide();
-      // }
+      this.model ={
+        // 'course_id' : this.eiLectureDetailsView.course_id,
+        // 'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+        'lecture_id':  this.eiLectureDetailsView.id,
+      
+      }
+      this.loader.show()
+      this.baseService.action('starclass/total_lecture_view_count/', this.model).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+           localStorage.setItem('first_time_play_video', 'true')
+          } else {
+            this.alert.error("Try again", 'Error')
+          }
+          this.loader.hide();
+        }
+      ), err => {
+        this.alert.error("Please try again", 'Error')
+        this.loader.hide();
+      }
     }
     else {
      

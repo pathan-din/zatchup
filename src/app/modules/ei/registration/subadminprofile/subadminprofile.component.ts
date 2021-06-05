@@ -137,7 +137,7 @@ export class SubadminprofileComponent implements OnInit {
           this.router.navigate(['ei/thankyou'], { queryParams: { school_id: this.schoolId } });
         } else {
           this.SpinnerService.hide();
-
+          this.alert.error(response.message,"Error");
         }
 
       }, (error) => {
