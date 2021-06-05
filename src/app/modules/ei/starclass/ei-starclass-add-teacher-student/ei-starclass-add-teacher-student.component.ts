@@ -90,6 +90,12 @@ export class EiStarclassAddTeacherStudentComponent implements OnInit {
       }
       
   }
+  else {
+    if(localStorage.getItem('allstudent')){
+      this.model.ismoduleaccessstudent = true
+    }
+    
+  }
   this.getTeacherList(100)
     this.getGetVerifiedStudent("","");
 }
@@ -286,9 +292,13 @@ createGroupConfirmationList(){
    localStorage.setItem("sections",JSON.stringify(this.sectionIds));
    localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
    localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
-   if(this.teacherList.length > 0 && this.courseIds.length > 0){
+   if(this.teacherList.length > 0 && localStorage.getItem('allstudent')){
    this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
-  } else {
+  }
+  else if(this.teacherList.length > 0 && localStorage.getItem('groupclasscheck')){
+    this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+  } 
+  else {
     this.alert.error('Select Atleast One Teacher and Class for the course', 'Error')
   }
  }
@@ -424,10 +434,14 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
  
   changeAddClass($event,text) {
-     localStorage.setItem("groupclasscheck",$event.checked);
+    //  localStorage.setItem("groupclasscheck",$event.checked);
     if (text=='addclass' && $event.checked==true) {
+      localStorage.setItem("groupclasscheck",$event.checked);
+      localStorage.removeItem("allstudent");
       this.displayCourseListModuleAccess();
     } else if (text=='allstudent' && $event.checked==true){
+      localStorage.removeItem("groupclasscheck");
+      localStorage.setItem("allstudent",$event.checked);
       this.model.sections="";
     }else{
       this.courseListModuleAccess=[];
@@ -438,6 +452,9 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       this.studentList = [];
       this.model.ismoduleaccessclass=false;
       this.model.course = "";
+      localStorage.removeItem("allstudent");
+      localStorage.removeItem("groupclasscheck");
+
     }
   }
 }

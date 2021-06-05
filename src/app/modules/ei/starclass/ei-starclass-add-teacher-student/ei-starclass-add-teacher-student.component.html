@@ -65,11 +65,11 @@
 
 
                         <div class="form-group row mb-1">
-                            <!-- <div class="col-md-6 ">
+                            <div class="col-md-6 ">
                                 <mat-checkbox [required]="!model.ismoduleaccessclass" [disabled]="model.ismoduleaccessclass" (change)="changeAddClass($event,'allstudent')"
                                     name="Student" [(ngModel)]="model.ismoduleaccessstudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.Student"></div>
-                            </div> -->
+                            </div>
                             <div class="col-md-6 ">
                                 <mat-checkbox [required]="!model.ismoduleaccessstudent" [disabled]="model.ismoduleaccessstudent" [(ngModel)]="model.ismoduleaccessclass"
                                     name="Class" (change)="changeAddClass($event,'addclass')" class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class</mat-checkbox>
