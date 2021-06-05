@@ -20,7 +20,8 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   teacherAudienceList: any = [];
   error: any = [];
   model: any;
-  action: any = ''
+  action: any = '';
+  selectAll: boolean = true
 
   constructor(
     private router: Router,
@@ -33,13 +34,13 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     this.editTeacherAudience = new EditTeacherAuidence()
   }
 
-  add:any = '';
+  add: any = '';
   ngOnInit(): void {
     console.log(JSON.parse(localStorage.getItem("teachers")));
     var add = this.route.snapshot.queryParamMap.get('add')
     this.add = add;
-    if(add){
-      if(localStorage.getItem("teachers")){
+    if (add) {
+      if (localStorage.getItem("teachers")) {
         this.editTeacherAudience.dataSource = JSON.parse(localStorage.getItem("teachers"))
       }
 
@@ -47,29 +48,29 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
       this.editTeacherAudience.config.itemsPerPage = 100;
       this.editTeacherAudience.config.currentPage = 1;
       this.editTeacherAudience.config.totalItems = this.editTeacherAudience.dataSource.length;
-      this.editTeacherAudience.startIndex =  this.editTeacherAudience.page_size * ( this.editTeacherAudience.config.currentPage - 1) + 1;
+      this.editTeacherAudience.startIndex = this.editTeacherAudience.page_size * (this.editTeacherAudience.config.currentPage - 1) + 1;
       this.editTeacherAudience.pageCounts = this.baseService.getCountsOfPage();
       this.setData()
     }
-    else{
-        this.getTeacherAuidenceList()
+    else {
+      this.getTeacherAuidenceList()
     }
   }
 
 
-  perPage(){
-    
+  perPage() {
+
     this.editTeacherAudience.config.itemsPerPage = this.editTeacherAudience.page_size;
   }
 
-  changePage(e){
+  changePage(e) {
     console.log(e);
-    
+
     this.editTeacherAudience.config.currentPage = e;
 
   }
   getTeacherAuidenceList(page?: any) {
-    
+
     try {
       this.loader.show()
       this.editTeacherAudience.params = {
@@ -116,7 +117,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
 
   setData() {
     var add = this.route.snapshot.queryParamMap.get('add')
-    if(add){
+    if (add) {
       let filtered = JSON.parse(localStorage.getItem("teachers")).filter(elen => {
         if (this.isValid(elen) == true)
           return elen.user_id
@@ -124,19 +125,30 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
       filtered.forEach(elen => {
         this.teacherAudienceList.push(elen.user_id)
         console.log(this.teacherAudienceList);
-        
-      }) 
+
+      })
     }
-    else{
+    else {
       let filtered = this.editTeacherAudience.dataSource.filter(elen => {
-        if(this.isValid(elen) ==  true)
-        return elen.user_id
+        if (this.isValid(elen) == true)
+          return elen.user_id
       })
       filtered.forEach(elen => {
         this.teacherAudienceList.push(elen.user_id)
       })
     }
-    
+
+  }
+
+  all(evt) {
+    this.teacherAudienceList = []
+    this.editTeacherAudience.dataSource.forEach(ele => {
+      ele.is_edit_right = evt.checked
+    })
+    if (evt.checked) {
+      let ids = this.editTeacherAudience.dataSource.map(a => a.user_id);
+      this.teacherAudienceList = ids;
+    }
   }
 
   isValid(value) {
@@ -148,23 +160,29 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     if (event.checked) {
       if (this.teacherAudienceList.indexOf(stId) === -1) {
         this.teacherAudienceList.push(stId)
+
+        let find = this.editTeacherAudience.dataSource.find(ele => {
+          return ele.is_edit_right == false
+        })
+        if (!find)
+          this.selectAll = true;
       }
     } else {
-      if (this.teacherAudienceList.indexOf(stId) === -1) {
-
-      } else {
-        var index = this.teacherAudienceList.indexOf(stId)
-        this.teacherAudienceList.splice(index, 1);
-      }
+      let list: any = [];
+      list = this.editTeacherAudience.dataSource.filter(x => x.is_edit_right == true)
+      let ids = list.map(a => a.user_id);
+      this.teacherAudienceList = ids;
+      let find = this.editTeacherAudience.dataSource.find(ele => {
+        return ele.is_edit_right == false
+      })
+      if (find)
+        this.selectAll = false;
     }
   }
 
   addTeacherAudience() {
-    // debugger
     if (this.teacherAudienceList.length == 0) {
       this.alert.error(this.error, 'Please select Audience from the list ')
-      // alert("Please select student list of particular class.")
-
     } else {
 
       this.loader.show();
@@ -178,10 +196,10 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             this.alert.success(res.message, 'Success');
-            localStorage.setItem("teachers", JSON.stringify( this.editTeacherAudience.dataSource  ))
+            localStorage.setItem("teachers", JSON.stringify(this.editTeacherAudience.dataSource))
             var add = this.route.snapshot.queryParamMap.get('add')
-            if(add) {
-              this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+            if (add) {
+              this.router.navigate(['ei/star-class-audience-student-list'], { queryParams: { 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'add': 'add' } })
             }
             else {
               this.location.back()

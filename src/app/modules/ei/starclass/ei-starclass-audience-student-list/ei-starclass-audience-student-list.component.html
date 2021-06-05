@@ -69,54 +69,20 @@
             </div>
            
         </div>
-        <!-- <div class="row mb-2">
-            <div class="col-md-6 d-flex align-items-end">
-                <div class=" mr-2">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Class Alias</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <select class="custom-select  form-control-input" id="classAlias">
-                    <option value=""> Select Class</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                    </div>
-                </div>
-                <button type="button" class="bg-purple text-white py-2 px-4 border-0">Apply</button>
-
-            </div>
-            <div class="col-md-6 button-div d-flex align-items-start ">
-                <div class="form-control-inputDiv rounded-0 p-0 mr-2  border-top shadow-none">
-                    <input class="form-control-input form-control  commonFontSize regularFont letterspacing " type="text" id="search" placeholder="Search...">
-                </div>
-                <button type="button" class="bg-dark text-white py-2 px-3 border-0">Apply</button>
-            </div>
-        </div> -->
 
         <div class="tableDiv mt-3" *ngIf="studentAuidence.dataSource">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="studentAuidence.dataSource | paginate: studentAuidence.config">
                     <ng-container matColumnDef="select">
                         <mat-header-cell *matHeaderCellDef>
-
+                            <mat-checkbox [(ngModel)]="selectAll" (change)=" all($event)">
+                            </mat-checkbox>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element;let i=index">
                             <mat-checkbox name="ch{{i}}" [(ngModel)]="element.is_access_for_star_class" (change)=" getStudentAudienceBycheckbox(element.user_id,$event,i)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>
-                    <!-- <ng-container matColumnDef="select" class="ml-2">
-                        <mat-header-cell *matHeaderCellDef>
-                            <mat-checkbox class="ml-2" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
-                            </mat-checkbox>
-                        </mat-header-cell>
-                       
-                        <mat-cell *matCellDef="let element">
-                            <mat-checkbox 
-                            (change)="getCartData(element, studentAuidence.id)">
-                            </mat-checkbox>
-                        </mat-cell>
-                    </ng-container> -->
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
@@ -139,13 +105,6 @@
                             {{element.first_name}} {{element.last_name}}
                         </mat-cell>
                     </ng-container>
-
-                    <!-- <ng-container matColumnDef="relationship">
-                        <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.relationship}}
-                        </mat-cell>
-                    </ng-container> -->
 
                     <ng-container matColumnDef="classDetails">
                         <mat-header-cell *matHeaderCellDef>Class Name

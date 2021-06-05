@@ -35,7 +35,8 @@
                 <mat-table [dataSource]="editTeacherAudience.dataSource | paginate: editTeacherAudience.config">
                     <ng-container matColumnDef="select">
                         <mat-header-cell *matHeaderCellDef>
-
+                            <mat-checkbox [(ngModel)]="selectAll" (change)="all($event)">
+                            </mat-checkbox>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <mat-checkbox [(ngModel)]="element.is_edit_right" (change)="getTeacherAudienceBycheckbox(element.user_id,$event)">
