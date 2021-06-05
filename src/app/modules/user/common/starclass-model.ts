@@ -10,7 +10,7 @@ export class Pagination {
     pageCounts: any;
 }
 export class StarclassCourseList extends Pagination {
-    displayedColumns: string[] = ['position', 'courseName','levelOfEducation', 
+    displayedColumns: string[] = ['position', 'courseName', 'courseId', 'levelOfEducation', 
     'field','noOfStandards','subject',
     'noOfCourse','Action'];
     params: any = {}
