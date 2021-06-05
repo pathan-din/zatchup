@@ -74,9 +74,10 @@
 
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="color-lightBlue">
-                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">
-                                {{element.name}}</p>
+                        <mat-cell *matCellDef="let element">
+                            <!-- <p  class="cursorStyle">
+                                {{element.name}}</p> -->
+                                {{element.name}}
                         </mat-cell>
                     </ng-container>
 
@@ -84,7 +85,7 @@
                         <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i = index">
                             <!-- {{dataSource[i] | json}} -->
-                            <input class="form-control" type="text" [(ngModel)]="dataSource[i].roll_no">
+                            <input  id="{{element.roll_no}}" class="form-control" [ngStyle]="{'border-color': element.isDuplicates ? 'red': ''}" type="text" [(ngModel)]="dataSource[i].roll_no" (keyup)="onKeyUp(i, dataSource[i].roll_no)">
                         </mat-cell>
                     </ng-container>
 

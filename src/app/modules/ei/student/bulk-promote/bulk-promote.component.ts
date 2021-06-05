@@ -20,6 +20,7 @@ export class BulkPromoteComponent implements OnInit {
   studentCourseList: any = [];
   studentStandardList: any = [];
   dataSource: any;
+  rollNumArr: any = []
 
   constructor(
     private location: Location,
@@ -32,19 +33,23 @@ export class BulkPromoteComponent implements OnInit {
     this.user_id = JSON.parse(localStorage.getItem('userprofile')).user_id;
     this.dataSource = JSON.parse(localStorage.getItem('bulkStudents')).studentList;
     this.courseId = JSON.parse(localStorage.getItem('bulkStudents')).courseId;
-    // this.classId = JSON.parse(localStorage.getItem('bulkStudents')).classId;
     this.currentStandardId = JSON.parse(localStorage.getItem('bulkStudents')).standardId;
     this.setData()
     this.getCourseList();
     this.getStandardList(this.courseId,);
-    // this.getClassList(this.currentStandardId)
-
   }
 
   setData() {
     this.dataSource.forEach(ele => {
-      ele['status'] = true
+      ele['status'] = true;
+      ele['isDuplicates'] = false
     })
+
+    this.rollNumArr = this.dataSource.map(a => a.roll_no);
+    let duplicates = this.find_duplicate_in_array(this.rollNumArr);
+    if (duplicates.length > 0) {
+      this.showError(duplicates)
+    }
   }
 
   selectUnselectStudents(evt: any, index: any) {
@@ -68,7 +73,6 @@ export class BulkPromoteComponent implements OnInit {
   }
 
   getStandardList(courseId) {
-    // debugger
     try {
       this.loader.show();
       let params = {
@@ -113,11 +117,11 @@ export class BulkPromoteComponent implements OnInit {
       this.alert.error('Please select students first.', 'Error')
       return;
     }
-    else if(!this.standardId && !this.classId){
+    else if (!this.standardId && !this.classId) {
       this.alert.error('Please select standard and class first.', 'Error')
       return;
     }
-    else if(this.standardId && !this.classId){
+    else if (this.standardId && !this.classId) {
       this.alert.error('Please select class first.', 'Error')
       return;
     }
@@ -132,22 +136,75 @@ export class BulkPromoteComponent implements OnInit {
         "roll_no": rollNums.toString()
       }
 
+      let duplicates = this.find_duplicate_in_array(rollNums)
+      if (duplicates.length > 0) {
+        this.alert.error('Please enter unique roll numbers', 'Error')
+        return
+      }
       this.loader.show();
-      this.baseService.action('ei/bulk-promote-class-by-ei/',params).subscribe(
-        (res: any) =>{
+      this.baseService.action('ei/bulk-promote-class-by-ei/', params).subscribe(
+        (res: any) => {
           this.loader.hide()
-          if(res.status){
+          if (res.status) {
             this.alert.success(res.message, "Success")
             this.location.back()
-          }else{
+          } else {
             this.alert.error(res.error.message[0], "Error")
+            if (res.error.roll_no && res.error.roll_no.length > 0) {
+              this.showError(res.error.roll_no)
+            }
           }
-          
         },
-        err =>{
+        err => {
           this.loader.hide()
         }
       )
+    }
+  }
+
+  showError(duplicates: any) {
+    duplicates.forEach(dupEle => {
+      this.dataSource.forEach(ele => {
+        if (dupEle == ele.roll_no) {
+          ele.isDuplicates = true
+        }
+      })
+    })
+  }
+
+  find_duplicate_in_array(arra1) {
+    var object = {};
+    var result = [];
+
+    arra1.forEach(function (item) {
+      if (!object[item])
+        object[item] = 0;
+      object[item] += 1;
+    })
+
+    for (var prop in object) {
+      if (object[prop] >= 2) {
+        result.push(prop);
+      }
+    }
+    return result;
+  }
+
+  onKeyUp(index: any, rollNum: any) {
+    if (this.rollNumArr.find(val => { return val == rollNum })) {
+      let data = this.dataSource.filter(x => x.roll_no == rollNum)
+      data.forEach(ele => {
+        ele.isDuplicates = true
+      })
+    } else {
+      let oldRollNum = this.rollNumArr[index];
+      let data = this.dataSource.filter(x => x.roll_no == oldRollNum)
+      if (data.length == 1) {
+        let idx = this.dataSource.indexOf(data[0])
+        this.dataSource[idx].isDuplicates = false
+        this.dataSource[index].isDuplicates = false
+      } else if (data.length > 1)
+        this.dataSource[index].isDuplicates = false
     }
   }
 
