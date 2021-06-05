@@ -10,7 +10,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   styleUrls: ['./bulk-promote.component.css']
 })
 export class BulkPromoteComponent implements OnInit {
-  displayedColumns: string[] = ['checked', 'SNo', 'Name', 'roll_no'];
+  displayedColumns: string[] = ['checked', 'SNo', 'zatchupID', 'Name', 'roll_no'];
   user_id: any = '';
   classId: any = '';
   courseId: any = '';

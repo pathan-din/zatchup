@@ -17,8 +17,8 @@
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select (change)="getStandardList(courseId)" id="course_id" [(ngModel)]="courseId"
-                            name="course" class="custom-select border form-control-input" readonly>
+                        <select (change)="getStandardList(courseId)" id="course_id" [(ngModel)]="courseId" name="course"
+                            class="custom-select border form-control-input" [disabled]="true">
                             <option value=""> Select Course</option>
                             <option value="{{course.id}}" *ngFor="let course of studentCourseList">
                                 {{course.course_name}}
@@ -69,15 +69,20 @@
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i =index"> {{i + 1}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zatchupID">
+                        <mat-header-cell *matHeaderCellDef> Zatchup ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.zatchupID}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <!-- <p  class="cursorStyle">
-                                {{element.name}}</p> -->
-                                {{element.name}}
+                            {{element.name}}
                         </mat-cell>
                     </ng-container>
 
@@ -85,7 +90,9 @@
                         <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
                         <mat-cell *matCellDef="let element; let i = index">
                             <!-- {{dataSource[i] | json}} -->
-                            <input  id="{{element.roll_no}}" class="form-control" [ngStyle]="{'border-color': element.isDuplicates ? 'red': ''}" type="text" [(ngModel)]="dataSource[i].roll_no" (keyup)="onKeyUp(i, dataSource[i].roll_no)">
+                            <input id="{{element.roll_no}}" class="form-control"
+                                [ngStyle]="{'border-color': element.isDuplicates ? 'red': ''}" type="text"
+                                [(ngModel)]="dataSource[i].roll_no" (keyup)="onKeyUp(i, dataSource[i].roll_no)">
                         </mat-cell>
                     </ng-container>
 
