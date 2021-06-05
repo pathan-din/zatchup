@@ -70,6 +70,11 @@
                             <mat-cell *matCellDef="let element"> {{element.course_name}} </mat-cell>
                         </ng-container>
 
+                        <ng-container matColumnDef="courseId">
+                            <mat-header-cell *matHeaderCellDef> Course ID</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.course_id}} </mat-cell>
+                        </ng-container>
+
                         <ng-container matColumnDef="levelOfEducation">
                             <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
                             <mat-cell *matCellDef="let element">
@@ -97,7 +102,7 @@
                         </ng-container>
 
                         <ng-container matColumnDef="noOfCourse">
-                            <mat-header-cell *matHeaderCellDef>Number Of Lecture In The Course</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef>Number Of Lecture</mat-header-cell>
                             <mat-cell *matCellDef="let element ">
                                 {{element.number_of_lectures}}</mat-cell>
                         </ng-container>

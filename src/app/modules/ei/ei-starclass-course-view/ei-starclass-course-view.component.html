@@ -138,8 +138,9 @@
                             <p> Student Auidence</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToStudentAudienceAdd(courseData.id)" class="cursorStyle color-lightBlue" ><span class="mr-3">:</span>
-                                Edit</p>
+                            <p  class="cursorStyle" ><span class="mr-3">:</span>
+                                <button (click)="goToStudentAudienceAdd(courseData.id)" type="button" class="bg-purple text-white border-0 px-2 py-1">Edit</button>
+                            </p>
                         </div>
                     </div>
 
@@ -161,8 +162,9 @@
                             <p>Edit Access Right For The Course</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToEditTeacherAdd(courseData.id)" class="cursorStyle color-lightBlue" ><span class="mr-3">:</span>
-                                Edit</p>
+                            <p  class="cursorStyle " ><span class="mr-3">:</span>
+                                <button (click)="goToEditTeacherAdd(courseData.id)" type="button" class="bg-purple text-white border-0 px-2 py-1">Edit</button>
+                            </p>
                         </div>
                     </div>
 
@@ -172,8 +174,9 @@
                             <p>Play  History</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToPlayHistory(courseData.course_id)" class="cursorStyle " ><span class="mr-3">:</span>
-                                History</p>
+                            <p  class="cursorStyle " ><span class="mr-3">:</span>
+                                <button (click)="goToPlayHistory(courseData.course_id)" type="button" class="bg-purple text-white border-0 px-2 py-1">History</button>
+                            </p>
                         </div>
                     </div>
                     <div class="row" *ngIf="courseData.is_edit == true" >
@@ -182,8 +185,9 @@
                             <p>Upload Lecture</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToUploadLecture(courseData)" class="cursorStyle " ><span class="mr-3">:</span>
-                                Upload</p>
+                            <p  class="cursorStyle " ><span class="mr-3">:</span>
+                                <button (click)="goToUploadLecture(courseData)" type="button" class="bg-purple text-white border-0 px-2 py-1">Upload</button>
+                                </p>
                         </div>
                     </div>
 
@@ -204,8 +208,9 @@
                             <p>Edit Course Details</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p (click)="goToEditCourse(courseData.id)" class="cursorStyle color-lightBlue" ><span class="mr-3">:</span>
-                                Edit</p>
+                            <p  class="cursorStyle " ><span class="mr-3">:</span>
+                                <button (click)="goToEditCourse(courseData.id)" type="button" class="bg-purple text-white border-0 px-2 py-1">Edit</button>
+                                </p>
                         </div>
                     </div>
 
@@ -304,7 +309,7 @@
 
                 <div class="row" *ngIf="!eiStarclassLectueList.dataSource">
                     <div class="col-12 pt-2 pb-2">
-                        <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+                        <p class="text-center dataNotFound pt-4 pb-4">No lectures available</p>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,8 @@ import { StarclassCourseList } from '../common/starclass-model';
 export class UserStarclassCourseListComponent implements OnInit {
   starclassCourseList : StarclassCourseList
   courseName: any;
+  schoolId: any;
+   
   constructor(
     private router: Router,
     private location: Location,
@@ -101,7 +103,8 @@ export class UserStarclassCourseListComponent implements OnInit {
   }
 
   goToPlayHistory(){
-    this.router.navigate(['user/playHistory'])
+    this.schoolId = this.route.snapshot.queryParamMap.get('school_id')
+    this.router.navigate(['user/playHistory'], {queryParams : {'school_id': this.schoolId}})
   }
 
 }

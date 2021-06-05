@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,13 +17,14 @@ export class PlayHistoryComponent implements OnInit {
     private baseService : BaseService,
     private loader : NgxSpinnerService,
     private alert : NotificationService,
-    private location : Location
+    private location : Location,
+    private route : ActivatedRoute
   ) { 
     this.playHistory = new PlayHistory()
   }
 
   ngOnInit(): void {
-    // this.getPlayHistory()
+    this.getPlayHistory()
   }
 
   getPlayHistory(page? : any) {
@@ -30,9 +32,10 @@ export class PlayHistoryComponent implements OnInit {
       this.loader.show()
       this.playHistory.model = {
         'page': page,
-        'page_size': this.playHistory.page_size
+        'page_size': this.playHistory.page_size,
+        'school_id': this.route.snapshot.queryParamMap.get('school_id')
       }
-      this.baseService.getData('', this.playHistory.model).subscribe(
+      this.baseService.getData('starclass/lecture_history_of_school/', this.playHistory.model).subscribe(
         (res: any) => {
           if(res.status == true){
             (!page)
