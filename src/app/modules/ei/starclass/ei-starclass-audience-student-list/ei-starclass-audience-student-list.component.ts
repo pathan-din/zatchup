@@ -5,7 +5,6 @@ import { Location } from '@angular/common';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { elementAt, filter } from 'rxjs/operators';
 
 
 @Component({
@@ -23,9 +22,10 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   error: any = [];
   model: any;
   classId: any;
-  classList:any=[];
-  standardList:any=[];
-  courseList:any=[];
+  classList: any = [];
+  standardList: any = [];
+  courseList: any = [];
+  selectAll: boolean;
 
 
   constructor(
@@ -44,45 +44,38 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     this.approved = this.route.snapshot.queryParamMap.get('approved')
     this.getStudentAuidenceList();
     this.displayCourseList();
-
-    // this.setData()
   }
 
   getStudentAuidenceList(page?: any) {
     try {
       this.loader.show()
       var action = this.route.snapshot.queryParamMap.get('action')
-      if(action == 'add'){
+      if (action == 'add') {
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-          'class_ids' : JSON.parse(localStorage.getItem("sections")),
+          'class_ids': JSON.parse(localStorage.getItem("sections")),
           'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
           'course': this.studentAudienceList.course,
           'standard': this.studentAudienceList.standard,
           'teaching_class': this.studentAudienceList.teaching_class
-          // 'id': this.route.snapshot.params.id
         }
       }
       else {
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
-          // 'class_ids' : JSON.parse(localStorage.getItem("sections")),
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
           'course': this.studentAudienceList.course,
           'standard': this.studentAudienceList.standard,
           'teaching_class': this.studentAudienceList.teaching_class
-          // 'id': this.route.snapshot.params.id
         }
       }
-     
+
       this.baseService.getData('ei/student-list-for-starclass/', this.studentAuidence.params).subscribe(
         (res: any) => {
-          console.log('dshgdyhsbd', this.studentAuidence.params);
-          
           if (res.status == true) {
             if (!page)
               page = this.studentAuidence.config.currentPage
@@ -93,33 +86,27 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             this.studentAuidence.config.totalItems = res.count
             if (res.count > 0) {
               var add = this.route.snapshot.queryParamMap.get('add')
-              if(add){
+              if (add) {
                 if (this.classId) {
-                  console.log('fjkdbf', this.classId);
-                  
-                  console.log(this.studentAudienceList);
-                  
                   res.results.forEach(
                     element => {
-                      
-                    
                       if (this.studentAudienceList.indexOf(element.user_id) === -1) {
                         element.is_access_for_star_class = true;
-                      }else{
+                      } else {
                         element.is_access_for_star_class = false;
                       }
-                      
                     }
                   )
-                 this.studentAuidence.dataSource = res.results;
+                  this.studentAuidence.dataSource = res.results;
                 }
-              }
-              
-              else {
-               
               }
               this.studentAuidence.dataSource = res.results;
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
+              let find = this.studentAuidence.dataSource.find(val => {
+
+              })
+              if (!find)
+                this.selectAll = true
               this.setData()
             }
             else {
@@ -134,7 +121,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
         }
       ),
         err => {
-          this.alert.error("Please try again",'Error');
+          this.alert.error("Please try again", 'Error');
           this.loader.hide();
         }
     } catch (error) {
@@ -145,171 +132,73 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
 
   setData() {
     let filtered = this.studentAuidence.dataSource.filter(elen => {
-      if(this.isValid(elen) ==  true)
-      return elen.user_id
+      if (this.isValid(elen) == true)
+        return elen.user_id
     })
     filtered.forEach(elen => {
       this.studentAudienceList.push(elen.user_id)
     })
-
-    console.log( this.studentAudienceList );
-    
-    
   }
 
   getStudentAudienceBycheckbox(stId, event) {
-
+    debugger
     if (event.checked) {
       if (this.studentAudienceList.indexOf(stId) === -1) {
         this.studentAudienceList.push(stId)
       }
     } else {
-      if (this.studentAudienceList.indexOf(stId) === -1) {
+      // var index = this.studentAudienceList.indexOf(stId)
+      // this.studentAudienceList.splice(index, 1);
+      let course = this.studentAudienceList.course
+      let standard = this.studentAudienceList.standard
+      let teachingClass = this.studentAudienceList.teaching_class
+      this.studentAudienceList = []
+      let list: any = [];
+      list = this.studentAuidence.dataSource.filter(x => x.is_access_for_star_class == true)
+      let ids = list.map(a => a.user_id);
+      this.studentAudienceList = ids;
+      this.studentAudienceList.course = course;
+      this.studentAudienceList.standard = standard;
+      this.studentAudienceList.teaching_class = teachingClass;
 
-      } else {
-        var index = this.studentAudienceList.indexOf(stId)
-        this.studentAudienceList.splice(index, 1);
-      }
     }
+    let find = this.studentAuidence.dataSource.find(ele => {
+      return ele.is_access_for_star_class == false
+    })
+    if (find)
+      this.selectAll = false;
+    else
+      this.selectAll = true
+    debugger
   }
-
-//   arrayRemove(arr, value) { 
-    
-//     return arr.filter(function(ele){ 
-//         return ele != value; 
-//     });
-// }
-
-
-//   getStudentAudienceBycheckbox(stId, event) {
-// console.log( event);
-// console.log(stId);
-
-
-
-//     // if (event.checked ) {
-//     console.log('inn1');
-    
-//         // var index = this.studentAudienceList.indexOf(stId)
-//         // if(index != -1){
-
-//           if (event.checked ) 
-//           this.studentAudienceList = this.arrayRemove(this.studentAudienceList, stId);
-//           else
-//           this.studentAudienceList.push(stId)
-//           // this.studentAudienceList.splice(index, 1);
-//         // }else{
-//         // }
-
-
-//     //   if (this.studentAudienceList.indexOf(stId) === -1) {
-
-//     //   } else {
-//     //     var index = this.studentAudienceList.indexOf(stId)
-//     //     this.studentAudienceList.splice(index, 1);
-//     //   }
-//     // } else {
-//     //   if (this.studentAudienceList.indexOf(stId) === -1) {
-     
-//     //   }
-
-    
-//     // }
-
-//     console.log( this.studentAudienceList);
-    
-//   }
-
-  // setData() {
-  
-  //   let filtered = this.studentAuidence.dataSource.filter(elen => {
-  //     if (this.isValid(elen) == true)
-  //       return elen.user_id
-  //   })
-  //   filtered.forEach(elem =>{
-  //    var index = this.studentAudienceList.findIndex(ele=>{
-  //       return ele == elem.user_id
-  //     })
-  //     if(index==-1){
-       
-  //       this.studentAudienceList.push(elem.user_id)
-  //     }
-  //     //studentAudienceListLocalstorage
-  //     console.log(this.studentAudienceListLocalstorage);
-      
-  //     for(var index1 in  this.studentAudienceListLocalstorage){
-  //       console.log(this.studentAudienceListLocalstorage[index1]);
-  //       if(this.studentAudienceListLocalstorage[index1] == false){
-  //         var newindex = this.studentAudienceList.findIndex(ele=>{
-  //           return ele == index1
-  //         })
-  //         if(newindex == -1){
-  //           this.studentAudienceList.push(parseInt(index1))
-  //         }
-  //         else{
-  //           this.studentAudienceList.splice(newindex, 1);
-  //         }
-        
-  //       } else{
-  //         var newindex = this.studentAudienceList.findIndex(ele=>{
-  //           return ele == index1
-  //         })
-  //         if(newindex == -1){
-  //           this.studentAudienceList.push(parseInt(index1))
-  //         }
-  //         else{
-  //           this.studentAudienceList.splice(newindex, 1);
-  //         }
-  //       }
-  //     }
-      
-  //     console.log('set data', this.studentAudienceList);
-      
-  //   })
-    
-  // }
 
   isValid(value) {
     return value.is_access_for_star_class == true
   }
 
-
   addStudentAudience() {
-    // debugger
     if (this.studentAudienceList.length == 0) {
       this.alert.error(this.error, 'Please select Audience from the list ')
-      // alert("Please select student list of particular class.")
-
     } else {
-
       this.loader.show();
-      // var temp = [];
-      // this.studentAuidence.dataSource.forEach( e => {
-
-      //   if (this.studentAudienceList.indexOf( e.user_id) === -1) 
-      //       temp.push( e.user_id );
-      // });
-
-
       this.model = {
-        'student_id':  this.studentAudienceList.join(','),
+        'student_id': this.studentAudienceList.join(','),
         'course_id': this.route.snapshot.queryParamMap.get('course_id')
       }
       this.baseService.action('starclass/ei-course-assign-to-user/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {
             this.loader.hide();
-           
             localStorage.removeItem("sections");
             localStorage.removeItem("teachers");
             localStorage.removeItem("courseIds");
             localStorage.removeItem("standardIds");
             this.alert.success(res.message, 'Success');
             var add = this.route.snapshot.queryParamMap.get('add')
-            if(add){
-              this.router.navigate(['ei/star-class-courses-uploaded-by-ei']) 
+            if (add) {
+              this.router.navigate(['ei/star-class-courses-uploaded-by-ei'])
             }
-            else{
+            else {
               this.location.back()
             }
           }
@@ -321,7 +210,6 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           this.loader.hide();
           this.alert.error(error, 'Error')
         });
-
     }
   }
 
@@ -329,105 +217,82 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     this.location.back()
   }
 
-  displayCourseList(){
-    try{
-        this.loader.show(); 
-      
-        
-        this.baseService.getData('ei/course-list/').subscribe(res => {
-          let response:any={};
-          response=res;
-          // if(response.status == true){
-          this.courseList=response.results;
-          if(!this.studentAudienceList.course){
-            this.studentAudienceList.course='';
-            this.studentAudienceList.standard='';
-            this.studentAudienceList.teaching_class='';
-          }else{
-            this.displayStandardList(this.studentAudienceList.course)
-          }
-        // }else{
-        //   this.SpinnerService.hide();
-        //   this.alert.error(response.error.message[0], 'Error')
-        // }
-          },(error) => {
-            this.loader.hide(); 
-            //console.log(error);
-            
-          });
-      }catch(err){
-        this.loader.hide(); 
-        //this.alert.error(err, 'Error')
-        //console.log(err);
-      } 
-   }
-   /** Function Name : displayStandardList
-     * Data bind in Standard list dropdown filter
-     * Standard List By course Id
-     */
-    displayStandardList(courseId){
-    try{
-        this.loader.show(); 
-          this.standardList=[]
-       
-      let data:any={}
-      
-      data.course_id=courseId
-      this.baseService.getData('ei/standard-list/',data).subscribe(res => {
-          this.loader.hide(); 
-          let response:any={};
-          response=res;
-          // if(response.status == true){
-      this.standardList=response.standarddata;
-      if(!this.studentAudienceList.standard){
-         
-        this.studentAudienceList.standard='';
-        this.studentAudienceList.teaching_class='';
-      }else{
-        this.displayClassList(this.studentAudienceList.standard)
-      }
-          // }
-          // else{
-          //   this.SpinnerService.hide();
-          //   this.alert.error(response.error.message[0], 'Error')
-          // }
-          },(error) => {
-            this.loader.hide(); 
-            //console.log(error);
-            
-          });
-      }catch(err){
-        this.loader.hide(); 
-        //this.alert.error(err, 'Error')
-        //console.log(err);
-      } 
-   }
-   /** Function Name : displayClassList
-     * Data bind in Class list dropdown filter
-     * Class List By standard Id
-     */
-    displayClassList(stId){
-    try{
-        this.loader.show(); 
-          this.classList=[];
-          let data:any={}
-      
-          data.standard_id=stId
-          this.baseService.getData('ei/class-list/',data).subscribe(res => {
-          this.loader.hide();
-          let response:any={};
-          response=res;
-          this.classList=response.classdata;
-          
-          },(error) => {
-            this.loader.hide(); 
-            //console.log(error);
-            
-          });
-      }catch(err){
-        this.loader.hide(); 
-        //console.log(err);
-      } 
-   }
+  displayCourseList() {
+    try {
+      this.loader.show();
+      this.baseService.getData('ei/course-list/').subscribe((res: any) => {
+        this.courseList = res.results;
+        if (!this.studentAudienceList.course) {
+          this.studentAudienceList.course = '';
+          this.studentAudienceList.standard = '';
+          this.studentAudienceList.teaching_class = '';
+        } else {
+          this.displayStandardList(this.studentAudienceList.course)
+        }
+      }, (error) => {
+        this.loader.hide();
+      });
+    } catch (err) {
+      this.loader.hide();
+    }
+  }
+
+  displayStandardList(courseId) {
+    try {
+      this.loader.show();
+      this.standardList = []
+      let data: any = {}
+      data.course_id = courseId
+      this.baseService.getData('ei/standard-list/', data).subscribe((res: any) => {
+        this.loader.hide();
+        this.standardList = res.standarddata;
+        if (!this.studentAudienceList.standard) {
+          this.studentAudienceList.standard = '';
+          this.studentAudienceList.teaching_class = '';
+        } else {
+          this.displayClassList(this.studentAudienceList.standard)
+        }
+      }, (error) => {
+        this.loader.hide();
+      });
+    } catch (err) {
+      this.loader.hide();
+    }
+  }
+
+  displayClassList(stId) {
+    try {
+      this.loader.show();
+      this.classList = [];
+      let data: any = {}
+      data.standard_id = stId
+      this.baseService.getData('ei/class-list/', data).subscribe((res: any) => {
+        this.loader.hide();
+        this.classList = res.classdata;
+      }, (error) => {
+        this.loader.hide();
+      });
+    } catch (err) {
+      this.loader.hide();
+    }
+  }
+
+  all(evt: any) {
+    this.studentAuidence.dataSource.forEach(ele => {
+      ele.is_access_for_star_class = evt.checked
+    })
+    let course = this.studentAudienceList.course
+    let standard = this.studentAudienceList.standard
+    let teachingClass = this.studentAudienceList.teaching_class
+    this.studentAudienceList = []
+    if (evt.checked) {
+      let list: any = this.studentAuidence.dataSource.map(a => a.user_id)
+      this.studentAudienceList = list;
+    }
+    this.studentAudienceList.course = course;
+    this.studentAudienceList.standard = standard;
+    this.studentAudienceList.teaching_class = teachingClass;
+
+  }
 
 }
