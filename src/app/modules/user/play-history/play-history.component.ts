@@ -25,31 +25,35 @@ export class PlayHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlayHistory()
+    
   }
 
   getPlayHistory(page? : any) {
     try {
       this.loader.show()
       this.playHistory.model = {
-        'page': page,
+        'page' : page,
         'page_size': this.playHistory.page_size,
         'school_id': this.route.snapshot.queryParamMap.get('school_id')
+        
       }
-      this.baseService.getData('starclass/lecture_history_of_school/', this.playHistory.model).subscribe(
-        (res: any) => {
+      this.baseService.getData('starclass/lecture_history_of_school/'  , this.playHistory.model).subscribe(
+        (res:any) => {
           if(res.status == true){
-            (!page)
+            if(!page)
             page = this.playHistory.config.currentPage
             this.playHistory.startIndex = res.page_size * (page - 1) + 1;
-            this.playHistory.page_size = res.page_size 
+            this.playHistory.page_size = res.page_size
             this.playHistory.config.itemsPerPage = this.playHistory.page_size
             this.playHistory.config.currentPage = page
-            this.playHistory.config.totalItems = res.count
+            this.playHistory.config.totalItems = res.count;
             if(res.count > 0) {
-             this.playHistory.dataSource = res.results;
-             this.playHistory.pageCounts = this.baseService.getCountsOfPage()
+              this.playHistory.dataSource = res.results;
+              console.log('history', this.playHistory.dataSource);
+              
+              this.playHistory.pageCounts = this.baseService.getCountsOfPage()
             }
-            else{
+            else {
               this.playHistory.dataSource = undefined;
               this.playHistory.pageCounts = undefined
             }
@@ -58,12 +62,13 @@ export class PlayHistoryComponent implements OnInit {
             this.alert.error(res.error.message, 'Error')
           }
           this.loader.hide()
-        }, err => {
+        },
+        err => {
           this.alert.error("Please Try Again", 'Error')
           this.loader.hide()
         }
       )
-    } catch (error) {
+    }catch (error) {
      this.alert.error(error.error, 'Error') 
      this.loader.hide()
     }
