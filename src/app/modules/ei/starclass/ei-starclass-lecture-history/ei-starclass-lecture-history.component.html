@@ -35,7 +35,21 @@
                             
                             <ng-container matColumnDef="action">
                                 <mat-header-cell *matHeaderCellDef> Action  </mat-header-cell>
-                                <mat-cell *matCellDef="let element"> {{element.action}} </mat-cell>
+                                <mat-cell *matCellDef="let element"> {{element.action == 'INSERT' ? 'UPLOAD' : element.action}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="uploadedBy">
+                                <mat-header-cell *matHeaderCellDef> Uploaded By </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    {{element.upload_by}} 
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="zatchupId">
+                                <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                                <mat-cell *matCellDef="let element ">
+                                    {{element.zatchup_id}} 
+                                </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="actionDate">

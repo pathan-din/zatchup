@@ -49,6 +49,13 @@
                                 </mat-cell>
                             </ng-container>
 
+                            <ng-container matColumnDef="zatchupId">
+                                <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    {{element.zatchup_id}}
+                                </mat-cell>
+                            </ng-container>
+
                             <ng-container matColumnDef="playTime">
                                 <mat-header-cell *matHeaderCellDef> Play Timing </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">

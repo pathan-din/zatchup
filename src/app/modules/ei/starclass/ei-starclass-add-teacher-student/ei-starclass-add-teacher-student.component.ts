@@ -24,7 +24,7 @@ export class EiStarclassAddTeacherStudentComponent implements OnInit {
     currentPage: 1,
     totalItems: 0
   }
-  pageSize: any = '';
+  pageSize: any = 100;
   listParams: any = {};
   startIndex: any
   dataSource: any = [];
@@ -52,6 +52,7 @@ export class EiStarclassAddTeacherStudentComponent implements OnInit {
   teacherList:any=[];
   addTeacherList:any=[];
   isaccess:boolean=false;
+  page_size: any = 1000;
   
   constructor(
     private location: Location,
@@ -387,7 +388,9 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
  
   getTeacherList(page){
     this.loader.show();
-     
+     this.modelteacher = {
+       'page_size': this.page_size
+     }
     this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/',this.modelteacher).subscribe(
       (res: any) => {
         if (res.status == true) {
@@ -456,5 +459,9 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       localStorage.removeItem("groupclasscheck");
 
     }
+  }
+  
+  goBack(){
+    this.location.back()
   }
 }
