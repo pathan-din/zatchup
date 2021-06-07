@@ -152,7 +152,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   }
 
   getStudentAudienceBycheckbox(stId, event) {
-    debugger
+    // debugger
     if (event.checked) {
       if (this.studentAudienceList.indexOf(stId) === -1) {
         this.studentAudienceList.push(stId)
@@ -180,7 +180,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
       this.selectAll = false;
     else
       this.selectAll = true
-    debugger
+    // debugger
   }
 
   isValid(value) {
@@ -204,6 +204,8 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             localStorage.removeItem("teachers");
             localStorage.removeItem("courseIds");
             localStorage.removeItem("standardIds");
+            localStorage.removeItem("groupclasscheck");
+            localStorage.removeItem("allstudent");
             this.alert.success(res.message, 'Success');
             var add = this.route.snapshot.queryParamMap.get('add')
             if (add) {

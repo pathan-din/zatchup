@@ -35,7 +35,7 @@
                             
                             <ng-container matColumnDef="action">
                                 <mat-header-cell *matHeaderCellDef> Action  </mat-header-cell>
-                                <mat-cell *matCellDef="let element"> {{element.action}} </mat-cell>
+                                <mat-cell *matCellDef="let element"> {{element.action == 'INSERT' ? 'UPLOAD' : element.action}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="actionDate">

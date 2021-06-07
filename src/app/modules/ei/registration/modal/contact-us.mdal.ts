@@ -138,13 +138,13 @@ export class StarclassCourseHistory extends Pagination {
 
 export class EiPlayHistory extends Pagination {
   modal : any;
-  displayedColumns: string[]= ['position', 'lectureTitle', 'playedBy', 'playTime']
+  displayedColumns: string[]= ['position', 'lectureTitle', 'playedBy', 'zatchupId', 'playTime']
 }
 
 export class StarclassLectureHistory extends Pagination{
   modal: any;
     history: any;
-    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']  
+    displayedColumns: string[]= ['position', 'action', 'uploadedBy','zatchupId', 'actionDate', 'message']  
 }
 
 export class SubadminCompleteRequest extends Pagination {
