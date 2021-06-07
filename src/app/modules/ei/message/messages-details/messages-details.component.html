@@ -65,7 +65,7 @@
         </div>
 
         <div *ngIf="params.chat" class="bg-light-gray p-3">
-            <div class="profile_detail d-flex align-items-center justify-content-start mb-3 cursorStyle position-relative" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
+            <div class="profile_detail d-flex justify-content-start mb-3 cursorStyle position-relative" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
                 <div class="profile_pick">
                     <img *ngIf="!recepientGroup" src="{{recepientGroup.group_icon?recepientGroup.group_icon:'./assets/images/userWebsite/profile-image.png'}}"
                         class="img-fluid cursorStyle"> 
@@ -73,11 +73,11 @@
                         class="img-fluid cursorStyle">
                 </div>
                 <div class="profile_name ml-2 text-capitalize">
-                    <p *ngIf="recepientGroup" class="m-0"> {{recepientGroup.group_title}} 
+                    <p *ngIf="recepientGroup" class="m-0">{{recepientGroup.group_title}}
                         <span class="small-text-2"></span>
                     </p>
                      <span class="small-text-2" *ngFor="let user of receipentUsers">
-                        <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}}{{','}}</label>
+                        <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{','}} </label>
                     </span>
                 </div>
                 <!-- <div class="setting_info text-right pr-3 dropdown">
