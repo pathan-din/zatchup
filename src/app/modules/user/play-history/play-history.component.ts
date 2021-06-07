@@ -77,5 +77,11 @@ export class PlayHistoryComponent implements OnInit {
   goBack(){
     this.location.back()
   }
+  generateExcel() {
+    delete this.playHistory.model.page_size;
+    delete this.playHistory.model.page;
+    this.playHistory.model['export_csv'] = true
+    this.baseService.generateExcel('starclass/export-csv-play-history/', 'play-history', this.playHistory.model);
+  }
 
 }
