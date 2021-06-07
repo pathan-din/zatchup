@@ -39,18 +39,18 @@ export class StarclassMultipleEiComponent implements OnInit {
         (res: any) => {
           if(res.status == true){
             if (!page)
-              page = this.schoolList.config.currentPage
+            page = this.schoolList.config.currentPage
             this.schoolList.startIndex = res.page_size * (page - 1) + 1;
             this.schoolList.page_size = res.page_size
             this.schoolList.config.itemsPerPage = this.schoolList.page_size
             this.schoolList.config.currentPage = page
             this.schoolList.config.totalItems = res.count;
-            if (res.count > 0) {
+            if (res.count > 0 ){
               this.schoolList.dataSource = res.results;
               this.schoolList.pageCounts = this.baseService.getCountsOfPage()
             }
-            else {
-              this.schoolList.dataSource = undefined
+            else{
+              this.schoolList.dataSource = undefined;
               this.schoolList.pageCounts = undefined
             }
           }

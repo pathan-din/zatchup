@@ -10,16 +10,15 @@
 
     <!--Start html for "select no of Rows per page" and Export Button-->
     <div class="row my-3 align-items-center" *ngIf="schoolList.dataSource">
-        <div class="col-md-12 d-flex flex-row align-items-center">
+        <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
             <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
             <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                 <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
-                    (change)="getSchoolList()" [(ngModel)]="schoolList.page_size">
+                    (change)="getSchoolList('1')" [(ngModel)]="schoolList.page_size">
                     <option *ngFor="let count of schoolList.pageCounts" value="{{count}}">{{count}}</option>
                 </select>
             </div>
         </div>
-       
     </div>
     <!--End html for "select no of fees info per page" and Export Button-->
     <!--Start html for fees information table-->
