@@ -339,6 +339,7 @@ getGetVerifiedStudent(page, strFilter) {
 
     this.loader.show();
     this.model.page = page;
+    this.model.page_size = 1000;
 
  
   this.model.approved=1;

@@ -73,6 +73,9 @@ export class StudentsListComponent implements OnInit {
   attachment:any='';
   addTeacherList:any=[];
   isaccess:boolean=false;
+  checkAllT:boolean=false;
+  checkAllS:boolean=true;
+
   displayedColumns: string[] = ['selectCheckbox', 'position', 'profilePick', 'nameOfStudents', 
   'relationship', 'classDetails','classAlias', 'rollNumber'];   
    dataSource = ELEMENT_DATA;
@@ -145,7 +148,7 @@ export class StudentsListComponent implements OnInit {
      
    
     this.model.approved=1;
-  
+    this.model.page_size = 1000;
     this.baseService.getData('ei/student-list/', this.model).subscribe(
       (res: any) => {
         this.loader.hide();
@@ -272,14 +275,25 @@ export class StudentsListComponent implements OnInit {
     if(type=='student')
     {
      this.studentLists.forEach(objData => {
-       if(user==objData.student_id)
+       if(user==objData.student_id && ev.checked){
         objData.checked = ev.checked;
+        this.checkAllS=true
+       }else{
+       // objData.checked = ev.checked;
+        this.checkAllS=false
+       }
+        
       })
       
     }else{
       this.teacherList.forEach(objData => {
-        if(user==objData.user_id)
-        objData.isadded = ev.checked;
+        if(user==objData.user_id  && ev.checked){
+          objData.isadded = ev.checked;
+         }else{
+         // objData.isadded = ev.checked;
+          this.checkAllT=false
+         }
+       // objData.isadded = ev.checked;
         
       })
     }
