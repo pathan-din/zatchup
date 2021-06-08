@@ -23,8 +23,8 @@
 .chatTxt {
     padding: 6px 10px;
     border-radius: 8px;
-    display: inline-block;
     margin: 0px;
+    float: right;
     background: #dcf8c6;
     box-shadow: 0px 1px 2px #ccc;
 }
@@ -33,7 +33,7 @@
     background: #fff;
     border-radius: 8px;
     text-align: right;
-    float: right;
+    float: left;
     margin: 0px;
     box-shadow: 0px 1px 2px #ccc;
 }
@@ -81,6 +81,7 @@
     right: -15px;
     top: 0px;
 }
+label{margin-bottom: 0em;}
 .setting_info img {
     height: 22px;
 }
