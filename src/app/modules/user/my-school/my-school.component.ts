@@ -17,6 +17,7 @@ export class MySchoolComponent implements OnInit {
   verified: any;
   schoolList: any
   starclassSchool: any;
+  userRole: any;
 
   constructor(
     private router: Router,
@@ -24,7 +25,8 @@ export class MySchoolComponent implements OnInit {
     private alert: NotificationService
   ) { }
   ngOnInit(): void {
-    var role = parseInt(localStorage.getItem("role"))
+    this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+     var role = parseInt(localStorage.getItem("role"))
     this.verified = localStorage.getItem('approved');
     if (role == 1) {
       this.roleCheck = true;
