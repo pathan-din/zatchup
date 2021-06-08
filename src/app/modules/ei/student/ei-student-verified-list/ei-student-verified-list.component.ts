@@ -95,7 +95,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
   }
   promoteResetPopup(objData) {
-    this.modelPromote.roll_no = objData.roll_no;
+    this.modelPromote.roll_no = '';
+    this.modelPromote.course = '';
+    this.modelPromote.standard = '';
+    this.modelPromote.teaching_class = '';
     this.user_id = objData.student_id;
     this.getStudentCourseList(objData.student_id);
   }

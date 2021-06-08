@@ -139,6 +139,8 @@ export class UserHeaderComponent implements OnInit {
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
         this.loader.hide()
         this.regProfile = res;
+        
+        localStorage.setItem("getreject", JSON.stringify(res));
         localStorage.setItem("res.reg_step", res.reg_step);
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
         } else {

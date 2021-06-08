@@ -11,7 +11,8 @@ export class BaseService {
   environment = environment
   dynamicJson: any
   public username: any;
-  public firebase_username: any
+  public firebase_username: any;
+  public  globalYear:any = 1970;
   
   public password: any
   public serverImagePath: any = this.environment.serverImagePath;
