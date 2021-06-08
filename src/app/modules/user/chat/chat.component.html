@@ -154,7 +154,7 @@
 
             <div class="row" *ngIf="params.chat">
                 <div class="col-12">
-                    <div *ngIf="groupexit==0 && is_teacher_in_group==0" class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
+                    <div *ngIf="groupexit==0 && is_teacher_in_group==1" class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
                         <div>
                             <i class="fa fa-paperclip cursorStyle" (click)="fileInput.click()" aria-hidden="true"></i>
                             <input (change)="uploadDoc($event)" #fileInput type="file" style="display:none;" />
@@ -165,7 +165,7 @@
                             <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div *ngIf="groupexit==1 && is_teacher_in_group==1">You can't send messages to this group because you are no longer a participent</div>
+                    <div *ngIf="groupexit==1 && is_teacher_in_group==0">You can't send messages to this group because you are no longer a participent</div>
                 </div>
             </div>
             <div class="row" *ngIf="!params.chat">
