@@ -68,13 +68,13 @@ export class EiPaymentComponent implements OnInit {
         //Get Payment Price From Api Object
         this.paymentHtml = '';
         if(response.discount_amount!=0){
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + response.original_price + '</del></div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;<del>' + response.original_price + '</del></div></div>';
         }else{
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + response.original_price + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;' + response.original_price + '</div></div>';
         }
         
-        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + response.discount_amount + '</div></div>';
-        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + response.price + '</div></div>';
+        this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Discount:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;' + response.discount_amount + '</div></div>';
+        this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Net Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;' + response.price + '</div></div>';
 
         if (buttonClick) {
           var that = this;
@@ -155,9 +155,9 @@ export class EiPaymentComponent implements OnInit {
         let res: any = response;
         //Get Payment Price From Api Object
         this.paymentHtml = '';
-        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + response.original_price + '</div></div>';
-        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + response.discount_amount + '</div></div>';
-        this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + response.price + '</div></div>';
+        this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377; ' + response.original_price + '</div></div>';
+        this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Discount:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377; ' + response.discount_amount + '</div></div>';
+        this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Net Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377; ' + response.price + '</div></div>';
 
 
       } else { // Condition False Validation failure
