@@ -39,9 +39,9 @@ export class EiSubscriptionUpdateComponent implements OnInit {
 
   makePayment() {
     this.paymentHtml = '';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Price:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple text-right">&#8377; <del>' + this.subscription.current_amount + '</del></div></div>';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Discount:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple text-right">&#8377;' + 0 + '</div></div>';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 pr-0">Net Price:</div> <div class="col-md-5 col-sm-6 pr-0 text-left color-purple text-right">&#8377;' + this.subscription.current_amount + '</div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0">Price:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; <del>' + this.subscription.current_amount + '</del></div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0">Discount:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; ' + 0 + '</div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0">Net Price:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; ' + this.subscription.current_amount + '</div></div>';
   }
 
   getSubList() {
@@ -78,9 +78,9 @@ export class EiSubscriptionUpdateComponent implements OnInit {
         if (res.status === true)// Condition True Success 
         {
           this.paymentHtml = '';
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + res.original_price + '</del></div></div>';
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + res.discount_amount + '</div></div>';
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + res.price + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377; <del>' + res.original_price + '</del></div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Discount:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377; ' + res.discount_amount + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Net Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377; ' + res.price + '</div></div>';
 
           if (buttonClick) {
             var that = this;
@@ -132,10 +132,10 @@ export class EiSubscriptionUpdateComponent implements OnInit {
         // this.applyCouponData = res.data
         {
           this.paymentHtml = '';
-          this.paymentHtml += '<div class="row"><div class="col-md-4 pr-0"></div><div class="col-md-8 pr-0 text-left color-green">' + 'Coupon Applied' + '</div></div>';
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Price:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; <del>' + res.data.current_amount + '</del></div></div>';
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Discount:</div> <div class="col-md-5 pr-0 text-left color-purple">&#8377; ' + res.data.discount_amount + '</div></div>';
-          this.paymentHtml += '<div class="row"><div class="col-md-7 pr-0">Net Price: </div> <div class="col-md-5 pr-0 text-left color-purple">&#8377;' + res.data.price + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-4 col-6 px-0"></div><div class="col-md-8 col-6 px-0 text-right color-green">' + 'Coupon Applied' + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;<del>' + res.data.current_amount + '</del></div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Discount:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;' + res.data.discount_amount + '</div></div>';
+          this.paymentHtml += '<div class="row"><div class="col-md-7 col-6 px-0">Net Price:</div> <div class="col-md-5 col-6 px-0 text-right color-purple">&#8377;' + res.data.price + '</div></div>';
         }
         else
           this.alert.error(res.error.message, 'Error')
