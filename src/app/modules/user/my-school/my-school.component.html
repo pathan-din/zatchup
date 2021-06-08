@@ -19,7 +19,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf="verified == '1'" (click)="starclassSchoolList()" class="col-md-6 mb-3 cursorStyle">
+                    <div *ngIf="verified == '1' && userRole == 'STUDENTS'" (click)="starclassSchoolList()" class="col-md-6 mb-3 cursorStyle">
                         <div class="bg-white mySchoolDiv p-3 shadow text-center">
                             <img src="assets/images/userWebsite/zu-icon.png" alt="project funding" class="myProfileImg" />
                             <p class="pt-2">ZatchUp Star Class</p>

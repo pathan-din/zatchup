@@ -71,8 +71,8 @@ goToStudentAudienceAdd(id){
   console.log(id);
 }
 
-goToPlayHistory(course_id){
-  this.router.navigate(['ei/ei-play-history'], {queryParams: {'course_id':course_id }})
+goToPlayHistory(course_id, id){
+  this.router.navigate(['ei/ei-play-history'], {queryParams: {'course_id':course_id, 'course': id }})
 }
 
 // goToTeacherAudienceAdd(id){
