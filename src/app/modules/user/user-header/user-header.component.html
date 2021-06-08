@@ -79,7 +79,8 @@
 
                 <div class="dropdown my-1" *ngIf="authCheck">
                     <a class="mx-2 cursorStyle commonFontSize semiBoldFont" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp">                    
+                        <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp"> 
+                        <img *ngIf="!userProfile.profile_pic" [src]="'assets/images/profile-default.png'" class="rounded-circle bg-light-green header-dp">                    
                     </a>
                     <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" >
                         <div class="row p-2">
