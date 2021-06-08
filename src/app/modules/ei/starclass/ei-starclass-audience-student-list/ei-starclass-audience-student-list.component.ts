@@ -50,38 +50,45 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     try {
       this.loader.show()
       var action = this.route.snapshot.queryParamMap.get('action')
-      if (action == 'add') {
-        if(localStorage.getItem('allstudent')){
-          this.studentAuidence.params = {
-            'page': page,
-            'page_size': this.studentAuidence.page_size,
-            'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
-           
-          }
-        }
-        else{
-          this.studentAuidence.params = {
-            'page': page,
-            'page_size': this.studentAuidence.page_size,
-            'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-            'class_ids': JSON.parse(localStorage.getItem("sections")),
-            'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
-            'course': this.studentAudienceList.course,
-            'standard': this.studentAudienceList.standard,
-            'teaching_class': this.studentAudienceList.teaching_class
-          }
-        }
+      let section = JSON.parse(localStorage.getItem("sections"))
+      let standard = JSON.parse(localStorage.getItem("standardIds"))
+      let courseStudent = JSON.parse(localStorage.getItem("courseIds"))
+      // if (action == 'add') {
        
+       
+      // }
+      // else {
+      //   this.studentAuidence.params = {
+      //     'page': page,
+      //     'page_size': this.studentAuidence.page_size,
+      //     'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+      //     'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
+      //     'course': this.studentAudienceList.course,
+      //     'standard': this.studentAudienceList.standard,
+      //     'teaching_class': this.studentAudienceList.teaching_class,
+      //     'class_ids': section,
+
+      //   }
+      // }
+      if(!localStorage.getItem('allstudent')){
+        this.studentAuidence.params = {
+          'page': page,
+          'page_size': this.studentAuidence.page_size,
+          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
+          'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+          'class_ids': section ? section : '',
+          'course': this.studentAudienceList.course,
+          'standard': this.studentAudienceList.standard,
+          'teaching_class': this.studentAudienceList.teaching_class
+        }
       }
-      else {
+      else{
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
-          'course': this.studentAudienceList.course,
-          'standard': this.studentAudienceList.standard,
-          'teaching_class': this.studentAudienceList.teaching_class
+         
         }
       }
 
@@ -136,7 +143,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           this.loader.hide();
         }
     } catch (error) {
-      this.alert.error(error.error, 'Error')
+      this.alert.error("Please try again", 'Error')
       this.loader.hide()
     }
   }

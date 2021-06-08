@@ -296,7 +296,7 @@ createGroupConfirmationList(){
    if(this.teacherList.length > 0 && localStorage.getItem('allstudent')){
    this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
   }
-  else if(this.teacherList.length > 0 && localStorage.getItem('groupclasscheck')){
+  else if(this.teacherList.length > 0 && this.sectionIds.length > 0){
     this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
   } 
   else {
