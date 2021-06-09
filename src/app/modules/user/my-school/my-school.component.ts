@@ -25,7 +25,6 @@ export class MySchoolComponent implements OnInit {
     private alert: NotificationService
   ) { }
   ngOnInit(): void {
-    this.userRole = JSON.parse(localStorage.getItem('getreject')).role
      var role = parseInt(localStorage.getItem("role"))
     this.verified = localStorage.getItem('approved');
     if (role == 1) {
@@ -33,6 +32,8 @@ export class MySchoolComponent implements OnInit {
     } else {
       this.roleCheck = false;
     }
+    this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+
 
   }
   gotToProfilePage() {
