@@ -107,6 +107,8 @@ export class GenericFormValidationService {
             msg=controls[i].getAttribute('message');
           }
           var pattern = new RegExp(controls[i].pattern);
+           
+          
           if (pattern.test(controls[i].value)) {
 
           } else {
