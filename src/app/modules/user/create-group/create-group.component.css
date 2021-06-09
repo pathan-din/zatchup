@@ -23,23 +23,30 @@ ul {
     margin: 20px 0px;
 }
 ul.participantsList li {
-    display: inline-block;
-    margin: 10px 15px 10px;
-    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
 }
 ul.participantsList span {
     display: block;
     margin-top: 5px;
 }
-
+ul.participantsList li:hover {
+    background: #e2e2e2;
+}
 .addParticipants {
     width: 40px;
     height: 40px;
-    margin: 0px auto;
+    text-align: center;
     color: #fff;
     border-radius: 50%;
     line-height: 40px;
-    font-size: 11px;
+    font-size: 16px;
+}
+.pickSize{
+    margin-right: 10px;
 }
 
   @media (max-width: 767px){

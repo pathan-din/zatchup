@@ -32,7 +32,7 @@ export class MySchoolComponent implements OnInit {
     } else {
       this.roleCheck = false;
     }
-    this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+    
 
 
   }

@@ -106,7 +106,7 @@ export class GroupDetailComponent implements OnInit {
           }
 
         });
-        console.log("list of group",recepient);
+        //console.log("list of group",recepient);
         this.firestore.collection('group').get().subscribe(querySnapshot => {
           if (querySnapshot.docs.length > 0) {
             querySnapshot.docs.map(doc => {
@@ -124,7 +124,7 @@ export class GroupDetailComponent implements OnInit {
                  
               
                 });
-                console.log("sdsdsd",aG);
+                //console.log("sdsdsd",aG);
                 var newGroupList=[];
                 recepient.forEach(el=>{
                   Object.keys(el).forEach(e=>{
@@ -152,7 +152,7 @@ export class GroupDetailComponent implements OnInit {
                // console.log(newGroupList);
                 
                 this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
-                  console.log("sdfghjk",responce);
+                  //console.log("sdfghjk",responce);
                   this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
                   
                   },(error)=>{
@@ -195,7 +195,7 @@ export class GroupDetailComponent implements OnInit {
   }
   updateDetails(){
     this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
-      console.log(responce);
+      //console.log(responce);
       this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
       
       },(error)=>{
@@ -209,7 +209,7 @@ export class GroupDetailComponent implements OnInit {
   isAdmin(user_uuid,type){
     if(type=='add'){
       this.firestore.collection('group').get().subscribe(querySnapshot => {
-        console.log("hjjh",querySnapshot.docs);
+        //console.log("hjjh",querySnapshot.docs);
         if (querySnapshot.docs.length > 0) {
           querySnapshot.docs.map(doc => {
           
@@ -313,9 +313,9 @@ export class GroupDetailComponent implements OnInit {
                 }
                 
               });
-              console.log((res));
+              //console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-              console.log(responce);
+              //console.log(responce);
               this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
               
             },(error)=>{
