@@ -16,8 +16,8 @@
                         <div class="addChatProfile shadow mr-5 position-relative">
                             <!-- <img  src="assets/images/userWebsite/users.png" alt="users"/> -->
                             <i *ngIf="!model.group_icon" class="fa fa-users" aria-hidden="true"></i>
-                            <i class="fa fa-users" aria-hidden="true" *ngIf="model.group_icon"></i>
-                            <!-- <img src="{{model.group_icon}}" > -->
+                            <!-- <i class="fa fa-users" aria-hidden="true" *ngIf="model.group_icon"></i> -->
+                            <img src="{{model.group_icon}}" *ngIf="model.group_icon">
                             <div class="profileCamara">
                                 <i class="fa fa-camera cursorStyle" (click)="file.click()" aria-hidden="true"></i>
                             </div>
