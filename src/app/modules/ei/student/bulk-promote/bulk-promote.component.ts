@@ -153,7 +153,7 @@ export class BulkPromoteComponent implements OnInit {
         this.alert.error('Please enter unique roll numbers', 'Error');
         this.showError(duplicates)
         return
-      }else{
+      } else {
         this.validateErrors()
       }
       this.loader.show();
@@ -168,6 +168,9 @@ export class BulkPromoteComponent implements OnInit {
             if (res.error.roll_no && res.error.roll_no.length > 0) {
               this.showError(res.error.roll_no)
             }
+            if (res.error.User_id && res.error.User_id.length > 0) {
+              this.validateUsers(res.error.User_id)
+            }
           }
         },
         err => {
@@ -180,6 +183,16 @@ export class BulkPromoteComponent implements OnInit {
   validateErrors() {
     this.dataSource.forEach(ele => {
       ele['isDuplicates'] = false
+    })
+  }
+
+  validateUsers(users: any) {
+    users.forEach(user => {
+      this.dataSource.forEach(ele => {
+        if (user == ele.student_id) {
+          ele.isDuplicates = true
+        }
+      })
     })
   }
 
