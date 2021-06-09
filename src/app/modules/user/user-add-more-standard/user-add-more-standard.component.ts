@@ -23,6 +23,8 @@ export class UserAddMoreStandardComponent implements OnInit {
   isalumini: any;
   startYearMaxDate: any
   startYearMinDate: any
+  endYearMaxDate: any
+  endYearMinDate: any
   params: any;
   // endYearMaxDate: any = new Date();
   // endYearMinDate: any = new Date();
@@ -47,6 +49,8 @@ export class UserAddMoreStandardComponent implements OnInit {
   ) {
     this.startYearMaxDate = new Date();
     this.startYearMinDate = new Date();
+    this.endYearMaxDate = new Date();
+    this.endYearMinDate = new Date();
     this.baseService.getDateReverseFormat(this.startYearMinDate)
   }
 
@@ -317,8 +321,22 @@ export class UserAddMoreStandardComponent implements OnInit {
       if (course) {
         this.startYearMaxDate = new Date(course.start_date)
         this.startYearMinDate = new Date(course.end_date)
+        this.endYearMaxDate = new Date(course.start_date)
+      }
+      else{
+        this.startYearMaxDate = '';
+        this.startYearMinDate = '';
+        this.endYearMaxDate = '';
       }
     }
+  }
+
+  setEndYearCourseDates(evt){
+    this.endYearMaxDate = evt
+  }
+
+  setStartYearCourseDates(evt){
+    this.startYearMinDate = evt
   }
 
   isValid() {
