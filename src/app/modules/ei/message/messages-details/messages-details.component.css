@@ -72,6 +72,7 @@
     min-width: 40px;
     height: 100%;
     border: 1px solid #ddd;
+    position: relative;
 }
 .chatTxt img {
     max-width: 245px;
@@ -85,10 +86,18 @@ label{margin-bottom: 0em;}
 .setting_info img {
     height: 22px;
 }
+
 .customButton {
     left: inherit !important;
     top: 15px !important;
     right: -65px !important;
+}
+.profile_pick img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
 }
 .message-delivered-icon{display: inline-block; width: 20px;}
 .message-pending-icon{display: none; width: 20px;}
