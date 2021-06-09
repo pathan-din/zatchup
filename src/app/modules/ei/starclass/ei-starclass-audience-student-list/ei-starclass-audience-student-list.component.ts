@@ -121,10 +121,15 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
               this.studentAuidence.dataSource = res.results;
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
               let find = this.studentAuidence.dataSource.find(val => {
-
+                return val.is_access_for_star_class == false
               })
-              if (!find)
+              if (find){
+                this.selectAll = false
+              }
+              else {
                 this.selectAll = true
+              }
+                
               this.setData()
             }
             else {
