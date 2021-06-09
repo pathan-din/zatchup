@@ -62,7 +62,7 @@
 
 .chatIn {
     padding: 6px 10px;
-    background: #dcf8c6;
+    background: #fff;
     border-radius: 8px;
     display: inline-block;
     position: relative;
@@ -86,6 +86,7 @@
     /* border: 1px solid rgba(70, 50, 103, 0.34); */
     min-height: 55px;
     box-shadow: 0px 1px 2px #ccc;
+    background: #dcf8c6;
 }
 
 /* .chatIn:before {

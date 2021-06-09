@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
-                            <div *ngIf="!objCon.document" class="chatOut bg-white">
+                            <div *ngIf="!objCon.document" class="chatOut">
                                 <!-- {{objCon | json}} -->
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
-                            <div *ngIf="!objCon.document" class="chatOut bg-white">
+                            <div *ngIf="!objCon.document" class="chatOut">
                                 <!-- {{objCon | json}} -->
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
