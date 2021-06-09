@@ -79,8 +79,9 @@ export class EiPlayHistoryComponent implements OnInit {
   generateExcel() {
     delete this.eiPlayHistory.modal.page_size;
     delete this.eiPlayHistory.modal.page;
-    this.eiPlayHistory.modal['export_csv'] = true
-    this.baseService.generateExcel('starclass/export-csv-ei-course/', 'play-history', this.eiPlayHistory.modal);
+    this.eiPlayHistory.modal['export_csv'] = true;
+    this.eiPlayHistory.modal.course = this.route.snapshot.queryParamMap.get('course')
+    this.baseService.generateExcel('starclass/export-csv-play-history/', 'ei-play-history', this.eiPlayHistory.modal);
   }
 
 }

@@ -208,6 +208,36 @@ export class BulkPromoteComponent implements OnInit {
     }
   }
 
+  markAsAlumni() {
+    let promoteData: any = [];
+    promoteData = this.dataSource.filter(x => x.status == true)
+    let userIds = promoteData.map(a => a.student_id);
+    let params = {
+      "course": this.courseId,
+      "standard": this.currentStandardId,
+      "teaching_class": JSON.parse(localStorage.getItem('bulkStudents')).classId,
+      "user_id": userIds.toString()
+    }
+    this.loader.show();
+    this.baseService.action('ei/bulk-alumni-class-by-ei/', params).subscribe(
+      (res: any) => {
+        this.loader.hide()
+        if (res.status) {
+          this.alert.success(res.message, "Success")
+          this.location.back()
+        } else {
+          this.alert.error(res.error.message[0], "Error")
+          // if (res.error.roll_no && res.error.roll_no.length > 0) {
+          //   this.showError(res.error.roll_no)
+          // }
+        }
+      },
+      err => {
+        this.loader.hide()
+      }
+    )
+  }
+
   goBack() {
     this.location.back()
   }

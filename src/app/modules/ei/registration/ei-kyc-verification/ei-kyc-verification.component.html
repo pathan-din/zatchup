@@ -14,15 +14,15 @@
                             <label for="idProof" class="mediumFont commonFontSize letterspacing">
                                 ID Proof</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name="kyc_type"
-                                    class="custom-select form-control-input" required>
+                                <select (change)="checkIdValidation(); isValid()" [(ngModel)]="model.kyc_type"
+                                    name="kyc_type" class="custom-select form-control-input" required>
                                     <option value="">Select your ID</option>
                                     <option value="Aadhar">Aadhaar Card</option>
                                     <option value="Dl">Driving License</option>
                                     <option value="Passport">Passport Number</option>
                                 </select>
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.type"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_type"></div>
                         </div>
                     </div>
 
@@ -36,7 +36,7 @@
                                     class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="{{placeholder}}">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.id_no"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_id_no"></div>
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@
                                     class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="{{placeholder}}">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.id_no"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_id_no"></div>
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
                                     class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="Enter Your Name">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_name"></div>
                         </div>
                     </div>
                     <div class="form-group row  ">
@@ -87,7 +87,8 @@
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input
                                     class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing"
-                                    type="file" (change)="handleFileInput($event.target.files)" name="document">
+                                    type="file" (change)="handleFileInput($event.target.files); isValid();"
+                                    name="document" [(ngModel)]="uploadedContent" required>
                             </div>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
@@ -98,10 +99,14 @@
                                 photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input
+                                <input *ngIf="model.kyc_type == 'Aadhar'"
                                     class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
-                                    type="file" (change)="handleFileInputBack($event.target.files)"
-                                    name="document_back">
+                                    type="file" (change)="handleFileInputBack($event.target.files); isValid();"
+                                    [(ngModel)]="uploadedContent_back" name="document_back" required>
+                                <input *ngIf="model.kyc_type != 'Aadhar'"
+                                    class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
+                                    type="file" (change)="handleFileInputBack($event.target.files); isValid();"
+                                    [(ngModel)]="uploadedContent_back" name="document_back">
                             </div>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.document_back"></div>
