@@ -50,6 +50,15 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
       this.editTeacherAudience.config.totalItems = this.editTeacherAudience.dataSource.length;
       this.editTeacherAudience.startIndex = this.editTeacherAudience.page_size * (this.editTeacherAudience.config.currentPage - 1) + 1;
       this.editTeacherAudience.pageCounts = this.baseService.getCountsOfPage();
+      let find = this.editTeacherAudience.dataSource.find(ele => {
+        return ele.is_edit_right == false
+      })
+      if (find){
+        this.selectAll = false;
+      }
+      else{
+        this.selectAll = true;
+      }
       this.setData()
     }
     else {
@@ -92,6 +101,15 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
             if (res.count > 0) {
               this.editTeacherAudience.dataSource = res.results;
               this.editTeacherAudience.pageCounts = this.baseService.getCountsOfPage()
+              let find = this.editTeacherAudience.dataSource.find(ele => {
+                return ele.is_edit_right == false
+              })
+              if (find){
+                this.selectAll = false;
+              }
+              else{
+                this.selectAll = true;
+              }
               this.setData()
             }
             else {

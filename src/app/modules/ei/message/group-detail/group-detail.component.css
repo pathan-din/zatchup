@@ -12,11 +12,10 @@ ul {
     margin-left: 0px;
     padding-left: 0px;
 }
-.addChatProfile img {
-    width: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    height: 120px;
+.addChatProfile > i {
+    font-size: 50px;
+    line-height: 120px;
+    color: #666;
 }
 .addChatProfile{
     width: 120px;
@@ -27,6 +26,12 @@ ul {
     line-height: 120px;
     font-size: 20px;
     margin: 20px 0px;
+}
+.addChatProfile img {
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 50%;
+    height: 120px;
 }
 .profileCamara {
     position: absolute;
@@ -41,13 +46,62 @@ ul {
     line-height: 35px;
 }
 ul.participantsList li {
-    display: inline-block;
-    margin: 10px 15px 10px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
 }
 ul.participantsList span {
+    margin-top: 0px;
+}
+.pickSize {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+}
+li.user-blkrow {
+    padding: 12px 20px;
+}
+li.user-blkrow:hover {
+    background: #e2e2e2;;
+}
+span.group-admin {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 16px;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 2px 5px;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+}
+
+span.group-admin-green {
+    border: 1px solid #3fa83f;
+    color: #3fa83f;
+}
+span.group-member{
+    font-size: 13px;
+    line-height: 16px;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 2px 5px;
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    display: none;
+}
+
+li.user-blkrow:hover .group-member {
     display: block;
-    margin-top: 5px;
 }
 
 .addParticipants {
@@ -61,7 +115,7 @@ ul.participantsList span {
 }
 
 .img-small {
-    width: 55px;
+    width: 40px;
 }
 
 @media (max-width: 767px){

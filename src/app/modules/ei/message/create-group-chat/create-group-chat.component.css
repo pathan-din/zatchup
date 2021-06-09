@@ -13,20 +13,72 @@ ul {
     line-height: 65px;
     font-size: 20px;
 }
+.pickSize {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+}
 ul.participantsList li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+/* ul.participantsList li {
     display: inline-block;
     margin: 10px 15px 10px;
     text-align: center;
-}
+} */
 ul.participantsList span {
     display: block;
     margin-top: 5px;
+}
+li.user-blkrow {
+    padding: 12px 20px;
+}
+li.user-blkrow:hover {
+    background: #e2e2e2;;
+}
+
+span.group-admin {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 16px;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 2px 5px;
+    position: absolute;
+    right: 5px;
+    top: 4px;
+}
+
+span.group-admin-green {
+    border: 1px solid #3fa83f;
+    color: #3fa83f;
+}
+span.group-member{
+    font-size: 13px;
+    line-height: 16px;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    padding: 2px 5px;
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    display: none;
 }
 
 .addParticipants {
     width: 40px;
     height: 40px;
-    margin: 0px auto;
+    text-align: center;
     color: #fff;
     border-radius: 50%;
     line-height: 40px;
