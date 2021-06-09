@@ -17,8 +17,8 @@
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select (change)="getStandardList(courseId)" id="course_id" [(ngModel)]="courseId" name="course"
-                            class="custom-select border form-control-input" [disabled]="true">
+                        <select (change)="getStandardList(courseId, 'new')" id="course_id" [(ngModel)]="courseId" name="course"
+                            class="custom-select border form-control-input">
                             <option value=""> Select Course</option>
                             <option value="{{course.id}}" *ngFor="let course of studentCourseList">
                                 {{course.course_name}}
@@ -92,7 +92,7 @@
                             <!-- {{dataSource[i] | json}} -->
                             <input id="{{element.roll_no}}" class="form-control"
                                 [ngStyle]="{'border-color': element.isDuplicates ? 'red': ''}" type="text"
-                                [(ngModel)]="dataSource[i].roll_no" (keyup)="onKeyUp(i, dataSource[i].roll_no)">
+                                [(ngModel)]="dataSource[i].roll_no">
                         </mat-cell>
                     </ng-container>
 

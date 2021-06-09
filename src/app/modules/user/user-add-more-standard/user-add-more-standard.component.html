@@ -125,7 +125,7 @@
                                 <label for="" class="mediumFont commonFontSize letterspacing">Start Year</label>
                                 <div class="col-sm-12 p-0 form-control-inputDiv">
                                     <input required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD"
-                                        (ngModelChange)="isValid()" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
+                                        (ngModelChange)="setEndYearCourseDates($event); isValid()" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
                                         name="course_start_year" [(ngModel)]="model.course_start_year"
                                         [maxDate]="startYearMinDate" [minDate]="startYearMaxDate"
                                         class="form-control-input form-control form-control-sm" type="text">
@@ -159,8 +159,8 @@
                                 <div class="col-sm-12 p-0 form-control-inputDiv">
                                     <input required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD"
                                         [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="course_end_year"
-                                        (ngModelChange)="isValid()" [(ngModel)]="model.course_end_year"
-                                        [minDate]="startYearMaxDate" [maxDate]="startYearMinDate"
+                                        (ngModelChange)="setStartYearCourseDates($event); isValid()" [(ngModel)]="model.course_end_year"
+                                        [minDate]="endYearMaxDate" [maxDate]="endYearMinDate"
                                         class="form-control-input form-control form-control-sm" type="text">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.course_end_year"></div>
