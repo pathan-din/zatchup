@@ -26,6 +26,11 @@
 .groupChatList {
   height: 200px;
   overflow-y: scroll;
+  width: 100%;
+}
+.studentbulkTable th, tr, td {
+  padding: 8px;
+  border: 0px solid #dee2e6 !important;
 }
   @media (max-width: 767px){
     .teacherChatList {

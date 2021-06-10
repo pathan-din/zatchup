@@ -29,9 +29,9 @@
                     </div>
                     <h3 class="commonFontSize semiBoldFont mt-2">Add Teacher List</h3>
 
-                    <div class="teacherChatList bg-white border rounded">
-                        <div class="row align-items-center border-bottom" *ngFor="let teacher of teacherList;let i=index; ">
-                            <div class="col-lg-2 col-md-2 col-3 text-center">
+                    <div class="teacherChatList bg-white border rounded mb-3">
+                        <div class="row m-0 align-items-center border-bottom" *ngFor="let teacher of teacherList;let i=index; ">
+                            <div class="col-lg-2 col-md-2 col-2 text-center">
                                 <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
                                     class="pickSize" />
                             </div>
@@ -39,7 +39,7 @@
                                 <h4 class="m-0 semiBoldFont color-black text-capitalize">{{teacher.first_name}} {{teacher.last_name}}</h4>
                                 <p class="small-text-2 m-0">Employee ID: {{teacher.employee_num}}</p>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-12 text-center my-1">
+                            <div class="col-lg-2 col-md-2 col-2 text-center my-1">
                                 <button *ngIf="!teacher.isadded" (click)="addTeacherInGroup(teacher,i,'add')" type="button" class="btn bg-paret-green color-white px-1 py-0 rounded small-text-2">Add</button> 
                                 <button *ngIf="teacher.isadded" (click)="addTeacherInGroup(teacher,i,'del')" type="button" class="btn bg-red color-white px-1 py-0 rounded small-text-2">Delete</button> 
                             </div>
@@ -80,14 +80,9 @@
 
 
                         </div>
-                        <div *ngIf="model.ismoduleaccessclass" class="d-flex flex-wrap align-items-end groupChatList">
-
-                            <table>
-                                <tr>
-                                    <td>
-                                        Course
-                                    </td>
-                                </tr>
+                        <div *ngIf="model.ismoduleaccessclass" class="d-flex flex-wrap align-items-start groupChatList">
+                            <h3 class="commonFontSize semiBoldFont">Course</h3>
+                            <table class="w-100 border">
                                 <tr *ngFor="let course of courseListModuleAccess;let i=index;">
                                     <td>
                                         <mat-checkbox  [checked]="isAccess(course.id,'course')" (change)="displayStandardListModuleAccess(course.id,$event);getCourseIds(course.id)" required
