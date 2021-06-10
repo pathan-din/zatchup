@@ -121,10 +121,8 @@ export class ChatComponent implements OnInit {
       this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
         if(res){
            
-          
           this.online=res.setting.online;
           this.is_last_seen=res.setting.is_seen;
-
           
         }
       })
