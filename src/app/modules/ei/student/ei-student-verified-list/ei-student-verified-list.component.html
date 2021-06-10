@@ -51,14 +51,14 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                <div class="widthFull mr-3 mt-3 custumInputWidth" *ngIf="model.approved == '1'">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Students</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
                         <select id="class_id" [(ngModel)]="promoteType" name="class" required
                             class="custom-select  form-control-input" required>
                             <option value=""> Select students </option>
-                            <option value="new"> New </option>
-                            <option value="old"> Old </option>
+                            <option value="new"> School Promoted </option>
+                            <option value="old"> User Added </option>
                         </select>
                     </div>
                 </div>

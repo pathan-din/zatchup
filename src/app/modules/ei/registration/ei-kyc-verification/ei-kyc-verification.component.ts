@@ -73,9 +73,10 @@ export class EiKycVerificationComponent implements OnInit {
       this.model.kyc_dob = this.datePipe.transform(this.model.kyc_dob, 'yyyy-MM-dd')
       this.loader.show();
       const formData = new FormData();
+      let kyc_doc_back: any  = this.uploadedContent_back ? this.uploadedContent_back : ''
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
-      formData.append('kyc_document_back', this.uploadedContent_back);
+      formData.append('kyc_document_back', kyc_doc_back);
       formData.append('kyc_id_no', this.model.kyc_id_no);
       formData.append('kyc_name', this.model.kyc_name);
       formData.append('kyc_dob', this.model.kyc_dob);
