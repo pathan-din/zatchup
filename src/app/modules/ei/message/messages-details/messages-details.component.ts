@@ -238,10 +238,10 @@ export class MessagesDetailsComponent implements OnInit {
          this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
           
           res.uuid=localStorage.getItem("guuid");
-          console.log(res.reciepent);
+          //console.log(res.reciepent);
           
             res.reciepent.forEach(ele => {
-              console.log(this.dataStudent);
+              //console.log(this.dataStudent);
               if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
                 let data: any = {};
                 let dataNew: any = {};
@@ -309,9 +309,9 @@ export class MessagesDetailsComponent implements OnInit {
           .then(
             res => {
   
-              this.getDocumentsChat()
+             
               this.model.comment = '';
-  
+              this.getDocumentsChat()
   
             },
             err => reject(err)

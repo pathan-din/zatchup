@@ -20,7 +20,7 @@
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
                             <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}</p>
-                            <span class="small-text-2" *ngIf="presence$ | async as presence">
+                            <span class="small-text-2" *ngIf="!blockRecipant && presence$ | async as presence">
                                 <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
                                 <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimeAgo(presence.timestamp)}}</label>
                                 
