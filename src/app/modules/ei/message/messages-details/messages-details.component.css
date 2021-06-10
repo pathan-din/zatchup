@@ -15,7 +15,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
 }
-
+.pdf_customSize{width: 60px;}
 .date-text {
     font-size: .8rem;
     clear: both;

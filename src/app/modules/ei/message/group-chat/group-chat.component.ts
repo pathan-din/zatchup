@@ -481,5 +481,8 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       this.model.course = "";
     }
   }
+  goBack(): void{
+    this.location.back();
+  }
  
 }

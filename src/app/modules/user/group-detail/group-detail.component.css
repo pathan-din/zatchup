@@ -103,4 +103,14 @@ li.user-blkrow:hover {
     .w-50{
         width: 100% !important;
     }
+    .addChatProfile{
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+    }
+    .addChatProfile i{
+        font-size: 26px;
+        line-height: 26px;
+    }
+    ul.participantsList li{margin: 0px;}
 }

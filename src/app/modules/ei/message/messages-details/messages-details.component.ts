@@ -6,6 +6,7 @@ import { ChatService } from 'src/app/services/chat/chat.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-messages-details',
@@ -41,6 +42,7 @@ export class MessagesDetailsComponent implements OnInit {
     private firestore: AngularFirestore,
     private chatService: ChatService,
     private alert: NotificationService,
+    private location: Location,
     private route:ActivatedRoute,
     private firebaseService: FirebaseService,
     private router:Router
@@ -411,5 +413,8 @@ export class MessagesDetailsComponent implements OnInit {
     // console.log(exArr[(exArr.length-1)].split(".")[1]);
 
     return exArr[(exArr.length - 1)].split(".")[1];
+  }
+  goBack(): void{
+    this.location.back();
   }
 }
