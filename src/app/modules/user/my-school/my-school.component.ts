@@ -26,14 +26,19 @@ export class MySchoolComponent implements OnInit {
   ) { }
   ngOnInit(): void {
      var role = parseInt(localStorage.getItem("role"))
-    this.verified = localStorage.getItem('approved');
+    if(localStorage.getItem('approved') && localStorage.getItem('approved')=='true'){
+      this.verified = true;
+    } 
+    
     if (role == 1) {
       this.roleCheck = true;
     } else {
       this.roleCheck = false;
     }
-    
-
+    // this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+    setTimeout(() => {
+      this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+      }, 500);
 
   }
   gotToProfilePage() {

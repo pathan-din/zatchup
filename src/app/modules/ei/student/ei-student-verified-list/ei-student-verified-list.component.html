@@ -234,8 +234,8 @@
                         <p class="commonFontSize regularFont letterspacing">Are you sure you want to selected students
                             change for details?</p>
                         <div class="col-6 editClass" *ngFor="let class of classList;">
-                            <input type="radio" [(ngModel)]="model.class_id" name="class" name="class"
-                                value="{{class.id}}" />{{class.class_name}}
+                            <input type="radio" *ngIf="class.id != model.teaching_class" [(ngModel)]="model.class_id" name="class" name="class"
+                                value="{{class.id}}" /><span *ngIf="class.id != model.teaching_class"> {{class.class_name}}</span>
                         </div>
                         <p class="commonFontSize regularFont letterspacing text-right">
                             <button type="button" (click)="editBulkClass()"

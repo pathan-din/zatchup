@@ -324,6 +324,7 @@ export class StudentsListComponent implements OnInit {
       } 
       
     })
+    atLeastOneTeacher=true;
     if(!atLeastOneStudent){
       return this.alert.error("Please atleast one student in this group","Error");
     }
