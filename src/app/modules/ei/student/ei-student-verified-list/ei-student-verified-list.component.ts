@@ -24,7 +24,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   modelPromote: any = {};
   modelReason: any = {};
   studentList: any = [];
-  // studentListArr: any = [];
+  approved: any;
   studentDetails: any = [];
   arrAge: any = [];
   studentArr: any = [];
@@ -54,8 +54,6 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
-  promoteType: any = '';
-  isApplyFilter: boolean;
 
   constructor(
     private router: Router,
@@ -80,7 +78,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.model.gender = '';
     this.model.approved = ""
     this.route.queryParams.subscribe((params: any) => {
-      this.model.approved = params['approved'] ? params['approved'] : '';
+      this.approved = params['approved'] ? params['approved'] : ''
+      this.model.approved = this.approved;
       this.model.is_rejected = params['is_rejected'] ? params['is_rejected'] : '';
       this.model.rejectedby = params['rejectedby'] ? params['rejectedby'] : '';
       this.title = params['title'];
@@ -136,8 +135,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.baseService.action("ei/promote-class-by-ei/", this.modelPromote).subscribe((res: any) => {
         if (res.status) {
           this.loader.hide()
-          this.alert.success(res.message[0], "Success");
+          this.alert.success(res.message, "Success");
           this.closePromoteModel.nativeElement.click();
+          this.model = {}
+          this.model.approved = this.approved;
+          this.setFilterData()
           this.getGetVerifiedStudent('', '')
         } else {
           this.loader.hide()
@@ -226,17 +228,24 @@ export class EiStudentVerifiedListComponent implements OnInit {
     }
   }
   editBulkClass() {
-    if (!this.model.teaching_class && this.studentListSendForBulk.length == 0) {
-      this.alert.error(this.error, 'Please select student list of particular class')
-      // alert("Please select student list of particular class.")
+    if (!this.model.class_id) {
+      this.alert.error('Please select class first!', 'Error')
       return;
-    } else {
+    }
+    else if (this.studentListSendForBulk.length == 0) {
+      this.alert.error('Please select student list of particular class', "Error")
+      return;
+    }
+    else {
       try {
         this.loader.show();
         this.baseService.actionForPutMethod('ei/bulk-editclass-by-ei/', { 'student_ids': this.studentListSendForBulk.join(','), 'class_id': this.model.class_id }).subscribe(
           (res: any) => {
             this.loader.hide();
             this.closeChangeClassModel.nativeElement.click()
+            this.model = {}
+            this.model.approved = this.approved;
+            this.setFilterData()
             this.getGetVerifiedStudent('', '')
             this.displayCourseList();
             this.alert.success(res.message, 'Success');
@@ -287,41 +296,12 @@ export class EiStudentVerifiedListComponent implements OnInit {
           this.config.currentPage = page
           this.config.totalItems = this.totalNumberOfPage;
           this.pageCounts = this.baseService.getCountsOfPage();
-          let arrStudentList: any = [];
           if (!page) { page = 1 }
           var i = (this.pageSize * (page - 1)) + 1;
-          // this.studentList.forEach(objData => {
-          //   let objStudentList: any = {};
-          //   objStudentList.checked = '';
-          //   objStudentList.status = false;
-          //   objStudentList.SNo = i;
-          //   objStudentList.zatchupID = objData.zatchup_id;
-          //   objStudentList.student_id = objData.user_id;
-          //   objStudentList.kyc_approved = objData.kyc_approved;
-          //   objStudentList.approved = objData.approved;
-          //   objStudentList.is_rejected = objData.is_rejected;
-          //   objStudentList.reason_reject = objData.reason_reject;
-          //   objStudentList.name = objData.first_name + ' ' + objData.last_name;
-          //   objStudentList.gender = objData.gender;
-          //   objStudentList.age = objData.age;
-          //   objStudentList.userID = objData.admission_no;
-          //   objStudentList.class = objData.class_name;
-          //   objStudentList.alias_class = objData.alias_class;
-          //   objStudentList.roll_no = objData.roll_no;
-          //   objStudentList.firebase_id = objData.firebase_id;
-          //   objStudentList.promote_type = objData.promote_type
-          //   objStudentList.Action = '';
-          //   i = i + 1;
-          //   arrStudentList.push(objStudentList);
-          // })
           this.dataSource = this.setData(this.studentList, i);
 
           if (this.dataSource.length == 0)
             this.dataSource = undefined
-          if (this.promoteType != '') {
-            this.isApplyFilter = true;
-            this.studentTypes();
-          }
           if (res.status == false) {
             this.alert.error(res.error.message[0], 'Error')
           }
@@ -374,7 +354,6 @@ export class EiStudentVerifiedListComponent implements OnInit {
       arrFilter.push(teaching_class)
       arrFilter.push(gender)
       var strFilter = arrFilter.join("&");
-      this.isApplyFilter = true;
       this.getGetVerifiedStudent('', strFilter)
     } else {
       this.getGetVerifiedStudent('', '')
@@ -610,23 +589,13 @@ export class EiStudentVerifiedListComponent implements OnInit {
     }
   }
 
+  setFilterData(){
+    this.model.course = '';
+    this.model.standard = '';
+    this.model.teaching_class = '';
+  }
+
   closeModel() {
     this.closeVerifiedModel.nativeElement.click()
   }
-
-  studentTypes() {
-    if (this.isApplyFilter) {
-      if (this.promoteType != '') {
-        let students: any = [];
-        students = this.studentList.filter(val => val.promote_type == this.promoteType)
-        if (students.length > 0)
-          this.dataSource = this.setData(students, 1)
-        else
-          this.dataSource = undefined
-      } else {
-        this.applyFilter()
-      }
-    }
-  }
-
 }

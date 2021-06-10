@@ -51,19 +51,6 @@
                     </div>
                 </div>
 
-                <div class="widthFull mr-3 mt-3 custumInputWidth" *ngIf="model.approved == '1'">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Students</label>
-                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select id="class_id" [(ngModel)]="promoteType" name="class" required
-                            class="custom-select  form-control-input" required>
-                            <option value=""> Select students </option>
-                            <option value="new"> School Promoted </option>
-                            <option value="old"> User Added </option>
-                        </select>
-                    </div>
-                </div>
-
-
                 <button (click)="applyFilter()" type="button"
                     class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
 
