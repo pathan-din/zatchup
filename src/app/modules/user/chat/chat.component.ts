@@ -93,7 +93,7 @@ export class ChatComponent implements OnInit {
             }
            
           })
-          if(group_student.length>0)
+              if(group_student.length>0)
               {
                 this.is_teacher_in_group=1
               }
@@ -119,12 +119,12 @@ export class ChatComponent implements OnInit {
       }
       this.currentUser = localStorage.getItem('fbtoken');
       this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
+        console.log("res.setting",res.setting);
+        
         if(res){
            
-          
           this.online=res.setting.online;
           this.is_last_seen=res.setting.is_seen;
-
           
         }
       })
