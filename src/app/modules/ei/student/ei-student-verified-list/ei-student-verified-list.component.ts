@@ -525,16 +525,15 @@ export class EiStudentVerifiedListComponent implements OnInit {
     data.approve_student = action;
     try {
       this.loader.show();
-      this.eiService.approveStudent(data).subscribe(
+      this.baseService.action('ei/approve-student/',data).subscribe(
         (res: any) => {
+          this.loader.hide();
+          this.closeVerifiedModel.nativeElement.click()
           if (res.status == true) {
-            this.loader.hide();
             this.alert.success(res.message, 'Success');
-            this.closeVerifiedModel.nativeElement.click()
             this.router.navigate(['ei/student-management']);
           } else {
-            this.loader.hide();
-            this.alert.error(res.error, 'Error');
+            this.alert.error(res.error.message[0], 'Error');
           }
         }, (error) => {
           this.loader.hide();

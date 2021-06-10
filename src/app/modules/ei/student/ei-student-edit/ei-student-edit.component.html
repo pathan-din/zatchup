@@ -33,7 +33,7 @@
                     <div class="col-md-12">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Admission Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input [(ngModel)]="model.admission_no" name="admission_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Admission Number">
+                            <input [(ngModel)]="model.admission_no" [disabled]="is_approve == '1'" name="admission_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Admission Number">
                         </div>
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>

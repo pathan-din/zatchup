@@ -36,27 +36,27 @@
                 <!-- <li class="nav-item">
                     <a routerLink="/user/career" class="nav-link " routerLinkActive="active-link">Career</a>
                 </li> -->
-                <li *ngIf="authCheck" class="nav-item cursorStyle">
+                <!-- <li *ngIf="authCheck" class="nav-item cursorStyle">
                     <a (click)="logout()" class="nav-link" routerLinkActive="active-link">Logout</a>
-                </li>
+                </li> -->
             </ul>
 
-            <div *ngIf="authCheck" class="dropdown nav-item position-relative customUserSearch">
+            <div *ngIf="authCheck && showHeader" class="dropdown nav-item position-relative customUserSearch">
                 <div>
                     <input-search [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
                 </div>
             </div>
             <ul *ngIf="authCheck" class="navbar-nav ml-auto userNavUl flex-wrap justify-content-end">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="showHeader">
                     <a routerLink="/user/home" [queryParams]="{id: userProfile.user_id}" class="nav-link" routerLinkActive="active-link">Home</a>
                 </li>
                 <!-- <li class="nav-item">
                     <a routerLink="/user/my-educational-profile" class="nav-link" routerLinkActive="active-link">My School</a>
                 </li> -->
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="showHeader">
                     <a routerLink="/user/my-school" class="nav-link" routerLinkActive="active-link">My School</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="showHeader">
                     <a routerLink="/user/messages" routerLinkActive="active-link" class="nav-link cursorStyle" aria-expanded="false">Messages</a>
                 </li>
 
@@ -88,21 +88,21 @@
                                 <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp">
                                 <span class="my-3 semiBoldFont color-black d-block text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
                             </div>
-                            <div class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="goToChangePassword()"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
-                            <div class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="settingList()"><i class="fa fa-cog" aria-hidden="true mr-1"></i> Settings </div>
+                            <div *ngIf="showHeader" class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="goToChangePassword()"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
+                            <div *ngIf="showHeader" class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="settingList()"><i class="fa fa-cog" aria-hidden="true mr-1"></i> Settings </div>
                             <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true mr-1"></i> Logout </div>
                         </div>
                     </div>
                 </div>
 
-                <li class="nav-item" *ngIf="authCheck">
+                <li class="nav-item" *ngIf="authCheck && showHeader">
                     <a (click)="reminderList()" class="mx-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-clock-o fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white clockAlert">{{regProfile.unread_reminder_count? regProfile.unread_reminder_count : 0}}</sup>
                     </a>
                 </li>
 
-                <li class="nav-item" *ngIf="authCheck">
+                <li class="nav-item" *ngIf="authCheck && showHeader">
                     <a (click)="notificationList()" class="mx-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white notification_icon">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup>

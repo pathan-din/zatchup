@@ -17,7 +17,7 @@
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select (change)="getStandardList(courseId, 'new')" id="course_id" [(ngModel)]="courseId"
+                        <select [disabled]="courseDisable" (change)="getStandardList(courseId, 'new')" id="course_id" [(ngModel)]="courseId"
                             name="course" class="custom-select border form-control-input">
                             <option value=""> Select Course</option>
                             <option value="{{course.id}}" *ngFor="let course of studentCourseList">

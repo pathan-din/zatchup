@@ -15,6 +15,7 @@ export class BulkPromoteComponent implements OnInit {
   classId: any = '';
   courseId: any = '';
   standardId: any = '';
+  currentCourseId: any;
   currentStandardId: any = '';
   classList: any = [];
   studentCourseList: any = [];
@@ -23,6 +24,7 @@ export class BulkPromoteComponent implements OnInit {
   rollNumArr: any = []
   promoteType: any = ''
   studentList: any;
+  courseDisable: boolean
 
   constructor(
     private location: Location,
@@ -37,6 +39,7 @@ export class BulkPromoteComponent implements OnInit {
     this.studentList = this.dataSource;
     this.courseId = JSON.parse(localStorage.getItem('bulkStudents')).courseId;
     this.currentStandardId = JSON.parse(localStorage.getItem('bulkStudents')).standardId;
+    this.currentCourseId = this.courseId;
     this.setData()
     this.getCourseList();
     this.getStandardList(this.courseId, '');
@@ -87,6 +90,10 @@ export class BulkPromoteComponent implements OnInit {
       this.baseService.getData("user/next-standard-list/", params).subscribe((res: any) => {
         this.loader.hide()
         this.studentStandardList = res.results;
+        if (this.studentStandardList.length > 0 && type != 'new')
+          this.courseDisable = true
+        else
+          this.courseDisable = false
       }, (error) => {
         this.loader.hide()
         this.alert.error(error.error, "Error");
@@ -141,6 +148,7 @@ export class BulkPromoteComponent implements OnInit {
       let userIds = promoteData.map(a => a.student_id);
       let params = {
         "course": this.courseId,
+        "old_course": this.currentCourseId != this.courseId ? this.currentCourseId : '',
         "standard": this.standardId,
         "teaching_class": this.classId,
         "user_id": userIds.toString(),
