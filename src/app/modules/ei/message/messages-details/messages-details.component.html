@@ -30,7 +30,7 @@
                         <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle">
                     </a>
                     <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-item cursorStyle">Group Info</div>
+                        <!-- <div class="dropdown-item cursorStyle">Group Info</div> -->
                         <span *ngIf="!isblock" (click)="blockPaticipant(recepintDetails.id)" class="dropdown-item cursorStyle">Block User</span>
                         <span *ngIf="isblock" (click)="unblockPaticipant(recepintDetails.id)" class="dropdown-item cursorStyle">Unblock User</span>
                     </div>
@@ -81,14 +81,22 @@
                         <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{','}} </label>
                     </span>
                 </div>
+<<<<<<< HEAD
                 <!--<div class="setting_info text-right pr-3 dropdown">
+=======
+                <!-- <div class="setting_info text-right pr-3 dropdown">
+>>>>>>> 81e3c84debc0cbffc0bb47320bb13c29e4b52ba1
                     <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle">
                     </a>
                     <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
                         <span class="dropdown-item cursorStyle">Block User</span>
                     </div>
+<<<<<<< HEAD
                 </div>-->
+=======
+                </div> -->
+>>>>>>> 81e3c84debc0cbffc0bb47320bb13c29e4b52ba1
             </div>
 
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">

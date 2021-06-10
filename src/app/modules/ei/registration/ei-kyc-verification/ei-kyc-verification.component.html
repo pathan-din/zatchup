@@ -18,8 +18,8 @@
                                     name="kyc_type" class="custom-select form-control-input" required>
                                     <option value="">Select your ID</option>
                                     <option value="Aadhar">Aadhaar Card</option>
-                                    <option value="Dl">Driving License</option>
-                                    <option value="Passport">Passport Number</option>
+                                    <option value="Dl">Driving Licence</option>
+                                    <option value="Passport">Passport</option>
                                 </select>
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_type"></div>
@@ -96,7 +96,7 @@
                     <div class="form-group row ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back
-                                photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</label>
+                                photo optional</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
                                 <input *ngIf="model.kyc_type == 'Aadhar'"

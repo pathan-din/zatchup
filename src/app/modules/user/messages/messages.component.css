@@ -13,8 +13,17 @@
     min-width: 55px;
     max-height: 55px;
     border: 1px solid #d4d4d4;
+    position: relative;
 }
-
+.profile_pick img {
+    max-width: 100%;
+    margin: 0px auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .chat_contentBox{
     width: 90%;
     margin: 0px auto;
@@ -22,6 +31,20 @@
 
 .img-small{
     height: 24px;
+}
+
+span.chatCount {
+    background: #22c123;
+    padding: 4px 7px;
+    border-radius: 50px;
+    display: inline-block;
+    line-height: 14px;
+    text-align: center;
+    font-size: 15px;
+    position: absolute;
+    right: 0px;
+    color: #fff;
+    top: 10px;
 }
 
 @media (max-width: 767px){

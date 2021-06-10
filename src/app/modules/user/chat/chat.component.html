@@ -87,7 +87,7 @@
                 <div class="border-bottomCustom mb-3 pt-3 pb-3 d-flex justify-content-between flex-wrap align-items-center">
                     <div (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')" class="profile_detail d-flex align-items-center justify-content-start flex-wrap pl-3">
                         <div class="profile_pick">
-                            <img *ngIf="!recepientIcon" src="{{'assets/images/userWebsite/many-people-outline.png'}}" class="img-fluid cursorStyle">
+                            <img *ngIf="!recepientIcon" src="{{'assets/images/userWebsite/users.png'}}" class="img-fluid cursorStyle">
                             <img *ngIf="recepientGroup && recepientGroup.group_icon" src="{{recepientGroup.group_icon}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
@@ -95,7 +95,7 @@
                                 <span class="small-text-2"></span>
                             </p>
                              <span class="small-text-2" *ngFor="let user of receipentUsers">
-                                <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}}{{','}}</label>
+                                <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{','}}</label>
                             </span>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                             <i class="fa fa-paper-plane cursorStyle" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div *ngIf="groupexit==1 && is_teacher_in_group==0">You can't send messages to this group because you are no longer a participent</div>
+                    <div *ngIf="groupexit==1 || is_teacher_in_group==0" class="py-3 text-center">You can't send messages to this group because you are no longer a participent</div>
                 </div>
             </div>
             <div class="row" *ngIf="!params.chat">
@@ -182,9 +182,9 @@
                         </span>
                     </div>
                 </div>
-                <div class="row"  *ngIf="blockRecipant">
-                    <div class="col-12">
-                        You can't send messages to this group because you are no longer a participent
+                <div class="col-12" *ngIf="blockRecipant">
+                    <div class="text-center py-3">
+                        You can't send messages to this user because both are no friend.
                     </div>
                 </div>
             </div>

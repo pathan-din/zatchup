@@ -176,6 +176,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           response = res;
           this.standardList = response.results;
           this.leftStandardList = response.results;
+          this.resetForm()
           this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
@@ -189,6 +190,21 @@ export class UserAddMoreStandardComponent implements OnInit {
       //console.log(err);
     }
   }
+
+  resetForm(){
+    this.model.end_date = '';
+    this.model.start_date = '';
+    this.model.course_start_year = '';
+    this.model.course_end_year = '';
+    this.model.join_standard_id = '';
+    this.model.left_standard_id = '';
+    this.model.admission_no = '';
+    this.model.course_type = '';
+    this.model.course_name = '';
+    this.model.description = ''
+    this.setCalDates(this.model.course_id)
+  }
+
   displayClassList(stId) {
     try {
       if (stId) {

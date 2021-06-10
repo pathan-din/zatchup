@@ -123,10 +123,8 @@ export class ChatComponent implements OnInit {
         
         if(res){
            
-          
           this.online=res.setting.online;
           this.is_last_seen=res.setting.is_seen;
-
           
         }
       })

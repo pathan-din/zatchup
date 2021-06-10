@@ -241,4 +241,8 @@ export class GroupDetailComponent implements OnInit {
       }
     }
 
+    goBack() {
+      this.location.back()
+    }
+
 }
