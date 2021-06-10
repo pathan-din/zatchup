@@ -165,9 +165,10 @@ export class UserKycVerificationComponent implements OnInit {
     }
     try {
       const formData = new FormData();
+      let document_back: any = this.uploadedContentForBackPhoto ? this.uploadedContentForBackPhoto : ''
       formData.append('kyc_type', this.model.kyc_type);
       formData.append('kyc_document', this.uploadedContent);
-      formData.append('kyc_document_back', this.uploadedContentForBackPhoto);
+      formData.append('kyc_document_back', document_back);
       formData.append('kyc_id_no', this.model.kyc_id_no);
       this.loader.show();
       if (this.params.action == 'sendrequest') {

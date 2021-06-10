@@ -44,7 +44,7 @@ export class UserSignUpComponent implements OnInit {
   yearModel: any = '';
   type: any;
   maxlength: any;
-
+  
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,

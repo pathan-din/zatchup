@@ -51,6 +51,18 @@
                     </div>
                 </div>
 
+                <div class="widthFull mr-3 mt-3 custumInputWidth" *ngIf="model.approved == '1'">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Students</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="promoteType" name="class" required
+                            class="custom-select  form-control-input" required>
+                            <option value=""> Select students </option>
+                            <option value="new"> School Promoted </option>
+                            <option value="old"> User Added </option>
+                        </select>
+                    </div>
+                </div>
+
 
                 <button (click)="applyFilter()" type="button"
                     class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
@@ -58,7 +70,7 @@
 
             </div>
         </div>
-        <div class="row my-3" *ngIf="studentList.length>0">
+        <div class="row my-3" *ngIf="dataSource">
             <div class="col-md-5 d-flex flex-row align-items-center ">
 
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
@@ -81,7 +93,7 @@
             </div>
         </div>
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive" *ngIf="studentList.length>0">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource">
                 <mat-table #table [dataSource]="dataSource | paginate: config">
 
                     <!-- Checkbox Column -->
@@ -188,12 +200,12 @@
                 </mat-table>
 
             </div>
-            <div class="row" *ngIf="studentList.length==0">
+            <div class="row" *ngIf="!dataSource">
                 <div class="col-12 pt-2 pb-2">
                     <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
                 </div>
             </div>
-            <pagination-controls *ngIf="studentList.length>0" (pageChange)="getGetVerifiedStudent($event,'')"
+            <pagination-controls *ngIf="dataSource" (pageChange)="getGetVerifiedStudent($event,'')"
                 class="eiPaginationTag"></pagination-controls>
             <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
                 <p style="color: white">Please Wait. </p>
@@ -222,8 +234,8 @@
                         <p class="commonFontSize regularFont letterspacing">Are you sure you want to selected students
                             change for details?</p>
                         <div class="col-6 editClass" *ngFor="let class of classList;">
-                            <input type="radio" [(ngModel)]="model.class_id" name="class" name="class"
-                                value="{{class.id}}" />{{class.class_name}}
+                            <input type="radio" *ngIf="class.id != model.teaching_class" [(ngModel)]="model.class_id" name="class" name="class"
+                                value="{{class.id}}" /><span *ngIf="class.id != model.teaching_class"> {{class.class_name}}</span>
                         </div>
                         <p class="commonFontSize regularFont letterspacing text-right">
                             <button type="button" (click)="editBulkClass()"

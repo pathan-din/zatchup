@@ -23,6 +23,8 @@ export class UserAddMoreStandardComponent implements OnInit {
   isalumini: any;
   startYearMaxDate: any
   startYearMinDate: any
+  endYearMaxDate: any
+  endYearMinDate: any
   params: any;
   // endYearMaxDate: any = new Date();
   // endYearMinDate: any = new Date();
@@ -47,6 +49,8 @@ export class UserAddMoreStandardComponent implements OnInit {
   ) {
     this.startYearMaxDate = new Date();
     this.startYearMinDate = new Date();
+    this.endYearMaxDate = new Date();
+    this.endYearMinDate = new Date();
     this.baseService.getDateReverseFormat(this.startYearMinDate)
   }
 
@@ -172,6 +176,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           response = res;
           this.standardList = response.results;
           this.leftStandardList = response.results;
+          this.resetForm()
           this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
@@ -185,6 +190,21 @@ export class UserAddMoreStandardComponent implements OnInit {
       //console.log(err);
     }
   }
+
+  resetForm(){
+    this.model.end_date = '';
+    this.model.start_date = '';
+    this.model.course_start_year = '';
+    this.model.course_end_year = '';
+    this.model.join_standard_id = '';
+    this.model.left_standard_id = '';
+    this.model.admission_no = '';
+    this.model.course_type = '';
+    this.model.course_name = '';
+    this.model.description = ''
+    this.setCalDates(this.model.course_id)
+  }
+
   displayClassList(stId) {
     try {
       if (stId) {
@@ -317,8 +337,22 @@ export class UserAddMoreStandardComponent implements OnInit {
       if (course) {
         this.startYearMaxDate = new Date(course.start_date)
         this.startYearMinDate = new Date(course.end_date)
+        this.endYearMaxDate = new Date(course.start_date)
+      }
+      else{
+        this.startYearMaxDate = '';
+        this.startYearMinDate = '';
+        this.endYearMaxDate = '';
       }
     }
+  }
+
+  setEndYearCourseDates(evt){
+    this.endYearMaxDate = evt
+  }
+
+  setStartYearCourseDates(evt){
+    this.startYearMinDate = evt
   }
 
   isValid() {

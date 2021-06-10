@@ -34,10 +34,10 @@
                                     class="pickSize" />
                             </div>
                             <div class="col-lg-8 col-md-8 col-8 pt-1 pb-1">
-                                <h4 class="m-0 semiBoldFont color-black">{{teacher.first_name}} {{teacher.last_name}}</h4>
+                                <h4 class="m-0 semiBoldFont color-black text-capitalize">{{teacher.first_name}} {{teacher.last_name}}</h4>
                                 <p class="small-text-2 m-0">Employee ID: {{teacher.employee_num}}</p>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-12 text-right my-1">
+                            <div class="col-lg-2 col-md-2 col-12 text-center my-1">
                                 <button *ngIf="!teacher.isadded" (click)="addTeacherInGroup(teacher,i,'add')" type="button" class="btn bg-paret-green color-white px-1 py-0 rounded small-text-2">Add</button> 
                                 <button *ngIf="teacher.isadded" (click)="addTeacherInGroup(teacher,i,'del')" type="button" class="btn bg-red color-white px-1 py-0 rounded small-text-2">Delete</button> 
                             </div>

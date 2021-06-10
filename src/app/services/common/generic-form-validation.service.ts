@@ -87,7 +87,7 @@ export class GenericFormValidationService {
               {
                if(controls[i-1].value!=controls[i].value)
                {
-                this.errorMessageObject[controls[i].name] = controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').slice(1)+' and '+controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').slice(1)+ ' does not match.';     
+                this.errorMessageObject[controls[i].name] = controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').slice(1)+' and '+controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').slice(1)+ ' is not same.';     
                }
               }
              
@@ -107,6 +107,8 @@ export class GenericFormValidationService {
             msg=controls[i].getAttribute('message');
           }
           var pattern = new RegExp(controls[i].pattern);
+           
+          
           if (pattern.test(controls[i].value)) {
 
           } else {

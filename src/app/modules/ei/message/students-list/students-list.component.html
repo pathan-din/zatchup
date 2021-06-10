@@ -4,7 +4,7 @@
         <h2 class="commonFontSize semiBoldFont m-0">Students List</h2>
         <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
             <input [(ngModel)]="model.search" (keyup)="getGetVerifiedStudent('','')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
-                type="search" placeholder="Search Teacher">
+                type="search" placeholder="Search Student">
             <span class="position-absolute position-ppin">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </span>
@@ -71,7 +71,13 @@
  
     <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
         <h2 class="commonFontSize semiBoldFont m-0">Teacher List</h2>
-        
+        <!-- <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
+            <input [(ngModel)]="modelteacher.search" (keyup)="getGetVerifiedStudent('','')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                type="search" placeholder="Search Teacher">
+            <span class="position-absolute position-ppin">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+        </div> -->
         <div class="tableDiv mt-3">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource1">

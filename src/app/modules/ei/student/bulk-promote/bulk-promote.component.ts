@@ -36,20 +36,21 @@ export class BulkPromoteComponent implements OnInit {
     this.currentStandardId = JSON.parse(localStorage.getItem('bulkStudents')).standardId;
     this.setData()
     this.getCourseList();
-    this.getStandardList(this.courseId,);
+    this.getStandardList(this.courseId, '');
   }
 
   setData() {
     this.dataSource.forEach(ele => {
+      ele['roll_no'] = '';
       ele['status'] = true;
       ele['isDuplicates'] = false
     })
 
-    this.rollNumArr = this.dataSource.map(a => a.roll_no);
-    let duplicates = this.find_duplicate_in_array(this.rollNumArr);
-    if (duplicates.length > 0) {
-      this.showError(duplicates)
-    }
+    // this.rollNumArr = this.dataSource.map(a => a.roll_no);
+    // let duplicates = this.find_duplicate_in_array(this.rollNumArr);
+    // if (duplicates.length > 0) {
+    //   this.showError(duplicates)
+    // }
   }
 
   selectUnselectStudents(evt: any, index: any) {
@@ -72,11 +73,12 @@ export class BulkPromoteComponent implements OnInit {
     }
   }
 
-  getStandardList(courseId) {
+  getStandardList(courseId: any, type?: any) {
     try {
       this.loader.show();
+      let standerdId: any = this.standardId ? this.standardId : this.currentStandardId
       let params = {
-        "standard_id": this.standardId ? this.standardId : this.currentStandardId,
+        "standard_id": type == '' ? standerdId : '',
         "course_id": courseId
       }
       this.baseService.getData("user/next-standard-list/", params).subscribe((res: any) => {
@@ -111,7 +113,12 @@ export class BulkPromoteComponent implements OnInit {
 
   submit() {
     let promoteData: any = [];
+    let validRollNumbers: any = []
+    validRollNumbers = this.dataSource.filter(x => x.roll_no == '')
     promoteData = this.dataSource.filter(x => x.status == true)
+    // debugger
+    // return
+    console.log('validRollNumbers......', validRollNumbers);
 
     if (promoteData.length == 0) {
       this.alert.error('Please select students first.', 'Error')
@@ -123,6 +130,11 @@ export class BulkPromoteComponent implements OnInit {
     }
     else if (this.standardId && !this.classId) {
       this.alert.error('Please select class first.', 'Error')
+      return;
+    }
+    else if (validRollNumbers.length > 0) {
+      this.alert.error('Roll numbers is required.', 'Error')
+      this.showRollNumValidErrors(validRollNumbers)
       return;
     }
     else {
@@ -138,8 +150,11 @@ export class BulkPromoteComponent implements OnInit {
 
       let duplicates = this.find_duplicate_in_array(rollNums)
       if (duplicates.length > 0) {
-        this.alert.error('Please enter unique roll numbers', 'Error')
+        this.alert.error('Please enter unique roll numbers', 'Error');
+        this.showError(duplicates)
         return
+      } else {
+        this.validateErrors()
       }
       this.loader.show();
       this.baseService.action('ei/bulk-promote-class-by-ei/', params).subscribe(
@@ -153,6 +168,9 @@ export class BulkPromoteComponent implements OnInit {
             if (res.error.roll_no && res.error.roll_no.length > 0) {
               this.showError(res.error.roll_no)
             }
+            if (res.error.User_id && res.error.User_id.length > 0) {
+              this.validateUsers(res.error.User_id)
+            }
           }
         },
         err => {
@@ -162,6 +180,22 @@ export class BulkPromoteComponent implements OnInit {
     }
   }
 
+  validateErrors() {
+    this.dataSource.forEach(ele => {
+      ele['isDuplicates'] = false
+    })
+  }
+
+  validateUsers(users: any) {
+    users.forEach(user => {
+      this.dataSource.forEach(ele => {
+        if (user == ele.student_id) {
+          ele.isDuplicates = true
+        }
+      })
+    })
+  }
+
   showError(duplicates: any) {
     duplicates.forEach(dupEle => {
       this.dataSource.forEach(ele => {
@@ -169,6 +203,12 @@ export class BulkPromoteComponent implements OnInit {
           ele.isDuplicates = true
         }
       })
+    })
+  }
+
+  showRollNumValidErrors(duplicates: any) {
+    duplicates.forEach(dupEle => {
+      this.dataSource[this.dataSource.indexOf(dupEle)].isDuplicates = true;
     })
   }
 
@@ -227,9 +267,6 @@ export class BulkPromoteComponent implements OnInit {
           this.location.back()
         } else {
           this.alert.error(res.error.message[0], "Error")
-          // if (res.error.roll_no && res.error.roll_no.length > 0) {
-          //   this.showError(res.error.roll_no)
-          // }
         }
       },
       err => {

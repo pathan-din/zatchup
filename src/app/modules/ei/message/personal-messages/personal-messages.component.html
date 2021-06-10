@@ -22,8 +22,9 @@
                     <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
                 </div>
                 <div class="col-md-11 col-10" (click)="goToChatScreen(msgObj.uuid,msgObj.friendlidt_id)">
-                    <h3 class="m-0 semiBoldFont color-black text-capitalize">{{msgObj.user_name}}
+                    <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">{{msgObj.user_name}}
                         <span class="small-text">({{msgObj.class_name}} {{msgObj.roll_no}})</span>
+                        <span class="chatCount">0</span>
                     </h3>
                     <p class="mb-0"> {{msgObj.document?'Attachment':msgObj.msg}} </p>
                 </div>
@@ -33,15 +34,15 @@
         <div *ngFor="let msgObjG of groupList">
             <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle" (click)="messageDetails(msgObjG.uuid,'group')">
                 <div class="col-md-1 col-2 text-center">
-                     <img *ngIf="msgObjG.group_icon" src="{{msgObjG.group_icon}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                    <div class="group_iconImg border">
+                        <img *ngIf="msgObjG.group_icon" src="{{msgObjG.group_icon}}" alt="Profile" class="img-small"/>
+                    </div>
                     <!-- <img *ngIf="!msgObjG.group_icon" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>  -->
                 </div>
                 <div class="col-md-11 col-10">
-                    <h3 class="m-0 semiBoldFont color-black text-capitalize">{{msgObjG.group_title}}
-                         
+                    <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">{{msgObjG.group_title}}
+                        <span class="chatCount">0</span>
                     </h3>
-   
-               
                     <p class="mb-0"  *ngFor="let lastChat of lastGroupmsg[msgObjG.uuid];">{{lastChat.document?'Attachment':lastChat.msg}}</p> 
                 </div>
             </div>

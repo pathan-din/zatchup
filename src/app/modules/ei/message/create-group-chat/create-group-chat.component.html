@@ -18,22 +18,31 @@
             <div class="col-9 col-md-10 col-lg-11">
                 
                 <div class="form-control-inputDiv rounded p-0 shadow-none w-50">
-                    <input name="group_title" required [(ngModel)]="model.group_title" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Group title">
+                    <input name="group_title" required [(ngModel)]="model.group_title" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Group Title">
                 </div>
             </div>
         </div>
     
         <div class="row mt-3">
             <div class="col-12">
-                <h2 class="commonFontSize">Number of Participants: {{noOfUsers}}</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="commonFontSize">Number of Participants: {{noOfUsers}}</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div (click)="addMoreRecepient()" class="d-flex align-items-center justify-content-end cursorStyle">
+                            <div class="bg-purple addParticipants mr-2">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </div>
+                            <span>Add More</span>
+                        </div>
+                    </div>
+                </div>
                 <ul class="participantsList">
-                    <li *ngFor="let user of groupUserLists"><img src="{{user.profile_pic}}" alt="profile-pick" class="pickSize"/> <span>{{user.isadded?user.first_name:""}} {{user.isadded?user.last_name:""}} {{!user.isadded?user.name:""}}</span></li>
-                    <!-- <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Aaditya</span></li>
-                    <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Aadarsh</span></li>
-                    <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Ravi</span></li>
-                    <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Lokesh</span></li>
-                    <li><img src="./assets/images/userWebsite/profile-image.png" alt="profile-pick" class="pickSize"/> <span>Ajay</span></li> -->
-                    <li (click)="addMoreRecepient()"><div class="bg-purple addParticipants cursorStyle"><i class="fa fa-plus" aria-hidden="true"></i></div> <span>Add More</span></li>
+                    <li *ngFor="let user of groupUserLists" class="user-blkrow cursorStyle">
+                        <img src="{{user.profile_pic}}" alt="profile-pick" class="pickSize mr-3 border"/> 
+                        <span class="text-capitalize">{{user.isadded?user.first_name:""}} {{user.isadded?user.last_name:""}} {{!user.isadded?user.name:""}}</span>
+                    </li>
                 </ul>
             </div>
         </div>

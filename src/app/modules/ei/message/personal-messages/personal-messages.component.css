@@ -6,3 +6,36 @@
     max-height: 40px;
     max-width: 40px;
 }
+.group_iconImg{
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #d4d4d4;
+    margin: 0px auto;
+}
+span.chatCount {
+    background: #22c123;
+    padding: 4px 7px;
+    border-radius: 50px;
+    display: inline-block;
+    line-height: 14px;
+    text-align: center;
+    font-size: 15px;
+    position: absolute;
+    right: 0px;
+    color: #fff;
+    top: 10px;
+}
+.group_iconImg img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+}

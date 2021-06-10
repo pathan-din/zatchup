@@ -14,8 +14,9 @@
                 <div class="row mt-3 pb-3 align-items-center pl-2 border-bottomCustom ml-0 mr-0">
                     <div class="col-md-12 d-flex align-items-center justify-content-start flex-wrap">
                         <div class="addChatProfile shadow mr-5 position-relative">
-                            <img *ngIf="!model.group_icon" src="assets/images/userWebsite/users.png" alt="users"/>
-                            <!-- <i class="fa fa-users"  aria-hidden="true"></i> -->
+                            <!-- <img  src="assets/images/userWebsite/users.png" alt="users"/> -->
+                            <i *ngIf="!model.group_icon" class="fa fa-users" aria-hidden="true"></i>
+                            <!-- <i class="fa fa-users" aria-hidden="true" *ngIf="model.group_icon"></i> -->
                             <img src="{{model.group_icon}}" *ngIf="model.group_icon">
                             <div class="profileCamara">
                                 <i class="fa fa-camera cursorStyle" (click)="file.click()" aria-hidden="true"></i>
@@ -31,7 +32,7 @@
                     <div class="col-md-6" (click)="addMoreRecipant()" *ngIf="is_check_student==1 && is_admin==1">
                         <div class="mr-4">
                             <img src="assets/images/userWebsite/add-more.png" class="img-fluid mr-3 img-small cursorStyle">
-                            <span  class="commonFontSize">Add Participants</span>
+                            <span  class="commonFontSize cursorStyle">Add Participants</span>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -40,11 +41,12 @@
                     <div class="col-12 mt-3">                        
                         <ul class="participantsList">
                            <li *ngFor="let user of receipentUsers" class="user-blkrow cursorStyle">
-                               <img src="{{user.profile_pic}}" alt="profile-pick" class="pickSize mr-2 border"/> 
+                               <img src="{{user.photoUrl?user.photoUrl:'assets/images/userWebsite/profile-image.png'}}" alt="profile-pick" class="pickSize mr-2 border"/> 
                                <span class="group-user-name text-capitalize">{{user.firstName}} {{user.lastName?user.lastName:""}}</span>
-                               <span class="color-red group-member cursorStyle remove-participent" *ngIf="user.id!=currentUser" (click)="exitGroup(user.id,'remove')">Remove</span>
-                                <span class="cursorStyle group-admin" (click)="isAdmin(user.id,'add')" *ngIf="user.id!=currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==0">Group Admin</span>
-                                <span class="cursorStyle group-admin" *ngIf="user.id!=currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==1" (click)="isAdmin(user.id,'remove')">Group Admin</span>
+                               <span class="color-red group-member cursorStyle remove-participent" *ngIf="user.id!=currentUser && is_check_student==1 && is_admin==1" (click)="exitGroup(user.id,'remove')">Remove</span>
+                                <span class="cursorStyle group-admin color-red" (click)="isAdmin(user.id,'add')" *ngIf="user.id!=currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==0  && is_admin==1">Admin</span>
+                                <span class="cursorStyle group-admin color-green group-admin-green" *ngIf="user.id!=currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==1" (click)="isAdmin(user.id,'remove')">Group Admin</span>
+                                <span class="group-admin color-green group-admin-green" *ngIf="user.id==currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==1">Group Admin</span>
                             </li>
                         </ul>
                     </div>
@@ -54,11 +56,11 @@
                     <div class="col-md-12" >
                         <button (click)="updateDetails()" class="shadow border-0 py-3 rounded bg-red color-white px-4 ml-4 mt-4">Update</button>
                         <button  class="shadow py-3 rounded bg-white color-red border-red px-4 ml-4 mt-4" (click)="exitGroup(currentUser,'exit')">Exit Group</button>
-                        <button class="shadow border-0 py-3 rounded bg-red color-white px-4 ml-4 mt-4">Delete</button>
+                        <!-- <button class="shadow border-0 py-3 rounded bg-red color-white px-4 ml-4 mt-4">Delete</button> -->
                     </div>
                 </div>
             </div>
         </div>            
     </div>
-    <div *ngIf="exitGroupMember==1" class="pl-4">No Group Avialabe because you are no longer a participent.</div>
+    <div *ngIf="exitGroupMember==1" class="pl-4">No Information Avialabe because you are no longer a participent.</div>
 </div>

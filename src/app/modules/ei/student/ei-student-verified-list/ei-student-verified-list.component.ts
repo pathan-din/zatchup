@@ -24,6 +24,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   modelPromote: any = {};
   modelReason: any = {};
   studentList: any = [];
+  // studentListArr: any = [];
   studentDetails: any = [];
   arrAge: any = [];
   studentArr: any = [];
@@ -53,6 +54,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
+  promoteType: any = '';
+  isApplyFilter: boolean;
 
   constructor(
     private router: Router,
@@ -261,10 +264,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.bulkStudentList = list;
     }
 
-    let find = this.dataSource.find(ele =>{
+    let find = this.dataSource.find(ele => {
       return ele.status == false
     })
-    if(find)
+    if (find)
       this.selectAll = false;
   }
 
@@ -287,30 +290,38 @@ export class EiStudentVerifiedListComponent implements OnInit {
           let arrStudentList: any = [];
           if (!page) { page = 1 }
           var i = (this.pageSize * (page - 1)) + 1;
-          this.studentList.forEach(objData => {
-            let objStudentList: any = {};
-            objStudentList.checked = '';
-            objStudentList.status = false;
-            objStudentList.SNo = i;
-            objStudentList.zatchupID = objData.zatchup_id;
-            objStudentList.student_id = objData.user_id;
-            objStudentList.kyc_approved = objData.kyc_approved;
-            objStudentList.approved = objData.approved;
-            objStudentList.is_rejected = objData.is_rejected;
-            objStudentList.reason_reject = objData.reason_reject;
-            objStudentList.name = objData.first_name + ' ' + objData.last_name;
-            objStudentList.gender = objData.gender;
-            objStudentList.age = objData.age;
-            objStudentList.userID = objData.admission_no;
-            objStudentList.class = objData.class_name;
-            objStudentList.alias_class = objData.alias_class;
-            objStudentList.roll_no = objData.roll_no;
-            objStudentList.firebase_id = objData.firebase_id
-            objStudentList.Action = '';
-            i = i + 1;
-            arrStudentList.push(objStudentList);
-          })
-          this.dataSource = arrStudentList;
+          // this.studentList.forEach(objData => {
+          //   let objStudentList: any = {};
+          //   objStudentList.checked = '';
+          //   objStudentList.status = false;
+          //   objStudentList.SNo = i;
+          //   objStudentList.zatchupID = objData.zatchup_id;
+          //   objStudentList.student_id = objData.user_id;
+          //   objStudentList.kyc_approved = objData.kyc_approved;
+          //   objStudentList.approved = objData.approved;
+          //   objStudentList.is_rejected = objData.is_rejected;
+          //   objStudentList.reason_reject = objData.reason_reject;
+          //   objStudentList.name = objData.first_name + ' ' + objData.last_name;
+          //   objStudentList.gender = objData.gender;
+          //   objStudentList.age = objData.age;
+          //   objStudentList.userID = objData.admission_no;
+          //   objStudentList.class = objData.class_name;
+          //   objStudentList.alias_class = objData.alias_class;
+          //   objStudentList.roll_no = objData.roll_no;
+          //   objStudentList.firebase_id = objData.firebase_id;
+          //   objStudentList.promote_type = objData.promote_type
+          //   objStudentList.Action = '';
+          //   i = i + 1;
+          //   arrStudentList.push(objStudentList);
+          // })
+          this.dataSource = this.setData(this.studentList, i);
+
+          if (this.dataSource.length == 0)
+            this.dataSource = undefined
+          if (this.promoteType != '') {
+            this.isApplyFilter = true;
+            this.studentTypes();
+          }
           if (res.status == false) {
             this.alert.error(res.error.message[0], 'Error')
           }
@@ -321,6 +332,36 @@ export class EiStudentVerifiedListComponent implements OnInit {
       this.loader.hide();
     }
   }
+
+  setData(data: any, index: any) {
+    let arrStudentList: any = []
+    data.forEach(objData => {
+      let objStudentList: any = {};
+      objStudentList.checked = '';
+      objStudentList.status = false;
+      objStudentList.SNo = index;
+      objStudentList.zatchupID = objData.zatchup_id;
+      objStudentList.student_id = objData.user_id;
+      objStudentList.kyc_approved = objData.kyc_approved;
+      objStudentList.approved = objData.approved;
+      objStudentList.is_rejected = objData.is_rejected;
+      objStudentList.reason_reject = objData.reason_reject;
+      objStudentList.name = objData.first_name + ' ' + objData.last_name;
+      objStudentList.gender = objData.gender;
+      objStudentList.age = objData.age;
+      objStudentList.userID = objData.admission_no;
+      objStudentList.class = objData.class_name;
+      objStudentList.alias_class = objData.alias_class;
+      objStudentList.roll_no = objData.roll_no;
+      objStudentList.firebase_id = objData.firebase_id;
+      objStudentList.promote_type = objData.promote_type
+      objStudentList.Action = '';
+      index = index + 1;
+      arrStudentList.push(objStudentList);
+    })
+    return arrStudentList
+  }
+
   applyFilter() {
     var arrFilter = [];
     if (Object.keys(this.model).length > 0) {
@@ -333,7 +374,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
       arrFilter.push(teaching_class)
       arrFilter.push(gender)
       var strFilter = arrFilter.join("&");
-
+      this.isApplyFilter = true;
       this.getGetVerifiedStudent('', strFilter)
     } else {
       this.getGetVerifiedStudent('', '')
@@ -571,6 +612,21 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
   closeModel() {
     this.closeVerifiedModel.nativeElement.click()
+  }
+
+  studentTypes() {
+    if (this.isApplyFilter) {
+      if (this.promoteType != '') {
+        let students: any = [];
+        students = this.studentList.filter(val => val.promote_type == this.promoteType)
+        if (students.length > 0)
+          this.dataSource = this.setData(students, 1)
+        else
+          this.dataSource = undefined
+      } else {
+        this.applyFilter()
+      }
+    }
   }
 
 }

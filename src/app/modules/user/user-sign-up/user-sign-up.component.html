@@ -8,26 +8,37 @@
         <div class="col-md-6 col-lg-5 order-1 order-sm-6">
             <h2 class="mb-1 textSpace">Sign Up </h2>
 
-             <form  id="form1" class="pt-2" autocapitalize="off" autocomplete="off"> 
-                
+            <form id="form1" class="pt-2" autocapitalize="off" autocomplete="off">
+
                 <div class="form-group row">
                     <div class="col-6 pl-0">
                         <div class="form-control-inputDiv p-0">
-                            <input (keyup)="isValid($event)" required id="first_name" pattern="^[a-zA-Z]+$"  class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg" type="text" [(ngModel)]="model.first_name" name ="first_name" placeholder="First Name">
+                            <input (keyup)="isValid($event)" required id="first_name" pattern="^[a-zA-Z]+$"
+                                class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg"
+                                type="text" [(ngModel)]="model.first_name" name="first_name" placeholder="First Name">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.first_name"></div>
                     </div>
                     <div class="col-6 pr-0">
                         <div class="form-control-inputDiv p-0">
-                            <input required (keyup)="isValid($event)" id="last_name" class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg" pattern="^[a-zA-Z]+$" type="text" [(ngModel)]="model.last_name" name ="last_name" placeholder="Last Name">
+                            <input required (keyup)="isValid($event)" id="last_name"
+                                class="form-control-input form-control form-control-sm form-bgImg form-NameBgImg"
+                                pattern="^[a-zA-Z]+$" type="text" [(ngModel)]="model.last_name" name="last_name"
+                                placeholder="Last Name">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.last_name"></div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 form-control-inputDiv p-0">
-                        <input maxlength="{{maxlength}}" (keyup)="isValid($event)" (keydown)="isCheckEmailOrPhone($event)" required class="form-control-input form-control form-control-sm form-bgImg form-emailBgImgPhone"  type="text" pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5})$|^\d+$"  [(ngModel)]="model.username" name ="email_id_or_mobile_number" placeholder="Email Id / Phone Number">
-                    </div> 
+                        <input maxlength="{{maxlength}}" (keyup)="isValid($event)"
+                            (keydown)="isCheckEmailOrPhone($event)" required
+                            class="form-control-input form-control form-control-sm form-bgImg form-emailBgImgPhone"
+                            type="{{type}}"
+                            pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5})$|^\d+$"
+                            [(ngModel)]="model.username" name="email_id_or_mobile_number"
+                            placeholder="Email Id / Phone Number">
+                    </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_number"></div>
                 </div>
                 <!-- <div class="form-group row">
@@ -55,22 +66,26 @@
                         <div class="form-control-radioDiv-padding">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <label class="custom-label mb-0" style="color: #333" for="inlineRadio1">
-                                    <input (change)="isValid($event)" required class="custom-control-input ng-dirty ng-valid ng-touched" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="F" [(ngModel)]="model.profile.gender" name ="gender">
+                                    <input (change)="isValid($event)" required
+                                        class="custom-control-input ng-dirty ng-valid ng-touched" type="radio"
+                                        name="inlineRadioOptions" id="inlineRadio1" value="F"
+                                        [(ngModel)]="model.profile.gender" name="gender">
                                     <span class="checkmark"></span>
                                     <span class="radioValuetext">Female</span></label>
 
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <label class="custom-label mb-0" style="color: #333" for="inlineRadio2">
-                                    <input required (change)="isValid($event)" class="custom-control-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="M" [(ngModel)]="model.profile.gender" name ="gender">
+                                    <input required (change)="isValid($event)" class="custom-control-input" type="radio"
+                                        name="inlineRadioOptions" id="inlineRadio2" value="M"
+                                        [(ngModel)]="model.profile.gender" name="gender">
                                     <span class="checkmark"></span>
                                     <span class="radioValuetext">Male</span></label>
                             </div>
                             <div (change)="isValid($event)" class="custom-control custom-radio custom-control-inline">
                                 <label class="custom-label mb-0" style="color: #333" for="inlineRadio3">
-                                    <input required class="custom-control-input" type="radio" [(ngModel)]="model.profile.gender" name ="gender" id="inlineRadio3" value="C">
+                                    <input required class="custom-control-input" type="radio"
+                                        [(ngModel)]="model.profile.gender" name="gender" id="inlineRadio3" value="C">
                                     <span class="checkmark"></span>
                                     <span class="radioValuetext">Custom</span></label>
                             </div>
@@ -80,21 +95,24 @@
                 </div>
                 <div class="form-group row" *ngIf="model.profile.gender=='C'">
                     <div class="col-sm-12 selectPadding form-control-inputDiv p-0">
-                        <select (change)="isValid($event)" required id="pronoun" [(ngModel)]="model.profile.pronoun" name ="pronoun" class="custom-select form-control-input">
+                        <select (change)="isValid($event)" required id="pronoun" [(ngModel)]="model.profile.pronoun"
+                            name="pronoun" class="custom-select form-control-input">
                             <option selected value="">Select your pronoun</option>
                             <option value="He">He</option>
                             <option value="She">She</option>
                             <option value="They">They</option>
-                            
+
                         </select>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.pronoun"></div>
                 </div>
                 <div class="form-group row" *ngIf="model.profile.gender=='C'">
                     <div class="col-sm-12 form-control-inputDiv p-0">
-                        <input (keyup)="isValid($event)" class="form-control-input form-control form-control-sm" type="text" id="custom_gender" [(ngModel)]="model.profile.custom_gender" name ="model.profile.custom_gender" placeholder="Gender (optional)">
+                        <input (keyup)="isValid($event)" class="form-control-input form-control form-control-sm"
+                            type="text" id="custom_gender" [(ngModel)]="model.profile.custom_gender"
+                            name="model.profile.custom_gender" placeholder="Gender (optional)">
                     </div>
-                    
+
                 </div>
 
                 <div class="form-group row">
@@ -102,27 +120,30 @@
                         <h4 class="mb-2 textSpace">Date Of Birth</h4>
                         <div class="row justify-content-between">
                             <div class="col-3 border mx-1 p-0">
-                                <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name ="dob" class="custom-select border-0">
+                                <select (change)="isValid($event)" id="date" required [(ngModel)]="dateModel" name="dob"
+                                    class="custom-select border-0">
                                     <option value="">Date</option>
                                     <option value="{{d}}" *ngFor="let d of date">{{d}}</option>
-                                   
+
                                 </select>
                             </div>
                             <div class="col-4 border mx-1 p-0">
-                                <select (change)="isValid($event);changeMOnth(monthModel,yearModel);" id="month" required [(ngModel)]="monthModel" name ="dob" class="custom-select border-0">
+                                <select (change)="isValid($event);changeMOnth(monthModel,yearModel);" id="month"
+                                    required [(ngModel)]="monthModel" name="dob" class="custom-select border-0">
                                     <option value="">Month</option>
                                     <option value="{{m.monInNumber}}" *ngFor="let m of month">{{m.monInWord}}</option>
-                                    
+
                                 </select>
                             </div>
                             <div class="col-4 border mx-1 p-0">
-                                <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="dob" class="custom-select  border-0">
+                                <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name="dob"
+                                    class="custom-select  border-0">
                                     <option value="">Year</option>
                                     <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
-                                   
+
                                 </select>
                             </div>
-                           
+
                         </div>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
@@ -137,30 +158,50 @@
 
                 <div class="row">
                     <div class="col-6 pl-1 pr-1">
-                        <div class="form-group"> 
-                            <div class="form-control-inputDiv p-0"> 
-                                <input match="password,cpassword" (keyup)="isValid($event)" id="password" required [(ngModel)]="model.password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" name ="password" class="form-control-input form-control form-control-sm " type="{{showHidePassword}}" placeholder="Enter Password" style="position: relative;"> <i (click)="showHidePasswordFunction('p')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                        <div class="form-group">
+                            <div class="form-control-inputDiv p-0">
+                                <input match="password,cpassword" (keyup)="isValid($event)" id="password" required
+                                    [(ngModel)]="model.password"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
+                                    name="password" class="form-control-input form-control form-control-sm "
+                                    type="{{showHidePassword}}" placeholder="Enter Password"
+                                    style="position: relative;"> <i (click)="showHidePasswordFunction('p')"
+                                    class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
                             </div>
-                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>                        
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                         </div>
                     </div>
                     <div class="col-6 pl-1 pr-1">
                         <div class="form-group mb-1">
                             <div class="form-control-inputDiv p-0">
-                                <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password" required [(ngModel)]="modelForConfirm.cpassword" name ="confirm_password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})" class="form-control-input form-control form-control-sm " type="{{showHidecPassword}}" placeholder="Confirm Password" style="position: relative;"><i (click)="showHidePasswordFunction('C')" class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
+                                <input match="password,confirm_password" (keyup)="isValid($event)" id="confirm_password"
+                                    required [(ngModel)]="modelForConfirm.cpassword" name="confirm_password"
+                                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})"
+                                    class="form-control-input form-control form-control-sm "
+                                    type="{{showHidecPassword}}" placeholder="Confirm Password"
+                                    style="position: relative;"><i (click)="showHidePasswordFunction('C')"
+                                    class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" aria-hidden="true "></i>
                             </div>
-                            <div class="required errorMsg"  [innerHtml]="errorDisplay.confirm_password"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.confirm_password"></div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group row  textSpace ml-0 mr-0">
                     <div class="col-sm-12 pl-0 d-flex align-items-center">
-                        <input required type="checkbox" (change)="isValid($event)" id="term-condition" class="checkboxStyle cursorStyle" [(ngModel)]="model.is_term_cond" name ="term_condition">
-                        <label for="term-condition " class="checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you agree to our <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" target="_blank" (click)="goToTermsAndConditions('user', 'view', 'tc')">Terms & Conditions</span> and <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer" target="_blank"  (click)="goToTermsAndConditions('user', 'view', 'privacy-policy')">Privacy Policy</span></label>
+                        <input required type="checkbox" (change)="isValid($event)" id="term-condition"
+                            class="checkboxStyle cursorStyle" [(ngModel)]="model.is_term_cond" name="term_condition">
+                        <label for="term-condition "
+                            class="checkboxStyle commonFontSize mediumFont color-black mb-0  ml-2">By continuing, you
+                            agree to our <span class="color-purple semiBoldFont cursorStyle a-cursor-pointer"
+                                target="_blank" (click)="goToTermsAndConditions('user', 'view', 'tc')">Terms &
+                                Conditions</span> and <span
+                                class="color-purple semiBoldFont cursorStyle a-cursor-pointer" target="_blank"
+                                (click)="goToTermsAndConditions('user', 'view', 'privacy-policy')">Privacy
+                                Policy</span></label>
                     </div>
 
-                    <div class="required errorMsg"  [innerHtml]="errorDisplay.term_condition"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.term_condition"></div>
                 </div>
 
                 <!-- <p class="color-black mediumFont textSpace">By continuing, you agree to our <a class="color-purple semiBoldFont" href="#">Terms & Conditions</a> and <a class="color-purple semiBoldFont" href="#">Privacy Policy</a></p> -->
@@ -169,7 +210,7 @@
                 </div>
                 <!-- <button type="submit" class="btn common-btn regularFont textSpace" data-toggle="modal"
                     data-target="#currentStatusModel">Submit</button> data-toggle="modal" data-target="#OTPModel" -->
-             </form> 
+            </form>
         </div>
     </div>
 
@@ -180,7 +221,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
-            <div class="modal-header align-items-center justify-content-center pb-0 border-0">                
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
                 <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
                     data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
@@ -207,9 +248,11 @@
                     </div>
                 </div>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
-                <div class="justify-content-sm-center"><button type="button" class="btn common-model-Btn mt-4" (click)="verifyOtp();">Submit </button></div>
+                <div class="justify-content-sm-center"><button type="button" class="btn common-model-Btn mt-4"
+                        (click)="verifyOtp();">Submit </button></div>
 
-                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
+                <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend
+                        Code </a>
                 </p>
                 <!-- </form> -->
 
@@ -221,7 +264,7 @@
 
 
 
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
-</ngx-spinner> 
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>
 <!-- <app-user-footer></app-user-footer> -->

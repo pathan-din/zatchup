@@ -106,7 +106,7 @@ export class MessagesComponent implements OnInit {
           console.log(res);
           res.uuid=element.payload.doc.id;
           if(!res.group_icon){
-            res.group_icon="assets/images/userWebsite/share-my-profile-icon.png";
+            res.group_icon="assets/images/userWebsite/users.png";
           }
             res.reciepent.forEach(ele => {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){

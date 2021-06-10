@@ -114,15 +114,7 @@ export class PersonalMessagesComponent implements OnInit {
               }
           })
 
-        //  var data = this.firestore.collection('chat_conversation').doc(element).get().toPromise().then((res: any) => {
-        //     if (res.data())
-        //       return res.data()
-        //   });
-        //   data.then(res => {
-        //     if (res)
-        //       this.messageData.push(res.data);
-            
-        //   })
+         
         });
       })
     })
@@ -249,7 +241,7 @@ export class PersonalMessagesComponent implements OnInit {
           console.log(res);
           res.uuid=element.payload.doc.id;
           if(!res.group_icon){
-            res.group_icon="assets/images/userWebsite/share-my-profile-icon.png";
+            res.group_icon="assets/images/userWebsite/users.png";
           }
             res.reciepent.forEach(ele => {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
@@ -259,8 +251,11 @@ export class PersonalMessagesComponent implements OnInit {
                   this.lastGroupmsg[element.payload.doc.id]=[]
                   this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
                     //console.log(res1.data[res1.data.length-1]);
-                    if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp}))
-                    this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                    if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp})){
+                      if(res1)
+                      this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                    }
+            
                     //console.log(this.lastGroupmsg);
                     
                   })

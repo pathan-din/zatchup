@@ -68,6 +68,7 @@ export class CreateGroupChatComponent implements OnInit {
         this.groupUserLists.forEach(element => {
           let user_recepient: any = {};
           let objGroupData: any = {};
+          element.profile_pic= element.profile_pic?element.profile_pic: "assets/images/userWebsite/share-my-profile-icon.png";
           objGroupData.is_read = 0;
           objGroupData.is_admin = 0;
           objGroupData.is_remove = 0;
