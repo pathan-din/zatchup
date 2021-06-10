@@ -294,10 +294,10 @@ createGroupConfirmationList(){
    localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
    localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
    if(this.teacherList.length > 0 && localStorage.getItem('allstudent')){
-   this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+   this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'action':'add'}})
   }
   else if(this.teacherList.length > 0 && this.sectionIds.length > 0){
-    this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'add':'add'}})
+    this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id':this.route.snapshot.queryParamMap.get('course_id'), 'action':'add'}})
   } 
   else {
     this.alert.error('Select Atleast One Teacher and Class for the course', 'Error')
@@ -389,7 +389,9 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   getTeacherList(page){
     this.loader.show();
      this.modelteacher = {
-       'page_size': this.page_size
+       'page_size': this.page_size,
+       'is_edit_right' : 'false',
+       'course_id': this.route.snapshot.queryParamMap.get('course_id')
      }
     this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/',this.modelteacher).subscribe(
       (res: any) => {

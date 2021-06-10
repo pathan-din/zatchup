@@ -37,9 +37,8 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   add: any = '';
   ngOnInit(): void {
     console.log(JSON.parse(localStorage.getItem("teachers")));
-    var add = this.route.snapshot.queryParamMap.get('add')
-    this.add = add;
-    if (add) {
+    var action = this.route.snapshot.queryParamMap.get('action')
+    if (action == "add") {
       if (localStorage.getItem("teachers")) {
         this.editTeacherAudience.dataSource = JSON.parse(localStorage.getItem("teachers"))
       }
@@ -86,7 +85,8 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
         'page': page,
         'page_size': this.editTeacherAudience.page_size,
         'approved': this.route.snapshot.queryParamMap.get('approved'),
-        'course_id': this.route.snapshot.queryParamMap.get('course_id')
+        'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+        'is_edit_right': 'true'
       }
       this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/', this.editTeacherAudience.params).subscribe(
         (res: any) => {
@@ -134,8 +134,8 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
   }
 
   setData() {
-    var add = this.route.snapshot.queryParamMap.get('add')
-    if (add) {
+    var action = this.route.snapshot.queryParamMap.get('action')
+    if (action == 'add') {
       let filtered = JSON.parse(localStorage.getItem("teachers")).filter(elen => {
         if (this.isValid(elen) == true)
           return elen.user_id
@@ -198,15 +198,27 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     }
   }
 
+  addTeacher(){
+    let action = this.route.snapshot.queryParamMap.get('action')
+    if(action == 'add'){
+      if(this.teacherAudienceList.length == 0){
+        this.alert.error(this.error, 'Please Select Audience From The List')
+        }
+        else {
+          this.addTeacherAudience()
+        }
+      }
+      else{
+        this.addTeacherAudience()
+      }
+    }
+  
+
   addTeacherAudience() {
-    if (this.teacherAudienceList.length == 0) {
-      this.alert.error(this.error, 'Please select Audience from the list ')
-    } else {
-
-      this.loader.show();
-
+  this.loader.show();
+    let list = this.teacherAudienceList.join(',')    
       this.model = {
-        'teacher_id': this.teacherAudienceList.join(','),
+        'teacher_id': list.length > 0 ? list : undefined,
         'course_id': this.route.snapshot.queryParamMap.get('course_id')
       }
       this.baseService.action('starclass/ei-course-access-permission-to-teacher/', this.model).subscribe(
@@ -215,9 +227,11 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
             this.loader.hide();
             this.alert.success(res.message, 'Success');
             localStorage.setItem("teachers", JSON.stringify(this.editTeacherAudience.dataSource))
-            var add = this.route.snapshot.queryParamMap.get('add')
-            if (add) {
-              this.router.navigate(['ei/star-class-audience-student-list'], { queryParams: { 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'add': 'add' } })
+            var action = this.route.snapshot.queryParamMap.get('action')
+            console.log(action);
+            
+            if (action == 'add') {
+              this.router.navigate(['ei/star-class-audience-student-list'], { queryParams: { 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'action': 'add' } })
             }
             else {
               this.location.back()
@@ -232,7 +246,6 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
           this.loader.hide();
         });
 
-    }
   }
 
   goBack() {

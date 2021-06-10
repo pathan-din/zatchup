@@ -26,6 +26,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   standardList: any = [];
   courseList: any = [];
   selectAll: boolean;
+  action: string;
 
 
   constructor(
@@ -34,14 +35,17 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
     private alert: NotificationService,
     private baseService: BaseService,
     private loader: NgxSpinnerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     this.studentAuidence = new StudentAuidence()
   }
 
   ngOnInit(): void {
     this.classId = JSON.parse(localStorage.getItem("sections"))
-    this.approved = this.route.snapshot.queryParamMap.get('approved')
+    this.approved = this.route.snapshot.queryParamMap.get('approved'),
+    this.action = this.route.snapshot.queryParamMap.get('action')
+    console.log(this.action);
+    
     this.getStudentAuidenceList();
     this.displayCourseList();
   }
@@ -49,32 +53,12 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   getStudentAuidenceList(page?: any) {
     try {
       this.loader.show()
-      var action = this.route.snapshot.queryParamMap.get('action')
       let section = JSON.parse(localStorage.getItem("sections"))
-      let standard = JSON.parse(localStorage.getItem("standardIds"))
-      let courseStudent = JSON.parse(localStorage.getItem("courseIds"))
-      // if (action == 'add') {
-       
-       
-      // }
-      // else {
-      //   this.studentAuidence.params = {
-      //     'page': page,
-      //     'page_size': this.studentAuidence.page_size,
-      //     'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-      //     'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
-      //     'course': this.studentAudienceList.course,
-      //     'standard': this.studentAudienceList.standard,
-      //     'teaching_class': this.studentAudienceList.teaching_class,
-      //     'class_ids': section,
-
-      //   }
-      // }
       if(!localStorage.getItem('allstudent')){
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
-          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
+          'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'class_ids': section ? section : '',
           'course': this.studentAudienceList.course,
@@ -87,7 +71,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           'page': page,
           'page_size': this.studentAuidence.page_size,
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-          'is_access_for_star_class': this.studentAudienceList.is_access_for_star_class,
+          'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
          
         }
       }
@@ -103,7 +87,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             this.studentAuidence.config.currentPage = page
             this.studentAuidence.config.totalItems = res.count
             if (res.count > 0) {
-              var add = this.route.snapshot.queryParamMap.get('add')
+              var add = this.route.snapshot.queryParamMap.get('action')
               if (add) {
                 if (this.classId) {
                   res.results.forEach(
@@ -164,14 +148,11 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
   }
 
   getStudentAudienceBycheckbox(stId, event) {
-    // debugger
     if (event.checked) {
       if (this.studentAudienceList.indexOf(stId) === -1) {
         this.studentAudienceList.push(stId)
       }
     } else {
-      // var index = this.studentAudienceList.indexOf(stId)
-      // this.studentAudienceList.splice(index, 1);
       let course = this.studentAudienceList.course
       let standard = this.studentAudienceList.standard
       let teachingClass = this.studentAudienceList.teaching_class
@@ -192,20 +173,34 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
       this.selectAll = false;
     else
       this.selectAll = true
-    // debugger
   }
 
   isValid(value) {
     return value.is_access_for_star_class == true
   }
 
+  addStudent(){
+    let action = this.route.snapshot.queryParamMap.get('action')
+    console.log(action);
+    
+    if(action == 'add'){
+      if(this.studentAudienceList.length == 0){
+        this.alert.error(this.error, 'Please Select Audience from the list')
+      }
+      else {
+        this.addStudentAudience()
+      }
+    }
+    else {
+      this.addStudentAudience()
+    }
+  }
+
   addStudentAudience() {
-    if (this.studentAudienceList.length == 0) {
-      this.alert.error(this.error, 'Please select Audience from the list ')
-    } else {
+      let list  = this.studentAudienceList.join(',')
       this.loader.show();
       this.model = {
-        'student_id': this.studentAudienceList.join(','),
+        'student_id': list.length > 0 ? list : undefined,
         'course_id': this.route.snapshot.queryParamMap.get('course_id')
       }
       this.baseService.action('starclass/ei-course-assign-to-user/', this.model).subscribe(
@@ -219,7 +214,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             localStorage.removeItem("groupclasscheck");
             localStorage.removeItem("allstudent");
             this.alert.success(res.message, 'Success');
-            var add = this.route.snapshot.queryParamMap.get('add')
+            var add = this.route.snapshot.queryParamMap.get('action')
             if (add) {
               this.router.navigate(['ei/star-class-courses-uploaded-by-ei'])
             }
@@ -235,7 +230,6 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           this.loader.hide();
           this.alert.error(error, 'Error')
         });
-    }
   }
 
   goBack() {

@@ -149,7 +149,7 @@
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <i  (click)="goToCourseView(element ,  element.is_all_access)" class="fa fa-eye color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
                             <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id )"></i>
-                            <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN' && element.is_all_access != true " (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Rights And Audience" aria-hidden="true"></i>
+                            <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Rights And Audience" aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>
 

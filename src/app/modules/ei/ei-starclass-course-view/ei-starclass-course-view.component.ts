@@ -81,7 +81,7 @@ goToPlayHistory(course_id, id){
 // }
 
 goToEditTeacherAdd(id){
-  this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id': id, 'edit': 'edit'}})
+  this.router.navigate(['ei/star-class-edit-right-teacher'],{queryParams:{'course_id': id, 'action': 'edit'}})
   console.log(id);
 }
 

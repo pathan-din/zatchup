@@ -44,7 +44,7 @@
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img src="./assets/images/userWebsite/pdf.png" />
+                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
@@ -68,7 +68,7 @@
                             </div>
                             <div *ngIf="objCon.document">
                                 <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" />
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
                                 <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
@@ -114,7 +114,7 @@
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img src="./assets/images/userWebsite/pdf.png" />
+                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
@@ -136,7 +136,7 @@
                             </div>
                             <div *ngIf="objCon.document">
                                 <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" />
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
                                 <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
