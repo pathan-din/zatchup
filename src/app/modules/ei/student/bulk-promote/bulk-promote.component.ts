@@ -21,6 +21,8 @@ export class BulkPromoteComponent implements OnInit {
   studentStandardList: any = [];
   dataSource: any;
   rollNumArr: any = []
+  promoteType: any = ''
+  studentList: any;
 
   constructor(
     private location: Location,
@@ -32,6 +34,7 @@ export class BulkPromoteComponent implements OnInit {
   ngOnInit(): void {
     this.user_id = JSON.parse(localStorage.getItem('userprofile')).user_id;
     this.dataSource = JSON.parse(localStorage.getItem('bulkStudents')).studentList;
+    this.studentList = this.dataSource;
     this.courseId = JSON.parse(localStorage.getItem('bulkStudents')).courseId;
     this.currentStandardId = JSON.parse(localStorage.getItem('bulkStudents')).standardId;
     this.setData()
@@ -116,10 +119,6 @@ export class BulkPromoteComponent implements OnInit {
     let validRollNumbers: any = []
     validRollNumbers = this.dataSource.filter(x => x.roll_no == '')
     promoteData = this.dataSource.filter(x => x.status == true)
-    // debugger
-    // return
-    console.log('validRollNumbers......', validRollNumbers);
-
     if (promoteData.length == 0) {
       this.alert.error('Please select students first.', 'Error')
       return;
@@ -273,6 +272,19 @@ export class BulkPromoteComponent implements OnInit {
         this.loader.hide()
       }
     )
+  }
+
+  studentTypes() {
+    if (this.promoteType != '') {
+      let students: any = [];
+      students = this.studentList.filter(val => val.promote_type == this.promoteType)
+      if (students.length > 0)
+        this.dataSource = students
+      else
+        this.dataSource = undefined
+    } else {
+      this.dataSource = this.studentList;
+    }
   }
 
   goBack() {
