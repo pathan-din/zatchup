@@ -32,8 +32,10 @@ export class MySchoolComponent implements OnInit {
     } else {
       this.roleCheck = false;
     }
-    this.userRole = JSON.parse(localStorage.getItem('getreject')).role
-
+    // this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+    setTimeout(() => {
+      this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+      }, 500);
 
   }
   gotToProfilePage() {
