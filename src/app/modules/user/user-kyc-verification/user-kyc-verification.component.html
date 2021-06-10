@@ -17,8 +17,8 @@
                             class="custom-select form-control-input" required>
                             <option value="">Select your ID</option>
                             <option value="Aadhar">Aadhaar Card</option>
-                            <option value="Dl">Driving License</option>
-                            <option value="Passport">Passport Number</option>
+                            <option value="Dl">Driving Licence</option>
+                            <option value="Passport">Passport</option>
                         </select>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_type"></div>
@@ -121,7 +121,7 @@
                             </div>
                             <div class="text-left pl-1">
                                 <p class="m-0 text-dark mediumFont commonMaterialFontSize">Upload Back
-                                    photo{{model.kyc_type=='Aadhar'?'':'(optional)'}}</p>
+                                    photo optional</p>
                                 <p class="text-secondary regularFont commonMaterialFontSize m-0">As per selection above
                                 </p>
                                 <p *ngIf="filename1" class="text-secondary regularFont commonMaterialFontSize m-0">
