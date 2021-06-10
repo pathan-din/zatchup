@@ -252,6 +252,7 @@ export class MessagesDetailsComponent implements OnInit {
                 data.profile_pic = userData.profile_pic
                 data.document = document ? true : false;
                 data.msg = document ? document : this.model.comment;
+                data.is_read = 1;
                 data.timestamp = new Date().valueOf();
                 data.receipentList =res.reciepent
                 
@@ -298,6 +299,7 @@ export class MessagesDetailsComponent implements OnInit {
         data.profile_pic = userData.profile_pic
         data.document = document ? true : false;
         data.msg = document ? document : this.model.comment;
+        data.is_read = 1;
         data.timestamp = new Date().valueOf();
         this.dataStudent.push(data)
         dataNew.data = this.dataStudent;
