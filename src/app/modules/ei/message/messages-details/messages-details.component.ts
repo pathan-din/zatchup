@@ -227,12 +227,13 @@ export class MessagesDetailsComponent implements OnInit {
   sendChat(document?: any) {
   
     
-    if (this.model.comment)
+    
+    if(this.params.chat){
+      if (this.model.comment)
       this.model.comment = this.model.comment.trim()
     if (!this.model.comment && !document) {
       return;
     }
-    if(this.params.chat){
       return new Promise<any>((resolve, reject) => {
        
          this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
@@ -285,6 +286,11 @@ export class MessagesDetailsComponent implements OnInit {
   
       })
     }else{
+      if (this.model.comment)
+      this.model.comment = this.model.comment.trim()
+      if (!this.model.comment && !document) {
+        return;
+      }
       if(this.blockRecipant1){
         this.alert.error("Please Unblock this receipant","Error");
         return false;

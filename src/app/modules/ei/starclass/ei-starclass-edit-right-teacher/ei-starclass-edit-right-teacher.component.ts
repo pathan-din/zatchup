@@ -63,6 +63,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     else {
       this.getTeacherAuidenceList()
     }
+    this.addTeacherAudience("nomsg","noredirect")
   }
 
 
@@ -214,8 +215,40 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
     }
   
 
-  addTeacherAudience() {
-  this.loader.show();
+  addTeacherAudience(nomsg:any="",noredirect:any="") {
+    if(nomsg=='' && noredirect==""){
+      this.loader.show();
+      let list = this.teacherAudienceList.join(',')    
+        this.model = {
+          'teacher_id': list.length > 0 ? list : undefined,
+          'course_id': this.route.snapshot.queryParamMap.get('course_id')
+        }
+        this.baseService.action('starclass/ei-course-access-permission-to-teacher/', this.model).subscribe(
+          (res: any) => {
+            if (res.status == true) {
+              this.loader.hide();
+              this.alert.success(res.message, 'Success');
+              localStorage.setItem("teachers", JSON.stringify(this.editTeacherAudience.dataSource))
+              var action = this.route.snapshot.queryParamMap.get('action')
+              console.log(action);
+              
+              if (action == 'add') {
+                this.router.navigate(['ei/star-class-audience-student-list'], { queryParams: { 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'action': 'add' } })
+              }
+              else {
+                this.location.back()
+              }
+            }
+            else {
+              this.alert.error(res.error.message, 'Error')
+            }
+            this.loader.hide()
+          }, (error) => {
+            this.alert.error("Please try again", 'Error');
+            this.loader.hide();
+          });
+    }else{
+      this.loader.show();
     let list = this.teacherAudienceList.join(',')    
       this.model = {
         'teacher_id': list.length > 0 ? list : undefined,
@@ -224,27 +257,19 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
       this.baseService.action('starclass/ei-course-access-permission-to-teacher/', this.model).subscribe(
         (res: any) => {
           if (res.status == true) {
-            this.loader.hide();
-            this.alert.success(res.message, 'Success');
-            localStorage.setItem("teachers", JSON.stringify(this.editTeacherAudience.dataSource))
-            var action = this.route.snapshot.queryParamMap.get('action')
-            console.log(action);
+             
             
-            if (action == 'add') {
-              this.router.navigate(['ei/star-class-audience-student-list'], { queryParams: { 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'action': 'add' } })
-            }
-            else {
-              this.location.back()
-            }
           }
           else {
-            this.alert.error(res.error.message, 'Error')
+            //this.alert.error(res.error.message, 'Error')
           }
-          this.loader.hide()
+          //this.loader.hide()
         }, (error) => {
-          this.alert.error("Please try again", 'Error');
+         // this.alert.error("Please try again", 'Error');
           this.loader.hide();
         });
+    }
+    
 
   }
 

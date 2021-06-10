@@ -23,6 +23,7 @@ export class PersonalMessagesComponent implements OnInit {
   lastGroupmsg: any=[];
   groupexit: number=0;
   setting_user:any={'online':true,'is_seen':true,'is_read':true}
+  lastGroupmsgCount: any[];
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -234,6 +235,7 @@ export class PersonalMessagesComponent implements OnInit {
   }
   getGroupDetails(uuid){
     this.groupList=[];
+    this.lastGroupmsgCount=[]
     this.firestore.collection('group').snapshotChanges().subscribe((res:any)=>{
       res.forEach(element => {
          
@@ -249,14 +251,22 @@ export class PersonalMessagesComponent implements OnInit {
                 if(!index){
                   this.groupList.push(res)
                   this.lastGroupmsg[element.payload.doc.id]=[]
+                  this.lastGroupmsgCount[element.payload.doc.id]=[] 
                   this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
                     //console.log(res1.data[res1.data.length-1]);
                     if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp})){
-                      if(res1)
-                      this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                      if(res1){
+                        this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                        if(res1.data.is_read==1 && res1.data.user_send_by!==localStorage.getItem('fbtoken')){
+                          //this.lastGroupmsgCount[element.payload.doc.id].push(res1.data)
+                        }
+                        
+                      }
+
+                      
                     }
             
-                    //console.log(this.lastGroupmsg);
+                    console.log( this.lastGroupmsgCount);
                     
                   })
                 }

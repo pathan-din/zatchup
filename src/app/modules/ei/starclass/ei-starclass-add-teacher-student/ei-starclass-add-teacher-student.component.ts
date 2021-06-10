@@ -403,25 +403,25 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
             
             
           }
-          this.teacherList.forEach(element => {
-            if(tList.length>0){
+          // this.teacherList.forEach(element => {
+          //   if(tList.length>0){
 
-              var index = tList.findIndex(e=>{
-                console.log(e.user_id);
-                return e.user_id == element.user_id
-              })
+          //     var index = tList.findIndex(e=>{
+          //       console.log(e.user_id);
+          //       return e.user_id == element.user_id
+          //     })
              
-              if(index>-1){
-                element.is_edit_right = tList[index].is_edit_right
-              }else{
-                element.is_edit_right = false;
-              }
+          //     if(index>-1){
+          //       element.is_edit_right = tList[index].is_edit_right
+          //     }else{
+          //       element.is_edit_right = false;
+          //     }
               
-            }else{
-              element.is_edit_right = false;
-            }
+          //   }else{
+          //     element.is_edit_right = false;
+          //   }
             
-          });
+          // });
           
           
           

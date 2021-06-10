@@ -353,6 +353,7 @@ export class ChatComponent implements OnInit {
               data.profile_pic = userData.profile_pic
               data.document = document ? true : false;
               data.msg = document ? document : this.model.comment;
+              data.is_read = 1
               data.timestamp = new Date().valueOf();
               data.receipentList =res.reciepent
               this.dataStudent.push(data)
@@ -400,7 +401,7 @@ export class ChatComponent implements OnInit {
       data.profile_pic = userData.profile_pic
       data.document = document ? true : false;
       data.msg = document ? document : this.model.comment;
-      console.log('send chat data is as ::', data)
+      data.is_read = 1
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
