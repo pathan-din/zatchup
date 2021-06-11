@@ -119,7 +119,7 @@ export class ChatComponent implements OnInit {
       }
       this.currentUser = localStorage.getItem('fbtoken');
       this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
-        console.log("res.setting",res.setting);
+        
         
         if(res){
            
@@ -219,6 +219,10 @@ export class ChatComponent implements OnInit {
           //
           this.conversation = chatData;
           this.dataStudent = chatData;
+          if(localStorage.getItem('isread')){
+            localStorage.removeItem('isread')
+            this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
+          }
         } else {
           this.conversation = [];
           this.dataStudent = [];
@@ -235,10 +239,20 @@ export class ChatComponent implements OnInit {
         var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
         dataSet.subscribe((res: any) => {
           if (res) {
-            console.log(res.data);
+            
   
+            // this.conversation = res.data;
+            // this.dataStudent = res.data;
+            res.data.forEach(element => {
+              element.is_read=0
+            });
+            
             this.conversation = res.data;
             this.dataStudent = res.data;
+            if(localStorage.getItem('isread')){
+              localStorage.removeItem('isread')
+              this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
+            }
             // console.log('conversation data is as ::',this.conversation);
             // console.log('dataStudent is as ::',this.dataStudent);
   
@@ -358,6 +372,7 @@ export class ChatComponent implements OnInit {
               data.receipentList =res.reciepent
               this.dataStudent.push(data)
               dataNew.data = this.dataStudent;
+              this.model.comment = '';
                // console.log(dataNew.data);
               this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
               .set(dataNew)
@@ -365,7 +380,7 @@ export class ChatComponent implements OnInit {
                 res => {
 
                   this.getDocumentsChat("")
-                  this.model.comment = '';
+                  
 
 
                 },

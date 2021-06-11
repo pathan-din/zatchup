@@ -27,7 +27,7 @@ export class MySchoolComponent implements OnInit {
   ngOnInit(): void {
      var role = parseInt(localStorage.getItem("role"))
     if(localStorage.getItem('approved') && localStorage.getItem('approved')=='1'){
-      this.verified = true;
+      this.verified = localStorage.getItem('approved');
     } 
     
     if (role == 1) {

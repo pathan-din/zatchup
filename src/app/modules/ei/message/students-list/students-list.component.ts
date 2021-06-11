@@ -117,7 +117,8 @@ export class StudentsListComponent implements OnInit {
            var getAlreadyCurrentUserInGroupIndex = groupList.findIndex(el=>{return el.firebase_id==localStorage.getItem('fbtoken')});
            if(getAlreadyCurrentUserInGroupIndex>-1)
            {
-            groupList.splice(index,1);
+            //groupList.splice(index,1);
+            groupList[getAlreadyCurrentUserInGroupIndex].isadded=true
            }
            //console.log(index);
            if(index>-1){
@@ -228,7 +229,8 @@ export class StudentsListComponent implements OnInit {
              var index= groupList.findIndex(el=>{return el.firebase_id==item.id});
              
               if(index>-1){
-                groupList.splice(index,1);
+                
+                groupList[index].checked=true;
                }
               //groupList.splice(index,1);
             })
@@ -324,7 +326,7 @@ export class StudentsListComponent implements OnInit {
       } 
       
     })
-    atLeastOneTeacher=true;
+    //atLeastOneTeacher=true;
     if(!atLeastOneStudent){
       return this.alert.error("Please atleast one student in this group","Error");
     }
