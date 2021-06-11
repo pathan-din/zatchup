@@ -1,6 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,6 +16,7 @@ import { CoursesUploadedByEi } from '../../ei/modals/education-institute.modal';
 export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
   courseUploadedByEi: CoursesUploadedByEi;
   maxDate: any;
+  schoolId: any;
 
   
   constructor(
@@ -25,13 +26,17 @@ export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
     private baseService: BaseService,
     private location : Location,
     private datePipe: DatePipe,
+    private route : ActivatedRoute
     ) { 
       this.courseUploadedByEi = new CoursesUploadedByEi();
       this.maxDate = new Date()
     }
 
   ngOnInit(): void {
-    this.getCoursesUploadedByEiList()
+    this.getCoursesUploadedByEiList(),
+    this.schoolId = this.route.snapshot.queryParamMap.get('ei_id')
+    console.log(this.schoolId);
+    
   }
 
   getCoursesUploadedByEiList(page? : any){
@@ -42,6 +47,7 @@ export class AdminStarClassCourseUploadedByEiComponent implements OnInit {
         'page_size': this.courseUploadedByEi.page_size,
         'start_date': this.courseUploadedByEi.filterFromDate !== undefined ? this.datePipe.transform(this.courseUploadedByEi.filterFromDate, 'yyyy-MM-dd') : '',
         'end_date': this.courseUploadedByEi.filterToDate !== undefined ? this.datePipe.transform(this.courseUploadedByEi.filterToDate, 'yyyy-MM-dd') : '',  
+        'school_id': this.route.snapshot.queryParamMap.get('ei_id') ? this.route.snapshot.queryParamMap.get('ei_id') : ''
       }
       this.baseService.getData('starclass/star_class_course_list-by_ei/', this.courseUploadedByEi.modal).subscribe(
         (res: any) =>{
