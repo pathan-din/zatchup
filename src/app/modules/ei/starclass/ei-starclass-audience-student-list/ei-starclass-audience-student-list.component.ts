@@ -58,7 +58,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
-          'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
+          // 'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'class_ids': section ? section : '',
           'course': this.studentAudienceList.course,
@@ -71,7 +71,10 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           'page': page,
           'page_size': this.studentAuidence.page_size,
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-          'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
+          'course': this.studentAudienceList.course,
+          'standard': this.studentAudienceList.standard,
+          'teaching_class': this.studentAudienceList.teaching_class
+          // 'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
          
         }
       }

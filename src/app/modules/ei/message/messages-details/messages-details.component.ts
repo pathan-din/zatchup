@@ -114,12 +114,12 @@ export class MessagesDetailsComponent implements OnInit {
              console.log(this.blockUserList);
              
              var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
-             console.log(objList);
+             
              if(objList){
               this.objBlock=objList;
               this.isblock=objList.isblock;
               this.blockRecipant1=objList.isblock;
-              console.log("block user",this.isblock);
+            
              }
             
              
@@ -147,7 +147,7 @@ export class MessagesDetailsComponent implements OnInit {
     
   }
   blockPaticipant(particepantid){
-   console.log(particepantid,this.currentUser);
+   
     
     var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
     console.log(index);
@@ -164,7 +164,7 @@ export class MessagesDetailsComponent implements OnInit {
      this.objBlock=objList;
      this.isblock=objList.isblock;
     // this.blockUserList.push(objList)
-     console.log( this.blockUserList);
+     
     }
     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
     this.router.navigate(['ei/personal-messages'])
@@ -184,7 +184,7 @@ export class MessagesDetailsComponent implements OnInit {
      this.objBlock=objList;
      this.isblock=objList.isblock;
     // this.blockUserList.push(objList)
-     console.log( this.blockUserList);
+     
     }
     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
     this.router.navigate(['ei/personal-messages'])
@@ -229,12 +229,13 @@ export class MessagesDetailsComponent implements OnInit {
   sendChat(document?: any) {
   
     
-    if (this.model.comment)
+    
+    if(this.params.chat){
+      if (this.model.comment)
       this.model.comment = this.model.comment.trim()
     if (!this.model.comment && !document) {
       return;
     }
-    if(this.params.chat){
       return new Promise<any>((resolve, reject) => {
        
          this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
@@ -287,6 +288,11 @@ export class MessagesDetailsComponent implements OnInit {
   
       })
     }else{
+      if (this.model.comment)
+      this.model.comment = this.model.comment.trim()
+      if (!this.model.comment && !document) {
+        return;
+      }
       if(this.blockRecipant1){
         this.alert.error("Please Unblock this receipant","Error");
         return false;
@@ -334,7 +340,9 @@ export class MessagesDetailsComponent implements OnInit {
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
+          
           res.data.forEach(element1 => {
+            element1.is_read=0
             element1.receipentList.forEach(element => {
              // console.log(element);
               if(element[localStorage.getItem('fbtoken')]){
@@ -352,6 +360,11 @@ export class MessagesDetailsComponent implements OnInit {
           
           //
           this.conversation = chatData;
+          if(localStorage.getItem('isread')){
+            localStorage.removeItem('isread')
+            this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+          }
+          
           this.dataStudent = chatData;
         } else {
           this.conversation = [];
@@ -364,14 +377,23 @@ export class MessagesDetailsComponent implements OnInit {
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
+          res.data.forEach(element => {
+            element.is_read=0
+          });
+          
           this.conversation = res.data;
           this.dataStudent = res.data;
+          if(localStorage.getItem('isread')){
+            localStorage.removeItem('isread')
+            this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+          }
         } else {
           this.conversation = [];
           this.dataStudent = [];
         }
   
       })
+     
     }
 
     

@@ -4,6 +4,7 @@ import {ThemePalette} from '@angular/material/core';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 
 export interface subAdminManagementElement {
   SNo: number;
@@ -34,7 +35,8 @@ export class ReminderPastComponent implements OnInit {
   constructor(private router: Router,
     private baseService : BaseService,
     private loader:NgxSpinnerService,
-    private alert:NotificationService) { }
+    private alert:NotificationService,
+    private location : Location) { }
 
   ngOnInit(): void {
     this.config = {
@@ -49,7 +51,7 @@ export class ReminderPastComponent implements OnInit {
       this.model.page=page;
       this.baseService.getData("chat/chat_reminder_notification_past/",this.model).subscribe((res:any)=>{
         if(res.status==true){
-          this.alert.success("Data get successfully","Success");
+          // this.alert.success("Data get successfully","Success");
           this.dataSource=res.results
           this.pageSize = res.page_size;
           this.model.page_size=this.pageSize
@@ -60,7 +62,12 @@ export class ReminderPastComponent implements OnInit {
           this.config.currentPage = page
           this.config.totalItems = this.totalNumberOfPage
         }
+        else {
+          this.alert.error(res.error.message, 'Error')
+        }
+        this.loader.hide()
       },error=>{
+        this.alert.error('Please Try Again', 'Error')
         this.loader.hide()
       })
     } catch (error) {
@@ -75,4 +82,7 @@ export class ReminderPastComponent implements OnInit {
     this.images.push(src);
   }
  
+  goBack(){
+    this.location.back()
+  }
 }
