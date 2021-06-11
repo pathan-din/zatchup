@@ -26,7 +26,7 @@ export class MySchoolComponent implements OnInit {
   ) { }
   ngOnInit(): void {
      var role = parseInt(localStorage.getItem("role"))
-    if(localStorage.getItem('approved') && localStorage.getItem('approved')=='true'){
+    if(localStorage.getItem('approved') && localStorage.getItem('approved')=='1'){
       this.verified = true;
     } 
     
@@ -38,6 +38,8 @@ export class MySchoolComponent implements OnInit {
     // this.userRole = JSON.parse(localStorage.getItem('getreject')).role
     setTimeout(() => {
       this.userRole = JSON.parse(localStorage.getItem('getreject')).role
+      console.log('fdhf0', this.userRole);
+      
       }, 500);
 
   }
