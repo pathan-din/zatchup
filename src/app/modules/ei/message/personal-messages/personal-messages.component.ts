@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
@@ -24,6 +25,7 @@ export class PersonalMessagesComponent implements OnInit {
   groupexit: number=0;
   setting_user:any={'online':true,'is_seen':true,'is_read':true}
   lastGroupmsgCount: any[];
+  groupListNew: any[];
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -235,16 +237,26 @@ export class PersonalMessagesComponent implements OnInit {
   }
   getGroupDetails(uuid){
     this.groupList=[];
+    this.groupListNew=[];
     this.lastGroupmsgCount=[]
     this.firestore.collection('group').snapshotChanges().subscribe((res:any)=>{
       res.forEach(element => {
          
         this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res:any)=>{
-          console.log(res);
+          //console.log(res);
           res.uuid=element.payload.doc.id;
           if(!res.group_icon){
             res.group_icon="assets/images/userWebsite/users.png";
           }
+          this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
+            res1.forEach(element => {
+              if(element.is_read==1){
+                console.log(element);
+                
+              }
+            });
+            
+          })
             res.reciepent.forEach(ele => {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
                 var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
@@ -266,7 +278,7 @@ export class PersonalMessagesComponent implements OnInit {
                       
                     }
             
-                    console.log( this.lastGroupmsgCount);
+                   // console.log( this.lastGroupmsgCount);
                     
                   })
                 }
