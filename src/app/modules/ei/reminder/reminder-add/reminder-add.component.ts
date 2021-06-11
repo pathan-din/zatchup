@@ -312,4 +312,8 @@ submitReminder(){
     }
   }
 
+  goBack(){
+    this.location.back()
+  }
+
 }
