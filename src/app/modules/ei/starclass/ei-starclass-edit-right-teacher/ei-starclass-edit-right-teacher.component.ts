@@ -87,7 +87,7 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
         'page_size': this.editTeacherAudience.page_size,
         'approved': this.route.snapshot.queryParamMap.get('approved'),
         'course_id': this.route.snapshot.queryParamMap.get('course_id'),
-        'is_edit_right': 'true'
+        // 'is_edit_right': 'true'
       }
       this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/', this.editTeacherAudience.params).subscribe(
         (res: any) => {
