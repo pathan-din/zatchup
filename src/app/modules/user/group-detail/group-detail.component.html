@@ -2,18 +2,18 @@
 
 <div class="container contentSpaceTop">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="cursorStyle img-fluid subHeaderImg">
+            <h1 class="text-center">Group Detail</h1>
         </div>
     </div>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class=" bg-light-gray pt-3 pb-5">
-                <h1 class="text-center pt-3">Group Detail</h1>
-                <div class="row mt-3 pb-3 align-items-center pl-2 border-bottomCustom ml-0 mr-0">
+            <div class=" bg-light-gray pb-5">
+                <div class="row align-items-center border-bottomCustom m-0">
                     <div class="col-md-12 d-flex align-items-center justify-content-start flex-wrap">
-                        <div class="addChatProfile shadow mr-5 position-relative">
+                        <div class="addChatProfile shadow mr-3 position-relative">
                             <!-- <img *ngIf="!model.group_icon" src="assets/images/userWebsite/profile-image.png" alt=""/> -->
                             <i *ngIf="!model.group_icon" class="fa fa-users" aria-hidden="true"></i>
                             <img src="{{model.group_icon}}" *ngIf="model.group_icon">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             
-                <div class="row mt-3 px-4">
+                <div class="row mt-3">
                     <!-- <div class="col-md-6" (click)="addMoreRecepient()" *ngIf="is_check_student==1">
                         <div class="mr-4">
                             <img src="assets/images/userWebsite/add-more.png" class="img-fluid mr-3 img-small">

@@ -47,6 +47,7 @@ export class UserKycVerificationComponent implements OnInit {
   uploadedContentForBackPhoto: any;
   params: any = {};
   text: any = 'text';
+  isSubmit: boolean;
 
   constructor(
     private router: Router,
@@ -171,6 +172,7 @@ export class UserKycVerificationComponent implements OnInit {
       formData.append('kyc_document_back', document_back);
       formData.append('kyc_id_no', this.model.kyc_id_no);
       this.loader.show();
+      this.isSubmit = true;
       if (this.params.action == 'sendrequest') {
         if (this.params.text == 'name') {
           formData.append('kyc_name', this.model.kyc_name);
@@ -183,6 +185,7 @@ export class UserKycVerificationComponent implements OnInit {
             this.router.navigate([this.params.returnUrl]);
           } else {
             this.loader.hide();
+            this.isSubmit = false;
             var errorCollection = '';
             for (var key in response.error) {
               if (response.error.hasOwnProperty(key)) {
@@ -194,6 +197,7 @@ export class UserKycVerificationComponent implements OnInit {
           }
         }, (error) => {
           this.loader.hide();
+          this.isSubmit = false;
         });
       } else {
         formData.append('kyc_name', this.model.kyc_name);
@@ -217,8 +221,10 @@ export class UserKycVerificationComponent implements OnInit {
             } else {
               this.router.navigate(['user/my-educational-profile']);
             }
+            this.isSubmit = false;
           } else {
             this.loader.hide();
+            this.isSubmit = false;
             var errorCollection = '';
             for (var key in res.error) {
               if (res.error.hasOwnProperty(key)) {
@@ -230,6 +236,7 @@ export class UserKycVerificationComponent implements OnInit {
           }
         }, (error) => {
           this.loader.hide();
+          this.isSubmit = false;
         });
       }
 

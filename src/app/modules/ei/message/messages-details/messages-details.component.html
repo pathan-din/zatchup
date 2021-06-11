@@ -1,13 +1,17 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
-    <div class="bg-white px-3 pt-2 pb-3 mt-3">
+    <div class="bg-white px-3 py-3 mt-3">
         <div class="row topDiv">
-            <div class="col-md-12 col-12 text-center">
-                <h1 class="commonFontSize semiBoldFont m-0 py-3">Messages Details</h1>
+            <div class="col-md-12 col-12">
+                <h1 class="commonFontSize semiBoldFont m-0">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                Messages Details</h1>
             </div>
         </div>
 
-        <div *ngIf="!params.chat" class="bg-light-gray p-3">
+        <div *ngIf="!params.chat" class="bg-light-gray p-3 mt-3">
             <div class="profile_detail d-flex align-items-center justify-content-start mb-3 position-relative">
                 <div class="profile_pick">
                     <img *ngIf="!recepintDetails" src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
@@ -50,7 +54,7 @@
                         </div>
                         <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left" *ngIf="objCon.document">
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank">
-                                <img src="./assets/images/userWebsite/pdf.png" />
+                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize" />
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
@@ -65,7 +69,7 @@
             </div>
         </div>
 
-        <div *ngIf="params.chat" class="bg-light-gray p-3">
+        <div *ngIf="params.chat" class="bg-light-gray p-3 mt-3">
             <div class="profile_detail d-flex justify-content-start mb-3 cursorStyle position-relative" >
                 <div class="profile_pick" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
                     <img src="{{recepientGroup.group_icon?recepientGroup.group_icon:'./assets/images/userWebsite/users.png'}}"
@@ -77,7 +81,7 @@
                     <p *ngIf="recepientGroup" class="m-0">{{recepientGroup.group_title}}
                         <span class="small-text-2"></span>
                     </p>
-                     <span class="small-text-2" *ngFor="let user of receipentUsers">
+                     <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers">
                         <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{','}} </label>
                     </span>
                 </div>
@@ -104,7 +108,7 @@
                         </div>
                         <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left" *ngIf="objCon.document">
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf'" href="{{objCon.msg}}" target="_blank">
-                                <img src="./assets/images/userWebsite/pdf.png" />
+                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
@@ -119,7 +123,7 @@
             </div>
         </div>
 
-        <div class="row"  *ngIf="params.chat && groupexit==0">
+        <div class="row mt-3"  *ngIf="params.chat && groupexit==0">
             <div class="col-12">
                 <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
                     <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->

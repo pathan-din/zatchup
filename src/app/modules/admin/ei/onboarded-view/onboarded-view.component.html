@@ -34,11 +34,11 @@
                     Messages From School Pending
                     Count: <span *ngIf="dashCounts">{{dashCounts.contactus_count}}</span></button>
             </div>
-            <!-- <div class="col-md-4 mt-3">
-                <button type="button"
+            <div class="col-md-4 mt-3">
+                <button type="button" (click)="zatchupStarClass()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View ZatchUp
-                    Starclass Buy History</button>
-            </div> -->
+                    Starclass</button>
+            </div>
             <div class="col-md-4 mt-3">
                 <button type="button" (click)="subPlanHistory()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Subscription

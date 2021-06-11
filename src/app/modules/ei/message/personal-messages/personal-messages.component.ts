@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { BaseService } from 'src/app/services/base/base.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-personal-messages',
@@ -30,6 +31,7 @@ export class PersonalMessagesComponent implements OnInit {
     private router: Router,
     private firestore: AngularFirestore,
     private notifypush: FirebaseService,
+    private location: Location,
     private baseService: BaseService
 
   ) { }
@@ -307,6 +309,9 @@ export class PersonalMessagesComponent implements OnInit {
   messageDetails(uid,chatConversion){
     localStorage.setItem('guuid', uid);
     this.router.navigate(["ei/messages-details"],{queryParams:{"chat":chatConversion}});
+  }
+  goBack(): void{
+    this.location.back();
   }
 
 }

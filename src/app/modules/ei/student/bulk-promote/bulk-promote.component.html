@@ -17,8 +17,8 @@
                 <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
                     <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select (change)="getStandardList(courseId, 'new')" id="course_id" [(ngModel)]="courseId" name="course"
-                            class="custom-select border form-control-input">
+                        <select [disabled]="courseDisable" (change)="getStandardList(courseId, 'new')" id="course_id" [(ngModel)]="courseId"
+                            name="course" class="custom-select border form-control-input">
                             <option value=""> Select Course</option>
                             <option value="{{course.id}}" *ngFor="let course of studentCourseList">
                                 {{course.course_name}}
@@ -51,10 +51,21 @@
                         </select>
                     </div>
                 </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Students</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" (change)="studentTypes()" [(ngModel)]="promoteType" name="class"
+                            class="custom-select  form-control-input">
+                            <option value=""> Select students </option>
+                            <option value="new"> School Promoted </option>
+                            <option value="old"> User Added </option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive">
+        <div class="tableDiv">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource">
                 <mat-table #table [dataSource]="dataSource">
 
                     <ng-container matColumnDef="checked">
@@ -102,18 +113,26 @@
                 </mat-table>
 
             </div>
-            <div class="row mt-3">
-                <div class="col-12 text-right">
-
-                    <button (click)="markAsAlumni()" type="button"
-                        class="bg-light-black text-white py-2 px-4 border-0 mb-4 mr-2">Mark as Alumni</button>
-
-                    <button (click)="submit()" type="button"
-                        class="bg-paret-green text-white py-2 px-4 border-0 mb-4">Submit</button>
+            <div class="row" *ngIf="!dataSource">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
                 </div>
             </div>
-            <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-                <p style="color: white">Please Wait. </p>
-            </ngx-spinner>
+
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 text-right">
+
+                <button (click)="markAsAlumni()" type="button" [disabled]="!dataSource"
+                    class="bg-light-black text-white py-2 px-4 border-0 mb-4 mr-2">Mark as Alumni</button>
+
+                <button (click)="submit()" type="button"
+                    class="bg-paret-green text-white py-2 px-4 border-0 mb-4" [disabled]="!dataSource">Submit</button>
+            </div>
         </div>
     </div>
+
+
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>

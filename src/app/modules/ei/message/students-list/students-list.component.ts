@@ -3,6 +3,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 export interface PeriodicElement {
   selectCheckbox: string;
   position: number;
@@ -90,6 +91,7 @@ export class StudentsListComponent implements OnInit {
     private router: Router,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
+    private location: Location,
     private alert: NotificationService,
     private route:ActivatedRoute) { }
   sectionIds:any;
@@ -338,6 +340,9 @@ export class StudentsListComponent implements OnInit {
       this.router.navigate(["ei/create-group-chat"]);
     }
     
+  }
+  goBack(): void{
+    this.location.back();
   }
  
 }

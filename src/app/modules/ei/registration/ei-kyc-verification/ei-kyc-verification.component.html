@@ -99,17 +99,17 @@
                                 photo optional</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input *ngIf="model.kyc_type == 'Aadhar'"
+                                <!-- <input *ngIf="model.kyc_type == 'Aadhar'"
                                     class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
                                     type="file" (change)="handleFileInputBack($event.target.files); isValid();"
-                                    [(ngModel)]="uploadedContent_back" name="document_back" required>
-                                <input *ngIf="model.kyc_type != 'Aadhar'"
+                                    [(ngModel)]="uploadedContent_back" name="document_back" required> -->
+                                <input
                                     class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
                                     type="file" (change)="handleFileInputBack($event.target.files); isValid();"
                                     [(ngModel)]="uploadedContent_back" name="document_back">
                             </div>
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.document_back"></div>
+                        <!-- <div class="required errorMsg" [innerHtml]="errorDisplay.document_back"></div> -->
                     </div>
 
                     <button type="button" (click)="goToUserQualificationPage()" [disabled]="submitDisable"

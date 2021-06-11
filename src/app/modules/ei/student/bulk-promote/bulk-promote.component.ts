@@ -15,12 +15,16 @@ export class BulkPromoteComponent implements OnInit {
   classId: any = '';
   courseId: any = '';
   standardId: any = '';
+  currentCourseId: any;
   currentStandardId: any = '';
   classList: any = [];
   studentCourseList: any = [];
   studentStandardList: any = [];
   dataSource: any;
   rollNumArr: any = []
+  promoteType: any = ''
+  studentList: any;
+  courseDisable: boolean
 
   constructor(
     private location: Location,
@@ -32,8 +36,10 @@ export class BulkPromoteComponent implements OnInit {
   ngOnInit(): void {
     this.user_id = JSON.parse(localStorage.getItem('userprofile')).user_id;
     this.dataSource = JSON.parse(localStorage.getItem('bulkStudents')).studentList;
+    this.studentList = this.dataSource;
     this.courseId = JSON.parse(localStorage.getItem('bulkStudents')).courseId;
     this.currentStandardId = JSON.parse(localStorage.getItem('bulkStudents')).standardId;
+    this.currentCourseId = this.courseId;
     this.setData()
     this.getCourseList();
     this.getStandardList(this.courseId, '');
@@ -84,6 +90,10 @@ export class BulkPromoteComponent implements OnInit {
       this.baseService.getData("user/next-standard-list/", params).subscribe((res: any) => {
         this.loader.hide()
         this.studentStandardList = res.results;
+        if (this.studentStandardList.length > 0 && type != 'new')
+          this.courseDisable = true
+        else
+          this.courseDisable = false
       }, (error) => {
         this.loader.hide()
         this.alert.error(error.error, "Error");
@@ -116,10 +126,6 @@ export class BulkPromoteComponent implements OnInit {
     let validRollNumbers: any = []
     validRollNumbers = this.dataSource.filter(x => x.roll_no == '')
     promoteData = this.dataSource.filter(x => x.status == true)
-    // debugger
-    // return
-    console.log('validRollNumbers......', validRollNumbers);
-
     if (promoteData.length == 0) {
       this.alert.error('Please select students first.', 'Error')
       return;
@@ -142,6 +148,7 @@ export class BulkPromoteComponent implements OnInit {
       let userIds = promoteData.map(a => a.student_id);
       let params = {
         "course": this.courseId,
+        "old_course": this.currentCourseId != this.courseId ? this.currentCourseId : '',
         "standard": this.standardId,
         "teaching_class": this.classId,
         "user_id": userIds.toString(),
@@ -273,6 +280,19 @@ export class BulkPromoteComponent implements OnInit {
         this.loader.hide()
       }
     )
+  }
+
+  studentTypes() {
+    if (this.promoteType != '') {
+      let students: any = [];
+      students = this.studentList.filter(val => val.promote_type == this.promoteType)
+      if (students.length > 0)
+        this.dataSource = students
+      else
+        this.dataSource = undefined
+    } else {
+      this.dataSource = this.studentList;
+    }
   }
 
   goBack() {
