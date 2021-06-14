@@ -121,9 +121,9 @@ export class StudentsListComponent implements OnInit {
             groupList[getAlreadyCurrentUserInGroupIndex].isadded=true
            }
            //console.log(index);
-           if(index>-1){
-            groupList.splice(index,1);
-           }
+          //  if(index>-1){
+          //   groupList.splice(index,1);
+          //  }
           
           })
           this.dataSource1 = groupList;

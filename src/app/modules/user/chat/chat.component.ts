@@ -363,7 +363,7 @@ export class ChatComponent implements OnInit {
               let userData = JSON.parse(localStorage.getItem('userInfo'))
               data.user_friend_id = localStorage.getItem("guuid");
               data.user_send_by = localStorage.getItem('fbtoken');
-              data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
+              data.user_name = userData.first_name + ' ' + userData.last_name;
               data.profile_pic = userData.profile_pic
               data.document = document ? true : false;
               data.msg = document ? document : this.model.comment;

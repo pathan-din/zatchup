@@ -47,8 +47,10 @@ export class GroupDetailComponent implements OnInit {
     })
     if(this.params.groupId && this.params.chat && !this.params.editgroup)
     {
-      this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-        console.log(res);
+      const groupD = this.firestore.collection("group").doc(this.params.groupId).valueChanges()
+      const groupDd=groupD.subscribe((res:any)=>{
+        
+       // console.log(res);
         this.model=res;
         
         res.reciepent.forEach(element => {
@@ -78,12 +80,13 @@ export class GroupDetailComponent implements OnInit {
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
             }
-           console.log(this.groupMember);
+          // console.log(this.groupMember);
            
           })
           
         });
       })
+      
     }else{
       if(localStorage.getItem("groupUsers"))
       {
