@@ -41,7 +41,8 @@ export class EiSidenavComponent implements OnDestroy {
     "seeMoreResults": true,
     "viewSubMenu": true,
     "rightIcon": true,
-    "viewCity": true
+    "viewCity": true,
+    "showValue": true
 
   }
   searchItem: any = '';
