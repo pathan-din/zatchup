@@ -59,11 +59,12 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
         this.selectAll = true;
       }
       this.setData()
+      this.addTeacherAudience("nomsg","noredirect")
     }
     else {
       this.getTeacherAuidenceList()
     }
-    this.addTeacherAudience("nomsg","noredirect")
+   
   }
 
 
