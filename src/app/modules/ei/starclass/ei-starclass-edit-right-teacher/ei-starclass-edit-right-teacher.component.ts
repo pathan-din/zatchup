@@ -228,17 +228,25 @@ export class EiStarclassEditRightTeacherComponent implements OnInit {
           (res: any) => {
             if (res.status == true) {
               this.loader.hide();
-              this.alert.success(res.message, 'Success');
-              localStorage.setItem("teachers", JSON.stringify(this.editTeacherAudience.dataSource))
-              var action = this.route.snapshot.queryParamMap.get('action')
-              console.log(action);
-              
-              if (action == 'add') {
+            var action = this.route.snapshot.queryParamMap.get('action')
+              if(action == 'add'){
+                this.alert.success(res.message, 'Success');
                 this.router.navigate(['ei/star-class-audience-student-list'], { queryParams: { 'course_id': this.route.snapshot.queryParamMap.get('course_id'), 'action': 'add' } })
+
               }
               else {
+                this.alert.success('Updated Successfully', 'Success')
                 this.location.back()
+
               }
+              
+              localStorage.setItem("teachers", JSON.stringify(this.editTeacherAudience.dataSource))
+              // console.log(action);
+              
+              // if (action == 'add') {
+              // }
+              // else {
+              // }
             }
             else {
               this.alert.error(res.error.message, 'Error')
