@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-6">
                 <div class="button-div d-flex justify-content-end flex-wrap">
-                    <!-- <button type="button" class="bg-dark text-white py-2 px-3 mx-1 border-0">New Messages</button> -->
+                    <button type="button" data-target="#PersonalModal" data-toggle="modal"  class="bg-dark text-white py-2 px-3 mx-1 border-0">New Messages</button> 
                     <button type="button" (click)="createChatGroup()" class="bg-dark text-white py-2 px-3 mx-1 border-0">Create Group</button>
                     <button type="button" data-target="#ActionModal" data-toggle="modal" class="bg-yellow text-white py-2 px-3 mx-1 border-0">
                         <i class="fa fa-cog" aria-hidden="true"></i>
@@ -28,7 +28,7 @@
                 <div class="col-md-11 col-10" (click)="goToChatScreen(msgObj.uuid,msgObj.friendlidt_id,'','a')">
                     <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">{{msgObj.user_name}}
                         <span class="small-text">({{msgObj.class_name}} {{msgObj.roll_no}})</span>
-                        <span class="chatCount">{{messageData[msgObj.user_friend_id].length}}</span>
+                        <span class="chatCount" *ngIf="messageData[msgObj.user_friend_id].length>0">{{messageData[msgObj.user_friend_id].length}}</span>
                     </h3>
                     <p class="mb-0"> {{msgObj.document?'Attachment':msgObj.msg}} </p>
                 </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-11 col-10">
                     <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">{{msgObjG.group_title}}
-                        <span class="chatCount">{{lastGroupmsgCount[msgObjG.uuid].length}}</span>
+                        <span *ngIf="lastGroupmsgCount[msgObjG.uuid].length>0" class="chatCount">{{lastGroupmsgCount[msgObjG.uuid].length}}</span>
                     </h3>
                     <p class="mb-0"  *ngFor="let lastChat of lastGroupmsg[msgObjG.uuid];">{{lastChat.document?'Attachment':lastChat.msg}}</p> 
                 </div>
@@ -55,7 +55,7 @@
     </div>
 
     <!-- PersonalModal  -->
-    <!-- <div class="modal fade" id="PersonalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="PersonalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content unverified container-fluid">
                 <div class="modal-header p-0 border-0 pt-2">
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div> 
 
     <!-- ActionModal  -->
     <div class="modal fade" id="ActionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

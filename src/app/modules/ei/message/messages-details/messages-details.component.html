@@ -46,7 +46,7 @@
                     <div class="col-md-12 col-12">
                         <div *ngIf="!objCon.document">
                             <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{getTimeAgo(objCon.timestamp)}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{objCon.user_send_by!=currentUser?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                     <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
@@ -100,7 +100,7 @@
                     <div class="col-md-12 col-12">
                         <div *ngIf="!objCon.document">
                             <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{objCon.user_send_by!=currentUser?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                     <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
@@ -113,7 +113,7 @@
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                             </a>
-                            <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{objCon.user_name}} {{getTimeAgo(objCon.timestamp)}}
+                            <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{objCon.user_send_by!=currentUser?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                 <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                 <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                             </span>

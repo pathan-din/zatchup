@@ -88,13 +88,16 @@ export class GroupChatComponent implements OnInit {
         this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
         this. displayCourseListModuleAccess();
         this.sectionIds=JSON.parse(localStorage.getItem("sections"));
-        if(JSON.parse(localStorage.getItem("courseIds")).length>0){
+        if(localStorage.getItem("courseIds")){
+          if(JSON.parse(localStorage.getItem("courseIds")).length>0){
           
-          this.courseIds=JSON.parse(localStorage.getItem("courseIds"))
-          JSON.parse(localStorage.getItem("courseIds")).forEach(element => {
-            this.displayStandardListModuleAccess(element,true);
-          });
+            this.courseIds=JSON.parse(localStorage.getItem("courseIds"))
+            JSON.parse(localStorage.getItem("courseIds")).forEach(element => {
+              this.displayStandardListModuleAccess(element,true);
+            });
+          }
         }
+       if(localStorage.getItem("standardIds")){
         if(JSON.parse(localStorage.getItem("standardIds")).length>0){
           this.standardIds=JSON.parse(localStorage.getItem("standardIds"))
           JSON.parse(localStorage.getItem("standardIds")).forEach(element => {
@@ -102,6 +105,8 @@ export class GroupChatComponent implements OnInit {
           });
           
         }
+       }
+       
       }
     
    
@@ -163,7 +168,8 @@ export class GroupChatComponent implements OnInit {
   displayCourseListModuleAccess() {
     try {
       this.loader.show();
-      this.baseService.getData('ei/course-list/').subscribe(
+      this.model.page_size=1000
+      this.baseService.getData('ei/course-list/',this.model).subscribe(
         (res: any) => {
           this.loader.hide();
           this.courseListModuleAccess = res.results;
@@ -185,7 +191,7 @@ export class GroupChatComponent implements OnInit {
       
       if(eve){
         this.loader.show();
-        this.baseService.getData('ei/standard-list/', { "course_id": courseId }).subscribe(
+        this.baseService.getData('ei/standard-list/', { "course_id": courseId,page_size:1000 }).subscribe(
           (res: any) => {
             this.loader.hide();
             this.standardListModuleAccess[courseId] = res.standarddata;
@@ -213,7 +219,7 @@ export class GroupChatComponent implements OnInit {
       if(eve){
         this.loader.show();
         this.classList = [];
-        this.baseService.getData('ei/class-list/', { "standard_id": stId }).subscribe(
+        this.baseService.getData('ei/class-list/', { "standard_id": stId ,page_size:1000}).subscribe(
           (res: any) => {
             this.loader.hide();
             this.classListModuleAccess[stId] = res.classdata;
@@ -312,9 +318,9 @@ createGroupConfirmationList(){
   if(!this.isAddedTeacher){
     return this.alert.error("Atleast one teacher in this group","Error")
   }
-  if(this.sectionIds.length==0){
-    return this.alert.error("Select one section","Error")
-  }
+  // if(this.sectionIds.length==0){
+  //   return this.alert.error("Select one section","Error")
+  // }
   localStorage.setItem("teachers",JSON.stringify(this.teacherList));
   localStorage.setItem("sections",JSON.stringify(this.sectionIds));
   localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
@@ -418,7 +424,7 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
  
   getTeacherList(page){
     this.loader.show();
-     
+    this.modelteacher.page_size = 1000;
     this.baseService.getData('ei/subadmin-lists-by-ei/',this.modelteacher).subscribe(
       (res: any) => {
         if (res.status == true) {
