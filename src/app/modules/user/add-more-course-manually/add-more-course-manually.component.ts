@@ -74,6 +74,9 @@ export class AddMoreCourseManuallyComponent implements OnInit {
       if(this.title=='past'){
         this.router.navigate(['user/ei-confirmation'], {queryParams: {'school_id':this.schoolId }});
       }else{
+        if( localStorage.getItem("res.reg_step")=='7'){
+          this.router.navigate(['user/my-school']);
+        }else
         this.router.navigate(['user/profile-created'], {queryParams: {'school_id':this.schoolId }});
       }
       

@@ -1,7 +1,8 @@
-<div class="position-relative">
+<!-- <div class="position-relative">
     <div class="row">
-        <div class="col-12 text-center">
-            <input type="text" #searchText class="form-control" value="{{value}}" placeholder="Search....." />
+        <div class="col-12 text-center position-relative">
+             <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
+            <input type="text" #searchText class="form-control pl-5" value="{{value}}" placeholder="Search....." />
         </div>
     </div>
     <div class="row position-absolute" *ngIf="isSearching">
@@ -21,8 +22,91 @@
         <ng-template #elseTemplate>
             <ul class="searchDropdown shadow rounded">
                 <li *ngFor="let data of apiResponse['results']" (click)="selectData(data)">
-                    <p class="pt-2 pb-2 mb-0"> {{data['display']}}</p>
+                     <p class="pt-2 pb-2 mb-0 border-bottom"> {{data['display']}}</p>
+
+                    <div class="searh_result cursorStyle">
+                        <div class="searchUserProfile">
+                            <img src="assets/images/userWebsite/share-my-profile-icon.png" alt="User" class="img-small"/>
+                        </div>
+                        <div class="SearchUserName">
+                            Mahesh Chand
+                        </div>
+                        <div class="searchUserDesignation">
+                            Software Developer at Triazine
+                        </div>
+                    </div>
+
+
             </ul>
+        </ng-template>
+    </div>
+</div> -->
+
+<div class="position-relative">
+    <div class="row">
+        <div class="col-12 text-center position-relative">
+            <i class="fa fa-search cursorStyle userSearch" aria-hidden="true"></i>
+            <input type="text" #searchText class="form-control pl-5" value="{{_value}}" placeholder="{{placeholder}}"
+                autocapitalize="off" autocomplete="off" />
+        </div>
+    </div>
+    <div class="row" *ngIf="isSearching">
+        <div class="text-center notFound">
+            <h4>Searching ... </h4>
+        </div>
+    </div>
+    <div class="row">
+        <ng-container *ngIf="apiResponse['count'] == 0; else elseTemplate">
+            <ul class="notFound text-center">
+                <li>Data Not found</li>
+            </ul>
+
+        </ng-container>
+
+        <ng-template #elseTemplate>
+            <ul class="searchDropdown shadow">
+                <div></div>
+                <li *ngFor="let data of apiResponse['results']; let i = index" (click)="selectData(data)">
+                    <div *ngIf="i < resultsLength" class="searh_result cursorStyle position-relative">
+                        <div class="searchUserProfile border" *ngIf="displayImage">
+                            <img *ngIf="!data.profile_pic" src="assets/images/profile-default.png" alt="User"
+                                class="img-small" />
+                            <img *ngIf="data.profile_pic" src="{{data.profile_pic}}" alt="User" class="img-small" />
+                        </div>
+                        <div>
+                            <div>
+                                <span class="SearchUserName text-capitalize fontSize-16">{{data['display']}}</span>
+                                <!-- <span *ngIf="viewSubMenu" class="small-text-2">
+                                    <span *ngIf="data.id == currentUser">You</span>
+                                </span> -->
+                            </div>
+                            <div>
+                                <span class="regularFont issueDateFontSize color-gray batchDetail"
+                                    *ngIf="data.is_school_mate && data.approved == 1 && data.id != currentUser">School Mate</span>
+                                <span *ngIf="viewSubMenu" class="regularFont issueDateFontSize color-gray batchDetail">
+                                    <span *ngIf="data.id == currentUser">You</span>
+                                </span>
+                            </div>
+                            <div *ngIf="viewZatchupId" class="searchUserDesignation">
+                                {{data['school_code']}}
+                            </div>
+                        </div>
+                        <div class="searchCity" *ngIf="viewCity">
+                            <!-- <span>jaipur</span> -->
+                            <span>{{data['city']}}</span>
+                        </div>
+                        <div class="searchIcon" *ngIf="rightIcon && data.user_type == 'SCHOOL'">
+                            <img src="assets/images/school.png" alt="school" />
+                        </div>
+                    </div>
+                </li>
+                <div *ngIf="seeMoreResults && apiResponse['count'] > 5">
+                    <button type="button"
+                        class="btn-default color-reset bg-light-gray ng-star-inserted border-0 p-2 w-100 border-top color-purple"
+                        (click)="moreResults()">See All Results</button>
+                </div>
+            </ul>
+
         </ng-template>
     </div>
 </div>

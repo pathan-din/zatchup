@@ -44,7 +44,7 @@ export class UserSignUpComponent implements OnInit {
   yearModel: any = '';
   type: any;
   maxlength: any;
-
+  
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
@@ -68,7 +68,10 @@ export class UserSignUpComponent implements OnInit {
     this.model.profile = {};
     this.model.profile.pronoun = "";
     this.model.is_term_cond = false;
+    this.baseService.getCurrentMonth();
+    this.baseService.getCurrentYear();
   }
+  
   isCheckEmailOrPhone(event) {
     this.maxlength = ''
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -76,14 +79,14 @@ export class UserSignUpComponent implements OnInit {
 
       this.type = 'email';
       this.maxlength = 50;
-      this.model.email = event.target.value;
+      this.model.email = this.model.username;
       this.model.phone = '';
     } else {
       const numbers = /^[0-9]+$/;
       if (numbers.test(event.target.value)) {
         this.type = 'tel'
         this.maxlength = 10;
-        this.model.phone = event.target.value;
+        this.model.phone = this.model.username;
         this.model.email = '';
       }
 
@@ -134,6 +137,9 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("kyc_name", this.model.first_name + ' ' + this.model.last_name);
       if (this.model.email) {
         this.model.email = this.model.username;
+      }
+      if (this.model.phone) {
+        this.model.phone = this.model.username;
       }
       /***************Merge dob after all selected dropdown *****************/
       this.model.profile.dob = this.yearModel + '-' + this.monthModel + '-' + this.dateModel;
@@ -256,6 +262,9 @@ export class UserSignUpComponent implements OnInit {
   }
 
   goToTermsAndConditions(type: any, action: any, pageName: any) {
-    this.router.navigate(['user/terms-conditions', type, action], { queryParams: { pageName: pageName } })
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree(['user/terms-conditions', type, action], { queryParams: { pageName: pageName } })
+    );
+   window.open('#'+url, '_blank');
   }
 }

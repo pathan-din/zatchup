@@ -184,7 +184,7 @@ app-ei-sidenav+.container.main-container {
     color: #b4b4b4;
     font-family: "SFUIDisplay-Regular";
     cursor: pointer;
-    margin-bottom: 2%;
+    margin-bottom: 5px;
 }
 
 .eiPaginationTag .ngx-pagination .current {
@@ -218,6 +218,10 @@ app-ei-sidenav+.container.main-container {
     .SearchDiv {
         margin-top: 0.5rem;
         /* justify-content: flex-start; */
+    }
+
+    .ei-bg-img{
+        background: none;
     }
 }
 

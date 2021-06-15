@@ -2,13 +2,13 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8">
+        <div class="col-md-8 order-sm-6 order-2">
             <img class="img-fluid left-Image mt-5" src="assets/images/userWebsite/signup_leftimages.png">
         </div>
-        <div class="col-md-4 pl-0">
+        <div class="col-md-4 pl-0 order-1 order-sm-6 MobileCol6MB">
             <div class="row">
-                <div class="col-9">
-                    <h2 class="mb-2 textSpace">El Profile </h2>
+                <div class="col-12 text-center">
+                    <h2 class="mb-2 py-3">El Profile </h2>
                 </div>
                 <div class="col-3 text-right">
                     <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
@@ -33,46 +33,19 @@
                 
                 <div class="form-group row">
                     <div class="col-sm-12 p-1 form-control-inputDiv">
-                        <input required name="employee_num" [(ngModel)]="model.employee_num" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Employee ID Number">
+                        <input required (keyup)="isValid()" name="employee_id" [(ngModel)]="model.employee_num" maxlength="10" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter Employee ID Number">
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.employee_num"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>
                 </div>
-                <!-- <div class="form-group row">
-                    <div class="col-sm-6 pl-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6 mobForm-name">
-                            <input required name="roll_no" [(ngModel)]="model.roll_no" class="form-control-input form-control form-control-sm" type="number" placeholder="Roll Number ">
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.roll_no"></div>
-                    </div>
-                    <div class="col-sm-6 pr-0">
-                        <div class="form-control-inputDiv form-control-input-padding mobile-input-6">
-                            <input required bsDatepicker autocomplete="off" placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}" name="date_of_joining" [(ngModel)]="model.date_joining"  class="form-control-input form-control form-control-sm" type="text" >
-                        </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.date_of_joining"></div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="father_name" [(ngModel)]="model.father_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Father's Name ">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.father_name"></div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-12 form-control-inputDiv">
-                        <input required name="mother_name" [(ngModel)]="model.mother_name" class="form-control-input form-control form-control-sm" type="text" placeholder="Enter your Mother's Name">
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.mother_name"></div>
-                </div> -->
                 <div class="form-group row">
                     <div class="col-sm-12 p-1 form-control-inputDiv ">
                         <textarea  name="comments" [(ngModel)]="model.comment" class="form-control form-control-textarea form-control-input" rows="2" placeholder="Write Comments (Optional)"></textarea>
                     </div>
                    
                 </div>
-             
-                <button type="submit" class="btn common-btn regularFont textSpace" (click)="subAdminProfile()">Submit</button>
-
+                <div class="text-center">
+                    <button type="submit" class="btn common-btn regularFont mt-2" (click)="subAdminProfile()">Submit</button>
+                </div>
             </form>
         </div>
     </div>

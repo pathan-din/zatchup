@@ -5,8 +5,8 @@
    
     .btn_position-absolute {
         position: absolute;
-        top: 10%;
-        left: 1%;
+        top: 5px;
+        left: 5px;
     }
     
     .landingDiv {

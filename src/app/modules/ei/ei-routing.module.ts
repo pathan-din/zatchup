@@ -140,6 +140,18 @@ import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
+import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
+import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
+import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
+import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
+import { EiStarclassAudienceTeacherComponent } from './starclass/ei-starclass-audience-teacher/ei-starclass-audience-teacher.component';
+import { ZatchupStarclassCoursePreviewComponent } from './starclass/zatchup-starclass-course-preview/zatchup-starclass-course-preview.component';
+import { EiStarclassAddTeacherStudentComponent } from './starclass/ei-starclass-add-teacher-student/ei-starclass-add-teacher-student.component';
+import { EiUserSearchProfileComponent } from './ei-user-search-profile/ei-user-search-profile.component';
+import { GroupDetailComponent } from './message/group-detail/group-detail.component';
+import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
+import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
+import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
 
 
 const routes: Routes = [
@@ -342,7 +354,7 @@ const routes: Routes = [
     path: 'star-class-lecture-history', component: EiStarclassLectureHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-lecture-upload', component: EiStarclassLectureUploadComponent, canActivate: [AuthGuard]
+    path: 'star-class-lecture-upload/:id', component: EiStarclassLectureUploadComponent, canActivate: [AuthGuard]
   },
   {
     path: 'star-class-lecture-details', component: EiStarclassLectureDetailsComponent, canActivate: [AuthGuard]
@@ -351,7 +363,7 @@ const routes: Routes = [
     path: 'star-class-course-history', component: EiStarclassCourseHistoryComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'star-class-courses-preview', component: EiStarclassCoursesPreviewComponent, canActivate: [AuthGuard]
+    path: 'star-class-courses-preview/:id', component: EiStarclassCoursesPreviewComponent, canActivate: [AuthGuard]
   },
   {
     path: 'star-class-audience-student-list', component: EiStarclassAudienceStudentListComponent, canActivate: [AuthGuard]
@@ -554,9 +566,43 @@ const routes: Routes = [
   {
     path: 'subadmin-terms-and-conditions/:type/:action', component: SubadminTermsAndConditionsComponent
   },
-  
-  
-  
+   {
+    path: 'request-for-course-list-view', component:RequestForCourseListViewComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'ei-starclass-course-view/:id', component:EiStarclassCourseViewComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'zatchup-starclass-courses', component:ZatchupStarclassComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'starclass-course-history', component:EiStarClassCourseHistoryComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'ei-starclass-audience-teacher', component: EiStarclassAudienceTeacherComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'zatchup-starclass-preview/:id', component:ZatchupStarclassCoursePreviewComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'starclass-add-student-teacher', component: EiStarclassAddTeacherStudentComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'ei-user-search-profile', component:EiUserSearchProfileComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'ei-group-detail', component:GroupDetailComponent, canActivate:[AuthGuard]
+   },
+   {
+     path : 'ei-play-history', component: EiPlayHistoryComponent, canActivate:[AuthGuard]
+   },
+  {
+    path: 'edit-group-participent', component:EditGroupParticipentComponent, canActivate:[AuthGuard]
+   },
+   {
+    path: 'bulk-promote', component: BulkPromoteComponent, canActivate: [AuthGuard]
+   },
+   
   
   //
   {

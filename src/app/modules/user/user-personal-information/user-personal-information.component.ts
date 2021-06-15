@@ -19,7 +19,8 @@ export class UserPersonalInformationComponent implements OnInit {
   schoolId: any;
   course_id: any = '';
   imagePath: any = "";
-  role:any;
+  role: any;
+  params: any = {};
   uploadInfo: any = {
     "image_type": "file_name",
     "url": "ei/uploaddocsfile/",
@@ -37,17 +38,17 @@ export class UserPersonalInformationComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(localStorage.getItem("role")){
-      this.role=localStorage.getItem("role");
+    if (localStorage.getItem("role")) {
+      this.role = localStorage.getItem("role");
     }
-     
+
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
       this.model.school_id = this.schoolId;
-      
+      this.params = params;
 
     });
-    
+
     this.imagePath = this.baseService.serverImagePath;
   }
 
@@ -56,7 +57,7 @@ export class UserPersonalInformationComponent implements OnInit {
    * 
    */
 
- 
+
   uploadProfilePic(files) {
     let fileList: FileList = files;
     let fileData: File = fileList[0];
@@ -75,12 +76,17 @@ export class UserPersonalInformationComponent implements OnInit {
       this.loader.show();
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      
+
       this.baseService.action('user/add-profile-pic-info/', this.model).subscribe(
         (res: any) => {
           this.loader.hide();
           if (res.status == true) {
-            this.router.navigate(['user/profile-created'], { queryParams: { school_id: this.schoolId } });
+            if (this.params.returnUrl) {
+              this.router.navigate(['user/my-educational-profile']);
+            } else {
+              this.router.navigate(['user/profile-created'], { queryParams: { school_id: this.schoolId } });
+            }
+
             //this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
           } else {
             this.loader.hide();
@@ -108,8 +114,14 @@ export class UserPersonalInformationComponent implements OnInit {
   }
 
   getProfilePicUrl(data: any) {
-    this.model.profile_pic=data.filename;
+    this.model.profile_pic = data.filename;
     this.imageUrl = this.imagePath + data.filename
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
   }
 
 

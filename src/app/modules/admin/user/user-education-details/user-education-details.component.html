@@ -10,7 +10,7 @@
             </div>
 
         </div>
-       
+
 
         <div class="row mt-3 mobile-col-reverse border-0 mx-0">
             <div class="col-md-6 order-sm-6 order-2">
@@ -20,7 +20,8 @@
                         <p>Name of user</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.name}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.name}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -28,7 +29,8 @@
                         <p>Unique ZatchUp User ID</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.zatchup_id}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.zatchup_id}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -36,7 +38,8 @@
                         <p>Date Of Birth</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.dob}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.dob}}</p>
                     </div>
                 </div>
                 <!-- <div class="row">
@@ -49,20 +52,20 @@
                 </div> -->
                 <div class="row">
                     <div class="col-6 commonFontSize mediumFont">
-                        <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
-                            Gender</p>
+                        <p>Gender</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span> {{getGender(studentData)}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{getGender(studentData)}}</p>
                     </div>
                 </div>
                 <div class="row " *ngIf="studentData.gender == 'C'">
                     <div class="col-6 commonFontSize mediumFont">
-                        <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
-                            Pronoun</p>
+                        <p>Pronoun</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span> {{getGender(studentData, 'pronoun')}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{getGender(studentData,'pronoun')}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -70,7 +73,8 @@
                         <p>Email ID</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.email}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.email}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -78,7 +82,8 @@
                         <p>Phone Number</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.phone}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.phone}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -86,7 +91,8 @@
                         <p>Father Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{studentData.father_name}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.father_name}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -94,23 +100,54 @@
                         <p>Mother Name</p>
                     </div>
                     <div class="col-6 commonFontSize regularFont">
-                        <p><span class="mr-3">: </span>{{studentData.mother_name}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{studentData.mother_name}}</p>
                     </div>
                 </div>
-               
+
             </div>
             <div class="col-md-6 order-sm-6 order-1 my-3">
                 <!-- <p class="color-blue text-right cursorStyle" (click)="goToEiStudentHistoryPage(stid)">View History</p> -->
                 <div class="RightimgDiv mt-2 float-md-right float-sm-none">
                     <!-- <img class="img-fluid verifiedTick" src="../../../../assets/images/userWebsite/checkicon.png">
                     <img class="img-fluid Rightimg " src="../../../../assets/images/userWebsite/lecturer-icon.png"> -->
-                    <img src="{{studentData.profile_pic?studentData.profile_pic:'assets/images/profile-default.png'}}" class="img-fluid Rightimg" >
+                    <img src="{{studentData.profile_pic?studentData.profile_pic:'assets/images/profile_pic_transparent.png'}}" class="img-fluid Rightimg">
                     <img *ngIf="studentData.kyc_approved==1" src="assets/images/userWebsite/checkicon.png" class="img-fluid verifiedTick">
                 </div>
             </div>
 
         </div>
 
+    </div>
+
+    <div class="row mt-3 mobile-col-reverse border-0 mx-0" *ngFor="let workDetail of studentData.workdetail">
+        <div class="col-md-12">
+            <div class="row form-control-inputDiv">
+                <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center">
+                    <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h3>
+
+                </div>
+
+                <div class="col-md-12 pt-3 pb-2 d-flex justify-content-between align-items-center">
+                    <h3 class="Heading m-0 d-flex justify-content-start">
+                            <img src="assets/images/work-user-profile.png" class="cursorStyle img-fluid mr-2 work-user-profile">
+                        <div class="experiencedetails">
+                            <span class="d-block regularFont mediumFont" style="line-height: 1; padding-bottom: 5px; font-size: 16px;">{{workDetail.work_department}}</span>
+                            <span class="d-block regularFont commonFontSize lineHeight">Current Company: {{workDetail.company_name}} </span>
+                            <span class="d-block regularFont small-text color-fadded-black">{{workDetail.start_date}} - {{workDetail.is_currently_work?"Present":workDetail.end_date}}
+                            </span>
+                            <span class="d-block regularFont small-text color-fadded-black lineHeight">{{workDetail.work_country}} {{workDetail.work_state}} {{workDetail.work_city}}</span>
+                        </div>
+                    </h3>
+                    <div class="addWorkcourse" *ngIf="workDetail.kyc_approved==1">
+                        <a (click)="redirectWorkDetailesPage(workDetail.id)" class="cursorStyle">
+                            <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid" style="width: 26px;">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <div class="AlumniProf-div bg-white border border-gray mt-3 px-3 py-3" *ngFor="let eduDetail of studentData.educationdetail">
@@ -125,7 +162,8 @@
                         <p class="m-0">School Name</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.name_of_school}}  </p>
+                        <p>
+                            <span class="mr-3">:</span>{{eduDetail.name_of_school}} </p>
                     </div>
                 </div>
 
@@ -136,7 +174,8 @@
                         <p class="m-0"> School ZatchUp ID</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.school_code}} </p>
+                        <p>
+                            <span class="mr-3">:</span>{{eduDetail.school_code}} </p>
                     </div>
                 </div>
 
@@ -147,7 +186,8 @@
                         <p class="m-0">School ID </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{eduDetail.admission_number}} </p>
+                        <p>
+                            <span class="mr-3">:</span>{{eduDetail.admission_number}} </p>
                     </div>
                 </div>
 
@@ -179,8 +219,8 @@
 
 
         </div>
-        <h2  *ngIf="eduDetail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
-        <div  *ngIf="eduDetail.course_detail.length>0" class="row mt-3  border-0 mx-0">
+        <h2 *ngIf="eduDetail.course_detail.length>0" class="commonFontSize border-bottom mediumFont mt-3 pb-2">1.2 Course Details Listed by El</h2>
+        <div *ngIf="eduDetail.course_detail.length>0" class="row mt-3  border-0 mx-0">
 
             <div class="col-md-12 col-left" *ngFor="let courseData of eduDetail.course_detail">
                 <div class="row">
@@ -189,7 +229,8 @@
                         <p class="m-0">Name of Course </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.course_name}} </p>
+                        <p>
+                            <span class="mr-3">:</span>{{courseData.course_name}} </p>
                     </div>
                 </div>
 
@@ -200,7 +241,8 @@
                         <p class="m-0"> Course Duration</p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.start_year}} - {{courseData.is_current_course?'Current':courseData.end_year}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{courseData.start_year}} - {{courseData.is_current_course?'Current':courseData.end_year}}</p>
                     </div>
                 </div>
 
@@ -211,7 +253,8 @@
                         <p class="m-0">Course Tenure </p>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-9 col-7 commonFontSize regularFont">
-                        <p><span class="mr-3">:</span>{{courseData.duration}}</p>
+                        <p>
+                            <span class="mr-3">:</span>{{courseData.duration}}</p>
                     </div>
                 </div>
 
@@ -232,7 +275,7 @@
 
 
         </div>
-        <div  *ngFor="let standardData of eduDetail.course_detail[0].standard_detail" class="mt-2 table-responsive">
+        <div *ngFor="let standardData of eduDetail.course_detail[0].standard_detail" class="mt-2 table-responsive">
             <table class="table table-striped border">
                 <thead>
                     <tr class="bg-Gainsboro">
@@ -246,7 +289,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let standardData of eduDetail.course_detail[0].standard_detail" >
+                    <tr *ngFor="let standardData of eduDetail.course_detail[0].standard_detail">
                         <td>{{standardData.standard_name}}</td>
                         <td>{{standardData.class_detail.length>0?standardData.class_detail[0].class_name:""}}</td>
                         <!-- <td>{{standardData.class_detail[0].alias_class}}</td> -->
@@ -453,7 +496,7 @@
         </mat-menu>
 
         UnVerifyModel  -->
-      <!--   <div class="modal fade" id="UnVerifyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!--   <div class="modal fade" id="UnVerifyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0 ">
@@ -482,7 +525,7 @@
         </div>
 
          RejectModel  -->
-      <!--  <div class="modal fade" id="RejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!--  <div class="modal fade" id="RejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
@@ -511,7 +554,7 @@
         </div>
 
         ReportModel  -->
-        <!-- <div class="modal fade" id="ReportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- <div class="modal fade" id="ReportModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center justify-content-center pb-0">
@@ -540,7 +583,7 @@
         </div>
 
          BlockModel  -->
-     <!--   <div class="modal fade" id="BlockModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!--   <div class="modal fade" id="BlockModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog " role="document">
                 <div class="modal-content unverified container-fluid">
                     <div class="modal-header align-items-center border-0 pb-0 pl-0">

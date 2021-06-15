@@ -1,6 +1,5 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
-
     <div class="starClass-div bg-white px-3 pt-3 pb-3 mt-3">
         <!--ZatchUp StarClass Sorting-->
         <div class="row mb-2 align-items-center">
@@ -8,151 +7,99 @@
                 <h2 class="commonFontSize semiBoldFont m-0">ZatchUp Starclass</h2>
             </div>
             <div class="col-xl-9 col-12 p-2 button-div commonFontSize regularFont">
-                <button type="button" class="btn py-0 px-2 border-0" (click)="goToUploadLecture()">Upload</button>
+                <button type="button" class="btn py-0 px-2 border-0" (click)="goToCreateCourse()">Create Course</button>
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToMyCourse()">My Courses</button>
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToYourOrder()">Your Orders</button>
-
-                <!-- <select class="border-0 px-2">
-                    <option value="">My Courses</option>
-                    <option value="1">ZatchUp StarClass </option>
-                    <option value="2">Uploaded by EI
-                    </option>
-                </select>
-                <select class="border-0 px-2">
-                    <option value="">Your Orders</option>
-                    <option value="1">Download Invoice</option>
-                </select> -->
-                <button type="button" class="btn py-0 px-2 border-0" (click)="goToPendingRequest()">Pending ZatchUp StarClass</button>
+                <!-- <button type="button" class="btn py-0 px-2 border-0" (click)="goToPendingRequest()">Pending ZatchUp StarClass</button> -->
                 <button type="button" class="btn py-0 px-2 border-0" (click)="goToMyCart()">My Cart</button>
-             </div>
+            </div>
         </div>
-        <!--ZatchUp StarClass Filter-->
-        <div class="filterDiv pb-4 mt-3">
+
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
             <div class="d-flex flex-wrap align-items-end">
 
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Search</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none ">
-                        <input type="text" class=" form-control-input form-control   commonFontSize regularFont letterspacing " placeholder="Search...">
-                    </div>
-                </div>
-                <div class="widthFull mr-3 MobileCol6MB">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Level Of Education</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input" id="educationLevel" required>
-                            <option value=""> Select Education</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="3">D</option>
-                            <option value="3">E</option>
-                            <option value="3">Unspecified</option>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select  id="education_name" [(ngModel)]="dashBoardData.levelOfEducationName"
+                            name="course" required class="custom-select  form-control-input" >
+                            <option value=""> Select Level Of Education</option>
+                            <option value="{{level.education_name}}" *ngFor="let level of dashBoardData.levelOfEducation">{{level.education_name}}
+                            </option>
+
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Field</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input " id="field" required>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Field</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select  id="standard_id"
+                            [(ngModel)]="dashBoardData.fieldName" name="field" required
+                            class="custom-select  form-control-input" >
                             <option value=""> Select Field</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                            <option value="{{field.field_name}}" *ngFor="let field of dashBoardData.field">
+                                {{field.field_name}}</option>
 
                         </select>
                     </div>
                 </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Standard</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input" id="standard" required>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="dashBoardData.standardName" name="class" required
+                            class="custom-select  form-control-input" >
                             <option value=""> Select Standard</option>
-                            <option value="1">Profession1</option>
-                            <option value="2">Profession2</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="widthFull mr-3 MobileCol6MB">
-                    <label for="" class="mediumFont commonFontSize letterspacing">Subject</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top widthFull shadow-none">
-                        <select class="custom-select  form-control-input" id="subject">
-                            <option value=""> Select Subject</option>
-                            <option value="1">Verified</option>
-                            <option value="2">Inverified</option>
+                            <option value="{{standard.standard_name}}" *ngFor="let standard of dashBoardData.standard">{{standard.standard_name}}</option>
 
                         </select>
                     </div>
                 </div>
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Subject</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="dashBoardData.subjectName" name="subject" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Subject</option>
+                            <option value="{{subject.subject_name}}" *ngFor="let subject of dashBoardData.subject">{{subject.subject_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <button (click)="getDashBoardData()" type="button"
+                    class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+
+
             </div>
         </div>
-        <!--End ZatchUp StarClass Filter-->
 
         <!--ZatchUp StarClass Package-->
-        <div class="row">
-            <div class="col-md-4 col-sm-4 mb-3">
-                <div class="card p-2 rounded-0 cursorStyle" (click)="goToCoursePreview()">
-                    <img class="card-img-top starclass-card-img border border-gray rounded-0" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <div class="row commonFontSize regularFont border-bottom border-gray py-2 m-0">
-                            <div class="col-6 p-0">Price</div>
-                            <div class="col-6 p-0"><span class="mr-2">:</span>15,00/Year</div>
+        <div class="row" *ngIf="dashBoardData.dataSource | paginate: dashBoardData.config">
+            <div class="col-md-4 col-sm-12 px-0" *ngFor="let data of dashBoardData.dataSource">
+                <div class="col-md-12 col-sm-12 mb-3">
+                    <div class="card p-2 rounded-0 cursorStyle" (click)="goToCoursePreview(data)">
+                        <img class="border rounded" *ngIf="data.course_image" src="{{data.course_image}}" alt="Course">
+                        <img class="border rounded" *ngIf="!data.course_image" src="assets/images/userWebsite/add-course-images.png" alt="Course">
+                        <div class="card-body px-0">
+                            <h3 class="card-title commonFontSize semiBoldFont mb-0">{{data.course_name}}</h3>
+                            <p class="card-text commonFontSize regularFont">{{data.description}}</p>
                         </div>
-
-                        <h2 class="card-title commonFontSize semiBoldFont mb-1">Information Technology</h2>
-                        <p class="card-text commonFontSize regularFont mb-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4 mb-3">
-                <div class="card p-2 rounded-0">
-                    <img class="card-img-top starclass-card-img border border-gray rounded-0" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <div class="row commonFontSize regularFont border-bottom border-gray py-2 m-0">
-                            <div class="col-6 p-0">Price</div>
-                            <div class="col-6 p-0"><span class="mr-2">:</span>15,00/Year</div>
-                        </div>
+        </div>
 
-                        <h2 class="card-title commonFontSize semiBoldFont mb-1">Information Technology</h2>
-                        <p class="card-text commonFontSize regularFont mb-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <pagination-controls *ngIf="dashBoardData.dataSource" (pageChange)="getDashBoardData($event)" class="eiPaginationTag">
+        </pagination-controls>
 
-                    </div>
-                </div>
+        <div class="row mt-3" *ngIf="!dashBoardData.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
-            <div class="col-md-4 col-sm-4 mb-3">
-                <div class="card p-2 rounded-0">
-                    <img class="card-img-top starclass-card-img border border-gray rounded-0" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <div class="row commonFontSize regularFont border-bottom border-gray py-2 m-0">
-                            <div class="col-6 p-0">Price</div>
-                            <div class="col-6 p-0"><span class="mr-2">:</span>15,00/Year</div>
-                        </div>
-
-                        <h2 class="card-title commonFontSize semiBoldFont mb-1">Information Technology</h2>
-                        <p class="card-text commonFontSize regularFont mb-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 mb-3">
-                <div class="card p-2 rounded-0">
-                    <img class="card-img-top starclass-card-img border border-gray rounded-0" src="assets/images/userWebsite/add-course-images.png" alt="Card image cap">
-                    <div class="card-body p-0">
-                        <div class="row commonFontSize regularFont border-bottom border-gray py-2 m-0">
-                            <div class="col-6 p-0">Price</div>
-                            <div class="col-6 p-0"><span class="mr-2">:</span>15,00/Year</div>
-                        </div>
-
-                        <h2 class="card-title commonFontSize semiBoldFont mb-1">Information Technology</h2>
-                        <p class="card-text commonFontSize regularFont mb-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                    </div>
-                </div>
-            </div>
-
         </div>
         <!--End ZatchUp StarClass Package-->
     </div>
-
 </div>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { SubadminCompleteRequest } from '../../registration/modal/contact-us.mdal';
 
 @Component({
   selector: 'app-subadmin-completed-request',
@@ -15,7 +16,7 @@ export class SubadminCompletedRequestComponent implements OnInit {
   //   'Name', 'EmailID', 'phone', 'Action'];
   displayedColumns: string[] = ['SNo', 'Name', 'zatchUpID', 'profilePicture', 'dateOfBirth', 'emailId',
     'phone', 'EmployeeID', 'Action'];
-
+     subadminCompleteRequest : SubadminCompleteRequest
   config = {
     itemsPerPage: 0,
     currentPage: 1,
@@ -37,10 +38,11 @@ export class SubadminCompletedRequestComponent implements OnInit {
     private loader: NgxSpinnerService,
     private baseService: BaseService,
     private alert: NotificationService
-  ) { }
+  ) {
+    this.subadminCompleteRequest = new SubadminCompleteRequest ()
+   }
 
   ngOnInit(): void {
-    this.pageCounts = this.baseService.getCountsOfPage()
     this.getSubadminCompletedRequest('')
   }
 
@@ -50,30 +52,34 @@ export class SubadminCompletedRequestComponent implements OnInit {
 
   getSubadminCompletedRequest(page?: any) {
     this.loader.show();
-    this.listParams = {
-      "page_size": this.pageSize,
+    this.subadminCompleteRequest.listParams = {
+      "page_size": this.subadminCompleteRequest.page_size,
       "page": page
     }
-    this.baseService.getData('ei/subadmin-lists-by-ei/', this.listParams).subscribe(
+    this.baseService.getData('ei/subadmin-lists-by-ei/', this.subadminCompleteRequest.listParams).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.config.currentPage
-          this.startIndex = res.page_size * (page - 1) + 1;
-          this.config.itemsPerPage = res.page_size
-          this.pageSize = res.page_size
-          this.config.currentPage = page
-          this.config.totalItems = res.count;
-          if (res.count > 0) {
-            this.dataSource = res.results;
-          } else {
-            this.dataSource = []
+          page = this.subadminCompleteRequest.config.currentPage
+          this.subadminCompleteRequest.startIndex = res.page_size * (page- 1) + 1;
+          this.subadminCompleteRequest.page_size = res.page_size
+          this.subadminCompleteRequest.config.itemsPerPage = this.subadminCompleteRequest.page_size
+          this.subadminCompleteRequest.config.currentPage = page
+          this.subadminCompleteRequest.config.totalItems = res.count
+          if(res.count > 0) {
+            this.subadminCompleteRequest.dataSource = res.results;
+            this.subadminCompleteRequest.pageCounts = this.baseService.getCountsOfPage()
+          }
+          else {
+            this.subadminCompleteRequest.dataSource = undefined
+            this.subadminCompleteRequest.pageCounts = undefined
           }
         }
         else {
           this.alert.error(res.error.message[0], 'Error')
-          this.loader.hide();
+          
         }
+        this.loader.hide();
       }
     ), (err: any) => {
       this.alert.error(err, 'Error')

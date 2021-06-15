@@ -1,0 +1,12 @@
+.customVideo video {
+    width: 100%;
+}
+
+.validationError {
+    color: red;
+    font-size: .825rem;
+    margin-left: 0.9rem !important;
+    position: relative;
+    bottom: 10px;
+    left: 0px;
+}

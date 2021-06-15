@@ -2,37 +2,42 @@
 <div class="container main-container p-3">
     <div class="TotalAlumni-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="row topDiv">
-            <div class="col-md-6 ">
+            <div class="col-md-8 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
                 <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded by EI</h2>
             </div>
-            <div class="col-md-6 SearchDiv d-flex flex-row">
-                <!-- <div class="form-control-inputDiv rounded p-0 shadow-none">
-                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Search...">
-                </div> -->
-                <button type="button" class="bg-dark text-white px-4 h-100 ml-2 border-0 ">Create Course</button>
-            </div>
+
+            <!-- <div class="col-md-4 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0" (click)="goToEiCourseHistory()" >Course History</button>
+            </div> -->
         </div>
         <!--Start html for filter for alumni list-->
         <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
 
             <div class="d-flex flex-wrap align-items-end">
-                <div class="widthFull mr-4 mt-3 ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Date of Buying Course From</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing "
-                            type="date" placeholder="MM/DD/YYYY">
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Created From</label>
+                    <div class="rounded-0 p-0 border-top shadow-none">
+                        <input class="form-control formfocusStyle"
+                            type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="courseUploadedByEi.filterFromDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Created To</label>
+                    <div class="rounded-0 p-0 border-top shadow-none">
+                        <input class="form-control formfocusStyle"
+                            type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="courseUploadedByEi.filterToDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
-                <div class="widthFull mr-4 mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Date of Buying Course To</label>
-                    <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
-                        <input class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                            type="date" placeholder="MM/DD/YYYY">
-
-                    </div>
-                </div>
-                <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
+                <!-- <div class="widthFull mr-4 mt-3 dropdown-lg-Div ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Level of Education</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
@@ -42,8 +47,8 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
-                <div class="widthFull mr-4 mt-3">
+                </div> -->
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Field</label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
@@ -53,9 +58,9 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="widthFull mr-4 mt-3">
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Standard </label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
@@ -65,9 +70,9 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="widthFull mr-4 mt-3">
+                <!-- <div class="widthFull mr-4 mt-3">
                     <label for="" class="mediumFont commonFontSize letterspacing"> Subject </label>
                     <div class="form-control-inputDiv rounded-0 p-0  border-top shadow-none">
                         <select class="custom-select  form-control-input" required>
@@ -77,101 +82,98 @@
                             <option value="3">Three</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
 
-                <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
+                <button (click)="getCoursesUploadedByEiList()" type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3">Apply</button>
 
 
             </div>
         </div>
         <!--End html for filter for alumni list-->
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center ">
-
-                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Number of Course Per
-                    Page</label>
+        <div class="row my-3 align-items-center" *ngIf="courseUploadedByEi.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-12 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getCoursesUploadedByEiList('1')" [(ngModel)]="courseUploadedByEi.page_size">
+                        <option *ngFor="let count of courseUploadedByEi.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-3 col-4 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-3 py-1"><i class="fa fa-file-excel-o mr-2"
-                        aria-hidden="true"></i>Export</button>
-            </div>
+            <!-- <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div> -->
         </div>
         <!--End html for filter for No of alumni per page with export button-->
 
         <!--Start html for table content Alimni information-->
-        <div class="tableDiv ">
+        <div class="tableDiv " *ngIf="courseUploadedByEi.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="courseUploadedByEi.dataSource | paginate:courseUploadedByEi.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + courseUploadedByEi.startIndex}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="dateOfBuying">
-                        <mat-header-cell *matHeaderCellDef> Date of Buying </mat-header-cell>
+                    <ng-container matColumnDef="dateOfCreate">
+                        <mat-header-cell *matHeaderCellDef> Date of Creation </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.dateOfBuying}}
+                            {{element.created_on | date}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="courseID">
                         <mat-header-cell *matHeaderCellDef> Course ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.courseID}}
+                            {{element.course_id}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="titleOfCourse">
-                        <mat-header-cell *matHeaderCellDef> Title of Course </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Course Name </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.titleOfCourse}}
+                            {{element.course_name}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="levelofEducation">
                         <mat-header-cell *matHeaderCellDef> Level of Education </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.levelofEducation}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.level_of_education}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Field">
                         <mat-header-cell *matHeaderCellDef> Field </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.Field}}
+                            {{element.field}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Standard">
                         <mat-header-cell *matHeaderCellDef>Standard</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.Standard}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.standard}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Subject">
                         <mat-header-cell *matHeaderCellDef> Subject </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.Subject}} </mat-cell>
+                            {{element.subject}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="numberOfLectures">
                         <mat-header-cell *matHeaderCellDef> Number of Lectures in the Courses </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.numberOfLectures}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.number_of_lectures}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="totalNumerOfTimesCourseBought">
+                    <!-- <ng-container matColumnDef="totalNumerOfTimesCourseBought">
                         <mat-header-cell *matHeaderCellDef> Total Number of Times Course Bought </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.totalNumerOfTimesCourseBought}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <ng-container matColumnDef="TotalActivePlans">
                         <mat-header-cell *matHeaderCellDef> Total Active Plans </mat-header-cell>
@@ -190,15 +192,25 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="text-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="text-center justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg" aria-hidden="true "></i>
+                            <i (click)="goToEiCourseView(element)" class="fa fa-eye mr-2 color-lightBlue fa-lg" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="courseUploadedByEi.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: courseUploadedByEi.displayedColumns; "></mat-row>
 
                 </mat-table>
 
+            </div>
+        </div>
+        <pagination-controls *ngIf="courseUploadedByEi.dataSource" (pageChange)="getCoursesUploadedByEiList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
+        <div class="row" *ngIf="!courseUploadedByEi.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
         <!--End html for table content Alimni information-->

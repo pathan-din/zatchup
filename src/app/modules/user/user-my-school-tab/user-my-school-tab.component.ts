@@ -47,7 +47,7 @@ goToUserNotificationsPage(){
 }
 
 goToUserRemindersPage(){
-  this.router.navigate(['user/remainders']);
+  this.router.navigate(['user/reminders']);
 }
 goToUserProfilePage(){
   this.router.navigate(['user/profile']);

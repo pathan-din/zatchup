@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { EIWebRoutingModule } from './ei-routing.module';
 import { EiLoginComponent } from './ei-login/ei-login.component';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
@@ -157,6 +158,18 @@ import { StarclassRequestsPendingComponent } from './starclass/starclass-request
 import { MyProfileComponent } from './subadmin/my-profile/my-profile.component';
 import { SubadminTermsAndConditionsComponent } from './subadmin/subadmin-terms-and-conditions/subadmin-terms-and-conditions.component';
 import { SubadminCompletedRequestComponent } from './subadmin/subadmin-completed-request/subadmin-completed-request.component';
+import { RequestForCourseListViewComponent } from './student/request-for-course-list-view/request-for-course-list-view.component';
+import { EiStarclassCourseViewComponent } from './ei-starclass-course-view/ei-starclass-course-view.component';
+import { ZatchupStarclassComponent } from './zatchup-starclass/zatchup-starclass.component';
+import { EiStarClassCourseHistoryComponent } from './starclass/ei-star-class-course-history/ei-star-class-course-history.component';
+import { EiStarclassAudienceTeacherComponent } from './starclass/ei-starclass-audience-teacher/ei-starclass-audience-teacher.component';
+import { ZatchupStarclassCoursePreviewComponent } from './starclass/zatchup-starclass-course-preview/zatchup-starclass-course-preview.component';
+import { EiStarclassAddTeacherStudentComponent } from './starclass/ei-starclass-add-teacher-student/ei-starclass-add-teacher-student.component';
+import { EiUserSearchProfileComponent } from './ei-user-search-profile/ei-user-search-profile.component';
+import { GroupDetailComponent } from './message/group-detail/group-detail.component';
+import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
+import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
+import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -331,12 +344,25 @@ const config = {
     MyProfileComponent,
     SubadminTermsAndConditionsComponent,
     SubadminCompletedRequestComponent,
+    RequestForCourseListViewComponent,
+    EiStarclassCourseViewComponent,
+    ZatchupStarclassComponent,
+    EiStarClassCourseHistoryComponent,
+    EiStarclassAudienceTeacherComponent,
+    ZatchupStarclassCoursePreviewComponent,
+    EiStarclassAddTeacherStudentComponent,
+    EiUserSearchProfileComponent,
+    GroupDetailComponent,
+    EiPlayHistoryComponent,
+    EditGroupParticipentComponent,
+    BulkPromoteComponent,
   ],
   imports: [
     CommonModule,
     EIWebRoutingModule,
     MaterialDesignModule,
     FormsModule,
+    TabsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
     NgxPaginationModule,
@@ -347,6 +373,7 @@ const config = {
     SharedModule,
     ImageViewerModule.forRoot(config),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     EiLoginComponent
   ]

@@ -17,7 +17,9 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added From</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle"
-                            type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD">
+                            type="text" id="fromDate" name="fromDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="starclassOrderList.filterFromDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true , dateInputFormat: 'YYYY-MM-DD'}">
                     </div>
                 </div>
 
@@ -25,88 +27,107 @@
                     <label for="" class="mediumFont commonFontSize letterspacing"> Added To</label>
                     <div class="rounded-0 p-0 border-top shadow-none">
                         <input class="form-control formfocusStyle"
-                            type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD"   >
+                            type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                            [maxDate]="maxDate" [(ngModel)]="starclassOrderList.filterToDate" #fromDate="ngModel" 
+                            [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD'}">
 
                     </div>
                 </div>
 
                 <button type="button"
-                    class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 ">Apply</button>
+                    class="bg-purple text-white px-5 py-2 h-100 mt-2 border-0 " (click)="getOrderList()">Apply</button>
 
 
             </div>
         </div>
-        <div class="row my-3 align-items-center">
+        <div class="row my-3 align-items-center" *ngIf="starclassOrderList.dataSource">
             <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">                       
-                        <option value="5">5</option>
+                    <select name="page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                    (change)="getOrderList('1')" [(ngModel)]="starclassOrderList.page_size">                       
+                        <!-- <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="15">15</option>
-                        <!-- <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option> -->
+                        <option value="15">15</option> -->
+                        <option *ngFor="let count of starclassOrderList.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
-                <button type='button' class="bg-purple text-white border-0 px-2 py-1">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
                     <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
             </div>
         </div>
-        <div class="tableDiv ">
+        <div class="tableDiv " *ngIf="starclassOrderList.dataSource">
             <div class="mat-elevation-z1 table-responsive" >
-                <mat-table #table [dataSource]="dataSource">
+                <mat-table #table [dataSource]="starclassOrderList.dataSource | paginate: starclassOrderList.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> 1 </mat-cell>
+                        <mat-cell *matCellDef="let element; let i  = index;"> {{i + starclassOrderList.startIndex}} </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="courseTitle">
-                        <mat-header-cell *matHeaderCellDef> Course Title </mat-header-cell>
+                    <ng-container matColumnDef="orderId">
+                        <mat-header-cell *matHeaderCellDef> Order ID </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            ZatchUp ID
+                            {{element.zatch_order_id}}
+                        </mat-cell>
+                    </ng-container>
+
+                     <ng-container matColumnDef="amount">
+                        <mat-header-cell *matHeaderCellDef> Amount Paid </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.currency}} {{element.amount}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="couponCode">
+                        <mat-header-cell *matHeaderCellDef> Coupon Applied </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.coupon_type ? element.coupon_type : 'NA' }}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="dateBought">
                         <mat-header-cell *matHeaderCellDef> Date Bought </mat-header-cell>
                         <mat-cell *matCellDef="let element" class="color-lightBlue">
-                            Name
+                            {{element.bought_date | date}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="boughtBy">
                         <mat-header-cell *matHeaderCellDef> Bought By </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            School ID
+                            {{element.bought_by}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="downloadInvoice">
                         <mat-header-cell *matHeaderCellDef>Download Invoice </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button type="button" 
+                            <button type="button" (click)="generatePdf(element.txnid)"
                                 class="bg-paret-green rounded text-white border-0 py-1 px-2 commonFontSize mediumFont letterspacing">
                                 <i class="fa fa-download mr-1 text-white" aria-hidden="true"></i> Download</button>
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="starclassOrderList.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: starclassOrderList.displayedColumns; "></mat-row>
 
                 </mat-table>
 
             </div>
-            <div class="row" >
-                <div class="col-12 pt-2 pb-2">
-                    <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
-                </div>
-            </div>
-            <pagination-controls
-                class="eiPaginationTag"></pagination-controls>
-            <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-                <p style="color: white">Please Wait. </p>
-            </ngx-spinner>
+           
         </div>
+
+        <div class="row" *ngIf="!starclassOrderList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
+            </div>
+        </div>
+        <pagination-controls
+            class="eiPaginationTag"  *ngIf="starclassOrderList.dataSource" (pageChange)="getOrderList($event)"></pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
     </div>

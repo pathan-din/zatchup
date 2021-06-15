@@ -22,6 +22,10 @@ export class EiStarclassMycoursesComponent implements OnInit {
     this.router.navigate(['ei/star-class-courses-uploaded-by-ei'])
   }
 
+  goToZatchupStarclass(){
+    this.router.navigate(['ei/zatchup-starclass-courses'])
+  }
+  
   goBack(){
     this.location.back()
   }

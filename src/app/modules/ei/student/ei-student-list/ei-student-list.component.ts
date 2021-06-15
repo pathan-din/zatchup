@@ -181,11 +181,11 @@ export class EiStudentListComponent implements OnInit {
         this.SpinnerService.hide();
 
         this.studentList = response.results;
+       
+        let arrStudentList: any = [];
         this.pageSize = response.page_size;
         this.model.page_size=this.pageSize
         this.totalNumberOfPage = response.count;
-        let arrStudentList: any = [];
-        
         if (!page) { page = 1 }
         var i = (this.pageSize * (page - 1)) + 1;
         this.config.itemsPerPage = this.pageSize

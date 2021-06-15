@@ -1,7 +1,15 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="StudentEdit-div bg-white border border-gray mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont mb-1">Student</h2>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont mb-1">Student</h2>
+            </div>
+
+        </div>
         <div class="row m-0">
             <div class="col-md-8 bg-offwhite">
 			<form id="editStudent">
@@ -15,7 +23,7 @@
                     <div class="col-md-12">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Roll Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input [(ngModel)]="model.roll_no" name="roll_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
+                            <input [(ngModel)]="model.roll_no" name="roll_number" [required]="!model.mark_as_alumni" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Roll Number">
                         </div>
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.roll_number"></div>
@@ -25,22 +33,12 @@
                     <div class="col-md-12">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Admission Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input [(ngModel)]="model.admission_no" name="admission_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Admission Number">
+                            <input [(ngModel)]="model.admission_no" [disabled]="is_approve == '1'" name="admission_number" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Admission Number">
                         </div>
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.admission_number"></div>
                 </div>
 
-                <!-- <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Picture of Student</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input (change)="handleCancelChequeFileInput($event.target.files)" id="image" name="image" [required]="!model.profile_pic"  class="form-control-input form-control  commonFontSize regularFont letterspacing" type="file">
-                        </div>
-                    </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.image"></div>
-                    <img *ngIf="model.profile_pic" src="{{model.profile_pic}}" width="100" height="100" alt="profile pic">
-                </div> -->
 
                 <div class="row mt-3" *ngIf="is_approve=='1'">
                     <div class="col-12">
@@ -56,19 +54,16 @@
                         
 
                     </div>
+                    <div class="col-12">
+                        <p class="mediumFont commonFontSize letterspacing">Promote</p>
+                    </div>
+                    
                     <div class="col-md-6 pl-4" *ngIf="is_approve=='1'">
                         <!-- <mat-checkbox class="purple-checkbox mediumFont commonFontSize letterspacing">Promote To New Class</mat-checkbox> -->
                         <mat-checkbox (change)="showOptionsMark($event)" [(ngModel)]="model.mark_as_alumni" name="mark_as_alumni" class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
                     </div>
                 </div>
 
-                <!-- <div class="row mt-3">
-                    <div class="col-md-12">
-                        <mat-checkbox class=" mediumFont commonFontSize letterspacing markAlumni">Mark As Alumni</mat-checkbox>
-
-                    </div>
-                </div>
-                 -->
                 <div class="row mt-3">
                     <div class="col-12 text-center"><button (click)="editStudent()" type="button" class="bg-paret-green text-white py-2 px-4 border-0 mb-4">Submit</button></div>
                 </div>

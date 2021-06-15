@@ -55,7 +55,7 @@
                 <div class="col-sm-12 MobileCol6MB">
                     <label for="" class=" mediumFont commonFontSize letterspacing">Email / Phone Number</label>
                     <div class="form-control-inputDiv rounded p-0 shadow-none">
-                        <input id="email" message=" Valid Number " (keyup)="isValid($event)" pattern="^([_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5}))|((?!$)\d{0,10}(?:\.\d{1,2})?$)"  [(ngModel)]="model.username" name="email_or_phone" [required]="!model.zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email / Phone Number">
+                        <input id="email" message=" Valid Number " (keyup)="isValid($event)" pattern="^([_A-Za-z0-9]+(\.[_A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,5}))|((?!$)\d{0,10}(?:\.\d{1,2})?$)"  [(ngModel)]="model.username" name="email_or_phone" [required]="!model.zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email / Phone Number">
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.email_or_phone"></div>
                 </div>

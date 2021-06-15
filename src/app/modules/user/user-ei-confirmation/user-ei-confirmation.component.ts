@@ -37,7 +37,9 @@ export class UserEiConfirmationComponent implements OnInit {
   getkeyCalander: any;
   standard: any = {};
   todate: any;
-params:any;
+  params: any;
+  regStep: any;
+  successMsg: any;
 
   constructor(
     private router: Router,
@@ -53,60 +55,64 @@ params:any;
   ) { }
 
   ngOnInit(): void {
+    this.regStep = localStorage.getItem('res.reg_step')
     this.todate = new Date();
     this.todate = this.baseService.getDateFormat(this.todate);
     this.editmodel.class_id = '';
     this.route.queryParams.subscribe(parrams => {
-      this.params=parrams;
+      this.params = parrams;
       if (parrams['school_id']) {
         this.school_id = parrams['school_id'];
         this.isalumini = parrams['isalumini'];
-       
-         
+
+
       }
     })
-    if(this.params.add_course){
+    if (this.params.add_course) {
       // setTimeout(() => {
       //   this.clickOtpModel.nativeElement.click();
       // }, 500);
-      
-        
+
+
     }
     this.getConfirmationDetails();
     this.currentDate = new Date();
   }
 
   editCourse(standard, school_id, courseid) {
-   
+
 
     if (standard[standard.length - 1].is_current_standard) {
-      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
+      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
     } else {
-      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/ei-confirmation" } });
+      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
     }
 
   }
   goToUserProfileCreatedPage() {
     $("#OTPModel").modal('hide');
     if (this.params.returnUrl)
-    this.router.navigate([this.params.returnUrl])
-    else if(localStorage.getItem("addcourse")){
+      this.router.navigate([this.params.returnUrl])
+    else if (localStorage.getItem("addcourse")) {
       this.router.navigate(['user/my-educational-profile']);
-    }else if(localStorage.getItem("editcourse")){
+    } else if (localStorage.getItem("editcourse")) {
       this.router.navigate(['user/my-educational-profile']);
     }
-    else{
+    else if(this.regStep == 7){
+      this.router.navigate(['user/my-educational-profile'])
+    }
+    else {
       this.router.navigate(['user/add-personal-info']);
     }
-    
 
-    
+
+
 
   }
   /**Delete Course  */
 
   deleteCourse(id: any): any {
-    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+    this.confirmDialogService.confirmThis('Are you sure you want delete this course.', () => {
       this.SpinnerService.show()
       let model: any = {};
       model.course_id = id;
@@ -129,7 +135,7 @@ params:any;
   }
 
   deleteEi(id: any): any {
-    this.confirmDialogService.confirmThis('Are you sure, You want to delete ?', () => {
+    this.confirmDialogService.confirmThis('Are you sure you want delete this School.', () => {
       this.SpinnerService.show()
       let model: any = {};
       model.school_id = id;
@@ -217,14 +223,6 @@ params:any;
 
   }
   editStandardDetails(text, event) {
-
-
-
-    // this.errorDisplay = {};
-    // this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[1].elements, false, []);
-    // if (this.errorDisplay.valid) {
-    //   return false;
-    // }
     try {
 
       this.SpinnerService.show();
@@ -232,9 +230,12 @@ params:any;
       this.editmodel.standard_end_year = this.baseService.getDateFormat(this.editmodel.standard_end_year)
       if (text == 'start_year') {
         this.editmodel.standard_start_year = event ? this.baseService.getDateFormat(event) : this.baseService.getDateFormat(this.editmodel.standard_start_year)
+        this.successMsg = "Start year edit successfully"
       } else if (text == 'end_year') {
         this.editmodel.standard_end_year = event ? this.baseService.getDateFormat(event) : this.baseService.getDateFormat(this.editmodel.standard_end_year)
-
+        this.successMsg = "End year edit successfully"
+      }else{
+        this.successMsg = "Section edit successfully"
       }
 
 
@@ -243,7 +244,7 @@ params:any;
         if (response.status == true) {
           this.SpinnerService.hide();
           $("#personalInfoModel").modal("hide");
-          this.alert.success("Data edit successfully", "Success");
+          this.alert.success(this.successMsg, "Success");
           this.getConfirmationDetails();
         } else {
           this.SpinnerService.hide();
@@ -282,22 +283,23 @@ params:any;
   }
   addPastEi() {
     $("#OTPModel").modal('hide');
-    if(this.params.returnUrl){
+    if (this.params.returnUrl) {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "past", "returnUrl": "user/ei-confirmation" } });
-    }else{
+    } else {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "past" } });
     }
-    
+
   }
   addAnotherCourse() {
     $("#OTPModel").modal("hide");
-    if(this.params.returnUrl){
+    if (this.params.returnUrl) {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "current", "returnUrl": "user/ei-confirmation" } });
-    }else{
+    } else {
       this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
     }
-    
+
   }
+ 
   getConfirmationDetails() {
     try {
       this.SpinnerService.show();
@@ -305,38 +307,38 @@ params:any;
       this.baseService.getData('user/get-ei-course-confirmation-list/').subscribe(
         (res: any) => {
 
-        // let response: any = {};
-        // response = res;
-        if (res.status == true) {
-          this.SpinnerService.hide();
-          this.confirmationDetails = res.data;
-          localStorage.setItem("role", "0");
-          
-          if(this.confirmationDetails.length <= 0)
-            // this.clickOtpModel.nativeElement.click();
-          this.confirmationDetails.forEach(elementCourse => {
-            
+          // let response: any = {};
+          // response = res;
+          if (res.status == true) {
+            this.SpinnerService.hide();
+            this.confirmationDetails = res.data;
+            localStorage.setItem("role", "0");
 
-            elementCourse.ei_detail.course_detail.forEach(elementS => {
-              if (elementS.standard_detail) {
-                elementS.standard_detail.forEach(ele => {
-                  if (ele.is_current_standard) {
-                    localStorage.setItem("role", "1");
+            if (this.confirmationDetails.length <= 0)
+              // this.clickOtpModel.nativeElement.click();
+              this.confirmationDetails.forEach(elementCourse => {
+
+
+                elementCourse.ei_detail.course_detail.forEach(elementS => {
+                  if (elementS.standard_detail) {
+                    elementS.standard_detail.forEach(ele => {
+                      if (ele.is_current_standard) {
+                        localStorage.setItem("role", "1");
+                      }
+
+                    });
                   }
-
                 });
-              }
-            });
 
-          });
-        } else {
+              });
+          } else {
+            this.SpinnerService.hide();
+          }
+        }, (error) => {
           this.SpinnerService.hide();
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        console.log(error);
+          console.log(error);
 
-      });
+        });
     } catch (err) {
       this.SpinnerService.hide();
       console.log(err);

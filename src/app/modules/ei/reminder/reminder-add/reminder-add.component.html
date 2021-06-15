@@ -1,50 +1,211 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
-        <div class="row topDiv">
-            <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Add Reminder</h2>
-            </div>
-        </div>
-
-        <div class="bg-extra-light-gray px-3 pt-3 pb-4 mt-3">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                    <h4 class="commonFontSize semiBoldFont mt-2">Select Class</h4>
-                    <div class="row">
-                        <div class="col-md-4"><mat-checkbox class="example-margin">All Students</mat-checkbox> </div>
-                        <div class="col-md-4"><mat-checkbox class="example-margin">Add Class</mat-checkbox> </div>
-                    </div>
-                    <mat-checkbox class="example-margin">B.Com</mat-checkbox> <br/>
-                    <mat-checkbox class="example-margin"
-                            [checked]="allComplete"
-                            [indeterminate]="someComplete()"
-                            (change)="setAll($event.checked)">
-                        {{task.name}}
-                    </mat-checkbox>
-                
-                    <ul class="m-0">
-                        <li *ngFor="let subtask of task.subtasks">
-                            <mat-checkbox [(ngModel)]="subtask.completed"
-                                    [color]="subtask.color"
-                                    (ngModelChange)="updateAllComplete()">
-                                {{subtask.name}}
-                            </mat-checkbox>
-                        </li>
-                    </ul>
-                                       
-                    <h4 class="commonFontSize semiBoldFont mt-1 mb-1">Reminder Text</h4>
-                    <div class="form-control-inputDiv rounded p-0 shadow-none mt-0 position-relative">
-                        <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Typing...">
-                        <span class="position-absolute position-ppin"><i class="fa fa-paperclip" aria-hidden="true"></i></span>
-                    </div>
-
+        <form>
+            <div class="row topDiv">
+                <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap p-0">
+                    <span class="mr-3 cursorStyle">
+                        <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                    </span>
+                    <h2 class="commonFontSize semiBoldFont m-0">Add Reminder</h2>
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-center">
-            <button type="button" class="border-0 bg-paret-green color-white px-4 py-2 mt-3 rounded-0">Next</button>
-        </div>
+
+            <div class="bg-extra-light-gray px-3 pt-3 pb-4 mt-3">
+                <div class="row">
+
+
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <h4 class="commonFontSize semiBoldFont mt-2">Select Class</h4>
+
+
+                        <div class="form-group row mb-1 ">
+                            <div class="col-md-6 ">
+                                <mat-checkbox [required]="!model.ismoduleaccessclass" [disabled]="model.ismoduleaccessclass" (change)="changeAddClass($event,'allstudent')"
+                                    name="Student" [(ngModel)]="model.ismoduleaccessstudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.Student"></div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <mat-checkbox [required]="!model.ismoduleaccessstudent" [disabled]="model.ismoduleaccessstudent" [(ngModel)]="model.ismoduleaccessclass"
+                                    name="Class" (change)="changeAddClass($event,'addclass')" class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class</mat-checkbox>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.Class"></div>
+                            </div>
+
+
+                        </div>
+                        <div *ngIf="model.ismoduleaccessclass" class="d-flex flex-wrap align-items-end">
+
+                            <div class="widthFull mr-3 mt-3 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
+                                <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                                    <select (change)="displayStandardListModuleAccess(model.course);getGetVerifiedStudent('', '');" id="course_id" [(ngModel)]="model.course"
+                                        name="course" required class="custom-select  form-control-input" required>
+                                        <option value=""> Select Course</option>
+                                        <option value="{{course.id}}" *ngFor="let course of courseListModuleAccess">{{course.course_name}}
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.course">
+                                </div>
+                            </div>
+                            <div class="widthFull mr-3 mt-3 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                                <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                                    <select (change)="displayClassListModuleAccess(model.standard);getGetVerifiedStudent('', '');" id="standard_id" [(ngModel)]="model.standard"
+                                        name="standard" required class="custom-select  form-control-input" required>
+                                        <option value=""> Select Standard</option>
+                                        <option value="{{standard.id}}" *ngFor="let standard of standardListModuleAccess[model.course]">
+                                            {{standard.standard_name}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.standard">
+                                </div>
+                            </div>
+                            <div class="widthFull mr-3 mt-3 custumInputWidth">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
+                                <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                                    <select (change)=" getGetVerifiedStudent('', '');" id="class_id" [(ngModel)]="model.teaching_class" name="class" required
+                                        class="custom-select  form-control-input" required>
+                                        <option value=""> Select Class</option>
+                                        <option value="{{class.id}}" *ngFor="let class of classListModuleAccess[model.standard]">{{class.class_name}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.class">
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <!-- <div *ngIf="model.ismoduleaccessclass" class="form-group row mb-1 ">
+                        <div class="col-md-12" *ngFor="let course of courseListModuleAccess">
+                            <mat-checkbox (change)="displayStandardListModuleAccess(course.id,$event)"  class="addStudent-check mediumFont commonFontSize letterspacing">{{course.course_name}}</mat-checkbox>
+                            <div class="form-group row mb-1 ">
+                                <div class="col-md-12 ml-4" *ngFor="let standard of standardListModuleAccess[course.id]">
+                                    <mat-checkbox  (change)="displayClassListModuleAccess(standard.id,$event)"  class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                    <div class="col-md-12 d-flex flex-column ml-4 ">
+                                        <mat-checkbox (change)="getSectionIds(classes.id)" *ngFor="let classes of classListModuleAccess[standard.id]" class="addStudent-check mediumFont commonFontSize letterspacing ">{{classes.class_name}}</mat-checkbox>
+                                        
+                                         
+                                    </div>
+                                </div>
+                               
+    
+                            </div>
+                        </div>
+                    </div> -->
+                        <h4 class="commonFontSize semiBoldFont mt-1 mb-1">Reminder Text</h4>
+
+                        <div class="form-control-inputDiv rounded p-0 shadow-none mt-0 position-relative">
+                            <input [(ngModel)]="model.remindertext" required name="reminder" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                type="search" placeholder="Typing...">
+                            <span class="position-absolute position-ppin">
+                                <i (click)="file.click()" class="fa fa-paperclip" aria-hidden="true"></i>
+                            </span>
+
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.reminder"></div>
+                        </div>
+                        <input (change)="uploadProfilePic($event.target.files)" name="reminderimage" style="display: none;" #file type="file" name="file">
+                        <img *ngIf="attachment" src="{{attachment}}" style="width:100px;height: 100px;" />
+
+
+                        <div class="tableDiv mt-3">
+                            <div class="mat-elevation-z1 table-responsive" *ngIf="studentList.length>0">
+                                <mat-table #table [dataSource]="dataSource | paginate: config">
+
+                                    <!-- Checkbox Column -->
+                                    <ng-container matColumnDef="checked">
+                                        <mat-header-cell *matHeaderCellDef>
+
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <mat-checkbox [disabled]="!model.teaching_class" (change)="getStudentBycheckboxClickForStudentBulkAction(element.student_id,$event)">
+                                            </mat-checkbox>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="SNo">
+                                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="ZatchUpID">
+                                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            {{element.zatchupID}}
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Name">
+                                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                                        <mat-cell *matCellDef="let element" class="color-lightBlue">
+                                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">{{element.name}}</p>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="userID">
+                                        <mat-header-cell *matHeaderCellDef> School ID </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            {{element.userID}}
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="roll_no">
+                                        <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            {{element.roll_no}}
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Gender">
+                                        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+                                        <mat-cell *matCellDef="let element ">
+                                            {{getGender(element)}}
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Age">
+                                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+                                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="class">
+                                        <mat-header-cell *matHeaderCellDef> Class Alias </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            {{element.alias_class}}
+                                        </mat-cell>
+                                    </ng-container>
+
+
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                                </mat-table>
+
+                            </div>
+                            <div class="row" *ngIf="studentList.length==0 && model.teaching_class">
+                                <div class="col-12 pt-2 pb-2">
+                                    <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
+                                </div>
+                            </div>
+                            <pagination-controls *ngIf="studentList.length>0" (pageChange)="getGetVerifiedStudent($event,'')" class="eiPaginationTag"></pagination-controls>
+                            <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+                                <p style="color: white">Please Wait. </p>
+                            </ngx-spinner>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button type="button" class="border-0 bg-paret-green color-white px-4 py-2 mt-3 rounded-0" (click)="submitReminder()">Send</button>
+            </div>
+        </form>
     </div>
 
 </div>

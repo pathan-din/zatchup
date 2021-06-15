@@ -1,5 +1,5 @@
 .custom-alert {
-    width: 300px;
+    width: 345px;
 }
 
 .modal-backdrop.in {
@@ -17,11 +17,11 @@
 }
 
 .confirm-message {
-    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 400;
     margin-bottom: 0px;
     margin-top: 5px;
+    line-height: initial;
 }
 
 .confirm-button {
@@ -37,4 +37,10 @@
 .btn-yes {
     background-color: #463267;
     color: white;
+}
+
+@media (max-width:320px){
+    .custom-alert {
+        width: 290px;
+    }
 }

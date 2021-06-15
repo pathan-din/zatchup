@@ -1,24 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true"
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'">
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
+            <span class="">
+                <a class="navbar-brand mobileLogoImg">
+                    <img class="img-fluid" src="assets/images/EiWebsite/kyc_logo.png" routerLink="/ei/dashboard">
+                </a>
+            </span>
+            <span class="spacer"></span>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
             <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <span class="commonFontSize"> Dashboard</span>
             </a>
-            <a mat-list-item routerLink="/admin/school-management" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE020')">
+            <a mat-list-item routerLink="/admin/school-management" routerLinkActive="link-active" *ngIf="isValid('MODULE020')">
                 <i class="material-icons mr-2 md-18">school</i>
                 <span class="commonFontSize"> School Management </span>
             </a>
-            <a class="md-button md-ink-ripple" mat-list-item routerLink="/admin/user" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE021')">
+            <a class="md-button md-ink-ripple" mat-list-item routerLink="/admin/user" routerLinkActive="link-active" *ngIf="isValid('MODULE021')">
                 <i class="material-icons mr-2 md-18">groups</i>
                 <span class="commonFontSize"> User Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE000')" tooltip="Coming Soon...">
+            <a mat-list-item *ngIf="isValid('MODULE000')" routerLink="/admin/starclass-management" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">groups</i>
                 <span class="commonFontSize"> ZatchUp Starclass Management </span>
             </a>
@@ -38,8 +42,7 @@
                 <i class="material-icons mr-2 md-18">post_add</i>
                 <span class="commonFontSize"> Post Management </span>
             </a>
-            <a mat-list-item routerLink="/admin/kyc-approval-management" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE003')">
+            <a mat-list-item routerLink="/admin/kyc-approval-management" routerLinkActive="link-active" *ngIf="isValid('MODULE003')">
                 <i class="fa fa-thumbs-up mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> KYC Approval Management </span>
             </a>
@@ -55,8 +58,7 @@
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize"> Auditors Management </span>
             </a>
-            <a mat-list-item routerLink="/admin/payment-management" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE022')">
+            <a mat-list-item routerLink="/admin/payment-management" routerLinkActive="link-active" *ngIf="isValid('MODULE022')">
                 <i class="material-icons mr-2 md-18">payment</i>
                 <span class="commonFontSize"> Payment Management </span>
             </a>
@@ -64,13 +66,11 @@
                 <i class="material-icons mr-2 md-18">notification_important</i>
                 <span class="commonFontSize"> Notification Management </span>
             </a>
-            <a mat-list-item routerLink="/admin/contact-and-static-content-management"
-                routerLinkActive="link-active" *ngIf="user_type == 'ADMIN'">
+            <a mat-list-item routerLink="/admin/contact-and-static-content-management" routerLinkActive="link-active" *ngIf="user_type == 'ADMIN'">
                 <i class="material-icons mr-2 md-18">contacts</i>
                 <span class="commonFontSize"> Contact & Static Content Management </span>
             </a>
-            <a mat-list-item routerLink="/admin/subadmin-dashboard" routerLinkActive="link-active"
-                *ngIf="isValid('MODULE0016')">
+            <a mat-list-item routerLink="/admin/subadmin-dashboard" routerLinkActive="link-active" *ngIf="isValid('MODULE0016')">
                 <i class="fa fa-lock mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> Sub Admin Management </span>
             </a>
@@ -78,13 +78,11 @@
                 <i class="fa fa-newspaper-o mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize"> Advertisement Management </span>
             </a>
-            <a mat-list-item *ngIf="isValid('MODULE026')" routerLink="/admin/support-management"
-                routerLinkActive="link-active">
+            <a mat-list-item *ngIf="isValid('MODULE026')" routerLink="/admin/support-management" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">contact_support</i>
                 <span class="commonFontSize"> Support Management </span>
             </a>
-            <a mat-list-item routerLink="/admin/my-assigned-ei" routerLinkActive="link-active"
-                *ngIf="user_type == 'ZATCHUPSUBADMIN'">
+            <a mat-list-item routerLink="/admin/my-assigned-ei" routerLinkActive="link-active" *ngIf="user_type == 'ZATCHUPSUBADMIN'">
                 <i class="material-icons mr-2 md-18">desktop_mac</i>
                 <span class="commonFontSize"> My Assigned EI </span>
             </a>
@@ -101,8 +99,9 @@
                 <mat-icon aria-label="Side nav toggle icon" class="color-white">menu</mat-icon>
             </button>
 
-            <span class="h-100 logo_span d-flex align-items-center justify-content-center"><img
-                    src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid"></span>
+            <span class="h-100 logo_span d-flex align-items-center justify-content-center">
+                <img src="assets/images/EiWebsite/kyc_logo.png" class="img-fluid">
+            </span>
             <span class="spacer"></span>
 
             <!-- <select class="custom-select form-control-input" style="width: 180px;" name="" id="" selected>
@@ -113,37 +112,34 @@
             </select> -->
 
             <span class="spacer"></span>
-            <a (click)="notificationList()" class="text-black cursorStyle position-relative"><i
-                    class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i><sup class="color-white " style="background: #22c123;
-                padding: 4px;
-                border-radius: 50px;
-                width: 20px;
-                height: 20px;
-                display: inline-block;
-                line-height: initial;
-                text-align: center;
-                font-size: 11px;
-                position: absolute;
-                left: 18px">{{notificationCount? notificationCount : 0}}</sup></a>
-            <a class="text-white ml-4 commonFontSize semiBoldFont">
-                <img *ngIf="userData && userData.profile_pic" src="{{userData.profile_pic}}"
-                    class="rounded-circle bg-light-green header-dp">
-                <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile-default.png"
-                    class="rounded-circle bg-light-green header-dp">
-                <span
-                    class="ml-3 text-white">{{userData ? userData.first_name + ' '+ userData.last_name : ''}}</span></a>
-                    
-                    <div class="dropdown" *ngIf="isLogin">
-                        <a class="color-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-angle-down ml-3 cursorStyle" aria-hidden="true"></i>
-                        </a>                      
-                        <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
-                            <div class="row p-2">
-                                <div class="col-sm-12 cursorStyle" routerLink="/admin/change-password"> Change Password </div>
-                                <div class="col-sm-12 cursorStyle" (click)="logout()"> Logout </div>
-                            </div>
+
+            <div class="dropdown" *ngIf="isLogin">
+                <!-- <a class="color-white" >
+                    <i class="fa fa-angle-down ml-3 cursorStyle" aria-hidden="true"></i>
+                </a> -->
+                <a class="text-white mr-4 commonFontSize semiBoldFont" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img *ngIf="userData && userData.profile_pic" src="{{userData.profile_pic}}" class="rounded-circle bg-light-green header-dp">
+                    <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile_pic_transparent.png" class="rounded-circle bg-light-green header-dp">
+                </a>
+                <div class="dropdown-menu mt-4" aria-labelledby="dropdownMenuLink">
+                    <div class="row p-2">
+                        <div class="col-sm-12 text-center">
+                            <img *ngIf="userData && userData.profile_pic" src="{{userData.profile_pic}}" class="rounded-circle bg-light-green header-dp">
+                            <img *ngIf="userData && !userData.profile_pic" src="assets/images/profile_pic_transparent.png" class="rounded-circle bg-light-green header-dp">
+                            <span class="my-1 d-block">{{userData ? userData.first_name + ' '+ userData.last_name : ''}}</span>
                         </div>
+                        <div class="col-sm-12 cursorStyle commonFontSize regularFont" routerLink="/admin/change-password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
+                        <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true mr-1"></i> Logout </div>
                     </div>
-                </mat-toolbar>
+                </div>
+            </div>
+
+            <a (click)="notificationList()" class="text-black cursorStyle position-relative mr-2">
+                <i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i>
+                <sup class="color-white bellAlert">{{notificationCount? notificationCount : 0}}</sup>
+            </a>
+
+        </mat-toolbar>
     </mat-sidenav-content>
 </mat-sidenav-container>

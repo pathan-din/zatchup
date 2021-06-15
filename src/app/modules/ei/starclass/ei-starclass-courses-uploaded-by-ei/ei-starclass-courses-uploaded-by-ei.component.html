@@ -4,35 +4,118 @@
     <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
         
         <div class="row">
-            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center mb-2">
-                <span class="mr-3 cursorStyle">
+            <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center">
+                <!-- <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
-                </span>
-                <h2 class="commonFontSize semiBoldFont m-0">All Courses Uploaded By EI</h2>            
+                </span> -->
+                <h2 class="commonFontSize semiBoldFont m-0">Courses Uploaded By School</h2>            
             </div>
-            <div class="col-md-6 text-right">
-                <button type="button" class="bg-dark text-white py-2 px-3 border-0" (click)="goToCreateCourse()">Create Course</button>
+            <div class="col-md-6 d-flex flex-row SearchDiv">
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'"  type="button" class="bg-purple text-white py-2 px-2 border-0" (click)="goToCreateCourse()">Create Course</button>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" type="button" class="bg-dark text-white py-2 px-2 border-0 ml-2" (click)="goToCourseHistory()"> Course History</button>
             </div>
         </div>
 
-        <div class="tableDiv mt-3">
+        <div class="filterDiv bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <h2 class="commonFontSize semiBoldFont letterspacing mb-0">Filter</h2>
+            <div class="d-flex flex-wrap align-items-end">
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Education Level</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select  id="education_name" [(ngModel)]="eiCourseList.levelOfEducationName"
+                            name="course" required class="custom-select  form-control-input" >
+                            <option value=""> Select Education Level</option>
+                            <option value="{{level.education_name}}" *ngFor="let level of eiCourseList.levelOfEducation">{{level.education_name}}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Field</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select  id="standard_id"
+                            [(ngModel)]="eiCourseList.fieldName" name="field" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Field</option>
+                            <option value="{{field.field_name}}" *ngFor="let field of eiCourseList.field">
+                                {{field.field_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="eiCourseList.standardName" name="class" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Standard</option>
+                            <option value="{{standard.standard_name}}" *ngFor="let standard of eiCourseList.standard">{{standard.standard_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="widthFull mr-3 mt-3 custumInputWidth">
+                    <label for="" class="mediumFont commonFontSize letterspacing"> Subject</label>
+                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
+                        <select id="class_id" [(ngModel)]="eiCourseList.subjectName" name="subject" required
+                            class="custom-select  form-control-input" >
+                            <option value=""> Select Subject</option>
+                            <option value="{{subject.subject_name}}" *ngFor="let subject of eiCourseList.subject">{{subject.subject_name}}</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <button (click)="getEiCourseList()" type="button"
+                    class="bg-purple text-white px-5 py-2 h-100 mt-3 border-0 ">Apply</button>
+
+
+            </div>
+        </div>
+
+        <div class="row my-3 align-items-center" *ngIf="eiCourseList.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getEiCourseList('')" [(ngModel)]="eiCourseList.page_size">
+                        <option *ngFor="let count of eiCourseList.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-3" *ngIf="eiCourseList.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
+                <mat-table [dataSource]="eiCourseList.dataSource | paginate: eiCourseList.config">
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + eiCourseList.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="courseName">
                         <mat-header-cell *matHeaderCellDef> Course Title</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.courseName}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.course_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="courseId">
+                        <mat-header-cell *matHeaderCellDef> Course ID</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.course_id}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="levelOfEducation">
-                        <mat-header-cell *matHeaderCellDef> Level Of Education </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Education Level </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.levelOfEducation}}
+                            {{element.level_of_education}}
                         </mat-cell>
                     </ng-container>
 
@@ -44,9 +127,9 @@
                     </ng-container>
 
                     <ng-container matColumnDef="noOfStandards">
-                        <mat-header-cell *matHeaderCellDef> Number Of Standards </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Standard </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.noOfStandards}}
+                            {{element.standard}}
                         </mat-cell>
                     </ng-container>
 
@@ -56,24 +139,35 @@
                     </ng-container>
 
                     <ng-container matColumnDef="noOfCourse">
-                        <mat-header-cell *matHeaderCellDef>Number Of Lecture In The Course</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef>Lecture Count</mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            {{element.noOfCourse}}</mat-cell>
+                            {{element.number_of_lectures}}</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
-                            <i class="fa fa-upload mr-2 color-green fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i  (click)="goToCourseView(element ,  element.is_all_access)" class="fa fa-eye color-lightBlue fa-lg cursorStyle" aria-hidden="true "></i>
+                            <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="fa fa-trash ml-2 color-red cursorStyle" aria-hidden="true" (click)="deleteCourse(element.id )"></i>
+                            <i *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToStudentAudienceAdd(element.id)" class="fa fa-plus-circle ml-2 color-green fa-lg cursorStyle" tooltip="Add Rights And Audience" aria-hidden="true"></i>
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="eiCourseList.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: eiCourseList.displayedColumns; "></mat-row>
 
                 </mat-table>
 
+            </div>
+        </div>
+        <pagination-controls *ngIf="eiCourseList.dataSource" (pageChange)="getEiCourseList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
+        <div class="row mt-3" *ngIf="!eiCourseList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
     </div>

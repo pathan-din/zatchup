@@ -2,11 +2,6 @@
     background-color: #463267;
 }
 
-.headerLogoImg {
-    width: 70%;
-    padding: 4%;
-}
-
 .userNavUl a.nav-link {
     color: #ffffff;
     letter-spacing: 0.2px;
@@ -16,15 +11,31 @@
     width: 30px;
     height: 30px;
 }
+.header-dp {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #463267;
+    overflow: hidden;
+}
 
 .customDropDown {
     right: 0px !important;
     left: auto;
+    top: 30px;
+}
+
+.customDropDown2 {
+    left: auto;
+    top: 70px;
+    padding: 10px !important;
+    height: 300px;
+    overflow-y: scroll;
 }
 
 .userNavUl a.nav-link:hover {
     color: #ccc;
-}
+}           
+
 
 /* .userNavUl .nav-item a.nav-link:active {
     border-radius: 10px;
@@ -51,3 +62,97 @@
     color: #463267 !important;
      
 }
+
+.cs_btn {
+    background: #fff;
+    margin-right: 10px;
+}
+.menuStrip {
+    width: 25px;
+    height: 3px;
+    background: #463267;
+    margin: 4px 0px;
+    display: block;
+}
+
+.nav-item {
+    margin: 5px;
+}
+
+.headerLogoImg {
+    margin: 5px;
+    width: 80%;
+}
+.customUserSearch {
+    width: 42%;
+}
+
+.notification_icon{background: #22c123;
+padding: 4px;
+border-radius: 50px;
+width: 20px;
+height: 20px;
+display: inline-block;
+line-height: initial;
+text-align: center;
+font-size: 11px;
+position: absolute;
+left: 10px}
+
+.clockAlert{
+    background: #22c123;
+    padding: 4px;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: initial;
+    text-align: center;
+    font-size: 11px;
+    position: absolute;
+    left: 10px
+}
+
+.bellAlert{
+    background: #22c123;
+    padding: 4px;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    line-height: initial;
+    text-align: center;
+    font-size: 11px;
+    position: absolute;
+    left: 10px
+}
+
+.navbar-brand {
+    width: max-content;
+}
+
+@media (min-width: 992px) and (max-width: 1200px){
+    .customUserSearch {
+        width: 33%;
+    }
+    .nav-item {
+        margin: 5px 0px;
+    }
+}
+@media (max-width: 991px){
+    .navbar-brand img {
+        width: 170px;
+    }
+    .navbar-nav .nav-link {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .navbar-nav .dropdown-menu{
+        position: absolute;
+    }
+    .customUserSearch {
+        width: 97%;
+    }
+}
+
+

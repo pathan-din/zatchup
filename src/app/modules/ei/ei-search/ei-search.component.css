@@ -1,0 +1,40 @@
+.landingDiv {
+    background: #e9ecef;
+    padding: 4%;
+}
+.paddingStyle{
+    padding: 2%;
+}
+.batchDetail{
+    line-height: normal;
+    margin-bottom: 0;
+}
+.multiselect-dropdown {
+    margin-top: 10px;
+}
+
+.custom-select {
+    height: calc(2.1em + .75rem + 2px);
+    border-radius: 10px !important;
+    border: 1px solid #ced4da !important;
+}
+
+
+
+@media (max-width: 767px){
+    .pl-0, .pr-0 {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .cp0{padding: 0px !important}
+}
+
+.stuSearch{width: 72px;
+    height: 72px;
+    max-width: 72px;
+    min-width: 72px;
+    max-height: 72px;
+    min-height: 72px;}
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}

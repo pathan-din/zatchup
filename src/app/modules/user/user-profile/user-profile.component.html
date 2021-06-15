@@ -2,241 +2,110 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5 mobPaddingLR">
-        <div class="col-12 pl-5 pr-5 mobPaddingLR cursorStyle">
-            <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="img-fluid subHeaderImg">
-        </div>
     </div>
 </div>
-<div class="container containerScrolling mt-4 landingPageWidth ">
-    <div class="bannerDiv position-relative" *ngIf="userProfile">
-        <img src="assets/images/cover-pic-default.png" class="img-fluid">
-        <img src="assets/images/userWebsite/email.png" class="img-fluid email_position-absolute cursorStyle">
-
-        <div class="col-md-5 text-right d-flex profileDivLeft  p-0 align-items-center customProfile">
-            <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
-                <img *ngIf="!userProfile.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg">
-                <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="img-fluid dpImg">
-            </div>
-
-            <div class="pl-2 text-left" *ngIf="userProfile">
-                <p class="m-0 commonFontSize mediumFont pt-4">{{userProfile.name}}</p>
-                <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p>
-                <!-- <p class="m-0 commonFontSize regularFont">You were in same clas in 2019</p> -->
-            </div>
-        </div>
-        <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
-
+<div class="container containerScrolling landingPageWidth ">
+    <div class="bannerDiv position-relative border bg-white" *ngIf="userProfile">
+        <img *ngIf="!coverPic" src="assets/images/cover-pic-default.png" class="img-fluid">
+        <img *ngIf="coverPic" src="{{coverPic}}" class="img-fluid">
     </div>
-    <div class="landingDiv pt-5 mt-2">
-        <div class="row pt-2">
 
-            <!-- <div class="col-md-7 text-right d-flex profileDivRight flex-row">
-                <div class="col-2 padding-0">
-                    <p class="m-0 commonFontSize mediumFont text-center">20K</p>
-                    <p class="m-0 commonFontSize regularFont">Followers</p>
-                </div>
-                <div class="col-2 padding-0">
-                    <p class="m-0 commonFontSize mediumFont text-center">205</p>
-                    <p class="m-0 commonFontSize regularFont">Buddies</p>
-                </div>
-                <div class="col-4"><button type="button" class="common-btn w-75">Follow</button></div>
-                <div class="col-4  padding-0">
-                    <button type="button" class=" common-btn  bg-white color-purple addBuddyBtn w-75 ">Add
-                        Buddy</button></div>
+    <div class="row p-0 landingDiv m-0" *ngIf="userProfile">
+        <div class="col-md-10 text-right d-flex profileDivLeft align-items-center customProfile">
+            <div class="dpImgCircle rounded-circle bg-light-green border border-white" *ngIf="userProfile">
+                <img *ngIf="!profilePic" src="assets/images/profile-default.png" class="img-fluid dpImg border">
+                <img *ngIf="profilePic" src="{{profilePic}}" class="img-fluid dpImg border">
+            </div>
 
-            </div> -->
+            <img *ngIf="userProfile.kyc_approved == '1'" src="assets/images/userWebsite/checkicon.png"
+                class="img-fluid ml-1 tickImg">
+
+            <div class="pl-4 text-left" *ngIf="userProfile">
+                <h2 class="m-0 commonFontSize mediumFont pt-5 text-capitalize" style="line-height: 1.3;">{{userProfile.name}} <span class="m-o commonFontSize mediumFont">({{userProfile.zatchup_id}})</span></h2>
+                <!-- <p class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id}}</p> -->
+                <!-- <span *ngFor="let batchmate of batchmatesList">
+                    <p class="m-o commonFontSize mediumFont text-capitalize">You both studied in {{batchmate.school_name}}
+                        <span class=""> </span>
+                    </p>
+                </span> -->
+                <span *ngIf="userProfile.approved == 1 && userProfile.is_school_mate && currentUser != userId">
+                    <p class="m-o commonFontSize mediumFont">School mate
+                        <span class=""> </span>
+                    </p>
+                </span>
+                <!-- <span *ngIf="currentUser == userId ">
+                    <p class="m-o commonFontSize mediumFont text-capitalize">You
+                        <span class=""> </span>
+                    </p>
+                </span> -->
+
+            </div>
         </div>
-        <div class="row mt-3">
+        <div *ngIf="userProfile && userProfile.firebase_id && userProfile.kyc_approved == 1 && currentUser != userId"
+            class="col-md-2 text-right mt-2">
+            <img (click)="getDocumentsChat(userProfile.firebase_id)" src="assets/images/userWebsite/email.png"
+                class="img-fluid email_position-absolute cursorStyle">
+        </div>
+    </div>
+
+    <div class="landingDiv pt-2 mt-0">
+        <div class="row mx-0 mt-3">
             <div class="col-md-12">
-                <div class="informationDiv row form-control-inputDiv mt-2 py-2">
-                    <div class="col-md-12 informationHeader  d-flex justify-content-between align-items-center">
-                        <h3 class="color-purple commonFontSize semiBoldFont m-0">Personal Information</h3>
-                    </div>
-                    <div class="col-md-12">
-                        <hr>
-                    </div>
-                    <div class="col-md-12" *ngIf="userProfile">
-                        <p class="m-0 commonFontSize semiBoldFont">DOB : <span
-                                class="regularFont">{{userProfile.dob}}</span>
-                        </p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.gender">Gender : <span
-                                class="regularFont">{{userProfile.gender}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.email">Email : <span
-                                class="regularFont">{{userProfile.email}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.phone">Phone : <span
-                                class="regularFont">{{userProfile.phone}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.mother_name">Mother Name : <span
-                                class="regularFont">{{userProfile.mother_name}}</span></p>
-                        <p class="m-0 commonFontSize semiBoldFont" *ngIf="userProfile.father_name">Father Name : <span
-                                class="regularFont">{{userProfile.father_name}}</span></p>
-                        <!-- <p class="m-0 commonFontSize semiBoldFont">Profession : <span class="regularFont">Student</span> -->
-                        <!-- </p> -->
-                    </div>
-                </div>
-                <div class="educationDiv row form-control-inputDiv py-2 mt-2">
-                    <div class="col-md-12 educationHeader  d-flex justify-content-between align-items-center">
-                        <h3 class="color-purple commonFontSize semiBoldFont m-0">Education</h3>
-                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
-                    </div>
-                    <div class="col-md-12">
-                        <hr>
+                <div class="educationDiv row form-control-inputDiv py-3 mt-2">
+                    <div class="col-md-12 ml-2 educationHeader  d-flex justify-content-between align-items-center fontSize-20">
+                        <h2 class="color-purple commonFontSize semiBoldFont m-0">Education</h2>
                     </div>
                     <ng-container *ngIf="userProfile">
-                        <div class="col-md-12" *ngFor="let eduDetails of userProfile.educationdetail">
-                            <h4 class="m-0 commonFontSize semiBoldFont position-relative">{{eduDetails.name_of_school}}
+                        <div class="col-md-11 ml-4" *ngFor="let eduDetails of userProfile.educationdetail">
+                            <hr>
+                            <h3 class="mb-1 commonFontSize semiBoldFont position-relative text-capitalize fontSize-18">
+                                {{eduDetails.name_of_school}}
                                 <span class="ml-2" *ngIf="eduDetails.approved">
                                     <img src="assets/images/userWebsite/checkicon.png"
                                         class="img-fluid  check_absolute-image">
                                 </span>
-                            </h4>
+                            </h3>
                             <ng-container>
                                 <div *ngFor="let courseDetails of eduDetails.course_detail">
-                                    <div class="mb-3">
-                                        <p class="m-0 commonFontSize semiBoldFont">{{courseDetails.course_name}} <span
-                                                class="regularFont">( {{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span></p>
+                                    <div class="mb-1">
+                                        <p class="m-0 commonFontSize text-capitalize semiBoldFont fontSize-16">{{courseDetails.course_name}}
+                                            <span class="regularFont mb-1">({{courseDetails.start_year}}-{{courseDetails.is_current_course?'Current':courseDetails.end_year}})</span>
+                                        </p>
                                     </div>
-
-                                    <!-- <p class="m-0 commonFontSize semiBoldFont">6th <span class="regularFont">(Batch
-                                        2016-2017)</span></p> -->
                                 </div>
                             </ng-container>
-
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
                         </div>
                     </ng-container>
                 </div>
+
+                <div class="informationDiv row form-control-inputDiv mt-2 py-3">
+                    <div class="col-md-12 ml-2 informationHeader  d-flex justify-content-between align-items-center fontSize-20">
+                        <h2 class="color-purple commonFontSize semiBoldFont m-0">Personal Information</h2>
+                    </div>
+                    <div class="col-md-11 ml-4" *ngIf="userProfile">
+                        <hr>
+                        <p *ngIf="settingValue('DOB')" class="mb-1 commonFontSize semiBoldFont fontSize-16">DOB :
+                            <span class="regularFont">{{userProfile.dob}}</span>
+                        </p>
+                        <p class="mb-1 commonFontSize semiBoldFont fontSize-16" *ngIf="userProfile.gender && settingValue('GENDER')">
+                            Gender :
+                            <span class="regularFont">{{getGender(userProfile)}}</span>
+                        </p>
+                        <p class="mb-1 commonFontSize semiBoldFont fontSize-16"
+                            *ngIf="userProfile.email && settingValue('EMAIL_ID')">Email :
+                            <span class="regularFont">{{userProfile.email}}</span>
+                        </p>
+                        <p class="mb-1 commonFontSize semiBoldFont fontSize-16" *ngIf="userProfile.phone && settingValue('MOB_NUM')">
+                            Phone :
+                            <span class="regularFont">{{userProfile.phone}}</span>
+                        </p>
+                        <p *ngIf="profession" class="mb-1 commonFontSize semiBoldFont fontSize-16">Profession : <span
+                                class="regularFont">{{profession}}</span>
+                        </p>
+                    </div>
+                </div>
+                
             </div>
-            <!-- <div class="col-md-7">
-                <div class="row ">
-                    <div class="col-12 colLeftPost">
-                        <div class="form-control-inputDiv py-2">
-                            <div class="col-12 commonFontSize semiBoldFont color-purple ">Posts</div>
-                            <div class="col-12">
-                                <hr>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-6 text-center">
-                                    <img *ngIf="postOptionActiveMatrix==='active'" src="assets/images/userWebsite/matix-format.png" class="w-12 img-fluid" (click)="postTabFunction('matrix')">
-                                    <img *ngIf="postOptionActiveMatrix==='dead'" src="assets/images/userWebsite/matix-format.png" class="w-12 img-fluid" (click)="postTabFunction('matrix')">
-                                </div>
-                                <div class="col-6 text-center">
-                                    <img *ngIf="postOptionActiveImage==='active'" src="assets/images/userWebsite/image-icon.png" class="w-12 img-fluid" (click)="postTabFunction('image')">
-                                    <img *ngIf="postOptionActiveImage==='dead'" src="assets/images/userWebsite/image-icon.png" class="w-12 img-fluid" (click)="postTabFunction('image')">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="matrix" *ngIf="postOption==='matrix'">
-                    <div class="row mt-3">
-                        <div class="col-6 pr-0 img-container"><img src="assets/images/userWebsite/loreal.jpg" class="img-fluid border-radius-25 mr-2 img-height-100 img-width-100"></div>
-                        <div class="col-6 pl-0 img-container"><img src="assets/images/userWebsite/highest_level_education_image.png" class="img-fluid img-height-100 img-width-100 border-radius-25 ml-2"></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-6 pr-0 img-container"><img src="assets/images/userWebsite/loreal.jpg" class="img-fluid border-radius-25 mr-2 img-height-100 img-width-100"></div>
-                        <div class="col-6 pl-0 img-container"><img src="assets/images/userWebsite/loreal.jpg" class="img-fluid border-radius-25 ml-2 img-height-100 img-width-100"></div>
-                    </div>
-                </div>
-                <div class="images" *ngIf="postOption==='image'">
-                    <div class="card form-control-inputDiv border-0 bg-white mt-3 py-2">
-                        <div class="card-header bg-white ">
-                            <div class="row align-items-center ">
-                                <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0">
-                                    <img src="assets/images/userWebsite/study_student.png" class="img-fluid border-0 rounded-circle ">
-                                </div>
-                                <div class=" col-xl-10 col-lg-10 col-md-10 col-sm-10  col-8">
-                                    <h4 class="commonFontSize semiBoldFont">Simmi Sharma</h4>
-                                </div>
-                                <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 text-right">
-                                    <img src="assets/images/userWebsite/menu.png" class="img-fluid border-0 w-50 ">
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="row py-2">
-                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10  col-8">
-                                <h4 class="commonFontSize semiBoldFont pl-2">Title of the Project</h4>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 text-right">
-                                <img src="assets/images/userWebsite/view.png" class="img-fluid border-0 eyes-img">
-                                <span class="badge">432</span>
-                            </div>
-                        </div>
-                        <img class=" img-fluid border-radius img-container " src="assets/images/userWebsite/loreal.jpg" alt="Card image">
-                        <div class="card-body">
-                            <p class="commonFontSize regularFont">Lorem Ipsum is simply dummy text of the printing and type setting industry. </p>
-                            <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-4">
-                                    <img src="assets/images/userWebsite/like-active-icon.png" class="img-fluid border-0 w-like-comment">
-
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-4">
-                                    <span class="badge">665</span>
-                                    <img src="assets/images/userWebsite/message-icon.png" class="img-fluid border-0 w-like-comment">
-
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-4">
-                                    <span class="badge commonFontSize regularFont">Share</span>
-                                    <img src="assets/images/userWebsite/share-icon.png" class="img-fluid border-0 w-like-comment">
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card form-control-inputDiv border-0 bg-white mt-3 py-2">
-                        <div class="card-header bg-white ">
-                            <div class="row align-items-center ">
-                                <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0">
-                                    <img src="assets/images/userWebsite/study_student.png" class="img-fluid border-0 rounded-circle ">
-                                </div>
-                                <div class=" col-xl-10 col-lg-10 col-md-10 col-sm-10  col-8">
-                                    <h4 class="commonFontSize semiBoldFont">Simmi Sharma</h4>
-                                </div>
-                                <div class=" col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 text-right">
-                                    <img src="assets/images/userWebsite/menu.png" class="img-fluid border-0 w-50 ">
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="row py-2">
-                            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10  col-8">
-                                <h4 class="commonFontSize semiBoldFont pl-2">Title of the Project</h4>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 text-right">
-                                <img src="assets/images/userWebsite/view.png" class="img-fluid border-0 eyes-img">
-                                <span class="badge">432</span>
-                            </div>
-                        </div>
-                        <img class=" img-fluid border-radius img-container" src="assets/images/userWebsite/loreal.jpg" alt="Card image">
-                        <div class="card-body">
-                            <p class="commonFontSize regularFont">Lorem Ipsum is simply dummy text of the printing and type setting industry. </p>
-                            <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-4">
-                                    <img src="assets/images/userWebsite/like-active-icon.png" class="img-fluid border-0 w-like-comment">
-
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-4">
-                                    <span class="badge">665</span>
-                                    <img src="assets/images/userWebsite/message-icon.png" class="img-fluid border-0 w-like-comment">
-
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-2 col-4">
-                                    <span class="badge commonFontSize regularFont">Share</span>
-                                    <img src="assets/images/userWebsite/share-icon.png" class="img-fluid border-0 w-like-comment">
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

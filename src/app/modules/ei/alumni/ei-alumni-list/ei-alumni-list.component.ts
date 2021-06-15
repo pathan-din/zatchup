@@ -1,12 +1,22 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { Router, ActivatedRoute, ActivationEnd } from '@angular/router';
+// import { Component, OnInit,ViewChild } from '@angular/core';
+// import { Router, ActivatedRoute, ActivationEnd } from '@angular/router';
+// import { BaseService } from '../../../../services/base/base.service';
+// import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
+// import { FormBuilder } from "@angular/forms";
+// import { NgxSpinnerService } from "ngx-spinner";
+// import { NotificationService } from 'src/app/services/notification/notification.service';
+// import { Location } from '@angular/common';
+// import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Location } from '@angular/common';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 declare var $: any;
 
 
@@ -21,7 +31,7 @@ export interface TotalAlumniListElement {
   Tenure : number;
   Duration: string;
   LastClassTaken: string;
-  VerificationStatusByEI: string;
+  // VerificationStatusByEI: string;
   EKYCVerificationStatus: string;
   Action: string;
 
@@ -38,7 +48,7 @@ const ELEMENT_DATA: TotalAlumniListElement[] = [
     Tenure : 2017-18, 
     Duration: '3 Year', 
     LastClassTaken: 'B.com 2A',
-    VerificationStatusByEI: 'verified', 
+    // VerificationStatusByEI: 'verified', 
     EKYCVerificationStatus :'complete',
     Action: ''
 }
@@ -62,8 +72,9 @@ export class EiAlumniListComponent implements OnInit {
   courseList:any=[];
   standardList:any=[];
   classList:any=[];
+  //,'VerificationStatusByEI'
   displayedColumns: string[] = ['SNo', 'ZatchUpID','Name', 'Gender', 'Age',
-  'Profession','Duration','LastClassTaken','VerificationStatusByEI','Action'];
+  'Profession','Duration','LastClassTaken','Action'];
 
   dataSource = ELEMENT_DATA;
   modelUserId: any;
@@ -72,6 +83,11 @@ export class EiAlumniListComponent implements OnInit {
   errorDisplay: any = {};
   title:any='';
   pageCounts: any;
+  objStudent: any = {};
+  dataStudent: any = [];
+  conversation: any = [];
+  currentUser: any;
+  recepintDetails: any = {};
 
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
@@ -85,7 +101,8 @@ export class EiAlumniListComponent implements OnInit {
     private alert : NotificationService,
     private location: Location,
     public eiService: EiServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private firestore: AngularFirestore
     ) { }
 
  
@@ -112,6 +129,107 @@ export class EiAlumniListComponent implements OnInit {
     this.displayCourseList();
     this.getAluminiList('','')
 	  
+  }
+
+
+  goToChatScreen(objStudent) {
+    this.conversation = [];
+    this.dataStudent =[];
+    this.objStudent = objStudent;
+    this.getRecepintUserDetails(objStudent.firebase_id)
+    return new Promise<any>((resolve, reject) => {
+      let data: any = {};
+      var date = new Date();
+
+      var uuid = objStudent.firebase_id;
+      data.user_request_id = localStorage.getItem('fbtoken');
+      data.user_accept_id = uuid;
+      data.is_block = 0
+      data.is_seen = 0
+      data.is_active = 1
+      data.is_read = 0
+      data.created_on = this.baseService.getDateFormat(date);
+      let getFriendListExistingData: any = {}
+      this.getFriendListBySender(localStorage.getItem('fbtoken'), uuid, data)
+
+
+
+    })
+
+
+  }
+  getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
+    this.conversation = [];
+    this.dataStudent = [];
+    this.firestore.collection('user_friend_list').valueChanges().subscribe((res:any)=>{
+      let dataEle = res.find(elem=>{
+                      return ((elem.user_request_id===loginfirebase_id && elem.user_accept_id===user_accept_id) || (elem.user_request_id===user_accept_id && elem.user_accept_id===loginfirebase_id))  
+                    })
+            console.log(dataEle);
+                   
+                    
+      if(dataEle){
+        
+        this.firestore.collection('user_friend_list').get()
+         
+        .subscribe(querySnapshot => {
+          if (querySnapshot.docs.length > 0) {
+            querySnapshot.docs.map(doc => {
+            
+              let res:any=[]
+              res=doc.data();
+             if(dataEle.user_request_id==res.user_request_id && dataEle.user_accept_id== res.user_accept_id)
+             {
+              localStorage.setItem("friendlidt_id", doc.id)
+              this. getDocumentsChat();
+              
+             }
+              
+            });
+          }
+  
+        });
+      } else{
+        this.firestore.collection("user_friend_list").add(data).then(res => {
+          localStorage.setItem("friendlidt_id",res.id)
+           this. getDocumentsChat();
+          
+         })
+      }             
+     
+      
+    })
+     
+       
+       }
+
+       
+  getDocumentsChat() {
+    this.conversation = [];
+    this.dataStudent =[];
+    var uuid= localStorage.getItem("friendlidt_id");
+    var dataSet=this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+    dataSet.subscribe((res:any)=>{
+      if(res){
+        this.conversation = res.data;
+        this.dataStudent = res.data;
+      }else{
+        this.conversation = [];
+        this.dataStudent = [];
+      }
+      this.router.navigate(["ei/messages-details"]);
+    })
+    
+    
+    
+  }
+
+  getRecepintUserDetails(uuid) {
+    localStorage.setItem("receipent",uuid);
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+      this.recepintDetails = res.data();
+      });
+      
   }
   /** Function name: displayCourseList
    * Data bind in course list dropdown filter
@@ -256,19 +374,27 @@ getAluminiList(page,strFilter){
         objAlumniList.SNo=i;
         objAlumniList.ZatchUpID=objData.zatchup_id;
         objAlumniList.Name=objData.first_name+ ' '+objData.last_name;
-        objAlumniList.Gender=objData.gender=='C'?objData.gender+'('+objData.pronoun+')':objData.gender;
+        if(objData.gender=='C'){
+          objAlumniList.Gender=objData.pronoun;
+        }else if(objData.gender=='F'){
+          objAlumniList.Gender='Female';
+        }else if(objData.gender=='M'){
+          objAlumniList.Gender='Male';
+        }
+        
         objAlumniList.Age=objData.age?objData.age:'0';
         objAlumniList.Profession=objData.profession?objData.profession:'';
         objAlumniList.Tenure=objData.work_tenure?objData.work_tenure:'';
         objAlumniList.Duration=objData.workduration?objData.workduration:'0';
         objAlumniList.LastClassTaken=objData.class_name?objData.class_name:'';
-        objAlumniList.VerificationStatusByEI=objData.approved=="1"?'Approved':'Unapproved';
+       // objAlumniList.VerificationStatusByEI=objData.approved=="1"?'Approved':'Unapproved';
         objAlumniList.EKYCVerificationStatus=objData.kyc_approved=='1'?'Complete':'Incomplete';
         objAlumniList.kyc_approved = objData.kyc_approved;
         objAlumniList.approved = objData.approved;
         objAlumniList.is_rejected = objData.is_rejected;
         objAlumniList.student_id = objData.user_id;
         objAlumniList.reason_reject = objData.reason_reject;
+        objAlumniList.firebase_id = objData.firebase_id;
         objAlumniList.Action='';
 			
       arrAlumniList.push(objAlumniList);

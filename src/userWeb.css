@@ -5,7 +5,7 @@ body {
 }
 
 .contentSpaceTop {
-  padding-top: 8.5%;
+  padding-top: 100px;
 }
 
 .textSpace {
@@ -18,7 +18,7 @@ body {
 }
 
 .contentTopSpaceLanding {
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 @media (min-width: 1200px) {
@@ -244,7 +244,7 @@ body {
   color: #333333;
   font-family: "SFUIDisplay-Regular";
   cursor: pointer;
-  background-position: 95%;
+  background-position: 98%;
 }
 
 .custom-select:focus {
@@ -286,7 +286,7 @@ body {
 
 .form-bgImg {
   background-repeat: no-repeat;
-  background-size: 7%;
+  background-size: 18px;
   background-position: 98% center;
 }
 
@@ -294,21 +294,27 @@ body {
   background-image: url("./assets/images/userWebsite/name_icon.png");
 }
 
+.form-emailBgImgPhone {
+  background-image: url("./assets/images/userWebsite/email_mobile_icon.png");
+  background-size: 30px;
+  background-position: 98% center;
+}
+
 .form-emailBgImg {
   background-image: url("./assets/images/userWebsite/email_icon.png");
-  background-size: 5%;
+  background-size: 20px;
   background-position: 98% center;
 }
 
 .form-phoneBgImg {
   background-image: url("./assets/images/userWebsite/phone_icon.png");
-  background-size: 4.5%;
-  background-position: 100% center;
+  background-size: 16px;
+  background-position: 98% center;
 }
 
 .form-calenderBgImg {
   background-image: url("./assets/images/userWebsite/calender_icon.png");
-  background-size: 5%;
+  background-size: 18px;
   background-position: 100% center;
 }
 
@@ -395,17 +401,22 @@ button:focus {
 
 
 .subHeaderImg {
-  width: 3%;
+  width: 40px;
+  margin: 15px;
 }
 /*********************/
 .labelTextLandingPage {
   font-size: 0.9rem !important;
 }
 
-@media only screen and (max-width: 414px) {
+@media (max-width: 991px){
   .contentSpaceTop {
-    padding-top: 105px;
+    padding-top: 75px;
   }
+}
+
+@media only screen and (max-width: 414px) {
+
   /* .contentTopSpaceLanding {
     margin-top: 35%;
   } */
@@ -425,18 +436,12 @@ button:focus {
     width: auto;
     margin-bottom: 7%;
   }
-  .form-bgImg {
-    background-size: 10%;
-  }
-  .form-emailBgImg,
+  /* .form-emailBgImg,
   .form-calenderBgImg,
   .form-genderBgImg,
   .form-passwordBgImg {
     background-size: 6%;
-  }
-  .form-phoneBgImg {
-    background-size: 7.5%;
-  }
+  } */
   .modal-body {
     padding-right: 3% !important;
     padding-left: 3% !important;
@@ -451,7 +456,6 @@ button:focus {
  
   .subHeaderImg {
     width: 12%;
-    margin: 3%;
   }
 
   /* .pl-5, .px-5 {
@@ -473,12 +477,18 @@ button:focus {
   padding: 2%;
 }
 
+.modal-dialog {
+  margin: 1rem !important;
+}
+
+.bannerDiv{
+  height: 100px !important;
+}
+
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .contentSpaceTop {
-    padding-top: 15%;
-  }
+
   .form-bgImg {
     background-size: 12.5%;
   }
@@ -497,8 +507,8 @@ button:focus {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   /******************************/
-  
  
   .subHeaderImg {
     width: 6%;

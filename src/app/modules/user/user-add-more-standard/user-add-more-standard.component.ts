@@ -23,6 +23,8 @@ export class UserAddMoreStandardComponent implements OnInit {
   isalumini: any;
   startYearMaxDate: any
   startYearMinDate: any
+  endYearMaxDate: any
+  endYearMinDate: any
   params: any;
   // endYearMaxDate: any = new Date();
   // endYearMinDate: any = new Date();
@@ -45,8 +47,11 @@ export class UserAddMoreStandardComponent implements OnInit {
     private genericFormValidationService: GenericFormValidationService,
     private alert: NotificationService
   ) {
-    // this.startYearMaxDate = new Date();
-    // this.startYearMinDate = new Date();
+    this.startYearMaxDate = new Date();
+    this.startYearMinDate = new Date();
+    this.endYearMaxDate = new Date();
+    this.endYearMinDate = new Date();
+    this.baseService.getDateReverseFormat(this.startYearMinDate)
   }
 
   ngOnInit(): void {
@@ -78,16 +83,20 @@ export class UserAddMoreStandardComponent implements OnInit {
     this.getEiInfo(this.model)
     this.imagePath = this.baseService.serverImagePath;
   }
-  editEi(schoolId){
-    this.router.navigate(["user/add-ei"],{queryParams:{
-      school_id:schoolId
-    }});
+  editEi(schoolId) {
+    this.router.navigate(["user/add-ei"], {
+      queryParams: {
+        school_id: schoolId
+      }
+    });
   }
-  addAnotherCourse(schoolId){
-    this.router.navigate(["user/ei-profile"],{queryParams:{
-      school_id:schoolId
-      
-    }});
+  addAnotherCourse(schoolId) {
+    this.router.navigate(["user/ei-profile"], {
+      queryParams: {
+        school_id: schoolId
+
+      }
+    });
   }
   getEiInfo(model) {
     try {
@@ -96,15 +105,23 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.baseService.action("user/get-admission-number-detail-by-school/", model).subscribe((res: any) => {
         if (res.status == true) {
           this.SpinnerService.hide();
-          this.model = res.data;
-          this.model.join_standard_id = res.data.join_standard_id
-          this.model.current_standard_id = res.data.current_standard_id
+          //this.model = res.data;
+          this.model.name_of_school = res.data.name_of_school;
+          this.model.school_code = res.data.school_code;
+
+          this.model.left_standard_id = res.data.left_standard_id;
+          this.model.join_standard_id = res.data.join_standard_id;
+          this.model.current_standard_id = res.data.current_standard_id;
+          this.model.course_start_year = res.data.course_start_year;
+          this.model.course_end_year = res.data.course_end_year;
+          this.model.admission_no = res.data.admission_no;
           if (this.model.course_id) {
             this.model.existing_course_id = this.courseId;
             this.model.comment = res.data.description;
           }
           this.model.school_id = this.schoolId;
           // this.displayClassList(res.data.join_standard_id);
+
           this.displayClassList(res.data.current_standard_id);
         } else {
           this.SpinnerService.hide();
@@ -143,25 +160,29 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
   displayStandardList(courseId) {
     try {
-      if (courseId != 'others') {
+      if (courseId != 'others' && courseId != '') {
         if (this.courseList)
-          this.setCalDates(courseId)
+          if (this.courseList.length > 0) {
+            this.model.comment = this.courseList.find(element => element.id == courseId).description;
+          }
+        this.setCalDates(courseId)
         this.SpinnerService.show();
         this.standardList = []
         this.model.class_id = '';
         let data: any = {};
         data.course_id = courseId;
         this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
-          console.log(res);
           let response: any = {};
           response = res;
           this.standardList = response.results;
           this.leftStandardList = response.results;
+          this.resetForm()
+          this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
-          //console.log(error);
-
         });
+      } else {
+        this.model.course_id = 'others';
       }
 
     } catch (err) {
@@ -169,6 +190,21 @@ export class UserAddMoreStandardComponent implements OnInit {
       //console.log(err);
     }
   }
+
+  resetForm(){
+    this.model.end_date = '';
+    this.model.start_date = '';
+    this.model.course_start_year = '';
+    this.model.course_end_year = '';
+    this.model.join_standard_id = '';
+    this.model.left_standard_id = '';
+    this.model.admission_no = '';
+    this.model.course_type = '';
+    this.model.course_name = '';
+    this.model.description = ''
+    this.setCalDates(this.model.course_id)
+  }
+
   displayClassList(stId) {
     try {
       if (stId) {
@@ -185,10 +221,10 @@ export class UserAddMoreStandardComponent implements OnInit {
         let data: any = {};
         data.standard_id = stId;
         this.baseService.getData('user/class-list-by-standardid/', data).subscribe(res => {
-          console.log(res);
           let response: any = {};
           response = res;
           this.classList = response.results;
+          this.SpinnerService.hide();
         }, (error) => {
           this.SpinnerService.hide();
         });
@@ -201,16 +237,13 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
 
   addCourseData() {
-
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-
       this.SpinnerService.show();
-
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.model.is_current_course = "0"
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
@@ -223,7 +256,7 @@ export class UserAddMoreStandardComponent implements OnInit {
           this.SpinnerService.hide();
           if (res.status == true) {
             if (this.params.returnUrl)
-              this.router.navigate([this.params.returnUrl],{ queryParams: {  "returnUrl": "user/my-educational-profile" } })
+              this.router.navigate([this.params.returnUrl], { queryParams: { "returnUrl": "user/my-educational-profile" } })
             else {
               if (this.isalumini) {
                 this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId, 'isalumini': 1 } });
@@ -254,7 +287,7 @@ export class UserAddMoreStandardComponent implements OnInit {
   addCourseNewData() {
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-    console.log(this.errorDisplay)
+
     if (this.errorDisplay.valid) {
       return false;
     }
@@ -297,18 +330,36 @@ export class UserAddMoreStandardComponent implements OnInit {
   }
 
   setCalDates(courseId) {
-    // this.model.course_id
     if (this.courseList) {
-      // debugger
       let course = this.courseList.find(val => {
         return val.id == courseId
       })
       if (course) {
         this.startYearMaxDate = new Date(course.start_date)
         this.startYearMinDate = new Date(course.end_date)
+        this.endYearMaxDate = new Date(course.start_date)
       }
-
+      else{
+        this.startYearMaxDate = '';
+        this.startYearMinDate = '';
+        this.endYearMaxDate = '';
+      }
     }
   }
+
+  setEndYearCourseDates(evt){
+    this.endYearMaxDate = evt
+  }
+
+  setStartYearCourseDates(evt){
+    this.startYearMinDate = evt
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
 
 }

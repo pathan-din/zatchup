@@ -1,59 +1,66 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Students List</h2>
-        
+        <h1 class="commonFontSize semiBoldFont m-0">
+            <img (click)="goBack()" src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg cursorStyle">
+            Students List</h1>
+        <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
+            <input [(ngModel)]="model.search" (keyup)="getGetVerifiedStudent('','')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                type="search" placeholder="Search Student">
+            <span class="position-absolute position-ppin">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+        </div>
         <div class="tableDiv mt-3">
             <div class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="selectCheckbox">
-                        <mat-header-cell *matHeaderCellDef class="text-center"> <mat-checkbox class="example-margin"> </mat-checkbox> </mat-header-cell>
-                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
+                        <mat-header-cell *matHeaderCellDef class="text-center"> <mat-checkbox (change)="selectAll($event,'student')"  [checked]="checkAllS" class="example-margin"> </mat-checkbox> </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox (change)="selectOne($event,'student',element.student_id)" [checked]="element.checked"  class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element;let i=index"> {{i+1}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePick">
                         <mat-header-cell *matHeaderCellDef> Profile Pic </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.profilePick}}
-                            <img src="./assets/images/userWebsite/profile-image.png" alt="profile pick" style="height: 50px;"/>
+                            <img src="{{element.profile_pic?element.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile pick" style="height: 50px;"/>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="nameOfStudents">
                         <mat-header-cell *matHeaderCellDef> Name of Student </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.nameOfStudents}} </mat-cell>
+                        <mat-cell *matCellDef="let element ">{{element.name}}  </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="relationship">
                         <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.relationship}}
+                        <mat-cell *matCellDef="let element">Student
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="classDetails">
                         <mat-header-cell *matHeaderCellDef> Class Details </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            Course Name: {{element.classDetails[0]}}  <br/>
-                            Standard: {{element.classDetails[1]}}  <br/>
-                            Section: {{element.classDetails[2]}}  
+                            {{element.class}}
+                             
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="classAlias">
                         <mat-header-cell *matHeaderCellDef> Class (Alias) </mat-header-cell>
                         <mat-cell *matCellDef="let element">                            
-                            {{element.classAlias}}
+                            {{element.alias_class}}
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="rollNumber">
                         <mat-header-cell *matHeaderCellDef> Roll Number </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.rollNumber}}
+                            {{element.roll_no}}
                         </mat-cell>
                     </ng-container>
 
@@ -62,5 +69,60 @@
                 </mat-table>
             </div>
         </div>
+    </div>
+ 
+    <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
+        <h2 class="commonFontSize semiBoldFont m-0">Teacher List</h2>
+        <!-- <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
+            <input [(ngModel)]="modelteacher.search" (keyup)="getGetVerifiedStudent('','')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                type="search" placeholder="Search Teacher">
+            <span class="position-absolute position-ppin">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+        </div> -->
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="dataSource1">
+                    <ng-container matColumnDef="selectCheckbox">
+                        <mat-header-cell *matHeaderCellDef class="text-center"> <mat-checkbox [checked]="checkAllT" (change)="selectAll($event,'')" class="example-margin"> </mat-checkbox> </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="text-center"> <mat-checkbox (change)="selectOne($event,'',element.user_id)" [checked]="element.isadded" class="example-margin"> {{element.selectCheckbox}} </mat-checkbox> </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i=index"> {{i+1}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profilePick">
+                        <mat-header-cell *matHeaderCellDef> Profile Pic </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <img src=" {{element.profile_pic?element.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile pick" style="height: 50px;"/>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfStudents">
+                        <mat-header-cell *matHeaderCellDef> Name of Teacher </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.first_name}} {{element.last_name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="relationship">
+                        <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> Teacher
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rollNumber">
+                        <mat-header-cell *matHeaderCellDef> Employee ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.employee_num}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns1 "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns1; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <button (click)="createGroup()" type="button" class="btn bg-paret-green color-white px-4 mt-3 btn-info">Create</button>
     </div>
 </div>

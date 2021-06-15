@@ -34,11 +34,11 @@
                     Messages From School Pending
                     Count: <span *ngIf="dashCounts">{{dashCounts.contactus_count}}</span></button>
             </div>
-            <!-- <div class="col-md-4 mt-3">
-                <button type="button"
+            <div class="col-md-4 mt-3">
+                <button type="button" (click)="zatchupStarClass()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View ZatchUp
-                    Starclass Buy History</button>
-            </div> -->
+                    Starclass</button>
+            </div>
             <div class="col-md-4 mt-3">
                 <button type="button" (click)="subPlanHistory()"
                     class=" px-3 commonFontSize mediumFont py-4 border-0 subAdminPurpleBtn bg-purple">View Subscription
@@ -173,21 +173,20 @@
             <!-- start Div for banner-->
             <div *ngIf="eiData" class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition"
                 [ngStyle]="eiData.cover_pic ? {'background-image': 'url(' + eiData.cover_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
-                <div *ngIf="!eiData.profile_pic" class="dpImgDiv rounded-circle bg-light-green border border-white">
+                <div *ngIf="!eiData.profile_pic" class="dpImgDiv position-relative">
                     <img src="assets/images/profile-default.png" class="img-fluid dpImg cursorStyle">
+                    <div class="img-fluid tick-img">
+                        <img *ngIf="eiData.is_onboarded==1" src="assets/images/userWebsite/checkicon.png"
+                        class="img-fluid verifiedTick">
+                    </div>
                 </div>
-                <div *ngIf="eiData.profile_pic" class="dpImgDiv rounded-circle bg-light-green border border-white">
-                    <img src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">
+                <div *ngIf="eiData.profile_pic" class="dpImgDiv position-relative">
+                    <img src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">   
+                    <div class="img-fluid tick-img">
+                        <img *ngIf="eiData.is_onboarded==1" src="assets/images/userWebsite/checkicon.png"
+                        class="img-fluid verifiedTick">
+                    </div>                 
                 </div>
-
-                <!-- <div class="userInfo">
-                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid">
-                </div> -->
-
-                <!-- <div class="followersdetail follow-btn">
-                    <span class="mediumFont semiBoldFont">25k</span><br/>
-                    <span>Followers</span>
-                </div> -->
             </div>
             <!--Start div for onboarding Information-->
             <div class="row mt-3">
@@ -605,6 +604,17 @@
                         </div>
                     </div>
 
+                    <div class="row mx-0">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+                            <p> Bank Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7">
+                            <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
+                                    routerLink="/admin/ei-bank-details/{{eiData.id}}"> View
+                                </span> </p>
+                        </div>
+                    </div>
+
                     <!-- <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>ZatchUp Starclass</p>
@@ -863,3 +873,7 @@
     </div>
     <!-- End of BlockUserModel  -->
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>

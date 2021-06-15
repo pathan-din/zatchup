@@ -73,7 +73,7 @@
                   </div>
 
                   <div class="col-md-4">
-                    <h3 class="commonFontSize semiBoldFont mb-0">Overview</h3>
+                    <h3 class="commonFontSize semiBoldFont mb-0">About School</h3>
                     <p>{{userData.overview}}</p>
 
                   </div>
@@ -141,12 +141,12 @@
                         <h3 class="commonFontSize semiBoldFont border-bottom p-1 mb-1 bg-light-gray">Standard</h3>
                         <div class="row">
                           <div class="col-md-12">
-                            <h4 class="commonFontSize semiBoldFont mb-0">Name of Standard</h4>
+                            <h4 class="commonFontSize semiBoldFont mb-0">Standard Name</h4>
                             <p>{{standarddata.standard_name}}</p>
                           </div>
                           <div class="col-md-12">
-                            <h4 class="commonFontSize semiBoldFont mb-0">Standard Duration</h4>
-                            <p>{{standarddata.duration}} in months </p>
+                            <h4 class="commonFontSize semiBoldFont mb-0">Standard Duration <span class="small-text-2">(Months)</span></h4>
+                            <p>{{standarddata.duration}} </p>
                           </div>
                         </div>
 
@@ -159,28 +159,28 @@
                                 <h4 class="commonFontSize semiBoldFont mb-0">Class </h4>
                                 <p>{{classdata.class_name}} </p>
                               </div>
-                              <div class="col-md-4">
+                              <!-- <div class="col-md-4">
                                 <h4 class="commonFontSize semiBoldFont mb-0"> Start Year</h4>
                                 <p>{{classdata.teaching_start_year}} </p>
-                              </div>
+                              </div> -->
                               <!-- <div class="col-md-4">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching start month</h4>
                                                   <p>{{classdata.teaching_start_month}} </p>
                                                 </div> -->
-                              <div class="col-md-4" *ngIf="classdata.is_teaching_current">
+                              <!-- <div class="col-md-4" *ngIf="classdata.is_teaching_current">
                                 <h4 class="commonFontSize semiBoldFont mb-0">End Year</h4>
                                 <p>Present </p>
-                              </div>
-                              <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
+                              </div> -->
+                              <!-- <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
                                 <h4 class="commonFontSize semiBoldFont mb-0">End Year</h4>
                                 <p>{{classdata.teaching_end_year}} </p>
-                              </div>
+                              </div> -->
                               <!-- <div class="col-md-4" *ngIf="!classdata.is_teaching_current">
                                                   <h4 class="commonFontSize semiBoldFont mb-0">Teaching end month</h4>
                                                   <p>{{classdata.teaching_end_month}} </p>
                                                 </div> -->
                               <div class="col-md-4">
-                                <h4 class="commonFontSize semiBoldFont mb-0">Alias Class</h4>
+                                <h4 class="commonFontSize semiBoldFont mb-0">Alias</h4>
                                 <p>{{classdata.alias_class}} </p>
                               </div>
 
@@ -228,7 +228,7 @@
                   </div>
 
                   <div class="col-md-4" *ngIf="bankData.cancel_cheque">
-                    <h3 class="commonFontSize semiBoldFont mb-0">Upload copy cancelled cheque</h3>
+                    <h3 class="commonFontSize semiBoldFont mb-0">Upload Cancelled Cheque</h3>
                     <div class="border mt-2">
                       <!-- <p><i class="fa fa-file-pdf-o color-red" aria-hidden="true"></i></p>
                                     {{bankData.cancel_cheque}} -->
@@ -328,7 +328,7 @@
           </div>
 
           <div class="row justify-content-center">
-            <button (click)="redirectToLoginPage()"
+            <button (click)="goToUserLandingPage()"
               class="btn mt-2 border-0 bg-paret-green hover-white color-white d-flex rounded">Submit</button>
           </div>
         </div>

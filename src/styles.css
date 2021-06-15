@@ -161,6 +161,10 @@ body {
     background-color: #ffffff;
 }
 
+.navbar{
+    padding: 0px;
+}
+
 .bg-light-black {
     background: #4c4d4d;
 }
@@ -255,8 +259,9 @@ body {
     color: red;
     font-size: .825rem;
     margin-left: 0.9rem !important;
-    /* margin-top:.5rem; */
-    /* position: absolute; */
+    /* position: relative;
+    bottom: 10px;
+    left: 0px; */
 }
 
 
@@ -376,7 +381,7 @@ body {
 .mat-header-cell:first-of-type,
 .mat-cell:first-of-type {
     flex: 0 0 5%;
-    min-width: 55px;
+    min-width: 60px;
 }
 
 .mat-column-position {
@@ -608,6 +613,10 @@ mat-row, mat-footer-row {
 button.fileBtn {
     background: none;
 }
+button.fileBtn img {
+    min-width: 40px;
+    width: 40px;
+}
 .subAdminPurpleBtn{height: 100px;}
 
 ul{list-style: none; padding-left: 15px;}
@@ -760,18 +769,42 @@ a:hover {
     width: 65px;
 }
 
+.work-user-profile{
+    height: 80px;
+}
+.experiencedetails {
+    margin-left: 10px;
+}
+.img-thumbnail{padding: 0px !important; border: 0px!important;}
 @media (max-width: 767px){
     .backimg{
         width: 30px;
         height: 30px;
         float: left;
     }
-    h2 {
-        font-size: 1.1rem !important;
-    }
-
+    
     .custumInputWidth {
         width: 42%;
+    }
+
+    bs-datepicker-container {
+        top: 50%!important;
+        left: 50% !important;
+        position: fixed!important;
+        transform: translate(-50%, -50%) !important;
+        margin: auto;
+        background: #fff;
+    }
+    
+}
+
+
+@media (max-width: 375px){
+    .work-user-profile{
+        height: 50px;
+    }
+    .experiencedetails {
+        margin-left: 0px;
     }
 }
 
@@ -788,9 +821,30 @@ a:hover {
     margin: 30px auto;
 }
 
-.form-control:disabled, .form-control{
+.form-control:disabled{
     background-color: #fff !important;
 }
 .form-control:focus{
     border-color: #c7cbd1 !important;
+}
+
+.img-big {
+    max-width: 150px;
+    width: auto;
+}
+.form-control{border-radius: .4rem !important;}
+.approveModelBtn .form-control:focus{background-color: #3fa83f !important;}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #3fa83f !important;
+}
+
+.searchTab .nav-tabs .nav-link {
+    padding: 12px 35px !important;
+    font-size: 20px !important;
+}
+
+hr {
+    margin-top: .5rem;
+    margin-bottom: .8rem;
 }

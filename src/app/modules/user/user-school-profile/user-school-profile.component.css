@@ -5,18 +5,30 @@
 
 .email_position-absolute {
     position: absolute;
-    top: 6%;
-    right: 2%;
-    width: 40px;
+    right: 15px;
 }
 
-.bannerDiv .userSchoolProfileCover {
-    width: 100%;
+.bannerDiv {
+    overflow: hidden;
     height: 180px;
+}
+.bannerDiv img {
+    /* max-height: 180px; */
+    margin: 0px auto;
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.landingDiv {
+    padding-top: 0;
 }
 
 .landingDiv {
-    padding-top: 0;
+    padding: 0px 2% 2% 2%;
 }
 
 .w-like-comment {
@@ -35,12 +47,21 @@
     color: #463267;
 }
 
-.dpImgDiv {
-    width: 35%;
-}
 
+.dpImgDiv {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+}
 .dpImg {
-    margin-top: -50%
+    margin-top: -50%;    
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
 }
 
 .editIcon {
@@ -70,16 +91,14 @@
 }
 .tickImg {
     position: absolute;
-    left: 27%;
-    z-index: 1;
+    top: 15px;
+    right: -3px;
+  
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
         width: 100%!important;
-    }
-    .tickImg{
-        left: 24%;
     }
 }
 
@@ -113,7 +132,17 @@
     .dotted_img {
         width: 25%!important;
     }
+    .pl-4.text-left {
+        padding-left: 0px !important;
+    }
     .tickImg{
-        left: 60%;
+        top: 10px;
+    }
+    .email_position-absolute {
+        top: -50px;
     }
 }
+
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}

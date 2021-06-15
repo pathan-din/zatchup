@@ -1,10 +1,16 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true"
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'">
+    <mat-sidenav #drawer [opened]="!small" class="sidenav mat-elevation-z8" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'">
         <mat-toolbar>ZatchUp</mat-toolbar>
         <mat-nav-list>
+            <span class="">
+                <a class="navbar-brand mobileLogoImg">
+                    <img class="img-fluid" src="assets/images/EiWebsite/kyc_logo.png" routerLink="/ei/dashboard">
+                </a>
+            </span>
+            <span class="spacer"></span>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
-            <a *ngIf="subscriptionActive && isApproved" mat-list-item routerLink="/ei/dashboard" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/dashboard" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">Dashboard</span>
@@ -14,8 +20,7 @@
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">My Profile</span>
             </a>
-            <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile"
-                routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile" routerLinkActive="link-active">
                 <i class="fa fa-users mr-2" aria-hidden="true"></i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon> -->
                 <span class="commonFontSize">School Profile And Timeline</span>
@@ -42,20 +47,22 @@
                 <i class="fa fa-certificate mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">E-Certificates & Report Cards</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/star-class" routerLinkActive="link-active" mat-list-item>
+            <a *ngIf="isValidModule('MODULE012') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/star-class-courses-uploaded-by-ei" routerLinkActive="link-active"
+                mat-list-item>
                 <i class="material-icons mr-2 md-18">people</i>
                 <span class="commonFontSize">Zatchup Star Class</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" tooltip="Coming Soon..." mat-list-item>
+            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/reminder"
+                routerLinkActive="link-active">
                 <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Reminder</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" tooltip="Coming Soon..." mat-list-item>
+            <a *ngIf="isValidModule('MODULE013') && subscriptionActive && isApproved" routerLink="/ei/personal-messages"
+                routerLinkActive="link-active" mat-list-item>
                 <i class="fa fa-comments mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Messages</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/subadmin-management"
-                routerLinkActive="link-active">
+            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/subadmin-management" routerLinkActive="link-active">
                 <i class="fa fa-lock mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Sub Admin Management</span>
             </a>
@@ -75,8 +82,7 @@
                 <i class="material-icons mr-2 md-18">receipt</i>
                 <span class="commonFontSize">Invoice</span>
             </a>
-            <a *ngIf="isValidModule('')" routerLink="/ei/information-and-bank-details" routerLinkActive="link-active"
-                mat-list-item>
+            <a *ngIf="isValidModule('')" routerLink="/ei/information-and-bank-details" routerLinkActive="link-active" mat-list-item>
                 <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">School Information & Bank Details</span>
             </a>
@@ -100,42 +106,49 @@
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
 
-            <span class="h-100 logo_span d-flex align-items-center justify-content-center"><a class="navbar-brand"><img
-                        class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png"
-                        routerLink="/ei/dashboard"></a></span>
+            <span class="h-100 logo_span d-flex align-items-center justify-content-center">
+                <a class="navbar-brand">
+                    <img class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png" routerLink="/ei/dashboard">
+                </a>
+            </span>
+            <div class="d-flex mr-4 mobile-d-none">
+                <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
+            </div>
             <span class="spacer"></span>
-            <a (click)="getNotificationList()" class="text-black cursorStyle position-relative">
-                <i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i>
-                <sup class="color-white" 
-                style="background: #22c123;
-                padding: 4px;
-                border-radius: 50px;
-                width: 20px;
-                height: 20px;
-                display: inline-block;
-                line-height: initial;
-                text-align: center;
-                font-size: 11px;
-                position: absolute;
-                left: 18px">{{notificationCount}}</sup></a>
-            <!-- <a class="ml-4"><i class="fa fa-cog fa-lg color-gray" aria-hidden="true"></i></a> -->
-            <a class=" ml-4 commonFontSize semiBoldFont">
-                <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/EiWebsite/kyc_logo.png'}}" class="rounded-circle bg-light-green header-dp">
-                <span class="ml-3 color-black">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span></a>                                
+           
+            <div class="dropdown">
+                <i class="fa fa-search searchforMobile mr-4" style="color: #888;" aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            
+                <div class="dropdown-menu customEiSearch" aria-labelledby="dropdownMenuButton">
+                    <!-- <input class="form-control me-2 dropdown-menu" aria-labelledby="search-dropdown" type="search" placeholder="Search" aria-label="Search"> -->
+                    <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
+                </div> 
+            </div>
 
-                <div class="dropdown" *ngIf="isLogin">
-                    <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-angle-down ml-3 cursorStyle" aria-hidden="true"></i>
-                    </a>                      
-                    <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
-                        <div class="row p-2">
-                            <div *ngIf="userRoleDetails.role=='EISUBADMIN'" class="col-sm-12 cursorStyle" routerLink="/ei/my-profile"> My Profile </div>
-                            <div class="col-sm-12 cursorStyle" routerLink="/ei/change-password"> Change Password </div>
-                            <div class="col-sm-12 cursorStyle" (click)="logout()"> Logout </div>
+            <div class="dropdown" *ngIf="isLogin">
+                <!-- <a class="" href="#" role="button" >
+                    <i class="fa fa-angle-down ml-3 cursorStyle" aria-hidden="true"></i>
+                </a> -->
+                <a class="mr-3 cursorStyle commonFontSize semiBoldFont" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/profile_pic_transparent.png'}}" class="rounded-circle bg-light-green header-dp">                    
+                </a>
+                <div class="dropdown-menu mt-4" aria-labelledby="dropdownMenuLink">
+                    <div class="row p-2">
+                        <div class="col-sm-12 text-center">
+                            <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/profile_pic_transparent.png'}}" class="rounded-circle bg-light-green header-dp">
+                            <span class="my-1 color-black d-block text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
                         </div>
+                        <div *ngIf="userRoleDetails.role=='EISUBADMIN'" class="col-sm-12 cursorStyle" routerLink="/ei/my-profile"> My Profile </div>
+                        <div class="col-sm-12 cursorStyle commonFontSize regularFont" routerLink="/ei/change-password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
+                        <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true mr-1"></i> Logout </div>
                     </div>
                 </div>
+            </div>
 
+            <a (click)="getNotificationList()" class="text-black cursorStyle position-relative mr-2">
+                <i class="fa fa-bell fa-lg color-gray" aria-hidden="true"></i>
+                <sup class="color-white bellAlert">{{notificationCount}}</sup>
+            </a>
         </mat-toolbar>
     </mat-sidenav-content>
 </mat-sidenav-container>

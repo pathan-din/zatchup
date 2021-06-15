@@ -56,6 +56,13 @@ import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
 import { CommonTermsConditionsComponent } from 'src/app/common/common-terms-conditions/common-terms-conditions.component';
+import { UserStarclassCourseListComponent } from './user-starclass-course-list/user-starclass-course-list.component';
+import { UserStarclassCoursePreviewComponent } from './user-starclass-course-preview/user-starclass-course-preview.component';
+import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
+import { UserhomeComponent } from './userhome/userhome.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { StarclassMultipleEiComponent } from './starclass-multiple-ei/starclass-multiple-ei.component';
+import { PlayHistoryComponent } from './play-history/play-history.component';
 
 
 const routes: Routes = [
@@ -151,10 +158,13 @@ const routes: Routes = [
     path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   {
+    path: 'user/home', component: UserhomeComponent, canActivate: [AuthGuard]
+  },
+  {
     path: 'user/notifications', component: UserNotificationsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/remainders', component: UserRemaindersComponent, canActivate: [AuthGuard]
+    path: 'user/reminders', component: UserRemaindersComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/search', component: UserSearchComponent, canActivate: [AuthGuard]
@@ -170,9 +180,6 @@ const routes: Routes = [
   },
   {
     path: 'user/school-profile', component: UserSchoolProfileComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'user/profile', component: UserMyProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'user/career', component: CareerComponent, canActivate: [AuthGuard]
@@ -239,7 +246,24 @@ const routes: Routes = [
   {
     path: 'user/chat-privacy', component: ChatPrivacyComponent, canActivate: [AuthGuard]
   },
-
+  {
+    path: 'user/starclass-course-list', component:UserStarclassCourseListComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'user/starclass-course-view/:id', component:UserStarclassCoursePreviewComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'user/user-lecture-details', component: UserLectureDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/multiple-ei', component:StarclassMultipleEiComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/playHistory', component:PlayHistoryComponent, canActivate: [AuthGuard]
+  },
 
 
   {

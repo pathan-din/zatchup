@@ -1,15 +1,15 @@
 <app-ei-sidenav></app-ei-sidenav>
 <div class="container main-container p-3">
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-        <div class="row topDiv">
+        <div class="row topDiv align-items-center">
             <div class="col-md-5 col-12">
                 <h2 class="commonFontSize semiBoldFont m-0">Information Details</h2>
             </div>
-            <div class="col-md-7 col-12 d-flex justify-content-end"> 
-                <button type="button" *ngIf="is_ei_approved==0" class="bg-dark text-white px-3 py-2 h-100 ml-2 border-0 " (click)="goForward()">Re-send for verification</button>
-                <button type="button" *ngIf="is_ei_approved==0" class="bg-dark text-white px-3 py-2 h-100 ml-2 border-0 " (click)="gotoEditPersonalInfo()">Edit</button>
-                <button type="button" *ngIf="is_ei_approved!=0" class="bg-dark text-white px-3 py-2 h-100 ml-2 border-0 " (click)="openPersonalInfoModelPopup()">Edit</button>
-                <button type="button" *ngIf="is_ei_approved!=0" class="bg-paret-green text-white px-3 py-2 h-100 ml-2 border-0" (click)="goToRequestStatusPage()">Request Status</button>
+            <div class="col-md-7 col-12 d-flex justify-content-end my-2">
+                <button type="button" *ngIf="is_ei_approved==0" class="bg-dark text-white px-2 py-2 h-100 ml-2 border-0 " (click)="goForward()">Re-send for verification</button>
+                <button type="button" *ngIf="is_ei_approved==0" class="bg-dark text-white px-2 py-2 h-100 ml-2 border-0 " (click)="gotoEditPersonalInfo()">Edit</button>
+                <button type="button" *ngIf="is_ei_approved!=0" class="bg-dark text-white px-2 py-2 h-100 ml-2 border-0 " (click)="openPersonalInfoModelPopup()">Edit</button>
+                <button type="button" *ngIf="is_ei_approved!=0" class="bg-paret-green text-white px-2 py-2 h-100 ml-2 border-0" (click)="goToRequestStatusPage()">Request Status</button>
             </div>
         </div>
 
@@ -20,374 +20,478 @@
             <img class="img-fluid tick-img infoBankImg" src="assets/images/userWebsite/share-my-profile-icon.png">
         </div> -->
 
-        <div class="row mt-4">
+        <div class="row mt-4" *ngFor="let eiDetails of userProfile.ei_detail">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>School Name </p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.name_of_school}} </span>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.name_of_school}} </span>
                             <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Name of the School','name_of_school',bankDetails.name_of_school)"></i>
                         </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>Full Address</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.full_address}} </span>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.address1}} {{eiDetails.address2}}</span>
                             <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Full Address','full_address',bankDetails)"></i>
                         </p>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p> State</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.state}} </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>City</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.city}} </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Pin code</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.pincode}} </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>Foundation Date/Opening Date</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.opening_date | date: 'yyyy-MM-dd'}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.opening_date | date: 'yyyy-MM-dd'}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>Name of Principal/Dean</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.name_of_principle}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.name_of_principle}}</span>
+                        </p>
                     </div>
                 </div>
-               
+
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>GST Number</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.gst_no}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.gst_no}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>School Overview </p>
+                        <p>About School</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.overview}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.overview}}</span>
+                        </p>
                     </div>
                 </div>
 
                 <div class="row" *ngIf="userData?.school_phone">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>School phone</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.school_phone}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.school_phone}}</span>
+                        </p>
                     </div>
                 </div>
 
                 <div class="row" *ngIf="userData?.fb_url">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>Facebook URL</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.fb_url}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.fb_url}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row" *ngIf="userData?.twitter_url">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>Twitter URL</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.twitter_url}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.twitter_url}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row" *ngIf="userData?.school_email">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>School Email ID</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{userData?.school_email}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{eiDetails.school_email}}</span>
+                        </p>
                     </div>
                 </div>
 
-                 
 
-                
 
-               
+
+
+
             </div>
         </div>
     </div>
 
-<div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
-    <div class="row topDiv">
-        <div class="col-md-5 col-12">
-            <h2 class="commonFontSize semiBoldFont m-0">School Admin Details</h2>
-        </div>
-        <!-- <div class="col-md-7 col-12 d-flex justify-content-end"> 
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-5">
+                <h2 class="commonFontSize semiBoldFont m-0">School Admin Details</h2>
+            </div>
+            <!-- <div class="col-md-7 col-6 d-flex justify-content-end"> 
             <button type="button" class="bg-dark text-white px-4 py-2 h-100 ml-2 border-0 " (click)="bankDetailsPopup()">Edit</button>
         </div> -->
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>First Name</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.first_name}} </span>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Last Name</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.last_name}} </span>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Email ID</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.email}} </span>
+                            <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Email','email',bankDetails.email)"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
+                        <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                        <p>Phone Number</p>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.phone}} </span>
+                            <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Phone Number','phone',bankDetails.phone)"></i>
+                        </p>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!--End div for View bank Details-->
     </div>
-    <div class="row mt-2">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
-                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                    <p>Email ID</p>
-                </div>
-                <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                    <p><span class="mr-3">: {{bankDetails?.email}} </span>
-                        <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Email','email',bankDetails.email)"></i>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
-                    <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                    <p>Phone Number</p>
-                </div>
-                <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                    <p><span class="mr-3">: {{bankDetails?.phone}} </span>
-                        <i *ngIf="is_ei_approved!=0" class="fa fa-pencil-square-o cursorStyle color-purple" aria-hidden="true" (click)="openChangeDetailsPopup('Phone Number','phone',bankDetails.phone)"></i>
-                    </p>
-                </div>
-            </div>
-          
-           
-            
-            
-                       
-            </div>
-    </div>
-    <!--End div for View bank Details-->
-</div>
 
 
     <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
         <div class="row topDiv">
-            <div class="col-md-5 col-12">
+            <div class="col-md-6 col-7">
                 <h2 class="commonFontSize semiBoldFont m-0">Bank Details</h2>
             </div>
-            <div class="col-md-7 col-12 d-flex justify-content-end"> 
+            <div class="col-md-6 col-5 d-flex justify-content-end">
                 <button type="button" class="bg-dark text-white px-4 py-2 h-100 ml-2 border-0 " (click)="bankDetailsPopup()">Edit</button>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p>Bank Account Number</p>
+                        <p>Account Number</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.bank_account_no}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.bank_account_no}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                        <p> Name</p>
+                        <p>Bank Name</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.bank_name}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.bank_name}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-12 commonFontSize mediumFont d-flex flex-row align-items-start">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-6 commonFontSize mediumFont d-flex flex-row align-items-start">
                         <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                         <p>IFSC Code</p>
                     </div>
-                    <div class="col-xl-9 col-lg-8 col-md-8 col-12 commonFontSize regularFont">
-                        <p><span class="mr-3">: {{bankDetails?.bank_ifsc_code}}</span></p>
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-6 commonFontSize regularFont">
+                        <p>
+                            <span class="mr-3">: {{bankDetails?.bank_ifsc_code}}</span>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12" *ngIf="bankDetails?.cancel_cheque">
                         <h3 class="commonFontSize semiBoldFont mb-0">Cancelled cheque
-                            <button type="button" class="mr-3 ml-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck"> <i class="fa fa-eye" aria-hidden="true"></i></button>
-                            <button type="button" class="mr-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" > <i class="fa fa-download" aria-hidden="true" (click)="downloadImage(bankDetails.cancel_cheque)"></i></button>
+                            <button type="button" class="mr-3 ml-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded" data-toggle="modal" data-target="#uploadCheck">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </button>
+                            <button type="button" class="mr-3 mt-3 px-2 py-0 btn-success color-white border-0 rounded">
+                                <i class="fa fa-download" aria-hidden="true" (click)="downloadImage(bankDetails.cancel_cheque)"></i>
+                            </button>
                         </h3>
-                          
-                          <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                               <div class="modal-content" >  
-                                <div class="modal-header border-0">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>                                    
-                                <!-- {{bankDetails.cancel_cheque}} -->
-                                <img *ngIf="bankDetails.cancel_cheque" src="{{bankDetails?.cancel_cheque}}" alt="profile pick" class="img-responsive"/>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                </div>
-                
-                
-            
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <table style="width: 100%;">
-                                <thead class="bg-light-gray">
-                                    <tr>
-                                        <th>
-                                            <h4 class="commonFontSize semiBoldFont m-0 p-1">Document Name</h4>
-                                        </th>
-                                        <th>
-                                            <h4 class="commonFontSize semiBoldFont m-0 p-1">Uploaded Document</h4>
-                                        </th>
-                                        <th> 
-                                            <h4 class="commonFontSize semiBoldFont m-0 p-1">Download Document
-                                                <span style="float:right;">
-                                                    <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle addDocument mr-2" aria-hidden="true"></i>
-                                                </span>
-                                            </h4>                                        
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody *ngFor="let documentData of userProfile.document_detail">
-                                    <tr>
-                                        <td>
-                                            <p class="m-0">{{documentData.name}}</p>
-                                        </td>
-                                        <td>
-                                            <div class="imgCircle cursorStyle">
-                                                <img  (click)="viewImage(documentData.document_image)"
-                                                    *ngIf="documentData.document_image && fileType(documentData.document_image) != 'pdf'"
-                                                    src="{{documentData.document_image}}" alt="ei profile" class="img-fluid cerImg rounded"
-                                                    aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
-                
-                                                <img (click)="download_file(documentData.document_image)"
-                                                    *ngIf="documentData.document_image && fileType(documentData.document_image) == 'pdf'" 
-                                                    src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
-                                                <img *ngIf="!documentData.document_image" src="assets/images/no-image-icon.jpg" alt="ei profile"
-                                                    class="img-fluid cerImg rounded">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button (click)="downloadImage(documentData.document_image)" type="button" class="px-2 py-1 btn-success color-white border-0 rounded">
-                                                <i class="fa fa-download" aria-hidden="true"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
 
-                            <div class="modal fade" id="imageViewer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                aria-hidden="true">
-                                <div class="modal-dialog " role="document">
-                                    <div class="modal-content unverified container-fluid">
-                                        <div class="modal-header align-items-center justify-content-center pb-0 ">
-                                            <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                                                data-dismiss="modal" aria-label="Close ">
-                                                <span aria-hidden="true ">
-                                                    &times;
-                                                </span>
-                                            </button>
+                        <div class="modal fade bankDetail" id="uploadCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header border-0">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- {{bankDetails.cancel_cheque}} -->
+                                    <img *ngIf="bankDetails.cancel_cheque" src="{{bankDetails?.cancel_cheque}}" alt="profile pick" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <table style="width: 100%;">
+                            <thead class="bg-light-gray">
+                                <tr>
+                                    <th>
+                                        <h4 class="commonFontSize semiBoldFont m-0 p-1">Document</h4>
+                                    </th>
+                                    <th>
+                                        <h4 class="commonFontSize semiBoldFont m-0 p-1">View</h4>
+                                    </th>
+                                    <th>
+                                        <h4 class="commonFontSize semiBoldFont m-0 p-1">Download</h4>
+                                    </th>
+                                    <th>
+                                        <span style="float:right;">
+                                            <i (click)="addMoreDocument()" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle addDocument mr-2" aria-hidden="true"></i>
+                                        </span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let documentData of userProfile.document_detail">
+                                <tr>
+                                    <td>
+                                        <p class="m-0">{{documentData.name}}</p>
+                                    </td>
+                                    <td>
+                                        <div class="imgCircle cursorStyle">
+                                            <img (click)="viewImage(documentData.document_image)" *ngIf="documentData.document_image && fileType(documentData.document_image) != 'pdf'"
+                                                src="{{documentData.document_image}}" alt="ei profile" class="img-fluid cerImg rounded"
+                                                aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
+
+                                            <img (click)="download_file(documentData.document_image)" *ngIf="documentData.document_image && fileType(documentData.document_image) == 'pdf'"
+                                                src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
+                                            <img *ngIf="!documentData.document_image" src="assets/images/no-image-icon.jpg" alt="ei profile" class="img-fluid cerImg rounded">
                                         </div>
-                                        <div class="modal-body px-0">
-                                            <ngx-image-viewer [src]="images" [(index)]="imageIndexOne">
-                                            </ngx-image-viewer>
-                                        </div>
+                                    </td>
+                                    <td>
+                                        <button (click)="downloadImage(documentData.document_image)" type="button" class="px-2 py-1 btn-success color-white border-0 rounded">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="modal fade" id="imageViewer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog " role="document">
+                                <div class="modal-content unverified container-fluid">
+                                    <div class="modal-header align-items-center justify-content-center pb-0 ">
+                                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                                            <span aria-hidden="true ">
+                                                &times;
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body px-0">
+                                        <ngx-image-viewer [src]="images" [(index)]="imageIndexOne">
+                                        </ngx-image-viewer>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                
+                    </div>
                 </div>
+            </div>
         </div>
         <!--End div for View bank Details-->
-    </div>    
+    </div>
 </div>
 
 <!-- OTPModel -->
-<div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <form id="updateForm">
-                <div class="courseLecture-div bg-white border mt-0 px-3 py-3">
-                    <h2 class="commonFontSize semiBoldFont m-0">Personal Information</h2>
-                    <div class="row bg-light-gray w-100 ml-0 mt-2">   
-                        <div class="col-md-12 mt-2">
-                            <div class="form-group row ml-0 mr-0">
-                                <label for="" class="mediumFont commonFontSize letterspacing"> {{title}} </label>
-                                <div  *ngIf="model.key!='full_address'" class="{{model.key}} w-100 shadow-none">
-                                    <input required  name="model.key" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing" type="text" placeholder="Enter New {{title}}" required>
+                    <div class="courseLecture-div bg-white border mt-0 px-3 py-3">
+                        <h2 class="commonFontSize semiBoldFont m-0">Personal Information</h2>
+                        <div class="row bg-light-gray w-100 ml-0 mt-2">
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group row ml-0 mr-0">
+                                    <label for="" class="mediumFont commonFontSize letterspacing"> {{title}} </label>
+                                    <div *ngIf="model.key!='full_address' && model.key!='phone'" class="{{model.key}} w-100 shadow-none">
+                                        <input required name="model.key" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing"
+                                            type="text" placeholder="Enter New {{title}}" required>
+                                    </div>
+                                    <div *ngIf="model.key!='full_address' && model.key=='phone'" class="{{model.key}} w-100 shadow-none">
+                                        <input required name="model.key" numberOnly maxlength="10" minlength="10" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing"
+                                            type="text" placeholder="Enter New {{title}}" required>
+                                    </div>
+                                    <div *ngIf="model.key=='full_address'" class="w-100 shadow-none">
+                                        <textarea disabled name="full_address" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing border-bottom"
+                                            placeholder="Enter New {{title}}" required></textarea>
+                                        <textarea required name="address_1" [(ngModel)]="address_1" (keyup)="changeValue(address_1,'full_address',model)" class="mt-2 border-bottom form-control-input form-control border commonFontSize regularFont letterspacing"
+                                            placeholder="Enter New {{title}}" required></textarea>
+                                        <textarea required name="address_2" [(ngModel)]="address_2" (keyup)="changeValue(address_2,'full_address',model)" class="mt-2 form-control-input form-control border commonFontSize regularFont letterspacing"
+                                            placeholder="Enter New {{title}}" required></textarea>
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay[model.key]"></div>
                                 </div>
-                                <div  *ngIf="model.key=='full_address'" class="w-100 shadow-none">
-                                    <textarea disabled name="full_address" [(ngModel)]="model.value" class="form-control-input form-control border commonFontSize regularFont letterspacing border-bottom"  placeholder="Enter New {{title}}" required></textarea>
-                                    <textarea required name="address_1" [(ngModel)]="address_1" (keyup)="changeValue(address_1,'full_address',model)" class="mt-2 border-bottom form-control-input form-control border commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
-                                    <textarea required name="address_2" [(ngModel)]="address_2" (keyup)="changeValue(address_2,'full_address',model)" class="mt-2 form-control-input form-control border commonFontSize regularFont letterspacing"  placeholder="Enter New {{title}}" required></textarea>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group row  ml-0 mr-0" *ngIf="model.key!='phone' && model.key!='email'">
+                                    <label for="" class="mediumFont commonFontSize letterspacing"> Attach Proof </label>
+                                    <div class="w-100 shadow-none">
+                                        <input required name="document" (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control border commonFontSize regularFont letterspacing h-100"
+                                            type="file" required>
+                                    </div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
+
                                 </div>
-                                <div class="required errorMsg" [innerHtml]="errorDisplay[model.key]"></div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row ml-0 mr-0 d-flex justify-content-center">
+                                        <button (click)="editDetails()" type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                        Edit </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-            
-                        <div class="col-md-12" >
-                            <div class="form-group row  ml-0 mr-0" *ngIf="model.key!='phone' && model.key!='email'">
-                            <label for="" class="mediumFont commonFontSize letterspacing"> Attach Proof </label>
-                            <div  class="w-100 shadow-none">
-                                <input required name="document" (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control border commonFontSize regularFont letterspacing h-100" type="file" required>
-                            </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
-                             
-                        </div>
-            
-                        <div class="col-md-12">
-                            <div class="form-group row ml-0 mr-0 d-flex justify-content-center"> 
-                                <button (click)="editDetails()" type="button" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "> Send for approval </button>                    
-                            </div>
-                        </div>
-            
-                    </div>        
-                </div>
-            </div>
-        </form>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <!-- OTPModel -->
-<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                    aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that recieved on your email id/phone. </p>
+                <p class="color-black regularFont commonFontSize mb-2">Enter OTP Send On Your {{model.value}} </p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
-                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
-                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
-                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">
-                        <input [(ngModel)]="model.otp4" name="otp4"
-                            class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                        <input [(ngModel)]="model.otp4" name="otp4" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
                             type="text" maxlength="1">
                     </div>
                 </div>
-                <p class="text-right commonFontSize mediumFont textUnderlineStyle cursorStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
+                <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="resendOtp()">Resend OTP</span>
                 <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
 
-                <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
+                <div class="col-6" style="clear: both;">
+                    <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
+                </div>
 
                 <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
                 </p> -->
@@ -401,13 +505,11 @@
 
 
 <!-- OTPModel -->
-<div class="modal fade" id="bankDetailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="bankDetailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-header border-0 align-items-center justify-content-center pb-0">
-                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
@@ -416,75 +518,61 @@
                     <div class="process3">
                         <div class="form-group row ">
                             <div class="col-md-6 MobileCol6MB">
-                                <label for=" " class=" commonFontSize mediumFont letterspacing "> Bank
-                                    Name</label>
+                                <label for=" " class=" commonFontSize mediumFont letterspacing "> Bank Name
+                                </label>
                                 <div class="form-control-inputDiv rounded shadow-none ">
-                                    <select id="bank_name" name="bank_name" [(ngModel)]="bankModel.bank_name"
-                                        class="custom-select custom-select-2Col form-control-input form-control-sm "
+                                    <select id="bank_name" name="bank_name" [(ngModel)]="bankModel.bank_name" class="custom-select custom-select-2Col form-control-input form-control-sm "
                                         required>
                                         <option value="">Select Bank</option>
-                                        <option value="{{bankNameObj.name}}"
-                                            *ngFor="let bankNameObj of bankNameList">{{bankNameObj.name}}
+                                        <option value="{{bankNameObj.name}}" *ngFor="let bankNameObj of bankNameList">{{bankNameObj.name}}
                                         </option>
                                     </select>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.bank_name"></div>
                             </div>
                             <div class="col-md-6 margin-top-col-6 ">
-                                <label for=" " class=" commonFontSize mediumFont letterspacing ">Account
-                                    Number</label>
-                
+                                <label for=" " class=" commonFontSize mediumFont letterspacing ">Account Number
+                                </label>
+
                                 <div class="form-control-inputDiv rounded shadow-none ">
-                                    <input id="bank_account_no" name="bank_account_no"
-                                        [(ngModel)]="bankModel.bank_account_no" numberOnly
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        type="text " placeholder="Enter Account Number " required>
+                                    <input id="bank_account_no" name="bank_account_no" [(ngModel)]="bankModel.bank_account_no" numberOnly class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                        type="text " maxlength="30" placeholder="Enter Account Number " required>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.bank_account_no"></div>
                             </div>
                         </div>
-                
+
                         <div class="form-group row ">
                             <div class="col-md-6 MobileCol6MB">
-                                <label for="description " class=" commonFontSize mediumFont letterspacing ">IFSC
-                                    Code</label>
-                
+                                <label for="description " class=" commonFontSize mediumFont letterspacing ">IFSC Code
+                                </label>
+
                                 <div class="form-control-inputDiv rounded shadow-none ">
-                                    <input  id="bank_ifsc_code" name="bank_ifsc_code"
-                                        [(ngModel)]="bankModel.bank_ifsc_code"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                        type="text" maxlength="11"  placeholder="Enter IFSC Code " required>
+                                    <input id="bank_ifsc_code" name="bank_ifsc_code" [(ngModel)]="bankModel.bank_ifsc_code" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                        type="text" maxlength="11" placeholder="Enter IFSC Code " required>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.bank_ifsc_code"></div>
                             </div>
                             <div class="col-md-6 margin-top-col-6 ">
-                                <label for="description "
-                                    class=" commonFontSize mediumFont letterspacing ">Upload
-                                    copy cancelled cheque</label>
-                
+                                <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload Cancelled Cheque</label>
+
                                 <div class="form-control-inputDiv rounded shadow-none ">
-                                    <input (change)="handleCancelChequeFileInput($event.target.files)"
-                                        id="cheque" name="cheque"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing h-100"
-                                        type="file" validFileExtention="png,jpeg,jpg" required>                                                                                
+                                    <input (change)="handleCancelChequeFileInput($event.target.files)" id="cheque" name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing h-100"
+                                        type="file" validFileExtention="png,jpeg,jpg" required>
                                 </div>
-                                <p class="pt-1">* only support pdf and image</p>
+                                <p class="pt-1">* only support image</p>
                                 <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                             </div>
                         </div>
-                       
-                
+
+
                     </div>
                 </form>
-              
+
 
                 <div class="text-center">
                     <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="submitBankDetail();">Submit </button>
                 </div>
-
-                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
-                </p> -->
-
             </div>
         </div>
     </div>
@@ -492,13 +580,11 @@
 
 
 <!-- personal information model -->
-<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+<div class="modal fade" id="personalInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
             <div class="modal-header border-0 align-items-center justify-content-center pb-0">
-                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                    data-dismiss="modal" aria-label="Close ">
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                     <span aria-hidden="true "> &times; </span>
                 </button>
             </div>
@@ -507,54 +593,45 @@
                     <div class="process3">
                         <div class="form-group row ">
                             <div class="col-md-6 MobileCol6MB">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Name of Principal
-                                    /
-                                    Dean</label>
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Name of Principal / Dean
+                                </label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="name_of_principle" [(ngModel)]="editModel.name_of_principle"
-                                        name="principal_name"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <input id="name_of_principle" [(ngModel)]="editModel.name_of_principle" name="principal_name" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter Name of Principal / Dean">
                                 </div>
-                                <div class="required" style="color: red;"
-                                    [innerHtml]="errorDisplay.principal_name"></div>
+                                <div class="required" style="color: red;" [innerHtml]="errorDisplay.principal_name"></div>
                             </div>
                             <div class="col-md-6 margin-top-col-6">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date /
-                                    Openning Date</label>
+                                <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date / Openning Date</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="opening_date" required [(ngModel)]="editModel.opening_date"
-                                        name="opening_date" autocomplete="off"
+                                    <input id="opening_date" required [(ngModel)]="editModel.opening_date" name="opening_date" autocomplete="off" [disabled]="true"
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" bsDatepicker placeholder="Enter Foundation Date">
                                 </div>
-                                <div class="required" style="color: red;"
-                                    [innerHtml]="errorDisplay.opening_date"></div>
+                                <div class="required" style="color: red;" [innerHtml]="errorDisplay.opening_date"></div>
                             </div>
                         </div>
-                       
+
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
-                                <label for="" class=" commonFontSize mediumFont letterspacing">GST
-                                    Number(Optional)</label>
+                                <label for="" class=" commonFontSize mediumFont letterspacing">GST Number(Optional)
+                                </label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <input maxlength="15" id="gst_no" [(ngModel)]="editModel.gst_no" name="editModel.gst_no" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter GST Number">
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">School phone</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input numberOnly maxlength="10" id="school_phone" [(ngModel)]="editModel.school_phone" name="editModel.school_phone"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <input numberOnly maxlength="10" id="school_phone" [(ngModel)]="editModel.school_phone" name="editModel.school_phone" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter school phone">
                                 </div>
                             </div>
@@ -564,8 +641,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">School Email</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <input maxlength="50" id="school_email" [(ngModel)]="editModel.school_email" name="editModel.school_email" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="email" placeholder="Enter School Email">
                                 </div>
                             </div>
@@ -575,8 +651,7 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Twitter URL</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="twitter_url" [(ngModel)]="editModel.twitter_url" name="editModel.twitter_url"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <input id="twitter_url" maxlength="50" [(ngModel)]="editModel.twitter_url" name="editModel.twitter_url" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter twitter url">
                                 </div>
                             </div>
@@ -586,27 +661,23 @@
                                 <label for="" class=" commonFontSize mediumFont letterspacing">Facebook URL</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <input id="fb_url" [(ngModel)]="editModel.fb_url" name="editModel.fb_url"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <input maxlength="50" id="fb_url" [(ngModel)]="editModel.fb_url" name="editModel.fb_url" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter fb url">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 ">
-                                <label for="description"
-                                    class=" commonFontSize mediumFont letterspacing">About School</label>
+                                <label for="description" class=" commonFontSize mediumFont letterspacing">About School</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                    <textarea id="description" [(ngModel)]="editModel.overview"
-                                        name="model.description"
-                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                    <textarea id="description" [(ngModel)]="editModel.overview" name="model.description" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                         rows="3" placeholder="Typing...."></textarea>
                                 </div>
 
                             </div>
                         </div>
-                        <h2 class="commonFontSize semiBoldFont m-0">School Admin Information</h2>
+                        <!-- <h2 class="commonFontSize semiBoldFont m-0">School Admin Information</h2>
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
                                 <label for="" class=" commonFontSize mediumFont letterspacing">First name</label>
@@ -628,10 +699,10 @@
                                         type="text" placeholder="Enter last name">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
-              
+
                 <div class="text-center">
                     <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-4" (click)="submitPersonalDetails();">Save </button>
                 </div>

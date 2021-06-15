@@ -13,11 +13,10 @@ declare var $: any;
   styleUrls: ['./user-ei-profile.component.css']
 })
 export class UserEiProfileComponent implements OnInit {
-
   model: any = {};
   errorDisplay: any = {};
   imageUrl: any;
-  courseList: any;
+  courseList: any = [];
   standardList: any;
   leftStandardList: any;
   objCourse: any = {};
@@ -42,7 +41,8 @@ export class UserEiProfileComponent implements OnInit {
     private route: ActivatedRoute,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private genericFormValidationService: GenericFormValidationService) {
+    private genericFormValidationService: GenericFormValidationService
+  ) {
     this.maxDate = new Date();
     this.minDate = new Date();
   }
@@ -51,10 +51,10 @@ export class UserEiProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.params = params
+      
       if (params.school_id) {
         this.schoolId = params.school_id;
         this.getCourseBySchoolId(this.schoolId)
-        // this.getSchollConfirmationData(); 
       }
       if (params.course_id) {
         this.model.course_id = params.course_id;
@@ -72,16 +72,19 @@ export class UserEiProfileComponent implements OnInit {
     this.imagePath = this.baseService.serverImagePath;
 
   }
-  addPastEi(schoolId){
-    this.router.navigate(["user/add-more-standard"],{queryParams:{
-      school_id:schoolId
-      
-    }});
+  addPastEi(schoolId) {
+    this.router.navigate(["user/add-more-standard"], {
+      queryParams: {
+        school_id: schoolId
+      }
+    });
   }
-  editEi(schoolId){
-    this.router.navigate(["user/add-ei"],{queryParams:{
-      school_id:schoolId
-    }});
+  editEi(schoolId) {
+    this.router.navigate(["user/add-ei"], {
+      queryParams: {
+        school_id: schoolId
+      }
+    });
   }
   getEiInfo(model) {
     try {
@@ -154,6 +157,7 @@ export class UserEiProfileComponent implements OnInit {
   getCourseBySchoolId(id) {
     // debugger
     try {
+      var that = this;
       this.loader.show();
       let data = {
         "school_id": id,
@@ -164,6 +168,7 @@ export class UserEiProfileComponent implements OnInit {
           this.loader.hide();
 
           this.courseList = res.results;
+          that.courseList = res.results;
           this.model.course_id = this.params.course_id
           // debugger
           if (this.courseList)
@@ -196,15 +201,17 @@ export class UserEiProfileComponent implements OnInit {
   displayStandardList(courseId) {
     // debugger
     try {
+
       if (this.courseList)
-      this.setCalDates(courseId)
+        this.setCalDates(courseId)
       this.loader.show();
       this.standardList = []
+
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
-      if(this.courseList.length>0){
-        this.model.comment=this.courseList.find(element => element.id == courseId).description;
+      if (this.courseList.length > 0) {
+        this.model.comment = this.courseList.find(element => element.id == courseId).description;
       }
       this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
         let response: any = {};
@@ -213,6 +220,8 @@ export class UserEiProfileComponent implements OnInit {
         this.standardList = response.results;
         this.leftStandardList = response.results;
       }, (error) => {
+        console.log(error);
+
         this.loader.hide();
       });
     } catch (err) {
@@ -252,20 +261,13 @@ export class UserEiProfileComponent implements OnInit {
   }
 
   addCourseData() {
-    //this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId } });
-    // if (!this.params.edit_course_id) {
-      this.errorDisplay = {};
-      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
-      if (this.errorDisplay.valid) {
-        return false;
-      }
-    // }
-
+    this.errorDisplay = {};
+    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
     try {
-
       this.loader.show();
-
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.model.is_current_course = 1
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
       this.model.course_start_year = this.baseService.getDateFormat(this.model.course_start_year);
@@ -321,6 +323,12 @@ export class UserEiProfileComponent implements OnInit {
         this.minDate = new Date(course.end_date)
       }
 
+    }
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
 

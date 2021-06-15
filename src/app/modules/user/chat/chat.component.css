@@ -1,41 +1,73 @@
-.profile_pick{
+.profile_pick {
     border-radius: 50%;
-    width: 55px;
+    max-width: 40px;
     overflow: hidden;
-    height: 55px;
+    max-height: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    border: 1px solid #ddd;
+    position: relative;
 }
-.chat_content{
+
+.left-sideChat {
+    height: 470px;
+    overflow-y: auto;
+}
+.pdf_customSize{width: 60px;}
+.message-delivered-icon{display: inline-block; width: 20px;}
+.message-pending-icon{display: none; width: 20px;}
+.chat_content {
     width: 65%;
     margin: 0px auto;
 }
-.chat_contentBox{
+
+.chat_contentBox {
     width: 85%;
     margin: 0px auto;
 }
-.addComment{
+
+.schoolChat {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.addComment {
     width: 65%;
     margin: 0px auto;
 }
-.img-small{
+
+.img-small {
     height: 24px;
 }
-.chatMessage{
+
+.chatMessage {
     border-radius: 20px;
     height: 45px;
     width: 92% !important;
 }
-.imgComment{
-    height: 35px;
+
+.imgComment {
+    height: 45px;
+    position: absolute;
+    right: -17px;
+    border: 0px;
+    background: #463267;
+    color: #fff;
+    width: 82px;
 }
-.border-bottomCustom{
+
+.border-bottomCustom {
     border-bottom: 1px solid #ccc;
 }
+
 .chatIn {
-    padding: 8px 15px;
-    background: #463267;
-    border-radius: 20px;
+    padding: 6px 10px;
+    background: #fff;
+    border-radius: 8px;
     display: inline-block;
     position: relative;
+    min-height: 55px;
+    box-shadow: 0px 1px 2px #ccc;
 }
 
 .customButton {
@@ -47,19 +79,30 @@
 }
 
 .chatOut {
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 6px 10px;
+    border-radius: 8px;
     display: inline-block;
     position: relative;
-    border: 1px solid rgba(70, 50, 103, 0.34);
+    /* border: 1px solid rgba(70, 50, 103, 0.34); */
+    min-height: 55px;
+    box-shadow: 0px 1px 2px #ccc;
+    background: #dcf8c6;
+}
+.profile_pick img {
+    max-width: 100%;
+    margin: 0px auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.chatIn:before {
+/* .chatIn:before {
     position: absolute;
     content: url("../../../../assets/images/userWebsite/purple_beak.png");
-    left: -22px;
+    left: -21px;
     top: 4px;
-    /* background: url("assets/images/userWebsite/purple_beak.png"); */
     background-repeat: no-repeat;
 }
 
@@ -68,18 +111,47 @@
     content: url("../../../../assets/images/userWebsite/white_beak.png");
     right: -22px;
     top: 4px;
-    /* background: url("assets/images/userWebsite/white_beak.png"); */
     background-repeat: no-repeat;
+} */
+
+.disabled {
+    pointer-events: none;
 }
 
-@media (max-width: 767px){
-    .chat_content{
+/* .online {
+    color: ;
+} */
+
+.offline {
+    color: #888;
+}
+
+.chat-rouded {
+    border-radius: 50px;
+    height: 40px;
+}
+
+.message-icon i {
+    font-size: 26px;
+    color: #919191;
+    margin: 0px 10px 0px 2px;
+}
+.chat_contentBox img {
+    max-width: 245px;
+}
+.chatIn span {
+    display: block;
+    margin-top: 4px;
+}
+
+@media (max-width: 767px) {
+    .chat_content {
         width: 100%;
     }
     .addComment {
         width: 100%;
     }
-    .chatMessage{
+    .chatMessage {
         width: 75% !important;
     }
 }

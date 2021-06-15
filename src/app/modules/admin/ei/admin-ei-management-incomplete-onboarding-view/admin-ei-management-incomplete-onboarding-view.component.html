@@ -11,24 +11,19 @@
                 </h2>
             </div>
             <div class="col-md-6 SearchDiv justify-content-end d-flex flex-wrap">
-                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
-                    routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.ei_id}}/incomplete-onboarding">View
-                    Conversation Comments</button>
+                <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2" routerLink="/admin/ei-onboarding-conversation-comments/{{eiData.ei_id}}/incomplete-onboarding">View Conversation Comments</button>
                 <!-- <button *ngIf="eiData" type="button" class="bg-dark text-white px-4 py-2 border-0 mx-1 mb-2"
                     routerLink="/admin/education-institute-history/{{eiData.id}}">History</button> -->
             </div>
         </div>
         <div class=" mt-3 border-0 mx-0">
-            <div *ngIf="eiData" class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition"
-                [ngStyle]="eiData.cover_pic ? {'background-image': 'url(' + eiData.cover_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
+            <div *ngIf="eiData" class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition" [ngStyle]="eiData.cover_pic ? {'background-image': 'url(' + eiData.cover_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
                 <div class="dpImgDiv rounded-circle bg-light-green border border-white">
-                    <img *ngIf="!eiData.profile_pic" src="assets/images/profile-default.png"
-                        class="img-fluid dpImg cursorStyle">
+                    <img *ngIf="!eiData.profile_pic" src="assets/images/profile-default.png" class="img-fluid dpImg cursorStyle">
                     <img *ngIf="eiData.profile_pic" src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">
                 </div>
                 <div class="userInfo" *ngIf="pendingApprovalProfile.stage == 'true'">
-                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle"
-                        [matMenuTriggerFor]="menu">
+                    <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid w-50 cursorStyle" [matMenuTriggerFor]="menu">
                 </div>
             </div>
             <!--Start div for onboarding Information-->
@@ -39,7 +34,8 @@
                             <p>Name of The School</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.name_of_school}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.name_of_school}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -47,7 +43,8 @@
                             <p>School ZatchUp ID</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.zatchupId}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.zatchupId}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -55,7 +52,8 @@
                             <p>City</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.city}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.city}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -63,7 +61,8 @@
                             <p>State</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.state}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.state}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -73,30 +72,45 @@
                         <div class="col-12 ml-2 small-text-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Address Line One</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: {{eiData.address1}}</span> </p>
+                                    <p>
+                                        <span class="mr-3">: {{eiData.address1}}</span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Address Line Two</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: {{eiData.address2}}</span> </p>
+                                    <p>
+                                        <span class="mr-3">: {{eiData.address2}}</span>
+                                    </p>
                                 </div>
                             </div>
 
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-2 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Pin Code</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: {{eiData.pincode}}</span> </p>
+                                    <p>
+                                        <span class="mr-3">: {{eiData.pincode}}</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +120,8 @@
                             <p>Board/University</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.university}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.university}}</p>
                         </div>
                     </div>
 
@@ -115,7 +130,8 @@
                             <p>GST Number</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.gst_no}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.gst_no}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -123,7 +139,8 @@
                             <p>School Email Address</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.school_email ? eiData.school_email : 'NA'}}</p>
+                            <p>
+                                <span class="mr-3">: </span> {{eiData.school_email ? eiData.school_email : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -132,7 +149,8 @@
                             <p>School Phone Number</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.school_phone ? eiData.school_phone : 'NA'}}</p>
+                            <p>
+                                <span class="mr-3">: </span> {{eiData.school_phone ? eiData.school_phone : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -141,7 +159,8 @@
                             <p>School Facebook Profile</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.fb_url ? eiData.fb_url : 'NA'}}</p>
+                            <p>
+                                <span class="mr-3">: </span> {{eiData.fb_url ? eiData.fb_url : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -150,7 +169,8 @@
                             <p>School Twitter Profile</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.twitter_url ? eiData.twitter_url : 'NA'}}</p>
+                            <p>
+                                <span class="mr-3">: </span> {{eiData.twitter_url ? eiData.twitter_url : 'NA'}}</p>
                         </div>
                     </div>
 
@@ -159,7 +179,8 @@
                             <p>School Overview</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span> {{eiData.overview}}</p>
+                            <p>
+                                <span class="mr-3">: </span> {{eiData.overview}}</p>
                         </div>
                     </div>
 
@@ -170,38 +191,53 @@
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Name
-                                        of School Representative</p>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i>
+                                        </span> Name of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: </span> {{eiData.first_name}} {{eiData.last_name}}</p>
+                                    <p>
+                                        <span class="mr-3">: </span> {{eiData.first_name}} {{eiData.last_name}}</p>
                                 </div>
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Designation of School Representative</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: </span>{{eiData.designation_name}} </p>
+                                    <p>
+                                        <span class="mr-3">: </span>{{eiData.designation_name}} </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Official Email ID</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: </span> {{eiData.email}}</p>
+                                    <p>
+                                        <span class="mr-3">: </span> {{eiData.email}}</p>
                                 </div>
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Contact Number</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">: </span>{{eiData.phone}} </p>
+                                    <p>
+                                        <span class="mr-3">: </span>{{eiData.phone}} </p>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +248,8 @@
                             <p>Name of The Principal | Dean</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
-                            <p><span class="mr-3">: </span>{{eiData.name_of_principle}}</p>
+                            <p>
+                                <span class="mr-3">: </span>{{eiData.name_of_principle}}</p>
                         </div>
                     </div>
 
@@ -221,7 +258,8 @@
                             <p>Approximate Number Of Student On ZatchUp</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
-                            <p><span class="mr-3 text-dark">: </span>{{eiData.no_of_students}}</p>
+                            <p>
+                                <span class="mr-3 text-dark">: </span>{{eiData.no_of_students}}</p>
                         </div>
                     </div>
 
@@ -230,25 +268,30 @@
                             <p>Approximate Number Of Alumini On ZatchUp</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
-                            <p><span class="mr-3 text-dark">: </span>{{eiData.no_of_alumni}}</p>
+                            <p>
+                                <span class="mr-3 text-dark">: </span>{{eiData.no_of_alumni}}</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number Of Student On ZatchUp <br /> (Basis School ZatchUp ID)</p>
+                            <p>Number Of Student On ZatchUp
+                                <br /> (Basis School ZatchUp ID)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
-                            <p><span class="mr-3 text-dark">: </span>{{eiData.total_no_of_students}}</p>
+                            <p>
+                                <span class="mr-3 text-dark">: </span>{{eiData.total_no_of_students}}</p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
-                            <p>Number Of Alumini On ZatchUp <br /> (Basis School ZatchUp ID)</p>
+                            <p>Number Of Alumini On ZatchUp
+                                <br /> (Basis School ZatchUp ID)</p>
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize mediumFont">
-                            <p><span class="mr-3 text-dark">: </span>{{eiData.total_no_of_alumni}}</p>
+                            <p>
+                                <span class="mr-3 text-dark">: </span>{{eiData.total_no_of_alumni}}</p>
                         </div>
                     </div>
 
@@ -263,24 +306,36 @@
                         <div class="col-12 small-text-2 ml-2">
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i>
+                                        </span>
                                         Course</p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
-                                            routerLink="/admin/ei-management-course/{{eiData.id}}"> View
-                                        </span> </p>
+                                    <p>
+                                        <span class="mr-3">:</span>
+                                        <span class="textUnderlineStyle color-blue" routerLink="/admin/ei-management-course/{{eiData.id}}">
+                                        View
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="row mx-0">
                                 <div class="col-xl-3 col-lg-4 col-md-4 col-5">
-                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Bank
-                                        Details</p>
+                                    <p>
+                                        <span>
+                                            <i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i>
+                                        </span> Bank Details
+                                    </p>
                                 </div>
                                 <div class="col-xl-9 col-lg-8 col-md-8 col-7">
-                                    <p><span class="mr-3">:</span> <span class="textUnderlineStyle color-blue"
-                                            routerLink="/admin/ei-bank-details/{{eiData.id}}"> View
-                                        </span> </p>
+                                    <p>
+                                        <span class="mr-3">:</span>
+                                        <span class="textUnderlineStyle color-blue" routerLink="/admin/ei-bank-details/{{eiData.id}}">
+                                        View
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -290,16 +345,13 @@
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>Verification Documents</p>
                         </div>
-                        <div
-                            class="col-xl-9 col-lg-8 col-md-8 col-7 d-flex justify-content-flex-start flex-wrap commonFontSize mediumFont">
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 d-flex justify-content-flex-start flex-wrap commonFontSize mediumFont">
                             <span class="mr-3 text-dark">:</span>
-                            <div class="card rounded-0 border-0 VerificationDocCard m-1"
-                                *ngFor="let document of eiData.verification_details">
+                            <div class="card rounded-0 border-0 VerificationDocCard m-1" *ngFor="let document of eiData.verification_details">
                                 <img *ngIf="fileType(document.document) !== 'pdf'" src="{{document.document}}" class="img-thumbnail card-img-top rounded-0"
                                     alt="Verification Document">
-                                <img *ngIf="fileType(document.document) == 'pdf'" (click)="download_file(document.document)"
-                                    src="assets/images/userWebsite/pdf.png" alt="ei profile"
-                                    class="img-thumbnail card-img-top rounded-0">
+                                <img *ngIf="fileType(document.document) == 'pdf'" (click)="download_file(document.document)" src="assets/images/userWebsite/pdf.png"
+                                    alt="ei profile" class="img-thumbnail card-img-top rounded-0">
                                 <div class="card-body bg-Gainsboro p-2">
                                     <h4 class="card-title mb-0 pl-1 commonFontSize semiBoldFont">{{document.name}}</h4>
                                 </div>
@@ -363,7 +415,7 @@
                                             </tr>
                                             <tr class="">
                                                 <td>Enter Complete Address</td>
-                                                <td>{{eiData.address1}} {{eiExData.address2}}</td>
+                                                <td>{{eiData.address1}} {{eiData.address2}}</td>
                                                 <td>{{eiExData.address1}} {{eiExData.address2}}
                                                 </td>
                                             </tr>
@@ -406,15 +458,13 @@
             </mat-menu>
 
             <!--Start of approveModel  -->
-            <div class="modal fade" id="approveModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="approveModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 border-0">
                             <h2 class=" text-left modal-title commonFontSize mediumFont mb-1">Approve
                             </h2>
-                            <button #approveClose type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            <button #approveClose type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true ">
                                     &times;
@@ -424,16 +474,10 @@
                         <div class="modal-body px-0">
                             <div class=" form-group row ">
                                 <div class="col-sm-12 justify-content-center d-flex flex-wrap">
-                                    <button type="button"
-                                        class="bg-light-secondary  border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
-                                        data-toggle="modal" data-target="#existingZatchupIDModel"
-                                        (click)="closeApproveModal()">With
-                                        Existing School ZatchUp ID</button>
-                                    <button type="button"
-                                        class="bg-light-secondary  border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
-                                        data-toggle="modal" data-target="#approveWithNewZatchupIDModel"
-                                        (click)="closeApproveModal()">With
-                                        New School ZatchUp ID</button>
+                                    <button type="button" class="bg-light-secondary  border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
+                                        data-toggle="modal" data-target="#existingZatchupIDModel" (click)="closeApproveModal()">With Existing School ZatchUp ID</button>
+                                    <button type="button" class="bg-light-secondary  border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
+                                        data-toggle="modal" data-target="#approveWithNewZatchupIDModel" (click)="closeApproveModal()">With New School ZatchUp ID</button>
                                 </div>
                             </div>
 
@@ -445,16 +489,15 @@
 
 
             <!--Start of approveWithNewZatchupIDModel  -->
-            <div class="modal fade" id="approveWithNewZatchupIDModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="approveWithNewZatchupIDModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 border-0">
                             <h2 class=" text-left modal-title commonFontSize mediumFont mb-1">New School Zatchup ID
                             </h2>
-                            <button #closeApproveWithNewZatchupIDModel type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
-                                aria-label="Close ">
+                            <button #closeApproveWithNewZatchupIDModel type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                                data-dismiss="modal" aria-label="Close ">
                                 <span aria-hidden="true ">
                                     &times;
                                 </span>
@@ -462,13 +505,9 @@
                         </div>
                         <div class="modal-body px-0">
                             <div class="col-sm-12 justify-content-center d-flex">
-                                <button type="button "
-                                    class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
-                                    data-toggle="modal" data-target="#newZatchupIDModel"
-                                    (click)="closeNewEIWithZatchupID()">With
-                                    Enter School ZatchUp ID</button>
-                                <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel"
-                                    class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
+                                <button type="button " class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing"
+                                    data-toggle="modal" data-target="#newZatchupIDModel" (click)="closeNewEIWithZatchupID()">With Enter School ZatchUp ID</button>
+                                <button type="button " data-toggle="modal" data-target="#generateZatchupIDModel" class="bg-light-secondary border-0 text-dark text-center px-2 mb-2 py-2 mx-1 commonFontSize mediumFont letterspacing "
                                     (click)="closeNewEIWithZatchupID()">
                                     With Generate New School ZatchUp ID</button>
                             </div>
@@ -479,16 +518,14 @@
             <!-- End of approveWithNewZatchupIDModel  -->
 
             <!-- Start of existingZatchupIDModel-->
-            <div class="modal fade" id="existingZatchupIDModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="existingZatchupIDModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing School
-                                ZatchUp ID
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Existing School ZatchUp ID
                             </h2>
-                            <button #closeExistingZatchupIDModel type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            <button #closeExistingZatchupIDModel type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true ">
                                     &times;
@@ -505,13 +542,11 @@
                                         </label>
 
                                         <div class="form-control-inputDiv rounded shadow-none ">
-                                            <input type="text" id="zatchupId" name="zatchup_id" [disabled]="true"
-                                                [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
+                                            <input type="text" id="zatchupId" name="zatchup_id" [disabled]="true" [(ngModel)]="pendingApprovalProfile.zatchupId" (keyup)="isValid($event)"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 placeholder="Enter School ZatchUp ID" required />
                                         </div>
-                                        <div class="required errorMsg"
-                                            [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_id">
+                                        <div class="required errorMsg" [innerHtml]="pendingApprovalProfile.errorDisplay.zatchup_id">
                                         </div>
                                     </div>
                                 </div>
@@ -521,8 +556,7 @@
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing">
                                             POC Details</label>
-                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
-                                            (searchResult)="pocDetails($event)"></input-search>
+                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''" (searchResult)="pocDetails($event)"></input-search>
                                         <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
                                             Employee id is required
                                         </div>
@@ -532,14 +566,12 @@
                                 <div class=" form-group row">
 
                                     <div class="col-sm-12 ">
-                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Upload
-                                            MOU</label>
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Upload MOU
+                                        </label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input #docInput type="file"
-                                                (change)="fileUploadDocument($event.target.files)" id="mou_doc"
-                                                name="mou_document"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
+                                            <input #docInput type="file" (change)="fileUploadDocument($event.target.files)" id="mou_doc" name="mou_document" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
                                             MOU Document is required.
@@ -549,9 +581,8 @@
 
                                 <div class=" form-group row mt-3">
 
-                                    <div class="col-sm-12 ">
-                                        <button type="button" (click)="validateExistingEI()"
-                                            class="form-control bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                                    <div class="col-sm-12 approveModelBtn">
+                                        <button type="button" (click)="validateExistingEI()" class="form-control bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing">
                                             Approve
                                         </button>
                                     </div>
@@ -565,14 +596,12 @@
             <!-- End of existingZatchupIDModel -->
 
             <!-- eiEditModel  -->
-            <div class="modal fade" id="eiEditModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="eiEditModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0">
                             <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">School For Edit</h2>
-                            <button #closeEiEditModel type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            <button #closeEiEditModel type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true "> &times; </span>
                             </button>
@@ -583,18 +612,13 @@
 
                                     <div class="col-md-12 mt-2">
                                         <div class="form-group row  ml-0 mr-0">
-                                            <label for="" class="mediumFont commonFontSize letterspacing">Reason Of Send
-                                                Back
+                                            <label for="" class="mediumFont commonFontSize letterspacing">Reason Of Send Back
                                             </label>
-                                            <div
-                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                                <input name="edit_reason" id="edit_reason"
-                                                    [(ngModel)]="pendingApprovalProfile.editReason"
-                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <input name="edit_reason" id="edit_reason" [(ngModel)]="pendingApprovalProfile.editReason" class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                                     type="text" placeholder="Enter Reason" required>
                                             </div>
-                                            <div class="required errorMsg"
-                                                [innerHtml]="pendingApprovalProfile.errorDisplay.edit_reason">
+                                            <div class="required errorMsg" [innerHtml]="pendingApprovalProfile.errorDisplay.edit_reason">
                                             </div>
                                         </div>
                                     </div>
@@ -603,23 +627,17 @@
                                         <div class="form-group row  ml-0 mr-0">
                                             <label for="" class="mediumFont commonFontSize letterspacing"> Description
                                             </label>
-                                            <div
-                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                                <textarea name="edit_description" id="edit_description"
-                                                    [(ngModel)]="pendingApprovalProfile.editDescription"
-                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                                    type="text" cols="4" rows="5" placeholder="Description"
-                                                    required></textarea>
+                                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <textarea name="edit_description" id="edit_description" [(ngModel)]="pendingApprovalProfile.editDescription" class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    type="text" cols="4" rows="5" placeholder="Description" required></textarea>
                                             </div>
-                                            <div class="required errorMsg"
-                                                [innerHtml]="pendingApprovalProfile.errorDisplay.edit_description">
+                                            <div class="required errorMsg" [innerHtml]="pendingApprovalProfile.errorDisplay.edit_description">
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                                <button type="button "
-                                    class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
+                                <button type="button " class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing "
                                     (click)="editEI()">
                                     Send </button>
                             </div>
@@ -631,14 +649,12 @@
             <!-- End eiEditModel  -->
 
             <!-- rejectModel  -->
-            <div class="modal fade" id="rejectModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">School For Edit</h2>
-                            <button #closeRejectEIModel type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject School</h2>
+                            <button #closeRejectEIModel type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true "> &times; </span>
                             </button>
@@ -648,19 +664,14 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-2">
                                         <div class="form-group row  ml-0 mr-0">
-                                            <label for="" class="mediumFont commonFontSize letterspacing">Reason Of
-                                                Reject
+                                            <label for="" class="mediumFont commonFontSize letterspacing">Reason Of Reject
                                             </label>
-                                            <div
-                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                                <input id="rejection_reason" name="rejection_reason" required
-                                                    [(ngModel)]="pendingApprovalProfile.rejectionReason"
-                                                    (keyup)="isValid($event)"
+                                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <input id="rejection_reason" name="rejection_reason" required [(ngModel)]="pendingApprovalProfile.rejectionReason" (keyup)="isValid($event)"
                                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                                     type="text" placeholder="Enter Reason">
                                             </div>
-                                            <div class="required errorMsg"
-                                                [innerHtml]="pendingApprovalProfile.errorDisplay.rejection_reason">
+                                            <div class="required errorMsg" [innerHtml]="pendingApprovalProfile.errorDisplay.rejection_reason">
                                             </div>
                                         </div>
                                     </div>
@@ -669,23 +680,18 @@
                                         <div class="form-group row  ml-0 mr-0">
                                             <label for="" class="mediumFont commonFontSize letterspacing"> Remark
                                             </label>
-                                            <div
-                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
-                                                <textarea id="rejection_remarks" name="rejection_remarks" required
-                                                    [(ngModel)]="pendingApprovalProfile.rejectionRemark"
-                                                    (keyup)="isValid($event)"
+                                            <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <textarea id="rejection_remarks" name="rejection_remarks" required [(ngModel)]="pendingApprovalProfile.rejectionRemark" (keyup)="isValid($event)"
                                                     class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                                     type="text" cols="4" rows="5" placeholder="Enter Remark"></textarea>
                                             </div>
-                                            <div class="required errorMsg"
-                                                [innerHtml]="pendingApprovalProfile.errorDisplay.rejection_remarks">
+                                            <div class="required errorMsg" [innerHtml]="pendingApprovalProfile.errorDisplay.rejection_remarks">
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                                <button type="button " (click)="rejectEI()"
-                                    class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
+                                <button type="button " (click)="rejectEI()" class="bg-paret-green border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                     Reject </button>
                             </div>
                         </form>
@@ -695,16 +701,13 @@
             <!-- End rejectModel  -->
 
             <!-- Start of newZatchupIDModel-->
-            <div class="modal fade" id="newZatchupIDModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="newZatchupIDModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter School ZatchUp
-                                ID
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 "> Enter School ZatchUp ID
                             </h2>
-                            <button #closeNewZatchupIDModel type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            <button #closeNewZatchupIDModel type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true ">
                                     &times;
@@ -717,10 +720,8 @@
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
                                             School ZatchUp ID</label>
-                                        <input-search [config]="pendingApprovalProfile.searchConfigOne" [value]="''"
-                                            (searchResult)="schoolZatchupId($event)"></input-search>
-                                        <div class="required errorMsg"
-                                            [innerHTML]="pendingApprovalProfile.errorDisplay.zatchup_id">
+                                        <input-search [config]="pendingApprovalProfile.searchConfigOne" [value]="''" (searchResult)="schoolZatchupId($event)"></input-search>
+                                        <div class="required errorMsg" [innerHTML]="pendingApprovalProfile.errorDisplay.zatchup_id">
                                         </div>
                                     </div>
                                 </div>
@@ -730,9 +731,7 @@
                                             School name
                                         </label>
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input type="text" name="zatchup_id" id="name_of_school"
-                                                [(ngModel)]="pendingApprovalProfile.name_of_school"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            <input type="text" name="zatchup_id" id="name_of_school" [(ngModel)]="pendingApprovalProfile.name_of_school" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 readonly placeholder="School Name" required />
                                         </div>
 
@@ -740,13 +739,12 @@
                                 </div>
                                 <div class=" form-group row mt-3">
                                     <div class="col-sm-12 ">
-                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Upload
-                                            MOU</label>
+                                        <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">Upload MOU
+                                        </label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input #docInputForNewZatchupId type="file"
-                                                (change)="fileUploadDocument($event.target.files)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
+                                            <input #docInputForNewZatchupId type="file" (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
                                             MOU Document is required.
@@ -758,17 +756,15 @@
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
                                             POC Details
                                         </label>
-                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
-                                            (searchResult)="pocDetails($event)"></input-search>
+                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''" (searchResult)="pocDetails($event)"></input-search>
                                         <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
                                             Employee id is required
                                         </div>
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">
-                                    <div class="col-sm-12 ">
-                                        <button type="button "
-                                            class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing"
+                                    <div class="col-sm-12 approveModelBtn">
+                                        <button type="button " class="form-control bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing"
                                             (click)="approveWithEIZatchupId(); newZatchupIDForm.resetForm()">
                                             Approve
                                         </button>
@@ -782,16 +778,14 @@
             <!-- End of newZatchupIDModel -->
 
             <!-- Start of generateZatchupIDModel-->
-            <div class="modal fade" id="generateZatchupIDModel" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="generateZatchupIDModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content unverified container-fluid">
                         <div class="modal-header align-items-center justify-content-center pb-0 pl-0">
-                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New School
-                                ZatchUp
-                                ID</h2>
-                            <button #closeGenerateZatchupIDModel type="button "
-                                class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
+                            <h2 class=" text-center modal-title commonFontSize mediumFont mb-1 ">Generate New School ZatchUp ID
+                            </h2>
+                            <button #closeGenerateZatchupIDModel type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
                                 aria-label="Close ">
                                 <span aria-hidden="true ">
                                     &times;
@@ -803,13 +797,12 @@
                                 <div class=" form-group row mt-3">
 
                                     <div class="col-sm-12 ">
-                                        <label for="Remarks" class="commonFontSize semiBoldFont letterspacing">Upload
-                                            MOU</label>
+                                        <label for="Remarks" class="commonFontSize semiBoldFont letterspacing">Upload MOU
+                                        </label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input #docInputGenerateZatchupId type="file"
-                                                (change)="fileUploadDocument($event.target.files)"
-                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing " />
+                                            <input #docInputGenerateZatchupId type="file" (change)="fileUploadDocument($event.target.files)" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            />
                                         </div>
                                         <div *ngIf="!pendingApprovalProfile.requiredMOU" class="required errorMsg">
                                             MOU Document is required.
@@ -821,17 +814,15 @@
                                     <div class="col-sm-12 ">
                                         <label for="Remarks " class=" commonFontSize semiBoldFont letterspacing ">
                                             POC Details</label>
-                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''"
-                                            (searchResult)="pocDetails($event)"></input-search>
+                                        <input-search [config]="pendingApprovalProfile.searchConfig" [value]="''" (searchResult)="pocDetails($event)"></input-search>
                                         <div *ngIf="!pendingApprovalProfile.poc_required" class="required errorMsg">
                                             Employee id is required
                                         </div>
                                     </div>
                                 </div>
                                 <div class=" form-group row mt-3">
-                                    <div class="col-sm-12 ">
-                                        <button type="button " (click)="generateEIZatchupId()"
-                                            class="bg-paret-green  border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                                    <div class="col-sm-12 approveModelBtn">
+                                        <button type="button " (click)="generateEIZatchupId()" class="form-control bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing">
                                             Approve
                                         </button>
                                     </div>

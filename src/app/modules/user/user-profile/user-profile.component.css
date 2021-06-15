@@ -1,13 +1,4 @@
-/* .containerScrolling {
-    height: 100vh;
-    overflow-y: scroll;
-} */
 
-.email_position-absolute {
-    position: absolute;
-    top: 6%;
-    right: 2%;
-}
 
 .landingDiv {
     padding-top: 0;
@@ -40,6 +31,7 @@
 
 .dpImg {
     height: 100%;
+    border-radius: 50%;
 }
 
 .img-container {
@@ -51,41 +43,64 @@
 .editIcon {
     width: 7%;
 }
+.upload-dp {
+    top: 65%;
+    bottom: 0;
+    left: 0%;
+    right: 0;
+    background: rgb(133, 132, 127, 0.5);
+}
 
 .form-control-inputDiv {
     border-radius: 25px;
 }
-
+.btn_position-absolute {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
 .dpImgCircle {
     width: 100px;
     height: 100px;
     overflow: hidden;
+    position: relative;
+    min-width: 100px;
+    max-height: 100px;
 }
-.customProfile{
+.bannerDiv{height: 180px; overflow: hidden;}
+.bannerDiv img {
+    /* max-height: 180px; */
+    margin: 0px auto;
+    max-width: 100%;
+    display: block;
+    width: 100%;
     position: absolute;
-    z-index: 1;
-    bottom: -70px;
-    left: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.customProfile {
+    margin-top: -45px;
 }
 .tickImg {
     position: absolute;
-    bottom: 0px;
-    left: 8%;
+    top: 60px;
+    left: 90px;
     z-index: 1;
+}
+h4 {
+    font-size: 16px !important;
+    /* text-transform: capitalize; */
 }
 @media (min-width: 768px) and (max-width: 1024px) {
     .addBuddyBtn {
         width: 100%!important;
-    }
-    .tickImg{
-        left: 12%;
     }
 }
 
 @media only screen and (max-width: 414px) {
     .profileDivLeft {
         flex-direction: column;
-        padding-left: 0!important;
     }
     .profileDivLeft p {
         text-align: center!important;
@@ -108,8 +123,21 @@
         padding: 0;
         margin-top: 2%;
     }
-    .tickImg{
-        bottom: 20px;
-        left: 60%;
+    .tickImg {
+        top: 47px;
+        left: 198px;
+    }
+    .profileDivLeft .pl-4 {padding-left: 0rem!important;}
+    .pt-5{padding-top: 1rem!important;}
+}
+
+@media only screen and (max-width: 320px) {
+    .tickImg {
+        left: 170px;
     }
 }
+
+
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}

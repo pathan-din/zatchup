@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { EIPendingApproval } from '../modals/ei-pending-approval.modal'
@@ -20,6 +20,7 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
@@ -131,7 +132,8 @@ export class AdminEiManagementPendingForApprovalComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    
+    this.router.navigate(['admin/school-management'])
   }
 
   searchList(page?: any) {

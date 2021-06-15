@@ -63,7 +63,7 @@ export class DocHistory extends Pagination {
 export class MessagesHistory extends Pagination {
     params: any;
     displayedColumns: string[] = ['position', 'ticketId', 'dateOfMessage', 'message',
-        'resolutionDate', 'resolveComment', 'attachment'];
+        'resolutionDate', 'resolveComment', 'issue'];
 }
 export class PastPocDetails extends Pagination {
     displayedColumns: string[] = ['position', 'fromDate', 'toDate', 'employeeId', 'name', 'mobileNumber',
@@ -88,7 +88,7 @@ export class CurrentPocDetails extends PastPocDetails {
 
 export class RejectedEIList extends Pagination {
     displayedColumns: string[] = ['position', 'addingDate', 'zatchUpID', 'schoolName', 'state', 'city', 'status',
-         'action'];
+        'action'];
 
     filterFromDate: any;
     filterToDate: any;
@@ -119,4 +119,96 @@ export class SubscriptionPlanHistory extends Pagination {
     modal: any;
     displayedColumns: string[] = ['position', 'dateOfSubscription', 'planDetails', 'grossAmount',
         'couponCode', 'netAmount', 'dateOfSubscriptionExpiry', 'transactionId', 'action'];
+}
+
+export class PlanDetails extends Pagination {
+    displayedColumns: string[] = ['position', 'pplan', 'views', 'validity', 'action'];
+    modal: any;
+    id: any;
+    model: { page: any; page_size: any; id: any; };
+}
+
+export class CourseList extends Pagination {
+    displayedColumns: string[] = ['SNo', 'dateOfAdding', 'courseId', 'titleOfCourse',
+        'levelOfEducation', 'field', 'standard', 'subject', 'action'];
+    modal: any;
+    id: any;
+    Id: any;
+}
+
+export class StarclassPlanHistory extends Pagination {
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
+}
+
+export class StarclassCourseHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']
+
+}
+
+export class EIStarclassCourseHistory extends Pagination {
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message'] 
+}
+
+export class StarclassCourseDetails extends Pagination {
+    courseDetails: any;
+
+}
+
+export class LectureList extends Pagination {
+    displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd',
+        'viewDetails'];
+    planDisplayedColumns: string[] = ['position', 'name', 'price', 'validity', 'views',];
+    model: any;
+    id: any;
+}
+
+export class LectureDetails extends Pagination {
+    model: any;
+    details: any;
+}
+
+export class LectureDetailsEdit extends Pagination {
+    model: any;
+    details: any;
+}
+
+export class CoursesUploadedByEi extends Pagination{
+  modal: any;
+  id: any;
+  displayedColumns: string[] = ['SNo', 'dateOfCreate','courseID', 'titleOfCourse', 'levelofEducation',
+  'Field','Standard','Subject','numberOfLectures',
+  'TotalActivePlans', 'totalViewsOncourse', 'Action'];
+  filterFromDate: any;
+  filterToDate: any;
+
+}
+
+export class ActiveBoughtCourses extends Pagination{
+    displayedColumns: string[] = ['position','dateOfBuying', 'courseId','titleOfCourse', 'levelOfEducation',
+    'field', 'standard','subject','buyingEiZatchupId','buyingEiName','dateOfExpiry'];
+  params: { page: any; page_size: any; };
+}
+
+export class EiStarclassLectureList extends Pagination{
+    displayedColumns: string[] = ['position','lectureTitle', 'topicsCoverd', 'uploadDate', 'viewDetails'];   
+  model: any;
+
+}
+
+export class EiStarclassLectureHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']  
+}
+
+export class StarclassLectureHistory extends Pagination{
+    modal: any;
+    history: any;
+    displayedColumns: string[]= ['position', 'action', 'actionDate', 'message']  
 }

@@ -1,0 +1,242 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="col-md-6 d-flex justify-content-start align-items-center flex-wrap p-0">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Course Preview</h2>
+
+        </div>
+        
+        <!--Video image div of coursePReview-->
+
+        <div class="row mt-3">
+            <div class="col-md-12 customVideo" *ngFor="let details of courseDetails">
+                <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
+                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                     <source src="{{details.course_preview}}" type="video/mp4" />
+                </video>
+            </div>
+            <!-- <div class="col-4">
+                <img src="assets/images/userWebsite/kyc_successfully_done.png" class="img-fluid previewImg border border-gray">
+
+            </div> -->
+        </div>
+        <!--End Video image div of coursePReview-->
+    </div>
+
+    <div class="AlumniProf-div bg-white border border-gray px-3 py-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 ">
+                <h2 class="commonFontSize semiBoldFont m-0">View Course</h2>
+            </div>
+            <!-- <div class="col-md-6 SearchDiv d-flex flex-row">
+                <button type="button" class="bg-paret-green text-white px-4 h-100 ml-2 border-0 mp0">Price Plan For The Course</button>
+                <button type="button" class="bg-yellow text-white px-4 h-100 ml-2 border-0 mp0">Bought History</button>
+                <button type="button" class="bg-blue text-white px-4 h-100 ml-2 border-0 mp0">History</button>
+            </div> -->
+        </div>
+        <div class=" mt-3 form-control-inputDiv border-0 mx-0">
+            <!-- start Div for banner-->
+            
+            <!--Start div for onboarding Information-->
+            <div class="row">
+                <div class="col-md-12" *ngIf="courseData">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Course Name</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{courseData.course_name}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Level of Education</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.level_of_education}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Field</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.field}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Standard</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.standard}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Subject</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.subject}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Number Of Lectures</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{courseData.number_of_lectures}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Teaching Faculty Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.faculty_details}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Topic Cover</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{courseData.topic_cover}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Description</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{courseData.description}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Date Of Creating Course</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">: </span>{{courseData.created_on | date}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
+                            <p>Total Views on All Lectures Combined</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span></p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="UnverifiedAlumni-div bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row">
+            <div class="col-8">
+                <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
+            </div>
+            <div class="col-4 text-right">
+                <button (click)="goToLectureHistory()" type="button" class="bg-dark py-2 color-white px-3 border-0"tooltip="Lecture History"><i class="fa fa-history" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+        <!--Start html for "select no of Rows per page" and Export Button-->
+        <div class="row my-3 align-items-center" *ngIf="eiStarclassLectueList.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getLectureList('1')" [(ngModel)]="eiStarclassLectueList.page_size">
+                        <option *ngFor="let count of eiStarclassLectueList.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div>
+        </div>
+        <!--End html for "select no of fees info per page" and Export Button-->
+        <!--Start html for fees information table-->
+        <div class="tableDiv " *ngIf="eiStarclassLectueList.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="eiStarclassLectueList.dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + eiStarclassLectueList.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="lectureTitle">
+                        <mat-header-cell *matHeaderCellDef>Lecture Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.lecture_title}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="topicsCoverd">
+                        <mat-header-cell *matHeaderCellDef> Topics Covered </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.topic_cover}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="durationOfLecture">
+                        <mat-header-cell *matHeaderCellDef> Duration Of Lecture </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.durationOfLecture}}
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="uploadDate">
+                        <mat-header-cell *matHeaderCellDef>Upload Date </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.upload_date | date}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="viewDetails">
+                        <mat-header-cell *matHeaderCellDef class="text-center">View Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
+                            <i (click)="goToLectureView(element.id)" class="fa fa-eye mr-2 color-lightBlue " aria-hidden="true "></i>
+                        </mat-cell>
+                    </ng-container>
+<!-- 
+                    <ng-container matColumnDef="play">
+                        <mat-header-cell *matHeaderCellDef> Play </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.play}}
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <mat-header-row *matHeaderRowDef="eiStarclassLectueList.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: eiStarclassLectueList.displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+        </div>
+        <div class="row" *ngIf="!eiStarclassLectueList.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+        <!--End html for fees information table-->
+    </div>
+</div>

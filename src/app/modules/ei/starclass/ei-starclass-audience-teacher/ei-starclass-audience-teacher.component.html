@@ -1,0 +1,80 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+
+    <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Audience Teacher List</h2>
+            </div>
+        </div>
+
+        <div class="tableDiv mt-3" *ngIf="teacherAudience.dataSource">
+            <div class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="teacherAudience.dataSource | paginate: teacherAudience.config">
+                    <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef>
+
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <mat-checkbox [(ngModel)]="element.is_access_for_star_class" (change)="getTeacherAudienceBycheckbox(element.user_id,$event)">
+                            </mat-checkbox>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + teacherAudience.startIndex}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="profilePic">
+                        <mat-header-cell *matHeaderCellDef> Profile Pic</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="School profile" class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="School profile" class="img-fluid cerImg rounded">
+                            </div>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfTeacher">
+                        <mat-header-cell *matHeaderCellDef> Name of Teacher </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.first_name}} {{element.last_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="relationship">
+                        <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.relationship}}
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="empId">
+                        <mat-header-cell *matHeaderCellDef>Employee ID
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.employee_num}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="teacherAudience.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: teacherAudience.displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+        </div>
+        <pagination-controls *ngIf="teacherAudience.dataSource" (pageChange)="getStudentAuidenceList($event)" class="eiPaginationTag">
+        </pagination-controls>
+        <div class="row pt-2" *ngIf="!teacherAudience.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+        <button type="button" class="bg-paret-green text-white py-2 px-4 commonFontSize mediumFont border-0" (click)="addTeacherAudience()">Submit</button>
+
+    </div>
+
+</div>

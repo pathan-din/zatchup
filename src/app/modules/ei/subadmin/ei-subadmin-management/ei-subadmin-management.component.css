@@ -31,3 +31,7 @@
 .clearfix {
     clear: both;
 }
+
+@media (max-width: 414px){
+    .addSubAdminPurpleBtn{width: 100%;}
+}

@@ -21,6 +21,8 @@
     left: 95px;
     z-index: 1;
 }
+
+
  
 .customDiv {
     width: 120px;
@@ -28,6 +30,10 @@
     border-radius: 50%;
     overflow: hidden;
     text-align: center;
+    max-width: 120px;
+    max-height: 120px;
+    min-width: 120px;
+    min-height: 120px;
 }
 
 .customDiv img {
@@ -60,7 +66,12 @@
     .editIcon{
         width: 10%;
     }
-    
+    .custom-control {
+        padding-left: 1rem;
+    }
+    .custom-control-inline {
+        margin-right: .2rem;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -69,8 +80,6 @@
     }
 }
 
-@media (max-width: 320px){
-    .tickImg {  
-        left: 75px;
-    }
-}
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}

@@ -1,0 +1,157 @@
+<app-admin-sidenav></app-admin-sidenav>
+<div class="container main-container p-3">
+
+    <div class="coursePreview-div-white bg-white border border-gray px-3 py-3 mt-3">
+        <div class="col-md-6 d-flex justify-content-start align-items-center flex-wrap p-0">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Lecture Details</h2>
+
+        </div>
+        <!-- <div class="col-md-6 text-right" >
+            <button type="button" class="bg-dark text-white px-4 py-2 ml-2 border-0">Edit Lecture</button>
+        </div> -->
+        <div class="mt-2 border-0 mx-0 col-md-12 p-0">
+            <!-- start Div for banner-->
+
+            <!--Start div for oView Course Details-->
+            <div class="row m-0">
+                <div class="col-md-12" *ngIf="eiLectureDetailsView">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Lecture Title</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eiLectureDetailsView.lecture_title}} </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Level of Education</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.level_of_education}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Field</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.field}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Standard</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.standard}} </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Subject</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.subject}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Teaching Faculty Details</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.name_of_teaching_faculty}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Topic Cover</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eiLectureDetailsView.topic_cover}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Description</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span> {{eiLectureDetailsView.lecture_description}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Uploaded By</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>{{eiLectureDetailsView.upload_by_id}} </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Uploaded Date</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span>  {{eiLectureDetailsView.upload_date | date}}</p>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Total Number Of Views On Lecture</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
+                            <p class="cursorStyle"><span class="mr-3">:</span>  </p>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Play</p>
+                        </div>
+                       
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
+                            <p><span class="mr-3">:</span></p>
+                            <div class="col-md-12 customVideo" >
+                                <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
+                                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                                    <source src="{{eiLectureDetailsView.lecture}}" type="video/mp4" />
+                               </video>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="row">
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
+                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
+                            <p>Delete</p>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
+                            <p class="cursorStyle"><span class="mr-3">:</span> Delete</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <!--End div for oView Course Details-->
+        </div>
+    </div>
+</div>
+<!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>  -->

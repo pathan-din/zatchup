@@ -55,6 +55,10 @@ export class OnboardedViewComponent implements OnInit {
   pendingChangeReqDetails(){
     this.router.navigate(['admin/change-detail-requests-pending'], {queryParams: {'ei_id': this.eiData.ei_id}})
   }
+  zatchupStarClass(){
+    this.router.navigate(['admin/starclass-course-upload-by-ei'], {queryParams: {'ei_id': this.eiData.ei_id}})
+  }
+
   getProfileData() {
     this.loader.show()
     let url = 'admin/ei-pending-profile/' + this.eiId

@@ -16,14 +16,21 @@
       overflow-x: hidden;
       overflow-y: scroll;
   }
-
+  .groupChatList {
+    height: 200px;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  .studentbulkTable th, tr, td {
+    padding: 8px;
+    border: 0px solid #dee2e6 !important;
+  }
   .position-ppin{
     top: 9px;
     left: 10px;
     font-size: 18px;
     color: #666;
 }
-
   @media (max-width: 767px){
     .teacherChatList {
         height: 300px;

@@ -59,11 +59,43 @@ ul.participantsList span {
     line-height: 40px;
     font-size: 11px;
 }
-
-.img-small {
-    width: 55px;
+.addChatProfile > i {
+    font-size: 50px;
+    line-height: 120px;
+    color: #666;
 }
-
+ul.participantsList li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+ul.participantsList span {
+    margin-top: 0px;
+}
+.pickSize {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+}
+li.user-blkrow {
+    padding: 12px 20px;
+}
+li.user-blkrow:hover {
+    background: #f2f2f2;;
+}
+.img-small {
+    width: 40px;
+}
+.userLabel {
+    font-size: 18px;
+    font-weight: 500;
+}
 @media (max-width: 767px){
     .chat_content{
         width: 100%;
@@ -71,4 +103,14 @@ ul.participantsList span {
     .w-50{
         width: 100% !important;
     }
+    .addChatProfile{
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+    }
+    .addChatProfile i{
+        font-size: 26px;
+        line-height: 26px;
+    }
+    ul.participantsList li{margin: 0px;}
 }

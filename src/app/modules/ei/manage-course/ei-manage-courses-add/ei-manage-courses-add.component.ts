@@ -45,6 +45,7 @@ export class EiManageCoursesAddComponent implements OnInit {
   uploadedCancelCheque: any = '';
   uploadedProfileContent: any = '';
   params:any={};
+  openingYear:any;
   constructor(private activatedRoute: ActivatedRoute, private genericFormValidationService: GenericFormValidationService
     , private router: Router,private base:BaseService, private SpinnerService: NgxSpinnerService, public eiService: EiServiceService,
   public formBuilder: FormBuilder,
@@ -60,12 +61,18 @@ export class EiManageCoursesAddComponent implements OnInit {
       }
       
     })
+    if(localStorage.getItem("userprofile")){
+      var userProfileData = JSON.parse(localStorage.getItem("userprofile"));
+      this.openingYear = new Date(userProfileData.opening_date).getFullYear();
+    }
     this.model2Step.is_login=1;
     this.model2Step.coursedata = [{
       course_name: "",
-      course_type:"",
+      course_type: "",
       description: "",
-      
+      is_teaching_current: true,
+      start_year: "",
+      end_year: "",
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -76,7 +83,7 @@ export class EiManageCoursesAddComponent implements OnInit {
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
-          is_teaching_current: false,
+          is_teaching_current: true,
           alias_class: ""
         }]
       }],
@@ -104,6 +111,9 @@ export class EiManageCoursesAddComponent implements OnInit {
         if(id){
           this.model2Step.coursedata=[];
           this.model2Step.coursedata.push(res.data);
+          this.model2Step.coursedata.forEach(element => {            
+            element.is_teaching_current = element.end_year=='Present'?true:false
+          });
         }
       }else{
         this.SpinnerService.hide();
@@ -161,23 +171,20 @@ export class EiManageCoursesAddComponent implements OnInit {
    */
 
   addAnotherStandard(courseList) {
-
     courseList.standarddata.push({
       standard_name: "",
-      duration:"",
-       
+      duration: "",
       classdata: [{
         class_name: '',
-        teaching_start_year: "",
+        teaching_start_year: courseList.start_year?courseList.start_year:0,
         teaching_start_month: 0,
         teaching_stopped: false,
-        teaching_end_year: 0,
+        teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
         teaching_end_month: 0,
-        is_teaching_current: false,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
         alias_class: ""
       }]
     })
-
   }
 
   /**
@@ -188,14 +195,15 @@ export class EiManageCoursesAddComponent implements OnInit {
     if(!standardList.classdata){
       standardList.classdata=[];
     }
+    console.log('is teaching current....', this.model2Step)
     standardList.classdata.push({
       class_name: '',
-      teaching_start_year: "",
+      teaching_start_year: 0,
       teaching_start_month: 0,
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,
-      is_teaching_current: false,
+      is_teaching_current: true,
       alias_class: ""
     })
   }
@@ -252,15 +260,13 @@ export class EiManageCoursesAddComponent implements OnInit {
    */
 
   addCourseDataStep2(){
-   
-     
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,this.model2Step.coursedata);
-    
     if(this.errorDisplay.valid)
     {
       return false;
     } try {
       this.SpinnerService.show();
+      console.log('')
       if(this.params.action){
         var editUrl = "ei/course-data-by-course-id/"+this.params.course_id+"/";
         this.base.actionForPutMethod(editUrl,this.model2Step).subscribe(res => {
@@ -268,16 +274,13 @@ export class EiManageCoursesAddComponent implements OnInit {
           response = res;
           if (response.status == true) {
               this.SpinnerService.hide();
-              var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
-              this.alert.success(error, 'Success')
+              // var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+              this.alert.success("Course edit successfully", 'Success')
               this.router.navigate(["ei/manage-courses"]);
-              
-             
           } else {
             this.SpinnerService.hide();
             var error = this.eiService.getErrorResponse(this.SpinnerService, response.error)
             this.alert.error(error, 'Error')
-           
           }
   
         }, (error) => {
@@ -292,8 +295,8 @@ export class EiManageCoursesAddComponent implements OnInit {
           response = res;
           if (response.status == true) {
               this.SpinnerService.hide();
-              var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
-              this.alert.success(error, 'Success')
+              // var error = this.eiService.getErrorResponse(this.SpinnerService, response.message)
+              this.alert.success("Course added successfully", 'Success')
               this.router.navigate(["ei/manage-courses"]);
               
              
@@ -346,9 +349,18 @@ export class EiManageCoursesAddComponent implements OnInit {
     }
     
   }
-
+  resetCourseBothYear(courseList){
+    courseList.course_end_year = '';
+  }
+  endYearCheckValidation(classD) {
+    classD.teaching_end_year = 0;
+  }
   goBack(): void{
     this.location.back()
+  }
+
+  updateSection(data: any, isCurrentTeaching: any){
+    data.is_teaching_current = isCurrentTeaching
   }
   
 }

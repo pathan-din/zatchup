@@ -14,6 +14,7 @@ declare var $: any;
 })
 export class EiSubadminRegisterComponent implements OnInit {
   model: any = {};
+  maxDate: any;
   modelForOtpModal: any = {};
   showHidePassword: string = 'password';
   showHidecPassword: string = 'password';
@@ -36,8 +37,10 @@ export class EiSubadminRegisterComponent implements OnInit {
     private loader: NgxSpinnerService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+  ) { 
+    this.maxDate = new Date();
+  }
   ngOnInit(): void {
     this.model.profile = {};
     this.model.profile.pronoun = '';
@@ -53,7 +56,8 @@ export class EiSubadminRegisterComponent implements OnInit {
     try {
       this.loader.show();
      // this.model.username = this.model.email?this.model.email:this.model.phone;
-      this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
+      // this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
+     this.model.profile.dob =this.base.getDateFormat(this.model.profile.dob);
       localStorage.setItem("dob",this.model.profile.dob );
       localStorage.setItem("name",this.model.first_name+' '+this.model.last_name );
       
@@ -102,12 +106,9 @@ export class EiSubadminRegisterComponent implements OnInit {
      const numbers = /^[0-9]+$/;
      if(numbers.test(event.target.value))
      {
-       console.log(numbers.test(event.target.value));
-       
       this.type='tel'
       this.maxlength = 10;
       this.model.username = event.target.value;
-       
      }
      
     }
@@ -205,6 +206,27 @@ export class EiSubadminRegisterComponent implements OnInit {
   }
 
   goToSubadminTermsAndConditions(type: any, action: any, pageName:any){
-    this.router.navigate(['ei/terms-conditions', type, action], {queryParams:{pageName:pageName}})
+
+    const url = this.router.serializeUrl(
+     this.router.createUrlTree(['ei/terms-conditions', type, action], {queryParams:{pageName:pageName}})
+   );
+   window.open('#'+url, '_blank');
+  }
+
+  showHidePasswordFunction(type) {
+    if (type == 'p') {
+      if (this.showHidePassword == 'password') {
+        this.showHidePassword = 'text';
+      } else {
+        this.showHidePassword = 'password';
+      }
+    } else {
+      if (this.showHidecPassword == 'password') {
+        this.showHidecPassword = 'text';
+      } else {
+        this.showHidecPassword = 'password';
+      }
+    }
+
   }
 }

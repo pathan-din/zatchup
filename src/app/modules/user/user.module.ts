@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MaterialDesignModule } from 'src/app/material-design/material-design.module';
-import { environment } from '../../../environments/environment'
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { CarouselModule } from 'ngx-bootstrap/carousel'
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { UserhomeComponent } from './userhome/userhome.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { UserFooterComponent } from './user-footer/user-footer.component';
@@ -70,6 +70,15 @@ import { PendingRequestForUserComponent } from './pending-request-for-user/pendi
 import { SettingComponent } from './setting/setting.component';
 import { PendingCourseDetailComponent } from './pending-course-detail/pending-course-detail.component';
 import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { UserStarclassCourseListComponent } from './user-starclass-course-list/user-starclass-course-list.component';
+import { UserStarclassCoursePreviewComponent } from './user-starclass-course-preview/user-starclass-course-preview.component';
+import { UserLectureDetailsComponent } from './user-lecture-details/user-lecture-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { StarclassMultipleEiComponent } from './starclass-multiple-ei/starclass-multiple-ei.component';
+import { PlayHistoryComponent } from './play-history/play-history.component';
+
 // import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
@@ -132,21 +141,32 @@ import { ChatPrivacyComponent } from './chat-privacy/chat-privacy.component';
     PendingRequestForUserComponent,
     SettingComponent,
     PendingCourseDetailComponent,
-    ChatPrivacyComponent
+    ChatPrivacyComponent,
+    UserStarclassCourseListComponent,
+    UserStarclassCoursePreviewComponent,
+    UserLectureDetailsComponent,
+    ChangePasswordComponent,
+    StarclassMultipleEiComponent,
+    PlayHistoryComponent
   ],
 
   imports: [
     CommonModule,
     MaterialDesignModule,
     UserRoutingModule,
-    PaginationModule,
     TabsModule,
-    FormsModule, NgxSpinnerModule, ReactiveFormsModule,
+    FormsModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
     BsDatepickerModule,
     DirectiveModule,
     SharedModule,
+    NgxPaginationModule,
     CarouselModule.forRoot(),
-    // AngularFireModule.initializeApp(environment.firebase),
-  ]
+    PaginationModule,
+    TooltipModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot()
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserModule { }

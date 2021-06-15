@@ -14,7 +14,7 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-user text-white" aria-hidden="true"></i>
                                     </span>
-                            <input required [(ngModel)]="model.username" name="email_Or_phone_number" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Enter Email ID / Mobile Number">
+                            <input required [(ngModel)]="model.username" name="email_Or_phone_number" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Email ID / Mobile Number">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.email_Or_phone_number"></div>
                     </div>
@@ -25,18 +25,19 @@
                             <span class="ei-signup-bg-box">
                                     <i class="fa fa-unlock-alt text-white" aria-hidden="true"></i>
                                     </span>
-                            <input required [(ngModel)]="model.password" name="password" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="password" placeholder="Enter Password">
+                            <input required [(ngModel)]="model.password" name="password" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing position-relative" type="{{passwordType}}" placeholder="Enter Password">
+                            <i class="fa fa-eye color-gray fa-lg eyeIcon cursorStyle" (click)="viewPassword()" aria-hidden="true "></i>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.password"></div>
                     </div>
 
-                    <p class="text-right textUnderlineStyle commonFontSize mediumFont " (click)="goToEiForgetPasswordPage() ">Forgot Password?</p>
+                    <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="goToEiForgetPasswordPage() ">Forgot Password?</span>
                     <button (click)="doLogin()" type="button " class="bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">Log In
                         <span class="">
                             <i class="fa fa-sign-in text-white" aria-hidden="true"></i>
                             </span>
                     </button>
-                    <p class="text-center commonFontSize mediumFont my-4 ">Don't have an account?<span class="textUnderlineStyle " (click)="goToEiSubadminRegisterPage() ">Sign Up</span></p>
+                    <p class="text-center commonFontSize mediumFont my-2">Don't have an account?<span class="textUnderlineStyle " (click)="goToEiSubadminRegisterPage() ">Sign Up</span></p>
                     <p class="text-center commonFontSize mediumFont m-0 ">Facing issue in registration?</p>
                     <p class="text-center commonFontSize mediumFont mb-0 textUnderlineStyle " (click)="goToEiContactUsPage() ">Contact us</p>
                 </form>
@@ -50,9 +51,15 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 border-0">                
+                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
             <div class="modal-body pl-5 pr-5 text-center">
                 <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize">Enter OTP that Received on your Registerd Email id / Phone Number.</p>
+                <p class="color-black regularFont commonFontSize">Enter OTP Send On Your Registerd {{model.username}}.</p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between loginInput">
                         <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"

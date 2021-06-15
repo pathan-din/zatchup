@@ -21,7 +21,7 @@ p.cursorStyle.ng-star-inserted:hover {
 
 .eyeIcon {
     position: absolute;
-    right: 25px;
+    right: 10px;
     bottom: 16px;
 }
 @media only screen and (max-width: 414px) {
@@ -32,4 +32,10 @@ p.cursorStyle.ng-star-inserted:hover {
         padding-right: .5rem!important;
     } 
 
+}
+
+.SocialIcon {
+    position: absolute;
+    right: 10px;
+    bottom: 16px;
 }

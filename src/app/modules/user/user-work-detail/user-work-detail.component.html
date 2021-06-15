@@ -1,11 +1,11 @@
 <app-user-header></app-user-header>
 
 <div class="container-fluid contentSpaceTop">
-    <div class="row pl-5 pr-5">
-        <div class="col-md-7">
+    <div class="row px-5">
+        <div class="col-md-7 order-sm-6 order-2">
             <img class="img-fluid left-Image mt-4" src="assets/images/userWebsite/enter_your_work_details.png">
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 order-1 order-sm-6 MobileCol6MB">
             <h2 class="mb-3 textSpace">Enter Your Work Details </h2>
 
             <form class="pt-2">
@@ -49,14 +49,14 @@
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.work_country"></div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-6 pl-0">
+                        <div class="col-sm-6 pl-0 pMobileRight-0">
                             <div class="p-0 form-control-input-padding mobile-input-6 mobForm-name">
                                 <input [(ngModel)]="model.work_state" name="work_state" required class="form-control-input form-control form-control-sm border" type="text"
                                     placeholder="Enter State">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.work_state"></div>
                         </div>
-                        <div class="col-sm-6 pr-0">
+                        <div class="col-sm-6 pr-0 pMobileLeft-0">
                             <div class="p-0 form-control-input-padding mobile-input-6">
                                 <input [(ngModel)]="model.work_city" name="work_city" required class="form-control-input form-control form-control-sm border" type="text"
                                     placeholder="Enter City">
@@ -109,7 +109,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 ">
+                        <div class="col-md-6 pMobileLeft-0">
                             <div class="col-md-12 pl-0"> <label> End Date </label></div>
                             <div class="row" *ngIf="!model.is_currently_work">     
                                     <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
@@ -176,14 +176,14 @@
                         <div class="required errorMsg"  [innerHtml]="errorDisplay.country"></div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-6 pl-0">
+                        <div class="col-sm-6 pl-0 pMobileRight-0">
                             <div class="p-0 mobile-input-6 mobForm-name">
                                 <input [(ngModel)]="model.work_state" name="state" required class="form-control-input form-control form-control-sm border" type="text"
                                     placeholder="Enter State">
                             </div>
                             <div class="required errorMsg"  [innerHtml]="errorDisplay.state"></div>
                         </div>
-                        <div class="col-sm-6 pr-0">
+                        <div class="col-sm-6 pr-0 pMobileLeft-0">
                             <div class="p-0 mobile-input-6">
                                 <input [(ngModel)]="model.work_city" name="city" required class="form-control-input form-control form-control-sm border" type="text"
                                     placeholder="Enter City">
@@ -236,9 +236,9 @@
                                     </div>
                                     
                                     <div class="col-6 pr-0">
-                                        <select (change)="isValid($event)" id="year" required [(ngModel)]="yearModel" name ="start_year" class="custom-select form-month-col border">
+                                        <select (change)="isValid($event)"  id="year" required [(ngModel)]="yearModel" name ="start_year" class="custom-select form-month-col border">
                                             <option value="" selected>Year</option>
-                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                            <option value="{{y}}"  *ngFor="let y of year">{{y}}</option>
                                             
                                         </select>
                                     </div>
@@ -250,10 +250,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 pMobileLeft-0">
                                 <div class="col-md-12 pl-0"> <label> End Date </label></div>
                                 <div class="row" *ngIf="!model.is_currently_work">     
-                                        <input [(ngModel)]="model.end_date" name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
+                                        <input [(ngModel)]="model.end_date"  name="end_date" class="h-auto form-control-input form-control form-control-sm" type="hidden">                               
                                     <!-- <div class="col-2 mr-1 p-0">
                                         <input [(ngModel)]="model.end_date" name="end_date" value="{{dateEndModel}}-{{monthEndModel}}-{{yearEndModel}}" class="form-control-input form-control form-control-sm" type="hidden"
                                         >
@@ -277,7 +277,7 @@
                                     <div class="col-6 pr-0">
                                         <select (change)="isValid($event)" id="year" required [(ngModel)]="yearEndModel" name ="year" class="custom-select  form-month-col border">
                                             <option value="" selected>Year</option>
-                                            <option value="{{y}}" *ngFor="let y of year">{{y}}</option>
+                                            <option value="{{y}}" [disabled]="y<yearModel" *ngFor="let y of year">{{y}}</option>
                                             
                                         </select>
                                     </div>
@@ -297,8 +297,10 @@
 
                  
                 </div>
-                <button type="submit" class="btn common-btn regularFont textSpace mt-3"
-                    (click)="goToKycSuccessfulPage()">Submit</button>
+                <div class="text-center">
+                        <button type="submit" class="btn common-btn regularFont textSpace mt-3"
+                        (click)="goToKycSuccessfulPage()">Submit</button>
+                </div>
                 <!-- <button type="submit" class="btn common-btn regularFont textSpace">Save</button> -->
 
             </form>

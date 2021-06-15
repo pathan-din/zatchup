@@ -1,0 +1,117 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+        <div class="row topDiv">
+
+            <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap p-0">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Add Audience for the course</h2>
+            </div>
+            <!-- <div class="col-md-7 col-12 d-flex justify-content-end"> 
+                <div class="form-control-inputDiv rounded p-0 shadow-none">
+                    <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="search" placeholder="Search Teacher">
+                </div>
+                <button type="button" class="bg-dark text-white px-4  h-100 ml-2 border-0 ">Apply</button>
+                <button type="button" class="bg-yellow text-white px-3  h-100 ml-2 border-0"><i class="fa fa-cog" aria-hidden="true"></i></button>
+            </div> -->
+        </div>
+
+        <div class="bg-light-gray px-3 pt-3 pb-4 mt-3">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <h3 class="commonFontSize semiBoldFont m-0">Add Teacher</h3>
+                    <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
+                        <input [(ngModel)]="modelteacher.search" (keyup)="getTeacherList('')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                            type="search" placeholder="Search Teacher">
+                        <span class="position-absolute position-ppin">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <h3 class="commonFontSize semiBoldFont my-2">Add Teacher List</h3>
+
+                    <div class="teacherChatList bg-white border rounded mb-3">
+                        <div class="row m-0 align-items-center border-bottom" *ngFor="let teacher of teacherList;let i=index; ">
+                            <div class="col-lg-2 col-md-2 col-2 text-center">
+                                <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
+                                    class="pickSize border" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-8 pt-1 pb-1">
+                                <h4 class="m-0 semiBoldFont color-black text-capitalize">{{teacher.first_name}} {{teacher.last_name}}</h4>
+                                <p class="small-text-2 m-0">Employee ID: {{teacher.employee_num}}</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-2 text-center">
+                                <button *ngIf="!teacher.is_edit_right" (click)="addTeacherInGroup(teacher,i,'add')" type="button" class="btn bg-paret-green color-white px-1 py-0 rounded small-text-2">Add</button> 
+                                <button *ngIf="teacher.is_edit_right" (click)="addTeacherInGroup(teacher,i,'del')" type="button" class="btn bg-red color-white px-1 py-0 rounded small-text-2">Delete</button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <h3 class="commonFontSize semiBoldFont m-0">Add Student List</h3>
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <!-- <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
+                            <input (keyup)="getGetVerifiedStudent('','')" [(ngModel)]="model.search" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
+                                type="search" placeholder="Search Student">
+                            <span class="position-absolute position-ppin">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                        </div> -->
+                        <h4 class="commonFontSize semiBoldFont mt-2">Select Class</h4>
+
+                        <div class="form-group row mb-1">
+                            <div class="col-md-6 ">
+                                <mat-checkbox [required]="!model.ismoduleaccessclass" [disabled]="model.ismoduleaccessclass" (change)="changeAddClass($event,'allstudent')"
+                                    name="Student" [(ngModel)]="model.ismoduleaccessstudent" class="addStudent-check mediumFont commonFontSize letterspacing ">All Students</mat-checkbox>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.Student"></div>
+                            </div>
+                            <div class="col-md-6 ">
+                                <mat-checkbox [required]="!model.ismoduleaccessstudent" [disabled]="model.ismoduleaccessstudent" [(ngModel)]="model.ismoduleaccessclass"
+                                    name="Class" (change)="changeAddClass($event,'addclass')" class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class</mat-checkbox>
+                                <div class="required errorMsg" [innerHtml]="errorDisplay.Class"></div>
+                            </div>
+
+
+                        </div>
+                        <div *ngIf="model.ismoduleaccessclass" class="d-flex flex-wrap align-items-start">
+                            <h3 class="commonFontSize semiBoldFont">Course</h3>
+                            <div class="groupChatList border mb-2">
+                                <table class="w-100">
+                                    <tr *ngFor="let course of courseListModuleAccess;let i=index;">
+                                        <td>
+                                            <mat-checkbox  [checked]="isAccess(course.id,'course')" (change)="displayStandardListModuleAccess(course.id,$event);getCourseIds(course.id)" required
+                                            name="course_{{i}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{course.course_name}}</mat-checkbox>
+                                            
+                                            <tr *ngFor="let standard of standardListModuleAccess[course.id] ;let j=index;">
+                                                <td>
+                                                    <mat-checkbox [checked]="isAccess(standard.id,'standard')" (change)="displayClassListModuleAccess(standard.id,$event);getStandardIds(standard.id)" 
+                                                    required name="standard_{{i}}_{{j}}" class="addStudent-check mediumFont commonFontSize letterspacing ">{{standard.standard_name}}</mat-checkbox>
+                                                    
+                                                    <tr *ngFor="let class of classListModuleAccess[standard.id];let k=index;">
+                                                        <td>
+                                                            <!-- {{class_id}} -->
+                                                            <mat-checkbox [checked]="isAccess(class.id,'')" (change)="getSectionIds(class.id)"  name="class_{{i}}_{{j}}_{{k}}" required
+                                                            class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
+                                                        </td>
+                                                    </tr>
+                                                </td>
+                                            </tr>
+                                        </td>    
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button (click)="createGroupConfirmationList()" type="button" class="btn bg-paret-green color-white px-4 mt-3 rounded-0">Next</button>
+        </div>
+    </div>
+
+</div>

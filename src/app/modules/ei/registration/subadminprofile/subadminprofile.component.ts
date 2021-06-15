@@ -24,8 +24,8 @@ export class SubadminprofileComponent implements OnInit {
   schoolId: any;
   course_id: any = '';
   standard: any = '';
-  imagePath:any="";
-  subadminProfile: any ={};
+  imagePath: any = "";
+  subadminProfile: any = {};
   uploadInfo: any = {
     "image_type": "file_name",
     "url": "ei/uploaddocsfile/",
@@ -36,25 +36,25 @@ export class SubadminprofileComponent implements OnInit {
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService: EiServiceService,
-    public baseService: BaseService
-    , private route: ActivatedRoute,
+    public baseService: BaseService,
+    private route: ActivatedRoute,
     public formBuilder: FormBuilder,
     private genericFormValidationService: GenericFormValidationService,
-    private alert:NotificationService) { }
+    private alert: NotificationService) { }
 
 
   ngOnInit(): void {
     this.model.class_id = '';
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
-      this.model.school_id=this.schoolId;
-     
+      this.model.school_id = this.schoolId;
+
 
     });
     this.getEiNumber();
-    this.imagePath=this.baseService.serverImagePath;
+    this.imagePath = this.baseService.serverImagePath;
   }
- 
+
   /** 
 * Function Name : fileUploadDocument
 */
@@ -66,76 +66,70 @@ export class SubadminprofileComponent implements OnInit {
     try {
       this.SpinnerService.show();
 
-   
+
 
       this.eiService.uploadFile(formData).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();
-          this.imageUrl=this.imagePath+response.filename
-          this.model.profile_pic=response.filename;
+          this.imageUrl = this.imagePath + response.filename
+          this.model.profile_pic = response.filename;
           return
         } else {
           this.SpinnerService.hide();
-          this.imageUrl='';
-          console.log("Error:Data not update");
+          this.imageUrl = '';
           return '';
         }
 
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
         return '';
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
     }
 
 
   }
-getEiNumber(){
-  try {
-   this.baseService.getData("subadmin/get-employe-num-of-subadmin/").subscribe(res=>{
-    let response:any=res;
-    if(response.status==true){
-      this.model.employee_num=response.employee_num;
-    }else{
-      this.alert.error("Id Number Not Fetched","Error")
+  getEiNumber() {
+    try {
+      this.baseService.getData("subadmin/get-employe-num-of-subadmin/").subscribe(res => {
+        let response: any = res;
+        if (response.status == true) {
+          this.model.employee_num = response.employee_num;
+        } else {
+          this.alert.error("Id Number Not Fetched", "Error")
+        }
+      }, (error => {
+
+      }))
+    } catch (e) {
+
     }
-   },(error=>{
-     console.log("Error",error);
-     
-   }))
-  } catch (e) {
-  
   }
-}
- 
+
   uploadProfilePic(files) {
     let fileList: FileList = files;
     let fileData: File = fileList[0];
-    
     this.imageUrl = '';
   }
 
-  subAdminProfile(){
+  subAdminProfile() {
     this.errorDisplay = {};
-    if(!this.model.profile_pic)
-    {
-      this.alert.warning("Please upload image","Warning");
-     return false; 
+    if (!this.model.profile_pic) {
+      this.alert.error("Profile image is required", "Error");
+      return false;
     }
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-      
+
       this.SpinnerService.show();
-      this.baseService.action('subadmin/additional-info/',this.model).subscribe(res => {
+      this.baseService.action('subadmin/additional-info/', this.model).subscribe(res => {
         let response: any = {}
         response = res;
         if (response.status == true) {
@@ -143,24 +137,28 @@ getEiNumber(){
           this.router.navigate(['ei/thankyou'], { queryParams: { school_id: this.schoolId } });
         } else {
           this.SpinnerService.hide();
-          
+          this.alert.error(response.message,"Error");
         }
 
       }, (error) => {
         this.SpinnerService.hide();
-        console.log(error);
         return '';
 
       });
     } catch (err) {
       this.SpinnerService.hide();
-      console.log("vaeryfy Otp Exception", err);
     }
   }
 
   getProfilePicUrl(data: any) {
-    this.model.profile_pic=data.filename;
+    this.model.profile_pic = data.filename;
     this.imageUrl = this.imagePath + data.filename
+  }
+
+  isValid() {
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
   }
 
 }

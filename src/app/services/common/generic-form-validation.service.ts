@@ -17,19 +17,12 @@ export class GenericFormValidationService {
    * return error object with true and false;
    */
   checkValidationFormAllControls(controls, check, arrayData = []) {
-
-    
-    
     if (arrayData.length > 0) {
-
       this.errorMessageObject = {};
       
-       
-
+      
         for (var i = 0; i < controls.length; i++) {
           //var ngReflectName=controls.attributes.indexOf("ng-reflect-name");
-          
-          
             //Check All Required filled based on the all controlles required property 
             if (controls[i].required && !controls[i].value) {
               this.errorMessageObject[controls[i].id] = controls[i].id.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].id.replace(/_\d+/g, ' ').slice(1).replace(/[^a-zA-Z ]/g, " ").replace(/  +/g, ' ')+'is required.';
@@ -44,41 +37,27 @@ export class GenericFormValidationService {
 
               this.errorMessageObject[controls[i].id] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1).replace(/[^a-zA-Z ]/g, " ").replace(/  +/g, ' ')+'is required.';
             }
-          
-         
         }
-        
-      
     } else {
-      this.errorMessageObject = {};
-     
       
+      this.errorMessageObject = {};
       for (var i = 0; i < controls.length; i++) {
-        
+        //console.log(controls[i]);
         //Check All Required filled based on the all controlles required property 
         if (controls[i].required && !controls[i].value) {
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
         }
         //Check All required filled based on type=radio input box
         else if (controls[i].type == 'radio' && !controls[i].validity.valid) {
-
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
         }
 		    else if (controls[i].type == 'file' && !controls[i].validity.valid) {
-         
-          
           this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + ' is required.';
-         
-         
-        } else if (controls[i].type == 'file' && controls[i].validity.valid) {
-          console.log(controls[i].getAttribute('validFileExtention'));
-          
+        } else if (controls[i].type == 'file' && controls[i].validity.valid) {          
           if(controls[i].getAttribute('validFileExtention')){
-             
-            if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){
-              
+            if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){  
             }else{
-              this.errorMessageObject[controls[i].name] = 'Format Supprted ( '+controls[i].getAttribute('validFileExtention')+' )';
+              this.errorMessageObject[controls[i].name] = 'Format Supported ( '+controls[i].getAttribute('validFileExtention')+' )';
             }
           //return filename.split('.').pop();
           //this.errorMessageObject[controls[i].name] = 
@@ -108,7 +87,7 @@ export class GenericFormValidationService {
               {
                if(controls[i-1].value!=controls[i].value)
                {
-                this.errorMessageObject[controls[i].name] = controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').slice(1)+' and '+controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').slice(1)+ ' does not match.';     
+                this.errorMessageObject[controls[i].name] = controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[0].replace(/_/g, ' ').slice(1)+' and '+controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].getAttribute('match').split(',')[1].replace(/_/g, ' ').slice(1)+ ' is not same.';     
                }
               }
              
@@ -122,16 +101,18 @@ export class GenericFormValidationService {
         }
         //check All pattern based on type = text filed
         else if (controls[i].type == 'text' && controls[i].value) {
-          var msg=" is not valid format.";
+          var msg="Invalid";
           if(controls[i].getAttribute('message'))
           {
             msg=controls[i].getAttribute('message');
           }
           var pattern = new RegExp(controls[i].pattern);
+           
+          
           if (pattern.test(controls[i].value)) {
 
           } else {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + msg;
+            this.errorMessageObject[controls[i].name] = msg+ ' ' +controls[i].name.replace(/_/g, ' ').charAt(0) + controls[i].name.replace(/_/g, ' ').slice(1) + '.';
           }
 
         }

@@ -1,5 +1,5 @@
 <app-ei-sidenav></app-ei-sidenav>
-<div class="container main-container p-3">
+<!-- <div class="container main-container p-3">
     <div class="Payment-div bg-white border border-gray mt-3 px-3 py-3">
         <div class="col-md-6 d-flex justify-content-start flex-wrap align-items-center mb-2">
             <span class="mr-3 cursorStyle">
@@ -44,4 +44,169 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="container main-container p-3">
+    <div class="bg-white border border-gray mt-3 px-3 py-3">
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start align-items-center flex-wrap">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">{{action == 'add' ? 'Create New Course' : 'Edit Course'}}</h2>
+            </div>
+        </div>
+        <div class="row p-3">
+            <div class="col-md-12 bg-light-gray pt-2 pb-3">
+                <!-- <h3 class="mediumFont semiBoldFont newCourseTitle">Create New Course</h3> -->
+                <form class="w-100" id="form1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Name </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input  type="text"  (keyup)="isValid($event)"  maxlength="50" required [(ngModel)]="model.course_name" name="course_name" class="form-control-input form-control  commonFontSize regularFont letterspacing"placeholder="Enter Course Name">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_name"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Education Level </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.level_of_education" name="level_of_education" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Level Of Education">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
+                        </div>
+
+                        <div class="col-md-6" *ngIf="action != 'edit'">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input #inputFile type="file" validFileExtention="mp4,mkv,avi" required  name="course_preview"  (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Course Name">                                    
+                                </div>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
+                        </div>
+
+                        <div class="col-md-6" *ngIf="action == 'edit'">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Preview</label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input #inputFile  type="file" name="course_preview"  (change)="handleFileInput($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Course Name">                                    
+                                </div>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Mp4</p>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_preview"></div>
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="model.course_preview">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <div class="col-md-12 customVideo p-0" >
+                                            <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                                                <source *ngIf="model.course_preview" src="{{model.course_preview}}" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Course Image</label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="file" accept="image/*" [required]="!model.course_image"   name="course_image" type="file" (change)="handleFileImage($event.target.files)" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Course Name">
+                                </div>
+                                <p class="mb-0 mt-1 small-text-2 color-purple">Only Support Jpg/Jpeg/Png </p>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.course_image"></div>
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="model.course_image">
+                                    <div class="form-group row ml-0 mr-0">
+                                        <div class="col-md-12 customVideo p-0">
+                                            <img *ngIf="model.course_image" class="img-fluid w-100 h-100 p-1 border rounded"
+                                            src="{{model.course_image}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Field </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.field" name="field" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Field Name">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.field"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Standard </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="text" (keyup)="isValid($event)"   maxlength="50" required [(ngModel)]="model.standard" name="standard" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Standard Name">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.standard"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Subject </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="50"  required [(ngModel)]="model.subject" name="subject" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Subject Name">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.subject"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Faculty Details </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="150" required [(ngModel)]="model.faculty_details" name="faculty_details" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Faculty Name">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.faculty_details"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Topic Cover </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input type="text" (keyup)="isValid($event)"  maxlength="150"  required [(ngModel)]="model.topic_cover" name="topic_cover" class="form-control-input form-control  commonFontSize regularFont letterspacing"  placeholder="Enter Topic Name">
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.topic_cover"></div>
+                        </div>
+
+                       <div class="col-md-12">
+                            <div class="form-group row  ml-0 mr-2 mt-2">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Description </label>
+                                <div class="form-control-inputDiv rounded-0 p-0 w-100  border-top shadow-none">
+                                    <textarea type="textarea" (keyup)="isValid($event)"  maxlength="200"  required [(ngModel)]="model.description" name="description" class="form-control-input form-control  commonFontSize regularFont letterspacing" rows="4" col="80" ></textarea>
+                                </div>
+                            </div>
+                            <div class="required validationError" [innerHtml]="errorDisplay.description"></div>
+                        </div>
+
+                    </div>
+    
+                    <div class="row justify-content-center d-flex">
+                        <button type="submit" class="bg-paret-green border-0 w-90 px-3 text-white 
+                        text-center p-2 commonFontSize mediumFont letterspacing" (click)="createCourse()">
+                        {{action == 'add' ? 'Create ' : 'Edit '}}</button>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner> 

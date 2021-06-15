@@ -2,67 +2,102 @@
 <div class="container main-container p-3">
 
     <div class="subAdmintable-div bg-white px-3 pt-3 pb-3 mt-3">
-        <h2 class="commonFontSize semiBoldFont m-0">Edit Right Teacher List</h2>
-        <!-- <div class="d-flex justify-content-between mb-2">
-            <h2 class="commonFontSize semiBoldFont m-0">Edit Right Teacher List</h2>
-            <div class="button-div">
-                <button type="button" class="bg-dark text-white py-2 px-3 border-0">Create Course</button>
+        <div class="row topDiv">
+            <div class="col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+                <span class="mr-3 cursorStyle">
+                    <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+                </span>
+                <h2 class="commonFontSize semiBoldFont m-0">Edit Right Teacher List</h2>
             </div>
-        </div> -->
+        </div>
 
-        <div class="tableDiv ">
+        <div class="row my-3 align-items-center" *ngIf="editTeacherAudience.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select *ngIf="!add" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getTeacherAuidenceList('')" [(ngModel)]="editTeacherAudience.page_size">
+                        <option *ngFor="let count of editTeacherAudience.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+
+                    <select *ngIf="add" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="perPage()" [(ngModel)]="editTeacherAudience.page_size">
+                        <option *ngFor="let count of editTeacherAudience.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
+
+                </div>
+            </div>
+           
+        </div>
+
+        <div class="tableDiv mt-3" *ngIf="editTeacherAudience.dataSource">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource">
-                    <ng-container matColumnDef="select" class="ml-2">
+                <mat-table [dataSource]="editTeacherAudience.dataSource | paginate: editTeacherAudience.config">
+                    <ng-container matColumnDef="select">
                         <mat-header-cell *matHeaderCellDef>
-                            <mat-checkbox class="ml-2" (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            <mat-checkbox [(ngModel)]="selectAll" (change)="all($event)">
                             </mat-checkbox>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <mat-checkbox class="ml-2" (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)">
+                            <mat-checkbox [(ngModel)]="element.is_edit_right" (change)="getTeacherAudienceBycheckbox(element.user_id,$event)">
                             </mat-checkbox>
                         </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index;"> {{i + 1}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="profilePic">
                         <mat-header-cell *matHeaderCellDef> Profile Pic</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <img mat-card-avatar [src]="element.profilePic" class="mat-img-proPic" /></mat-cell>
+                            <div class="imgCircle">
+                                <img *ngIf="element.profile_pic" src="{{element.profile_pic}}" alt="School profile" class="img-fluid cerImg rounded">
+                                <img *ngIf="!element.profile_pic" src="assets/images/profile-default.png" alt="School profile" class="img-fluid cerImg rounded">
+                            </div>
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="nameOfTeacher">
                         <mat-header-cell *matHeaderCellDef> Name of Teacher </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.nameOfTeacher}}
+                            {{element.first_name}} {{element.last_name}}
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="relationship">
+                    <!-- <ng-container matColumnDef="relationship">
                         <mat-header-cell *matHeaderCellDef> Relationship </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.relationship}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="employeeID">
+                    <ng-container matColumnDef="empId">
                         <mat-header-cell *matHeaderCellDef>Employee ID
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.employeeID}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.employee_num}} </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="editTeacherAudience.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: editTeacherAudience.displayedColumns; "></mat-row>
 
                 </mat-table>
 
             </div>
         </div>
-        <button type="button" class="bg-paret-green text-white py-2 px-4 mt-3 commonFontSize mediumFont border-0">Submit</button>
+        <pagination-controls *ngIf="editTeacherAudience.dataSource && !add" (pageChange)="getTeacherAuidenceList($event)" class="eiPaginationTag">
+        </pagination-controls> 
+        
+        <pagination-controls *ngIf="editTeacherAudience.dataSource && add" (pageChange)="changePage($event)" class="eiPaginationTag">
+        </pagination-controls> 
+
+        <div class="row pt-3" *ngIf="!editTeacherAudience.dataSource">
+            <div class="col-12 pt-2 pb-2">
+                <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
+            </div>
+        </div>
+        <button *ngIf="editTeacherAudience.dataSource" type="button" class="bg-paret-green text-white py-2 px-4 mt-0 commonFontSize mediumFont border-0" (click)="addTeacher()">{{add == 'add' ? 'Next' : 'Submit'}}</button>
 
     </div>
 

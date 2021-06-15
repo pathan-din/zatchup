@@ -164,6 +164,9 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
 
       }
       if(this.id){
+        if(this.modelDept.work_department){
+          this.model.work_department = this.modelDept.work_department
+        }
         //"user/edit-work-detail/"+id
         this.baseService.actionForPutMethod("user/edit-work-detail/"+this.id+"/",this.model).subscribe(res => {
           let response: any = {}
@@ -189,6 +192,9 @@ month:any=[{monInNumber:'01',monInWord:'Jan'},
   
         });
       }else{
+        if(this.modelDept.work_department){
+          this.model.work_department = this.modelDept.work_department
+        }
         this.baseService.action('user/workdetail/',this.model).subscribe(res => {
           let response: any = {}
           response = res;

@@ -9,6 +9,7 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { MatStepper } from '@angular/material/stepper';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { BaseService } from 'src/app/services/base/base.service';
+import { CustomEvent } from 'src/app/common/image-viewer/image-viewer-config.model';
 
 
 
@@ -36,6 +37,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   documentForm2Elements: any;
   year: any = [];
   month: any = [];
+  opening_date: any = '';
   months: any = [{ 'name': 'JAN' },
   { 'name': 'FEB' },
   { 'name': 'MAR' },
@@ -61,7 +63,10 @@ export class EiOnboardingProcessComponent implements OnInit {
   countIndex: any;
   extentionCheck: any = '';
   params: any;
-  serverImageUrl: any
+  serverImageUrl: any;
+  openingYear: any;
+  images: any = [];
+  imageIndexOne = 0;
   //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
   //     console.log("Processing beforeunload...", this.countIndex);
   //     this.getRegistrationStep();
@@ -85,10 +90,11 @@ export class EiOnboardingProcessComponent implements OnInit {
     this.route.queryParams.subscribe(param => {
       this.countIndex = param.reg_steps - 1;
       this.params = param;
-      if(this.params.action && this.params.action == 'edit')
-      this.getBankDetails()
+      if (this.params.action && this.params.action == 'edit')
+        this.getBankDetails()
       console.log('params is as ::', this.params)
     })
+    
     this.getAllState()
     this.getStepFirstData();
     this.getCourseDetailsByEiOnboard();
@@ -100,7 +106,9 @@ export class EiOnboardingProcessComponent implements OnInit {
     let document: any = {};
     document.name = '';
     document.document = '';
+    document.document_image='';
     this.modelDocumentDetails.push(document);
+    this.getDocumentUploadedByEi()
     var i = 1;
     for (i = 1; i <= 60; i++) {
       this.month.push(i);
@@ -113,7 +121,9 @@ export class EiOnboardingProcessComponent implements OnInit {
       course_name: "",
       course_type: "",
       description: "",
-
+      is_teaching_current: true,
+      start_year: "",
+      end_year: "",
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -124,7 +134,7 @@ export class EiOnboardingProcessComponent implements OnInit {
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
-          is_teaching_current: false,
+          is_teaching_current: true,
           alias_class: ""
         }]
       }],
@@ -132,9 +142,25 @@ export class EiOnboardingProcessComponent implements OnInit {
 
 
   }
-  ngAfterViewInit() {
-    // this.getRegistrationStep()
-  }
+ getDocumentUploadedByEi(){
+   try {
+    
+     this.baseService.getData('ei/document-list-of-school/').subscribe(
+       (res: any) =>
+       {
+         if(res.data.length>0){
+          this.modelDocumentDetails = [];
+          this.modelDocumentDetails = res.data
+         }
+        
+        
+       }
+       
+     )
+   } catch (error) {
+     
+   }
+ }
   /**getBankNameList */
 
   getCourseDetailsByEiOnboard() {
@@ -146,6 +172,11 @@ export class EiOnboardingProcessComponent implements OnInit {
         this.loader.hide();
         if (responce.results.length > 0) {
           this.model2Step.coursedata = responce.results;
+          this.model2Step.coursedata.forEach(element => {
+            element.is_teaching_current = element.end_year=='Present'?true:false
+          });
+          
+          
         }
 
       })
@@ -262,7 +293,13 @@ export class EiOnboardingProcessComponent implements OnInit {
 
           this.model = res;
           if (this.model.opening_date) {
+            var date = this.model.opening_date.split('-');
+            this.opening_date = date[0];
             this.model.opening_date = this.baseService.getDateReverseFormat(this.model.opening_date)
+            this.openingYear = new Date(this.model.opening_date).getFullYear();
+            
+            
+
           } else {
             this.model.opening_date = '';
           }
@@ -280,6 +317,10 @@ export class EiOnboardingProcessComponent implements OnInit {
 
     }
 
+  }
+
+  resetCourseBothYear(courseList){
+    courseList.course_end_year = '';
   }
   /**
    * FUnction Name : getNumberOfStudentList
@@ -326,6 +367,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       course_name: "",
       course_type: "",
       description: "",
+      is_teaching_current: true,
       standarddata: [{
         standard_name: "",
         duration: "",
@@ -337,12 +379,14 @@ export class EiOnboardingProcessComponent implements OnInit {
           teaching_stopped: false,
           teaching_end_year: 0,
           teaching_end_month: 0,
-          is_teaching_current: false,
+          is_teaching_current: true,
           alias_class: ""
         }]
       }],
     })
 
+
+    
 
   }
   goForward() {
@@ -374,6 +418,9 @@ export class EiOnboardingProcessComponent implements OnInit {
       this.eiService.updateOnboardStepFirstData(this.model, localStorage.getItem('user_id')).subscribe(
         (res: any) => {
           if (res.status == true) {
+            this.openingYear = new Date(this.model.opening_date).getFullYear();
+            
+            
             this.loader.hide();
             this.getCourseDetailsByEiOnboard();
             if (this.params.redirect_url) {
@@ -467,12 +514,12 @@ export class EiOnboardingProcessComponent implements OnInit {
       duration: "",
       classdata: [{
         class_name: '',
-        teaching_start_year: 0,
+        teaching_start_year: courseList.start_year?courseList.start_year:0,
         teaching_start_month: 0,
         teaching_stopped: false,
-        teaching_end_year: 0,
+        teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
         teaching_end_month: 0,
-        is_teaching_current: false,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
         alias_class: ""
       }]
     })
@@ -492,7 +539,7 @@ export class EiOnboardingProcessComponent implements OnInit {
       teaching_stopped: false,
       teaching_end_year: 0,
       teaching_end_month: 0,
-      is_teaching_current: false,
+      is_teaching_current: true,
       alias_class: ""
     })
   }
@@ -502,8 +549,39 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Parameter : index of array , dataArray(array)
    *
    */
-  removeData(index, dataArray) {
+  removeData(index, dataArray,document) {
+   
     dataArray.splice(index, 1);
+    if(dataArray.length==1){
+      index=index-1;
+    }
+    
+    
+    if(!dataArray[index].id){
+     
+      
+    }else{
+      let data:any={};
+      data.document_id = dataArray[index].id;
+      try {
+        this.loader.show()
+        this.baseService.action("ei/document-delete-by-id/",data).subscribe((res:any)=>{
+          if(res.status == true){
+            this.loader.hide()
+            this.alert.success(res.message,"Success");
+          }
+          
+        },(error=>{
+          this.loader.hide();
+          this.alert.success(error.error,"Error");
+        })
+        )  
+      } catch (error) {
+        this.loader.hide()
+        this.alert.success(error.error,"Error");
+      }
+    }
+    
   }
 
   endYearCheckValidation(classD) {
@@ -530,6 +608,10 @@ export class EiOnboardingProcessComponent implements OnInit {
             if (this.params.redirect_url) {
               this.router.navigate(["ei/" + this.params.redirect_url]);
             }
+            else if (this.params.reg_steps){
+              let uri = 'ei/onboarding-process'
+              this.reloadWindow(uri, 3)
+            } 
             this.myStepper.selected.completed = true;
             this.myStepper.next();
           } else {
@@ -588,10 +670,12 @@ export class EiOnboardingProcessComponent implements OnInit {
             if (this.params.redirect_url) {
               this.router.navigate(["ei/" + this.params.redirect_url]);
             }
+            if (this.params.reg_steps){
+              let uri = 'ei/onboarding-process'
+              this.reloadWindow(uri, 4)
+            }              
             this.myStepper.selected.completed = true;
             this.myStepper.next();
-
-
           } else {
             this.loader.hide();
             this.alert.error(res.error.message[0], 'Error')
@@ -646,6 +730,9 @@ export class EiOnboardingProcessComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide();
             document.document = res.filename;
+            document.document_image = this.serverImageUrl+res.filename;
+            console.log(this.modelDocumentDetails);
+            
             return res.filename;
           } else {
             this.loader.hide();
@@ -719,6 +806,30 @@ export class EiOnboardingProcessComponent implements OnInit {
     } catch (err) {
       this.loader.hide();
       this.alert.error(err, 'Error')
+    }
+  }
+  reloadWindow(uri, params){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri], { queryParams: { 'reg_steps': params}}));
+  }
+  download_file(fileURL) {
+    let url = this.serverImageUrl+'/'+fileURL
+    window.open(url, '_blank');
+  }
+
+  viewImage(src) {
+    console.log('sdsddd',src)
+    this.images = []
+    this.images.push(src);
+  }
+
+  handleEvent(event: CustomEvent) {
+    console.log(`${event.name} has been click on img ${event.imageIndex + 1}`);
+
+    switch (event.name) {
+      case 'print':
+        console.log('run print logic');
+        break;
     }
   }
 }

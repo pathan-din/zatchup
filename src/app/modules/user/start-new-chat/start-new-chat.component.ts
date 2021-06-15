@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class StartNewChatComponent implements OnInit {
   teachersList: any;
+  schoolId: any
 
   constructor(
     private router: Router,
@@ -18,33 +19,42 @@ export class StartNewChatComponent implements OnInit {
     private baseService: BaseService,
     private alert: NotificationService,
     private loader: NgxSpinnerService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.getTeachersList();
+    this.schoolId = this.route.snapshot.queryParamMap.get('school_id')
+    if (this.schoolId)
+      this.getTeachersList();
   }
 
-  goBack(){
+  goBack() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
     this.router.navigate([returnUrl])
   }
 
-  gotoChat(){
-    this.router.navigate(['user/chat'], { queryParams: { "returnUrl": "user/new-chat"}});
+  gotoChat() {
+    this.router.navigate(['user/chat'], { queryParams: { "returnUrl": "user/new-chat" } });
   }
 
-  getTeachersList(){
+  getTeachersList() {
     this.loader.hide()
-    this.baseService.getData('chat/teachers_school_list/').subscribe(
-      (res: any) =>{
-        console.log('res....',res);
-        this.teachersList = res.results
+    this.baseService.getData('chat/teachers_list_based_on_school/', { 'ei_id': this.schoolId }).subscribe(
+      (res: any) => {
+        if (res.count == 0)
+          this.teachersList = undefined
+        else
+          this.teachersList = res.results
         this.loader.hide()
       },
-      error =>{
+      error => {
         this.alert.error(error.statusText, "Error")
-        console.log('error....',error)
       }
     )
+  }
+
+  getDocumentsChat(uuid) {
+    console.log('uid ...', uuid)
+    localStorage.setItem('uuid', uuid);
+    this.router.navigate(["user/chat"]);
   }
 }

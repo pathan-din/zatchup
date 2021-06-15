@@ -1,6 +1,6 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -16,6 +16,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private datePipe: DatePipe,
     private location: Location,
     private baseService: BaseService,
@@ -113,7 +114,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back()
+    this.router.navigate(['admin/school-management'])
   }
 
   searchList(page?: any) {

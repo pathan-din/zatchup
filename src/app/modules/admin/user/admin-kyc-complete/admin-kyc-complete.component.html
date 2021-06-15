@@ -46,10 +46,10 @@
                     <div class="form-control-inputDiv rounded shadow-none">
                         <select class="custom-select form-control-input" name="kyc_type" [(ngModel)]="kycType">
                             <option value=""> Select KYC</option>
-                            <option value="Aadhar">Aadhar</option>
+                            <option value="Aadhar">Aadhaar</option>
                             <option value="Passport">Passport</option>
                             <option value="Driving License">Driving License</option>
-                            <option value="PAN Card">Pan Card</option>
+                            <!-- <option value="PAN Card">Pan Card</option> -->
                         </select>
                     </div>
                 </div>
@@ -238,3 +238,7 @@
         </div> -->
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>

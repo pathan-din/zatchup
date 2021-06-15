@@ -3,220 +3,81 @@
 <div class="container contentTopSpaceLanding landingPageWidth">
     <div class="landingDiv">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-
             <tabset class="searchTab">
-                <tab heading="People">
-
-                    <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto" (click)="goToMyBuddiesPage()">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100" >Add Buddy</button>
-                            </div>
+                <tab heading="People" class="mt-3" (selectTab)="getfilteredData($event)">
+                    <div class="row">
+                        <div class="col-md-4 my-1">
+                            <input-search [config]="currentCitySearchConfig" [value]="''"
+                                (searchResult)="getCurrentCitySearchResult($event, 'user')" class="h-100">
+                            </input-search>
                         </div>
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy</button>
-                            </div>
+                        <div class="col-md-4 my-1">
+                            <input-search [config]="currentSchoolSearchConfig" [value]="currentSchoolName"
+                                (searchResult)="getCurrentSchoolSearchResult($event)" class="h-100"></input-search>
                         </div>
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
+                        <div class="col-md-4 my-1">
+                            <input-search [config]="pastSchoolSearchConfig" [value]="pastSchoolName"
+                                (searchResult)="getPastSchoolSearchResult($event)" class="h-100"></input-search>
+                        </div>
+                    </div>
+                    <div class="pt-3" *ngIf="dataSource">
+                        <div class="d-flex justify-content-start align-items-center paddingStyle bg-white mt-3" *ngFor="let people of dataSource">
+                            <div (click)="userProfile(people.id)"
+                                class="cursorStyle stuSearch mr-3">
+                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
+                                    class="img-fluid border rounded-circle ">
+                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
+                                    class="img-fluid border rounded-circle ">
                             </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy</button>
+                            <div (click)="userProfile(people.id)"
+                                class="mediumFont cursorStyle">
+                                <div class="commonFontSize semiBoldFont text-capitalize fontSize-18 mb-0">{{people.display}} </div>
+                                <p class="regularFont issueDateFontSize color-gray batchDetail fontSize-16 mb-1"
+                                    *ngIf="people.is_school_mate && currentUser != people.id">School Mate
+                                </p>
+                                <p class="regularFont issueDateFontSize color-gray batchDetail fontSize-16"
+                                    *ngIf="people.is_school_mate && currentUser == people.id">You</p>
                             </div>
                         </div>
                     </div>
-
-                </tab>
-
-                <tab heading="City">
-                    <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
-                                    Buddy</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row paddingStyle bg-white mt-3">
-                        <div
-                            class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                            <img src="assets/images/userWebsite/study_student.png"
-                                class="img-fluid border-0 rounded-circle ">
-                        </div>
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                            <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                            <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                            <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
-                                Buddy</button>
+                    <div class="row pt-3" *ngIf="!dataSource">
+                        <div class="col-12 pt-2 pb-2">
+                            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                         </div>
                     </div>
                 </tab>
 
-                <tab heading="Current School">
-                    <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
+                <tab heading="School" class="mt-3" (selectTab)="getfilteredData($event)">
+                    <div class="row">
+                        <div class="col-md-12 my-1">
+                            <input-search [config]="currentCitySearchConfig" [value]="''"
+                                (searchResult)="getCurrentCitySearchResult($event, 'school')" class="h-100">
+                            </input-search>
+                        </div>
+                    </div>
+
+                    <div class="pt-3" *ngIf="dataSource">
+                        <div class="d-flex justify-content-start align-items-center paddingStyle bg-white mt-3 position-relative" *ngFor="let people of dataSource">
+                            <div (click)="schoolProfile(people.school_id)"
+                                class="stuSearch cursorStyle mr-3">
+                                <img *ngIf="!people.profile_pic" src="assets/images/profile-default.png"
+                                    class="img-fluid border rounded-circle ">
+                                <img *ngIf="people.profile_pic" src="{{people.profile_pic}}"
+                                    class="img-fluid border rounded-circle ">
                             </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
-                                    Buddy</button>
+                            <div (click)="schoolProfile(people.school_id)" class="mediumFont cursorStyle d-flex justify-content-between w-100 flex-wrap">
+                                <div class="mb-1 commonFontSize semiBoldFont text-capitalize fontSize-18">{{people.display}}</div>
+                                <div class="regularFont issueDateFontSize fontSize-16 text-capitalize">{{people.city}}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="row paddingStyle bg-white mt-3">
-                        <div
-                            class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                            <img src="assets/images/userWebsite/study_student.png"
-                                class="img-fluid border-0 rounded-circle ">
-                        </div>
-                        <div
-                            class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                            <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                            <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                            <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
-                                Buddy</button>
+                    <div class="row pt-3" *ngIf="!dataSource">
+                        <div class="col-12 pt-2 pb-2">
+                            <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
                         </div>
                     </div>
                 </tab>
-
-                <tab heading="Past School ">
-                    <div class="pt-3">
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
-                                    Buddy</button>
-                            </div>
-                        </div>
-                        <div class="row paddingStyle bg-white mt-3">
-                            <div
-                                class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                                <img src="assets/images/userWebsite/study_student.png"
-                                    class="img-fluid border-0 rounded-circle ">
-                            </div>
-                            <div
-                                class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                                <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                                <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                            </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                                <button type="button" class="common-btn btn-green-outline regularFont w-100">Add
-                                    Buddy</button>
-                            </div>
-                        </div>
-                    </div>
-                </tab>
-
             </tabset>
-
-            <!-- <div>
-                <div class="row paddingStyle bg-white mb-3">
-                    <div
-                        class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                        <img src="assets/images/userWebsite/study_student.png"
-                            class="img-fluid border-0 rounded-circle ">
-                    </div>
-                    <div
-                        class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                        <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                        <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                        <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy</button>
-                    </div>
-                </div>
-                <div class="row paddingStyle bg-white mb-3">
-                    <div
-                        class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                        <img src="assets/images/userWebsite/study_student.png"
-                            class="img-fluid border-0 rounded-circle ">
-                    </div>
-                    <div
-                        class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                        <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                        <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy</button>
-                    </div>
-                </div>
-                <div class="row paddingStyle bg-white mb-3">
-                    <div
-                        class="col-xl-1 col-lg-1 col-md-1 col-sm-1  col-2 p-0 justify-content-between align-items-center align-self-center">
-                        <img src="assets/images/userWebsite/study_student.png"
-                            class="img-fluid border-0 rounded-circle ">
-                    </div>
-                    <div
-                        class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-6 justify-content-between align-items-center align-self-center mediumFont">
-                        <div class="commonFontSize semiBoldFont">Ankit Sharma</div>
-                        <p class="regularFont issueDateFontSize color-gray batchDetail">Batchmates 2009-10</p>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2  col-4 p-0 mt-auto mb-auto">
-                        <button type="button" class="common-btn btn-green-outline regularFont w-100">Add Buddy</button>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
-
-<!-- <app-user-footer></app-user-footer> -->

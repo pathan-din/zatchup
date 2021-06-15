@@ -134,6 +134,21 @@ import { ChangeInBankDetailsPendingComponent } from './ei/change-in-bank-details
 import { ChangeInBankDetailsViewComponent } from './ei/change-in-bank-details-view/change-in-bank-details-view.component';
 import { AdminStarClassCourseAddComponent } from './start-class/admin-star-class-course-add/admin-star-class-course-add.component';
 import { EditPocDetailsComponent } from './contact-and-static-content/edit-poc-details/edit-poc-details.component';
+import { StarclassManagementComponent } from './start-class/starclass-management/starclass-management.component';
+import { CourseEditComponent } from './start-class/course-edit/course-edit.component';
+import { PlanHistoryComponent } from './start-class/plan-history/plan-history.component';
+import { CurrentPlansComponent } from './start-class/current-plans/current-plans.component';
+import { PricePlanHistoryComponent } from './start-class/price-plan-history/price-plan-history.component';
+import { AllCoursesUploadedByEiComponent } from './start-class/all-courses-uploaded-by-ei/all-courses-uploaded-by-ei.component';
+import { StarclassCoursePreviewComponent } from './start-class/starclass-course-preview/starclass-course-preview.component';
+import { StarclassAddedCourseListComponent } from './start-class/starclass-added-course-list/starclass-added-course-list.component';
+import { AdminStarClassCourseUploadedByEiComponent } from './start-class/admin-star-class-course-uploaded-by-ei/admin-star-class-course-uploaded-by-ei.component';
+import { AdminCourseHistoryComponent } from './admin-course-history/admin-course-history.component';
+import { EiStarclassCourseHistoryComponent } from './ei-starclass-course-history/ei-starclass-course-history.component';
+import { StarclassCoursesDetailsViewComponent } from './start-class/starclass-courses-details-view/starclass-courses-details-view.component';
+import { StarclassLectureDetailsViewComponent } from './start-class/starclass-lecture-details-view/starclass-lecture-details-view.component';
+import { StarclassLectureHistoryComponent } from './start-class/starclass-lecture-history/starclass-lecture-history.component';
+import { EiStarclassLectureHistoryComponent } from './start-class/ei-starclass-lecture-history/ei-starclass-lecture-history.component';
 
 
 const routes: Routes = [
@@ -318,7 +333,7 @@ const routes: Routes = [
     path: 'lecture-complete-pending-status', component: LectureCompletePendingStatusComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'lecture-upload', component: LectureUploadComponent, canActivate: [AuthGuard]
+    path: 'lecture-upload/:id', component: LectureUploadComponent, canActivate: [AuthGuard]
   },
   {
     path: 'fund-active', component: FundActiveComponent, canActivate: [AuthGuard]
@@ -535,6 +550,51 @@ const routes: Routes = [
   },
   {
     path: 'edit-poc', component: EditPocDetailsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'starclass-management', component: StarclassManagementComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'course-edit', component: CourseEditComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'starclass-plan-history', component: PlanHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'current-plans', component: CurrentPlansComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'price-plan-history', component: PricePlanHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'all-active-courses', component: AllCoursesUploadedByEiComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'starclass-course-preview/:id', component:StarclassCoursePreviewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'course-added-list', component:StarclassAddedCourseListComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'starclass-course-upload-by-ei', component:AdminStarClassCourseUploadedByEiComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-course-history', component:AdminCourseHistoryComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'ei-starclass-course-history', component:EiStarclassCourseHistoryComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-courses-details-view/:id', component:StarclassCoursesDetailsViewComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-lecture-details-view', component:StarclassLectureDetailsViewComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'starclass-lecture-history', component:StarclassLectureHistoryComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'ei-starclass-lecture-history', component:EiStarclassLectureHistoryComponent, canActivate:[AuthGuard]
   },
 
 

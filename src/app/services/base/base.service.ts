@@ -10,6 +10,11 @@ import { DatePipe } from '@angular/common';
 export class BaseService {
   environment = environment
   dynamicJson: any
+  public username: any;
+  public firebase_username: any;
+  public  globalYear:any = 1970;
+  
+  public password: any
   public serverImagePath: any = this.environment.serverImagePath;
   constructor(
     private http: HttpClient,
@@ -32,6 +37,17 @@ export class BaseService {
   }
   getDateReverseFormat(date) {
     return new Date(date);
+  }
+
+  setCalanderDate(courseDate){
+    
+  //  var date = courseDate.split(" ");
+  //  console.log(date[1]+"-"+"1"+"-"+"1");
+  var today = new Date();
+   var day = new String(today.getDate()).padStart(2, '0');;
+   var Month =String(today.getMonth() + 1).padStart(2, '0');
+   var cdate = new Date(courseDate+"-"+day+"-"+Month);
+   return cdate;
   }
   setParams(params) {
     let httpParams = new HttpParams();
@@ -132,7 +148,21 @@ export class BaseService {
     });
     return obj
   }
-
+  getCurrentMonth(){
+   var month = new Date().getMonth();
+   monthNew = month.toString();
+   if(month<10){
+    var monthNew="0"+month.toString()
+   }
+   console.log(monthNew);
+   
+   return  monthNew;
+  }
+  getCurrentYear(){
+    var year = new Date().getFullYear();
+    console.log(year);
+    return  year;
+   }
   actionForFormData(url: any, data: any) {
     if (typeof (data) == 'object') {
       return this.http.post(this.environment.baseUrl + url, data)
@@ -199,6 +229,16 @@ export class BaseService {
     var ageDifMs = currentDate - birthDate;
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
     return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  isPhoneNumber(inputtxt) {
+    var phoneno = /^\d{10}$/;
+    if (inputtxt.match(phoneno)) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 

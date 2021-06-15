@@ -14,12 +14,12 @@
         </div>
 
         <!--Start html for filter for No of alumni per page with export button-->
-        <div class="row my-3" *ngIf="dataSource && dataSource.length> 0">
+        <div class="row my-3" *ngIf="subadminCompleteRequest.dataSource ">
             <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-center">
                 <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page </label>
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
-                    <select (change)="getSubadminCompletedRequest('1')" [(ngModel)]="pageSize" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
-                        <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
+                    <select (change)="getSubadminCompletedRequest('1')" [(ngModel)]="subadminCompleteRequest.page_size" class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0">
+                        <option *ngFor="let count of subadminCompleteRequest.pageCounts" value="{{count}}">{{count}}</option>
                     </select>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                     aria-hidden="true"></i>Export</button>
         </div> -->
 
-        <div class="tableDiv" *ngIf="dataSource && dataSource.length> 0">
-            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && dataSource.length > 0">
-                <mat-table [dataSource]="dataSource |  paginate: config">
+        <div class="tableDiv" *ngIf="subadminCompleteRequest.dataSource ">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="subadminCompleteRequest.dataSource ">
+                <mat-table [dataSource]="subadminCompleteRequest.dataSource |  paginate: subadminCompleteRequest.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> {{startIndex + i}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{subadminCompleteRequest.startIndex + i}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="Name">
@@ -101,16 +101,16 @@
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="subadminCompleteRequest.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: subadminCompleteRequest.displayedColumns; "></mat-row>
 
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="dataSource && dataSource.length> 0"
+        <pagination-controls *ngIf="subadminCompleteRequest.dataSource "
             (pageChange)="getSubadminCompletedRequest($event)" class="eiPaginationTag">
         </pagination-controls>
-        <div class="row" *ngIf="dataSource && dataSource.length== 0">
+        <div class="row" *ngIf="!subadminCompleteRequest.dataSource" >
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
             </div>

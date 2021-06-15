@@ -11,35 +11,96 @@
 }
 
 .teacherChatList {
-    height: 220px;
+    height: 365px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
-
+.pdf_customSize{width: 60px;}
 .date-text {
     font-size: .8rem;
     clear: both;
 }
 .chatTxt {
-    background: #f0f5f9;
-    padding: 7px 15px;
-    color: #569d9e;
-    border-radius: 25px;
-    border-bottom-left-radius: 0px;
-    display: inline-block;
-}
-.chatTxt-2{
-    background: #f3f3f3;
-    color: #666666;
-    border-radius: 25px;
-    border-bottom-right-radius: 0px;
-    text-align: right;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 0px;
     float: right;
+    background: #dcf8c6;
+    box-shadow: 0px 1px 2px #ccc;
+}
+
+.chatTxt-2{
+    background: #fff;
+    border-radius: 8px;
+    text-align: right;
+    float: left;
+    margin: 0px;
+    box-shadow: 0px 1px 2px #ccc;
 }
 .position-ppin{
-    top: 9px;
-    right: 8px;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 80px;
 }
+
+.disabled {
+    pointer-events: none;
+}
+
+.send-message-icon{
+    height: 40px;
+}
+
+.chat-rouded {
+    border-radius: 50px;
+    height: 40px;
+}
+.message-icon i {
+    font-size: 26px;
+    color: #919191;
+    margin: 0px 10px 0px 2px;
+}
+
+.profile_pick {
+    border-radius: 50%;
+    max-width: 40px;
+    overflow: hidden;
+    max-height: 40px;
+    min-height: 40px;
+    width: 100%;
+    min-width: 40px;
+    height: 100%;
+    border: 1px solid #ddd;
+    position: relative;
+}
+.chatTxt img {
+    max-width: 245px;
+}
+.setting_info {
+    position: absolute;
+    right: -15px;
+    top: 0px;
+}
+label{margin-bottom: 0em;}
+.setting_info img {
+    height: 22px;
+}
+
+.customButton {
+    left: inherit !important;
+    top: 15px !important;
+    right: -65px !important;
+}
+.profile_pick img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+}
+.message-delivered-icon{display: inline-block; width: 20px;}
+.message-pending-icon{display: none; width: 20px;}
 
 @media (max-width: 767px){
   .teacherChatList {

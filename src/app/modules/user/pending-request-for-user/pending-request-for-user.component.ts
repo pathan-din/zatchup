@@ -1,61 +1,81 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { Location } from '@angular/common';
 
-export interface PendingRequestForUserElement {
- 
-  field_name: string;
-  old_value: string;
-  new_value: string;
-}
-
-const ELEMENT_DATA: PendingRequestForUserElement[] = [];
 @Component({
   selector: 'app-pending-request-for-user',
   templateUrl: './pending-request-for-user.component.html',
   styleUrls: ['./pending-request-for-user.component.css']
 })
 export class PendingRequestForUserComponent implements OnInit {
-  displayedColumns: string[] = ['field_name','old_value', 'new_value'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['field_name', 'old_value', 'new_value'];
+  dataSource: any;
+  kycReqDataSource: any;
 
-
-  constructor( private location: Location,
+  constructor(
+    private location: Location,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
-    private alert: NotificationService,
-    private confirmDialogService: ConfirmDialogService) { }
+    private alert: NotificationService
+  ) { }
 
   ngOnInit(): void {
     this.getSubadminPendingRequest();
+    this.getEKycPendingRequest();
   }
 
   goBack(): void {
     this.location.back()
   }
-  
+
   getSubadminPendingRequest(page?: any) {
     this.loader.show();
-     
-
-    this.baseService.getData('user/pending-user-change-detail-list/').subscribe(
+    let data = {
+      "page_size": 100,
+      "page": 1
+    }
+    this.baseService.getData('user/pending-user-change-detail-list/', data).subscribe(
       (res: any) => {
-        if (res.status == true) {
-          if (!page)
-            
-          if (res.count > 0){
-            this.dataSource = res.results;
-            
-          }else {
-            this.dataSource = []
-        }}
-        else{
-          this.alert.error(res.error.message[0], 'Error')
         this.loader.hide();
-      }}
+        if (res.status == true) {
+          if (res.count > 0) {
+            this.dataSource = res.results;
+          } else {
+            this.dataSource = undefined
+          }
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+      }
+    ), (err: any) => {
+      this.alert.error(err, 'Error')
+      this.loader.hide();
+    }
+  }
+
+  getEKycPendingRequest(page?: any) {
+    this.loader.show();
+    let data = {
+      "page_size": 100,
+      "page": 1
+    }
+    this.baseService.getData('user/upload-ekyc-for-detail-change-list/', data).subscribe(
+      (res: any) => {
+        this.loader.hide();
+        if (res.status == true) {
+          if (res.count != 0) {
+            this.kycReqDataSource = res.results;
+          } else {
+            this.kycReqDataSource = undefined
+          }
+        }
+        else {
+          this.alert.error(res.error.message[0], 'Error')
+        }
+      }
     ), (err: any) => {
       this.alert.error(err, 'Error')
       this.loader.hide();

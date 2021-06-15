@@ -81,7 +81,7 @@
                         </button>
                     </div>
                     <div class="modal-body px-0">
-                        <form (ngSubmit)="addCoupon()" autocapitalize="off" autocomplete="off">
+                        <form #addCouponForm="ngForm" autocapitalize="off" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row  ml-0 mr-0">
@@ -91,10 +91,8 @@
                                             <select class="custom-select  form-control-input" name="coupon_purpose"
                                                 [(ngModel)]="couponModal.purpose" (change)="isValid()" required>
                                                 <option value=""> Select Coupon</option>
-                                                <option value="Onboarding Fees">Onboarding Fees</option>
-                                                <option value="Subscription Fees">Subscription Fees</option>
-                                                <!-- <option value="Advertisement">Advertisement</option>
-                                                <option value="ZatchUp StarClass">ZatchUp StarClass</option> -->
+                                                <option *ngFor="let type of couponTypes" [value]="type.name">{{type.name}}</option>
+                                                <!-- <option value="Subscription Fees">Subscription Fees</option> -->
                                             </select>
                                         </div>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.coupon_purpose"></div>
@@ -198,7 +196,7 @@
                                 </div>
                             </div>
 
-                            <button type="button "
+                            <button type="button" (click)="addCoupon(addCouponForm); sumbitDisable = true" [disabled]="sumbitDisable"
                                 class="bg-purple border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
                                 Submit </button>
                         </form>
