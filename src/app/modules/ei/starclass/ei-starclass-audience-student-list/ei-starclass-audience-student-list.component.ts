@@ -91,21 +91,53 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             this.studentAuidence.config.totalItems = res.count
             if (res.count > 0) {
               var add = this.route.snapshot.queryParamMap.get('action')
-              if (add) {
+              if (add == 'add') {
                 if (this.classId) {
+                  // res.results.forEach(
+                  //   element => {
+                  //     if (this.studentAudienceList.indexOf(element.user_id) === -1) {
+                  //       element.is_access_for_star_class = true;
+                  //     } else {
+                  //       element.is_access_for_star_class = false;
+                  //     }
+                  //   }
+                  // )
+                  
+                  var getData = []
+                  // let getResponce : any = []
+                  // getResponce = res.results
+                  // console.log('get', getResponce);
+                  
+                  // getData = getResponce.find(element => {
+                  //   return  element.is_access_for_star_class = false
+                  // })
                   res.results.forEach(
                     element => {
-                      if (this.studentAudienceList.indexOf(element.user_id) === -1) {
-                        element.is_access_for_star_class = true;
+                      console.log(element.is_access_for_star_class, 'fs');
+                      
+                      if (element.is_access_for_star_class == true ) {
+                       // element.is_access_for_star_class = true;
+                       console.log('mukul');
                       } else {
-                        element.is_access_for_star_class = false;
+                        getData.push (element)
+                        
+                        
+                        //element.is_access_for_star_class = false;
                       }
                     }
                   )
-                  this.studentAuidence.dataSource = res.results;
+                  this.studentAuidence.dataSource = getData;
+                  console.log('first', getData);
+                  
                 }
               }
+              else {
               this.studentAuidence.dataSource = res.results;
+
+              }
+             
+              
+            
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
               let find = this.studentAuidence.dataSource.find(val => {
                 return val.is_access_for_star_class == false
