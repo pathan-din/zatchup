@@ -49,6 +49,7 @@ export class MessagesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })

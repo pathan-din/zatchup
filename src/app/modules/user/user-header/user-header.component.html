@@ -102,7 +102,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" *ngIf="authCheck && showHeader">
+                <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()" class="mx-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white notification_icon">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup>
