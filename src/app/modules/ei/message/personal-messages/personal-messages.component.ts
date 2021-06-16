@@ -349,6 +349,7 @@ export class PersonalMessagesComponent implements OnInit {
     this.router.navigate(["ei/student-verified-list"],{queryParams:{"approved":1,"title":'Verified'}});
   }
   goToTeacherList(){
+    this.closeButton.nativeElement.click();
     this.router.navigate(["ei/subadmin-completed-request"]);
   }
   goBack(): void{
