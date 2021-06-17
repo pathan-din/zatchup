@@ -7,30 +7,7 @@
         </div> -->
     </div>
 
-    <!-- <div class="row settingRow bg-light-gray mt-3">
-        <h1 class="col-12 pt-3 pb-3 chat_contentBox">Personal Setting </h1>
-        <div class="col-12">            
-            <div class="row py-2">
-
-                <div class="col-12 border-bottom mb-3"> 
-                    <div class="row mb-3">
-                        <div class="col-4"><span class="commonFontSize semiBoldFont">Mother Name</span></div>
-                        <div class="col-4"><span>ndjnklfgbgf</span></div>
-                        <div class="col-4 text-right"><a class="border-0 text-right" data-toggle="collapse" href="#name" role="button" aria-expanded="false" aria-controls="name"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div>
-                    </div>
-                </div> 
-
-                <div class="col-12 border-bottom mb-3"> 
-                    <div class="row mb-3">
-                        <div class="col-4"><span class="commonFontSize semiBoldFont">Father Name</span></div>
-                        <div class="col-4"><span>dfmkfjkgfh</span></div>
-                        <div class="col-4 text-right"><a class="border-0" data-toggle="collapse" href="#emailId" role="button" aria-expanded="false" aria-controls="emailId"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div> -->
+  
 
     <div class="row settingRow bg-white mt-3" *ngFor="let objEpData of epData ">
         <div class="col-md-12">
@@ -384,7 +361,7 @@
                                     <label for="" class=" commonFontSize mediumFont letterspacing">Email</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                        <input type="email" placeholder="Add Email"
+                                        <input type="email" placeholder="Add Email" maxlength="50" (keyup)="isValid($event)"
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                             autocomplete="off" name="email" [(ngModel)]="model.email" required
                                             id="email">
@@ -398,7 +375,9 @@
                                     <label for="" class=" commonFontSize mediumFont letterspacing">Mobile Number</label>
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                        <input type="tel" [numberOnly] maxLength="10" placeholder="Enter Mobile Number"
+                                        <input type="tel" [numberOnly]  placeholder="Enter Mobile Number" 
+                                        maxlength="10" minlength="10" (keyup)="isValid($event)"
+                            
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                             autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
                                             id="phone_number">
