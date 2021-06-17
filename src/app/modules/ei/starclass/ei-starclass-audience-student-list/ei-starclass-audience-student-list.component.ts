@@ -235,8 +235,9 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
       let list  = this.studentAudienceList.join(',')
       this.loader.show();
       this.model = {
-        'student_id': list.length > 0 ? list : undefined,
-        'course_id': this.route.snapshot.queryParamMap.get('course_id')
+        'student_id': list.length > 0 ? list : '',
+        'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+        'action': this.action
       }
       this.baseService.action('starclass/ei-course-assign-to-user/', this.model).subscribe(
         (res: any) => {
@@ -256,7 +257,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             }
             
             var add = this.route.snapshot.queryParamMap.get('action')
-            if (add) {
+            if (this.action == 'add') {
               this.router.navigate(['ei/star-class-courses-uploaded-by-ei'])
             }
             else {

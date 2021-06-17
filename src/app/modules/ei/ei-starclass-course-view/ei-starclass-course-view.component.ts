@@ -67,7 +67,7 @@ goToLectureView(id) {
 }
 
 goToStudentAudienceAdd(id){
-  this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': id, 'edit': 'edit'}})
+  this.router.navigate(['ei/star-class-audience-student-list'],{queryParams:{ 'course_id': id, 'action': 'edit'}})
   console.log(id);
 }
 
