@@ -58,7 +58,7 @@ export class MessagesComponent implements OnInit {
 
   }
   setUserSettingOnFirebase(event,type){
-    console.log(event,this.currentUser,type );
+    //console.log(event,this.currentUser,type );
     if(event){
      if(type=='online'){
        this.setting_user.online=event;
@@ -82,6 +82,15 @@ export class MessagesComponent implements OnInit {
      this.firestore.collection('setting').doc(this.currentUser).set({
        setting: this.setting_user 
       })
+   } 
+   blockUsersList(){
+    this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
+     if(res.data){
+       
+     }
+
+    })
+    
    } 
   getUsersWithModeratorRole(loginfirebase_id) {
     var that = this;

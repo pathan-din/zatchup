@@ -85,7 +85,12 @@ export class UserKycVerificationComponent implements OnInit {
       this.year.push(i);
     }
     for (var d = 1; d <= 31; d++) {
-      this.date.push(d);
+      if(d<9){
+        this.date.push('0'+d);
+      }else{
+        this.date.push(d);
+      }
+      
     }
   }
   getKYC() {
