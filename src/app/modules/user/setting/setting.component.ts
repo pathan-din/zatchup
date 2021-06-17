@@ -27,6 +27,8 @@ export class SettingComponent implements OnInit {
   mobStatus: boolean = true;
   emailStatus: boolean = true;
   errorOtpModelDisplay: any = [];
+  maxlength: any;
+  type: any;
 
 
   constructor(
@@ -104,6 +106,8 @@ export class SettingComponent implements OnInit {
     }
   }
 
+  
+
   goToUpdatePersonalnfo() {
     try {
       this.loader.show();
@@ -125,11 +129,17 @@ export class SettingComponent implements OnInit {
   }
 
   submitPersonalDetails() {
-    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    this.errorDisplay = {};
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
     if (this.errorDisplay.valid) {
       return false;
     } else {
       try {
+        this.errorDisplay = {};
+    this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
+    if (this.errorDisplay.valid) {
+      return false;
+    }
         var url = 'user/request-change-user-detail-by-ei/';
         if (this.editModel.key == 'dob') {
           this.editModel.value = this.baseService.getDateFormat(this.model[this.editModel.key]);
