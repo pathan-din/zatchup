@@ -93,10 +93,10 @@ export class EiSubadminRegisterComponent implements OnInit {
   }
   isCheckEmailOrPhone(event){
     
-    this.maxlength = ''
+    
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(re.test(event.target.value)){
-      
+      this.maxlength = ''
       this.type='email';
       this.maxlength = 50;
       this.model.username =event.target.value;
@@ -107,6 +107,7 @@ export class EiSubadminRegisterComponent implements OnInit {
      if(numbers.test(event.target.value))
      {
       this.type='tel'
+      this.maxlength = ''
       this.maxlength = 10;
       this.model.username = event.target.value;
      }
