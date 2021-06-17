@@ -105,7 +105,8 @@ export class UserHeaderComponent implements OnInit {
         if (response.status == true) {
 
           this.userProfile = response;
-          localStorage.setItem('userId', this.userProfile.user_id)
+          localStorage.setItem('userId', this.userProfile.user_id ),
+          localStorage.setItem('zatchupId', this.userProfile.zatchupId)
         }
       }, (error) => {
         this.loader.hide();

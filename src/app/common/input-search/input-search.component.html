@@ -90,6 +90,14 @@
                             <div *ngIf="viewZatchupId" class="searchUserDesignation">
                                 {{data['school_code']}}
                             </div>
+
+                            <div *ngIf="viewRollNuOrSchoolID && data['user_type'] && data['user_type'] == 'STUDENTS'" class="searchUserDesignation">
+                                Roll Number: {{data['roll_no']}}
+                            </div>
+
+                            <div *ngIf="viewRollNuOrSchoolID && data['user_type'] && data['user_type'] == 'ALUMINI'" class="searchUserDesignation">
+                                School Id: {{data['school_id']}}
+                            </div>
                         </div>
                         <div class="searchCity" *ngIf="viewCity">
                             <!-- <span>jaipur</span> -->

@@ -42,7 +42,8 @@ export class EiSidenavComponent implements OnDestroy {
     "viewSubMenu": true,
     "rightIcon": true,
     "viewCity": true,
-    "showValue": true
+    "showValue": true,
+    "viewRollNuOrSchoolID": true
 
   }
   searchItem: any = '';

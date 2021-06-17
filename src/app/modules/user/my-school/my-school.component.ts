@@ -38,8 +38,6 @@ export class MySchoolComponent implements OnInit {
     // this.userRole = JSON.parse(localStorage.getItem('getreject')).role
     setTimeout(() => {
       this.userRole = JSON.parse(localStorage.getItem('getreject')).role
-      console.log('fdhf0', this.userRole);
-      
       }, 500);
 
   }

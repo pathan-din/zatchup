@@ -149,6 +149,7 @@ import { StarclassCoursesDetailsViewComponent } from './start-class/starclass-co
 import { StarclassLectureDetailsViewComponent } from './start-class/starclass-lecture-details-view/starclass-lecture-details-view.component';
 import { StarclassLectureHistoryComponent } from './start-class/starclass-lecture-history/starclass-lecture-history.component';
 import { EiStarclassLectureHistoryComponent } from './start-class/ei-starclass-lecture-history/ei-starclass-lecture-history.component';
+import { SubadminProfileComponent } from './subadmin/subadmin-profile/subadmin-profile.component';
 
 
 const routes: Routes = [
@@ -595,6 +596,9 @@ const routes: Routes = [
   },
   {
     path: 'ei-starclass-lecture-history', component:EiStarclassLectureHistoryComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'subadmin-profile', component:SubadminProfileComponent, canActivate: [AuthGuard]
   },
 
 

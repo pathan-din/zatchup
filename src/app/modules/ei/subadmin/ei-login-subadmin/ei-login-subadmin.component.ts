@@ -29,7 +29,8 @@ export class EiLoginSubadminComponent implements OnInit {
     private alert: NotificationService,
     private afAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
-    private formValidationService: GenericFormValidationService) { }
+    private formValidationService: GenericFormValidationService
+  ) { }
 
   ngOnInit(): void {
   }
