@@ -19,7 +19,7 @@
                             <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}</p>
+                            <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
                             <span class="small-text-2" *ngIf="!blockRecipant && presence$ | async as presence">
                                 <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
                                 <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimeAgo(presence.timestamp)}}</label>
@@ -29,10 +29,10 @@
                         </div>
                     </div>
                     <div class="setting_info text-right pr-3 dropdown">
-                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="recepintDetails.roll_no">
                             <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle">
                         </a>
-                        <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton" *ngIf="recepintDetails.roll_no">
                             <span *ngIf="!isblock" (click)="blockPaticipant(recepintDetails.id)" class="dropdown-item cursorStyle">Block User</span>
                             <span *ngIf="isblock" (click)="unblockPaticipant(recepintDetails.id)" class="dropdown-item cursorStyle">Unblock User</span>
                         </div>
@@ -52,8 +52,8 @@
 
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
-                                <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
-                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                               <!-- <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                             </span>
                         </div>
 
@@ -62,8 +62,8 @@
                                 <!-- {{objCon | json}} -->
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
-                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
-                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                                    <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                                 </span>
                             </div>
                             <div *ngIf="objCon.document">
@@ -74,8 +74,8 @@
                                     <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                                 </a>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
-                                    <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
-                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                                    <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                                 </span>
                             </div>
                         </div>
@@ -122,8 +122,8 @@
 
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4">{{objCon.user_name}} {{getTimeAgo(objCon.timestamp)}}
-                                <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
-                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                                <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                             </span>
                         </div>
 
@@ -184,7 +184,7 @@
                 </div>
                 <div class="col-12" *ngIf="blockRecipant">
                     <div class="text-center py-3">
-                        You can't send messages to this user because both are no friend.
+                        You can't send messages to this user.
                     </div>
                 </div>
             </div>
