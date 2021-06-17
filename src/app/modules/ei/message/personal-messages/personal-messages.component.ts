@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./personal-messages.component.css']
 })
 export class PersonalMessagesComponent implements OnInit {
+  @ViewChild('closeButton') closeButton: any;
   isLoggedIn: boolean;
   messageData: any = [];
   currentUser: any = "";
@@ -276,15 +277,18 @@ export class PersonalMessagesComponent implements OnInit {
           }
           this.lastGroupmsgCount[element.payload.doc.id]=[]
           this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
-            res1.data.forEach(elements => {
-              if(elements.is_read==1 && elements.user_send_by!==localStorage.getItem('fbtoken')){
-                if(!this.lastGroupmsgCount[element.payload.doc.id].find(el=>{return el.timestamp==elements.timestamp})){
-                  this.lastGroupmsgCount[element.payload.doc.id].push(elements);
+            if(res1){
+              res1.data.forEach(elements => {
+                if(elements.is_read==1 && elements.user_send_by!==localStorage.getItem('fbtoken')){
+                  if(!this.lastGroupmsgCount[element.payload.doc.id].find(el=>{return el.timestamp==elements.timestamp})){
+                    this.lastGroupmsgCount[element.payload.doc.id].push(elements);
+                  }
+                  
+                  
                 }
-                
-                
-              }
-            });
+              });
+            }
+           
             
 
           })
@@ -339,6 +343,14 @@ export class PersonalMessagesComponent implements OnInit {
     }
     
     this.router.navigate(["ei/messages-details"],{queryParams:{"chat":chatConversion,"isread":1}});
+  }
+  goToStudentList(){
+    this.closeButton.nativeElement.click();
+    this.router.navigate(["ei/student-verified-list"],{queryParams:{"approved":1,"title":'Verified'}});
+  }
+  goToTeacherList(){
+    this.closeButton.nativeElement.click();
+    this.router.navigate(["ei/subadmin-completed-request"]);
   }
   goBack(): void{
     this.location.back();

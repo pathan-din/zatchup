@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="tableDiv mt-2">
-            <div class="mat-elevation-z1 table-responsive">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
                 <mat-table [dataSource]="dataSource | paginate: config">
 
                     <ng-container matColumnDef="SNo">
@@ -59,7 +59,12 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="dataSource"  (pageChange)="getPastReminder($event)" class="eiPaginationTag"></pagination-controls>
+        <div class="row" *ngIf="dataSource.length<=0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">Records not found.</p>
+                </div>
+            </div>
+        <pagination-controls *ngIf="dataSource.length>0"  (pageChange)="getPastReminder($event)" class="eiPaginationTag"></pagination-controls>
 
     </div>
 </div>

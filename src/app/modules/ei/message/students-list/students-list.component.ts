@@ -146,6 +146,7 @@ export class StudentsListComponent implements OnInit {
   
       this.loader.show();
       this.model.page = page;
+     // this.model.page_size = 1000;
       if(localStorage.getItem("sections")){
         this.sectionsList = JSON.parse(localStorage.getItem("sections"));
         if(JSON.parse(localStorage.getItem("sections")).length>0){
@@ -327,9 +328,9 @@ export class StudentsListComponent implements OnInit {
       
     })
     //atLeastOneTeacher=true;
-    if(!atLeastOneStudent){
-      return this.alert.error("Please atleast one student in this group","Error");
-    }
+    // if(!atLeastOneStudent){
+    //   return this.alert.error("Please atleast one student in this group","Error");
+    // }
     if(!atLeastOneTeacher){
       return this.alert.error("Please atleast one teacher in this group","Error");
     }

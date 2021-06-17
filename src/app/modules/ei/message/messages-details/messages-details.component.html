@@ -14,14 +14,14 @@
         <div *ngIf="!params.chat" class="bg-light-gray p-3 mt-3">
             <div class="profile_detail d-flex align-items-center justify-content-start mb-3 position-relative">
                 <div class="profile_pick">
-                    <img *ngIf="!recepintDetails" src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
+                    <img  src="{{recepintDetails.photoUrl?recepintDetails.photoUrl:'./assets/images/userWebsite/profile-image.png'}}"
                         class="img-fluid cursorStyle">
                     <!-- <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}"
                         class="img-fluid cursorStyle"> -->
                 </div>
                 <div class="profile_name ml-2 text-capitalize">
                     <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
-                        <span class="small-text-2">({{recepintDetails.class_name}} {{recepintDetails.roll_no}})</span>
+                        <span class="small-text-2">{{recepintDetails.class_name?'('+recepintDetails.class_name + recepintDetails.roll_no+')':''}}</span>
                     </p>
                     <span class="small-text-2" *ngIf="presence$ | async as presence ">
                         <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green': 'offline'">{{presence.status}}</label>
@@ -46,7 +46,7 @@
                     <div class="col-md-12 col-12">
                         <div *ngIf="!objCon.document">
                             <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{getTimeAgo(objCon.timestamp)}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{objCon.user_send_by!=currentUser?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                     <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
@@ -81,8 +81,8 @@
                     <p *ngIf="recepientGroup" class="m-0">{{recepientGroup.group_title}}
                         <span class="small-text-2"></span>
                     </p>
-                     <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers">
-                        <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{','}} </label>
+                     <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i=index;">
+                        <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{i==receipentUsers.length-1?'':','}} </label>
                     </span>
                 </div>
                 <!--<div class="setting_info text-right pr-3 dropdown">
@@ -100,7 +100,7 @@
                     <div class="col-md-12 col-12">
                         <div *ngIf="!objCon.document">
                             <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray">{{objCon.user_send_by!=currentUser?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                     <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                                 </span>
@@ -113,7 +113,7 @@
                             <a *ngIf="getFileExtention(objCon.msg)!='pdf'" href="{{objCon.msg}}" target="_blank">
                                 <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
                             </a>
-                            <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{objCon.user_name}} {{getTimeAgo(objCon.timestamp)}}
+                            <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{objCon.user_send_by!=currentUser?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                 <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                 <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                             </span>

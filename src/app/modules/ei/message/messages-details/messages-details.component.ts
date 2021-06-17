@@ -49,6 +49,7 @@ export class MessagesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
@@ -100,6 +101,8 @@ export class MessagesDetailsComponent implements OnInit {
             this.is_last_seen=res.setting.is_seen;
 
             
+          }else{
+            this.online=true;
           }
         })
         //console.log(this.currentUser);
@@ -221,7 +224,13 @@ export class MessagesDetailsComponent implements OnInit {
      // localStorage.setItem("receipent",uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
         this.recepintDetails = res.data();
+        if(this.recepintDetails.photoUrl==null){
+          this.recepintDetails.photoUrl=undefined;
+        }
+        console.log(this.recepintDetails);
       });
+      
+      
     }
    
   }
@@ -377,9 +386,12 @@ export class MessagesDetailsComponent implements OnInit {
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
-          res.data.forEach(element => {
+          if(res.data){
+              res.data.forEach(element => {
             element.is_read=0
           });
+          }
+        
           
           this.conversation = res.data;
           this.dataStudent = res.data;

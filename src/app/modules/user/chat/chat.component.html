@@ -94,8 +94,8 @@
                             <p *ngIf="recepientGroup" class="m-0"> {{recepientGroup.group_title}} 
                                 <span class="small-text-2"></span>
                             </p>
-                             <span class="small-text-2" *ngFor="let user of receipentUsers">
-                                <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{','}}</label>
+                             <span class="small-text-2" *ngFor="let user of receipentUsers;let i =index;">
+                                <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{i==receipentUsers.length-1?'':','}}</label>
                             </span>
                         </div>
                     </div>
