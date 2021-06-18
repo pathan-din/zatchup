@@ -567,7 +567,7 @@
                                         <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload Cancelled Cheque</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input (change)="handleCancelChequeFileInput($event.target.files)" id="cheque" name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            <input (change)="handleCancelChequeFileInput($event.target.files)" #myInputVariable id="cheque" name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 type="file" validFileExtention="png,jpeg,jpg" required>
                                         </div>
                                         <p class="pt-1">* only support images</p>

@@ -19,6 +19,7 @@ export class UserLectureDetailsComponent implements OnInit {
   model: any;
   currentTime: number;
   startTime: any;
+  zatchupId: any;
 
   constructor(
     private location: Location,
@@ -36,6 +37,7 @@ export class UserLectureDetailsComponent implements OnInit {
     if(this.route.snapshot.queryParamMap.get('id')){
       this.getLectureDetails()
     }
+    this.zatchupId = localStorage.getItem('zatchupId')
   }
  
   ngOnDestroy(){
