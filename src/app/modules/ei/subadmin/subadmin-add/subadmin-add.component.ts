@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
-import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { findIndex } from 'rxjs/operators';
 import { Location } from '@angular/common';
-declare var $: any;
+
 @Component({
   selector: 'app-subadmin-add',
   templateUrl: './subadmin-add.component.html',
@@ -39,12 +36,11 @@ export class SubadminAddComponent implements OnInit {
   type: string;
   constructor(
     private router: Router,
+    private location: Location,
     private baseService: BaseService,
-    private SpinnerService: NgxSpinnerService,
-    public eiService: EiServiceService,
-    private genericFormValidationService: GenericFormValidationService,
+    private loader: NgxSpinnerService,
     private alert: NotificationService,
-    private location: Location
+    private formValidationService: GenericFormValidationService
   ) { }
 
 
@@ -77,33 +73,33 @@ export class SubadminAddComponent implements OnInit {
   }
   isValid() {
     if (Object.keys(this.errorDisplay).length !== 0) {
-      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+      this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
 
   addSubadmin() {
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-      this.SpinnerService.show();
+      this.loader.show();
       this.baseService.action('ei/add-subadmin-by-ei/', this.model).subscribe(res => {
-        this.SpinnerService.hide();
+        this.loader.hide();
         let response: any = {};
         response = res;
         if (response.status == true) {
-          this.SpinnerService.hide();
+          this.loader.hide();
           this.alert.success("Signup request successfully send", 'Success');
           this.router.navigate(['ei/subadmin-management']);
         } else {
-          this.SpinnerService.hide();
-          this.errorDisplay = this.eiService.getErrorResponse(this.SpinnerService, response.error)
+          this.loader.hide();
+          this.errorDisplay = this.baseService.getErrorResponse(this.loader, response.error)
           this.alert.error(this.errorDisplay, 'Error');
         }
       }, (error) => {
-        this.SpinnerService.hide();
+        this.loader.hide();
       });
     } catch (e) {
     }
