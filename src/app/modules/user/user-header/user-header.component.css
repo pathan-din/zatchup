@@ -131,6 +131,12 @@ left: 10px}
     width: max-content;
 }
 
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    right: 0px !important;
+    left: auto !important;
+}
+
 @media (min-width: 992px) and (max-width: 1200px){
     .customUserSearch {
         width: 33%;
