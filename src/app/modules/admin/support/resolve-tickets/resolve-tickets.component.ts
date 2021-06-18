@@ -1,9 +1,8 @@
 import { DatePipe, Location } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
-import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ResolveTicket } from '../Modals/tickets-list.modal';
 
@@ -13,44 +12,49 @@ import { ResolveTicket } from '../Modals/tickets-list.modal';
   styleUrls: ['./resolve-tickets.component.css']
 })
 export class ResolveTicketsComponent implements OnInit {
-  resolveTicket : ResolveTicket
-  model:any={};
-  params:any;
+  resolveTicket: ResolveTicket
+  model: any = {};
+  params: any;
   constructor(
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
     private datePipe: DatePipe,
     private location: Location,
-    private validationService: GenericFormValidationService,
-    private router: Router,
     private route: ActivatedRoute
-  ) { 
-    
+  ) {
+    this.resolveTicket = new ResolveTicket();
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params=>{
+    this.route.queryParams.subscribe(params => {
       this.params = params
     })
-    this.resolveTicket = new ResolveTicket();
+    this.getAllState()
     this.getResolveTicketsList();
     this.resolveTicket.pageCounts = this.baseService.getCountsOfPage();
   }
 
-  
+
   goBack(): void {
-    // let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
-    // this.router.navigate([returnUrl]);
     this.location.back();
-    // console.log(location)
   }
-  openReasonModel(reason){
+  openReasonModel(reason) {
     this.model.resolve_comment = reason
   }
   getResolveTicketsList(page?: any) {
     this.loader.show();
+    let stateFind: any;
+    if (this.resolveTicket.allStates && this.resolveTicket.stateId) {
+      stateFind = this.resolveTicket.allStates.find(val => {
+        return val.id == this.resolveTicket.stateId
+      })
+    }
     this.resolveTicket.listParams = {
+      'start_date': this.resolveTicket.filterFromDate !== undefined ? this.datePipe.transform(this.resolveTicket.filterFromDate, 'yyyy-MM-dd') : '',
+      'end_date': this.resolveTicket.filterToDate !== undefined ? this.datePipe.transform(this.resolveTicket.filterToDate, 'yyyy-MM-dd') : '',
+      "state": stateFind ? stateFind.state : '',
+      "status": this.resolveTicket.status,
       "page_size": this.resolveTicket.pageSize,
       "page": page,
       "ticket_status": this.params.ticket_status
@@ -78,6 +82,17 @@ export class ResolveTicketsComponent implements OnInit {
       this.alert.error(err, 'Error')
       this.loader.hide();
     }
+  }
+
+  getAllState() {
+    this.loader.show()
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.resolveTicket.allStates = res.results
+        this.loader.hide()
+      }
+    )
   }
 
 }
