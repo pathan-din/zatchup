@@ -17,11 +17,10 @@ export class TicketsOnboardingComponent implements OnInit {
   @ViewChild('closeModel') closeModel: any;
   ticketsList: TicketsList
   errorDisplay: any = {};
-  // userId: any;
-  // comment: any;
   id: any;
   ticket_status: any;
   resolve_comment: any;
+
   constructor(
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -30,14 +29,13 @@ export class TicketsOnboardingComponent implements OnInit {
     private location: Location,
     private validationService: GenericFormValidationService,
     private router: Router,
-    private route: ActivatedRoute
   ) {
     this.ticketsList = new TicketsList();
     this.ticketsList.maxDate = new Date();
   }
 
   ngOnInit(): void {
-    // this.getAllState();
+    this.getAllState();
     this.getTicketsList('');
     this.ticketsList.pageCounts = this.baseService.getCountsOfPage();
 
@@ -48,13 +46,13 @@ export class TicketsOnboardingComponent implements OnInit {
   }
   getTicketsList(page?: any) {
     this.loader.show();
-    // let stateFind: any;
+    let stateFind: any;
     // let cityFind: any;
-    // if (this.ticketsList.allStates && this.ticketsList.stateId) {
-    //   cityFind = this.ticketsList.allCities.find(val => {
-    //     return val.id == this.ticketsList.cityId
-    //   })
-    // }
+    if (this.ticketsList.allStates && this.ticketsList.stateId) {
+      stateFind = this.ticketsList.allStates.find(val => {
+        return val.id == this.ticketsList.stateId
+      })
+    }
     // if (this.ticketsList.allCities) {
     //   stateFind = this.ticketsList.allStates.find(val => {
     //     return val.id == this.ticketsList.stateId
@@ -64,7 +62,7 @@ export class TicketsOnboardingComponent implements OnInit {
       'start_date': this.ticketsList.filterFromDate !== undefined ? this.datePipe.transform(this.ticketsList.filterFromDate, 'yyyy-MM-dd') : '',
       'end_date': this.ticketsList.filterToDate !== undefined ? this.datePipe.transform(this.ticketsList.filterToDate, 'yyyy-MM-dd') : '',
       // "city": cityFind ? cityFind.city : '',
-      // "state": stateFind ? stateFind.state : '',
+      "state": stateFind ? stateFind.state : '',
       "status": this.ticketsList.status,
       "page_size": this.ticketsList.pageSize,
       "ticket_status": 'false',
@@ -104,15 +102,16 @@ export class TicketsOnboardingComponent implements OnInit {
   }
 
 
-  // getAllState() {
-  //   this.baseService.getData('user/getallstate/').subscribe(
-  //     (res: any) => {
-  //       console.log('get state res ::', res)
-  //       if (res.count > 0)
-  //         this.ticketsList.allStates = res.results
-  //     }
-  //   )
-  // }
+  getAllState() {
+    this.loader.show()
+    this.baseService.getData('user/getallstate/').subscribe(
+      (res: any) => {
+        if (res.count > 0)
+          this.ticketsList.allStates = res.results
+        this.loader.hide()
+      }
+    )
+  }
 
   // getCities() {
   //   this.baseService.getData('user/getcitybystateid/' + this.ticketsList.stateId).subscribe(
