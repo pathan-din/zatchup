@@ -21,10 +21,10 @@ export class TicketsList {
         totalItems: 0
     }
     displayedColumns: string[] = ['position', 'ticket_raising_date', 'ticketName', 'zatchUpID',
-        'status', 'message', 'resolve'];
+        'nameOfSchool', 'state', 'status', 'message', 'resolve'];
     pageCounts: any;
 
 }
 export class ResolveTicket extends TicketsList {
-    displayedColumns: any = ['position', 'zatchUpID', 'ticketName', 'ticket_raised_date', 'resolveDate', 'resolveBy', 'resolveComment',];
+    displayedColumns: any = ['position', 'zatchUpID', 'nameOfSchool', 'state', 'ticketName', 'ticket_raised_date', 'resolveDate', 'resolveBy', 'status', 'resolveComment',];
 }
