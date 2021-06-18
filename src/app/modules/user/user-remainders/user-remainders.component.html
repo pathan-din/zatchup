@@ -25,6 +25,7 @@
                         <img *ngIf="reminder.attachment" src="{{reminder.attachment}}" class="img-fluid">
 
                         <div class="reminder_date mt-2">{{reminder.recived_time}}</div>
+                        <button type="button" class="border-0 bg-paret-green color-white px-4 py-2 mt-3 rounded-0" (click)="reminderReply(reminder.message, reminder.sender.firebase_id)" >Reply</button>
                     </div>
                 </div>
             </div>

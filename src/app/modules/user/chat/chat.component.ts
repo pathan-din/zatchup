@@ -162,6 +162,12 @@ export class ChatComponent implements OnInit {
         this.getDocumentsChat(this.uuid);
       }, 500);
     }
+
+    if(localStorage.getItem('reminderText')){
+      this.model.comment = localStorage.getItem('reminderText')
+      // this.sendChat()
+      localStorage.removeItem('reminderText')
+    }
     
   }
 

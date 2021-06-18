@@ -86,7 +86,8 @@ export class MessagesComponent implements OnInit {
    blockUsersList(){
     this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
      if(res.data){
-       
+      console.log(res);
+      
      }
 
     })
@@ -122,6 +123,7 @@ export class MessagesComponent implements OnInit {
           }
           this.lastGroupmsgCount[element.payload.doc.id]=[]
           this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
+           if(res1){
             res1.data.forEach(elements => {
               if(elements.is_read==1 && elements.user_send_by!==localStorage.getItem('fbtoken')){
                 if(!this.lastGroupmsgCount[element.payload.doc.id].find(el=>{return el.timestamp==elements.timestamp})){
@@ -130,7 +132,9 @@ export class MessagesComponent implements OnInit {
                 
                 
               }
-            });});
+            });
+           }
+           });
             res.reciepent.forEach(ele => {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
                 var index=this.groupList.find((e)=>{return e.group_title==res.group_title})

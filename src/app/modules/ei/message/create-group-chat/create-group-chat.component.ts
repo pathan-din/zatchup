@@ -72,6 +72,24 @@ export class CreateGroupChatComponent implements OnInit {
           user_recepient[fbtoken] = objGroupData;
           recepient.push(user_recepient)
         }
+        if(localStorage.getItem("userprofile")){
+          var userprofile = JSON.parse(localStorage.getItem("userprofile"));
+          if (userprofile.ei_Details) {
+
+            let user_recepient: any = {};
+            let objGroupData: any = {};
+            objGroupData.is_read = 0;
+            objGroupData.is_admin = 1;
+            objGroupData.is_remove = 0;
+            objGroupData.is_remove_date = "";
+            objGroupData.is_exit = 0;
+            objGroupData.is_exit_date = "";
+            objGroupData.is_student = 1;
+            user_recepient[userprofile.ei_Details.firebase_id] = objGroupData;
+            recepient.push(user_recepient)
+          }
+        }
+        
 
         this.groupUserLists.forEach(element => {
           let user_recepient: any = {};

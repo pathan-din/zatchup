@@ -9,6 +9,58 @@
                 <h2 class="commonFontSize semiBoldFont m-0 "> Resolved Tickets </h2>
             </div>
         </div>
+        <div class="filterDiv">
+            <form autocapitalize="off" autocomplete="off">
+                <div class="d-flex flex-wrap align-items-end">
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised From</label>
+                        <div class="rounded-0 p-0 shadow-none">
+                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                                id="fromDate" name="fromDate" type="text" placeholder="YYYY/MM/DD" bsDatepicker
+                                [maxDate]="resolveTicket.maxDate" [(ngModel)]="resolveTicket.filterFromDate"
+                                #fromDate="ngModel" 
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
+                        </div>
+                    </div>
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> Ticket Raised To</label>
+                        <div class="rounded-0 p-0 shadow-none">
+                            <input class="form-control formfocusStyle commonFontSize regularFont letterspacing "
+                                type="text" id="toDate" name="toDate" placeholder="YYYY/MM/DD" bsDatepicker
+                                [maxDate]="resolveTicket.maxDate" [(ngModel)]="resolveTicket.filterToDate"
+                                #fromDate="ngModel" 
+                                [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
+                        </div>
+                    </div>
+                    <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <select class="custom-select form-control-input" id="state"
+                                [(ngModel)]="resolveTicket.stateId" name="state">
+                                <option value=""> Select State</option>
+                                <option *ngFor="let state of resolveTicket.allStates" [value]="state.id">{{state.state}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="widthFull mr-3 mt-3 custumInputWidth">
+                        <label for="" class="mediumFont commonFontSize letterspacing"> School Status</label>
+                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
+                            <select class="custom-select form-control-input" id="status"
+                                [(ngModel)]="resolveTicket.status" name="status">
+                                <option value=""> Select School Status</option>
+                                <option value="1"> Onboarded </option>
+                                <option value="0"> Pending for Approval</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="bg-purple text-white px-5 py-2 h-100  border-0 mt-3"
+                        (click)="getResolveTicketsList()">Apply</button>
+                </div>
+            </form>
+
+        </div>
         <div class="row my-3">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 d-flex flex-row align-items-center ">
 
@@ -30,12 +82,27 @@
                 <mat-table [dataSource]="resolveTicket.dataSource | paginate: resolveTicket.config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> {{ i + resolveTicket.startIndex }} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{ i + resolveTicket.startIndex }}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
                         <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="nameOfSchool">
+                        <mat-header-cell *matHeaderCellDef> School Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{element.name_of_school}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="state">
+                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.state}}
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ticketName">
@@ -57,67 +124,24 @@
                         <mat-cell *matCellDef="let element"> {{element.resolve_by}} </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> School Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button"
+                                class=" {{element.is_onboarded == '0' ? 'bg-paret-green' : 'bg-yellow'}} text-white h-100 border-0 rounded">
+                                {{element.is_onboarded == '0' ? 'Pending For Approval' : 'Onboarded'}}
+                            </button>
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="resolveComment">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
-                                aria-hidden="true" (click)="openReasonModel(element.resolve_comment)" data-toggle="modal" data-target="#messageFromSchool"
-                                ></i> </mat-cell>
-                    </ng-container>
-
-                    <!-- <ng-container matColumnDef="address">
-                        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.address1}} {{element.address2}}
+                                aria-hidden="true" (click)="openReasonModel(element.resolve_comment)"
+                                data-toggle="modal" data-target="#messageFromSchool"></i>
                         </mat-cell>
                     </ng-container>
-
-                    <ng-container matColumnDef="state">
-                        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-                        <mat-cell *matCellDef="let element">
-                            {{element.state}}
-                        </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="city">
-                        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.city}}
-                        </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="board">
-                        <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.university}}
-                        </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="emailId">
-                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.email_to}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="phoneNumber">
-                        <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.phone}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="message">
-                        <mat-header-cell *matHeaderCellDef> Message From School </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
-                                aria-hidden="true" data-toggle="modal" data-target="#messageFromSchool"
-                                (click)="viewMessage(element)"></i> </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="resolve">
-                        <mat-header-cell *matHeaderCellDef class="text-center"> Resolve </mat-header-cell>
-                        <mat-cell *matCellDef="let element " class="justify-content-center text-center">
-                            <i class="fa fa-check mr-2 color-green cursorStyle" (click)="setResolveData(element)" title="view" aria-hidden="true "
-                                data-toggle="modal" data-target="#resolveModal"></i>
-                        </mat-cell>
-                    </ng-container> -->
 
                     <mat-header-row *matHeaderRowDef="resolveTicket.displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: resolveTicket.displayedColumns; "></mat-row>
@@ -152,9 +176,9 @@
                         <div class="form-group row ml-0 mr-0">
                             <!-- <label for="" class="mediumFont commonFontSize letterspacing"> Message </label> -->
                             <div class="shadow-none w-100">
-                                <textarea value="{{model.resolve_comment}}" 
-                                class="form-control-input form-control commonFontSize regularFont letterspacing border" 
-                                readonly></textarea>
+                                <textarea value="{{model.resolve_comment}}"
+                                    class="form-control-input form-control commonFontSize regularFont letterspacing border"
+                                    readonly></textarea>
                             </div>
                         </div>
                     </div>

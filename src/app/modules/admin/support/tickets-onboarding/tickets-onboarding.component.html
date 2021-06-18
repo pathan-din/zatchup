@@ -72,28 +72,17 @@
                                 [bsConfig]="{isAnimated: true, adaptivePosition: true, dateInputFormat: 'YYYY-MM-DD' }">
                         </div>
                     </div>
-                    <!-- <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
+                    <div class="widthFull mr-3 mt-3 custumInputWidth dropdown-lg-Div ">
                         <label for="" class="mediumFont commonFontSize letterspacing"> State</label>
                         <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="pastEI"
-                                [(ngModel)]="ticketsList.stateId" (change)="getCities()" name="state">
+                            <select class="custom-select form-control-input" id="state"
+                                [(ngModel)]="ticketsList.stateId" name="state">
                                 <option value=""> Select State</option>
                                 <option *ngFor="let state of ticketsList.allStates" [value]="state.id">{{state.state}}
                                 </option>
                             </select>
                         </div>
                     </div>
-                    <div class="widthFull mr-3 mt-3 custumInputWidth">
-                        <label for="" class="mediumFont commonFontSize letterspacing"> City</label>
-                        <div class="form-control-inputDiv rounded p-0  border-top shadow-none">
-                            <select class="custom-select form-control-input" id="pastEI"
-                                [(ngModel)]="ticketsList.cityId" name="city">
-                                <option value=""> Select City</option>
-                                <option *ngFor="let city of ticketsList.allCities" [value]="city.id">{{city.city}}
-                                </option>
-                            </select>
-                        </div>
-                    </div> -->
 
                     <div class="widthFull mr-3 mt-3 custumInputWidth">
                         <label for="" class="mediumFont commonFontSize letterspacing"> School Status</label>
@@ -151,17 +140,10 @@
                         <mat-cell *matCellDef="let element"> {{element.zatchup_id}} </mat-cell>
                     </ng-container>
 
-                    <!-- <ng-container matColumnDef="eiName">
+                    <ng-container matColumnDef="nameOfSchool">
                         <mat-header-cell *matHeaderCellDef> School Name </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.name_of_school}}
-                        </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="address">
-                        <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.address1}} {{element.address2}}
                         </mat-cell>
                     </ng-container>
 
@@ -172,36 +154,9 @@
                         </mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="city">
-                        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.city}}
-                        </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="board">
-                        <mat-header-cell *matHeaderCellDef>Board/University </mat-header-cell>
-                        <mat-cell *matCellDef="let element ">
-                            {{element.university}}
-                        </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="emailId">
-                        <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.email_to}} </mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="phoneNumber">
-                        <mat-header-cell *matHeaderCellDef>Phone Number</mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.phone}} </mat-cell>
-                    </ng-container> -->
-
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> School Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <!-- <i class="fa fa-eye mr-2 color-lightBlue fa-lg cursorStyle" title="View Details"
-                                aria-hidden="true" data-toggle="modal" data-target="#messageFromSchool"
-                                (click)="viewMessage(element)"></i>  -->
                             <button type="button" class=" {{element.is_onboarded == '0' ? 'bg-paret-green' : 'bg-yellow'}} text-white h-100 border-0 rounded">
                                 {{element.is_onboarded == '0' ? 'Pending For Approval' : 'Onboarded'}}
                             </button>

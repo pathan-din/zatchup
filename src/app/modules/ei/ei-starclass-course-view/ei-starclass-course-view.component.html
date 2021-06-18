@@ -12,7 +12,7 @@
 
         <div class="row mt-3">
             <div class="col-md-12 customVideo" *ngFor="let details of eiStarclassCourseView.courseDetails">
-                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                <video controls="controls" disablePictureInPicture controlsList="nodownload" preload="auto" ng-click="video($event)">
                      <source src="{{details.course_preview}}" type="video/mp4" />
                 </video>
             </div>

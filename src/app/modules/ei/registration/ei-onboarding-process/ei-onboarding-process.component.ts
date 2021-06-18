@@ -25,6 +25,7 @@ import { CustomEvent } from 'src/app/common/image-viewer/image-viewer-config.mod
 export class EiOnboardingProcessComponent implements OnInit {
   @ViewChild(MatStepper, { static: false }) myStepper: MatStepper;
   @ViewChild('inputFile') myInputVariable: ElementRef;
+  @ViewChild('myInputVariable') inputFile: ElementRef;
 
   completed: boolean = false;
   state: string;
@@ -491,11 +492,13 @@ export class EiOnboardingProcessComponent implements OnInit {
     let fileData: File = fileList[0];
     this.uploadedCancelCheque = fileData;
     this.errorDisplay.cheque = "";
-    if (this.uploadedCancelCheque.type != "application/pdf"
-      && this.uploadedCancelCheque.type != "image/png"
+    if ( 
+       this.uploadedCancelCheque.type != "image/png"
       && this.uploadedCancelCheque.type != "image/jpg"
       && this.uploadedCancelCheque.type != "image/jpeg") {
-      this.errorDisplay.cheque = "only support pdf and image";
+        this.alert.error("File format not supported", 'Error');
+        this.inputFile.nativeElement.value = '';
+      //this.errorDisplay.cheque = "only support pdf and image";
     }
     //type: "application/pdf"
     //type: "image/png"
