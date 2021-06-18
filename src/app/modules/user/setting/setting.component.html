@@ -376,13 +376,13 @@
 
                                     <div class="form-control-inputDiv rounded p-1 shadow-none">
                                         <input type="tel" [numberOnly]  placeholder="Enter Mobile Number" 
-                                        maxlength="10" minlength="10" (keyup)="isValid($event)"
+                                        maxlength="10"  (keyup)="isValid($event)"
                             
                                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
-                                            autocomplete="off" name="phone_number" [(ngModel)]="model.phone" required
-                                            id="phone_number">
+                                            autocomplete="off" name="mobile_number" [(ngModel)]="model.phone" required
+                                            id="mobile_number">
                                     </div>
-                                    <div class="required errorMsg" [innerHtml]="errorDisplay.phone_number"></div>
+                                    <div class="required errorMsg" [innerHtml]="errorDisplay.mobile_number"></div>
                                 </div>
                             </div>
                             <div class="form-group row " *ngIf="editModel.key=='roll_no'">
