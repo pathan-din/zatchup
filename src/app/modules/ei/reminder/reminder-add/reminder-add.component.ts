@@ -55,6 +55,7 @@ export class ReminderAddComponent implements OnInit {
   studentListSendForBulk: any=[];
   attachment:any='';
   course : any = ''
+  verifiedStudentList: any;
   constructor(
     private router: Router,
     private location: Location,
@@ -69,6 +70,8 @@ export class ReminderAddComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getStudentList()
+   
   }
 
   displayCourseListModuleAccess() {
@@ -139,6 +142,20 @@ getGender(data: any) {
     return this.baseService.getGender(data)
   return ''
 }
+
+getStudentList(){
+  this.model = {
+    'approved' : 1
+  }
+  this.baseService.getData('ei/student-list/', this.model).subscribe(
+    (res: any) => {
+      this.verifiedStudentList = res.results
+      console.log(this.verifiedStudentList);
+      
+    }
+  )
+}
+
 getGetVerifiedStudent(page, strFilter) {
 
   try {
@@ -152,6 +169,7 @@ if(this.model.teaching_class){
     (res: any) => {
       this.loader.hide();
       this.studentList = res.results;
+      console.log(this.studentList);
       this.model.page = page
       this.pageSize = res.page_size;
       this.model.page_size = this.pageSize
@@ -188,6 +206,8 @@ if(this.model.teaching_class){
       })
 
       this.dataSource = arrStudentList;
+      
+      
       if (res.status == false) {
         this.alert.error(res.error.message[0], 'Error')
       }
@@ -217,6 +237,18 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
   this.model.studentlists_id=this.studentListSendForBulk.join();
 }
+
+submitStudents(){
+  if(this.verifiedStudentList.length > 0) {
+    
+    this.submitReminder()
+  }
+  else{
+    this.loader.hide()
+    this.alert.error('No Student In Your School', 'Error')
+  }
+}
+
 submitReminder(){
   try {
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,true,[]);

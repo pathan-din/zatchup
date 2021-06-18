@@ -73,4 +73,12 @@ export class UserRemaindersComponent implements OnInit {
     this.location.back()
   }
 
+  reminderReply(reminderText, reminderFireBaseId){
+    localStorage.setItem('uuid', reminderFireBaseId);
+    // localStorage.setItem('friendlidt_id', userFriendId)
+    localStorage.setItem('isread', "1");
+    this.router.navigate(["user/chat"]);
+  }
+
+
 }
