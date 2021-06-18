@@ -285,7 +285,8 @@ export class EiSidenavComponent implements OnDestroy {
 
             } else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {
               if (response.ekyc_rejected_reason) {
-                this.alert.info("Your Profile has been rejected reason by " + response.ekyc_rejected_reason + " Remark : " + response.ekyc_rejected_remark, "Rejected");
+                var reasonTextMessage = "Your KYC is rejected because of " + response.ekyc_rejected_reason + ' ' + response.ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
+                this.alert.info(reasonTextMessage, 'Rejected');
                 this.router.navigate(['ei/kyc-verification']);
               } else {
                 if (response.reg_step == 4) {

@@ -1,0 +1,9 @@
+.thankYouImg {
+    width: 60%;
+}
+
+@media (max-width: 575px){
+    .thankYouImg {
+        width: 100%;
+    }
+}

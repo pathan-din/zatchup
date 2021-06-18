@@ -58,18 +58,18 @@
     <div class="modal fade" id="PersonalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog " role="document">
             <div class="modal-content unverified container-fluid">
-                <div class="modal-header p-0 border-0 pt-2">
-                    <h2 class="modal-title commonFontSize mediumFont mb-0">Messages</h2>
+                <div class="modal-header p-0 border-0 pt-2 d-flex justify-content-center">
+                    <h2 class="modal-title commonFontSize mediumFont">Messages</h2>
                     <button type="button " #closeButton class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
                         <span aria-hidden="true "> &times; </span>
                     </button>
                 </div>
                 <div class="modal-body px-0 pt-0">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 text-center">
                             <p>Select a member who chat as</p>
-                            <button (click)="goToStudentList()" type="button" class="bg-light-gray m-1 p-1 border-0">Chat with Students</button>
-                            <button (click)="goToTeacherList()" type="button" class="bg-light-gray m-1 p-1 border-0">Chat with Teachers</button>
+                            <button (click)="goToStudentList()" type="button" class="bg-light-gray m-1 btn border-0">Chat with Students</button>
+                            <button (click)="goToTeacherList()" type="button" class="bg-light-gray m-1 btn border-0">Chat with Teachers</button>
                         </div>
                     </div>
                 </div>
