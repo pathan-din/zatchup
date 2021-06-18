@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./subadmin-profile.component.css']
 })
 export class SubadminProfileComponent implements OnInit {
+  epData: any
 
   constructor() { }
 
