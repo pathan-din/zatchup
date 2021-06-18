@@ -30,7 +30,7 @@
                         <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize text-capitalize position-relative">{{msgObj.user_name}}
                             <!-- <span class="small-text-2">(Student)</span> -->
                             <!-- <span class="float-right">2:26 PM</span> -->
-                            <span class="chatCount">{{messageData[msgObj.user_friend_id].length}}</span>
+                            <span class="chatCount" *ngIf="messageData[msgObj.user_friend_id].length>0">{{messageData[msgObj.user_friend_id].length}}</span>
                         </p> 
                         <p class="color-fadded-black">{{getExtenion(msgObj.msg)}}</p>                                                   
                     </div>
@@ -44,7 +44,7 @@
                         <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize text-capitalize position-relative">{{msgObjG.group_title}}
                             <!-- <span class="small-text-2">(Student)</span> -->
                             <!-- <span class="float-right">2:26 PM</span> -->
-                            <span class="chatCount">{{lastGroupmsgCount[msgObjG.uuid].length}}</span>
+                            <span class="chatCount" *ngIf="lastGroupmsgCount[msgObjG.uuid].length>0">{{lastGroupmsgCount[msgObjG.uuid].length}}</span>
                         </p> 
                         <p class="color-fadded-black" *ngFor="let lastChat of lastGroupmsg[msgObjG.uuid];">{{lastChat.document?'Attachment':lastChat.msg}}</p>                                                   
                     </div>

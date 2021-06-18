@@ -29,6 +29,7 @@ export class MessagesComponent implements OnInit {
   setting_user:any={'online':true,'is_seen':true,'is_read':true}
   messageData: any[];
   lastGroupmsgCount: any=[];
+  recentMesg:any=[];
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -46,7 +47,7 @@ export class MessagesComponent implements OnInit {
       if(this.currentUser){
         this.firestore.collection('setting').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
           if(res){
-            console.log(res.setting);
+           // console.log(res.setting);
             
             this.setting_user=res.setting;
           }
@@ -86,7 +87,7 @@ export class MessagesComponent implements OnInit {
    blockUsersList(){
     this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
      if(res.data){
-      console.log(res);
+      console.log(res.data);
       
      }
 
@@ -116,7 +117,7 @@ export class MessagesComponent implements OnInit {
       res.forEach(element => {
          
         this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res:any)=>{
-          console.log(res);
+          //console.log(res);
           res.uuid=element.payload.doc.id;
           if(!res.group_icon){
             res.group_icon="assets/images/userWebsite/users.png";
@@ -196,7 +197,7 @@ export class MessagesComponent implements OnInit {
                       }
                     }
                   });
-                  console.log("kkkk",res1.data);
+                  //console.log("kkkk",res1.data);
                 }
                 this.firestore.collection('user_friend_list').doc(element1).get().toPromise().then((resRecepent: any) => {
                   var uuid = ''
