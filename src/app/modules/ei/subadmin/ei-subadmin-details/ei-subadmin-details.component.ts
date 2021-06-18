@@ -115,4 +115,32 @@ export class EiSubadminDetailsComponent implements OnInit {
   goBack(): void{
     this.location.back()
   }
+
+  deleteSubAdmin(){
+    try {
+      this.SpinnerService.show()
+      this.model = {
+        'subadmin_id': this.route.snapshot.queryParamMap.get('id')
+      }
+
+      this.base.action('ei/delete-subadmin-account/', this.model).subscribe(
+        (res : any) => {
+          if(res.status == true){
+            this.alert.success(res.message, 'Success')
+            this.router.navigate(['ei/subadmin-completed-request'])
+          }
+          else{
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.SpinnerService.hide()
+        }, (error) =>{
+          this.alert.error('Please try again', 'Error')
+          this.SpinnerService.hide()
+        }
+      )
+    } catch (error) {
+      this.SpinnerService.hide()
+    }
+  }
+
 }
