@@ -107,9 +107,8 @@
                             <span class="position-absolute position-ppin">
                                 <i (click)="file.click()" class="fa fa-paperclip" aria-hidden="true"></i>
                             </span>
-
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.reminder"></div>
                         </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.reminder"></div>
                         <input (change)="uploadProfilePic($event.target.files)" name="reminderimage" style="display: none;" #file type="file" name="file">
                         <img *ngIf="attachment" src="{{attachment}}" style="width:100px;height: 100px;" />
 
@@ -203,7 +202,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <button type="button" class="border-0 bg-paret-green color-white px-4 py-2 mt-3 rounded-0" (click)="submitReminder()">Send</button>
+                <button type="button" class="border-0 bg-paret-green color-white px-4 py-2 mt-3 rounded-0" (click)="submitStudents()">Send</button>
             </div>
         </form>
     </div>

@@ -119,12 +119,10 @@
                     </div>
 
                     <!-- <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
-                            <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Total Number Of Views On Lecture</p>
-                        </div>
+                       
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont color-blue">
-                            <p class="cursorStyle"><span class="mr-3">:</span>  </p>
+                            <marquee class="cursorStyle" >{{this.zatchupId}}</marquee>
+                           
                         </div>
                     </div> -->
 
@@ -132,13 +130,13 @@
                         <div
                             class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
-                            <p>Play</p>
+                            <p>Play</p> <br> {{this.zatchupId}}
                         </div>
                         <div class="col-xl-9 col-lg-8 col-md-8 col-7 commonFontSize regularFont">
                             <p><span class="mr-3">:</span></p>
                             <div class="col-md-12 customVideo">
                                 <!-- <iframe class="previewVideo w-100 border border-gray" src="http://staging.zatchup.com/zatchupapi/zatchup/media/lectures_upload/preview/file_example_MP4_480_1_5MG.mp4"></iframe> -->
-                                <video  (play)="playClick($event, eiLectureDetailsView.id, eiLectureDetailsView.course_id )" controls="controls" controlsList="nodownload">
+                                <video  (play)="playClick($event, eiLectureDetailsView.id, eiLectureDetailsView.course_id )" controls="controls" disablePictureInPicture controlsList="nodownload">
                                     <source src="{{eiLectureDetailsView.lecture}}" type="video/mp4" />
                                 </video>
                             </div>
