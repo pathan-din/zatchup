@@ -221,7 +221,7 @@
                         <div class="col-sm-6 MobileCol6MB">
                             <label for="fname" class="mediumFont commonFontSize letterspacing">First Name</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="first_name" required [(ngModel)]="model.first_name"
+                                <input (keyup)="isValid($event)" pattern="^[a-zA-Z]*$" id="first_name" required [(ngModel)]="model.first_name"
                                     name="first_name"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-NameBgImg"
                                     type="text" placeholder="Enter First Name">
@@ -231,7 +231,7 @@
                         <div class="col-sm-6">
                             <label for="lname" class=" mediumFont commonFontSize letterspacing">Last Name</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input (keyup)="isValid($event)" id="last_name" required [(ngModel)]="model.last_name"
+                                <input (keyup)="isValid($event)"  pattern="^[a-zA-Z]*$" id="last_name" required [(ngModel)]="model.last_name"
                                     name="last_name"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing form-bgImg form-NameBgImg"
                                     type="text" placeholder="Enter Last Name">

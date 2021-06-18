@@ -121,7 +121,7 @@ export class GenericFormValidationService {
 
 
           if (controls[i].value.length != controls[i].maxLength) {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid " + controls[i].maxLength + " digit number.";
+            this.errorMessageObject[controls[i].name] = "Mobile number should be of " + controls[i].maxLength + " digit number.";
           }
             var msg=" is not valid format.";
             if(controls[i].getAttribute('message'))
