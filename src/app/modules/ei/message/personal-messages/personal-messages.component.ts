@@ -43,7 +43,7 @@ export class PersonalMessagesComponent implements OnInit {
     if(this.currentUser){
       this.firestore.collection('setting').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
         if(res){
-          console.log(res.setting);
+         // console.log(res.setting);
           
           this.setting_user=res.setting;
         }

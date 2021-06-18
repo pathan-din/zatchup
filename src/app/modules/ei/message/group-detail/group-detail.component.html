@@ -15,11 +15,10 @@
                                 <i *ngIf="!model.group_icon" class="fa fa-users" aria-hidden="true"></i>
                                 <!-- <i class="fa fa-users" aria-hidden="true" *ngIf="model.group_icon"></i> -->
                                 <img src="{{model.group_icon}}" *ngIf="model.group_icon">
-                                <div class="profileCamara">
-                                    <i class="fa fa-camera cursorStyle" (click)="file.click()" aria-hidden="true"></i>
-                                </div>
-                                
-                                <input #file type="file" style="display:none;" (change)="fileUploadDocument($event.target.files)"/>                         
+                                <input #file type="file" style="display:none;" (change)="fileUploadDocument($event.target.files)"/>                    
+                            </div>
+                            <div class="profileCamara">
+                                <i class="fa fa-camera cursorStyle" (click)="file.click()" aria-hidden="true"></i>
                             </div>
                             <input class="commentCustom form-control-input pl-3 w-75 form-control form-control-sm commonFontSize regularFont letterspacing shadow text-capitalize" type="text" placeholder="ABC Group" name="group_title" required [(ngModel)]="model.group_title" >                       
                         </div>

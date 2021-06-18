@@ -18,6 +18,7 @@ export class AddMoreCourseManuallyComponent implements OnInit {
   courseList:any;
   schoolId:any;
   title:any;
+  
   constructor(
     private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
@@ -36,6 +37,7 @@ export class AddMoreCourseManuallyComponent implements OnInit {
         this.model.school_id=this.schoolId;
         this.getCourseDetails();
       });
+     
     }
     /**
      * Get Course Details according to added student 

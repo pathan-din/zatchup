@@ -23,6 +23,8 @@ export class AddNewCourseComponent implements OnInit {
   imageUrl:any='';
   checkincourse:boolean=false;
   title:any;
+  is_already_registered:boolean=false;
+  
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -47,6 +49,10 @@ export class AddNewCourseComponent implements OnInit {
     });
     this.model.school_id = this.schoolId;
     this.getEiInfo(this.model);
+    if(localStorage.getItem('is_already_registered'))
+    {
+      this.is_already_registered=true;
+    }
   }
 
 
