@@ -22,7 +22,7 @@ export class EiKycVerificationComponent implements OnInit {
   maxLength: any = 45;
   placeholder = "Enter Id";
   submitDisable: boolean;
-
+ reasonTextMessage : any = '';
   constructor(
     private router: Router,
     private datePipe: DatePipe,
@@ -39,6 +39,11 @@ export class EiKycVerificationComponent implements OnInit {
     } else {
       this.model.kyc_dob = this.baseService.getDateReverseFormat(localStorage.getItem("dob"));
       this.model.kyc_name = localStorage.getItem("name");
+    }
+    if(localStorage.getItem('getreject')){
+      if(JSON.parse(localStorage.getItem('getreject')).is_kyc_rejected == true ){
+        this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
+      }
     }
 
   }
