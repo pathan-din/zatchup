@@ -30,6 +30,10 @@ export class MessagesComponent implements OnInit {
   messageData: any[];
   lastGroupmsgCount: any=[];
   recentMesg:any=[];
+  receipentUsers: any = [];
+  isblock: any;
+  objBlock: any;
+  blockUserList : any = [];
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -55,8 +59,11 @@ export class MessagesComponent implements OnInit {
       }
       this.getUsersWithModeratorRole(this.currentUser)
       this.getGroupDetails(localStorage.getItem('fbtoken'))
+      // this.blockUsersList()
+
     }
 
+    
   }
   setUserSettingOnFirebase(event,type){
     //console.log(event,this.currentUser,type );
@@ -87,7 +94,14 @@ export class MessagesComponent implements OnInit {
    blockUsersList(){
     this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
      if(res.data){
-      console.log(res.data);
+    
+      res.data.forEach(element => {
+        if(element.isblock == true){
+          this.getRecepintUserDetails(element.uuid, '', element.isblock)
+        }
+      });
+      
+      console.log(this.receipentUsers);
       
      }
 
@@ -254,5 +268,81 @@ export class MessagesComponent implements OnInit {
     }
     return url.protocol === "http:" || url.protocol === "https:";
   }
+
+
+  getRecepintUserDetails(uuid: any,text:any='', isblock?: any) {
+    if(text=='group'){
+      //this.receipentUsers.push(k)
+      localStorage.setItem("receipent",uuid);
+      this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+     // this.recepintDetails = res.data();
+     let resp:any={}
+     resp = res.data()
+     if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
+      this.receipentUsers.push(resp )
+      });
+      console.log(this.receipentUsers);
+      
+    }else{
+      if (uuid) {
+        this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+          this.recepintDetails = res.data();
+          let resp:any={}
+          this.recepintDetails.isblock = isblock
+          if(!this.receipentUsers.find(responce=>{return responce.id==this.recepintDetails.id}))
+      this.receipentUsers.push(this.recepintDetails )
+      console.log(this.receipentUsers);
+          console.log('recipants details is as ::', this.recepintDetails)
+        });
+      }
+    }
+    
+
+  }
+
+  blockPaticipant(particepantid, isblock){
+
+    // console.log(particepantid,this.currentUser);
+     
+     var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
+     console.log(index);
+     
+     if(index>-1){
+       this.blockUserList.slice(index,1)
+       
+     }else{
+       this.blockUserList.push({isblock:isblock,uuid:particepantid});
+     }
+     var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
+     if(objList){
+      objList.isblock=isblock;
+      this.objBlock=objList;
+      this.isblock=objList.isblock;
+     // this.blockUserList.push(objList)
+      console.log( this.blockUserList);
+     }
+     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+    // this.router.navigate(['ei/personal-messages'])
+     //this.blockUserList
+     
+ 
+   }
+   unblockPaticipant(particepantid){
+     var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
+     console.log(index);
+     if(index>-1){
+       this.blockUserList.slice(index,1)
+     }
+     var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
+     if(objList){
+      objList.isblock=false;
+      this.objBlock=objList;
+      this.isblock=objList.isblock;
+     // this.blockUserList.push(objList)
+      console.log( this.blockUserList);
+     }
+     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+     //this.router.navigate(['ei/personal-messages'])
+       }
 
 }
