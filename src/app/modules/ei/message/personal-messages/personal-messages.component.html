@@ -13,6 +13,7 @@
                 <div class="button-div d-flex justify-content-end flex-wrap">
                     <button type="button" data-target="#PersonalModal" data-toggle="modal"  class="bg-dark text-white py-2 px-3 mx-1 border-0">New Messages</button> 
                     <button type="button" (click)="createChatGroup()" class="bg-dark text-white py-2 px-3 mx-1 border-0">Create Group</button>
+                    <button type="button" class="bg-dark text-white py-2 px-3 mx-1 border-0"  data-target="#BlockListModal" data-toggle="modal" (click)="blockUsersList()"  >Block users</button> 
                     <button type="button" data-target="#ActionModal" data-toggle="modal" class="bg-yellow text-white py-2 px-3 mx-1 border-0">
                         <i class="fa fa-cog" aria-hidden="true"></i>
                     </button>
@@ -110,4 +111,41 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="BlockListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content unverified container-fluid">
+                <div class="modal-header align-items-center justify-content-center pb-0">
+                    <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Block List</h2>
+                    <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                        <span aria-hidden="true "> &times; </span>
+                    </button>
+                </div>
+                <div class="modal-body px-0">
+                    <div class="row">
+    
+                        <div class="col-md-12 mt-2">
+                            <div class="form-group justifyInput d-flex justify-content-between align-items-center" 
+                            *ngFor=" let userBlock of receipentUsers ">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> {{userBlock.firstName}} {{userBlock.lastName}} </label> 
+                                <mat-slide-toggle [checked]="userBlock.isblock" (change)="blockPaticipant(userBlock.id ,$event.checked)" class="toggleslider"></mat-slide-toggle>   
+    
+                            </div>
+                            <div *ngIf="receipentUsers.length == 0"> Record Not Found</div>
+                            <!-- <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Read Receipts </label>    
+                                <mat-slide-toggle [checked]="setting_user.is_read" (change)="setUserSettingOnFirebase($event.checked,'is_read')" class="toggleslider"></mat-slide-toggle>                   
+                            </div>
+                            <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Last Seen </label>
+                                <mat-slide-toggle [checked]="setting_user.is_seen" (change)="setUserSettingOnFirebase($event.checked,'last_seen')" class="toggleslider"></mat-slide-toggle>
+                            </div> -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
