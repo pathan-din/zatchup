@@ -276,7 +276,7 @@
                                             <div class="row ">
                                                 <div class="col-sm-12">
                                                     <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                        <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList)" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
+                                                        <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList,'')" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
                                                             class="custom-select  form-control-input form-control-sm " required>
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
@@ -295,7 +295,7 @@
                                             <div class="row " *ngIf="!courseList.is_teaching_current">
                                                 <div class="col-sm-12">
                                                     <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                        <select id="course_end_year_{{cNo}}" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
+                                                        <select id="course_end_year_{{cNo}}" (change)="resetCourseBothYear(courseList,'end_year')" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
                                                             required>
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < courseList.start_year" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
@@ -473,7 +473,7 @@
                                         <!---------btns  Add another Class , remove another Class start-->
                                         <div class="row justify-content-center ">
                                             <div class="col-xl-7 col-lg-7 col-md-9 ">
-                                                <button type="button " (click)="addAnotherClass(standardL)" class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
+                                                <button type="button " (click)="addAnotherClass(courseList,standardL)" class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                                     + Add Another Class in this standard
                                                 </button>
                                             </div>

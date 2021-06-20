@@ -320,8 +320,56 @@ export class EiOnboardingProcessComponent implements OnInit {
 
   }
 
-  resetCourseBothYear(courseList){
-    courseList.course_end_year = '';
+  resetCourseBothYear(courseList,text){
+    if(text=='end_year'){
+      this.model2Step.coursedata = [{
+        course_name: courseList.course_name,
+        course_type: courseList.course_type,
+        description: courseList.description,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+        start_year: courseList.start_year?courseList.start_year:0,
+        end_year: courseList.is_teaching_current?0:courseList.end_year,
+        standarddata: [{
+          standard_name: "",
+          duration: "",
+          classdata: [{
+            class_name: '',
+            teaching_start_year: courseList.start_year?courseList.start_year:0,
+            teaching_start_month: 0,
+            teaching_stopped: false,
+            teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+            teaching_end_month: 0,
+            is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+            alias_class: ""
+          }]
+        }],
+      }];
+    }else{
+      courseList.course_end_year = '';
+      this.model2Step.coursedata = [{
+        course_name: courseList.course_name,
+        course_type: courseList.course_type,
+        description: courseList.description,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+        start_year: courseList.start_year?courseList.start_year:0,
+        end_year: courseList.is_teaching_current?0:courseList.end_year,
+        standarddata: [{
+          standard_name: "",
+          duration: "",
+          classdata: [{
+            class_name: '',
+            teaching_start_year: courseList.start_year?courseList.start_year:0,
+            teaching_start_month: 0,
+            teaching_stopped: false,
+            teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+            teaching_end_month: 0,
+            is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+            alias_class: ""
+          }]
+        }],
+      }];
+    }
+    
   }
   /**
    * FUnction Name : getNumberOfStudentList
@@ -363,7 +411,7 @@ export class EiOnboardingProcessComponent implements OnInit {
    * 
    * 
    */
-  addCourseList() {
+  addCourseList(courseList) {
     this.model2Step.coursedata.push({
       course_name: "",
       course_type: "",
@@ -375,12 +423,12 @@ export class EiOnboardingProcessComponent implements OnInit {
 
         classdata: [{
           class_name: '',
-          teaching_start_year: 0,
+          teaching_start_year: courseList.start_year?courseList.start_year:0,
           teaching_start_month: 0,
           teaching_stopped: false,
-          teaching_end_year: 0,
+          teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
           teaching_end_month: 0,
-          is_teaching_current: true,
+          is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
           alias_class: ""
         }]
       }],
@@ -532,17 +580,17 @@ export class EiOnboardingProcessComponent implements OnInit {
    * Function Name: addAnotherClass
    */
 
-  addAnotherClass(standardList) {
+  addAnotherClass(courseList,standardList) {
     console.log(standardList.classdata);
 
     standardList.classdata.push({
       class_name: '',
-      teaching_start_year: 0,
+      teaching_start_year: courseList.start_year?courseList.start_year:0,
       teaching_start_month: 0,
       teaching_stopped: false,
-      teaching_end_year: 0,
+      teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
       teaching_end_month: 0,
-      is_teaching_current: true,
+      is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
       alias_class: ""
     })
   }
@@ -672,6 +720,7 @@ export class EiOnboardingProcessComponent implements OnInit {
             this.loader.hide();
             if (this.params.redirect_url) {
               this.router.navigate(["ei/" + this.params.redirect_url]);
+              return
             }
             if (this.params.reg_steps){
               let uri = 'ei/onboarding-process'

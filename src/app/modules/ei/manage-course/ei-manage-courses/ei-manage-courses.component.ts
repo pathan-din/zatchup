@@ -107,7 +107,7 @@ export class EiManageCoursesComponent implements OnInit {
   getCourseList(page, strFilter) {
 
     try {
-
+      this.model.page=page;
       this.SpinnerService.show();
 
       this.baseService.getData('ei/list-of-course/', this.model).subscribe(res => {

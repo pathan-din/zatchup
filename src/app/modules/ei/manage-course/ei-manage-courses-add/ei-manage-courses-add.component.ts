@@ -142,7 +142,7 @@ export class EiManageCoursesAddComponent implements OnInit {
    * 
    * 
    */
-  addCourseList() {
+  addCourseList(courseList) {
     this.model2Step.coursedata.push({
       course_name: "",
       course_type:"",
@@ -153,13 +153,13 @@ export class EiManageCoursesAddComponent implements OnInit {
        
         classdata: [{
           class_name: '',
-          teaching_start_year: "",
-          teaching_start_month: 0,
-          teaching_stopped: false,
-          teaching_end_year: 0,
-          teaching_end_month: 0,
-          is_teaching_current: false,
-          alias_class: ""
+        teaching_start_year: courseList.start_year?courseList.start_year:0,
+        teaching_start_month: 0,
+        teaching_stopped: false,
+        teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+        teaching_end_month: 0,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+        alias_class: ""
         }]
       }],
     })
@@ -191,20 +191,20 @@ export class EiManageCoursesAddComponent implements OnInit {
    * Function Name: addAnotherClass
    */
 
-  addAnotherClass(standardList){
+  addAnotherClass(courseList,standardList){
     if(!standardList.classdata){
       standardList.classdata=[];
     }
-    console.log('is teaching current....', this.model2Step)
+     
     standardList.classdata.push({
       class_name: '',
-      teaching_start_year: 0,
-      teaching_start_month: 0,
-      teaching_stopped: false,
-      teaching_end_year: 0,
-      teaching_end_month: 0,
-      is_teaching_current: true,
-      alias_class: ""
+        teaching_start_year: courseList.start_year?courseList.start_year:0,
+        teaching_start_month: 0,
+        teaching_stopped: false,
+        teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+        teaching_end_month: 0,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+        alias_class: ""
     })
   }
 
@@ -349,8 +349,56 @@ export class EiManageCoursesAddComponent implements OnInit {
     }
     
   }
-  resetCourseBothYear(courseList){
-    courseList.course_end_year = '';
+  resetCourseBothYear(courseList,text){
+    if(text=='end_year'){
+      this.model2Step.coursedata = [{
+        course_name: courseList.course_name,
+        course_type: courseList.course_type,
+        description: courseList.description,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+        start_year: courseList.start_year?courseList.start_year:0,
+        end_year: courseList.is_teaching_current?0:courseList.end_year,
+        standarddata: [{
+          standard_name: "",
+          duration: "",
+          classdata: [{
+            class_name: '',
+            teaching_start_year: courseList.start_year?courseList.start_year:0,
+            teaching_start_month: 0,
+            teaching_stopped: false,
+            teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+            teaching_end_month: 0,
+            is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+            alias_class: ""
+          }]
+        }],
+      }];
+    }else{
+      courseList.course_end_year = '';
+      this.model2Step.coursedata = [{
+        course_name: courseList.course_name,
+        course_type: courseList.course_type,
+        description: courseList.description,
+        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+        start_year: courseList.start_year?courseList.start_year:0,
+        end_year: courseList.is_teaching_current?0:courseList.end_year,
+        standarddata: [{
+          standard_name: "",
+          duration: "",
+          classdata: [{
+            class_name: '',
+            teaching_start_year: courseList.start_year?courseList.start_year:0,
+            teaching_start_month: 0,
+            teaching_stopped: false,
+            teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+            teaching_end_month: 0,
+            is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+            alias_class: ""
+          }]
+        }],
+      }];
+    }
+    
   }
   endYearCheckValidation(classD) {
     classD.teaching_end_year = 0;
