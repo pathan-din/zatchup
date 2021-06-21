@@ -259,7 +259,7 @@
 
                                                     <div class="d-flex flex-xs-column flex-row justify-content-between w-100">
                                                         <mat-checkbox id="is_teaching_current_{{cNo}}" [(ngModel)]="courseList.is_teaching_current" name="is_teaching_current_{{cNo}}"
-                                                            class="purple-checkbox">Currently Teaching
+                                                            class="purple-checkbox" (change)="resetCourseBothYear(courseList,cNo,'')">Currently Teaching
                                                         </mat-checkbox>
 
 

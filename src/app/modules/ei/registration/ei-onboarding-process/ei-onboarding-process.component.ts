@@ -324,19 +324,23 @@ export class EiOnboardingProcessComponent implements OnInit {
     console.log('gfgd',   this.model2Step);
     
     if(text=='end_year'){
+     var i = 0
       this.model2Step.coursedata.forEach(element => {
-        element.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
-        element.start_year = courseList.start_year?courseList.start_year:0
-        element.end_year = courseList.is_teaching_current?0:courseList.end_year
-        element.standarddata.forEach(elements => {
-          elements.classdata.forEach(elementc => {
-            elementc.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
-            elementc.teaching_start_year= courseList.start_year?courseList.start_year:0
-            elementc.teaching_end_year= courseList.is_teaching_current?0:courseList.end_year
-            
+        if(index == i){
+          element.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+          element.start_year = courseList.start_year?courseList.start_year:0
+          element.end_year = courseList.is_teaching_current?0:courseList.end_year
+          element.standarddata.forEach(elements => {
+            elements.classdata.forEach(elementc => {
+              elementc.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+              elementc.teaching_start_year= courseList.start_year?courseList.start_year:0
+              elementc.teaching_end_year= courseList.is_teaching_current?0:courseList.end_year
+              
+            });
           });
-        });
-      });
+        }
+        i = i + 1
+      }  );
       // this.model2Step.coursedata[index] = {
       //   course_name: courseList.course_name,
       //   course_type: courseList.course_type,
@@ -383,19 +387,23 @@ export class EiOnboardingProcessComponent implements OnInit {
     //       }]
     //     }],
     //   };
+    var i = 0
     this.model2Step.coursedata.forEach(element => {
-      element.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
-      element.start_year = courseList.start_year?courseList.start_year:0
-      element.end_year = courseList.is_teaching_current?0:courseList.end_year
-      element.standarddata.forEach(elements => {
-        elements.classdata.forEach(elementc => {
-          elementc.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
-          elementc.teaching_start_year= courseList.start_year?courseList.start_year:0
-          elementc.teaching_end_year= courseList.is_teaching_current?0:courseList.end_year
-          
+      if(index == i){
+        element.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+        element.start_year = courseList.start_year?courseList.start_year:0
+        element.end_year = courseList.is_teaching_current?0:courseList.end_year
+        element.standarddata.forEach(elements => {
+          elements.classdata.forEach(elementc => {
+            elementc.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+            elementc.teaching_start_year= courseList.start_year?courseList.start_year:0
+            elementc.teaching_end_year= courseList.is_teaching_current?0:courseList.end_year
+            
+          });
         });
-      });
-    });
+      }
+      i = i + 1
+    }  );
     }
     
   }
