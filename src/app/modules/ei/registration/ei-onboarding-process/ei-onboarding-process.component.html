@@ -276,7 +276,7 @@
                                             <div class="row ">
                                                 <div class="col-sm-12">
                                                     <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                        <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList,'')" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
+                                                        <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList,cNo,'')" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
                                                             class="custom-select  form-control-input form-control-sm " required>
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
@@ -295,7 +295,7 @@
                                             <div class="row " *ngIf="!courseList.is_teaching_current">
                                                 <div class="col-sm-12">
                                                     <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                        <select id="course_end_year_{{cNo}}" (change)="resetCourseBothYear(courseList,'end_year')" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
+                                                        <select id="course_end_year_{{cNo}}" (change)="resetCourseBothYear(courseList,cNo,'end_year')" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
                                                             required>
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < courseList.start_year" value="{{y}}" *ngFor="let y of year;">{{y}}</option>

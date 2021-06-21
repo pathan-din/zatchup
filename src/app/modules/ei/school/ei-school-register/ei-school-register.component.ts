@@ -243,6 +243,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   /****************************************************************************************/
   goToEiMobileVerificationPage(){
     
+    console.log(this.model);
     
     this.error=[];
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,[]);

@@ -320,54 +320,82 @@ export class EiOnboardingProcessComponent implements OnInit {
 
   }
 
-  resetCourseBothYear(courseList,text){
+  resetCourseBothYear(courseList, index,text){
+    console.log('gfgd',   this.model2Step);
+    
     if(text=='end_year'){
-      this.model2Step.coursedata = [{
-        course_name: courseList.course_name,
-        course_type: courseList.course_type,
-        description: courseList.description,
-        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
-        start_year: courseList.start_year?courseList.start_year:0,
-        end_year: courseList.is_teaching_current?0:courseList.end_year,
-        standarddata: [{
-          standard_name: "",
-          duration: "",
-          classdata: [{
-            class_name: '',
-            teaching_start_year: courseList.start_year?courseList.start_year:0,
-            teaching_start_month: 0,
-            teaching_stopped: false,
-            teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
-            teaching_end_month: 0,
-            is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
-            alias_class: ""
-          }]
-        }],
-      }];
+      this.model2Step.coursedata.forEach(element => {
+        element.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+        element.start_year = courseList.start_year?courseList.start_year:0
+        element.end_year = courseList.is_teaching_current?0:courseList.end_year
+        element.standarddata.forEach(elements => {
+          elements.classdata.forEach(elementc => {
+            elementc.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+            elementc.teaching_start_year= courseList.start_year?courseList.start_year:0
+            elementc.teaching_end_year= courseList.is_teaching_current?0:courseList.end_year
+            
+          });
+        });
+      });
+      // this.model2Step.coursedata[index] = {
+      //   course_name: courseList.course_name,
+      //   course_type: courseList.course_type,
+      //   description: courseList.description,
+      //   is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+      //   start_year: courseList.start_year?courseList.start_year:0,
+      //   end_year: courseList.is_teaching_current?0:courseList.end_year,
+      //   standarddata: [{
+      //     standard_name: "",
+      //     duration: "",
+      //     classdata: [{
+      //       class_name: '',
+      //       teaching_start_year: courseList.start_year?courseList.start_year:0,
+      //       teaching_start_month: 0,
+      //       teaching_stopped: false,
+      //       teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+      //       teaching_end_month: 0,
+      //       is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+      //       alias_class: ""
+      //     }]
+      //   }],
+      // };
     }else{
-      courseList.course_end_year = '';
-      this.model2Step.coursedata = [{
-        course_name: courseList.course_name,
-        course_type: courseList.course_type,
-        description: courseList.description,
-        is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
-        start_year: courseList.start_year?courseList.start_year:0,
-        end_year: courseList.is_teaching_current?0:courseList.end_year,
-        standarddata: [{
-          standard_name: "",
-          duration: "",
-          classdata: [{
-            class_name: '',
-            teaching_start_year: courseList.start_year?courseList.start_year:0,
-            teaching_start_month: 0,
-            teaching_stopped: false,
-            teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
-            teaching_end_month: 0,
-            is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
-            alias_class: ""
-          }]
-        }],
-      }];
+    //   courseList.course_end_year = '';
+    //   this.model2Step.coursedata[index] = {
+    //     course_name: courseList.course_name,
+    //     course_type: courseList.course_type,
+    //     description: courseList.description,
+    //     is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+    //     start_year: courseList.start_year?courseList.start_year:0,
+    //     end_year: courseList.is_teaching_current?0:courseList.end_year,
+    //     standarddata: [{
+    //       standard_name: "",
+    //       duration: "",
+    //       classdata: [{
+    //         class_name: '',
+    //         teaching_start_year: courseList.start_year?courseList.start_year:0,
+    //         teaching_start_month: 0,
+    //         teaching_stopped: false,
+    //         teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+    //         teaching_end_month: 0,
+    //         is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+    //         alias_class: ""
+    //       }]
+    //     }],
+    //   };
+    this.model2Step.coursedata.forEach(element => {
+      element.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+      element.start_year = courseList.start_year?courseList.start_year:0
+      element.end_year = courseList.is_teaching_current?0:courseList.end_year
+      element.standarddata.forEach(elements => {
+        elements.classdata.forEach(elementc => {
+          elementc.is_teaching_current = courseList.is_teaching_current?courseList.is_teaching_current:false
+          elementc.teaching_start_year= courseList.start_year?courseList.start_year:0
+          elementc.teaching_end_year= courseList.is_teaching_current?0:courseList.end_year
+          
+        });
+      });
+    });
     }
     
   }
@@ -411,7 +439,7 @@ export class EiOnboardingProcessComponent implements OnInit {
    * 
    * 
    */
-  addCourseList(courseList) {
+  addCourseList(courseList?: any) {
     this.model2Step.coursedata.push({
       course_name: "",
       course_type: "",
@@ -423,12 +451,12 @@ export class EiOnboardingProcessComponent implements OnInit {
 
         classdata: [{
           class_name: '',
-          teaching_start_year: courseList.start_year?courseList.start_year:0,
+          teaching_start_year:'',
           teaching_start_month: 0,
           teaching_stopped: false,
-          teaching_end_year: courseList.is_teaching_current?0:courseList.end_year,
+          teaching_end_year: '',
           teaching_end_month: 0,
-          is_teaching_current: courseList.is_teaching_current?courseList.is_teaching_current:false,
+          is_teaching_current:true,
           alias_class: ""
         }]
       }],
@@ -601,15 +629,17 @@ export class EiOnboardingProcessComponent implements OnInit {
    *
    */
   removeData(index, dataArray,document) {
+   console.log('dataarray', dataArray);
    
-    dataArray.splice(index, 1);
+    // dataArray.splice(index, 1);
     if(dataArray.length==1){
       index=index-1;
     }
     
     
+    
     if(!dataArray[index].id){
-     
+      dataArray.splice(index, 1);
       
     }else{
       let data:any={};
