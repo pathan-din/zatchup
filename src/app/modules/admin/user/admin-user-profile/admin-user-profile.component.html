@@ -134,7 +134,7 @@
 
                     </div>
 
-                    <div class="row" *ngIf="userData.location.city_name">
+                    <div class="row" *ngIf="userData.location && userData.location.city_name && userData.location.city_name != null">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>City</p>
                         </div>
@@ -143,7 +143,7 @@
                         </div>
                     </div>
 
-                    <div class="row" *ngIf="userData.location.state_name">
+                    <div class="row" *ngIf="userData.location && userData.location.state_name && userData.location.state_name != null">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont">
                             <p>State</p>
                         </div>
