@@ -515,4 +515,33 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.cityId = data.id
     this.stateId = data.state_id
   }
+
+  sendUserToReVerify(school_id,){
+    try {
+      this.loader.hide()
+      this.model = {
+        'school_id': school_id,
+        'user_id': localStorage.getItem('userId')
+      }
+
+      this.baseService.action('', this.model).subscribe(
+        (res : any )=> {
+          if(res.status == true){
+            this.alert.success('res.message', 'Success')
+          }
+          else{
+            this.loader.hide()
+            this.alert.error('res.error.message', 'Error')
+          }
+          this.loader.hide()
+        }
+      ),
+      (err)=> {
+        this.loader.hide()
+        this.alert.error('Please Try Again', 'Error')
+      }
+    } catch (error) {
+      this.loader.hide()
+    }
+  }
 }
