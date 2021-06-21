@@ -37,7 +37,7 @@ ul {
 .profileCamara {
     position: absolute;
     left: 95px;
-    bottom: 15px;
+    top: 105px;
     background: #463267;
     width: 35px;
     height: 35px;
