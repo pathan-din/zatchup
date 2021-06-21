@@ -90,7 +90,7 @@ label{margin-bottom: 0em;}
 .customButton {
     left: inherit !important;
     top: 15px !important;
-    right: -65px !important;
+    right: 0px !important;
 }
 .profile_pick img {
     position: absolute;
