@@ -411,7 +411,7 @@ export class EiOnboardingProcessComponent implements OnInit {
    * 
    * 
    */
-  addCourseList(courseList) {
+  addCourseList(courseList?: any) {
     this.model2Step.coursedata.push({
       course_name: "",
       course_type: "",
