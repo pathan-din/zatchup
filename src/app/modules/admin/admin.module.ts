@@ -179,6 +179,7 @@ import { StarclassLectureDetailsViewComponent } from './start-class/starclass-le
 import { StarclassLectureHistoryComponent } from './start-class/starclass-lecture-history/starclass-lecture-history.component';
 import { EiStarclassLectureHistoryComponent } from './start-class/ei-starclass-lecture-history/ei-starclass-lecture-history.component';
 import { SubadminProfileComponent } from './subadmin/subadmin-profile/subadmin-profile.component';
+import { UserHistoryComponent } from './user/user-history/user-history.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -364,7 +365,8 @@ const config = {
     StarclassLectureDetailsViewComponent,
     StarclassLectureHistoryComponent,
     EiStarclassLectureHistoryComponent,
-    SubadminProfileComponent
+    SubadminProfileComponent,
+    UserHistoryComponent
   ],
   imports: [
     CommonModule,
