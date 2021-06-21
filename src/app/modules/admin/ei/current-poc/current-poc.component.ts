@@ -1,27 +1,10 @@
 import { DatePipe, Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { CurrentPocDetails, PastPocDetails} from '../modals/education-institute.modal';
-// export interface PeriodicElement {
-//   position: number;
-//   fromDate: string;
-//   toDate: string;
-//   employeeId: string;
-//   name: string;
-//   mobileNumber: string;
-//   emailAddress: string;
-//   addedByEmployeeId: string;
-//   addedByemployeeName: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {'position': 1,'fromDate':'01 Jan 2020', 'toDate': '01 Dec 2020', 'employeeId': 'Employee 5052',
-//   'name': 'Ankit', 'mobileNumber':'91+ 9876543210','emailAddress': 'ankit@gmail.com',
-//   'addedByEmployeeId': 'Employee 5252', 'addedByemployeeName' : 'Prashant'}
-// ];
 
 @Component({
   selector: 'app-current-poc',
@@ -40,9 +23,7 @@ export class CurrentPocComponent implements OnInit {
   filterToDate: any;
   maxDate: Date;
 
-  // currentPocDetails:any;
   constructor(
-    private router: Router,
     private location: Location,
     private route: ActivatedRoute,
     private alert: NotificationService,

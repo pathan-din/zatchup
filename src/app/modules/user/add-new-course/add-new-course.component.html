@@ -54,7 +54,16 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                 </div>
-
+                 <div class="form-group row" *ngIf="is_already_registered">
+                    <div class="col-sm-12 MobileCol6MB">
+                        <label for="" class="mediumFont commonFontSize letterspacing">Is Current</label>
+                        <div class="form-control-inputDiv">
+                            <input autocomplete="off" [required]="!model.end_date"   [(ngModel)]="model.is_current" name="is_current" class=" form-control form-control-sm"
+                                type="checkbox" >
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.is_current"></div>
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <div class="col-sm-6 MobileCol6MB">
@@ -65,7 +74,7 @@
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.start_date"></div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" *ngIf="!model.is_current">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
                         <div class="form-control-inputDiv">
                             <input autocomplete="off" required [(ngModel)]="model.end_date" [minDate]="model.start_date" name="end_date" class="form-control-input form-control form-control-sm"
@@ -73,7 +82,7 @@
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.end_date"></div>
                     </div>
-
+                    <div *ngIf="model.is_current">To Current</div>
                 </div>
 
                 <div class="form-group row">
