@@ -24,7 +24,7 @@ export class AddNewCourseComponent implements OnInit {
   checkincourse:boolean=false;
   title:any;
   is_already_registered:boolean=false;
-  
+  params:any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -43,13 +43,15 @@ export class AddNewCourseComponent implements OnInit {
     }
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
+      this.params=params;
+      
       if(params['title']){
         this.title = params['title'];
       }
     });
     this.model.school_id = this.schoolId;
     this.getEiInfo(this.model);
-    if(localStorage.getItem('is_already_registered'))
+    if(this.params.check_school_info_on_zatchup==2)
     {
       this.is_already_registered=true;
     }
