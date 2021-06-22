@@ -35,7 +35,7 @@ export class PendingRequestComponent implements OnInit {
       "page_size": 100,
       "page": 1
     }
-    this.baseService.getData('user/pending-user-change-detail-list/', data).subscribe(
+    this.baseService.getData('user/pending-user-change-detail-list-by-user', data).subscribe(
       (res: any) => {
         this.loader.hide();
         if (res.status == true) {

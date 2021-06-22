@@ -76,4 +76,8 @@ export class EiSubadminManagementComponent implements OnInit {
   subadminCompletedRequest() {
     this.router.navigate(['ei/subadmin-completed-request']);
   }
+
+  subadminChangeRequest() {
+    this.router.navigate(['ei/subadmin-change-request']);
+  }
 }

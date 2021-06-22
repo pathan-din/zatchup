@@ -155,6 +155,7 @@ import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.compon
 import { KycNotApprovedComponent } from './registration/kyc-not-approved/kyc-not-approved.component';
 import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-setting.component';
 import { PendingRequestComponent } from './subadmin/pending-request/pending-request.component';
+import { SubadminChangeRequestComponent } from './subadmin/subadmin-change-request/subadmin-change-request.component';
 
 
 const routes: Routes = [
@@ -613,6 +614,9 @@ const routes: Routes = [
    },
    {
      path:'subadmin-pending-requests', component:PendingRequestComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'subadmin-change-request', component:SubadminChangeRequestComponent, canActivate:[AuthGuard]
    },
    
   

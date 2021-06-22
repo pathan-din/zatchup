@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -35,9 +35,14 @@ export class EiKycVerificationComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private formValidationService: GenericFormValidationService,
+    private route : ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.params = params;
+    })
+
     this.model.kyc_type = '';
     if (!localStorage.getItem("dob") && !localStorage.getItem("name")) {
       this.getKYC();
@@ -50,7 +55,7 @@ export class EiKycVerificationComponent implements OnInit {
         this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
       }
     }
-
+ 
   }
   getKYC() {
     try {
@@ -82,12 +87,17 @@ export class EiKycVerificationComponent implements OnInit {
       this.submitDisable = true;
       this.isSubmit = true;
       const formData = new FormData();
+      let kyc_doc_back: any  = this.uploadedContent_back ? this.uploadedContent_back : ''
       if (this.params.action == 'sendrequest') {
         if (this.params.text == 'name') {
           formData.append('kyc_name', this.model.kyc_name);
         } else {
           formData.append('kyc_dob', this.model.kyc_dob);
         }
+        formData.append('kyc_type', this.model.kyc_type);
+        formData.append('kyc_document', this.uploadedContent);
+        formData.append('kyc_document_back', kyc_doc_back);
+        formData.append('kyc_id_no', this.model.kyc_id_no);
         this.baseService.action('user/upload-ekyc-for-detail-change/', formData).subscribe((response: any) => {
           this.loader.hide();
           if (response.status == true) {

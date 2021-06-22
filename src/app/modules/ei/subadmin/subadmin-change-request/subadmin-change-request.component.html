@@ -1,0 +1,139 @@
+<app-ei-sidenav></app-ei-sidenav>
+<div class="container main-container p-3">
+    <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
+        <div class="pl-0 col-md-12 d-flex justify-content-start flex-wrap align-items-center">
+            <span class="mr-3 cursorStyle">
+                <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
+            </span>
+            <h2 class="commonFontSize semiBoldFont m-0">Requests Pending for Changing Details</h2>
+        </div>
+
+        <div class="tableDiv mt-3">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
+                <mat-table [dataSource]="dataSource  | paginate: config">
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element;let i =index;"> {{startIndex+i}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="zatchupid">
+                        <mat-header-cell *matHeaderCellDef> Zatchup Id </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.zatchupid}} </mat-cell>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="classalias">
+                        <mat-header-cell *matHeaderCellDef> class Alias </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.class_alias}} </mat-cell>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="fieldChange">
+                        <mat-header-cell *matHeaderCellDef> Field Change </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldChange}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="oldDetails">
+                        <mat-header-cell *matHeaderCellDef> Old Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.oldDetails.replace("&"," ")}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="newDetails">
+                        <mat-header-cell *matHeaderCellDef> New Details </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.newDetails.replace("&"," ")}}
+                        </mat-cell>
+                    </ng-container>
+
+
+
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button type="button"
+                                class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-check text-green color-green fa-lg mr-3 cursorStyle"
+                                (click)="approveRequest(element.request_id)" title="Approve"></i>
+                            <i data-target="#rejectModel" data-toggle="modal"
+                                class="fa fa-ban text-red color-red fa-lg mr-3 cursorStyle"
+                                (click)="openRejectModel(element.request_id)" title="Reject"></i>
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <i class="fa fa-eye color-lightBlue cursorStyle mr-2" aria-hidden="true" title="View"></i>
+                        </mat-cell>
+                    </ng-container> -->
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                </mat-table>
+            </div>
+            <div class="row" *ngIf="dataSource.length==0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
+                </div>
+            </div>
+            <pagination-controls *ngIf="dataSource.length>0" (pageChange)="getViewChangesRequestStatus($event)"
+                class="eiPaginationTag"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="rejectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0 ">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Reject</h2>
+                <button type="button " #closeModel class="close rounded-circle border bg-white model-close-btn p-0"
+                    data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+
+
+            <div class="modal-body px-0">
+                <!-- <h2 class="text-center pb-2 border-bottom commonFontSize mediumFont ">Unverified</h2> -->
+                <form id="rejectReason">
+                    <div class=" form-group row ">
+                        <div class="col-md-12 ">
+                            <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
+                            <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
+                                <input id="remark" [(ngModel)]="modelReason.rejected_remark" name="reason_type" required
+                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                    type="text" placeholder="Enter Reason">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.reason_type"></div>
+                        </div>
+                    </div>
+                    <div class=" form-group row ">
+                        <div class="col-md-12 ">
+                            <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea
+                                    [(ngModel)]="modelReason.rejected_reason" name="remarks" required
+                                    class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    rows="3 " placeholder="Enter Remarks "></textarea>
+                            </div>
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.remarks"></div>
+                    </div>
+                    <button (click)="rejectCourse()" type="button "
+                        class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
