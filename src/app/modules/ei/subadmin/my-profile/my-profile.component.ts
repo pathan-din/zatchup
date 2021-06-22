@@ -254,13 +254,13 @@ export class MyProfileComponent implements OnInit {
   getEducationalProfile() {
     try {
       this.loader.show()
-      let url = 'user/student-education-profile/'
+      let url = 'ei/get-subadmin-profile/'
       this.baseService.getData(url).subscribe(
         (res: any) => {
           if (res.status == true){
             this.loader.hide()
-            this.imageUrl = res.data[0].profile_pic
-            this.epData = res.data[0]
+            // this.imageUrl = res.data[0].profile_pic
+            this.epData = res.data
           }
           
           else{

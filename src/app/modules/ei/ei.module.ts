@@ -171,6 +171,7 @@ import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-hist
 import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
 import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
 import { KycNotApprovedComponent } from './registration/kyc-not-approved/kyc-not-approved.component';
+import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-setting.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -358,6 +359,7 @@ const config = {
     EditGroupParticipentComponent,
     BulkPromoteComponent,
     KycNotApprovedComponent,
+    SubadminSettingComponent,
   ],
   imports: [
     CommonModule,

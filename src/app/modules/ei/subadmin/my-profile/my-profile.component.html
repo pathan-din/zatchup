@@ -51,8 +51,8 @@
                             <div class="col-md-12">
                                 <p *ngIf="epData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
                                         class="regularFont">
-                                        <span *ngIf="epData.kyc_approved==0">{{epData.dob}}</span>
-                                        <a *ngIf="epData.kyc_approved==1" class="cursorStyle">{{epData.dob}}</a></span>
+                                       
+                                        <a  class="cursorStyle">{{epData.dob}}</a></span>
                                 </p>
                                 <p *ngIf="epData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
                                         class="regularFont">{{getGender(epData)}} </span>
@@ -65,8 +65,8 @@
                                         class="regularFont" *ngIf="epData.gender=='C'">{{epData.pronoun }} </span> -->
                                 </p>
 
-                                <p *ngIf="epData.employee_id" class="m-0 mb-1 commonFontSize semiBoldFont">Employee Id : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.employee_id}}</a></span></p>
+                                <p *ngIf="epData.employee_num" class="m-0 mb-1 commonFontSize semiBoldFont">Employee Number : <span
+                                        class="regularFont"><a class="cursorStyle">{{epData.employee_num}}</a></span></p>
 
                                 <p *ngIf="epData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
                                         class="regularFont"><a class="cursorStyle">{{epData.email}}</a></span></p>

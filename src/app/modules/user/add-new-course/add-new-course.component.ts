@@ -54,6 +54,12 @@ export class AddNewCourseComponent implements OnInit {
     if(this.params.check_school_info_on_zatchup==2)
     {
       this.is_already_registered=true;
+      this.model.is_already_register = true
+      
+    }
+    else {
+      this.model.is_already_register = false
+      
     }
   }
 

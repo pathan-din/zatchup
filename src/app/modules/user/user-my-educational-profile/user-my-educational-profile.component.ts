@@ -518,7 +518,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
 
   sendUserToReVerify(school_id,){
     
-    this.confirmDialogService.confirmThis('Are you sure, You want to Re-Verify?', () => {
+    this.confirmDialogService.confirmThis('Your School Details Will Be Send For Verification', () => {
       try {
         this.loader.hide()
         this.model = {
