@@ -517,31 +517,37 @@ export class UserMyEducationalProfileComponent implements OnInit {
   }
 
   sendUserToReVerify(school_id,){
-    try {
-      this.loader.hide()
-      this.model = {
-        'school_id': school_id,
-        'user_id': localStorage.getItem('userId')
-      }
-
-      this.baseService.action('', this.model).subscribe(
-        (res : any )=> {
-          if(res.status == true){
-            this.alert.success('res.message', 'Success')
-          }
-          else{
-            this.loader.hide()
-            this.alert.error('res.error.message', 'Error')
-          }
-          this.loader.hide()
-        }
-      ),
-      (err)=> {
+    
+    this.confirmDialogService.confirmThis('Are you sure, You want to Re-Verify?', () => {
+      try {
         this.loader.hide()
-        this.alert.error('Please Try Again', 'Error')
+        this.model = {
+          'school_id': school_id,
+          'student_id': localStorage.getItem('userId')
+        }
+  
+        this.baseService.action('user/post-student-verified/', this.model).subscribe(
+          (res : any )=> {
+            if(res.status == true){
+              this.alert.success('res.message', 'Success')
+              this.getEducationalProfile();
+            }
+            else{
+              this.loader.hide()
+              this.alert.error('res.error.message', 'Error')
+            }
+            this.loader.hide()
+          }
+        ),
+        (err)=> {
+          this.loader.hide()
+          this.alert.error('Please Try Again', 'Error')
+        }
+      } catch (error) {
+        this.loader.hide()
       }
-    } catch (error) {
-      this.loader.hide()
-    }
+    }, () => {
+    });
+    
   }
 }

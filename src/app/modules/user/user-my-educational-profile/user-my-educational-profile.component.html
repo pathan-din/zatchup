@@ -182,7 +182,7 @@
                             <div class="col-md-12 d-flex justify-content-between align-items-center align-self-center flex-wrap">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading mb-0 ml-2">School Details </h2>
                                 <div class="addWorkcourse">
-                                        <button *ngIf="objEpData.is_student_verified == false  &&  objEd.is_onboard == true" type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
+                                        <button *ngIf="objEd.is_students_verified == false  &&  objEd.is_onboard == true" type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
                                         (click)="sendUserToReVerify(objEd.school_id)">Re-Verify</button>
                                    
                                     
