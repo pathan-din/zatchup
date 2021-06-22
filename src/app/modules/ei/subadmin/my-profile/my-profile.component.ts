@@ -301,7 +301,7 @@ export class MyProfileComponent implements OnInit {
     this.router.navigate(['user/add-ei'], { queryParams: {  "school_id": school_id,"returnUrl": "user/my-educational-profile" } });
   }
   getRequestChangeDetails(){
-      this.router.navigate(["user/pending-request/"]);
+      this.router.navigate(["ei/subadmin-pending-requests/"]);
   }
 
   getRequestCourseDetails(){
