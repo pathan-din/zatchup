@@ -172,6 +172,7 @@ import { EditGroupParticipentComponent } from './message/edit-group-participent/
 import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
 import { KycNotApprovedComponent } from './registration/kyc-not-approved/kyc-not-approved.component';
 import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-setting.component';
+import { PendingRequestComponent } from './subadmin/pending-request/pending-request.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -360,6 +361,7 @@ const config = {
     BulkPromoteComponent,
     KycNotApprovedComponent,
     SubadminSettingComponent,
+    PendingRequestComponent,
   ],
   imports: [
     CommonModule,

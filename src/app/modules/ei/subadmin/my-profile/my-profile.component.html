@@ -13,6 +13,13 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h2 class="mb-3 pt-3">My Profile</h2>
 
+            <div class="mb-3" >
+                <span (click)="getRequestChangeDetails()" 
+                    class="float-right cursorStyle">
+                    <img src="assets/images/pending.png" tooltip="Pending Request">
+                </span>
+            </div>
+
             <div class="pt-3" style="clear: both;" *ngIf="epData">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex flex-wrap p-0 align-items-center position-relative">
