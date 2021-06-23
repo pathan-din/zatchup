@@ -127,11 +127,12 @@ export class SubadminChangeRequestComponent implements OnInit {
   approveRequest(id){
     this.confirmBox.confirmThis('Are you sure you want to approve this request ?', () => {
       this.loader.show()
-      this.baseService.action('ei/approved-request-by-ei/', { "request_id": id}).subscribe(
+      this.baseService.action('ei/approved-subadmin-request-changed/', { "request_id": id}).subscribe(
         (res: any) => {
           if (res.status == true) {
-            this.alert.success(res.message, "Success")
-            this.router.navigate(['ei/student-management']); 
+            this.alert.success(res.error.message[0], "Success")
+            this.getViewChangesRequestStatus('')
+            // this.router.navigate(['ei/student-management']); 
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }
