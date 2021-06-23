@@ -284,18 +284,18 @@ export class UserEiConfirmationComponent implements OnInit {
   addPastEi() {
     $("#OTPModel").modal('hide');
     if (this.params.returnUrl) {
-      this.router.navigate(['user/add-ei'], { queryParams: { "title": "past", "returnUrl": "user/ei-confirmation" } });
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "past", "returnUrl": "user/ei-confirmation",'is_verify':this.params.is_verify } });
     } else {
-      this.router.navigate(['user/add-ei'], { queryParams: { "title": "past" } });
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "past",'is_verify':this.params.is_verify } });
     }
 
   }
   addAnotherCourse() {
     $("#OTPModel").modal("hide");
     if (this.params.returnUrl) {
-      this.router.navigate(['user/add-ei'], { queryParams: { "title": "current", "returnUrl": "user/ei-confirmation" } });
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "current", "returnUrl": "user/ei-confirmation",'is_verify':this.params.is_verify } });
     } else {
-      this.router.navigate(['user/add-ei'], { queryParams: { "title": "current" } });
+      this.router.navigate(['user/add-ei'], { queryParams: { "title": "current",'is_verify':this.params.is_verify } });
     }
 
   }
