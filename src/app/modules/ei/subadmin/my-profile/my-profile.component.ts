@@ -259,7 +259,7 @@ export class MyProfileComponent implements OnInit {
         (res: any) => {
           if (res.status == true){
             this.loader.hide()
-             this.imageUrl = res.data[0].profile_pic
+             this.imageUrl = res.data.profile_pic
             this.epData = res.data
           }
           
