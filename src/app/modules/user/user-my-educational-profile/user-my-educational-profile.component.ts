@@ -51,6 +51,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   allCities: any;
   stateId: any = '';
   cityId: any = '';
+  getReject: any;
 
   constructor(
     private alert: NotificationService,
@@ -75,6 +76,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
     this.getPersonalInfo();
     this.getAllState();
+    this.getReject = JSON.parse(localStorage.getItem('getreject'))
   }
   getPersonalInfo() {
     try {
@@ -516,10 +518,16 @@ export class UserMyEducationalProfileComponent implements OnInit {
     this.stateId = data.state_id
   }
 
-  sendUserToReVerify(school_id,){
+  sendUserToReVerify(school_id,is_rejected? : any){
     
     this.confirmDialogService.confirmThis('Your School Details Will Be Send For Verification', () => {
-      this.router.navigate(["user/ei-confirmation"],{queryParams:{"school_id":school_id,'is_verify':1}})
+      if(is_rejected){
+        this.router.navigate(["user/ei-profile"],{queryParams:{"school_id":school_id,'is_rejected':1}})
+      }
+      else{
+        this.router.navigate(["user/ei-profile"],{queryParams:{"school_id":school_id,'is_verify':1}})
+      }
+      
      
     }, () => {
     });

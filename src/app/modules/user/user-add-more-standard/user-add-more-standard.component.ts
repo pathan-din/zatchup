@@ -64,6 +64,9 @@ export class UserAddMoreStandardComponent implements OnInit {
       if(this.params.is_verify==1){
         this.model.is_verify=1
       }
+      if(this.params.is_rejected==1){
+        this.model.is_rejected=1
+      }
       var schoolId = params['school_id'];
       this.schoolId = params['school_id'];
       this.getCourseBySchoolId(schoolId)
@@ -94,11 +97,21 @@ export class UserAddMoreStandardComponent implements OnInit {
     });
   }
   addAnotherCourse(schoolId) {
-    this.router.navigate(["user/ei-profile"], {
-      queryParams: {
-        school_id: schoolId
-
+    let queryParam : any = {}
+    if(this.params.is_verify == 1){
+      queryParam =  {
+        school_id: schoolId,
+        is_verify : 1
       }
+    }
+    else {
+      queryParam =  {
+        school_id: schoolId,
+        is_rejected : 1
+        }
+    }
+    this.router.navigate(["user/ei-profile"], {
+      queryParams:queryParam
     });
   }
   getEiInfo(model) {
@@ -251,6 +264,9 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.model.is_current_course = "0"
       if(this.params.is_verify==1){
         this.model.is_verify=1
+      }
+      if(this.params.is_rejected==1){
+        this.model.is_rejected=1
       }
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
       this.model.course_start_year = this.baseService.getDateFormat(this.model.course_start_year);

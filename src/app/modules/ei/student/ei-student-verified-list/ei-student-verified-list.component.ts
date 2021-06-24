@@ -487,7 +487,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
           if (res.status === true) {
             this.closeRejectModel.nativeElement.click()
             this.alert.success(res.message, 'Success')
-            this.router.navigate(['ei/student-management']);
+            this.getGetVerifiedStudent('', '')
+
+            // this.router.navigate(['ei/student-management']);
           } else {
             this.loader.hide();
             var errorCollection = '';
@@ -531,7 +533,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
           this.closeVerifiedModel.nativeElement.click()
           if (res.status == true) {
             this.alert.success(res.message, 'Success');
-            this.router.navigate(['ei/student-management']);
+            this.getGetVerifiedStudent('', '')
+
+            // this.router.navigate(['ei/student-management']);
           } else {
             this.alert.error(res.error.message[0], 'Error');
           }

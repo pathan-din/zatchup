@@ -173,9 +173,9 @@
                                 <i *ngIf="element.approved!=1" (click)="openModel(element.student_id)" title="Approve"
                                     class="fa fa-check mr-2 color-green fa-lg mr-0 cursorStyle" aria-hidden="true "
                                     data-toggle="modal"></i>
-                                <!-- <i *ngIf="element.approved==1" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
+                                <!-- <i *ngIf="element.approved==0" (click)="openModel(element.student_id)" class="fa fa-times-circle mr-2 color-red fa-lg mr-3 cursorStyle"></i> -->
                             </span>
-                            <i *ngIf="element.approved!=0" class="fa fa-ban mr-2 color-red fa-lg cursorStyle"
+                            <i  class="fa fa-ban mr-2 color-red fa-lg cursorStyle"
                                 title="Reject" aria-hidden="true " data-toggle="modal" data-target="#rejectModel"
                                 (click)="openRejectModel(element.student_id)"></i>
                         </mat-cell>
@@ -263,7 +263,7 @@
                             <div class="col-md-12 ">
                                 <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
                                 <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-                                    <input id="remark" [(ngModel)]="modelReason.remark" name="reason_type" required
+                                    <input id="remark" [(ngModel)]="modelReason.rejected_reason" name="reason_type" required
                                         class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                         type="text" placeholder="Enter Reason">
                                 </div>
@@ -275,7 +275,7 @@
                                 <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
 
                                 <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea
-                                        [(ngModel)]="modelReason.rejected_reason" name="remarks" required
+                                        [(ngModel)]="modelReason.remark" name="remarks" required
                                         class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                         rows="3 " placeholder="Enter Remarks "></textarea>
                                 </div>
