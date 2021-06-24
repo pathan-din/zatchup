@@ -99,7 +99,7 @@
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">{{element.Name}}</p>
+                            <p (click)="goToEiStudentProfilePage(element.student_id,'Alumni')" class="cursorStyle">{{element.Name}}</p>
                         </mat-cell>
                     </ng-container>
 

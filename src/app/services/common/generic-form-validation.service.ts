@@ -72,7 +72,8 @@ export class GenericFormValidationService {
           if (pattern.test(controls[i].value)) {
 
           } else {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid format.";
+            
+            this.errorMessageObject[controls[i].name] = 'Enter valid '+controls[i].name.replace(/_/g, ' ').charAt(0)+ controls[i].name.replace(/_/g, ' ').slice(1) + " address.";
           }
 
         }

@@ -166,7 +166,7 @@
                             <i class="fa fa-pencil mr-1 color-green fa-lg cursorStyle" title="Edit" aria-hidden="true "
                                 (click)="goToEiStudentEditPage(element.student_id,element.approved)"></i>
                             <i class="fa fa-eye mr-1 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
-                                (click)="goToEiStudentProfilePage(element.student_id)"></i>
+                                (click)="goToEiStudentProfilePage(element.student_id,'Student')"></i>
                             <i *ngIf="element.firebase_id" (click)="goToChatScreen(element)"
                                 class="fa fa-comment mr-1 color-green fa-lg mr-2 cursorStyle" aria-hidden="true "></i>
                             <span *ngIf="element.kyc_approved==1">
@@ -249,7 +249,8 @@
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
-                            
+                            <i class="fa fa-eye mr-1 color-blue fa-lg cursorStyle" title="View" aria-hidden="true "
+                                (click)="goToEiStudentProfilePage(element.student_id,'Student')"></i>
                             <i *ngIf="element.firebase_id" (click)="goToChatScreen(element)"
                                 class="fa fa-comment mr-2 color-green fa-lg mr-2 cursorStyle" aria-hidden="true "></i>
                           
