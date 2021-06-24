@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { Location } from '@angular/common';
 declare var $: any;
 
 @Component({
@@ -34,6 +35,7 @@ export class SubadminSettingComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private router: Router,
+    private location: Location,
     private baseService: BaseService,
     private validationService: GenericFormValidationService,
   ) { }
@@ -197,7 +199,7 @@ export class SubadminSettingComponent implements OnInit {
       localStorage.setItem("month", data[1]);
       localStorage.setItem("day", data[2]);
     }
-    this.router.navigate(['ei/kyc-verification'], { queryParams: { "action": "sendrequest", "text": text, "returnUrl": "user/setting" } });
+    this.router.navigate(['ei/kyc-verification'], { queryParams: { "action": "sendrequest", "text": text, "returnUrl": "subadmin-setting" } });
   }
 
   enableDiablePermission(event: any, type: any) {
@@ -352,5 +354,8 @@ export class SubadminSettingComponent implements OnInit {
       $nextInput.focus();
     }
 
+  }
+  goBack(): void{
+    this.location.back();
   }
 }
