@@ -54,12 +54,17 @@
                         <div class="col-md-11 ml-4" *ngFor="let eduDetails of userProfile.educationdetail">
                             <hr>
                             <h3 class="m-0 commonFontSize semiBoldFont position-relative text-capitalize fontSize-18 mb-1">
-                                {{eduDetails.name_of_school}}
-                                <span class="ml-2" *ngIf="eduDetails.approved">
+                                {{eduDetails.name_of_school}} 
+                                
+                                <span class="ml-2" *ngIf="eduDetails.approved == 1">
                                     <img src="assets/images/userWebsite/checkicon.png"
                                         class="img-fluid  check_absolute-image">
                                 </span>
+
+                                <button *ngIf="eduDetails.approved != 1"  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2 "  style="float: right;"
+                                (click)="getVerifiedChat(eduDetails)">Get Verify</button>
                             </h3>
+                            
                             <ng-container>
                                 <div *ngFor="let courseDetails of eduDetails.course_detail">
                                     <div class="mb-1">
