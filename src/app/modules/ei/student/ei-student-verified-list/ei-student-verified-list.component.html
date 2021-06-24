@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="tableDiv ">
-            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource">
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && !isRejected">
                 <mat-table #table [dataSource]="dataSource | paginate: config">
 
                     <!-- Checkbox Column -->
@@ -183,6 +183,72 @@
 
                     <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+
+                </mat-table>
+
+            </div>
+            <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource && isRejected">
+                <mat-table #table [dataSource]="dataSource | paginate: config">
+
+                    <!-- Checkbox Column -->
+                   
+
+                    <ng-container matColumnDef="SNo">
+                        <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.SNo}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ZatchUpID">
+                        <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.zatchupID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element" class="color-lightBlue">
+                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">
+                                {{element.name}}</p>
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="userID">
+                        <mat-header-cell *matHeaderCellDef> School ID </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.userID}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="roll_no">
+                        <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.roll_no}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Gender">
+                        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{getGender(element)}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Age">
+                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="class">
+                        <mat-header-cell *matHeaderCellDef> Class Alias </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.alias_class}}
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumnone "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumnone; "></mat-row>
 
                 </mat-table>
 

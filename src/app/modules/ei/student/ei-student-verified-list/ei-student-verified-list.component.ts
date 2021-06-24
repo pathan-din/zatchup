@@ -28,9 +28,13 @@ export class EiStudentVerifiedListComponent implements OnInit {
   studentDetails: any = [];
   arrAge: any = [];
   studentArr: any = [];
+  isRejected: boolean = false;
   modelUserId: any = '';
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
     'class', 'promote', 'Action'];
+
+  displayedColumnone: string[] = [ 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
+    'class'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
@@ -79,6 +83,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       this.approved = params['approved'] ? params['approved'] : ''
       this.model.approved = this.approved;
+      this.isRejected = params['approved'] == 2 ? true : false
       this.model.is_rejected = params['is_rejected'] ? params['is_rejected'] : '';
       this.model.rejectedby = params['rejectedby'] ? params['rejectedby'] : '';
       this.title = params['title'];
