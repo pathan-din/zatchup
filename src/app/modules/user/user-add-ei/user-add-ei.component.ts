@@ -164,15 +164,15 @@ export class UserAddEiComponent implements OnInit {
         if (response.status == true) {
           if (response.check_school_info_on_zatchup == 1) {
 
-            this.router.navigate(['user/congratulation'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup } });
+            this.router.navigate(['user/congratulation'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup,"is_verify":this.params.is_verify } });
 
 
           } else if (response.check_school_info_on_zatchup == 1) {
             if (this.params.returnUrl) {
 
-              this.router.navigate(['user/congratulation'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'returnUrl': this.params.returnUrl, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup } });
+              this.router.navigate(['user/congratulation'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'returnUrl': this.params.returnUrl, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup,"is_verify":this.params.is_verify } });
             } else {
-              this.router.navigate(['user/congratulation'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup } });
+              this.router.navigate(['user/congratulation'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup,"is_verify":this.params.is_verify } });
             }
           }
 
@@ -181,9 +181,9 @@ export class UserAddEiComponent implements OnInit {
           else {
             if (this.params.returnUrl) {
 
-              this.router.navigate(['user/add-new-course'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'returnUrl': this.params.returnUrl, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup } });
+              this.router.navigate(['user/add-new-course'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'returnUrl': this.params.returnUrl, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup,"is_verify":this.params.is_verify } });
             } else {
-              this.router.navigate(['user/add-new-course'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup } });
+              this.router.navigate(['user/add-new-course'], { queryParams: { school_id: response.data.school_id, 'title': this.title, 'check_school_info_on_zatchup': response.check_school_info_on_zatchup,"is_verify":this.params.is_verify } });
             }
 
           }

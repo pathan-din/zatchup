@@ -54,13 +54,14 @@ export class AddNewCourseComponent implements OnInit {
     if(this.params.check_school_info_on_zatchup==2)
     {
       this.is_already_registered=true;
-      this.model.is_already_register = true
+      this.model.is_already_register = "true"
       
     }
     else {
-      this.model.is_already_register = false
+      this.model.is_already_register = "false"
       
     }
+    console.log( this.model);
   }
 
 
@@ -152,6 +153,18 @@ editEi(schoolId){
      this.model.school_id = this.schoolId;
       this.model.start_date=this.pipe.transform(this.model.start_date, 'yyyy-MM-dd');
       this.model.end_date=this.pipe.transform(this.model.end_date, 'yyyy-MM-dd');
+      if(this.params.check_school_info_on_zatchup==2)
+      {
+        this.is_already_registered=true;
+        this.model.is_already_register = "true"
+        
+      }
+      else {
+        this.model.is_already_register = "false"
+        
+      }
+      console.log( this.model);
+      
       this.baseService.action('user/add-course-by-user/',this.model).subscribe(res => {
         let response: any = {}
         response = res;

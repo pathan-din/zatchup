@@ -519,33 +519,8 @@ export class UserMyEducationalProfileComponent implements OnInit {
   sendUserToReVerify(school_id,){
     
     this.confirmDialogService.confirmThis('Your School Details Will Be Send For Verification', () => {
-      try {
-        this.loader.hide()
-        this.model = {
-          'school_id': school_id,
-          'student_id': localStorage.getItem('userId')
-        }
-  
-        this.baseService.action('user/post-student-verified/', this.model).subscribe(
-          (res : any )=> {
-            if(res.status == true){
-              this.alert.success('res.message', 'Success')
-              this.getEducationalProfile();
-            }
-            else{
-              this.loader.hide()
-              this.alert.error('res.error.message', 'Error')
-            }
-            this.loader.hide()
-          }
-        ),
-        (err)=> {
-          this.loader.hide()
-          this.alert.error('Please Try Again', 'Error')
-        }
-      } catch (error) {
-        this.loader.hide()
-      }
+      this.router.navigate(["user/ei-confirmation"],{queryParams:{"school_id":school_id,'is_verify':1}})
+     
     }, () => {
     });
     
