@@ -51,7 +51,9 @@ export class UserEiProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.params = params
-      
+      if(this.params.is_verify==1){
+        this.model.is_verify=1
+      }
       if (params.school_id) {
         this.schoolId = params.school_id;
         this.getCourseBySchoolId(this.schoolId)
@@ -268,6 +270,9 @@ export class UserEiProfileComponent implements OnInit {
     }
     try {
       this.loader.show();
+      if(this.params.is_verify==1){
+        this.model.is_verify=1
+      }
       this.model.is_current_course = 1
       this.model.date_joining = this.baseService.getDateFormat(this.model.date_joining);
       this.model.course_start_year = this.baseService.getDateFormat(this.model.course_start_year);

@@ -42,14 +42,14 @@ export class UserCongratulationComponent implements OnInit {
   }
   goToUserAddEiPage() {
     if(this.title=='past'){
-      this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:this.schoolId}});
+      this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:this.schoolId,'is_verify':this.params.is_verify}});
     }else if(this.isalumini=='p')
     {
-      this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:this.schoolId,'isalumini':1}});
+      this.router.navigate(['user/add-more-standard'],{queryParams:{school_id:this.schoolId,'isalumini':1,'is_verify':this.params.is_verify}});
     }
     else{
       
-      this.router.navigate(['user/ei-profile'],{queryParams:{school_id:this.schoolId}});
+      this.router.navigate(['user/ei-profile'],{queryParams:{school_id:this.schoolId,'is_verify':this.params.is_verify}});
     }
     
  }

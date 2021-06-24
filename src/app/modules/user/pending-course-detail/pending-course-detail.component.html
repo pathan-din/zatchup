@@ -200,6 +200,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="mt-3" *ngIf="objEpData.course_detail.length==0">
+                    <div class="col-12 pt-2 pb-2">
+                        <p class="text-center dataNotFound py-4 px-3">  Records Not Available</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
