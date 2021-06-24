@@ -179,7 +179,7 @@
                                         <div class="row ">
                                             <div class="col-sm-12">
                                                 <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                    <select (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year"
+                                                    <select [disabled]="true" (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year"
                                                         name="teaching_start_year_{{cNo}}_{{s}}_{{c}}" class="custom-select  form-control-input form-control-sm "
                                                         required>
                                                         <option value="">Year</option>
@@ -196,7 +196,7 @@
                                         <div class="row ">
                                             <div class="col-sm-12" *ngIf="!courseList.is_teaching_current ">
                                                 <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                    <select [disabled]="courseList.is_teaching_current" (change)="updateSection(classD, courseList.is_teaching_current)" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                                    <select [disabled]="true" (change)="updateSection(classD, courseList.is_teaching_current)" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                         [required]="classD.teaching_stopped" [(ngModel)]="classD.teaching_end_year"
                                                         name="teaching_end_year_{{cNo}}_{{s}}_{{c}}" class="custom-select  form-control-input form-control-sm ">
                                                         <option value="0">Year</option>

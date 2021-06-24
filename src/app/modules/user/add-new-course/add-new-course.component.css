@@ -1,6 +1,13 @@
-.customWidth{display: flex; justify-content: space-between; flex-wrap: wrap;}
-.customWidth .col-sm-6{flex: 0 0 53% !important;
-max-width: 48%;}
+.customWidth {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.customWidth .col-sm-6 {
+    flex: 0 0 53% !important;
+    max-width: 48%;
+}
 
 .round-camera-div {
     max-height: 10vw;
@@ -18,10 +25,14 @@ max-width: 48%;}
     overflow: hidden;
 }
 
-
 .left-Image {
     width: 80%;
 }
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
 @media only screen and (max-width: 414px) {
     .round-camera-div {
         max-height: 20vw;
@@ -31,18 +42,15 @@ max-width: 48%;}
     }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {}
 
-}
-
-@media (max-width: 414px){    
-
+@media (max-width: 414px) {
     .pl-5, .px-5 {
         padding-left: .5rem!important;
     }
     .pr-5, .px-5 {
         padding-right: .5rem!important;
-    } 
+    }
     .left-Image {
         width: 100%;
     }

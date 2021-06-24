@@ -36,6 +36,7 @@ export class UserHeaderComponent implements OnInit {
   isLoggedIn: boolean;
   searchItem: any = '';
   showHeader: boolean;
+  kycStatus: boolean = false;
 
   constructor(
     private router: Router,
@@ -141,6 +142,7 @@ export class UserHeaderComponent implements OnInit {
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
         this.loader.hide()
         this.regProfile = res;
+        this.kycStatus = this.regProfile.is_kyc_approved
         if(res.reg_step >= 7){
           this.showHeader = true
         }
