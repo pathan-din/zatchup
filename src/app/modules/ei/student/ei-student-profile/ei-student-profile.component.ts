@@ -15,6 +15,7 @@ export class EiStudentProfileComponent implements OnInit {
   stid: any = '';
   userprofile: any = {};
   ischeckStudentOrAlumni: boolean = false;
+  params:any={}
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -33,7 +34,7 @@ export class EiStudentProfileComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.stid = params['stId'];
-
+      this.params=params
       this.getStudentDetails(params['stId'])
 
     });

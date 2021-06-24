@@ -59,7 +59,7 @@
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="name" class="mediumFont commonFontSize letterspacing">Name</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input required (keyup)="isValid()" [(ngModel)]="model.kyc_name" name="name"
+                                <input [disabled]="params.text=='dob'" required (keyup)="isValid()" [(ngModel)]="model.kyc_name" name="name"
                                     class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="Enter Your Name">
                             </div>
@@ -70,7 +70,7 @@
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="dob " class=" mediumFont commonFontSize letterspacing">DOB</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input autocomplete="off" [bsConfig]="{dateInputFormat: 'YYYY/MM/DD'}" required
+                                <input [disabled]="params.text=='name'" autocomplete="off" [bsConfig]="{dateInputFormat: 'YYYY/MM/DD'}" required
                                     (change)="isValid()"
                                     class="form-control-input form-control  commonFontSize regularFont letterspacing dob-bg-img"
                                     type="text" placeholder="YYYY/MM/DD" [(ngModel)]="model.kyc_dob" name="dob"

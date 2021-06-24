@@ -58,7 +58,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
-
+params:any={}
   constructor(
     private router: Router,
     private location: Location,
@@ -81,6 +81,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.model.gender = '';
     this.model.approved = ""
     this.route.queryParams.subscribe((params: any) => {
+       
       this.approved = params['approved'] ? params['approved'] : ''
       this.model.approved = this.approved;
       this.isRejected = params['approved'] == 2 ? true : false
@@ -463,8 +464,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
   }
 
-  goToEiStudentProfilePage(id) {
-    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
+  goToEiStudentProfilePage(id,title) {
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id,'title': title} });
   }
 
 

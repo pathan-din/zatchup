@@ -264,6 +264,7 @@ export class EiSidenavComponent implements OnDestroy {
 
             }
           } else if (response.role == 'EISUBADMIN') {
+            sessionStorage.setItem("permission",JSON.stringify(response.module_data));
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
               if(response.reg_step==1){
                 this.router.navigate(['ei/kyc-verification']);
