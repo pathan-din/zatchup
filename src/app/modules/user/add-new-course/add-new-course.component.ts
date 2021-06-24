@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../../services/user/users-service.service';
 import { BaseService } from '../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
@@ -19,12 +19,12 @@ export class AddNewCourseComponent implements OnInit {
   model: any = {}
   errorDisplay: any = {};
   pipe = new DatePipe('en-US');
-  schoolId:any;
-  imageUrl:any='';
-  checkincourse:boolean=false;
-  title:any;
-  is_already_registered:boolean=false;
-  params:any;
+  schoolId: any;
+  imageUrl: any = '';
+  checkincourse: boolean = false;
+  title: any;
+  is_already_registered: boolean = false;
+  params: any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -33,41 +33,39 @@ export class AddNewCourseComponent implements OnInit {
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private alert: NotificationService,
-    private eiService:EiServiceService
-    ) { }
+    private eiService: EiServiceService
+  ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("checkincourse")=="true")
-    {
-      this.checkincourse=true;
+    if (localStorage.getItem("checkincourse") == "true") {
+      this.checkincourse = true;
     }
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
-      this.params=params;
-      
-      if(params['title']){
+      this.params = params;
+
+      if (params['title']) {
         this.title = params['title'];
       }
     });
     this.model.school_id = this.schoolId;
     this.getEiInfo(this.model);
-    if(this.params.check_school_info_on_zatchup==2)
-    {
-      this.is_already_registered=true;
+    if (this.params.check_school_info_on_zatchup == 2) {
+      this.is_already_registered = true;
       this.model.is_already_register = "true"
-      
+
     }
     else {
       this.model.is_already_register = "false"
-      
+
     }
-    console.log( this.model);
+    console.log(this.model);
   }
 
 
   getEiInfo(model) {
     try {
-       this.SpinnerService.show();
+      this.SpinnerService.show();
       this.baseService.action("user/get-admission-number-detail-by-school/", model).subscribe((res: any) => {
         if (res.status == true) {
           this.SpinnerService.hide();
@@ -97,51 +95,53 @@ export class AddNewCourseComponent implements OnInit {
   /** 
    * Function Name : fileUploadDocument
   */
- fileUploadDocument(files, document) {
-  let fileList: FileList = files;
-  let fileData: File = fileList[0];
-  if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png' && fileData.type !== 'application/pdf') {
-    this.SpinnerService.hide();
-    this.alert.error("File format not supported", 'Error');
-    this.myInputVariable.nativeElement.value = '';
-    return
-  }else{
-     
-    
-  }
-  const formData = new FormData();
-  formData.append('file_name', fileData);
-  try {
-    this.SpinnerService.show();
-    this.eiService.uploadFile(formData).subscribe(
-      (res: any) => {
-        if (res.status == true) {
+  fileUploadDocument(files, document) {
+    let fileList: FileList = files;
+    let fileData: File = fileList[0];
+    if (fileData.type !== 'image/jpeg' && fileData.type !== 'image/jpg' && fileData.type !== 'image/png' && fileData.type !== 'application/pdf') {
+      this.SpinnerService.hide();
+      this.alert.error("File format not supported", 'Error');
+      this.myInputVariable.nativeElement.value = '';
+      return
+    } else {
+
+
+    }
+    const formData = new FormData();
+    formData.append('file_name', fileData);
+    try {
+      this.SpinnerService.show();
+      this.eiService.uploadFile(formData).subscribe(
+        (res: any) => {
+          if (res.status == true) {
+            this.SpinnerService.hide();
+            this.imageUrl = this.eiService.imagePath + res.filename;
+            return res.filename;
+          } else {
+            this.imageUrl = ''
+            this.SpinnerService.hide();
+            var collection = this.eiService.getErrorResponse(this.SpinnerService, res.error);
+            this.alert.error(collection, 'Error')
+            return '';
+          }
+        }, (error) => {
           this.SpinnerService.hide();
-          this.imageUrl = this.eiService.imagePath+res.filename;
-          return res.filename;
-        } else {
-          this.imageUrl =''
-          this.SpinnerService.hide();
-          var collection = this.eiService.getErrorResponse(this.SpinnerService, res.error);
-          this.alert.error(collection, 'Error')
+          this.alert.error(error.message, 'Error')
           return '';
-        }
-      }, (error) => {
-        this.SpinnerService.hide();
-        this.alert.error(error.message, 'Error')
-        return '';
-      });
-  } catch (err) {
-    this.SpinnerService.hide();
-    this.alert.error(err, 'Error')
+        });
+    } catch (err) {
+      this.SpinnerService.hide();
+      this.alert.error(err, 'Error')
+    }
   }
-}
-editEi(schoolId){
-  this.router.navigate(["user/add-ei"],{queryParams:{
-    school_id:schoolId
-  }});
-}
-  addCourseData(){
+  editEi(schoolId) {
+    this.router.navigate(["user/add-ei"], {
+      queryParams: {
+        school_id: schoolId
+      }
+    });
+  }
+  addCourseData() {
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     console.log(this.errorDisplay)
@@ -150,29 +150,34 @@ editEi(schoolId){
     }
     try {
       //
-     this.model.school_id = this.schoolId;
-      this.model.start_date=this.pipe.transform(this.model.start_date, 'yyyy-MM-dd');
-      this.model.end_date=this.pipe.transform(this.model.end_date, 'yyyy-MM-dd');
-      if(this.params.check_school_info_on_zatchup==2)
-      {
-        this.is_already_registered=true;
+      this.model.school_id = this.schoolId;
+      this.model.start_date = this.pipe.transform(this.model.start_date, 'yyyy-MM-dd');
+      this.model.end_date = this.pipe.transform(this.model.end_date, 'yyyy-MM-dd');
+      if (this.params.check_school_info_on_zatchup == 2) {
+        this.is_already_registered = true;
         this.model.is_already_register = "true"
-        
+
       }
       else {
         this.model.is_already_register = "false"
-        
+
       }
-      console.log( this.model);
-      
-      this.baseService.action('user/add-course-by-user/',this.model).subscribe(res => {
+      console.log(this.model);
+
+      this.baseService.action('user/add-course-by-user/', this.model).subscribe(res => {
         let response: any = {}
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
           this.alert.success(response.message, 'Success')
-          this.router.navigate(['user/add-more-course'], {queryParams: {'school_id':this.schoolId ,'title':this.title}});
-          
+          if (this.params.check_school_info_on_zatchup == 2) {
+            this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title, 'check_school_info_on_zatchup': 2 } });
+          }
+          else {
+            this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title } });
+          }
+          // this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title } });
+
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
@@ -182,7 +187,7 @@ editEi(schoolId){
 
             }
           }
-         this.alert.error(errorCollection, 'Error')
+          this.alert.error(errorCollection, 'Error')
         }
       }, (error) => {
         this.SpinnerService.hide();
@@ -190,7 +195,10 @@ editEi(schoolId){
 
       });
     } catch (e) {
-    
+
     }
+  }
+  radioChange(evt) {
+    this.model.is_current = evt.value
   }
 }
