@@ -59,6 +59,9 @@ export class EiStudentManagementComponent implements OnInit {
   goToEiStudentVerifiedListPage(){
     this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':1,'kyc_approved':1,'title':'Verified'}});
   }
+  goToRejectedStudent(){
+    this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':2,'title':'Rejected'}});
+  }
   goToEiStudentRequestPendingForCourseDetailsPage(){
     
     this.router.navigate(['ei/request-for-course-list']);

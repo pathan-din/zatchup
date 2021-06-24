@@ -33,6 +33,15 @@
                         Verification:<span class="ml-2">{{courseWiseStudentCount.total_pending_approval?courseWiseStudentCount.total_pending_approval:0}}</span></p>
                 </div>
             </div>
+
+            <div class="col-md-4 MobileCol6MB" (click)="goToRejectedStudent()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
+                    <p class="p-2 mediumFont commonFontSize">Rejected Student</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{courseWiseStudentCount.rejected_student_count?courseWiseStudentCount.rejected_student_count:0}}
+                    </h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg bg-light-secondary">Rejected Student:<span class="ml-2">{{courseWiseStudentCount.rejected_student_count?courseWiseStudentCount.rejected_student_count:0}}</span></p>
+                </div>
+            </div>
             <div class="col-md-4" (click)="goToEiStudentRequestPendingForChangingDetailsPage()">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Request pending for change in Admission No. and Roll No.

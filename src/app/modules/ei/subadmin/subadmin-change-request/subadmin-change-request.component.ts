@@ -175,7 +175,7 @@ export class SubadminChangeRequestComponent implements OnInit {
       //this.model.profile.dob=this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
       /**********************************************************************/
       //ei/reject-course-by-ei/
-      this.baseService.action('ei/rejected-request-by-ei/',this.modelReason).subscribe(res => {
+      this.baseService.action('ei/reject-subadmin-request-change/',this.modelReason).subscribe(res => {
 
         let response: any = {};
         response = res;
@@ -183,18 +183,20 @@ export class SubadminChangeRequestComponent implements OnInit {
         if (response.status === true)// Condition True Success 
         {
           this.closeRejectModel();
-          this.alert.success(response.message, 'Success')
-          this.router.navigate(['ei/student-management']); 
+          this.alert.success(response.error.message, 'Success')
+          this.getViewChangesRequestStatus('')
+          // this.router.navigate(['ei/student-management']); 
         } else { // Condition False Validation failure
           this.loader.hide();
-          var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
+          this.alert.error(response.error.message, 'Error')
+          // var errorCollection = '';
+          // for (var key in response.error) {
+          //   if (response.error.hasOwnProperty(key)) {
+          //     errorCollection = errorCollection + response.error[key][0] + '\n'
 
-            }
-          }
-          this.alert.error(errorCollection,"Error");
+          //   }
+          // }
+          // this.alert.error(errorCollection,"Error");
 
         }
 

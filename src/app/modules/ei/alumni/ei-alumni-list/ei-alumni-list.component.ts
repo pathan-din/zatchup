@@ -239,8 +239,11 @@ export class EiAlumniListComponent implements OnInit {
 	try{
       this.SpinnerService.show(); 
 	  
-      
-      this.baseService.getData('ei/course-list/').subscribe(res => {
+      let data = {
+        'page': 1,
+        'page_size': 1000
+      }
+      this.baseService.getData('ei/course-list/',data).subscribe(res => {
         let response:any={};
         response=res;
         // if(response.status == true){

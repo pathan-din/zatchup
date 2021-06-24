@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
   lastMessageData: any = [];
   ids: any = [];
   scrollHeight: any = 300;
-  params: any;
+  params: any = {};
   recepientGroup: any;
   recepientUsers:any;
   recepientIcon:any;
@@ -58,6 +58,11 @@ export class ChatComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(localStorage.getItem('message')){
+      this.model.comment = localStorage.getItem('message')
+      this.sendChat()
+      localStorage.removeItem('message')
+    }
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
@@ -152,8 +157,14 @@ export class ChatComponent implements OnInit {
        this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res:any)=>{
          // console.log("bbb",res);
          if(res) {
-          var objB = res.data.find(e=>{return e.uuid==this.currentUser})
-           this.blockRecipant=objB.isblock;
+          let objB : any = {}
+          objB =  res.data.find(e=>{return e.uuid==this.currentUser})
+         if(!objB){
+
+         }
+         else{
+          this.blockRecipant=objB.isblock;
+         }
          }
        })
       this.presence$ = this.firebaseService.getPresence(this.uuid);

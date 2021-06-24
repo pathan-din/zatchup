@@ -82,6 +82,13 @@ export class UserhomeComponent implements OnInit {
     this.router.navigate(["user/chat"]);
   }
 
+  getVerifiedChat(obj){
+    var message = 'Hi, I was student of '+obj.name_of_school+' , Please verify my profile'
+    localStorage.setItem('message', message)
+    localStorage.setItem('uuid', obj.firebase_id);
+    this.router.navigate(["user/chat"]);
+  }
+
   getGender(data: any) {
     let custom: any
     if (data.custom_gender)

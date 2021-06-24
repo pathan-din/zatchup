@@ -28,9 +28,13 @@ export class EiStudentVerifiedListComponent implements OnInit {
   studentDetails: any = [];
   arrAge: any = [];
   studentArr: any = [];
+  isRejected: boolean = false;
   modelUserId: any = '';
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
     'class', 'promote', 'Action'];
+
+  displayedColumnone: string[] = [ 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
+    'class', 'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
@@ -59,9 +63,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public baseService: BaseService,
-    public formBuilder: FormBuilder,
+    private eiService: EiServiceService,
+    private baseService: BaseService,
     private alert: NotificationService,
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
@@ -80,6 +83,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       this.approved = params['approved'] ? params['approved'] : ''
       this.model.approved = this.approved;
+      this.isRejected = params['approved'] == 2 ? true : false
       this.model.is_rejected = params['is_rejected'] ? params['is_rejected'] : '';
       this.model.rejectedby = params['rejectedby'] ? params['rejectedby'] : '';
       this.title = params['title'];
@@ -172,7 +176,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
   displayCourseList() {
     try {
       this.loader.show();
-      this.eiService.displayCourseList().subscribe(res => {
+      let data = {
+        'page': 1,
+        'page_size': 1000
+      }
+      this.baseService.getData('ei/course-list/',data).subscribe(res => {
         let response: any = {};
         response = res;
         this.courseList = response.results;
@@ -487,7 +495,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
           if (res.status === true) {
             this.closeRejectModel.nativeElement.click()
             this.alert.success(res.message, 'Success')
-            this.router.navigate(['ei/student-management']);
+            this.getGetVerifiedStudent('', '')
+
+            // this.router.navigate(['ei/student-management']);
           } else {
             this.loader.hide();
             var errorCollection = '';
@@ -531,7 +541,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
           this.closeVerifiedModel.nativeElement.click()
           if (res.status == true) {
             this.alert.success(res.message, 'Success');
-            this.router.navigate(['ei/student-management']);
+            this.getGetVerifiedStudent('', '')
+
+            // this.router.navigate(['ei/student-management']);
           } else {
             this.alert.error(res.error.message[0], 'Error');
           }
