@@ -34,7 +34,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     'class', 'promote', 'Action'];
 
   displayedColumnone: string[] = [ 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
-    'class'];
+    'class', 'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
