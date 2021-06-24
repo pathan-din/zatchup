@@ -59,9 +59,8 @@ export class EiStudentVerifiedListComponent implements OnInit {
     private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public baseService: BaseService,
-    public formBuilder: FormBuilder,
+    private eiService: EiServiceService,
+    private baseService: BaseService,
     private alert: NotificationService,
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
@@ -172,7 +171,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
   displayCourseList() {
     try {
       this.loader.show();
-      this.eiService.displayCourseList().subscribe(res => {
+      let data = {
+        'page': 1,
+        'page_size': 1000
+      }
+      this.baseService.getData('ei/course-list/',data).subscribe(res => {
         let response: any = {};
         response = res;
         this.courseList = response.results;

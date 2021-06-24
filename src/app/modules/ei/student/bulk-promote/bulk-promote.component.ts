@@ -24,7 +24,7 @@ export class BulkPromoteComponent implements OnInit {
   rollNumArr: any = []
   promoteType: any = ''
   studentList: any;
-  courseDisable: boolean
+  courseDisable: boolean = true
 
   constructor(
     private location: Location,
@@ -66,7 +66,11 @@ export class BulkPromoteComponent implements OnInit {
   getCourseList() {
     try {
       this.loader.show();
-      this.baseService.getData("ei/course-list/").subscribe((res: any) => {
+      let data = {
+        'page': 1,
+        'page_size': 1000
+      }
+      this.baseService.getData("ei/course-list/", data).subscribe((res: any) => {
         this.loader.hide()
         this.studentCourseList = res.results;
       }, (error) => {
