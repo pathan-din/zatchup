@@ -96,7 +96,22 @@ export class StudentsListComponent implements OnInit {
     private route:ActivatedRoute) { }
   sectionIds:any;
   teacherList:any=[];
+  groupUsers : any = [];
+  teacherGroup : any =[]
   ngOnInit(): void {
+    this.checkAllS = false
+   if(localStorage.getItem('groupUsers')){
+     this.groupUsers = []
+     this.teacherGroup= []
+    JSON.parse(localStorage.getItem('groupUsers')).forEach(element => {
+      if(!element.isadded){
+        this.groupUsers.push(element)
+      }
+      else{
+        this.teacherGroup.push(element)
+      }
+    });
+   } 
     this.route.queryParams.subscribe(params=>{
       this.params = params;
     })
@@ -129,11 +144,25 @@ export class StudentsListComponent implements OnInit {
           this.dataSource1 = groupList;
           this.teacherList= groupList;
         }
-       
+
+        
+        if(this.teacherGroup.length == groupList.length){
+          this.checkAllT = true
+        }
+        else{
+          this.checkAllT = false
+        }
         
       }else{
         this.teacherList = JSON.parse(localStorage.getItem("teachers"));
         this.dataSource1 = this.teacherList;
+      
+        if(this.teacherGroup.length == this.teacherList.length){
+          this.checkAllT = true
+        }
+        else{
+          this.checkAllT = false
+        }
       }
       
     }
@@ -238,10 +267,27 @@ export class StudentsListComponent implements OnInit {
             this.dataSource = groupList;
             this.studentLists = groupList;
           }
-         
+   
+          
+          
+         if(this.groupUsers.length == this.studentLists.length){
+           this.checkAllS = true
+         }
+         else{
+           this.checkAllS = false
+         }
           
         }else{
           this.dataSource = arrStudentList;
+ 
+          
+          
+         if(this.groupUsers.length == arrStudentList.length){
+           this.checkAllS = true
+         }
+         else{
+           this.checkAllS = false
+         }
         }
        
         if (res.status == false) {
@@ -286,8 +332,8 @@ export class StudentsListComponent implements OnInit {
        if(user==objData.student_id && ev.checked){
         objData.checked = ev.checked;
         this.checkAllS=true
-       }else{
-       // objData.checked = ev.checked;
+       }else if(user==objData.student_id && !ev.checked){
+       objData.checked = ev.checked;
         this.checkAllS=false
        }
         
@@ -298,7 +344,7 @@ export class StudentsListComponent implements OnInit {
         if(user==objData.user_id  && ev.checked){
           objData.isadded = ev.checked;
          }else{
-         // objData.isadded = ev.checked;
+         objData.isadded = ev.checked;
           this.checkAllT=false
          }
        // objData.isadded = ev.checked;
