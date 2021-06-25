@@ -15,7 +15,9 @@
                                 <i *ngIf="!model.group_icon" class="fa fa-users" aria-hidden="true"></i>
                                 <!-- <i class="fa fa-users" aria-hidden="true" *ngIf="model.group_icon"></i> -->
                                 <img src="{{model.group_icon}}" *ngIf="model.group_icon">
-                                <input #file type="file" style="display:none;" (change)="fileUploadDocument($event.target.files)"/>                    
+                                <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                                </app-image-uploader>
+                                <!-- <input #file type="file" style="display:none;" (change)="fileUploadDocument($event.target.files)"/>                     -->
                             </div>
                             <div class="profileCamara">
                                 <i class="fa fa-camera cursorStyle" (click)="file.click()" aria-hidden="true"></i>
