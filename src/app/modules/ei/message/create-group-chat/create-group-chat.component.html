@@ -3,27 +3,22 @@
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
             <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Create Group Chat</h2>
+                <h1 class="commonFontSize semiBoldFont m-0">Create Group Chat</h1>
             </div>
         </div>
-<form>
+        <form>
         <div class="row mt-3 border-bottom pb-3 align-items-center">
-            <div  class="col-3 col-md-2 col-lg-1">
-                  <div class="dpImgDiv rounded-circle border border-primary mb-3"
-                        [ngStyle]="model.group_icon ? {'background-image': 'url(' + model.group_icon + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
-                        <div class="upload-dp position-absolute">
-                            <!-- <button type="button" (click)="fileInput1.click()"
-                                class=" border-0 bg-transparent text-white p-2 cursorStyle d-block mt-3">
-                                <span><i class="fa fa-camera" aria-hidden="true"></i></span>
-                                <input #fileInput1 (change)="uploadProfilePic($event.target.files)" type="file"
-                                    style="display:none;" />
-                            </button> -->
-                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
-                            </app-image-uploader>
-                        </div></div>
+            <div  class="col-4 col-md-1">
+                <div class="addChatProfile rounded-circle border border-primary position-relative"
+                    [ngStyle]="model.group_icon ? {'background-image': 'url(' + model.group_icon + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
+                    <div class="upload-dp">
+                        <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                        </app-image-uploader>
+                    </div>
+                </div>
             </div>
-            <div class="col-9 col-md-10 col-lg-11">
-                
+
+            <div class="col-8 col-md-11">
                 <div class="form-control-inputDiv rounded p-0 shadow-none w-50">
                     <input name="group_title" required [(ngModel)]="model.group_title" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Group Title">
                 </div>

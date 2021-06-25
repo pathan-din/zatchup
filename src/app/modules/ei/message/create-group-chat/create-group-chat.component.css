@@ -5,13 +5,19 @@ ul {
     padding-left: 0px;
 }
 .addChatProfile{
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     background: #f2f2f2;
     text-align: center;
-    line-height: 65px;
+    line-height: 80px;
     font-size: 20px;
+    overflow: hidden;
+    background-position: 50% 50%;
+}
+.upload-dp {
+    line-height: 1;
+    font-size: 14px;
 }
 .pickSize {
     height: 50px;
