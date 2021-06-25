@@ -1,7 +1,7 @@
 <app-ei-sidenav></app-ei-sidenav>
 
 <div class="container main-container p-3">
-    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3 border">
+    <div class="bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h1 class="mb-3 pt-3 semiBoldFont">Teacher Profile</h1>
             <div class="mb-3" >
@@ -66,9 +66,11 @@
                             </div>
                         </div>
                     </div>
-                    
+                </div>
+
+                <div class="row form-control-inputDiv py-3 px-2 mt-3">
                     <div class="col-md-12">
-                        <h2 class="color-purple commonFontSize semiBoldFont Heading m-0 pt-3">School Details </h2>
+                        <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h2>
                         <div class="col-md-12">
                             <hr>
                         </div>
@@ -79,16 +81,16 @@
                                 </span>
                             </p>
                             <div class="row">
-                                <div *ngIf="objEd.school_code" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16"> 
+                                <div *ngIf="objEd.school_code" class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16"> 
                                     ZatchUp ID : <span class="regularFont">{{objEd.school_code}}</span>
                                 </div>
-                                <div *ngIf="epData.employee_num" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                <div *ngIf="epData.employee_num" class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
                                     Employee Number : <span class="regularFont">{{epData.employee_num}}</span>
                                 </div>
-                                <div class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                <div class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16">
                                     State : <span class="regularFont">{{objEd.state__state}} </span>
                                 </div>
-                                <div class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                <div class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
                                     City : <span class="regularFont">{{objEd.city__city}} </span>
                                 </div>
                                 <div *ngIf="objEd.address1" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
