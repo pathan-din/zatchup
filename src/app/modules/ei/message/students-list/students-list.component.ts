@@ -144,6 +144,8 @@ export class StudentsListComponent implements OnInit {
           this.dataSource1 = groupList;
           this.teacherList= groupList;
         }
+console.log(this.teacherGroup.length, 'teacher');
+console.log(groupList.length, 'group');
 
         
         if(this.teacherGroup.length == groupList.length){
@@ -154,9 +156,11 @@ export class StudentsListComponent implements OnInit {
         }
         
       }else{
+      
         this.teacherList = JSON.parse(localStorage.getItem("teachers"));
         this.dataSource1 = this.teacherList;
-      
+//         console.log(this.teacherGroup.length, 'teacher');
+// console.log(this.teacherList.length, 'group');
         if(this.teacherGroup.length == this.teacherList.length){
           this.checkAllT = true
         }
@@ -268,6 +272,7 @@ export class StudentsListComponent implements OnInit {
             this.studentLists = groupList;
           }
    
+   
           
           
          if(this.groupUsers.length == this.studentLists.length){
@@ -282,7 +287,7 @@ export class StudentsListComponent implements OnInit {
  
           
           
-         if(this.groupUsers.length == arrStudentList.length){
+         if(res.count == arrStudentList.length){
            this.checkAllS = true
          }
          else{
