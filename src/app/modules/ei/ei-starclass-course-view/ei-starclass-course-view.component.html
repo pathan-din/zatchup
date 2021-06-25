@@ -219,13 +219,9 @@
             </div>
             <!--End div for oView Course Details-->
 
-            <div class="row mt-3">
-                <div class="col-8">
-                    <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
-                </div>
-                <div class="col-4 text-right">
-                    <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory(courseData.id)" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
-                </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory(courseData.id)" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
             </div>
     
             <div class="row my-3 align-items-center" *ngIf="eiStarclassLectueList.dataSource">
