@@ -90,7 +90,152 @@ span.group-member{
     line-height: 40px;
     font-size: 11px;
 }
+    /* .containerScrolling {
+    height: 100vh;
+    overflow-y: scroll;
+} */
+   
+.btn_position-absolute {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
 
+.landingDiv {
+    padding-top: 0;
+}
+
+.profileDivLeft {
+    position: relative;
+}
+
+.tick-img {
+    position: absolute;
+    bottom: 80px;
+    left: 125px;
+}
+
+.w-like-comment {
+    width: 18%;
+}
+
+.w-12 {
+    width: 12%;
+}
+
+.border-radius-25 {
+    border-radius: 25px;
+}
+
+.dpImgDiv {
+    /* background: url('/assets/images/userWebsite/share-my-profile-icon.png') #efefef; */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 15%;
+    background-position-x: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    margin-top: -50px;
+    padding: 0.4rem;
+    min-width: 100px;
+    min-height: 100px;
+    background: #fff;
+}
+
+.upload-dp {
+    top: 65%;
+    bottom: 0;
+    left: 0%;
+    right: 0;
+    background: rgb(133, 132, 127, 0.5);
+}
+
+.proj-title {
+    color: #5790c2;
+}
+
+.addBuddyBtn {
+    background: #f7f7f7;
+    border: 1px solid #c7cbd1;
+}
+
+.editIcon {
+    width: 7%;
+}
+
+.bannerDiv {
+    height: 180px;
+    overflow: hidden;
+}
+.bannerDiv img{
+    max-width: 100% !important;
+    /* width: auto !important; */
+    margin: 0px auto;
+    display: block;
+}
+
+.img-container {
+    min-height: 110px;
+    max-height: 110px;
+    height: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .addBuddyBtn {
+        width: 100%!important;
+    }
+    
+    .img-container-col6 {
+        min-height: 16vh!important;
+        max-height: 16vh!important;
+        height: 16vh!important;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    
+    .profileDivLeft {
+        flex-direction: column;
+        padding-left: 0!important;
+        align-items: center;
+    }
+    .profileDivLeft p {
+        text-align: center!important;
+    }
+    .profileDivRight {
+        padding-left: 0!important;
+        margin-top: 5%;
+    }
+    .profileDivRight p {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+    .padding-0 {
+        padding: 0;
+    }
+    .addBuddyBtn {
+        width: 100%!important;
+    }
+    .colLeftPost {
+        margin-top: 2%;
+    }
+    .mtStyle{
+        margin-top: 2rem;
+    }
+    .tick-img {
+        position: absolute;
+        left: 60%;
+    }
+
+    .img-container {
+        min-height: 90px;
+        max-height: 90px;
+        height: 100%;
+    }
+}
 @media (max-width: 767px){
     .w-50{
         width: 100% !important;
