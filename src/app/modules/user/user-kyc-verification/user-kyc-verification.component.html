@@ -11,6 +11,7 @@
             </div>
 
             <form id="form1" #form enctype="multipart/form-data">
+            <span class="color-red rounded p-1 shadow-none">{{reasonTextMessage}}</span>
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <select (change)="checkIdValidation()" [(ngModel)]="model.kyc_type" name="kyc_type"

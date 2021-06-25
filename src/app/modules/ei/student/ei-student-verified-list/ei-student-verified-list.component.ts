@@ -58,6 +58,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
+  permission: any;
 params:any={}
   constructor(
     private router: Router,
@@ -427,6 +428,10 @@ params:any={}
 
 
   getDocumentsChat() {
+    if(this.isValidModule('MODULE013')==false){
+      this.alert.error("You have not chat module permission,please contact your ei","Error")
+      return 
+    }
     this.conversation = [];
     this.dataStudent = [];
     var uuid = localStorage.getItem("friendlidt_id");
@@ -463,7 +468,22 @@ params:any={}
     }
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
   }
-
+  isValidModule(module_code) {
+    let moduleList: any = {};
+    if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
+      moduleList = this.permission;
+      var data = moduleList.find(el => {
+        return el.module_code == module_code
+      })
+      if (data) {
+        return data.is_access;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
   goToEiStudentProfilePage(id,title) {
     this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id,'title': title} });
   }

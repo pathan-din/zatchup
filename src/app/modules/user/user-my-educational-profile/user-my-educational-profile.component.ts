@@ -6,6 +6,8 @@ import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dial
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+
 declare var $: any;
 
 @Component({
@@ -60,6 +62,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     private validationService: GenericFormValidationService,
     private router: Router,
     private route: ActivatedRoute,
+    private firebase: FirebaseService,
     private confirmDialogService: ConfirmDialogService,
   ) { }
 
@@ -341,6 +344,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide()
             this.epData = res.data
+            this.firebase.updatePhotoOnChatUser(res.data[0]);
           }
 
           else {
