@@ -2,7 +2,8 @@
     width: 100%;
     position: absolute;
     bottom: 0px;
-    left: 0px;                                                                                                                                                                                                                                              
+    left: 0px;  
+    line-height: 1;                                                                                                                                                                                                                                          
 }
 
 .round-camera-div {
