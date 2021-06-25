@@ -65,6 +65,8 @@ export class ChatComponent implements OnInit {
       this.sendChat()
       localStorage.removeItem('message')
     }
+    console.log(this.route, 'route');
+    
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })

@@ -49,10 +49,13 @@ export class MessagesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.routeConfig.path, 'Route');
+    
     this.firebaseService.setPresence('online')
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
+  
     this.currentUser = localStorage.getItem('fbtoken');
     if(this.params.chat){
       
