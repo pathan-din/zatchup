@@ -17,6 +17,7 @@ declare var $: any;
 export class EiStudentManagementComponent implements OnInit {
   courseWiseStudentCount:any={};
   courseWiseStudentCountCourse:any=[];
+  permission: any =[];
   
   constructor(
     private router: Router, 
@@ -29,7 +30,37 @@ export class EiStudentManagementComponent implements OnInit {
 	  //this.courseWiseStudentCount.coursedata=[];
 	  //this.courseWiseStudentCount.countdata=[];
 	  this.getGetStudentDashboardReport();
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE010')==false){
+        this.alert.error("You have not chat module permission,please contact your ei","Error")
+       this.router.navigate(['ei/personal-messages'])
+        return 
+      }
+    }
+   
   }
+
+  isValidModule(module_code) {
+    let moduleList: any = {};
+    if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
+      moduleList = this.permission;
+      
+      var data = moduleList.find(el => {
+        return el.module_code == module_code
+      })
+      console.log(data, 'djsdj');
+      
+      if (data) {
+        return data.is_access;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+
   getGetStudentDashboardReport(){
 	    try{
       this.SpinnerService.show(); 

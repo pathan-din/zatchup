@@ -58,6 +58,8 @@ export class ChatComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.online= true
+    this.firebaseService.setPresence('online')
     if(localStorage.getItem('message')){
       this.model.comment = localStorage.getItem('message')
       this.sendChat()

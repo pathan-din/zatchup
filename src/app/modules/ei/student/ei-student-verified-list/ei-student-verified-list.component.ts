@@ -58,7 +58,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
-  permission: any;
+  permission: any = [];
 params:any={}
   constructor(
     private router: Router,
@@ -428,6 +428,8 @@ params:any={}
 
 
   getDocumentsChat() {
+    console.log(this.isValidModule('MODULE013'));
+    
     if(this.isValidModule('MODULE013')==false){
       this.alert.error("You have not chat module permission,please contact your ei","Error")
       return 
@@ -472,9 +474,12 @@ params:any={}
     let moduleList: any = {};
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
+      
       var data = moduleList.find(el => {
         return el.module_code == module_code
       })
+      console.log(data, 'djsdj');
+      
       if (data) {
         return data.is_access;
       } else {

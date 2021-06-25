@@ -49,7 +49,7 @@ export class MessagesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+    this.firebaseService.setPresence('online')
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })

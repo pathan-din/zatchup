@@ -128,6 +128,8 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigate(["user/setting"]);
   }
   logout() {
+    this.notifypush.setPresence('offline')
+
     this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () => {
       localStorage.clear();
       sessionStorage.clear();
