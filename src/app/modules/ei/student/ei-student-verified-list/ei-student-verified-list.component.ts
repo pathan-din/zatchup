@@ -34,7 +34,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     'class', 'promote', 'Action'];
 
   displayedColumnone: string[] = [ 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
-    'class', 'Action'];
+    'class', 'rejectReason', 'rejectRemark' ,'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
@@ -336,6 +336,7 @@ params:any={}
       objStudentList.approved = objData.approved;
       objStudentList.is_rejected = objData.is_rejected;
       objStudentList.reason_reject = objData.reason_reject;
+      objStudentList.rejected_remark = objData.rejected_remark;
       objStudentList.name = objData.first_name + ' ' + objData.last_name;
       objStudentList.gender = objData.gender;
       objStudentList.age = objData.age;

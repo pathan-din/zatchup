@@ -246,6 +246,27 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="rejectReason">
+                        <mat-header-cell *matHeaderCellDef> Reject Reason </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.reason_reject}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rejectRemark">
+                        <mat-header-cell *matHeaderCellDef> Reject Remark </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.rejected_remark}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="rejectRemark">
+                        <mat-header-cell *matHeaderCellDef> Reject Remark </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{element.rejected_remark}}
+                        </mat-cell>
+                    </ng-container> -->
+
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class=" justify-content-center align-items-centers ">
