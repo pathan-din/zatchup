@@ -43,12 +43,15 @@
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
-                            <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
-                            </a>
-                            <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
-                            </a>
+                           <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
+                                </a>
 
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
@@ -72,6 +75,9 @@
                                 </a>
                                 <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
                                 </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <i class="fas fa-video"></i>
@@ -119,12 +125,14 @@
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
-                            </a>
-                            <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
-                            </a>
-
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
+                                </a>
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4">{{objCon.user_name}} {{getTimeAgo(objCon.timestamp)}}
                                 <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
@@ -143,8 +151,11 @@
                                 <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
-                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                </a>
+                                <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
                                 </a>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                                    <!-- <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
