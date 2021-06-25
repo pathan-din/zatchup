@@ -48,6 +48,7 @@ export class UserKycVerificationComponent implements OnInit {
   params: any = {};
   text: any = 'text';
   isSubmit: boolean;
+  reasonTextMessage: string;
 
   constructor(
     private router: Router,
@@ -62,6 +63,11 @@ export class UserKycVerificationComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.params = params;
     })
+    if(localStorage.getItem('getreject')){
+      if(JSON.parse(localStorage.getItem('getreject')).is_kyc_rejected == true ){
+        this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
+      }
+    }
     this.model.kyc_type = "";
     this.dateModel = '';
     this.monthModel = '';
