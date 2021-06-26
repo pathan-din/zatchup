@@ -30,10 +30,12 @@ export class EiStudentManagementComponent implements OnInit {
 	  //this.courseWiseStudentCount.coursedata=[];
 	  //this.courseWiseStudentCount.countdata=[];
 	  this.getGetStudentDashboardReport();
+    console.log(JSON.parse(localStorage.getItem('getreject')));
+    
     if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
       if(this.isValidModule('MODULE010')==false){
-        this.alert.error("You have not chat module permission,please contact your ei","Error")
-       this.router.navigate(['ei/personal-messages'])
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
         return 
       }
     }
@@ -42,6 +44,7 @@ export class EiStudentManagementComponent implements OnInit {
 
   isValidModule(module_code) {
     let moduleList: any = {};
+    this.permission = JSON.parse(sessionStorage.getItem('permission'))
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
       

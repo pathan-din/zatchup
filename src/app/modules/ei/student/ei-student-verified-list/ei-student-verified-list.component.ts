@@ -101,6 +101,14 @@ params:any={}
     this.getGetVerifiedStudent('', '')
     this.displayCourseList();
 
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE010')==false){
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
+    }
+
   }
   promoteResetPopup(objData) {
     this.modelPromote.roll_no = '';
@@ -429,11 +437,13 @@ params:any={}
 
 
   getDocumentsChat() {
-    console.log(this.isValidModule('MODULE013'));
     
-    if(this.isValidModule('MODULE013')==false){
-      this.alert.error("You have not chat module permission,please contact your ei","Error")
-      return 
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE013')==false){
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
     }
     this.conversation = [];
     this.dataStudent = [];
@@ -473,6 +483,7 @@ params:any={}
   }
   isValidModule(module_code) {
     let moduleList: any = {};
+    this.permission = JSON.parse(sessionStorage.getItem('permission'))
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
       
