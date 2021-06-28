@@ -5,6 +5,8 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 declare var $: any;
 
 @Component({
@@ -38,6 +40,8 @@ export class EiSubadminRegisterComponent implements OnInit {
     public formBuilder: FormBuilder,
     private alert: NotificationService,
     private route: ActivatedRoute,
+    private afAuth: AngularFireAuth,
+    private firebaseService: FirebaseService,
   ) {
     this.maxDate = new Date();
   }
@@ -157,6 +161,7 @@ export class EiSubadminRegisterComponent implements OnInit {
           if (res.status == true) {
             localStorage.setItem("token", res.token);
             $("#OTPModel").modal('hide');
+            this.registerUserToFirebaseDB(res)
             this.router.navigate(['ei/kyc-verification']);
           } else {
             // this.errorOtpModelDisplay = res.error;
@@ -228,5 +233,17 @@ export class EiSubadminRegisterComponent implements OnInit {
       }
     }
 
+  }
+
+  registerUserToFirebaseDB(data: any) {
+    let email = data.firebase_username + '@zatchup.com';
+    this.firebaseService.firebaseSignUp(this.model.first_name, this.model.last_name, email, this.model.password, "", "1").then(
+      (res: any) => {
+        localStorage.setItem('fbtoken', res.user.uid);
+      },
+      err => {
+        console.log('firebase signup error....', err)
+      }
+    )
   }
 }
