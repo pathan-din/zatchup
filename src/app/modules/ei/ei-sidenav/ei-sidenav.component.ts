@@ -17,7 +17,7 @@ import { CommunicationService } from 'src/app/services/communication/communicati
   styleUrls: ['./ei-sidenav.component.css']
 })
 export class EiSidenavComponent implements OnDestroy {
-  permission: any;
+  permission: any=[];
   notificationCount: any;
   subscriptionActive: boolean = true;
   isApproved: boolean = false;
@@ -146,6 +146,7 @@ export class EiSidenavComponent implements OnDestroy {
       var data = moduleList.find(el => {
         return el.module_code == module_code
       })
+      
       if (data) {
         return data.is_access;
       } else {
