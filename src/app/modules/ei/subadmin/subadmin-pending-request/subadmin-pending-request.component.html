@@ -178,12 +178,12 @@
             </div>
 
             <div class="modal-body px-0">
-                <form id="rejectReason" autocomplete="off" autocapitalize="off">
+                <form id="rejectreason" autocomplete="off" autocapitalize="off">
                     <div class=" form-group row ">
                         <div class="col-md-12 ">
                             <label for="" class=" mediumFont commonFontSize letterspacing">Employee ID</label>
                             <div class="form-control-inputDiv rounded p-0 shadow-none">
-                                <input id="remark" (keyup)="isValid()" [(ngModel)]="empNumber" name="rejection_reason" required class="form-control-input form-control commonFontSize regularFont letterspacing"
+                                <input id="empNumber" (keyup)="isValid()" [(ngModel)]="empNumber" name="rejection_reason" required class="form-control-input form-control commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Employee ID">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.rejection_reason"></div>

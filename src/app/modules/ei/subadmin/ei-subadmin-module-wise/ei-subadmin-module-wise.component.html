@@ -16,7 +16,7 @@
                 <ol *ngFor="let menuModule of moduleList">
                 <li  class="liWithoutDot regularFont mb-1 cursorStyle"><span (click)="sudAdminList('','',menuModule.id)">{{menuModule.module_name}}</span></li>
                 <ul class="mb-1" *ngIf="menuModule.sub_module_set.length>0">
-                    <li class="liWithoutDot regularFont mb-1 cursorStyle" *ngFor="let menuModuleInner of menuModule.sub_module_set"> <span (click)="sudAdminList('','',menuModule.id)">{{menuModuleInner.module_name}} </span></li>
+                    <li class="liWithoutDot regularFont mb-1 cursorStyle" *ngFor="let menuModuleInner of menuModule.sub_module_set"> <span *ngIf="menuModuleInner.is_deleted==false" (click)="sudAdminList('','',menuModule.id)">{{menuModuleInner.module_name}} </span></li>
                      
                 </ul>
                </ol>
