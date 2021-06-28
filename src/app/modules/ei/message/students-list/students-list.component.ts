@@ -287,7 +287,7 @@ export class StudentsListComponent implements OnInit {
         objData.checked = ev.checked;
         this.checkAllS=true
        }else{
-       // objData.checked = ev.checked;
+        objData.checked = ev.checked;
         this.checkAllS=false
        }
         
