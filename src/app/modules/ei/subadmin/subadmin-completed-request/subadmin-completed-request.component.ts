@@ -16,7 +16,7 @@ export class SubadminCompletedRequestComponent implements OnInit {
   // displayedColumns: string[] = ['SNo', 'ZatchUpID', 'EmployeeID',
   //   'Name', 'EmailID', 'phone', 'Action'];
   displayedColumns: string[] = ['SNo', 'Name', 'zatchUpID', 'profilePicture', 'dateOfBirth', 'emailId',
-    'phone', 'EmployeeID', 'Action'];
+    'phone', 'EmployeeID', 'comment', 'Action'];
      subadminCompleteRequest : SubadminCompleteRequest
   config = {
     itemsPerPage: 0,

@@ -40,6 +40,10 @@ export class EiSubadminDetailsComponent implements OnInit {
     });
     
   }
+
+  goToSubAdminHistory(id){
+    this.router.navigate(['ei/subadmin-history'], {queryParams: {'subadmin_id' : id}})
+  }
  
   /**Delete Subadmin from list */
   deleteFunctionForSubAdminAccess(id){

@@ -49,10 +49,13 @@ export class MessagesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+    console.log(this.route.snapshot.routeConfig.path, 'Route');
+    
+    this.firebaseService.setPresence('online')
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
+  
     this.currentUser = localStorage.getItem('fbtoken');
     if(this.params.chat){
       
@@ -395,6 +398,8 @@ export class MessagesDetailsComponent implements OnInit {
           
           this.conversation = res.data;
           this.dataStudent = res.data;
+          // this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+
           if(localStorage.getItem('isread')){
             localStorage.removeItem('isread')
             this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})

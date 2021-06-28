@@ -149,6 +149,6 @@ export class StarclassLectureHistory extends Pagination{
 
 export class SubadminCompleteRequest extends Pagination {
   displayedColumns: string[] = ['SNo', 'Name', 'zatchUpID', 'profilePicture', 'dateOfBirth', 'emailId',
-  'phone', 'EmployeeID', 'Action'];
+  'phone', 'EmployeeID', 'comment' , 'Action'];
   listParams: any;
 }

@@ -87,6 +87,7 @@ export class PersonalMessagesComponent implements OnInit {
       localStorage.removeItem("standardIds")
       localStorage.removeItem("courseIds")
       localStorage.removeItem("teachers")
+      localStorage.removeItem("alreadyGroupMember")
     this.router.navigate(["ei/group-chat"],{queryParams:{"newgrp":"C"}});
   }
   getMessageList() {

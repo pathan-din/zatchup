@@ -34,7 +34,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
     'class', 'promote', 'Action'];
 
   displayedColumnone: string[] = [ 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
-    'class', 'Action'];
+    'class', 'rejectReason', 'rejectRemark' ,'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
@@ -58,7 +58,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
-  permission: any;
+  permission: any = [];
 params:any={}
   constructor(
     private router: Router,
@@ -100,6 +100,14 @@ params:any={}
     localStorage.removeItem('bulkStudents')
     this.getGetVerifiedStudent('', '')
     this.displayCourseList();
+
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE010')==false){
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
+    }
 
   }
   promoteResetPopup(objData) {
@@ -336,6 +344,7 @@ params:any={}
       objStudentList.approved = objData.approved;
       objStudentList.is_rejected = objData.is_rejected;
       objStudentList.reason_reject = objData.reason_reject;
+      objStudentList.rejected_remark = objData.rejected_remark;
       objStudentList.name = objData.first_name + ' ' + objData.last_name;
       objStudentList.gender = objData.gender;
       objStudentList.age = objData.age;
@@ -428,9 +437,13 @@ params:any={}
 
 
   getDocumentsChat() {
-    if(this.isValidModule('MODULE013')==false){
-      this.alert.error("You have not chat module permission,please contact your ei","Error")
-      return 
+    
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE013')==false){
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
     }
     this.conversation = [];
     this.dataStudent = [];
@@ -470,11 +483,15 @@ params:any={}
   }
   isValidModule(module_code) {
     let moduleList: any = {};
+    this.permission = JSON.parse(sessionStorage.getItem('permission'))
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
+      
       var data = moduleList.find(el => {
         return el.module_code == module_code
       })
+      console.log(data, 'djsdj');
+      
       if (data) {
         return data.is_access;
       } else {

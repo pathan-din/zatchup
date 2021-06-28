@@ -8,13 +8,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from "@angular/forms";
 import { Location } from '@angular/common';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 @Component({
   selector: 'app-group-detail',
   templateUrl: './group-detail.component.html',
   styleUrls: ['./group-detail.component.css']
 })
 export class GroupDetailComponent implements OnInit {
-
+  uploadInfo: any = {
+    "image_type": "profile_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
   groupUserLists:any=[];
   model:any={};
   noOfUsers:any=0;
@@ -36,7 +42,7 @@ export class GroupDetailComponent implements OnInit {
     public formBuilder: FormBuilder,
     private alert: NotificationService,
     private route: ActivatedRoute,
-     
+    private communicationService: CommunicationService,
     private firestore: AngularFirestore,) { }
 
   ngOnInit(): void {
@@ -395,5 +401,10 @@ export class GroupDetailComponent implements OnInit {
 addMoreRecipant(){
   this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
   //group-chat?newgrp=C
+}
+
+getProfilePicUrl(file: any) {
+  this.model.group_icon = file.data[0].profile_pic_url;
+  this.communicationService.setImageUrl(this.model.group_icon)
 }
 }
