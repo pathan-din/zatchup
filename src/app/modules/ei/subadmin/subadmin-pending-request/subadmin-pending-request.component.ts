@@ -14,7 +14,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 export class SubadminPendingRequestComponent implements OnInit {
   @ViewChild('closeRejectModal') closeRejectModal: any;
   displayedColumns: string[] = ['SNo', 'Name', 'zatchUpID', 'profilePicture', 'dateOfBirth', 'emailId',
-    'phoneNumber', 'employeelID', 'Action'];
+    'phoneNumber', 'employeelID', 'comment',  'Action'];
   @ViewChild('closecreateNewPlan') closecreateNewPlan: any;
 
   config = {
