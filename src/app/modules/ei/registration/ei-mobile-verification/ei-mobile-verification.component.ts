@@ -5,6 +5,8 @@ import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UsersServiceService } from 'src/app/services/user/users-service.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 declare var $: any;
 
 @Component({
@@ -34,7 +36,10 @@ export class EiMobileVerificationComponent implements OnInit {
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private userService:UsersServiceService) { }
+    private userService:UsersServiceService,
+    private firebaseService: FirebaseService,
+    private afAuth: AngularFireAuth,
+    ) { }
 
 
   ngOnInit(): void {
@@ -126,6 +131,7 @@ export class EiMobileVerificationComponent implements OnInit {
      this.eiService.verifyOtpWithMobile(data).subscribe(res => {
       let response:any={}
       response=res;
+      this.registerUserToFirebaseDB(response)
       if(response.status==true)
       {
         this.SpinnerService.hide();
@@ -134,6 +140,7 @@ export class EiMobileVerificationComponent implements OnInit {
        this.schoolNumber=response.school_code;
        localStorage.setItem("user_id",response.user_id)
        localStorage.setItem("token",response.token);
+       
        $("#CongratulationModel").modal({
         backdrop: 'static',
         keyboard: false,
@@ -153,5 +160,17 @@ export class EiMobileVerificationComponent implements OnInit {
      console.log("variyfy Otp Exception",err);
    }
  
+  }
+
+  registerUserToFirebaseDB(data: any) {
+    let email = data.firebase_username + '@zatchup.com';
+    this.firebaseService.firebaseSignUp(localStorage.getItem('school_name'), "", email, atob(localStorage.getItem('password')), "", "1").then(
+      (res: any) => {
+        localStorage.setItem('fbtoken', res.user.uid);
+      },
+      err => {
+        console.log('firebase signup error....', err)
+      }
+    )
   }
 }
