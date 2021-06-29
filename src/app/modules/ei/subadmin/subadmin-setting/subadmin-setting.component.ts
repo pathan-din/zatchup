@@ -158,6 +158,9 @@ export class SubadminSettingComponent implements OnInit {
         else {
           this.editModel.value = this.model[this.editModel.key];
         }
+        if(this.editModel.old_value == this.editModel.value){
+          return this.alert.error('Your Employee Number Is Already Approved', 'Error')
+        }
         this.loader.show();
         this.baseService.action(url, this.editModel).subscribe(res => {
           let response: any = {};
@@ -199,7 +202,7 @@ export class SubadminSettingComponent implements OnInit {
       localStorage.setItem("month", data[1]);
       localStorage.setItem("day", data[2]);
     }
-    this.router.navigate(['ei/kyc-verification'], { queryParams: { "action": "sendrequest", "text": text, "returnUrl": "subadmin-setting" } });
+    this.router.navigate(['ei/kyc-verification'], { queryParams: { "action": "sendrequest", "text": text, "returnUrl": "ei/subadmin-setting" } });
   }
 
   enableDiablePermission(event: any, type: any) {
