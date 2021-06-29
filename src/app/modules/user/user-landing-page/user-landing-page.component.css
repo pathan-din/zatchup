@@ -14,21 +14,24 @@
 .text-decoration-none {
     border-bottom: 1px solid #463267;
 }
-
+.pf-img {
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+}
+.card-img-cross {
+    position: absolute;
+    right: 0px;
+}
 .eyes-img {
-    width: 35%;
+    width: 18px;
 }
-
-.img-container {
-    min-height: 35vh;
-    max-height: 35vh;
-    height: 35vh;
-}
-
-.img-suggestion {
-    min-height: 25vh;
-    max-height: 25vh;
-    height: 25vh;
+.addbuddy-btn {
+    background-color: #463267;
+    color: #ffffff;
+    border-radius: 10px;
+    outline: none;
+    margin-bottom: 12px;
 }
 
 @media only screen and (max-width: 414px) {
@@ -57,9 +60,5 @@
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .img-suggestion {
-        min-height: 17vh;
-        max-height: 17vh;
-        height: 17vh;
-    }
+  
 }
