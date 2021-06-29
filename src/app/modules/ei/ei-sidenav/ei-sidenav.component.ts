@@ -89,6 +89,8 @@ export class EiSidenavComponent implements OnDestroy {
     }
     if (sessionStorage.getItem("permission")) {
       this.permission = JSON.parse(sessionStorage.getItem("permission"));
+      
+      
     }
     this.getRegistrationStep();
   }
@@ -141,11 +143,19 @@ export class EiSidenavComponent implements OnDestroy {
 
   isValidModule(module_code) {
     let moduleList: any = {};
+    if(localStorage.getItem("getreject")){
+      if(JSON.parse(localStorage.getItem("getreject")).role == 'EIREPRESENTATIVE'){
+        return true;
+      }
+    }
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
       var data = moduleList.find(el => {
+        console.log("el.module_code",el.module_code,'====',module_code);
+        
         return el.module_code == module_code
       })
+      console.log(data);
       
       if (data) {
         return data.is_access;
@@ -194,6 +204,7 @@ export class EiSidenavComponent implements OnDestroy {
             
           this.isApproved = !response.is_approved ? false : true;
           if (response.role == 'EIREPRESENTATIVE') {
+            sessionStorage.setItem("permission",JSON.stringify(response.module_data));
             if (!response.rejected_reason && !response.is_approved) {
               if (response.reg_step == 1) {
                 this.router.navigate(['ei/payment']);
