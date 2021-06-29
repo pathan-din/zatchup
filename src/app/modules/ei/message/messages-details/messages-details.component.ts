@@ -135,6 +135,7 @@ export class MessagesDetailsComponent implements OnInit {
           // console.log("bbb",res);
           if(res) {
            var objB = res.data.find(e=>{return e.uuid==this.currentUser})
+           if(objB)
             this.blockRecipant=objB.isblock;
           }
         })

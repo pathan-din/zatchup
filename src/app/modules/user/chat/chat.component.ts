@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 // import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-chat',
@@ -53,7 +54,8 @@ export class ChatComponent implements OnInit {
     private alert: NotificationService,
     private firebaseService: FirebaseService,
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private loader: NgxSpinnerService,
   ) { }
 
 
@@ -377,7 +379,7 @@ export class ChatComponent implements OnInit {
             console.log(ele)
            // console.log(ele[localStorage.getItem('fbtoken')].is_exit)
             if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
-             console.log("fdfdfd");
+             
              
               let data: any = {};
               let dataNew: any = {};
@@ -508,6 +510,7 @@ export class ChatComponent implements OnInit {
 
   uploadDoc(file: any) {
     try {
+      this.loader.show();
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
@@ -516,13 +519,15 @@ export class ChatComponent implements OnInit {
       this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(
         (res: any) => {
           if (res.status == true) {
+            this.loader.hide();
             this.sendChat(res.file_url)
           } else {
+            this.loader.hide();
             this.alert.error(res.error.message[0], 'Error')
           }
-          // this.loader.hide();
+           
         }, (error) => {
-          // this.loader.hide();
+          this.loader.hide();
           console.log(error);
 
         });

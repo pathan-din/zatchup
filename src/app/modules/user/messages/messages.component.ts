@@ -205,7 +205,7 @@ export class MessagesComponent implements OnInit {
                 {
                   this.messageData[element1]=[]
                   res1.data.forEach(ele => {
-                    if(ele.is_read==1 && ele.user_accept_id!=this.currentUser){
+                    if(ele.is_read==1 && ele.user_send_by!=this.currentUser){
                       if(!this.messageData.find(e=>{return e.timestamp==ele.timestamp})){
                         this.messageData[ele.user_friend_id].push(ele)
                       }
