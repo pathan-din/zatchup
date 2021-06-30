@@ -55,9 +55,12 @@ export class SubscriptionPlanHistoryComponent implements OnInit {
           this.subPlanHistory.config.totalItems = res.count;
           if (res.count > 0) {
             this.subPlanHistory.dataSource = res.results;
+            this.subPlanHistory.pageCounts = this.baseService.getCountsOfPage()
+
           }
           else {
             this.subPlanHistory.dataSource = undefined
+            this.subPlanHistory.pageCounts = undefined
           }
         }
         else
