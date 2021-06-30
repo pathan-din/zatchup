@@ -287,10 +287,22 @@
                                                 rows="4" placeholder="Please enter Address line 2">
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-12 mt-3">
+                                        <label for="Remarks "
+                                            class=" commonFontSize semiBoldFont letterspacing ">Pin Code</label>
+
+                                        <div class="form-control-inputDiv rounded p-1 shadow-none ">
+                                            <input type="text" id="pincode" name="pincode"
+                                                [(ngModel)]="this.databaseView.pincode"
+                                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                rows="4" placeholder="Please enter Pin Code">
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="button " (click)="editAddress()"
                                     class="bg-purple  border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
-                                    Edit
+                                    Save
                                 </button>
                             </form>
                         </div>

@@ -264,6 +264,7 @@ export class DatabaseView {
     enableDisableReason: any;
     addressLineOne: any;
     addressLineTwo: any;
+  pincode: any;
 }
 
 export class OnboardingView {

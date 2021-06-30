@@ -125,10 +125,14 @@
                                     <label for="" class="mediumFont commonFontSize letterspacing"> Image
                                         of Attachment </label>
                                 </div>
-                                <div *ngIf="changeDetails.changeDetailsView && changeDetails.changeDetailsView.document"
+                                <div *ngIf="changeDetails.changeDetailsView && changeDetails.changeDetailsView.document && fileType(changeDetails.changeDetailsView.document) != 'pdf'"
                                     class="picImg">
                                     <img src="{{changeDetails.changeDetailsView.document}}" class="img-fluid dpImg ">
                                 </div>
+                                <div *ngIf="changeDetails.changeDetailsView && changeDetails.changeDetailsView.document && fileType(changeDetails.changeDetailsView.document) == 'pdf'"
+                                    class="picImg">
+                                    <img (click)="download_file(changeDetails.changeDetailsView.document)"
+                                    src="assets/images/userWebsite/pdf.png" alt="Document" class="img-fluid cerImg rounded">                                </div>
                                 <div
                                     *ngIf="changeDetails.changeDetailsView && !changeDetails.changeDetailsView.document">
                                     <img src="assets/images/no-image-icon.jpg" class="img-fluid dpImg ">

@@ -54,19 +54,18 @@ export class SubadminAddComponent implements OnInit {
     this.maxlength = ''
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(event.target.value)) {
+
       this.type = 'email';
       this.maxlength = 50;
-      this.model.username = event.target.value;
+      this.model.email = this.model.username;
+      this.model.phone = '';
     } else {
       const numbers = /^[0-9]+$/;
       if (numbers.test(event.target.value)) {
         this.type = 'tel'
         this.maxlength = 10;
-        this.model.username = event.target.value;
-
-      } else {
-        this.type = 'email'
-        this.maxlength = 50;
+        this.model.phone = this.model.username;
+        this.model.email = '';
       }
 
     }
