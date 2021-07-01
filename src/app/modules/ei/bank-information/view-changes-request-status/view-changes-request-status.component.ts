@@ -119,4 +119,17 @@ export class ViewChangesRequestStatusComponent implements OnInit {
     this.location.back()
   }
 
+  fileType(file: any) {
+    return file.split('.').pop();
+  }
+
+  generatePDF(file: any) {
+
+    this.baseService.generatePdf(file, 'mou_doc')
+  }
+
+  download_file(fileURL) {
+    window.open(fileURL, '_blank');
+  }
+  
 } 
