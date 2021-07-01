@@ -20,10 +20,7 @@
                 </div>
             </div>
         </div>
-      <div class="row mr-3">
-      
-        <div class="col-md-6 single">
-            <div  *ngFor="let msgObj of lastMessageData">
+        <div  *ngFor="let msgObj of lastMessageData">
                 <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle">
                     <div class="col-md-1 col-2 text-center">
                         <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
@@ -39,8 +36,6 @@
                 </div>
 
             </div>
-        </div>
-        <div class="col-md-6 group">
          <div *ngFor="let msgObjG of groupList">
             <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle" (click)="messageDetails(msgObjG.uuid,'group')">
                 <div class="col-md-1 col-2 text-center">
@@ -59,11 +54,7 @@
 
           </div>
         </div>
-      
-      </div>
-        
        
-    </div>
 
     <!-- PersonalModal  -->
     <div class="modal fade" id="PersonalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
