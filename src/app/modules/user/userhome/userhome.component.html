@@ -61,7 +61,7 @@
                                         class="img-fluid  check_absolute-image">
                                 </span>
 
-                                <button *ngIf="eduDetails.approved != 1 && eduDetails.is_onboard == true && eduDetails.is_active_subscription == true "  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2 "  style="float: right;"
+                                <button *ngIf="eduDetails.approved != 1 && eduDetails.is_onboard == true && eduDetails.is_active_subscription == true && userProfile.is_student_verified == false && userProfile.kyc_approved == 1"  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2 "  style="float: right;"
                                 (click)="getVerifiedChat(eduDetails)">Get Verify</button>
                             </h3>
                             
