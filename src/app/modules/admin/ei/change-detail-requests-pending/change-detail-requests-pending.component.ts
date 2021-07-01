@@ -114,7 +114,7 @@ export class ChangeDetailRequestsPendingComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['admin/school-management'])
+   this.location.back()
   }
 
   searchList(page?: any) {

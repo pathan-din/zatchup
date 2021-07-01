@@ -57,12 +57,15 @@ export class CurrentPocComponent implements OnInit {
         if(res.status == true){
           if (!page)
           page = this.pastPocDetails.config.currentPage
-        this.pastPocDetails.startIndex = res.page_size * (page - 1) + 1;
-        this.pastPocDetails.config.itemsPerPage = res.page_size
-        this.pastPocDetails.config.currentPage = page
-        this.pastPocDetails.config.totalItems = res.count;
+          this.pastPocDetails.startIndex = res.page_size * (page - 1) + 1;
+          this.pastPocDetails.page_size = res.page_size
+          this.pastPocDetails.config.itemsPerPage = this.pastPocDetails.page_size
+          this.pastPocDetails.config.currentPage = page
+          this.pastPocDetails.config.totalItems = res.count;
         if (res.count > 0) {
           this.pastPocDetails.dataSource = res.results;
+          this.pastPocDetails.pageCounts = this.baseService.getCountsOfPage()
+
         }
         else{
           this.pastPocDetails.dataSource = undefined

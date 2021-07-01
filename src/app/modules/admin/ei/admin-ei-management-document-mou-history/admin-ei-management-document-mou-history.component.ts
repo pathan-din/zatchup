@@ -82,6 +82,7 @@ export class AdminEiManagementDocumentMouHistoryComponent implements OnInit {
           this.loader.hide();
           this.alert.error(res.error.message, 'Error');
         }
+        // this.loader.hide();
       }
     ),
       (err: any) => {
