@@ -87,7 +87,7 @@ export class UserhomeComponent implements OnInit {
     if(obj.course_detail[0].is_current_course == true){
       text = 'is Student'
     }
-    var message = 'Hi, I' + text+ 'of '+obj.name_of_school+' , Please verify my profile'
+    var message = obj.get_verified_message
     localStorage.setItem('message', message)
     localStorage.setItem('uuid', obj.firebase_id);
     this.router.navigate(["user/chat"]);
