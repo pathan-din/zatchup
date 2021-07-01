@@ -34,7 +34,7 @@ export class EiStudentManagementComponent implements OnInit {
     
     if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
       if(this.isValidModule('MODULE010')==false){
-        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+        this.alert.error(" You Don't have permission to chat with students. Please contact school for more information.","Error")
        this.router.navigate(['ei/my-profile'])
         return 
       }

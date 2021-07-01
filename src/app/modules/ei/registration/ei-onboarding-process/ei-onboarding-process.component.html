@@ -123,10 +123,10 @@
                                         <div class="required" style="color: red;" [innerHtml]="errorDisplay.principal_name"></div>
                                     </div>
                                     <div class="col-md-6 margin-top-col-6">
-                                        <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date / Openning Date</label>
+                                        <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date/ Opening Date</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none position-relative">
-                                            <input id="opening_date" required [(ngModel)]="model.opening_date" name="opening_date" autocomplete="off" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            <input [maxDate]="this.baseService.setCalanderDate(todayDate)" id="opening_date" required [(ngModel)]="model.opening_date" name="opening_date" autocomplete="off" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" bsDatepicker placeholder="MM/DD/YYYY">
                                             <i class="fa fa-calendar customCalenderIcon position-absolute" aria-hidden="true"></i>
                                         </div>

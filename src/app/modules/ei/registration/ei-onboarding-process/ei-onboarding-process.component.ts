@@ -68,6 +68,7 @@ export class EiOnboardingProcessComponent implements OnInit {
   openingYear: any;
   images: any = [];
   imageIndexOne = 0;
+  todayDate:any = new Date();
   //   @HostListener("window:keydown", ["$event"]) unloadHandler(event: Event) {
   //     console.log("Processing beforeunload...", this.countIndex);
   //     this.getRegistrationStep();

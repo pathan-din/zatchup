@@ -66,7 +66,7 @@ export class UserKycVerificationComponent implements OnInit {
     })
     if(localStorage.getItem('getreject')){
       if(JSON.parse(localStorage.getItem('getreject')).is_kyc_rejected == true ){
-        this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
+        this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please re-submit The KYC.'
       }
     }
     this.model.kyc_type = "";
