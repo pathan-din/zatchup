@@ -46,6 +46,7 @@ export class ChatComponent implements OnInit {
   blockRecipant1:any=false;
   online: any;
   is_last_seen:any
+  getroleUserFlag: boolean;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -61,17 +62,19 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.online= true
+    
     this.firebaseService.setPresence('online')
     if(localStorage.getItem('message')){
       this.model.comment = localStorage.getItem('message')
       this.sendChat()
       localStorage.removeItem('message')
     }
-    console.log(this.route, 'route');
+     
     
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
+   
     if(this.params.chat){
       this.currentUser = localStorage.getItem('fbtoken');
       this.recepientUsers=[]
@@ -124,7 +127,7 @@ export class ChatComponent implements OnInit {
     }else{
       this.uuid = '';
       if (localStorage.getItem('uuid')) {
-        
+        this.getRoleOfUserBaseOnFirebaseId(localStorage.getItem('uuid'))
         this.uuid = localStorage.getItem('uuid');
         this.getDocumentsChat(this.uuid);
       }
@@ -146,7 +149,7 @@ export class ChatComponent implements OnInit {
            //console.log("uuuu",this.uuid);
            
             this.blockUserList=res.data;
-            console.log(this.blockUserList);
+             
             
             var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
             console.log(objList);
@@ -187,7 +190,15 @@ export class ChatComponent implements OnInit {
     }
     
   }
-
+  getRoleOfUserBaseOnFirebaseId(id){
+    this.model.firebase_id = id;
+    this.baseService.getData("user/get-user-role-from-firebaseid/",this.model).subscribe((res:any)=>{
+      if(res.status==true && res.user_role!='EISUBADMIN'){
+        
+        this.getroleUserFlag = true
+      }
+    })
+  }
   gotToGroupDetailsPage(uuid,chat){
     console.log(uuid);
     
@@ -304,6 +315,7 @@ export class ChatComponent implements OnInit {
     }
    
   }
+  
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
     this.conversation = [];
     this.dataStudent = [];
@@ -372,7 +384,7 @@ export class ChatComponent implements OnInit {
   if(this.params.chat){
     return new Promise<any>((resolve, reject) => {
      
-       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
+     const subscription=this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         
         res.uuid=localStorage.getItem("guuid");
           res.reciepent.forEach(ele => {
@@ -420,7 +432,7 @@ export class ChatComponent implements OnInit {
       
      
      
-
+      subscription.unsubscribe()
     })
   }else{
 

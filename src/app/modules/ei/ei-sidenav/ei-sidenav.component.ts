@@ -151,11 +151,11 @@ export class EiSidenavComponent implements OnDestroy {
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
       var data = moduleList.find(el => {
-        console.log("el.module_code",el.module_code,'====',module_code);
+      
         
         return el.module_code == module_code
       })
-      console.log(data);
+       
       
       if (data) {
         return data.is_access;
@@ -179,7 +179,7 @@ export class EiSidenavComponent implements OnDestroy {
 
       if (Object.keys(this.route.snapshot.queryParams).length !== 0) {
         parameter = this.route.snapshot.queryParams;
-        console.log(parameter);
+         
         
       } else {
         parameter = this.route.snapshot.params;

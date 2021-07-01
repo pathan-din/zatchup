@@ -23,7 +23,7 @@ export class EiSubadminViewStatusComponent implements OnInit {
   startIndex: any
   dataSource: any;
   pageCounts: any;
-
+  model:any={}
   constructor(
     private location: Location,
     private loader: NgxSpinnerService,
@@ -62,7 +62,7 @@ export class EiSubadminViewStatusComponent implements OnInit {
       }
       
     })
-   this.baseService.getData(url , this.listParams).subscribe(
+   this.baseService.getData(url , this.model).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
