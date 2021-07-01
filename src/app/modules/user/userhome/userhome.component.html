@@ -33,7 +33,7 @@
                 class="img-fluid ml-1 tickImg">
 
             <div class="pl-4 text-left" *ngIf="userProfile">
-                <h2 class="m-0 commonFontSize mediumFont pt-4 text-capitalize fontSize-20" style="line-height: 1.3;">{{userProfile.name}} <span class="m-o commonFontSize mediumFont">({{userProfile.zatchup_id}})</span></h2>
+                <h2 class="m-0 commonFontSize mediumFont pt-4 text-capitalize fontSize-20" style="line-height: 1.3;">{{userProfile.name}} <span class="m-o commonFontSize mediumFont">{{userProfile.zatchup_id ? '(' + userProfile.zatchup_id + ')' : ''}}</span></h2>
             </div>
         </div>
         <div *ngIf="userProfile && userProfile.firebase_id && userProfile.kyc_approved == 1 && currentUser != userId"
@@ -61,7 +61,7 @@
                                         class="img-fluid  check_absolute-image">
                                 </span>
 
-                                <button *ngIf="eduDetails.approved != 1 && eduDetails.is_onboard == true"  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2 "  style="float: right;"
+                                <button *ngIf="eduDetails.approved != 1 && eduDetails.is_onboard == true && eduDetails.is_active_subscription == true "  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2 "  style="float: right;"
                                 (click)="getVerifiedChat(eduDetails)">Get Verify</button>
                             </h3>
                             

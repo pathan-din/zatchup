@@ -36,7 +36,12 @@
                         <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
                         <mat-cell *matCellDef="let element">
 
-                            <img src="{{element.viewAttachments}}" alt="Attachments" style="height: 60px;" />
+                            <img *ngIf="element.viewAttachments && fileType(element.viewAttachments) != 'pdf'" src="{{element.document}}" alt="Attachments" style="height: 60px;" />
+                            <img (click)="download_file(element.viewAttachments)"
+                            *ngIf="element.viewAttachments && fileType(element.viewAttachments) == 'pdf'" 
+                            src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
+                        <img *ngIf="!element.viewAttachments" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                            class="img-fluid cerImg rounded">
                         </mat-cell>
                     </ng-container>
 

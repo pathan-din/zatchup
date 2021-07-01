@@ -8,6 +8,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Location } from '@angular/common';
 import { first, take } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
@@ -45,7 +46,8 @@ export class MessagesDetailsComponent implements OnInit {
     private location: Location,
     private route:ActivatedRoute,
     private firebaseService: FirebaseService,
-    private router:Router
+    private router:Router,
+    private loader : NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -425,6 +427,7 @@ export class MessagesDetailsComponent implements OnInit {
 
   uploadDoc(file: any) {
     try {
+      this.loader.show()
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
@@ -437,9 +440,9 @@ export class MessagesDetailsComponent implements OnInit {
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }
-          // this.loader.hide();
+          this.loader.hide();
         }, (error) => {
-          // this.loader.hide();
+          this.loader.hide();
           console.log(error);
 
         });
