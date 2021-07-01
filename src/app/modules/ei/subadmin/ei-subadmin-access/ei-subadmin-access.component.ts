@@ -85,8 +85,11 @@ export class EiSubadminAccessComponent implements OnInit {
           this.moduleList.forEach(element => {
             let objModel: any = {};
             if (element.sub_module_set.length > 0) {
+              if(element.is_deleted===false){
+                this.modifiedModulesList.push(element);
+              }
               element.sub_module_set.forEach(subElement => {
-                if (subElement.is_deleted==false) {
+                if (subElement.is_deleted===false) {
                   let objModel: any = {};
                   subElement.count = element.sub_module_set.length
                   subElement.parentmodule = element.module_name
@@ -97,7 +100,7 @@ export class EiSubadminAccessComponent implements OnInit {
                     this.module.module_details.push(objModel);
                     this.historyModuleList.push(objModel)
                   }
-                }
+                } 
                 
               });
             } else {

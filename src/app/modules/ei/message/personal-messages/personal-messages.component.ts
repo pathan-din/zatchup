@@ -111,7 +111,7 @@ export class PersonalMessagesComponent implements OnInit {
                       }
                     }
                   });
-                  console.log("kkkk",res1.data);
+                  
                 }
                 
                   this.firestore.collection('user_friend_list').doc(element).get().toPromise().then((resRecepent:any)=>{
@@ -149,7 +149,7 @@ export class PersonalMessagesComponent implements OnInit {
     
   }
   goToChatScreen(fbid,frndListId,chatConversion:any,click) {
-    console.log("click",click);
+    
     
     this.conversation = [];
     this.dataStudent =[];
@@ -233,8 +233,7 @@ export class PersonalMessagesComponent implements OnInit {
     }else if(type=='is_read'){
       this.setting_user.is_read=event;
     }
-   }
-  // console.log( this.setting_user);
+   } 
    
    
     this.firestore.collection('setting').doc(this.currentUser).set({
@@ -242,7 +241,7 @@ export class PersonalMessagesComponent implements OnInit {
      })
   }     
   getDocumentsChat(chatConversion,click?:any) {
-   // console.log(chatConversion);
+   
     
     this.conversation = [];
     this.dataStudent =[];
@@ -251,22 +250,7 @@ export class PersonalMessagesComponent implements OnInit {
     if(click){
       this.router.navigate(["ei/messages-details"],{queryParams:{"chat":chatConversion}});
     }
-    
-    // var dataSet=this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
-    // dataSet.subscribe((res:any)=>{
-    //   if(res){
-    //     this.conversation = res.data;
-    //     this.dataStudent = res.data;
-    //   }else{
-    //     this.conversation = [];
-    //     this.dataStudent = [];
-    //   }
-      
-    // })
-    
-    
-    
-  }
+   }
   getGroupDetails(uuid){
     this.groupList=[];
     this.groupListNew=[];

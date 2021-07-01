@@ -7,7 +7,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Location } from '@angular/common';
-
+import { first, take } from 'rxjs/operators';
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
@@ -49,7 +49,7 @@ export class MessagesDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.routeConfig.path, 'Route');
+     
     
     this.firebaseService.setPresence('online')
     this.route.queryParams.subscribe((params:any)=>{
@@ -58,7 +58,7 @@ export class MessagesDetailsComponent implements OnInit {
   
     this.currentUser = localStorage.getItem('fbtoken');
     if(this.params.chat){
-      
+       
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         this.recepientGroup=res
         
@@ -88,8 +88,9 @@ export class MessagesDetailsComponent implements OnInit {
           
         });
        // console.log(this.recepientGroup);
-        
+       
       })
+      
       this. getDocumentsChat()
     }else{
       this.uuid = '';
@@ -231,7 +232,7 @@ export class MessagesDetailsComponent implements OnInit {
         if(this.recepintDetails.photoUrl==null){
           this.recepintDetails.photoUrl=undefined;
         }
-        console.log(this.recepintDetails);
+       // console.log(this.recepintDetails);
       });
       
       
@@ -251,7 +252,7 @@ export class MessagesDetailsComponent implements OnInit {
     }
       return new Promise<any>((resolve, reject) => {
        
-         this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
+        const subscription =this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
           
           res.uuid=localStorage.getItem("guuid");
           //console.log(res.reciepent);
@@ -282,6 +283,7 @@ export class MessagesDetailsComponent implements OnInit {
 
                     this.getDocumentsChat()
                     this.model.comment = '';
+                    subscription.unsubscribe()
 
 
                   },
@@ -296,10 +298,8 @@ export class MessagesDetailsComponent implements OnInit {
           
         })
         
-       
-       
-  
       })
+      
     }else{
       if (this.model.comment)
       this.model.comment = this.model.comment.trim()

@@ -425,6 +425,7 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   getTeacherList(page){
     this.loader.show();
     this.modelteacher.page_size = 1000;
+    this.modelteacher.module_id='31'
     this.baseService.getData('ei/subadmin-lists-by-ei/',this.modelteacher).subscribe(
       (res: any) => {
         if (res.status == true) {

@@ -20,23 +20,28 @@
                 </div>
             </div>
         </div>
-        <div *ngFor="let msgObj of lastMessageData">
-            <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle">
-                <div class="col-md-1 col-2 text-center">
-                    <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
-                    <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+      <div class="row mr-3">
+      
+        <div class="col-md-6 single">
+            <div  *ngFor="let msgObj of lastMessageData">
+                <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle">
+                    <div class="col-md-1 col-2 text-center">
+                        <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                        <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>
+                    </div>
+                    <div class="col-md-11 col-10" (click)="goToChatScreen(msgObj.uuid,msgObj.friendlidt_id,'','a')">
+                        <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">{{msgObj.user_name}}
+                            <span class="small-text">{{msgObj.class_name?'('+msgObj.class_name + msgObj.roll_no+')':''}}</span>
+                            <span class="chatCount" *ngIf="messageData[msgObj.user_friend_id].length>0">{{messageData[msgObj.user_friend_id].length}}</span>
+                        </h3>
+                        <p class="mb-0"> {{msgObj.document?'Attachment':msgObj.msg}} </p>
+                    </div>
                 </div>
-                <div class="col-md-11 col-10" (click)="goToChatScreen(msgObj.uuid,msgObj.friendlidt_id,'','a')">
-                    <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">{{msgObj.user_name}}
-                        <span class="small-text">{{msgObj.class_name?'('+msgObj.class_name + msgObj.roll_no+')':''}}</span>
-                        <span class="chatCount" *ngIf="messageData[msgObj.user_friend_id].length>0">{{messageData[msgObj.user_friend_id].length}}</span>
-                    </h3>
-                    <p class="mb-0"> {{msgObj.document?'Attachment':msgObj.msg}} </p>
-                </div>
-            </div>
 
+            </div>
         </div>
-        <div *ngFor="let msgObjG of groupList">
+        <div class="col-md-6 group">
+         <div *ngFor="let msgObjG of groupList">
             <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle" (click)="messageDetails(msgObjG.uuid,'group')">
                 <div class="col-md-1 col-2 text-center">
                     <div class="group_iconImg border">
@@ -52,7 +57,12 @@
                 </div>
             </div>
 
+          </div>
         </div>
+      
+      </div>
+        
+       
     </div>
 
     <!-- PersonalModal  -->
@@ -132,14 +142,7 @@
     
                             </div>
                             <div *ngIf="receipentUsers.length == 0"> Record Not Found</div>
-                            <!-- <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Read Receipts </label>    
-                                <mat-slide-toggle [checked]="setting_user.is_read" (change)="setUserSettingOnFirebase($event.checked,'is_read')" class="toggleslider"></mat-slide-toggle>                   
-                            </div>
-                            <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
-                                <label for="" class="mediumFont commonFontSize letterspacing"> Last Seen </label>
-                                <mat-slide-toggle [checked]="setting_user.is_seen" (change)="setUserSettingOnFirebase($event.checked,'last_seen')" class="toggleslider"></mat-slide-toggle>
-                            </div> -->
+                             
                         </div>
                         
                     </div>

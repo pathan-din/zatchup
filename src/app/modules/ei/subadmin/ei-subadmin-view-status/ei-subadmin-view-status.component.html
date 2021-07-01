@@ -17,12 +17,24 @@
                 <div class="dropdown-lg-Div">
                     <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
                     <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
-                        <select (change)="getEIStatus('1')" class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="pageSize">
+                        <select (change)="getEIStatus('1')" class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="model.page_Size">
                             <!-- <option value="">Select</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option> -->
                             <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="dropdown-lg-Div">
+                    <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Status</label>
+                    <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
+                        <select (change)="getEIStatus(model.status)" class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="model.status">
+                            <option value="">Select</option>
+                            <option value="SENTFORSIGNUP">SENTFORSIGNUP</option>
+                            <option value="SENTFORAPPROVAL">SENTFORAPPROVAL</option>
+                             
+                             
                         </select>
                     </div>
                 </div>
