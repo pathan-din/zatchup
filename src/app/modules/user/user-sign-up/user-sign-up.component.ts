@@ -149,6 +149,20 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("month", this.monthModel);
       localStorage.setItem("day", this.dateModel);
       localStorage.setItem("kyc_name", this.model.first_name + ' ' + this.model.last_name);
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(this.model.username)) {
+  
+        this.model.email = this.model.username;
+        this.model.phone = '';
+      } else {
+        const numbers = /^[0-9]+$/;
+        if (numbers.test(this.model.username)) {
+   
+          this.model.phone = this.model.username;
+          this.model.email = '';
+        }
+  
+      }
       if (this.model.email) {
         this.model.email = this.model.username;
       }
