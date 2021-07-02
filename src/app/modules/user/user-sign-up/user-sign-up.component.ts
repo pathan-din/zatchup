@@ -126,6 +126,15 @@ export class UserSignUpComponent implements OnInit {
       this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
+
+  trim (el) {
+    el.value = el.value.
+       replace (/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+       replace (/[ ]{2,}/gi," ").       // replaces multiple spaces with one space 
+       replace (/\n +/,"\n");           // Removes spaces after newlines
+    return;
+}​
+
   goForRegister() {
 
     this.error = [];

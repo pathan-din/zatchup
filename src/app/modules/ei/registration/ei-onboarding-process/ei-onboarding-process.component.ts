@@ -83,7 +83,7 @@ export class EiOnboardingProcessComponent implements OnInit {
     public eiService: EiServiceService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
-    private baseService: BaseService,
+    public baseService: BaseService,
     private route: ActivatedRoute
   ) { }
 
