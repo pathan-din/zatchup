@@ -92,7 +92,7 @@ export class ChatComponent implements OnInit {
             
           }
            
-          //console.log(element);
+           
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
               if(element[el].is_admin==1){
@@ -103,7 +103,7 @@ export class ChatComponent implements OnInit {
               }
               
               this.getRecepintUserDetails(el,'group');
-             // console.log(el);
+              
             }
            
           })
@@ -120,7 +120,7 @@ export class ChatComponent implements OnInit {
           this.recepientIcon=undefined;
         } 
         this.recepientGroup=res
-        console.log(this.recepientUsers);
+         
         
       })
       this. getDocumentsChat('')
@@ -143,28 +143,28 @@ export class ChatComponent implements OnInit {
         }
       })
       this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
-        // console.log("bbb",res);
+         
          
          if(res){
-           //console.log("uuuu",this.uuid);
+            
            
             this.blockUserList=res.data;
              
             
             var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
-            console.log(objList);
+             
             if(objList){
              this.objBlock=objList;
              this.isblock=objList.isblock;
              this.blockRecipant1=objList.isblock;
-             console.log("block user",this.isblock);
+              
             }
            
             
          }
        })
        this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res:any)=>{
-         // console.log("bbb",res);
+          
          if(res) {
           let objB : any = {}
           objB =  res.data.find(e=>{return e.uuid==this.currentUser})
@@ -200,7 +200,7 @@ export class ChatComponent implements OnInit {
     })
   }
   gotToGroupDetailsPage(uuid,chat){
-    console.log(uuid);
+     
     
     this.router.navigate(['user/group-detail'],{queryParams:{chat:chat,groupId:localStorage.getItem("guuid")}})
   }
@@ -235,7 +235,7 @@ export class ChatComponent implements OnInit {
         if (res) {
           res.data.forEach(element1 => {
             element1.receipentList.forEach(element => {
-              console.log(element);
+              element1.is_read=0
               if(element[localStorage.getItem('fbtoken')]){
                 if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
                   
@@ -287,8 +287,7 @@ export class ChatComponent implements OnInit {
               localStorage.removeItem('isread')
               this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
             }
-            // console.log('conversation data is as ::',this.conversation);
-            // console.log('dataStudent is as ::',this.dataStudent);
+             
   
           } else {
             this.conversation = [];
@@ -361,13 +360,13 @@ export class ChatComponent implements OnInit {
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       });
-      //console.log(this.receipentUsers);
+       
       
     }else{
       if (uuid) {
         this.firestore.collection('users').doc(uuid).ref.get().then(res => {
           this.recepintDetails = res.data();
-          console.log('recipants details is as ::', this.recepintDetails)
+           
         });
       }
     }
@@ -388,8 +387,7 @@ export class ChatComponent implements OnInit {
         
         res.uuid=localStorage.getItem("guuid");
           res.reciepent.forEach(ele => {
-            console.log(ele)
-           // console.log(ele[localStorage.getItem('fbtoken')].is_exit)
+             
             if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
              
              
@@ -408,14 +406,14 @@ export class ChatComponent implements OnInit {
               this.dataStudent.push(data)
               dataNew.data = this.dataStudent;
               this.model.comment = '';
-               // console.log(dataNew.data);
+               
               this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
               .set(dataNew)
               .then(
                 res => {
 
                   this.getDocumentsChat("")
-                  
+                  subscription.unsubscribe()
 
 
                 },
@@ -430,9 +428,6 @@ export class ChatComponent implements OnInit {
         
       })
       
-     
-     
-      subscription.unsubscribe()
     })
   }else{
 
@@ -477,10 +472,10 @@ export class ChatComponent implements OnInit {
 
   }
   blockPaticipant(particepantid){
-    console.log(particepantid,this.currentUser);
+    
      
      var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
-     console.log(index);
+      
      
      if(index>-1){
        this.blockUserList.slice(index,1)
@@ -493,8 +488,7 @@ export class ChatComponent implements OnInit {
       objList.isblock=true;
       this.objBlock=objList;
       this.isblock=objList.isblock;
-     // this.blockUserList.push(objList)
-      console.log( this.blockUserList);
+     
      }
      this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
     // this.router.navigate(['ei/personal-messages'])
@@ -504,7 +498,7 @@ export class ChatComponent implements OnInit {
    }
    unblockPaticipant(particepantid){
      var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
-     console.log(index);
+      
      if(index>-1){
        this.blockUserList.slice(index,1)
      }
@@ -513,8 +507,7 @@ export class ChatComponent implements OnInit {
       objList.isblock=false;
       this.objBlock=objList;
       this.isblock=objList.isblock;
-     // this.blockUserList.push(objList)
-      console.log( this.blockUserList);
+      
      }
      this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
      //this.router.navigate(['ei/personal-messages'])
@@ -540,18 +533,17 @@ export class ChatComponent implements OnInit {
            
         }, (error) => {
           this.loader.hide();
-          console.log(error);
+           
 
         });
     } catch (err) {
-      // this.loader.hide();
-      console.log("exception", err);
+       
     }
   }
 
   getFileExtention(url) {
     var exArr = url.split("/");
-    // console.log(exArr[(exArr.length-1)].split(".")[1]);
+    
 
     return exArr[(exArr.length - 1)].split(".")[1];
   }

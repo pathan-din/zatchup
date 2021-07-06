@@ -26,7 +26,7 @@
 
                     <ng-container matColumnDef="profilePick">
                         <mat-header-cell *matHeaderCellDef> Profile Pic </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.profilePick}}
+                        <mat-cell *matCellDef="let element">  
                             <img src="{{element.profile_pic?element.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile pick" style="height: 50px;"/>
                         </mat-cell>
                     </ng-container>

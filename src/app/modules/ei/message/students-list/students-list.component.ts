@@ -234,6 +234,7 @@ console.log(groupList.length, 'group');
           objStudentList.class = objData.class_name;
           objStudentList.alias_class = objData.alias_class;
           objStudentList.roll_no = objData.roll_no;
+          objStudentList.profile_pic = objData.profile_pic;
           objStudentList.firebase_id = objData.firebase_id
           objStudentList.checkedAll = true;
           if(localStorage.getItem("groupUsers")){
