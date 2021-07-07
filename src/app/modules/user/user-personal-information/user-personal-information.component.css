@@ -14,9 +14,7 @@
 
 .round-camera-div img {
     position: absolute;
-    top: -8px;
-    left: -10px;
-    max-width: initial;
+    max-width: 100%;
 }
 
 
