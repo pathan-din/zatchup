@@ -127,9 +127,14 @@
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> School Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button type="button"
-                                class=" {{element.is_onboarded == '0' ? 'bg-paret-green' : 'bg-yellow'}} text-white h-100 border-0 rounded">
-                                {{element.is_onboarded == '0' ? 'Pending For Approval' : 'Onboarded'}}
+                            <button *ngIf="element.school_status == 'Pending for approval'" type="button" class=" bg-paret-green  text-white h-100 border-0 rounded">
+                                {{element.school_status}}
+                            </button>
+                            <button *ngIf="element.school_status == 'Onboarded'" type="button" class="bg-yellow  text-white h-100 border-0 rounded">
+                                {{element.school_status}}
+                            </button> 
+                            <button *ngIf="element.school_status == 'Rejected'" type="button" class=" bg-red text-white h-100 border-0 rounded">
+                                {{element.school_status}}
                             </button>
                         </mat-cell>
                     </ng-container>
