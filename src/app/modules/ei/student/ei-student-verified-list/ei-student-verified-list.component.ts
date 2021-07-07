@@ -532,7 +532,12 @@ params:any={}
         (res: any) => {
           if (res.status === true) {
             this.closeRejectModel.nativeElement.click()
-            this.alert.success(res.message, 'Success')
+            if(this.title == 'Verified'){
+              this.alert.success('Un-Verified Successfully', 'Success')
+            }
+            else{
+              this.alert.success(res.message, 'Success')
+            }
             this.getGetVerifiedStudent('', '')
 
             // this.router.navigate(['ei/student-management']);
