@@ -55,6 +55,7 @@ export class PersonalMessagesComponent implements OnInit {
     }
     this. getGroupDetails(this.currentUser)
     if (this.isLoggedIn) {
+      this.lastMessageData=[]
       this.notifypush.receiveMessage();
       this.notifypush.requestPermission();
       if (localStorage.getItem("fbtoken")) {
@@ -131,7 +132,11 @@ export class PersonalMessagesComponent implements OnInit {
                         res1.data[res1.data.length-1].roll_no = this.recepintDetails.roll_no;
                         res1.data[res1.data.length-1].profile_pic = this.recepintDetails.photoUrl;
                         res1.data[res1.data.length-1].user_name = this.recepintDetails.firstName+' '+(!this.recepintDetails.lastName?'':this.recepintDetails.lastName);
+                        res1.data[res1.data.length - 1].group=0
                         this.lastMessageData.push(res1.data[res1.data.length-1]); 
+                        this.lastMessageData.sort(function(x, y){
+                          return  y.timestamp -  x.timestamp;
+                        }) 
                       });
                     }
                     
@@ -285,24 +290,27 @@ export class PersonalMessagesComponent implements OnInit {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
                 var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
                 if(!index){
-                  this.groupList.push(res)
-                 
-                  
-                  this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
+                 // this.groupList.push(res)
+                 this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
                     //console.log(res1.data[res1.data.length-1]);
                     this.lastGroupmsg[element.payload.doc.id]=[]
                     if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp})){
                       if(res1){
                         this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
-                         
+                        res.timestamp = res1.data[res1.data.length-1].timestamp;
+                        res.group=1  
                       }
-
-                      
                     }
-            
-                    
+                   
                   })
+                  
+                  this.groupList.push(res)
+                  this.lastMessageData.push(res)
+                  this.lastMessageData.sort(function(x, y){
+                    return  y.timestamp -  x.timestamp;
+                  }) 
                 }
+                
               }else{
                 this.groupexit=1; 
               }
@@ -384,8 +392,8 @@ export class PersonalMessagesComponent implements OnInit {
           let resp:any={}
           this.recepintDetails.isblock = isblock
           if(!this.receipentUsers.find(responce=>{return responce.id==this.recepintDetails.id}))
-      this.receipentUsers.push(this.recepintDetails )
-      console.log(this.receipentUsers);
+          this.receipentUsers.push(this.recepintDetails )
+          console.log(this.receipentUsers);
           console.log('recipants details is as ::', this.recepintDetails)
         });
       }

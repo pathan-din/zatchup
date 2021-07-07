@@ -1,5 +1,5 @@
 import { KeyValue, Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewChild,Pipe, PipeTransform } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -14,10 +14,7 @@ import { NotificationService } from 'src/app/services/notification/notification.
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
-@Pipe({
-  name: 'filter',
-  pure: false
-})
+ 
 
 export class MessagesComponent implements OnInit {
   model: any = {};

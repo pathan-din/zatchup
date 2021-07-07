@@ -20,7 +20,7 @@
                         </button>
                     </div>
                 </div>
-                  <div *ngFor="let msgObj of lastMessageData;">
+                <div *ngFor="let msgObj of lastMessageData;">
                 <div *ngIf="msgObj.group==0" (click)="goToChat(msgObj.uuid, msgObj.user_friend_id)" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle" >
                   
                     <div class="profile_pick">
