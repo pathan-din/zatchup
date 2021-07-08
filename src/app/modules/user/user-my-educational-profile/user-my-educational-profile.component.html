@@ -186,6 +186,8 @@
                                         (click)="sendUserToReVerify(objEd.school_id, false)">Re-Verify</button>
                                         <button *ngIf="objEd.is_rejected == true && objEd.is_active_subscription == true " type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
                                         (click)="sendUserToReVerify(objEd.school_id, true)">Re-Verify</button>
+                                        <button *ngIf="objEd.approved != 1 && objEd.is_onboard == true && objEd.is_active_subscription == true && objEpData.is_student_verified == true && objEpData.kyc_approved == 1"  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2"  style="float: right;"
+                                        (click)="getVerifiedChat(objEd)">Get Verify</button>
                                     
                                         <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
                                         class="mr-2 cursorStyle">

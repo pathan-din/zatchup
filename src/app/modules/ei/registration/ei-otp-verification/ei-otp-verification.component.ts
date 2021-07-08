@@ -108,7 +108,7 @@ export class EiOtpVerificationComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.loader.hide();
-          if (response.all_data.reason_reject && !response.all_data.approved) {
+          if (!response.all_data.reason_reject && !response.all_data.approved) {
             localStorage.clear();
             var msg='Your School with ZatchUp ID '+response.all_data.zatchupId+' is rejected with comments '+response.all_data.reason_reject+'. Please refer to your email for further details.'
             this.alert.info(msg, "Reason");
