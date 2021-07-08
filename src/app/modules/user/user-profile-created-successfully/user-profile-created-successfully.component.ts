@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute} from '@angular/router';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -11,14 +11,18 @@ import { NotificationService } from 'src/app/services/notification/notification.
 })
 export class UserProfileCreatedSuccessfullyComponent implements OnInit {
   model: {};
-
+  params:any={};
   constructor(private router: Router, 
     private confirmDialogService: ConfirmDialogService,
     private loader : NotificationService,
-    private baseService : BaseService
+    private baseService : BaseService,
+    private route:ActivatedRoute
     ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      this.params=params;
+    })
   }
 
  

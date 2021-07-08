@@ -47,6 +47,8 @@ export class AddNewCourseComponent implements OnInit {
       if (params['title']) {
         this.title = params['title'];
       }
+      if(this.params.edit_course)
+      this.getCourseDetailsById();
     });
     this.model.school_id = this.schoolId;
     this.getEiInfo(this.model);
@@ -59,7 +61,7 @@ export class AddNewCourseComponent implements OnInit {
       this.model.is_already_register = "false"
 
     }
-    console.log(this.model);
+   
   }
 
 
@@ -141,6 +143,36 @@ export class AddNewCourseComponent implements OnInit {
       }
     });
   }
+  getCourseDetailsById(){
+    try {
+      this.SpinnerService.show()
+      let data :any={"school_id":this.schoolId,"course_id": this.params.course_id}
+      this.baseService.getData("user/get-update-school-course-detail-by-user/",data).subscribe((res:any)=>{
+        if(res.status){
+          this.SpinnerService.hide()
+          this.model=res.data[0];
+          if (this.params.check_school_info_on_zatchup == 2) {
+            this.is_already_registered = true;
+            this.model.is_already_register = "true"
+      
+          }
+          else {
+            this.model.is_already_register = "false"
+      
+          }
+          this.model.start_date = this.baseService.getDateReverseFormat(this.model.start_date);
+          this.model.end_date = this.baseService.getDateReverseFormat(this.model.end_date);
+          this.model.course_id=this.params.course_id
+        }else{
+          this.SpinnerService.hide()
+        }
+        
+      })
+    } catch (error) {
+      this.SpinnerService.hide()
+    }
+   
+  }
   addCourseData() {
     this.errorDisplay = {};
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
@@ -171,7 +203,7 @@ export class AddNewCourseComponent implements OnInit {
         if (response.status == true) {
           this.alert.success(response.message, 'Success')
           if (this.params.check_school_info_on_zatchup == 2) {
-            this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title, 'check_school_info_on_zatchup': 2 } });
+            this.router.navigate(['user/ei-confirmation'], { queryParams: { 'school_id': this.schoolId, 'title': this.title, 'check_school_info_on_zatchup': 2 } });
           }
           else {
             this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title } });

@@ -11,7 +11,7 @@
                     <div class="text-center pr-5 mt-3 pl-5 mb-4">
                         <img class="img-fluid SuccessfullImage mt-2 mb-4" src="assets/images/userWebsite/profile-image.png">
                         <p class="semiBoldFont">Profile Created Successfully </p>
-                        <p class="mediumFont color-purple letterspacing">Your profile is sent to your educational institutions for approval...
+                        <p *ngIf="!params.check_school_info_on_zatchup" class="mediumFont color-purple letterspacing">Your profile is sent to your educational institutions for approval...
                         </p>
                     </div>
                 </div>

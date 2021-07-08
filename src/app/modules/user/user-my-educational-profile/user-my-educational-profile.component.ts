@@ -237,16 +237,18 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
 
   }
-  storePendingCourseDataAfterApprove(data, school_id) {
+  storePendingCourseDataAfterApprove(data, school_id,dataEi?:any) {
 
     try {
+      console.log(dataEi);
+      
       let coursedata: any = {};
       coursedata.course_id = data.course_id;
       this.loader.show();
       this.baseService.action("user/change-course-standard-detail-by-student-by-id/", coursedata).subscribe((res: any) => {
         if (res.status == true) {
           this.loader.hide();
-          this.editCourse(data, school_id);
+          this.editCourse(data, school_id,dataEi);
         } else {
           this.loader.hide();
         }
@@ -372,13 +374,29 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
   }
 
-  editCourse(data: any, school_id: any) {
-    localStorage.setItem("editcourse", "yes");
-    if (data.is_current_course == true) {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
-    } else {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+  getVerifiedChat(obj){
+    var text = 'was Student'
+    if(obj.course_detail[0].is_current_course == true){
+      text = 'is Student'
     }
+    var message = obj.get_verified_message
+    localStorage.setItem('message', message)
+    localStorage.setItem('uuid', obj.firebase_id);
+    this.router.navigate(["user/chat"]);
+  }
+  editCourse(data: any, school_id: any,dataEi?:any) {
+    localStorage.setItem("editcourse", "yes");
+    if(dataEi.is_onboard==0){
+      this.router.navigate(['user/ei-confirmation'], { queryParams: {"check_school_info_on_zatchup":2, "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+
+    }else{
+      if (data.is_current_course == true) {
+        this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+      } else {
+        this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+      }
+    }
+    
     // this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
   }
   redirectEiConfirmationPagePage(school_id: any) {

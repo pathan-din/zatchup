@@ -78,15 +78,24 @@ export class UserEiConfirmationComponent implements OnInit {
     this.getConfirmationDetails();
     this.currentDate = new Date();
   }
+  addMoreCourse(){
+    this.router.navigate(['user/add-new-course'], {queryParams: {'school_id':this.school_id,'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup }});
 
+    
+  }
   editCourse(standard, school_id, courseid) {
+    if(this.params.check_school_info_on_zatchup){
+      this.router.navigate(['user/add-new-course'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation",'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup } });
 
-
-    if (standard[standard.length - 1].is_current_standard) {
-      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
-    } else {
-      this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
+    }else{
+      if (standard[standard.length - 1].is_current_standard) {
+        this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
+      } else {
+        this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
+      }
     }
+
+    
 
   }
   goToUserProfileCreatedPage() {
@@ -102,7 +111,12 @@ export class UserEiConfirmationComponent implements OnInit {
       this.router.navigate(['user/my-educational-profile'])
     }
     else {
-      this.router.navigate(['user/add-personal-info']);
+      if(this.params.check_school_info_on_zatchup){
+        this.router.navigate(['user/profile-created'],{queryParams:{'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup}});
+      }else{
+        this.router.navigate(['user/add-personal-info']);
+      }
+      
     }
 
 

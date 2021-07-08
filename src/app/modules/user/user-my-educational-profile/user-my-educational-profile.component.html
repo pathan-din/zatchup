@@ -120,14 +120,11 @@
                             <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center ml-2">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h2>
                                 <div class="addWorkcourse" >
-                                    <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
+                                    <a (click)="redirectWorkDetailesPage('')" class="cursorStyle">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
                                             style="height: 26px;">
                                     </a>
-                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid ml-2 mr-2"
-                                            style="width: 26px;">
-                                    </a>
+                                   
                                 </div>
                             </div>
                             <div class="col-md-11 ml-4">
@@ -141,7 +138,7 @@
                                     <div class="experiencedetails">
                                         <span class="d-block regularFont mediumFont"
                                             style="line-height: 1; padding-bottom: 5px; font-size: 16px;">{{objWorkDetail.work_department}}</span>
-                                        <span class="d-block regularFont commonFontSize lineHeight">Current Company:
+                                        <span *ngIf="objWorkDetail.work_type!='Self Employed'" class="d-block regularFont commonFontSize lineHeight">Current Company:
                                             {{objWorkDetail.company_name}} </span>
                                         <span
                                             class="d-block regularFont small-text color-fadded-black">{{objWorkDetail.start_date}}
@@ -152,12 +149,10 @@
                                             {{objWorkDetail.work_state}} {{objWorkDetail.work_city}}</span>
                                     </div>
                                 </h2>
-                                <!-- <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
-                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
+                                 <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
+                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid ml-2 mr-2"
                                             style="width: 26px;">
                                     </a>
-                                </div> -->
                             </div>
 
                         </div>
@@ -186,6 +181,8 @@
                                         (click)="sendUserToReVerify(objEd.school_id, false)">Re-Verify</button>
                                         <button *ngIf="objEd.is_rejected == true && objEd.is_active_subscription == true " type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
                                         (click)="sendUserToReVerify(objEd.school_id, true)">Re-Verify</button>
+                                         <button *ngIf="objEd.approved == 0 && objEd.is_onboard == true && objEd.is_active_subscription == true && objEd.is_students_verified == true && objEpData.kyc_approved == 1"  type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2 "  style="float: right;"
+                                (click)="getVerifiedChat(objEd)">Get Verify</button>
                                     
                                         <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
                                         class="mr-2 cursorStyle">
@@ -245,7 +242,7 @@
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 ml-2">Course Details
                                     <img src="assets/images/userWebsite/edit.png"
-                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id)"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
                                     <img src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id)"
