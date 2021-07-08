@@ -374,16 +374,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
   }
 
-  getVerifiedChat(obj){
-    var text = 'was Student'
-    if(obj.course_detail[0].is_current_course == true){
-      text = 'is Student'
-    }
-    var message = obj.get_verified_message
-    localStorage.setItem('message', message)
-    localStorage.setItem('uuid', obj.firebase_id);
-    this.router.navigate(["user/chat"]);
-  }
+ 
   editCourse(data: any, school_id: any,dataEi?:any) {
     localStorage.setItem("editcourse", "yes");
     if(dataEi.is_onboard==0){
