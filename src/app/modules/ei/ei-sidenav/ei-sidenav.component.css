@@ -112,9 +112,9 @@
     .dropdown-menu.customEiSearch.show {
         background: none;
         border: 0px;
-        width: 310px !important;
-    left: inherit !important;
-    top: 4px !important;
+        width: 100% !important;
+        top: 4px !important;
+        min-width: 365px !important;
     }
 
 @media (max-width: 960px){
