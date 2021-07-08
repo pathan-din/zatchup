@@ -130,12 +130,12 @@
                             <div class="col-md-11 ml-4">
                                 <hr>
                             </div>
-                            <div class="col-md-11 ml-4 mb-3"
+                            <div class="col-md-12 ml-4 mb-3"
                                 *ngFor="let objWorkDetail of objEpData.work_detail">
-                                <h2 class="Heading m-0 d-flex justify-content-start">
+                                <h2 class="Heading m-0">
                                     <img src="assets/images/work-user-profile.png"
-                                        class="cursorStyle img-fluid mr-2 work-user-profile">
-                                    <div class="experiencedetails">
+                                        class="cursorStyle img-fluid mr-2 work-user-profile float-left">
+                                    <div class="experiencedetails float-left">
                                         <span class="d-block regularFont mediumFont"
                                             style="line-height: 1; padding-bottom: 5px; font-size: 16px;">{{objWorkDetail.work_department}}</span>
                                         <span *ngIf="objWorkDetail.work_type!='Self Employed'" class="d-block regularFont commonFontSize lineHeight">Current Company:
@@ -148,11 +148,12 @@
                                             class="d-block regularFont small-text color-fadded-black lineHeight">{{objWorkDetail.work_country}}
                                             {{objWorkDetail.work_state}} {{objWorkDetail.work_city}}</span>
                                     </div>
-                                </h2>
-                                 <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid ml-2 mr-2"
+                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle float-right">
+                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid mr-3"
                                             style="width: 26px;">
                                     </a>
+                                </h2>
+                                 
                             </div>
 
                         </div>
