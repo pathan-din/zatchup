@@ -8,7 +8,7 @@
         <div class="col-md-4 pl-0 order-1 order-sm-6 MobileCol6MB">
             <h2 class="mb-4 textSpace pl-3">Course Details</h2>
             <div class="customUserForm">
-                <form>
+                <!-- <form>
                     <h3 class="p-0 commonFontSize semiBoldFont m-0">
                         {{model.name_of_school}}
                         <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
@@ -46,6 +46,149 @@
                         </div>
                     </div>
 
+                </form> -->
+
+                <form class="confirmForm">
+                    <div >
+                        <div  class="form-group row mx-0">
+                            <div class="col-sm-12 pl-0 pb-2">
+                                <div class="row">
+                                    <!-- <div class="col-9">
+                                        <p class="m-0 form-control-input commonFontSize"> ZatchUp ID :
+                                            <span class="text-dark mediumFont">{{confirmData.ei_detail.school_code}}</span>
+                                        </p>
+                                    </div> -->
+                                    <div class="col-12 text-right">
+                                        <img  (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
+                                            class="cursorStyle img-fluid deleteImg">
+                                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
+                                    </div>
+                                </div>
+                                <p class="m-0 form-control-input commonFontSize">State :
+                                    <span class="text-dark mediumFont">Haryana</span>
+                                </p>
+                                <p class="m-0 form-control-input commonFontSize"> City :
+                                    <span class="text-dark mediumFont">Faridabad</span>
+                                </p>
+                                <p class="m-0 form-control-input commonFontSize"> School Name :
+                                    <span class="text-dark mediumFont">School</span>
+                                </p>
+                                <p class="m-0 form-control-input commonFontSize"> School Address :
+                                    <span class="text-dark mediumFont">Address</span>
+                                </p>
+                                <p class="m-0 form-control-input commonFontSize"> University/Board :
+                                    <span class="text-dark mediumFont">CBSE</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div *ngFor="let list of courseList">
+                            <div class="form-group row mx-0">
+                                <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
+                                    Course Name :
+                                    <span class="text-dark">{{list.course_name}}</span>
+                                </div>
+                                <div class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">
+                                    <img  (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png"
+                                        class="cursorStyle img-fluid deleteImg">
+                                    <img (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
+                                        src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
+                                      <img  (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
+                                        src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">   
+                                </div>
+    
+                                <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
+                            {{courseData.description}}
+                                Years</span></div> -->
+                                <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0 mediumFont pb-1">
+                                    Starting Year :
+                                    <span class="text-dark">{{list.start_date?list.start_date:''}}</span>
+                                </div>
+                                <div  class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                                    Ending Year :
+                                    <span class="text-dark">{{list.end_date?list.end_date:''}}</span>
+                                </div>
+                                <div  class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                                    To Current
+                                </div>
+    
+                            </div>
+                            <div class="form-group row mx-0">
+                                <div class="col-lg-12 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                                    Duration :
+                                    <span class="text-dark">Duration </span>
+                                </div>
+                            </div>
+    
+                            <!-- <div class="form-group mx-0 row form-control-inputDiv border-0 p-1 rounded-0" *ngFor="let standardData of courseData.standard_detail;let i = index;">
+                                <div class="col-12 pb-2 d-flex justify-content-end align-items-center">
+                                    <span (click)="openModel(standardData.standard_id)" *ngIf="courseData.standard_detail.length>1 && !standardData.is_current_standard"
+                                        class="cursorStyle">I skipped this standard</span>
+                                    <img *ngIf="!standardData.is_current_standard" src="assets/images/userWebsite/edit.png" (click)="openEditModel($event,standardData)"
+                                        class="img-fluid small-size cursorStyle pl-2">
+                                </div>
+                                <div class="col-12 pb-1">
+                                    Standard :
+                                    <span class="text-dark mediumFont">{{standardData.standard_name}}</span>
+    
+                                </div>
+                                <div class="col-12 pb-1">
+                                    Duration :
+                                    <span class="text-dark mediumFont cursorStyle"> {{standardData.duration?standardData.duration:''}} </span>
+    
+                                </div>
+                                <div class="col-6 pb-1">
+                                    Starting Year :
+                                    <span class="text-dark mediumFont cursorStyle" id="start_year" (click)="openEditModel($event,standardData)">{{standardData.standard_start_year}}</span>
+                                    <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.org_end_year)"
+                                        [minDate]="this.baseService.setCalanderDate(courseData.org_start_year)" *ngIf="standardData.check && i==0"
+                                        required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
+                                        name="standard_start_year_{{i}}" [(ngModel)]="standardData.org_start_date" class="border pl-2 mt-2 form-control-input form-control form-control-sm"
+                                        type="text">
+                                    <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.org_end_year)"
+                                        [minDate]="this.baseService.setCalanderDate(courseData.org_start_year)" *ngIf="standardData.check && i > 0 && i < courseData.standard_detail.length"
+                                        required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
+                                        name="standard_start_year_{{i}}" [(ngModel)]="standardData.org_start_date" class="border pl-2 mt-2 form-control-input form-control form-control-sm"
+                                        type="text">
+                                    <input (ngModelChange)="editStandardDetails('start_year',$event)" [maxDate]="this.baseService.setCalanderDate(courseData.org_end_year)"
+                                        [minDate]="this.baseService.setCalanderDate(courseData.org_start_year)" *ngIf="standardData.check && i==courseData.standard_detail.length"
+                                        required bsDatepicker autocomplete="off" placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
+                                        name="standard_start_year_{{i}}" [(ngModel)]="standardData.org_start_date" class="border pl-2 mt-2 form-control-input form-control form-control-sm"
+                                        type="text">
+    
+                                </div>
+    
+                                <div class="col-6 pb-1">
+    
+                                    {{ standardData.is_current_standard?"":"Ending Year :" }}
+                                    <span class="text-dark mediumFont cursorStyle"
+                                        id="end_year" (click)="openEditModel($event,standardData)">{{standardData.is_current_standard?"To Current":standardData.standard_end_year}}</span>
+                                    <input [maxDate]="this.baseService.setCalanderDate(courseData.end_year)" [minDate]="this.baseService.setCalanderDate(courseData.start_year)"
+                                        (ngModelChange)="editStandardDetails('end_year',$event)" *ngIf="standardData.check && !standardData.is_current_standard"
+                                        required bsDatepicker autocomplete="off" [minDate]="this.baseService.getDateReverseFormat(standardData.org_start_date)"
+                                        placeholder="YYYY-MM-DD" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}" name="standard_end_year_{{i}}"
+                                        [(ngModel)]="standardData.org_end_date" class="border pl-2 mt-2 form-control-input form-control form-control-sm"
+                                        type="text">
+    
+                                </div>
+    
+                                <div class="col-12 pb-1 mt-2">
+                                    Section :
+                                    <span class="text-dark mediumFont cursorStyle" id="end_year" (click)="openEditModel($event,standardData)">
+                                    {{standardData.class_detail[0]?standardData.class_detail[0].class_name:''}}</span>
+                                    <select (change)="editStandardDetails('',$event)" *ngIf="standardData.check && !standardData.is_current_standard" name="class"
+                                        [(ngModel)]="editmodel.class_id" class="custom-select form-control-input border pl-2 mt-2"
+                                        required>
+                                        <option value="">Select Section</option>
+                                        <option value="{{classObj.id}}" *ngFor="let classObj of classList">{{classObj.class_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+     -->
+    
+                        </div>
+                    </div>
+    
+    
                 </form>
             </div>
             <div class="form-group row align-items-center pl-3 mt-3 cursorStyle" (click)="addMoreCourse()">
