@@ -109,13 +109,14 @@ export class FirebaseService {
     }
 
     updatePhotoOnChatUser(photoUrl) {
-        console.log(photoUrl.profile_pic);
+       // console.log(photoUrl.profile_pic);
         
         var uuid = localStorage.getItem('fbtoken');
-        const userRef1 = this.db.doc(`users/${uuid}`);
+        //const userRef1 = this.db.doc(`users/${uuid}`);
+        console.log("sddsd",uuid);
         this.db.collection('users').doc(uuid).get().toPromise().then((resp: any) => {
             let res = resp.data();
-            console.log("sddsd",res);
+            
             
             const userRef = this.db.doc(`users/${uuid}`);
             const updateUser = {
