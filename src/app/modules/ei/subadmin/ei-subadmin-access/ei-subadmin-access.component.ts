@@ -85,17 +85,23 @@ export class EiSubadminAccessComponent implements OnInit {
           this.moduleList.forEach(element => {
             let objModel: any = {};
             if (element.sub_module_set.length > 0) {
+              if(element.is_deleted===false){
+                this.modifiedModulesList.push(element);
+              }
               element.sub_module_set.forEach(subElement => {
-                let objModel: any = {};
-                subElement.count = element.sub_module_set.length
-                subElement.parentmodule = element.module_name
-                this.modifiedModulesList.push(subElement);
-                this.model.module_details.push(subElement)
-                if (subElement.is_access) {
-                  objModel.module_code = subElement.module_code;
-                  this.module.module_details.push(objModel);
-                  this.historyModuleList.push(objModel)
-                }
+                if (subElement.is_deleted===false) {
+                  let objModel: any = {};
+                  subElement.count = element.sub_module_set.length
+                  subElement.parentmodule = element.module_name
+                  this.modifiedModulesList.push(subElement);
+                  this.model.module_details.push(subElement)
+                  if (subElement.is_access) {
+                    objModel.module_code = subElement.module_code;
+                    this.module.module_details.push(objModel);
+                    this.historyModuleList.push(objModel)
+                  }
+                } 
+                
               });
             } else {
               this.modifiedModulesList.push(element);

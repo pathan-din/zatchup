@@ -254,13 +254,13 @@ export class MyProfileComponent implements OnInit {
   getEducationalProfile() {
     try {
       this.loader.show()
-      let url = 'user/student-education-profile/'
+      let url = 'ei/get-subadmin-profile/'
       this.baseService.getData(url).subscribe(
         (res: any) => {
           if (res.status == true){
             this.loader.hide()
-            this.imageUrl = res.data[0].profile_pic
-            this.epData = res.data[0]
+             this.imageUrl = res.data.profile_pic
+            this.epData = res.data
           }
           
           else{
@@ -301,7 +301,7 @@ export class MyProfileComponent implements OnInit {
     this.router.navigate(['user/add-ei'], { queryParams: {  "school_id": school_id,"returnUrl": "user/my-educational-profile" } });
   }
   getRequestChangeDetails(){
-      this.router.navigate(["user/pending-request/"]);
+      this.router.navigate(["ei/subadmin-pending-requests/"]);
   }
 
   getRequestCourseDetails(){

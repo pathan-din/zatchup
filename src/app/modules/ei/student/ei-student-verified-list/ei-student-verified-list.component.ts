@@ -28,9 +28,13 @@ export class EiStudentVerifiedListComponent implements OnInit {
   studentDetails: any = [];
   arrAge: any = [];
   studentArr: any = [];
+  isRejected: boolean = false;
   modelUserId: any = '';
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
     'class', 'promote', 'Action'];
+
+  displayedColumnone: string[] = [ 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
+    'class', 'rejectReason', 'rejectRemark' ,'Action'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
   config: any;
@@ -54,14 +58,14 @@ export class EiStudentVerifiedListComponent implements OnInit {
   user_id: any = "";
   bulkStudentList: any = []
   selectAll: boolean = false;
-
+  permission: any = [];
+params:any={}
   constructor(
     private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public baseService: BaseService,
-    public formBuilder: FormBuilder,
+    private eiService: EiServiceService,
+    private baseService: BaseService,
     private alert: NotificationService,
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
@@ -78,8 +82,10 @@ export class EiStudentVerifiedListComponent implements OnInit {
     this.model.gender = '';
     this.model.approved = ""
     this.route.queryParams.subscribe((params: any) => {
+       
       this.approved = params['approved'] ? params['approved'] : ''
       this.model.approved = this.approved;
+      this.isRejected = params['approved'] == 2 ? true : false
       this.model.is_rejected = params['is_rejected'] ? params['is_rejected'] : '';
       this.model.rejectedby = params['rejectedby'] ? params['rejectedby'] : '';
       this.title = params['title'];
@@ -94,6 +100,14 @@ export class EiStudentVerifiedListComponent implements OnInit {
     localStorage.removeItem('bulkStudents')
     this.getGetVerifiedStudent('', '')
     this.displayCourseList();
+
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE010')==false){
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
+    }
 
   }
   promoteResetPopup(objData) {
@@ -172,7 +186,11 @@ export class EiStudentVerifiedListComponent implements OnInit {
   displayCourseList() {
     try {
       this.loader.show();
-      this.eiService.displayCourseList().subscribe(res => {
+      let data = {
+        'page': 1,
+        'page_size': 1000
+      }
+      this.baseService.getData('ei/course-list/',data).subscribe(res => {
         let response: any = {};
         response = res;
         this.courseList = response.results;
@@ -326,6 +344,7 @@ export class EiStudentVerifiedListComponent implements OnInit {
       objStudentList.approved = objData.approved;
       objStudentList.is_rejected = objData.is_rejected;
       objStudentList.reason_reject = objData.reason_reject;
+      objStudentList.rejected_remark = objData.rejected_remark;
       objStudentList.name = objData.first_name + ' ' + objData.last_name;
       objStudentList.gender = objData.gender;
       objStudentList.age = objData.age;
@@ -418,6 +437,14 @@ export class EiStudentVerifiedListComponent implements OnInit {
 
 
   getDocumentsChat() {
+    
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE013')==false){
+        this.alert.error("You Do Not Have Permission For This Module,Please Contact Your School","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
+    }
     this.conversation = [];
     this.dataStudent = [];
     var uuid = localStorage.getItem("friendlidt_id");
@@ -454,9 +481,28 @@ export class EiStudentVerifiedListComponent implements OnInit {
     }
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id, 'approve': approve } });
   }
-
-  goToEiStudentProfilePage(id) {
-    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
+  isValidModule(module_code) {
+    let moduleList: any = {};
+    this.permission = JSON.parse(sessionStorage.getItem('permission'))
+    if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
+      moduleList = this.permission;
+      
+      var data = moduleList.find(el => {
+        return el.module_code == module_code
+      })
+      console.log(data, 'djsdj');
+      
+      if (data) {
+        return data.is_access;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+  goToEiStudentProfilePage(id,title) {
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id,'title': title} });
   }
 
 
@@ -486,8 +532,15 @@ export class EiStudentVerifiedListComponent implements OnInit {
         (res: any) => {
           if (res.status === true) {
             this.closeRejectModel.nativeElement.click()
-            this.alert.success(res.message, 'Success')
-            this.router.navigate(['ei/student-management']);
+            if(this.title == 'Verified'){
+              this.alert.success('Un-Verified Successfully', 'Success')
+            }
+            else{
+              this.alert.success(res.message, 'Success')
+            }
+            this.getGetVerifiedStudent('', '')
+
+            // this.router.navigate(['ei/student-management']);
           } else {
             this.loader.hide();
             var errorCollection = '';
@@ -531,7 +584,9 @@ export class EiStudentVerifiedListComponent implements OnInit {
           this.closeVerifiedModel.nativeElement.click()
           if (res.status == true) {
             this.alert.success(res.message, 'Success');
-            this.router.navigate(['ei/student-management']);
+            this.getGetVerifiedStudent('', '')
+
+            // this.router.navigate(['ei/student-management']);
           } else {
             this.alert.error(res.error.message[0], 'Error');
           }

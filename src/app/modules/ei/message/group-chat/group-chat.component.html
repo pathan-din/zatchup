@@ -31,11 +31,11 @@
 
                     <div class="teacherChatList bg-white border rounded mb-3">
                         <div class="row m-0 align-items-center border-bottom" *ngFor="let teacher of teacherList;let i=index; ">
-                            <div class="col-lg-2 col-md-2 col-2 text-center">
+                            <div class="col-lg-2 col-md-2 col-3 text-center">
                                 <img src="{{teacher.profile_pic?teacher.profile_pic:'./assets/images/userWebsite/profile-image.png'}}" alt="profile-pick"
-                                    class="pickSize" />
+                                    class="pickSize border" />
                             </div>
-                            <div class="col-lg-8 col-md-8 col-8 pt-1 pb-1">
+                            <div class="col-lg-8 col-md-8 col-7 pt-1 pb-1">
                                 <h4 class="m-0 semiBoldFont color-black text-capitalize">{{teacher.first_name}} {{teacher.last_name}}</h4>
                                 <p class="small-text-2 m-0">Employee ID: {{teacher.employee_num}}</p>
                             </div>

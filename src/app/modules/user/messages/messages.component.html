@@ -13,56 +13,48 @@
             <div class="chat_content bg-light-gray pt-3 pb-5">
                 <div class="col-md-12 mb-3">
                     <div class="button-div d-flex justify-content-end flex-wrap">
-                        <!-- <button type="button" class="bg-dark text-white py-2 px-3 mx-1 border-0">New Messages</button> -->
+                        <button type="button" class="bg-dark text-white py-2 px-3 mx-1 border-0"  data-target="#BlockListModal" data-toggle="modal" (click)="blockUsersList()"  >Block users</button> 
                         <!-- <button type="button" (click)="createChatGroup()" class="bg-dark text-white py-2 px-3 mx-1 border-0">Create Group</button> -->
                         <button type="button" data-target="#ActionModal" data-toggle="modal" class="bg-yellow text-white py-2 px-3 mx-1 border-0">
                             <i class="fa fa-cog" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
-                
-                <div (click)="goToChat(msgObj.uuid, msgObj.user_friend_id)" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle" *ngFor="let msgObj of lastMessageData">
+                <div *ngFor="let msgObj of lastMessageData;">
+                <div *ngIf="msgObj.group==0" (click)="goToChat(msgObj.uuid, msgObj.user_friend_id)" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle" >
+                  
                     <div class="profile_pick">
                         <img *ngIf="msgObj.profile_pic" src="{{msgObj.profile_pic}}" class="img-fluid cursorStyle">
                         <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" class="img-fluid cursorStyle">
                     </div>
                     <div class="profile_name ml-3 border-bottomCustom w-100">
                         <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize text-capitalize position-relative">{{msgObj.user_name}}
-                            <!-- <span class="small-text-2">(Student)</span> -->
-                            <!-- <span class="float-right">2:26 PM</span> -->
-                            <span class="chatCount">0</span>
+                            <!-- <span class="small-text-2">(Student)</span> 
+                            <span class="float-right">{{msgObj.timestamp}}</span> -->
+                            <span class="chatCount" *ngIf="messageData[msgObj.user_friend_id].length>0">{{messageData[msgObj.user_friend_id].length}}</span>
                         </p> 
                         <p class="color-fadded-black">{{getExtenion(msgObj.msg)}}</p>                                                   
                     </div>
+                   
+
                 </div> 
-                <div (click)="messageDetails(msgObjG.uuid,'group')" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle" *ngFor="let msgObjG of groupList">
+                 <div *ngIf="msgObj.group==1" (click)="messageDetails(msgObj.uuid,'group')" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle"  >
                     <div class="profile_pick">
-                        <img *ngIf="msgObjG.group_icon" src="{{msgObjG.group_icon}}" alt="Profile" class="header-dp"/>
-                            <!-- <img *ngIf="!msgObjG.group_icon" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green header-dp img-small"/>  -->
+                        <img *ngIf="msgObj.group_icon" src="{{msgObj.group_icon}}" alt="Profile" class="header-dp"/>
+                             
                     </div>
                     <div class="profile_name ml-3 border-bottomCustom w-100">
-                        <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize text-capitalize position-relative">{{msgObjG.group_title}}
-                            <!-- <span class="small-text-2">(Student)</span> -->
-                            <!-- <span class="float-right">2:26 PM</span> -->
-                            <span class="chatCount">0</span>
+                        <p class="m-0 pt-2 pb-1 color-purple mediumFont commonFontSize text-capitalize position-relative">{{msgObj.group_title}}
+                             
+                            <span class="chatCount" *ngIf="lastGroupmsgCount[msgObj.uuid].length>0">{{lastGroupmsgCount[msgObj.uuid].length}}</span>
                         </p> 
-                        <p class="color-fadded-black" *ngFor="let lastChat of lastGroupmsg[msgObjG.uuid];">{{lastChat.document?'Attachment':lastChat.msg}}</p>                                                   
+                        <p class="color-fadded-black" *ngFor="let lastChat of lastGroupmsg[msgObj.uuid];">{{lastChat.document?'Attachment':lastChat.msg}}</p>                                                   
                     </div>
+     
                 </div> 
-                <!-- <div *ngFor="let msgObjG of groupList" class="align-items-center col-12 chat_contentBox d-flex mb-4 cursorStyle">
-                    <div class="row border-bottom pb-2 mt-3 align-items-center cursorStyle" (click)="messageDetails(msgObjG.uuid,'group')">
-                        <div class="col-md-1 col-2 text-center">
-                           
-                        </div>
-                        <div class="col-md-11 col-10">
-                            <h3 class="m-0 semiBoldFont color-black text-capitalize">{{msgObjG.group_title}}
-                                 
-                            </h3>
-                            <p class="mb-0"> {{msgObjG.document?'Attachment':msgObjG.msg}} </p>
-                        </div>
-                    </div>
-        
-                </div> -->
+                 </div>
+               
+                
                 <div class="row m-0" *ngIf="lastMessageData.length <= 0 && groupList.length ==0">   
                     <div class="col-12 pt-2 pb-2">
                         <p class="text-center dataNotFound pt-4 pb-4">Records not available.</p>
@@ -98,6 +90,43 @@
                             <label for="" class="mediumFont commonFontSize letterspacing"> Last Seen </label>
                             <mat-slide-toggle [checked]="setting_user.is_seen" (change)="setUserSettingOnFirebase($event.checked,'last_seen')" class="toggleslider"></mat-slide-toggle>
                         </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="BlockListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content unverified container-fluid">
+            <div class="modal-header align-items-center justify-content-center pb-0">
+                <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Block List</h2>
+                <button type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true "> &times; </span>
+                </button>
+            </div>
+            <div class="modal-body px-0">
+                <div class="row">
+
+                    <div class="col-md-12 mt-2">
+                        <div class="form-group justifyInput d-flex justify-content-between align-items-center" 
+                        *ngFor=" let userBlock of receipentUsers ">
+                            <label for="" class="mediumFont commonFontSize letterspacing"> {{userBlock.firstName}} {{userBlock.lastName}} </label> 
+                            <mat-slide-toggle [checked]="userBlock.isblock" (change)="blockPaticipant(userBlock.id ,$event.checked)" class="toggleslider"></mat-slide-toggle>   
+
+                        </div>
+                        <div *ngIf="receipentUsers.length == 0"> Record Not Found</div>
+                        <!-- <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Read Receipts </label>    
+                            <mat-slide-toggle [checked]="setting_user.is_read" (change)="setUserSettingOnFirebase($event.checked,'is_read')" class="toggleslider"></mat-slide-toggle>                   
+                        </div>
+                        <div class="form-group justifyInput d-flex justify-content-between align-items-center">                           
+                            <label for="" class="mediumFont commonFontSize letterspacing"> Last Seen </label>
+                            <mat-slide-toggle [checked]="setting_user.is_seen" (change)="setUserSettingOnFirebase($event.checked,'last_seen')" class="toggleslider"></mat-slide-toggle>
+                        </div> -->
                     </div>
                     
                 </div>

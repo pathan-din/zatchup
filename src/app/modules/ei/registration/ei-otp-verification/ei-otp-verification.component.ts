@@ -108,12 +108,20 @@ export class EiOtpVerificationComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.loader.hide();
-          let email = this.baseService.firebase_username;//this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username;
-          var result = await this.afAuth.signInWithEmailAndPassword(email, this.model.password);
-          localStorage.setItem('fbtoken', result.user.uid);
-          localStorage.setItem("token", response.token);
-          this.firebaseService.setPresence('online')
-          this.router.navigate(['ei/dashboard']);
+          if (response.all_data.reason_reject && !response.all_data.approved) {
+            localStorage.clear();
+            var msg='Your School with ZatchUp ID '+response.all_data.zatchupId+' is rejected with comments '+response.all_data.reason_reject+'. Please refer to your email for further details.'
+            this.alert.info(msg, "Reason");
+            this.router.navigate(['ei/login']);
+          }else{
+            let email = this.baseService.firebase_username;
+            var result = await this.afAuth.signInWithEmailAndPassword(email, this.model.password);
+            localStorage.setItem('fbtoken', result.user.uid);
+            localStorage.setItem("token", response.token);
+            this.firebaseService.setPresence('online')
+            this.router.navigate(['ei/dashboard']);
+          }
+          
         } else {
           this.loader.hide();
           this.alert.error(response.error.message[0], 'Error')

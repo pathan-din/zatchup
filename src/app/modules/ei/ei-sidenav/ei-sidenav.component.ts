@@ -17,7 +17,7 @@ import { CommunicationService } from 'src/app/services/communication/communicati
   styleUrls: ['./ei-sidenav.component.css']
 })
 export class EiSidenavComponent implements OnDestroy {
-  permission: any;
+  permission: any=[];
   notificationCount: any;
   subscriptionActive: boolean = true;
   isApproved: boolean = false;
@@ -41,7 +41,9 @@ export class EiSidenavComponent implements OnDestroy {
     "seeMoreResults": true,
     "viewSubMenu": true,
     "rightIcon": true,
-    "viewCity": true
+    "viewCity": true,
+    "showValue": true,
+    "viewRollNuOrSchoolID": true
 
   }
   searchItem: any = '';
@@ -87,6 +89,8 @@ export class EiSidenavComponent implements OnDestroy {
     }
     if (sessionStorage.getItem("permission")) {
       this.permission = JSON.parse(sessionStorage.getItem("permission"));
+      
+      
     }
     this.getRegistrationStep();
   }
@@ -139,11 +143,20 @@ export class EiSidenavComponent implements OnDestroy {
 
   isValidModule(module_code) {
     let moduleList: any = {};
+    if(localStorage.getItem("getreject")){
+      if(JSON.parse(localStorage.getItem("getreject")).role == 'EIREPRESENTATIVE'){
+        return true;
+      }
+    }
     if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
       moduleList = this.permission;
       var data = moduleList.find(el => {
+      
+        
         return el.module_code == module_code
       })
+       
+      
       if (data) {
         return data.is_access;
       } else {
@@ -166,7 +179,7 @@ export class EiSidenavComponent implements OnDestroy {
 
       if (Object.keys(this.route.snapshot.queryParams).length !== 0) {
         parameter = this.route.snapshot.queryParams;
-        console.log(parameter);
+         
         
       } else {
         parameter = this.route.snapshot.params;
@@ -191,6 +204,7 @@ export class EiSidenavComponent implements OnDestroy {
             
           this.isApproved = !response.is_approved ? false : true;
           if (response.role == 'EIREPRESENTATIVE') {
+            sessionStorage.setItem("permission",JSON.stringify(response.module_data));
             if (!response.rejected_reason && !response.is_approved) {
               if (response.reg_step == 1) {
                 this.router.navigate(['ei/payment']);
@@ -262,6 +276,7 @@ export class EiSidenavComponent implements OnDestroy {
 
             }
           } else if (response.role == 'EISUBADMIN') {
+            sessionStorage.setItem("permission",JSON.stringify(response.module_data));
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
               if(response.reg_step==1){
                 this.router.navigate(['ei/kyc-verification']);
@@ -275,11 +290,16 @@ export class EiSidenavComponent implements OnDestroy {
                 //ei/add-ei
                 //ei/subadminprofile
                 //ei/thankyou
+              }else if(response.reg_step==4 && response.is_kyc_approved===true){
+                this.router.navigate(['ei/my-profile']);
+              }else{
+                this.router.navigate(['ei/kyc-not-approved']);
               }
 
             } else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {
               if (response.ekyc_rejected_reason) {
-                this.alert.info("Your Profile has been rejected reason by " + response.ekyc_rejected_reason + " Remark : " + response.ekyc_rejected_remark, "Rejected");
+                var reasonTextMessage = "Your KYC is rejected because of " + response.ekyc_rejected_reason + ' ' + response.ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
+                this.alert.info(reasonTextMessage, 'Rejected');
                 this.router.navigate(['ei/kyc-verification']);
               } else {
                 if (response.reg_step == 4) {

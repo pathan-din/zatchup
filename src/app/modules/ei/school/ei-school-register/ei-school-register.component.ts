@@ -243,6 +243,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   /****************************************************************************************/
   goToEiMobileVerificationPage(){
     
+    console.log(this.model);
     
     this.error=[];
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,[]);
@@ -286,6 +287,8 @@ export class EiSchoolRegisterComponent implements OnInit {
 
             localStorage.setItem('num', btoa(this.model.phone));
             localStorage.setItem('email', btoa(this.model.email));
+            localStorage.setItem('password', btoa(this.model.password));
+            localStorage.setItem('school_name', this.model.school_data.name_of_school);
             this.router.navigate(['ei/mobile-verification']);
           }else{
            

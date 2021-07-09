@@ -8,7 +8,6 @@
                 </span>
                 <h2 class="commonFontSize semiBoldFont mb-0">Sub Admin</h2>
             </div>
-
         </div>
 
         <div class="bg-extra-light-gray mt-3">
@@ -32,127 +31,20 @@
                 </div>
 
                 <div class="form-group row  mt-3">
-                    <!-- <div class="col-sm-6 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Name (Alphabetical Only)</label>
-                        <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input (keyup)="isValid()" [required]="!model.zatchup_id" [(ngModel)]="model.name" name="name" id="first_name" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Your Name">
-                        </div> 
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.name"></div>                   
-                    </div> -->
-
                     <div class="col-sm-12 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Email ID / Phone Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input
-                            maxlength="{{maxlength}}" id="username" (keyup)="isValid()" (keydown)="isCheckEmailOrPhone($event)" [(ngModel)]="model.username" name="username"
-                            
-                              [required]="!model.zatchup_id"  
-                                 
-                                class="form-control-input form-control  commonFontSize regularFont letterspacing"
-                                type="{{type}}" placeholder="Enter Email ID / Phone Number">
+                            <input maxlength="{{maxlength}}" (keyup)="isValid()"
+                            (keydown)="isCheckEmailOrPhone($event)" required
+                            class="form-control-input form-control form-control-sm form-bgImg form-emailBgImgPhone"
+                            type="{{type}}"
+                            pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5})$|^\d+$"
+                            [(ngModel)]="model.username" name="email_id_or_mobile_number"
+                            placeholder="Email Id / Phone Number">
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.username"></div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_number"></div>
                     </div>
                 </div>
-
-                <!-- <div class="form-group row  mt-3"> -->
-                <!-- <div class="col-sm-4" *ngFor="let designation of designationList; let i=index;"> -->
-                <!-- <label  for="" class=" mediumFont commonFontSize letterspacing">{{i==0?'Designation':''}}</label> -->
-                <!-- <div class=" form-control-inputDiv rounded py-1 shadow-none">
-                            <select (change)="isValid()" id="designation" required [(ngModel)]="model.designation" name="designation"
-                                class="custom-select form-control-input">
-                                <option value="">Select</option>
-                                <option value="{{designation.name}}" *ngFor="let designation of designationList">
-                                    {{designation.name}}</option>
-    
-                            </select>
-                            
-                        </div> -->
-                <!-- <div class="" >
-                            <mat-checkbox (change)="chooseDesignation($event,designation.id,designation.name)" [(ngModel)]="designations[designation.id]" multiselectable="false" name="designation_{{designation.id}}" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">{{designation.name}}</mat-checkbox>
-                             
-                        </div>  -->
-
-                <!-- </div> -->
-
-
-                <!--   <div class="col-sm-4">
-                        <label for="" class=" mediumFont commonFontSize letterspacing"> Designation </label>
-                        <div class="">
-                            <mat-checkbox  required [(ngModel)]="model.designation" name="designation" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">Sub-Admin</mat-checkbox>
-                        </div> 
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.designation"></div>                   
-                    </div>
-
-                    <div class="col-sm-4">
-                        <label for="" class=" mediumFont commonFontSize letterspacing"> </label>
-                        <div class="">
-                            <mat-checkbox  required [(ngModel)]="model.designation" name="designation" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle">Teacher</mat-checkbox>
-                        </div>                        
-                    </div>
-
-                    <div class="col-sm-4">
-                        <label for="" class=" mediumFont commonFontSize letterspacing"> </label>
-                        <div class="">
-                            <mat-checkbox  required [(ngModel)]="model.designation" name="designation" class="addStudent-check mediumFont commonFontSize letterspacing mat-radio-outer-circle ">Management</mat-checkbox>
-                        </div>                        
-                    </div>-->
-                <!-- </div>    -->
-
-                <!-- <div class="form-group mt-1 ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Employee ID Number </label>
-                    <div class="form-control-inputDiv rounded p-0  shadow-none">
-                        <input (keyup)="isValid()" required [(ngModel)]="model.employee_id_num" name="employee_id" id="employee_id_num" name="employee_id" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Employee ID Number">
-                    </div> 
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.employee_id"></div>       
-                </div> -->
-
-                <!-- <div class="form-group row  mt-3" *ngIf="isTeacher">
-                    <div class="col-sm-4 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing"> Add Classes Tought By Teacher </label>
-                        <div class="">
-                            <mat-checkbox [(ngModel)]="isClass" name="class" required class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class</mat-checkbox>
-                        </div>  
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.class"></div>                   
-                    </div>
-                   
-                </div>   -->
-                <!-- <div class="form-group row  mt-3" *ngFor="let addNew of arrayList;let i=index">
-                <div *ngIf="isClass" class="col-sm-4  mt-3  ">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Course</label>
-                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                    <select (change)="displayStandardList(addNew.course,i)" id="course_id"  [(ngModel)]="addNew.course" name="course_{{i}}"  class="custom-select  form-control-input" >
-                        <option value=""> Select Course</option>
-                        <option value="{{course.id}}" *ngFor="let course of courseList">{{course.course_name}}</option>
-                        
-                    </select>
-                    </div>
-                </div>
-                <div *ngIf="isClass" class="col-sm-4  mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Standard</label>
-                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select (change)="displayClassList(addNew.standard,i)" id="standard_id"  [(ngModel)]="addNew.standard" name="standard_{{i}}"  class="custom-select  form-control-input" >
-                        <option value=""> Select Standard</option>
-                        <option value="{{standard.id}}" *ngFor="let standard of standardList[i]">{{standard.standard_name}}</option>
-                        
-                    </select>
-                    </div>
-                </div>
-                <div *ngIf="isClass" class="col-sm-4  mt-3">
-                    <label for="" class="mediumFont commonFontSize letterspacing"> Subsection</label>
-                    <div class="form-control-inputDiv shadow-none rounded-0 p-0  border-top widthFull">
-                        <select id="class_id" (change)="getClassesOnSelect(addNew.class_id)" [(ngModel)]="addNew.class_id" name="class_id_{{i}}"  class="custom-select  form-control-input" >
-                        <option value=""> Select Class</option>
-                        <option value="{{class.id}}" *ngFor="let class of classList[i]">{{class.class_name}}</option>
-                         
-                    </select>
-                    </div>
-                </div> 
-            </div> -->
-                <!-- <div *ngIf="isClass" class="col-sm-1 centerImgDiv" > -->
-                <!-- <i (click)="addMore()" style="font-size: 30px;" class="fa fa-plus-square fafaAddDeleteIcon color-purple cursorStyle" aria-hidden="true"></i> -->
-                <!-- <i class="fa fa-minus-square fafaAddDeleteIcon color-purple" aria-hidden="true"></i> -->
-                <!-- </div> -->
                 <button type="button" (click)="addSubadmin()" data-dismiss="modal" aria-label="Close "
                     class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing mt-1">
                     Submit
@@ -160,127 +52,6 @@
             </form>
         </div>
     </div>
-
-
-    <!-- <div class="subadmin-Access-div bg-white border border-gray px-3 py-3">
-        <div class="Access-Roll">
-            <h2 class="commonFontSize semiBoldFont mb-0">Sub-Admin Module Access</h2>
-
-            <div class="tableDiv mt-2 AssignRoll table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr class="bg-Gainsboro">
-                            <th scope="col" class="w-25">Modules </th>
-                            <th scope="col" class="w-25">Sub Module</th>
-                            <th scope="col" class="w-25">Description</th>
-                            <th scope="col">Access</th>
-                            <th scope="col">Remarks</th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-
-                        <tr *ngFor="let module of modifiedModulesList; let i = index;">
-
-                            <td>{{module.parentmodule?module.parentmodule:module.module_name}}</td>
-                            <td>{{module.count==0?'NA':module.module_name}}</td>
-                            <td>{{module.description}}</td>
-                            <td>
-                                <mat-checkbox class="purple-checkbox" [(ngModel)]="module.is_access"
-                                    (change)="isAllSelected($event ,module.module_code)"
-                                    name="is_access_{{module.module_code}}">
-                                </mat-checkbox>
-                            </td>
-                            <td>NA</td>
-
-                        </tr>
-                    </tbody>
-
-
-
-                </table>
-            </div>
-        </div>
-
-
-        <button (click)="submitPermissionWithClass()" type="button"
-            class="bg-paret-green border-0 py-2 px-5 text-white mt-2">Submit</button>
-
-
-        <div class="modal fade" id="addClassModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog " role="document">
-                <div class="modal-content unverified container-fluid">
-                    <div class="modal-header align-items-center justify-content-center pb-0 ">
-                        <h2 class=" text-center modal-title commonFontSize mediumFont mb-1">Add Class access</h2>
-                        <button type="button " class="close rounded-circle border bg-white model-close-btn p-0"
-                            data-dismiss="modal" aria-label="Close ">
-                            <span aria-hidden="true ">
-                                &times;
-                            </span>
-                        </button>
-                    </div>
-                    <div class="modal-body px-0">
-                        <div class="form-group row mb-1 ">
-                            <div class="col-md-6 ">
-                                <mat-checkbox [(ngModel)]="isModuleAccessStudent" (change)="clearClassAccess()"
-                                    class="addStudent-check mediumFont commonFontSize letterspacing ">All Students
-                                </mat-checkbox>
-
-                            </div>
-                            <div class="col-md-6 ">
-                                <mat-checkbox [(ngModel)]="isModuleAccessClass"
-                                    (change)="displayCourseListModuleAccess()"
-                                    class="addStudent-check mediumFont commonFontSize letterspacing ">Add Class
-                                </mat-checkbox>
-
-                            </div>
-
-                        </div>
-
-                        <div *ngIf="isModuleAccessClass" class="form-group row mb-1 ">
-                            <div class="col-md-12" *ngFor="let course of courseListModuleAccess">
-                                <mat-checkbox (change)="displayStandardListModuleAccess(course.id)"
-                                    class="addStudent-check mediumFont commonFontSize letterspacing">
-                                    {{course.course_name}}</mat-checkbox>
-                                <div *ngIf="isModuleAccessClass" class="form-group row mb-1 ">
-                                    <div class="col-md-12 ml-4"
-                                        *ngFor="let standard of standardListModuleAccess[course.id]">
-                                        <mat-checkbox (change)="displayClassListModuleAccess(standard.id)"
-                                            class="addStudent-check mediumFont commonFontSize letterspacing ">
-                                            {{standard.standard_name}}</mat-checkbox>
-                                        <div class="col-md-12 d-flex flex-column ml-4 ">
-                                            <mat-checkbox (change)="getclassListArrayModuleAccess(classes.id)"
-                                                *ngFor="let classes of classListModuleAccess[standard.id]"
-                                                class="addStudent-check mediumFont commonFontSize letterspacing ">
-                                                {{classes.class_name}}</mat-checkbox>
-
-                                            <input [(ngModel)]="modelCodeIndex" type="hidden">
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <button type="button " data-dismiss="modal" aria-label="Close "
-                            class="bg-paret-green border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing mt-1">
-                            Submit
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div> -->
-
-
-
-
 </div>
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>

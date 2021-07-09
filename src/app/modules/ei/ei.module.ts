@@ -170,6 +170,11 @@ import { GroupDetailComponent } from './message/group-detail/group-detail.compon
 import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
 import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
 import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
+import { KycNotApprovedComponent } from './registration/kyc-not-approved/kyc-not-approved.component';
+import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-setting.component';
+import { PendingRequestComponent } from './subadmin/pending-request/pending-request.component';
+import { SubadminChangeRequestComponent } from './subadmin/subadmin-change-request/subadmin-change-request.component';
+import { SubadminHistoryComponent } from './subadmin/subadmin-history/subadmin-history.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -356,6 +361,11 @@ const config = {
     EiPlayHistoryComponent,
     EditGroupParticipentComponent,
     BulkPromoteComponent,
+    KycNotApprovedComponent,
+    SubadminSettingComponent,
+    PendingRequestComponent,
+    SubadminChangeRequestComponent,
+    SubadminHistoryComponent,
   ],
   imports: [
     CommonModule,

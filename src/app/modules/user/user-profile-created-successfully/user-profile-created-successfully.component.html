@@ -2,7 +2,7 @@
 
 <div class="container-fluid contentSpaceTop">
     <div class="row pl-5 pr-5">
-        <div class="col-md-8 order-sm-6 order-2">
+        <div class="col-md-8 order-sm-6 order-2 text-center">
             <img class="img-fluid kycVerificationleftImage" src="assets/images/userWebsite/login-success-image.png">
         </div>
         <div class="col-md-4 order-1 order-sm-6 MobileCol6MB">
@@ -11,7 +11,7 @@
                     <div class="text-center pr-5 mt-3 pl-5 mb-4">
                         <img class="img-fluid SuccessfullImage mt-2 mb-4" src="assets/images/userWebsite/profile-image.png">
                         <p class="semiBoldFont">Profile Created Successfully </p>
-                        <p class="mediumFont color-purple letterspacing">Your profile is sent to your educational institutions for approval...
+                        <p *ngIf="!params.check_school_info_on_zatchup" class="mediumFont color-purple letterspacing">Your profile is sent to your educational institutions for approval...
                         </p>
                     </div>
                 </div>

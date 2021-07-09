@@ -58,7 +58,7 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
         this.studentAuidence.params = {
           'page': page,
           'page_size': this.studentAuidence.page_size,
-          // 'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
+          'is_access_for_star_class': this.action == 'add' ? 'false' : '',
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'class_ids': section ? section : '',
           'course': this.studentAudienceList.course,
@@ -73,8 +73,8 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
           'course_id': this.route.snapshot.queryParamMap.get('course_id'),
           'course': this.studentAudienceList.course,
           'standard': this.studentAudienceList.standard,
-          'teaching_class': this.studentAudienceList.teaching_class
-          // 'is_access_for_star_class': this.action == 'add' ? 'false' : 'true',
+          'teaching_class': this.studentAudienceList.teaching_class,
+          'is_access_for_star_class': this.action == 'add' ? 'false' : '',
          
         }
       }
@@ -91,21 +91,53 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             this.studentAuidence.config.totalItems = res.count
             if (res.count > 0) {
               var add = this.route.snapshot.queryParamMap.get('action')
-              if (add) {
+              if (add == 'add') {
                 if (this.classId) {
+                  // res.results.forEach(
+                  //   element => {
+                  //     if (this.studentAudienceList.indexOf(element.user_id) === -1) {
+                  //       element.is_access_for_star_class = true;
+                  //     } else {
+                  //       element.is_access_for_star_class = false;
+                  //     }
+                  //   }
+                  // )
+                  
+                  var getData = []
+                  // let getResponce : any = []
+                  // getResponce = res.results
+                  // console.log('get', getResponce);
+                  
+                  // getData = getResponce.find(element => {
+                  //   return  element.is_access_for_star_class = false
+                  // })
                   res.results.forEach(
                     element => {
-                      if (this.studentAudienceList.indexOf(element.user_id) === -1) {
-                        element.is_access_for_star_class = true;
+                      console.log(element.is_access_for_star_class, 'fs');
+                      
+                      if (element.is_access_for_star_class == true ) {
+                       // element.is_access_for_star_class = true;
+                       console.log('mukul');
                       } else {
-                        element.is_access_for_star_class = false;
+                        getData.push (element)
+                        
+                        
+                        //element.is_access_for_star_class = false;
                       }
                     }
                   )
-                  this.studentAuidence.dataSource = res.results;
+                  this.studentAuidence.dataSource = getData;
+                  console.log('first', getData);
+                  
                 }
               }
+              else {
               this.studentAuidence.dataSource = res.results;
+
+              }
+             
+              
+            
               this.studentAuidence.pageCounts = this.baseService.getCountsOfPage()
               let find = this.studentAuidence.dataSource.find(val => {
                 return val.is_access_for_star_class == false
@@ -203,8 +235,9 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
       let list  = this.studentAudienceList.join(',')
       this.loader.show();
       this.model = {
-        'student_id': list.length > 0 ? list : undefined,
-        'course_id': this.route.snapshot.queryParamMap.get('course_id')
+        'student_id': list.length > 0 ? list : '',
+        'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+        'action': this.action
       }
       this.baseService.action('starclass/ei-course-assign-to-user/', this.model).subscribe(
         (res: any) => {
@@ -216,9 +249,15 @@ export class EiStarclassAudienceStudentListComponent implements OnInit {
             localStorage.removeItem("standardIds");
             localStorage.removeItem("groupclasscheck");
             localStorage.removeItem("allstudent");
-            this.alert.success(res.message, 'Success');
+            if(this.action == 'add'){
+              this.alert.success(res.message, 'Success');
+            }
+            else {
+              this.alert.success('Updated Successfully', 'Success')
+            }
+            
             var add = this.route.snapshot.queryParamMap.get('action')
-            if (add) {
+            if (this.action == 'add') {
               this.router.navigate(['ei/star-class-courses-uploaded-by-ei'])
             }
             else {

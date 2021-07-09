@@ -132,4 +132,12 @@ export class ChangeDetailsRequestViewComponent implements OnInit {
     }
   }
 
+  fileType(file: any) {
+    return file.split('.').pop();
+  } 
+
+  download_file(fileURL) {
+    window.open(fileURL, '_blank');
+  }
+
 }

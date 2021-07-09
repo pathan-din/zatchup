@@ -1,6 +1,6 @@
 {
   "name": "zatch-up",
-  "version": "1.0.27",
+  "version": "1.0.45",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,9 @@
     "e2e": "ng e2e",
     "prebuild": "npm --no-git-tag-version version patch",
     "prod": "ng build --prod --aot",
-    "staging": "ng build --configuration staging"
+    "staging": "ng build --configuration staging",
+    "dev": "ng build --configuration dev",
+    "preprod": "ng build --configuration preprod"
   },
   "private": true,
   "dependencies": {

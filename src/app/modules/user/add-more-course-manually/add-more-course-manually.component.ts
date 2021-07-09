@@ -18,14 +18,13 @@ export class AddMoreCourseManuallyComponent implements OnInit {
   courseList:any;
   schoolId:any;
   title:any;
+  onboarded: any
+  
   constructor(
-    private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
     private SpinnerService: NgxSpinnerService,
     public userService: UsersServiceService,
-    public formBuilder: FormBuilder,
-    private alert: NotificationService,
     private route: ActivatedRoute) { }
 
     ngOnInit(): void {
@@ -34,24 +33,21 @@ export class AddMoreCourseManuallyComponent implements OnInit {
         this.schoolId = params['school_id'];
         this.title=params['title'];
         this.model.school_id=this.schoolId;
+        this.onboarded = params['check_school_info_on_zatchup']
         this.getCourseDetails();
       });
+     
     }
     /**
      * Get Course Details according to added student 
      */
     getCourseDetails(){
       try {
-        
-        
-        
         this.baseService.getData('user/get-usercourse-list/',this.model).subscribe(res => {
           let response: any = {}
           response = res;
           this.SpinnerService.hide();
-          
             this.courseList = response.results;
-        
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);
@@ -73,7 +69,11 @@ export class AddMoreCourseManuallyComponent implements OnInit {
     goToUserAddMoreEiPage(){
       if(this.title=='past'){
         this.router.navigate(['user/ei-confirmation'], {queryParams: {'school_id':this.schoolId }});
-      }else{
+      }
+      else if(this.onboarded == '2'){
+        this.router.navigate(['user/profile-created'])
+      }
+      else{
         if( localStorage.getItem("res.reg_step")=='7'){
           this.router.navigate(['user/my-school']);
         }else

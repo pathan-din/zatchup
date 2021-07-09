@@ -57,7 +57,7 @@ export class GenericFormValidationService {
           if(controls[i].getAttribute('validFileExtention')){
             if(controls[i].getAttribute('validFileExtention').split(',').indexOf(controls[i].value.split('.').pop()) !== -1){  
             }else{
-              this.errorMessageObject[controls[i].name] = 'Format Supported ( '+controls[i].getAttribute('validFileExtention')+' )';
+              this.errorMessageObject[controls[i].name] = 'only support pdf and image';
             }
           //return filename.split('.').pop();
           //this.errorMessageObject[controls[i].name] = 
@@ -72,7 +72,8 @@ export class GenericFormValidationService {
           if (pattern.test(controls[i].value)) {
 
           } else {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid format.";
+            
+            this.errorMessageObject[controls[i].name] = 'Enter valid '+controls[i].name.replace(/_/g, ' ').charAt(0)+ controls[i].name.replace(/_/g, ' ').slice(1) + " address.";
           }
 
         }
@@ -121,7 +122,9 @@ export class GenericFormValidationService {
 
 
           if (controls[i].value.length != controls[i].maxLength) {
-            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ').charAt(0).toUpperCase() + controls[i].name.replace(/_/g, ' ').slice(1) + " is not valid " + controls[i].maxLength + " digit number.";
+            // Please enter a valid mobile number/email id. Mobile number should be of 10 digits.
+            // Email id or mobile number is not valid 10 digit number.
+            this.errorMessageObject[controls[i].name] = "Please enter a valid "+ controls[i].name.replace(/_/g, ' ').charAt(0) + controls[i].name.replace(/_/g, ' ').slice(1) +'. Mobile number should be of '+  controls[i].maxLength + " digits.";
           }
             var msg=" is not valid format.";
             if(controls[i].getAttribute('message'))

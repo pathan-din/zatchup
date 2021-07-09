@@ -7,7 +7,8 @@ import { NotificationService } from 'src/app/services/notification/notification.
 import { Router,ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Location } from '@angular/common';
-
+import { first, take } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-messages-details',
   templateUrl: './messages-details.component.html',
@@ -45,16 +46,21 @@ export class MessagesDetailsComponent implements OnInit {
     private location: Location,
     private route:ActivatedRoute,
     private firebaseService: FirebaseService,
-    private router:Router
+    private router:Router,
+    private loader : NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
+     
+    
+    this.firebaseService.setPresence('online')
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
+  
     this.currentUser = localStorage.getItem('fbtoken');
     if(this.params.chat){
-      
+       
       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         this.recepientGroup=res
         
@@ -84,8 +90,9 @@ export class MessagesDetailsComponent implements OnInit {
           
         });
        // console.log(this.recepientGroup);
-        
+       
       })
+      
       this. getDocumentsChat()
     }else{
       this.uuid = '';
@@ -100,6 +107,8 @@ export class MessagesDetailsComponent implements OnInit {
             this.is_last_seen=res.setting.is_seen;
 
             
+          }else{
+            this.online=true;
           }
         })
         //console.log(this.currentUser);
@@ -114,12 +123,12 @@ export class MessagesDetailsComponent implements OnInit {
              console.log(this.blockUserList);
              
              var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
-             console.log(objList);
+             
              if(objList){
               this.objBlock=objList;
               this.isblock=objList.isblock;
               this.blockRecipant1=objList.isblock;
-              console.log("block user",this.isblock);
+            
              }
             
              
@@ -129,6 +138,7 @@ export class MessagesDetailsComponent implements OnInit {
           // console.log("bbb",res);
           if(res) {
            var objB = res.data.find(e=>{return e.uuid==this.currentUser})
+           if(objB)
             this.blockRecipant=objB.isblock;
           }
         })
@@ -147,7 +157,7 @@ export class MessagesDetailsComponent implements OnInit {
     
   }
   blockPaticipant(particepantid){
-   console.log(particepantid,this.currentUser);
+   
     
     var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
     console.log(index);
@@ -164,7 +174,7 @@ export class MessagesDetailsComponent implements OnInit {
      this.objBlock=objList;
      this.isblock=objList.isblock;
     // this.blockUserList.push(objList)
-     console.log( this.blockUserList);
+     
     }
     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
     this.router.navigate(['ei/personal-messages'])
@@ -184,7 +194,7 @@ export class MessagesDetailsComponent implements OnInit {
      this.objBlock=objList;
      this.isblock=objList.isblock;
     // this.blockUserList.push(objList)
-     console.log( this.blockUserList);
+     
     }
     this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
     this.router.navigate(['ei/personal-messages'])
@@ -221,7 +231,13 @@ export class MessagesDetailsComponent implements OnInit {
      // localStorage.setItem("receipent",uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
         this.recepintDetails = res.data();
+        if(this.recepintDetails.photoUrl==null){
+          this.recepintDetails.photoUrl=undefined;
+        }
+       // console.log(this.recepintDetails);
       });
+      
+      
     }
    
   }
@@ -238,7 +254,7 @@ export class MessagesDetailsComponent implements OnInit {
     }
       return new Promise<any>((resolve, reject) => {
        
-         this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
+        const subscription =this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
           
           res.uuid=localStorage.getItem("guuid");
           //console.log(res.reciepent);
@@ -269,6 +285,7 @@ export class MessagesDetailsComponent implements OnInit {
 
                     this.getDocumentsChat()
                     this.model.comment = '';
+                    subscription.unsubscribe()
 
 
                   },
@@ -283,10 +300,8 @@ export class MessagesDetailsComponent implements OnInit {
           
         })
         
-       
-       
-  
       })
+      
     }else{
       if (this.model.comment)
       this.model.comment = this.model.comment.trim()
@@ -340,7 +355,9 @@ export class MessagesDetailsComponent implements OnInit {
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
+          
           res.data.forEach(element1 => {
+            element1.is_read=0
             element1.receipentList.forEach(element => {
              // console.log(element);
               if(element[localStorage.getItem('fbtoken')]){
@@ -358,6 +375,11 @@ export class MessagesDetailsComponent implements OnInit {
           
           //
           this.conversation = chatData;
+          if(localStorage.getItem('isread')){
+            localStorage.removeItem('isread')
+            this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+          }
+          
           this.dataStudent = chatData;
         } else {
           this.conversation = [];
@@ -370,14 +392,28 @@ export class MessagesDetailsComponent implements OnInit {
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
+          if(res.data){
+              res.data.forEach(element => {
+            element.is_read=0
+          });
+          }
+        
+          
           this.conversation = res.data;
           this.dataStudent = res.data;
+          // this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+
+          if(localStorage.getItem('isread')){
+            localStorage.removeItem('isread')
+            this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+          }
         } else {
           this.conversation = [];
           this.dataStudent = [];
         }
   
       })
+     
     }
 
     
@@ -391,6 +427,7 @@ export class MessagesDetailsComponent implements OnInit {
 
   uploadDoc(file: any) {
     try {
+      this.loader.show()
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
@@ -403,9 +440,9 @@ export class MessagesDetailsComponent implements OnInit {
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }
-          // this.loader.hide();
+          this.loader.hide();
         }, (error) => {
-          // this.loader.hide();
+          this.loader.hide();
           console.log(error);
 
         });

@@ -12,7 +12,7 @@
 
         <div class="row mt-3">
             <div class="col-md-12 customVideo" *ngFor="let details of eiStarclassCourseView.courseDetails">
-                <video controls="controls" controlsList="nodownload" preload="auto" ng-click="video($event)">
+                <video controls="controls" disablePictureInPicture controlsList="nodownload" preload="auto" ng-click="video($event)">
                      <source src="{{details.course_preview}}" type="video/mp4" />
                 </video>
             </div>
@@ -132,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="row" >
+                    <div class="row" *ngIf="courseData.is_edit == true">
                         <div class="col-xl-3 col-lg-4 col-md-4 col-5 commonFontSize mediumFont d-flex flex-row align-items-start">
                             <i class="fa fa-circle dotIcon mt-2 mr-3"></i>
                             <p> Student Auidence</p>
@@ -219,13 +219,9 @@
             </div>
             <!--End div for oView Course Details-->
 
-            <div class="row mt-3">
-                <div class="col-8">
-                    <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
-                </div>
-                <div class="col-4 text-right">
-                    <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory(courseData.id)" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
-                </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="commonFontSize semiBoldFont m-0">Course Lecture</h2>
+                <button *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" (click)="goToLectureHistory(courseData.id)" type="button" class="bg-dark py-2 color-white px-3 border-0">Lecture History</button>
             </div>
     
             <div class="row my-3 align-items-center" *ngIf="eiStarclassLectueList.dataSource">

@@ -36,6 +36,7 @@ export class UserHeaderComponent implements OnInit {
   isLoggedIn: boolean;
   searchItem: any = '';
   showHeader: boolean;
+  kycStatus: boolean = false;
 
   constructor(
     private router: Router,
@@ -105,7 +106,8 @@ export class UserHeaderComponent implements OnInit {
         if (response.status == true) {
 
           this.userProfile = response;
-          localStorage.setItem('userId', this.userProfile.user_id)
+          localStorage.setItem('userId', this.userProfile.user_id ),
+          localStorage.setItem('zatchupId', this.userProfile.zatchupId)
         }
       }, (error) => {
         this.loader.hide();
@@ -126,6 +128,8 @@ export class UserHeaderComponent implements OnInit {
     this.router.navigate(["user/setting"]);
   }
   logout() {
+    this.notifypush.setPresence('offline')
+
     this.confirmDialogService.confirmThis('Are you sure you want to Logout?', () => {
       localStorage.clear();
       sessionStorage.clear();
@@ -140,15 +144,18 @@ export class UserHeaderComponent implements OnInit {
       this.baseService.getData('user/reg-step-count/').subscribe((res: any) => {
         this.loader.hide()
         this.regProfile = res;
-        if(res.reg_step >= 7)
+        this.kycStatus = this.regProfile.is_kyc_approved
+        if(res.reg_step >= 7){
           this.showHeader = true
+        }
+          
         localStorage.setItem("getreject", JSON.stringify(res));
         localStorage.setItem("res.reg_step", res.reg_step);
         if (this.route.snapshot.routeConfig.path == "user/notifications") {
         } else {
           if (res.reg_step <= 7 && !res.is_approved && res.is_kyc_rejected) {
             if (res.ekyc_rejected_reason) {
-              this.alert.info("Your Profile has been rejected reason by " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark, "Rejected");
+              this.alert.info("Your KYC is rejected because of " + res.ekyc_rejected_reason + " Remark : " + res.ekyc_rejected_remark+' Please resubmit the KYC.', "Rejected");
               if (res.is_deleted) {
                 localStorage.clear();
                 this.router.navigate(['user/login']);

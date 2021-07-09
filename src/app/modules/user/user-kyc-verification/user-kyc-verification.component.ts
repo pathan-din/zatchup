@@ -48,6 +48,8 @@ export class UserKycVerificationComponent implements OnInit {
   params: any = {};
   text: any = 'text';
   isSubmit: boolean;
+  reasonTextMessage: string;
+  minLength: any;
 
   constructor(
     private router: Router,
@@ -62,6 +64,11 @@ export class UserKycVerificationComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.params = params;
     })
+    if(localStorage.getItem('getreject')){
+      if(JSON.parse(localStorage.getItem('getreject')).is_kyc_rejected == true ){
+        this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please re-submit The KYC.'
+      }
+    }
     this.model.kyc_type = "";
     this.dateModel = '';
     this.monthModel = '';
@@ -85,7 +92,12 @@ export class UserKycVerificationComponent implements OnInit {
       this.year.push(i);
     }
     for (var d = 1; d <= 31; d++) {
-      this.date.push(d);
+      if(d<9){
+        this.date.push('0'+d);
+      }else{
+        this.date.push(d);
+      }
+      
     }
   }
   getKYC() {
@@ -113,18 +125,21 @@ export class UserKycVerificationComponent implements OnInit {
     this.pattran = '';
     if (this.model.kyc_type == 'Aadhar') {
       this.maxLength = 12;
+      this.minLength = 12;
       this.placeholder = 'Enter id'
       this.model.kyc_id_no = '';
       this.text = 'number';
       this.pattran = "";
     } else if (this.model.kyc_type == 'Dl') {
       this.maxLength = 16;
+      this.minLength = 16;
       this.placeholder = 'Enter id'
       this.model.kyc_id_no = '';
       this.text = 'text';
       this.pattran = "";
     } else if (this.model.kyc_type == 'Passport') {
       this.maxLength = 8;
+      this.minLength = 8;
       this.pattran = "";
       this.model.kyc_id_no = '';
       this.placeholder = 'Enter id'
@@ -209,6 +224,12 @@ export class UserKycVerificationComponent implements OnInit {
             localStorage.removeItem("month");
             localStorage.removeItem("day");
             localStorage.removeItem("kyc_name");
+            localStorage.removeItem("is_already_registered");
+            if(res.is_already_registered){
+              localStorage.setItem("is_already_registered",res.is_already_registered);
+            }
+            
+            
             if (res.reg_steps < 5) {
               if (res.is_already_registered == true) {
                 this.router.navigate(['user/school-confirmation']);

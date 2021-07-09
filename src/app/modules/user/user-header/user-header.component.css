@@ -147,9 +147,6 @@ left: 10px}
         padding-right: 5px;
         padding-left: 5px;
     }
-    .navbar-nav .dropdown-menu{
-        position: absolute;
-    }
     .customUserSearch {
         width: 97%;
     }

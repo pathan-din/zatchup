@@ -15,54 +15,58 @@
                 <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
                     <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
                         (change)="getLectureHistory('1')" [(ngModel)]="starclassLectureHistory.page_size">
-                        <option *ngFor="let count of starclassLectureHistory.pageCounts" value="{{count}}">{{count}}</option>
+                        <option *ngFor="let count of starclassLectureHistory.pageCounts" value="{{count}}">{{count}}
+                        </option>
                     </select>
                 </div>
             </div>
         </div>
 
-         <div class="row mt-3">
+        <div class="row mt-3">
             <div class="col-md-12">
-                 <!--Start html for table content Alimni information-->
+                <!--Start html for table content Alimni information-->
                 <div class="tableDiv " *ngIf="starclassLectureHistory.dataSource">
-                    <div class="mat-elevation-z1 table-responsive" >
-                        <mat-table [dataSource]="starclassLectureHistory.dataSource | paginate:starclassLectureHistory.config">
+                    <div class="mat-elevation-z1 table-responsive">
+                        <mat-table
+                            [dataSource]="starclassLectureHistory.dataSource | paginate:starclassLectureHistory.config">
 
                             <ng-container matColumnDef="position">
                                 <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                                <mat-cell *matCellDef="let element; let i = index;"> {{i + starclassLectureHistory.startIndex}} </mat-cell>
+                                <mat-cell *matCellDef="let element; let i = index;"> {{i +
+                                    starclassLectureHistory.startIndex}} </mat-cell>
                             </ng-container>
-                            
+
                             <ng-container matColumnDef="action">
-                                <mat-header-cell *matHeaderCellDef> Action  </mat-header-cell>
-                                <mat-cell *matCellDef="let element"> {{element.action == 'INSERT' ? 'UPLOAD' : element.action}} </mat-cell>
+                                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.action == 'INSERT' ? 'UPLOAD' :
+                                    element.action}} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="uploadedBy">
                                 <mat-header-cell *matHeaderCellDef> Uploaded By </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.upload_by}} 
+                                    {{element.upload_by}}
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="zatchupId">
                                 <mat-header-cell *matHeaderCellDef> ZatchUp ID </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.zatchup_id}} 
+                                    {{element.zatchup_id}}
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="actionDate">
-                                <mat-header-cell *matHeaderCellDef> Action Date </mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef> Upload Date </mat-header-cell>
                                 <mat-cell *matCellDef="let element">
-                                    {{element.created_on | date}}
+                                    {{element.created_on}}
                                 </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="message">
                                 <mat-header-cell *matHeaderCellDef> Message </mat-header-cell>
                                 <mat-cell *matCellDef="let element ">
-                                    {{element.message}} 
+                                    {{element.message}}
                                 </mat-cell>
                             </ng-container>
 
@@ -75,12 +79,15 @@
                                 </mat-cell>
                             </ng-container> -->
 
-                            <mat-header-row *matHeaderRowDef="starclassLectureHistory.displayedColumns "></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: starclassLectureHistory.displayedColumns; "></mat-row>
+                            <mat-header-row *matHeaderRowDef="starclassLectureHistory.displayedColumns ">
+                            </mat-header-row>
+                            <mat-row *matRowDef="let row; columns: starclassLectureHistory.displayedColumns; ">
+                            </mat-row>
                         </mat-table>
                     </div>
                 </div>
-                <pagination-controls *ngIf="starclassLectureHistory.dataSource" (pageChange)="getLectureHistory($event)" class="eiPaginationTag">
+                <pagination-controls *ngIf="starclassLectureHistory.dataSource" (pageChange)="getLectureHistory($event)"
+                    class="eiPaginationTag">
                 </pagination-controls>
                 <div class="row" *ngIf="!starclassLectureHistory.dataSource">
                     <div class="col-12 pt-2 pb-2">
@@ -91,6 +98,6 @@
         </div>
     </div>
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white">Please Wait. </p>  
-</ngx-spinner> 
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner>

@@ -7,7 +7,8 @@
                     <span class="mr-3 cursorStyle">
                         <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                     </span>
-                    <h2 class="commonFontSize semiBoldFont letterspacing mb-0">{{this.params.action=='edit'?'Edit':'Add' }} Course</h2>
+                    <h2 class="commonFontSize semiBoldFont letterspacing mb-0">{{this.params.action=='edit'?'Edit':'Add'
+                        }} Course</h2>
                 </div>
             </div>
             <form id="Form2">
@@ -16,10 +17,13 @@
                         <!---------btns  Add another Standard , remove another Standard end-->
                         <div class="row justify-content-center">
                             <div class="col-6">
-                                <h2 class="text-left commonFontSize semiBoldFont mb-0" *ngIf="!params.action">Course {{cNo+1}}</h2>
+                                <h2 class="text-left commonFontSize semiBoldFont mb-0" *ngIf="!params.action">Course
+                                    {{cNo+1}}</h2>
                             </div>
                             <div class="col-6">
-                                <button *ngIf="cNo>0" type="button" (click)="removeData(cNo,model2Step.coursedata,'course')" class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
+                                <button *ngIf="cNo>0" type="button"
+                                    (click)="removeData(cNo,model2Step.coursedata,'course')"
+                                    class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
                                     <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -29,7 +33,9 @@
                                 <label for="course " class=" commonFontSize mediumFont letterspacing ">Course Name
                                 </label>
                                 <div class="form-control-inputDiv rounded  shadow-none ">
-                                    <input id="course_name_{{cNo}}" [(ngModel)]="courseList.course_name" name="course_name_{{cNo}}" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    <input id="course_name_{{cNo}}" [(ngModel)]="courseList.course_name"
+                                        name="course_name_{{cNo}}" required
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                         type="text " placeholder="Enter Course Name ">
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_name_')"></div>
@@ -40,8 +46,9 @@
                                 <label for="course " class=" commonFontSize mediumFont letterspacing ">Course Type
                                 </label>
                                 <div class=" form-control-inputDiv  rounded shadow-none ">
-                                    <select id="course_type_{{cNo}}" required [(ngModel)]="courseList.course_type" name="course_type_{{cNo}}" class="custom-select  form-control-input form-control-sm "
-                                        required>
+                                    <select id="course_type_{{cNo}}" required [(ngModel)]="courseList.course_type"
+                                        name="course_type_{{cNo}}"
+                                        class="custom-select  form-control-input form-control-sm " required>
                                         <option value="">Select type</option>
                                         <option value="Regular">Regular</option>
                                         <option value="Distance">Distance</option>
@@ -56,8 +63,10 @@
                                 <div class="row">
                                     <div class="col-xl-10 col-lg-10-col-md-12 col-12 d-flex flex-column ">
                                         <div class="d-flex flex-xs-column flex-row justify-content-between w-100">
-                                            <mat-checkbox id="is_teaching_current_{{cNo}}" [(ngModel)]="courseList.is_teaching_current" name="is_teaching_current_{{cNo}}"
-                                                class="purple-checkbox">Currently Teaching
+                                            <mat-checkbox id="is_teaching_current_{{cNo}}"
+                                                [(ngModel)]="courseList.is_teaching_current"
+                                                name="is_teaching_current_{{cNo}}" class="purple-checkbox">Currently
+                                                Teaching
                                             </mat-checkbox>
                                         </div>
                                     </div>
@@ -66,28 +75,36 @@
                         </div>
                         <div class="form-group row ">
                             <div class="col-sm-6">
-                                <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Course Start year </label>
+                                <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Course
+                                    Start year </label>
                                 <div class="row ">
                                     <div class="col-sm-12">
                                         <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                            <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList)" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
+                                            <select id="course_start_year_{{cNo}}"
+                                                (change)="resetCourseBothYear(courseList,cNo,'')"
+                                                [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
                                                 class="custom-select  form-control-input form-control-sm " required>
                                                 <option value="">Year</option>
-                                                <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
+                                                <option [disabled]="y < openingYear" value="{{y}}"
+                                                    *ngFor="let y of year;">{{y}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Course End year </label>
+                                <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Course End
+                                    year </label>
                                 <div class="row " *ngIf="!courseList.is_teaching_current">
                                     <div class="col-sm-12">
                                         <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                            <select id="course_end_year_{{cNo}}" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
-                                                required>
+                                            <select (change)="resetCourseBothYear(courseList,cNo,'end_year')"
+                                                id="course_end_year_{{cNo}}" [(ngModel)]="courseList.end_year"
+                                                name="course_end_year_{{cNo}}"
+                                                class="custom-select  form-control-input form-control-sm " required>
                                                 <option value="">Year</option>
-                                                <option [disabled]="y < courseList.start_year" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
+                                                <option [disabled]="y < courseList.start_year" value="{{y}}"
+                                                    *ngFor="let y of year;">{{y}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -99,21 +116,27 @@
                         </div>
                         <div class="form-group row ">
                             <div class="col-sm-12 ">
-                                <label for="description " class=" commonFontSize mediumFont letterspacing ">Description</label>
+                                <label for="description "
+                                    class=" commonFontSize mediumFont letterspacing ">Description</label>
                                 <div class="form-control-inputDiv rounded  shadow-none ">
-                                    <textarea id="description_{{cNo}}" [(ngModel)]="courseList.description" name="description_{{cNo}}" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                    <textarea id="description_{{cNo}}" [(ngModel)]="courseList.description"
+                                        name="description_{{cNo}}" required
+                                        class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                         rows="3 " placeholder="Enter Description "></textarea>
                                 </div>
                                 <div class="required errorMsg" [innerHtml]="display_error(cNo,'description_')"></div>
                             </div>
                         </div>
-                        <div class="anotherStandard mt-3" *ngFor="let standardL of courseList.standarddata; let s=index;">
+                        <div class="anotherStandard mt-3"
+                            *ngFor="let standardL of courseList.standarddata; let s=index;">
                             <div class="row justify-content-center ">
                                 <div class="col-6">
                                     <h2 class="text-left commonFontSize semiBoldFont mb-0">Standard {{s+1}}</h2>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button " *ngIf="s>0" (click)="removeData(s,courseList.standarddata,'standard')" class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
+                                    <button type="button " *ngIf="s>0"
+                                        (click)="removeData(s,courseList.standarddata,'standard')"
+                                        class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
                                         <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                     </button>
                                 </div>
@@ -123,26 +146,33 @@
                                     <label for=" " class=" commonFontSize mediumFont letterspacing ">Standard Name
                                     </label>
                                     <div class="form-control-inputDiv rounded  shadow-none ">
-                                        <input required id="standard_name_{{cNo}}_{{s}}" [(ngModel)]="standardL.standard_name" name="standard_name_{{cNo}}_{{s}}"
+                                        <input required id="standard_name_{{cNo}}_{{s}}"
+                                            [(ngModel)]="standardL.standard_name" name="standard_name_{{cNo}}_{{s}}"
                                             class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
                                             type="text " placeholder="Enter Standard Name">
                                     </div>
-                                    <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s,'standard_name_')"></div>
+                                    <div class="required errorMsg"
+                                        [innerHtml]="display_error(cNo+'_'+s,'standard_name_')"></div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 margin-top-col-6 ">
-                                    <label for="pronouce " class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard Duration (Months)
+                                    <label for="pronouce "
+                                        class=" mediumFont commonFontSize letterspacing text-nowrap ">Standard Duration
+                                        (Months)
                                     </label>
                                     <div class="row ">
 
                                         <div class=" col-sm-12 ">
                                             <div class=" form-control-inputDiv  rounded shadow-none">
-                                                <select required id="duration_in_month_{{cNo}}_{{s}}" [(ngModel)]="standardL.duration" name="duration_in_month_{{cNo}}_{{s}}"
+                                                <select required id="duration_in_month_{{cNo}}_{{s}}"
+                                                    [(ngModel)]="standardL.duration"
+                                                    name="duration_in_month_{{cNo}}_{{s}}"
                                                     class="custom-select form-control-input form-control-sm" required>
                                                     <option value="">Month</option>
                                                     <option value="{{m}}" *ngFor="let m of month">{{m}}</option>
                                                 </select>
                                             </div>
-                                            <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s,'duration_in_month_')">
+                                            <div class="required errorMsg"
+                                                [innerHtml]="display_error(cNo+'_'+s,'duration_in_month_')">
                                             </div>
                                         </div>
                                     </div>
@@ -154,62 +184,82 @@
                                         <h2 class="text-left commonFontSize semiBoldFont mb-0">Class {{c+1}}</h2>
                                     </div>
                                     <div class="col-6">
-                                        <button *ngIf="c>0 " type="button" (click)="removeData(c,standardL.classdata,'section')" class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
+                                        <button *ngIf="c>0 " type="button"
+                                            (click)="removeData(c,standardL.classdata,'section')"
+                                            class="bg-red color-white border-0 rounded text-center p-2 commonFontSize mediumFont letterspacing px-3 float-right">
                                             <i class="fa fa-minus-circle" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
                                 <div class="form-group row pt-3">
                                     <div class="col-xl-12 col-lg-12 ">
-                                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section (If Applicable)
+                                        <label for=" " class=" commonFontSize mediumFont letterspacing ">Sub Section (If
+                                            Applicable)
                                         </label>
                                         <div class="form-control-inputDiv rounded  shadow-none ">
-                                            <input required id="class_name_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.class_name" name="class_name_{{cNo}}_{{s}}_{{c}}"
+                                            <input required id="class_name_{{cNo}}_{{s}}_{{c}}" required
+                                                [(ngModel)]="classD.class_name" name="class_name_{{cNo}}_{{s}}_{{c}}"
                                                 class="form-control-input form-control commonFontSize regularFont letterspacing form-control-sm "
                                                 type="text " placeholder="Enter Sub Section ">
                                         </div>
-                                        <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'class_name_')">
+                                        <div class="required errorMsg"
+                                            [innerHtml]="display_error(cNo+'_'+s+'_'+c,'class_name_')">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group row ">
                                     <div class="col-xl-6 col-lg-6 margin-top-col-6">
-                                        <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">Start year of this class</label>
+                                        <label for=" "
+                                            class=" mediumFont commonFontSize letterspacing text-nowrap ">Start year of
+                                            this class</label>
                                         <div class="row ">
                                             <div class="col-sm-12">
                                                 <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                    <select (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year"
-                                                        name="teaching_start_year_{{cNo}}_{{s}}_{{c}}" class="custom-select  form-control-input form-control-sm "
+                                                    <select [disabled]="true" (change)="endYearCheckValidation(classD)"
+                                                        id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required
+                                                        [(ngModel)]="classD.teaching_start_year"
+                                                        name="teaching_start_year_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select  form-control-input form-control-sm "
                                                         required>
                                                         <option value="">Year</option>
-                                                        <option value="{{y}}" *ngFor="let y of year;" [disabled]=" y!=courseList.start_year">{{y}}</option>
+                                                        <option value="{{y}}" *ngFor="let y of year;"
+                                                            [disabled]=" y!=courseList.start_year">{{y}}</option>
                                                     </select>
                                                 </div>
-                                                <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 margin-top-col-6">
-                                        <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">End year of this class</label>
+                                        <label for=" " class=" mediumFont commonFontSize letterspacing text-nowrap ">End
+                                            year of this class</label>
                                         <div class="row ">
                                             <div class="col-sm-12" *ngIf="!courseList.is_teaching_current ">
                                                 <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                    <select [disabled]="courseList.is_teaching_current" (change)="updateSection(classD, courseList.is_teaching_current)" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
-                                                        [required]="classD.teaching_stopped" [(ngModel)]="classD.teaching_end_year"
-                                                        name="teaching_end_year_{{cNo}}_{{s}}_{{c}}" class="custom-select  form-control-input form-control-sm ">
+                                                    <select [disabled]="true"
+                                                        (change)="updateSection(classD, courseList.is_teaching_current)"
+                                                        id="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                                        [required]="classD.teaching_stopped"
+                                                        [(ngModel)]="classD.teaching_end_year"
+                                                        name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
+                                                        class="custom-select  form-control-input form-control-sm ">
                                                         <option value="0">Year</option>
-                                                        <option [disabled]="y!=courseList.end_year" value="{{y}}" *ngFor="let y of year">{{y}}
+                                                        <option [disabled]="y!=courseList.end_year" value="{{y}}"
+                                                            *ngFor="let y of year">{{y}}
                                                         </option>
                                                     </select>
                                                 </div>
-                                                <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
+                                                <div class="required errorMsg"
+                                                    [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_end_year_')">
                                                 </div>
                                             </div>
                                         </div>
                                         <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
-                                            <label>Current {{updateSection(classD, courseList.is_teaching_current)}}</label>
+                                            <label>Current {{updateSection(classD,
+                                                courseList.is_teaching_current)}}</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 pt-3">
@@ -217,11 +267,13 @@
                                         </label>
 
                                         <div class="form-control-inputDiv rounded  shadow-none ">
-                                            <input id="alias_class_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.alias_class" name="alias_class_{{cNo}}_{{s}}_{{c}}"
+                                            <input id="alias_class_{{cNo}}_{{s}}_{{c}}" required
+                                                [(ngModel)]="classD.alias_class" name="alias_class_{{cNo}}_{{s}}_{{c}}"
                                                 class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 type="text " placeholder="Enter Course Name ">
                                         </div>
-                                        <div class="required errorMsg" [innerHtml]="display_error(cNo+'_'+s+'_'+c,'alias_class_')">
+                                        <div class="required errorMsg"
+                                            [innerHtml]="display_error(cNo+'_'+s+'_'+c,'alias_class_')">
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +281,8 @@
                             <!---------btns  Add another Class , remove another Class start-->
                             <div class="row justify-content-center ">
                                 <div class="col-xl-7 col-lg-7 col-md-9 ">
-                                    <button type="button " (click)="addAnotherClass(standardL)" class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
+                                    <button type="button " (click)="addAnotherClass(courseList,standardL)"
+                                        class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                         + Add Another Class in this standard
                                     </button>
                                 </div>
@@ -238,7 +291,8 @@
                         <!---------btns  Add another Standard , remove another Standard start-->
                         <div class="row justify-content-center ">
                             <div class="col-xl-7 col-lg-7 col-md-9 ">
-                                <button type="button " (click)="addAnotherStandard(courseList)" class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
+                                <button type="button " (click)="addAnotherStandard(courseList)"
+                                    class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                     + Add Next Standard in this course
                                 </button>
                             </div>
@@ -247,7 +301,8 @@
                     <!---------btns  Add another Course , remove another Course start-->
                     <div *ngIf="!params.action" class="row justify-content-center ">
                         <div class="col-xl-5 col-lg-5 col-md-6 ">
-                            <button (click)="addCourseList()" type="button " class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
+                            <button (click)="addCourseList(courseList)" type="button "
+                                class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                 + Add another Course
                             </button>
                         </div>
@@ -256,7 +311,9 @@
             </form>
         </div>
         <div class="row justify-content-center mt-3">
-            <button (click)="addCourseDataStep2()" class="bg-paret-green py-2 px-4 commonFontSize regularFont text-white border-0" type="button">{{params.action?'Save':'Add'}}</button>
+            <button (click)="addCourseDataStep2()"
+                class="bg-paret-green py-2 px-4 commonFontSize regularFont text-white border-0"
+                type="button">{{params.action?'Save':'Add'}}</button>
         </div>
     </div>
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">

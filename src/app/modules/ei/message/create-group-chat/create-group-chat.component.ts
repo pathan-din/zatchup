@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from "@angular/forms";
 import { Location } from '@angular/common';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CommunicationService } from 'src/app/services/communication/communication.service';
 @Component({
   selector: 'app-create-group-chat',
   templateUrl: './create-group-chat.component.html',
@@ -19,7 +20,13 @@ export class CreateGroupChatComponent implements OnInit {
   noOfUsers: any = 0;
   serverImageUrl: any;
   params: any;
-
+  uploadInfo: any = {
+    "image_type": "profile_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
+   
   constructor(private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
@@ -29,7 +36,8 @@ export class CreateGroupChatComponent implements OnInit {
     private alert: NotificationService,
     private route: ActivatedRoute,
 
-    private firestore: AngularFirestore,) { }
+    private firestore: AngularFirestore,
+    private communicationService: CommunicationService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -64,6 +72,24 @@ export class CreateGroupChatComponent implements OnInit {
           user_recepient[fbtoken] = objGroupData;
           recepient.push(user_recepient)
         }
+        if(localStorage.getItem("userprofile")){
+          var userprofile = JSON.parse(localStorage.getItem("userprofile"));
+          if (userprofile.ei_Details) {
+
+            let user_recepient: any = {};
+            let objGroupData: any = {};
+            objGroupData.is_read = 0;
+            objGroupData.is_admin = 1;
+            objGroupData.is_remove = 0;
+            objGroupData.is_remove_date = "";
+            objGroupData.is_exit = 0;
+            objGroupData.is_exit_date = "";
+            objGroupData.is_student = 1;
+            user_recepient[userprofile.ei_Details.firebase_id] = objGroupData;
+            recepient.push(user_recepient)
+          }
+        }
+        
 
         this.groupUserLists.forEach(element => {
           let user_recepient: any = {};
@@ -127,6 +153,11 @@ export class CreateGroupChatComponent implements OnInit {
       this.loader.hide();
       this.alert.error(err, 'Error')
     }
+  }
+
+  getProfilePicUrl(file: any) {
+    this.model.group_icon = file.data[0].profile_pic_url;
+    this.communicationService.setImageUrl(this.model.group_icon)
   }
   createGroup() {
     // console.log(this.model);

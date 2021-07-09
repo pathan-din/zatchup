@@ -17,6 +17,7 @@ declare var $: any;
 export class EiStudentManagementComponent implements OnInit {
   courseWiseStudentCount:any={};
   courseWiseStudentCountCourse:any=[];
+  permission: any =[];
   
   constructor(
     private router: Router, 
@@ -29,7 +30,40 @@ export class EiStudentManagementComponent implements OnInit {
 	  //this.courseWiseStudentCount.coursedata=[];
 	  //this.courseWiseStudentCount.countdata=[];
 	  this.getGetStudentDashboardReport();
+    console.log(JSON.parse(localStorage.getItem('getreject')));
+    
+    if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
+      if(this.isValidModule('MODULE010')==false){
+        this.alert.error(" You Don't have permission to chat with students. Please contact school for more information.","Error")
+       this.router.navigate(['ei/my-profile'])
+        return 
+      }
+    }
+   
   }
+
+  isValidModule(module_code) {
+    let moduleList: any = {};
+    this.permission = JSON.parse(sessionStorage.getItem('permission'))
+    if (this.permission !== undefined && this.permission !== null && this.permission !== '') {
+      moduleList = this.permission;
+      
+      var data = moduleList.find(el => {
+        return el.module_code == module_code
+      })
+      console.log(data, 'djsdj');
+      
+      if (data) {
+        return data.is_access;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+
   getGetStudentDashboardReport(){
 	    try{
       this.SpinnerService.show(); 
@@ -58,6 +92,9 @@ export class EiStudentManagementComponent implements OnInit {
   }
   goToEiStudentVerifiedListPage(){
     this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':1,'kyc_approved':1,'title':'Verified'}});
+  }
+  goToRejectedStudent(){
+    this.router.navigate(['ei/student-verified-list'],{queryParams:{'approved':2,'title':'Rejected'}});
   }
   goToEiStudentRequestPendingForCourseDetailsPage(){
     

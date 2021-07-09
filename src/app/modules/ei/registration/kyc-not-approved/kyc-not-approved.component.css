@@ -1,0 +1,32 @@
+.thankYouImg{
+    height: 500px;
+}
+
+.thankyouContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.SuccessfullImage {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: #7d8181;
+    padding: 1px;
+}
+
+@media (max-width: 767px){
+    .thankYouImg{height: auto;}
+    .thankyouContainer{height: auto; padding-top: 30px;}
+}
+
+@media only screen and (max-width: 414px) {
+    .pl-5, .px-5 {
+        padding-left: .5rem!important;
+    }
+    .pr-5, .px-5 {
+        padding-right: .5rem!important;
+    } 
+
+}

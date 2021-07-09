@@ -13,19 +13,23 @@
             </div>
 
             <form>
-                <div class="form-group row">
+                <div class="form-group row m-0 mb-2">
                     <h3 class="p-0 commonFontSize semiBoldFont m-0">
                         {{model.name_of_school}}
-                        <span *ngIf="model.name_of_school" class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
-                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)" class="img-fluid editIcon float-right cursorStyle ml-2">
+                        <span *ngIf="model.name_of_school"
+                            class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
+                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)"
+                                class="img-fluid editIcon float-right cursorStyle ml-2">
                         </span>
                     </h3>
                 </div>
                 <div class="form-group row justify-content-center" *ngIf="checkincourse">
                     <div class="col-12 text-center ">
                         <div class="round-camera-div mx-auto">
-                            <img (click)="fileInput.click()" class="img-fluid p-2 img_profile" src="{{imageUrl?imageUrl:'assets/images/userWebsite/profile-image.png'}}">
-                            <input #fileInput type="file" style="display:none" (change)="fileUploadDocument($event.target.files)" />
+                            <img (click)="fileInput.click()" class="img-fluid p-2 img_profile"
+                                src="{{imageUrl?imageUrl:'assets/images/userWebsite/profile-image.png'}}">
+                            <input #fileInput type="file" style="display:none"
+                                (change)="fileUploadDocument($event.target.files)" />
                         </div>
                     </div>
                 </div>
@@ -34,8 +38,9 @@
                     <div class="col-sm-12">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Name</label>
                         <div class="form-control-inputDiv">
-                            <input required name="course_name" [(ngModel)]="model.course_name" class="form-control-input form-control form-control-sm"
-                                type="text" placeholder="Enter course name">
+                            <input required name="course_name" [(ngModel)]="model.course_name"
+                                class="form-control-input form-control form-control-sm" type="text"
+                                placeholder="Enter course name">
                         </div>
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course_name"></div>
@@ -45,7 +50,8 @@
                     <div class="col-sm-12">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Type</label>
                         <div class="form-control-inputDiv">
-                            <select required name="course_type" class="custom-select form-control-input down-arrow-6" [(ngModel)]="model.course_type">
+                            <select required name="course_type" class="custom-select form-control-input down-arrow-6"
+                                [(ngModel)]="model.course_type">
                                 <option value="">Select Type</option>
                                 <option value="Regular">Regular</option>
                                 <option value="Distance">Distance</option>
@@ -54,34 +60,55 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
                 </div>
-
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- <input autocomplete="off" [required]="!model.end_date" [(ngModel)]="model.is_current" name="is_current" class="" type="checkbox" >
+                        <label for="" class="mediumFont commonFontSize letterspacing ml-2">Is Current</label> -->
+                        <!-- <mat-checkbox autocomplete="off" [required]="!model.end_date" [(ngModel)]="model.is_current"
+                         name="is_current" class="purple-checkbox" type="checkbox">Is Current
+                        </mat-checkbox>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.is_current"></div> -->
+                        <mat-radio-group aria-label="Select student or alumni" [(ngModel)]="model.is_current"
+                            [required]="!model.end_date" name="is_current" (change)="radioChange($event)">
+                            <mat-radio-button [value]="true">Student</mat-radio-button>
+                            <mat-radio-button [value]="false">Alumni</mat-radio-button>
+                        </mat-radio-group>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.is_current"></div>
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <div class="col-sm-6 MobileCol6MB">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Up from</label>
                         <div class="form-control-inputDiv">
-                            <input autocomplete="off" required [maxDate]="model.end_date" [(ngModel)]="model.start_date" name="start_date" class="form-control-input form-control form-control-sm"
-                                type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
+                            <input autocomplete="off" required [maxDate]="model.end_date" [(ngModel)]="model.start_date"
+                                name="start_date" class="form-control-input form-control form-control-sm" type="text"
+                                bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.start_date"></div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" *ngIf="!model.is_current">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
                         <div class="form-control-inputDiv">
-                            <input autocomplete="off" required [(ngModel)]="model.end_date" [minDate]="model.start_date" name="end_date" class="form-control-input form-control form-control-sm"
-                                type="text" bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
+                            <input autocomplete="off" required [(ngModel)]="model.end_date" [minDate]="model.start_date"
+                                name="end_date" class="form-control-input form-control form-control-sm" type="text"
+                                bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.end_date"></div>
                     </div>
-
+                    <div class="col-sm-6">
+                        <label class="mediumFont commonFontSize letterspacing" *ngIf="model.is_current">To
+                            Current</label>
+                    </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-sm-12">
                         <label for="" class="mediumFont commonFontSize letterspacing">Description</label>
                         <div class="form-control-inputDiv">
-                            <textarea [(ngModel)]="model.description" id="description" name="description" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                rows="3 " placeholder="Enter Description " style="height: 130px;"></textarea>
+                            <textarea [(ngModel)]="model.description" id="description" name="description" required
+                                class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                rows="3 " placeholder="Enter Description " style="height: 80px;"></textarea>
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.description"></div>
                     </div>

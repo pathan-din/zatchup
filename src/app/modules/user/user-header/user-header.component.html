@@ -41,7 +41,7 @@
                 </li> -->
             </ul>
 
-            <div *ngIf="authCheck && showHeader" class="dropdown nav-item position-relative customUserSearch">
+            <div *ngIf="authCheck && showHeader && kycStatus" class="dropdown nav-item position-relative customUserSearch">
                 <div>
                     <input-search [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
                 </div>
@@ -82,15 +82,18 @@
                         <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp"> 
                         <img *ngIf="!userProfile.profile_pic" [src]="'assets/images/profile-default.png'" class="rounded-circle bg-light-green header-dp">                    
                     </a>
-                    <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" >
-                        <div class="row p-2">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" >
+                        <div class="row mx-0">
                             <div class="col-sm-12 text-center">
                                 <img *ngIf="userProfile.profile_pic" src="{{userProfile.profile_pic}}" class="rounded-circle bg-light-green header-dp">
                                 <span class="my-3 semiBoldFont color-black d-block text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
                             </div>
-                            <div *ngIf="showHeader" class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="goToChangePassword()"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
-                            <div *ngIf="showHeader" class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="settingList()"><i class="fa fa-cog" aria-hidden="true mr-1"></i> Settings </div>
-                            <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true mr-1"></i> Logout </div>
+                            <div *ngIf="showHeader" class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="goToChangePassword()">
+                                <i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
+                            <div *ngIf="showHeader" class="col-sm-12 cursorStyle commonFontSize regularFont mb-2" (click)="settingList()">
+                                <i class="fa fa-cog mr-1" aria-hidden="true"></i> Settings </div>
+                            <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()">
+                                <i class="fa fa-sign-out mr-1" aria-hidden="true"></i> Logout </div>
                         </div>
                     </div>
                 </div>
@@ -102,7 +105,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" *ngIf="authCheck && showHeader">
+                <li class="nav-item" *ngIf="authCheck">
                     <a (click)="notificationList()" class="mx-2 my-2 d-inline-block text-black cursorStyle position-relative">
                         <i class="fa fa-bell fa-lg color-white" aria-hidden="true"></i>
                         <sup class="color-white notification_icon">{{regProfile.unread_notification_count? regProfile.unread_notification_count : 0}}</sup>

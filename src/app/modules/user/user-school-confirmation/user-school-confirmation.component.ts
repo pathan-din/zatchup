@@ -48,10 +48,50 @@ export class UserSchoolConfirmationComponent implements OnInit {
   }
 
   goToUserCongratulationPage() {
-    this.router.navigate(['user/add-ei'],{queryParams:{'school_id':this.schoolId}});
+    try {
+      this.SpinnerService.show()
+      this.model = {
+       'status' : 'APPROVBYUSER' 
+      }
+      this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
+        (res : any) => {
+          if(res.status == true){
+            this.router.navigate(['user/add-ei'],{queryParams:{'school_id':this.schoolId}});
+          }
+          else{
+            this.SpinnerService.hide()
+          }
+         this.SpinnerService.hide()
+           }
+      ), err => {
+        this.SpinnerService.hide()
+    }
+    } catch (error) {
+      
+    }
  }
  redirectToCurrentlyStudent(){
-   this.router.navigate(["user/add-ei"]);
+  try {
+    this.SpinnerService.show()
+    this.model = {
+     'status' : 'REJECTBYUSER' 
+    }
+    this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
+      (res : any) => {
+        if(res.status == true){
+          this.router.navigate(["user/add-ei"]);
+        }
+        else{
+          this.SpinnerService.hide()
+        }
+       this.SpinnerService.hide()
+         }
+    ), err => {
+      this.SpinnerService.hide()
+  }
+  } catch (error) {
+    
+  }
   // $("#currentStatusModel").modal({
   //   backdrop: 'static',
   //   keyboard: false

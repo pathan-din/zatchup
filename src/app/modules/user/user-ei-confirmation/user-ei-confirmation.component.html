@@ -20,7 +20,7 @@
                                     </p>
                                 </div>
                                 <div class="col-3 text-right">
-                                    <img *ngIf="confirmData.ei_detail.approved=='0'" (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
+                                    <img *ngIf="confirmData.ei_detail.approved=='0' && !params.check_school_info_on_zatchup" (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
                                         class="cursorStyle img-fluid deleteImg">
                                     <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                                 </div>
@@ -53,6 +53,8 @@
                                     class="cursorStyle img-fluid deleteImg">
                                 <img *ngIf="courseData.standard_detail && confirmData.ei_detail.approved=='0'" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
                                     src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
+                                  <img *ngIf="params.check_school_info_on_zatchup" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
+                                    src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">   
                             </div>
 
                             <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
@@ -155,8 +157,8 @@
 
             </form>
 
-            <div class="mt-3" *ngIf="!params.add_course && !params.edit_course">
-                <!-- <div class="img-small mr-2">
+            <div class="mt-3" *ngIf="!params.check_school_info_on_zatchup">
+                <!-- <div class="img-small mr-2" *ngIf="!params.add_course && !params.edit_course">
                     <img *ngIf="confirmationDetails.length>0" src="assets/images/userWebsite/add.png" class="img-fluid">
                 </div> -->
                 <div class="row form-group">
@@ -175,8 +177,20 @@
             </div>
 
             <div class="text-center">
-                <button type="submit " *ngIf="confirmationDetails.length>0" class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
+            <div  *ngIf="params.check_school_info_on_zatchup" class="form-group row align-items-center pl-3 mt-3 cursorStyle" (click)="addMoreCourse()">
+                <div class="p-0">
+                    <button class="background-purple border-0">
+                        <img src="assets/images/userWebsite/add.png" class="img-fluid" style="height: 26px;">
+                    </button>
+                </div>
+                <div   class="commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
+                    Add More Course
+                </div>
+            </div>
+                <button type="submit " *ngIf="confirmationDetails.length>0 && !params.check_school_info_on_zatchup" class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
                     (click)="goToUserProfileCreatedPage()">Confirm & Send for School Verification</button>
+                <button *ngIf="params.check_school_info_on_zatchup" type="submit " class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
+                    (click)="goToUserProfileCreatedPage()">Submit</button>    
             </div>
         </div>
     </div>

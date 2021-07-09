@@ -239,8 +239,11 @@ export class EiAlumniListComponent implements OnInit {
 	try{
       this.SpinnerService.show(); 
 	  
-      
-      this.baseService.getData('ei/course-list/').subscribe(res => {
+      let data = {
+        'page': 1,
+        'page_size': 1000
+      }
+      this.baseService.getData('ei/course-list/',data).subscribe(res => {
         let response:any={};
         response=res;
         // if(response.status == true){
@@ -461,8 +464,8 @@ getAluminiList(page,strFilter){
   goToEiStudentEditPage(id) {
     this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
   }
-  goToEiStudentProfilePage(id) {
-    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id } });
+  goToEiStudentProfilePage(id,title) {
+    this.router.navigate(['ei/student-profile'], { queryParams: { 'stId': id ,'title':title} });
   }
   rejectStudent() {
     this.error = [];

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
+import { AngularFireAuth } from '@angular/fire/auth';
 import { BaseService } from 'src/app/services/base/base.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
 declare var $: any;
@@ -44,12 +46,15 @@ export class UserSignUpComponent implements OnInit {
   yearModel: any = '';
   type: any;
   maxlength: any;
-  
+  firebaseemail: any = '';
+
   constructor(
     private router: Router,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
     private alert: NotificationService,
+    private afAuth: AngularFireAuth,
+    private firebaseService: FirebaseService,
     private formValidationService: GenericFormValidationService,
   ) { }
 
@@ -71,7 +76,7 @@ export class UserSignUpComponent implements OnInit {
     this.baseService.getCurrentMonth();
     this.baseService.getCurrentYear();
   }
-  
+
   isCheckEmailOrPhone(event) {
     this.maxlength = ''
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -121,6 +126,15 @@ export class UserSignUpComponent implements OnInit {
       this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
+
+  trim (el) {
+    el.value = el.value.
+       replace (/(^\s*)|(\s*$)/gi, ""). // removes leading and trailing spaces
+       replace (/[ ]{2,}/gi," ").       // replaces multiple spaces with one space 
+       replace (/\n +/,"\n");           // Removes spaces after newlines
+    return;
+}​
+
   goForRegister() {
 
     this.error = [];
@@ -135,6 +149,20 @@ export class UserSignUpComponent implements OnInit {
       localStorage.setItem("month", this.monthModel);
       localStorage.setItem("day", this.dateModel);
       localStorage.setItem("kyc_name", this.model.first_name + ' ' + this.model.last_name);
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (re.test(this.model.username)) {
+  
+        this.model.email = this.model.username;
+        this.model.phone = '';
+      } else {
+        const numbers = /^[0-9]+$/;
+        if (numbers.test(this.model.username)) {
+   
+          this.model.phone = this.model.username;
+          this.model.email = '';
+        }
+  
+      }
       if (this.model.email) {
         this.model.email = this.model.username;
       }
@@ -214,6 +242,7 @@ export class UserSignUpComponent implements OnInit {
           if (res.status == true) {
             localStorage.setItem("token", res.token);
             $("#OTPModel").modal('hide');
+            this.registerUserToFirebaseDB(res)
             this.router.navigate(['user/kyc-verification']);
           } else {
             this.alert.error(res.error, "Error")
@@ -265,6 +294,17 @@ export class UserSignUpComponent implements OnInit {
     const url = this.router.serializeUrl(
       this.router.createUrlTree(['user/terms-conditions', type, action], { queryParams: { pageName: pageName } })
     );
-   window.open('#'+url, '_blank');
+    window.open('#' + url, '_blank');
+  }
+
+  registerUserToFirebaseDB(data: any) {
+    let email = data.firebase_username + '@zatchup.com';
+    this.firebaseService.firebaseSignUp(this.model.first_name, this.model.last_name, email, this.model.password, '', "0").then(
+      (res: any) => {
+        localStorage.setItem('fbtoken', res.user.uid);
+      },
+      err => {
+      }
+    )
   }
 }

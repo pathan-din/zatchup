@@ -3,20 +3,22 @@
     <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
         <div class="row topDiv">
             <div class="col-md-12 col-12">
-                <h2 class="commonFontSize semiBoldFont m-0">Create Group Chat</h2>
+                <h1 class="commonFontSize semiBoldFont m-0">Create Group Chat</h1>
             </div>
         </div>
-<form>
+        <form>
         <div class="row mt-3 border-bottom pb-3 align-items-center">
-            <div (click)="file.click()" class="col-3 col-md-2 col-lg-1">
-                <div class="addChatProfile">
-                    <img src="{{model.group_icon}}" *ngIf="!model.group_icon">
-                    <i class="fa fa-camera" *ngIf="!model.group_icon" aria-hidden="true"></i>
-                    <input #file type="file" style="display:none;" (change)="fileUploadDocument($event.target.files)"/>
+            <div  class="col-4 col-md-1">
+                <div class="addChatProfile rounded-circle border border-primary position-relative"
+                    [ngStyle]="model.group_icon ? {'background-image': 'url(' + model.group_icon + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
+                    <div class="upload-dp">
+                        <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                        </app-image-uploader>
+                    </div>
                 </div>
             </div>
-            <div class="col-9 col-md-10 col-lg-11">
-                
+
+            <div class="col-8 col-md-11">
                 <div class="form-control-inputDiv rounded p-0 shadow-none w-50">
                     <input name="group_title" required [(ngModel)]="model.group_title" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Group Title">
                 </div>

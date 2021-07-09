@@ -6,6 +6,8 @@ import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dial
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+
 declare var $: any;
 
 @Component({
@@ -51,6 +53,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
   allCities: any;
   stateId: any = '';
   cityId: any = '';
+  getReject: any;
 
   constructor(
     private alert: NotificationService,
@@ -59,6 +62,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     private validationService: GenericFormValidationService,
     private router: Router,
     private route: ActivatedRoute,
+    private firebase: FirebaseService,
     private confirmDialogService: ConfirmDialogService,
   ) { }
 
@@ -75,6 +79,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
     this.getPersonalInfo();
     this.getAllState();
+    this.getReject = JSON.parse(localStorage.getItem('getreject'))
   }
   getPersonalInfo() {
     try {
@@ -232,16 +237,18 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
 
   }
-  storePendingCourseDataAfterApprove(data, school_id) {
+  storePendingCourseDataAfterApprove(data, school_id,dataEi?:any) {
 
     try {
+      console.log(dataEi);
+      
       let coursedata: any = {};
       coursedata.course_id = data.course_id;
       this.loader.show();
       this.baseService.action("user/change-course-standard-detail-by-student-by-id/", coursedata).subscribe((res: any) => {
         if (res.status == true) {
           this.loader.hide();
-          this.editCourse(data, school_id);
+          this.editCourse(data, school_id,dataEi);
         } else {
           this.loader.hide();
         }
@@ -339,6 +346,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
           if (res.status == true) {
             this.loader.hide()
             this.epData = res.data
+            this.firebase.updatePhotoOnChatUser(res.data[0]);
           }
 
           else {
@@ -366,13 +374,20 @@ export class UserMyEducationalProfileComponent implements OnInit {
     }
   }
 
-  editCourse(data: any, school_id: any) {
+ 
+  editCourse(data: any, school_id: any,dataEi?:any) {
     localStorage.setItem("editcourse", "yes");
-    if (data.is_current_course == true) {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
-    } else {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+    if(dataEi.is_onboard==0){
+      this.router.navigate(['user/ei-confirmation'], { queryParams: {"check_school_info_on_zatchup":2, "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+
+    }else{
+      if (data.is_current_course == true) {
+        this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+      } else {
+        this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+      }
     }
+    
     // this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
   }
   redirectEiConfirmationPagePage(school_id: any) {
@@ -514,5 +529,32 @@ export class UserMyEducationalProfileComponent implements OnInit {
   citySearchResult(data: any) {
     this.cityId = data.id
     this.stateId = data.state_id
+  }
+
+  sendUserToReVerify(school_id,is_rejected? : any){
+    
+    this.confirmDialogService.confirmThis('Your School Details Will Be Send For Verification', () => {
+      if(is_rejected){
+        this.router.navigate(["user/ei-profile"],{queryParams:{"school_id":school_id,'is_rejected':1}})
+      }
+      else{
+        this.router.navigate(["user/ei-profile"],{queryParams:{"school_id":school_id,'is_verify':1}})
+      }
+      
+     
+    }, () => {
+    });
+    
+  }
+
+  getVerifiedChat(obj){
+    var text = 'was Student'
+    if(obj.course_detail[0].is_current_course == true){
+      text = 'is Student'
+    }
+    var message = obj.get_verified_message
+    localStorage.setItem('message', message)
+    localStorage.setItem('uuid', obj.firebase_id);
+    this.router.navigate(["user/chat"]);
   }
 }

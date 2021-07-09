@@ -74,7 +74,7 @@
                             <img *ngIf="data.profile_pic" src="{{data.profile_pic}}" alt="User" class="img-small" />
                         </div>
                         <div>
-                            <div>
+                            <div style="line-height: initial;">
                                 <span class="SearchUserName text-capitalize fontSize-16">{{data['display']}}</span>
                                 <!-- <span *ngIf="viewSubMenu" class="small-text-2">
                                     <span *ngIf="data.id == currentUser">You</span>
@@ -87,8 +87,16 @@
                                     <span *ngIf="data.id == currentUser">You</span>
                                 </span>
                             </div>
-                            <div *ngIf="viewZatchupId" class="searchUserDesignation">
+                            <div *ngIf="viewZatchupId" class="searchUserDesignation" style="line-height: initial;">
                                 {{data['school_code']}}
+                            </div>
+
+                            <div *ngIf="viewRollNuOrSchoolID && data['user_type'] && data['user_type'] == 'STUDENTS'" class="searchUserDesignation" style="line-height: initial;">
+                                Roll Number: {{data['roll_no']}}
+                            </div>
+
+                            <div *ngIf="viewRollNuOrSchoolID && data['user_type'] && data['user_type'] == 'ALUMINI'" class="searchUserDesignation" style="line-height: initial;">
+                                School Id: {{data['school_id']}}
                             </div>
                         </div>
                         <div class="searchCity" *ngIf="viewCity">

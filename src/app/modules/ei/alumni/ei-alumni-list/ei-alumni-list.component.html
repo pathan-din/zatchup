@@ -8,7 +8,7 @@
                 </span>
                 <h2 class="commonFontSize semiBoldFont m-0">Alumni List</h2>
             </div>
-            <div class="col-md-6 SearchDiv d-flex flex-row">
+            <div class="col-md-6 SearchDiv d-flex flex-row justify-content-end">
                 <div class="form-control-inputDiv rounded p-0 shadow-none">
                     <input class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing" type="text" placeholder="Search...">
                 </div>
@@ -99,7 +99,7 @@
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <p (click)="goToEiStudentProfilePage(element.student_id)" class="cursorStyle">{{element.Name}}</p>
+                            <p (click)="goToEiStudentProfilePage(element.student_id,'Alumni')" class="cursorStyle">{{element.Name}}</p>
                         </mat-cell>
                     </ng-container>
 

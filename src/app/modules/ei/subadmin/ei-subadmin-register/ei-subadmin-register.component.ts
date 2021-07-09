@@ -5,6 +5,8 @@ import { GenericFormValidationService } from '../../../../services/common/generi
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 declare var $: any;
 
 @Component({
@@ -32,13 +34,15 @@ export class EiSubadminRegisterComponent implements OnInit {
   type: string;
   constructor(
     private base: BaseService,
-    private genericFormValidationService: GenericFormValidationService,
+    private formValidationService: GenericFormValidationService,
     private router: Router,
     private loader: NgxSpinnerService,
     public formBuilder: FormBuilder,
     private alert: NotificationService,
     private route: ActivatedRoute,
-  ) { 
+    private afAuth: AngularFireAuth,
+    private firebaseService: FirebaseService,
+  ) {
     this.maxDate = new Date();
   }
   ngOnInit(): void {
@@ -49,18 +53,18 @@ export class EiSubadminRegisterComponent implements OnInit {
   submitSubAdminRegister() {
     this.error = [];
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
       this.loader.show();
-     // this.model.username = this.model.email?this.model.email:this.model.phone;
+      // this.model.username = this.model.email?this.model.email:this.model.phone;
       // this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
-     this.model.profile.dob =this.base.getDateFormat(this.model.profile.dob);
-      localStorage.setItem("dob",this.model.profile.dob );
-      localStorage.setItem("name",this.model.first_name+' '+this.model.last_name );
-      
+      this.model.profile.dob = this.base.getDateFormat(this.model.profile.dob);
+      localStorage.setItem("dob", this.model.profile.dob);
+      localStorage.setItem("name", this.model.first_name + ' ' + this.model.last_name);
+
       this.base.action('subadmin/register/', this.model).subscribe(
         (res: any) => {
           if (res.status === true)// Condition True Success 
@@ -91,28 +95,28 @@ export class EiSubadminRegisterComponent implements OnInit {
       this.alert.error(err, "Error")
     }
   }
-  isCheckEmailOrPhone(event){
-    
-    this.maxlength = ''
+  isCheckEmailOrPhone(event) {
+
+
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(event.target.value)){
-      
-      this.type='email';
+    if (re.test(event.target.value)) {
+      this.maxlength = ''
+      this.type = 'email';
       this.maxlength = 50;
-      this.model.username =event.target.value;
-     
-      
-    }else{
-     const numbers = /^[0-9]+$/;
-     if(numbers.test(event.target.value))
-     {
-      this.type='tel'
-      this.maxlength = 10;
       this.model.username = event.target.value;
-     }
-     
+
+
+    } else {
+      const numbers = /^[0-9]+$/;
+      if (numbers.test(event.target.value)) {
+        this.type = 'tel'
+        this.maxlength = ''
+        this.maxlength = 10;
+        this.model.username = event.target.value;
+      }
+
     }
-   }
+  }
   goToEiContactUsPage() {
     this.router.navigate(['ei/contact-us']);
   }
@@ -157,6 +161,7 @@ export class EiSubadminRegisterComponent implements OnInit {
           if (res.status == true) {
             localStorage.setItem("token", res.token);
             $("#OTPModel").modal('hide');
+            this.registerUserToFirebaseDB(res)
             this.router.navigate(['ei/kyc-verification']);
           } else {
             // this.errorOtpModelDisplay = res.error;
@@ -173,7 +178,7 @@ export class EiSubadminRegisterComponent implements OnInit {
   }
   isValid(event) {
     if (Object.keys(this.errorDisplay).length !== 0) {
-      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+      this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
   }
   changeInput($ev) {
@@ -205,12 +210,12 @@ export class EiSubadminRegisterComponent implements OnInit {
     }
   }
 
-  goToSubadminTermsAndConditions(type: any, action: any, pageName:any){
+  goToSubadminTermsAndConditions(type: any, action: any, pageName: any) {
 
     const url = this.router.serializeUrl(
-     this.router.createUrlTree(['ei/terms-conditions', type, action], {queryParams:{pageName:pageName}})
-   );
-   window.open('#'+url, '_blank');
+      this.router.createUrlTree(['ei/terms-conditions', type, action], { queryParams: { pageName: pageName } })
+    );
+    window.open('#' + url, '_blank');
   }
 
   showHidePasswordFunction(type) {
@@ -228,5 +233,17 @@ export class EiSubadminRegisterComponent implements OnInit {
       }
     }
 
+  }
+
+  registerUserToFirebaseDB(data: any) {
+    let email = data.firebase_username + '@zatchup.com';
+    this.firebaseService.firebaseSignUp(this.model.first_name, this.model.last_name, email, this.model.password, "", "1").then(
+      (res: any) => {
+        localStorage.setItem('fbtoken', res.user.uid);
+      },
+      err => {
+        console.log('firebase signup error....', err)
+      }
+    )
   }
 }

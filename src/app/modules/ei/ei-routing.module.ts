@@ -152,6 +152,11 @@ import { GroupDetailComponent } from './message/group-detail/group-detail.compon
 import { EiPlayHistoryComponent } from './starclass/ei-play-history/ei-play-history.component';
 import { EditGroupParticipentComponent } from './message/edit-group-participent/edit-group-participent.component';
 import { BulkPromoteComponent } from './student/bulk-promote/bulk-promote.component';
+import { KycNotApprovedComponent } from './registration/kyc-not-approved/kyc-not-approved.component';
+import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-setting.component';
+import { PendingRequestComponent } from './subadmin/pending-request/pending-request.component';
+import { SubadminChangeRequestComponent } from './subadmin/subadmin-change-request/subadmin-change-request.component';
+import { SubadminHistoryComponent } from './subadmin/subadmin-history/subadmin-history.component';
 
 
 const routes: Routes = [
@@ -601,6 +606,21 @@ const routes: Routes = [
    },
    {
     path: 'bulk-promote', component: BulkPromoteComponent, canActivate: [AuthGuard]
+   },
+   {
+    path: 'kyc-not-approved', component: KycNotApprovedComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'subadmin-setting', component: SubadminSettingComponent , canActivate: [AuthGuard]
+   },
+   {
+     path:'subadmin-pending-requests', component:PendingRequestComponent, canActivate:[AuthGuard]
+   },
+   {
+     path: 'subadmin-change-request', component:SubadminChangeRequestComponent, canActivate:[AuthGuard]
+   },
+   {
+     path:'subadmin-history', component:SubadminHistoryComponent, canActivate:[AuthGuard]
    },
    
   

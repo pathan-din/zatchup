@@ -131,8 +131,7 @@ const routes: Routes = [
     path: 'user/profile-created', component: UserProfileCreatedSuccessfullyComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'user/landing-page', component: UserLandingPageComponent, canActivate: [AuthGuard]
-  },
+    path: 'user/landing-page', component: UserLandingPageComponent  },
   {
     path: 'user/payment-page', component: UserPaymentComponent, canActivate: [AuthGuard]
   },

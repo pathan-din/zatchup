@@ -20,7 +20,7 @@
                 <!-- <mat-icon aria-hidden="false" aria-label="Example dashboard icon" class="mr-2 md-18">dashboard</mat-icon> -->
                 <span class="commonFontSize">My Profile</span>
             </a>
-            <a *ngIf="isValidModule('MODULE005')" mat-list-item routerLink="/ei/school-profile" routerLinkActive="link-active">
+            <a *ngIf="isValidModule('MODULE004')" mat-list-item routerLink="/ei/school-profile" routerLinkActive="link-active">
                 <i class="fa fa-users mr-2" aria-hidden="true"></i>
                 <!-- <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon> -->
                 <span class="commonFontSize">School Profile And Timeline</span>
@@ -52,7 +52,7 @@
                 <i class="material-icons mr-2 md-18">people</i>
                 <span class="commonFontSize">Zatchup Star Class</span>
             </a>
-            <a *ngIf="isValidModule('') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/reminder"
+            <a *ngIf="isValidModule('MODULE011') && subscriptionActive && isApproved" mat-list-item routerLink="/ei/reminder"
                 routerLinkActive="link-active">
                 <i class="fa fa-bell mr-2" aria-hidden="true"></i>
                 <span class="commonFontSize">Reminder</span>
@@ -138,8 +138,9 @@
                             <img src="{{userProfile.profile_pic?userProfile.profile_pic:'assets/images/profile_pic_transparent.png'}}" class="rounded-circle bg-light-green header-dp">
                             <span class="my-1 color-black d-block text-capitalize">{{userProfile.user_first_name}} {{userProfile.user_last_name}}</span>
                         </div>
-                        <div *ngIf="userRoleDetails.role=='EISUBADMIN'" class="col-sm-12 cursorStyle" routerLink="/ei/my-profile"> My Profile </div>
+                        <!-- <div class="col-sm-12 cursorStyle commonFontSize regularFont" *ngIf="userRoleDetails.role=='EISUBADMIN'" routerLink="/ei/my-profile"><i class="fa fa-user mr-1" aria-hidden="true"></i> My Profile </div> -->
                         <div class="col-sm-12 cursorStyle commonFontSize regularFont" routerLink="/ei/change-password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i> Change Password </div>
+                        <div class="col-sm-12 cursorStyle commonFontSize regularFont" *ngIf="userRoleDetails.role=='EISUBADMIN'" routerLink="/ei/subadmin-setting"><i class="fa fa-cog mr-1" aria-hidden="true"></i> Settings </div>
                         <div class="col-sm-12 cursorStyle commonFontSize regularFont" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true mr-1"></i> Logout </div>
                     </div>
                 </div>

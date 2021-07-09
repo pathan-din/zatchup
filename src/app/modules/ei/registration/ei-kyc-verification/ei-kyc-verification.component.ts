@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { BaseService } from '../../../../services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
@@ -22,6 +22,11 @@ export class EiKycVerificationComponent implements OnInit {
   maxLength: any = 45;
   placeholder = "Enter Id";
   submitDisable: boolean;
+ reasonTextMessage : any = '';
+ isSubmit: boolean;
+ params: any = {};
+ text: any = 'text';
+
 
   constructor(
     private router: Router,
@@ -30,9 +35,14 @@ export class EiKycVerificationComponent implements OnInit {
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private formValidationService: GenericFormValidationService,
+    private route : ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.params = params;
+    })
+
     this.model.kyc_type = '';
     if (!localStorage.getItem("dob") && !localStorage.getItem("name")) {
       this.getKYC();
@@ -40,7 +50,12 @@ export class EiKycVerificationComponent implements OnInit {
       this.model.kyc_dob = this.baseService.getDateReverseFormat(localStorage.getItem("dob"));
       this.model.kyc_name = localStorage.getItem("name");
     }
-
+    if(localStorage.getItem('getreject')){
+      if(JSON.parse(localStorage.getItem('getreject')).is_kyc_rejected == true ){
+        this.reasonTextMessage = "Your KYC is rejected because of " + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_reason + ' ' + JSON.parse(localStorage.getItem('getreject')).ekyc_rejected_remark + ' ' + 'Please re-submit The KYC.'
+      }
+    }
+ 
   }
   getKYC() {
     try {
@@ -70,48 +85,85 @@ export class EiKycVerificationComponent implements OnInit {
     }
     try {
       this.submitDisable = true;
-      this.model.kyc_dob = this.datePipe.transform(this.model.kyc_dob, 'yyyy-MM-dd')
-      this.loader.show();
+      this.isSubmit = true;
       const formData = new FormData();
       let kyc_doc_back: any  = this.uploadedContent_back ? this.uploadedContent_back : ''
-      formData.append('kyc_type', this.model.kyc_type);
-      formData.append('kyc_document', this.uploadedContent);
-      formData.append('kyc_document_back', kyc_doc_back);
-      formData.append('kyc_id_no', this.model.kyc_id_no);
-      formData.append('kyc_name', this.model.kyc_name);
-      formData.append('kyc_dob', this.model.kyc_dob);
-      this.baseService.action('user/kyc-upload/', formData).subscribe((res: any) => {
-        this.loader.hide();
-        if (res.status == true) {
-          this.alert.success('Kyc upload successfully done.', 'Success');
-          if (res.is_already_registered == true) {
-            this.router.navigate(['ei/subadmin-school-confirm']);
-          } else {
-            if (res.reg_steps >= 4) {
-              this.router.navigate(['ei/my-profile']);
-            } else {
-              this.router.navigate(['ei/add-ei']);
-            }
-          }
+      if (this.params.action == 'sendrequest') {
+        if (this.params.text == 'name') {
+          formData.append('kyc_name', this.model.kyc_name);
         } else {
+          formData.append('kyc_dob', this.model.kyc_dob);
+        }
+        formData.append('kyc_type', this.model.kyc_type);
+        formData.append('kyc_document', this.uploadedContent);
+        formData.append('kyc_document_back', kyc_doc_back);
+        formData.append('kyc_id_no', this.model.kyc_id_no);
+        this.baseService.action('user/upload-ekyc-for-detail-change/', formData).subscribe((response: any) => {
           this.loader.hide();
-          var errorCollection = '';
-          if (res.error) {
-            for (var key in res.error) {
-              if (res.error.hasOwnProperty(key)) {
-                errorCollection = errorCollection + res.error[key][0] + '\n'
+          if (response.status == true) {
+            this.router.navigate([this.params.returnUrl]);
+          } else {
+            this.loader.hide();
+            this.isSubmit = false;
+            var errorCollection = '';
+            for (var key in response.error) {
+              if (response.error.hasOwnProperty(key)) {
+                errorCollection = errorCollection + response.error[key][0] + '\n'
+
               }
             }
             this.alert.error(errorCollection, 'Error');
-          } else {
-            this.alert.error(res.message, 'Error');
           }
-        }
-        this.submitDisable = false;
-      }, (error) => {
-        this.submitDisable = false;
-        this.loader.hide();
-      });
+        }, (error) => {
+          this.loader.hide();
+          this.isSubmit = false;
+        });
+      }  
+      else {
+        this.model.kyc_dob = this.datePipe.transform(this.model.kyc_dob, 'yyyy-MM-dd')
+        this.loader.show();
+        const formData = new FormData();
+        let kyc_doc_back: any  = this.uploadedContent_back ? this.uploadedContent_back : ''
+        formData.append('kyc_type', this.model.kyc_type);
+        formData.append('kyc_document', this.uploadedContent);
+        formData.append('kyc_document_back', kyc_doc_back);
+        formData.append('kyc_id_no', this.model.kyc_id_no);
+        formData.append('kyc_name', this.model.kyc_name);
+        formData.append('kyc_dob', this.model.kyc_dob);
+        this.baseService.action('user/kyc-upload/', formData).subscribe((res: any) => {
+          this.loader.hide();
+          if (res.status == true) {
+            this.alert.success('Kyc upload successfully done.', 'Success');
+            if (res.is_already_registered == true) {
+              this.router.navigate(['ei/subadmin-school-confirm']);
+            } else {
+              if (res.reg_steps >= 4) {
+                this.router.navigate(['ei/my-profile']);
+              } else {
+                this.router.navigate(['ei/add-ei']);
+              }
+            }
+          } else {
+            this.loader.hide();
+            var errorCollection = '';
+            if (res.error) {
+              for (var key in res.error) {
+                if (res.error.hasOwnProperty(key)) {
+                  errorCollection = errorCollection + res.error[key][0] + '\n'
+                }
+              }
+              this.alert.error(errorCollection, 'Error');
+            } else {
+              this.alert.error(res.message, 'Error');
+            }
+          }
+          this.submitDisable = false;
+        }, (error) => {
+          this.submitDisable = false;
+          this.loader.hide();
+        });
+      }
+     
     } catch (err) {
       this.loader.hide();
     }

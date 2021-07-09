@@ -46,8 +46,11 @@
         position: relative;
         overflow: hidden;
         text-align: center;
-        margin-top: -15%;
+        margin-top: -50px;
         padding: 0.4rem;
+        min-width: 100px;
+        min-height: 100px;
+        background: #fff;
     }
     
     .upload-dp {

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
-import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
-import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Location } from '@angular/common';
@@ -15,66 +12,72 @@ import { Location } from '@angular/common';
   styleUrls: ['./user-education-details.component.css']
 })
 export class UserEducationDetailsComponent implements OnInit {
-  studentDetails:any=[];
-  stid:any='';
-  userid: any='';
-  constructor(private genericFormValidationService: GenericFormValidationService,
-    private alert:NotificationService,
-    private router: Router, private route: ActivatedRoute, private SpinnerService: NgxSpinnerService,
-     public eiService: EiServiceService,
-     public base: BaseService, public formBuilder: FormBuilder,
-     private location: Location) { }
+  studentDetails: any = [];
+  stid: any = '';
+  userid: any = '';
+
+  constructor(
+    private alert: NotificationService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private loader: NgxSpinnerService,
+    private baseService: BaseService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.userid=params['user_id'];
-      
-     this.getStudentDetails(params['user_id'])
-
-   });
-  }
-
-  getStudentDetails(userId){
-    try {
-      this.SpinnerService.show();
-    //base
-  
-  
-    //this.eiService.getGetVerifiedStudent(page,strFilter).subscribe(res => {
-    this.base.getData('ei/student-profile/'+userId+'/').subscribe(res => {
-  
-      let response: any = {};
-      response = res;
-      this.SpinnerService.hide();
-      if(response.status == true)
-      {
-        this.studentDetails = response.data;
-        console.log(this.studentDetails);
-        
-      }else{
-        this.SpinnerService.hide();
-      }
-      
-      
-    }, (error) => {
-      this.SpinnerService.hide();
-      // console.log(error);
-      // this.alert.error(response.message[0], 'Error')
+      this.userid = params['user_id'];
+      this.getStudentDetails(params['user_id'])
     });
-  } catch (err) {
-    this.SpinnerService.hide();
-    console.log(err);
-    // this.alert.error(err, 'Error')
+    // this.getStudentistory()
   }
+
+  getStudentDetails(userId) {
+    try {
+      this.loader.show();
+      this.baseService.getData('ei/student-profile/' + userId + '/').subscribe((res: any) => {
+        this.loader.hide();
+        if (res.status == true) {
+          this.studentDetails = res.data;
+        }
+      }, (error) => {
+        this.loader.hide();
+      });
+    } catch (err) {
+      this.loader.hide();
+    }
   }
-  
-  goBack(): void{
+
+  goBack(): void {
     this.location.back()
   }
-  
+
   getGender(data: any, type?: any) {
     if (data)
-    return this.base.getGender(data, type)
+      return this.baseService.getGender(data, type)
     return ''
   }
+
+  goToEiStudentHistoryPage(){
+    this.router.navigate(['admin/user-history'], { queryParams: { 'id': this.userid } })
+  }
+
+  // getStudentistory() {
+  //   try {
+  //     let data = {
+  //       "student_id": '1742'
+  //     };
+  //     this.loader.show();
+  //     this.baseService.getData("ei/history-for-student-list/", data).subscribe((res: any) => {
+  //       this.loader.hide()
+  //     }, (error => {
+  //       this.loader.hide();
+  //       this.alert.error(error, "Error");
+  //     }))
+  //   } catch (e) {
+  //     this.loader.hide();
+  //     this.alert.error(e, "Error");
+  //   }
+  // }
 }

@@ -1,21 +1,19 @@
 <app-ei-sidenav></app-ei-sidenav>
 
-<!-- <div class="container-fluid contentSpaceTop">
-    <div class="row pl-5 pr-5 mobPaddingLR">
-        <div class="col-12 pl-5 pr-5 mobPaddingLR">
-            <img src="assets/images/userWebsite/back-icon.png" class="img-fluid subHeaderImg">
-        </div>
-    </div>
-</div> -->
-
 <div class="container main-container p-3">
-    <div class="subAdmintable-div bg-white px-3 pt-2 pb-3 mt-3">
+    <div class="bg-white px-3 pt-2 pb-3 mt-3 border">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <h2 class="mb-3 pt-3">My Profile</h2>
+            <h1 class="mb-3 pt-3 semiBoldFont">Teacher Profile</h1>
+            <div class="mb-3" >
+                <span (click)="getRequestChangeDetails()" 
+                    class="float-right cursorStyle">
+                    <img src="assets/images/pending.png" tooltip="Pending Request">
+                </span>
+            </div>
 
             <div class="pt-3" style="clear: both;" *ngIf="epData">
                 <div class="row">
-                    <div class="col-md-12 text-right d-flex flex-wrap p-0 align-items-center position-relative">
+                    <div class=" col-md-12 text-right d-flex flex-wrap p-0 align-items-center position-relative">
                         <div class="position-relative border customDiv">
                             <img *ngIf="imageUrl"
                                 src="{{imageUrl ? imageUrl: 'assets/images/userWebsite/successfully_done.png'}}"
@@ -23,78 +21,90 @@
                             <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
                             </app-image-uploader>
                         </div>
-                        <img *ngIf="epData.kyc_approved == 1" src="assets/images/userWebsite/checkicon.png"
+                        <img *ngIf="epData.kyc_aprroved == 1" src="assets/images/userWebsite/checkicon.png"
                             class="img-fluid ml-1 tickImg">
 
-                        <div class="pl-3 text-left my-3">
-                            <p class="m-0 commonFontSize semiBoldFont"><span *ngIf="epData.kyc_approved==0"
-                                    class="text-capitalize">{{epData.name}}</span><a
-                                    *ngIf="epData.kyc_approved==1 || epData.kyc_approved==2"
-                                    class="cursorStyle">{{epData.name}}</a> </p>
+                        <div class="pl-4 text-left my-3">
+                            <h2 class="m-0 commonFontSize semiBoldFont fontSize-20 text-capitalize"> 
+                                <span *ngIf="epData.kyc_aprroved==0" class="text-capitalize">{{epData.name}}</span>
+                                <span *ngIf="epData.kyc_aprroved==1 || epData.kyc_aprroved==2"
+                                    class="">{{epData.name}}</span> </h2>
                             <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID
                                 :{{epData.zatchup_id?epData.zatchup_id:'xxxxxxxx'}} </p>
                         </div>
                     </div>
                 </div>
-
-                <div class="row mt-3">
+                
+                <div class="row form-control-inputDiv py-3 px-2 mt-3">
                     <div class="col-md-12">
-                        <div class="row form-control-inputDiv pt-2 pb-3">
-                            <div class="col-md-12 d-flex justify-content-between align-items-center">
-                                <h3 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information
-                                </h3>
-                                <!-- <img src="assets/images/userWebsite/edit.png"  class="cursorStyle img-fluid editIcon">  -->
-                            </div>
-                            <div class="col-md-12">
-                                <hr>
-                            </div>
-                            <div class="col-md-12">
-                                <p *ngIf="epData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
-                                        class="regularFont">
-                                        <span *ngIf="epData.kyc_approved==0">{{epData.dob}}</span>
-                                        <a *ngIf="epData.kyc_approved==1" class="cursorStyle">{{epData.dob}}</a></span>
-                                </p>
-                                <p *ngIf="epData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
-                                        class="regularFont">{{getGender(epData)}} </span>
-                                <p *ngIf="epData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">Pronoun : <span
-                                        class="regularFont">{{getGender(epData, 'pronoun')}} </span>
-                                    <!-- <span
-                                        class="regularFont" *ngIf="epData.gender=='F'">{{'FEMALE'}} </span>
-
-                                        <span
-                                        class="regularFont" *ngIf="epData.gender=='C'">{{epData.pronoun }} </span> -->
-                                </p>
-
-                                <p *ngIf="epData.employee_id" class="m-0 mb-1 commonFontSize semiBoldFont">Employee Id : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.employee_id}}</a></span></p>
-
-                                <p *ngIf="epData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.email}}</a></span></p>
-                                <p *ngIf="epData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number :
-                                    <span class="regularFont"><a class="cursorStyle">{{epData.phone}}</a></span></p>
-                                <p *ngIf="epData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name
-                                    : <span class="regularFont">{{epData.father_name}}</span></p>
-                                <p *ngIf="epData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name
-                                    : <span class="regularFont">{{epData.mother_name}}</span></p>
-                                <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Bio : <br> <span
-                                        class="regularFont">{{epData.bio?epData.bio:''}}</span></p> -->
-                                <p *ngIf="epData.comment" class="m-0 mb-1 commonFontSize semiBoldFont">Comments : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.comment}}</a></span></p>
+                        <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Personal Information</h2>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p *ngIf="epData.dob" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">
+                                        DOB : <span class="regularFont">{{epData.dob}}</span>
+                                    </p>
+                                    <p *ngIf="epData.gender" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">
+                                        Gender : <span class="regularFont">{{getGender(epData)}} </span>
+                                    <p *ngIf="epData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">
+                                        Pronoun : <span class="regularFont">{{getGender(epData, 'pronoun')}} </span>
+                                    </p>
+                                    <p *ngIf="epData.email" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">Email : 
+                                        <span class="regularFont"> {{epData.email}} </span></p>
+                                    <p *ngIf="epData.phone" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">Phone Number :
+                                        <span class="regularFont"> {{epData.phone}} </span></p>
+                                    <p *ngIf="epData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">Father's Name
+                                        : <span class="regularFont">{{epData.father_name}}</span></p>
+                                    <p *ngIf="epData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">Mother's Name
+                                        : <span class="regularFont">{{epData.mother_name}}</span></p>
+                                    <p *ngIf="epData.comment" class="m-0 mb-1 commonFontSize semiBoldFont fontSize-16">Comments : <span
+                                            class="regularFont"> {{epData.comment}} </span></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
+                <div class="row form-control-inputDiv py-3 px-2 mt-3">
+                    <div class="col-md-12">
+                        <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">School Details </h2>
+                        <div class="col-md-12">
+                            <hr>
+                        </div>
+                        <div class="col-md-12" *ngFor="let objEd of epData.education_detail">
+                            <p class="m-0 mb-1 fontSize-16 commonFontSize semiBoldFont">School Name:
+                                <span class="regularFont">{{objEd.name_of_school}}
+                                    <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> 
+                                </span>
+                            </p>
+                            <div class="row">
+                                <div *ngIf="objEd.school_code" class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16"> 
+                                    ZatchUp ID : <span class="regularFont">{{objEd.school_code}}</span>
+                                </div>
+                                <div *ngIf="epData.employee_num" class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                    Employee Number : <span class="regularFont">{{epData.employee_num}}</span>
+                                </div>
+                                <div class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                    State : <span class="regularFont">{{objEd.state__state}} </span>
+                                </div>
+                                <div class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                    City : <span class="regularFont">{{objEd.city__city}} </span>
+                                </div>
+                                <div *ngIf="objEd.address1" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                    Address : <span class="regularFont">{{objEd.address1}} {{objEd.address2}}</span>
+                                </div>
+                            </div>
+                        </div>         
+                    </div>
+                </div>
 
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
     <p style="color: white">Please Wait. </p>

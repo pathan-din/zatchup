@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
-import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { BaseService } from '../../../../services/base/base.service';
-import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../../../../services/notification/notification.service';
-import { UsersServiceService } from '../../../../services/user/users-service.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
-
-
 declare var $: any;
-
 
 @Component({
   selector: 'app-ei-login-subadmin',
@@ -27,18 +21,16 @@ export class EiLoginSubadminComponent implements OnInit {
   errorOtpModelDisplay = '';
   modelForOtpModal: any = {};
   passwordType: any = "password";
-  
-  constructor(private router: Router,
-    private SpinnerService: NgxSpinnerService,
-    public eiService: EiServiceService,
-    public baseService: BaseService,
-    public alert: NotificationService
-    , private route: ActivatedRoute,
-    public formBuilder: FormBuilder,
-    public userService: UsersServiceService,
+
+  constructor(
+    private router: Router,
+    private loader: NgxSpinnerService,
+    private baseService: BaseService,
+    private alert: NotificationService,
     private afAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
-    private genericFormValidationService: GenericFormValidationService) { }
+    private formValidationService: GenericFormValidationService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -47,70 +39,55 @@ export class EiLoginSubadminComponent implements OnInit {
   /**Login For SubAdmin */
   doLogin() {
     this.errorDisplay = {};
-    this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
+    this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
     }
     try {
-      this.SpinnerService.show();
-
-
-      this.baseService.action('subadmin/login/', this.model).subscribe(res => {
-
-        let response: any = {};
-        response = res;
-        if (response.status == true) {
-          this.SpinnerService.hide();
-          this.registerUserToFirebaseDB(response.data);
+      this.loader.show();
+      this.baseService.action('subadmin/login/', this.model).subscribe((res: any) => {
+        if (res.status == true) {
+          this.loader.hide();
+          this.registerUserToFirebaseDB(res.data);
           $("#OTPModel").modal({
             backdrop: 'static',
             keyboard: false
           });
         } else {
-          this.SpinnerService.hide();
+          this.loader.hide();
           var errorCollection = '';
-          for (var key in response.error) {
-            if (response.error.hasOwnProperty(key)) {
-              errorCollection = errorCollection + response.error[key][0] + '\n'
+          for (var key in res.error) {
+            if (res.error.hasOwnProperty(key)) {
+              errorCollection = errorCollection + res.error[key][0] + '\n'
 
             }
           }
-          // alert(errorCollection);
           this.alert.error(errorCollection, 'Error')
         }
-
       }, (error) => {
-        this.SpinnerService.hide();
-
+        this.loader.hide();
       });
     } catch (err) {
-      this.SpinnerService.hide();
+      this.loader.hide();
     }
   }
+
   resendOtp() {
     try {
-      let data: any = {};
       this.modelForOtpModal.username = this.model.username ? this.model.username : this.model.phone;
-      //this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
-
-      /***********************Mobile Number OR Email Verification Via OTP**********************************/
-      this.SpinnerService.show();
-      this.userService.resendOtpViaRegister(this.modelForOtpModal).subscribe(res => {
-        let response: any = {}
-        response = res;
-        this.SpinnerService.hide();
-        if (response.status == true) {
+      this.loader.show();
+      this.baseService.action('user/resend-otp/', this.modelForOtpModal).subscribe((res: any) => {
+        this.loader.hide();
+        if (res.status == true) {
           this.alert.success("OTP Resend On Your Register Mobile Number Or Email-Id.", "Success")
         } else {
-          this.errorOtpModelDisplay = response.error;
-          //alert(response.error)
+          this.errorOtpModelDisplay = res.error;
         }
       }, (error) => {
-        this.SpinnerService.hide();
+        this.loader.hide();
       });
     } catch (err) {
-      this.SpinnerService.hide();
-      console.log("Error", err);
+      this.loader.hide();
     }
   }
 
@@ -119,8 +96,8 @@ export class EiLoginSubadminComponent implements OnInit {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
     }
-
   }
+
   goToDashboard() {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
@@ -149,27 +126,28 @@ export class EiLoginSubadminComponent implements OnInit {
       if (localStorage.getItem('fbtoken')) {
         data.firebase_id = localStorage.getItem('fbtoken');
       }
-      this.baseService.action('subadmin/otp-verify/', data).subscribe(res => {
-        let response: any = {}
-        response = res;
-        if (response.status == true) {
+      this.loader.show()
+      this.baseService.action('subadmin/otp-verify/', data).subscribe((res: any) => {
+        this.loader.hide()
+        if (res.status == true) {
           this.updateUserWithFirebaseID();
-          localStorage.setItem("token", response.token);
-          sessionStorage.setItem("permission", JSON.stringify(response.permission));
+          localStorage.setItem("token", res.token);
+          sessionStorage.setItem("permission", JSON.stringify(res.permission));
           $("#OTPModel").modal('hide');
           this.router.navigate(['ei/my-profile']);
         } else {
-          this.errorOtpModelDisplay = response.error;
+          // this.errorOtpModelDisplay = response.error;
+          this.alert.error(res.error, 'Error')
         }
       }, (error) => {
-        console.log(error);
-
+        this.loader.hide()
       });
     } catch (err) {
-      console.log("Error", err);
+      this.loader.hide()
     }
 
   }
+
   goToEiForgetPasswordPage() {
     this.router.navigate(['ei/forgot-password']);
   }
@@ -189,21 +167,21 @@ export class EiLoginSubadminComponent implements OnInit {
       .then(function (signInMethods) {
         let firebase = that.firebaseService
         if (signInMethods.length > 0) {
-          var password='';
-          if(localStorage.getItem('hash')){
-              password=atob(localStorage.getItem('hash'));
-              that.firebaseService.updateFirebasePassword(email,password,that.model.password)
-          }else{
-              password=that.model.password
+          var password = '';
+          if (localStorage.getItem('hash')) {
+            password = atob(localStorage.getItem('hash'));
+            that.firebaseService.updateFirebasePassword(email, password, that.model.password)
+          } else {
+            password = that.model.password
           }
-          var result =  that.afAuth.signInWithEmailAndPassword(email,password);
-            result.then((res:any)=>{
-              localStorage.setItem('fbtoken', res.user.uid);
-            },(error)=>{
-              that.firebaseService.updateFirebasePassword(email,password,that.model.password)
-              
-            })
-           
+          var result = that.afAuth.signInWithEmailAndPassword(email, password);
+          result.then((res: any) => {
+            localStorage.setItem('fbtoken', res.user.uid);
+          }, (error) => {
+            that.firebaseService.updateFirebasePassword(email, password, that.model.password)
+
+          })
+
         }
         else {
           firebase.firebaseSignUp(data.first_name, data.last_name, email, that.model.password, data.profile_pic, "1").then(
@@ -217,19 +195,21 @@ export class EiLoginSubadminComponent implements OnInit {
         }
       })
   }
-  updatePassword(email,newPassword){
-    this.afAuth.currentUser.then((res)=>{
-      res.updatePassword(newPassword).then(update=>{
-        var result =  this.afAuth.signInWithEmailAndPassword(email, newPassword);
-        result.then((res:any)=>{
+
+  updatePassword(email, newPassword) {
+    this.afAuth.currentUser.then((res) => {
+      res.updatePassword(newPassword).then(update => {
+        var result = this.afAuth.signInWithEmailAndPassword(email, newPassword);
+        result.then((res: any) => {
           localStorage.setItem('fbtoken', res.user.uid);
         })
       })
-      
-      
+
+
     })
-     
+
   }
+
   async updateUserWithFirebaseID() {
     this.model.username = this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var result = await this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password);

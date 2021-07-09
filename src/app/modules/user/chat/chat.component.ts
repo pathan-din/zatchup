@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 // import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-chat',
@@ -29,7 +30,7 @@ export class ChatComponent implements OnInit {
   lastMessageData: any = [];
   ids: any = [];
   scrollHeight: any = 300;
-  params: any;
+  params: any = {};
   recepientGroup: any;
   recepientUsers:any;
   recepientIcon:any;
@@ -45,6 +46,7 @@ export class ChatComponent implements OnInit {
   blockRecipant1:any=false;
   online: any;
   is_last_seen:any
+  getroleUserFlag: boolean;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -53,14 +55,26 @@ export class ChatComponent implements OnInit {
     private alert: NotificationService,
     private firebaseService: FirebaseService,
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private loader: NgxSpinnerService,
   ) { }
 
 
   ngOnInit(): void {
+    this.online= true
+    
+    this.firebaseService.setPresence('online')
+    if(localStorage.getItem('message')){
+      this.model.comment = localStorage.getItem('message')
+      this.sendChat()
+      localStorage.removeItem('message')
+    }
+     
+    
     this.route.queryParams.subscribe((params:any)=>{
       this.params=params;
     })
+   
     if(this.params.chat){
       this.currentUser = localStorage.getItem('fbtoken');
       this.recepientUsers=[]
@@ -78,7 +92,7 @@ export class ChatComponent implements OnInit {
             
           }
            
-          //console.log(element);
+           
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
               if(element[el].is_admin==1){
@@ -89,7 +103,7 @@ export class ChatComponent implements OnInit {
               }
               
               this.getRecepintUserDetails(el,'group');
-             // console.log(el);
+              
             }
            
           })
@@ -106,20 +120,20 @@ export class ChatComponent implements OnInit {
           this.recepientIcon=undefined;
         } 
         this.recepientGroup=res
-        console.log(this.recepientUsers);
+         
         
       })
       this. getDocumentsChat('')
     }else{
       this.uuid = '';
       if (localStorage.getItem('uuid')) {
-        
+        this.getRoleOfUserBaseOnFirebaseId(localStorage.getItem('uuid'))
         this.uuid = localStorage.getItem('uuid');
         this.getDocumentsChat(this.uuid);
       }
       this.currentUser = localStorage.getItem('fbtoken');
       this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
-        console.log("res.setting",res.setting);
+        
         
         if(res){
            
@@ -129,31 +143,37 @@ export class ChatComponent implements OnInit {
         }
       })
       this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
-        // console.log("bbb",res);
+         
          
          if(res){
-           //console.log("uuuu",this.uuid);
+            
            
             this.blockUserList=res.data;
-            console.log(this.blockUserList);
+             
             
             var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
-            console.log(objList);
+             
             if(objList){
              this.objBlock=objList;
              this.isblock=objList.isblock;
              this.blockRecipant1=objList.isblock;
-             console.log("block user",this.isblock);
+              
             }
            
             
          }
        })
        this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res:any)=>{
-         // console.log("bbb",res);
+          
          if(res) {
-          var objB = res.data.find(e=>{return e.uuid==this.currentUser})
-           this.blockRecipant=objB.isblock;
+          let objB : any = {}
+          objB =  res.data.find(e=>{return e.uuid==this.currentUser})
+         if(!objB){
+
+         }
+         else{
+          this.blockRecipant=objB.isblock;
+         }
          }
        })
       this.presence$ = this.firebaseService.getPresence(this.uuid);
@@ -162,11 +182,25 @@ export class ChatComponent implements OnInit {
         this.getDocumentsChat(this.uuid);
       }, 500);
     }
+
+    if(localStorage.getItem('reminderText')){
+      this.model.comment = localStorage.getItem('reminderText')
+      // this.sendChat()
+      localStorage.removeItem('reminderText')
+    }
     
   }
-
+  getRoleOfUserBaseOnFirebaseId(id){
+    this.model.firebase_id = id;
+    this.baseService.getData("user/get-user-role-from-firebaseid/",this.model).subscribe((res:any)=>{
+      if(res.status==true && res.user_role!='EISUBADMIN'){
+        
+        this.getroleUserFlag = true
+      }
+    })
+  }
   gotToGroupDetailsPage(uuid,chat){
-    console.log(uuid);
+     
     
     this.router.navigate(['user/group-detail'],{queryParams:{chat:chat,groupId:localStorage.getItem("guuid")}})
   }
@@ -201,7 +235,7 @@ export class ChatComponent implements OnInit {
         if (res) {
           res.data.forEach(element1 => {
             element1.receipentList.forEach(element => {
-              console.log(element);
+              element1.is_read=0
               if(element[localStorage.getItem('fbtoken')]){
                 if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
                   
@@ -219,6 +253,10 @@ export class ChatComponent implements OnInit {
           //
           this.conversation = chatData;
           this.dataStudent = chatData;
+          if(localStorage.getItem('isread')){
+            localStorage.removeItem('isread')
+            this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
+          }
         } else {
           this.conversation = [];
           this.dataStudent = [];
@@ -235,12 +273,21 @@ export class ChatComponent implements OnInit {
         var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
         dataSet.subscribe((res: any) => {
           if (res) {
-            console.log(res.data);
+            
   
+            // this.conversation = res.data;
+            // this.dataStudent = res.data;
+            res.data.forEach(element => {
+              element.is_read=0
+            });
+            
             this.conversation = res.data;
             this.dataStudent = res.data;
-            // console.log('conversation data is as ::',this.conversation);
-            // console.log('dataStudent is as ::',this.dataStudent);
+            if(localStorage.getItem('isread')){
+              localStorage.removeItem('isread')
+              this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
+            }
+             
   
           } else {
             this.conversation = [];
@@ -267,6 +314,7 @@ export class ChatComponent implements OnInit {
     }
    
   }
+  
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
     this.conversation = [];
     this.dataStudent = [];
@@ -312,13 +360,13 @@ export class ChatComponent implements OnInit {
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       });
-      //console.log(this.receipentUsers);
+       
       
     }else{
       if (uuid) {
         this.firestore.collection('users').doc(uuid).ref.get().then(res => {
           this.recepintDetails = res.data();
-          console.log('recipants details is as ::', this.recepintDetails)
+           
         });
       }
     }
@@ -335,21 +383,20 @@ export class ChatComponent implements OnInit {
   if(this.params.chat){
     return new Promise<any>((resolve, reject) => {
      
-       this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
+     const subscription=this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
         
         res.uuid=localStorage.getItem("guuid");
           res.reciepent.forEach(ele => {
-            console.log(ele)
-           // console.log(ele[localStorage.getItem('fbtoken')].is_exit)
+             
             if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
-             console.log("fdfdfd");
+             
              
               let data: any = {};
               let dataNew: any = {};
               let userData = JSON.parse(localStorage.getItem('userInfo'))
               data.user_friend_id = localStorage.getItem("guuid");
               data.user_send_by = localStorage.getItem('fbtoken');
-              data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
+              data.user_name = userData.first_name + ' ' + userData.last_name;
               data.profile_pic = userData.profile_pic
               data.document = document ? true : false;
               data.msg = document ? document : this.model.comment;
@@ -358,14 +405,15 @@ export class ChatComponent implements OnInit {
               data.receipentList =res.reciepent
               this.dataStudent.push(data)
               dataNew.data = this.dataStudent;
-               // console.log(dataNew.data);
+              this.model.comment = '';
+               
               this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
               .set(dataNew)
               .then(
                 res => {
 
                   this.getDocumentsChat("")
-                  this.model.comment = '';
+                  subscription.unsubscribe()
 
 
                 },
@@ -380,9 +428,6 @@ export class ChatComponent implements OnInit {
         
       })
       
-     
-     
-
     })
   }else{
 
@@ -427,10 +472,10 @@ export class ChatComponent implements OnInit {
 
   }
   blockPaticipant(particepantid){
-    console.log(particepantid,this.currentUser);
+    
      
      var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
-     console.log(index);
+      
      
      if(index>-1){
        this.blockUserList.slice(index,1)
@@ -443,8 +488,7 @@ export class ChatComponent implements OnInit {
       objList.isblock=true;
       this.objBlock=objList;
       this.isblock=objList.isblock;
-     // this.blockUserList.push(objList)
-      console.log( this.blockUserList);
+     
      }
      this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
     // this.router.navigate(['ei/personal-messages'])
@@ -454,7 +498,7 @@ export class ChatComponent implements OnInit {
    }
    unblockPaticipant(particepantid){
      var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
-     console.log(index);
+      
      if(index>-1){
        this.blockUserList.slice(index,1)
      }
@@ -463,8 +507,7 @@ export class ChatComponent implements OnInit {
       objList.isblock=false;
       this.objBlock=objList;
       this.isblock=objList.isblock;
-     // this.blockUserList.push(objList)
-      console.log( this.blockUserList);
+      
      }
      this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
      //this.router.navigate(['ei/personal-messages'])
@@ -472,6 +515,7 @@ export class ChatComponent implements OnInit {
 
   uploadDoc(file: any) {
     try {
+      this.loader.show();
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
@@ -480,25 +524,26 @@ export class ChatComponent implements OnInit {
       this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(
         (res: any) => {
           if (res.status == true) {
+            this.loader.hide();
             this.sendChat(res.file_url)
           } else {
+            this.loader.hide();
             this.alert.error(res.error.message[0], 'Error')
           }
-          // this.loader.hide();
+           
         }, (error) => {
-          // this.loader.hide();
-          console.log(error);
+          this.loader.hide();
+           
 
         });
     } catch (err) {
-      // this.loader.hide();
-      console.log("exception", err);
+       
     }
   }
 
   getFileExtention(url) {
     var exArr = url.split("/");
-    // console.log(exArr[(exArr.length-1)].split(".")[1]);
+    
 
     return exArr[(exArr.length - 1)].split(".")[1];
   }

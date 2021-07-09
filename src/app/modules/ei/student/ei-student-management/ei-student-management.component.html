@@ -33,6 +33,15 @@
                         Verification:<span class="ml-2">{{courseWiseStudentCount.total_pending_approval?courseWiseStudentCount.total_pending_approval:0}}</span></p>
                 </div>
             </div>
+
+            <div class="col-md-4 MobileCol6MB" (click)="goToRejectedStudent()">
+                <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
+                    <p class="p-2 mediumFont commonFontSize">Rejected Student</p>
+                    <h2 class="countFontSize text-center semiBoldFont">{{courseWiseStudentCount.rejected_student_count?courseWiseStudentCount.rejected_student_count:0}}
+                    </h2>
+                    <p class="mb-0 p-2  mediumFont commonFontSize Btn-lg bg-light-secondary">Rejected Student:<span class="ml-2">{{courseWiseStudentCount.rejected_student_count?courseWiseStudentCount.rejected_student_count:0}}</span></p>
+                </div>
+            </div>
             <div class="col-md-4" (click)="goToEiStudentRequestPendingForChangingDetailsPage()">
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Request pending for change in Admission No. and Roll No.
@@ -73,7 +82,7 @@
                             <p><span class="mr-2">:</span>{{courseWiseStudentCount.vies_status_approved?courseWiseStudentCount.vies_status_approved:0}}</p>
                         </div>
                     </div>
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p class="cursorStyle">Rejected</p>
                         </div>
@@ -81,14 +90,14 @@
                             <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user?(courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user):0}}</p>
                         </div>
                         <div class="col-12 ml-1 small-text-2">
-                            <div class="row  m-0 cursorStyle" (click)="goToRejectedBySystemPage()">
+                            <!--<div class="row  m-0 cursorStyle" (click)="goToRejectedBySystemPage()">
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> ZatchUp System</p>
                                 </div>
                                 <div class="col-xl-8 col-lg-7 col-md-6 col-6">
                                     <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_zatchup?courseWiseStudentCount.rejected_by_zatchup:0}}</p>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="row  m-0 cursorStyle" (click)="goToRejectedByUserPage()">
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Rejected by Users</p>
@@ -98,11 +107,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
                         (click)="goToEiSentForSignUpComponent()">
-                            <p class="cursorStyle">Pending</p>
+                            <p class="cursorStyle">Sent For Sign Up</p>
                         </div>
                         <div class="col-xl-8 col-lg-7 col-md-6 col-6">
                             <p><span class="mr-2">:</span>{{courseWiseStudentCount.view_status_pending?courseWiseStudentCount.view_status_pending:0}}</p>

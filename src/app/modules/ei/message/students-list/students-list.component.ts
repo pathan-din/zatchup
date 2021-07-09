@@ -96,7 +96,22 @@ export class StudentsListComponent implements OnInit {
     private route:ActivatedRoute) { }
   sectionIds:any;
   teacherList:any=[];
+  groupUsers : any = [];
+  teacherGroup : any =[]
   ngOnInit(): void {
+    this.checkAllS = false
+   if(localStorage.getItem('groupUsers')){
+     this.groupUsers = []
+     this.teacherGroup= []
+    JSON.parse(localStorage.getItem('groupUsers')).forEach(element => {
+      if(!element.isadded){
+        this.groupUsers.push(element)
+      }
+      else{
+        this.teacherGroup.push(element)
+      }
+    });
+   } 
     this.route.queryParams.subscribe(params=>{
       this.params = params;
     })
@@ -117,22 +132,41 @@ export class StudentsListComponent implements OnInit {
            var getAlreadyCurrentUserInGroupIndex = groupList.findIndex(el=>{return el.firebase_id==localStorage.getItem('fbtoken')});
            if(getAlreadyCurrentUserInGroupIndex>-1)
            {
-            groupList.splice(index,1);
+            //groupList.splice(index,1);
+            groupList[getAlreadyCurrentUserInGroupIndex].isadded=true
            }
            //console.log(index);
-           if(index>-1){
-            groupList.splice(index,1);
-           }
+          //  if(index>-1){
+          //   groupList.splice(index,1);
+          //  }
           
           })
           this.dataSource1 = groupList;
           this.teacherList= groupList;
         }
-       
+console.log(this.teacherGroup.length, 'teacher');
+console.log(groupList.length, 'group');
+
+        
+        if(this.teacherGroup.length == groupList.length){
+          this.checkAllT = true
+        }
+        else{
+          this.checkAllT = false
+        }
         
       }else{
+      
         this.teacherList = JSON.parse(localStorage.getItem("teachers"));
         this.dataSource1 = this.teacherList;
+//         console.log(this.teacherGroup.length, 'teacher');
+// console.log(this.teacherList.length, 'group');
+        if(this.teacherGroup.length == this.teacherList.length){
+          this.checkAllT = true
+        }
+        else{
+          this.checkAllT = false
+        }
       }
       
     }
@@ -145,6 +179,7 @@ export class StudentsListComponent implements OnInit {
   
       this.loader.show();
       this.model.page = page;
+     // this.model.page_size = 1000;
       if(localStorage.getItem("sections")){
         this.sectionsList = JSON.parse(localStorage.getItem("sections"));
         if(JSON.parse(localStorage.getItem("sections")).length>0){
@@ -199,6 +234,7 @@ export class StudentsListComponent implements OnInit {
           objStudentList.class = objData.class_name;
           objStudentList.alias_class = objData.alias_class;
           objStudentList.roll_no = objData.roll_no;
+          objStudentList.profile_pic = objData.profile_pic;
           objStudentList.firebase_id = objData.firebase_id
           objStudentList.checkedAll = true;
           if(localStorage.getItem("groupUsers")){
@@ -228,17 +264,36 @@ export class StudentsListComponent implements OnInit {
              var index= groupList.findIndex(el=>{return el.firebase_id==item.id});
              
               if(index>-1){
-                groupList.splice(index,1);
+                
+                groupList[index].checked=true;
                }
               //groupList.splice(index,1);
             })
             this.dataSource = groupList;
             this.studentLists = groupList;
           }
-         
+   
+   
+          
+          
+         if(this.groupUsers.length == this.studentLists.length){
+           this.checkAllS = true
+         }
+         else{
+           this.checkAllS = false
+         }
           
         }else{
           this.dataSource = arrStudentList;
+ 
+          
+          
+         if(res.count == arrStudentList.length){
+           this.checkAllS = true
+         }
+         else{
+           this.checkAllS = false
+         }
         }
        
         if (res.status == false) {
@@ -283,8 +338,8 @@ export class StudentsListComponent implements OnInit {
        if(user==objData.student_id && ev.checked){
         objData.checked = ev.checked;
         this.checkAllS=true
-       }else{
-       // objData.checked = ev.checked;
+       }else if(user==objData.student_id && !ev.checked){
+       objData.checked = ev.checked;
         this.checkAllS=false
        }
         
@@ -295,7 +350,7 @@ export class StudentsListComponent implements OnInit {
         if(user==objData.user_id  && ev.checked){
           objData.isadded = ev.checked;
          }else{
-         // objData.isadded = ev.checked;
+         objData.isadded = ev.checked;
           this.checkAllT=false
          }
        // objData.isadded = ev.checked;
@@ -324,10 +379,10 @@ export class StudentsListComponent implements OnInit {
       } 
       
     })
-    atLeastOneTeacher=true;
-    if(!atLeastOneStudent){
-      return this.alert.error("Please atleast one student in this group","Error");
-    }
+    //atLeastOneTeacher=true;
+    // if(!atLeastOneStudent){
+    //   return this.alert.error("Please atleast one student in this group","Error");
+    // }
     if(!atLeastOneTeacher){
       return this.alert.error("Please atleast one teacher in this group","Error");
     }

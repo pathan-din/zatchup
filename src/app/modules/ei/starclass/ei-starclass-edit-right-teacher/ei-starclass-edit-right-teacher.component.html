@@ -86,6 +86,10 @@
 
             </div>
         </div>
+
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+            <p style="color: white">Please Wait. </p>
+        </ngx-spinner>
         <pagination-controls *ngIf="editTeacherAudience.dataSource && !add" (pageChange)="getTeacherAuidenceList($event)" class="eiPaginationTag">
         </pagination-controls> 
         
@@ -97,7 +101,7 @@
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Available</p>
             </div>
         </div>
-        <button *ngIf="editTeacherAudience.dataSource" type="button" class="bg-paret-green text-white py-2 px-4 mt-0 commonFontSize mediumFont border-0" (click)="addTeacher()">{{add == 'add' ? 'Next' : 'Submit'}}</button>
+        <button *ngIf="editTeacherAudience.dataSource" type="button" class="bg-paret-green text-white py-2 px-4 mt-0 commonFontSize mediumFont border-0" (click)="addTeacher()">{{action == 'add' ? 'Next' : 'Submit'}}</button>
 
     </div>
 

@@ -31,7 +31,7 @@ const ELEMENT_DATA: subAdminManagementElement[] = [];
 })
 export class EiManageCoursesComponent implements OnInit {
   model: any = {};
-  pageSize: any = 1;
+  pageSize: any;
   totalNumberOfPage: any = 10;
   config: any;
   courseList: any = [];
@@ -41,6 +41,7 @@ export class EiManageCoursesComponent implements OnInit {
     'noOfStudents', 'noOfAlumni', 'Action'];
 
   dataSource = ELEMENT_DATA;
+  pageCounts: any;
   //columnsToDisplay: string[] = this.displayedColumns.slice();
   // dataSource: PeriodicElement[] = ELEMENT_DATA;
 
@@ -58,7 +59,8 @@ export class EiManageCoursesComponent implements OnInit {
       currentPage: 1,
       totalItems: 0
     };
-    this.getCourseList('', '');
+    this.pageCounts = this.baseService.getCountsOfPage();
+    this.getCourseList('');
   }
   goToEiEditPage(id) {
     this.router.navigate(["ei/manage-courses-add"], { queryParams: { action: 'edit', course_id: id } });
@@ -104,14 +106,12 @@ export class EiManageCoursesComponent implements OnInit {
   //     }
   // }
 
-  getCourseList(page, strFilter) {
-
+  getCourseList(page) {
     try {
-
+      this.model.page=page;
+      this.model.page_size=this.pageSize;
       this.SpinnerService.show();
-
       this.baseService.getData('ei/list-of-course/', this.model).subscribe(res => {
-
         let response: any = {};
         response = res;
         if (response.status == false) {

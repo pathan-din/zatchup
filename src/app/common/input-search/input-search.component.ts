@@ -29,6 +29,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
     this.rightIcon = value.rightIcon ? value.rightIcon : false;
     this.viewSubMenu = value.viewSubMenu ? value.viewSubMenu : false;
     this.showValue = value.showValue ? value.showValue : false;
+    this.viewRollNuOrSchoolID = value.viewRollNuOrSchoolID ? value.viewRollNuOrSchoolID : false
   }
   @Input() get value() {
     return this._value
@@ -57,6 +58,7 @@ export class InputSearchComponent implements OnInit, OnDestroy {
   currentUser: any;
   _value: any;
   showValue: boolean;
+  viewRollNuOrSchoolID: boolean;
 
   constructor(
     private router: Router,

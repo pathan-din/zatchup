@@ -164,6 +164,7 @@ export class DatabaseViewComponent implements OnInit {
   setAddressData(){
     this.databaseView.addressLineOne = this.eiData.address1
     this.databaseView.addressLineTwo = this.eiData.address2
+    this.databaseView.pincode = this.eiData.pincode
   }
 
   editAddress() {
@@ -177,7 +178,8 @@ export class DatabaseViewComponent implements OnInit {
     let data = {
       'ei_id': this.eiData.id,
       'address1': this.databaseView.addressLineOne,
-      'address2': this.databaseView.addressLineTwo
+      'address2': this.databaseView.addressLineTwo,
+      'pincode' : this.databaseView.pincode
     }
     this.baseService.action('admin/school/update_address/', data).subscribe(
       (res: any) => {

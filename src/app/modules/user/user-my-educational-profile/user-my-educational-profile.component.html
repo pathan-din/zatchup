@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-12 text-right d-flex p-0 align-items-center">
                         <div class="position-relative border customDiv">
-                            <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/userWebsite/share-my-profile-icon.png'}}"
+                            <img src="{{objEpData.profile_pic?objEpData.profile_pic:'assets/images/profile-default.png'}}"
                                 class="img_profile img-fluid">
                             <input (change)="handleFileInputForBackPhoto($event.target.files,objEpData)" type="file"
                                 #inputFile name="file" style="display:none">
@@ -119,29 +119,26 @@
                         <div class="row form-control-inputDiv">
                             <div class="col-md-12 pt-2 d-flex justify-content-between align-items-center ml-2">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h2>
-                                <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
-                                    <a (click)="redirectWorkDetailesPage()" class="cursorStyle">
+                                <div class="addWorkcourse" >
+                                    <a (click)="redirectWorkDetailesPage('')" class="cursorStyle">
                                         <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
                                             style="height: 26px;">
                                     </a>
-                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid ml-2 mr-2"
-                                            style="width: 26px;">
-                                    </a>
+                                   
                                 </div>
                             </div>
                             <div class="col-md-11 ml-4">
                                 <hr>
                             </div>
-                            <div class="col-md-11 ml-4 mb-3"
+                            <div class="col-md-12 ml-4 mb-3"
                                 *ngFor="let objWorkDetail of objEpData.work_detail">
-                                <h2 class="Heading m-0 d-flex justify-content-start">
+                                <h2 class="Heading m-0">
                                     <img src="assets/images/work-user-profile.png"
-                                        class="cursorStyle img-fluid mr-2 work-user-profile">
-                                    <div class="experiencedetails">
+                                        class="cursorStyle img-fluid mr-2 work-user-profile float-left">
+                                    <div class="experiencedetails float-left">
                                         <span class="d-block regularFont mediumFont"
                                             style="line-height: 1; padding-bottom: 5px; font-size: 16px;">{{objWorkDetail.work_department}}</span>
-                                        <span class="d-block regularFont commonFontSize lineHeight">Current Company:
+                                        <span *ngIf="objWorkDetail.work_type!='Self Employed'" class="d-block regularFont commonFontSize lineHeight">Current Company:
                                             {{objWorkDetail.company_name}} </span>
                                         <span
                                             class="d-block regularFont small-text color-fadded-black">{{objWorkDetail.start_date}}
@@ -151,13 +148,12 @@
                                             class="d-block regularFont small-text color-fadded-black lineHeight">{{objWorkDetail.work_country}}
                                             {{objWorkDetail.work_state}} {{objWorkDetail.work_city}}</span>
                                     </div>
-                                </h2>
-                                <!-- <div class="addWorkcourse" *ngIf="objEpData.kyc_approved==1">
-                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid"
+                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle float-right">
+                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid mr-3"
                                             style="width: 26px;">
                                     </a>
-                                </div> -->
+                                </h2>
+                                 
                             </div>
 
                         </div>
@@ -182,17 +178,26 @@
                             <div class="col-md-12 d-flex justify-content-between align-items-center align-self-center flex-wrap">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading mb-0 ml-2">School Details </h2>
                                 <div class="addWorkcourse">
-                                    <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
+                                        <button *ngIf="objEd.is_students_verified == false  && objEd.is_active_subscription == true && objEd.is_onboard == true && objEpData.kyc_approved == 1" type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
+                                        (click)="sendUserToReVerify(objEd.school_id, false)">Re-Verify</button>
+                                        <button *ngIf="objEd.is_rejected == true && objEd.is_active_subscription == true " type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
+                                        (click)="sendUserToReVerify(objEd.school_id, true)">Re-Verify</button>
+                                         <button *ngIf="objEd.approved == 0 && objEd.is_onboard == true && objEd.is_active_subscription == true && objEd.is_students_verified == true && objEpData.kyc_approved == 1"  
+                                         type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" (click)="getVerifiedChat(objEd)">Get Verify</button>
+                                    
+                                        <span (click)="getRequestCourseDetails()" *ngIf="objEd.approved==1"
                                         class="mr-2 cursorStyle">
                                         <img src="assets/images/pending.png" tooltip="Pending Course Details">
                                     </span>
                                     <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)"
-                                        src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid"
-                                        style="height: 26px; width: 26px;">
+                                    src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid"
+                                    style="height: 26px; width: 26px;">
                                     <i *ngIf="objEpData.kyc_approved==1 && objEd.firebase_id"
                                         (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true "
                                         style="font-size: 26px;"></i>
+                                    
+                                   
                                 </div>
                             </div>
                             <div class="col-md-11 ml-4">
@@ -201,7 +206,7 @@
                             <div class="col-md-11 ml-4">
                                 <p class="m-0 mb-1 fontSize-16 commonFontSize semiBoldFont">School Name:
                                     <span class="regularFont">{{objEd.name_of_school}}
-                                        <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png"
+                                        <img *ngIf="objEd.approved==1" src="assets/images/userWebsite/checkicon.png"
                                             class="img-fluid ml-1 chckImg"> </span>
                                 </p>
                                 <div class="row">
@@ -238,7 +243,7 @@
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 ml-2">Course Details
                                     <img src="assets/images/userWebsite/edit.png"
-                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id)"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
                                     <img src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id)"

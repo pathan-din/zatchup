@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router ,ActivatedRoute} from '@angular/router';
 import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
+import { BaseService } from 'src/app/services/base/base.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-user-profile-created-successfully',
@@ -8,11 +10,19 @@ import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dial
   styleUrls: ['./user-profile-created-successfully.component.css']
 })
 export class UserProfileCreatedSuccessfullyComponent implements OnInit {
-
-  constructor(private router: Router, private confirmDialogService: ConfirmDialogService,
+  model: {};
+  params:any={};
+  constructor(private router: Router, 
+    private confirmDialogService: ConfirmDialogService,
+    private loader : NotificationService,
+    private baseService : BaseService,
+    private route:ActivatedRoute
     ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params=>{
+      this.params=params;
+    })
   }
 
  
@@ -24,8 +34,15 @@ export class UserProfileCreatedSuccessfullyComponent implements OnInit {
   });
 }
  logout(){
-
-  localStorage.clear();
-  this.router.navigate(['user/login']);
+  this.model = {}
+  this.baseService.action('user/add-user-step-seven/', this.model).subscribe(
+    (res : any) => {
+      if(res.status == true){
+        localStorage.clear();
+        this.router.navigate(['user/login']);
+      }
+    }
+  ) 
+  // localStorage.clear();
 }
 }

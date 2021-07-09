@@ -123,10 +123,10 @@
                                         <div class="required" style="color: red;" [innerHtml]="errorDisplay.principal_name"></div>
                                     </div>
                                     <div class="col-md-6 margin-top-col-6">
-                                        <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date / Openning Date</label>
+                                        <label for="" class=" commonFontSize mediumFont letterspacing">Foundation Date/ Opening Date</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none position-relative">
-                                            <input id="opening_date" required [(ngModel)]="model.opening_date" name="opening_date" autocomplete="off" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
+                                            <input [maxDate]="this.baseService.setCalanderDate(todayDate)" id="opening_date" required [(ngModel)]="model.opening_date" name="opening_date" autocomplete="off" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing"
                                                 type="text" bsDatepicker placeholder="MM/DD/YYYY">
                                             <i class="fa fa-calendar customCalenderIcon position-absolute" aria-hidden="true"></i>
                                         </div>
@@ -259,7 +259,7 @@
 
                                                     <div class="d-flex flex-xs-column flex-row justify-content-between w-100">
                                                         <mat-checkbox id="is_teaching_current_{{cNo}}" [(ngModel)]="courseList.is_teaching_current" name="is_teaching_current_{{cNo}}"
-                                                            class="purple-checkbox">Currently Teaching
+                                                            class="purple-checkbox" (change)="resetCourseBothYear(courseList,cNo,'')">Currently Teaching
                                                         </mat-checkbox>
 
 
@@ -276,7 +276,7 @@
                                             <div class="row ">
                                                 <div class="col-sm-12">
                                                     <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                        <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList)" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
+                                                        <select id="course_start_year_{{cNo}}" (change)="resetCourseBothYear(courseList,cNo,'')" [(ngModel)]="courseList.start_year" name="course_start_year_{{cNo}}"
                                                             class="custom-select  form-control-input form-control-sm " required>
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
@@ -295,7 +295,7 @@
                                             <div class="row " *ngIf="!courseList.is_teaching_current">
                                                 <div class="col-sm-12">
                                                     <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                        <select id="course_end_year_{{cNo}}" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
+                                                        <select id="course_end_year_{{cNo}}" (change)="resetCourseBothYear(courseList,cNo,'end_year')" [(ngModel)]="courseList.end_year" name="course_end_year_{{cNo}}" class="custom-select  form-control-input form-control-sm "
                                                             required>
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < courseList.start_year" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
@@ -411,7 +411,7 @@
                                                     <div class="row ">
                                                         <div class="col-sm-12">
                                                             <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                                <select (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year"
+                                                                <select [disabled]="true" (change)="endYearCheckValidation(classD)" id="teaching_start_year_{{cNo}}_{{s}}_{{c}}" required [(ngModel)]="classD.teaching_start_year"
                                                                     name="teaching_start_year_{{cNo}}_{{s}}_{{c}}" class="custom-select  form-control-input form-control-sm "
                                                                     required>
                                                                     <option value="">Year</option>
@@ -432,7 +432,7 @@
                                                     <div class="row ">
                                                         <div class="col-sm-12" *ngIf="!courseList.is_teaching_current ">
                                                             <div class=" form-control-inputDiv py-1 rounded shadow-none ">
-                                                                <select [disabled]="courseList.is_teaching_current" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}" [required]="classD.teaching_stopped"
+                                                                <select [disabled]="true" id="teaching_end_year_{{cNo}}_{{s}}_{{c}}" [required]="classD.teaching_stopped"
                                                                     [(ngModel)]="classD.teaching_end_year" name="teaching_end_year_{{cNo}}_{{s}}_{{c}}"
                                                                     class="custom-select  form-control-input form-control-sm ">
                                                                     <option value="0">Year</option>
@@ -473,7 +473,7 @@
                                         <!---------btns  Add another Class , remove another Class start-->
                                         <div class="row justify-content-center ">
                                             <div class="col-xl-7 col-lg-7 col-md-9 ">
-                                                <button type="button " (click)="addAnotherClass(standardL)" class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
+                                                <button type="button " (click)="addAnotherClass(courseList,standardL)" class="bg-gray border-0 w-100 rounded text-center p-2 mt-2 commonFontSize mediumFont letterspacing ">
                                                     + Add Another Class in this standard
                                                 </button>
                                             </div>
@@ -567,7 +567,7 @@
                                         <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload Cancelled Cheque</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input (change)="handleCancelChequeFileInput($event.target.files)" id="cheque" name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                            <input (change)="handleCancelChequeFileInput($event.target.files)" #myInputVariable id="cheque" name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                                 type="file" validFileExtention="png,jpeg,jpg" required>
                                         </div>
                                         <p class="pt-1">* only support images</p>
