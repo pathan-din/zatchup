@@ -28,6 +28,7 @@
     "angular-ng-autocomplete": "^2.0.1",
     "file-saver": "^2.0.2",
     "firebase": "^8.2.2",
+    "git": "^0.1.5",
     "jquery": "^3.5.1",
     "lodash-es": "^4.17.20",
     "ng-multiselect-dropdown": "^0.3.4",
