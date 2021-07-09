@@ -20,7 +20,7 @@
                                     </p>
                                 </div>
                                 <div class="col-3 text-right">
-                                    <img *ngIf="confirmData.ei_detail.approved=='0' && !params.check_school_info_on_zatchup" (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
+                                    <img *ngIf="confirmData.ei_detail.approved=='0'" (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
                                         class="cursorStyle img-fluid deleteImg">
                                     <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                                 </div>
@@ -186,11 +186,19 @@
                 <div   class="commonFontSize color-purple mediumFont justify-content-between align-items-center align-self-center">
                     Add More Course
                 </div>
+<<<<<<< HEAD
+            </div>
+                <button type="submit " *ngIf="confirmationDetails.length>0 " class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
+                    (click)="goToUserProfileCreatedPage()">Confirm & Send for School Verification</button>
+                <!--<button *ngIf="params.check_school_info_on_zatchup" type="submit " class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
+                    (click)="goToUserProfileCreatedPage()">Submit</button>  -->  
+=======
             </div> -->
                 <button type="submit " *ngIf="confirmationDetails.length>0 " class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
                     (click)="goToUserProfileCreatedPage()">Confirm & Send for School Verification</button>
                 <!-- <button *ngIf="params.check_school_info_on_zatchup" type="submit " class="color-white mt-2 bg-purple border-0 rounded px-3 py-2 regularFont"
                     (click)="goToUserProfileCreatedPage()">Submit</button>     -->
+>>>>>>> 824a7bfb7efc49a8e04d37bbdfa80b44e96e578d
             </div>
         </div>
     </div>
