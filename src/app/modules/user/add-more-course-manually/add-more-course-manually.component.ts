@@ -81,5 +81,11 @@ export class AddMoreCourseManuallyComponent implements OnInit {
       }
       
     }
+
+    editCourse(school_id,courseid){
+
+      this.router.navigate(['user/add-new-course'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": true, 'check_school_info_on_zatchup':2 } });
+
+    }
 }
 

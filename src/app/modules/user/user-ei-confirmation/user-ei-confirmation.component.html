@@ -53,7 +53,7 @@
                                     class="cursorStyle img-fluid deleteImg">
                                 <img *ngIf="courseData.standard_detail && confirmData.ei_detail.approved=='0'" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
                                     src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
-                                  <img *ngIf="params.check_school_info_on_zatchup" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
+                                  <img  (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
                                     src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">   
                             </div>
 

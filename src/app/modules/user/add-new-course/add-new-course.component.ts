@@ -51,7 +51,10 @@ export class AddNewCourseComponent implements OnInit {
       this.getCourseDetailsById();
     });
     this.model.school_id = this.schoolId;
-    this.getEiInfo(this.model);
+    if(!this.params.edit_course){
+      this.getEiInfo(this.model);
+    }
+  
     if (this.params.check_school_info_on_zatchup == 2) {
       this.is_already_registered = true;
       this.model.is_already_register = "true"
