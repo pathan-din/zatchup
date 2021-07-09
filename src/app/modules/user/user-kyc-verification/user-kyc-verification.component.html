@@ -84,7 +84,39 @@
                         value="{{model.kyc_dob}}" />
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_dob"></div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row ">
+                    <div class="col-sm-12 mobilePaddingLR">
+                        <label for="description" class=" commonFontSize mediumFont letterspacing">Upload
+                            Photo</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <input
+                                class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing"
+                                type="file" (change)="handleFileInput($event.target.files); isValid();"
+                                name="document" [(ngModel)]="model.kyc_document" required>
+                        </div>
+                    </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-sm-12 mobilePaddingLR">
+                        <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back
+                            photo optional</label>
+
+                        <div class="form-control-inputDiv rounded p-1 shadow-none">
+                            <!-- <input *ngIf="model.kyc_type == 'Aadhar'"
+                                class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
+                                type="file" (change)="handleFileInputBack($event.target.files); isValid();"
+                                [(ngModel)]="uploadedContent_back" name="document_back" required> -->
+                            <input
+                                class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
+                                type="file" (change)="handleFileInputBack($event.target.files); isValid();"
+                                [(ngModel)]="model.kyc_document_back" name="document_back">
+                        </div>
+                    </div>
+                    <!-- <div class="required errorMsg" [innerHtml]="errorDisplay.document_back"></div> -->
+                </div>
+                <!-- <div class="form-group row">
                     <div class="col-sm-12 ">
                         <div (click)="fileInput.click()" class="row form-control-file">
                             <div class="form-control-fileDiv p-0">
@@ -108,8 +140,8 @@
 
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_document"></div>
-                </div>
-                <div class="form-group row">
+                </div> -->
+                <!-- <div class="form-group row">
                     <div class="col-sm-12 ">
                         <div (click)="fileInput1.click()" class="row form-control-file">
                             <div class="form-control-fileDiv p-0">
@@ -133,7 +165,7 @@
 
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_document_back"></div>
-                </div>
+                </div> -->
                 <div class="text-center">
                     <button type="submit" [disabled]="isSubmit" class="btn common-btn regularFont textSpace mt-1"
                         (click)="goToUserQualificationPage()">Submit</button>
