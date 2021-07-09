@@ -59,11 +59,17 @@ export class SignUpPendingListComponent implements OnInit {
       "date_from": this.filterFromDate !== undefined ? this.datePipe.transform(this.filterFromDate, 'yyyy-MM-dd'): '',
       "date_to": this.filterToDate !== undefined ? this.datePipe.transform(this.filterToDate, 'yyyy-MM-dd'):'',
       "page_size": this.studentApproval.pageSize ? this.studentApproval.pageSize : 5,
-      "page": page ? page : 1
+      "page": page ? page : 1,
+      "course": this.studentApproval.course_id,
+      "standard": this.studentApproval.standard_id,
+      "teaching_class": this.studentApproval.class_id,
+      "status": 'APPROVEDBYUSER'
+
   }
 
-  this.baseService.getData('ei/verifiedstudents/', this.studentApproval.listParams).subscribe(
+  this.baseService.getData('ei/request-for-signup-students/', this.studentApproval.listParams).subscribe(
     (res: any) => {
+      console.log('list params....', res)
       if (res.status == true) {
         if (!page)
           page = this.studentApproval.config.currentPage
@@ -71,11 +77,13 @@ export class SignUpPendingListComponent implements OnInit {
         this.studentApproval.config.itemsPerPage = res.page_size
         this.studentApproval.config.currentPage = page
         this.studentApproval.config.totalItems = res.count;
-        if(res.count > 0)
-          this.studentApproval.dataSource = res.results
-          else
+        if(res.count > 0){
+          this.studentApproval.dataSource = res.results;
+          this.studentApproval.pageCounts = this.baseService.getCountsOfPage()
+         } else{
           this.studentApproval.dataSource = undefined
     }
+  }
     else
     this.alert.error(res.error.message[0], 'Error')
     this.loader.hide();
@@ -84,6 +92,8 @@ export class SignUpPendingListComponent implements OnInit {
       this.alert.error(err, 'Error')
       this.loader.hide();
     }
+  
+
   }
 
   generateExcel() {

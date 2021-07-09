@@ -70,9 +70,11 @@ export class EiStudentApprovalsComponent implements OnInit {
       "course": this.studentApproval.course_id,
       "standard": this.studentApproval.standard_id,
       "teaching_class": this.studentApproval.class_id,
+      "status": 'SENTFORAPPROVAL'
+
   }
 
-  this.baseService.getData('ei/verifiedstudents/', this.studentApproval.listParams).subscribe(
+  this.baseService.getData('ei/request-for-signup-students/', this.studentApproval.listParams).subscribe(
     (res: any) => {
       console.log('list params....', res)
       if (res.status == true) {
