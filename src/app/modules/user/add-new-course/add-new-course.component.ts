@@ -25,6 +25,8 @@ export class AddNewCourseComponent implements OnInit {
   title: any;
   is_already_registered: boolean = false;
   params: any;
+  startD:any;
+  endD:any;
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -50,10 +52,11 @@ export class AddNewCourseComponent implements OnInit {
       if(this.params.edit_course)
       this.getCourseDetailsById();
     });
-    this.model.school_id = this.schoolId;
-    if(!this.params.edit_course){
-      this.getEiInfo(this.model);
-    }
+    this.model.school_id = this.params.school_id;
+    this.model.course_id = this.params.course_id;
+
+    this.getEiInfo(this.model);
+     
   
     if (this.params.check_school_info_on_zatchup == 2) {
       this.is_already_registered = true;
@@ -153,7 +156,16 @@ export class AddNewCourseComponent implements OnInit {
       this.baseService.getData("user/get-update-school-course-detail-by-user/",data).subscribe((res:any)=>{
         if(res.status){
           this.SpinnerService.hide()
-          this.model=res.data[0];
+          console.log(res.data[0]);
+          
+         // this.model=res.data[0];
+          this.startD =   new Date(res.data[0].start_date); 
+          this.endD  =  new Date(res.data[0].end_date) 
+          this.model.course_name= res.data[0].course_name;
+          this.model.course_type= res.data[0].course_type;
+          this.model.description= res.data[0].description;
+          this.model.is_current= res.data[0].is_current;
+          this.model.course_id=this.params.course_id
           if (this.params.check_school_info_on_zatchup == 2) {
             this.is_already_registered = true;
             this.model.is_already_register = "true"
@@ -163,9 +175,9 @@ export class AddNewCourseComponent implements OnInit {
             this.model.is_already_register = "false"
       
           }
-          this.model.start_date = this.baseService.getDateReverseFormat(this.model.start_date);
-          this.model.end_date = this.baseService.getDateReverseFormat(this.model.end_date);
-          this.model.course_id=this.params.course_id
+          
+          
+          
         }else{
           this.SpinnerService.hide()
         }
@@ -186,8 +198,8 @@ export class AddNewCourseComponent implements OnInit {
     try {
       //
       this.model.school_id = this.schoolId;
-      this.model.start_date = this.pipe.transform(this.model.start_date, 'yyyy-MM-dd');
-      this.model.end_date = this.pipe.transform(this.model.end_date, 'yyyy-MM-dd');
+      this.model.start_date = this.pipe.transform(this.startD, 'yyyy-MM-dd');
+      this.model.end_date = this.pipe.transform(this.endD, 'yyyy-MM-dd');
       if (this.params.check_school_info_on_zatchup == 2) {
         this.is_already_registered = true;
         this.model.is_already_register = "true"

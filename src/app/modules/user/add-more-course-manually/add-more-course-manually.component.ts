@@ -19,7 +19,7 @@ export class AddMoreCourseManuallyComponent implements OnInit {
   schoolId:any;
   title:any;
   onboarded: any
-  
+ 
   constructor(
     public baseService: BaseService,
     private router: Router,
