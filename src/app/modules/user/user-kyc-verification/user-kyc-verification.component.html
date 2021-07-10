@@ -110,7 +110,7 @@
                                 [(ngModel)]="uploadedContent_back" name="document_back" required> -->
                             <input
                                 class="form-control-input form-control h-100 form-control-sm commonFontSize regularFont letterspacing"
-                                type="file" (change)="handleFileInputBack($event.target.files); isValid();"
+                                type="file" (change)="handleFileInputForBackPhoto($event.target.files); isValid();"
                                 [(ngModel)]="model.kyc_document_back" name="document_back">
                         </div>
                     </div>
