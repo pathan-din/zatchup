@@ -46,7 +46,9 @@ export class BaseService {
   var today = new Date();
    var day = new String(today.getDate()).padStart(2, '0');;
    var Month =String(today.getMonth() + 1).padStart(2, '0');
-   var cdate = new Date(courseDate+"-"+day+"-"+Month);
+   var cdate = new Date(courseDate+"-"+Month+"-"+day);
+   //console.log(cdate);
+   
    return cdate;
   }
   setParams(params) {

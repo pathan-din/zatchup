@@ -27,6 +27,9 @@ export class AddNewCourseComponent implements OnInit {
   params: any;
   startD:any;
   endD:any;
+  startMD:any=new Date();
+  endMD:any=new Date();
+  schoolCode:any='';
   constructor(private genericFormValidationService: GenericFormValidationService,
     public baseService: BaseService,
     private router: Router,
@@ -49,24 +52,15 @@ export class AddNewCourseComponent implements OnInit {
       if (params['title']) {
         this.title = params['title'];
       }
-      if(this.params.edit_course)
-      this.getCourseDetailsById();
+      
     });
     this.model.school_id = this.params.school_id;
     this.model.course_id = this.params.course_id;
 
     this.getEiInfo(this.model);
-     
+    
   
-    if (this.params.check_school_info_on_zatchup == 2) {
-      this.is_already_registered = true;
-      this.model.is_already_register = "true"
-
-    }
-    else {
-      this.model.is_already_register = "false"
-
-    }
+   
    
   }
 
@@ -78,16 +72,18 @@ export class AddNewCourseComponent implements OnInit {
         if (res.status == true) {
           this.SpinnerService.hide();
           this.model = res.data;
-          // this.model.join_standard_id = res.data.join_standard_id
-          // this.model.current_standard_id = res.data.current_standard_id
-          // if (this.model.course_id) {
-          //   this.model.existing_course_id = this.model.course_id;
-
-          // }
-          // this.model.comment = res.data.description;
-          // this.model.school_id = this.schoolId;
-          // this.displayClassList(res.data.join_standard_id);
-          //this.displayClassList(res.data.current_standard_id);
+          this.schoolCode= res.data.school_code;
+          if (this.params.check_school_info_on_zatchup == 2) {
+            this.is_already_registered = true;
+            this.model.is_already_register = "true"
+      
+          }
+          else {
+            this.model.is_already_register = "false"
+      
+          }
+          if(this.params.edit_course)
+            this.getCourseDetailsById();
         } else {
           this.SpinnerService.hide();
         }
@@ -156,11 +152,12 @@ export class AddNewCourseComponent implements OnInit {
       this.baseService.getData("user/get-update-school-course-detail-by-user/",data).subscribe((res:any)=>{
         if(res.status){
           this.SpinnerService.hide()
-          console.log(res.data[0]);
+          console.log(res.data[0].end_date,'oooo',new Date(res.data[0].end_date));
           
-         // this.model=res.data[0];
+         // this.model=res.data[0];mydate.toDateString()
           this.startD =   new Date(res.data[0].start_date); 
-          this.endD  =  new Date(res.data[0].end_date) 
+          this.endD  =  new Date(res.data[0].end_date)
+          console.log( this.endD,'qqqqq',new Date(res.data[0].end_date));
           this.model.course_name= res.data[0].course_name;
           this.model.course_type= res.data[0].course_type;
           this.model.description= res.data[0].description;
@@ -217,11 +214,16 @@ export class AddNewCourseComponent implements OnInit {
         this.SpinnerService.hide();
         if (response.status == true) {
           this.alert.success(response.message, 'Success')
-          if (this.params.check_school_info_on_zatchup == 2) {
+          if (this.params.check_school_info_on_zatchup == 2 && this.schoolCode) {
             this.router.navigate(['user/ei-confirmation'], { queryParams: { 'school_id': this.schoolId, 'title': this.title, 'check_school_info_on_zatchup': 2 } });
+          }else if(this.params.returnUrl && this.schoolCode){
+            this.router.navigate([this.params.returnUrl], { queryParams: { 'school_id': this.schoolId, 'title': this.title, 'check_school_info_on_zatchup': 2 } });
           }
           else {
-            this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title } });
+            if(this.params.check_school_info_on_zatchup){
+              this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title , 'check_school_info_on_zatchup': this.params.check_school_info_on_zatchup} });
+            }
+            
           }
           // this.router.navigate(['user/add-more-course'], { queryParams: { 'school_id': this.schoolId, 'title': this.title } });
 

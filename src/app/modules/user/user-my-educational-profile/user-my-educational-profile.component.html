@@ -189,9 +189,9 @@
                                         class="mr-2 cursorStyle">
                                         <img src="assets/images/pending.png" tooltip="Pending Course Details">
                                     </span>
-                                    <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)"
+                                   <!-- <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)"
                                     src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid"
-                                    style="height: 26px; width: 26px;">
+                                    style="height: 26px; width: 26px;">-->
                                     <i *ngIf="objEpData.kyc_approved==1 && objEd.firebase_id"
                                         (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true "
