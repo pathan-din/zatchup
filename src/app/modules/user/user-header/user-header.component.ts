@@ -192,9 +192,16 @@ export class UserHeaderComponent implements OnInit {
               }
             }
           } else {
-            if (res.reg_step == 7) {
-              this.router.navigate(['user/my-educational-profile']);
+            if (res.reg_step == 7 && this.route.snapshot.routeConfig.path == "user/profile-created") {
+              // this.router.navigate(['user/my-educational-profile']);
+              this.router.navigate(['user/profile-created']);
 
+            }
+            else if (res.reg_step == 7)  {
+              this.router.navigate(['user/my-educational-profile']);
+            }
+            else{
+              
             }
           }
         }
