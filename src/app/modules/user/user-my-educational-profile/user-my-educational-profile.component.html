@@ -242,38 +242,43 @@
 
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 ml-2">Course Details
-                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_rejected == false  && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/edit.png"
                                         (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
-                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_rejected == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
 
-                                     <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                     <img *ngIf="objEd.is_students_verified == true && objEd.is_rejected == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/edit.png"
                                         (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
-                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_rejected == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">    
 
-                                     <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == true && objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                     <img *ngIf="objEd.is_students_verified == true && objEd.is_rejected == false && objEd.is_onboard == true && objEd.school_code" src="assets/images/userWebsite/edit.png"
                                         (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
-                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == true && objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_rejected == false && objEd.is_onboard == true && objEd.school_code" src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2"> 
-                                     <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                     <img *ngIf="objEd.is_students_verified == false && objEd.is_rejected == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/edit.png"
                                         (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
-                                    <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                    <img *ngIf="objEd.is_students_verified == false && objEd.is_rejected == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2"> 
-                                     <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                     <img *ngIf="objEd.is_students_verified == false && objEd.is_rejected == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/edit.png"
                                         (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
-                                    <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                    <img *ngIf="objEd.is_students_verified == false && objEd.is_rejected == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/add-more.png"
                                         (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
-                                        class="img-fluid editIcon float-right cursorStyle ml-2">               
+                                        class="img-fluid editIcon float-right cursorStyle ml-2"> 
+
+                                         
+
+
+                                                  
                                 </h2>
 
                                 <div class="pr-4 pl-0">

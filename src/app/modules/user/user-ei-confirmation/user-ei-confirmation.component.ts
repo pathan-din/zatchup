@@ -85,13 +85,13 @@ export class UserEiConfirmationComponent implements OnInit {
   }
   editCourse(standard, school_id, courseid) {
     if(!standard){
-      this.router.navigate(['user/add-new-course'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation",'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup } });
+      this.router.navigate(['user/add-new-course'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation",'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup,'is_rejected':this.params.is_rejected } });
 
     }else{
       if (standard[standard.length - 1].is_current_standard) {
-        this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
+        this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation",'is_rejected':this.params.is_rejected } });
       } else {
-        this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation" } });
+        this.router.navigate(['user/add-more-standard'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course": "true", "returnUrl": "user/ei-confirmation",'is_rejected':this.params.is_rejected } });
       }
     }
 

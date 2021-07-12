@@ -72,7 +72,10 @@ export class UserPersonalInformationComponent implements OnInit {
       return false;
     }
     try {
-
+      if(!this.model.profile_pic){
+        this.alert.error("Please upload profile pic","Error");
+        return false;
+      }
       this.loader.show();
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
