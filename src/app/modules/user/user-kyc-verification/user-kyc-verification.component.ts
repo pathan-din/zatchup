@@ -240,7 +240,13 @@ export class UserKycVerificationComponent implements OnInit {
                 }
               }
             } else {
-              this.router.navigate(['user/my-educational-profile']);
+              if (res.reg_step == 7) {
+                this.router.navigate(['user/my-educational-profile']);
+
+              }else if (res.reg_step == 6) {
+                this.router.navigate(['user/add-personal-info']);
+
+              } 
             }
             this.isSubmit = false;
           } else {
