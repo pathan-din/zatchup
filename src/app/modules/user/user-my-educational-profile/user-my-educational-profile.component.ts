@@ -365,13 +365,25 @@ export class UserMyEducationalProfileComponent implements OnInit {
 
   }
   /**Add MOre COurse Function */
-  addMoreCourse(data: any, school_id: any) {
+  addMoreCourse(data: any, school_id: any,dataEi?:any) {
     localStorage.setItem("addcourse", "yes");
-    if (data.is_current_course == true) {
-      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true" } });
-    } else {
-      this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true" } });
+    // if(dataEi.is_onboard==0 && dataEi.school_code){
+    //   this.router.navigate(['user/ei-confirmation'], { queryParams: {"check_school_info_on_zatchup":2, "school_id": school_id, "course_id": data.course_id, "edit_course": "true", "returnUrl": "user/my-educational-profile" } });
+
+    // }
+    // else
+     if(dataEi.is_onboard==0 ){
+      this.router.navigate(['user/add-new-course'], { queryParams: {"check_school_info_on_zatchup":2, "school_id": school_id, "returnUrl": "user/my-educational-profile" } });
+
     }
+    else{
+      if (data.is_current_course == true) {
+        this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true" } });
+      } else {
+        this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "add_course": "true" } });
+      }
+    }
+    
   }
 
  

@@ -189,9 +189,9 @@
                                         class="mr-2 cursorStyle">
                                         <img src="assets/images/pending.png" tooltip="Pending Course Details">
                                     </span>
-                                    <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)"
+                                   <!-- <img *ngIf="objEd.approved=='0'" (click)="deleteEi(objEd.school_id)"
                                     src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid"
-                                    style="height: 26px; width: 26px;">
+                                    style="height: 26px; width: 26px;">-->
                                     <i *ngIf="objEpData.kyc_approved==1 && objEd.firebase_id"
                                         (click)="getDocumentsChat(objEd.firebase_id)"
                                         class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true "
@@ -242,12 +242,38 @@
 
                             <div class="col-md-12" *ngFor="let objCd of objEd.course_detail">
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2 ml-2">Course Details
-                                    <img src="assets/images/userWebsite/edit.png"
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/edit.png"
                                         (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
-                                    <img src="assets/images/userWebsite/add-more.png"
-                                        (click)="addMoreCourse(objCd, objEd.school_id)"
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                        (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
                                         class="img-fluid editIcon float-right cursorStyle ml-2">
+
+                                     <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                        (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">    
+
+                                     <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == true && objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">
+                                    <img *ngIf="objEd.is_students_verified == true && objEd.is_onboard == true && objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                        (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2"> 
+                                     <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">
+                                    <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                        (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2"> 
+                                     <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/edit.png"
+                                        (click)="storePendingCourseDataAfterApprove(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">
+                                    <img *ngIf="objEd.is_students_verified == false && objEd.is_onboard == false && !objEd.school_code" src="assets/images/userWebsite/add-more.png"
+                                        (click)="addMoreCourse(objCd, objEd.school_id,objEd)"
+                                        class="img-fluid editIcon float-right cursorStyle ml-2">               
                                 </h2>
 
                                 <div class="pr-4 pl-0">

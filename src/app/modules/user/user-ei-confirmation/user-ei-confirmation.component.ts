@@ -111,11 +111,12 @@ export class UserEiConfirmationComponent implements OnInit {
       this.router.navigate(['user/my-educational-profile'])
     }
     else {
-      if(this.params.check_school_info_on_zatchup){
-        this.router.navigate(['user/profile-created'],{queryParams:{'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup}});
-      }else{
-        this.router.navigate(['user/add-personal-info']);
-      }
+      this.router.navigate(['user/add-personal-info'],{queryParams:{'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup}});
+      // if(this.params.check_school_info_on_zatchup){
+      //   this.router.navigate(['user/profile-created'],{queryParams:{'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup}});
+      // }else{
+       
+      // }
       
     }
 

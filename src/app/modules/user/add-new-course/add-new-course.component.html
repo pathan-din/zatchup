@@ -8,7 +8,7 @@
         <div class="col-md-4 order-1 order-sm-6 MobileCol6MB">
             <div class="row mt-3">
                 <div class="col-12">
-                    <h2 class="mb-0">Add Course </h2>
+                    <h2 class="mb-0">{{params.edit_course?'Update':'Add'}} Course </h2>
                 </div>
             </div>
 
@@ -16,11 +16,7 @@
                 <div class="form-group row m-0 mb-2">
                     <h3 class="p-0 commonFontSize semiBoldFont m-0">
                         {{model.name_of_school}}
-                        <span *ngIf="model.name_of_school"
-                            class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">
-                            <img src="assets/images/userWebsite/edit.png" (click)="editEi(schoolId)"
-                                class="img-fluid editIcon float-right cursorStyle ml-2">
-                        </span>
+                        
                     </h3>
                 </div>
                 <div class="form-group row justify-content-center" *ngIf="checkincourse">
@@ -58,7 +54,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="required errorMsg" [innerHtml]="errorDisplay.course"></div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.course_type"></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -81,7 +77,7 @@
                     <div class="col-sm-6 MobileCol6MB">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Up from</label>
                         <div class="form-control-inputDiv">
-                            <input autocomplete="off" required [maxDate]="endD" [(ngModel)]="startD"
+                            <input autocomplete="off" required [maxDate]="startMD" [(ngModel)]="startD"
                                 name="start_date" class="form-control-input form-control form-control-sm" type="text"
                                 bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                         </div>
@@ -90,7 +86,7 @@
                     <div class="col-sm-6" *ngIf="!model.is_current">
                         <label for="" class="mediumFont commonFontSize letterspacing">Course Up to</label>
                         <div class="form-control-inputDiv">
-                            <input autocomplete="off" required [(ngModel)]="endD" [minDate]="startD"
+                            <input autocomplete="off" required [(ngModel)]="endD" [disabled]="!startD" [minDate]="startD" [maxDate]="endMD"
                                 name="end_date" class="form-control-input form-control form-control-sm" type="text"
                                 bsDatepicker placeholder="DD-MM-YYYY" [bsConfig]="{dateInputFormat: 'DD-MM-YYYY'}">
                         </div>
@@ -116,7 +112,7 @@
 
 
                 <div class="text-center">
-                    <button type="submit" class="btn common-btn regularFont" (click)="addCourseData()">Add</button>
+                    <button type="submit" class="btn common-btn regularFont" (click)="addCourseData()">{{params.edit_course?'Save':'Add'}} </button>
                 </div>
 
             </form>

@@ -228,6 +228,7 @@ export class UserEiProfileComponent implements OnInit {
       this.model.class_id = '';
       let data: any = {};
       data.course_id = courseId;
+      this.model.date_joining=''
       if (this.courseList.length > 0) {
         this.model.comment = this.courseList.find(element => element.id == courseId).description;
       }

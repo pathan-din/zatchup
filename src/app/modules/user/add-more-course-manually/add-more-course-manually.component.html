@@ -59,9 +59,9 @@
                                         </p>
                                     </div> -->
                                     <div class="col-12 text-right">
-                                        <img  (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
+                                        <!-- <img  (click)="deleteEi(confirmData.ei_detail.id)" src="assets/images/userWebsite/delete.png"
                                             class="cursorStyle img-fluid deleteImg">
-                                        <!-- <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
+                                        <img src="assets/images/userWebsite/edit.png" class="img-fluid editIcon"> -->
                                     </div>
                                 </div>
                                 <p class="m-0 form-control-input commonFontSize">State :
@@ -73,41 +73,41 @@
                                 <p class="m-0 form-control-input commonFontSize"> School Name :
                                     <span class="text-dark mediumFont">{{list.name_of_school}}</span>
                                 </p>
-                                <p class="m-0 form-control-input commonFontSize"> School Address :
-                                    <span class="text-dark mediumFont">{{list.address1}} {{list.address2}}</span>
-                                </p>
+                                 
                                 <p class="m-0 form-control-input commonFontSize"> University/Board :
                                     <span class="text-dark mediumFont">{{list.university}}</span>
                                 </p>
                             </div>
-                        </div>
-                        <div *ngFor="let list of courseList">
+                            <div *ngFor="let list_course of list.course_data">
                             <div class="form-group row mx-0">
                                 <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
                                     Course Name :
-                                    <span class="text-dark">{{list.course_name}}</span>
+                                    <span class="text-dark">{{list_course.course_name}}</span>
                                 </div>
                                 <div class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">
-                                    <img  (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png"
-                                        class="cursorStyle img-fluid deleteImg">
-                                    <img (click)="editCourse( list.school_id,list.course_id)"
+                                    <!--<img  (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png"
+                                        class="cursorStyle img-fluid deleteImg"> -->
+                                    <img (click)="editCourse( list.school_id,list_course.course_id)"
                                         src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
                                       <!-- <img  
                                         src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">    -->
                                 </div>
-    
+                                <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
+                                    Description :
+                                    <span class="text-dark">{{list_course.description}}</span>
+                                </div>
                                 <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
                             {{courseData.description}}
                                 Years</span></div> -->
                                 <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0 mediumFont pb-1">
                                     Starting Year :
-                                    <span class="text-dark">{{list.start_date?list.start_date:''}}</span>
+                                    <span class="text-dark">{{list_course.start_date?list_course.start_date:''}}</span>
                                 </div>
-                                <div  class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                                <div *ngIf="!list_course.is_current" class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
                                     Ending Year :
-                                    <span class="text-dark">{{list.end_date?list.end_date:''}}</span>
+                                    <span class="text-dark">{{list_course.end_date?list_course.end_date:''}}</span>
                                 </div>
-                                <div  class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                                <div *ngIf="list_course.is_current" class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
                                     To Current
                                 </div>
     
@@ -186,6 +186,8 @@
      -->
     
                         </div>
+                        </div>
+                        
                     </div>
     
     
@@ -202,7 +204,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn common-btn regularFont textSpace ml-3" (click)="goToUserAddMoreEiPage()">Submit</button>
+                <button type="submit" class="btn common-btn regularFont textSpace ml-3" (click)="goToUserAddMoreEiPage()">Continue</button>
             </div>
         </div>
     </div>
