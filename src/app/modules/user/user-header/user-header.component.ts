@@ -166,12 +166,14 @@ export class UserHeaderComponent implements OnInit {
             } else {
               if (res.reg_step == 7) {
                 this.router.navigate(['user/my-educational-profile']);
+                console.log('1');
+                
 
               }else if (res.reg_step == 6) {
                 this.router.navigate(['user/add-personal-info']);
-
+                console.log('2');
               }else{
-                
+                console.log('3');
               }
             }
           } else if (res.reg_step <= 7 && res.is_approved && res.is_kyc_rejected) {
@@ -190,7 +192,10 @@ export class UserHeaderComponent implements OnInit {
               }
             }
           } else {
+            if (res.reg_step == 7) {
+              this.router.navigate(['user/my-educational-profile']);
 
+            }
           }
         }
       }, (error => {
