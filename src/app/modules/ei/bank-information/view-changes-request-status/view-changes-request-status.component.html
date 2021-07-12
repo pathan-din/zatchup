@@ -9,26 +9,26 @@
         </div>
 
         <div class="tableDiv mt-3">
-            <div *ngIf="dataSource" class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource  | paginate: config">
+            <div *ngIf="changeRequest.dataSource" class="mat-elevation-z1 table-responsive">
+                <mat-table [dataSource]="changeRequest.dataSource | paginate: changeRequest.config">
                     <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element;let i=index"> {{startIndex+i}} </mat-cell>
+                        <mat-cell *matCellDef="let element;let i=index"> {{i + changeRequest.startIndex}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="fieldChange">
                         <mat-header-cell *matHeaderCellDef> Field Change </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.fieldChange}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.field_name}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="oldDetails">
                         <mat-header-cell *matHeaderCellDef> Old Details </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.oldDetails}} </mat-cell>
+                        <mat-cell *matCellDef="let element "> {{element.old_value}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="newDetails">
                         <mat-header-cell *matHeaderCellDef> New Details </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.newDetails}}
+                        <mat-cell *matCellDef="let element"> {{element.new_value}}
                         </mat-cell>
                     </ng-container>
 
@@ -36,11 +36,11 @@
                         <mat-header-cell *matHeaderCellDef> View Attachments </mat-header-cell>
                         <mat-cell *matCellDef="let element">
 
-                            <img *ngIf="element.viewAttachments && fileType(element.viewAttachments) != 'pdf'" src="{{element.document}}" alt="Attachments" style="height: 60px;" />
-                            <img (click)="download_file(element.viewAttachments)"
-                            *ngIf="element.viewAttachments && fileType(element.viewAttachments) == 'pdf'" 
+                            <img *ngIf="element.document && fileType(element.document) != 'pdf'" src="{{element.document}}" alt="Attachments" style="height: 60px;" />
+                            <img (click)="download_file(element.document)"
+                            *ngIf="element.document && fileType(element.document) == 'pdf'" 
                             src="assets/images/userWebsite/pdf.png" alt="ei profile" class="img-fluid cerImg rounded">
-                        <img *ngIf="!element.viewAttachments" src="assets/images/no-image-icon.jpg" alt="ei profile"
+                        <img *ngIf="!element.document" src="assets/images/no-image-icon.jpg" alt="ei profile"
                             class="img-fluid cerImg rounded">
                         </mat-cell>
                     </ng-container>
@@ -49,7 +49,7 @@
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <button type="button"
-                                class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.status}}</button>
+                                class="bg-paret-green cursorDefault color-white border-0 px-3 py-1 rounded">{{element.approved ? 'Accepted' : 'Pending'}}</button>
                         </mat-cell>
                     </ng-container>
 
@@ -62,17 +62,17 @@
                         </mat-cell>
                     </ng-container>
 
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="changeRequest.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: changeRequest.displayedColumns; "></mat-row>
                 </mat-table>
             </div>
-            <div class="row" *ngIf="!dataSource">
+            <div class="row" *ngIf="!changeRequest.dataSource">
                 <div class="col-12 pt-2 pb-2">
                     <p class="text-center dataNotFound pt-4 pb-4">No records found.</p>
                 </div>
             </div>
-            <pagination-controls *ngIf="dataSource" (pageChange)="getViewChangesRequestStatus($event)"
-                class="eiPaginationTag"></pagination-controls>
+            <pagination-controls *ngIf="changeRequest.dataSource" (pageChange)="getChangeRequest($event)" class="eiPaginationTag">
+            </pagination-controls>
 
             <div *ngIf="dataSourceBank" class="mat-elevation-z1 table-responsive">
                 <mat-table [dataSource]="dataSourceBank  | paginate: config">

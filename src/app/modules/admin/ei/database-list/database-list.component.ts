@@ -36,6 +36,7 @@ export class DatabaseListComponent implements OnInit {
       this.eidbList.filterFromDate = JSON.parse(this.eidbList.filterParams).from_date;
       this.eidbList.filterToDate = JSON.parse(this.eidbList.filterParams).to_date;
     }
+  
     this.getEIDbList('');
     this.getAllState();
   }
@@ -76,10 +77,13 @@ export class DatabaseListComponent implements OnInit {
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
       "onboarded_status": this.eidbList.onboardingStatus,
-      'page': page,
+      'page': page ,
       'page_size': this.eidbList.page_size,
+      "search": this.eidbList.search ? this.eidbList.search : '',
     }
 
+    console.log(this.eidbList.modal, 'gshgh');
+    
     this.baseService.getData('admin/ei/get-all-ei-list/', this.eidbList.modal).subscribe(
       (res: any) => {
         if (res.status == true) {
@@ -112,7 +116,7 @@ export class DatabaseListComponent implements OnInit {
     }
   }
 
-  searchList(page?: any) {
+  searchList(page? : any) {
     let stateFind: any;
     let cityFind: any;
     if (this.eidbList.allStates && this.eidbList.stateId) {
@@ -126,31 +130,37 @@ export class DatabaseListComponent implements OnInit {
       })
     }
     this.eidbList.modal = {
+      "page":page ,
+      "page_size": this.eidbList.page_size,
       "search": this.eidbList.search,
       'start_date': this.eidbList.filterFromDate !== undefined ? this.datePipe.transform(this.eidbList.filterFromDate, 'yyyy-MM-dd') : '',
       'end_date': this.eidbList.filterToDate !== undefined ? this.datePipe.transform(this.eidbList.filterToDate, 'yyyy-MM-dd') : '',
       "city": cityFind ? cityFind.city : '',
       "state": stateFind ? stateFind.state : '',
-      "page_size": this.eidbList.page_size,
-      "is_subscription_active": this.eidbList.subStatus,
-      "page": page
+     "is_subscription_active": this.eidbList.subStatus,
+      
     }
+    console.log(this.eidbList.modal);
+    
     this.loader.show();
     this.baseService.getData('admin/ei_search/', this.eidbList.modal).subscribe(
       (res: any) => {
         if (res.status == true) {
           if (!page)
-            page = this.eidbList.config.currentPage
+          page = this.eidbList.config.currentPage
           this.eidbList.startIndex = res.page_size * (page - 1) + 1;
-          this.eidbList.page_size = res.page_size;
-          this.eidbList.config.itemsPerPage = res.page_size
+          this.eidbList.page_size = res.page_size
+          this.eidbList.config.itemsPerPage = this.eidbList.page_size
           this.eidbList.config.currentPage = page
           this.eidbList.config.totalItems = res.count;
-
-          if (res.count > 0)
-            this.eidbList.dataSource = res.results
-          else
+          if (res.count > 0) {
+            this.eidbList.dataSource = res.results;
+            this.eidbList.pageCounts = this.baseService.getCountsOfPage()
+          }
+          else {
+            this.eidbList.pageCounts = undefined;
             this.eidbList.dataSource = undefined
+          }
         }
         else
           this.alert.error(res.error.message[0], 'Error')
@@ -185,5 +195,15 @@ export class DatabaseListComponent implements OnInit {
   goBack() {
     let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl")
     this.router.navigate([returnUrl])
+  }
+
+  paginationFuction(page){
+    if( this.eidbList.search){
+      this.searchList(page);
+      
+    }
+    else{
+      this.getEIDbList(page);
+    }
   }
 }

@@ -78,6 +78,13 @@ export class EiCourseList extends Pagination{
   levelOfEducationName: any = '';
 }
 
+export class ChangeRequest extends Pagination {
+  displayedColumns: string[] = ['position', 'fieldChange', 'oldDetails', 'newDetails',
+  'viewAttachments', 'status', 'action'];
+  dataSourceRequest : any;
+  params: any
+}
+
 export class ZatchupStarclassCourses extends Pagination{
   displayedColumns: string[] = ['position', 'courseName','boughtDate', 
   'expiryDate','totalViews','noOfViews', 'Action' ,'student' ,'teacher' ,'editRights']; 
