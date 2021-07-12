@@ -34,7 +34,7 @@
                             <p class="m-0 form-control-input commonFontSize"> School Name :
                                 <span class="text-dark mediumFont">{{confirmData.ei_detail.name_of_school}}</span>
                             </p>
-                            <p class="m-0 form-control-input commonFontSize"> School Address :
+                            <p *ngIf="confirmData.ei_detail.school_code" class="m-0 form-control-input commonFontSize"> School Address :
                                 <span class="text-dark mediumFont">{{confirmData.ei_detail.address1}} {{confirmData.ei_detail.address2?confirmData.ei_detail.address2:""}}</span>
                             </p>
                             <p class="m-0 form-control-input commonFontSize"> University/Board :
@@ -47,6 +47,10 @@
                             <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
                                 Course Name :
                                 <span class="text-dark">{{courseData.course_name}}</span>
+                            </div>
+                            <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
+                                Course Description :
+                                <span class="text-dark">{{courseData.description}}</span>
                             </div>
                             <div class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">
                                 <img *ngIf="confirmData.ei_detail.approved=='0'" (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png"

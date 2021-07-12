@@ -547,7 +547,7 @@ export class UserMyEducationalProfileComponent implements OnInit {
     
     this.confirmDialogService.confirmThis('Your School Details Will Be Send For Verification', () => {
       if(is_rejected){
-        this.router.navigate(["user/ei-profile"],{queryParams:{"school_id":school_id,'is_rejected':1}})
+        this.router.navigate(["user/ei-confirmation"],{queryParams:{"school_id":school_id,'is_rejected':1}})
       }
       else{
         this.router.navigate(["user/ei-profile"],{queryParams:{"school_id":school_id,'is_verify':1}})

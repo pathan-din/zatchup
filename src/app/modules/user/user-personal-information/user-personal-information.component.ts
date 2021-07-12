@@ -85,7 +85,7 @@ export class UserPersonalInformationComponent implements OnInit {
               this.router.navigate(['user/my-educational-profile']);
             } else {
               
-              if(this.params.check_school_info_on_zatchup==2 && this.params.check_school_info_on_zatchup==3){
+              if(this.params.check_school_info_on_zatchup==2 || this.params.check_school_info_on_zatchup==3){
                 this.router.navigate(['user/profile-created'], { queryParams: { school_id: this.schoolId ,'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup} });
               }else{
                 this.router.navigate(['user/profile-created'], { queryParams: { school_id: this.schoolId } });

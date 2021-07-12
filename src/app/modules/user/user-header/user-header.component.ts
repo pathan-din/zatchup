@@ -164,9 +164,14 @@ export class UserHeaderComponent implements OnInit {
                 this.router.navigate(['user/kyc-verification']);
               }
             } else {
-              if (res.reg_step == 6) {
+              if (res.reg_step == 7) {
                 this.router.navigate(['user/my-educational-profile']);
 
+              }else if (res.reg_step == 6) {
+                this.router.navigate(['user/add-personal-info']);
+
+              }else{
+                
               }
             }
           } else if (res.reg_step <= 7 && res.is_approved && res.is_kyc_rejected) {
