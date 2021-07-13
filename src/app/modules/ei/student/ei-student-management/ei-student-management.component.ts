@@ -135,9 +135,17 @@ export class EiStudentManagementComponent implements OnInit {
     this.router.navigate(['ei/student-summary']);
   }
   goToEiSentForSignUpComponent(){
-    this.router.navigate(['ei/sent-for-sign-up']);
+    this.router.navigate(['ei/sent-for-sign-up'], {queryParams: {status: 'SENTFORSIGNUP'}});
+  }
+
+  goToEiSentForApproval(){
+    this.router.navigate(['ei/sent-for-sign-up'], {queryParams: {status: 'SENTFORAPPROVAL'}})
   }
   goToSentForApprovalComponent(){
     this.router.navigate(['ei/sent-for-approval']);
+  }
+
+  goToViewStatusReject(){
+    this.router.navigate(['ei/sent-for-sign-up'], {queryParams: {status: 'REJECTBYUSER'}})
   }
 }

@@ -71,33 +71,61 @@
                     data-toggle="modal" data-target="#AddStudentModel">Add Students</button>
             </div> -->
             <div class="col-xl-6 col-lg-7 col-md-6">
-                <h2 class="commonFontSize semiBoldFont">View Status ({{courseWiseStudentCount.vies_status_approved+courseWiseStudentCount.view_status_pending}})</h2>
+                <h2 class="commonFontSize semiBoldFont">View Status ({{courseWiseStudentCount.vies_status_approved+courseWiseStudentCount.view_status_pending+courseWiseStudentCount.view_status_sent_for_approval+courseWiseStudentCount.rejected_by_user}})</h2>
                 <div class="form-control-inputDiv col-flex rounded-0 bg-offwhite shadow-none pl-3">
-                    <div class="row pt-2">
-                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
-                            (click)="goToEiStudentApprovalsPage()">
-                            <p class="cursorStyle">Approved</p>
+
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont cursorStyle">
+                            <p class="cursorStyle">Pending</p>
                         </div>
-                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 cursorStyle">
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.view_status_pending+courseWiseStudentCount.view_status_sent_for_approval?(courseWiseStudentCount.view_status_pending+courseWiseStudentCount.view_status_sent_for_approval):0}}</p>
+                        </div>
+                        <div class="col-12 ml-1 small-text-2">
+                            <div class="row  m-0 cursorStyle"  (click)="goToEiSentForApproval()" >
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6 cursorStyle" >
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span>Sent For Approval</p>
+                                </div>
+                                <div class="col-xl-8 col-lg-7 col-md-6 col-6 cursorStyle">
+                                    <p><span class="mr-2">:</span>{{courseWiseStudentCount.view_status_sent_for_approval?courseWiseStudentCount.view_status_sent_for_approval:0}}</p>
+                                </div>
+                            </div>
+                            <div class="row  m-0 cursorStyle"  (click)="goToEiSentForSignUpComponent()" >
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Sent For Sign Up</p>
+                                </div>
+                                <div class="col-xl-8 col-lg-7 col-md-6 col-6 cursorStyle" >
+                                    <p><span class="mr-2">:</span>{{courseWiseStudentCount.view_status_pending?courseWiseStudentCount.view_status_pending:0}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-2" (click)="goToEiStudentApprovalsPage()">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
+                            >
+                            <p class="cursorStyle">Approved By User</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 cursorStyle">
                             <p><span class="mr-2">:</span>{{courseWiseStudentCount.vies_status_approved?courseWiseStudentCount.vies_status_approved:0}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" (click)="goToViewStatusReject()">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
-                            <p class="cursorStyle">Rejected</p>
+                            <p class="cursorStyle">Rejected By User</p>
                         </div>
-                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
-                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user?(courseWiseStudentCount.rejected_by_zatchup+courseWiseStudentCount.rejected_by_user):0}}</p>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 cursorStyle" >
+                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_user?courseWiseStudentCount.rejected_by_user:0}}</p>
                         </div>
-                        <div class="col-12 ml-1 small-text-2">
-                            <!--<div class="row  m-0 cursorStyle" (click)="goToRejectedBySystemPage()">
+                        <!-- <div class="col-12 ml-1 small-text-2">
+                            <div class="row  m-0 cursorStyle" (click)="goToRejectedBySystemPage()">
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> ZatchUp System</p>
                                 </div>
                                 <div class="col-xl-8 col-lg-7 col-md-6 col-6">
                                     <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_zatchup?courseWiseStudentCount.rejected_by_zatchup:0}}</p>
                                 </div>
-                            </div>-->
+                            </div>
                             <div class="row  m-0 cursorStyle" (click)="goToRejectedByUserPage()">
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <p><span><i class="fa fa-circle mr-1 dot-small" aria-hidden="true"></i></span> Rejected by Users</p>
@@ -106,26 +134,12 @@
                                     <p><span class="mr-2">:</span>{{courseWiseStudentCount.rejected_by_user?courseWiseStudentCount.rejected_by_user:0}}</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
-                        (click)="goToEiSentForSignUpComponent()">
-                            <p class="cursorStyle">Sent For Sign Up</p>
-                        </div>
-                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
-                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.view_status_pending?courseWiseStudentCount.view_status_pending:0}}</p>
-                        </div>
-                    </div>
-                    <!-- <div class="row">
-                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont"
-                        (click)="goToSentForApprovalComponent()">
-                            <p class="cursorStyle">Send For Approval</p>
-                        </div>
-                        <div class="col-xl-8 col-lg-7 col-md-6 col-6">
-                            <p><span class="mr-2">:</span>{{courseWiseStudentCount.sent_for_approval?courseWiseStudentCount.sent_for_approval:0}}</p>
-                        </div>
-                    </div> -->
+
+                    
+
+                  
                 </div>
             </div>
         </div>

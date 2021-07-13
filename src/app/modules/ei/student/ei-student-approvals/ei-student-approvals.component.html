@@ -103,7 +103,7 @@
 
                     <ng-container matColumnDef="addingDate">
                         <mat-header-cell *matHeaderCellDef>Date of Adding </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.date_joined}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.date_of_adding }} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="zatchUpID">
@@ -134,31 +134,35 @@
                         </mat-cell>
                     </ng-container>
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="userID">
+                    <!-- <ng-container matColumnDef="userID">
                         <mat-header-cell *matHeaderCellDef>EI Admission Number / ID Number </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.admission_no}}
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <!-- Symbol Column -->
-                    <ng-container matColumnDef="class">
+                    <!-- <ng-container matColumnDef="class">
                         <mat-header-cell *matHeaderCellDef>Current Class </mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.class_name}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
-                    <ng-container matColumnDef="rollNumber">
+                    <!-- <ng-container matColumnDef="rollNumber">
                         <mat-header-cell *matHeaderCellDef>Roll Number</mat-header-cell>
                         <mat-cell *matCellDef="let element "> {{element.roll_no}} </mat-cell>
-                    </ng-container>
-                    <ng-container matColumnDef="gender">
+                    </ng-container> -->
+                    <!-- <ng-container matColumnDef="gender">
                         <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
                             {{element.gender}} </mat-cell>
-                    </ng-container>
-                    <ng-container matColumnDef="age">
-                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-                        <mat-cell *matCellDef="let element "> {{element.age}} </mat-cell>
+                    </ng-container> -->
+                    <ng-container matColumnDef="kyc_status">
+                        <mat-header-cell *matHeaderCellDef> Kyc Status </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            <button class="{{element.kyc_status == '0' ? 'bg-purple' : 'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
+                                {{element.kyc_status == 0 ? 'Submitted' : 'Rejected' }} </button> 
+                                <!--     -->
+                        </mat-cell>
                     </ng-container>
 
                     <!-- <ng-container matColumnDef="action">

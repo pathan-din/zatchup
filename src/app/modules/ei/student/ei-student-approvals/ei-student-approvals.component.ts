@@ -53,12 +53,12 @@ export class EiStudentApprovalsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStudentApproval('');
-    this.getCourseList();
+    // this.getCourseList();
 
   }
-  goToEiStudentEditPage(id) {
-    this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
-  }
+  // goToEiStudentEditPage(id) {
+  //   this.router.navigate(['ei/student-edit'], { queryParams: { 'stId': id } });
+  // }
 
   getStudentApproval(page?:any) {
     this.loader.show();
@@ -70,7 +70,7 @@ export class EiStudentApprovalsComponent implements OnInit {
       "course": this.studentApproval.course_id,
       "standard": this.studentApproval.standard_id,
       "teaching_class": this.studentApproval.class_id,
-      "status": 'SENTFORAPPROVAL'
+      "status": 'APPROVBYUSER'
 
   }
 
@@ -108,31 +108,31 @@ export class EiStudentApprovalsComponent implements OnInit {
     this.baseService.generateExcel('ei/export-verifiedstudent-by-ei/', 'student-approved', this.studentApproval.listParams);
   }
   
-  getCourseList(){
-    this.baseService.getData('ei/course-list/').subscribe(
-      (res: any) =>{
-        //console.log('get course res ::', res)
-        if(res.count > 0)
-        this.studentApproval.courseList = res.results
-      }
-    )
-  }
-  getStandardList(){
-    this.baseService.getData('ei/standard-list/', {'course_id': this.studentApproval.course_id}).subscribe(
-      (res:any)=>{
-        if(res.status == true)
-        this.studentApproval.standardList= res.standarddata
-      }
-    )
-  }
-  getClassList(){
-    this.baseService.getData('ei/class-list/', {'standard_id': this.studentApproval.standard_id}).subscribe(
-      (res:any)=>{
-        if(res.status== true)
-        this.studentApproval.classList= res.classdata
-      }
-    )
-  }
+  // getCourseList(){
+  //   this.baseService.getData('ei/course-list/').subscribe(
+  //     (res: any) =>{
+  //       //console.log('get course res ::', res)
+  //       if(res.count > 0)
+  //       this.studentApproval.courseList = res.results
+  //     }
+  //   )
+  // }
+  // getStandardList(){
+  //   this.baseService.getData('ei/standard-list/', {'course_id': this.studentApproval.course_id}).subscribe(
+  //     (res:any)=>{
+  //       if(res.status == true)
+  //       this.studentApproval.standardList= res.standarddata
+  //     }
+  //   )
+  // }
+  // getClassList(){
+  //   this.baseService.getData('ei/class-list/', {'standard_id': this.studentApproval.standard_id}).subscribe(
+  //     (res:any)=>{
+  //       if(res.status== true)
+  //       this.studentApproval.classList= res.classdata
+  //     }
+  //   )
+  // }
   goBack(): void{
     this.location.back()
   }
