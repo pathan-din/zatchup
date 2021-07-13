@@ -44,15 +44,15 @@
                     </div>
                     <div *ngFor="let courseData of confirmData.ei_detail.course_detail;">
                         <div class="form-group row mx-0">
-                            <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
+                            <div class="col-md-12 form-control-input commonFontSize mediumFont pl-0 pb-1">
                                 Course Name :
                                 <span class="text-dark">{{courseData.course_name}}</span>
                             </div>
-                            <div class="col-lg-8 col-md-10 col-6 form-control-input commonFontSize mediumFont pl-0 pb-1">
+                            <div class="col-md-12 form-control-input commonFontSize mediumFont pl-0 pb-1">
                                 Course Description :
                                 <span class="text-dark">{{courseData.description}}</span>
                             </div>
-                            <div class="col-lg-4 col-md-2 col-6 cursorStyle form-control-input text-right btn-absolute-col pb-1">
+                            <div class="col-md-12 cursorStyle form-control-input text-right btn-absolute-col pb-1">
                                 <img *ngIf="confirmData.ei_detail.approved=='0'" (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png"
                                     class="cursorStyle img-fluid deleteImg">
                                 <img *ngIf="courseData.standard_detail && confirmData.ei_detail.approved=='0'" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
@@ -64,15 +64,15 @@
                             <!-- <div class="col-12 form-control-input commonFontSize pl-0 mediumFont">Course Duration :<span class="text-dark">
                         {{courseData.description}}
                             Years</span></div> -->
-                            <div class="col-lg-6 col-md-12 form-control-input commonFontSize pl-0 mediumFont pb-1">
+                            <div class="col-md-12 form-control-input commonFontSize pl-0 mediumFont pb-1">
                                 Starting Year :
                                 <span class="text-dark">{{courseData.start_year?courseData.start_year:''}}</span>
                             </div>
-                            <div *ngIf="!courseData.is_current_course" class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                            <div *ngIf="!courseData.is_current_course" class="col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
                                 Ending Year :
                                 <span class="text-dark">{{courseData.end_year?courseData.end_year:''}}</span>
                             </div>
-                            <div *ngIf="courseData.is_current_course" class="col-lg-6 col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
+                            <div *ngIf="courseData.is_current_course" class="col-md-12 form-control-input commonFontSize text-right pl-0 mediumFont pb-1">
                                 To Current
                             </div>
 
