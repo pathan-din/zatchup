@@ -192,8 +192,8 @@ export class StudentApproval {
         currentPage: 1,
         totalItems: 0
     }
-    displayedColumns: string[] = ['position', 'addingDate', 'zatchUpID', 'name', 'phoneNumber', 'emailID', 'userID', 'class', 'rollNumber',
-        'gender', 'age'];
+    displayedColumns: string[] = ['position', 'addingDate', 'zatchUpID', 'name', 'phoneNumber', 'emailID', 
+         'kyc_status'];
 
     dataSource: any;
     courseList: any = [];

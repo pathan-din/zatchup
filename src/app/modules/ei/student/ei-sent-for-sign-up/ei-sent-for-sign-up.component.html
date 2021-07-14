@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0"> Sent For Sign Up Student List</h2>
+                <h2 class="commonFontSize semiBoldFont m-0"> {{status == 'SENTFORAPPROVAL'? 'Request Sent For Approval': 'Request Sent For Sign Up'}}  List</h2>
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
@@ -14,13 +14,15 @@ import { DatePipe, Location } from '@angular/common';
 export class EiSentForSignUpComponent implements OnInit {
 
   signUpEi : SignUpEi
+  status: any;
   constructor(
     private router: Router,
     private alert: NotificationService,
     private loader: NgxSpinnerService,
     private baseService: BaseService,
     private datePipe: DatePipe,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) { 
     this.signUpEi = new SignUpEi();
     this.signUpEi.maxDate = new Date();
@@ -29,6 +31,7 @@ export class EiSentForSignUpComponent implements OnInit {
   ngOnInit(): void {
     this.getSignUpEi('');
     this.getAllCourse()
+    this.status = this.route.snapshot.queryParamMap.get('status')
     // this.getCourseList();
   }
 deleteRow(id){
@@ -61,7 +64,7 @@ deleteRow(id){
       "course": this.signUpEi.course_id,
       "standard": this.signUpEi.standard_id,
       "teaching_class": this.signUpEi.class_id,
-      "status": 'SENTFORSIGNUP'
+      "status":  this.route.snapshot.queryParamMap.get('status')
     }
     this.baseService.getData('ei/request-for-signup-students/', this.signUpEi.listParams).subscribe(
       (res: any) => {
