@@ -159,9 +159,13 @@
                     <ng-container matColumnDef="kyc_status">
                         <mat-header-cell *matHeaderCellDef> Kyc Status </mat-header-cell>
                         <mat-cell *matCellDef="let element ">
-                            <button class="{{element.kyc_status == '0' ? 'bg-purple' : 'bg-red'}} text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
-                                {{element.kyc_status == 0 ? 'Submitted' : 'Rejected' }} </button> 
-                                <!--     -->
+                            <button *ngIf="element.kyc_status == 0" class="bg-yellow text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
+                                Submitted </button> 
+                            <button *ngIf="element.kyc_status == 1" class="bg-paret-green text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
+                               Approved</button>
+                            <button *ngIf="element.kyc_status == 2" class="bg-red text-white rounded border-0 py-1 px-2 buttonFullWidth cursorDefault">
+                               Rejected</button>
+                               
                         </mat-cell>
                     </ng-container>
 

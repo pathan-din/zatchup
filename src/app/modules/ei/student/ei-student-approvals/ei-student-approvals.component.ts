@@ -70,7 +70,8 @@ export class EiStudentApprovalsComponent implements OnInit {
       "course": this.studentApproval.course_id,
       "standard": this.studentApproval.standard_id,
       "teaching_class": this.studentApproval.class_id,
-      "status": 'APPROVBYUSER'
+      "status": 'APPROVBYUSER',
+      // 'approvedby':3
 
   }
 
