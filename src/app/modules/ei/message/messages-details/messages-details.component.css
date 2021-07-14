@@ -87,11 +87,7 @@ label{margin-bottom: 0em;}
     height: 22px;
 }
 
-.customButton {
-    left: inherit !important;
-    top: 15px !important;
-    right: 0px !important;
-}
+
 .profile_pick img {
     position: absolute;
     left: 50%;

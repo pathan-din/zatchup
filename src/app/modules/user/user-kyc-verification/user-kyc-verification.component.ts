@@ -240,7 +240,7 @@ export class UserKycVerificationComponent implements OnInit {
                 }
               }
             } else {
-              if (res.reg_step == 7) {
+              if (res.reg_steps == 7) {
                 this.router.navigate(['user/my-educational-profile']);
 
               }else {
