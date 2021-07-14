@@ -196,11 +196,7 @@ export class UserHeaderComponent implements OnInit {
               // this.router.navigate(['user/my-educational-profile']);
               this.router.navigate(['user/profile-created']);
 
-            }
-            else if (res.reg_step == 7)  {
-              this.router.navigate(['user/my-educational-profile']);
-            }
-            else{
+            }else{
               
             }
           }
