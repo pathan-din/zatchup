@@ -266,6 +266,7 @@ export class PersonalMessagesComponent implements OnInit {
         this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res:any)=>{
           //console.log(res);
           res.uuid=element.payload.doc.id;
+          res.group=1
           if(!res.group_icon){
             res.group_icon="assets/images/userWebsite/users.png";
           }
