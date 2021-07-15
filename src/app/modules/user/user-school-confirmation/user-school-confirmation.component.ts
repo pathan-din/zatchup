@@ -58,6 +58,7 @@ export class UserSchoolConfirmationComponent implements OnInit {
       this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
         (res : any) => {
           if(res.status == true){
+            localStorage.setItem('schoolId', this.schoolId)
             this.router.navigate(['user/add-ei'],{queryParams:{'school_id':this.schoolId}});
           }
           else{
@@ -121,7 +122,6 @@ export class UserSchoolConfirmationComponent implements OnInit {
         this.studentsConfirmation = response.data;
 
         this.schoolId= response.data.school_id;
-        localStorage.setItem('schoolId', this.schoolId)
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);

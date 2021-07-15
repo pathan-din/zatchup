@@ -51,13 +51,13 @@ export class UserAddEiComponent implements OnInit {
       if (this.params.school_id)
         this.getEiDetailsBySchoolId();
     })
-    if(localStorage.getItem('schoolId')){
-      this.schoolId = (localStorage.getItem('schoolId'))
+    // if(localStorage.getItem('schoolId')){
+    //   this.schoolId = (localStorage.getItem('schoolId'))
      
-    }
-    else{
-      this.schoolId = this.params.school_id
-    }
+    // }
+    // else{
+    //   this.schoolId = this.params.school_id
+    // }
    
     if(localStorage.getItem('schoolId') ){
       this.getEiDetailsBySchoolId()
@@ -68,9 +68,12 @@ export class UserAddEiComponent implements OnInit {
   getEiDetailsBySchoolId() {
     try {
       this.SpinnerService.show();
-      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.schoolId }).subscribe((res: any) => {
+      this.model ={
+        'school_id': this.params.school_id ? this.params.school_id : (localStorage.getItem('schoolId'))
+      }
+      this.baseService.action("user/get-school-detail-schoolid/", this.model).subscribe((res: any) => {
        
-       console.log(this.schoolId, 'SchoolId');
+      //  console.log(this.schoolId, 'SchoolId');
         if (res.status == true) {
           if (res.data.school_code) {
             this.modelZatchup.zatchup_id = res.data.school_code;

@@ -77,6 +77,8 @@ export class UserEiConfirmationComponent implements OnInit {
     }
     this.getConfirmationDetails();
     this.currentDate = new Date();
+
+    localStorage.removeItem('schoolId')
   }
   addMoreCourse(){
     this.router.navigate(['user/add-new-course'], {queryParams: {'school_id':this.school_id,'check_school_info_on_zatchup':this.params.check_school_info_on_zatchup }});
