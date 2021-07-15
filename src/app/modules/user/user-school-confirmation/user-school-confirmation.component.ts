@@ -42,7 +42,9 @@ export class UserSchoolConfirmationComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.schoolId = params['school_id'];
       this.model.school_id=this.schoolId;
+     
       this.getUserconfirmationBySchoolDetails();
+     
     });
   
   }
@@ -119,6 +121,7 @@ export class UserSchoolConfirmationComponent implements OnInit {
         this.studentsConfirmation = response.data;
 
         this.schoolId= response.data.school_id;
+        localStorage.setItem('schoolId', this.schoolId)
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);

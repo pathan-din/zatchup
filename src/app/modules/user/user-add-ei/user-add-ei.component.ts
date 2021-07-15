@@ -6,7 +6,7 @@ import { BaseService } from '../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../../../services/notification/notification.service';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { analyzeAndValidateNgModules, jsDocComment } from '@angular/compiler';
 declare var $: any;
 @Component({
   selector: 'app-user-add-ei',
@@ -26,6 +26,7 @@ export class UserAddEiComponent implements OnInit {
   name_of_school_first: any = '';
   title: any;
   params: any;
+  schoolId: any;
 
   constructor(
     private router: Router,
@@ -50,12 +51,26 @@ export class UserAddEiComponent implements OnInit {
       if (this.params.school_id)
         this.getEiDetailsBySchoolId();
     })
+    if(localStorage.getItem('schoolId')){
+      this.schoolId = (localStorage.getItem('schoolId'))
+     
+    }
+    else{
+      this.schoolId = this.params.school_id
+    }
+   
+    if(localStorage.getItem('schoolId') ){
+      this.getEiDetailsBySchoolId()
+    }
+
   }
 
   getEiDetailsBySchoolId() {
     try {
       this.SpinnerService.show();
-      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.params.school_id }).subscribe((res: any) => {
+      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.schoolId }).subscribe((res: any) => {
+       
+       console.log(this.schoolId, 'SchoolId');
         if (res.status == true) {
           if (res.data.school_code) {
             this.modelZatchup.zatchup_id = res.data.school_code;
