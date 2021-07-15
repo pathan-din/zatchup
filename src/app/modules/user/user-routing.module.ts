@@ -63,6 +63,7 @@ import { UserhomeComponent } from './userhome/userhome.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { StarclassMultipleEiComponent } from './starclass-multiple-ei/starclass-multiple-ei.component';
 import { PlayHistoryComponent } from './play-history/play-history.component';
+import { SchoolApprovalListComponent } from './school-approval-list/school-approval-list.component';
 
 
 const routes: Routes = [
@@ -262,6 +263,9 @@ const routes: Routes = [
   },
   {
     path: 'user/playHistory', component:PlayHistoryComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'user/school-approval-list', component:SchoolApprovalListComponent, canActivate:[AuthGuard]
   },
 
 

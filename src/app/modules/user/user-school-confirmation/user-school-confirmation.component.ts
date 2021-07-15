@@ -52,9 +52,21 @@ export class UserSchoolConfirmationComponent implements OnInit {
   goToUserCongratulationPage() {
     try {
       this.SpinnerService.show()
-      this.model = {
-       'status' : 'APPROVBYUSER' 
+      var res_step = localStorage.getItem('res.reg_step')
+      if( res_step == '7'){
+        this.model = {
+          'status' : 'APPROVBYUSER', 
+          'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+          'is_sent_approval': true
+         }
       }
+      else{
+        this.model = {
+          'status' : 'APPROVBYUSER', 
+         
+         }
+      }
+      
       this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
         (res : any) => {
           if(res.status == true){
@@ -82,7 +94,14 @@ export class UserSchoolConfirmationComponent implements OnInit {
     this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
       (res : any) => {
         if(res.status == true){
-          this.router.navigate(["user/add-ei"]);
+          var res_step = localStorage.getItem('res.reg_step')
+          if( res_step == '7'){
+            this.router.navigate(["user/my-educational-profile"])
+          }
+          else{
+            this.router.navigate(["user/add-ei"]);
+          }
+          
         }
         else{
           this.SpinnerService.hide()
@@ -107,6 +126,7 @@ export class UserSchoolConfirmationComponent implements OnInit {
      this.SpinnerService.show(); 
       /***************Add Heighest Qualification Api*****************************/
      this.baseService.action('user/get-ei-detail-for-already-students/',this.model).subscribe(res => {
+        console.log(this.model);
         
         let response: any = {};
         response = res;

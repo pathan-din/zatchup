@@ -78,6 +78,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { StarclassMultipleEiComponent } from './starclass-multiple-ei/starclass-multiple-ei.component';
 import { PlayHistoryComponent } from './play-history/play-history.component';
+import { SchoolApprovalListComponent } from './school-approval-list/school-approval-list.component';
 
 // import { AngularFireModule } from '@angular/fire';
 
@@ -147,7 +148,8 @@ import { PlayHistoryComponent } from './play-history/play-history.component';
     UserLectureDetailsComponent,
     ChangePasswordComponent,
     StarclassMultipleEiComponent,
-    PlayHistoryComponent
+    PlayHistoryComponent,
+    SchoolApprovalListComponent
   ],
 
   imports: [
