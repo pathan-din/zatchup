@@ -22,6 +22,11 @@ export class StarclassCourseList extends Pagination {
 
 }
 
+export class ApprovalSchoolList extends Pagination {
+  displayedColumns: string[] = ['position', 'zatchupId', 'schoolName', 'Action'];
+  params: any;
+}
+
 export class StarclassLectureList extends Pagination{
     displayedColumnsOne: string[] = ['position', 'lectureTitle', 'topicsCoverd',
           'viewDetails'];

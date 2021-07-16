@@ -27,6 +27,8 @@ export class UserAddEiComponent implements OnInit {
   title: any;
   params: any;
   schoolId: any;
+  data: any;
+  schoolID: any;
 
   constructor(
     private router: Router,
@@ -40,6 +42,11 @@ export class UserAddEiComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    var id = this.route.snapshot.queryParamMap.get('school_id')
+    if(id || localStorage.getItem('schoolId')){
+      this.getSchoolConfirmationAfterLogout()
+    }
+  
     this.getAllState();
     this.model.state = '';
     this.model.city = '';
@@ -48,8 +55,8 @@ export class UserAddEiComponent implements OnInit {
       if (params['title']) {
         this.title = params['title'];
       }
-      if (this.params.school_id)
-        this.getEiDetailsBySchoolId();
+      // if (this.params.school_id || localStorage.getItem('schoolId'))
+      //   this.getSchoolConfirmationAfterLogout();
     })
     // if(localStorage.getItem('schoolId')){
     //   this.schoolId = (localStorage.getItem('schoolId'))
@@ -59,17 +66,26 @@ export class UserAddEiComponent implements OnInit {
     //   this.schoolId = this.params.school_id
     // }
    
-    if(localStorage.getItem('schoolId') ){
-      this.getEiDetailsBySchoolId()
-    }
+    // if(localStorage.getItem('schoolId') ){
+    //   this.getEiDetailsBySchoolId()
+    // }
 
   }
 
   getEiDetailsBySchoolId() {
     try {
       this.SpinnerService.show();
+      if(this.route.snapshot.queryParamMap.get('school_id')){
+        this.schoolID = this.route.snapshot.queryParamMap.get('school_id')
+      }
+      else if(localStorage.getItem('schoolId')){
+        this.schoolID = localStorage.getItem('schoolId')
+      }
+      else {
+        this.schoolID = this.data.schoolId
+      }
       this.model ={
-        'school_id': this.params.school_id ? this.params.school_id : (localStorage.getItem('schoolId'))
+        'school_id':this.schoolID
       }
       this.baseService.action("user/get-school-detail-schoolid/", this.model).subscribe((res: any) => {
        
@@ -354,5 +370,39 @@ export class UserAddEiComponent implements OnInit {
     this.router.navigate(['user/ei-profileNotOnboard']);
   }
 
+  getSchoolConfirmationAfterLogout(){
+      try {
+        this.SpinnerService.show()
+        this.baseService.getData('user/logout_view_status/').subscribe(
+          (res:any) => {
+            if(res.status == true){
+              this.SpinnerService.hide()
+              this.data = res.data
+              this.data.approved = res.data.approved_by
+              this.data.schoolId = res.data.school_id
+              
+              console.log(this.data.approved, 'approved');
+              console.log(this.data.schoolId, 'school');
+              
+              if(this.data.approved == 0){
+                this.router.navigate(['user/school-confirmation'], {queryParams:{"school_id" : this.data.schoolId}})
+              }
+              else if(this.data.approved == 1){
+                console.log();
+                
+                this.getEiDetailsBySchoolId()
+              }
+            }
+            else{
+              this.data = undefined
+            }
+            this.SpinnerService.hide()
+          }
+        )
+      } catch (error) {
+        this.SpinnerService.hide()
+      }
+    
+  }
 
 }
