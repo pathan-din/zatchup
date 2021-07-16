@@ -132,6 +132,7 @@ export class MessagesComponent implements OnInit {
            
           res.uuid=element.payload.doc.id;
           res.group=1
+          res.timestamp = 0;
           if(!res.group_icon){
             res.group_icon="assets/images/userWebsite/users.png";
           }

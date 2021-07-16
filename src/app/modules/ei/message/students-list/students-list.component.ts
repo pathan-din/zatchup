@@ -74,7 +74,7 @@ export class StudentsListComponent implements OnInit {
   attachment:any='';
   addTeacherList:any=[];
   isaccess:boolean=false;
-  checkAllT:boolean=false;
+  checkAllT:boolean=true;
   checkAllS:boolean=true;
 
   displayedColumns: string[] = ['selectCheckbox', 'position', 'profilePick', 'nameOfStudents', 
@@ -109,13 +109,18 @@ export class StudentsListComponent implements OnInit {
       }
       else{
         this.teacherGroup.push(element)
+        
+        
       }
     });
+    
    } 
     this.route.queryParams.subscribe(params=>{
       this.params = params;
     })
-    if(localStorage.getItem("sections")){
+   
+    
+    if(JSON.parse(localStorage.getItem("sections")).length>0){
       this.getGetVerifiedStudent('','')
     }
     if(localStorage.getItem("teachers")){
@@ -142,7 +147,8 @@ export class StudentsListComponent implements OnInit {
           this.teacherList= groupList;
         }
   
-
+ 
+    if(localStorage.getItem('groupUsers')){
         
         if(this.teacherGroup.length == groupList.length){
           this.checkAllT = true
@@ -150,21 +156,22 @@ export class StudentsListComponent implements OnInit {
         else{
           this.checkAllT = false
         }
-        
+      }   
       }else{
       
         this.teacherList = JSON.parse(localStorage.getItem("teachers"));
         this.dataSource1 = this.teacherList;
 //         console.log(this.teacherGroup.length, 'teacher');
 // console.log(this.teacherList.length, 'group');
-        if(this.teacherGroup.length == this.teacherList.length){
-          this.checkAllT = true
-        }
-        else{
-          this.checkAllT = false
-        }
-      }
-      
+         if(localStorage.getItem('groupUsers')){
+              if(this.teacherGroup.length == this.teacherList.length){
+                this.checkAllT = true
+              }
+              else{
+                this.checkAllT = false
+              }
+            }
+    }
     }
   }
 
@@ -345,8 +352,8 @@ export class StudentsListComponent implements OnInit {
       this.teacherList.forEach(objData => {
         if(user==objData.user_id  && ev.checked){
           objData.isadded = ev.checked;
-         }else{
-         objData.isadded = ev.checked;
+         }else if(user==objData.user_id  && !ev.checked){
+          objData.isadded = ev.checked;
           this.checkAllT=false
          }
        // objData.isadded = ev.checked;
@@ -360,7 +367,7 @@ export class StudentsListComponent implements OnInit {
     let atLeastOneTeacher:any=false;
     let groupReceipentUser:any=[];
     this.studentLists.forEach(objDataStu => {
-      console.log(objDataStu.checked);
+      
       
       if(objDataStu.checked){
         groupReceipentUser.push(objDataStu)

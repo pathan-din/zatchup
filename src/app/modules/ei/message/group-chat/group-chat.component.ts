@@ -112,7 +112,7 @@ export class GroupChatComponent implements OnInit {
    
   
     this.getTeacherList(100)
-    this.getGetVerifiedStudent("","");
+    
   }
   isAccess(id,action){
     if(action=='course'){
