@@ -135,17 +135,13 @@ export class StudentsListComponent implements OnInit {
             //groupList.splice(index,1);
             groupList[getAlreadyCurrentUserInGroupIndex].isadded=true
            }
-           //console.log(index);
-          //  if(index>-1){
-          //   groupList.splice(index,1);
-          //  }
+          
           
           })
           this.dataSource1 = groupList;
           this.teacherList= groupList;
         }
-console.log(this.teacherGroup.length, 'teacher');
-console.log(groupList.length, 'group');
+  
 
         
         if(this.teacherGroup.length == groupList.length){
