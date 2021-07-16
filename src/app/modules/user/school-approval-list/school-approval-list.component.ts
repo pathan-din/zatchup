@@ -40,6 +40,7 @@ export class SchoolApprovalListComponent implements OnInit {
       this.approvalSchoolList.params = {
         'page' :page,
         'page_size':this.approvalSchoolList.page_size,
+        'status': this.route.snapshot.queryParamMap.get('status')? this.route.snapshot.queryParamMap.get('status') : '' 
        
       }
       this.baseService.getData('user/sent_for_approval_view_status/', this.approvalSchoolList.params).subscribe(

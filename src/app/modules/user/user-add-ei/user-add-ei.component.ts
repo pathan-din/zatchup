@@ -42,10 +42,11 @@ export class UserAddEiComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    var id = this.route.snapshot.queryParamMap.get('school_id')
-    if(id || localStorage.getItem('schoolId')){
-      this.getSchoolConfirmationAfterLogout()
-    }
+    // var id = this.route.snapshot.queryParamMap.get('school_id')
+    // if(id || localStorage.getItem('schoolId')){
+    //   this.getSchoolConfirmationAfterLogout()
+    // }
+    this.getSchoolConfirmationAfterLogout()
   
     this.getAllState();
     this.model.state = '';
@@ -75,15 +76,18 @@ export class UserAddEiComponent implements OnInit {
   getEiDetailsBySchoolId() {
     try {
       this.SpinnerService.show();
+     
       if(this.route.snapshot.queryParamMap.get('school_id')){
         this.schoolID = this.route.snapshot.queryParamMap.get('school_id')
       }
+      
       else if(localStorage.getItem('schoolId')){
         this.schoolID = localStorage.getItem('schoolId')
       }
       else {
         this.schoolID = this.data.schoolId
       }
+      
       this.model ={
         'school_id':this.schoolID
       }
@@ -373,7 +377,10 @@ export class UserAddEiComponent implements OnInit {
   getSchoolConfirmationAfterLogout(){
       try {
         this.SpinnerService.show()
-        this.baseService.getData('user/logout_view_status/').subscribe(
+        this.model = {
+          'school_id': this.route.snapshot.queryParamMap.get('school_id') ? this.route.snapshot.queryParamMap.get('school_id') : ''
+        }
+        this.baseService.getData('user/logout_view_status/', this.model).subscribe(
           (res:any) => {
             if(res.status == true){
               this.SpinnerService.hide()
@@ -381,17 +388,23 @@ export class UserAddEiComponent implements OnInit {
               this.data.approved = res.data.approved_by
               this.data.schoolId = res.data.school_id
               
+              
               console.log(this.data.approved, 'approved');
               console.log(this.data.schoolId, 'school');
               
-              if(this.data.approved == 0){
-                this.router.navigate(['user/school-confirmation'], {queryParams:{"school_id" : this.data.schoolId}})
-              }
-              else if(this.data.approved == 1){
-                console.log();
-                
-                this.getEiDetailsBySchoolId()
-              }
+             
+                if(this.data.approved == 0){
+                  this.router.navigate(['user/school-confirmation'], {queryParams:{"school_id" : this.data.schoolId}})
+                }
+                else if(this.data.approved == 1){
+                  console.log();
+                  
+                  this.getEiDetailsBySchoolId()
+                }
+              
+              
+
+              
             }
             else{
               this.data = undefined
