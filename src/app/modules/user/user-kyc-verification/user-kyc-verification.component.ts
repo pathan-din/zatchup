@@ -232,7 +232,13 @@ export class UserKycVerificationComponent implements OnInit {
             
             if (res.reg_steps < 5) {
               if (res.is_already_registered == true) {
-                this.router.navigate(['user/school-confirmation']);
+                if(res.ei_request_count > 1){
+                  this.router.navigate(['user/school-approval-list'], {queryParams: {'status': 'SENTFORSIGNUP'}})
+                }
+                else{
+                  this.router.navigate(['user/school-confirmation']);
+                }
+               
               } else {
                 if (localStorage.getItem("isrejected")) {
                 } else {
