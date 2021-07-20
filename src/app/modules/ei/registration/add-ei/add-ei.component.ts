@@ -27,6 +27,7 @@ export class AddEiComponent implements OnInit {
   name_of_school_first: any = '';
   params: any;
   isDisabled: boolean = true
+  data: any;
 
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -42,11 +43,16 @@ export class AddEiComponent implements OnInit {
     this.model.state = '';
     this.model.city = '';
     this.getAllState();
-    this.getEiDetailsBySchoolId();
+    // this.getEiDetailsBySchoolId();
+    var add = this.route.snapshot.queryParamMap.get('add_school')
+    if(add != 'true'){
+      this.getSchoolConfirmationAfterLogout()
+    }
+   
     this.route.queryParams.subscribe(params => {
       this.params = params;
 
-      this.getEiDetailsBySchoolId();
+      // this.getEiDetailsBySchoolId();
 
     })
   }
@@ -296,5 +302,48 @@ export class AddEiComponent implements OnInit {
     this.router.navigate(['user/ei-profileNotOnboard']);
   }
 
+  getSchoolConfirmationAfterLogout(){
+    try {
+      this.SpinnerService.show()
+      this.model = {
+        'school_id': this.route.snapshot.queryParamMap.get('school_id') ? this.route.snapshot.queryParamMap.get('school_id') : ''
+      }
+      this.baseService.getData('subadmin/logout_view_status_sub_admin/', this.model).subscribe(
+        (res:any) => {
+          if(res.status == true){
+            this.SpinnerService.hide()
+            this.data = res.data
+            this.data.approved = res.data.approved_by
+            this.data.schoolId = res.data.school_id
+            
+            
+            console.log(this.data.approved, 'approved');
+            console.log(this.data.schoolId, 'school');
+            
+           
+              if(this.data.approved == 0){
+                this.router.navigate(['ei/subadmin-school-confirm'], {queryParams:{"school_id" : this.data.schoolId}})
+              }
+              else if(this.data.approved == 1){
+                console.log();
+                
+                this.getEiDetailsBySchoolId()
+              }
+            
+            
+
+            
+          }
+          else{
+            this.data = undefined
+          }
+          this.SpinnerService.hide()
+        }
+      )
+    } catch (error) {
+      this.SpinnerService.hide()
+    }
+  
+}
 
 }

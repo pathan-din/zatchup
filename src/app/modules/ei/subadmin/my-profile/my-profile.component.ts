@@ -364,4 +364,12 @@ export class MyProfileComponent implements OnInit {
     return ''
   }
 
+  goToSchoolApprovalList(){
+    this.router.navigate(['ei/school-approval-list'])
+  }
+
+  goToAddEi(){
+    this.router.navigate(['ei/add-ei'], {queryParams: {'add_school': 'true'}})
+  }
+
 }
