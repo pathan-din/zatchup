@@ -22,6 +22,8 @@
 .card-img-cross {
     position: absolute;
     right: 0px;
+    height: initial;
+    top: 10px;
 }
 .eyes-img {
     width: 18px;
