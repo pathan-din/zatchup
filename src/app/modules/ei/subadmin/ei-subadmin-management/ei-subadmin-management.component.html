@@ -82,14 +82,6 @@
                     ({{dasboardSummery?.total_for_subadmin_signup}})
                 </h2>
                 <div class="form-control-inputDiv rounded-0 bg-offwhite shadow-none clearfix p-2">
-                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('approved')">
-                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
-                            <p>Approved By Subadmin</p>
-                        </div>
-                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
-                            <p><span class="mr-2">:</span>{{dasboardSummery?.completed_for_subadmin_signup}}</p>
-                        </div>
-                    </div>
                     <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('SENTFORSIGNUP')">
                         <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
                             <p>Pending</p>
@@ -98,6 +90,24 @@
                             <p><span class="mr-2">:</span>{{dasboardSummery?.pending_for_subadmin_signup}}</p>
                         </div>
                     </div>
+
+                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('approved')">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Approved By Subadmin</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{dasboardSummery?.completed_for_subadmin_signup}}</p>
+                        </div>
+                    </div>
+                    <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('rejected')">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-6 commonFontSize mediumFont">
+                            <p>Rejected By Subadmin</p>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-6 col-6 commonFontSize mediumFont">
+                            <p><span class="mr-2">:</span>{{dasboardSummery?.rejected_subadmin}}</p>
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>

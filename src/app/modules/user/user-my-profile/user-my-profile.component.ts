@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-user-my-profile',
   templateUrl: './user-my-profile.component.html',
@@ -10,7 +11,11 @@ export class UserMyProfileComponent implements OnInit {
   postOptionActiveImage:string='dead';
   postOptionActiveMatrix:string='active';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private location: Location,
+
+    ) { }
 
   ngOnInit(): void {
   }
@@ -31,5 +36,8 @@ export class UserMyProfileComponent implements OnInit {
     }
     goToUserCreatePostPage(){
       this.router.navigate(['user/create-post']);
+    }
+    goBack() {
+      this.location.back();
     }
 }

@@ -157,6 +157,7 @@ import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-s
 import { PendingRequestComponent } from './subadmin/pending-request/pending-request.component';
 import { SubadminChangeRequestComponent } from './subadmin/subadmin-change-request/subadmin-change-request.component';
 import { SubadminHistoryComponent } from './subadmin/subadmin-history/subadmin-history.component';
+import { ApprovalListForTeacherComponent } from './subadmin/approval-list-for-teacher/approval-list-for-teacher.component';
 
 
 const routes: Routes = [
@@ -621,6 +622,9 @@ const routes: Routes = [
    },
    {
      path:'subadmin-history', component:SubadminHistoryComponent, canActivate:[AuthGuard]
+   },
+   {
+     path:'school-approval-list', component: ApprovalListForTeacherComponent, canActivate:[AuthGuard]
    },
    
   

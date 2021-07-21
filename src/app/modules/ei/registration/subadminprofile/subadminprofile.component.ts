@@ -118,10 +118,10 @@ export class SubadminprofileComponent implements OnInit {
 
   subAdminProfile() {
     this.errorDisplay = {};
-    if (!this.model.profile_pic) {
-      this.alert.error("Profile image is required", "Error");
-      return false;
-    }
+    // if (!this.model.profile_pic) {
+    //   this.alert.error("Profile image is required", "Error");
+    //   return false;
+    // }
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, []);
     if (this.errorDisplay.valid) {
       return false;
@@ -134,7 +134,16 @@ export class SubadminprofileComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();
-          this.router.navigate(['ei/thankyou'], { queryParams: { school_id: this.schoolId } });
+          let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
+          if(regStep == 7){
+            this.router.navigate(['ei/my-profile'])
+          }
+          else{
+            this.router.navigate(['ei/thankyou'], { queryParams: { school_id: this.schoolId } });
+          }
+          
+          
+        
         } else {
           this.SpinnerService.hide();
           this.alert.error(response.message,"Error");

@@ -47,6 +47,17 @@ export class SubadminschoolconfirmationComponent implements OnInit {
   {
     try{
      this.SpinnerService.show(); 
+    //  this.model = {
+    //    'school_id': this.route.snapshot.queryParamMap.get('school_id') ? this.route.snapshot.queryParamMap.get('school_id') : ''
+    //  }
+    if(this.route.snapshot.queryParamMap.get('school_id')){
+      this.model = {
+        'school_id': this.route.snapshot.queryParamMap.get('school_id')   
+      }
+    }
+    else {
+      
+    }
       /***************Add Heighest Qualification Api*****************************/
      this.baseService.action('subadmin/get-ei-detail-for-already-subadmin/',this.model).subscribe(res => {
         
@@ -99,7 +110,14 @@ notMe(){
        }else{
         this.SpinnerService.hide();
        }
-       this.router.navigate(['ei/add-ei']);
+       let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
+       if(regStep == 7){
+         this.router.navigate(['ei/my-profile'])
+       }
+       else{
+        this.router.navigate(['ei/add-ei']);
+       }
+     
      
        }, (error) => {
          this.SpinnerService.hide();

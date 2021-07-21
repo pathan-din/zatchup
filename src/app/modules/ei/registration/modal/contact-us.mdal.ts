@@ -78,6 +78,17 @@ export class EiCourseList extends Pagination{
   levelOfEducationName: any = '';
 }
 
+export class SchoolApprovalList extends Pagination {
+  displayedColumns: string[] = ['position', 'zatchupId', 'schoolName', 'Action'];
+  params: any = {};
+}
+
+export class SubadminViewStatus extends Pagination {
+  displayedColumns: string[] = ['SNo', 'date', 'ZatchUpID', 'Name', 'EmailID_phone', 'Designation', 'EmployeeID',
+   'Action'];
+  params : {};
+}
+
 export class ChangeRequest extends Pagination {
   displayedColumns: string[] = ['position', 'fieldChange', 'oldDetails', 'newDetails',
   'viewAttachments', 'status', 'action'];

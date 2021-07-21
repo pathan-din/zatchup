@@ -42,11 +42,11 @@ export class UserAddEiComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // var id = this.route.snapshot.queryParamMap.get('school_id')
-    // if(id || localStorage.getItem('schoolId')){
-    //   this.getSchoolConfirmationAfterLogout()
-    // }
-    this.getSchoolConfirmationAfterLogout()
+    var add = this.route.snapshot.queryParamMap.get('add-school')
+    if(add != 'true' ){
+      this.getSchoolConfirmationAfterLogout()
+    }
+    // this.getSchoolConfirmationAfterLogout()
   
     this.getAllState();
     this.model.state = '';

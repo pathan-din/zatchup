@@ -12,43 +12,29 @@
 
         </div>
 
-        <div class="row my-3" *ngIf="dataSource && dataSource.length > 0">
-            <div class="col-xl-10 col-lg-9 col-md-9 col-8 d-flex flex-row align-items-end ">
-                <div class="dropdown-lg-Div">
-                    <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
-                    <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
-                        <select (change)="getEIStatus('1')" class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="model.page_Size">
-                            <!-- <option value="">Select</option>
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option> -->
-                            <option *ngFor="let count of this.pageCounts" value="{{count}}">{{count}}</option>
-                        </select>
-                    </div>
+      
+        <div class="row my-3 align-items-center" *ngIf="subadminViewStatus.dataSource">
+            <div class="col-xl-10 col-lg-9 col-md-9 col-7 d-flex flex-row align-items-center ">
+                <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Records Per Page</label>
+                <div class="form-control-inputDiv rounded-0 p-0 shadow-none">
+                    <select class="custom-select numberDropdown mediumFont text-dark form-control-input pl-2 pr-4 py-0"
+                        (change)="getEIStatus('')" [(ngModel)]="subadminViewStatus.page_size">
+                        <option *ngFor="let count of subadminViewStatus.pageCounts" value="{{count}}">{{count}}</option>
+                    </select>
                 </div>
-                <div class="dropdown-lg-Div">
-                    <label for="" class="mediumFont commonFontSize letterspacing mr-2 mb-0">Status</label>
-                    <div class="form-control-inputDiv rounded-0 py-0 shadow-none">
-                        <select (change)="getEIStatus(model.status)" class="custom-select mediumFont text-dark form-control-input pl-2 pr-4 py-0" name="filter" [(ngModel)]="model.status">
-                            <option value="">Select</option>
-                            <option value="SENTFORSIGNUP">SENTFORSIGNUP</option>
-                            <option value="SENTFORAPPROVAL">SENTFORAPPROVAL</option>
-                             
-                             
-                        </select>
-                    </div>
-                </div>
-
-                <!-- <button type='button' class="bg-purple text-white border-0 px-5 py-2 ml-3" (click)="getEIStatus('1')">Apply</button> -->
             </div>
+            <!-- <div *ngIf="roleOfSubadmin.role != 'EISUBADMIN'" class="col-xl-2 col-lg-3 col-md-3 col-5 text-right">
+                <button type='button' class="bg-purple text-white border-0 px-2 py-1" (click)="generateExcel()">
+                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>Export</button>
+            </div> -->
         </div>
-        <div class="tableDiv" *ngIf="dataSource && dataSource.length > 0">
+        <div class="tableDiv" *ngIf="subadminViewStatus.dataSource ">
             <div class="mat-elevation-z1 table-responsive">
-                <mat-table [dataSource]="dataSource | paginate: config">
+                <mat-table [dataSource]="subadminViewStatus.dataSource | paginate: subadminViewStatus.config">
 
                     <ng-container matColumnDef="SNo">
                         <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
-                        <mat-cell *matCellDef="let element; let i = index"> {{i + startIndex}} </mat-cell>
+                        <mat-cell *matCellDef="let element; let i = index"> {{i + subadminViewStatus.startIndex}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="date">
                         <mat-header-cell *matHeaderCellDef> Date of Adding </mat-header-cell>
@@ -84,7 +70,7 @@
                             {{element.employee_no}}
                         </mat-cell>
                     </ng-container>
-                    <ng-container matColumnDef="status">
+                    <!-- <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center ">
                             <button *ngIf="element.status == 'SENTFORAPPROVAL'" type="button"
@@ -94,25 +80,25 @@
                             <button *ngIf="element.rejected == 1" type="button"
                                 class="bg-red text-white border-0 rounded mb-2 cursorDefault">Rejected by user</button>
                         </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
                     <ng-container matColumnDef="Action">
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
-                            <i class="fa fa-retweet mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"></i>
-                            <!-- <i class="fa fa-trash mr-2 color-red fa-lg" aria-hidden="true "></i> -->
+                            <!-- <i class="fa fa-retweet mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"></i> -->
+                            <i class="fa fa-trash mr-2 color-red fa-lg" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
-                    <mat-header-row *matHeaderRowDef="displayedColumns "></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
+                    <mat-header-row *matHeaderRowDef="subadminViewStatus.displayedColumns "></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: subadminViewStatus.displayedColumns; "></mat-row>
                 </mat-table>
             </div>
            
         </div>
         
-        <pagination-controls *ngIf="dataSource && dataSource.length > 0" (pageChange)="getEIStatus($event)"
+        <pagination-controls *ngIf="subadminViewStatus.dataSource" (pageChange)="getEIStatus($event)"
             class="eiPaginationTag">
         </pagination-controls>
-        <div class="row" *ngIf="dataSource && dataSource.length == 0">
+        <div class="row" *ngIf="!subadminViewStatus.dataSource ">
             <div class="col-12 pt-2 pb-2">
                 <p class="text-center dataNotFound pt-4 pb-4">Records Not Found</p>
             </div>

@@ -15,6 +15,8 @@ import { ApprovalSchoolList } from '../common/starclass-model';
 })
 export class SchoolApprovalListComponent implements OnInit {
   approvalSchoolList : ApprovalSchoolList
+  data: any;
+  model: { school_id: string; };
 
   constructor(
     private router: Router,
@@ -78,7 +80,45 @@ export class SchoolApprovalListComponent implements OnInit {
   }
 
   goToAddEiPage(schoolId){
-    this.router.navigate(['user/add-ei'], {queryParams: {'school_id': schoolId}})
+    
+    try {
+      this.loader.show()
+      this.model = {
+        'school_id': schoolId
+      }
+      this.baseService.getData('user/logout_view_status/', this.model).subscribe(
+        (res:any) => {
+          if(res.status == true){
+            this.loader.hide()
+            this.data = res.data
+            this.data.approved = res.data.approved_by
+            this.data.schoolId = res.data.school_id
+            
+            
+            console.log(this.data.approved, 'approved');
+            console.log(this.data.schoolId, 'school');
+            
+          
+              if(this.data.approved == 0){
+                this.router.navigate(['user/school-confirmation'], {queryParams:{"school_id" : this.data.schoolId}})
+              }
+              else if(this.data.approved == 1){
+                console.log();
+                this.router.navigate(['user/add-ei'], {queryParams: {'school_id': schoolId}})
+               
+              }
+             
+          }
+          else{
+            this.data = undefined
+          }
+          this.loader.hide()
+        }
+      )
+    } catch (error) {
+      this.loader.hide()
+    }
+    // this.router.navigate(['ei/add-ei'], {queryParams: {'school_id': schoolId}})
   }
 
   goBack(){

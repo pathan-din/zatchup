@@ -281,7 +281,7 @@ export class EiSidenavComponent implements OnDestroy {
               if(response.reg_step==1){
                 this.router.navigate(['ei/kyc-verification']);
               }else if(response.reg_step==2){
-                this.router.navigate(['ei/add-ei']);
+                // this.router.navigate(['ei/add-ei']);
                 //ei/add-ei
                 //ei/subadminprofile
               }

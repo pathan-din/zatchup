@@ -175,6 +175,7 @@ import { SubadminSettingComponent } from './subadmin/subadmin-setting/subadmin-s
 import { PendingRequestComponent } from './subadmin/pending-request/pending-request.component';
 import { SubadminChangeRequestComponent } from './subadmin/subadmin-change-request/subadmin-change-request.component';
 import { SubadminHistoryComponent } from './subadmin/subadmin-history/subadmin-history.component';
+import { ApprovalListForTeacherComponent } from './subadmin/approval-list-for-teacher/approval-list-for-teacher.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -366,6 +367,7 @@ const config = {
     PendingRequestComponent,
     SubadminChangeRequestComponent,
     SubadminHistoryComponent,
+    ApprovalListForTeacherComponent,
   ],
   imports: [
     CommonModule,
