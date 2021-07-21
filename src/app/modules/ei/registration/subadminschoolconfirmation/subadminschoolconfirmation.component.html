@@ -1,23 +1,18 @@
-
-<div class="container-fluid contentSpaceTop">
-    <div class="row pl-5 pr-5">
-        <div class="col-md-8">
-            <img class="img-fluid kycVerificationleftImage mt-5 mb-5 pb-5 pt-5"
-                src="assets/images/userWebsite/kyc_verification_leftimage.png">
+<div class="container-fluid">
+    <div class="row px-5 py-5 align-items-center">
+        <div class="col-md-8 order-2 text-center">
+            <img class="img-fluid left-Image" src="assets/images/userWebsite/kyc_verification_leftimage.png">
         </div>
-        <div class="col-md-4 pl-0 pr-5 mobilePR">
-            <div class="form-group row mt-5 mb-5 pb-5 pt-5 mobilePTB">
+        <div class="col-md-4 order-1 order-sm-6">
+            <div class="form-group row">
                 <div class="col-sm-12 form-control-inputDiv">
-                    <div class="text-center pr-5 mt-3 pl-5 mb-3 mobilePLR">
+                    <div class="text-center py-4 px-5">
                         <h2 class="mb-4 semiBoldFont">Welcome to ZatchUp </h2>
-
-
-                        
-                        <p class="regularFont">{{studentsConfirmation.name_of_school}}  has added you as subadmin. </p>
-                        <p class="regularFont">If this is you, please press confirm, If this is not you, please click not me and sign up as <span class="mediumFont">New user</span></p>
-                        <button (click)="continue()" type="submit" class="btn common-btn btn-green regularFont mt-4 mr-2"
-                        >Continue</button>
-                        <button (click)="notMe()" type="submit" class="btn common-btn btn-red-outline regularFont mt-4">Not Me</button>
+                        <p class="regularFont">{{studentsConfirmation.name_of_school}}  has added you as Subadmin. </p>
+                        <p class="regularFont">If this is you, please press confirm, If this is not you, please click not me and sign up as 
+                            <span class="mediumFont">New User</span></p>
+                        <button (click)="continue()" type="submit" class="btn btn-green text-white regularFont mt-4 mr-2">Continue</button>
+                        <button (click)="notMe()" type="submit" class="btn btn-red-outline regularFont mt-4">Not Me</button>
                     </div>
                 </div>
             </div>

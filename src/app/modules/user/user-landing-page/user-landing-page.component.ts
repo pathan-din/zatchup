@@ -13,7 +13,12 @@ export class UserLandingPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  myProfile() {
+    this.router.navigate(['user/my-profile']);
+ }
+
   goToPaymentPage() {
     this.router.navigate(['user/payment-page']);
  }
+
 }

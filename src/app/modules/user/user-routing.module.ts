@@ -267,7 +267,9 @@ const routes: Routes = [
   {
     path: 'user/school-approval-list', component:SchoolApprovalListComponent, canActivate:[AuthGuard]
   },
-
+  {
+    path: 'user/my-profile', component:UserMyProfileComponent, canActivate: [AuthGuard]
+  },
 
   {
     path: '**', component: UserPageNotFoundComponent

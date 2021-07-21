@@ -9,8 +9,8 @@
                     <div class="card-header bg-white ">
                         <div class="row align-items-center">
                             <div class="col-md-10 d-flex align-items-center">
-                                <img src="assets/images/userWebsite/study_student.png" class="img-fluid border rounded-circle pf-img">
-                                <h4 class="commonFontSize semiBoldFont m-0 ml-3">Simmi Sharma</h4>
+                                <img src="assets/images/userWebsite/study_student.png" (click)="myProfile()" class="img-fluid border rounded-circle pf-img cursorStyle">
+                                <h4 class="commonFontSize semiBoldFont m-0 ml-3 cursorStyle" (click)="myProfile()">Simmi Sharma</h4>
                             </div>
                             <div class="col-md-2 text-right">
                                 <img src="assets/images/userWebsite/3_dote_vertical_icons.png" class="img-fluid border-0 "></div>
@@ -88,8 +88,8 @@
                     <div class="card-header bg-white ">
                         <div class="row align-items-center ">
                             <div class="col-md-10 d-flex align-items-center">
-                                <img src="assets/images/userWebsite/study_student.png" class="img-fluid border rounded-circle pf-img">
-                                <h4 class="commonFontSize semiBoldFont m-0 ml-3">Simmi Sharma</h4>
+                                <img src="assets/images/userWebsite/study_student.png" class="img-fluid border rounded-circle pf-img cursorStyle" (click)="myProfile()">
+                                <h4 class="commonFontSize semiBoldFont m-0 ml-3 cursorStyle" (click)="myProfile()">Simmi Sharma</h4>
                             </div>
                             <div class="col-md-2 text-right">
                                 <img src="assets/images/userWebsite/3_dote_vertical_icons.png" class="img-fluid border-0 "></div>
@@ -173,10 +173,10 @@
                         <div class="card-img-cross text-right p-2">
                             <img src="assets/images/userWebsite/danger_close_icon.png" class="img-fluid bg-white rounded-circle p-1 cursorStyle">
                         </div>
-                        <h3 class="text-center commonFontSize semiBoldFont my-2">Nitesh</h3>
+                        <h3 class="text-center commonFontSize semiBoldFont my-2 cursorStyle" (click)="myProfile()">Nitesh</h3>
 
                         <div class=" text-center">
-                            <button type="submit" class="btn addbuddy-btn regularFont px-3">Add Buddy</button>
+                            <button type="submit" class="btn addbuddy-btn regularFont px-3">Follow</button>
                         </div>
                     </div>
                     <div class="card text-center mb-3 suggestionCard">
@@ -184,10 +184,10 @@
                         <div class="card-img-cross text-right p-2">
                             <img src="assets/images/userWebsite/danger_close_icon.png" class="img-fluid bg-white rounded-circle p-1 cursorStyle">
                         </div>
-                        <h3 class="text-center commonFontSize semiBoldFont my-2">Aman Kumar</h3>
+                        <h3 class="text-center commonFontSize semiBoldFont my-2 cursorStyle" (click)="myProfile()">Aman Kumar</h3>
 
                         <div class=" text-center">
-                            <button type="submit" class="btn addbuddy-btn regularFont px-3">Add Buddy</button>
+                            <button type="submit" class="btn addbuddy-btn regularFont px-3">Follow</button>
                         </div>
                     </div>
                     <div class="card text-center mb-3 suggestionCard">
@@ -195,10 +195,10 @@
                         <div class="card-img-cross text-right p-2">
                             <img src="assets/images/userWebsite/danger_close_icon.png" class="img-fluid bg-white rounded-circle p-1 cursorStyle">
                         </div>
-                        <h3 class="text-center commonFontSize semiBoldFont my-2">Saurabh</h3>
+                        <h3 class="text-center commonFontSize semiBoldFont my-2 cursorStyle" (click)="myProfile()">Saurabh</h3>
 
                         <div class=" text-center">
-                            <button type="submit" class="btn addbuddy-btn regularFont px-3">Add Buddy</button>
+                            <button type="submit" class="btn addbuddy-btn regularFont px-3">Follow</button>
                         </div>
                     </div>
                     <button type="submit" class="btn common-btn regularFont viewAll textSpace w-50 mt-3" (click)="goToPaymentPage()">View All</button>
@@ -210,4 +210,4 @@
     </div>
 </div>
 
-<app-user-footer></app-user-footer>
+<!-- <app-user-footer></app-user-footer> -->
