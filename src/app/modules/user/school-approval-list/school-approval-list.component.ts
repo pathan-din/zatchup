@@ -78,7 +78,9 @@ export class SchoolApprovalListComponent implements OnInit {
       this.loader.hide()
     }
   }
-
+// goToAddEiPage(schoolId){
+//   this.router.navigate(['user/add-ei'], {queryParams: {'school_id': schoolId}})
+// }
   goToAddEiPage(schoolId){
     
     try {
@@ -118,8 +120,9 @@ export class SchoolApprovalListComponent implements OnInit {
     } catch (error) {
       this.loader.hide()
     }
-    // this.router.navigate(['ei/add-ei'], {queryParams: {'school_id': schoolId}})
+   
   }
+
 
   goBack(){
     this.location.back()

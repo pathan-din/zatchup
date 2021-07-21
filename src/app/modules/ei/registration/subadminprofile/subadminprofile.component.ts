@@ -129,7 +129,7 @@ export class SubadminprofileComponent implements OnInit {
       return false;
     }
     try {
-
+     
       this.SpinnerService.show();
       this.baseService.action('subadmin/additional-info/', this.model).subscribe(res => {
         let response: any = {}

@@ -63,14 +63,20 @@ export class UserSchoolConfirmationComponent implements OnInit {
       else{
         this.model = {
           'status' : 'APPROVBYUSER', 
+        
          
          }
       }
+      // this.model = {
+      //   'status' : 'APPROVBYUSER', 
+      //   'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+      //   'is_sent_approval': true
+      //  }
       
       this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
         (res : any) => {
           if(res.status == true){
-            localStorage.setItem('schoolId', this.schoolId)
+            localStorage.setItem('schoolId', this.route.snapshot.queryParamMap.get('school_id'))
             this.router.navigate(['user/add-ei'],{queryParams:{'school_id':this.schoolId}});
           }
           else{
@@ -95,12 +101,7 @@ export class UserSchoolConfirmationComponent implements OnInit {
       (res : any) => {
         if(res.status == true){
           var res_step = localStorage.getItem('res.reg_step')
-          if( res_step == '7'){
-            this.router.navigate(["user/my-educational-profile"])
-          }
-          else{
-            this.router.navigate(["user/add-ei"]);
-          }
+          this.router.navigate(["user/add-ei"]);
           
         }
         else{

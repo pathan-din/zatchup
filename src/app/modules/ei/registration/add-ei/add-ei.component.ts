@@ -159,7 +159,7 @@ export class AddEiComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          this.router.navigate(['ei/subadminprofile']);
+          this.router.navigate(['ei/subadminprofile'], {queryParams: {'school_id': this.route.snapshot.queryParamMap.get('school_id')}});
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
