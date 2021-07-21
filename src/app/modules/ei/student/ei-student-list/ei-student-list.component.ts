@@ -271,7 +271,7 @@ export class EiStudentListComponent implements OnInit {
 
             }
           }
-          alert(errorCollection);
+          this.alert.error(errorCollection,"Error");
 
         }
 
