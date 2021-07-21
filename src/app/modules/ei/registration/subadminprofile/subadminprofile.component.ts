@@ -32,6 +32,7 @@ export class SubadminprofileComponent implements OnInit {
     "icon": "fa fa-camera",
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
+  regStep: any;
 
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -52,6 +53,7 @@ export class SubadminprofileComponent implements OnInit {
 
     });
     this.getEiNumber();
+    this.getRegStep()
     this.imagePath = this.baseService.serverImagePath;
   }
 
@@ -134,8 +136,8 @@ export class SubadminprofileComponent implements OnInit {
         response = res;
         if (response.status == true) {
           this.SpinnerService.hide();
-          let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
-          if(regStep == 7){
+          // let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
+          if(this.regStep == 5){
             this.router.navigate(['ei/my-profile'])
           }
           else{
@@ -168,6 +170,18 @@ export class SubadminprofileComponent implements OnInit {
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
+  }
+
+  getRegStep(){
+    this.baseService.getData('user/reg-step-count/').subscribe(
+      (res: any) => {
+        if(res.status == true){
+          this.regStep = res.reg_step
+          console.log(this.regStep);
+          
+        }
+      }
+    )
   }
 
 }
