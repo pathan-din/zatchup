@@ -139,10 +139,20 @@ export class UserSchoolConfirmationComponent implements OnInit {
           this.router.navigate(['user/kyc-verification']);
           return;
 
-        }
-        this.studentsConfirmation = response.data;
+        }else{
+          if(response.data){
+            this.studentsConfirmation = response.data;
 
-        this.schoolId= response.data.school_id;
+            this.schoolId= response.data.school_id;
+          }
+          else{
+            this.SpinnerService.hide()
+            this.alert.error(response.message, 'Error')
+            this.router.navigate(['user/add-ei'])
+          }
+          
+        }
+        
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);

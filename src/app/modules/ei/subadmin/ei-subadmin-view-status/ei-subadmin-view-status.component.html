@@ -85,7 +85,7 @@
                         <mat-header-cell *matHeaderCellDef class="justify-content-center"> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element " class="justify-content-center">
                             <!-- <i class="fa fa-retweet mr-2 color-lightBlue fa-lg cursorStyle" aria-hidden="true"></i> -->
-                            <i class="fa fa-trash mr-2 color-red fa-lg" aria-hidden="true "></i>
+                            <i (click)="deleteRow(element.id)" class="fa fa-trash mr-2 color-red fa-lg cursorStyle" aria-hidden="true "></i>
                         </mat-cell>
                     </ng-container>
                     <mat-header-row *matHeaderRowDef="subadminViewStatus.displayedColumns "></mat-header-row>

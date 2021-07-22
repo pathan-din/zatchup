@@ -154,4 +154,24 @@ export class EiSubadminViewStatusComponent implements OnInit {
       this.loader.hide()
     }
   }
+
+  deleteRow(id){
+    try {
+      this.loader.show()
+    this.baseService.action("ei/delete-request-for-signup-students/",{id:id}).subscribe((res:any)=>{
+      if(res.status == true){
+        this.loader.hide()
+        this.alert.success(res.message,"Success")
+        this.getEIStatus('');
+      }else{
+        this.loader.hide()
+        this.alert.error(res.error.message[0],"Error")
+      }
+    },(error)=>{
+      this.alert.error(error.error,"Error")
+    })
+    } catch (e) {
+    
+    }
+  }
 }

@@ -17,6 +17,7 @@ export class SchoolApprovalListComponent implements OnInit {
   approvalSchoolList : ApprovalSchoolList
   data: any;
   model: { school_id: string; };
+  status: any;
 
   constructor(
     private router: Router,
@@ -31,6 +32,7 @@ export class SchoolApprovalListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.status = this.route.snapshot.queryParamMap.get('status')
    this.getApprovalSchoolList()
   }
 
