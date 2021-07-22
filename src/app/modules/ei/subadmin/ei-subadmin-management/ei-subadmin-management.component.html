@@ -79,7 +79,7 @@
             </div>
             <div class="col-xl-6 col-lg-7 col-md-6">
                 <h2 class="commonFontSize semiBoldFont">View Status
-                    ({{dasboardSummery?.total_for_subadmin_signup}})
+                    ({{dasboardSummery?.pending_for_subadmin_signup + dasboardSummery?.completed_for_subadmin_signup + dasboardSummery?.rejected_subadmin}})
                 </h2>
                 <div class="form-control-inputDiv rounded-0 bg-offwhite shadow-none clearfix p-2">
                     <div class="row cursorStyle" (click)="goToEiSubadminViewStatusPage('SENTFORSIGNUP')">
