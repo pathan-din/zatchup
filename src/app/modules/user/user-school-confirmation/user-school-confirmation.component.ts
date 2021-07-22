@@ -26,6 +26,7 @@ export class UserSchoolConfirmationComponent implements OnInit {
   title:any;
   schoolId:any;
   isStudent: boolean = true;
+  statusParams: any;
 
   constructor(
     private router: Router,
@@ -47,13 +48,22 @@ export class UserSchoolConfirmationComponent implements OnInit {
      
     });
   
+    this.statusParams = this.route.snapshot.queryParamMap.get('status')
+  
   }
 
   goToUserCongratulationPage() {
     try {
       this.SpinnerService.show()
-      var res_step = localStorage.getItem('res.reg_step')
-      if( res_step == '7'){
+    
+      if( this.statusParams == 'SENTFORSIGNUP'){
+        this.model = {
+          'status' : 'APPROVBYUSER', 
+          'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+         'is_sent_up': true
+         }
+      }
+      else if(this.statusParams == 'SENTFORAPPROVAL'){
         this.model = {
           'status' : 'APPROVBYUSER', 
           'school_id': this.route.snapshot.queryParamMap.get('school_id'),
@@ -62,16 +72,11 @@ export class UserSchoolConfirmationComponent implements OnInit {
       }
       else{
         this.model = {
-          'status' : 'APPROVBYUSER', 
-        
-         
-         }
+          'status' : 'APPROVBYUSER',
+          'is_sent_up': true,
+        'school_id': this.schoolId
+        }
       }
-      // this.model = {
-      //   'status' : 'APPROVBYUSER', 
-      //   'school_id': this.route.snapshot.queryParamMap.get('school_id'),
-      //   'is_sent_approval': true
-      //  }
       
       this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
         (res : any) => {
@@ -95,7 +100,8 @@ export class UserSchoolConfirmationComponent implements OnInit {
   try {
     this.SpinnerService.show()
     this.model = {
-     'status' : 'REJECTBYUSER' 
+     'status' : 'REJECTBYUSER' ,
+     'school_id': this.route.snapshot.queryParamMap.get('school_id'),
     }
     this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
       (res : any) => {

@@ -45,8 +45,9 @@ export class UserAddEiComponent implements OnInit {
     var add = this.route.snapshot.queryParamMap.get('add-school')
     if(add != 'true' ){
       this.getSchoolConfirmationAfterLogout()
+    }else{
+      this.getEiDetailsBySchoolId()
     }
-    // this.getSchoolConfirmationAfterLogout()
   
     this.getAllState();
     this.model.state = '';
@@ -105,6 +106,7 @@ export class UserAddEiComponent implements OnInit {
             this.model.city = model.city;
             this.getSchoolListBycity(model.city_id)
             this.name_of_school_first = model.name_of_school;
+            // this.schoolID = model.id 
             this.model.state = model.state;
             this.model.address1 = model.address1;
             this.model.full_address = model.address1 + ' ' + model.address2;
@@ -261,6 +263,7 @@ export class UserAddEiComponent implements OnInit {
         let response: any = {};
         response = res;
         this.schoolList = response.results;
+     
         this.SpinnerService.hide();
 
       }, (error) => {
@@ -307,6 +310,7 @@ export class UserAddEiComponent implements OnInit {
         this.modelZatchup.zatchup_id = obj.school_code;
         this.model.address1 = obj.address1;
         this.model.full_address = obj.address1 + ' ' + obj.address2;
+        this.model.school_id = obj.id
       }
 
 

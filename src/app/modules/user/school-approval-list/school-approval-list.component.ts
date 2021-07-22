@@ -83,7 +83,7 @@ export class SchoolApprovalListComponent implements OnInit {
 // goToAddEiPage(schoolId){
 //   this.router.navigate(['user/add-ei'], {queryParams: {'school_id': schoolId}})
 // }
-  goToAddEiPage(schoolId){
+  goToAddEiPage(schoolId, status){
     
     try {
       this.loader.show()
@@ -99,12 +99,13 @@ export class SchoolApprovalListComponent implements OnInit {
             this.data.schoolId = res.data.school_id
             
             
+            
             console.log(this.data.approved, 'approved');
             console.log(this.data.schoolId, 'school');
             
           
               if(this.data.approved == 0){
-                this.router.navigate(['user/school-confirmation'], {queryParams:{"school_id" : this.data.schoolId}})
+                this.router.navigate(['user/school-confirmation'], {queryParams:{"school_id" : this.data.schoolId, "status":  status}})
               }
               else if(this.data.approved == 1){
                 console.log();
