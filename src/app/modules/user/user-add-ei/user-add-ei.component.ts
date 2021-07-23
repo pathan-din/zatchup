@@ -43,11 +43,26 @@ export class UserAddEiComponent implements OnInit {
 
   ngOnInit(): void {
     var add = this.route.snapshot.queryParamMap.get('add-school')
-    if(add != 'true' ){
-      this.getSchoolConfirmationAfterLogout()
-    }else{
+    var reject = this.route.snapshot.queryParamMap.get('reject')
+    var title = this.route.snapshot.queryParamMap.get('title')
+    console.log(add,'Add');
+    console.log(reject, 'Reject');
+    if(add == 'true' || reject == 'true'){
       this.getEiDetailsBySchoolId()
     }
+    else if(title) {
+      this.getEiDetailsBySchoolId()
+     
+    }
+    else{
+       this.getSchoolConfirmationAfterLogout()
+    }
+    
+    // if(add != 'true' || reject != 'true'  ){
+    
+    // }else{
+     
+    // }
   
     this.getAllState();
     this.model.state = '';

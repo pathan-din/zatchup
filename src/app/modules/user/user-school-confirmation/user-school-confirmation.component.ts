@@ -99,15 +99,27 @@ export class UserSchoolConfirmationComponent implements OnInit {
  redirectToCurrentlyStudent(){
   try {
     this.SpinnerService.show()
-    this.model = {
-     'status' : 'REJECTBYUSER' ,
-     'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+    // let add = 
+    if( this.statusParams == 'SENTFORSIGNUP' || this.statusParams == 'SENTFORAPPROVAL'){
+      this.model = {
+        'status' : 'REJECTBYUSER', 
+        'school_id': this.route.snapshot.queryParamMap.get('school_id'),
+         
+       }
     }
+
+    else{
+      this.model = {
+        'status' : 'REJECTBYUSER' ,
+      'school_id': this.schoolId
+      }
+    }
+  
     this.baseService.action('user/change-status-accepted-by-user/', this.model).subscribe(
       (res : any) => {
         if(res.status == true){
           var res_step = localStorage.getItem('res.reg_step')
-          this.router.navigate(["user/add-ei"]);
+          this.router.navigate(["user/add-ei"], {queryParams: {'reject': 'true'}});
           
         }
         else{
