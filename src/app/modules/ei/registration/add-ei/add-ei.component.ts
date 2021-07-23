@@ -48,6 +48,9 @@ export class AddEiComponent implements OnInit {
     if(add != 'true'){
       this.getSchoolConfirmationAfterLogout()
     }
+    else{
+      this.getEiDetailsBySchoolId();
+    }
    
     this.route.queryParams.subscribe(params => {
       this.params = params;

@@ -291,7 +291,7 @@ export class EiSidenavComponent implements OnDestroy {
                 //ei/subadminprofile
                 //ei/thankyou
               }else if(response.reg_step==4 && response.is_kyc_approved===true){
-                this.router.navigate(['ei/my-profile']);
+                // this.router.navigate(['ei/my-profile']);
               }else{
                 this.router.navigate(['ei/kyc-not-approved']);
               }

@@ -109,14 +109,15 @@ notMe(){
          return;
        }else{
         this.SpinnerService.hide();
-       }
-       let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
-       if(regStep == 7){
-         this.router.navigate(['ei/my-profile'])
-       }
-       else{
         this.router.navigate(['ei/add-ei']);
        }
+      //  let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
+      //  if(regStep == 7){
+      //    this.router.navigate(['ei/my-profile'])
+      //  }
+      //  else{
+       
+      //  }
      
      
        }, (error) => {

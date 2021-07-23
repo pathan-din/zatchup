@@ -20,7 +20,7 @@ export class SubadmincongratulationComponent implements OnInit {
     this.getRegStep()
   }
   goToUserLandingPage(){
-    if(this.regStep >= 4 && this.kycApproved == true && this.schoolApproved == true ){
+    if(this.regStep >= 4 && this.kycApproved == true ){
       this.router.navigate(['ei/my-profile'])
     }
     else {
