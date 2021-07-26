@@ -161,6 +161,59 @@
                                                 *ngIf="kycChangeRequestDetails.kycDetails">{{kycChangeRequestDetails.kycDetails.new_value}}</span>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row  ml-0 mr-0" style="display: grid;">
+                                            <label for="" class="mediumFont commonFontSize letterspacing">
+                                                ID Number </label>
+                                            <span
+                                                *ngIf="kycChangeRequestDetails.kycDetails">{{kycChangeRequestDetails.kycDetails.kyc_id_no}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" *ngIf="kycChangeRequestDetails.approveOrReject == 'reject'">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing">
+                                                Rejection Reason </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <select class="custom-select  form-control-input" id="reason"
+                                                    name="rejection_reason"
+                                                    [(ngModel)]="kycChangeRequestDetails.rejectionReason" required>
+                                                    <option value=""> Select Reason</option>
+                                                    <option value="Unclear Photo">Unclear Photo</option>
+                                                    <option value="Invalid Photo">Invalid Photo</option>
+                                                    <option value="Wrong Name">Wrong Name</option>
+                                                    <option value="Wrong DOB">Wrong DOB</option>
+                                                    <option value="Wrong ID Number">Wrong ID Number</option>
+                                                </select>
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="kycChangeRequestDetails.errorDisplay.rejection_reason">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" *ngIf="kycChangeRequestDetails.approveOrReject == 'reject'">
+                                        <div class="form-group row  ml-0 mr-0">
+                                            <label for="" class="mediumFont commonFontSize letterspacing">
+                                                Rejection Remarks </label>
+                                            <div
+                                                class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                                <textarea
+                                                    class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                                    type="text" cols="4" rows="5" id="remark"
+                                                    placeholder="Rejection Remarks" name="rejection_remark"
+                                                    [(ngModel)]="kycChangeRequestDetails.rejectionRemark"
+                                                    required></textarea>
+                                            </div>
+                                            <div class="required errorMsg"
+                                                [innerHtml]="kycChangeRequestDetails.errorDisplay.rejection_remark">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-12 mb-3 text-center">
                                         <button type="button" (click)="ApproveRejectRequest()"
                                             class="{{kycChangeRequestDetails.approveOrReject == 'approve' ? 'bg-paret-green' : 'bg-danger'}} border-0 text-white text-center px-4 py-2 commonFontSize mediumFont letterspacing ">
