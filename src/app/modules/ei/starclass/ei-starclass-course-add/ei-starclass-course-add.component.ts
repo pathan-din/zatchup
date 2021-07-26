@@ -39,6 +39,11 @@ export class EiStarclassCourseAddComponent implements OnInit {
     this.action = this.activeRoute.snapshot.queryParamMap.get('action');
     if (this.action == 'edit')
       this.getCourseDetails()
+      this.model.level_of_education = ''
+      if(this.model.level_of_education == 'Others'){
+        this.model.level_of_education = 'Others'
+      }
+      
   }
 
   handleFileInput(file) {
@@ -132,19 +137,19 @@ export class EiStarclassCourseAddComponent implements OnInit {
       if (this.action == 'edit') {
         formData.append('id', this.activeRoute.snapshot.queryParamMap.get('id'));
       }
-      formData.append('course_name', this.model.course_name);
-      formData.append('level_of_education', this.model.level_of_education);
+      if(this.model.level_of_education == 'Others'){
+        formData.append('level_of_education', this.model.level_of_education_others)
+      }
+      else{
+        formData.append('level_of_education', this.model.level_of_education);
+      }
       if (this.uploadedContent) {
         formData.append('course_preview', this.uploadedContent);
       }
-
       if (this.uploadedContent_image) {
         formData.append('course_image', this.uploadedContent_image);
       }
-
-      // let audience = [{"user_id":944,"permission_type":"edit"}]
-      //  let audience=  JSON.stringify([{"user_id":944,"permission_type":"edit"}]);
-      //   formData.append('audience',audience);
+      formData.append('course_name', this.model.course_name);
       formData.append('field', this.model.field);
       formData.append('standard', this.model.standard);
       formData.append('subject', this.model.subject);

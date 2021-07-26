@@ -114,29 +114,29 @@
                     </div>
                 </div>
 
-                <div *ngIf="epData.past_school_data" class="row form-control-inputDiv py-3 px-2 mt-3">
+                <div *ngIf="pastDetails" class="row form-control-inputDiv py-3 px-2 mt-3">
                     <div class="col-md-12">
                         <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Past School Details </h2>
                         <div class="col-md-12">
                             <hr>
                         </div>
-                        <div class="col-md-12" *ngFor="let objPSD of epData.past_school_data">
+                        <div class="col-md-12" *ngFor="let objPSD of pastDetails">
                             <p class="m-0 mb-1 fontSize-16 commonFontSize semiBoldFont">School Name:
-                                <span class="regularFont">{{objPSD.name_of_school}}
+                                <span class="regularFont">{{objPSD.school_name}}
                                 </span> 
                             </p>
                             <div class="row">
-                                <div *ngIf="objPSD.school_code" class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16"> 
-                                    ZatchUp ID : <span class="regularFont">{{objPSD.school_code}}</span>
+                                <div *ngIf="objPSD.zatchup_id" class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16"> 
+                                    ZatchUp ID : <span class="regularFont">{{objPSD.zatchup_id}}</span>
                                 </div>
-                                <!-- <div *ngIf="epData.employee_num" class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
-                                    Employee Number : <span class="regularFont">{{epData.employee_num}}</span>
-                                </div> -->
+                                <div *ngIf="objPSD.employee_num" class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                    Employee Number : <span class="regularFont">{{objPSD.employee_num}}</span>
+                                </div>
                                 <div class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16">
-                                    State : <span class="regularFont">{{objPSD.state__state}} </span>
+                                    State : <span class="regularFont">{{objPSD.state}} </span>
                                 </div>
                                 <div class="col-md-5 semiBoldFont commonFontSize mb-1 fontSize-16">
-                                    City : <span class="regularFont">{{objPSD.city__city}} </span>
+                                    City : <span class="regularFont">{{objPSD.city}} </span>
                                 </div>
                                 <div *ngIf="objPSD.address1" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
                                     Address : <span class="regularFont">{{objPSD.address1}} {{objPSD.address2}}</span>

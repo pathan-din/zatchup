@@ -81,7 +81,7 @@
                             <div class="required errorMsg" [innerHtml]="errorDisplay.dob"></div>
                         </div>
                     </div>
-                    <div class="form-group row ">
+                    <div class="form-group row " *ngIf=" model.kyc_type == '' || model.kyc_type == 'Aadhar'" >
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="description" class=" commonFontSize mediumFont letterspacing">Upload
                                 Photo</label>
@@ -95,6 +95,40 @@
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
                     </div>
+
+                    <div class="form-group row " *ngIf="model.kyc_type == 'Dl'">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload
+                                Photo</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input
+                                    class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing"
+                                    type="file" (change)="handleFileInput($event.target.files); isValid();"
+                                    name="document" [(ngModel)]="uploadedContent" required>
+                            </div>
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
+                    </div>
+
+
+                    <div class="form-group row " *ngIf="model.kyc_type == 'Passport'">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="description" class=" commonFontSize mediumFont letterspacing">Upload
+                                Photo</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input
+                                    class="form-control-input form-control form-control-sm h-100 commonFontSize regularFont letterspacing"
+                                    type="file" (change)="handleFileInput($event.target.files); isValid();"
+                                    name="document" [(ngModel)]="uploadedContent" required>
+                            </div>
+                        </div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.document"></div>
+                    </div>
+
+
+
                     <div class="form-group row ">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="description" class=" commonFontSize mediumFont letterspacing">Upload Back
@@ -116,7 +150,7 @@
 
                     <button type="button" (click)="goToUserQualificationPage()" [disabled]="submitDisable"
                         class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing">
-                        Verify Your KYC
+                        Submit
                     </button>
 
                 </form>

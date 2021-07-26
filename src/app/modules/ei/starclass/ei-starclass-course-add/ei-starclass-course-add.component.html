@@ -70,7 +70,7 @@
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.course_name"></div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Education Level </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -78,6 +78,37 @@
                                 </div>
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
+                        </div> -->
+
+                        <div class="col-md-6" >
+                            <div class="form-group row  ml-0 mr-0">
+                                <label for="" class="mediumFont commonFontSize letterspacing"> Education Level </label>
+                                <div
+                                    class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <select class="custom-select  form-control-input down-arrow-6" id="level_of_education"
+                                        name="level_of_education"
+                                        [(ngModel)]="model.level_of_education" [(required)]= !model.level_of_education_others>
+                                        <option value=""> Select Education Level</option>
+                                        <option value="School (Up to 12th standard)">School (Up to 12th standard)</option>
+                                        <option value="Undergrad">Undergrad</option>
+                                        <option value="Post Grad">Post Grad</option>
+                                        <option value="Professional course">Professional course</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                   
+                                    
+                                </div>
+                                <div *ngIf="model.level_of_education == 'Others'" class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
+                                    <input  type="text" (keyup)="isValid($event)" [(ngModel)]="model.level_of_education_others"  maxlength="50"    name="level_of_education" 
+                                    [(required)]= !model.level_of_education class="form-control-input form-control  commonFontSize regularFont letterspacing"  
+                                    placeholder="Enter Level Of Education">                             
+                                   </div>  
+                             
+                                <div *ngIf="model.level_of_education != 'Others'" class="required validationError" [innerHtml]="errorDisplay.level_of_education">
+                                    </div>
+                                 <div *ngIf="model.level_of_education == 'Others'" class="required validationError" [innerHtml]="errorDisplay.level_of_education">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-md-6" *ngIf="action != 'edit'">
