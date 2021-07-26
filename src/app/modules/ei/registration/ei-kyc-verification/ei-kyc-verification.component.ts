@@ -136,7 +136,7 @@ export class EiKycVerificationComponent implements OnInit {
             this.alert.success('Kyc upload successfully done.', 'Success');
             if (res.is_already_registered == true) {
               if(res.ei_request_count > 1){
-                this.router.navigate(['ei/school-approval-list'])
+                this.router.navigate(['ei/school-approval-list-signup'])
               }
               else{
                 this.router.navigate(['ei/subadmin-school-confirm']);
