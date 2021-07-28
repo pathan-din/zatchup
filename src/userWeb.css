@@ -520,20 +520,20 @@ button:focus {
 .myProfileImg{height: 80px;}
 
 .editIcon {
-  width: 22px;
+  height: 26px;
 }
 
 .editImg {
   position: absolute;
   right: 30px;
   width: 14%;
-  width: 22px;
+  width: 26px;
 }
 
 .deleteImg {
   position: absolute;
   right: 0%;
   width: 14%;
-  width: 22px;
+  width: 26px;
 }
 

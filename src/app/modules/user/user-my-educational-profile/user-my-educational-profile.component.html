@@ -86,15 +86,13 @@
                                 <div class="addWorkcourse"
                                     *ngIf="!objEpData.location.city_name || !objEpData.location.state_name">
                                     <a class="cursorStyle" data-target="#addLocationModel" data-toggle="modal">
-                                        <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid"
-                                            style="height: 26px;">
+                                        <img src="assets/images/userWebsite/add-more.png"  class="cursorStyle img-fluid editIcon"/>
                                     </a>
                                 </div>
                                 <div class="addWorkcourse"
                                     *ngIf="objEpData.location.city_name && objEpData.location.state_name">
                                     <a class="cursorStyle" data-target="#addLocationModel" data-toggle="modal">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid mr-2"
-                                            style="width: 26px;">
+                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editIcon"/>
                                     </a>
                                 </div>
                             </div>
@@ -121,8 +119,7 @@
                                 <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Work Details </h2>
                                 <div class="addWorkcourse" >
                                     <a (click)="redirectWorkDetailesPage('')" class="cursorStyle">
-                                        <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
-                                            style="height: 26px;">
+                                        <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid editIcon"/>
                                     </a>
                                    
                                 </div>
@@ -168,8 +165,7 @@
                                      (click)="goToSchoolApprovalList()"  >Approval</button>
                                        
                             <a (click)="redirectEiConfirmationPagePage('')" class="cursorStyle">
-                                <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
-                                    style="height: 26px;">
+                                <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid editIcon"/>
                             </a>
                             
                         </div>
