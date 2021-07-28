@@ -28,6 +28,7 @@ export class EiKycVerificationComponent implements OnInit {
  text: any = 'text';
 
 
+
   constructor(
     private router: Router,
     private datePipe: DatePipe,

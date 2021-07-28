@@ -28,31 +28,48 @@
                         </div>
                     </div>
 
-                    <div class="form-group row" *ngIf="model.kyc_type == 'Aadhar'">
+                    <div class="form-group row" *ngIf="model.kyc_type == '' || model.kyc_type == 'Aadhar'">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="idNo" class="mediumFont commonFontSize letterspacing">
                                 ID Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()"
-                                    [(ngModel)]="model.kyc_id_no" name="kyc_id_no" numberOnly
+                                <input autocomplete="off" required maxlength="{{maxLength}}"
+                                pattern=".{12,12}" (keyup)="isValid()"
+                                    [(ngModel)]="model.kyc_id_no" name="aadhaar_number" numberOnly
                                     class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="{{placeholder}}">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_id_no"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.aadhaar_number"></div>
                         </div>
                     </div>
 
-                    <div class="form-group row" *ngIf="model.kyc_type != 'Aadhar'">
+                    <div class="form-group row" *ngIf="model.kyc_type == 'Dl'">
                         <div class="col-sm-12 mobilePaddingLR">
                             <label for="idNo" class="mediumFont commonFontSize letterspacing">
                                 ID Number</label>
                             <div class="form-control-inputDiv rounded p-1 shadow-none">
-                                <input autocomplete="off" required maxlength="{{maxLength}}" (keyup)="isValid()"
-                                    [(ngModel)]="model.kyc_id_no" name="kyc_id_no"
+                                <input autocomplete="off" required maxlength="{{maxLength}}" 
+                                pattern=".{16,16}" (keyup)="isValid()"
+                                    [(ngModel)]="model.kyc_id_no" name="driving_licence_number"
                                     class="form-control-input form-control form-control-sm" type="text"
                                     placeholder="{{placeholder}}">
                             </div>
-                            <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_id_no"></div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.driving_licence_number"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" *ngIf="model.kyc_type == 'Passport'">
+                        <div class="col-sm-12 mobilePaddingLR">
+                            <label for="idNo" class="mediumFont commonFontSize letterspacing">
+                                ID Number</label>
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <input autocomplete="off" required maxlength="{{maxLength}}" 
+                                pattern=".{9,9}" (keyup)="isValid()"
+                                    [(ngModel)]="model.kyc_id_no" name="passport_number"
+                                    class="form-control-input form-control form-control-sm" type="text"
+                                    placeholder="{{placeholder}}">
+                            </div>
+                            <div class="required errorMsg" [innerHtml]="errorDisplay.passport_number"></div>
                         </div>
                     </div>
 

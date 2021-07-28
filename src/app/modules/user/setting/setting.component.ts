@@ -1,9 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { HostListener } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
+import { LocationStrategy } from '@angular/common';
 declare var $: any;
 
 @Component({
@@ -37,7 +39,21 @@ export class SettingComponent implements OnInit {
     private router: Router,
     private baseService: BaseService,
     private validationService: GenericFormValidationService,
-  ) { }
+    private location: LocationStrategy,
+    private route : ActivatedRoute
+  ) {   
+    // router.events
+    // .subscribe((event: NavigationStart) => {
+    //   if (event.navigationTrigger === 'popstate') {
+    //     console.log(event.navigationTrigger,'event');
+    //    this.router.navigate(['user/my-school'])
+    //     // Perform actions
+    //   }
+    // });
+    location.onPopState(() => {
+      this.router.navigate(['user/my-school'])
+    });
+  }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
