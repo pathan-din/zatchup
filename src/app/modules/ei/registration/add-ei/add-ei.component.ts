@@ -41,10 +41,7 @@ export class AddEiComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.model.state = '';
-    this.model.city = '';
-    this.getAllState();
+  
     // this.getEiDetailsBySchoolId();
     var add = this.route.snapshot.queryParamMap.get('add_school')
     if(add != 'true'){
@@ -53,13 +50,10 @@ export class AddEiComponent implements OnInit {
     else{
       this.getEiDetailsBySchoolId();
     }
+    this.getAllState();
+    this.model.state = '';
+    this.model.city = '';
    
-    this.route.queryParams.subscribe(params => {
-      this.params = params;
-
-      // this.getEiDetailsBySchoolId();
-
-    })
   }
 
   getEiDetailsBySchoolId() {
@@ -67,6 +61,8 @@ export class AddEiComponent implements OnInit {
       this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.params.school_id }).subscribe((res: any) => {
         if (res.status == true) {
           this.modelZatchup.zatchup_id = res.data.school_code;
+          this.model.state = '';
+          this.model.city = '';
           this.getDataByZatchupId();
         }
       })
