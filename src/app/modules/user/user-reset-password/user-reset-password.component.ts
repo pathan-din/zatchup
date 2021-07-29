@@ -32,18 +32,32 @@ export class UserResetPasswordComponent implements OnInit {
   }
   verifyCode() {
     let codeOld = location.hash.split('?token=')[1];
-    let code = codeOld.split('~b')[0];
-    //console.log(decodeURI(codeOld.split('~b')[1].split('%')[0]));
+    let code =''
+    if(!codeOld.split('~b')[1]){
+      code = codeOld
+    }
+    else{
+      code = codeOld.split('~b')[0];
+
     if (codeOld.split('~b')[1].indexOf("%") > -1) {
       this.password = atob(codeOld.split('~b')[1].split('%')[0].substring(1));
-
     } else {
-      console.log(codeOld.split('~b')[1]);
-
       this.password = atob(codeOld.split('~b')[1].slice(1, -1));
     }
-
     localStorage.setItem("hash", btoa(this.password))
+    }
+    // let code = codeOld.split('~b')[0];
+    // //console.log(decodeURI(codeOld.split('~b')[1].split('%')[0]));
+    // if (codeOld.split('~b')[1].indexOf("%") > -1) {
+    //   this.password = atob(codeOld.split('~b')[1].split('%')[0].substring(1));
+
+    // } else {
+    //   console.log(codeOld.split('~b')[1]);
+
+    //   this.password = atob(codeOld.split('~b')[1].slice(1, -1));
+    // }
+
+    // localStorage.setItem("hash", btoa(this.password))
     var json = {
       "code": code
     }
@@ -107,7 +121,7 @@ export class UserResetPasswordComponent implements OnInit {
         this.SpinnerService.hide();
         if (response.status === true) {
 
-          this.alert.success(response.success, 'Success');
+          this.alert.success(response.message, 'Success');
           this.router.navigate(['user/login']);
         } else {
           this.SpinnerService.hide();

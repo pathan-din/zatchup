@@ -38,13 +38,24 @@ export class EiCreateNewPasswordComponent implements OnInit {
 
   verifyCode() {
     let codeOld = location.hash.split('?token=')[1];
-    let code = codeOld.split('~b')[0];
+
+  
+    let code =''
+    if(!codeOld.split('~b')[1]){
+      code = codeOld
+    }
+    else{
+      code = codeOld.split('~b')[0];
+
     if (codeOld.split('~b')[1].indexOf("%") > -1) {
       this.password = atob(codeOld.split('~b')[1].split('%')[0].substring(1));
     } else {
       this.password = atob(codeOld.split('~b')[1].slice(1, -1));
     }
     localStorage.setItem("hash", btoa(this.password))
+    }
+  
+    
     var json = {
       "code": code
     }
@@ -88,7 +99,7 @@ export class EiCreateNewPasswordComponent implements OnInit {
         response = res;
         this.SpinnerService.hide();
         if (response.status === true) {
-          this.alert.success(response.success, 'Success');
+          this.alert.success(response.message, 'Success');
           localStorage.removeItem("otpVerifyData")
           this.router.navigate(['ei/login']);
         } else {

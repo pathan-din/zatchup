@@ -277,8 +277,15 @@ export class UserAddMoreStandardComponent implements OnInit {
         (res: any) => {
           this.SpinnerService.hide();
           if (res.status == true) {
-            if (this.params.returnUrl)
-              this.router.navigate([this.params.returnUrl], { queryParams: { "returnUrl": "user/my-educational-profile" } })
+            if (this.params.returnUrl){
+              var role = JSON.parse(localStorage.getItem('getreject')).role
+              if(role == 'ALUMNI'){
+                this.router.navigate([this.params.returnUrl])
+              }
+              else{
+                this.router.navigate([this.params.returnUrl], { queryParams: { "returnUrl": "user/my-educational-profile" } }) 
+              }
+            }
             else {
               if (this.isalumini) {
                 this.router.navigate(['user/ei-confirmation'], { queryParams: { school_id: this.schoolId, 'isalumini': 1 } });

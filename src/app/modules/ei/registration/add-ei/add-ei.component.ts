@@ -7,6 +7,7 @@ import { BaseService } from '../../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../../../../services/notification/notification.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 declare var $: any;
 
@@ -36,6 +37,7 @@ export class AddEiComponent implements OnInit {
     private alert: NotificationService,
     public formBuilder: FormBuilder,
     private genericFormValidationService: GenericFormValidationService,
+    private confirmDialogService : ConfirmDialogService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -347,6 +349,13 @@ export class AddEiComponent implements OnInit {
       this.SpinnerService.hide()
     }
   
+}
+
+goToContactUs(){
+  this.confirmDialogService.confirmThis('Your employee education institution is not yet onboarded on ZatchUp. Are you sure you want to Continue?', () => {
+    this.router.navigate(['user/login']);
+  }, () => { }
+  );
 }
 
 }
