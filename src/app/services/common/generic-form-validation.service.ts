@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 @Injectable({
@@ -101,7 +102,24 @@ export class GenericFormValidationService {
 
         }
         //check All pattern based on type = text filed
-        else if (controls[i].type == 'text' && controls[i].value) {
+        // else if (controls[i].type == 'text' && controls[i].value) {
+        //   var msg="Invalid";
+        //   if(controls[i].getAttribute('message'))
+        //   {
+        //     msg=controls[i].getAttribute('message');
+        //   }
+        //   var pattern = new RegExp(controls[i].pattern);
+           
+          
+        //   if (pattern.test(controls[i].value)) {
+
+        //   } else {
+        //     this.errorMessageObject[controls[i].name] = msg+ ' ' +controls[i].name.replace(/_/g, ' ').charAt(0) + controls[i].name.replace(/_/g, ' ').slice(1) + '.';
+        //   }
+
+        // }
+
+        else if (controls[i].type == 'text' && controls[i].value && controls[i].name) {
           var msg="Invalid";
           if(controls[i].getAttribute('message'))
           {
@@ -112,11 +130,22 @@ export class GenericFormValidationService {
           
           if (pattern.test(controls[i].value)) {
 
-          } else {
+          }
+          else if(controls[i].name == 'Aadhaar_number'){
+            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ') + ' ' + 'should be of' + ' ' + controls[i].maxLength + " digits.";
+          }
+          else if(controls[i].name == 'Driving_licence_number'){
+            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ') + ' ' + 'should be of' + ' ' + controls[i].maxLength + " digits.";
+          }
+          else if(controls[i].name == 'Passport_number'){
+            this.errorMessageObject[controls[i].name] = controls[i].name.replace(/_/g, ' ') + ' ' + 'should be of' + ' ' + controls[i].maxLength + " digits.";
+          }
+           else {
             this.errorMessageObject[controls[i].name] = msg+ ' ' +controls[i].name.replace(/_/g, ' ').charAt(0) + controls[i].name.replace(/_/g, ' ').slice(1) + '.';
           }
 
         }
+
         //check All pattern based on type = tel filed
         else if (controls[i].type == 'tel' && controls[i].value) {
 

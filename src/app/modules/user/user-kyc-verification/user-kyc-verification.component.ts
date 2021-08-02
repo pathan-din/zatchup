@@ -49,7 +49,7 @@ export class UserKycVerificationComponent implements OnInit {
   text: any = 'text';
   isSubmit: boolean;
   reasonTextMessage: string;
-  minLength: any;
+ 
 
   constructor(
     private router: Router,
@@ -125,21 +125,21 @@ export class UserKycVerificationComponent implements OnInit {
     this.pattran = '';
     if (this.model.kyc_type == 'Aadhar') {
       this.maxLength = 12;
-      this.minLength = 12;
+      
       this.placeholder = 'Enter id'
       this.model.kyc_id_no = '';
       this.text = 'number';
       this.pattran = "";
     } else if (this.model.kyc_type == 'Dl') {
       this.maxLength = 16;
-      this.minLength = 16;
+      
       this.placeholder = 'Enter id'
       this.model.kyc_id_no = '';
       this.text = 'text';
       this.pattran = "";
     } else if (this.model.kyc_type == 'Passport') {
       this.maxLength = 8;
-      this.minLength = 8;
+      
       this.pattran = "";
       this.model.kyc_id_no = '';
       this.placeholder = 'Enter id'

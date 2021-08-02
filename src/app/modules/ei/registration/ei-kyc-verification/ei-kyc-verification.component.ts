@@ -193,7 +193,7 @@ export class EiKycVerificationComponent implements OnInit {
       this.placeholder = 'Enter Id'
       this.pattran = "";
     } else if (this.model.kyc_type == 'Passport') {
-      this.maxLength = 9;
+      this.maxLength = 8;
       this.pattran = "";
       this.placeholder = 'Enter Id'
     }
