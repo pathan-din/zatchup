@@ -22,6 +22,7 @@ export class EiStudentBulkAddComponent implements OnInit {
   classList: any = [];
   maxlength: any;
   type: any;
+  student: any = {};
   constructor(
     private genericFormValidationService: GenericFormValidationService, 
     private router: Router, 
@@ -122,6 +123,8 @@ export class EiStudentBulkAddComponent implements OnInit {
   redirectToStudentManagement() {
     this.router.navigate(['ei/student-management']);
   }
+
+  
   //
   addStudent() {
     this.error = [];
@@ -144,7 +147,19 @@ export class EiStudentBulkAddComponent implements OnInit {
       // } else {
       //   delete this.model['zatchup_id']
       // }
-      this.eiService.addStudent(this.model).subscribe(res => {
+      if(this.model.zatchup_id != ''){
+        this.student.model = {
+        'zatchup_id': this.model.zatchup_id
+        }
+      }
+      else if(this.model.username != ''){
+        this.student.model = {
+          'username' :  this.model.username
+        }
+      }
+      
+
+      this.eiService.addStudent(this.student.model).subscribe(res => {
 
         let response: any = {};
         response = res;
@@ -186,7 +201,17 @@ export class EiStudentBulkAddComponent implements OnInit {
     }
 
   }
-  isValid(event) {
+
+ 
+  isValidUser() {
+    this.model.zatchup_id = ''
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  isValidZatchup() {
+    this.model.username = ''
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }

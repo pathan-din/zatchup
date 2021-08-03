@@ -16,7 +16,7 @@
                 <div class="form-group mt-1 ">
                     <label for="" class="mediumFont commonFontSize letterspacing"> User's Unique ZatchUp ID </label>
                     <div class="form-control-inputDiv rounded p-0  shadow-none">
-                        <input (keyup)="isValid()" [(ngModel)]="model.zatchup_id" name="zatchup_id"
+                        <input autocomplete="off" (keyup)="isValidZatchup()" [(ngModel)]="model.zatchup_id" name="zatchup_id"
                             [required]="!model.username" id="zatchup_id" name="zatchup_id"
                             class="form-control-input form-control  commonFontSize regularFont letterspacing"
                             type="text" placeholder="User's Unique ZatchUp ID">
@@ -34,7 +34,7 @@
                     <div class="col-sm-12 MobileCol6MB">
                         <label for="" class=" mediumFont commonFontSize letterspacing">Email ID / Phone Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
-                            <input maxlength="{{maxlength}}" (keyup)="isValid()"
+                            <input autocomplete="off" maxlength="{{maxlength}}" (keyup)="isValidUser()"
                             (keydown)="isCheckEmailOrPhone($event)"   [required]="!model.zatchup_id"
                             class="form-control-input form-control form-control-sm form-bgImg form-emailBgImgPhone"
                             type="{{type}}"

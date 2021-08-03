@@ -8,9 +8,8 @@
                 <div class="col-sm-12 form-control-inputDiv">
                     <div class="text-center py-4 px-5">
                         <h2 class="mb-4 semiBoldFont">Welcome to ZatchUp </h2>
-                        <p class="regularFont">{{studentsConfirmation.name_of_school}}  has added you as Teacher. </p>
-                        <p class="regularFont">If this is you, please press Continue, If this is not you, please click not me and sign up as 
-                            <span class="mediumFont">New User</span></p>
+                        <p class="regularFont">{{studentsConfirmation.message}}. </p>
+                        <p class="regularFont">If this is you, please press Continue, If this is not you, please click not me.</p>
                         <button (click)="continue()" type="submit" class="btn btn-green text-white regularFont mt-4 mr-2">Continue</button>
                         <button (click)="notMe()" type="submit" class="btn btn-red-outline regularFont mt-4">Not Me</button>
                     </div>

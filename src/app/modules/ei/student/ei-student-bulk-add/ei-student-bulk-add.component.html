@@ -23,7 +23,8 @@
             <div class="form-group mt-3 ">
                 <label for="" class="mediumFont commonFontSize letterspacing"> Student's Unique ZatchUp ID</label>
                 <div class="form-control-inputDiv rounded p-0  shadow-none">
-                    <input id="zatchup_id" name="zatchup_id" (keyup)="isValid($event)" [(ngModel)]="model.zatchup_id" [required]="!model.first_name && !model.last_name && !model.username" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Student's Unique ZatchUp ID">
+                    <input id="zatchup_id" name="zatchup_id"
+                    (keyup)="isValidZatchup()" [(ngModel)]="model.zatchup_id" [required]="!model.first_name && !model.last_name && !model.username" class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Student's Unique ZatchUp ID">
 
                 </div>
 				 <div class="required errorMsg" [innerHtml]="errorDisplay.zatchup_id"></div>
@@ -55,10 +56,11 @@
                 <div class="col-sm-12 MobileCol6MB">
                     <label for="" class=" mediumFont commonFontSize letterspacing">Email / Phone Number</label>
                     <div class="form-control-inputDiv rounded p-0 shadow-none">
-                        <input maxlength="{{maxlength}}" (keydown)="isCheckEmailOrPhone($event)" id="email" message=" Valid Number "
-                         (keyup)="isValid($event)" pattern="^([_A-Za-z0-9]+(\.[_A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,5}))|((?!$)\d{0,10}(?:\.\d{1,2})?$)" 
+                        <input maxlength="{{maxlength}}"  (keydown)="isCheckEmailOrPhone($event)" id="email" message=" Invalid "
+                         (keyup)="isValidUser()" pattern="^([_A-Za-z0-9]+(\.[_A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,5}))|((?!$)\d{0,10}(?:\.\d{1,2})?$)" 
                           [(ngModel)]="model.username" name="email_id_or_phone_number" [required]="!model.zatchup_id" class="form-control-input form-control  commonFontSize regularFont letterspacing"
                            type="text" placeholder="Enter Email / Phone Number">
+                           
                     </div>
 					<div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_phone_number"></div>
                 </div>
