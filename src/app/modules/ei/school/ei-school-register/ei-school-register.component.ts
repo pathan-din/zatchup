@@ -242,30 +242,13 @@ export class EiSchoolRegisterComponent implements OnInit {
   }
   /****************************************************************************************/
   goToEiMobileVerificationPage(){
-    
-    console.log(this.model);
-    
     this.error=[];
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,[]);
     if(this.errorDisplay.valid)
     {
       return false;
     }
-    
-   // this.model.school_data.state = this.state1;
-    //this.model.school_data.city = this.city1;
-    // if(this.name_of_school_first=='Others')
-    // {
-    //   this.model.school_data.name_of_school=this.name_of_school_others;
-    //   this.model.school_data.state = this.state1;
-    //   this.model.school_data.city = this.city1;
-    // }else{
-    //   this.model.school_data.name_of_school=this.name_of_school_first;
-    //   this.name_of_school_others='';
-    // }
-    
- 
-    
+  
       try{
         /**Api For the Register School */
 
