@@ -31,6 +31,7 @@ export class SubadminSettingComponent implements OnInit {
   errorOtpModelDisplay: any = [];
   maxlength: any;
   type: any;
+  disable : boolean = false;
   constructor(
     private alert: NotificationService,
     private loader: NgxSpinnerService,
@@ -131,7 +132,7 @@ export class SubadminSettingComponent implements OnInit {
   }
 
   submitPersonalDetails() {
-    this.errorDisplay = {};
+     this.errorDisplay = {};
     this.errorDisplay = this.validationService.checkValidationFormAllControls(document.forms[1].elements, true, []);
     if (this.errorDisplay.valid) {
       return false;
@@ -142,6 +143,7 @@ export class SubadminSettingComponent implements OnInit {
     if (this.errorDisplay.valid) {
       return false;
     }
+   
         var url = 'user/request-change-user-detail-by-ei/';
         if (this.editModel.key == 'dob') {
           this.editModel.value = this.baseService.getDateFormat(this.model[this.editModel.key]);
@@ -162,6 +164,7 @@ export class SubadminSettingComponent implements OnInit {
           return this.alert.error('Your Employee Number Is Already Approved', 'Error')
         }
         this.loader.show();
+        this.disable = true
         this.baseService.action(url, this.editModel).subscribe(res => {
           let response: any = {};
           response = res;
@@ -177,6 +180,7 @@ export class SubadminSettingComponent implements OnInit {
               this.loader.hide();
               this.alert.success(response.message, 'success');
               this.closeModal.nativeElement.click()
+              
             }
 
           } else {
@@ -258,6 +262,7 @@ export class SubadminSettingComponent implements OnInit {
     )
   }
   openModel(label, key, value, classId: any = '') {
+    this.disable = false
     this.editModel = {};
     this.editModel.class_id = '';
     this.model.dob = label.dob;//this.baseService.getDateReverseFormat()

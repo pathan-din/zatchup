@@ -45,6 +45,7 @@ export class SubadminChangeRequestComponent implements OnInit {
   modelReason: any={};
   error: any[];
   errorDisplay: any={};
+  disable : boolean = false;
 
   constructor(
     private baseService: BaseService,
@@ -152,11 +153,10 @@ export class SubadminChangeRequestComponent implements OnInit {
 
   openRejectModel(id){
     console.log(id);
-    
+    this.disable = false;
     this.modelReason.request_id = id;
-    
-    
-    
+    this.modelReason.rejected_remark = ''
+    this.modelReason.rejected_reason = ''   
   }
   closeRejectModel(){
     $("#rejectModel").modal('hide');
@@ -170,13 +170,13 @@ export class SubadminChangeRequestComponent implements OnInit {
     }
     try {
       this.loader.show();
-      
+      this.disable = true;
       /***************Merge dob after all selected dropdown *****************/
       //this.model.profile.dob=this.yearModel+'-'+this.monthModel+'-'+this.dateModel;
       /**********************************************************************/
       //ei/reject-course-by-ei/
       this.baseService.action('ei/reject-subadmin-request-change/',this.modelReason).subscribe(res => {
-
+        
         let response: any = {};
         response = res;
 

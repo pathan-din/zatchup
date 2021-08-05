@@ -140,7 +140,8 @@ export class EiMobileVerificationComponent implements OnInit {
        this.schoolNumber=response.school_code;
        localStorage.setItem("user_id",response.user_id)
        localStorage.setItem("token",response.token);
-       
+       localStorage.removeItem('model');
+       localStorage.removeItem('stateObj')
        $("#CongratulationModel").modal({
         backdrop: 'static',
         keyboard: false,

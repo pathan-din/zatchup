@@ -66,13 +66,17 @@ export class GenericFormValidationService {
           }
         }
         //Check Email required and email format filled based on type=email input box
-        else if (controls[i].type == 'email' && controls[i].value) {
+        else if (controls[i].type == 'email' && controls[i].value && controls[i].name) {
           //var pattern = new RegExp(controls[i].pattern);
           //check pattern of email
           var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
           if (pattern.test(controls[i].value)) {
 
-          } else {
+          }
+          else if(controls[i].name == 'email_id_or_mobile_number'){
+           this.errorMessageObject[controls[i].name] = "Please enter a valid "+ controls[i].name.replace(/_/g, ' ').charAt(0) + controls[i].name.replace(/_/g, ' ').slice(1) +'. Mobile number should be of 10 digits.';
+          } 
+          else {
             
             this.errorMessageObject[controls[i].name] = 'Enter valid '+controls[i].name.replace(/_/g, ' ').charAt(0)+ controls[i].name.replace(/_/g, ' ').slice(1) + " address.";
           }

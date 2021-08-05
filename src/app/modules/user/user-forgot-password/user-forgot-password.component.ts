@@ -63,6 +63,7 @@ export class UserForgotPasswordComponent implements OnInit {
 
       this.SpinnerService.show();
       if(this.verificationMobileNo){
+        this.SpinnerService.hide()
         this.mobileVerification();
       }
       else{
@@ -141,7 +142,7 @@ export class UserForgotPasswordComponent implements OnInit {
       }
     }
     else {
-      this.alert.error('Please enter OTP!', 'Error')
+      this.alert.error('Please enter otp send on your mobile number/email id', 'Error')
     }
   }
 

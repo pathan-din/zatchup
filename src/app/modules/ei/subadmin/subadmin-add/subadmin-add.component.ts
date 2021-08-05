@@ -52,6 +52,7 @@ export class SubadminAddComponent implements OnInit {
   }
 
   isCheckEmailOrPhone(event) {
+    this.type = 'email'
     this.maxlength = ''
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(event.target.value)) {
@@ -113,8 +114,9 @@ export class SubadminAddComponent implements OnInit {
           this.router.navigate(['ei/subadmin-management']);
         } else {
           this.loader.hide();
-          this.errorDisplay = this.baseService.getErrorResponse(this.loader, response.error)
-          this.alert.error(this.errorDisplay, 'Error');
+          this.alert.error(response.error, 'Error')
+          // this.errorDisplay = this.baseService.getErrorResponse(this.loader, response.error)
+          // this.alert.error(this.errorDisplay, 'Error');
         }
       }, (error) => {
         this.loader.hide();

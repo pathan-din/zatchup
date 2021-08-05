@@ -50,6 +50,7 @@ export class AddEiComponent implements OnInit {
     else{
       this.getEiDetailsBySchoolId();
     }
+    // this.getEiDetailsBySchoolId();
     this.getAllState();
     this.model.state = '';
     this.model.city = '';
@@ -58,7 +59,7 @@ export class AddEiComponent implements OnInit {
 
   getEiDetailsBySchoolId() {
     try {
-      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.params.school_id }).subscribe((res: any) => {
+      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.route.snapshot.queryParamMap.get('school_id') }).subscribe((res: any) => {
         if (res.status == true) {
           this.modelZatchup.zatchup_id = res.data.school_code;
           this.model.state = '';
@@ -67,6 +68,7 @@ export class AddEiComponent implements OnInit {
         }
       })
     } catch (e) {
+console.log(e);
 
     }
     //

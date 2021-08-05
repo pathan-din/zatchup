@@ -61,6 +61,7 @@ export class EiForgetPasswordComponent implements OnInit {
       this.SpinnerService.show();
 
       if(this.verificationMobileNo){
+          this.SpinnerService.hide();
         this.mobileVerification();
       }else{
         this.adminService.sendForgotLink(this.model).subscribe(res => {
@@ -69,6 +70,7 @@ export class EiForgetPasswordComponent implements OnInit {
           response = res;
           this.SpinnerService.hide();
           if (response.status === true) {
+            this.SpinnerService.hide()
             this.alert.success(response.message, 'Success');
             if (response.data.phone) {
               this.verificationMobileNo = response.data.phone;
@@ -76,12 +78,14 @@ export class EiForgetPasswordComponent implements OnInit {
             }else
              this.router.navigate(['ei/login']);
           } else {
-            this.SpinnerService.hide();
+            
             this.alert.error(response.error.message[0], 'Error')
+            this.SpinnerService.hide();
             // var errorCollection = '';
             // errorCollection = this.adminService.getErrorResponse(this.SpinnerService, response.error);
             // alert(errorCollection);
           }
+          this.SpinnerService.hide()
         }, (error) => {
           this.SpinnerService.hide();
           console.log(error);
@@ -105,6 +109,7 @@ export class EiForgetPasswordComponent implements OnInit {
     if (!this.otp1 || !this.otp2 || !this.otp3 || !this.otp4) {
       flagRequired = false
     }
+    
     if (flagRequired) {
       try {
         let data = {
@@ -120,6 +125,7 @@ export class EiForgetPasswordComponent implements OnInit {
               localStorage.setItem('otpVerifyData', JSON.stringify(res.data))
               this.router.navigate(['ei/create-new-password']);
             } else {
+              this.SpinnerService.hide();
               this.alert.error(res.error.message[0], 'Error')
             }
             this.SpinnerService.hide();
@@ -133,7 +139,8 @@ export class EiForgetPasswordComponent implements OnInit {
       }
     }
     else {
-      this.alert.error('Please enter OTP!', 'Error')
+      this.SpinnerService.hide();
+      this.alert.error('Please enter otp send on your mobile number/email id', 'Error')
     }
   }
   resendOtp() {
