@@ -6,7 +6,7 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">Approve Students List</h2>
+                <h2 class="commonFontSize semiBoldFont m-0">Approve By Students List</h2>
             </div>
 
         </div>
@@ -116,6 +116,13 @@
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             {{element.first_name}} {{element.last_name}}
+                        </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Gender">
+                        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+                        <mat-cell *matCellDef="let element ">
+                            {{getGender(element)}}
                         </mat-cell>
                     </ng-container>
 

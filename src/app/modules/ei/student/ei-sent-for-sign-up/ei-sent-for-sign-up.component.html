@@ -6,7 +6,10 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0"> {{status == 'SENTFORAPPROVAL'? 'Request Sent For Approval': 'Request Sent For Sign Up'}}  List</h2>
+                
+                <h2 *ngIf="status == 'SENTFORAPPROVAL'" class="commonFontSize semiBoldFont m-0">Request Sent For Approval</h2>
+                <h2 *ngIf="status == 'SENTFORSIGNUP'" class="commonFontSize semiBoldFont m-0">Request Sent For Sign Up</h2>
+                <h2 *ngIf="status == 'REJECTBYUSER'" class="commonFontSize semiBoldFont m-0">Reject By Student List</h2>
             </div>
 
         </div>

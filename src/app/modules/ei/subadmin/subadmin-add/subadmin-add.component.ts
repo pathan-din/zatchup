@@ -34,6 +34,7 @@ export class SubadminAddComponent implements OnInit {
   isModuleAccessClass: any
   maxlength: any;
   type: string;
+  subadmin: any = {};
   constructor(
     private router: Router,
     private location: Location,
@@ -70,7 +71,15 @@ export class SubadminAddComponent implements OnInit {
 
     }
   }
-  isValid() {
+  isValidUser() {
+    this.model.zatchup_id = ''
+    if (Object.keys(this.errorDisplay).length !== 0) {
+      this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
+    }
+  }
+
+  isValidZatchup() {
+    this.model.username = ''
     if (Object.keys(this.errorDisplay).length !== 0) {
       this.errorDisplay = this.formValidationService.checkValidationFormAllControls(document.forms[0].elements, true, []);
     }
@@ -84,7 +93,17 @@ export class SubadminAddComponent implements OnInit {
     }
     try {
       this.loader.show();
-      this.baseService.action('ei/add-subadmin-by-ei/', this.model).subscribe(res => {
+      if(this.model.zatchup_id != ''){
+        this.subadmin.model = {
+        'zatchup_id': this.model.zatchup_id
+        }
+      }
+      else if(this.model.username != ''){
+        this.subadmin.model = {
+          'username' :  this.model.username
+        }
+      }
+      this.baseService.action('ei/add-subadmin-by-ei/',  this.subadmin.model).subscribe(res => {
         this.loader.hide();
         let response: any = {};
         response = res;

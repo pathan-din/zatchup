@@ -13,6 +13,7 @@ import { SubadminViewStatus } from '../../registration/modal/contact-us.mdal';
 })
 export class EiSubadminViewStatusComponent implements OnInit {
   subadminViewStatus : SubadminViewStatus
+  status: any;
   
   constructor(
     private location: Location,
@@ -27,6 +28,7 @@ export class EiSubadminViewStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEIStatus('');
+    this.status = this.route.snapshot.queryParamMap.get('status')
   }
 
   goBack(): void {

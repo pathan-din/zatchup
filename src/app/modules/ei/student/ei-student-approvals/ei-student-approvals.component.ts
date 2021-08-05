@@ -109,6 +109,11 @@ export class EiStudentApprovalsComponent implements OnInit {
     this.baseService.generateExcel('ei/export-verifiedstudent-by-ei/', 'student-approved', this.studentApproval.listParams);
   }
   
+  getGender(data: any) {
+    if (data)
+      return this.baseService.getGender(data)
+    return ''
+  }
   // getCourseList(){
   //   this.baseService.getData('ei/course-list/').subscribe(
   //     (res: any) =>{

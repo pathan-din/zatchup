@@ -329,25 +329,36 @@ export class UserEiConfirmationComponent implements OnInit {
           if (res.status == true) {
             this.SpinnerService.hide();
             this.confirmationDetails = res.data;
-            localStorage.setItem("role", "0");
+            console.log(this.confirmationDetails);
+            
 
-            if (this.confirmationDetails.length <= 0)
-              // this.clickOtpModel.nativeElement.click();
-              this.confirmationDetails.forEach(elementCourse => {
+            if(this.confirmationDetails.length == 0){
+              this.router.navigate(['user/add-ei'])
+              
+            }
+            else{
+              
+              localStorage.setItem("role", "0");
 
-
-                elementCourse.ei_detail.course_detail.forEach(elementS => {
-                  if (elementS.standard_detail) {
-                    elementS.standard_detail.forEach(ele => {
-                      if (ele.is_current_standard) {
-                        localStorage.setItem("role", "1");
-                      }
-
-                    });
-                  }
+              if (this.confirmationDetails.length <= 0)
+                // this.clickOtpModel.nativeElement.click();
+                this.confirmationDetails.forEach(elementCourse => {
+  
+  
+                  elementCourse.ei_detail.course_detail.forEach(elementS => {
+                    if (elementS.standard_detail) {
+                      elementS.standard_detail.forEach(ele => {
+                        if (ele.is_current_standard) {
+                          localStorage.setItem("role", "1");
+                        }
+  
+                      });
+                    }
+                  });
+  
                 });
-
-              });
+            }
+            
           } else {
             this.SpinnerService.hide();
           }

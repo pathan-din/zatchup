@@ -124,7 +124,7 @@ export class UserAddEiComponent implements OnInit {
             // this.schoolID = model.id 
             this.model.state = model.state;
             this.model.address1 = model.address1;
-            this.model.full_address = model.address1 + ' ' + model.address2;
+            this.model.full_address = model.address1 + ' ' + model.address2 + ' ' + model.pincode;
             this.model.university = model.university;
             if (model.school_code) { this.modelZatchup.zatchup_id = model.school_code; }
           }
@@ -324,7 +324,7 @@ export class UserAddEiComponent implements OnInit {
         this.model.university = obj.university;
         this.modelZatchup.zatchup_id = obj.school_code;
         this.model.address1 = obj.address1;
-        this.model.full_address = obj.address1 + ' ' + obj.address2;
+        this.model.full_address = obj.address1 + ' ' + obj.address2 + ' ' + obj.pincode;
         this.model.school_id = obj.id
       }
 
@@ -364,7 +364,7 @@ export class UserAddEiComponent implements OnInit {
           this.name_of_school_first = model.name_of_school;
           this.model.state = model.state;
           this.model.address1 = model.address1;
-          this.model.full_address = model.address1 + ' ' + model.address2;
+          this.model.full_address = model.address1 + ' ' + model.address2 + ' ' + model.pincode;
           this.model.university = model.university;
           if (model.school_code) { this.modelZatchup.zatchup_id = model.school_code; }
 

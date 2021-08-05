@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 
@@ -22,9 +22,11 @@ export class MySchoolComponent implements OnInit {
   constructor(
     private router: Router,
     private baseService: BaseService,
-    private alert: NotificationService
+    private alert: NotificationService,
+    private route : ActivatedRoute
   ) { }
   ngOnInit(): void {
+    
      var role = parseInt(localStorage.getItem("role"))
     if(localStorage.getItem('approved') && localStorage.getItem('approved')=='1'){
       this.verified = localStorage.getItem('approved');
@@ -41,6 +43,8 @@ export class MySchoolComponent implements OnInit {
       }, 500);
 
   }
+
+ 
   gotToProfilePage() {
     this.router.navigate(["user/my-educational-profile"]);
   }

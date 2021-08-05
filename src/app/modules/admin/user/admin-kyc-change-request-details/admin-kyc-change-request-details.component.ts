@@ -76,9 +76,9 @@ export class AdminKycChangeRequestDetailsComponent implements OnInit {
     let data = {
       "id": this.kycChangeRequestDetails.kycDetails.id,
       "request_type": this.kycChangeRequestDetails.approveOrReject,
-      // "kyc_id": this.kycChangeRequestDetails.kycDetails.kyc_id_no,
-      // "rejected_reason": this.kycChangeRequestDetails.rejectionReason ? this.kycChangeRequestDetails.rejectionReason : undefined,
-      // "rejected_remarks": this.kycChangeRequestDetails.rejectionRemark
+      "kyc_id": this.kycChangeRequestDetails.kycDetails.kyc_id_no,
+      "rejected_reason": this.kycChangeRequestDetails.rejectionReason ? this.kycChangeRequestDetails.rejectionReason : undefined,
+      "rejected_remarks": this.kycChangeRequestDetails.rejectionRemark
     }
     this.loader.show()
     this.baseService.action('admin/kyc/approve_reject_user_change_details/', data).subscribe(

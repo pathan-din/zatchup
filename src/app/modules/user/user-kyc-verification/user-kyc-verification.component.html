@@ -27,7 +27,40 @@
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_type"></div>
                 </div>
-                <div class="form-group row">
+
+                <div class="form-group row" *ngIf="model.kyc_type == '' || model.kyc_type == 'Aadhar'">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <input autocomplete="off" required maxlength="{{maxLength}}"
+                        pattern=".{12,12}" (keyup)="isValid()"
+                        [(ngModel)]="model.kyc_id_no" name="Aadhaar_number" numberOnly
+                        class="form-control-input form-control form-control-sm" type="text"
+                        placeholder="{{placeholder}}">
+                      </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.Aadhaar_number"></div>
+                </div>
+
+                <div class="form-group row" *ngIf="model.kyc_type == 'Dl'">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <input autocomplete="off" required maxlength="{{maxLength}}" 
+                            pattern=".{16,16}" (keyup)="isValid()"
+                                [(ngModel)]="model.kyc_id_no" name="Driving_licence_number"
+                                class="form-control-input form-control form-control-sm" type="kyc"
+                                placeholder="{{placeholder}}">
+                     </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.Driving_licence_number"></div>
+                </div>
+
+                <div class="form-group row" *ngIf="model.kyc_type == 'Passport'">
+                    <div class="col-sm-12 p-0 form-control-inputDiv">
+                        <input autocomplete="off" required maxlength="{{maxLength}}" 
+                            pattern=".{8,8}" (keyup)="isValid()"
+                                [(ngModel)]="model.kyc_id_no" name="Passport_number"
+                                class="form-control-input form-control form-control-sm" type="kyc"
+                                placeholder="{{placeholder}}">
+                        </div>
+                    <div class="required errorMsg" [innerHtml]="errorDisplay.Passport_number"></div>
+                </div>
+                <!-- <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">
                         <input *ngIf="model.kyc_type=='Aadhar'" autocomplete="off" required  minlength="{{minLength}}" maxlength="{{maxLength}}"
                         (keyup)="isValid()" pattern="{{pattran}}" id="kyc_id_no" [(ngModel)]="model.kyc_id_no"
@@ -39,7 +72,7 @@
                             placeholder="{{placeholder}}">
                     </div>
                     <div class="required errorMsg" [innerHtml]="errorDisplay.kyc_id_no"></div>
-                </div>
+                </div> -->
 
                 <div class="form-group row">
                     <div class="col-sm-12 p-0 form-control-inputDiv">

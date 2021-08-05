@@ -7,6 +7,7 @@ import { BaseService } from '../../../../services/base/base.service';
 import { FormBuilder } from "@angular/forms";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from '../../../../services/notification/notification.service';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 declare var $: any;
 
@@ -36,13 +37,11 @@ export class AddEiComponent implements OnInit {
     private alert: NotificationService,
     public formBuilder: FormBuilder,
     private genericFormValidationService: GenericFormValidationService,
+    private confirmDialogService : ConfirmDialogService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.model.state = '';
-    this.model.city = '';
-    this.getAllState();
+  
     // this.getEiDetailsBySchoolId();
     var add = this.route.snapshot.queryParamMap.get('add_school')
     if(add != 'true'){
@@ -51,13 +50,10 @@ export class AddEiComponent implements OnInit {
     else{
       this.getEiDetailsBySchoolId();
     }
+    this.getAllState();
+    this.model.state = '';
+    this.model.city = '';
    
-    this.route.queryParams.subscribe(params => {
-      this.params = params;
-
-      // this.getEiDetailsBySchoolId();
-
-    })
   }
 
   getEiDetailsBySchoolId() {
@@ -65,6 +61,8 @@ export class AddEiComponent implements OnInit {
       this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.params.school_id }).subscribe((res: any) => {
         if (res.status == true) {
           this.modelZatchup.zatchup_id = res.data.school_code;
+          this.model.state = '';
+          this.model.city = '';
           this.getDataByZatchupId();
         }
       })
@@ -347,6 +345,13 @@ export class AddEiComponent implements OnInit {
       this.SpinnerService.hide()
     }
   
+}
+
+goToContactUs(){
+  this.confirmDialogService.confirmThis('Your employee education institution is not yet onboarded on ZatchUp. Are you sure you want to Continue?', () => {
+    this.router.navigate(['user/login']);
+  }, () => { }
+  );
 }
 
 }

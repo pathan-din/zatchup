@@ -49,6 +49,7 @@ export class UserEiProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.route.queryParams.subscribe(params => {
       this.params = params
       if(this.params.is_verify==1){
@@ -60,6 +61,7 @@ export class UserEiProfileComponent implements OnInit {
       if (params.school_id) {
         this.schoolId = params.school_id;
         this.getCourseBySchoolId(this.schoolId)
+        
       }
       if (params.course_id) {
         this.model.course_id = params.course_id;
@@ -187,7 +189,20 @@ export class UserEiProfileComponent implements OnInit {
 
           this.courseList = res.results;
           that.courseList = res.results;
-          this.model.course_id = this.params.course_id
+          console.log(this.params.course_id, 'course_id');
+          
+          if(this.params.course_id){
+            this.model.course_id = this.params.course_id
+          }
+          else{
+            this.model.course_id = '';
+            this.model.class_id = '';
+            this.model.join_standard_id = "";
+            this.model.current_standard_id = "";
+          }
+        
+         
+        
           // debugger
           if (this.courseList)
             this.setCalDates(this.model.course_id)
@@ -238,6 +253,8 @@ export class UserEiProfileComponent implements OnInit {
         this.loader.hide();
         this.standardList = response.results;
         this.leftStandardList = response.results;
+        this.resetForm()
+        this.loader.hide();
       }, (error) => {
         console.log(error);
 
@@ -335,6 +352,16 @@ export class UserEiProfileComponent implements OnInit {
   getProfilePicUrl(data: any) {
     this.model.profile_pic = data.filename;
     this.imageUrl = this.imagePath + data.filename
+  }
+
+  resetForm(){
+    this.model.date_joining;
+    this.model.join_standard_id = '';
+    this.model.current_standard_id = '';
+    this.model.class_id = '';
+    // this.model.admission_no = '';
+    this.model.roll_no = '';
+    this.setCalDates(this.model.course_id)
   }
 
   setCalDates(courseId) {

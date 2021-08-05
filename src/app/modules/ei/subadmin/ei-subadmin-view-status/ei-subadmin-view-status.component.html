@@ -7,7 +7,9 @@
                 <span class="mr-3 cursorStyle">
                     <img src="assets/images/userWebsite/back-icon.png" (click)="goBack()" class="backimg">
                 </span>
-                <h2 class="commonFontSize semiBoldFont m-0">View Status added Sub Admin</h2>
+                <h2 *ngIf="status == 'SENTFORSIGNUP'" class="commonFontSize semiBoldFont m-0">Pending Sign Up List</h2>
+                <h2 *ngIf="status == 'approved'" class="commonFontSize semiBoldFont m-0">Approve By Sub Admin List</h2>
+                <h2 *ngIf="status == 'rejected'" class="commonFontSize semiBoldFont m-0">Reject By Sub Admin List</h2>
             </div>
 
         </div>

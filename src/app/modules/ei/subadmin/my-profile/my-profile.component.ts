@@ -36,6 +36,7 @@ export class MyProfileComponent implements OnInit {
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
   imageUrl: any;
+  pastDetails: any;
   // imagePath: any = environment.serverImagePath;
 
   constructor(
@@ -51,7 +52,7 @@ export class MyProfileComponent implements OnInit {
     this.model = {};
     $("#OTPModel").modal("hide");
     this.getEducationalProfile()
-    
+    this.getSubadminPastDetails()
     if(localStorage.getItem("addcourse")){
       localStorage.removeItem("addcourse")
     }
@@ -370,6 +371,27 @@ export class MyProfileComponent implements OnInit {
 
   goToAddEi(){
     this.router.navigate(['ei/add-ei'], {queryParams: {'add_school': 'true'}})
+  }
+
+  getSubadminPastDetails(){
+    try {
+      this.loader.show()
+      this.baseService.getData('subadmin/past_school_detail_sub_admin/').subscribe(
+        (res : any) => {
+          if(res.status == true){
+            this.pastDetails = res.results
+          }
+          else{
+            this.loader.hide()
+          }
+        }, (error) => {
+          this.loader.hide();
+          console.log(error);
+  
+        });
+    } catch (error) {
+      
+    }
   }
 
 }

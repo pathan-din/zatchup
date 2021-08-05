@@ -281,7 +281,8 @@
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
 
-
+                                                            <!-- <div class="required validationError" [innerHtml]="errorDisplay.course_start_year_"></div> -->
+                                                            <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_start_year_')"></div>
                                                         </select>
                                                     </div>
 
@@ -300,7 +301,9 @@
                                                             <option value="">Year</option>
                                                             <option [disabled]="y < courseList.start_year" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
 
-
+                                                         
+                                                          <!-- <div class="required validationError" [innerHtml]="errorDisplay.course_end_year_"></div> -->
+                                                          <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_end_year_')"></div>
                                                         </select>
                                                     </div>
 
@@ -315,8 +318,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="required errorMsg"
-                                        [innerHtml]="display_error(cNo+'_'+s+'_'+c,'teaching_start_year_')"></div> -->
+                                   
 
 
                                     <div class="form-group row ">
@@ -567,12 +569,25 @@
                                         <label for="description " class=" commonFontSize mediumFont letterspacing ">Upload Cancelled Cheque</label>
 
                                         <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                            <input (change)="handleCancelChequeFileInput($event.target.files)" #myInputVariable id="cheque" name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
-                                                type="file" validFileExtention="png,jpeg,jpg" required>
+                                            <input (change)="handleCancelChequeFileInput($event.target.files)" #myInputVariable id="cheque" 
+                                            name="cheque" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                                type="file" [required]="!bankModel.cancel_cheque">
                                         </div>
                                         <p class="pt-1">* only support images</p>
                                         <div class="required errorMsg" [innerHtml]="errorDisplay.cheque"></div>
                                     </div>
+                                </div>
+                                <div class="form-group row " *ngIf="bankModel.cancel_cheque">
+                                    <div class="col-12 ">
+                                        <div class="row form-control-inputDiv ml-0 mr-0 ">
+                                            <!-- <div></div> -->
+                                            <div   class="col-4 p-1 img ">
+                                                  <img  class="img-fluid w-100 h-100" (click)="viewImage(bankModel.cancel_cheque)"
+                                                    src="{{bankModel.cancel_cheque}}" aria-hidden="true " data-toggle="modal" data-target="#imageViewer">
+                                                </div>
+                                              </div>
+                                    </div>
+
                                 </div>
                                 <div class="row mt-2 ">
                                     <div class="col-xl-4 col-lg-5 col-md-5 text-left ">

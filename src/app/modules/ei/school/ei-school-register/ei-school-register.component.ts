@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { NotificationService } from '../../../../services/notification/notification.service';
@@ -42,35 +42,64 @@ export class EiSchoolRegisterComponent implements OnInit {
   keyword:any = 'name_of_school';
   suggestions: string[] = [];
   showHidePassword: string='password';
-  showHidecPassword: string='password';;
+  showHidecPassword: string='password';
+  local: any = {};
   name_of_school:any;
+  stateID: any;
+  stateObj: any;
+  list: any;
   
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
     public eiService:EiServiceService,
     public formBuilder: FormBuilder,
     private genericFormValidationService:GenericFormValidationService,
-    private alert:NotificationService
-
+    private alert:NotificationService,
+    private route: ActivatedRoute
     ) { }
 
 
   ngOnInit(): void {
-    this.getAllState(); 
+    this.getAllState();
+    if(this.route.snapshot.queryParamMap.get('edit')){
+     this.editData()
+     this.model.school_data.state = ''
+     this.country='India';
+    }
+    else {
+      this.getAllDesignationList();
+      this.model.school_data = {};
+      /*Selected Blank Value of Select box*/
+      this.country='India';
+      this.model.school_data.landmark='';
+      this.model.school_data.city = '';
+      
+      this.model.designation='';
+      this.model.is_term_cond=false;
+    }
     
-    this.getAllDesignationList();
-    this.model.school_data = {};
-    /*Selected Blank Value of Select box*/
-    this.country='India';
-    this.model.school_data.landmark='';
-    this.model.school_data.city = '';
     
-    this.model.designation='';
-    this.model.is_term_cond=false;
+    
     
    // localStorage.removeItem("token");
    /*****************************************/ 
   }
+
+  editData(){
+    this.model = JSON.parse(localStorage.getItem('model'))  
+    console.log(this.model);
+    
+    this.model.school_data =  JSON.parse(localStorage.getItem('model')).school_data
+    this.getAllDesignationList();
+    let stateObj : any = {}
+    stateObj = JSON.parse(localStorage.getItem('stateObj'))
+    this.model.school_data.state = stateObj.state
+   console.log(stateObj.state);
+  //  this.getState(id);
+    this.getCityByStateId(stateObj.id)
+ 
+  }
+
   suggest(event) {
      
     if(typeof(event)=='string'){
@@ -103,7 +132,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   getAllState(){
     //getallstate
     try{
-     // this.model.school_data = {};
+    //  this.model.school_data = {};
 
       this.SpinnerService.show(); 
      
@@ -111,7 +140,7 @@ export class EiSchoolRegisterComponent implements OnInit {
         
         let response:any={};
         response=res;
-        this.model.school_data.state = '';
+        // this.model.school_data.state = '';
         this.stateList=response.results;
         this.SpinnerService.hide(); 
        
@@ -125,14 +154,59 @@ export class EiSchoolRegisterComponent implements OnInit {
       
     }
   }
+
+  // getState(state){
+  //   // this.model.school_data.state = stateName
+  //   let stateArray = Object.keys(state).map(key => ({id: key, state: state[key]}));
+  //   this.stateList=stateArray;
+  //   console.log( this.stateList);
+  //   // this.getAllState()
+  // }
+
+  
+
+  getCityByStateId(id){
+    try{
+      this.SpinnerService.show(); 
+     
+      this.eiService.getCityByStateId(id).subscribe(res => {
+        
+        let response:any={};
+        response=res;
+        
+        this.cityList=response.results;
+        this.SpinnerService.hide(); 
+       
+        },(error) => {
+          this.SpinnerService.hide(); 
+          console.log(error);
+          
+        });
+    }catch(err){
+      this.SpinnerService.hide(); 
+      console.log(err);
+    }
+  }
+
+  getState(id){
+
+    let obj = this.stateList.find(o => o.id === id)
+    console.log(this.stateList);
+    
+    console.log(obj); 
+  }
   /*******************************End ********************************/
   /****************Get City By State Function*************************/
   getCityByState(state){
    // this.model.school_data = {};
     //getallstate
+    console.log(state, 'line 195');
+    
     this.isValid('');
     let obj = this.stateList.find(o => o.state === state);
    
+    console.log(obj);
+    this.stateObj = obj
     
     try{
       this.SpinnerService.show(); 
@@ -242,6 +316,7 @@ export class EiSchoolRegisterComponent implements OnInit {
   }
   /****************************************************************************************/
   goToEiMobileVerificationPage(){
+    
     this.error=[];
     this.errorDisplay=this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements,false,[]);
     if(this.errorDisplay.valid)
@@ -261,6 +336,7 @@ export class EiSchoolRegisterComponent implements OnInit {
           this.model.phone='';
         }
         this.eiService.register(this.model).subscribe(res => {
+          console.log(this.model,'model');
           
           let response:any={};
           response=res;
@@ -272,6 +348,8 @@ export class EiSchoolRegisterComponent implements OnInit {
             localStorage.setItem('email', btoa(this.model.email));
             localStorage.setItem('password', btoa(this.model.password));
             localStorage.setItem('school_name', this.model.school_data.name_of_school);
+            localStorage.setItem('model', JSON.stringify(this.model));
+            localStorage.setItem('stateObj', JSON.stringify(this.stateObj))
             this.router.navigate(['ei/mobile-verification']);
           }else{
            

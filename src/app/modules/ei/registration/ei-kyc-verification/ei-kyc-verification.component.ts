@@ -28,6 +28,7 @@ export class EiKycVerificationComponent implements OnInit {
  text: any = 'text';
 
 
+
   constructor(
     private router: Router,
     private datePipe: DatePipe,
@@ -136,7 +137,7 @@ export class EiKycVerificationComponent implements OnInit {
             this.alert.success('Kyc upload successfully done.', 'Success');
             if (res.is_already_registered == true) {
               if(res.ei_request_count > 1){
-                this.router.navigate(['ei/school-approval-list'])
+                this.router.navigate(['ei/school-approval-list-signup'])
               }
               else{
                 this.router.navigate(['ei/subadmin-school-confirm']);
@@ -192,7 +193,7 @@ export class EiKycVerificationComponent implements OnInit {
       this.placeholder = 'Enter Id'
       this.pattran = "";
     } else if (this.model.kyc_type == 'Passport') {
-      this.maxLength = 9;
+      this.maxLength = 8;
       this.pattran = "";
       this.placeholder = 'Enter Id'
     }

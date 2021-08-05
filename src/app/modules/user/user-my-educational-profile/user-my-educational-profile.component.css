@@ -7,10 +7,6 @@
     width: 10%;
 }
 
-.editIcon {
-    width: 3%;
-}
-
 .form-control-inputDiv {
     border-radius: 25px;
 }
@@ -22,8 +18,6 @@
     z-index: 1;
 }
 
-
- 
 .customDiv {
     width: 120px;
     height: 120px;
@@ -62,9 +56,6 @@
     }
     .Heading{
         font-size: 1.2rem;
-    }
-    .editIcon{
-        width: 10%;
     }
     .custom-control {
         padding-left: 1rem;
