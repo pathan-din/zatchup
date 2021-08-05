@@ -12,6 +12,7 @@ import { SubadminViewStatus } from '../../registration/modal/contact-us.mdal';
   styleUrls: ['./ei-subadmin-view-status.component.css']
 })
 export class EiSubadminViewStatusComponent implements OnInit {
+  displayedColumnsOne: string[] = ['SNo', 'date', 'ZatchUpID', 'Name', 'EmailID_phone'];
   subadminViewStatus : SubadminViewStatus
   status: any;
   

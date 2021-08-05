@@ -89,8 +89,7 @@ export class SchoolApprovalListSignUp extends Pagination {
 }
 
 export class SubadminViewStatus extends Pagination {
-  displayedColumns: string[] = ['SNo', 'date', 'ZatchUpID', 'Name', 'EmailID_phone', 'Designation', 'EmployeeID',
-   'Action'];
+  displayedColumns: string[] = ['SNo', 'date', 'ZatchUpID', 'Name', 'EmailID_phone', 'Action'];
   params : {};
 }
 
