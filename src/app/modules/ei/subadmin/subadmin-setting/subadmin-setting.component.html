@@ -400,8 +400,8 @@
                         </form>
 
                         <div class="text-center">
-                            <button type="button" class="btn common-model-Btn mt-3"
-                                (click)="submitPersonalDetails();">Submit
+                            <button type="button" class="btn common-model-Btn mt-3" [disabled]="disable"
+                            (click)="submitPersonalDetails()">Submit
                             </button>
                         </div>
 

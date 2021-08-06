@@ -32,17 +32,17 @@
 
                 <div class="form-group row  mt-3">
                     <div class="col-sm-12 MobileCol6MB">
-                        <label for="" class=" mediumFont commonFontSize letterspacing">Email ID / Phone Number</label>
+                        <label for="" class=" mediumFont commonFontSize letterspacing">Email ID / Mobile Number</label>
                         <div class="form-control-inputDiv rounded p-0 shadow-none">
                             <input autocomplete="off" maxlength="{{maxlength}}" (keyup)="isValidUser()"
                             (keydown)="isCheckEmailOrPhone($event)"   [required]="!model.zatchup_id"
                             class="form-control-input form-control form-control-sm form-bgImg form-emailBgImgPhone"
                             type="{{type}}"
                             pattern="^[_a-zA-Z0-9]+(\.[_a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,5})$|^\d+$"
-                            [(ngModel)]="model.username" name="email_id_or_phone_number"
-                            placeholder="Email Id / Phone Number">
+                            [(ngModel)]="model.username" name="email_id_or_mobile_number"
+                            placeholder="Email Id / Mobile Number">
                         </div>
-                        <div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_phone_number"></div>
+                        <div class="required errorMsg" [innerHtml]="errorDisplay.email_id_or_mobile_number"></div>
                     </div>
                 </div>
                 <button type="button" (click)="addSubadmin()" data-dismiss="modal" aria-label="Close "

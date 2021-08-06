@@ -34,7 +34,7 @@ export class EiLoginComponent implements OnInit {
   }
 
   goToEiForgetPasswordPage() {
-    this.router.navigate(['ei/forgot-password']);
+    this.router.navigate(['ei/forgot-password'], {queryParams : {'role' : 'EIREPRESENTATIVE'}});
   }
 
   goToEiContactUsPage() {

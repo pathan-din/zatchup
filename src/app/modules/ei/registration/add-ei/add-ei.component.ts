@@ -50,6 +50,7 @@ export class AddEiComponent implements OnInit {
     else{
       this.getEiDetailsBySchoolId();
     }
+    // this.getEiDetailsBySchoolId();
     this.getAllState();
     this.model.state = '';
     this.model.city = '';
@@ -58,7 +59,7 @@ export class AddEiComponent implements OnInit {
 
   getEiDetailsBySchoolId() {
     try {
-      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.params.school_id }).subscribe((res: any) => {
+      this.baseService.action("user/get-school-detail-schoolid/", { school_id: this.route.snapshot.queryParamMap.get('school_id') }).subscribe((res: any) => {
         if (res.status == true) {
           this.modelZatchup.zatchup_id = res.data.school_code;
           this.model.state = '';
@@ -67,6 +68,7 @@ export class AddEiComponent implements OnInit {
         }
       })
     } catch (e) {
+console.log(e);
 
     }
     //
@@ -238,7 +240,7 @@ export class AddEiComponent implements OnInit {
       var ev = event;
       let obj = this.schoolList.find(o => o.name_of_school === schoolData);
       this.model.university = obj.university;
-      this.model.full_address = obj.address1 + ' ' + obj.address2;
+      this.model.full_address = obj.address1 + ' ' + obj.address2 + ' ' + obj.pincode;
       this.model.address1 = obj.address1;
       this.modelZatchup.zatchup_id = obj.school_code;
       this.isDisabled = true
@@ -271,7 +273,7 @@ export class AddEiComponent implements OnInit {
           this.name_of_school_first = model.name_of_school;
 
           this.model.state = model.state;
-          this.model.full_address = model.address1 + ' ' + model.address2;
+          this.model.full_address = model.address1 + ' ' + model.address2 + ' ' + model.pincode;
           this.model.address1 = model.address1;
           this.model.university = model.university;
           if (model.school_code) { this.modelZatchup.zatchup_id = model.school_code; }

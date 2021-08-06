@@ -149,7 +149,7 @@ export class EiLoginSubadminComponent implements OnInit {
   }
 
   goToEiForgetPasswordPage() {
-    this.router.navigate(['ei/forgot-password']);
+    this.router.navigate(['ei/forgot-password'], {queryParams : {'role': 'EISUBADMIN'}});
   }
 
   goToEiContactUsPage() {

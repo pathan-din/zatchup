@@ -13,7 +13,7 @@
 
             <div class="pt-3" style="clear: both;" *ngIf="epData">
                 <div class="row">
-                    <div class=" col-md-12 text-right d-flex flex-wrap p-0 align-items-center position-relative">
+                    <div class=" col-md-12 text-center d-flex flex-wrap p-0 align-items-center position-relative">
                         <div class="position-relative border customDiv">
                             <img *ngIf="imageUrl"
                                 src="{{imageUrl ? imageUrl: 'assets/images/userWebsite/successfully_done.png'}}"
@@ -90,7 +90,7 @@
                         <div class="col-md-12" *ngFor="let objEd of epData.education_detail">
                             <p class="m-0 mb-1 fontSize-16 commonFontSize semiBoldFont">School Name:
                                 <span class="regularFont">{{objEd.name_of_school}}
-                                    <img *ngIf="objEd.approved" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> 
+                                    <img *ngIf="epData.approved_by_ei" src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 chckImg"> 
                                 </span>
                             </p>
                             <div class="row">
@@ -107,8 +107,12 @@
                                     City : <span class="regularFont">{{objEd.city__city}} </span>
                                 </div>
                                 <div *ngIf="objEd.address1" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
-                                    Address : <span class="regularFont">{{objEd.address1}} {{objEd.address2}}</span>
+                                    Address : <span class="regularFont">{{objEd.address1 | titlecase}} {{objEd.address2 | titlecase}} </span>
                                 </div>
+                                <div *ngIf="objEd.pincode" class="col-md-12 semiBoldFont commonFontSize mb-1 fontSize-16">
+                                    Pincode : <span class="regularFont"> {{objEd.pincode}} </span>
+                                </div>
+                               
                             </div>
                         </div>         
                     </div>

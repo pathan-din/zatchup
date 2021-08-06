@@ -25,6 +25,8 @@ export class UserForgotPasswordComponent implements OnInit {
   otp4: any;
   modelForOtpModal: any={};
   errorOtpModelDisplay: any;
+  type: string;
+  maxlength: number;
 
   constructor( private genericFormValidationService: GenericFormValidationService, 
     private router: Router,
@@ -63,6 +65,7 @@ export class UserForgotPasswordComponent implements OnInit {
 
       this.SpinnerService.show();
       if(this.verificationMobileNo){
+        this.SpinnerService.hide()
         this.mobileVerification();
       }
       else{
@@ -141,7 +144,7 @@ export class UserForgotPasswordComponent implements OnInit {
       }
     }
     else {
-      this.alert.error('Please enter OTP!', 'Error')
+      this.alert.error('Please enter otp send on your mobile number/email id', 'Error')
     }
   }
 
@@ -170,6 +173,27 @@ export class UserForgotPasswordComponent implements OnInit {
     } catch (err) {
       this.SpinnerService.hide();
       console.log("verify Otp Exception", err);
+    }
+  }
+
+  isCheckEmailOrPhone(event) {
+    
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(event.target.value)) {
+
+      this.type = 'email';
+      this.maxlength = 50;
+      this.model.email = this.model.username;
+      this.model.phone = '';
+    } else {
+      const numbers = /^[0-9]+$/;
+      if (numbers.test(event.target.value)) {
+        this.type = 'tel'
+        this.maxlength = 10;
+        this.model.phone = this.model.username;
+        this.model.email = '';
+      }
+
     }
   }
 }

@@ -127,7 +127,7 @@
                         </div>
                         <div class="required errorMsg" [innerHtml]="errorDisplay.remarks"></div>
                     </div>
-                    <button (click)="rejectCourse()" type="button "
+                    <button (click)="rejectCourse()" type="button " [disabled]="disable"
                         class="bg-purple border-0 text-white text-center px-5 py-2 commonFontSize mediumFont letterspacing ">
                         Submit
                     </button>
