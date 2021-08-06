@@ -226,6 +226,7 @@ export class UserLoginComponent implements OnInit {
           var password = '';
           if (localStorage.getItem('hash')) {
             password = atob(localStorage.getItem('hash'));
+            that.firebaseService.updateClassAndRollChatUser(data)
             that.firebaseService.updateFirebasePassword(that.firebaseemail, password, that.model.password)
           } else {
             password = that.model.password

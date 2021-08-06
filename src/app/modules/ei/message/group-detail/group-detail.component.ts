@@ -34,6 +34,11 @@ export class GroupDetailComponent implements OnInit {
   is_admin:any;
   is_check_admin: any=0;
   groupMember:any=[];
+  studentList: any=[];
+  model1: any={};
+  teacherList: any;
+  modelteacher: any={};
+  groupUsers: any=[];
   constructor( private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
@@ -399,7 +404,66 @@ export class GroupDetailComponent implements OnInit {
       }
     }
 addMoreRecipant(){
-  this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
+  
+    if(localStorage.getItem('alreadyGroupMember')){
+      this.model1.approved=1;
+      this.model1.page_size = 10000;
+      //this.groupUsers=[]
+      this.baseService.getData('ei/student-list/', this.model1).subscribe(
+        (res: any) => {
+          this.loader.hide();
+          this.studentList = res.results;
+          var alreadyExists= JSON.parse(localStorage.getItem('alreadyGroupMember'));
+          alreadyExists.forEach(element => {
+           var obj= this.studentList.find(el=>{
+              return el.firebase_id == element.id 
+            })
+            if(obj){
+              obj.checked=true
+              this.groupUsers.push(obj);
+              
+              
+            }
+           
+            
+          });
+          this.modelteacher.approved=1;
+          this.modelteacher.page_size = 10000;
+          this.modelteacher.module_id = 31;
+          this.baseService.getData('ei/subadmin-lists-by-ei/',this.modelteacher).subscribe(
+              (res: any) => {
+                if (res.status == true) {
+                  this.teacherList =res.results;
+                  var alreadyExists= JSON.parse(localStorage.getItem('alreadyGroupMember'));
+                  alreadyExists.forEach(element => {
+                  var obj= this.teacherList.find(el=>{
+                      return el.firebase_id == element.id 
+                    })
+                    console.log(this.groupUsers);
+                    
+                    if(obj){
+                      obj.isadded=true;
+                      this.groupUsers.push(obj);
+                  
+                    }
+                    if(this.groupUsers.length>0){
+                      console.log(this.groupUsers);
+                      localStorage.removeItem("groupUsers");
+                      localStorage.setItem("groupUsers",JSON.stringify(this.groupUsers));
+                      this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
+                    }
+                  });
+                }
+          })
+        })
+        
+        
+        
+        
+    }
+   
+
+  //this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
   //group-chat?newgrp=C
 }
 

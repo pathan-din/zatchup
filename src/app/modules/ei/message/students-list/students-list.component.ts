@@ -337,13 +337,21 @@ export class StudentsListComponent implements OnInit {
   selectOne(ev,type,user){
     if(type=='student')
     {
+      var selsetAll=true;
+      this.studentLists.forEach(ob=>{
+        if(!ob.checked){
+          selsetAll=false;
+        }
+      })
      this.studentLists.forEach(objData => {
        if(user==objData.student_id && ev.checked){
         objData.checked = ev.checked;
-        this.checkAllS=true
+        console.log(selsetAll);
+        
+        this.checkAllS=selsetAll
        }else if(user==objData.student_id && !ev.checked){
-       objData.checked = ev.checked;
-        this.checkAllS=false
+          objData.checked = ev.checked;
+          this.checkAllS=false
        }
         
       })
@@ -352,6 +360,7 @@ export class StudentsListComponent implements OnInit {
       this.teacherList.forEach(objData => {
         if(user==objData.user_id  && ev.checked){
           objData.isadded = ev.checked;
+          this.checkAllT=true
          }else if(user==objData.user_id  && !ev.checked){
           objData.isadded = ev.checked;
           this.checkAllT=false
@@ -386,8 +395,8 @@ export class StudentsListComponent implements OnInit {
     // if(!atLeastOneStudent){
     //   return this.alert.error("Please atleast one student in this group","Error");
     // }
-    if(!atLeastOneTeacher){
-      return this.alert.error("Please atleast one teacher in this group","Error");
+    if(!atLeastOneTeacher && !atLeastOneStudent){
+      return this.alert.error("Please atleast one teacher Or Student in this group","Error");
     }
     localStorage.removeItem("groupUsers");
     localStorage.setItem("groupUsers",JSON.stringify(groupReceipentUser));

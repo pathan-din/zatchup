@@ -3,8 +3,8 @@
     <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
         <h1 class="commonFontSize semiBoldFont m-0">
             <img (click)="goBack()" src="assets/images/userWebsite/back-icon.png" class="img-fluid ml-0 subHeaderImg cursorStyle">
-            Students List</h1>
-        <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
+            <p *ngIf="dataSource.length>0">Students List </p></h1>
+        <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative" *ngIf="dataSource.length>0">
             <input [(ngModel)]="model.search" (keyup)="getGetVerifiedStudent('','')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
                 type="search" placeholder="Search Student">
             <span class="position-absolute position-ppin">
@@ -71,7 +71,7 @@
         </div>
     </div>
  
-    <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
+    <div class="courseLecture-div bg-white border mt-3 px-3 py-3" *ngIf="dataSource1.length>0">
         <h2 class="commonFontSize semiBoldFont m-0">Teacher List</h2>
         <!-- <div class="form-control-inputDiv rounded p-0 shadow-none mt-2 position-relative">
             <input [(ngModel)]="modelteacher.search" (keyup)="getGetVerifiedStudent('','')" class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing pl-5"
@@ -123,6 +123,7 @@
                 </mat-table>
             </div>
         </div>
-        <button (click)="createGroup()" type="button" class="btn bg-paret-green color-white px-4 mt-3 btn-info">Create</button>
+       
     </div>
+     <button (click)="createGroup()" type="button" class="btn bg-paret-green color-white px-4 mt-3 btn-info">Create</button>
 </div>

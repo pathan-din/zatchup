@@ -253,8 +253,8 @@ export class ChatComponent implements OnInit {
           //
           this.conversation = chatData;
           this.dataStudent = chatData;
-          if(localStorage.getItem('isread')){
-            localStorage.removeItem('isread')
+          if(localStorage.getItem('isread1')){
+            localStorage.removeItem('isread1')
             this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
           }
         } else {
@@ -273,18 +273,25 @@ export class ChatComponent implements OnInit {
         var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
         dataSet.subscribe((res: any) => {
           if (res) {
-            
-  
-            // this.conversation = res.data;
-            // this.dataStudent = res.data;
-            res.data.forEach(element => {
-              element.is_read=0
-            });
+            if (res.data) {
+             
+              if (this.router.url.split('/')[2].split('?')[0]) {
+                
+                
+                if (this.router.url.split('/')[2].split('?')[0] === 'chat' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
+                  localStorage.setItem('isread', "1")
+                  res.data.forEach(element => {
+                    element.is_read = 0
+                  });
+                }
+              }
+              
+            }
             
             this.conversation = res.data;
             this.dataStudent = res.data;
-            if(localStorage.getItem('isread')){
-              localStorage.removeItem('isread')
+            if(localStorage.getItem('isread1')){
+              localStorage.removeItem('isread1')
               this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
             }
              
@@ -515,12 +522,19 @@ export class ChatComponent implements OnInit {
 
   uploadDoc(file: any) {
     try {
-      this.loader.show();
+     
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
+      
+      if(Math.round((fileData.size/1000000))>50){
+        this.alert.error("Allowed only 50MB","Error");
+        return;
+      }
+      //52428800
       const formData = new FormData();
       formData.append('file_name', fileData);
+      this.loader.show();
       this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(
         (res: any) => {
           if (res.status == true) {

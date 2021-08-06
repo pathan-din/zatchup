@@ -8,6 +8,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { Location } from '@angular/common';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 declare var $: any;
 
 @Component({
@@ -70,6 +71,7 @@ params:any={}
     private route: ActivatedRoute,
     private formValidationService: GenericFormValidationService,
     private firestore: AngularFirestore,
+    private fbs : FirebaseService
   ) { }
 
 
@@ -382,7 +384,8 @@ params:any={}
     this.conversation = [];
     this.dataStudent = [];
     this.objStudent = objStudent;
-    this.getRecepintUserDetails(objStudent.firebase_id)
+    this.getRecepintUserDetails(objStudent.firebase_id);
+    this.fbs.updateClassAndRollChatUser(objStudent);
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       var date = new Date();
@@ -438,6 +441,7 @@ params:any={}
 
   getDocumentsChat() {
     
+   if(localStorage.getItem('getreject')){
     if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
       if(this.isValidModule('MODULE013')==false){
         this.alert.error("You Don't have permission to chat with students. Please contact school for more information","Error")
@@ -445,6 +449,8 @@ params:any={}
         return 
       }
     }
+   }
+   
     this.conversation = [];
     this.dataStudent = [];
     var uuid = localStorage.getItem("friendlidt_id");

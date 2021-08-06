@@ -158,8 +158,12 @@ export class MessagesComponent implements OnInit {
                   this.lastGroupmsg[element.payload.doc.id]=[]
                   this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
                     if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp}))
-                    this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
-                    res.timestamp = res1.data[res1.data.length-1].timestamp;
+                    if(res1){
+                      this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                      res.timestamp = res1.data[res1.data.length-1].timestamp;
+                    }
+                    
+                    
                     res.group=1
                    })
                    this.groupList.push(res)
@@ -184,7 +188,7 @@ export class MessagesComponent implements OnInit {
   goToChat(uuid, userFriendId) {
     localStorage.setItem('uuid', uuid);
     localStorage.setItem('friendlidt_id', userFriendId)
-    localStorage.setItem('isread', "1");
+    localStorage.setItem('isread1', "1");
     this.router.navigate(["user/chat"]);
   }
   messageDetails(uid,chatConversion){
@@ -192,7 +196,7 @@ export class MessagesComponent implements OnInit {
     
     localStorage.setItem('guuid', uid);
     if(this.lastGroupmsgCount[uid].length>0){
-      localStorage.setItem('isread', "1");
+      localStorage.setItem('isread1', "1");
     }
     this.router.navigate(["user/chat"],{queryParams:{"chat":chatConversion}});
   }

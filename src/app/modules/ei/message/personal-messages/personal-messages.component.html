@@ -129,7 +129,8 @@
             >
           </h3>
           <p class="mb-0" *ngFor="let lastChat of lastGroupmsg[msgObj.uuid]">
-            {{ lastChat.document ? "Attachment" : lastChat.msg }}
+          <span *ngIf="lastChat"> {{ lastChat.document ? "Attachment" : lastChat.msg }}</span>
+            
           </p>
         </div>
       </div>

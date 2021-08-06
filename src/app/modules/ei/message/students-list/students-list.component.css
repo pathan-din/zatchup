@@ -2,3 +2,10 @@ span.position-ppin {
     top: 10px;
     left: 10px;
 }
+.group_iconImg[_ngcontent-dvk-c581] img[_ngcontent-dvk-c581] {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80% !important;
+}

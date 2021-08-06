@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat/chat.service';
 // import { ScrollToBottomDirective } from 'src/app/directives/scroll-to-bottom.directive';
 import { NotificationService } from 'src/app/services/notification/notification.service';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { Location } from '@angular/common';
 import { first, take } from 'rxjs/operators';
@@ -24,261 +24,261 @@ export class MessagesDetailsComponent implements OnInit {
   currentUser: any;
   recepintDetails: any = {};
   scrollHeight: any = 300;
-  params:any={};
-  chatRecepient:any=[]
-  recepientGroup={};
-  receipentUsers: any=[];
-  groupexit: number=0;
+  params: any = {};
+  chatRecepient: any = []
+  recepientGroup = {};
+  receipentUsers: any = [];
+  groupexit: number = 0;
   presence$: any;
   uuid: string;
   online: any;
-  blockUserList:any=[];
-  isblock:any=false;
-  objBlock:any={};
-  blockRecipant:any=false;
-  blockRecipant1:any=false;
-  is_last_seen:any;
+  blockUserList: any = [];
+  isblock: any = false;
+  objBlock: any = {};
+  blockRecipant: any = false;
+  blockRecipant1: any = false;
+  is_last_seen: any;
+  subscribechat: any;
+  studentList: any;
+  pageSize: any;
+  totalNumberOfPage: any;
+  config: any;
+  pageCounts: number[];
   constructor(
     public baseService: BaseService,
     private firestore: AngularFirestore,
     private chatService: ChatService,
     private alert: NotificationService,
     private location: Location,
-    private route:ActivatedRoute,
+    private route: ActivatedRoute,
     private firebaseService: FirebaseService,
-    private router:Router,
-    private loader : NgxSpinnerService
+    private router: Router,
+    private loader: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
-     
-    
+
+
     this.firebaseService.setPresence('online')
-    this.route.queryParams.subscribe((params:any)=>{
-      this.params=params;
+    this.route.queryParams.subscribe((params: any) => {
+      this.params = params;
     })
-  
+
     this.currentUser = localStorage.getItem('fbtoken');
-    if(this.params.chat){
-       
-      this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
-        this.recepientGroup=res
-        
+    if (this.params.chat) {
+
+      this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res: any) => {
+        this.recepientGroup = res
+
         res.reciepent.forEach(element => {
-          if(element[localStorage.getItem('fbtoken')]){
-            if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
-              this.groupexit=0;
-            }else{
-              this.groupexit=1;
+          if (element[localStorage.getItem('fbtoken')]) {
+            if (element[localStorage.getItem('fbtoken')].is_remove == 0 && element[localStorage.getItem('fbtoken')].is_exit == 0) {
+              this.groupexit = 0;
+            } else {
+              this.groupexit = 1;
             }
-              
-            
+
+
           }
-          
+
         })
-        
+
         res.reciepent.forEach(element => {
           //console.log(element);
-          Object.keys(element).forEach(el=>{
-            if(element[el].is_remove==0 && element[el].is_exit==0){
-            
-              this.getRecepintUserDetails(el,'group');
-             // console.log(el);
+          Object.keys(element).forEach(el => {
+            if (element[el].is_remove == 0 && element[el].is_exit == 0) {
+
+              this.getRecepintUserDetails(el, 'group');
+              // console.log(el);
             }
-           
+
           })
-          
+
         });
-       // console.log(this.recepientGroup);
-       
+        // console.log(this.recepientGroup);
+
       })
-      
-      this. getDocumentsChat()
-    }else{
+
+      this.getDocumentsChat()
+    } else {
       this.uuid = '';
       if (localStorage.getItem('receipent')) {
-        
-        this.uuid = localStorage.getItem('receipent');
-        this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res:any)=>{
-          if(res){
-             
-            
-            this.online=res.setting.online;
-            this.is_last_seen=res.setting.is_seen;
 
-            
-          }else{
-            this.online=true;
+        this.uuid = localStorage.getItem('receipent');
+        this.firestore.collection('setting').doc(this.uuid).valueChanges().subscribe((res: any) => {
+          if (res) {
+
+
+            this.online = res.setting.online;
+            this.is_last_seen = res.setting.is_seen;
+
+
+          } else {
+            this.online = true;
           }
         })
         //console.log(this.currentUser);
-        
-        this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res:any)=>{
-         // console.log("bbb",res);
-          
-          if(res){
+
+        this.firestore.collection('block_user_list').doc(this.currentUser).valueChanges().subscribe((res: any) => {
+          // console.log("bbb",res);
+
+          if (res) {
             //console.log("uuuu",this.uuid);
-            
-             this.blockUserList=res.data;
-             console.log(this.blockUserList);
-             
-             var objList=this.blockUserList.find(e=>{return e.uuid==this.uuid});
-             
-             if(objList){
-              this.objBlock=objList;
-              this.isblock=objList.isblock;
-              this.blockRecipant1=objList.isblock;
-            
-             }
-            
-             
+
+            this.blockUserList = res.data;
+            console.log(this.blockUserList);
+
+            var objList = this.blockUserList.find(e => { return e.uuid == this.uuid });
+
+            if (objList) {
+              this.objBlock = objList;
+              this.isblock = objList.isblock;
+              this.blockRecipant1 = objList.isblock;
+
+            }
+
+
           }
         })
-        this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res:any)=>{
+        this.firestore.collection('block_user_list').doc(this.uuid).valueChanges().subscribe((res: any) => {
           // console.log("bbb",res);
-          if(res) {
-           var objB = res.data.find(e=>{return e.uuid==this.currentUser})
-           if(objB)
-            this.blockRecipant=objB.isblock;
+          if (res) {
+            var objB = res.data.find(e => { return e.uuid == this.currentUser })
+            if (objB)
+              this.blockRecipant = objB.isblock;
           }
         })
         //this.blockRecipant
         this.presence$ = this.firebaseService.getPresence(this.uuid);
-       // console.log(this.presence$);
-        
+        // console.log(this.presence$);
+
       }
       if (localStorage.getItem("receipent")) {
         this.getRecepintUserDetails(localStorage.getItem("receipent"));
         this.currentUser = localStorage.getItem('fbtoken');
-       
+
       }
       this.getDocumentsChat()
     }
-    
-  }
-  blockPaticipant(particepantid){
-   
-    
-    var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
-    console.log(index);
-    
-    if(index>-1){
-      this.blockUserList.slice(index,1)
-      
-    }else{
-      this.blockUserList.push({isblock:true,uuid:particepantid});
-    }
-    var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
-    if(objList){
-     objList.isblock=true;
-     this.objBlock=objList;
-     this.isblock=objList.isblock;
-    // this.blockUserList.push(objList)
-     
-    }
-    this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
-    this.router.navigate(['ei/personal-messages'])
-    //this.blockUserList
-    
 
   }
-  unblockPaticipant(particepantid){
-    var index=this.blockUserList.findIndex(e=>{return e.uuid==particepantid})
-    console.log(index);
-    if(index>-1){
-      this.blockUserList.slice(index,1)
+  blockPaticipant(particepantid) {
+   var index = this.blockUserList.findIndex(e => { return e.uuid == particepantid })
+    
+
+    if (index > -1) {
+      this.blockUserList.slice(index, 1)
+
+    } else {
+      this.blockUserList.push({ isblock: true, uuid: particepantid });
     }
-    var objList=this.blockUserList.find(e=>{return e.uuid==particepantid});
-    if(objList){
-     objList.isblock=false;
-     this.objBlock=objList;
-     this.isblock=objList.isblock;
-    // this.blockUserList.push(objList)
-     
+    var objList = this.blockUserList.find(e => { return e.uuid == particepantid });
+    if (objList) {
+      objList.isblock = true;
+      this.objBlock = objList;
+      this.isblock = objList.isblock;
+      // this.blockUserList.push(objList)
+
     }
-    this.firestore.collection('block_user_list').doc(this.currentUser).set({data:this.blockUserList})
+    this.firestore.collection('block_user_list').doc(this.currentUser).set({ data: this.blockUserList })
     this.router.navigate(['ei/personal-messages'])
-      }
+    //this.blockUserList
+
+
+  }
+  unblockPaticipant(particepantid) {
+    var index = this.blockUserList.findIndex(e => { return e.uuid == particepantid })
+     
+    if (index > -1) {
+      this.blockUserList.slice(index, 1)
+    }
+    var objList = this.blockUserList.find(e => { return e.uuid == particepantid });
+    if (objList) {
+      objList.isblock = false;
+      this.objBlock = objList;
+      this.isblock = objList.isblock;
+      // this.blockUserList.push(objList)
+
+    }
+    this.firestore.collection('block_user_list').doc(this.currentUser).set({ data: this.blockUserList })
+    this.router.navigate(['ei/personal-messages'])
+  }
   ngDoCheck() {
     this.scrollToBottom();
   }
-  gotToGroupDetailsPage(uuid,chat){
-    console.log(uuid);
-    
-    this.router.navigate(['ei/ei-group-detail'],{queryParams:{chat:chat,groupId:localStorage.getItem("guuid")}})
+  gotToGroupDetailsPage(uuid, chat) {
+     
+   
+
+    this.router.navigate(['ei/ei-group-detail'], { queryParams: { chat: chat, groupId: localStorage.getItem("guuid") } })
   }
   scrollToBottom(): void {
     try {
-
-
       this.scrollHeight = this.myScrollContainer.nativeElement.scrollHeight;
     } catch (err) { }
   }
-  getRecepintUserDetails(uuid,text:any='') {
-    if(text=='group'){
+  getRecepintUserDetails(uuid, text: any = '') {
+    if (text == 'group') {
       //this.receipentUsers.push(k)
-      localStorage.setItem("receipent",uuid);
+      localStorage.setItem("receipent", uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
-     // this.recepintDetails = res.data();
-     let resp:any={}
-     resp = res.data()
-     if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
-      this.receipentUsers.push(resp )
+        // this.recepintDetails = res.data();
+        let resp: any = {}
+        resp = res.data()
+        if (!this.receipentUsers.find(responce => { return responce.id == resp.id }))
+          this.receipentUsers.push(resp)
       });
       //console.log(this.receipentUsers);
-      
-    }else{
-     // localStorage.setItem("receipent",uuid);
+
+    } else {
+      // localStorage.setItem("receipent",uuid);
       this.firestore.collection('users').doc(uuid).ref.get().then(res => {
         this.recepintDetails = res.data();
-        if(this.recepintDetails.photoUrl==null){
-          this.recepintDetails.photoUrl=undefined;
+        if (this.recepintDetails.photoUrl == null) {
+          this.recepintDetails.photoUrl = undefined;
         }
-       // console.log(this.recepintDetails);
+        // console.log(this.recepintDetails);
       });
-      
-      
+
+
     }
-   
+
   }
 
   sendChat(document?: any) {
-  
-    
-    
-    if(this.params.chat){
+    if (this.params.chat) {
       if (this.model.comment)
-      this.model.comment = this.model.comment.trim()
-    if (!this.model.comment && !document) {
-      return;
-    }
+        this.model.comment = this.model.comment.trim()
+      if (!this.model.comment && !document) {
+        return;
+      }
       return new Promise<any>((resolve, reject) => {
-       
-        const subscription =this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res:any)=>{
-          
-          res.uuid=localStorage.getItem("guuid");
+
+        const subscription = this.firestore.collection('group').doc(localStorage.getItem("guuid")).valueChanges().subscribe((res: any) => {
+
+          res.uuid = localStorage.getItem("guuid");
           //console.log(res.reciepent);
-          
-            res.reciepent.forEach(ele => {
-              //console.log(this.dataStudent);
-              if(ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove==0 &&  ele[localStorage.getItem('fbtoken')].is_exit==0)){
-                let data: any = {};
-                let dataNew: any = {};
-                let userData = JSON.parse(localStorage.getItem('userprofile'))
-                data.user_friend_id = localStorage.getItem("guuid");
-                data.user_send_by = localStorage.getItem('fbtoken');
-                data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
-                data.profile_pic = userData.profile_pic
-                data.document = document ? true : false;
-                data.msg = document ? document : this.model.comment;
-                data.is_read = 1;
-                data.timestamp = new Date().valueOf();
-                data.receipentList =res.reciepent
-                
-                this.dataStudent.push(data)
-                dataNew.data = this.dataStudent;
-                  
-                this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+
+          res.reciepent.forEach(ele => {
+            //console.log(this.dataStudent);
+            if (ele[localStorage.getItem('fbtoken')] && (ele[localStorage.getItem('fbtoken')].is_remove == 0 && ele[localStorage.getItem('fbtoken')].is_exit == 0)) {
+              let data: any = {};
+              let dataNew: any = {};
+              let userData = JSON.parse(localStorage.getItem('userprofile'))
+              data.user_friend_id = localStorage.getItem("guuid");
+              data.user_send_by = localStorage.getItem('fbtoken');
+              data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
+              data.profile_pic = userData.profile_pic
+              data.document = document ? true : false;
+              data.msg = document ? document : this.model.comment;
+              data.is_read = 1;
+              data.timestamp = new Date().valueOf();
+              data.receipentList = res.reciepent
+
+              this.dataStudent.push(data)
+              dataNew.data = this.dataStudent;
+
+              this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
                 .set(dataNew)
                 .then(
                   res => {
@@ -291,25 +291,25 @@ export class MessagesDetailsComponent implements OnInit {
                   },
                   err => reject(err)
                 )
-                
-              }
-              
-            });
-            
-          
-          
+
+            }
+
+          });
+
+
+
         })
-        
+
       })
-      
-    }else{
+
+    } else {
       if (this.model.comment)
-      this.model.comment = this.model.comment.trim()
+        this.model.comment = this.model.comment.trim()
       if (!this.model.comment && !document) {
         return;
       }
-      if(this.blockRecipant1){
-        this.alert.error("Please Unblock this receipant","Error");
+      if (this.blockRecipant1) {
+        this.alert.error("Please Unblock this receipant", "Error");
         return false;
       }
       return new Promise<any>((resolve, reject) => {
@@ -331,99 +331,115 @@ export class MessagesDetailsComponent implements OnInit {
           .set(dataNew)
           .then(
             res => {
-  
-             
+
+
               this.model.comment = '';
               this.getDocumentsChat()
-  
+
             },
             err => reject(err)
           )
-  
+
       })
     }
 
-   
+
   }
   getDocumentsChat() {
     this.conversation = [];
     this.dataStudent = [];
-    let chatData:any=[]
-    if(this.params.chat){
+    let chatData: any = []
+    if (this.params.chat) {
       var uuid = localStorage.getItem("guuid");
-      var that =this;
+      var that = this;
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       dataSet.subscribe((res: any) => {
         if (res) {
-          
+
+
           res.data.forEach(element1 => {
-            element1.is_read=0
+            element1.is_read = 0
             element1.receipentList.forEach(element => {
-             // console.log(element);
-              if(element[localStorage.getItem('fbtoken')]){
-                if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
-                  
-                  var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
-                  if(!obj)
-                  chatData.push(element1)
+              // console.log(element);
+              if (element[localStorage.getItem('fbtoken')]) {
+                if (element[localStorage.getItem('fbtoken')].is_remove == 0 && element[localStorage.getItem('fbtoken')].is_exit == 0) {
+
+                  var obj = chatData.find(el => { return el.timestamp == element1.timestamp })
+                  if (!obj)
+                    chatData.push(element1)
                 }
               }
-              
+
             });
           });
-          
-          
+
+
           //
           this.conversation = chatData;
-          if(localStorage.getItem('isread')){
+          if (localStorage.getItem('isread')) {
             localStorage.removeItem('isread')
-            this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+            
+            
+            this.firestore.collection('chat_conversation').doc(uuid).set({ "data": this.conversation })
           }
-          
+
           this.dataStudent = chatData;
         } else {
           this.conversation = [];
           this.dataStudent = [];
         }
-  
+
       })
-    }else{
+    } else {
       var uuid = localStorage.getItem("friendlidt_id");
+     // console.log(this.route.routeConfig.path);
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
-      dataSet.subscribe((res: any) => {
+      this.subscribechat = dataSet.subscribe((res: any) => {
         if (res) {
-          if(res.data){
-              res.data.forEach(element => {
-            element.is_read=0
-          });
+          if (res.data) {
+             
+            if (this.router.url.split('/')[2].split('?')[0]) {
+              
+              
+              if (this.router.url.split('/')[2].split('?')[0] === 'messages-details' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
+                localStorage.setItem('isread', "1")
+                res.data.forEach(element => {
+                  element.is_read = 0
+                });
+              }
+            }
+            
           }
-        
-          
           this.conversation = res.data;
           this.dataStudent = res.data;
           // this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
-
-          if(localStorage.getItem('isread')){
-            localStorage.removeItem('isread')
-            this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
-          }
+           
+            if (localStorage.getItem('isread')) {
+              localStorage.removeItem('isread')
+              
+              this.firestore.collection('chat_conversation').doc(uuid).set({ "data": this.conversation })
+            }
+           
+          
         } else {
           this.conversation = [];
           this.dataStudent = [];
         }
-  
+
       })
-     
+
     }
 
-    
-   
+
+
   }
 
   getTimeAgo(time: any) {
     return this.chatService.getTimeAgo(time)
   }
-
+  getTimewithday(time: any) {
+    return this.chatService.getTimewithday(time)
+  }
 
   uploadDoc(file: any) {
     try {
@@ -457,7 +473,7 @@ export class MessagesDetailsComponent implements OnInit {
 
     return exArr[(exArr.length - 1)].split(".")[1];
   }
-  goBack(): void{
+  goBack(): void {
     this.location.back();
   }
 }

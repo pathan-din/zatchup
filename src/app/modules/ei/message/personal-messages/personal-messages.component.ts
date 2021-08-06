@@ -107,9 +107,12 @@ export class PersonalMessagesComponent implements OnInit {
               if (user_friend != element) {
                 if (res1.data) {
                   res1.data.forEach(ele => {
+                     
                     if (ele.is_read == 1 && ele.user_send_by != this.currentUser) {
                       if (!this.messageData.find(e => { return e.timestamp == ele.timestamp })) {
                         this.messageData[ele.user_friend_id].push(ele)
+                        console.log(this.messageData);
+                        
                       }
                     }
                   });
@@ -155,8 +158,6 @@ export class PersonalMessagesComponent implements OnInit {
 
   }
   goToChatScreen(fbid, frndListId, chatConversion: any, click) {
-
-
     this.conversation = [];
     this.dataStudent = [];
     localStorage.setItem('friendlidt_id', frndListId);
@@ -164,7 +165,6 @@ export class PersonalMessagesComponent implements OnInit {
     return new Promise<any>((resolve, reject) => {
       let data: any = {};
       var date = new Date();
-
       var uuid = fbid;
       data.user_request_id = localStorage.getItem('fbtoken');
       data.user_accept_id = uuid;
@@ -193,15 +193,12 @@ export class PersonalMessagesComponent implements OnInit {
           .subscribe(querySnapshot => {
             if (querySnapshot.docs.length > 0) {
               querySnapshot.docs.map(doc => {
-
                 let res: any = []
                 res = doc.data();
                 if (dataEle.user_request_id == res.user_request_id && dataEle.user_accept_id == res.user_accept_id) {
                   localStorage.setItem("friendlidt_id", doc.id)
                   this.getDocumentsChat(chatConversion, click);
-
                 }
-
               });
             }
 
@@ -278,15 +275,12 @@ export class PersonalMessagesComponent implements OnInit {
                 if (elements.is_read == 1 && elements.user_send_by !== localStorage.getItem('fbtoken')) {
                   if (!this.lastGroupmsgCount[element.payload.doc.id].find(el => { return el.timestamp == elements.timestamp })) {
                     this.lastGroupmsgCount[element.payload.doc.id].push(elements);
+                    
+                    
                   }
-
-
                 }
               });
             }
-
-
-
           })
           res.reciepent.forEach(ele => {
             if (ele[uuid] && (ele[uuid].is_remove == 0 && ele[uuid].is_exit == 0)) {
@@ -299,11 +293,14 @@ export class PersonalMessagesComponent implements OnInit {
                   if (!this.lastGroupmsg[element.payload.doc.id].find(el => { return el.timestamp == res1.data[res1.data.length - 1].timestamp })) {
                     if (res1) {
                       this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
+                     
+                      
+                     if(res1.data[res1.data.length - 1]){
                       res.timestamp = res1.data[res1.data.length - 1].timestamp;
                       res.group = 1
-                      // this.lastMessageData.sort(function (x, y) {
-                      //   return y.timestamp - x.timestamp;
-                      // })
+                     }else{
+                      res.timestamp = 0
+                     }
                     }
                   }
 

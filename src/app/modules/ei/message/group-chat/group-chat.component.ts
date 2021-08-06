@@ -66,6 +66,7 @@ export class GroupChatComponent implements OnInit {
   isAddedTeacher:boolean=false;
   displayedColumns: string[] = ['checked', 'SNo', 'ZatchUpID', 'Name', 'userID', 'roll_no', 'Gender', 'Age',
   'class' ];
+  teachers: any=[];
   constructor(
     private location: Location,
     private router: Router,
@@ -83,11 +84,14 @@ export class GroupChatComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       this.params = params;
     })
-     
-      if(localStorage.getItem("groupclasscheck")=='true'){
+     if(!this.params.editgroup){
+    if(localStorage.getItem("groupclasscheck")=='true'){
         this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
         this. displayCourseListModuleAccess();
-        this.sectionIds=JSON.parse(localStorage.getItem("sections"));
+        if(localStorage.getItem("sections")){
+          this.sectionIds=JSON.parse(localStorage.getItem("sections"));
+        }
+        
         if(localStorage.getItem("courseIds")){
           if(JSON.parse(localStorage.getItem("courseIds")).length>0){
           
@@ -108,6 +112,87 @@ export class GroupChatComponent implements OnInit {
        }
        
       }
+     }else{
+      localStorage.removeItem("sections");
+      localStorage.removeItem("courseIds");
+      localStorage.removeItem("standardIds");
+      localStorage.removeItem("teachers"); 
+      
+      if(localStorage.getItem('groupUsers')){
+        var groupUsers  = JSON.parse(localStorage.getItem('groupUsers'));
+        console.log(groupUsers);
+        
+        var groupstudentSelection = []
+        groupUsers.forEach(element => {
+          if(element.checked){
+           var c = this.courseIds.find(el=>{
+              return el=element.course
+            })
+            if(!c){
+              this.courseIds.push(element.course)
+            }
+            var st = this.standardIds.find(el=>{
+              return el=element.standard
+            })
+            if(!st){
+              this.standardIds.push(element.standard)
+            }
+            var sc = this.sectionIds.find(el=>{
+              return el=element.teaching_class
+            })
+            console.log("sc",sc);
+            
+            if(!sc){
+              this.sectionIds.push(element.teaching_class)
+            }
+            
+          }
+          if(element.isadded){
+            
+            var teacherObj = this.teachers.find(el=>{
+              return el.user_id=element.user_id
+            })
+            console.log("sc",sc);
+            
+            if(!teacherObj){
+              this.teachers.push(element)
+            }
+          }
+        });
+            localStorage.setItem("sections",JSON.stringify(this.sectionIds));
+            localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
+            localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
+            localStorage.setItem("teachers",JSON.stringify(this.teachers));
+            if(localStorage.getItem("groupclasscheck")=='true'){
+              this.model.ismoduleaccessclass=localStorage.getItem("groupclasscheck");
+              this. displayCourseListModuleAccess();
+              if(localStorage.getItem("sections")){
+                this.sectionIds=JSON.parse(localStorage.getItem("sections"));
+              }
+              
+              if(localStorage.getItem("courseIds")){
+                if(JSON.parse(localStorage.getItem("courseIds")).length>0){
+                
+                  this.courseIds=JSON.parse(localStorage.getItem("courseIds"))
+                  JSON.parse(localStorage.getItem("courseIds")).forEach(element => {
+                    this.displayStandardListModuleAccess(element,true);
+                  });
+                }
+              }
+             if(localStorage.getItem("standardIds")){
+              if(JSON.parse(localStorage.getItem("standardIds")).length>0){
+                this.standardIds=JSON.parse(localStorage.getItem("standardIds"))
+                JSON.parse(localStorage.getItem("standardIds")).forEach(element => {
+                  this.displayClassListModuleAccess(element,true);
+                });
+                
+              }
+             }
+             
+            }
+      }
+     }
+      
     
    
   
@@ -243,6 +328,7 @@ getSectionIds(secId){
     return e==secId;
   })
   
+  console.log(index);
   
   if(index == -1){
     this.sectionIds.push(secId)
@@ -277,6 +363,7 @@ getCourseIds(courseId){
     return e==courseId;
   })
   
+  console.log(index);
   
   if(index == -1){
     this.courseIds.push(courseId)
@@ -315,13 +402,23 @@ createGroupConfirmationList(){
     this.isAddedTeacher=true;
    } 
  });
-  if(!this.isAddedTeacher){
-    return this.alert.error("Atleast one teacher in this group","Error")
+  if(!this.isAddedTeacher && this.sectionIds.length==0 && this.courseIds.length==0 && this.standardIds.length==0){
+    return this.alert.error("Select atleast one teacher or course.","Error")
+  }
+  if(this.courseIds.length>0){
+    if(this.standardIds.length==0){
+      return this.alert.error("Please select standard.","Error")
+    }else if(this.sectionIds.length==0){return this.alert.error("Please select section.","Error")}
   }
   // if(this.sectionIds.length==0){
   //   return this.alert.error("Select one section","Error")
   // }
-  localStorage.setItem("teachers",JSON.stringify(this.teacherList));
+  if(!this.isAddedTeacher){
+    localStorage.removeItem("teachers");
+  }else{
+    localStorage.setItem("teachers",JSON.stringify(this.teacherList));
+  }
+  
   localStorage.setItem("sections",JSON.stringify(this.sectionIds));
   localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
   localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
@@ -472,7 +569,7 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
  
   changeAddClass($event,text) {
-     localStorage.setItem("groupclasscheck",$event.checked);
+    localStorage.setItem("groupclasscheck",$event.checked);
     if (text=='addclass' && $event.checked==true) {
       this.displayCourseListModuleAccess();
     } else if (text=='allstudent' && $event.checked==true){
@@ -486,6 +583,9 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       this.studentList = [];
       this.model.ismoduleaccessclass=false;
       this.model.course = "";
+      localStorage.removeItem("sections");
+      localStorage.removeItem("courseIds");
+      localStorage.removeItem("standardIds");
     }
   }
   goBack(): void{

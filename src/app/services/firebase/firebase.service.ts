@@ -135,6 +135,45 @@ export class FirebaseService {
         });
 
     }
+    updateClassAndRollChatUser(data) {
+        // console.log(photoUrl.profile_pic);
+         
+         var uuid = '';
+         if(data.firebase_id){
+            uuid = data.firebase_id;
+         }else{
+            uuid = localStorage.getItem('fbtoken');
+         }
+         //const userRef1 = this.db.doc(`users/${uuid}`);
+         //console.log("sddsd",uuid);
+         this.db.collection('users').doc(uuid).get().toPromise().then((resp: any) => {
+             let res = resp.data();
+             
+            
+             const userRef = this.db.doc(`users/${uuid}`);
+             console.log(data);
+            let class_alias:any='';
+             if(data.class_alias){
+                class_alias=data.class_alias
+            }else{
+                class_alias=data.alias_class
+            }
+             const updateUser = {
+                 id: uuid,
+                 email: res.email,
+                 firstName: res.firstName,
+                 lastName: res.lastName,
+                 photoUrl: res.photoUrl,
+                 class_name: class_alias,
+                 roll_no: data.roll_no,
+                 isActive: res.isActive
+             }
+             //console.log(updateUser);
+             
+             userRef.set(updateUser)
+         });
+ 
+     }
     updateFirebasePassword(email, oldP, password) {
         var result = this.afAuth.signInWithEmailAndPassword(email, oldP);
         result.then((res: any) => {

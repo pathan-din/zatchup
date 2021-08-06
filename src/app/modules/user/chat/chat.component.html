@@ -54,7 +54,7 @@
                                 </a>
 
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
-                            <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
+                            <span class="text-right  small-text-2 ml-4">{{objCon.roll_no?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
                                <!-- <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                 <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                             </span>

@@ -26,6 +26,7 @@ export class CreateGroupChatComponent implements OnInit {
     "icon": "fa fa-camera",
     "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
   }
+  dataStudent: any=[];
    
   constructor(private router: Router,
     private location: Location,
@@ -168,6 +169,7 @@ export class CreateGroupChatComponent implements OnInit {
     if (this.params.editgroup) {
       this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce: any) => {
         //console.log(responce);
+        this.sendChat(this.model.reciepent,this.params.groupId)
         this.router.navigate(['ei/messages-details'], { queryParams: { "chat": "group" } });
 
       }, (error) => {
@@ -176,9 +178,47 @@ export class CreateGroupChatComponent implements OnInit {
     } else {
       this.firestore.collection("group").add(this.model).then(res => {
         localStorage.setItem("group_id", res.id);
+        this.sendChat(this.model.reciepent,res.id)
         this.router.navigate(["ei/personal-messages"])
       })
     }
+
+
+  }
+  sendChat(particepant:any,friendlidt_id:any,document?: any) {
+    
+       
+      return new Promise<any>((resolve, reject) => {
+        let data: any = {};
+        let dataNew: any = {};
+        let userData = JSON.parse(localStorage.getItem('userprofile'))
+        data.user_friend_id = friendlidt_id;
+        data.user_send_by = localStorage.getItem('fbtoken');
+        data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
+        data.profile_pic = userData.profile_pic
+        data.document = document ? true : false;
+        data.msg ='You have add particepant in this group';
+        data.is_read = 1;
+        data.timestamp = new Date().valueOf();
+        data.receipentList = particepant
+        this.dataStudent.push(data)
+        dataNew.data = this.dataStudent;
+        // console.log(dataNew.data);
+        this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+          .set(dataNew)
+          .then(
+            res => {
+
+
+              this.model.comment = '';
+               
+
+            },
+            err => reject(err)
+          )
+
+      })
+    
 
 
   }

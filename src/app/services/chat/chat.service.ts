@@ -39,4 +39,39 @@ export class ChatService {
       return Math.floor(diff / this.DAY_MILLIS) + " days ago";
     }
   }
+  getTimewithday(time: any) {
+    if (time < 1000000000000) {
+      // if timestamp given in seconds, convert to millis
+      time *= 1000;
+    }
+    var times = this.getTimeFromDate(time)
+    //console.log("time of the day",times);
+    
+    let now = new Date().valueOf();
+    if (time > now || time <= 0) {
+      return null;
+    }
+
+    let diff = now - time;
+    if (diff < this.MINUTE_MILLIS) {
+      return 'Last seen today at  ' + times;
+    } else if (diff < 2 * this.MINUTE_MILLIS) {
+      return "Last seen today at  " + times;
+    } else if (diff < 50 * this.MINUTE_MILLIS) {
+      return "Last seen today at  " + times;
+    } else if (diff < 90 * this.MINUTE_MILLIS) {
+      return "Last seen today at  " + times;
+    } else if (diff < 24 * this.HOUR_MILLIS) {
+      return "Last seen today at  " + times;
+    } else if (diff < 48 * this.HOUR_MILLIS) {
+      return "Last seen yesterday at " + times;
+    } else {
+      var date = new Date(time)
+      return 'Last seen at '+date.toLocaleString('en-US');
+    }
+  }
+  getTimeFromDate(timestamp) {
+    var date = new Date(timestamp).toLocaleString('en-US', { hour: 'numeric' , minute: 'numeric', hour12: true });
+    return date
+  }
 }
