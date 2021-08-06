@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { AdminService } from '../../../../services/Admin/admin.service';
 import { FormBuilder } from "@angular/forms";
@@ -27,6 +27,9 @@ export class EiForgetPasswordComponent implements OnInit {
   otp4: any;
   modelForOtpModal: any={};
   errorOtpModelDisplay: any;
+  role: any;
+  maxlength: any;
+  type: any;
    
   constructor(
     private genericFormValidationService: GenericFormValidationService, 
@@ -36,10 +39,14 @@ export class EiForgetPasswordComponent implements OnInit {
     public formBuilder: FormBuilder,
     private alert: NotificationService,
     private baseService:BaseService,
-    private userService:UsersServiceService
+    private userService:UsersServiceService,
+    private route : ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.role = this.route.snapshot.queryParamMap.get('role')
+    console.log(this.role);
+    
   }
   changeInput($ev) {
     if ($ev.target.value.length == $ev.target.maxLength) {
@@ -64,6 +71,7 @@ export class EiForgetPasswordComponent implements OnInit {
           this.SpinnerService.hide();
         this.mobileVerification();
       }else{
+        this.model.role = this.role
         this.adminService.sendForgotLink(this.model).subscribe(res => {
           console.log(res);
           let response: any = {};
@@ -75,8 +83,13 @@ export class EiForgetPasswordComponent implements OnInit {
             if (response.data.phone) {
               this.verificationMobileNo = response.data.phone;
               this.title = 'Mobile Verification'
-            }else
-             this.router.navigate(['ei/login']);
+            }else{
+              if(this.role == 'EISUBADMIN'){
+                this.router.navigate(['ei/login-subadmin']);
+              }else{
+                this.router.navigate(['ei/login']);
+              }}
+             
           } else {
             
             this.alert.error(response.error.message[0], 'Error')
@@ -174,4 +187,28 @@ export class EiForgetPasswordComponent implements OnInit {
     }
   }
  
+  isCheckEmailOrPhone(event) {
+    // 
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(event.target.value)) {
+
+      this.type = 'email';
+      this.maxlength = 50;
+      this.model.email = this.model.username;
+      this.model.phone = '';
+    } else {
+      const numbers = /^[0-9]+$/;
+      if (numbers.test(event.target.value)) {
+        this.type = 'tel'
+        this.maxlength = 10;
+        this.model.phone = this.model.username;
+        this.model.email = '';
+      }
+
+    }
+    console.log(this.type);
+    
+    
+  }
+
 }

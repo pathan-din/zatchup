@@ -61,11 +61,11 @@ export class CoverUploaderComponent implements OnInit {
     this.croppedImage = event.base64;
   }
   imageLoaded() {
-    debugger
+    // debugger
     /* show cropper */
   }
   cropperReady(event: any) {
-    debugger
+    // debugger
     /* cropper ready */
   }
   loadImageFailed() {
