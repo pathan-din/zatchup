@@ -10,6 +10,10 @@
             </span>
             <span class="spacer"></span>
             <!-- <mat-icon aria-label="Side nav toggle icon" class="position-absolute closeMenu">cancel</mat-icon> -->
+            <a *ngIf="user_type == 'ZATCHUPSUBADMIN'" mat-list-item routerLink="/admin/subadmin-profile" routerLinkActive="link-active">
+                <i class="fa fa-users mr-2"></i>
+                <span class="commonFontSize"> My Profile</span>
+            </a>
             <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="link-active">
                 <i class="material-icons mr-2 md-18">dashboard</i>
                 <span class="commonFontSize"> Dashboard</span>

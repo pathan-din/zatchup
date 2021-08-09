@@ -76,7 +76,12 @@ export class AdminLoginComponent implements OnInit {
               this.setCookies();
             else
               this.deleteCookies();
-            this.router.navigate(['admin/dashboard']);
+              if(res.user_type == 'ZATCHUPSUBADMIN'){
+                this.router.navigate(['admin/subadmin-profile'])
+              }
+              else{
+                this.router.navigate(['admin/dashboard']);
+              }
           } else {
             this.SpinnerService.hide();
             this.alert.error(res.error.message[0], 'Error')
