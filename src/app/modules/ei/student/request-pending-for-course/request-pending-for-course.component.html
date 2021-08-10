@@ -105,7 +105,7 @@ aria-hidden="true">
              <div class="col-md-12 ">
         <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
         <div class="form-control-inputDiv rounded p-0 shadow-none w-100">
-            <input id="remark" [(ngModel)]="modelReason.rejected_remark" name="reason_type" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
+            <input id="remark" [(ngModel)]="modelReason.rejected_reason" name="reason_type" required class="form-control-input form-control  commonFontSize regularFont letterspacing" type="text" placeholder="Enter Reason">
         </div>
         <div class="required errorMsg" [innerHtml]="errorDisplay.reason_type"></div>
     </div>
@@ -115,7 +115,7 @@ aria-hidden="true">
                     <label for="Remarks "
                         class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
 
-                    <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea [(ngModel)]="modelReason.rejected_reason" name="remarks" required
+                    <div class="form-control-inputDiv rounded p-1 shadow-none w-100"><textarea [(ngModel)]="modelReason.rejected_remark" name="remarks" required
                             class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                             rows="3 " placeholder="Enter Remarks "></textarea>
                     </div>

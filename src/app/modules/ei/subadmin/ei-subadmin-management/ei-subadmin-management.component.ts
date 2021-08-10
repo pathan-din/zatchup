@@ -80,4 +80,8 @@ export class EiSubadminManagementComponent implements OnInit {
   subadminChangeRequest() {
     this.router.navigate(['ei/subadmin-change-request']);
   }
+
+  subadminRejected() {
+    this.router.navigate(['ei/rejected-subadmin'])
+  }
 }
