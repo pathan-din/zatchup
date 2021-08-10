@@ -358,7 +358,15 @@ export class MessagesDetailsComponent implements OnInit {
 
 
           res.data.forEach(element1 => {
-            element1.is_read = 0
+            if (this.router.url.split('/')[2].split('?')[0]) {
+              
+              
+              if (this.router.url.split('/')[2].split('?')[0] === 'messages-details' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
+                localStorage.setItem('isread', "1")
+                element1.is_read = 0
+              }
+            }
+           
             element1.receipentList.forEach(element => {
               // console.log(element);
               if (element[localStorage.getItem('fbtoken')]) {
@@ -447,6 +455,11 @@ export class MessagesDetailsComponent implements OnInit {
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
+       
+      if(Math.round((fileData.size/1000000))>50){
+        this.alert.error("Allowed only 50MB","Error");
+        return;
+      }
       const formData = new FormData();
       formData.append('file_name', fileData);
       this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(

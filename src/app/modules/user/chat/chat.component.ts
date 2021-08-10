@@ -235,7 +235,14 @@ export class ChatComponent implements OnInit {
         if (res) {
           res.data.forEach(element1 => {
             element1.receipentList.forEach(element => {
-              element1.is_read=0
+              if (this.router.url.split('/')[2].split('?')[0]) {
+              
+              
+                if (this.router.url.split('/')[2].split('?')[0] === 'chat' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
+                  localStorage.setItem('isread', "1")
+                  element1.is_read = 0
+                }
+              }
               if(element[localStorage.getItem('fbtoken')]){
                 if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
                   

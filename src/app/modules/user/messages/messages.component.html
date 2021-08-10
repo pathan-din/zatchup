@@ -48,7 +48,7 @@
                              
                             <span class="chatCount" *ngIf="lastGroupmsgCount[msgObj.uuid].length>0">{{lastGroupmsgCount[msgObj.uuid].length}}</span>
                         </p> 
-                        <p class="color-fadded-black" *ngFor="let lastChat of lastGroupmsg[msgObj.uuid];">{{lastChat.document?'Attachment':lastChat.msg}}</p>                                                   
+                        <p class="color-fadded-black" *ngFor="let lastChat of lastGroupmsg[msgObj.uuid];"><span *ngIf="lastChat">{{lastChat.document?'Attachment':lastChat.msg}}</span></p>                                                   
                     </div>
      
                 </div> 
