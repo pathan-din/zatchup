@@ -40,7 +40,7 @@
                             <ul class="participantsList">
                             <li *ngFor="let user of receipentUsers" class="user-blkrow cursorStyle">
                                 <img src="{{user.photoUrl?user.photoUrl:'assets/images/userWebsite/profile-image.png'}}" alt="profile-pick" class="pickSize mr-2 border"/> 
-                                <span class="group-user-name text-capitalize">{{user.firstName}} {{user.lastName?user.lastName:""}}</span>
+                                <span class="group-user-name text-capitalize">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName?user.lastName:""}}</span>
                                 <span class="color-red group-member cursorStyle remove-participent" *ngIf="user.id!=currentUser && is_check_student==1 && is_admin==1" (click)="exitGroup(user.id,'remove')">Remove</span>
                                     <span class="cursorStyle group-admin color-red" (click)="isAdmin(user.id,'add')" *ngIf="user.id!=currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==0  && is_admin==1">Admin</span>
                                     <span class="cursorStyle group-admin color-green group-admin-green" *ngIf="user.id!=currentUser && groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==1" (click)="isAdmin(user.id,'remove')">Group Admin</span>

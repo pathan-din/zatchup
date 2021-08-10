@@ -129,7 +129,7 @@
             >
           </h3>
           <p class="mb-0" *ngFor="let lastChat of lastGroupmsg[msgObj.uuid]">
-          <span *ngIf="lastChat"> {{ lastChat.document ? "Attachment" : lastChat.msg }}</span>
+          <span *ngIf="lastChat && !lastChat.is_created"> {{ lastChat.document ? "Attachment" : lastChat.msg }}</span>
             
           </p>
         </div>
@@ -234,7 +234,7 @@
                   class="toggleslider"
                 ></mat-slide-toggle>
               </div>
-              <div
+              <!-- <div
                 class="
                   form-group
                   justifyInput
@@ -243,7 +243,7 @@
                   align-items-center
                 "
               >
-                <label for="" class="mediumFont commonFontSize letterspacing">
+               <label for="" class="mediumFont commonFontSize letterspacing">
                   Read Receipts
                 </label>
                 <mat-slide-toggle
@@ -251,7 +251,7 @@
                   (change)="setUserSettingOnFirebase($event.checked, 'is_read')"
                   class="toggleslider"
                 ></mat-slide-toggle>
-              </div>
+              </div>-->
               <div
                 class="
                   form-group
