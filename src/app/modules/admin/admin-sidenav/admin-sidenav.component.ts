@@ -73,6 +73,8 @@ export class AdminSidenavComponent implements OnInit {
       this.moduleList = JSON.parse(sessionStorage.getItem('permissions'))
     if (localStorage.getItem('user_type'))
       this.user_type = localStorage.getItem('user_type')
+      console.log(this.user_type);
+      
     // this.getUserInfo();
     this.getNotificationCount()
 

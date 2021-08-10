@@ -5,26 +5,21 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <h2 class="mb-3 pt-3">My Profile</h2>
 
-            <div class="pt-3" style="clear: both;" *ngIf="epData">
+            <div class="pt-3" style="clear: both;"  *ngIf="subData">
                 <div class="row">
                     <div class="col-md-12 text-right d-flex flex-wrap p-0 align-items-center position-relative">
                         <div class="position-relative border customDiv">
-                            <img *ngIf="imageUrl"
-                                src="{{imageUrl ? imageUrl: 'assets/images/userWebsite/successfully_done.png'}}"
-                                class="img_profile img-fluid">
-                            <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
-                            </app-image-uploader>
+                            <img src="assets/images/profile_pic_transparent.png" class="img_profile img-fluid">
+                            <!-- <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
+                            </app-image-uploader> -->
                         </div>
-                        <img *ngIf="epData.kyc_approved == 1" src="assets/images/userWebsite/checkicon.png"
-                            class="img-fluid ml-1 tickImg">
+                        <img  src="assets/images/userWebsite/checkicon.png" class="img-fluid ml-1 tickImg">
 
-                        <div class="pl-3 text-left my-3">
-                            <p class="m-0 commonFontSize semiBoldFont"><span *ngIf="epData.kyc_approved==0"
-                                    class="text-capitalize">{{epData.name}}</span><a
-                                    *ngIf="epData.kyc_approved==1 || epData.kyc_approved==2"
-                                    class="cursorStyle">{{epData.name}}</a> </p>
-                            <p class="m-0 commonFontSize mediumFont">Unique ZatchUp ID
-                                :{{epData.zatchup_id?epData.zatchup_id:'xxxxxxxx'}} </p>
+                        <div class="pl-3  text-left my-3">
+                            <h2 class="m-0 commonFontSize semiBoldFont"><span 
+                                    class="text-capitalize">{{subData.full_name}}</span></h2>
+                            <!-- <p class="m-0 commonFontSize semiBoldFont">Unique ZatchUp ID
+                                :fgdz </p> -->
                         </div>
                     </div>
                 </div>
@@ -41,37 +36,21 @@
                                 <hr>
                             </div>
                             <div class="col-md-12">
-                                <p *ngIf="epData.dob" class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
-                                        class="regularFont">
-                                        <span *ngIf="epData.kyc_approved==0">{{epData.dob}}</span>
-                                        <a *ngIf="epData.kyc_approved==1" class="cursorStyle">{{epData.dob}}</a></span>
+                                <p  class="m-0 mb-1 commonFontSize semiBoldFont">DOB : <span
+                                        class="regularFont"> <a class="cursorStyle">{{subData.date_of_birth}}</a></span>
                                 </p>
-                                <p *ngIf="epData.gender" class="m-0 mb-1 commonFontSize semiBoldFont">Gender : <span
-                                        class="regularFont">{{getGender(epData)}} </span>
-                                <p *ngIf="epData.pronoun" class="m-0 mb-1 commonFontSize semiBoldFont">Pronoun : <span
-                                        class="regularFont">{{getGender(epData, 'pronoun')}} </span>
-                                    <!-- <span
-                                        class="regularFont" *ngIf="epData.gender=='F'">{{'FEMALE'}} </span>
+                              
 
-                                        <span
-                                        class="regularFont" *ngIf="epData.gender=='C'">{{epData.pronoun }} </span> -->
-                                </p>
+                                <p  class="m-0 mb-1 commonFontSize semiBoldFont">Employee Id : <span
+                                        class="regularFont"><a class="cursorStyle">{{subData.employee_id}}</a></span></p>
 
-                                <p *ngIf="epData.employee_id" class="m-0 mb-1 commonFontSize semiBoldFont">Employee Id : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.employee_id}}</a></span></p>
-
-                                <p *ngIf="epData.email" class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.email}}</a></span></p>
-                                <p *ngIf="epData.phone" class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number :
-                                    <span class="regularFont"><a class="cursorStyle">{{epData.phone}}</a></span></p>
-                                <p *ngIf="epData.father_name" class="m-0 mb-1 commonFontSize semiBoldFont">Father's Name
-                                    : <span class="regularFont">{{epData.father_name}}</span></p>
-                                <p *ngIf="epData.mother_name" class="m-0 mb-1 commonFontSize semiBoldFont">Mother's Name
-                                    : <span class="regularFont">{{epData.mother_name}}</span></p>
-                                <!-- <p class="m-0 mb-1 commonFontSize semiBoldFont">Bio : <br> <span
-                                        class="regularFont">{{epData.bio?epData.bio:''}}</span></p> -->
-                                <p *ngIf="epData.comment" class="m-0 mb-1 commonFontSize semiBoldFont">Comments : <span
-                                        class="regularFont"><a class="cursorStyle">{{epData.comment}}</a></span></p>
+                                <p  class="m-0 mb-1 commonFontSize semiBoldFont">Email : <span
+                                        class="regularFont"><a class="cursorStyle">{{subData.email_address}}</a></span></p>
+                                <p  class="m-0 mb-1 commonFontSize semiBoldFont">Phone Number :
+                                    <span class="regularFont"><a class="cursorStyle">{{subData.phone_number}}</a></span></p>
+                                
+                                <p  class="m-0 mb-1 commonFontSize semiBoldFont">Designation : <span
+                                        class="regularFont"><a class="cursorStyle">{{subData.designation}}</a></span></p>
                             </div>
                         </div>
                     </div>

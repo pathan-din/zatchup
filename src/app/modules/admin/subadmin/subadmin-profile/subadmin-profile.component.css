@@ -1,0 +1,71 @@
+.containerScrolling {
+    height: 100vh;
+    overflow-y: scroll;
+}
+.dpImgDiv {
+    /* background: url('/assets/images/userWebsite/share-my-profile-icon.png') #efefef; */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 15%;
+    background-position-x: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    margin-top: -50px;
+    padding: 0.4rem;
+    min-width: 100px;
+    min-height: 100px;
+    background: #fff;
+}
+/* .dpImgDiv {
+    width: 10%;
+} */
+
+.editIcon {
+    width: 3%;
+}
+
+.form-control-inputDiv {
+    border-radius: 25px;
+}
+
+.tickImg {
+    position: absolute;
+    top: 80px;
+    left: 85px;
+}
+ 
+.customDiv {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.chckImg {
+    width: 20px;
+}
+
+.profileIcon {
+    position: absolute;
+    background: #000;
+    padding: 5px;
+    width: 30px;
+    top: 5px;
+    left: 5px;
+}
+
+@media only screen and (max-width: 414px) {
+    .Heading{
+        font-size: 1.2rem;
+    }
+    .editIcon{
+        width: 10%;
+    }
+}
+
+.fontSize-20{font-size: 20px;}
+.fontSize-18{font-size: 18px;}
+.fontSize-16{font-size: 16px;}
