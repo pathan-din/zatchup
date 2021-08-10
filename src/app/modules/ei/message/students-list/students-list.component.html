@@ -68,6 +68,11 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
             </div>
+            <div class="row" *ngIf="dataSource.length==0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No students found in the standard.</p>
+                </div>
+            </div>
         </div>
     </div>
  
@@ -123,7 +128,11 @@
                 </mat-table>
             </div>
         </div>
-       
+       <div class="row" *ngIf="dataSource1.length==0">
+                <div class="col-12 pt-2 pb-2">
+                    <p class="text-center dataNotFound pt-4 pb-4">No teacher found.</p>
+                </div>
+            </div>
     </div>
      <button (click)="createGroup()" type="button" class="btn bg-paret-green color-white px-4 mt-3 btn-info">Create</button>
 </div>

@@ -52,9 +52,9 @@
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
                                 </a>
-
+                            <p class=" m-0">{{getroleUserFlag?objCon.user_name:''}} </p>
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
-                            <span class="text-right  small-text-2 ml-4">{{objCon.roll_no?objCon.user_name:''}} {{getTimeAgo(objCon.timestamp)}}
+                            <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
                                <!-- <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                 <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                             </span>

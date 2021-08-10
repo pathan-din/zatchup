@@ -199,6 +199,7 @@ export class CreateGroupChatComponent implements OnInit {
         data.document = document ? true : false;
         data.msg ='You have add particepant in this group';
         data.is_read = 1;
+        data.is_creatted = 1;
         data.timestamp = new Date().valueOf();
         data.receipentList = particepant
         this.dataStudent.push(data)
