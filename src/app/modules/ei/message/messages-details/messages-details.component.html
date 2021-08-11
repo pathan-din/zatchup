@@ -44,9 +44,9 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <div *ngIf="!objCon.document">
-                         <p class="text-left  small-text-2"><strong>{{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}}</strong></p>
-                            <p class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left text-capitalize"> {{objCon.msg}}
+                        <div class="text-capitalize {{objCon.user_send_by!=currentUser?'':'chatTxt-2'}}" *ngIf="!objCon.document">
+                            <p class="mb-0 semiBoldFont"> {{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}} </p>
+                            <p class="chatTxt mb-0 mr-3"> {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
                                     <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
@@ -54,7 +54,7 @@
                             </p>
                         </div>
                         <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left" *ngIf="objCon.document">
-                        <p class="text-left  small-text-2"><strong>{{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}}</strong></p>
+                            <p class="text-left mb-0"> {{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}} </p>
                              <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
@@ -87,7 +87,7 @@
                         <span class="small-text-2"></span>
                     </p>
                      <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i=index;">
-                        <label [ngClass]="'color-green'">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName}} {{i==receipentUsers.length-1?'':','}} </label>
+                        <label [ngClass]="'color-green cursorStyle'">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName}} {{i==receipentUsers.length-1?'':','}} </label>
                     </span>
                 </div>
                  
@@ -96,31 +96,28 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <div *ngIf="!objCon.document">
-                        <p class="text-left  small-text-2"><strong *ngIf="!objCon.is_creatted">{{objCon.user_send_by!=currentUser?objCon.user_name:''}}</strong></p>
-                            <p *ngIf="!objCon.is_creatted" class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}  mr-3 text-left text-capitalize"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
-                                   </span>
+                        <div *ngIf="!objCon.document" class="chatTxt text-left text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}">
+                            <p class="text-left mb-0 semiBoldFont" *ngIf="!objCon.is_creatted"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
+                            <p *ngIf="!objCon.is_creatted" class=" mb-0 mr-3"> {{objCon.msg}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}</span>
                             </p>
-                             <p *ngIf="objCon.is_creatted" class="grpText"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}
-                                 
-                            </p>
+                             <p *ngIf="objCon.is_creatted" class="text-center mb-0"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
                         </div>
                         <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} mr-3 text-left" *ngIf="objCon.document">
-                        <p class="text-left  small-text-2"><strong>{{objCon.user_send_by!=currentUser?objCon.user_name:''}}</strong></p>
-                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
-                                </a>
-                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
-                                </a>
-                                <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
-                                </a>
+                            <p class="text-left mb-0"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
+                            <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
+                            </a>
                             <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">  {{getTimeAgo(objCon.timestamp)}}
-                               <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                            <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
-                               -->
+                            -->
                             </span>
                         </div>
                     </div>
