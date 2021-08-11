@@ -271,10 +271,13 @@ export class PersonalMessagesComponent implements OnInit {
           this.lastGroupmsgCount[element.payload.doc.id] = []
           this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
             if (res1) {
+               
+              
               res1.data.forEach(elements => {
                 if (elements.is_read == 1 && elements.user_send_by !== localStorage.getItem('fbtoken')) {
                   if (!this.lastGroupmsgCount[element.payload.doc.id].find(el => { return el.timestamp == elements.timestamp })) {
                     this.lastGroupmsgCount[element.payload.doc.id].push(elements);
+                    console.log("updated code by last count",elements);
                     
                     
                   }

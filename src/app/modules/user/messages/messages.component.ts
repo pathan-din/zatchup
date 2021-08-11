@@ -149,17 +149,24 @@ export class MessagesComponent implements OnInit {
               }
             });
            }
+           console.log("update without set data",this.lastGroupmsgCount[element.payload.doc.id]);
+           const x= this.lastGroupmsgCount[element.payload.doc.id].filter(e=>{return e.is_read==1}) 
+           console.log("update after set data",x);
            });
+          
             res.reciepent.forEach(ele => {
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
                 var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
                 if(!index){
                   
-                  this.lastGroupmsg[element.payload.doc.id]=[]
+                  
                   this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
+                    this.lastGroupmsg[element.payload.doc.id]=[]
                     if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp}))
-                    if(res1.data){
+                    if(res1.data ){
+                      
                       this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                      console.log( this.lastGroupmsg);
                       
                       if(res1.data[res1.data.length-1]){
                         res.timestamp = res1.data[res1.data.length-1].timestamp;

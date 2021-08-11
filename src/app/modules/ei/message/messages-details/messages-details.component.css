@@ -6,6 +6,13 @@
     border-radius: 50%;
     overflow: hidden;
 }
+.grpText {
+    text-align: center !important;
+    margin: 0 auto !important;
+    background: #eaeaea;
+    width: 100%;
+    box-shadow: none;
+}
 .message-user img{
     width: 100%;
 }
@@ -67,13 +74,15 @@
     max-width: 40px;
     overflow: hidden;
     max-height: 40px;
-    min-height: 40px;
+    min-height: 50px;
+    min-width: 52px;
     width: 100%;
-    min-width: 40px;
+    
     height: 100%;
     border: 1px solid #ddd;
     position: relative;
-}
+} 
+    
 .chatTxt img {
     max-width: 245px;
 }

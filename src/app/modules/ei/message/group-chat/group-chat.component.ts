@@ -328,7 +328,7 @@ getSectionIds(secId){
     return e==secId;
   })
   
-  console.log(index);
+  console.log(secId);
   
   if(index == -1){
     this.sectionIds.push(secId)

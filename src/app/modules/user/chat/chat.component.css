@@ -3,12 +3,21 @@
     max-width: 40px;
     overflow: hidden;
     max-height: 40px;
-    min-height: 40px;
-    min-width: 40px;
+    min-height: 50px;
+    min-width: 52px;
     border: 1px solid #ddd;
     position: relative;
 }
 
+ 
+
+.grpText {
+    text-align: center !important;
+    margin: 0 auto !important;
+    background: #eaeaea;
+    width: 100%;
+    box-shadow: none;
+}
 .left-sideChat {
     height: 470px;
     overflow-y: auto;

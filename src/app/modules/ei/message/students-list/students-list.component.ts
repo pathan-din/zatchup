@@ -139,6 +139,7 @@ export class StudentsListComponent implements OnInit {
            {
             //groupList.splice(index,1);
             groupList[getAlreadyCurrentUserInGroupIndex].isadded=true
+            groupList[getAlreadyCurrentUserInGroupIndex].isdisabled=true
            }
           
           
@@ -269,6 +270,7 @@ export class StudentsListComponent implements OnInit {
               if(index>-1){
                 
                 groupList[index].checked=true;
+                groupList[index].isdisabled=true
                }
               //groupList.splice(index,1);
             })
@@ -318,7 +320,12 @@ export class StudentsListComponent implements OnInit {
      
      var i=0;
       this.studentLists.forEach(objData => {
-        objData.checked = ev.checked;
+        if(objData.isdisabled){
+          objData.checked = true;
+        }else{
+          objData.checked = ev.checked;
+        }
+        
         i=i+1;
       })
       this.dataSource = this.studentLists;
@@ -339,28 +346,43 @@ export class StudentsListComponent implements OnInit {
     {
       var selsetAll=true;
       this.studentLists.forEach(ob=>{
+        if(user==ob.student_id && ev.checked){
+          ob.checked = ev.checked;
+        }
         if(!ob.checked){
           selsetAll=false;
         }
+     
       })
      this.studentLists.forEach(objData => {
        if(user==objData.student_id && ev.checked){
         objData.checked = ev.checked;
         console.log(selsetAll);
-        
+        console.log("yes");
         this.checkAllS=selsetAll
        }else if(user==objData.student_id && !ev.checked){
           objData.checked = ev.checked;
           this.checkAllS=false
+          console.log("no");
        }
         
       })
-      
+      console.log(selsetAll);
     }else{
+      var selsetAll=true;
+      this.teacherList.forEach(ob=>{
+        if(user==ob.user_id && ev.checked){
+          ob.isadded = ev.checked;
+        }
+        if(!ob.isadded){
+          selsetAll=false;
+        }
+     
+      })
       this.teacherList.forEach(objData => {
         if(user==objData.user_id  && ev.checked){
           objData.isadded = ev.checked;
-          this.checkAllT=true
+          this.checkAllT=selsetAll
          }else if(user==objData.user_id  && !ev.checked){
           objData.isadded = ev.checked;
           this.checkAllT=false

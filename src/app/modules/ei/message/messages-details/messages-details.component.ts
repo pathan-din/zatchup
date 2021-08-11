@@ -353,19 +353,28 @@ export class MessagesDetailsComponent implements OnInit {
       var uuid = localStorage.getItem("guuid");
       var that = this;
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
-      dataSet.subscribe((res: any) => {
+      const subs1=dataSet.subscribe((res: any) => {
         if (res) {
-
+          if (this.router.url.split('/')[2].split('?')[0]) {
+              
+              
+            if (this.router.url.split('/')[2].split('?')[0] === 'messages-details') {
+              
+              
+              res.data.forEach(element1 => {
+                if( element1.is_read == 1 && element1.user_send_by!=this.currentUser){
+                  localStorage.setItem('isread', "1")
+                  element1.is_read = 0
+                }
+              
+              })
+              
+            }
+          }
 
           res.data.forEach(element1 => {
-            if (this.router.url.split('/')[2].split('?')[0]) {
-              
-              
-              if (this.router.url.split('/')[2].split('?')[0] === 'messages-details' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
-                localStorage.setItem('isread', "1")
-                element1.is_read = 0
-              }
-            }
+             
+           
            
             element1.receipentList.forEach(element => {
               // console.log(element);
@@ -384,14 +393,24 @@ export class MessagesDetailsComponent implements OnInit {
 
           //
           this.conversation = chatData;
-          if (localStorage.getItem('isread')) {
-            localStorage.removeItem('isread')
-            
-            
-            this.firestore.collection('chat_conversation').doc(uuid).set({ "data": this.conversation })
-          }
+          
 
           this.dataStudent = chatData;
+          if (localStorage.getItem('isread')) {
+           
+            if(this.conversation.length>0){
+              this.conversation.forEach(element => {
+                if(element.is_read==1){
+                  element.is_read=0;
+                }
+              });
+             }
+              
+            this.firestore.collection('chat_conversation').doc(uuid).set({ "data": this.conversation })
+            //subs1.unsubscribe()
+            localStorage.removeItem('isread')
+          }
+          
         } else {
           this.conversation = [];
           this.dataStudent = [];
@@ -445,7 +464,7 @@ export class MessagesDetailsComponent implements OnInit {
   getTimeAgo(time: any) {
     return this.chatService.getTimeAgo(time)
   }
-  getTimewithday(time: any) {
+ getTimewithday (time: any) {
     return this.chatService.getTimewithday(time)
   }
 

@@ -231,18 +231,25 @@ export class ChatComponent implements OnInit {
       var uuid1 = localStorage.getItem("guuid");
       var that =this;
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
-      dataSet.subscribe((res: any) => {
+      const sub1= dataSet.subscribe((res: any) => {
         if (res) {
+          if (this.router.url.split('/')[2].split('?')[0]) {
+                 
+            
+            if (this.router.url.split('/')[2].split('?')[0] === 'chat' ) {
+               
+               res.data.forEach(element1 => {
+                 if(element1.is_read==1 && element1.user_send_by!=this.currentUser){
+                  localStorage.setItem('isread1', "1")
+                  element1.is_read = 0
+                 }
+                
+                })  
+             } 
+           }
           res.data.forEach(element1 => {
             element1.receipentList.forEach(element => {
-              if (this.router.url.split('/')[2].split('?')[0]) {
-              
-              
-                if (this.router.url.split('/')[2].split('?')[0] === 'chat' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
-                  localStorage.setItem('isread', "1")
-                  element1.is_read = 0
-                }
-              }
+             
               if(element[localStorage.getItem('fbtoken')]){
                 if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
                   
@@ -261,8 +268,19 @@ export class ChatComponent implements OnInit {
           this.conversation = chatData;
           this.dataStudent = chatData;
           if(localStorage.getItem('isread1')){
-            localStorage.removeItem('isread1')
+             
+           if(this.conversation.length>0){
+            this.conversation.forEach(element => {
+              if(element.is_read==1){
+                element.is_read=0;
+              }
+            });
+           }
+           
+            
             this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
+            localStorage.removeItem('isread1')
+            //sub1.unsubscribe()
           }
         } else {
           this.conversation = [];
@@ -281,7 +299,7 @@ export class ChatComponent implements OnInit {
         dataSet.subscribe((res: any) => {
           if (res) {
             if (res.data) {
-             console.log(this.router.url.split('/')[2].split('?')[0]);
+            // console.log(this.router.url.split('/')[2].split('?')[0]);
              
               if (this.router.url.split('/')[2].split('?')[0]) {
                 
@@ -381,6 +399,7 @@ export class ChatComponent implements OnInit {
       if (uuid) {
         this.firestore.collection('users').doc(uuid).ref.get().then(res => {
           this.recepintDetails = res.data();
+          console.log( this.recepintDetails);
            
         });
       }
@@ -388,6 +407,7 @@ export class ChatComponent implements OnInit {
     
 
   }
+  
   sendChat(document?: any) {
   
   if (this.model.comment)
@@ -478,7 +498,9 @@ export class ChatComponent implements OnInit {
   getTimeAgo(time: any) {
     return this.chatService.getTimeAgo(time)
   }
-
+  getTimewithday (time: any) {
+    return this.chatService.getTimewithday(time)
+  }
   goBack() {
     this.location.back()
   }

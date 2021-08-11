@@ -22,7 +22,7 @@
                             <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
                             <span class="small-text-2" *ngIf="!blockRecipant && presence$ | async as presence">
                                 <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
-                                <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimeAgo(presence.timestamp)}}</label>
+                                <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimewithday(presence.timestamp)}}</label>
                                 
                                 
                             </span>
@@ -111,19 +111,12 @@
                             </span>
                         </div>
                     </div>
-                    <!-- <div class="setting_info text-right pr-3 dropdown">
-                        <a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="assets/images/userWebsite/blue-menu.png" class="img-fluid img-small cursorStyle">
-                        </a>
-                        <div class="dropdown-menu customButton" aria-labelledby="dropdownMenuButton">
-                            <span class="dropdown-item cursorStyle" (click)="gotoChatPrivacy()">Setting</span>
-                        </div>
-                    </div> -->
+                     
                 </div>
 
                 <div #scrollMe [scrollTop]="scrollHeight" class="schoolChat">
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
-                        <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
+                        <div class="{{!objCon.is_creatted?'chatIn':''}}" *ngIf="objCon.user_send_by!=currentUser">
 
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
@@ -134,12 +127,22 @@
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
                                 </a>
-                                <p class="text-left  small-text-2"><strong>{{objCon.user_name}}</strong></p>
+
+                                 <p class="text-left  small-text-2"><strong *ngIf="!objCon.is_creatted">{{objCon.user_send_by!=currentUser?objCon.user_name:''}}</strong></p>
+                            <p *ngIf="!objCon.is_creatted" class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}  mr-3 text-left text-capitalize"> {{objCon.msg}}
+                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
+                                   </span>
+                            </p>
+                            
+                             <p *ngIf="objCon.is_creatted" class="grpText"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}
+                                 
+                            </p>
+                                 <!-- <p class="text-left  small-text-2"><strong>{{objCon.user_name}}</strong></p>
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4"> {{getTimeAgo(objCon.timestamp)}}
-                                <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
-                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
-                            </span>
+                              <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
+                            </span>-->
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
@@ -148,6 +151,9 @@
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4"> {{getTimeAgo(objCon.timestamp)}}
                                 </span>
+
+                               
+
                             </div>
                             <div *ngIf="objCon.document">
                                 <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">

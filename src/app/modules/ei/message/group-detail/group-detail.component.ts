@@ -56,10 +56,16 @@ export class GroupDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       this.params=params;
     })
+    this.referesh();
+  }
+  referesh(){
+    this.receipentUsers=[];
     if(this.params.groupId && this.params.chat && !this.params.editgroup)
     {
+      console.log("yes i m here");
+      
       const groupD = this.firestore.collection("group").doc(this.params.groupId).valueChanges()
-      const groupDd=groupD.subscribe((res:any)=>{
+      groupD.subscribe((res:any)=>{
         
        // console.log(res);
         this.model=res;
@@ -85,9 +91,11 @@ export class GroupDetailComponent implements OnInit {
             
           }
           
+          
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
               this.groupMember[el]=element[el];
+              console.log("updated user",el);
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
             }
@@ -98,7 +106,8 @@ export class GroupDetailComponent implements OnInit {
         });
       })
       
-    }else{
+    }
+    else{
       if(localStorage.getItem("groupUsers"))
       {
         var groupListMember=[];
@@ -120,7 +129,7 @@ export class GroupDetailComponent implements OnInit {
           }
 
         });
-        //console.log("list of group",recepient);
+        console.log("list of group",recepient);
         this.firestore.collection('group').get().subscribe(querySnapshot => {
           if (querySnapshot.docs.length > 0) {
             querySnapshot.docs.map(doc => {
@@ -167,7 +176,7 @@ export class GroupDetailComponent implements OnInit {
                 
                 this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
                   //console.log("sdfghjk",responce);
-                  this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+                 // this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
                   
                   },(error)=>{
             
@@ -196,6 +205,8 @@ export class GroupDetailComponent implements OnInit {
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       localStorage.setItem("alreadyGroupMember",JSON.stringify(this.receipentUsers));
+      console.log("updated",this.receipentUsers);
+      
       });
      
       this.noOfUsers=this.receipentUsers.length;
@@ -210,8 +221,8 @@ export class GroupDetailComponent implements OnInit {
   updateDetails(){
     this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
       //console.log(responce);
-      this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
-      
+      //this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+      this.referesh()
       },(error)=>{
 
       }) 
@@ -241,8 +252,8 @@ export class GroupDetailComponent implements OnInit {
               });
                
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-            
-              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+                this.referesh()
+             // this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
               
             },(error)=>{
       
@@ -273,8 +284,8 @@ export class GroupDetailComponent implements OnInit {
                
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
                
-              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
-              
+              //this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+              this.referesh()
             },(error)=>{
       
             }) 
@@ -285,7 +296,7 @@ export class GroupDetailComponent implements OnInit {
      }
   }
   exitGroup(user_uuid,type){
-    console.log(user_uuid);
+ 
     if(type=='exit'){
       this.firestore.collection('group').get().subscribe(querySnapshot => {
         if (querySnapshot.docs.length > 0) {
@@ -303,8 +314,8 @@ export class GroupDetailComponent implements OnInit {
                 
               });
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
-              
+              //this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+              this.referesh()
             },(error)=>{
       
             })}});}});
@@ -330,38 +341,17 @@ export class GroupDetailComponent implements OnInit {
               //console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               //console.log(responce);
-              this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
-              
+             // this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+             this.referesh()
             },(error)=>{
       
             }) 
             }
-          
-            
-            
-            
           });
         }
 
       });
-      // this.firestore.collection("group").doc(this.params.groupId).get().subscribe((rr:any)=>{
-      //   rr.docs.map(query=>{
-      //     console.log(query);
-          
-      //   });
-        
-      // })
-      // this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-      //   //console.log(res);
-      //  this.model=res;
-      //   this.noOfUsers=res.reciepent.length;
       
-      
-      //   console.log(res);
-        
-      // })
-      
-  
     }
    
   }
@@ -421,8 +411,6 @@ addMoreRecipant(){
             if(obj){
               obj.checked=true
               this.groupUsers.push(obj);
-              
-              
             }
            
             
@@ -447,7 +435,7 @@ addMoreRecipant(){
                   
                     }
                     if(this.groupUsers.length>0){
-                      console.log(this.groupUsers);
+                      
                       localStorage.removeItem("groupUsers");
                       localStorage.setItem("groupUsers",JSON.stringify(this.groupUsers));
                       this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});

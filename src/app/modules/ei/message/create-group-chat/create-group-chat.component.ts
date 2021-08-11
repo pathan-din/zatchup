@@ -115,7 +115,7 @@ export class CreateGroupChatComponent implements OnInit {
 
   }
   addMoreRecepient() {
-    this.router.navigate(["ei/students-list"]);
+    this.router.navigate(["ei/group-chat"],{queryParams:{"newgrp":"C"}});
   }
   /** 
   * Function Name : fileUploadDocument
@@ -197,7 +197,7 @@ export class CreateGroupChatComponent implements OnInit {
         data.user_name = userData.user_first_name + ' ' + userData.user_last_name;
         data.profile_pic = userData.profile_pic
         data.document = document ? true : false;
-        data.msg ='You have add particepant in this group';
+        data.msg ='created group '+ this.model.group_title;
         data.is_read = 1;
         data.is_creatted = 1;
         data.timestamp = new Date().valueOf();
