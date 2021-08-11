@@ -96,7 +96,7 @@
                                                 <tr *ngFor="let class of classListModuleAccess[standard.id];let k=index;">
                                                     <td>
                                                         <!-- {{class_id}} -->
-                                                        <mat-checkbox [checked]="isAccess(class.id,'')" (change)="getSectionIds(class.id)"  name="class_{{i}}_{{j}}_{{k}}" required
+                                                        <mat-checkbox [checked]="isAccess(class.id,'')" (change)="getSectionIds(class.id,class,$event)"  name="class_{{i}}_{{j}}_{{k}}" required
                                                         class="addStudent-check mediumFont commonFontSize letterspacing ">{{class.class_name}}</mat-checkbox>
                                                     </td>
                                                 </tr>
