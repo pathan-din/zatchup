@@ -87,7 +87,7 @@
                         <span class="small-text-2"></span>
                     </p>
                      <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i=index;">
-                        <label [ngClass]="'color-green'">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName}} {{i==receipentUsers.length-1?'':','}} </label>
+                        <label [ngClass]="'color-green cursorStyle'">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName}} {{i==receipentUsers.length-1?'':','}} </label>
                     </span>
                 </div>
                  

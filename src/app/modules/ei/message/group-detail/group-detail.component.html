@@ -13,7 +13,7 @@
                             <div class="addChatProfile shadow mr-5 position-relative">
                                 <!-- <img  src="assets/images/userWebsite/users.png" alt="users"/> -->
                                 <!-- <i *ngIf="!model.group_icon" class="fa fa-users" aria-hidden="true"></i> -->
-                                <img *ngIf="!model.group_icon" src="assets/images/userWebsite/users.png" class="img-fluid backimg">
+                                <img *ngIf="!model.group_icon" src="assets/images/userWebsite/users.png" class="img-fluid">
                                 <!-- <i class="fa fa-users" aria-hidden="true" *ngIf="model.group_icon"></i> -->
                                 <img src="{{model.group_icon}}" *ngIf="model.group_icon">
                                 <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
