@@ -25,7 +25,7 @@ export class GroupDetailComponent implements OnInit {
   currentUser: string;
   exitGroupMember: number=0;
   is_check_student:any;
-  
+  groupMember:any=[]
   constructor( private router: Router,
     private location: Location,
     private loader: NgxSpinnerService,
@@ -67,7 +67,9 @@ export class GroupDetailComponent implements OnInit {
           
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
+              this.groupMember[el]=element[el];
             
+              
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
             }

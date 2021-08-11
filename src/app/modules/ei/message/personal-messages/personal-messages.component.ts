@@ -274,10 +274,10 @@ export class PersonalMessagesComponent implements OnInit {
                
               
               res1.data.forEach(elements => {
-                if (elements.is_read == 1 && elements.user_send_by !== localStorage.getItem('fbtoken')) {
+                if (elements.is_read == 1 && !elements.is_creatted && elements.user_send_by !== localStorage.getItem('fbtoken')) {
                   if (!this.lastGroupmsgCount[element.payload.doc.id].find(el => { return el.timestamp == elements.timestamp })) {
                     this.lastGroupmsgCount[element.payload.doc.id].push(elements);
-                    console.log("updated code by last count",elements);
+                    
                     
                     
                   }
