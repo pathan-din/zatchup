@@ -44,9 +44,9 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <div class="text-capitalize" *ngIf="!objCon.document">
+                        <div class="text-capitalize {{objCon.user_send_by!=currentUser?'':'chatTxt-2'}}" *ngIf="!objCon.document">
                             <p class="mb-0 semiBoldFont"> {{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}} </p>
-                            <p class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'':''}} mr-3"> {{objCon.msg}}
+                            <p class="chatTxt mb-0 mr-3"> {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
                                     <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
@@ -96,9 +96,9 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <div *ngIf="!objCon.document" class="chatTxt text-left text-capitalize">
+                        <div *ngIf="!objCon.document" class="chatTxt text-left text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}">
                             <p class="text-left mb-0 semiBoldFont" *ngIf="!objCon.is_creatted"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
-                            <p *ngIf="!objCon.is_creatted" class="{{objCon.user_send_by!=currentUser?'':''}} mb-0 mr-3"> {{objCon.msg}}
+                            <p *ngIf="!objCon.is_creatted" class=" mb-0 mr-3"> {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}</span>
                             </p>
                              <p *ngIf="objCon.is_creatted" class="text-center mb-0"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
