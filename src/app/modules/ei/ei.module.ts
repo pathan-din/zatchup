@@ -177,6 +177,7 @@ import { SubadminChangeRequestComponent } from './subadmin/subadmin-change-reque
 import { SubadminHistoryComponent } from './subadmin/subadmin-history/subadmin-history.component';
 import { ApprovalListForTeacherComponent } from './subadmin/approval-list-for-teacher/approval-list-for-teacher.component';
 import { SchoolApprovalListSignupComponent } from './subadmin/school-approval-list-signup/school-approval-list-signup.component';
+import { RejectedSubadminComponent } from './subadmin/rejected-subadmin/rejected-subadmin.component';
 
 const config = {
   btnClass: 'default', // The CSS class(es) that will apply to the buttons
@@ -370,6 +371,7 @@ const config = {
     SubadminHistoryComponent,
     ApprovalListForTeacherComponent,
     SchoolApprovalListSignupComponent,
+    RejectedSubadminComponent,
   ],
   imports: [
     CommonModule,
