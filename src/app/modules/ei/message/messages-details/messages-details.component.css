@@ -21,6 +21,7 @@
     height: 365px;
     overflow-x: hidden;
     overflow-y: scroll;
+    padding-right: 15px;
 }
 .pdf_customSize{width: 60px;}
 .date-text {
