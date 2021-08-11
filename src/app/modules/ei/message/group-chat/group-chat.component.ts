@@ -38,7 +38,7 @@ export class GroupChatComponent implements OnInit {
   studentList: any=[];
   standardIds:any=[];
   courseIds:any=[];
-
+  sectionList=[];
 
    
   totalNumberOfPage: any = 10;
@@ -120,31 +120,13 @@ export class GroupChatComponent implements OnInit {
       
       if(localStorage.getItem('groupUsers')){
         var groupUsers  = JSON.parse(localStorage.getItem('groupUsers'));
-        console.log(groupUsers);
-        
-        var groupstudentSelection = []
+         
         groupUsers.forEach(element => {
           if(element.checked){
-           var c = this.courseIds.find(el=>{
-              return el=element.course
-            })
-            if(!c){
-              this.courseIds.push(element.course)
-            }
-            var st = this.standardIds.find(el=>{
-              return el=element.standard
-            })
-            if(!st){
-              this.standardIds.push(element.standard)
-            }
-            var sc = this.sectionIds.find(el=>{
-              return el=element.teaching_class
-            })
-            console.log("sc",sc);
+            this.courseIds.push(element.course)
+            this.standardIds.push(element.standard)
+            this.sectionIds.push(element.teaching_class)
             
-            if(!sc){
-              this.sectionIds.push(element.teaching_class)
-            }
             
           }
           if(element.isadded){
@@ -152,7 +134,7 @@ export class GroupChatComponent implements OnInit {
             var teacherObj = this.teachers.find(el=>{
               return el.user_id=element.user_id
             })
-            console.log("sc",sc);
+            
             
             if(!teacherObj){
               this.teachers.push(element)
@@ -321,14 +303,25 @@ export class GroupChatComponent implements OnInit {
     }
   }
  
-getSectionIds(secId){
-  
+getSectionIds(secId,sectionList,ev){
+ if(ev.checked){
+  var findIndex = this.sectionList.findIndex(el=>{return el.id==secId})
+   
+  if(findIndex>-1){
+    this.sectionList.splice(findIndex, 1);
+    localStorage.setItem("sectionL",JSON.stringify(this.sectionList))
+  }else{
+    if(!this.sectionList.find(el=>{return el.id==secId})){
+      this.sectionList.push(sectionList)
+      localStorage.setItem("sectionL",JSON.stringify(this.sectionList))
+    } 
+  }
   
   var index=this.sectionIds.findIndex((e)=>{
     return e==secId;
   })
   
-  console.log(secId);
+  //console.log(secId);
   
   if(index == -1){
     this.sectionIds.push(secId)
@@ -336,6 +329,26 @@ getSectionIds(secId){
     this.sectionIds.splice(index, 1);
     
   }
+ }else{
+  var findIndex = this.sectionList.findIndex(el=>{return el.id==secId})
+  if(findIndex>-1){
+  this.sectionList.splice(findIndex, 1);
+  localStorage.setItem("sectionL",JSON.stringify(this.sectionList))
+  }
+  var index=this.sectionIds.findIndex((e)=>{
+    return e==secId;
+  })
+  
+  //console.log(secId);
+  
+  if(index == -1){
+    this.sectionIds.push(secId)
+  }else{
+    this.sectionIds.splice(index, 1);
+    
+  }
+ }
+ 
  
   
 }

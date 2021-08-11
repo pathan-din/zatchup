@@ -13,6 +13,22 @@
         </div>
         <div class="tableDiv mt-3">
             <div class="mat-elevation-z1 table-responsive" *ngIf="dataSource.length>0">
+                <div class="col-sm-3 mb-3">
+                            <label for="pronouce " class=" mediumFont commonFontSize letterspacing">Select class</label>
+
+                            <div class="form-control-inputDiv rounded p-1 shadow-none">
+                                <select (change)="getGetVerifiedStudent('','')" [(ngModel)]="model.class_id" name="pronoun"
+                                    id="pronoun"
+                                    class="custom-select form-control-input">
+                                    <option value="">Select section</option>
+                                    <option value="{{sect.id}}" *ngFor="let sect of sectionL;">{{sect.class_name}}</option>
+                                     
+
+
+                                </select>
+                            </div>
+                             
+                        </div>
                 <mat-table [dataSource]="dataSource">
                     <ng-container matColumnDef="selectCheckbox">
                         <mat-header-cell *matHeaderCellDef class="text-center"> <mat-checkbox (change)="selectAll($event,'student')"  [checked]="checkAllS" class="example-margin"> </mat-checkbox> </mat-header-cell>

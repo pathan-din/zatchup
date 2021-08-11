@@ -76,7 +76,7 @@ export class StudentsListComponent implements OnInit {
   isaccess:boolean=false;
   checkAllT:boolean=true;
   checkAllS:boolean=true;
-
+  sectionL:any=[];
   displayedColumns: string[] = ['selectCheckbox', 'position', 'profilePick', 'nameOfStudents', 
   'relationship', 'classDetails','classAlias', 'rollNumber'];   
    dataSource = ELEMENT_DATA;
@@ -84,7 +84,7 @@ export class StudentsListComponent implements OnInit {
   'relationship', 'rollNumber'];   
 
   dataSource1 = []
-  sectionsList: any;
+  sectionsList: any=[];
   groupCollectionPerson:any=[];
   params: any;
   constructor(
@@ -100,6 +100,10 @@ export class StudentsListComponent implements OnInit {
   teacherGroup : any =[]
   ngOnInit(): void {
     this.checkAllS = false
+    this.model.class_ids=''
+    if(localStorage.getItem('sectionL')){
+      this.sectionL=JSON.parse(localStorage.getItem('sectionL'))
+    }
    if(localStorage.getItem('groupUsers')){
      this.groupUsers = []
      this.teacherGroup= []
@@ -109,8 +113,6 @@ export class StudentsListComponent implements OnInit {
       }
       else{
         this.teacherGroup.push(element)
-        
-        
       }
     });
     
@@ -184,11 +186,15 @@ export class StudentsListComponent implements OnInit {
       this.loader.show();
       this.model.page = page;
      // this.model.page_size = 1000;
-      if(localStorage.getItem("sections")){
+      if(localStorage.getItem("sections") &&  !this.model.class_id){
         this.sectionsList = JSON.parse(localStorage.getItem("sections"));
         if(JSON.parse(localStorage.getItem("sections")).length>0){
           this.model.class_ids = JSON.parse(localStorage.getItem("sections")).join(",");
         }
+        
+      }
+      if( this.model.class_id){
+        this.model.class_ids =this.model.class_id
         
       }
      
