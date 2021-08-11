@@ -470,7 +470,7 @@ export class MessagesDetailsComponent implements OnInit {
 
   uploadDoc(file: any) {
     try {
-      this.loader.show()
+      
       // var file = this.dataURLtoFile(this.croppedImage, this.fileData.name)
       let fileList: FileList = file.target.files;
       let fileData = fileList[0];
@@ -479,6 +479,7 @@ export class MessagesDetailsComponent implements OnInit {
         this.alert.error("Allowed only 50MB","Error");
         return;
       }
+      this.loader.show()
       const formData = new FormData();
       formData.append('file_name', fileData);
       this.baseService.action('chat/uploaddocschatfile/', formData).subscribe(

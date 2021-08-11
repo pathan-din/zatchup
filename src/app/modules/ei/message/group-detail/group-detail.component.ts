@@ -62,7 +62,7 @@ export class GroupDetailComponent implements OnInit {
     this.receipentUsers=[];
     if(this.params.groupId && this.params.chat && !this.params.editgroup)
     {
-      console.log("yes i m here");
+      
       
       const groupD = this.firestore.collection("group").doc(this.params.groupId).valueChanges()
       groupD.subscribe((res:any)=>{
@@ -95,7 +95,7 @@ export class GroupDetailComponent implements OnInit {
           Object.keys(element).forEach(el=>{
             if(element[el].is_remove==0 && element[el].is_exit==0){
               this.groupMember[el]=element[el];
-              console.log("updated user",el);
+              
               this.getRecepintUserDetails(el,'group');
              // console.log(el);
             }
@@ -129,7 +129,7 @@ export class GroupDetailComponent implements OnInit {
           }
 
         });
-        console.log("list of group",recepient);
+        
         this.firestore.collection('group').get().subscribe(querySnapshot => {
           if (querySnapshot.docs.length > 0) {
             querySnapshot.docs.map(doc => {
@@ -205,7 +205,7 @@ export class GroupDetailComponent implements OnInit {
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       localStorage.setItem("alreadyGroupMember",JSON.stringify(this.receipentUsers));
-      console.log("updated",this.receipentUsers);
+       
       
       });
      
@@ -222,6 +222,7 @@ export class GroupDetailComponent implements OnInit {
     this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
       //console.log(responce);
       //this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+      this.alert.success("Group name updated successfully","Success")
       this.referesh()
       },(error)=>{
 
@@ -308,6 +309,13 @@ export class GroupDetailComponent implements OnInit {
               this.model=res;
               res.reciepent.forEach(element => {
                 //console.log(element);
+                Object.keys(element).forEach(item=>{
+                  if(element[item].is_student==1){
+                    element[item].is_admin=1
+                  }
+                  
+                  
+                })
                 if(element[user_uuid]){
                   element[user_uuid].is_exit=1;
                 }

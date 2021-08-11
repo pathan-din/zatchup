@@ -140,7 +140,7 @@ export class MessagesComponent implements OnInit {
           this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
            if(res1){
             res1.data.forEach(elements => {
-              if(elements.is_read==1 && elements.user_send_by!==localStorage.getItem('fbtoken')){
+              if(elements.is_read==1 && !elements.is_creatted && elements.user_send_by!==localStorage.getItem('fbtoken')){
                 if(!this.lastGroupmsgCount[element.payload.doc.id].find(el=>{return el.timestamp==elements.timestamp})){
                   this.lastGroupmsgCount[element.payload.doc.id].push(elements);
                 }
@@ -149,9 +149,8 @@ export class MessagesComponent implements OnInit {
               }
             });
            }
-           console.log("update without set data",this.lastGroupmsgCount[element.payload.doc.id]);
-           const x= this.lastGroupmsgCount[element.payload.doc.id].filter(e=>{return e.is_read==1}) 
-           console.log("update after set data",x);
+           
+            
            });
           
             res.reciepent.forEach(ele => {
