@@ -67,7 +67,7 @@ export class ChatComponent implements OnInit {
     if(localStorage.getItem('message')){
       this.model.comment = localStorage.getItem('message')
       this.sendChat()
-      localStorage.removeItem('message')
+      
     }
      
     
@@ -330,6 +330,10 @@ export class ChatComponent implements OnInit {
       }
       if (uid) {
         this.getRecepintUserDetails(uid)
+        if(localStorage.getItem('message')){
+          localStorage.setItem("accepted",uid);
+
+        }
         return new Promise<any>((resolve, reject) => {
           let data: any = {};
           var date = new Date();
@@ -399,7 +403,7 @@ export class ChatComponent implements OnInit {
       if (uuid) {
         this.firestore.collection('users').doc(uuid).ref.get().then(res => {
           this.recepintDetails = res.data();
-          console.log( this.recepintDetails);
+           
            
         });
       }
@@ -487,6 +491,13 @@ export class ChatComponent implements OnInit {
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
         .set(dataNew).then(res => {
           this.model.comment = '';
+          setTimeout(() => {
+            if(localStorage.getItem('message')){
+              this.replyChat(localStorage.getItem('accepted'))
+            }
+            
+          }, 3000);
+          
           this.getDocumentsChat('')
         },
           err => reject(err)
@@ -494,7 +505,32 @@ export class ChatComponent implements OnInit {
     })
   }
   }
-
+replyChat(uid){
+  localStorage.removeItem('message')
+  return new Promise<any>((resolve, reject) => {
+    let data: any = {};
+    let dataNew: any = {};
+    this.getRecepintUserDetails(uid)
+    let userData = JSON.parse(localStorage.getItem('userInfo'))
+    data.user_friend_id = localStorage.getItem("friendlidt_id")
+    data.user_send_by = uid;
+    data.timestamp = new Date().valueOf();
+    data.user_name = userData.first_name + ' ' + userData.last_name;
+    data.profile_pic = userData.profile_pic
+    data.document = false;
+    data.msg =  'Hi ' +userData.first_name + ' ' + userData.last_name+', thanks for requesting verification, we are going through our records and will soon update the comments on your profile, attaching any proofs like old marksheets, passing/transfer certificates makes the process of verification quicker and easier, Please send any such proof you may have.';
+    data.is_read = 1
+    this.dataStudent.push(data)
+    dataNew.data = this.dataStudent;
+    this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+      .set(dataNew).then(res => {
+        this.model.comment = '';
+        this.getDocumentsChat('')
+      },
+        err => reject(err)
+      )
+  })
+}
   getTimeAgo(time: any) {
     return this.chatService.getTimeAgo(time)
   }
@@ -558,7 +594,7 @@ export class ChatComponent implements OnInit {
       let fileData = fileList[0];
       
       if(Math.round((fileData.size/1000000))>50){
-        this.alert.error("Allowed only 50MB","Error");
+        this.alert.error("You can only send video of 50 MB only","Error");
         return;
       }
       //52428800

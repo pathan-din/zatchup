@@ -99,7 +99,7 @@ export class StudentsListComponent implements OnInit {
   groupUsers : any = [];
   teacherGroup : any =[]
   ngOnInit(): void {
-    this.checkAllS = false
+    //this.checkAllS = false
     this.model.class_ids=''
     if(localStorage.getItem('sectionL')){
       this.sectionL=JSON.parse(localStorage.getItem('sectionL'))
@@ -250,8 +250,12 @@ export class StudentsListComponent implements OnInit {
           if(localStorage.getItem("groupUsers")){
              if(arrGroupUserList[objData.user_id]){
               objStudentList.checked = arrGroupUserList[objData.user_id].checked;
+             }else{
+              this.checkAllS = true
+              objStudentList.checked =true;
              }
           }else{
+            this.checkAllS = true
             objStudentList.checked =true;
           }
           
@@ -287,12 +291,7 @@ export class StudentsListComponent implements OnInit {
    
           
           
-         if(this.groupUsers.length == this.studentLists.length){
-           this.checkAllS = true
-         }
-         else{
-           this.checkAllS = false
-         }
+          
           
         }else{
           this.dataSource = arrStudentList;

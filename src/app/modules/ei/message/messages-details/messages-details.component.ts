@@ -476,7 +476,7 @@ export class MessagesDetailsComponent implements OnInit {
       let fileData = fileList[0];
        
       if(Math.round((fileData.size/1000000))>50){
-        this.alert.error("Allowed only 50MB","Error");
+        this.alert.error("You can only send video of 50 MB only","Error");
         return;
       }
       this.loader.show()

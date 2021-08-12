@@ -260,10 +260,11 @@ export class EiManageCoursesAddComponent implements OnInit {
   addCourseDataStep2() {
     this.errorDisplay = this.genericFormValidationService.checkValidationFormAllControls(document.forms[0].elements, false, this.model2Step.coursedata);
     if (this.errorDisplay.valid) {
+      console.log('',this.errorDisplay)
       return false;
     } try {
       this.SpinnerService.show();
-      console.log('')
+      
       if (this.params.action) {
         var editUrl = "ei/course-data-by-course-id/" + this.params.course_id + "/";
         this.base.actionForPutMethod(editUrl, this.model2Step).subscribe(res => {
