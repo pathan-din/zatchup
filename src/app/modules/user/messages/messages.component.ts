@@ -162,7 +162,7 @@ export class MessagesComponent implements OnInit {
                   this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
                     this.lastGroupmsg[element.payload.doc.id]=[]
                     if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp}))
-                    if(res1.data ){
+                    if(res1 ){
                       
                       this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
                       console.log( this.lastGroupmsg);

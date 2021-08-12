@@ -307,6 +307,7 @@ export class GroupDetailComponent implements OnInit {
             res=doc.data();
             if(doc.id==this.params.groupId){
               this.model=res;
+            
               res.reciepent.forEach(element => {
                 //console.log(element);
                 Object.keys(element).forEach(item=>{
