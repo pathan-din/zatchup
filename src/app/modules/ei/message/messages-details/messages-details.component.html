@@ -44,9 +44,9 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <div class="text-capitalize {{objCon.user_send_by!=currentUser?'':'chatTxt-2'}}" *ngIf="!objCon.document">
+                        <div class="chatTxt text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}" *ngIf="!objCon.document">
                             <p class="mb-0 semiBoldFont"> {{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}} </p>
-                            <p class="chatTxt mb-0 mr-3"> {{objCon.msg}}
+                            <p class="mb-0 text-left"> {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
                                     <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
@@ -147,7 +147,7 @@
                 You can't send messages to this group because you are no longer a participent
             </div>
         </div>
-        <div class="row" *ngIf="!params.chat ">
+        <div class="row" *ngIf="!params.chat">
             <div class="col-12" *ngIf="!blockRecipant">
                 <div class="p-2 d-flex justify-content-between align-items-center position-relative bg-Gainsboro message-icon">
                     <!-- <i class="fa fa-smile-o cursorStyle" aria-hidden="true"></i> -->
