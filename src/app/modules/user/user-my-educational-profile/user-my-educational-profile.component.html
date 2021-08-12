@@ -145,8 +145,10 @@
                                             class="d-block regularFont small-text color-fadded-black lineHeight">{{objWorkDetail.work_country}}
                                             {{objWorkDetail.work_state}} {{objWorkDetail.work_city}}</span>
                                     </div>
-                                    <a (click)="redirectWorkDetailesPage(objWorkDetail.id)" class="cursorStyle float-right">
-                                        <img src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid mr-3"
+                                    <a  class="cursorStyle float-right">
+                                        <img (click)="deleteWorkDetails(objWorkDetail.id)" src="assets/images/userWebsite/delete.png" class="cursorStyle img-fluid mr-3"
+                                            style="width: 26px;">
+                                        <img (click)="redirectWorkDetailesPage(objWorkDetail.id)" src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid mr-3"
                                             style="width: 26px;">
                                     </a>
                                 </h2>
