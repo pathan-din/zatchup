@@ -177,7 +177,31 @@ export class GroupDetailComponent implements OnInit {
                 this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
                   //console.log("sdfghjk",responce);
                  // this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
-                  
+                 newGroupList.forEach(element => {
+                  if(element[this.currentUser]){
+                    if(element[this.currentUser].is_exit==1){
+                      this.exitGroupMember=1;
+                      //console.log(this.exitGroupMember);
+                      
+                    }
+                    if(element[this.currentUser].is_student){
+                      this.is_check_student=element[this.currentUser].is_student;
+                      //console.log(this.exitGroupMember);
+                      
+                    }
+                    if(element[this.currentUser].is_admin==1){
+                      this.is_admin=element[this.currentUser].is_admin;
+                      //console.log(this.exitGroupMember);
+                      
+                    }
+                    
+                  }
+                  Object.keys(element).forEach(eOld=>{
+                    this.groupMember[eOld]=element[eOld];
+                    this.getRecepintUserDetails(eOld,'group');
+                    
+                  })
+                 })
                   },(error)=>{
             
                   })
@@ -202,9 +226,11 @@ export class GroupDetailComponent implements OnInit {
      // this.recepintDetails = res.data();
      let resp:any={}
      resp = res.data()
+     
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       localStorage.setItem("alreadyGroupMember",JSON.stringify(this.receipentUsers));
+       
        
       
       });

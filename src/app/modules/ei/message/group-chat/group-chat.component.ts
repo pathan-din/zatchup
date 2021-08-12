@@ -130,15 +130,8 @@ export class GroupChatComponent implements OnInit {
             
           }
           if(element.isadded){
-            
-            var teacherObj = this.teachers.find(el=>{
-              return el.user_id=element.user_id
-            })
-            
-            
-            if(!teacherObj){
-              this.teachers.push(element)
-            }
+            this.teachers.push(element)
+             
           }
         });
             localStorage.setItem("sections",JSON.stringify(this.sectionIds));

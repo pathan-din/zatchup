@@ -90,6 +90,9 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="required errorMsg"
+                                                [innerHtml]="display_error(cNo,'course_start_year_')">
+                                            </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -107,6 +110,9 @@
                                                     *ngFor="let y of year;">{{y}}</option>
                                             </select>
                                         </div>
+                                         <div class="required errorMsg"
+                                                [innerHtml]="display_error(cNo,'course_end_year_')">
+                                            </div>
                                     </div>
                                 </div>
                                 <div *ngIf="courseList.is_teaching_current" class="col-sm-12 pl-0">
