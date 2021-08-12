@@ -198,6 +198,7 @@ export class EducationStatusComponent implements OnInit {
   }
 
   getCities() {
+    this.educationInstitute.allCities = []
     this.baseService.getData('user/getcitybystateid/' + this.educationInstitute.stateId).subscribe(
       (res: any) => {
         if (res.count > 0)
