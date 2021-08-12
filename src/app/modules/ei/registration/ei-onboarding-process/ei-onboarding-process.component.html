@@ -282,10 +282,10 @@
                                                             <option [disabled]="y < openingYear" value="{{y}}" *ngFor="let y of year;">{{y}}</option>
 
                                                             <!-- <div class="required validationError" [innerHtml]="errorDisplay.course_start_year_"></div> -->
-                                                            <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_start_year_')"></div>
+                                                           
                                                         </select>
                                                     </div>
-
+                                                 <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_start_year_')"></div>
                                                 </div>
 
                                             </div>
@@ -303,10 +303,10 @@
 
                                                          
                                                           <!-- <div class="required validationError" [innerHtml]="errorDisplay.course_end_year_"></div> -->
-                                                          <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_end_year_')"></div>
+                                                         
                                                         </select>
                                                     </div>
-
+                                                 <div class="required errorMsg" [innerHtml]="display_error(cNo,'course_end_year_')"></div>
                                                 </div>
 
                                             </div>
