@@ -37,6 +37,8 @@ export class MyProfileComponent implements OnInit {
   }
   imageUrl: any;
   pastDetails: any;
+  approved: any;
+  kycApproved: any;
   // imagePath: any = environment.serverImagePath;
 
   constructor(
@@ -59,6 +61,7 @@ export class MyProfileComponent implements OnInit {
     if(localStorage.getItem("editcourse")){
       localStorage.removeItem("editcourse")
     }
+    
   }
 
   // redirectWorkDetailesPage(id) {
@@ -262,6 +265,11 @@ export class MyProfileComponent implements OnInit {
             this.loader.hide()
              this.imageUrl = res.data.profile_pic
             this.epData = res.data
+            this.approved = res.data.approved_by_ei
+            this.kycApproved = res.data.kyc_aprroved
+            if( this.approved == false && this.kycApproved == true){
+              this.alert.info('Your profile is pending for verification by your employing educational institution, please get it verified', 'Information')
+            }
           }
           
           else{

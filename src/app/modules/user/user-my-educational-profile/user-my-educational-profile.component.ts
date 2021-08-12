@@ -573,4 +573,33 @@ export class UserMyEducationalProfileComponent implements OnInit {
   goToSchoolApprovalList(){
     this.router.navigate(['user/school-approval-list'])
   }
+
+  deleteWorkDetails(id: any){
+    try {
+      this.loader.show()
+      this.model = {
+        'id': id
+      }
+      console.log(this.model);
+      
+      this.baseService.action('user/delete-work-detail/', this.model).subscribe(
+        (res : any) => {
+          if(res.status == true){
+            this.alert.success(res.message, 'Success')
+            this.getEducationalProfile()
+          }
+          else{
+            this.loader.hide()
+            this.alert.error(res.error.message, 'Error')
+          }
+          this.loader.hide()
+        }
+      ),
+      err => {
+        this.loader.hide()
+      }
+    } catch (error) {
+      this.loader.hide()
+    }
+  }
 }
