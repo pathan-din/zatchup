@@ -236,7 +236,8 @@
                                 <span class="mr-3">:</span>{{courseData.duration}}</p>
                         </div>
                     </div>
-                    <div *ngIf="eduDetail.course_detail.length>0 && userprofile.user_education_instituite_id == eduDetail.school_id">
+                    <!-- && userprofile.user_education_instituite_id == eduDetail.school_id -->
+                    <div *ngIf="eduDetail.course_detail.length>0 ">
                         <div *ngIf="eduDetail.course_detail[i].standard_detail" class="mt-2 table-responsive">
                             <table class="table table-striped border">
                                 <thead>
