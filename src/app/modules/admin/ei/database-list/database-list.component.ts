@@ -184,6 +184,7 @@ export class DatabaseListComponent implements OnInit {
     )
   }
   getCities() {
+    this.eidbList.allCities = []
     this.baseService.getData('user/getcitybystateid/' + this.eidbList.stateId).subscribe(
       (res: any) => {
         if (res.count > 0)

@@ -44,7 +44,7 @@ export class RequestPendingForCourseComponent implements OnInit {
   startIndex: any;
   requestStatusList: any;//,'action'
   displayedColumns: string[] = ['position', 'course_name', 'joining_standard_name', 
-    'student_name', 'student_zatchup_id', 'last_standard_name','date_of_change', 'action'];
+    'student_name', 'student_zatchup_id', 'RollNo' , 'last_standard_name','date_of_change', 'action'];
 
   dataSource = [];
   pageSize: any = 1;
@@ -122,7 +122,8 @@ export class RequestPendingForCourseComponent implements OnInit {
         (res: any) => {
           if (res.status == true) {
             this.alert.success(res.message, "Success")
-            this.router.navigate(['ei/student-management']);
+            // this.router.navigate(['ei/student-management']);
+            this.getViewChangesRequestStatus('')
           } else {
             this.alert.error(res.error.message[0], 'Error')
           }
@@ -165,7 +166,7 @@ export class RequestPendingForCourseComponent implements OnInit {
         {
           this.closeRejectModel();
           this.alert.success(response.message, 'Success')
-
+          this.getViewChangesRequestStatus('')
         } else { // Condition False Validation failure
           this.loader.hide();
           var errorCollection = '';
