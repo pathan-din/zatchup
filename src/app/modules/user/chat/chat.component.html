@@ -19,8 +19,8 @@
                             <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
-                            <span class="small-text-2" *ngIf="!blockRecipant && presence$ | async as presence">
+                            <p *ngIf="recepintDetails" class="m-0 semiBoldFont">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
+                            <span class="small-text-2 cursorStyle" *ngIf="!blockRecipant && presence$ | async as presence">
                                 <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
                                 <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimewithday(presence.timestamp)}}</label>
                                 
@@ -103,10 +103,10 @@
                             <img *ngIf="recepientGroup && recepientGroup.group_icon" src="{{recepientGroup.group_icon}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepientGroup" class="m-0"> {{recepientGroup.group_title}} 
+                            <p *ngIf="recepientGroup" class="m-0 semiBoldFont"> {{recepientGroup.group_title}} 
                                 <span class="small-text-2"></span>
                             </p>
-                             <span class="small-text-2" *ngFor="let user of receipentUsers;let i =index;">
+                             <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i =index;">
                                 <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{i==receipentUsers.length-1?'':','}}</label>
                             </span>
                         </div>
@@ -163,8 +163,8 @@
                                 <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
 
-                                 <p *ngIf="!objCon.is_creatted" class="text-left m-0 semiBoldFont small-text-2"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
-                            <p *ngIf="!objCon.is_creatted" class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}  mr-3 text-left text-capitalize"> {{objCon.msg}}
+                                 <p *ngIf="!objCon.is_creatted" class="text-left m-0 semiBoldFont"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
+                            <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize"> {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
                                    </span>
                             </p>
