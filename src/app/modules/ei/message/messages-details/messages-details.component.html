@@ -20,7 +20,7 @@
                         class="img-fluid cursorStyle"> -->
                 </div>
                 <div class="profile_name ml-2 text-capitalize">
-                    <p *ngIf="recepintDetails" class="m-0"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
+                    <p *ngIf="recepintDetails" class="m-0 semiBoldFont"> {{recepintDetails.firstName}} {{recepintDetails.lastName}}
                         <span class="small-text-2">{{recepintDetails.class_name?'('+recepintDetails.class_name + recepintDetails.roll_no+')':''}}</span>
                     </p>
                     <span class="small-text-2" *ngIf="presence$ | async as presence ">
@@ -118,7 +118,7 @@
                         class="img-fluid cursorStyle">
                 </div>
                 <div class="profile_name ml-2 text-capitalize" (click)="gotToGroupDetailsPage(recepientGroup.uuid,'group')">
-                    <p *ngIf="recepientGroup" class="m-0">{{recepientGroup.group_title}}
+                    <p *ngIf="recepientGroup" class="m-0 semiBoldFont">{{recepientGroup.group_title}}
                         <span class="small-text-2"></span>
                     </p>
                      <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i=index;">

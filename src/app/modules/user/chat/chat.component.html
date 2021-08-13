@@ -19,7 +19,7 @@
                             <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepintDetails" class="m-0">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
+                            <p *ngIf="recepintDetails" class="m-0 semiBoldFont">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
                             <span class="small-text-2 cursorStyle" *ngIf="!blockRecipant && presence$ | async as presence">
                                 <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
                                 <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimewithday(presence.timestamp)}}</label>
@@ -103,7 +103,7 @@
                             <img *ngIf="recepientGroup && recepientGroup.group_icon" src="{{recepientGroup.group_icon}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepientGroup" class="m-0"> {{recepientGroup.group_title}} 
+                            <p *ngIf="recepientGroup" class="m-0 semiBoldFont"> {{recepientGroup.group_title}} 
                                 <span class="small-text-2"></span>
                             </p>
                              <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i =index;">
