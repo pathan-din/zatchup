@@ -70,7 +70,7 @@
                             </div>
                             <div class="required validationError" [innerHtml]="errorDisplay.course_name"></div>
                         </div>
-                        <div class="col-md-6" *ngIf="action == 'edit'">
+                        <div class="col-md-6" >
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Education Level </label>
                                 <div class="form-control-inputDiv rounded-0 p-0 w-100 border-top shadow-none">
@@ -80,7 +80,7 @@
                             <div class="required validationError" [innerHtml]="errorDisplay.level_of_education"></div>
                         </div>
 
-                        <div class="col-md-6" *ngIf="action == 'add'">
+                        <!-- <div class="col-md-6" *ngIf="action == 'add'">
                             <div class="form-group row  ml-0 mr-0">
                                 <label for="" class="mediumFont commonFontSize letterspacing"> Education Level </label>
                                 <div
@@ -109,7 +109,7 @@
                                  <div *ngIf="model.level_of_education == 'Others'" class="required validationError" [innerHtml]="errorDisplay.level_of_education">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-6" *ngIf="action != 'edit'">
                             <div class="form-group row  ml-0 mr-0">

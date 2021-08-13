@@ -391,7 +391,8 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
      this.modelteacher = {
        'page_size': this.page_size,
        'is_edit_right' : 'false',
-       'course_id': this.route.snapshot.queryParamMap.get('course_id')
+       'course_id': this.route.snapshot.queryParamMap.get('course_id'),
+       'module_id': '26'
      }
     this.baseService.getData('ei/subadmin-lists-by-ei-for-starclass/',this.modelteacher).subscribe(
       (res: any) => {

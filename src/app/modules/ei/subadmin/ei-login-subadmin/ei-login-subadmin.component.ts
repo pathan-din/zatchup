@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { BaseService } from '../../../../services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -15,12 +15,17 @@ declare var $: any;
 })
 export class EiLoginSubadminComponent implements OnInit {
   model: any = {};
-
+  userRoleDetails: any = {};
   error: any = [];
   errorDisplay: any = {};
   errorOtpModelDisplay = '';
   modelForOtpModal: any = {};
   passwordType: any = "password";
+  notificationCount: any;
+  subscriptionActive: boolean = true;
+  isApproved: boolean = false;
+  step: any;
+  kyc: any;
 
   constructor(
     private router: Router,
@@ -29,7 +34,8 @@ export class EiLoginSubadminComponent implements OnInit {
     private alert: NotificationService,
     private afAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
-    private formValidationService: GenericFormValidationService
+    private formValidationService: GenericFormValidationService,
+    private route : ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -134,7 +140,8 @@ export class EiLoginSubadminComponent implements OnInit {
           localStorage.setItem("token", res.token);
           sessionStorage.setItem("permission", JSON.stringify(res.permission));
           $("#OTPModel").modal('hide');
-          this.router.navigate(['ei/my-profile']);
+          this.getRegistrationStep()
+          // this.router.navigate(['ei/my-profile']);
         } else {
           // this.errorOtpModelDisplay = response.error;
           this.alert.error(res.error, 'Error')
@@ -146,6 +153,56 @@ export class EiLoginSubadminComponent implements OnInit {
       this.loader.hide()
     }
 
+  }
+
+  getRegistrationStep(){
+    try {
+      this.baseService.getData('user/reg-step-count/').subscribe(
+        (response: any)=>{
+          if(response.status == true){
+            if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
+              if(response.reg_step==1){
+                this.router.navigate(['ei/kyc-verification']);
+              }else if(response.reg_step==2){
+                this.router.navigate(['ei/add-ei']);
+                //ei/add-ei
+                //ei/subadminprofile
+              }
+              else if(response.reg_step==3){
+                this.router.navigate(['ei/subadminprofile']);
+                //ei/add-ei
+                //ei/subadminprofile
+                //ei/thankyou
+              }else if(response.reg_step==4 && response.is_kyc_approved===true){
+                this.router.navigate(['ei/my-profile']);
+              }else{
+                this.router.navigate(['ei/kyc-not-approved']);
+              }
+
+            }
+            else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {
+              if (response.ekyc_rejected_reason) {
+                var reasonTextMessage = "Your KYC is rejected because of " + response.ekyc_rejected_reason + ' ' + response.ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
+                this.alert.info(reasonTextMessage, 'Rejected');
+                this.router.navigate(['ei/kyc-verification']);
+              } else {
+                if (response.reg_step == 4) {
+                }
+              }
+            }
+            else if (response.rejected_reason && response.is_approved) {
+              localStorage.clear();
+              this.alert.info(response.rejected_reason, "Information");
+              this.router.navigate(['ei/login-subadmin']);
+            }
+          }
+        }
+      ), (error => {
+        this.alert.warning("Data not Fetched", "Warning");
+      })
+    } catch (error) {
+      this.alert.error("Something went wrong, Please contact administrator.", "Error");
+    }
   }
 
   goToEiForgetPasswordPage() {

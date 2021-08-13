@@ -298,25 +298,24 @@ export class MyProfileComponent implements OnInit {
   //   }
   // }
 
-  editCourse(data: any, school_id: any) {
-    localStorage.setItem("editcourse","yes");  
-    if (data.is_current_course == true) {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
-    } else {
-      this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
-    }
-    // this.router.navigate(['user/ei-profile'], { queryParams: { "school_id": school_id, "course_id": courseid, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
-  }
-  redirectEiConfirmationPagePage(school_id: any){
-    this.router.navigate(['user/add-ei'], { queryParams: {  "school_id": school_id,"returnUrl": "user/my-educational-profile" } });
-  }
+  // editCourse(data: any, school_id: any) {
+  //   localStorage.setItem("editcourse","yes");  
+  //   if (data.is_current_course == true) {
+  //     this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
+  //   } else {
+  //     this.router.navigate(['user/ei-confirmation'], { queryParams: { "school_id": school_id, "course_id": data.course_id, "edit_course":"true", "returnUrl": "user/my-educational-profile" } });
+  //   }
+  // }
+  // redirectEiConfirmationPagePage(school_id: any){
+  //   this.router.navigate(['user/add-ei'], { queryParams: {  "school_id": school_id,"returnUrl": "user/my-educational-profile" } });
+  // }
   getRequestChangeDetails(){
       this.router.navigate(["ei/subadmin-pending-requests/"]);
   }
 
-  getRequestCourseDetails(){
-    this.router.navigate(["user/pending-course-details/"]);
-}
+//   getRequestCourseDetails(){
+//     this.router.navigate(["user/pending-course-details/"]);
+// }
   getPendingCourseList(){
     try {
     this.baseService.getData("user/pending-course-list-of-user/").subscribe((res:any)=>{
