@@ -131,7 +131,7 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <p *ngIf="objCon.is_creatted" class="text-center mb-0 grpText py-1"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
+                        <p *ngIf="objCon.is_creatted" class="text-center mb-0 py-1"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
                         <div *ngIf="!objCon.document" class="chatTxt text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}">
                             <p class="text-left mb-0 semiBoldFont" *ngIf="!objCon.is_creatted"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
                             <p *ngIf="!objCon.is_creatted" class="text-left mb-0 mr-3"> {{objCon.msg}}
