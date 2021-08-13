@@ -162,35 +162,51 @@ export class EiLoginSubadminComponent implements OnInit {
           if(response.status == true){
             if (!response.is_kyc_rejected && !response.rejected_reason && !response.is_approved) {
               if(response.reg_step==1){
+                console.log('1');
+                
                 this.router.navigate(['ei/kyc-verification']);
               }else if(response.reg_step==2){
+                console.log('2');
                 this.router.navigate(['ei/add-ei']);
                 //ei/add-ei
                 //ei/subadminprofile
               }
               else if(response.reg_step==3){
+                console.log('3');
                 this.router.navigate(['ei/subadminprofile']);
                 //ei/add-ei
                 //ei/subadminprofile
                 //ei/thankyou
               }else if(response.reg_step==4 && response.is_kyc_approved===true){
+                console.log('4');
                 this.router.navigate(['ei/my-profile']);
               }else{
+                console.log('5');
                 this.router.navigate(['ei/kyc-not-approved']);
               }
 
             }
             else if (response.reg_step <= 4 && !response.is_approved && response.is_kyc_rejected) {
+              console.log('6');
               if (response.ekyc_rejected_reason) {
+                console.log('7');
                 var reasonTextMessage = "Your KYC is rejected because of " + response.ekyc_rejected_reason + ' ' + response.ekyc_rejected_remark + ' ' + 'Please Submit The KYC.'
                 this.alert.info(reasonTextMessage, 'Rejected');
                 this.router.navigate(['ei/kyc-verification']);
               } else {
+                console.log('8');
                 if (response.reg_step == 4) {
+                  console.log('9');
+                  this.router.navigate(['ei/my-profile']);
                 }
               }
             }
+            else if (response.is_approved == true && response.is_kyc_approved == true && response.reg_step >=4){
+              console.log('10');
+              this.router.navigate(['ei/my-profile']);
+            }
             else if (response.rejected_reason && response.is_approved) {
+              console.log('11');
               localStorage.clear();
               this.alert.info(response.rejected_reason, "Information");
               this.router.navigate(['ei/login-subadmin']);
