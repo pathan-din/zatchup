@@ -55,12 +55,12 @@
                                 Course Description :
                                 <span class="text-dark">{{courseData.description}}</span>
                             </div>
-                            <div class="col-md-12 cursorStyle form-control-input text-right btn-absolute-col pb-1">
+                            <div class="col-md-12 text-right pb-1">
                                 <img *ngIf="confirmData.ei_detail.approved=='0'" (click)="deleteCourse(courseData.course_id)" src="assets/images/userWebsite/delete.png"
                                     class="cursorStyle img-fluid deleteImg">
                                 <img *ngIf="courseData.standard_detail && confirmData.ei_detail.approved=='0'" (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
                                     src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">
-                                  <img  (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
+                                <img  (click)="editCourse(courseData.standard_detail,confirmData.ei_detail.id,courseData.course_id)"
                                     src="assets/images/userWebsite/edit.png" class="cursorStyle img-fluid editImg">   
                             </div>
 

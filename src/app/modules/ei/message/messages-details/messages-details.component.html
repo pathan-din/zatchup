@@ -77,19 +77,19 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid imgChatBig cursorStyle">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
                                 </a>
                                  <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
                             && getFileExtention(objCon.msg)=='aiff'
@@ -97,7 +97,7 @@
                             && getFileExtention(objCon.msg)=='wma'
                             && getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">{{getTimeAgo(objCon.timestamp)}}
                                 <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
@@ -131,7 +131,7 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation">
                     <div class="col-md-12 col-12">
-                        <p *ngIf="objCon.is_creatted" class="text-center mb-0 grpText py-1"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
+                        <p *ngIf="objCon.is_creatted" class="text-center mb-0 py-1"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
                         <div *ngIf="!objCon.document" class="chatTxt text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}">
                             <p class="text-left mb-0 semiBoldFont" *ngIf="!objCon.is_creatted"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
                             <p *ngIf="!objCon.is_creatted" class="text-left mb-0 mr-3"> {{objCon.msg}}
@@ -163,19 +163,19 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
 
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
@@ -184,7 +184,7 @@
                             && getFileExtention(objCon.msg)=='wma'
                             && getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <span class="text-right small-text-2 d-block ml-4 text-capitalize color-gray">  {{getTimeAgo(objCon.timestamp)}}
                             <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
