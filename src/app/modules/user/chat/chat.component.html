@@ -183,7 +183,7 @@
                 <div #scrollMe [scrollTop]="scrollHeight" class="schoolChat">
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="{{!objCon.is_creatted?'chatIn':''}}" *ngIf="objCon.user_send_by!=currentUser">
-
+                            <p *ngIf="!objCon.is_creatted" class="text-left m-0 semiBoldFont"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
@@ -229,7 +229,7 @@
                                 <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
 
-                                 <p *ngIf="!objCon.is_creatted" class="text-left m-0 semiBoldFont"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
+                                 
                             <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize"> {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
                                    </span>
