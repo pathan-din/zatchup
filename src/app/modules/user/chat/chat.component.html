@@ -43,15 +43,50 @@
                     <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
-                           <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                          <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
-                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
-                                </a>
+                               <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document && getFileExtention(objCon.msg)!='doc'
+                             && getFileExtention(objCon.msg)!='docx' && getFileExtention(objCon.msg)!='csv' 
+                             && getFileExtention(objCon.msg)!='mp3'
+                             && getFileExtention(objCon.msg)!='aiff'
+                             && getFileExtention(objCon.msg)!='flac'
+                             && getFileExtention(objCon.msg)!='wma'
+                             && getFileExtention(objCon.msg)!='aac'"
+                              
+                             href="{{objCon.msg}}" target="_blank">
+                                <img *ngIf="getFileExtention(objCon.msg)!='pdf' 
+                                && getFileExtention(objCon.msg)!='mp4' 
+                                && getFileExtention(objCon.msg)!='doc' 
+                                && getFileExtention(objCon.msg)!='docx' 
+                                && getFileExtention(objCon.msg)!='csv'
+                                && getFileExtention(objCon.msg)!='mp3'
+                                && getFileExtention(objCon.msg)!='aiff'
+                                && getFileExtention(objCon.msg)!='flac'
+                                && getFileExtention(objCon.msg)!='wma'
+                                && getFileExtention(objCon.msg)!='aac'"
+                                 src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
                                 </a>
+                                 <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
+                            || getFileExtention(objCon.msg)=='aiff'
+                            || getFileExtention(objCon.msg)=='flac'
+                            || getFileExtention(objCon.msg)=='wma'
+                            || getFileExtention(objCon.msg)=='aac'
+                             && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
+                            </a>
                                  <p class="text-left  small-text-2"><strong>{{getroleUserFlag?objCon.user_name:''}}</strong></p>
                              
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
@@ -71,19 +106,50 @@
                                 </span>
                             </div>
                             <div *ngIf="objCon.document">
-                                <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                               <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
-                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4'" src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
-                                </a>
+                               <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document && getFileExtention(objCon.msg)!='doc'
+                             && getFileExtention(objCon.msg)!='docx' && getFileExtention(objCon.msg)!='csv' 
+                             && getFileExtention(objCon.msg)!='mp3'
+                             && getFileExtention(objCon.msg)!='aiff'
+                             && getFileExtention(objCon.msg)!='flac'
+                             && getFileExtention(objCon.msg)!='wma'
+                             && getFileExtention(objCon.msg)!='aac'"
+                              
+                             href="{{objCon.msg}}" target="_blank">
+                                <img *ngIf="getFileExtention(objCon.msg)!='pdf' 
+                                && getFileExtention(objCon.msg)!='mp4' 
+                                && getFileExtention(objCon.msg)!='doc' 
+                                && getFileExtention(objCon.msg)!='docx' 
+                                && getFileExtention(objCon.msg)!='csv'
+                                && getFileExtention(objCon.msg)!='mp3'
+                                && getFileExtention(objCon.msg)!='aiff'
+                                && getFileExtention(objCon.msg)!='flac'
+                                && getFileExtention(objCon.msg)!='wma'
+                                && getFileExtention(objCon.msg)!='aac'"
+                                 src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                            </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid img-big cursorStyle">
                                 </a>
-                                <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <i class="fas fa-video"></i>
-                                 
-                                </a>
+                                 <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
+                            </a>
+                            <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
+                            || getFileExtention(objCon.msg)=='aiff'
+                            || getFileExtention(objCon.msg)=='flac'
+                            || getFileExtention(objCon.msg)=='wma'
+                            || getFileExtention(objCon.msg)=='aac'
+                             && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
+                            </a>
                                 
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                                     <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
@@ -155,10 +221,10 @@
                                 <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
-                            && getFileExtention(objCon.msg)=='aiff'
-                            && getFileExtention(objCon.msg)=='flac'
-                            && getFileExtention(objCon.msg)=='wma'
-                            && getFileExtention(objCon.msg)=='aac'
+                            || getFileExtention(objCon.msg)=='aiff'
+                            || getFileExtention(objCon.msg)=='flac'
+                            || getFileExtention(objCon.msg)=='wma'
+                            || getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
                             </a>

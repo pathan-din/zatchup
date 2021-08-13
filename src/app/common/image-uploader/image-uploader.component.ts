@@ -37,7 +37,7 @@ export class ImageUploaderComponent implements OnInit {
   image: any;
   class_div: any;
   params: any = {};
-
+  loadImage:boolean=false
   constructor(
     private loader: NgxSpinnerService,
     private alert: NotificationService,
@@ -53,6 +53,7 @@ export class ImageUploaderComponent implements OnInit {
     if (this.imageChangedEvent) {
       let fileList: FileList = this.imageChangedEvent.target.files;
       this.fileData = fileList[0];
+      //this.convertBase64(this.fileData)
       if (this.fileData.type !== 'image/jpeg' && this.fileData.type !== 'image/jpg' && this.fileData.type !== 'image/png') {
         this.loader.hide();
         this.alert.error("File format not supported", 'Error');
@@ -62,13 +63,21 @@ export class ImageUploaderComponent implements OnInit {
     }
   }
   imageCropped(event: ImageCroppedEvent) {
+    this.loadImage=true;
     this.croppedImage = event.base64;
+    console.log(this.croppedImage);
+    
   }
   imageLoaded() {
+     
     // debugger
     /* show cropper */
   }
-  cropperReady() {
+  cropperReady(eventArgs: any) {
+    if (!this.croppedImage) {
+      this.croppedImage = eventArgs.currentImgUrl;
+      console.log(`currentImgUrl is`, this.croppedImage);
+  }
     // debugger
     /* cropper ready */
   }
@@ -106,7 +115,20 @@ export class ImageUploaderComponent implements OnInit {
       console.log("exception", err);
     }
   }
-
+  convertBase64(file){
+    const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+          
+          if(!this.loadImage){
+            
+             this.croppedImage = reader.result;
+             this.croppedImage =this.croppedImage.replace("data:image/jpeg","data:image/png")
+              
+          }
+         
+      };
+  }
   dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','),
       mime = arr[0].match(/:(.*?);/)[1],

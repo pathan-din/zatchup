@@ -28,7 +28,7 @@ export class EiSchoolProfileComponent implements OnInit {
     "image_type": "cover_pic",
     "url": "ei/cover-profile-update/",
     "icon": "fa fa-camera",
-    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+    "class": "btn_position-absolute btn_upload back-cover-photo border-0 bg-light-black text-white p-2"
   }
   userProfile: any = {};
   cover_pic: any = '';

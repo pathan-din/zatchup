@@ -103,6 +103,8 @@ export class EiLoginComponent implements OnInit {
   registerUserToFirebaseDB(data: any) {
     let email = data.firebase_username + '@zatchup.com';// this.baseService.isPhoneNumber(this.model.username) == true ? this.model.username + '@zatchup.com' : this.model.username
     var that = this;
+    
+    
     this.afAuth.fetchSignInMethodsForEmail(email)
       .then(function (signInMethods) {
         let firebase = that.firebaseService

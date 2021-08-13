@@ -22,11 +22,11 @@
                 </button>
             </div>
             <div class="modal-body px-0">
-                <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                <image-cropper [imageChangedEvent]="imageChangedEvent" (change)="imageChangedEvent" [maintainAspectRatio]="true"
                     [aspectRatio]="4 / 4" [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)"
-                    (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+                    (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)" (loadImageFailed)="loadImageFailed()">
                 </image-cropper>
-
+                
                 <img [src]="croppedImage" />
                 <div class="justify-content-center d-flex" style="line-height: initial;">
                     <button type="button " (click)="closeModal()"
