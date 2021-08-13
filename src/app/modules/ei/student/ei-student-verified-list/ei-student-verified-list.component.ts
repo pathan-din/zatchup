@@ -106,7 +106,8 @@ params:any={}
     if(JSON.parse(localStorage.getItem('getreject')).role == 'EISUBADMIN'){
       if(this.isValidModule('MODULE010')==false){
         this.alert.error("You Don't have permission to chat with students. Please contact school for more information","Error")
-       this.router.navigate(['ei/my-profile'])
+      //  this.router.navigate(['ei/my-profile'])
+      this.location.back()
         return 
       }
     }
