@@ -526,14 +526,14 @@ button:focus {
 .editImg {
   position: absolute;
   right: 30px;
-  width: 14%;
   width: 26px;
+  z-index: 1;
 }
 
 .deleteImg {
   position: absolute;
   right: 0%;
-  width: 14%;
   width: 26px;
+  z-index: 1;
 }
 

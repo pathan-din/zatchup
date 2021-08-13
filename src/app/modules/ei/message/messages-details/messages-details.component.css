@@ -24,6 +24,9 @@
     padding-right: 15px;
 }
 .pdf_customSize{width: 60px;}
+.imgChatBig {
+    max-width: 45px !important;
+}
 .date-text {
     font-size: .8rem;
     clear: both;
