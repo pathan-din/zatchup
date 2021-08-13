@@ -42,6 +42,12 @@
                         </mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="RollNo">
+                        <mat-header-cell *matHeaderCellDef> Roll No </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.roll_no}}
+                        </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="last_standard_name">
                         <mat-header-cell *matHeaderCellDef> Last standard</mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.last_standard_name}}
