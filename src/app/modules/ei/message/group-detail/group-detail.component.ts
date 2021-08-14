@@ -216,7 +216,13 @@ export class GroupDetailComponent implements OnInit {
     }
   }
   goBack() {
-    this.location.back()
+    // this.location.back()
+    if(this.route.snapshot.queryParamMap.get('back')){
+      this.router.navigate(['ei/personal-messages'])
+    }
+    else{
+      this.location.back()
+    }
   }
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
@@ -350,7 +356,8 @@ export class GroupDetailComponent implements OnInit {
               });
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               //this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
-              this.referesh()
+              this.router.navigate(['ei/personal-messages'])
+              // this.referesh()
             },(error)=>{
       
             })}});}});
@@ -377,6 +384,7 @@ export class GroupDetailComponent implements OnInit {
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               //console.log(responce);
              // this.router.navigate(['ei/messages-details'],{queryParams:{"chat":"group"}});
+            //  this.router.navigate(['ei/personal-messages'])
              this.referesh()
             },(error)=>{
       

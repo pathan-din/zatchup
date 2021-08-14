@@ -142,7 +142,8 @@ refersh(){
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               //console.log(responce);
               //this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
-              this.refersh()
+              this.router.navigate(['user/messages'])
+              // this.refersh()
             },(error)=>{
       
             })}});
@@ -172,6 +173,7 @@ refersh(){
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               //console.log(responce);
              // this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
+            //  this.router.navigate(['user/messages'])
              this.refersh()
             },(error)=>{
       

@@ -431,7 +431,7 @@ export class StudentsListComponent implements OnInit {
     localStorage.setItem("groupUsers",JSON.stringify(groupReceipentUser));
     if(this.params.editgroup){
       //ei-group-detail?chat=group
-      this.router.navigate(["ei/ei-group-detail"],{queryParams:{"chat":"group","editgroup":this.params.editgroup,"groupId":this.params.groupId}});
+      this.router.navigate(["ei/ei-group-detail"],{queryParams:{"chat":"group","editgroup":this.params.editgroup,"groupId":this.params.groupId, 'back':true}});
     }else{
       this.router.navigate(["ei/create-group-chat"]);
     }
