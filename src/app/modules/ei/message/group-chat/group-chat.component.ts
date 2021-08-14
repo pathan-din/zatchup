@@ -424,10 +424,12 @@ createGroupConfirmationList(){
   }else{
     localStorage.setItem("teachers",JSON.stringify(this.teacherList));
   }
-  
-  localStorage.setItem("sections",JSON.stringify(this.sectionIds));
+  if(localStorage.getItem('groupclasscheck')=='true'){
+    localStorage.setItem("sections",JSON.stringify(this.sectionIds));
   localStorage.setItem("courseIds",JSON.stringify(this.courseIds));
   localStorage.setItem("standardIds",JSON.stringify(this.standardIds));
+  }
+  
   if(this.params.editgroup){
      
     this.router.navigate(["ei/students-list"],{queryParams:{"editgroup":this.params.editgroup,"groupId":this.params.groupId}});
