@@ -3,9 +3,9 @@
     <div class="courseLecture-div bg-white border mt-3 px-3 py-3">
         <div class="row">
             <div class="col-md-8">
-                <h1 class="commonFontSize semiBoldFont m-0" *ngIf="dataSource.length>0">
+                <h1 class="commonFontSize semiBoldFont m-0">
                     <img (click)="goBack()" src="assets/images/userWebsite/back-icon.png" class="img-fluid ml-0 subHeaderImg cursorStyle mr-2">
-                    Students List
+                    <p *ngIf="dataSource.length>0">Students List</p>
                 </h1>
             </div>
             <div class="col-md-4">
@@ -17,12 +17,12 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="model.class_ids">
             <div class="col-md-2 my-2">
                 <label for="pronouce " class=" mediumFont commonFontSize letterspacing">Select Class</label>
                 <div class="form-control-inputDiv rounded p-1 shadow-none">
                     <select (change)="getGetVerifiedStudent('','')" [(ngModel)]="model.class_id" value="Select Section" name="pronoun" id="pronoun" class="custom-select form-control-input">
-                        <option value="Select Section">Select Section</option>
+                        <option value="">Select Section</option>
                         <option value="{{sect.id}}" *ngFor="let sect of sectionL;">{{sect.class_name}}</option>
                     </select>
                 </div>
@@ -86,7 +86,7 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns; "></mat-row>
                 </mat-table>
             </div>
-            <div class="row" *ngIf="dataSource.length==0">
+            <div class="row" *ngIf="dataSource.length==0 && model.class_ids">
                 <div class="col-12 pt-2 pb-2">
                     <p class="text-center dataNotFound pt-4 pb-4">No students found in the standard.</p>
                 </div>

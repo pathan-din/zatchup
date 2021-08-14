@@ -100,7 +100,7 @@ export class StudentsListComponent implements OnInit {
   teacherGroup : any =[]
   ngOnInit(): void {
     //this.checkAllS = false
-    this.model.class_ids=''
+    this.model.class_id=''
     if(localStorage.getItem('sectionL')){
       this.sectionL=JSON.parse(localStorage.getItem('sectionL'))
     }

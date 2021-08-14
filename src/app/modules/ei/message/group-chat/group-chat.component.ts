@@ -575,6 +575,15 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
  
   changeAddClass($event,text) {
+    console.log($event.checked);
+    
+    if (!$event.checked) {
+      localStorage.removeItem("sections");
+      localStorage.removeItem("courseIds");
+      localStorage.removeItem("standardIds");
+      localStorage.removeItem("sectionL");
+    }
+      //JSON.parse(localStorage.getItem('sectionL'))
     localStorage.setItem("groupclasscheck",$event.checked);
     if (text=='addclass' && $event.checked==true) {
       this.displayCourseListModuleAccess();
@@ -589,9 +598,7 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
       this.studentList = [];
       this.model.ismoduleaccessclass=false;
       this.model.course = "";
-      localStorage.removeItem("sections");
-      localStorage.removeItem("courseIds");
-      localStorage.removeItem("standardIds");
+      
     }
   }
   goBack(): void{
