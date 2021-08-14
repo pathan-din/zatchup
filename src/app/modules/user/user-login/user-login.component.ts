@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { GenericFormValidationService } from '../../../services/common/generic-form-validation.service';
@@ -15,6 +15,10 @@ declare var $: any;
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   model: any = {};
   error: any = [];
   errorDisplay: any = {};
@@ -119,9 +123,22 @@ export class UserLoginComponent implements OnInit {
   }
 
   changeInput($ev) {
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8) {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.target.name=='otp4'){
+        this.otp3.nativeElement.focus()
+      }else if($ev.target.name=='otp3'){
+        this.otp2.nativeElement.focus()
+      }else if($ev.target.name=='otp2'){
+        this.otp1.nativeElement.focus()
+      }
+       
     }
   }
 

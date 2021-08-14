@@ -315,15 +315,16 @@ export class PersonalMessagesComponent implements OnInit {
             }
 
           });
+          setTimeout(() => {
+            this.lastMessageData.sort(function (x, y) {
+              return y.timestamp - x.timestamp;
+            })
+          }, 3000);
           if(localStorage.getItem('getreject')){
             var role = JSON.parse(localStorage.getItem('getreject'))
             if(role=='EISUBADMIN')
             {
-              setTimeout(() => {
-                this.lastMessageData.sort(function (x, y) {
-                  return y.timestamp - x.timestamp;
-                })
-              }, 3000);
+              
             }
           }
           
