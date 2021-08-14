@@ -121,10 +121,12 @@ export class StudentsListComponent implements OnInit {
       this.params = params;
     })
    
-    
-    if(JSON.parse(localStorage.getItem("sections")).length>0){
-      this.getGetVerifiedStudent('','')
+    if(localStorage.getItem("sections")){
+      if(JSON.parse(localStorage.getItem("sections")).length>0){
+        this.getGetVerifiedStudent('','')
+      }
     }
+   
     if(localStorage.getItem("teachers")){
       if(this.params.editgroup){
         if(localStorage.getItem("alreadyGroupMember")){
