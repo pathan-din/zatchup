@@ -62,16 +62,16 @@
                 <p class="color-black regularFont commonFontSize">Enter OTP Send On Your Registerd {{model.username}}.</p>
                 <div class="form-group">
                     <div class="d-flex flex-row justify-content-between loginInput">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
+                        <input #otp1 (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
                             class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
+                        <input #otp2 (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
                             class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
+                        <input #otp3 (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
                             class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
                             type="text" maxlength="1">
-                        <input [(ngModel)]="model.otp4" name="otp4"
+                        <input #otp4 (keyup)="changeInput($event)" [(ngModel)]="model.otp4" name="otp4"
                             class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
                             type="text" maxlength="1">
                     </div>

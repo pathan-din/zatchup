@@ -15,7 +15,11 @@ declare var $: any;
 export class SubadminSettingComponent implements OnInit {
 
   @ViewChild('closebutton') closeModal: ElementRef;
-  @ViewChild('closeAddLocationModel') closeAddLocationModel: ElementRef
+  @ViewChild('closeAddLocationModel') closeAddLocationModel: ElementRef;
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   epData: any = {};
   editModel: any = {};
   model: any = {};
@@ -356,12 +360,23 @@ export class SubadminSettingComponent implements OnInit {
   }
 
   changeInput($ev) {
-    console.log($ev);
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+      }
+       
     }
-
   }
   goBack(): void{
     this.router.navigate(['ei/my-profile'])

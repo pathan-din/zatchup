@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -14,15 +14,19 @@ declare var $: any;
   styleUrls: ['./user-sign-up.component.css']
 })
 export class UserSignUpComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   model: any = {};
   modelForOtpModal: any = {};
   showHidePassword: string = 'password';
   showHidecPassword: string = 'password';
   globalYear: any = 1970
-  otp1: any;
-  otp2: any;
-  otp3: any;
-  otp4: any;
+  // otp1: any;
+  // otp2: any;
+  // otp3: any;
+  // otp4: any;
   modelForConfirm: any = {};
   error: any = [];
   errorDisplay: any = {};
@@ -234,7 +238,7 @@ export class UserSignUpComponent implements OnInit {
     try {
       let data: any = {};
       this.modelForOtpModal.username = this.model.email ? this.model.email : this.model.phone;
-      this.modelForOtpModal.verify_otp_no = this.otp1 + this.otp2 + this.otp3 + this.otp4;
+      this.modelForOtpModal.verify_otp_no = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.loader.show();
       this.baseService.action('user/user-verify/', this.modelForOtpModal).subscribe(
@@ -284,10 +288,25 @@ export class UserSignUpComponent implements OnInit {
     }
   }
   changeInput($ev) {
-
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+      }
+     
+       
     }
   }
 
