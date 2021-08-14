@@ -575,6 +575,8 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
  
   changeAddClass($event,text) {
+    console.log($event.checked);
+    
     if (!$event.checked) {
       localStorage.removeItem("sections");
       localStorage.removeItem("courseIds");

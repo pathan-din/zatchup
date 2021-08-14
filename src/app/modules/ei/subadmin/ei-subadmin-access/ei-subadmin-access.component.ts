@@ -84,6 +84,10 @@ export class EiSubadminAccessComponent implements OnInit {
           this.subAdminName = res.data.name;
           this.moduleList.forEach(element => {
             let objModel: any = {};
+            if(element.is_access){
+              objModel.module_code = element.module_code;
+              this.module.module_details.push(objModel);
+            }
             if (element.sub_module_set.length > 0) {
               if(element.is_deleted===false){
                 this.modifiedModulesList.push(element);
@@ -299,6 +303,8 @@ export class EiSubadminAccessComponent implements OnInit {
 
   isAllSelected(event, code) {
     let objModel: any = {};
+    console.log(this.module.module_details);
+    
     if (event.checked) {
       const index = this.module.module_details.findIndex(codes => codes.module_code === code);
       if (index == -1) {

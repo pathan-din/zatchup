@@ -126,18 +126,21 @@ export class UserLoginComponent implements OnInit {
     
     
     
-    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8) {
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
     }else{
       
-      if($ev.target.name=='otp4'){
-        this.otp3.nativeElement.focus()
-      }else if($ev.target.name=='otp3'){
-        this.otp2.nativeElement.focus()
-      }else if($ev.target.name=='otp2'){
-        this.otp1.nativeElement.focus()
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
       }
+     
        
     }
   }
