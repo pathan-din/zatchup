@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BaseService } from 'src/app/services/base/base.service';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -14,6 +14,10 @@ declare var $: any;
   styleUrls: ['./information-and-bank.component.css']
 })
 export class InformationAndBankComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   bankDetails: any
   model: any = {};
   editModel: any = {};
@@ -372,12 +376,23 @@ export class InformationAndBankComponent implements OnInit {
 
   }
   changeInput($ev) {
-    console.log($ev);
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+      }
+       
     }
-
   }
   gotoEditPersonalInfo() {
     this.router.navigate(["ei/personal-information"]);
