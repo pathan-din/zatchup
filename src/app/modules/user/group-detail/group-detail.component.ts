@@ -43,44 +43,46 @@ export class GroupDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params=>{
       this.params=params;
     })
-    if(this.params.groupId && this.params.chat)
-    {
-      this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
-       // console.log(res);
-        this.model=res;
-        
-        res.reciepent.forEach(element => {
-          console.log(element[this.currentUser]);
-          if(element[this.currentUser]){
-            if(element[this.currentUser].is_exit==1){
-              this.exitGroupMember=1;
-             // console.log(this.exitGroupMember);
-              
-            }
-            if(element[this.currentUser].is_student){
-              this.is_check_student=element[this.currentUser].is_student;
-             // console.log(this.exitGroupMember);
-              
-            }
+   this.refersh();
+  }
+refersh(){
+  if(this.params.groupId && this.params.chat)
+  {
+    this.firestore.collection("group").doc(this.params.groupId).valueChanges().subscribe((res:any)=>{
+     // console.log(res);
+      this.model=res;
+      
+      res.reciepent.forEach(element => {
+        console.log(element[this.currentUser]);
+        if(element[this.currentUser]){
+          if(element[this.currentUser].is_exit==1){
+            this.exitGroupMember=1;
+           // console.log(this.exitGroupMember);
+            
+          }
+          if(element[this.currentUser].is_student){
+            this.is_check_student=element[this.currentUser].is_student;
+           // console.log(this.exitGroupMember);
             
           }
           
-          Object.keys(element).forEach(el=>{
-            if(element[el].is_remove==0 && element[el].is_exit==0){
-              this.groupMember[el]=element[el];
-            
-              
-              this.getRecepintUserDetails(el,'group');
-             // console.log(el);
-            }
-           
-          })
+        }
+        
+        Object.keys(element).forEach(el=>{
+          if(element[el].is_remove==0 && element[el].is_exit==0){
+            this.groupMember[el]=element[el];
           
-        });
-      })
-    }
+            
+            this.getRecepintUserDetails(el,'group');
+           // console.log(el);
+          }
+         
+        })
+        
+      });
+    })
   }
-
+}
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
       //this.receipentUsers.push(k)
@@ -106,8 +108,8 @@ export class GroupDetailComponent implements OnInit {
   updateDetails(){
     this.firestore.collection("group").doc(this.params.groupId).set(this.model).then((responce:any)=>{
       //console.log(responce);
-      this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
-      
+      //this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
+      this.refersh()
       },(error)=>{
 
       }) 
@@ -136,11 +138,11 @@ export class GroupDetailComponent implements OnInit {
                 }
                 
               });
-              console.log((res));
+              //console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
-              console.log(responce);
-              this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
-              
+              //console.log(responce);
+              //this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
+              this.refersh()
             },(error)=>{
       
             })}});
@@ -169,8 +171,8 @@ export class GroupDetailComponent implements OnInit {
              // console.log((res));
               this.firestore.collection("group").doc(this.params.groupId).set(res).then((responce:any)=>{
               //console.log(responce);
-              this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
-              
+             // this.router.navigate(['user/chat'],{queryParams:{"chat":"group"}});
+             this.refersh()
             },(error)=>{
       
             }) 

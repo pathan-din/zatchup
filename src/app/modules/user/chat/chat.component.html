@@ -173,7 +173,7 @@
                                 <span class="small-text-2"></span>
                             </p>
                              <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i =index;">
-                                <label [ngClass]="'color-green'">{{user.firstName}} {{user.lastName}} {{i==receipentUsers.length-1?'':','}}</label>
+                                <label [ngClass]="'color-green'">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName}} {{i==receipentUsers.length-1?'':','}}</label>
                             </span>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                             </a>
 
                                  
-                            <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize"> {{objCon.msg}}
+                            <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize"> 
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
                                    </span>
                             </p>
@@ -238,7 +238,7 @@
                              <p *ngIf="objCon.is_creatted" class="py-1 text-center"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}
                                  
                             </p>
-                                 <!-- <p class="text-left  small-text-2"><strong>{{objCon.user_name}}</strong></p>
+                               <!--   <p class="text-left  small-text-2"><strong>{{objCon.user_name}}</strong></p>
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4"> {{getTimeAgo(objCon.timestamp)}}
                               <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
@@ -294,10 +294,10 @@
                                 <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
-                            && getFileExtention(objCon.msg)=='aiff'
-                            && getFileExtention(objCon.msg)=='flac'
-                            && getFileExtention(objCon.msg)=='wma'
-                            && getFileExtention(objCon.msg)=='aac'
+                            || getFileExtention(objCon.msg)=='aiff'
+                            || getFileExtention(objCon.msg)=='flac'
+                            || getFileExtention(objCon.msg)=='wma'
+                            || getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
                             </a>

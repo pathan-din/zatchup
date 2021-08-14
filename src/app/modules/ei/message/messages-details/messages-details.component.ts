@@ -373,9 +373,6 @@ export class MessagesDetailsComponent implements OnInit {
           }
 
           res.data.forEach(element1 => {
-             
-           
-           
             element1.receipentList.forEach(element => {
               // console.log(element);
               if (element[localStorage.getItem('fbtoken')]) {

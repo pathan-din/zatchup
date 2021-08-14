@@ -53,7 +53,7 @@ export class PersonalMessagesComponent implements OnInit {
         }
       })
     }
-    this.getGroupDetails(this.currentUser)
+   
     if (this.isLoggedIn) {
       this.lastMessageData = []
       this.notifypush.receiveMessage();
@@ -63,7 +63,7 @@ export class PersonalMessagesComponent implements OnInit {
         this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
       }
     }
-
+    this.getGroupDetails(this.currentUser)
   }
 
   getUsersWithModeratorRole(loginfirebase_id) {
@@ -254,14 +254,11 @@ export class PersonalMessagesComponent implements OnInit {
     }
   }
   getGroupDetails(uuid) {
-    console.log(uuid);
-    
     this.groupList = [];
     this.groupListNew = [];
     this.lastGroupmsgCount = []
     this.firestore.collection('group').snapshotChanges().subscribe((res: any) => {
       res.forEach(element => {
-
         this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res: any) => {
           //console.log(res);
           res.uuid = element.payload.doc.id;
@@ -271,41 +268,28 @@ export class PersonalMessagesComponent implements OnInit {
             res.group_icon = "assets/images/userWebsite/users.png";
           }
           this.lastGroupmsgCount[element.payload.doc.id] = []
-          
-          
           this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
             if (res1) {
-               
-              
               res1.data.forEach(elements => {
                 if (elements.is_read == 1 && !elements.is_creatted && elements.user_send_by !== localStorage.getItem('fbtoken')) {
                   if (!this.lastGroupmsgCount[element.payload.doc.id].find(el => { return el.timestamp == elements.timestamp })) {
                     this.lastGroupmsgCount[element.payload.doc.id].push(elements);
-                    
-                    
-                    
                   }
                 }
               });
             }
           })
           res.reciepent.forEach(ele => {
-            console.log("res1",ele[uuid]);
             if (ele[uuid] && (ele[uuid].is_remove == 0 && ele[uuid].is_exit == 0)) {
-              
               var index = this.groupList.find((e) => { return e.group_title == res.group_title })
-              
               if (!index) {
-                
                 // this.groupList.push(res)
                 this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
                   //console.log(res1.data[res1.data.length-1]);
                   this.lastGroupmsg[element.payload.doc.id] = []
                   if (!this.lastGroupmsg[element.payload.doc.id].find(el => { return el.timestamp == res1.data[res1.data.length - 1].timestamp })) {
                     if (res1) {
-                      this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
-                     
-                      
+                     this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
                      if(res1.data[res1.data.length - 1]){
                       res.timestamp = res1.data[res1.data.length - 1].timestamp;
                       res.group = 1
@@ -316,13 +300,13 @@ export class PersonalMessagesComponent implements OnInit {
                   }
 
                 })
-
                 this.groupList.push(res)
                 this.lastMessageData.push(res)
                 this.lastMessageData.sort(function (x, y) {
                   return y.timestamp - x.timestamp;
                 })
-                //console.log(this.lastMessageData);
+                
+                console.log(this.lastMessageData);
                 
               }
 
@@ -331,11 +315,18 @@ export class PersonalMessagesComponent implements OnInit {
             }
 
           });
-        
-          //console.log( this.lastMessageData);
+          if(localStorage.getItem('getreject')){
+            var role = JSON.parse(localStorage.getItem('getreject'))
+            if(role=='EISUBADMIN')
+            {
+              setTimeout(() => {
+                this.lastMessageData.sort(function (x, y) {
+                  return y.timestamp - x.timestamp;
+                })
+              }, 3000);
+            }
+          }
           
-
-
         })
       });
 

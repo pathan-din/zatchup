@@ -55,7 +55,7 @@
                         <ul class="participantsList">
                            <li *ngFor="let user of receipentUsers" class="user-blkrow cursorStyle">
                                <img src="{{user.photoUrl?user.photoUrl:'assets/images/userWebsite/profile-image.png'}}" alt="profile-pick" class="pickSize mr-2 border"/> 
-                               <span class="text-capitalize">{{user.firstName}} {{user.lastName?user.lastName:""}}</span> 
+                               <span class="text-capitalize">{{currentUser==user.id?'You':user.firstName}} {{currentUser==user.id?'':user.lastName}} </span> 
                                 <span class="group-admin color-green group-admin-green" *ngIf=" groupMember[user.id].is_student==1 && groupMember[user.id].is_admin==1">Group Admin</span>
                             </li>
                         </ul>
