@@ -19,7 +19,7 @@
                             <img *ngIf="recepintDetails && recepintDetails.photoUrl" src="{{recepintDetails.photoUrl}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepintDetails" class="m-0 semiBoldFont">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
+                            <p *ngIf="recepintDetails" class="m-0 semiBoldFont cursorStyle">{{recepintDetails.firstName }} {{recepintDetails.lastName }}{{recepintDetails.roll_no?'('+recepintDetails.class_name+' '+recepintDetails.roll_no+')':''}}</p>
                             <span class="small-text-2 cursorStyle" *ngIf="!blockRecipant && presence$ | async as presence">
                                 <label *ngIf="online" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{presence.status}}</label>
                                 <label *ngIf="!online && is_last_seen" [ngClass]="presence.status == 'online' ? 'color-green mb-0': 'offline'">{{getTimewithday(presence.timestamp)}}</label>
@@ -128,7 +128,7 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid img-big cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
@@ -169,7 +169,7 @@
                             <img *ngIf="recepientGroup && recepientGroup.group_icon" src="{{recepientGroup.group_icon}}" class="img-fluid cursorStyle">
                         </div>
                         <div class="profile_name ml-2 text-capitalize">
-                            <p *ngIf="recepientGroup" class="m-0 semiBoldFont"> {{recepientGroup.group_title}} 
+                            <p *ngIf="recepientGroup" class="m-0 semiBoldFont cursorStyle"> {{recepientGroup.group_title}} 
                                 <span class="small-text-2"></span>
                             </p>
                              <span class="small-text-2 cursorStyle" *ngFor="let user of receipentUsers;let i =index;">
@@ -279,7 +279,7 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid imgChatBig cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
