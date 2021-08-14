@@ -320,13 +320,7 @@ export class PersonalMessagesComponent implements OnInit {
               return y.timestamp - x.timestamp;
             })
           }, 3000);
-          if(localStorage.getItem('getreject')){
-            var role = JSON.parse(localStorage.getItem('getreject'))
-            if(role=='EISUBADMIN')
-            {
-              
-            }
-          }
+          
           
         })
       });

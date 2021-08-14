@@ -575,9 +575,13 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
  
   changeAddClass($event,text) {
-    localStorage.removeItem("sections");
+    if (!$event.checked) {
+      localStorage.removeItem("sections");
       localStorage.removeItem("courseIds");
       localStorage.removeItem("standardIds");
+      localStorage.removeItem("sectionL");
+    }
+      //JSON.parse(localStorage.getItem('sectionL'))
     localStorage.setItem("groupclasscheck",$event.checked);
     if (text=='addclass' && $event.checked==true) {
       this.displayCourseListModuleAccess();
