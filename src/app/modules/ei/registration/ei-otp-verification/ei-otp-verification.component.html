@@ -23,6 +23,7 @@
                                 class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
                                 type="text" maxlength="1">
                         </div>
+                       
                         <!-- <label for="" class="commonFontSize letterspacing mt-3">Enter OTP Received on your Email Address</label>
                         <div class="d-flex justify-content-between">
                             <input (keyup)="changeInput($event)" [(ngModel)]="otp5" name="otp5" class=" form-control ei-form-control text-center commonFontSize semiBoldFont  mr-2" type="text" maxlength="1" numberOnly>
@@ -31,6 +32,7 @@
                             <input  [(ngModel)]="otp8" name="otp8" class=" form-control ei-form-control text-center commonFontSize semiBoldFont" type="text" maxlength="1" numberOnly>
                         </div> -->
                     </div>
+                    <div class="required required text-center" [innerHtml]="errorOtpModelDisplay"></div>
                     <p class="text-right commonFontSize mediumFont textUnderlineStyle letterspacing" (click)="resendOtp()">Resend OTP</p>
                     <button type="button" class="mt-1 bg-purple border-0 text-white w-100 text-center p-2 commonFontSize mediumFont letterspacing" (click)="goToOtpVerification() ">
                         Submit

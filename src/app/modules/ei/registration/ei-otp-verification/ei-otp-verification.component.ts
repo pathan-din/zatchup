@@ -92,18 +92,21 @@ export class EiOtpVerificationComponent implements OnInit {
   goToOtpVerification() {
 
     var flagRequired = true;
+    console.log(flagRequired);
+    
     this.errorOtpModelDisplay = '';
     this.error = [];
-    if (!this.otp1) {
+    if (!this.model.otp1) {
       flagRequired = false;
-    } else if (!this.otp2) {
+    } else if (!this.model.otp2) {
       flagRequired = false;
-    } else if (!this.otp3) {
-      flagRequired = false;
-    }
-    else if (!this.otp4) {
+    } else if (!this.model.otp3) {
       flagRequired = false;
     }
+    else if (!this.model.otp4) {
+      flagRequired = false;
+    }
+    console.log(flagRequired);
     if (flagRequired == false) {
       this.error.push("Please enter OTP!");
     }

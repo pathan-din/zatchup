@@ -116,17 +116,17 @@ export class EiMobileVerificationComponent implements OnInit {
     var flagRequired=true;
     this.errorOtpModelDisplay='';
     this.error=[];
-   if(!this.otp1)
+   if(!this.model.otp1)
    {
      flagRequired=false;
-   }else if(!this.otp2)
+   }else if(!this.model.otp2)
    {
      flagRequired=false;
-   }else if(!this.otp3)
+   }else if(!this.model.otp3)
    {
      flagRequired=false;
    }
-   else if(!this.otp4)
+   else if(!this.model.otp4)
    {
      flagRequired=false;
    }
