@@ -154,6 +154,7 @@ export class MessagesComponent implements OnInit {
            });
           
             res.reciepent.forEach(ele => {
+              
               if(ele[uuid] && (ele[uuid].is_remove==0 &&  ele[uuid].is_exit==0)){
                 var index=this.groupList.find((e)=>{return e.group_title==res.group_title})
                 if(!index){
@@ -163,10 +164,12 @@ export class MessagesComponent implements OnInit {
                     this.lastGroupmsg[element.payload.doc.id]=[]
                     if(!this.lastGroupmsg[element.payload.doc.id].find(el=>{return el.timestamp==res1.data[res1.data.length-1].timestamp}))
                     if(res1 ){
-                      
-                      this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
-                      console.log( this.lastGroupmsg);
-                      
+                      if(res1.data[res1.data.length-1].is_delete!=1){
+                        
+                        
+                        this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length-1])
+                       
+                      }
                       if(res1.data[res1.data.length-1]){
                         res.timestamp = res1.data[res1.data.length-1].timestamp;
                       }else{
@@ -190,6 +193,7 @@ export class MessagesComponent implements OnInit {
             
             
            })
+           
       });
       
     })

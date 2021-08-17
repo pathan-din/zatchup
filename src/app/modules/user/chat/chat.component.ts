@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ConfirmDialogService } from 'src/app/common/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-chat',
@@ -47,6 +48,7 @@ export class ChatComponent implements OnInit {
   online: any;
   is_last_seen:any
   getroleUserFlag: boolean;
+   
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -57,6 +59,7 @@ export class ChatComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private loader: NgxSpinnerService,
+    private confirmDialogService:ConfirmDialogService
   ) { }
 
 
@@ -248,19 +251,22 @@ export class ChatComponent implements OnInit {
              } 
            }
           res.data.forEach(element1 => {
-            element1.receipentList.forEach(element => {
+            if(element1.is_delete!=1){
+              element1.receipentList.forEach(element => {
              
-              if(element[localStorage.getItem('fbtoken')]){
-                if(element[localStorage.getItem('fbtoken')].is_remove==0 && element[localStorage.getItem('fbtoken')].is_exit==0){
-                  
-                  var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
-                  if(!obj)
-                  chatData.push(element1)
-                  this.lastGroupChatData.push(res.data[res.data.length-1]);
+                if(element[localStorage.getItem('fbtoken')]){
+                  if(element[localStorage.getItem('fbtoken')].is_remove==0  && element[localStorage.getItem('fbtoken')].is_exit==0){
+                    
+                    var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
+                    if(!obj)
+                    chatData.push(element1)
+                    this.lastGroupChatData.push(res.data[res.data.length-1]);
+                  } 
                 }
-              }
-              
-            });
+                
+              });
+            }
+           
           });
           
           
@@ -270,16 +276,23 @@ export class ChatComponent implements OnInit {
           if(localStorage.getItem('isread1')){
              
            if(this.conversation.length>0){
+             var i=0
             this.conversation.forEach(element => {
               if(element.is_read==1){
                 element.is_read=0;
               }
+              if(element.is_delete==1){
+                delete this.conversation[i]
+              }
+              i=i+1
+              
             });
+            this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
+            localStorage.removeItem('isread1')
            }
            
             
-            this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
-            localStorage.removeItem('isread1')
+            
             //sub1.unsubscribe()
           }
         } else {
@@ -304,7 +317,7 @@ export class ChatComponent implements OnInit {
               if (this.router.url.split('/')[2].split('?')[0]) {
                 
                 
-                if (this.router.url.split('/')[2].split('?')[0] === 'chat' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
+                if (this.router.url.split('/')[2].split('?')[0] === 'chat' &&  res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
                   localStorage.setItem('isread1', "1")
                   res.data.forEach(element => {
                     element.is_read = 0
@@ -440,6 +453,7 @@ export class ChatComponent implements OnInit {
               data.document = document ? true : false;
               data.msg = document ? document : this.model.comment;
               data.is_read = 1
+              data.is_delete = 0;
               data.timestamp = new Date().valueOf();
               data.receipentList =res.reciepent
               this.dataStudent.push(data)
@@ -486,6 +500,7 @@ export class ChatComponent implements OnInit {
       data.document = document ? true : false;
       data.msg = document ? document : this.model.comment;
       data.is_read = 1
+      data.is_delete = 0;
       this.dataStudent.push(data)
       dataNew.data = this.dataStudent;
       this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
@@ -520,6 +535,7 @@ replyChat(uid){
     data.document = false;
     data.msg =  'Hi ' +userData.first_name + ' ' + userData.last_name+', thanks for requesting verification, we are going through our records and will soon update the comments on your profile, attaching any proofs like old marksheets, passing/transfer certificates makes the process of verification quicker and easier, Please send any such proof you may have.';
     data.is_read = 1
+    data.is_delete = 0;
     this.dataStudent.push(data)
     dataNew.data = this.dataStudent;
     this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
@@ -543,6 +559,32 @@ replyChat(uid){
 
   gotoChatPrivacy() {
 
+  }
+  deleteSelfChat(chatConversation,index){
+    this.confirmDialogService.confirmThis("Are you sure, you want to delete chat", () => {
+      chatConversation[index].is_delete=1;
+      if(this.params.chat){
+         
+        var uuid1 = localStorage.getItem("guuid");
+        this.firestore.collection("chat_conversation").doc(uuid1).set({"data":chatConversation}).then((responce:any)=>{
+         this.getDocumentsChat('');
+        },(error)=>{
+  
+        }) 
+      }else{
+        this.uuid = localStorage.getItem('uuid');
+          
+        this.firestore.collection("chat_conversation").doc(this.uuid).set({"data":chatConversation}).then((responce:any)=>{
+          this.getDocumentsChat(this.uuid);
+        },(error)=>{
+  
+        }) 
+      }
+    }, () => {
+    });
+    
+   
+    
   }
   blockPaticipant(particepantid){
     

@@ -40,7 +40,7 @@
                 </div>
 
                 <div #scrollMe [scrollTop]="scrollHeight" class="schoolChat">
-                    <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
+                    <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation;let i=index;">
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
                           <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
@@ -87,7 +87,7 @@
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
                             </a>
-                                 <p class="text-left  small-text-2"><strong>{{getroleUserFlag?objCon.user_name:''}}</strong></p>
+                                 
                              
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4">{{getTimeAgo(objCon.timestamp)}}
@@ -99,13 +99,13 @@
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
                             <div *ngIf="!objCon.document" class="chatOut">
                                 <!-- {{objCon | json}} -->
-                                <p class="m-0">{{objCon.msg}}</p>
+                                <p (click)="deleteSelfChat(conversation,i)" class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                                     <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                                 </span>
                             </div>
-                            <div *ngIf="objCon.document">
+                            <div *ngIf="objCon.document" (click)="deleteSelfChat(conversation,i)">
                                <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>
@@ -129,27 +129,27 @@
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
                                  src="{{objCon.msg}}" class="img-fluid cursorStyle">
-                            </a>
+                               </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
                                 </a>
                                  <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img  src="./assets/images/userWebsite/csv.png" class="img-fluid img-big cursorStyle">
-                            </a>
-                            <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid img-big cursorStyle">
-                            </a>
-                            <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
-                            </a>
-                            <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
-                            || getFileExtention(objCon.msg)=='aiff'
-                            || getFileExtention(objCon.msg)=='flac'
-                            || getFileExtention(objCon.msg)=='wma'
-                            || getFileExtention(objCon.msg)=='aac'
-                             && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
-                            </a>
+                                </a>
+                                    <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                        <img  src="./assets/images/userWebsite/doc.png" class="img-fluid img-big cursorStyle">
+                                    </a>
+                                    <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                        <img  src="./assets/images/userWebsite/docx.png" class="img-fluid img-big cursorStyle">
+                                    </a>
+                                    <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
+                                    || getFileExtention(objCon.msg)=='aiff'
+                                    || getFileExtention(objCon.msg)=='flac'
+                                    || getFileExtention(objCon.msg)=='wma'
+                                    || getFileExtention(objCon.msg)=='aac'
+                                    && objCon.document" href="{{objCon.msg}}" target="_blank">
+                                        <img  src="./assets/images/userWebsite/audio.png" class="img-fluid img-big cursorStyle">
+                                    </a>
                                 
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                                     <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
@@ -181,7 +181,7 @@
                 </div>
 
                 <div #scrollMe [scrollTop]="scrollHeight" class="schoolChat">
-                    <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation">
+                    <div class="chat_contentBox pt-3" *ngFor="let objCon of conversation;let i=index">
                         <div class="{{!objCon.is_creatted?'chatIn':''}}" *ngIf="objCon.user_send_by!=currentUser">
                             <p *ngIf="!objCon.is_creatted" class="text-left m-0 semiBoldFont"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
@@ -230,7 +230,7 @@
                             </a>
 
                                  
-                            <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize"> 
+                            <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize">  {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
                                    </span>
                             </p>
@@ -247,7 +247,7 @@
                         </div>
 
                         <div class="d-flex justify-content-end" *ngIf="objCon.user_send_by==currentUser">
-                            <div *ngIf="!objCon.document" class="chatOut">
+                            <div (click)="deleteSelfChat(conversation,i)" *ngIf="!objCon.document" class="chatOut">
                                 <!-- {{objCon | json}} -->
                                 <p class="m-0">{{objCon.msg}}</p>
                                 <span class="text-right small-text-2 d-block color-gray ml-4"> {{getTimeAgo(objCon.timestamp)}}
@@ -256,7 +256,7 @@
                                
 
                             </div>
-                            <div *ngIf="objCon.document">
+                            <div *ngIf="objCon.document" (click)="deleteSelfChat(conversation,i)">
                                 <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
                                 </a>

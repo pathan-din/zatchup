@@ -27,13 +27,23 @@ export const environment = {
   // }
 
   firebase: {
-    apiKey: "AIzaSyDe40LKqSMK0jNz6zlUztAhkg3ld9wB8-g",
-    authDomain: "zatchup-bf69e.firebaseapp.com",
-    databaseURL: "https://zatchup-bf69e-default-rtdb.firebaseio.com",
-    projectId: "zatchup-bf69e",
-    storageBucket: "zatchup-bf69e.appspot.com",
-    messagingSenderId: "227089326047",
-    appId: "1:227089326047:web:de5d85c6d70c478fb12e6a",
-    measurementId: "G-5P2LJ0F8Z5"
+
+    apiKey: "AIzaSyAlMZWSNAlwGL_eurTplr21Pf7yh6_WRCo",
+    authDomain: "zatchup-prod.firebaseapp.com",
+    databaseURL: "https://zatchup-prod-default-rtdb.firebaseio.com",
+    projectId: "zatchup-prod",
+    storageBucket: "zatchup-prod.appspot.com",
+    messagingSenderId: "31214994209",
+    appId: "1:31214994209:web:ed8cb2c7a3da60fe1f3460",
+    measurementId: "G-7WX01GN50N"
+
+    // apiKey: "AIzaSyDe40LKqSMK0jNz6zlUztAhkg3ld9wB8-g",
+    // authDomain: "zatchup-bf69e.firebaseapp.com",
+    // databaseURL: "https://zatchup-bf69e-default-rtdb.firebaseio.com",
+    // projectId: "zatchup-bf69e",
+    // storageBucket: "zatchup-bf69e.appspot.com",
+    // messagingSenderId: "227089326047",
+    // appId: "1:227089326047:web:de5d85c6d70c478fb12e6a",
+    // measurementId: "G-5P2LJ0F8Z5"
   }
 };
