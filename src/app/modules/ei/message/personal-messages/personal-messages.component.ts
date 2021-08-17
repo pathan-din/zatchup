@@ -298,11 +298,11 @@ export class PersonalMessagesComponent implements OnInit {
                   this.lastGroupmsg[element.payload.doc.id] = []
                   if (!this.lastGroupmsg[element.payload.doc.id].find(el => { return el.timestamp == res1.data[res1.data.length - 1].timestamp })) {
                     if (res1) {
-                      if(res1.data[res1.data.length - 1].is_delete!=1){
-                        this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
-                       
-                      }
+                      
                       if(res1.data[res1.data.length - 1]){
+                        var filtterData = res1.data.filter(el=>{return el.is_delete!=1})
+                        this.lastGroupmsg[element.payload.doc.id].push(filtterData[filtterData.length-1])
+                        //this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
                         res.timestamp = res1.data[res1.data.length - 1].timestamp;
                         res.group = 1
                        }else{
@@ -347,6 +347,21 @@ export class PersonalMessagesComponent implements OnInit {
       this.recepintDetails = res.data();
     });
 
+  }
+  viewProfile(firebase_id){
+    let obj:any={}
+    obj.firebase_id = firebase_id;
+    this.baseService.getData("user/get-user-role-from-firebaseid/",obj).subscribe((res:any)=>{
+      // 
+      if(res.status==true){
+        if(res.user_role!='EISUBADMIN' && res.user_role!='EIREPRESENTATIVE'){
+          
+        this.router.navigate(["/ei/student-profile"],{queryParams:{"stId":res.user_id}})
+        
+        } 
+      }
+      
+    })
   }
   messageDetails(uid, chatConversion) {
     localStorage.setItem('guuid', uid);

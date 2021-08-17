@@ -436,6 +436,21 @@ export class GroupDetailComponent implements OnInit {
         this.alert.error(err, 'Error')
       }
     }
+    viewProfile(firebase_id){
+      let obj:any={}
+      obj.firebase_id = firebase_id;
+      this.baseService.getData("user/get-user-role-from-firebaseid/",obj).subscribe((res:any)=>{
+        // 
+        if(res.status==true){
+          if(res.user_role!='EISUBADMIN' && res.user_role!='EIREPRESENTATIVE'){
+            
+          this.router.navigate(["/ei/student-profile"],{queryParams:{"stId":res.user_id}})
+          
+          } 
+        }
+        
+      })
+    }
 addMoreRecipant(){
   
     if(localStorage.getItem('alreadyGroupMember')){
