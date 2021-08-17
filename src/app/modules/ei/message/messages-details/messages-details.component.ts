@@ -423,7 +423,7 @@ export class MessagesDetailsComponent implements OnInit {
                     if(element.is_read==1){
                       element.is_read=0;
                     }
-                     
+                    
                   });
                   this.firestore.collection('chat_conversation').doc(uuid).set({ "data": chatDataOld })
                 //subs1.unsubscribe()
@@ -449,28 +449,35 @@ export class MessagesDetailsComponent implements OnInit {
       this.subscribechat = dataSet.subscribe((res: any) => {
         if (res) {
           if (res.data) {
-             
-            if (this.router.url.split('/')[2].split('?')[0]) {
+            let cdata:any=[]
+            res.data.forEach(el=>{
+              if(el.is_delete!=1){
+                if (this.router.url.split('/')[2].split('?')[0]) {
               
               
-              if (this.router.url.split('/')[2].split('?')[0] === 'messages-details' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
-                localStorage.setItem('isread', "1")
-                res.data.forEach(element => {
-                  element.is_read = 0
-                });
-              }
-            }
+                  if (this.router.url.split('/')[2].split('?')[0] === 'messages-details' && res.data[res.data.length - 1].is_read == 1 && res.data[res.data.length - 1].user_send_by!=this.currentUser) {
+                    localStorage.setItem('isread', "1")
+                    res.data.forEach(element => {
+                      element.is_read = 0
+                    });
+                  }
+                }
+                if(!cdata.find(e=>{return e.timestamp==el.timestamp})){
+                  cdata.push(el)
+                }
+              }})
+              this.conversation = cdata;
+              this.dataStudent = cdata;
+              // this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
+               
+                if (localStorage.getItem('isread')) {
+                  localStorage.removeItem('isread')
+                  
+                  this.firestore.collection('chat_conversation').doc(uuid).set({ "data": cdata })
+                }
             
           }
-          this.conversation = res.data;
-          this.dataStudent = res.data;
-          // this.firestore.collection('chat_conversation').doc(uuid).set({"data":this.conversation})
-           
-            if (localStorage.getItem('isread')) {
-              localStorage.removeItem('isread')
-              
-              this.firestore.collection('chat_conversation').doc(uuid).set({ "data": this.conversation })
-            }
+         
            
           
         } else {
@@ -486,6 +493,7 @@ export class MessagesDetailsComponent implements OnInit {
 
   }
   deleteSelfChat(chatConversation,index){
+    console.log(chatConversation);
     this.confirmDialogService.confirmThis("Are you sure, you want to delete chat", () => {
       chatConversation[index].is_delete=1;
       if(this.params.chat){
@@ -497,7 +505,8 @@ export class MessagesDetailsComponent implements OnInit {
   
         }) 
       }else{
-        this.uuid = localStorage.getItem('uuid');
+        this.uuid = localStorage.getItem("friendlidt_id");
+          
           
         this.firestore.collection("chat_conversation").doc(this.uuid).set({"data":chatConversation}).then((responce:any)=>{
           this.getDocumentsChat();
