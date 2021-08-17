@@ -227,6 +227,7 @@ export class MessagesDetailsComponent implements OnInit {
         // this.recepintDetails = res.data();
         let resp: any = {}
         resp = res.data()
+        if(resp)
         if (!this.receipentUsers.find(responce => { return responce.id == resp.id }))
           this.receipentUsers.push(resp)
       });
@@ -352,74 +353,88 @@ export class MessagesDetailsComponent implements OnInit {
   getDocumentsChat() {
     this.conversation = [];
     this.dataStudent = [];
-    let chatData: any = []
+    
     if (this.params.chat) {
       var uuid = localStorage.getItem("guuid");
       var that = this;
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
       const subs1=dataSet.subscribe((res: any) => {
         if (res) {
-          if (this.router.url.split('/')[2].split('?')[0]) {
+          let chatData: any = []
+          let chatDataOld: any = []
+          console.log("data last ",res.data);
+          
+          res.data.forEach(element => {
+            console.log("message details");
+            
+            if(element.is_delete!=1)
+            {
+              if (this.router.url.split('/')[2].split('?')[0]) {
               
               
-            if (this.router.url.split('/')[2].split('?')[0] === 'messages-details') {
-              
-              
-              res.data.forEach(element1 => {
-                if( element1.is_read == 1 && element1.user_send_by!=this.currentUser){
-                  localStorage.setItem('isread', "1")
-                  element1.is_read = 0
-                }
-              
-              })
-              
-            }
-          }
-
-          res.data.forEach(element1 => {
-            if(element1.is_delete!=1){
-            element1.receipentList.forEach(element => {
-              // console.log(element);
-              if (element[localStorage.getItem('fbtoken')]) {
-                if (element[localStorage.getItem('fbtoken')].is_remove == 0 && element[localStorage.getItem('fbtoken')].is_exit == 0) {
-
-                  var obj = chatData.find(el => { return el.timestamp == element1.timestamp })
-                  if (!obj)
-                    chatData.push(element1)
+                if (this.router.url.split('/')[2].split('?')[0] === 'messages-details') {
+                  
+                  
+                  res.data.forEach(element1 => {
+                    if( element1.is_read == 1 && element1.user_send_by!=this.currentUser){
+                      localStorage.setItem('isread', "1")
+                      element1.is_read = 0
+                    }
+                  
+                  })
+                  
                 }
               }
-
-            });}
-          });
-
-
-          //
-          this.conversation = chatData;
-          
-
-          this.dataStudent = chatData;
-          if (localStorage.getItem('isread')) {
-           
-            if(this.conversation.length>0){
-              var i=0
-              this.conversation.forEach(element => {
-                if(element.is_read==1){
-                  element.is_read=0;
-                }
-                if(element.is_delete==1){
-                  console.log("delete",this.conversation[i]);
-                  
-                  delete this.conversation[i]
-                }
-                i=i+1
+    
+              res.data.forEach(element1 => {
+                if(element1.is_delete!=1){
+                element1.receipentList.forEach(element => {
+                  // console.log(element);
+                  if (element[localStorage.getItem('fbtoken')]) {
+                    if (element[localStorage.getItem('fbtoken')].is_remove == 0 && element[localStorage.getItem('fbtoken')].is_exit == 0) {
+    
+                      var obj = chatData.find(el => { return el.timestamp == element1.timestamp })
+                      if (!obj)
+                        chatData.push(element1)
+                        chatDataOld.push(element1)
+                        
+                    }else{
+                      var obj = chatData.find(el => { return el.timestamp == element1.timestamp })
+                      if (!obj)
+                        chatData.push(element1)
+                        chatDataOld.push(element1)
+                    }
+                  }
+    
+                });}
               });
-              this.firestore.collection('chat_conversation').doc(uuid).set({ "data": this.conversation })
-            //subs1.unsubscribe()
-            localStorage.removeItem('isread')
-             }
+    
+    
+              console.log("chatData",chatData);
+              this.conversation = chatData;
               
-            
-          }
+    
+              this.dataStudent = chatData;
+              if (localStorage.getItem('isread')) {
+               
+                if(this.conversation.length>0){
+                  var i=0
+                  chatDataOld.forEach(element => {
+                    if(element.is_read==1){
+                      element.is_read=0;
+                    }
+                     
+                  });
+                  this.firestore.collection('chat_conversation').doc(uuid).set({ "data": chatDataOld })
+                //subs1.unsubscribe()
+                localStorage.removeItem('isread')
+                 }
+                  
+                
+              }
+            }
+          });
+         
           
         } else {
           this.conversation = [];

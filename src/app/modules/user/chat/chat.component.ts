@@ -236,65 +236,86 @@ export class ChatComponent implements OnInit {
       var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
       const sub1= dataSet.subscribe((res: any) => {
         if (res) {
-          if (this.router.url.split('/')[2].split('?')[0]) {
+          let chatData: any = []
+          let chatDataOld: any = []
+          
+          console.log("chat screen");
+          
+          res.data.forEach(element => {
+             
+            
+            if(element.is_delete!=1)
+            {
+              if (this.router.url.split('/')[2].split('?')[0]) {
                  
             
-            if (this.router.url.split('/')[2].split('?')[0] === 'chat' ) {
-               
-               res.data.forEach(element1 => {
-                 if(element1.is_read==1 && element1.user_send_by!=this.currentUser){
-                  localStorage.setItem('isread1', "1")
-                  element1.is_read = 0
-                 }
-                
-                })  
-             } 
-           }
-          res.data.forEach(element1 => {
-            if(element1.is_delete!=1){
-              element1.receipentList.forEach(element => {
-             
-                if(element[localStorage.getItem('fbtoken')]){
-                  if(element[localStorage.getItem('fbtoken')].is_remove==0  && element[localStorage.getItem('fbtoken')].is_exit==0){
+                if (this.router.url.split('/')[2].split('?')[0] === 'chat' ) {
+                   
+                   res.data.forEach(element1 => {
+                     if(element1.is_read==1 && element1.user_send_by!=this.currentUser){
+                      localStorage.setItem('isread1', "1")
+                      element1.is_read = 0
+                     }
                     
-                    var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
-                    if(!obj)
-                    chatData.push(element1)
-                    this.lastGroupChatData.push(res.data[res.data.length-1]);
-                  } 
+                    })  
+                 } 
+               }
+              res.data.forEach(element1 => {
+                if(element1.is_delete!=1){
+                  element1.receipentList.forEach(element => {
+                 
+                    if(element[localStorage.getItem('fbtoken')]){
+                      if(element[localStorage.getItem('fbtoken')].is_remove==0  && element[localStorage.getItem('fbtoken')].is_exit==0){
+                        
+                        var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
+                        if(!obj)
+                        chatData.push(element1)
+                        chatDataOld.push(element1)
+                        
+                        this.lastGroupChatData.push(res.data[res.data.length-1]);
+                      } else{
+                        var obj=chatData.find(el=>{return el.timestamp==element1.timestamp})
+                        if(!obj)
+                         
+                        chatDataOld.push(element1)
+                        
+                        
+                      }
+                    }
+                    
+                  });
                 }
-                
+               
               });
-            }
-           
-          });
-          
-          
-          //
-          this.conversation = chatData;
-          this.dataStudent = chatData;
-          if(localStorage.getItem('isread1')){
-             
-           if(this.conversation.length>0){
-             var i=0
-            this.conversation.forEach(element => {
-              if(element.is_read==1){
-                element.is_read=0;
-              }
-              if(element.is_delete==1){
-                delete this.conversation[i]
-              }
-              i=i+1
               
-            });
-            this.firestore.collection('chat_conversation').doc(uuid1).set({"data":this.conversation})
-            localStorage.removeItem('isread1')
-           }
-           
-            
-            
-            //sub1.unsubscribe()
-          }
+              
+              console.log("chatData",chatData);
+              
+              this.conversation = chatData;
+              this.dataStudent = chatData;
+              if(localStorage.getItem('isread1')){
+                 
+               if(this.conversation.length>0){
+                 var i=0
+                 chatDataOld.forEach(element => {
+                  if(element.is_read==1){
+                    element.is_read=0;
+                  }
+                   
+                });
+                console.log("conversation",this.conversation);
+                
+                this.firestore.collection('chat_conversation').doc(uuid1).set({"data":chatDataOld})
+                localStorage.removeItem('isread1')
+               }
+               
+                
+                
+                //sub1.unsubscribe()
+              }
+            }
+          });
+        
         } else {
           this.conversation = [];
           this.dataStudent = [];
@@ -407,6 +428,7 @@ export class ChatComponent implements OnInit {
      // this.recepintDetails = res.data();
      let resp:any={}
      resp = res.data()
+     if(resp)
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       });
