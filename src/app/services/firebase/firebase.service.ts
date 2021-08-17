@@ -136,7 +136,7 @@ export class FirebaseService {
 
     }
     updateClassAndRollChatUser(data) {
-        // console.log(photoUrl.profile_pic);
+         console.log(data);
          
          var uuid = '';
          if(data.firebase_id){
@@ -145,7 +145,7 @@ export class FirebaseService {
             uuid = localStorage.getItem('fbtoken');
          }
          //const userRef1 = this.db.doc(`users/${uuid}`);
-         //console.log("sddsd",uuid);
+         console.log("sddsd",uuid);
          this.db.collection('users').doc(uuid).get().toPromise().then((resp: any) => {
              let res = resp.data();
              

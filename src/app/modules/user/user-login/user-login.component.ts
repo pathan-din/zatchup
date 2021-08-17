@@ -221,12 +221,12 @@ export class UserLoginComponent implements OnInit {
   updatePassword(email, newPassword) {
     this.afAuth.currentUser.then((res) => {
       res.updatePassword(newPassword).then(update => {
-        console.log(update);
+         
         var result = this.afAuth.signInWithEmailAndPassword(email, newPassword);
         result.then((res: any) => {
           localStorage.setItem('fbtoken', res.user.uid);
         })
-        console.log('signInMethodsRadhey.....', result)
+        
       })
 
 
@@ -250,11 +250,14 @@ export class UserLoginComponent implements OnInit {
             that.firebaseService.updateFirebasePassword(that.firebaseemail, password, that.model.password)
           } else {
             password = that.model.password
+            //that.firebaseService.updateFirebasePassword(that.firebaseemail, password, that.model.password)
+            
           }
 
           var result = that.afAuth.signInWithEmailAndPassword(that.firebaseemail, password);
           result.then((res: any) => {
             localStorage.setItem('fbtoken', res.user.uid);
+            that.firebaseService.updateClassAndRollChatUser(data)
             // this.updatePassword(email,password)
           }, (error) => {
             console.log(error);

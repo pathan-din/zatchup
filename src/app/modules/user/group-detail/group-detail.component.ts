@@ -91,6 +91,7 @@ refersh(){
      // this.recepintDetails = res.data();
      let resp:any={}
      resp = res.data()
+     if(resp)
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       });

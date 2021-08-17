@@ -232,7 +232,7 @@ export class GroupDetailComponent implements OnInit {
      // this.recepintDetails = res.data();
      let resp:any={}
      resp = res.data()
-     
+     if(resp)
      if(!this.receipentUsers.find(responce=>{return responce.id==resp.id}))
       this.receipentUsers.push(resp )
       localStorage.setItem("alreadyGroupMember",JSON.stringify(this.receipentUsers));
@@ -470,19 +470,19 @@ addMoreRecipant(){
                   var obj= this.teacherList.find(el=>{
                       return el.firebase_id == element.id 
                     })
-                    console.log(this.groupUsers);
+                    //console.log(this.groupUsers);
                     
                     if(obj){
                       obj.isadded=true;
                       this.groupUsers.push(obj);
                   
                     }
-                    if(this.groupUsers.length>0){
+                    //if(this.groupUsers.length>0){
                       
                       localStorage.removeItem("groupUsers");
                       localStorage.setItem("groupUsers",JSON.stringify(this.groupUsers));
                       this.router.navigate(['ei/group-chat'],{queryParams:{"editgroup":"edit","groupId":this.params.groupId}});
-                    }
+                   // }
                   });
                 }
           })
