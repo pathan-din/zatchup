@@ -59,7 +59,7 @@ export class SubadminCompletedRequestComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back()
+    this.router.navigate(['ei/subadmin-management'])
   }
   goToChatScreen(objStudent) {
     this.conversation = [];
