@@ -136,17 +136,20 @@ export class PersonalMessagesComponent implements OnInit {
                   if (uuid && res1.data) {
                     this.firestore.collection('users').doc(uuid).ref.get().then(res => {
                       this.recepintDetails = res.data();
-                      res1.data[res1.data.length - 1].uuid = uuid;
-                      res1.data[res1.data.length - 1].user_friend_id = element;
-                      res1.data[res1.data.length - 1].class_name = this.recepintDetails.class_name;
-                      res1.data[res1.data.length - 1].roll_no = this.recepintDetails.roll_no;
-                      res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
-                      res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
-                      res1.data[res1.data.length - 1].group = 0
-                      this.lastMessageData.push(res1.data[res1.data.length - 1]);
-                      this.lastMessageData.sort(function (x, y) {
-                        return y.timestamp - x.timestamp;
-                      })
+                      if(res1.data[res1.data.length - 1]){
+                        res1.data[res1.data.length - 1].uuid = uuid;
+                        res1.data[res1.data.length - 1].user_friend_id = element;
+                        res1.data[res1.data.length - 1].class_name = this.recepintDetails.class_name;
+                        res1.data[res1.data.length - 1].roll_no = this.recepintDetails.roll_no;
+                        res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
+                        res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
+                        res1.data[res1.data.length - 1].group = 0
+                        this.lastMessageData.push(res1.data[res1.data.length - 1]);
+                        this.lastMessageData.sort(function (x, y) {
+                          return y.timestamp - x.timestamp;
+                        })
+                      }
+                    
                     });
                   }
 
