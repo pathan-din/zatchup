@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { BaseService } from '../../../../services/base/base.service';
@@ -14,6 +14,10 @@ declare var $: any;
   styleUrls: ['./ei-login-subadmin.component.css']
 })
 export class EiLoginSubadminComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   model: any = {};
   userRoleDetails: any = {};
   error: any = [];
@@ -98,9 +102,22 @@ export class EiLoginSubadminComponent implements OnInit {
   }
 
   changeInput($ev) {
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+      }
+       
     }
   }
 

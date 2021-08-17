@@ -49,6 +49,8 @@ export class EiKycVerificationComponent implements OnInit {
       this.getKYC();
     } else {
       this.model.kyc_dob = this.baseService.getDateReverseFormat(localStorage.getItem("dob"));
+      console.log(this.model.kyc_dob);
+      
       this.model.kyc_name = localStorage.getItem("name");
     }
     if(localStorage.getItem('getreject')){
@@ -93,7 +95,10 @@ export class EiKycVerificationComponent implements OnInit {
         if (this.params.text == 'name') {
           formData.append('kyc_name', this.model.kyc_name);
         } else {
+          this.model.kyc_dob = this.baseService.getDateFormat(this.model.kyc_dob);
           formData.append('kyc_dob', this.model.kyc_dob);
+        console.log(this.model.kyc_dob);
+        
         }
         formData.append('kyc_type', this.model.kyc_type);
         formData.append('kyc_document', this.uploadedContent);

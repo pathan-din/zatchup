@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EiServiceService } from '../../../../services/EI/ei-service.service';
 import { FormBuilder } from "@angular/forms";
@@ -15,17 +15,17 @@ declare var $: any;
   styleUrls: ['./ei-mobile-verification.component.css']
 })
 export class EiMobileVerificationComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
+  @ViewChild('otp5') otp5: ElementRef;
+  @ViewChild('otp6') otp6: ElementRef;
+  @ViewChild('otp7') otp7: ElementRef;
+  @ViewChild('otp8') otp8: ElementRef;
   model:any={};
   email: any
   errorOtpModelDisplay:any;
-  otp1:any;
-  otp2:any;
-  otp3:any;
-  otp4:any;
-  otp5:any;
-  otp6:any;
-  otp7:any;
-  otp8:any;
   error:any=[];
   errorDisplay:any={};
   schoolNumber:any;
@@ -49,15 +49,31 @@ export class EiMobileVerificationComponent implements OnInit {
       this.email = atob(localStorage.getItem('email'))
     }
   }
-  changeInput($ev)
-  {
-    console.log($ev);
-    if($ev.target.value.length==$ev.target.maxLength)
-    {
-      var $nextInput=$ev.target.nextSibling;
+  changeInput($ev) {
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
+      var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+        if($ev.target.name=='otp8'){
+          this.otp7.nativeElement.focus()
+        }else if($ev.target.name=='otp7'){
+          this.otp6.nativeElement.focus()
+        }else if($ev.target.name=='otp6'){
+          this.otp5.nativeElement.focus()
+        }
+      }
+       
     }
-     
   }
   editRequest(){
     this.router.navigate(['ei/school-registration'], {queryParams: {'edit' : true}});
@@ -100,17 +116,17 @@ export class EiMobileVerificationComponent implements OnInit {
     var flagRequired=true;
     this.errorOtpModelDisplay='';
     this.error=[];
-   if(!this.otp1)
+   if(!this.model.otp1)
    {
      flagRequired=false;
-   }else if(!this.otp2)
+   }else if(!this.model.otp2)
    {
      flagRequired=false;
-   }else if(!this.otp3)
+   }else if(!this.model.otp3)
    {
      flagRequired=false;
    }
-   else if(!this.otp4)
+   else if(!this.model.otp4)
    {
      flagRequired=false;
    }
@@ -126,7 +142,7 @@ export class EiMobileVerificationComponent implements OnInit {
    try{
      let data:any={};
      data.username=this.model.phone;
-     data.verify_otp_no=this.otp1+this.otp2+this.otp3+this.otp4+this.otp5+this.otp6+this.otp7+this.otp8;
+     data.verify_otp_no=this.model.otp1+this.model.otp2+this.model.otp3+this.model.otp4+this.model.otp5+this.model.otp6+this.model.otp7+this.model.otp8;
      this.SpinnerService.show();
      this.eiService.verifyOtpWithMobile(data).subscribe(res => {
       let response:any={}

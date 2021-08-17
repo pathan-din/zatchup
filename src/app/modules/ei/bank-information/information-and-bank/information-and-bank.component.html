@@ -462,43 +462,48 @@
     </div>
 </div>
 <!-- OTPModel -->
-<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content container-fluid">
-            <div class="modal-header align-items-center justify-content-center pb-0 border-0">
-                <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0" data-dismiss="modal"
-                    aria-label="Close ">
-                    <span aria-hidden="true "> &times; </span>
-                </button>
-            </div>
-            <div class="modal-body pl-5 pr-5 text-center">
-                <img class="img-fluid otpMessageImage mt-2 mb-4" src="assets/images/userWebsite/otp_message_image.png">
-                <p class="color-black regularFont commonFontSize mb-2">Enter OTP Send On Your {{model.value}} </p>
-                <div class="form-group">
-                    <div class="d-flex flex-row justify-content-between">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
-                            type="text" maxlength="1">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
-                            type="text" maxlength="1">
-                        <input (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
-                            type="text" maxlength="1">
-                        <input [(ngModel)]="model.otp4" name="otp4" class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
-                            type="text" maxlength="1">
-                    </div>
+<div class="modal fade" id="OTPModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content container-fluid">
+        <div class="modal-header align-items-center justify-content-center pb-0 border-0">
+            <button #closebutton type="button " class="close rounded-circle border bg-white model-close-btn p-0"
+                data-dismiss="modal" aria-label="Close ">
+                <span aria-hidden="true "> &times; </span>
+            </button>
+        </div>
+        <div class="modal-body pl-5 pr-5 text-center">
+            <!-- <form class="pl-5 pr-5"> -->
+            <img class="img-fluid otpMessageImage mt-2 mb-4"
+                src="assets/images/userWebsite/otp_message_image.png">
+            <p class="color-black regularFont commonFontSize">Enter OTP Send On Your {{model.username}}.</p>
+            <div class="form-group">
+                <div class="d-flex flex-row justify-content-between loginInput">
+                    <input #otp1 (keyup)="changeInput($event)" [(ngModel)]="model.otp1" name="otp1"
+                        class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                        type="text" maxlength="1">
+                    <input #otp2 (keyup)="changeInput($event)" [(ngModel)]="model.otp2" name="otp2"
+                        class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                        type="text" maxlength="1">
+                    <input #otp3 (keyup)="changeInput($event)" [(ngModel)]="model.otp3" name="otp3"
+                        class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont  mr-4"
+                        type="text" maxlength="1">
+                    <input #otp4 (keyup)="changeInput($event)" [(ngModel)]="model.otp4" name="otp4"
+                        class=" form-control ei-form-control text-center color-purple otpStyle commonFontSize semiBoldFont"
+                        type="text" maxlength="1">
                 </div>
-                <span class="float-right textUnderlineStyle commonFontSize mediumFont d-inline-block mb-3" (click)="resendOtp()">Resend OTP</span>
-                <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
-
-                <div class="col-6" style="clear: both;">
-                    <button type="button" class="px-3 py-2 rounded bg-purple color-white mt-3 border-0 mb-3" (click)="goToDashboard();">Submit </button>
-                </div>
-
-                <!-- <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize" (click)="resendOtp()">Resend Code </a>
-                </p> -->
-
             </div>
+            <div class="required required" [innerHtml]="errorOtpModelDisplay"></div>
+            <button type="button" class="btn common-model-Btn mt-4" (click)="goToDashboard();">Submit </button>
+
+            <p><a class="color-purple semiBoldFont textUnderlineStyle commonFontSize"
+                    (click)="resendOtp()">Resend Code </a>
+            </p>
+            <!-- </form> -->
+
         </div>
     </div>
+</div>
 </div>
 
 

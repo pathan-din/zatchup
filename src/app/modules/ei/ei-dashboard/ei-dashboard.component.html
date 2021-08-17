@@ -31,14 +31,14 @@
                 <div class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle"
                 (click)="goToEiVerifiedAlumniPage()">
                     <p class="p-2 mediumFont commonFontSize">Alumni on ZatchUp </p>
-                    <h2 class="countFontSize text-center semiBoldFont"><span>{{dashboardCount.verified_alumni}}</span></h2>
+                    <h2 class="countFontSize text-center semiBoldFont"><span>{{dashboardCount.total_alumni}}</span></h2>
                     <!-- <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary"> / :<span
                             class="ml-2"><span
                                 ></span>/<span
                                 ></span> </span>
                     </p> -->
                     <p class="mb-0 p-1  mediumFont commonFontSize bg-light-secondary" (click)="goToEiVerifiedAlumniPage()">Total Alumni On ZatchUp:<span
-                        class="ml-2">{{dashboardCount.verified_alumni}}</span></p>
+                        class="ml-2">{{dashboardCount.total_alumni}}</span></p>
                         <!-- <p class="mb-0 p-1  mediumFont commonFontSize bg-light-secondary" (click)="goToEiUnverifiedAlumniPage()">Unverified:<span
                             class="ml-2">{{dashboardCount.pending_alumni}}</span></p> -->
                 </div>
@@ -47,9 +47,9 @@
                 <div (click)="redirectTotalStudentPage()"
                     class="form-control-inputDiv  h-100 col-flex rounded-0 p-0 shadow-none ml-1 cursorStyle">
                     <p class="p-2 mediumFont commonFontSize">Students on ZatchUp</p>
-                    <h2 class="countFontSize text-center semiBoldFont">{{dashboardCount.verified_student}}</h2>
+                    <h2 class="countFontSize text-center semiBoldFont">{{dashboardCount.total_student}}</h2>
                     <p class="mb-0 p-2  mediumFont commonFontSize bg-light-secondary">Total ZatchUp Students:<span
-                            class="ml-2">{{dashboardCount.verified_student}}</span></p>
+                            class="ml-2">{{dashboardCount.total_student}}</span></p>
                 </div>
             </div>
             <!-- <div class="col-md-4">

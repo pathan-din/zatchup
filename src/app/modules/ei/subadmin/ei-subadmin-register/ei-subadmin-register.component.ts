@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseService } from '../../../../services/base/base.service';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
@@ -15,16 +15,20 @@ declare var $: any;
   styleUrls: ['./ei-subadmin-register.component.css']
 })
 export class EiSubadminRegisterComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   model: any = {};
   maxDate: any;
   modelForOtpModal: any = {};
   showHidePassword: string = 'password';
   showHidecPassword: string = 'password';
   /**********Variable declare for OTP Verification Model************/
-  otp1: any;
-  otp2: any;
-  otp3: any;
-  otp4: any;
+  // otp1: any;
+  // otp2: any;
+  // otp3: any;
+  // otp4: any;
   /*****************************************************************/
   modelForConfirm: any = {};
   error: any = [];
@@ -133,14 +137,14 @@ export class EiSubadminRegisterComponent implements OnInit {
     var flagRequired = true;
     this.errorOtpModelDisplay = '';
     this.error = [];
-    if (!this.otp1) {
+    if (!this.model.otp1) {
       flagRequired = false;
-    } else if (!this.otp2) {
+    } else if (!this.model.otp2) {
       flagRequired = false;
-    } else if (!this.otp3) {
+    } else if (!this.model.otp3) {
       flagRequired = false;
     }
-    else if (!this.otp4) {
+    else if (!this.model.otp4) {
       flagRequired = false;
     }
     if (flagRequired == false) {
@@ -152,7 +156,7 @@ export class EiSubadminRegisterComponent implements OnInit {
     }
     try {
       this.modelForOtpModal.username = this.model.username ? this.model.username : this.model.phone;
-      this.modelForOtpModal.verify_otp_no = this.otp1 + this.otp2 + this.otp3 + this.otp4;
+      this.modelForOtpModal.verify_otp_no = this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4;
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.loader.show();
       this.base.action('subadmin/mobile-verify/', this.modelForOtpModal).subscribe(
@@ -182,9 +186,22 @@ export class EiSubadminRegisterComponent implements OnInit {
     }
   }
   changeInput($ev) {
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+      }
+       
     }
   }
 

@@ -111,7 +111,10 @@
                     <img class="img-fluid  headerLogoImg" src="assets/images/EiWebsite/kyc_logo.png" routerLink="/ei/dashboard">
                 </a>
             </span>
-            <div class="d-flex mr-4 mobile-d-none">
+            <div *ngIf="userRoleDetails.role=='EIREPRESENTATIVE'" class="d-flex mr-4 mobile-d-none">
+                <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
+            </div>
+            <div *ngIf="userRoleDetails.role=='EISUBADMIN' && isValidModule('MODULE010') " class="d-flex mr-4 mobile-d-none">
                 <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
             </div>
             <span class="spacer"></span>
@@ -119,7 +122,11 @@
             <div class="dropdown">
                 <i class="fa fa-search searchforMobile mr-4" style="color: #888;" aria-hidden="true" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
             
-                <div class="dropdown-menu customEiSearch" aria-labelledby="dropdownMenuButton">
+                <div *ngIf="userRoleDetails.role=='EIREPRESENTATIVE'" class="dropdown-menu customEiSearch" aria-labelledby="dropdownMenuButton">
+                    <!-- <input class="form-control me-2 dropdown-menu" aria-labelledby="search-dropdown" type="search" placeholder="Search" aria-label="Search"> -->
+                    <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
+                </div> 
+                <div *ngIf="userRoleDetails.role=='EISUBADMIN' && isValidModule('MODULE010') " class="dropdown-menu customEiSearch" aria-labelledby="dropdownMenuButton">
                     <!-- <input class="form-control me-2 dropdown-menu" aria-labelledby="search-dropdown" type="search" placeholder="Search" aria-label="Search"> -->
                     <input-search class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [config]="searchConfig" [value]="searchItem" (searchResult)="getSearchResult($event)" (setValue)="setValue($event)" class="h-100"></input-search>
                 </div> 
