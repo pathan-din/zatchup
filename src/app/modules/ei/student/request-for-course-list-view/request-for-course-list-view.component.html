@@ -20,7 +20,7 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
+                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3" *ngIf="oldData">
                             <div class="border-bottom col-12 pb-2">
                             <h2 class=" color-purple commonFontSize semiBoldFont m-0 ml-2">Old Data</h2>
                         </div>
@@ -28,7 +28,7 @@
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details
                                 </h3>
 
-                                <div class="pr-4 pl-0" *ngIf="oldData">
+                                <div class="pr-4 pl-0" >
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{oldData.course_name}}</span></p>
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont"> Course Duration : <span
@@ -53,6 +53,10 @@
                                             class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Roll Number : <span class="regularFont">{{objCd.roll_no}}  </span>
                                         </div>
+                                        <div *ngIf="oldData.admission_number"
+                                            class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            Admission Number : <span class="regularFont">{{oldData.admission_number}}  </span>
+                                        </div>
                                     </div>
                                     </div>
 
@@ -61,15 +65,15 @@
                             </div>
                         </div>
 
-                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3">
+                        <div class="row form-control-inputDiv pt-2 mb-3 pb-3" *ngIf="newData">
                             <div class="border-bottom col-12 pb-2">
                             <h2 class=" color-purple commonFontSize semiBoldFont m-0 ml-2">New Data</h2>
                         </div>
-                            <div class="col-md-12 pt-2">
+                            <div class="col-md-12 pt-2"  >
                                 <h3 class="color-purple commonFontSize semiBoldFont Heading m-0 mb-2">Course Details
                                 </h3>
 
-                                <div class="pr-4 pl-0" *ngIf="newData">
+                                <div class="pr-4 pl-0" >
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont">Name of Course : <span
                                             class="regularFont">{{newData.course_name}}</span></p>
                                     <p class="m-0 mb-1 commonFontSize semiBoldFont"> Course Duration : <span
@@ -90,9 +94,13 @@
                                             class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
                                             Class (Sub-Section) : <span class="regularFont"> {{nobjCd.class_name}}</span>
                                         </div>
-                                        <div *ngIf="nobjCd.roll_no"
+                                        <div *ngIf="newData.roll_no"
                                             class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
-                                            Roll Number : <span class="regularFont">{{nobjCd.roll_no}} </span>
+                                            Roll Number : <span class="regularFont">{{newData.roll_no}} </span>
+                                        </div>
+                                        <div *ngIf="newData.admission_no"
+                                            class="col-lg-12 col-md-12 semiBoldFont commonFontSize">
+                                            Admission Number: <span class="regularFont">{{newData.admission_no}} </span>
                                         </div>
                                     </div>
                                     </div>

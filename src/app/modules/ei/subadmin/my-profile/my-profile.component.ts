@@ -39,6 +39,7 @@ export class MyProfileComponent implements OnInit {
   pastDetails: any;
   approved: any;
   kycApproved: any;
+  school_id: any;
   // imagePath: any = environment.serverImagePath;
 
   constructor(
@@ -267,6 +268,9 @@ export class MyProfileComponent implements OnInit {
             this.epData = res.data
             this.approved = res.data.approved_by_ei
             this.kycApproved = res.data.kyc_aprroved
+            this.school_id = res.data.education_detail[0].id
+            console.log(this.school_id);
+            
             if( this.approved == false && this.kycApproved == true){
               this.alert.info('Your profile is pending for verification by your employing educational institution, please get it verified', 'Information')
             }
@@ -311,6 +315,10 @@ export class MyProfileComponent implements OnInit {
   // }
   getRequestChangeDetails(){
       this.router.navigate(["ei/subadmin-pending-requests/"]);
+  }
+
+  goToReVerify(){
+    this.router.navigate(['ei/add-ei'], {queryParams : {'school_id': this.school_id, 'add_school': true }})
   }
 
 //   getRequestCourseDetails(){
