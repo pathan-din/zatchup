@@ -101,6 +101,12 @@ label{margin-bottom: 0px !important; cursor: pointer;}
     background: #dcf8c6;
     max-width: 65%;
 }
+.deletIcon {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    font-size: 25px;
+}
 .profile_pick img {
     max-width: 100%;
     margin: 0px auto;

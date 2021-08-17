@@ -44,16 +44,20 @@
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation;let i=index">
                     <div class="col-md-12 col-12">
-                        <div (click)="deleteSelfChat(conversation,i)" class="chatTxt text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}" *ngIf="!objCon.document">
+                        <div class="chatTxt text-capitalize position-relative {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}" *ngIf="!objCon.document">
                             <!--<p class="mb-0 semiBoldFont"> {{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}} </p>-->
-                            <p class="mb-0 text-left"> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
-                                    <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
-                                    <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
-                               --></span>
-                            </p>
+                            <p class="mb-0 text-left"> {{objCon.msg}}</p>
+                            <span class="text-right small-text-2 d-block ml-4 color-gray"> {{getTimeAgo(objCon.timestamp)}}
+                                <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
+                                <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>--></span>
+                            <div class="">
+                                <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <div class="dropdown-menu" aria-labelledby="dropdownChat">
+                                  <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
+                                </div>
+                            </div>
                         </div>
-                        <div (click)="deleteSelfChat(conversation,i)" class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left" *ngIf="objCon.document">
+                        <div class="chatTxt position-relative {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left" *ngIf="objCon.document">
                             <p class="text-left mb-0"> {{objCon.roll_no?getRecepintUserDetails(objCon.id).first_name:''}} </p>
                              <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
@@ -103,6 +107,14 @@
                                 <!--<img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
                                 <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>-->
                             </span>
+
+                            <div class="">
+                                <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <div class="dropdown-menu" aria-labelledby="dropdownChat">
+                                  <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -130,16 +142,20 @@
 
             <div class="teacherChatList border-bottom" #scrollMe [scrollTop]="scrollHeight">
                 <div class="row pb-2 mt-2" *ngFor="let objCon of conversation;let i=index;">
-                    <div (click)="deleteSelfChat(conversation,i)" class="col-md-12 col-12">
+                    <div class="col-md-12 col-12">
                         <p *ngIf="objCon.is_creatted" class="text-center mb-0 py-1"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}</p>
-                        <div  *ngIf="!objCon.document && !objCon.is_creatted" class="chatTxt text-capitalize {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}">
+                        <div  *ngIf="!objCon.document && !objCon.is_creatted" class="chatTxt text-capitalize position-relative {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}">
                             <p class="text-left mb-0 semiBoldFont" *ngIf="!objCon.is_creatted"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
-                            <p *ngIf="!objCon.is_creatted" class="text-left mb-0 "> {{objCon.msg}}
-                                <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}</span>
-                            </p>
-                             
+                            <p *ngIf="!objCon.is_creatted" class="text-left mb-0 pr-4"> {{objCon.msg}}</p>
+                            <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}</span>
+                            <div class="">
+                                <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <div class="dropdown-menu" aria-labelledby="dropdownChat">
+                                  <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="chatTxt {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}  text-left" *ngIf="objCon.document">
+                        <div class="chatTxt position-relative {{objCon.user_send_by!=currentUser?'chatTxt-2':''}}  text-left" *ngIf="objCon.document">
                             <p class="text-left mb-0"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
@@ -191,6 +207,12 @@
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                             -->
                             </span>
+                            <div class="">
+                                <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <div class="dropdown-menu" aria-labelledby="dropdownChat">
+                                  <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

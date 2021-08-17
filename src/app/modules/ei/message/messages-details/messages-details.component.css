@@ -41,6 +41,13 @@
     max-width: 65%;
 }
 
+.deletIcon {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    font-size: 25px;
+}
+
 .chatTxt-2{
     background: #fff;
     border-radius: 8px;
