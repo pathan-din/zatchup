@@ -75,6 +75,9 @@
                             <div class="addWorkcourse ml-4">
                                 <button *ngIf="epData.ei_request_count > 0" type='button' class="bg-purple text-white border-0 px-2 py-1 mr-2" 
                                          (click)="goToSchoolApprovalList()"  >Sent For Sign Up</button>
+
+                                <button *ngIf="epData.is_rejected == true" type='button' class="bg-dark text-white border-0 px-2 py-1 mr-2" 
+                                        (click)="goToReVerify()" > Re-Verify</button>
                                            
                                 <a *ngIf="epData.is_present_ei == 'False'" (click)="goToAddEi()" class="cursorStyle">
                                     <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"

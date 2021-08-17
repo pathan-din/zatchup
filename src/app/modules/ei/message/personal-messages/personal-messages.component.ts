@@ -136,17 +136,20 @@ export class PersonalMessagesComponent implements OnInit {
                   if (uuid && res1.data) {
                     this.firestore.collection('users').doc(uuid).ref.get().then(res => {
                       this.recepintDetails = res.data();
-                      res1.data[res1.data.length - 1].uuid = uuid;
-                      res1.data[res1.data.length - 1].user_friend_id = element;
-                      res1.data[res1.data.length - 1].class_name = this.recepintDetails.class_name;
-                      res1.data[res1.data.length - 1].roll_no = this.recepintDetails.roll_no;
-                      res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
-                      res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
-                      res1.data[res1.data.length - 1].group = 0
-                      this.lastMessageData.push(res1.data[res1.data.length - 1]);
-                      this.lastMessageData.sort(function (x, y) {
-                        return y.timestamp - x.timestamp;
-                      })
+                      if(res1.data[res1.data.length - 1]){
+                        res1.data[res1.data.length - 1].uuid = uuid;
+                        res1.data[res1.data.length - 1].user_friend_id = element;
+                        res1.data[res1.data.length - 1].class_name = this.recepintDetails.class_name;
+                        res1.data[res1.data.length - 1].roll_no = this.recepintDetails.roll_no;
+                        res1.data[res1.data.length - 1].profile_pic = this.recepintDetails.photoUrl;
+                        res1.data[res1.data.length - 1].user_name = this.recepintDetails.firstName + ' ' + (!this.recepintDetails.lastName ? '' : this.recepintDetails.lastName);
+                        res1.data[res1.data.length - 1].group = 0
+                        this.lastMessageData.push(res1.data[res1.data.length - 1]);
+                        this.lastMessageData.sort(function (x, y) {
+                          return y.timestamp - x.timestamp;
+                        })
+                      }
+                    
                     });
                   }
 
@@ -295,11 +298,11 @@ export class PersonalMessagesComponent implements OnInit {
                   this.lastGroupmsg[element.payload.doc.id] = []
                   if (!this.lastGroupmsg[element.payload.doc.id].find(el => { return el.timestamp == res1.data[res1.data.length - 1].timestamp })) {
                     if (res1) {
-                      if(res1.data[res1.data.length - 1].is_delete!=1){
-                        this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
-                       
-                      }
+                      
                       if(res1.data[res1.data.length - 1]){
+                        var filtterData = res1.data.filter(el=>{return el.is_delete!=1})
+                        this.lastGroupmsg[element.payload.doc.id].push(filtterData[filtterData.length-1])
+                        //this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
                         res.timestamp = res1.data[res1.data.length - 1].timestamp;
                         res.group = 1
                        }else{
@@ -344,6 +347,21 @@ export class PersonalMessagesComponent implements OnInit {
       this.recepintDetails = res.data();
     });
 
+  }
+  viewProfile(firebase_id){
+    let obj:any={}
+    obj.firebase_id = firebase_id;
+    this.baseService.getData("user/get-user-role-from-firebaseid/",obj).subscribe((res:any)=>{
+      // 
+      if(res.status==true){
+        if(res.user_role!='EISUBADMIN' && res.user_role!='EIREPRESENTATIVE'){
+          
+        this.router.navigate(["/ei/student-profile"],{queryParams:{"stId":res.user_id}})
+        
+        } 
+      }
+      
+    })
   }
   messageDetails(uid, chatConversion) {
     localStorage.setItem('guuid', uid);

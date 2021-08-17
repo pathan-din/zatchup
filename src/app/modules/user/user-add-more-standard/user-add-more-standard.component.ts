@@ -72,12 +72,18 @@ export class UserAddMoreStandardComponent implements OnInit {
       this.getCourseBySchoolId(schoolId)
       this.model.school_id = this.schoolId;
       this.isalumini = params['isalumini'];
-
-      this.model.course_id = params['course_id'];
-      this.courseId = params['course_id'];
-      this.model.existing_course_id = params['course_id'];
-      if (params['course_id']) {
+      console.log(params.course_id);
+      
+      if(params.course_id){
+        this.model.course_id = params['course_id'];
+        this.model.existing_course_id = params['course_id'];
         this.displayStandardList(this.model.course_id)
+        this.courseId = params['course_id'];
+      }
+      else{
+        this.model.course_id =''
+        this.model.join_standard_id =''
+        this.model.left_standard_id = ''
       }
 
 
@@ -159,10 +165,24 @@ export class UserAddMoreStandardComponent implements OnInit {
         "school_id": id,
         "edit_course_id": this.params.edit_course ? this.params.course_id : undefined
       }
+     
       this.baseService.getData('user/get-course-list-for-userpanel/', data).subscribe(
         (res: any) => {
           this.SpinnerService.hide();
+        
+          this.model.course_id = ''
+          
           this.courseList = res.results;
+
+      if(this.params.course_id){
+        this.model.course_id = this.params.course_id;
+       
+      }
+      else{
+        this.model.course_id =''
+        this.model.join_standard_id =''
+        this.model.left_standard_id = ''
+      }
           if (this.courseList)
             this.setCalDates(this.model.course_id)
         }, (error) => {
@@ -190,6 +210,8 @@ export class UserAddMoreStandardComponent implements OnInit {
         this.baseService.getData('user/standard-list-by-courseid/', data).subscribe(res => {
           let response: any = {};
           response = res;
+          // this.model.join_standard_id =''
+          // this.model.left_standard_id = ''
           this.standardList = response.results;
           this.leftStandardList = response.results;
           this.resetForm()

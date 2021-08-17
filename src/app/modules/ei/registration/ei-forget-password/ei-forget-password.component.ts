@@ -162,6 +162,7 @@ export class EiForgetPasswordComponent implements OnInit {
       
       let data: any = {};
       this.modelForOtpModal.email_or_phone = this.verificationMobileNo ;
+      this.modelForOtpModal.role = this.role
 
       /***********************Mobile Number OR Email Verification Via OTP**********************************/
       this.SpinnerService.show();

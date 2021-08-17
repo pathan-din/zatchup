@@ -83,6 +83,25 @@ refersh(){
     })
   }
 }
+viewProfile(firebase_id){
+  let obj:any={}
+  obj.firebase_id = firebase_id;
+  this.baseService.getData("user/get-user-role-from-firebaseid/",obj).subscribe((res:any)=>{
+    // 
+    if(res.status==true){
+      if(res.user_role!='EISUBADMIN' && res.user_role!='EIREPRESENTATIVE'){
+      this.router.navigate(["user/home"],{queryParams:{"id":res.user_id}})
+      
+      }else if(res.status==true && res.user_role=='EISUBADMIN'){
+
+      }else{
+        
+        this.router.navigate(["user/school-profile"],{queryParams:{"school_id":res.school_id}})
+      }
+    }
+    
+  })
+}
   getRecepintUserDetails(uuid,text:any='') {
     if(text=='group'){
       //this.receipentUsers.push(k)

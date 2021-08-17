@@ -69,6 +69,8 @@ export class ChatComponent implements OnInit {
     this.firebaseService.setPresence('online')
     if(localStorage.getItem('message')){
       this.model.comment = localStorage.getItem('message')
+      this.uuid = localStorage.getItem('uuid');
+        this.getDocumentsChat(this.uuid);
       this.sendChat()
       
     }

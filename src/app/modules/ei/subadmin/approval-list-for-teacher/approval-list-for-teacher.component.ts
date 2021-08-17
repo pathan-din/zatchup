@@ -104,7 +104,7 @@ export class ApprovalListForTeacherComponent implements OnInit {
               }
               else if(this.data.approved == 1){
                
-                this.router.navigate(['ei/subadmin-school-confirm'], {queryParams: {'school_id': schoolId}})
+                this.router.navigate(['ei/add-ei'], {queryParams: {'school_id': schoolId}})
    
               }
             
