@@ -245,6 +245,7 @@ export class MessagesComponent implements OnInit {
               if (user_friend != element1) {
                 if(res1.data)
                 {
+                 // this.getUsersWithModeratorRole(this.currentUser)
                   this.messageData[element1]=[]
                   res1.data.forEach(ele => {
                     if(ele.is_read==1 && ele.user_send_by!=this.currentUser){

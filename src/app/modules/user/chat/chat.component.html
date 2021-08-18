@@ -44,7 +44,7 @@
                         <div class="chatIn" *ngIf="objCon.user_send_by!=currentUser">
 
                           <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize py-1"/>
                                 </a>
                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document && getFileExtention(objCon.msg)!='doc'
                              && getFileExtention(objCon.msg)!='docx' && getFileExtention(objCon.msg)!='csv' 
@@ -65,19 +65,19 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
                                 </a>
                                  <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
                             || getFileExtention(objCon.msg)=='aiff'
@@ -85,7 +85,7 @@
                             || getFileExtention(objCon.msg)=='wma'
                             || getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                                  
                              
@@ -106,7 +106,7 @@
                                 </span>
 
                                 <div class="">
-                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle"  aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                     <div class="dropdown-menu" aria-labelledby="dropdownChat">
                                       <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
                                     </div>
@@ -115,7 +115,7 @@
                             </div>
                             <div *ngIf="objCon.document" class="position-relative chatOut">
                                <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize py-1"/>
                                 </a>
                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document && getFileExtention(objCon.msg)!='doc'
                              && getFileExtention(objCon.msg)!='docx' && getFileExtention(objCon.msg)!='csv' 
@@ -136,19 +136,19 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
                                </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
                                 </a>
                                  <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle py-1">
                                 </a>
                                     <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                         <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle">
                                     </a>
                                     <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                        <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
+                                        <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle py-1">
                                     </a>
                                     <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
                                     || getFileExtention(objCon.msg)=='aiff'
@@ -156,7 +156,7 @@
                                     || getFileExtention(objCon.msg)=='wma'
                                     || getFileExtention(objCon.msg)=='aac'
                                     && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                        <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
+                                        <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle py-1">
                                     </a>
                                 
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
@@ -165,7 +165,7 @@
                                 </span>
 
                                 <div class="">
-                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle"  aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                     <div class="dropdown-menu" aria-labelledby="dropdownChat">
                                       <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
                                     </div>
@@ -200,7 +200,7 @@
                         <div class="{{!objCon.is_creatted?'chatIn':''}}" *ngIf="objCon.user_send_by!=currentUser">
                             <p *ngIf="!objCon.is_creatted" class="text-left m-0 semiBoldFont"> {{objCon.user_send_by!=currentUser?objCon.user_name:''}} </p>
                             <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize py-1"/>
                                 </a>
                                <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document && getFileExtention(objCon.msg)!='doc'
                              && getFileExtention(objCon.msg)!='docx' && getFileExtention(objCon.msg)!='csv' 
@@ -221,19 +221,19 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
                                 </a>
                                  <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
                             || getFileExtention(objCon.msg)=='aiff'
@@ -241,11 +241,11 @@
                             || getFileExtention(objCon.msg)=='wma'
                             || getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
 
                                  
-                            <p *ngIf="!objCon.is_creatted" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize">  {{objCon.msg}}
+                            <p *ngIf="!objCon.is_creatted && !objCon.document" class="chatTxt mb-0 {{objCon.user_send_by!=currentUser?'chatTxt-2':''}} text-left text-capitalize">  {{objCon.msg}}
                                 <span class="text-right small-text-2 d-block ml-4 color-gray"> {{objCon.is_creatted?'':getTimeAgo(objCon.timestamp)}}
                                    </span>
                             </p>
@@ -268,7 +268,7 @@
                                 <span class="text-right small-text-2 d-block color-gray ml-4"> {{getTimeAgo(objCon.timestamp)}}</span>
 
                                 <div class="">
-                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle"  aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                     <div class="dropdown-menu" aria-labelledby="dropdownChat">
                                       <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
                                     </div>
@@ -277,7 +277,7 @@
                             </div>
                             <div *ngIf="objCon.document" class="position-relative chatOut">
                                 <a *ngIf="getFileExtention(objCon.msg)=='pdf' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize"/>
+                                    <img src="./assets/images/userWebsite/pdf.png" class="pdf_customSize py-1"/>
                                 </a>
                                 <a *ngIf="getFileExtention(objCon.msg)!='pdf' && getFileExtention(objCon.msg)!='mp4' && objCon.document && getFileExtention(objCon.msg)!='doc'
                              && getFileExtention(objCon.msg)!='docx' && getFileExtention(objCon.msg)!='csv' 
@@ -298,19 +298,19 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle">
+                                    <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
                                 </a>
                                  <a *ngIf="getFileExtention(objCon.msg)=='csv' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/csv.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='doc' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/doc.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='docx' && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/docx.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp3' 
                             || getFileExtention(objCon.msg)=='aiff'
@@ -318,7 +318,7 @@
                             || getFileExtention(objCon.msg)=='wma'
                             || getFileExtention(objCon.msg)=='aac'
                              && objCon.document" href="{{objCon.msg}}" target="_blank">
-                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle">
+                                <img  src="./assets/images/userWebsite/audio.png" class="img-fluid imgChatBig cursorStyle py-1">
                             </a>
                                 <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}
                                    <!-- <img src="./assets/images/userWebsite/message-delivered.png" alt="" class="ml-2 message-delivered-icon"/>
@@ -326,7 +326,7 @@
                                 </span>
 
                                 <div class="">
-                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle" tooltip="Delete Message" aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle"  aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                                     <div class="dropdown-menu" aria-labelledby="dropdownChat">
                                       <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
                                     </div>
