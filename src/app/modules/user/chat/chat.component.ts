@@ -67,13 +67,7 @@ export class ChatComponent implements OnInit {
     this.online= true
     
     this.firebaseService.setPresence('online')
-    if(localStorage.getItem('message')){
-      this.model.comment = localStorage.getItem('message')
-      this.uuid = localStorage.getItem('uuid');
-        this.getDocumentsChat(this.uuid);
-      this.sendChat()
-      
-    }
+    
      
     
     this.route.queryParams.subscribe((params:any)=>{
@@ -193,7 +187,12 @@ export class ChatComponent implements OnInit {
       // this.sendChat()
       localStorage.removeItem('reminderText')
     }
+   if(localStorage.getItem("message")){
+    this.uuid = localStorage.getItem('uuid');
+    console.log("reply");
     
+    this.getDocumentsChatVerify(this.uuid )
+   }
   }
   getRoleOfUserBaseOnFirebaseId(id){
     this.model.firebase_id = id;
@@ -392,6 +391,55 @@ export class ChatComponent implements OnInit {
     }
    
   }
+
+  getDocumentsChatVerify(uuid: any) {
+   
+    this.conversation = [];
+    this.dataStudent = [];
+    var uuid1 = '';
+      let uid = uuid;
+      if (localStorage.getItem("friendlidt_id")) {
+        uuid1 = localStorage.getItem("friendlidt_id");
+        var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
+       const getSubs= dataSet.subscribe((res: any) => {
+          if (res) {
+            let datacon:any=[]
+            if (res.data) {
+              
+              this.conversation = res.data;
+              this.dataStudent = res.data;
+                         
+              
+            }
+            
+          
+            if(localStorage.getItem('message')){
+              this.model.comment = localStorage.getItem('message')
+              this.uuid = localStorage.getItem('uuid');
+               console.log("yes");
+               
+              this.sendChatVerify()
+              getSubs.unsubscribe()
+            } 
+  
+          } else {
+            this.conversation = [];
+            this.dataStudent = [];
+            if(localStorage.getItem('message')){
+              this.model.comment = localStorage.getItem('message')
+              this.uuid = localStorage.getItem('uuid');
+               console.log("yes");
+               
+              this.sendChatVerify()
+              getSubs.unsubscribe()
+            }
+          }
+        })
+      }
+       
+    
+   
+  }
   
   getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
     this.conversation = [];
@@ -549,6 +597,84 @@ export class ChatComponent implements OnInit {
     })
   }
   }
+  sendChatVerify(document?: any) {
+  
+    if (this.model.comment)
+      this.model.comment = this.model.comment.trim()
+    if (!this.model.comment && !document) {
+      return;
+    }
+   
+  
+      if(this.blockRecipant1){
+        this.alert.error("Please Unblock this receipant","Error");
+        return false;
+      }
+      return new Promise<any>((resolve, reject) => {
+        let data: any = {};
+        let dataNew: any = {};
+        let userData = JSON.parse(localStorage.getItem('userInfo'))
+        data.user_friend_id = localStorage.getItem("friendlidt_id")
+        data.user_send_by = localStorage.getItem('fbtoken');
+        data.timestamp = new Date().valueOf();
+        data.user_name = userData.first_name + ' ' + userData.last_name;
+        data.profile_pic = userData.profile_pic
+        data.document = document ? true : false;
+        data.msg = document ? document : this.model.comment;
+        data.is_read = 1
+        data.is_delete = 0;
+        this.dataStudent.push(data)
+        dataNew.data = this.dataStudent;
+        this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
+          .set(dataNew).then(res => {
+            this.model.comment = '';
+            setTimeout(() => {
+              if(localStorage.getItem('message')){
+                this.replyChat(localStorage.getItem('accepted'))
+              }
+              
+            }, 3000);
+            
+           // this.getDocumentsChat('')
+          },
+            err => reject(err)
+          )
+      })
+    
+    }
+    getReplyDocumentsChatVerify(uuid: any) {
+   
+      this.conversation = [];
+      this.dataStudent = [];
+      var uuid1 = '';
+        let uid = uuid;
+        if (localStorage.getItem("friendlidt_id")) {
+          uuid1 = localStorage.getItem("friendlidt_id");
+          var dataSet = this.firestore.collection('chat_conversation').doc(uuid1).valueChanges();
+          const reply=dataSet.subscribe((res: any) => {
+            if (res) {
+              let datacon:any=[]
+              if (res.data) {
+                
+                this.conversation = res.data;
+                this.dataStudent = res.data;
+                reply.unsubscribe()            
+                
+              }
+              
+            
+              
+    
+            } else {
+              this.conversation = [];
+              this.dataStudent = [];
+            }
+          })
+        }
+         
+      
+     
+    }
 replyChat(uid){
   localStorage.removeItem('message')
   return new Promise<any>((resolve, reject) => {
@@ -570,7 +696,7 @@ replyChat(uid){
     this.firestore.collection("chat_conversation/").doc(data.user_friend_id)
       .set(dataNew).then(res => {
         this.model.comment = '';
-        this.getDocumentsChat('')
+        this.getReplyDocumentsChatVerify('')
       },
         err => reject(err)
       )
