@@ -140,7 +140,7 @@
                         <div class="col-md-12 ">
                             <label for="" class=" mediumFont commonFontSize letterspacing">Reason type</label>
                             <div class="form-control-inputDiv rounded p-0 shadow-none">
-                                <input id="remark" (keyup)="isValid()" [(ngModel)]="modelReason.remark" name="rejection_reason" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
+                                <input id="remark" (keyup)="isValid()" [(ngModel)]="modelReason.rejected_reason" name="rejection_reason" required class="form-control-input form-control  commonFontSize regularFont letterspacing"
                                     type="text" placeholder="Enter Reason">
                             </div>
                             <div class="required errorMsg" [innerHtml]="errorDisplay.rejection_reason"></div>
@@ -151,7 +151,7 @@
                             <label for="Remarks " class=" commonFontSize semiBoldFonttterspacing ">Remarks</label>
 
                             <div class="form-control-inputDiv rounded p-1 shadow-none ">
-                                <textarea [(ngModel)]="modelReason.rejected_reason" name="description" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
+                                <textarea [(ngModel)]="modelReason.remark" name="description" required class="form-control-input form-control form-control-sm commonFontSize regularFont letterspacing "
                                     rows="3 " placeholder="Enter Description" (keyup)="isValid()"></textarea>
                             </div>
                         </div>

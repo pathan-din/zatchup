@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenericFormValidationService } from '../../../../services/common/generic-form-validation.service';
 import { AdminService } from '../../../../services/Admin/admin.service';
@@ -16,15 +16,19 @@ declare var $: any;
 })
 
 export class EiForgetPasswordComponent implements OnInit {
+  @ViewChild('otp1') otp1: ElementRef;
+  @ViewChild('otp2') otp2: ElementRef;
+  @ViewChild('otp3') otp3: ElementRef;
+  @ViewChild('otp4') otp4: ElementRef;
   error: any = [];
   errorDisplay: any = {};
   model: any = {};
   verificationMobileNo: any;
   title: string;
-  otp1: any;
-  otp2: any;
-  otp3: any;
-  otp4: any;
+  // otp1: any;
+  // otp2: any;
+  // otp3: any;
+  // otp4: any;
   modelForOtpModal: any={};
   errorOtpModelDisplay: any;
   role: any;
@@ -49,11 +53,26 @@ export class EiForgetPasswordComponent implements OnInit {
     
   }
   changeInput($ev) {
-    if ($ev.target.value.length == $ev.target.maxLength) {
+    
+    
+    
+    if ($ev.target.value.length == $ev.target.maxLength && $ev.keyCode!=8 && $ev.target.name!='otp4') {
       var $nextInput = $ev.target.nextSibling;
       $nextInput.focus();
+    }else{
+      
+      if($ev.keyCode==8){
+        if($ev.target.name=='otp4'){
+          this.otp3.nativeElement.focus()
+        }else if($ev.target.name=='otp3'){
+          this.otp2.nativeElement.focus()
+        }else if($ev.target.name=='otp2'){
+          this.otp1.nativeElement.focus()
+        }
+      }
+     
+       
     }
-
   }
   submit() {
     this.error = [];
@@ -119,7 +138,7 @@ export class EiForgetPasswordComponent implements OnInit {
   }
   mobileVerification() {
     var flagRequired = true;
-    if (!this.otp1 || !this.otp2 || !this.otp3 || !this.otp4) {
+    if (!this.model.otp1 || !this.model.otp2 || !this.model.otp3 || !this.model.otp4) {
       flagRequired = false
     }
     
@@ -127,7 +146,7 @@ export class EiForgetPasswordComponent implements OnInit {
       try {
         let data = {
           "email_or_phone": this.verificationMobileNo ? this.verificationMobileNo : '',
-          "code": this.otp1 + this.otp2 + this.otp3 + this.otp4
+          "code": this.model.otp1 + this.model.otp2 + this.model.otp3 + this.model.otp4
         }
         console.log(data);
         

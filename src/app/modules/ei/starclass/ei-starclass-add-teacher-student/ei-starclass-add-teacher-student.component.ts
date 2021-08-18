@@ -465,6 +465,8 @@ getStudentBycheckboxClickForStudentBulkAction(stId, event) {
   }
   
   goBack(){
+    localStorage.removeItem("allstudent");
+    localStorage.removeItem("groupclasscheck");
     this.location.back()
   }
 }
