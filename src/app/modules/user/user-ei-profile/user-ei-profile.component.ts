@@ -65,6 +65,8 @@ export class UserEiProfileComponent implements OnInit {
       }
       if (params.course_id) {
         this.model.course_id = params.course_id;
+        console.log(this.model.course_id);
+        
         this.displayStandardList(this.model.course_id)
         this.model.existing_course_id = params.course_id;
       } else {
@@ -186,13 +188,15 @@ export class UserEiProfileComponent implements OnInit {
       this.baseService.getData('user/get-course-list-for-userpanel/', data).subscribe(
         (res: any) => {
           this.loader.hide();
-
           this.courseList = res.results;
           that.courseList = res.results;
           console.log(this.params.course_id, 'course_id');
           
           if(this.params.course_id){
+           
+            
             this.model.course_id = this.params.course_id
+            console.log( this.model.course_id);
           }
           else{
             this.model.course_id = '';
@@ -253,7 +257,7 @@ export class UserEiProfileComponent implements OnInit {
         this.loader.hide();
         this.standardList = response.results;
         this.leftStandardList = response.results;
-        this.resetForm()
+        // this.resetForm()
         this.loader.hide();
       }, (error) => {
         console.log(error);
