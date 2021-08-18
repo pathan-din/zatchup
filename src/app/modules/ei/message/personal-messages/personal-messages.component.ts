@@ -33,6 +33,8 @@ export class PersonalMessagesComponent implements OnInit {
   objBlock: any;
   isblock: any;
   isRole:boolean=false;
+  user_friend: string='';
+  check:boolean=true;
   constructor(
     private router: Router,
     private firestore: AngularFirestore,
@@ -59,18 +61,30 @@ export class PersonalMessagesComponent implements OnInit {
       })
     }
    
-    if (this.isLoggedIn) {
-      this.lastMessageData = []
-      this.notifypush.receiveMessage();
-      this.notifypush.requestPermission();
-      if (localStorage.getItem("fbtoken")) {
-        this.currentUser = localStorage.getItem("fbtoken");
-        this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
-      }
-    }
-    this.getGroupDetails(this.currentUser)
+   
+    //this.getGroupDetails(this.currentUser)
+    this.user_friend = "";
+    this.getRefreshData()
   }
-
+  getRefreshData(){
+    this.firestore.collection("chat_conversation").valueChanges().subscribe(res=>{
+      if(this.check==false){
+        this.user_friend = "";
+        console.log("check data");
+        
+      }
+      
+      if (this.isLoggedIn) {
+        //this.lastMessageData = []
+        
+        if (localStorage.getItem("fbtoken")) {
+          this.currentUser = localStorage.getItem("fbtoken");
+          this.getUsersWithModeratorRole(localStorage.getItem("fbtoken"));
+        }
+      }
+      this.getGroupDetails(localStorage.getItem('fbtoken'))
+    })
+  }
   getUsersWithModeratorRole(loginfirebase_id) {
     var that = this;
     //.where('user_accept_id', '==', loginfirebase_id)
@@ -99,25 +113,26 @@ export class PersonalMessagesComponent implements OnInit {
     this.router.navigate(["ei/group-chat"], { queryParams: { "newgrp": "C" } });
   }
   getMessageList() {
-
+    this.lastMessageData = [];
     this.messageData = [];
     this.ids.forEach(elem => {
       elem.then((res: any) => {
         res.forEach(element => {
-          var user_friend = "";
+         // var user_friend = "";
           this.firestore.collection('chat_conversation').doc(element).valueChanges().subscribe((res1: any) => {
 
             if (res1) {
-              this.messageData[element] = [];
-              if (user_friend != element) {
+              
+              if (this.user_friend != element) {
                 if (res1.data) {
+                  this.messageData[element] = [];
                   res1.data.forEach(ele => {
-                     console.log(ele.is_read,"asd");
+                    // console.log(ele.is_read,"asd");
                      
                     if (ele.is_read == 1 && ele.user_send_by != this.currentUser) {
                       if (!this.messageData.find(e => { return e.timestamp == ele.timestamp })) {
                         this.messageData[ele.user_friend_id].push(ele)
-                        console.log(this.messageData);
+                       // console.log(this.messageData);
                         
                       }
                     }
@@ -154,7 +169,9 @@ export class PersonalMessagesComponent implements OnInit {
                   }
 
                 })
-                user_friend = element;
+                this.user_friend = element;
+              }else{
+                this.check=false
               }
 
             }
@@ -264,8 +281,11 @@ export class PersonalMessagesComponent implements OnInit {
   }
   getGroupDetails(uuid) {
     this.groupList = [];
-    this.groupListNew = [];
+   // this.groupListNew = [];
     this.lastGroupmsgCount = []
+    this.groupList=[];
+    this.lastGroupmsg=[];
+    this.lastGroupmsgCount=[];
     this.firestore.collection('group').snapshotChanges().subscribe((res: any) => {
       res.forEach(element => {
         this.firestore.collection('group').doc(element.payload.doc.id).valueChanges().subscribe((res: any) => {
@@ -276,9 +296,10 @@ export class PersonalMessagesComponent implements OnInit {
           if (!res.group_icon) {
             res.group_icon = "assets/images/userWebsite/users.png";
           }
-          this.lastGroupmsgCount[element.payload.doc.id] = []
+          
           this.firestore.collection('chat_conversation').doc(element.payload.doc.id).valueChanges().subscribe((res1: any) => {
             if (res1) {
+              this.lastGroupmsgCount[element.payload.doc.id] = []
               res1.data.forEach(elements => {
                 if (elements.is_read == 1 && !elements.is_creatted && elements.user_send_by !== localStorage.getItem('fbtoken')) {
                   if (!this.lastGroupmsgCount[element.payload.doc.id].find(el => { return el.timestamp == elements.timestamp })) {
@@ -298,17 +319,26 @@ export class PersonalMessagesComponent implements OnInit {
                   this.lastGroupmsg[element.payload.doc.id] = []
                   if (!this.lastGroupmsg[element.payload.doc.id].find(el => { return el.timestamp == res1.data[res1.data.length - 1].timestamp })) {
                     if (res1) {
-                      
-                      if(res1.data[res1.data.length - 1]){
-                        var filtterData = res1.data.filter(el=>{return el.is_delete!=1})
-                        this.lastGroupmsg[element.payload.doc.id].push(filtterData[filtterData.length-1])
-                        //this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
-                        res.timestamp = res1.data[res1.data.length - 1].timestamp;
-                        res.group = 1
-                       }else{
-                        res.timestamp = 0
-                       }
+
+                      var filtterData = res1.data.filter(el=>{return el.is_delete!=1})
+                      this.lastGroupmsg[element.payload.doc.id].push(filtterData[filtterData.length-1])
+                      if(res1.data[res1.data.length-1]){
+                        res.timestamp = res1.data[res1.data.length-1].timestamp;
+                      }else{
+                        res.timestamp = 0;
+                      }
+                     
+                      // if(res1.data[res1.data.length - 1]){
+                      //   var filtterData = res1.data.filter(el=>{return el.is_delete!=1})
+                      //   this.lastGroupmsg[element.payload.doc.id].push(filtterData[filtterData.length-1])
+                      //   //this.lastGroupmsg[element.payload.doc.id].push(res1.data[res1.data.length - 1])
+                      //   res.timestamp = res1.data[res1.data.length - 1].timestamp;
+                        
+                      //  }else{
+                      //   res.timestamp = 0
+                      //  }
                     }
+                    res.group = 1
                   }
 
                 })

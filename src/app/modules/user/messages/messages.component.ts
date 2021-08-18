@@ -37,6 +37,8 @@ export class MessagesComponent implements OnInit {
   objBlock: any;
   blockUserList : any = [];
   totalChatData:any=[];
+  user_friend: string='';
+  check:boolean=true;
   constructor(
     private location: Location,
     private baseService: BaseService,
@@ -58,11 +60,24 @@ export class MessagesComponent implements OnInit {
           }
         })
       }
-      this.getUsersWithModeratorRole(this.currentUser)
-      this.getGroupDetails(localStorage.getItem('fbtoken'))
+      this.user_friend = "";
+      this.getRefreshData()
+     
      }
 
     
+  }
+  getRefreshData(){
+    this.firestore.collection("chat_conversation").valueChanges().subscribe(res=>{
+      if(this.check==false){
+        this.user_friend = "";
+        console.log("check data");
+        
+      }
+      
+      this.getUsersWithModeratorRole(this.currentUser)
+      this.getGroupDetails(localStorage.getItem('fbtoken'))
+    })
   }
   setUserSettingOnFirebase(event,type){
     
@@ -161,6 +176,7 @@ export class MessagesComponent implements OnInit {
            if(res1){
             res1.data.forEach(elements => {
               if(elements.is_read==1 && !elements.is_creatted && elements.user_send_by!==localStorage.getItem('fbtoken')){
+               if(this.lastGroupmsgCount[element.payload.doc.id])
                 if(!this.lastGroupmsgCount[element.payload.doc.id].find(el=>{return el.timestamp==elements.timestamp})){
                   this.lastGroupmsgCount[element.payload.doc.id].push(elements);
                 }
@@ -235,14 +251,15 @@ export class MessagesComponent implements OnInit {
   getMessageList() {
     this.lastMessageData = [];
     this.messageData = [];
+    
     this.ids.forEach(element => {
       element.then((res: any) => {
         res.forEach(element1 => {
-          var user_friend = "";
+          
           this.firestore.collection('chat_conversation').doc(element1).valueChanges().subscribe((res1: any) => {
-
+            
             if (res1) {
-              if (user_friend != element1) {
+              if (this.user_friend != element1) {
                 if(res1.data)
                 {
                  // this.getUsersWithModeratorRole(this.currentUser)
@@ -286,7 +303,10 @@ export class MessagesComponent implements OnInit {
                     
                   });
                 })
-                user_friend = element1;
+                this.user_friend = element1;
+                
+              }else{
+                this.check=false;
               }
             }
           })

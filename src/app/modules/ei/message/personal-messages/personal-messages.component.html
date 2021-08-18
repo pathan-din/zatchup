@@ -88,7 +88,7 @@
             }}</span>
             <span
               class="chatCount"
-              *ngIf="messageData[msgObj.user_friend_id].length > 0"
+              *ngIf="messageData[msgObj.user_friend_id] && messageData[msgObj.user_friend_id].length > 0"
               >{{ messageData[msgObj.user_friend_id].length }}</span
             >
           </h3>
@@ -123,7 +123,7 @@
           >
             {{ msgObj.group_title }} 
             <span
-              *ngIf="lastGroupmsgCount[msgObj.uuid].length > 0"
+              *ngIf="lastGroupmsgCount[msgObj.uuid] && lastGroupmsgCount[msgObj.uuid].length > 0"
               class="chatCount"
               >{{ lastGroupmsgCount[msgObj.uuid].length }}</span
             >
