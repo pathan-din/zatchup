@@ -93,6 +93,7 @@ export class SubadminPendingRequestComponent implements OnInit {
           this.alert.error(res.error.message[0], 'Error')
           this.loader.hide();
         }
+        this.loader.hide();
       }
     ), (err: any) => {
       this.alert.error(err, 'Error')
