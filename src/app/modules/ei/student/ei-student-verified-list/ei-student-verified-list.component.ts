@@ -606,7 +606,7 @@ params:any={}
     }
   }
   goBack(): void {
-    this.location.back()
+    this.router.navigate(['ei/student-management'])
   }
 
   getGender(data: any) {

@@ -196,7 +196,7 @@ export class EiStudentEditComponent implements OnInit {
       this.eiService.editStudent(formData, this.modelEdit.studentId).subscribe(
         (res: any) => {
        
-        this.router.navigate(['ei/student-management']);
+       this.location.back()
        
       }, (error) => {
         this.loader.hide();
