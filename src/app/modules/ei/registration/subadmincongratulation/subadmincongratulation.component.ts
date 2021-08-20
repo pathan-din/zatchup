@@ -20,13 +20,14 @@ export class SubadmincongratulationComponent implements OnInit {
     this.getRegStep()
   }
   goToUserLandingPage(){
-    if(this.regStep >= 4 && this.kycApproved == true ){
-      this.router.navigate(['ei/my-profile'])
-    }
-    else {
-      localStorage.clear();
-      this.router.navigate(['ei/login-subadmin']);
-    }
+    // if(this.regStep >= 4 && this.kycApproved == true ){
+    //   this.router.navigate(['ei/my-profile'])
+    // }
+    // else {
+     
+    // }
+    localStorage.clear();
+    this.router.navigate(['ei/login-subadmin']);
 	
   }
 

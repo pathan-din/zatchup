@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseService } from 'src/app/services/base/base.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 // import { environment } from './../../../../../environments/environment';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { GenericFormValidationService } from 'src/app/services/common/generic-form-validation.service';
@@ -14,6 +15,10 @@ declare var $: any;
 })
 export class MyProfileComponent implements OnInit {
   @ViewChild('closeModal') closeModal: any;
+  recepintDetails: any = {};
+  dataStudent: any = [];
+  conversation: any = [];
+  objStudent: any = {};
   epData: any = {};
   model: any = {};
   editModel: any = {};
@@ -48,7 +53,8 @@ export class MyProfileComponent implements OnInit {
     private loader: NgxSpinnerService,
     private validationService: GenericFormValidationService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private firestore: AngularFirestore,
   ) { }
 
   ngOnInit(): void {
@@ -256,6 +262,95 @@ export class MyProfileComponent implements OnInit {
   //   }
   //   this.router.navigate(['user/kyc-verification'], { queryParams: {"action":"sendrequest","returnUrl": "user/my-educational-profile" } });
   // }
+
+  goToChatScreen(epData) {
+    this.conversation = [];
+    this.dataStudent = [];
+    this.objStudent = epData;
+    this.getRecepintUserDetails(epData.firebase_id)
+    return new Promise<any>((resolve, reject) => {
+      let data: any = {};
+      var date = new Date();
+
+      var uuid = epData.firebase_id;
+      console.log(uuid);
+      
+      data.user_request_id = localStorage.getItem('fbtoken');
+      data.user_accept_id = uuid;
+      data.is_block = 0
+      data.is_seen = 0
+      data.is_active = 1
+      data.is_read = 0
+      data.created_on = this.baseService.getDateFormat(date);
+      let getFriendListExistingData: any = {}
+      this.getFriendListBySender(localStorage.getItem('fbtoken'), uuid, data)
+
+
+
+    })
+
+
+  }
+
+  getFriendListBySender(loginfirebase_id: any, user_accept_id: any, data) {
+    this.conversation = [];
+    this.dataStudent = [];
+    this.firestore.collection('user_friend_list').valueChanges().subscribe((res: any) => {
+      let dataEle = res.find(elem => {
+        return ((elem.user_request_id === loginfirebase_id && elem.user_accept_id === user_accept_id) || (elem.user_request_id === user_accept_id && elem.user_accept_id === loginfirebase_id))
+      })
+      if (dataEle) {
+        this.firestore.collection('user_friend_list').get()
+          .subscribe(querySnapshot => {
+            if (querySnapshot.docs.length > 0) {
+              querySnapshot.docs.map(doc => {
+                let res: any = []
+                res = doc.data();
+                if (dataEle.user_request_id == res.user_request_id && dataEle.user_accept_id == res.user_accept_id) {
+                  localStorage.setItem("friendlidt_id", doc.id)
+                  this.getDocumentsChat();
+                }
+              });
+            }
+          });
+      } else {
+        this.firestore.collection("user_friend_list").add(data).then(res => {
+          localStorage.setItem("friendlidt_id", res.id)
+          this.getDocumentsChat();
+
+        })
+      }
+    })
+  }
+
+  getDocumentsChat() {
+    this.conversation = [];
+    this.dataStudent = [];
+    var uuid = localStorage.getItem("friendlidt_id");
+    var dataSet = this.firestore.collection('chat_conversation').doc(uuid).valueChanges();
+    dataSet.subscribe((res: any) => {
+      if (res) {
+        this.conversation = res.data;
+        this.dataStudent = res.data;
+      } else {
+        this.conversation = [];
+        this.dataStudent = [];
+      }
+      this.router.navigate(["ei/messages-details"]);
+    })
+
+
+
+  }
+
+  getRecepintUserDetails(uuid) {
+    localStorage.setItem("receipent", uuid);
+    this.firestore.collection('users').doc(uuid).ref.get().then(res => {
+      this.recepintDetails = res.data();
+    });
+
+  }
+
   getSubAdminProfile() {
     try {
       this.loader.show()
@@ -271,7 +366,7 @@ export class MyProfileComponent implements OnInit {
             this.school_id = res.data.education_detail[0].id
             console.log(this.school_id);
             
-            if( this.approved == false && this.kycApproved == true){
+            if( this.approved == false && this.kycApproved == true && this.epData.is_rejected == false){
               this.alert.info('Your profile is pending for verification by your employing educational institution, please get it verified', 'Information')
             }
           }

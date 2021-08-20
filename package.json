@@ -1,6 +1,6 @@
 {
   "name": "zatch-up",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -31,6 +31,7 @@
     "file-saver": "^2.0.2",
     "firebase": "^8.2.2",
     "git": "^0.1.5",
+    "hammerjs": "^2.0.8",
     "jquery": "^3.5.1",
     "lodash-es": "^4.17.20",
     "ng-multiselect-dropdown": "^0.3.4",

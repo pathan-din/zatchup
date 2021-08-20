@@ -188,8 +188,16 @@ export class UserEiProfileComponent implements OnInit {
       this.baseService.getData('user/get-course-list-for-userpanel/', data).subscribe(
         (res: any) => {
           this.loader.hide();
-          this.courseList = res.results;
-          that.courseList = res.results;
+          var getData = []
+          res.results.forEach(
+            element => {
+              if (element.view_for == 'STUDENT' ) {
+                getData.push (element)
+              } else { }
+            }
+          )
+          this.courseList = getData
+          // that.courseList = res.results;
           console.log(this.params.course_id, 'course_id');
           
           if(this.params.course_id){

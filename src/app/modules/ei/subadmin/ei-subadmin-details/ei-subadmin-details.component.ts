@@ -17,6 +17,7 @@ export class EiSubadminDetailsComponent implements OnInit {
  subAdminListDetails:any={}
  profileId:any; 
  model:any={};
+ disable : boolean = false;
   constructor(private genericFormValidationService: GenericFormValidationService, 
     private router: Router,
     private SpinnerService: NgxSpinnerService, 
@@ -123,6 +124,7 @@ export class EiSubadminDetailsComponent implements OnInit {
   deleteSubAdmin(){
     try {
       this.SpinnerService.show()
+      this.disable = true
       this.model = {
         'subadmin_id': this.route.snapshot.queryParamMap.get('id')
       }

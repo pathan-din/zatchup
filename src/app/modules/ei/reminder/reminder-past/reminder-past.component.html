@@ -79,7 +79,7 @@
                 </button>
             </div>
             <div class="modal-body px-0">
-                <ngx-image-viewer [src]="images" [(index)]="imageIndexOne">
+                <ngx-image-viewer [src]="images" [(index)]="imageIndexOne" (customEvent)="handleEvent($event)">
                 </ngx-image-viewer>
             </div>
         </div>

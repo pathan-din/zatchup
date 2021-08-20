@@ -20,7 +20,7 @@ const ELEMENT_DATA: subAdminManagementElement[] = [];
   styleUrls: ['./reminder-past.component.css']
 })
 export class ReminderPastComponent implements OnInit {
-  imageIndexOne : any;
+  imageIndexOne = 0;
   displayedColumns: string[] = ['SNo', 'message','attachment', 'recieved_date'];
   pageSize: any = 1;
   totalNumberOfPage: any = 10;
@@ -80,6 +80,10 @@ export class ReminderPastComponent implements OnInit {
   viewImage(src) {
     this.images = []
     this.images.push(src);
+   }
+   
+  handleEvent(event: any) {
+
   }
  
   goBack(){

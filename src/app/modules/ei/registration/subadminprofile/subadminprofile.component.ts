@@ -97,10 +97,17 @@ export class SubadminprofileComponent implements OnInit {
   }
   getEiNumber() {
     try {
-      this.baseService.getData("subadmin/get-employe-num-of-subadmin/").subscribe(res => {
+      this.model = {
+        'school_id': this.schoolId
+      }
+      console.log(this.model);
+      
+      this.baseService.getData("subadmin/get-employe-num-of-subadmin/", this.model).subscribe(res => {
         let response: any = res;
         if (response.status == true) {
           this.model.employee_num = response.employee_num;
+          this.imageUrl = response.profile_pic;
+          this.model.comment = response.comment
         } else {
           this.alert.error("Id Number Not Fetched", "Error")
         }
@@ -137,7 +144,7 @@ export class SubadminprofileComponent implements OnInit {
         if (response.status == true) {
           this.SpinnerService.hide();
           // let regStep = JSON.parse(localStorage.getItem('getreject')).reg_step
-          if(this.regStep == 5){
+          if(this.regStep == 4){
             this.router.navigate(['ei/my-profile'])
           }
           else{

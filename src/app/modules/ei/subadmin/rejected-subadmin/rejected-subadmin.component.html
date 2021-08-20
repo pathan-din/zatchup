@@ -42,7 +42,7 @@
                     <ng-container matColumnDef="Name">
                         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{element.first_name}} {{element.last_name}}
+                            {{element.full_name}} 
                         </mat-cell>
                     </ng-container>
 
@@ -120,7 +120,7 @@
                 </mat-table>
             </div>
         </div>
-        <pagination-controls *ngIf="dataSource && dataSource.length> 0" (pageChange)="getSubadminPendingRequest($event)" class="eiPaginationTag">
+        <pagination-controls *ngIf="dataSource && dataSource.length> 0" (pageChange)="getSubadminRejectedList($event)" class="eiPaginationTag">
         </pagination-controls>
         <div class="row" *ngIf="dataSource && dataSource.length== 0">
             <div class="col-12 pt-2 pb-2">

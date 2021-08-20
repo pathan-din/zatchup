@@ -94,11 +94,11 @@ export class EiKycVerificationComponent implements OnInit {
       if (this.params.action == 'sendrequest') {
         if (this.params.text == 'name') {
           formData.append('kyc_name', this.model.kyc_name);
+          formData.append('field_change_type','name');
         } else {
           this.model.kyc_dob = this.baseService.getDateFormat(this.model.kyc_dob);
           formData.append('kyc_dob', this.model.kyc_dob);
-        console.log(this.model.kyc_dob);
-        
+          formData.append('field_change_type','dob');  
         }
         formData.append('kyc_type', this.model.kyc_type);
         formData.append('kyc_document', this.uploadedContent);

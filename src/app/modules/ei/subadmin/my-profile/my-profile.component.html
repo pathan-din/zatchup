@@ -83,6 +83,10 @@
                                     <img src="assets/images/userWebsite/add-more.png" class="cursorStyle img-fluid"
                                         style="height: 26px;">
                                 </a>
+                                <!-- <i *ngIf="epData.kyc_aprroved==1 "
+                                        (click)="getDocumentsChat(epData)"
+                                        class="fa fa-comment color-green fa-lg ml-1 cursorStyle" aria-hidden="true "
+                                        style="font-size: 26px;"></i> -->
                                 <!-- *ngIf="epData.ei_request_count == 0" -->
                             </div>
                         </div>
@@ -124,6 +128,7 @@
                 <div *ngIf="pastDetails" class="row form-control-inputDiv py-3 px-2 mt-3">
                     <div class="col-md-12">
                         <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Past School Details </h2>
+                        
                         <div class="col-md-12">
                             <hr>
                         </div>

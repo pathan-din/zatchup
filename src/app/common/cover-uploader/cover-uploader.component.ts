@@ -14,10 +14,10 @@ export class CoverUploaderComponent implements OnInit {
   @ViewChild('openModalButton') openModalButton: any;
   @ViewChild('closeButton') closeButton: any;
   @Output() imageData: EventEmitter<any> = new EventEmitter();
-  @Input() get uploadInfo(): any {
-    return this._uploadInfo
+  @Input() get uploadCoverInfo(): any {
+    return this._uploadCoverInfo
   };
-  set uploadInfo(upload: any) {
+  set uploadCoverInfo(upload: any) {
     this.icon = upload.icon ? upload.icon : undefined;
     this.image = upload.image ? upload.image : undefined;
     this.url = upload.url ? upload.url : undefined;
@@ -30,7 +30,7 @@ export class CoverUploaderComponent implements OnInit {
   croppedImage: any = '';
   profile_pic: any;
   fileData: File
-  _uploadInfo: any;
+  _uploadCoverInfo: any;
   image_type: any;
   url: any;
   icon: any;

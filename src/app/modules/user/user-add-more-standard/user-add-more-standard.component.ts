@@ -171,8 +171,16 @@ export class UserAddMoreStandardComponent implements OnInit {
           this.SpinnerService.hide();
         
           this.model.course_id = ''
-          
-          this.courseList = res.results;
+          var getData = []
+          res.results.forEach(
+            element => {
+              if (element.view_for == 'ALUMNI' ) {
+                getData.push (element)
+              } else { }
+            }
+          )
+          this.courseList = getData
+          // this.courseList = res.results;
 
       if(this.params.course_id){
         this.model.course_id = this.params.course_id;

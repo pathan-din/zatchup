@@ -29,6 +29,7 @@ export class AddEiComponent implements OnInit {
   params: any;
   isDisabled: boolean = true
   data: any;
+  schoolID: string;
 
   constructor(private router: Router,
     private SpinnerService: NgxSpinnerService,
@@ -54,7 +55,14 @@ export class AddEiComponent implements OnInit {
     this.getAllState();
     this.model.state = '';
     this.model.city = '';
-   
+    
+    if(this.route.snapshot.queryParamMap.get('school_id')){
+      this.schoolID = this.route.snapshot.queryParamMap.get('school_id')
+    }
+    else{
+      this.schoolID =  this.schoolID
+    }
+
   }
 
   getEiDetailsBySchoolId() {
@@ -159,10 +167,13 @@ console.log(e);
 
       this.baseService.action('subadmin/add-ei/', this.model).subscribe(res => {
         let response: any = {}
+        
+        
         response = res;
         this.SpinnerService.hide();
         if (response.status == true) {
-          this.router.navigate(['ei/subadminprofile'], {queryParams: {'school_id': this.route.snapshot.queryParamMap.get('school_id')}});
+          console.log(this.schoolID);
+          this.router.navigate(['ei/subadminprofile'], {queryParams: {'school_id':this.schoolID}});
         } else {
           this.SpinnerService.hide();
           var errorCollection = '';
@@ -243,6 +254,8 @@ console.log(e);
       this.model.full_address = obj.address1 + ' ' + obj.address2 + ' ' + obj.pincode;
       this.model.address1 = obj.address1;
       this.modelZatchup.zatchup_id = obj.school_code;
+      this.model.school_id = obj.id
+      this.schoolID = obj.id
       this.isDisabled = true
     } else {
       this.model.school_data = {};

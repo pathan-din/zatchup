@@ -28,6 +28,11 @@ export class EiSubadminViewStatusComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(navigator.onLine){
+      
+     } else {
+      alert('offline');
+     }
     this.getEIStatus('');
     this.status = this.route.snapshot.queryParamMap.get('status')
   }

@@ -8,13 +8,14 @@
                 src="{{userProfile.cover_pic ? userProfile.cover_pic : 'assets/images/cover-pic-default.png'}}"
                 class="img-fluid w-100">
 
-            <!-- <app-cover-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadCoverInfo"></app-cover-uploader> -->
+            <!-- <app-cover-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadCoverInfo">
+             </app-cover-uploader> -->
            <button type="button" (click)="fileInput.click()"
                 class=" btn_position-absolute border-0 bg-light-black text-white p-2">
                 <i class="fa fa-camera" title="Upload" aria-hidden="true"></i>
                 <input (change)="uploadCoverPic($event.target.files)" #fileInput type="file" style="display:none;" />
             </button>
-             <!-- <app-image-uploader (imageData)="getCoverPicUrl($event)" [uploadInfo]="uploadInfo">
+             <!-- <app-image-uploader (imageData)="getProfilePicUrl($event)" [uploadInfo]="uploadInfo">
                             </app-image-uploader> -->
         </div>
         <div class="pt-2">

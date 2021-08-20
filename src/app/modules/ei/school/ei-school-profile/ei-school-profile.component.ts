@@ -18,18 +18,20 @@ export class EiSchoolProfileComponent implements OnInit {
   postOptionActiveImage: string = 'dead';
   postOptionActiveMatrix: string = 'active';
   profile_pic: any = '';
-  uploadInfo: any = {
-    "image_type": "profile_pic",
-    "url": "ei/cover-profile-update/",
-    "icon": "fa fa-camera",
-    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
-  }
   uploadCoverInfo: any = {
     "image_type": "cover_pic",
     "url": "ei/cover-profile-update/",
     "icon": "fa fa-camera",
     "class": "btn_position-absolute btn_upload back-cover-photo border-0 bg-light-black text-white p-2"
   }
+  uploadInfo: any = {
+    "image_type": "profile_pic",
+    "url": "ei/cover-profile-update/",
+    "icon": "fa fa-camera",
+    "class": "btn_position-absolute btn_upload border-0 bg-light-black text-white p-2"
+  }
+  
+ 
   userProfile: any = {};
   cover_pic: any = '';
 

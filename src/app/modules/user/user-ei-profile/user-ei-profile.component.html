@@ -38,7 +38,8 @@
                         <select (change)="displayStandardList(model.course_id); isValid()" name="course"
                             [(ngModel)]="model.course_id" class="custom-select form-control-input" required>
                             <option value="">Select Course </option>
-                            <option value="{{courseObj.id}}" *ngFor="let courseObj of courseList">
+
+                            <option value="{{courseObj.id }}" *ngFor="let courseObj of courseList">
                                 {{courseObj.course_name}}</option>
 
                         </select>
