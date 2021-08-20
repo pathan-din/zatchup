@@ -173,15 +173,15 @@
             <!-- start Div for banner-->
             <div *ngIf="eiData" class="Onboard-viewbanner-div p-2 d-flex align-items-end imagePosition"
                 [ngStyle]="eiData.cover_pic ? {'background-image': 'url(' + eiData.cover_pic + ')'} : { 'background-image' : 'url(' + 'assets/images/cover-pic-default.png' + ')'}">
-                <div *ngIf="!eiData.profile_pic" class="dpImgDiv position-relative">
-                    <img src="assets/images/profile-default.png" class="img-fluid dpImg cursorStyle">
+                <div *ngIf="!eiData.profile_pic" class="dpImgCircle rounded-circle bg-light-green border border-white position-relative">
+                    <img src="assets/images/profile_pic_transparent.png" class="img-fluid dpImg">
                     <div class="img-fluid tick-img">
                         <img *ngIf="eiData.is_onboarded==1" src="assets/images/userWebsite/checkicon.png"
                         class="img-fluid verifiedTick">
                     </div>
                 </div>
-                <div *ngIf="eiData.profile_pic" class="dpImgDiv position-relative">
-                    <img src="{{eiData.profile_pic}}" class="img-fluid dpImg cursorStyle">   
+                <div *ngIf="eiData.profile_pic" class="dpImgCircle rounded-circle bg-light-green border border-white position-relative">
+                    <img src="{{eiData.profile_pic}}" class="img-fluid dpImg">   
                     <div class="img-fluid tick-img">
                         <img *ngIf="eiData.is_onboarded==1" src="assets/images/userWebsite/checkicon.png"
                         class="img-fluid verifiedTick">

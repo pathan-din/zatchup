@@ -65,7 +65,7 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1 pr-4">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
@@ -136,7 +136,7 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1 pr-4">
                                </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
@@ -253,6 +253,9 @@
                              <p *ngIf="objCon.is_creatted" class="py-1 text-center"> {{objCon.user_send_by!=currentUser?objCon.user_name+' '+objCon.msg:'You'+' '+objCon.msg}}
                                  
                             </p>
+
+                            <span class="text-right small-text-2 d-block color-gray ml-4">{{getTimeAgo(objCon.timestamp)}}</span>
+
                                <!--   <p class="text-left  small-text-2"><strong>{{objCon.user_name}}</strong></p>
                             <p *ngIf="!objCon.document" class=" m-0">{{objCon.msg}}</p>
                             <span class="text-right  small-text-2 ml-4"> {{getTimeAgo(objCon.timestamp)}}

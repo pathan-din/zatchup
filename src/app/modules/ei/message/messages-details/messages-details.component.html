@@ -81,7 +81,7 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1 pr-4">
                             </a>
                                 <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                     <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">
@@ -202,12 +202,7 @@
                                     <img src="./assets/images/userWebsite/message-pending.png" alt="" class="ml-2 message-pending-icon"/>
                             -->
                             </span>
-                            <div class="">
-                                <i class="fa fa-angle-down cursorStyle deletIcon color-gray cursorStyle"  aria-hidden="true" id="dropdownChat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                                <div class="dropdown-menu" aria-labelledby="dropdownChat">
-                                  <div class="dropdown-item cursorStyle" (click)="deleteSelfChat(conversation,i)">Delete Message</div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -248,7 +243,7 @@
                                 && getFileExtention(objCon.msg)!='flac'
                                 && getFileExtention(objCon.msg)!='wma'
                                 && getFileExtention(objCon.msg)!='aac'"
-                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1">
+                                 src="{{objCon.msg}}" class="img-fluid cursorStyle py-1 pr-4">
                             </a>
                             <a *ngIf="getFileExtention(objCon.msg)=='mp4' && objCon.document" href="{{objCon.msg}}" target="_blank">
                                 <img  src="./assets/images/userWebsite/mp4.png" class="img-fluid imgChatBig cursorStyle py-1">

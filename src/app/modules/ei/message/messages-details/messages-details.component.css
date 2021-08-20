@@ -38,8 +38,8 @@
     float: right;
     background: #dcf8c6;
     box-shadow: 0px 1px 2px #ccc;
-    min-width: 12%;
-    max-width: 65%;
+    max-width: 568px;
+    min-width: 100px;
 }
 
 .deletIcon {
@@ -56,6 +56,8 @@
     float: left;
     margin: 0px;
     box-shadow: 0px 1px 2px #ccc;
+    max-width: 568px;
+    min-width: 100px;
 }
 .position-ppin{
     top: 0px;
