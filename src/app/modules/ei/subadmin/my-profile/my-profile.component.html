@@ -127,15 +127,15 @@
 
                 <div *ngIf="pastDetails" class="row form-control-inputDiv py-3 px-2 mt-3">
                     <div class="col-md-12">
-                        <h2 class="color-purple commonFontSize semiBoldFont Heading m-0">Past School Details </h2>
+                        <h2 class="color-purple commonFontSize semiBoldFont Heading">Past School Details </h2>
                         
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <hr>
-                        </div>
-                        <div class="col-md-12" *ngFor="let objPSD of pastDetails">
+                        </div> -->
+
+                        <div class="col-md-11 ml-3 px-0 border-top py-3" *ngFor="let objPSD of pastDetails">
                             <p class="m-0 mb-1 fontSize-16 commonFontSize semiBoldFont">School Name:
-                                <span class="regularFont">{{objPSD.school_name}}
-                                </span> 
+                                <span class="regularFont">{{objPSD.school_name}}</span> 
                             </p>
                             <div class="row">
                                 <div *ngIf="objPSD.zatchup_id" class="col-md-7 semiBoldFont commonFontSize mb-1 fontSize-16"> 
@@ -154,7 +154,8 @@
                                     Address : <span class="regularFont">{{objPSD.address1}} {{objPSD.address2}}</span>
                                 </div>
                             </div>
-                        </div>         
+                        </div>  
+
                     </div>
                 </div>
 
