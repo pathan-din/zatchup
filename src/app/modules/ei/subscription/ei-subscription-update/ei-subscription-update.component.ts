@@ -39,9 +39,9 @@ export class EiSubscriptionUpdateComponent implements OnInit {
 
   makePayment() {
     this.paymentHtml = '';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0">Price:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; <del>' + this.subscription.current_amount + '</del></div></div>';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0">Discount:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; ' + 0 + '</div></div>';
-    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0">Net Price:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; ' + this.subscription.current_amount + '</div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0 semiBoldFont">Price:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; <del>' + this.subscription.current_amount + '</del></div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0 semiBoldFont">Discount:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; ' + 0 + '</div></div>';
+    this.paymentHtml += '<div class="row"><div class="col-md-7 col-sm-6 col-6 px-0 semiBoldFont">Net Price:</div> <div class="col-md-5 col-sm-6 col-6 px-0 text-right color-purple ">&#8377; ' + this.subscription.current_amount + '</div></div>';
   }
 
   getSubList() {
