@@ -49,37 +49,13 @@
     </div>
 
     <div *ngFor="let msgObj of lastMessageData">
-      <div
-        *ngIf="msgObj.group == 0"
-        class="row border-bottom pb-2 mt-3 align-items-center cursorStyle"
-      >
+      <div *ngIf="msgObj.group == 0" class="row border-bottom pb-2 mt-3 align-items-center cursorStyle">
         <div class="col-md-1 col-2 text-center">
-          <img
-            *ngIf="msgObj.profile_pic"
-            src="{{ msgObj.profile_pic }}"
-            alt="Profile"
-            class="rounded-circle bg-light-green header-dp img-small"
-          />
-          <img
-            *ngIf="!msgObj.profile_pic"
-            src="assets/images/userWebsite/share-my-profile-icon.png"
-            alt="Profile"
-            class="rounded-circle bg-light-green header-dp img-small"
-          />
+          <img *ngIf="msgObj.profile_pic" src="{{ msgObj.profile_pic }}" alt="Profile" class="rounded-circle bg-light-green img-small"/>
+          <img *ngIf="!msgObj.profile_pic" src="assets/images/userWebsite/share-my-profile-icon.png" alt="Profile" class="rounded-circle bg-light-green img-small"/>
         </div>
-        <div
-          class="col-md-11 col-10"
-          (click)="goToChatScreen(msgObj.uuid, msgObj.friendlidt_id, '', 'a')"
-        >
-          <h3
-            class="
-              m-0
-              semiBoldFont
-              color-black
-              text-capitalize
-              position-relative
-            "
-          >
+        <div class="col-md-11 col-10" (click)="goToChatScreen(msgObj.uuid, msgObj.friendlidt_id, '', 'a')">
+          <h3 class="m-0 semiBoldFont color-black text-capitalize position-relative">
             {{ msgObj.user_name }}
             <span class="small-text">{{
               msgObj.class_name
